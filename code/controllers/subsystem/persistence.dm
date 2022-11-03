@@ -307,11 +307,11 @@ SUBSYSTEM_DEF(persistence)
 	var/min_cpu = 0
 
 	for(var/ram_record in ai_network_rankings["ram"])
-		if(ram_record < min_ram)
-			min_ram = ram_record
+		if(ram_record["score"] < min_ram)
+			min_ram = ram_record["score"]
 	for(var/cpu_record in ai_network_rankings["cpu"])
-		if(cpu_record < min_ram)
-			min_cpu = cpu_record
+		if(cpu_record["score"] < min_ram)
+			min_cpu = cpu_record["score"]
 
 	var/list/resource_list = list()
 	for(var/datum/ai_network/AN in SSmachines.ainets)
@@ -328,15 +328,20 @@ SUBSYSTEM_DEF(persistence)
 
 	var/cpu_winner = max(contenders_cpu)
 	var/ram_winner = max(contenders_ram)
+	
+
 	if(!isnull(cpu_winner))
-		ai_network_rankings["cpu"] += cpu_winner
-		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"], /proc/cmp_numeric_dsc)
+		var/cpu_entry = list("score" = cpu_winner, "round_id" = GLOB.round_id)
+
+		ai_network_rankings["cpu"] += list(cpu_entry)
+		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"], /proc/cmp_ai_record_dsc)
 		if(length(ai_network_rankings["cpu"]) > 5)
 			ai_network_rankings["cpu"].len = 5
 
 	if(!isnull(ram_winner))
-		ai_network_rankings["ram"] += ram_winner
-		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"], /proc/cmp_numeric_dsc)
+		var/ram_entry = list("score" = ram_winner, "round_id" = GLOB.round_id)
+		ai_network_rankings["ram"] += list(ram_entry)
+		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"], /proc/cmp_ai_record_dsc)
 		if(length(ai_network_rankings["ram"]) > 5)
 			ai_network_rankings["ram"].len = 5
 

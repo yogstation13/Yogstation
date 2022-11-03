@@ -21,4 +21,5 @@
 								/obj/item/computer_hardware/hard_drive,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/ai_interface,
-								/obj/item/computer_hardware/ai_slot)
+								/obj/item/computer_hardware/ai_slot,
+								/obj/item/computer_hardware/card_slot)

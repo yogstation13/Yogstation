@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
 	var/roundstart = FALSE
 	///How many ticks we can go without fulfilling the criteria before shutting off
-	var/valid_ticks = MAX_AI_EXPANSION_TICKS
+	var/valid_ticks
 	///Heat production multiplied by this
 	var/heat_modifier = 1
 	///Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
@@ -42,6 +42,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
 	. = ..()
+	valid_ticks = MAX_AI_SERVER_CABINET_TICKS
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
@@ -72,7 +73,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	idle_power_usage = initial(idle_power_usage) * power_modifier
 
 /obj/machinery/ai/server_cabinet/process_atmos()
-	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_SERVER_CABINET_TICKS)
 	if(valid_holder())
 		roundstart = FALSE
 		var/total_usage = (cached_power_usage * power_modifier)

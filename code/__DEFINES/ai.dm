@@ -6,11 +6,11 @@
 
 
 ///How many ticks can an AI data core store? When this amount of ticks have passed while it's in an INVALID state it can no longer be used by an AI
-#define MAX_AI_DATA_CORE_TICKS (45 * 4)
+#define MAX_AI_DATA_CORE_TICKS (45 * (20 / SSair.wait))
 ///How much power does the AI date core use while being in a valid state. This is also the base heat output. (Divide by heat capacity to get actual temperature increase)
 #define AI_DATA_CORE_POWER_USAGE 7500
-///How many ticks can an expanion bus store. If it reaches 0  the resources will no longer be available.
-#define MAX_AI_EXPANSION_TICKS 15
+///How many ticks can a server cabinet store. If it reaches 0  the resources will no longer be available.
+#define MAX_AI_SERVER_CABINET_TICKS (15 * (20 / SSair.wait))
 
 
 //AI Project Categories.
@@ -19,6 +19,7 @@
 #define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_SURVEILLANCE "Surveillance"
 #define AI_PROJECT_EFFICIENCY "Efficiency"
+#define AI_PROJECT_CROWD_CONTROL "Crowd Control"
 #define AI_PROJECT_MISC "Misc."
 //Update this list if you add any new ones, else the category won't show up in the UIs
 GLOBAL_LIST_INIT(ai_project_categories, list(
@@ -27,6 +28,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_SURVEILLANCE,
 	AI_PROJECT_INDUCTION,
 	AI_PROJECT_EFFICIENCY,
+	AI_PROJECT_CROWD_CONTROL,
 	AI_PROJECT_MISC
 ))
 
@@ -54,10 +56,15 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 
 
 //Self explanatory. 1 bitcoin is equals to 1 CPU * AI_RESEARCH_PER_CPU
-//EXAMPLE (with initial values as of feature introduction)
 #define MAX_AI_BITCOIN_MINED_PER_TICK 250
 //Self explanatory, see MAX_AI_BITCOIN_MINED_PER_TICK * this = max money 1 network can contribute per tick. (17,5 credits every 2 seconds, max 63k over 2 hours)
 #define AI_BITCOIN_PRICE 0.025
+
+
+//Self explanatory. 1 point is equals to 1 CPU * AI_RESEARCH_PER_CPU. Higher value = can use more CPU and get benefits
+#define MAX_AI_REGULAR_RESEARCH_PER_TICK 500
+//Self explanatory. Lower value = more CPU equals less points. Station makes approx. 56 points per tick. This results in 25 (50% gain)
+#define AI_REGULAR_RESEARCH_POINT_MULTIPLIER 0.05
 
 
 //How much RAM and CPU a core needs locally to be functional
@@ -67,15 +74,19 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 //For network based research and tasks. Since each network are going to contribute to a "global" pool of research there's no point in making this more complicated or modular
 //Adding an entry here automatically adds it to the UI and allows CPU to be allocated. Just use your define in the network process() to do stuff
 #define AI_CRYPTO "Cryptocurrency Mining"
+#define AI_RESEARCH "Research Assistance"
 
 GLOBAL_LIST_INIT(possible_ainet_activities, list(
-	"[AI_CRYPTO]"
+	"[AI_CRYPTO]",
+	"[AI_RESEARCH]"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_tagline, list(
-	"[AI_CRYPTO]" = "Use CPU to generate credits!"
+	"[AI_CRYPTO]" = "Use CPU to generate credits!",
+	"[AI_RESEARCH]" = "Use CPU to generate regular research points!"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_description, list(
-	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income."
+	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income.",
+	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points."
 ))

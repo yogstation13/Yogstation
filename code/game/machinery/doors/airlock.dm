@@ -1504,6 +1504,14 @@
 		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 
+
+/obj/machinery/door/airlock/proc/safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		locked = FALSE //For airlocks that were bolted open.
+		close()
+		bolt() //Bolt it!
+
 /obj/machinery/door/airlock/hostile_lockdown(mob/origin)
 	// Must be powered and have working AI wire.
 	if(canAIControl(src) && !stat)
@@ -1524,6 +1532,11 @@
 		open()
 		safe = TRUE
 
+/obj/machinery/door/airlock/proc/disable_safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		unbolt()
+		open()
 
 /obj/machinery/door/airlock/proc/on_break()
 	if(!panel_open)

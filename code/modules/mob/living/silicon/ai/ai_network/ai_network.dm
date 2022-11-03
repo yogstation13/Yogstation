@@ -59,6 +59,11 @@
 		points = clamp(points, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
 		bitcoin_payout += points * AI_BITCOIN_PRICE
 
+	if(local_cpu_usage[AI_RESEARCH])
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_RESEARCH] * total_cpu * resources_assigned)), 0)
+		points = clamp(points * AI_REGULAR_RESEARCH_POINT_MULTIPLIER, 0, MAX_AI_REGULAR_RESEARCH_PER_TICK)
+		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_DEFAULT = points))
+
 	var/locally_used = 0
 	for(var/A in local_cpu_usage)
 		locally_used += local_cpu_usage[A]

@@ -1,19 +1,13 @@
 import { NtosWindow } from '../layouts';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Box, Section, Tabs, NoticeBox, Flex, ProgressBar, LabeledList, NumberInput, Divider } from '../components';
-import { LoginScreen } from './LoginScreen';
+import { Button, Box, Section, Tabs, NoticeBox, Flex, ProgressBar, LabeledList, NumberInput, Divider, Collapsible } from '../components';
 
 export const NtosAIMonitor = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   const [clusterTab, setClusterTab] = useLocalState(context, 'clustertab', 1);
 
-  if(!data.logged_in) {
-    return (
-      <LoginScreen />
-    )
-  }
 
   if (!data.has_ai_net) {
     return (

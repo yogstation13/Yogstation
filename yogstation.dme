@@ -2477,6 +2477,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\induction.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\memory_compressor.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\rgb.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\room_lockdown.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\self_defense.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\cpu.dm"

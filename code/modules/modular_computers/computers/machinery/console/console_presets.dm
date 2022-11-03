@@ -230,4 +230,5 @@
 							/obj/item/computer_hardware/recharger/APC,
 							/obj/item/computer_hardware/hard_drive/super,
 							/obj/item/computer_hardware/processor_unit,
-							/obj/item/computer_hardware/ai_slot)
+							/obj/item/computer_hardware/ai_slot,
+							/obj/item/computer_hardware/card_slot)
