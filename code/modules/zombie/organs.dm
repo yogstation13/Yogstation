@@ -72,6 +72,7 @@
 
 /obj/item/organ/zombie_infection/proc/zombify()
 	timer_id = null
+	owner.grab_ghost()
 
 	if(!converts_living && owner.stat != DEAD)
 		return
@@ -88,7 +89,6 @@
 	owner.setCloneLoss(0, 0)
 	owner.heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE)
 	owner.revive()
-	owner.grab_ghost()
 	owner.visible_message(span_danger("[owner] suddenly convulses, as [owner.p_they()][stand_up ? " stagger to [owner.p_their()] feet and" : ""] gain a ravenous hunger in [owner.p_their()] eyes!"), span_alien("You HUNGER!"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
@@ -104,6 +104,7 @@
 
 /obj/item/organ/zombie_infection/gamemode/zombify()
 	timer_id = null
+	owner.grab_ghost()
 
 	if(!converts_living && owner.stat != DEAD)
 		return
@@ -119,7 +120,6 @@
 	owner.setOxyLoss(0, 0)
 	owner.heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE)
 	owner.revive()
-	owner.grab_ghost()
 	owner.visible_message(span_danger("[owner] suddenly convulses, as [owner.p_they()][stand_up ? " stagger to [owner.p_their()] feet and" : ""] gain a ravenous hunger in [owner.p_their()] eyes!"), span_alien("You HUNGER!"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
