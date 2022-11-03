@@ -2395,12 +2395,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.1":
-  version: 0.21.1
-  resolution: "axios@npm:0.21.1"
+"axios@npm:^0.21.2":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
   dependencies:
-    follow-redirects: ^1.10.0
-  checksum: 864fb7b5d077d236737f10adca53bf451a93f35a15271f56fba8da07265a02d26b7d881b935a6697dc6adb0549ea3e56d2eecb403edaa3bb78f6479901c10f69
+    follow-redirects: ^1.14.0
+  checksum: e6d42b269b599d36eb13be0671c237781f32e6ae72be824297c55a3e1ce63b22ba4f46bad5ab28da7d3bae50a72637d55c792cf803be1cf9de6a8bcd6d0dcc1a
   languageName: node
   linkType: hard
 
@@ -4168,13 +4168,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.10.0":
-  version: 1.13.2
-  resolution: "follow-redirects@npm:1.13.2"
+"follow-redirects@npm:^1.14.0":
+  version: 1.15.2
+  resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 76a23a75e5eedb872fc223fcce5b267fd315b123e0fc38f8d7701283445418d9ead72c7ff8a468d95042526a34e5677bfe76b85f973aa0563890c695c975c451
+  checksum: be594e5583521c9ff8012bf1b72dad42dc96ef0d4030e05164895f15ae4c73cf62cdd5ed9a64b93b4afac682fa392fe371a0dc0db30ae1ec2a375a784249538a
   languageName: node
   linkType: hard
 
@@ -6030,12 +6030,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "marked@npm:2.0.3"
+"marked@npm:^4.0.10":
+  version: 4.2.1
+  resolution: "marked@npm:4.2.1"
   bin:
-    marked: bin/marked
-  checksum: 18940065203f4eacf84538d57478cdab170ca024c01e8cb992871f48fedb8a534bb69a908edd5b2c4d0468fb751ed4da52996cda5a45f063e71e433bbb7f04f7
+    marked: bin/marked.js
+  checksum: 6388bb619422a85c573054901b76a1520c582f42f27a09d74ea706d03db2a2632a5a2fbf7ef5a678bfb155472319a9bd0b8de05201f673a718b26d80db467476
   languageName: node
   linkType: hard
 
@@ -8287,10 +8287,10 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "tgui-dev-server@workspace:packages/tgui-dev-server"
   dependencies:
-    axios: ^0.21.1
+    axios: ^0.21.2
     common: "workspace:*"
     esm: ^3.2.25
-    glob: ^7.1.6
+    glob: ^7.1.4
     source-map: ^0.7.3
     stacktrace-parser: ^0.1.10
     ws: ^7.4.2
@@ -8369,7 +8369,7 @@ resolve@^2.0.0-next.3:
     dompurify: ^2.2.7
     inferno: ^7.4.8
     inferno-vnode-flags: ^7.4.8
-    marked: ^2.0.3
+    marked: ^4.0.10
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown
