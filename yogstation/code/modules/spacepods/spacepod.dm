@@ -248,7 +248,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 /obj/spacepod/proc/InterceptClickOn(mob/user, params, atom/target)
 	var/list/params_list = params2list(params)
-	if(target == src || istype(target, /obj/screen) || (target && (target in user.GetAllContents())) || user != pilot || params_list["shift"] || params_list["alt"] || params_list["ctrl"])
+	if(target == src || istype(target, /atom/movable/screen) || (target && (target in user.GetAllContents())) || user != pilot || params_list["shift"] || params_list["alt"] || params_list["ctrl"])
 		return FALSE
 	if(weapon)
 		weapon.fire_weapons(target)

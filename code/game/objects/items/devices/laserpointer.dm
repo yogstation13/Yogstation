@@ -120,7 +120,7 @@
 		log_combat(user, R, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component
 		if(prob(effectchance * diode.rating))
-			R.overlay_fullscreen("laserpointer", /obj/screen/fullscreen/flash/static)
+			R.overlay_fullscreen("laserpointer", /atom/movable/screen/fullscreen/flash/static)
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
