@@ -80,6 +80,9 @@
 	if(!iszombie(owner))
 		old_species = owner.dna.species.type
 		owner.set_species(/datum/species/zombie/infectious)
+		to_chat(owner, span_alertalien("You are now a zombie!"))
+	else
+		to_chat(owner, span_alertalien("You rise again!"))
 
 	var/stand_up = (owner.stat == DEAD) || (owner.stat == UNCONSCIOUS)
 
@@ -93,7 +96,6 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
 	owner.Stun(living_transformation_time)
-	to_chat(owner, span_alertalien("You are now a zombie!"))
 
 
 /obj/item/organ/zombie_infection/nodamage
@@ -112,6 +114,9 @@
 	if(!iszombie(owner))
 		old_species = owner.dna.species.type
 		owner.set_species(/datum/species/zombie/infectious/gamemode)
+		to_chat(owner, span_alertalien("You are now a zombie! Help your fellow allies take over the station!"))
+	else
+		to_chat(owner, span_alertalien("You rise again!"))
 
 	var/stand_up = (owner.stat == DEAD) || (owner.stat == UNCONSCIOUS)
 
@@ -124,7 +129,6 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
 	owner.Stun(living_transformation_time)
-	to_chat(owner, span_alertalien("You are now a zombie! Help your fellow allies take over the station!"))
 
 
 	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
