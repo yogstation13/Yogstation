@@ -88,7 +88,10 @@
 		if (thing.rad_insulation != RAD_NO_INSULATION)
 			intensity *= (1-((1-thing.rad_insulation)/width))
 		if (thing.rad_insulation == RAD_FULL_INSULATION)
-			intensity = log(intensity+1)/RAD_CONTAMINATION_STR_COEFFICIENT*width
+			if(intensity <= 5000)
+				intensity = log(intensity+1)/RAD_CONTAMINATION_STR_COEFFICIENT*width
+			else
+				intensity = (log(intensity+1)+RAD_MINIMUM_CONTAMINATION)/RAD_CONTAMINATION_STR_COEFFICIENT + 350
 
 /datum/radiation_wave/proc/radiate(list/atoms, strength)
 	var/contamination_chance = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_CHANCE_COEFFICIENT * min(1, 1/(steps*range_modifier))
