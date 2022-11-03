@@ -389,6 +389,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(teleporting)
 		return
+	if(!is_mining_level(current_location.z))
+		user.visible_message(span_danger("[user] starts fiddling with [src]!"))
+		if(!do_after(user, 3 SECONDS, user))
+			return
 	teleporting = TRUE
 	linked.teleporting = TRUE
 	var/turf/T = get_turf(src)
