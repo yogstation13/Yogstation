@@ -139,6 +139,11 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
+/obj/item/bodypart/l_leg/robot/digitigrade
+	name = "digitigrade cyborg left leg"
+	icon_state = "digitigrade_1_l_leg"
+	use_digitigrade = FULL_DIGITIGRADE
+
 /obj/item/bodypart/r_leg/robot
 	name = "cyborg right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -161,6 +166,11 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
+
+/obj/item/bodypart/r_leg/robot/digitigrade
+	name = "digitigrade cyborg right leg"
+	icon_state = "digitigrade_1_r_leg"
+	use_digitigrade = FULL_DIGITIGRADE
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"
@@ -391,6 +401,11 @@
 	burn_reduction = 0
 	max_damage = 20
 
+/obj/item/bodypart/l_leg/robot/surplus/digitigrade
+	name = "surplus digitigrade prosthetic left leg"
+	icon_state = "digitigrade_1_l_leg"
+	use_digitigrade = FULL_DIGITIGRADE
+
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
@@ -399,7 +414,10 @@
 	burn_reduction = 0
 	max_damage = 20
 
-
+/obj/item/bodypart/r_leg/robot/surplus/digitigrade
+	name = "surplus digitigrade prosthetic right leg"
+	icon_state = "digitigrade_1_r_leg"
+	use_digitigrade = FULL_DIGITIGRADE
 
 /obj/item/bodypart/l_leg/ipc
 	status = BODYPART_ROBOTIC
