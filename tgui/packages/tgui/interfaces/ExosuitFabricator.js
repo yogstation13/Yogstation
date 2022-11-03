@@ -6,7 +6,6 @@ import { Flex, Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, I
 import { Window } from '../layouts';
 import { createSearch } from 'common/string';
 
-/*
 const MATERIAL_KEYS = {
   "iron": "sheet-metal_3",
   "glass": "sheet-glass_3",
@@ -125,10 +124,10 @@ const searchFilter = (search, allparts) => {
 
   return searchResults;
 };
-*/
+
 export const ExosuitFabricator = (props, context) => {
   const { act, data } = useBackend(context);
-  /*
+
   const queue = data.queue || [];
   const materialAsObj = materialArrayToObj(data.materials || []);
 
@@ -141,7 +140,7 @@ export const ExosuitFabricator = (props, context) => {
   const [
     displayMatCost,
     setDisplayMatCost,
-  ] = useSharedState(context, "display_mats", false); */
+  ] = useSharedState(context, "display_mats", false);
 
   return (
     <Window
