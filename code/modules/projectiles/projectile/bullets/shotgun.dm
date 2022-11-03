@@ -56,7 +56,7 @@
 	SpinAnimation()
 
 /obj/item/projectile/bullet/shotgun/slug/frag12
-	name ="frag12 slug"
+	name = "frag12 slug"
 	damage = 25
 	wound_bonus = 0
 
@@ -123,11 +123,7 @@
 	damage = 26
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
-
-/obj/item/projectile/bullet/shotgun/slug/uranium/on_hit(atom/target)
-	. = ..()
-	if(ismob(target))
-		return BULLET_ACT_FORCE_PIERCE
+	penetrating = TRUE //Goes through an infinite number of mobs
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
