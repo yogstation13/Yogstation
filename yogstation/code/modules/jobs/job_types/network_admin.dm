@@ -2,7 +2,7 @@
 	title = "Network Admin"
 	flag = NETWORKADMIN
 	department_head = list("Chief Engineer", "Research Director")
-	department_flag = ENGSEC
+	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -17,7 +17,7 @@
 	added_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS)
 	base_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK, ACCESS_RESEARCH, ACCESS_MINISAT, ACCESS_TOX)
 	paycheck = PAYCHECK_MEDIUM
-	paycheck_department = ACCOUNT_ENG
+	paycheck_department = ACCOUNT_SCI
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
 	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
