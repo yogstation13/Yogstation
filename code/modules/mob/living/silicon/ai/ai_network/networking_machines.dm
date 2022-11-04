@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			to_chat(user, span_notice("You disconnect the remote connection."))
 			disconnect()
 			return TRUE
-		to_chat(user, span_warning("The machien isn't connected!"))
+		to_chat(user, span_warning("The machine isn't connected!"))
 		return TRUE
 
 	if(W.tool_behaviour == TOOL_CROWBAR)

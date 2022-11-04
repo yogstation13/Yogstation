@@ -19,7 +19,7 @@
 	button_icon_state = "lockdown"
 	uses = 1
 	delete_on_empty = FALSE
-	linked_ability_type = /obj/effect/proc_holder/ranged_ai/charge_borg_or_apc
+	linked_ability_type = /obj/effect/proc_holder/ranged_ai/room_lockdown
 
 /datum/action/innate/ai/ranged/room_lockdown/proc/lock_room(atom/target)
 	if(target && !QDELETED(target))

@@ -336,14 +336,18 @@ SUBSYSTEM_DEF(persistence)
 		ai_network_rankings["cpu"] += list(cpu_entry)
 		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"], /proc/cmp_ai_record_dsc)
 		if(length(ai_network_rankings["cpu"]) > 5)
-			ai_network_rankings["cpu"].len = 5
+			var/list/cpu_rankings = ai_network_rankings["cpu"]
+			cpu_rankings.len = 5
+			ai_network_rankings["cpu"] = cpu_rankings
 
 	if(!isnull(ram_winner))
 		var/ram_entry = list("score" = ram_winner, "round_id" = GLOB.round_id)
 		ai_network_rankings["ram"] += list(ram_entry)
 		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"], /proc/cmp_ai_record_dsc)
 		if(length(ai_network_rankings["ram"]) > 5)
-			ai_network_rankings["ram"].len = 5
+			var/list/ram_rankings = ai_network_rankings["ram"]
+			ram_rankings.len = 5
+			ai_network_rankings["ram"] = ram_rankings
 
 	fdel("data/AINetworkRank.json")
 	text2file(json_encode(ai_network_rankings), "data/AINetworkRank.json")
