@@ -134,11 +134,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		AI.disconnect_shell()
 
 /obj/machinery/ai/data_core/proc/valid_data_core()
-	if(!is_reebe(z) && !is_station_level(z))
-		return FALSE
 	if(valid_ticks > 0 && network && network.total_cpu() >= AI_CORE_CPU_REQUIREMENT && network.total_ram() >= AI_CORE_RAM_REQUIREMENT)
 		return TRUE
-
 	return FALSE
 
 
