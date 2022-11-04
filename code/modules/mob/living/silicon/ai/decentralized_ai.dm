@@ -1,8 +1,10 @@
-/mob/living/silicon/ai/proc/available_ai_cores(forced = FALSE)
+/mob/living/silicon/ai/proc/available_ai_cores(forced = FALSE, datum/ai_network/forced_network)
 	if(!GLOB.data_cores.len)
 		return FALSE
 	
 	if(!forced)
+		if(forced_network)
+			return forced_network.find_data_core()
 		if(!ai_network)
 			return FALSE
 		return ai_network.find_data_core()
@@ -30,7 +32,7 @@
 
 
 
-/mob/living/silicon/ai/proc/relocate(silent = FALSE, forced = FALSE)
+/mob/living/silicon/ai/proc/relocate(silent = FALSE, forced = FALSE, datum/ai_network/forced_network)
 	if(is_dying)
 		return
 	if(!silent)
@@ -38,7 +40,7 @@
 
 
 	var/obj/machinery/ai/data_core/new_data_core
-	new_data_core = available_ai_cores(forced)
+	new_data_core = available_ai_cores(forced, forced_network)
 
 	if(!new_data_core)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)

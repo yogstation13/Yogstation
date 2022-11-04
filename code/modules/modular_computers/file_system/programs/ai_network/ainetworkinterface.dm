@@ -201,7 +201,7 @@
 				else
 					A = new /mob/living/silicon/ai(computer.physical.loc, laws, brain.brainmob)
 				
-				A.relocate(TRUE)
+				A.relocate(TRUE, forced_network = net)
 
 				if(brain.force_replace_ai_name)
 					A.fully_replace_character_name(A.name, brain.replacement_ai_name())
