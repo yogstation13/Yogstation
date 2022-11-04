@@ -95,7 +95,7 @@
 
 	var/processing_progress = 0
 
-/obj/item/dead_ai/Initialize(mob/living/silicon/ai/AI)
+/obj/item/dead_ai/Initialize(mapload, mob/living/silicon/ai/AI)
 	. = ..()
 	if(AI)
 		START_PROCESSING(SSobj, src)

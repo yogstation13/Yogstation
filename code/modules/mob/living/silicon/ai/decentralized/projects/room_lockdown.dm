@@ -31,14 +31,17 @@
 		log_game("[key_name(usr)] locked down [A].")
 		minor_announce("Lockdown commencing in area [A] within 2.5 seconds","Network Alert:", TRUE)
 		addtimer(CALLBACK(src, .proc/_lock_room, target), 2.5 SECONDS)
+		return TRUE
 
 
 /datum/action/innate/ai/ranged/room_lockdown/proc/_lock_room(atom/target)
 	var/area/A = target
 	for(var/obj/machinery/door/airlock/D in A.contents)
+		if(istype(D, /obj/machinery/door/airlock/external))
+			continue
 		INVOKE_ASYNC(D, /obj/machinery/door/airlock.proc/safe_lockdown)
 		addtimer(CALLBACK(D, /obj/machinery/door/airlock.proc/disable_safe_lockdown), 20 SECONDS)
-	A.firealert()
+	A.firealert(loc)
 	addtimer(CALLBACK(A, /area.proc/firereset), 20 SECONDS)
 			
 
