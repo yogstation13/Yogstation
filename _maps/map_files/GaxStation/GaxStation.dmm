@@ -65,7 +65,6 @@
 /obj/structure/rack,
 /obj/item/aicard,
 /obj/item/disk/holodisk/tutorial/AICore,
-,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hor";
 	dir = 8;
@@ -18749,9 +18748,6 @@
 "jyJ" = (
 /obj/machinery/computer/robotics{
 	dir = 8
-	},
-{
-	pixel_x = 32
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/heads/hor)

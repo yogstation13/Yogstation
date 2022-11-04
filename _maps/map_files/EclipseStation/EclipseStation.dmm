@@ -59454,7 +59454,6 @@
 /area/crew_quarters/heads/hor)
 "cto" = (
 /obj/structure/rack,
-,
 /obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
@@ -90559,9 +90558,6 @@
 	layer = 4.1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,

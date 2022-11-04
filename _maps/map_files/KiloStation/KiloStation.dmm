@@ -85994,7 +85994,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/table,
 /obj/item/hand_labeler,
-,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "fMR" = (
@@ -92189,9 +92188,6 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
-{
-	pixel_x = -32
-	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/server)
 "lzb" = (
@@ -92210,9 +92206,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
