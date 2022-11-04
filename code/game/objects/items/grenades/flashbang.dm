@@ -47,4 +47,4 @@
 		M.add_movespeed_modifier(MOVESPEED_ID_FLASHBANG, TRUE, 1000, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
 		addtimer(CALLBACK(M, /mob/.proc/remove_movespeed_modifier, MOVESPEED_ID_FLASHBANG), 2 SECONDS)
 
-	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))
+	M.soundbang_act(1, 20/max(1,distance), rand(0, 5))
