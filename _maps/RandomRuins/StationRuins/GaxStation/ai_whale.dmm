@@ -2204,9 +2204,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-{
-	dir = 8
-	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "Um" = (

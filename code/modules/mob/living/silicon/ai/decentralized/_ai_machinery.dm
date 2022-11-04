@@ -1,6 +1,7 @@
 
 #define AI_MACHINE_TOO_HOT			"Environment too hot"
 #define AI_MACHINE_NO_MOLES			"Environment lacks an atmosphere"
+#define AI_MACHINE_NO_NETWORK		"Lacks a network connection"
 
 /obj/machinery/ai
 	name = "You shouldn't see this!"
@@ -44,7 +45,7 @@
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
 	if(!network)
-		return FALSE
+		return AI_MACHINE_NO_NETWORK
 	
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/env = T.return_air()
