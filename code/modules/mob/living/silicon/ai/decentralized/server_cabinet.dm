@@ -102,8 +102,9 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	else 
 		valid_ticks--
 		if(!smoke)
-			smoke = new()
-			vis_contents += smoke
+			if(get_holder_status() == AI_MACHINE_TOO_HOT)
+				smoke = new()
+				vis_contents += smoke
 		if(was_valid_holder)
 			if(valid_ticks > 0)
 				return

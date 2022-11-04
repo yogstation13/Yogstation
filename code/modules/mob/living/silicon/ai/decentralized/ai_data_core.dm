@@ -156,8 +156,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	else
 		valid_ticks--
 		if(!smoke)
-			smoke = new()
-			vis_contents += smoke
+			if(get_holder_status() == AI_MACHINE_TOO_HOT)
+				smoke = new()
+				vis_contents += smoke
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
 			update_icon()
