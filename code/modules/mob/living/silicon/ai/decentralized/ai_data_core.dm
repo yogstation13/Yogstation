@@ -146,6 +146,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks++
 		if(valid_ticks == 1)
 			update_icon()
+		if(icon_state == "core-offline")
+			update_icon()
 		if(smoke)
 			vis_contents -= smoke
 			QDEL_NULL(smoke)

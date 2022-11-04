@@ -1,7 +1,8 @@
 
-#define AI_MACHINE_TOO_HOT			"Environment too hot"
-#define AI_MACHINE_NO_MOLES			"Environment lacks an atmosphere"
-#define AI_MACHINE_NO_NETWORK		"Lacks a network connection"
+#define AI_MACHINE_TOO_HOT				"Environment too hot"
+#define AI_MACHINE_NO_MOLES				"Environment lacks an atmosphere"
+#define AI_MACHINE_NO_NETWORK			"Lacks a network connection"
+#define AI_MACHINE_BROKEN_NOPOWER_EMPED	"Either broken, out of power or EMPed"
 
 /obj/machinery/ai
 	name = "You shouldn't see this!"
@@ -43,7 +44,7 @@
 
 /obj/machinery/ai/proc/get_holder_status()
 	if(stat & (BROKEN|NOPOWER|EMPED))
-		return FALSE
+		return AI_MACHINE_BROKEN_NOPOWER_EMPED
 	if(!network)
 		return AI_MACHINE_NO_NETWORK
 	
