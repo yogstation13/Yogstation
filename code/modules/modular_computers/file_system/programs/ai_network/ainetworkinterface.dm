@@ -197,9 +197,9 @@
 				laws.set_laws_config()
 
 				if (brain.overrides_aicore_laws)
-					A = new /mob/living/silicon/ai(computer.physical.loc, brain.laws, brain.brainmob)
+					A = new /mob/living/silicon/ai(computer.physical.loc, brain.laws, brain.brainmob, forced_relocate = FALSE)
 				else
-					A = new /mob/living/silicon/ai(computer.physical.loc, laws, brain.brainmob)
+					A = new /mob/living/silicon/ai(computer.physical.loc, laws, brain.brainmob, forced_relocate = FALSE)
 				
 				A.relocate(TRUE, forced_network = net)
 

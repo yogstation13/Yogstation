@@ -127,7 +127,7 @@
 
 
 
-/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
+/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted, forced_relocate = TRUE)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
 		return INITIALIZE_HINT_QDEL //Delete AI.
@@ -188,7 +188,7 @@
 
 	dashboard = new(src)
 
-	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
+	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted && forced_relocate)
 		relocate(TRUE, TRUE)
 
 	if(isvalidAIloc(loc))
