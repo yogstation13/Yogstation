@@ -209,4 +209,5 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 /obj/machinery/ai/server_cabinet/disconnect_from_network()
 	var/datum/ai_network/temp = network
 	. = ..()
-	temp.update_resources()
+	if(temp)
+		temp.update_resources()

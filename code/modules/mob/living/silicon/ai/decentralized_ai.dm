@@ -1,7 +1,4 @@
 /mob/living/silicon/ai/proc/available_ai_cores(forced = FALSE, datum/ai_network/forced_network)
-	if(!GLOB.data_cores.len)
-		return FALSE
-	
 	if(!forced)
 		if(forced_network)
 			return forced_network.find_data_core()

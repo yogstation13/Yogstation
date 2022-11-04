@@ -62,11 +62,13 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 
 /obj/machinery/ai/data_core/Destroy()
+	disconnect_from_network()
 	GLOB.data_cores -= src
 	if(GLOB.primary_data_core == src)
 		GLOB.primary_data_core = null
 
-	var/list/all_ais = GLOB.ai_list.Copy()
+
+	var/list/all_ais = net.resources.get_all_ais()
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		all_ais -= AI
@@ -114,7 +116,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
-	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+	var/list/connected_ais = network.resources.get_all_ais()
+	for(var/mob/living/silicon/ai/AI in connected_ais)
 		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
 		if(!AI.mind && AI.deployed_shell)
 			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"

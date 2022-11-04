@@ -137,7 +137,7 @@
 
 /datum/ai_network/proc/find_data_core()
 	for(var/obj/machinery/ai/data_core/core in get_all_nodes())
-		if(core.can_transfer_ai())
+		if(!QDELETED(core) && core.can_transfer_ai())
 			return core
 
 /datum/ai_network/proc/get_all_nodes(checked_nets = list())
@@ -168,7 +168,7 @@
 
 
 /datum/ai_network/proc/update_resources()
-	resources.update_resources()
+	resources?.update_resources()
 
 
 /datum/ai_network/proc/total_cpu()
