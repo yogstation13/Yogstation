@@ -577,59 +577,6 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	begin_month = DECEMBER
 	drone_hat = /obj/item/clothing/mask/rat/tribal
 
-/datum/holiday/xmas
-	name = CHRISTMAS
-	begin_day = 19
-	begin_month = DECEMBER
-	end_day = 27
-	drone_hat = /obj/item/clothing/head/santa
-	lobby_music = list(
-		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
-		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublé - Winter Wonderland
-		"https://www.youtube.com/watch?v=nytpYtLtHpE", // Youre a Mean One, Mr. Grinch
-		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
-		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bublé - Holly Jolly Christmas
-		"https://www.youtube.com/watch?v=WgEVI8DEkF8",	// Nat King Cole - Deck the Halls
-		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
-		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
-		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
-		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
-		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
-		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
-		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
-		)
-	mail_holiday = TRUE
-
-/datum/holiday/xmas/greet()
-	return "Have a merry Christmas!"
-
-/datum/holiday/xmas/celebrate()
-	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
-	GLOB.maintenance_loot += list(
-		/obj/item/toy/xmas_cracker = 3,
-		/obj/item/clothing/head/santa = 1,
-		/obj/item/a_gift/anything = 1
-	)
-
-/datum/holiday/xmas/proc/roundstart_celebrate()
-	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
-		Monitor.icon_state_on = "entertainment_xmas"
-
-	for(var/mob/living/simple_animal/pet/dog/corgi/Ian/Ian in GLOB.mob_living_list)
-		Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
-
-
-/datum/holiday/festive_season
-	name = FESTIVE_SEASON
-	begin_day = 1
-	begin_month = DECEMBER
-	end_day = 31
-	drone_hat = /obj/item/clothing/head/santa
-
-/datum/holiday/festive_season/greet()
-	return "Have a nice festive season!"
-
 /datum/holiday/boxing
 	name = "Boxing Day"
 	begin_day = 26
