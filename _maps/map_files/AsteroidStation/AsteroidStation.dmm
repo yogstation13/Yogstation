@@ -1247,9 +1247,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "akg" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "akh" = (
@@ -1797,9 +1794,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "aoX" = (
-/obj/machinery/computer/ai_control_console{
-	dir = 1
-	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "aoZ" = (
@@ -11020,7 +11014,6 @@
 /area/quartermaster/miningdock)
 "cEO" = (
 /obj/structure/closet/secure_closet/RD,
-/obj/item/circuitboard/computer/ai_upload_download,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -27928,7 +27921,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "iCL" = (
-/obj/machinery/computer/ai_resource_distribution,
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "iDy" = (

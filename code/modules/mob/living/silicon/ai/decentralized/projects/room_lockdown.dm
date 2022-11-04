@@ -41,7 +41,7 @@
 			continue
 		INVOKE_ASYNC(D, /obj/machinery/door/airlock.proc/safe_lockdown)
 		addtimer(CALLBACK(D, /obj/machinery/door/airlock.proc/disable_safe_lockdown), 20 SECONDS)
-	A.firealert(loc)
+	A.firealert(usr.loc)
 	addtimer(CALLBACK(A, /area.proc/firereset), 20 SECONDS)
 			
 
