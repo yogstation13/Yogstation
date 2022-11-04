@@ -68,7 +68,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		GLOB.primary_data_core = null
 
 
-	var/list/all_ais = net.resources.get_all_ais()
+	var/list/all_ais = network.resources.get_all_ais()
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		all_ais -= AI
