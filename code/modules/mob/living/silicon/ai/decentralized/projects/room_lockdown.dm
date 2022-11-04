@@ -1,14 +1,14 @@
 /datum/ai_project/room_lockdown
 	name = "Room Lockdown"
 	description = "This ability will allow you to close and bolt all working doors, and trigger the fire alarms in a clicked area after a short delay and announcement."
-	research_cost = 2000
+	research_cost = 2500
 	ram_required = 0
 
 	category = AI_PROJECT_CROWD_CONTROL
 	
 	can_be_run = FALSE
 	ability_path = /datum/action/innate/ai/ranged/room_lockdown
-	ability_recharge_cost = 1000
+	ability_recharge_cost = 1750
 
 /datum/ai_project/room_lockdown/finish()
 	add_ability(ability_path)
