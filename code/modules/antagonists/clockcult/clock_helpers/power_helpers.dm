@@ -6,7 +6,8 @@
 /proc/adjust_clockwork_power(amount) //Adjusts the global clockwork power by this amount (min 0.)
 	var/current_power
 	if(GLOB.ratvar_approaches)
-		amount *= 0.25 //The herald's beacon reduces power costs by 25% across the board!
+	/*yogs start*/
+		amount *= 0.25 //The herald's beacon reduces power costs by 50% across the board!
 	if(GLOB.ratvar_awakens)
 		current_power = GLOB.clockwork_power = INFINITY
 	else
