@@ -269,11 +269,10 @@ const AbilityCharging = (props, context) => {
           buttons={(
             <Fragment>
               <Box inline bold>Assigned CPU:&nbsp;</Box>
-              <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={remaining_cpu + (ability.assigned_cpu * 100)} onChange={(e, value) => act('allocate_recharge_cpu', {
+              <NumberInput unit="%" value={ability.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (ability.assigned_cpu * 100)} onChange={(e, value) => act('allocate_recharge_cpu', {
                 project_name: ability.project_name,
                 amount: Math.round((value / 100) * 100) / 100,
               })} />
-              <Box inline bold>&nbsp;THz</Box>
             </Fragment>
           )}>
           <ProgressBar value={ability.progress / ability.cost}>
