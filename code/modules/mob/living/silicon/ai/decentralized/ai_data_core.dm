@@ -168,7 +168,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
 			warning_sent = TRUE
 			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
-			var/list/send_to = GLOB.ai_list.Copy()
+			var/list/send_to = network.resources.get_all_ais()
 			for(var/mob/living/silicon/ai/AI in send_to)
 				if(AI.is_dying)
 					continue

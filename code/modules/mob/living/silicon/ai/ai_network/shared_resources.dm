@@ -269,3 +269,7 @@
 
 	update_allocations()
 
+/datum/ai_shared_resources/proc/get_all_ais()
+	. = list()
+	for(var/datum/ai_network/A in networks)
+		. |= A.ai_list
