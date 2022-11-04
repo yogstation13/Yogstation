@@ -54,7 +54,7 @@
 		to_chat(user, span_warning("You are banned from using NTSL."))
 		return
 	if(Compiler)
-		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE))
+		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE, allow_newline = TRUE, allow_code = TRUE))
 			rawcode = null
 			to_chat(user, span_warning("Server is out of memory. Please shorten your script."))
 			return
