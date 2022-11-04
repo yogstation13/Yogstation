@@ -38,13 +38,13 @@
 			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 3 SECONDS)
 			return
 
-	var/flashed = M.flash_act(affect_silicon = 1)
-	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))
+/*yogs begin*/
+	var/time_before_fade = (max(15 / max(1, distance), 15) SECONDS)
+	world.log << time_before_fade
+	var/flashed = M.flash_act(1, 0, 1, -2.30016220670598061975e-29, /atom/movable/screen/fullscreen/flash, 25, time_before_fade)
 
-	// If flashed and banged
-	if(flashed && banged)
-		M.Knockdown(max(15 / max(1, distance), 6) SECONDS)
-	// If banged only
-	else if (banged)
-		M.Knockdown(max(5 / max(1, distance), 3) SECONDS)
-	//flashed only is handled by flash_act
+	if (flashed)
+		M.add_movespeed_modifier(MOVESPEED_ID_FLASHBANG, TRUE, 1000, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+		addtimer(CALLBACK(M, /mob/.proc/remove_movespeed_modifier, MOVESPEED_ID_FLASHBANG), 2 SECONDS)
+
+	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))

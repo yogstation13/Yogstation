@@ -1260,6 +1260,8 @@
 	p["priority"] = priority
 	filter_data[name] = p
 	update_filters()
+/*yogs begin*/
+	return filter_data[name]
 
 /atom/movable/proc/update_filters()
 	filters = null
