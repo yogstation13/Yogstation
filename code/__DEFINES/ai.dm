@@ -4,6 +4,10 @@
 ///Temperature limit of all AI machinery
 #define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
+///How long the AI can stay in the black-box before it's fully destroyed
+#define AI_BLACKBOX_LIFETIME 5 MINUTES
+///How much CPU we need to use to revive the AI
+#define AI_BLACKBOX_PROCESSING_REQUIREMENT 2500
 
 ///How many ticks can an AI data core store? When this amount of ticks have passed while it's in an INVALID state it can no longer be used by an AI
 #define MAX_AI_DATA_CORE_TICKS (45 * (20 / SSair.wait))
@@ -75,18 +79,22 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 //Adding an entry here automatically adds it to the UI and allows CPU to be allocated. Just use your define in the network process() to do stuff
 #define AI_CRYPTO "Cryptocurrency Mining"
 #define AI_RESEARCH "Research Assistance"
+#define AI_REVIVAL "AI Restoration"
 
 GLOBAL_LIST_INIT(possible_ainet_activities, list(
 	"[AI_CRYPTO]",
-	"[AI_RESEARCH]"
+	"[AI_RESEARCH]",
+	"[AI_REVIVAL]"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_tagline, list(
 	"[AI_CRYPTO]" = "Use CPU to generate credits!",
-	"[AI_RESEARCH]" = "Use CPU to generate regular research points!"
+	"[AI_RESEARCH]" = "Use CPU to generate regular research points!",
+	"[AI_REVIVAL]" = "Revive a dead AI using CPU!"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_description, list(
 	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income.",
-	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points."
+	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points.",
+	"[AI_REVIVAL]" = "If you've inserted a volatile neural core into a connected data core this will revive it using CPU."
 ))

@@ -7,7 +7,7 @@ export const LoginScreen = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     username,
-    has_access} = data;
+    has_access } = data;
   const { theme = 'ntos' } = props;
 
   return (
@@ -53,5 +53,5 @@ export const LoginScreen = (props, context) => {
 
       </Window.Content>
     </Window>
-  )
+  );
 };

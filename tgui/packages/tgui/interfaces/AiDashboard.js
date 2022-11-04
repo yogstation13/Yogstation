@@ -6,13 +6,8 @@ import { Window } from '../layouts';
 export const AiDashboard = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const [search, setSearch] = useLocalState(context, 'search', null);
-  const [searchCompleted, setSearchCompleted] = useLocalState(context, 'searchCompleted', null);
   const [tab, setTab] = useLocalState(context, 'tab', 1);
-  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
-  const [activeProjectsOnly, setActiveProjectsOnly] = useLocalState(context, 'activeProjectsOnly', true);
 
-  let remaining_cpu = (1 - data.used_cpu) * 100;
   let amount_of_cpu = data.current_cpu ? data.current_cpu * data.max_cpu : 0;
 
   return (
@@ -138,6 +133,9 @@ export const AiDashboard = (props, context) => {
 
 const AvailableProjects = (props, context) => {
   const { act, data } = useBackend(context);
+  const [search, setSearch] = useLocalState(context, 'search', null);
+  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
+  let remaining_cpu = (1 - data.used_cpu) * 100;
 
   return (
     <Section title="Available Projects" buttons={(
@@ -200,6 +198,10 @@ const AvailableProjects = (props, context) => {
 const CompletedProjects = (props, context) => {
   const { act, data } = useBackend(context);
 
+  const [searchCompleted, setSearchCompleted] = useLocalState(context, 'searchCompleted', null);
+  const [activeProjectsOnly, setActiveProjectsOnly] = useLocalState(context, 'activeProjectsOnly', true);
+  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
+
   return (
     <Section title="Completed Projects" buttons={(
       <Fragment>
@@ -251,43 +253,45 @@ const CompletedProjects = (props, context) => {
 
 const AbilityCharging = (props, context) => {
   const { act, data } = useBackend(context);
+  let remaining_cpu = (1 - data.used_cpu) * 100;
 
   return (
     <Section title="Ability Charging">
-            {data.chargeable_abilities.filter(ability => {
-              return ability.uses < ability.max_uses;
-            }).map((ability, index) => (
-              <Section key={index}
-                title={(
-                  <Box inline>
-                    {ability.name} | Uses Remaining: {ability.uses}/{ability.max_uses}
-                  </Box>
-                )}
-                buttons={(
-                  <Fragment>
-                    <Box inline bold>Assigned CPU:&nbsp;</Box>
-                    <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={remaining_cpu + (ability.assigned_cpu * 100)} onChange={(e, value) => act('allocate_recharge_cpu', {
-                      project_name: ability.project_name,
-                      amount: Math.round((value / 100) * 100) / 100,
-                    })} />
-                    <Box inline bold>&nbsp;THz</Box>
-                  </Fragment>
-                )}>
-                <ProgressBar value={ability.progress / ability.cost}>
-                  {Math.round((ability.progress / ability.cost * 100)* 100)
+      {data.chargeable_abilities.filter(ability => {
+        return ability.uses < ability.max_uses;
+      }).map((ability, index) => (
+        <Section key={index}
+          title={(
+            <Box inline>
+              {ability.name} | Uses Remaining: {ability.uses}/{ability.max_uses}
+            </Box>
+          )}
+          buttons={(
+            <Fragment>
+              <Box inline bold>Assigned CPU:&nbsp;</Box>
+              <NumberInput value={ability.assigned_cpu} minValue={0} maxValue={remaining_cpu + (ability.assigned_cpu * 100)} onChange={(e, value) => act('allocate_recharge_cpu', {
+                project_name: ability.project_name,
+                amount: Math.round((value / 100) * 100) / 100,
+              })} />
+              <Box inline bold>&nbsp;THz</Box>
+            </Fragment>
+          )}>
+          <ProgressBar value={ability.progress / ability.cost}>
+            {Math.round((ability.progress / ability.cost * 100)* 100)
                     / 100}%
-                  ({Math.round(ability.progress * 100) / 100}/{ability.cost} THz)
-                </ProgressBar>
-              </Section>
-            ))}
-          </Section>
+            ({Math.round(ability.progress * 100) / 100}/{ability.cost} THz)
+          </ProgressBar>
+        </Section>
+      ))}
+    </Section>
   );
 };
 
 const NetworkingResources = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const tooltipDisabled = data.human_only ? "Locked by organics. Please request their assistance." : ""
+  let amount_of_cpu = data.current_cpu ? data.current_cpu * data.max_cpu : 0;
+  const tooltipDisabled = data.human_only ? "Locked by organics. Please request their assistance." : "";
 
   return (
     <Section title="Computing Resources">
@@ -301,7 +305,7 @@ const NetworkingResources = (props, context) => {
             <ProgressBar minValue={0} value={data.current_cpu}
               maxValue={1} >{amount_of_cpu} THz
             </ProgressBar>
-            <NumberInput  width="60px" unit="%" value={data.current_cpu * 100} minValue={0} maxValue={100} onChange={(e, value) => act('set_cpu', {
+            <NumberInput width="60px" unit="%" value={data.current_cpu * 100} minValue={0} maxValue={100} onChange={(e, value) => act('set_cpu', {
               amount_cpu: Math.round((value / 100) * 100) / 100,
             })} disabled={data.human_only} tooltip={tooltipDisabled} />
             <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu_assign")} disabled={data.human_only} tooltip={tooltipDisabled}>Max

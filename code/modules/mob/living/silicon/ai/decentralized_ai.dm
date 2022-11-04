@@ -76,4 +76,50 @@
 
 	adjustOxyLoss(200) //Die!!
 
-	QDEL_IN(src, 2 SECONDS)
+	death()
+
+	new /obj/item/dead_ai(drop_location(src), src)
+
+
+/obj/item/dead_ai
+	name = "volatile neural core"
+	desc = "As an emergency precaution any advanced neural networks will save onto this device upon destruction of the host server. The storage medium is volatile and for that reason expires rapidly."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "blackcube"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/mob/living/silicon/ai/stored_ai
+	var/living_ticks = AI_BLACKBOX_LIFETIME
+
+	var/processing_progress = 0
+
+/obj/item/dead_ai/Initialize(mob/living/silicon/ai/AI)
+	. = ..()
+	if(AI)
+		START_PROCESSING(SSobj, src)
+		name = name + " - [AI]"
+		stored_ai = AI
+		stored_ai.forceMove(src)
+
+/obj/item/dead_ai/process()
+	if(stored_ai)
+		living_ticks--
+		if(living_ticks <= AI_BLACKBOX_LIFETIME * 0.5)
+			visible_message(span_danger("The integrated battery on [src] beeps and warns that it's 50% empty."))
+		if(living_ticks <= 0)
+			visible_message(span_danger("The integrated battery on [src] expires and the stored AI is subsequently wiped."))
+			qdel(src)
+
+/obj/item/dead_ai/examine(mob/user)
+	. = ..()
+	. += span_notice("Insert the device into a functioning data core to proceed.")
+	. += span_notice("Then allocate CPU cycles to revive the AI using a local network interface.")
+	. += span_notice("The integrated battery reports [round(living_ticks / AI_BLACKBOX_LIFETIME * 100)]% battery remaining.")
+	. += span_notice("A total of [processing_progress] CPU cycles have been allocated out of the required [AI_BLACKBOX_PROCESSING_REQUIREMENT].")
+
+/obj/item/dead_ai/Destroy()
+	. = ..()
+	if(stored_ai)
+		QDEL_NULL(stored_ai)

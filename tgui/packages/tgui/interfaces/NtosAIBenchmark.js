@@ -40,7 +40,7 @@ export const NtosAIBenchmark = (props, context) => {
           <Collapsible title="Processing Records" mt={1}>
             {data.cpu_records.map((record, index) => {
               return (
-                <Section title={"During shift #" + record.round_id}>
+                <Section title={"During shift #" + record.round_id} key={index}>
                   {record.score} THz
                 </Section>
               );
@@ -49,7 +49,7 @@ export const NtosAIBenchmark = (props, context) => {
           <Collapsible title="Memory Records">
             {data.ram_records.map((record, index) => {
               return (
-                <Section title={"During shift #" + record.round_id}>
+                <Section title={"During shift #" + record.round_id} key={index}>
                   {record.score} TB
                 </Section>
               );

@@ -31,10 +31,10 @@ export const SecurityConsole = (props, context) => {
     );
   }
 
-  if(!logged_in) {
+  if (!logged_in) {
     return (
       <LoginScreen />
-    )
+    );
   }
 
   if (screen === "maint") {

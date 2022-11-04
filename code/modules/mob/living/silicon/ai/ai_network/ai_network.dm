@@ -8,6 +8,7 @@
 	var/list/nodes = list()		// all connected machines
 
 	var/list/ai_list = list() 	//List of all AIs in this network
+	var/list/reviving_ais = list()
 
 	var/list/remote_networks = list()
 	
@@ -63,6 +64,24 @@
 		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_RESEARCH] * total_cpu * resources_assigned)), 0)
 		points = clamp(points * AI_REGULAR_RESEARCH_POINT_MULTIPLIER, 0, MAX_AI_REGULAR_RESEARCH_PER_TICK)
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_DEFAULT = points))
+
+	if(local_cpu_usage[AI_REVIVAL])
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_REVIVAL] * total_cpu * resources_assigned)), 0)
+		points = max(0, points)
+		var/total_reviving_ais = reviving_ais.len
+		if(total_reviving_ais)
+			var/distributed_points = points / total_reviving_ais
+			for(var/obj/machinery/ai/data_core/DC in reviving_ais)
+				if(!DC.dead_ai_blackbox)
+					reviving_ais -= DC
+				DC.dead_ai_blackbox.processing_progress += distributed_points
+				DC.dead_ai_blackbox.living_ticks = AI_BLACKBOX_LIFETIME
+				if(DC.dead_ai_blackbox.processing_progress >= AI_BLACKBOX_PROCESSING_REQUIREMENT)
+					DC.dead_ai_blackbox.stored_ai.revive(TRUE)
+					DC.transfer_ai(DC.dead_ai_blackbox.stored_ai)
+					DC.dead_ai_blackbox.stored_ai = null
+					QDEL_NULL(DC.dead_ai_blackbox)
+					reviving_ais -= DC
 
 	var/locally_used = 0
 	for(var/A in local_cpu_usage)

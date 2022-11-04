@@ -30,6 +30,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	var/obj/ai_smoke/smoke
 
+	var/obj/item/dead_ai/dead_ai_blackbox
+
 
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
@@ -52,6 +54,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	heat_modifier = new_heat_mod
 	power_modifier = new_power_mod
 	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
+
+/obj/machinery/ai/data_core/process()
 
 /obj/machinery/ai/data_core/process_atmos()
 	calculate_validity()
@@ -83,6 +87,17 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/dead_ai))
+		if(dead_ai_blackbox)
+			to_chat(user, span_warning("There's already a neural core inserted!"))
+			return
+		if(!can_transfer_ai())
+			to_chat(user, span_warning("This core is currently unable to host an AI due to being offline."))
+			return
+		dead_ai_blackbox = O
+		network.reviving_ais |= src
+		return TRUE
+
 	if(default_deconstruction_screwdriver(user, "core-open", "core", O))
 		return TRUE
 
