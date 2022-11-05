@@ -22,9 +22,12 @@
 	can_be_held = TRUE
 	density = FALSE
 	var/mob/living/stored_mob
+	var/temporary = FALSE //permanent until made temporary
 
 /mob/living/simple_animal/cheese/Life()
 	..()
+	if(temporary)
+		addtimer(CALLBACK(src, .proc/uncheeseify, src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
 		return
 	if(health < maxHealth)
@@ -67,3 +70,16 @@
 		uncheeseify(src)
 	. = ..()
 	
+/mob/living/simple_animal/cheese/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
+	if(cheese.stored_mob)
+		var/mob/living/L = cheese.stored_mob
+		var/mob/living/simple_animal/cheese/C = cheese
+		L.forceMove(get_turf(C))
+		C.stored_mob = null
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		if(L.mind)
+			C.mind.transfer_to(L)
+		else
+			L.key = C.key
+		C.transfer_observers_to(L)
+		C.death()
