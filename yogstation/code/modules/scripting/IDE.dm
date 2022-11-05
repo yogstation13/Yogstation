@@ -49,7 +49,10 @@
 					if(!telecomms_check(mob))
 						return
 
-					if(compileerrors.len)
+					if(!compileerrors)
+						src << output("<b>Memory Error:</b> Script ran out of memory. Please ensure that the script does not have a large file size and contains no special characters.", "tcserror")
+
+					else if(compileerrors.len)
 						src << output("<b>Compile Errors</b>", "tcserror")
 						var/i = 1
 						for(var/scriptError/e in compileerrors)
