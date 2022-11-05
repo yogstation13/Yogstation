@@ -79,8 +79,7 @@
 		return
 	var/end_comp = FALSE
 	if (client)
-		end_comp = TRUE
-		SSlag_compensation.begin_lag_compensation(client.avgping)
+		end_comp = SSlag_compensation.begin_lag_compensation(client.avgping)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["middle"])
 		ShiftMiddleClickOn(A)
