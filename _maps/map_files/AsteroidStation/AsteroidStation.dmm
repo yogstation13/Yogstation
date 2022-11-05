@@ -19442,6 +19442,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"fIl" = (
+/obj/machinery/papershredder,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/status_display/supply{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "fIs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -22490,13 +22500,6 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
-"gKJ" = (
-/obj/machinery/papershredder,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "gLw" = (
 /obj/structure/sign/poster/official/build,
 /turf/closed/wall/r_wall,
@@ -32841,6 +32844,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"kmb" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light,
+/obj/machinery/status_display/supply{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "kmf" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -47629,6 +47647,21 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"ppu" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/machinery/status_display/supply{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ppv" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -68563,18 +68596,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"wqm" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "wqC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -68836,18 +68857,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"wvK" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad2"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "wwm" = (
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/gas,
@@ -88946,7 +88955,7 @@ hGw
 tsi
 aDO
 aDO
-wvK
+ppu
 aDE
 msb
 msb
@@ -89965,7 +89974,7 @@ fPO
 pEe
 mXo
 eFU
-gKJ
+fIl
 aLm
 sYq
 qPl
@@ -91516,7 +91525,7 @@ wVu
 aDO
 aDO
 aDO
-wqm
+kmb
 aDE
 acb
 acb
