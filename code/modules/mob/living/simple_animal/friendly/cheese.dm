@@ -85,4 +85,4 @@
 		C.death()
 
 /mob/living/simple_animal/cheese/canSuicide()
-return FALSE
+	return FALSE
