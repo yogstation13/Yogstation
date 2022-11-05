@@ -37,6 +37,7 @@ SUBSYSTEM_DEF(lag_compensation)
 /datum/controller/subsystem/lag_compensation/proc/begin_lag_compensation(var/ping)
 	if (compensating)
 		CRASH("Attempted to begin lag compensation while already compensating.")
+	compensating = TRUE
 	var/ticks = DS2TICKS(ping / 100)
 	var/current_tick_list = mob_lagcomp_history[ticks]
 	if (isnull(current_tick_list))
@@ -51,6 +52,8 @@ SUBSYSTEM_DEF(lag_compensation)
 /datum/controller/subsystem/lag_compensation/proc/end_lag_compensation()
 	if (!compensating)
 		CRASH("Attempted to end lag compensation without compensating before.")
+		
 	for (var/mob/M in restore_history)
 		set_mob_loc(M, restore_history[M])
+	compensating = FALSE
 	return TRUE
