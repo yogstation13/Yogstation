@@ -83,3 +83,6 @@
 			L.key = C.key
 		C.transfer_observers_to(L)
 		C.death()
+
+/mob/living/simple_animal/cheese/canSuicide()
+return FALSE
