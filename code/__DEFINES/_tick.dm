@@ -26,3 +26,5 @@
 #define TICK_CHECK_HIGH_PRIORITY ( TICK_USAGE > 95 )
 /// runs stoplag if tick_usage is above 95, for high priority usage
 #define CHECK_TICK_HIGH_PRIORITY ( TICK_CHECK_HIGH_PRIORITY? stoplag() : 0 )
+/// Gets how many ticks have ran currently
+#define TICK_TIME (world.time / world.tick_lag)

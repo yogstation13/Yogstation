@@ -77,57 +77,61 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
-
+	var/end_comp = FALSE
+	if (client)
+		end_comp = TRUE
+		SSlag_compensation.begin_lag_compensation(client.avgping)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["middle"])
 		ShiftMiddleClickOn(A)
-		return
+		goto end;
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
-		return
+		goto end;
 	if(modifiers["middle"])
 		MiddleClickOn(A)
-		return
+		goto end;
 	if(modifiers["shift"])
 		ShiftClickOn(A)
-		return
+		goto end;
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
-		return
+		goto end;
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
+		goto end;
 
 	if(incapacitated(ignore_restraints = 1))
-		return
+		goto end;
 
 	face_atom(A)
 
 	if(next_move > world.time) // in the year 2000...
-		return
+		goto end;
 
 	if(!modifiers["catcher"] && A.IsObscured())
-		return
+		goto end;
 
 	if(ismecha(loc))
 		var/obj/mecha/M = loc
-		return M.click_action(A,src,params)
+		. = M.click_action(A,src,params)
+		goto end;
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
 		RestrainedClickOn(A)
-		return
+		goto end;
 
 	if(in_throw_mode)
 		throw_item(A)
-		return
+		goto end;
 
 	var/obj/item/W = get_active_held_item()
 
 	if(W == A)
 		W.attack_self(src)
 		update_inv_hands()
-		return
+		goto end;
 
 	//These are always reachable.
 	//User itself, current loc, and user inventory
@@ -138,11 +142,11 @@
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
 			UnarmedAttack(A)
-		return
+		goto end;
 
 	//Can't reach anything else in lockers or other weirdness
 	if(!loc.AllowClick())
-		return
+		goto end;
 
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A,W))
@@ -157,6 +161,10 @@
 			W.afterattack(A,src,0,params)
 		else
 			RangedAttack(A,params)
+
+	end:
+	if (end_comp)
+		SSlag_compensation.end_lag_compensation()
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()

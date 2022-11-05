@@ -3371,6 +3371,7 @@
 #include "yogstation\code\controllers\subsystem\bluespace_locker.dm"
 #include "yogstation\code\controllers\subsystem\input.dm"
 #include "yogstation\code\controllers\subsystem\jobs.dm"
+#include "yogstation\code\controllers\subsystem\lag_compensation.dm"
 #include "yogstation\code\controllers\subsystem\mapping.dm"
 #include "yogstation\code\controllers\subsystem\ticker.dm"
 #include "yogstation\code\controllers\subsystem\yogs.dm"
