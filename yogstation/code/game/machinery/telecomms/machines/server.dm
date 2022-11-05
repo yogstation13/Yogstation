@@ -56,10 +56,9 @@
 	if(Compiler)
 		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE, allow_newline = TRUE, allow_code = TRUE))
 			rawcode = null
-			to_chat(user, span_warning("Server is out of memory. Please shorten your script."))
 			return
 		if(!COOLDOWN_FINISHED(src, compile_cooldown))
-			to_chat(user, span_warning("Recharging. Please wait"))
+			to_chat(user, span_warning("Compiler recharging, please wait..."))
 			return
 		var/list/compileerrors = Compiler.Compile(rawcode)
 		COOLDOWN_START(src, compile_cooldown, 2 SECONDS)
