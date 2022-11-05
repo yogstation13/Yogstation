@@ -7,16 +7,17 @@ SUBSYSTEM_DEF(lag_compensation)
 	var/list/mob_lagcomp_history = list()
 	var/list/restore_history = list()
 	var/compensating = FALSE
-
+	var/current_ticks = 0
 /datum/controller/subsystem/lag_compensation/Initialize()
 	return ..()
 
 /datum/controller/subsystem/lag_compensation/fire(resumed)
-	var/current_tick = TICK_TIME
-	mob_lagcomp_history[current_tick] += list()
+	current_ticks++
+
+	mob_lagcomp_history[current_tick] = list()
 	var/current_tick_list = mob_lagcomp_history[current_tick]
 	for (var/mob/M in world)
-		current_tick_list[M] += list(M.x, M.y, M.z, M.loc)
+		current_tick_list[M] = list(M.x, M.y, M.z, M.loc)
 
 	//Clear stale ticks
 
@@ -37,7 +38,7 @@ SUBSYSTEM_DEF(lag_compensation)
 /datum/controller/subsystem/lag_compensation/proc/begin_lag_compensation(var/ping)
 	if (compensating)
 		CRASH("Attempted to begin lag compensation while already compensating.")
-	var/ticks = DS2TICKS(ping / 100)
+	var/ticks = current_ticks - DS2TICKS(ping / 100)
 	var/current_tick_list = mob_lagcomp_history[ticks]
 	if (isnull(current_tick_list))
 		return FALSE
