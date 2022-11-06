@@ -1318,14 +1318,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
 	cost = 80
-	cant_discount = true
+	cant_discount = TRUE
+	
 /datum/uplink_item/support/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
 	cost = 80
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-	cant_discount = true
+	cant_discount = TRUE
 	
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
@@ -1333,7 +1334,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
 	item = /obj/mecha/combat/marauder/mauler/loaded
 	cost = 140
-	cant_discount = true
+	cant_discount = TRUE
 	
 // Stealth Items
 /datum/uplink_item/stealthy_tools
