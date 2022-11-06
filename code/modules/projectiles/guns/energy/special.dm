@@ -79,7 +79,7 @@
 	name = "mind flayer"
 	desc = "A vicious weapon scrambling the thoughts and breaking the brain, more effective on weary targets."
 	icon_state = "mindflayer"
-	item_state = null
+	item_state = "mindflayer"
 	w_class = WEIGHT_CLASS_SMALL
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
 	ammo_x_offset = 2
