@@ -743,7 +743,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/*/datum/dynamic_ruleset/roundstart/monkey
+/datum/dynamic_ruleset/roundstart/monkey
 	name = "Monkey"
 	antag_flag = ROLE_MONKEY
 	antag_datum = /datum/antagonist/monkey/leader
@@ -797,7 +797,7 @@
 	if(check_monkey_victory())
 		SSticker.mode_result = "win - monkey win"
 	else
-		SSticker.mode_result = "loss - staff stopped the monkeys"*/
+		SSticker.mode_result = "loss - staff stopped the monkeys"
 
 //////////////////////////////////////////////
 //                                          //
