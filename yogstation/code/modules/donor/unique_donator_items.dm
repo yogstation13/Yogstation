@@ -178,7 +178,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/hisakaki
 	name = "armoured adventurer skirt"
 	ckey = "hisakaki"
-	unlock_path = /obj/item/clothing/under/adventurerskirt
+	unlock_path = /obj/item/clothing/under/yogs/adventurerskirt
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
