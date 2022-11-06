@@ -354,11 +354,11 @@
 				var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 				if(ID && ID.registered_name)
 					crewmember_name = ID.registered_name
-		while(crewmember_name in humanoids)
-			humanoids[crewmember_name]++
-			crewmember_name = text("[] ([])", crewmember_name, humanoids[crewmember_name])
-		names[crewmember_name] = target
-		humanoids[crewmember_name] = 1
+			while(crewmember_name in humanoids)
+				humanoids[crewmember_name]++
+				crewmember_name = text("[] ([])", crewmember_name, humanoids[crewmember_name])
+			names[crewmember_name] = humanoid
+			humanoids[crewmember_name] = 1
 	for(var/N in sortList(names))
 		var/list/crewinfo = list(
 			ref = REF(names[N]),
