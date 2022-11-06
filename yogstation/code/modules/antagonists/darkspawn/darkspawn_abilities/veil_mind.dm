@@ -29,7 +29,7 @@
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 10)
 		else
 			if(HAS_TRAIT(L, TRAIT_DEAF))

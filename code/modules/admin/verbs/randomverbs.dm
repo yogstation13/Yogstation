@@ -564,13 +564,27 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No")
+	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No", "Cancel")
+	if(forced_rename == "Cancel")
+		message_admins(span_boldnotice("[usr] has decided not to offer ([L.ckey])[L] a rename."))
+		log_game("[usr] has decided not to offer ([L.ckey])[L] a rename.")
+		return
 	if(forced_rename == "Yes")
-		unforced_answer = alert(L, "An admin is offering you a chance to rename yourself", "Admin rename?", "Accept", "Decline", "Random Name")
-		log_game("[usr] forced a rename on [L.ckey].")
+		if(!L.ckey)
+			message_admins(span_boldnotice("[usr] attempted to offer a rename to a mob with no player!"))
+			log_game("[usr] attempted to offer a rename to a mob with no player.")
+			return
+		else
+			unforced_answer = alert(L, "An admin is offering you a chance to rename yourself", "Admin rename?", "Accept", "Decline", "Random Name")
+			log_game("[usr] forced a rename on [L.ckey].")
 	else
-		forced_answer = alert(L, "An admin is \"offering\" you a chance to rename yourself", "Admin rename?", "Accept", "Random Name")
-		log_game("[usr] chose to offer an optional rename to [L.ckey].")
+		if(!L.ckey)
+			message_admins(span_boldnotice("[usr] attempted to offer a rename to a mob with no player!"))
+			log_game("[usr] attempted to offer a rename to a mob with no player.")
+			return
+		else
+			forced_answer = alert(L, "An admin is \"offering\" you a chance to rename yourself", "Admin rename?", "Accept", "Random Name")
+			log_game("[usr] chose to offer an optional rename to [L.ckey].")
 
 	if(QDELETED(L))
 		message_admins(span_boldnotice("([L.ckey])[L] has been deleted before they could rename themselves!"))
@@ -600,9 +614,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		newname = random_unique_name(L.gender)
 	message_admins(span_boldnotice("([L.ckey])[L.real_name] has been admin renamed to [newname]."))
 	log_game("([L.ckey])[L.real_name] has been renamed to [newname].")
-	L.real_name = newname
-	L.name = newname
-	if(iscarbon(L))
+	L.fully_replace_character_name(L.real_name, newname)
+	if(iscarbon(L)) //doing these two JUST to be sure you dont have edge cases of your DNA and mind not matching your new name, somehow
 		var/mob/living/carbon/C = L
 		if(C?.dna)
 			C?.dna?.real_name = newname

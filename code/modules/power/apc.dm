@@ -770,7 +770,7 @@
 			if(stat & BROKEN)
 				to_chat(user, span_warning("[src]'s frame is too damaged to support a circuit."))
 				return FALSE
-			return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+			return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)
 		else if(!cell)
 			if(stat & MAINT)
 				to_chat(user, span_warning("There's no connector for a power cell."))
@@ -1109,8 +1109,8 @@
 	malf.malfhack = src
 	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 300, TIMER_STOPPABLE)
 
-	var/obj/screen/alert/hackingapc/A
-	A = malf.throw_alert("hackingapc", /obj/screen/alert/hackingapc)
+	var/atom/movable/screen/alert/hackingapc/A
+	A = malf.throw_alert("hackingapc", /atom/movable/screen/alert/hackingapc)
 	A.target = src
 
 /obj/machinery/power/apc/proc/malfoccupy(mob/living/silicon/ai/malf)
@@ -1126,7 +1126,7 @@
 		return
 	if(alert("Are you sure you want to shunt into this APC?", "Confirm Shunt", "Yes", "No") != "Yes")
 		return
-	
+
 	occupier = new /mob/living/silicon/ai(src, malf.laws, malf , TRUE) //DEAR GOD WHY?	//IKR????
 	occupier.adjustOxyLoss(malf.getOxyLoss())
 	if(!findtext(occupier.name, "APC Copy"))
