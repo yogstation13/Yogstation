@@ -1,17 +1,17 @@
 //screen shit
-/obj/screen/fullscreen/trip
+/atom/movable/screen/fullscreen/trip
 	icon_state = "trip"
 	layer = TRIP_LAYER
 	alpha = 0 //we animate it ourselves
 
-/obj/screen/fullscreen/night
+/atom/movable/screen/fullscreen/night
 	icon_state = "Night"
 	layer = NIGHT_LAYER
 	plane = FULLSCREEN_PLANE
 
 
 //floor trip
-/obj/screen/fullscreen/ftrip
+/atom/movable/screen/fullscreen/ftrip
 	icon_state = "ftrip"
 	icon = 'yogstation/icons/mob/screen_full_big.dmi'
 	screen_loc = "CENTER-9,CENTER-7"
@@ -21,7 +21,7 @@
 	alpha = 0 //we animate it ourselves
 
 //wall trip
-/obj/screen/fullscreen/gtrip
+/atom/movable/screen/fullscreen/gtrip
 	icon_state = "gtrip"
 	icon = 'yogstation/icons/mob/screen_full_big.dmi'	
 	screen_loc = "CENTER-9,CENTER-7"
@@ -61,9 +61,9 @@
 	metabolization_rate = REAGENTS_METABOLISM / 2
 
 	var/offset = 0;
-	var/obj/screen/fullscreen/trip/cached_screen
-	var/obj/screen/fullscreen/ftrip/cached_screen_floor
-	var/obj/screen/fullscreen/gtrip/cached_screen_game
+	var/atom/movable/screen/fullscreen/trip/cached_screen
+	var/atom/movable/screen/fullscreen/ftrip/cached_screen_floor
+	var/atom/movable/screen/fullscreen/gtrip/cached_screen_game
 
 /datum/reagent/jungle/polybycin/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -82,12 +82,12 @@
 	if(!L.hud_used || !L.client)
 		return
 
-	var/obj/screen/plane_master/game_world/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
-	var/obj/screen/plane_master/floor/floor_plane  = L.hud_used.plane_masters["[FLOOR_PLANE]"]
+	var/atom/movable/screen/plane_master/game_world/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
+	var/atom/movable/screen/plane_master/floor/floor_plane  = L.hud_used.plane_masters["[FLOOR_PLANE]"]
 
-	cached_screen = L.overlay_fullscreen("polycybin_trip",/obj/screen/fullscreen/trip)
-	cached_screen_floor = L.overlay_fullscreen("polycybin_ftrip",/obj/screen/fullscreen/ftrip)
-	cached_screen_game = L.overlay_fullscreen("polycybin_gtrip",/obj/screen/fullscreen/gtrip)
+	cached_screen = L.overlay_fullscreen("polycybin_trip",/atom/movable/screen/fullscreen/trip)
+	cached_screen_floor = L.overlay_fullscreen("polycybin_ftrip",/atom/movable/screen/fullscreen/ftrip)
+	cached_screen_game = L.overlay_fullscreen("polycybin_gtrip",/atom/movable/screen/fullscreen/gtrip)
 
 	cached_screen_floor.add_filter("polycybin_ftrip",1,list("type"="alpha","render_source"=floor_plane.get_render_target()))
 	cached_screen_game.add_filter("polycybin_gtrip",1,list("type"="alpha","render_source"=game_plane.get_render_target()))
@@ -412,7 +412,7 @@
 			affected_mobs += L.real_name
 			RegisterSignal(L,COMSIG_MOVABLE_MOVED,.proc/check_on_move)
 		if(new_luminosity <= 0.6)
-			L.overlay_fullscreen("night_overlay",/obj/screen/fullscreen/night,((1 - new_luminosity) - 0.4)*10)
+			L.overlay_fullscreen("night_overlay",/atom/movable/screen/fullscreen/night,((1 - new_luminosity) - 0.4)*10)
 		else 
 			L.clear_fullscreen("night_overlay",TRUE)
 	cached_luminosity = new_luminosity
