@@ -135,3 +135,13 @@
 /obj/item/grown/bananapeel/specialpeel/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 40)
+
+/obj/item/reagent_containers/food/snacks/grown/banana/clown
+	name = "clown banana"
+	trash = /obj/item/grown/bananapeel/clown
+
+/obj/item/grown/bananapeel/clown/Initialize(newloc, obj/item/seeds/new_seed)
+	. = ..()
+	var/datum/component/slippery/slip = GetComponent(/datum/component/slippery)
+	slip.stun_time = slip.knockdown_time
+	
