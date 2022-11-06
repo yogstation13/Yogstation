@@ -17,63 +17,63 @@ export const NtosPaperworkPrinter = (props, context) => {
       <NtosWindow.Content scrollable>
         <Section
           title="NTOS Paperwork Printer"
-          >
-            <Button
+        >
+          <Button
               icon="print"
               content="Print NT-010 General Request Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_GenReqForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-021 Complaint Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_ComplaintForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-400 Incident Report Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_IncidentRepForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-089 Item Request Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_ItemReqForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-203 Cyberization Consent Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_CyberConsentForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-022 HoP Access Request Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_HOPAccessForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print NT-059 Job Reassignment Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_JobReassignForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print SCI-3 R&D Request Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_RDReqForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print SCI-9 Mech Request Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_MechReqForm')} />
-            <Button
+          <Button
               icon="print"
               content="Print Job Change Certificate"
               disabled={!have_printer}
               onClick={() => act('PRG_print_JobChangeCert')} />
-            <Button
+          <Button
               icon="print"
               content="Print SEC-030 Security Incident Report Form"
               disabled={!have_printer}
               onClick={() => act('PRG_print_SecRepForm')} />
-          </Section>
+        </Section>
       </NtosWindow.Content>
     </NtosWindow>
   );
