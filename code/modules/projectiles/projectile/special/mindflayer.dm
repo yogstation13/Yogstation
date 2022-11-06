@@ -1,11 +1,12 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
+	icon_state = "flayerlaser
 	damage = 10
 	damage_type = STAMINA //this is not destroying your body, it's destroying your mind
 	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
-	light_color = LIGHT_COLOR_PURPLE
+	light_color = LIGHT_COLOR_LAVENDER
 	eyeblur = 0
 
 /obj/item/projectile/beam/mindflayer/on_hit(atom/target, blocked = FALSE)
