@@ -308,6 +308,49 @@
 /**
   *
   * 
+  * A form for testing employee literacy.
+  *
+  * A form for employee literacy testing. The bane of everyone.
+  *
+  */
+/obj/item/paper/paperwork/literacytest
+	name = "Literacy Test for NT Employees (Form NT-43)"
+
+/obj/item/paper/paperwork/literacytest/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br>",/datum/language/common)
+	written += new/datum/langtext("<b>Name of Test-Taker:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Do what you are told in each statement, nothing more and nothing less. Each correct answer is worth 2 points.</b><hr>",/datum/language/common)
+	written += new/datum/langtext("In the first space below, write the year Bluespace Technology was discovered.<br>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("How many <b>digits</b> must be removed from <b>10000000000</b> to make it equal to 1000000?<br>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("When did the United Soviet Republic leave the United Nations?<br>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("Who is the CEO of Nanotrasen?<br>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>" ,/datum/language/common)
+	written += new/datum/langtext("Sign your name where there is an option.<br>",/datum/language/common)
+	written += new/datum/langtext("<b>I,</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
+	update_icon()
+/**
+  *
+  * 
   * A form for requesting something be researched.
   *
   * Do not use. Everyone will hate you.
@@ -480,6 +523,7 @@
   * [Cyborg Consent Form][/obj/item/paper/paperwork/cyborg_request_form]
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test for NT Employees][/obj/item/paper/paperwork/literacytest]
   */
 /obj/item/clipboard/yog/paperwork/rd/Initialize()
 	. = ..()
@@ -493,6 +537,7 @@
 	new /obj/item/paper/paperwork/cyborg_request_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -517,6 +562,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
@@ -540,6 +586,7 @@
 	new /obj/item/paper/paperwork/complaint_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -563,6 +610,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -585,6 +633,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
@@ -610,6 +659,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -633,6 +683,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -682,6 +733,7 @@
 	new /obj/item/paper/paperwork/rd_form(src)
 	new /obj/item/paper/paperwork/mech_form(src)
 	new /obj/item/paper/paperwork/jobchangecert(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 //turdis bad
