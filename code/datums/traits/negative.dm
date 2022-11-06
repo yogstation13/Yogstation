@@ -392,10 +392,16 @@
 			prosthetic = new/obj/item/bodypart/r_arm/robot/surplus(quirk_holder)
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
-			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
-			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)

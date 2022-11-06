@@ -171,6 +171,60 @@
 	name = "digitigrade cyborg right leg"
 	icon_state = "digitigrade_1_r_leg"
 	use_digitigrade = FULL_DIGITIGRADE
+	
+//make them swappable
+/obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
+	if(!istype(W, /obj/item/screwdriver))
+		return ..()
+	var/obj/item/bodypart/l_leg/robot/prosthetic
+	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
+	if(istype(src,/obj/item/bodypart/l_leg/robot/surplus))
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus
+		else
+			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus/digitigrade
+	else
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/l_leg/robot
+		else
+			prosthetic = new /obj/item/bodypart/l_leg/robot/digitigrade
+	if(!prosthetic)
+		return
+	
+	var/spot = src.loc
+	moveToNullspace()
+	if(spot == user)
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.loc = spot
+	qdel(src)
+	
+/obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
+	if(!istype(W, /obj/item/screwdriver))
+		return ..()
+	var/obj/item/bodypart/r_leg/robot/prosthetic
+	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
+	if(istype(src,/obj/item/bodypart/r_leg/robot/surplus))
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus
+		else
+			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus/digitigrade
+	else
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/r_leg/robot
+		else
+			prosthetic = new /obj/item/bodypart/r_leg/robot/digitigrade
+	if(!prosthetic)
+		return
+
+	var/spot = src.loc
+	moveToNullspace()
+	if(spot == user)
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.loc = spot
+	qdel(src)
+	
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"
