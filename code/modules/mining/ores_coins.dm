@@ -575,9 +575,14 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/examine(mob/user)
 	. = ..()
 	var/value = 0
+	var/antag = 0
 	for(var/obj/item/coin/C in coins)
 		value += C.value
+		if(istype(C,/obj/item/coin/antagtoken))
+			antag++
 	. += span_info("The stack is worth [value] credit\s.")
+	if(antag > 1)
+		. += span_info("But they told me I could only have one at a time...")
 
 /obj/item/coinstack/update_icon()
 	cut_overlays()
@@ -642,14 +647,12 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			pixel_x = 0
 			pixel_y = 0
 			to_chat(usr, span_notice("You pick up the coin stack."))
-
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				pixel_x = 0
 				pixel_y = 0
-				to_chat(usr, span_notice("You pick up the coin stack."))
-
+				to_chat(usr, span_notice("You pick up the deck."))
 	else
 		to_chat(usr, span_warning("You can't reach it from here!"))
 
