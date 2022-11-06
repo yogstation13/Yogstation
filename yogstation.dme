@@ -3885,4 +3885,5 @@
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\code\modules\xenoarch\loot\guns.dm"
 #include "yogstation\interface\interface.dm"
+#include "code\modules\modular_computers\file_system\programs\paperworkprinter.dm"
 // END_INCLUDE
