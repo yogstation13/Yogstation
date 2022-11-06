@@ -49,9 +49,9 @@
 /turf/closed/wall/clockwork
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	explosion_block = 2
-	hardness = 6
-	slicing_duration = 100
+	explosion_block = 3
+	hardness = 5
+	slicing_duration = 150
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
