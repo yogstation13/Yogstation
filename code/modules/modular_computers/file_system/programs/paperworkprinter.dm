@@ -51,8 +51,6 @@
 			src.doprint(11)
 
 /datum/computer_file/program/paperwork_printer/proc/doprint(ftype)
-	if(..())
-		return
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
 		printer = computer.all_components[MC_PRINT]
