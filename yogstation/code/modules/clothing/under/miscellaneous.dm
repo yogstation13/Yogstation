@@ -579,6 +579,6 @@
 	icon_state = "adventurer_skirt"
 	item_state = "adventurer_skirt"
 	can_adjust = FALSE
-	body_parts_covered = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS|HANDS
 	fitted = FEMALE_UNIFORM_TOP
 	random_sensor = TRUE
