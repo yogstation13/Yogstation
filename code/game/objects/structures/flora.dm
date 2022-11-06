@@ -3,6 +3,14 @@
 	max_integrity = 150
 	anchored = TRUE
 
+//yogs edit
+/obj/structure/flora/ex_act(severity, target)
+	. = ..()
+	if(severity == 1 || severity == 2)
+		qdel(src)
+//yogs end
+
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
