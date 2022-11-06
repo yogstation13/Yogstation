@@ -38,7 +38,7 @@
 /obj/item/paper/paperwork/complaint_form/Initialize()
 	. = ..()
 	written = list()
-	written += new/datum/langtext("<center><h3>Complaint Form NT-020</h3></center><hr><b>Complainant: </b>",/datum/language/common)
+	written += new/datum/langtext("<center><h3>Complaint Form NT-021</h3></center><hr><b>Complainant: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><b>Complainees: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
