@@ -572,21 +572,12 @@
 	icon_state = "cosby"
 	item_state = "cosby"
 	can_adjust = 0
-
-/obj/item/clothing/under/yogs/
-	name = 
+	
+/obj/item/clothing/under/yogs/adventurerskirt
+	name = "adventurer skirt"
 	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
-	icon_state = 
-	item_state = 
+	icon_state = "adventurer_skirt"
+	item_state = "adventurer_skirt"
 	can_adjust = FALSE
-
-/obj/item/clothing/under/yogs/adventureskirt
-	name = "armoured adventure skirt"
-	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
-	icon_state = "adventure_skirt"
-	item_state = "adventure_skirt"
-	can_adjust = FALSE
-	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	random_sensor = TRUE
-	mutantrace_variation = NO_MUTANTRACE_VARIATION
