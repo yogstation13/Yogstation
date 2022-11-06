@@ -318,6 +318,34 @@
 
 /obj/item/paper/paperwork/literacytest/Initialize()
 	. = ..()
+	//a list of questions for the test
+	var/list/questions = list(
+		"In the first space below, write the year the Credit was introduced.<br>218",
+		"In the first space below, write the year the UN split.<br>220",
+		"What was the first race discovered by humanity? Answer below.<br>",
+		"Who is the CEO of Nanotrasen? Answer below.<br>",
+		"From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>"
+	)
+	//select test question 1
+	var/question_one = pick(questions)
+	//remove from pool
+	questions -= question_one
+	//select test question 2
+	var/question_two = pick(questions)
+	//remove from pool
+	questions -= question_two
+	//select test question 3
+	var/question_three = pick(questions)
+	//remove from pool
+	questions -= question_three
+	//select test question 4
+	var/question_four = pick(questions)
+	//remove from pool
+	questions -= question_four
+	//select final test question
+	var/question_five = pick(questions)
+	//remove final pick from pool
+	questions -= question_five
 	written = list()
 	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
@@ -327,19 +355,19 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Do what you are told in each statement, nothing more and nothing less. Each correct answer is worth 2 points.</b><hr>",/datum/language/common)
-	written += new/datum/langtext("In the first space below, write the year Bluespace Technology was discovered.<br>",/datum/language/common)
+	written += new/datum/langtext(question_one,/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("How many <b>digits</b> must be removed from <b>10000000000</b> to make it equal to 1000000?<br>",/datum/language/common)
+	written += new/datum/langtext(question_two,/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("When did the United Soviet Republic leave the United Nations?<br>",/datum/language/common)
+	written += new/datum/langtext(question_three,/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("Who is the CEO of Nanotrasen?<br>",/datum/language/common)
+	written += new/datum/langtext(question_four,/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>",/datum/language/common)
+	written += new/datum/langtext(question_five,/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<hr>" ,/datum/language/common)
 	written += new/datum/langtext("Sign your name where there is an option.<br>",/datum/language/common)
@@ -347,6 +375,28 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
+	update_icon()
+/**
+  *
+  * 
+  * The answer key to the literacy test.
+  *
+  * Nobody will know the answers if I don't include this.
+  *
+  */
+/obj/item/paper/paperwork/literacytest/answers
+	name = "Literacy Test Answers (NT-44)"
+
+/obj/item/paper/paperwork/literacytest/answers/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-44 Literacy Test Answer Key</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>1. In the first space below, write the year the credit was introduced.</b> <u>The credit was introduced in 2181.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>2. In the first space below, write the year the UN split.</b> <u>The UN split in 2205.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>3. What was the first race discovered by humanity? Answer below.</b> <u>Plasmamen</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
+	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
 	update_icon()
 /**
   *
@@ -577,6 +627,8 @@
   * [Complaint Form][/obj/item/paper/paperwork/complaint_form]
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/captain/Initialize()
 	. = ..()
@@ -587,6 +639,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -600,6 +653,8 @@
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [HoP Job Change Request Form][/obj/item/paper/paperwork/hop_job_change_form]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/hop/Initialize()
 	. = ..()
@@ -611,6 +666,7 @@
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -633,7 +689,6 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
-	new /obj/item/paper/paperwork/literacytest(src)
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
@@ -659,7 +714,6 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
-	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -683,7 +737,6 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
-	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -718,6 +771,8 @@
   * [Research Request Form][/obj/item/paper/paperwork/rd_form]
   * [Mech Request Form][/obj/item/paper/paperwork/mech_form]
   * [Job Change Certificate][/obj/item/paper/paperwork/jobchangecert]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/admin/Initialize()
 	. = ..()
@@ -734,6 +789,7 @@
 	new /obj/item/paper/paperwork/mech_form(src)
 	new /obj/item/paper/paperwork/jobchangecert(src)
 	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 //turdis bad
