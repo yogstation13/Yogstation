@@ -91,8 +91,7 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /turf/closed/wall/clockwork/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
-	if (resistance_flags & INDESTRUCTIBLE)
-		return FALSE
+	return FALSE
 
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)
