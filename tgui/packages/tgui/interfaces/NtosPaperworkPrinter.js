@@ -15,66 +15,64 @@ export const NtosPaperworkPrinter = (props, context) => {
       height={480}
       resizable>
       <NtosWindow.Content scrollable>
-        <Section
-          title="NTOS Paperwork Printer"
-        >
+        <Section title="NTOS Paperwork Printer">
           <Button
-              icon="print"
-              content="Print NT-010 General Request Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_GenReqForm')} />
+            icon="print"
+            content="Print NT-010 General Request Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_GenReqForm')} />
           <Button
-              icon="print"
-              content="Print NT-021 Complaint Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_ComplaintForm')} />
+            icon="print"
+            content="Print NT-021 Complaint Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_ComplaintForm')} />
           <Button
-              icon="print"
-              content="Print NT-400 Incident Report Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_IncidentRepForm')} />
+            icon="print"
+            content="Print NT-400 Incident Report Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_IncidentRepForm')} />
           <Button
-              icon="print"
-              content="Print NT-089 Item Request Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_ItemReqForm')} />
+            icon="print"
+            content="Print NT-089 Item Request Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_ItemReqForm')} />
           <Button
-              icon="print"
-              content="Print NT-203 Cyberization Consent Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_CyberConsentForm')} />
+            icon="print"
+            content="Print NT-203 Cyberization Consent Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_CyberConsentForm')} />
           <Button
-              icon="print"
-              content="Print NT-022 HoP Access Request Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_HOPAccessForm')} />
+            icon="print"
+            content="Print NT-022 HoP Access Request Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_HOPAccessForm')} />
           <Button
-              icon="print"
-              content="Print NT-059 Job Reassignment Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_JobReassignForm')} />
+            icon="print"
+            content="Print NT-059 Job Reassignment Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_JobReassignForm')} />
           <Button
-              icon="print"
-              content="Print SCI-3 R&D Request Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_RDReqForm')} />
+            icon="print"
+            content="Print SCI-3 R&D Request Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_RDReqForm')} />
           <Button
-              icon="print"
-              content="Print SCI-9 Mech Request Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_MechReqForm')} />
+            icon="print"
+            content="Print SCI-9 Mech Request Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_MechReqForm')} />
           <Button
-              icon="print"
-              content="Print Job Change Certificate"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_JobChangeCert')} />
+            icon="print"
+            content="Print Job Change Certificate"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_JobChangeCert')} />
           <Button
-              icon="print"
-              content="Print SEC-030 Security Incident Report Form"
-              disabled={!have_printer}
-              onClick={() => act('PRG_print_SecRepForm')} />
+            icon="print"
+            content="Print SEC-030 Security Incident Report Form"
+            disabled={!have_printer}
+            onClick={() => act('PRG_print_SecRepForm')} />
         </Section>
       </NtosWindow.Content>
     </NtosWindow>
   );
-          }
+};
