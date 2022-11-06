@@ -10,8 +10,8 @@
 	tgui_id = "NtosPaperworkPrinter"
 	program_icon = "clipboard-list"
 
-/datum/computer_file/program/paperwork_printer/ui_data(mob/user)
-	var/list/data = get_header_data()
+/datum/computer_file/program/paperwork_printer/ui_static_data(mob/user)
+		var/list/data = get_header_data()
 
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
