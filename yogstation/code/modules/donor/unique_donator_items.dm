@@ -176,7 +176,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
 
 /datum/donator_gear/hisakaki
-	name = "armoured adventurer skirt"
+	name = "adventurer skirt"
 	ckey = "hisakaki"
 	unlock_path = /obj/item/clothing/under/yogs/adventurerskirt
 
