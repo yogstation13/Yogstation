@@ -119,8 +119,7 @@
 	written = list()
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<center><h3>Security Incident Report (Form SEC-030)</h3>",/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<br>",/datum/language/common)
+	written += new/datum/langtext("<hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Offense/Incident Type: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -131,43 +130,43 @@
 	written += new/datum/langtext("<b>Reporting Officer: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Assisting Officer(s) </b><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</row></b><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("<b>Assisting Officer(s)</b><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Rank</b></th><th><b>Name</b></th><th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell> ",/datum/language/common)
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td> ",/datum/language/common)
+	written += new/datum/langtext("<td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</row> ",/datum/language/common)
+	written += new/datum/langtext("</td></tr> ",/datum/language/common)
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("</table><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Other Personnel</b><br>",/datum/language/common)
-	written += new/datum/langtext("<font size=\"1\"><i>(V-Victim, S-Suspect, W-Witness, M-Missing, A-Arrested, RP-Reporting Person, D-Deceased)</i></font><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</b><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("<font size=\"1\"><i>(V-Victim, S-Suspect, W-Witness, M-Missing, A-Arrested, RP-Reporting Person, D-Deceased)</i></font><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Rank</b></th> <th><b>Name</b></th> <th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell> ",/datum/language/common)
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<br>",/datum/language/common)
-	written += new/datum/langtext("</table><br>",/datum/language/common)
-	written += new/datum/langtext("<hr><h3>Description of Items/Property </h3><br>",/datum/language/common)
-	written += new/datum/langtext("<font size=\"1\"><i>(D-Damaged, E-Evidence, L-Lost, R-Recovered, S-Stolen)</i></font><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</b></row><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell>",/datum/language/common)
+	written += new/datum/langtext("</td></tr></table><br>",/datum/language/common)
+	written += new/datum/langtext("<hr><h3>Description of Items/Property </h3>",/datum/language/common)
+	written += new/datum/langtext("<font size=\"1\"><i>(D-Damaged, E-Evidence, L-Lost, R-Recovered, S-Stolen)</i></font><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Item</b></th> <th><b>Description</b></th> <th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td><td>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</row><br>",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("</td></tr><br>",/datum/language/common)
 	written += new/datum/langtext("</table><br>",/datum/language/common)
 	written += new/datum/langtext("<hr><h3>Narrative </h3>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Reporting Officer's Signature</b><br>:",/datum/language/common)
+	written += new/datum/langtext("<b>Reporting Officer's Signature</b>:",/datum/language/common)
 	update_icon()
 
 /**
