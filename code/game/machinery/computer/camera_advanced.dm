@@ -362,7 +362,7 @@
 		return
 
 	if (user.w_uniform && user.w_uniform.name == "ratvarian engineer's jumpsuit")
-		if (alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOFLAUGING YOUR JUMPSUIT?", "Preflight Check", "Yes", "No") == "No" )
+		if (alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", "Yes", "No") == "No" )
 			return
 	
 	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
