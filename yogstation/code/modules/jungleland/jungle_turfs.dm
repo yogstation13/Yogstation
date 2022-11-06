@@ -58,7 +58,8 @@
 	icon_plating = "jungle"
 	var/can_spawn_ore = TRUE
 	var/ore_present = ORE_EMPTY
-	var/spawn_overlay = TRUE 
+	var/spawn_overlay = TRUE
+	var/can_mine = TRUE 
 
 /turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	if(drill.do_after_mecha(src, 10 / drill.drill_level))
@@ -84,11 +85,16 @@
 
 	if(!can_spawn_ore)
 		return ..()
+	
+	if(!can_mine)
+		return
 
+	can_mine = FALSE
 	I.play_tool_sound(user)	
 	if(!do_after(user,10 SECONDS * I.toolspeed,src))
+		can_mine = TRUE
 		return ..()
-
+	can_mine = TRUE
 	spawn_rock()
 	
 /turf/open/floor/plating/dirt/jungleland/ex_act(severity, target)
@@ -156,8 +162,12 @@
 	ore_present = pick(GLOB.quarry_ores)
 
 /turf/open/floor/plating/dirt/jungleland/quarry/spawn_rock()
-	. = ..()
-	ore_present = pick(GLOB.quarry_ores)
+	if(prob(50))
+		for(var/i in 2 to rand(4,10))
+			new /obj/item/stack/ore/glass/basalt()
+	else 
+		. = ..()
+		ore_present = pick(GLOB.quarry_ores)
 	can_spawn_ore = TRUE
 
 /turf/open/water/toxic_pit

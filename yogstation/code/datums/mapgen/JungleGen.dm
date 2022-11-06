@@ -184,6 +184,18 @@
 
 		CHECK_TICK
 
+	//guaranteed spawn at least some rare ores like bluespace and dilithium in small pockets 
+
+	for(var/i in 0 to 16)
+		var/x = rand(16,239)
+		var/y = rand(16,239)
+		var/ore = pick(ORE_DILITHIUM,ORE_BLUESPACE)
+		return_list[world.maxx * y + x] = ore
+		for(var/j in 1 to 8)
+			var/x_o = x + rand(-j,j)
+			var/y_o = y + rand(-j,j)
+			return_list[world.maxx * y_o + x_o] = ore
+
 	return return_list
 		
 /datum/map_generator/jungleland/generate_terrain(list/turfs)

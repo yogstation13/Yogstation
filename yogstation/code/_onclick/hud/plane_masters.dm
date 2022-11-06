@@ -1,4 +1,4 @@
-/atom/movable/escreen/plane_master/proc/get_render_target()
+/atom/movable/screen/plane_master/proc/get_render_target()
 	render_target = "[name]_TARGET"
 	return render_target
 

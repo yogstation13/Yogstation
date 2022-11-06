@@ -192,6 +192,13 @@
 	ore_color = "#bd50c7"
 	overlay_state = "rock_Dilithium"
 
+/datum/ore_patch/sand
+	ore_type = /obj/item/stack/ore/glass/basalt
+	ore_quantity_upper = 10
+	ore_quantity_lower = 2
+	ore_color = "#2d2a2d"
+	overlay_state = "rock_Dilithium"
+
 /datum/reagent/space_cleaner/sterilizine/primal
 	name = "Primal Sterilizine"
 	description = "While crude and odorous, it still seems to kill enough bacteria to be usable."
