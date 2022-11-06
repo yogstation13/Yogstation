@@ -298,6 +298,8 @@
 	var/mob/living/simple_animal/cheese/B = new(M.loc)
 	if(!B)
 		return
+	M.dropItemToGround(M.get_active_held_item())
+	M.dropItemToGround(M.get_inactive_held_item())
 	B.temporary = !forced
 	B.stored_mob = M
 	M.forceMove(B)	

@@ -26,6 +26,8 @@
 
 /mob/living/simple_animal/cheese/Life()
 	..()
+	if(stored_mob)
+		stored_mob.life_tickrate = 0
 	if(temporary)
 		addtimer(CALLBACK(src, .proc/uncheeseify, src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
@@ -74,15 +76,16 @@
 	if(cheese.stored_mob)
 		var/mob/living/L = cheese.stored_mob
 		var/mob/living/simple_animal/cheese/C = cheese
+		L.life_tickrate = initial(L.life_tickrate)
 		L.forceMove(get_turf(C))
 		C.stored_mob = null
-		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
 		if(L.mind)
 			C.mind.transfer_to(L)
 		else
 			L.key = C.key
 		C.transfer_observers_to(L)
-		C.death()
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		qdel(C)
 
 /mob/living/simple_animal/cheese/canSuicide()
 	return FALSE
