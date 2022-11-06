@@ -3751,7 +3751,6 @@
 #include "yogstation\code\modules\mob\living\carbon\reindex_screams.dm"
 #include "yogstation\code\modules\mob\living\carbon\alien\humanoid\alienpowers.dm"
 #include "yogstation\code\modules\mob\living\carbon\alien\humanoid\humanoid.dm"
-#include "yogstation\code\modules\mob\living\carbon\alien\humanoid\humanoid_defense.dm"
 #include "yogstation\code\modules\mob\living\carbon\alien\humanoid\queen.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\human.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\human_defense.dm"

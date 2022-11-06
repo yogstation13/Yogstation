@@ -29,16 +29,3 @@
 						A.forceMove(drop_location())
 						stomach_contents.Remove(A)
 					src.gib()
-
-
-/mob/living/carbon/proc/devour_mob(mob/living/carbon/C, devour_time = 130)
-	C.visible_message(span_danger("[src] is attempting to devour [C]!"), \
-					span_userdanger("[src] is attempting to devour you!"))
-	if(!do_mob(src, C, devour_time))
-		return
-	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && a_intent == INTENT_GRAB)
-		C.visible_message(span_danger("[src] devours [C]!"), \
-						span_userdanger("[src] devours you!"))
-		C.forceMove(src)
-		stomach_contents.Add(C)
-		log_combat(src, C, "devoured")
