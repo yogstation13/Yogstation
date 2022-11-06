@@ -2680,6 +2680,7 @@
 #include "code\modules\modular_computers\file_system\programs\ntmonitor.dm"
 #include "code\modules\modular_computers\file_system\programs\ntnrc_client.dm"
 #include "code\modules\modular_computers\file_system\programs\ntpda_msg.dm"
+#include "code\modules\modular_computers\file_system\programs\paperworkprinter.dm"
 #include "code\modules\modular_computers\file_system\programs\portrait_printer.dm"
 #include "code\modules\modular_computers\file_system\programs\radar.dm"
 #include "code\modules\modular_computers\file_system\programs\robotact.dm"
@@ -3885,5 +3886,4 @@
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\code\modules\xenoarch\loot\guns.dm"
 #include "yogstation\interface\interface.dm"
-#include "code\modules\modular_computers\file_system\programs\paperworkprinter.dm"
 // END_INCLUDE
