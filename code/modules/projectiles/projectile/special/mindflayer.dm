@@ -1,6 +1,6 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
-	icon_state = "flayerlaser
+	icon_state = "flayerlaser"
 	damage = 10
 	damage_type = STAMINA //this is not destroying your body, it's destroying your mind
 	flag = ENERGY
