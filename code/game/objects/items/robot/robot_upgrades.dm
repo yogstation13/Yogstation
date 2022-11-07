@@ -862,25 +862,6 @@
 	module_type = /obj/item/robot_module/medical
 	module_flags = BORG_MODULE_MEDICAL
 
-/obj/item/borg/upgrade/pinpointer/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-
-		var/obj/item/pinpointer/crew/PP = locate() in R.module.modules
-		if(PP)
-			to_chat(user, span_warning("This unit is already equipped with a pinpointer module."))
-			return FALSE
-
-		PP = new(R.module)
-		R.module.basic_modules += PP
-		R.module.add_module(PP, FALSE, TRUE)
-
-/obj/item/borg/upgrade/pinpointer/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/pinpointer/crew/PP in R.module.modules)
-			R.module.remove_module(PP, TRUE)
-
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"
 	desc = "Allows you to turn a cyborg into a standard cyborg."
