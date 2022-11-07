@@ -6,6 +6,7 @@ export const NtosPaperworkPrinter = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     have_printer,
+    printable_papers,
   } = data;
   if (have_printer) {
     return (
@@ -22,76 +23,15 @@ export const NtosPaperworkPrinter = (props, context) => {
               onClick={() => act('PRG_print', {
                 whichpaperwork: "GeneralRequest",
               })} />
-            <Button
-              icon="print"
-              content="Print NT-021 Complaint Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "ComplaintForm",
-              })} />
-            <Button
-              icon="print"
-              content="Print NT-400 Incident Report Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "IncidentForm",
-              })} />
-            <Button
-              icon="print"
-              content="Print NT-089 Item Request Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "ItemRequest",
-              })} />
-            <Button
-              icon="print"
-              content="Print NT-203 Cyberization Consent Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "CyberizationConsent",
-              })} />
-            <Button
-              icon="print"
-              content="Print NT-022 HoP Access Request Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "HOPAccessRequest",
-              })} />
-            <Button
-              icon="print"
-              content="Print NT-059 Job Reassignment Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "JobReassignment",
-              })} />
-            <Button
-              icon="print"
-              content="Print SCI-3 R&D Request Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "RDRequestForm",
-              })} />
-            <Button
-              icon="print"
-              content="Print SCI-9 Mech Request Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "MechRequest",
-              })} />
-            <Button
-              icon="print"
-              content="Print Job Change Certificate"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "JobChangeCertificate",
-              })} />
-            <Button
-              icon="print"
-              content="Print SEC-030 Security Incident Report Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "SecIncidentForm",
-              })} />
+            {printable_papers.map(paper => (
+              <Button
+                icon="print"
+                content={"Print " + paper.name}
+                width="100%"
+                onClick={() => act('PRG_print', {
+                  paperworkID: paper.id,
+                })} />
+            ))}
           </Section>
         </NtosWindow.Content>
       </NtosWindow>

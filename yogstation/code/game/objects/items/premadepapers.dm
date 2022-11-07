@@ -7,9 +7,13 @@
   * It's a subtype of paper, with written text already on it.
   *
   */
+/obj/item/paper/paperwork/
+	var/id = 0
+	var/printable = TRUE
 /obj/item/paper/paperwork/general_request_form
 	name = "General Requests Form (Form NT-010)"
-
+	id = 1
+	printable = FALSE
 
 /obj/item/paper/paperwork/general_request_form/Initialize()
 	. = ..()
@@ -34,6 +38,7 @@
   */
 /obj/item/paper/paperwork/complaint_form
 	name = "Complaint Form (Form NT-021)"
+	id = 2
 
 /obj/item/paper/paperwork/complaint_form/Initialize()
 	. = ..()
@@ -65,6 +70,7 @@
   */
 /obj/item/paper/paperwork/incident_report
 	name = "Incident Report (Form NT-400)"
+	id = 3
 
 /obj/item/paper/paperwork/incident_report/Initialize()
 	. = ..()
@@ -113,6 +119,7 @@
   */
 /obj/item/paper/paperwork/sec_incident_report
 	name = "Security Incident Report (Form SEC-030)"
+	id = 4
 
 /obj/item/paper/paperwork/sec_incident_report/Initialize()
 	. = ..()
@@ -180,6 +187,7 @@
   */
 /obj/item/paper/paperwork/item_form
 	name = "Item Request Form (Form NT-089)"
+	id = 5
 
 /obj/item/paper/paperwork/item_form/Initialize()
 	. = ..()
@@ -214,6 +222,7 @@
   */
 /obj/item/paper/paperwork/cyborg_request_form
 	name = "Cyborgization Consent Form (Form NT-203)"
+	id = 6
 
 /obj/item/paper/paperwork/cyborg_request_form/Initialize()
 	. = ..()
@@ -248,6 +257,7 @@
   */
 /obj/item/paper/paperwork/hopaccessrequestform
 	name = "HoP Access Request Form (Form NT-022)"
+	id = 7
 
 /obj/item/paper/paperwork/hopaccessrequestform/Initialize()
 	. = ..()
@@ -278,6 +288,7 @@
   */
 /obj/item/paper/paperwork/hop_job_change_form
 	name = "Job Reassignment Form (Form NT-059)"
+	id = 8
 
 /obj/item/paper/paperwork/hop_job_change_form/Initialize()
 	. = ..()
@@ -315,6 +326,7 @@
   */
 /obj/item/paper/paperwork/rd_form
 	name = "R&D Request Form (Form SCI-3)"
+	id = 9
 
 /obj/item/paper/paperwork/rd_form/Initialize()
 	. = ..()
@@ -344,6 +356,7 @@
   */
 /obj/item/paper/paperwork/mech_form
 	name = "R&D Mech Request Form (Form SCI-9)"
+	id = 10
 
 /obj/item/paper/paperwork/mech_form/Initialize()
 	. = ..()
@@ -373,6 +386,7 @@
   */
 /obj/item/paper/paperwork/jobchangecert
 	name = "Job Change Certificate"
+	id = 11
 
 /obj/item/paper/paperwork/jobchangecert/Initialize()
 	. = ..()
