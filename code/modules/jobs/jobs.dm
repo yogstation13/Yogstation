@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(alt_engineering_positions, list(
 	"Head of Engineering", "Engineering Director",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
 	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
-	"NTSL Programmer", "Comms Tech", "Station IT Support"
+	"AI Tech Support", "SysOp"
 	))
 
 GLOBAL_LIST_INIT(alt_medical_positions, list(

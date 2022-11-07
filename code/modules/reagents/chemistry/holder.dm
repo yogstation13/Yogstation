@@ -560,7 +560,6 @@
 			if(my_atom && isliving(my_atom))
 				var/mob/living/M = my_atom
 				if(R.metabolizing)
-					R.metabolizing = FALSE
 					R.on_mob_end_metabolize(M)
 				R.on_mob_delete(M)
 			qdel(R)

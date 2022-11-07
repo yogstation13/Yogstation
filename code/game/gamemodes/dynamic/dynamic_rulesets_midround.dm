@@ -400,51 +400,17 @@
 	antag_datum = /datum/antagonist/blob
 	antag_flag = ROLE_BLOB
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(4,3,2,2,1,0,0,0,0,0)
 	required_candidates = 1
 	weight = 2
-	cost = 10
+	cost = 30
 	requirements = list(100,100,100,80,60,50,45,30,20,20)
-	repeatable = TRUE
+	repeatable = FALSE
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
 	var/body = applicant.become_overmind()
 	return body
-
-// Infects a random player, making them explode into a blob.
-/datum/dynamic_ruleset/midround/blob_infection
-	name = "Blob Infection"
-	antag_datum = /datum/antagonist/blob
-	antag_flag = ROLE_BLOB
-	protected_roles = list("Prisoner", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
-	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
-	required_candidates = 1
-	weight = 2
-	cost = 10
-	requirements = list(101,101,101,80,60,50,30,20,10,10)
-	repeatable = TRUE
-
-/datum/dynamic_ruleset/midround/blob_infection/trim_candidates()
-	..()
-	candidates = living_players
-	for(var/mob/living/player as anything in candidates)
-		var/turf/player_turf = get_turf(player)
-		if(!player_turf || !is_station_level(player_turf.z))
-			candidates -= player
-			continue
-
-		if(player.mind && (player.mind.special_role || length(player.mind.antag_datums) > 0))
-			candidates -= player
-
-/datum/dynamic_ruleset/midround/blob_infection/execute()
-	if(!candidates || !candidates.len)
-		return FALSE
-	var/mob/living/carbon/human/blob_antag = pick_n_take(candidates)
-	assigned += blob_antag.mind
-	blob_antag.mind.special_role = antag_flag
-	return ..()
 
 //////////////////////////////////////////////
 //                                          //
@@ -457,18 +423,16 @@
 	antag_datum = /datum/antagonist/xeno
 	antag_flag = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(4,3,2,2,1,0,0,0,0,0)
 	required_candidates = 1
 	weight = 3
-	cost = 20
+	cost = 30 //these things impact a round probably more than most game-defining antags, ffs.
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
-	repeatable = TRUE
+	repeatable = FALSE
 	var/list/vents = list()
-	minimum_players = 30
+	minimum_players = 35
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
-	// 50% chance of being incremented by one
-	required_candidates += prob(50)
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
 		if(QDELETED(temp_vent))
 			continue
