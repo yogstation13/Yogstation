@@ -61,6 +61,9 @@
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe))
 		if(syringes.len < max_syringes)
+			if(istype(A, /obj/item/reagent_containers/syringe/piercing) && !istype(src, /obj/item/gun/syringe/syndicate))
+				to_chat(user, "<span class='notice'>[A] is designed to not be able to fit into [src].</span>")
+				return TRUE
 			if(!user.transferItemToLoc(A, src))
 				return FALSE
 			to_chat(user, span_notice("You load [A] into \the [src]."))
