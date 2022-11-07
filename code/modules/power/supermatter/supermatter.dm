@@ -13,6 +13,7 @@
 #define OXYGEN_HEAT_PENALTY 1
 #define CO2_HEAT_PENALTY 0.1
 #define PLUOXIUM_HEAT_PENALTY -1
+#define HALON_HEAT_PENALTY -1
 #define TRITIUM_HEAT_PENALTY 10
 #define BZ_HEAT_PENALTY 5
 #define NITROGEN_HEAT_PENALTY -1.5
@@ -25,6 +26,7 @@
 #define BZ_TRANSMIT_MODIFIER -2
 #define TRITIUM_TRANSMIT_MODIFIER 30 //We divide by 10, so this works out to 3
 #define PLUOXIUM_TRANSMIT_MODIFIER -5 //Should halve the power output
+#define HALON_TRANSMIT_MODIFIER -10 
 #define H2O_TRANSMIT_MODIFIER 2
 #define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
@@ -37,9 +39,13 @@
 
 /// Higher == Gas makes the crystal more resistant against heat damage.
 #define N2O_HEAT_RESISTANCE 6
+#define HALON_HEAT_RESISTANCE 20 // Very good at keeping an SM from burning but kills power
 #define PLUOXIUM_HEAT_RESISTANCE 12
 #define HYDROGEN_HEAT_RESISTANCE 2 // just a bit of heat resistance to spice it up
 #define PLUONIUM_HEAT_RESISTANCE 5
+
+#define ZAUKER_DAMAGE_MOD 10
+#define HEALIUM_HEAL_MOD 4
 
 #define POWERLOSS_INHIBITION_GAS_THRESHOLD 0.20         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
 #define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
@@ -463,10 +469,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			//healing damage
 			if(combined_gas < MOLE_PENALTY_THRESHOLD)
-				damage = max(damage + (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
+				damage = max(damage + (healcomp * HEALIUM_HEAL_MOD) * (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
 
 			//capping damage
-			damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
+			damage = min(damage_archived + (DAMAGE_HARDCAP * (zaukcomp * ZAUKER_DAMAGE_MOD) * explosion_point),damage)
 
 
 		// Calculate the gas mix ratio
@@ -479,8 +485,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
 		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
 		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
+		var/h2comp = max(removed.get_moles(/datum/gas/hydrogen)/combined_gas, 0)
+		var/h2ocomp = max(removed.get_moles(/datum/gas/water_vapor)/combined_gas, 0)
 		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
-		var/pluoxiumbonus = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
+		var/pluoniumcomp = max(removed.get_moles(/datum/gas/pluonium)/combined_gas, 0)
+		var/healcomp = max(removed.get_moles(/datum/gas/healium)/combined_gas, 0)
+		var/zaukcomp = max(removed.get_moles(/datum/gas/zauker)/combined_gas, 0)
+		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
 
 
 		// Mole releated calculations
@@ -490,11 +501,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp - pluoxiumcomp - n2comp, 0), 1)
 
 		// How much heat to emit/resist
-		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY), 0.5)
-		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE), 1)
+		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY), 0.5)
+		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) + (h2comp * HYDROGEN_HEAT_RESISTANCE) + (pluoniumcomp * PLUOLIUM_HEAT_RESISTANCE) + (haloncomp * HALON_HEAT_RESISTANCE), 1)
 
 		// Used to determine radiation output as it concerns things like collecters
-		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER)
+		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (haloncomp * HALON_TRANSMIT_MODIFIER)
 		// More moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
@@ -525,7 +536,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumbonus) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
+			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumcomp) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
 			radiation_pulse(src, max(last_rads))
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
