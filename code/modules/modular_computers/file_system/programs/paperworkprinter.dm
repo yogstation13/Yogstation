@@ -15,8 +15,6 @@
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
 		printer = computer.all_components[MC_PRINT]
-
-	if(computer)
 		data["have_printer"] = !!printer
 	else
 		data["have_printer"] = FALSE
