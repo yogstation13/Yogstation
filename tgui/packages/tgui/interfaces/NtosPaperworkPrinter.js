@@ -16,13 +16,6 @@ export const NtosPaperworkPrinter = (props, context) => {
         resizable>
         <NtosWindow.Content scrollable>
           <Section title="NTOS Paperwork Printer">
-            <Button
-              icon="print"
-              content="Print NT-010 General Request Form"
-              width="100%"
-              onClick={() => act('PRG_print', {
-                whichpaperwork: "GeneralRequest",
-              })} />
             {printable_papers.map(paper => (
               <Button
                 icon="print"

@@ -15,9 +15,9 @@
 	var/list/papers = list()
 	//filter out paperwork we're not allowed to have
 	for(var/R in subtypesof(/obj/item/paper/paperwork))
-		var/obj/item/paper/paperwork/P = new R
-		if(P.printable)
-			papers += list(list("name" = P.name, "id" = P.id))
+		var/obj/item/paper/paperwork/P = R
+		if(initial(P.printable))
+			papers += list(list("name" = initial(P.name), "id" = initial(P.id)))
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
 		printer = computer.all_components[MC_PRINT]
@@ -33,10 +33,12 @@
 	//this variable stores the object of which we're actually going to print
 	if(action == "PRG_print")
 		var/paperworkToPick = params["paperworkID"]
-		for(var/obj/item/paper/paperwork/P in subtypesof(/obj/item/paper/paperwork))
-			if(P.id==paperworkToPick)
+		for(var/R in subtypesof(/obj/item/paper/paperwork))
+			var/obj/item/paper/paperwork/P = R
+			if(initial(P.id)==paperworkToPick)
 				src.print(P)
 				break
+			
 
 /datum/computer_file/program/paperwork_printer/proc/print(var/obj/item/paper/paperwork/T)
 	var/obj/item/computer_hardware/printer/printer
