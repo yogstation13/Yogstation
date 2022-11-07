@@ -13,7 +13,6 @@
 /obj/item/paper/paperwork/general_request_form
 	name = "General Requests Form (Form NT-010)"
 	id = 1
-	printable = FALSE
 
 /obj/item/paper/paperwork/general_request_form/Initialize()
 	. = ..()
