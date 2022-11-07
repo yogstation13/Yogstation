@@ -94,12 +94,12 @@
 	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
 	icon_state = "adventurer_skirt"
 	item_state = "adventurer_skirt"
-/obj/item/clothing/gloves/yogs/arm_sleeves
+/obj/item/clothing/gloves/yogs/armsleeves
 	name = "Arm Sleeves"
 	desc = "White marked sleeves, signal of a skillful Hunter."
 	icon_state = "arm_sleeves"
 	item_state = "arm_sleeves"
-/obj/item/clothing/under/yogs/skin_tight_garmet
+/obj/item/clothing/under/yogs/skintightgarmet
 	name = "Skin Tight Garmet"
 	desc = "With this on you can barely breath."
 	icon_state = "skin_tight_garmet"
@@ -161,5 +161,5 @@
 /obj/item/storage/box/hisa/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/yogs/adventurerskirt(src)
-	new /obj/item/clothing/neck/yogs/skin_tight_garmet(src)
-	new /obj/item/clothing/head/yogs/arm_sleeves(src)
+	new /obj/item/clothing/neck/yogs/skintightgarmet(src)
+	new /obj/item/clothing/head/yogs/armsleeves(src)
