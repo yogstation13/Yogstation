@@ -853,15 +853,6 @@
 		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
 			R.module.remove_module(PC, TRUE)
 
-/obj/item/borg/upgrade/pinpointer
-	name = "medical cyborg crew pinpointer"
-	desc = "A crew pinpointer module for the medical cyborg."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "pinpointer_crew"
-	require_module = TRUE
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
-
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"
 	desc = "Allows you to turn a cyborg into a standard cyborg."
