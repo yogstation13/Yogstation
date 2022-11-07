@@ -18,6 +18,7 @@ export const NtosPaperworkPrinter = (props, context) => {
           <Section title="NTOS Paperwork Printer">
             {printable_papers.map(paper => (
               <Button
+                key={paper}
                 icon="print"
                 content={"Print " + paper.name}
                 width="100%"
