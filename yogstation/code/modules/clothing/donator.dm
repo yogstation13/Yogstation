@@ -94,6 +94,7 @@
 	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
 	icon_state = "adventurer_skirt"
 	item_state = "adventurer_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS|HANDS
 /obj/item/clothing/gloves/yogs/arm_sleeves
 	name = "Arm Sleeves"
 	desc = "White marked sleeves, signal of a skillful Hunter."
