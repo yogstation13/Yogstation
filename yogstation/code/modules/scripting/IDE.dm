@@ -52,7 +52,7 @@
 					if(!compileerrors)
 						src << output("<b>NTSL.exe Error</b>", "tcserror")
 						src << output("<font color = red>\t><b>A fatal error has occured. Please contact your local network adminstrator.</b></font color>", "tcserror")
-					else if(istext(compileerrors)
+					else if(istext(compileerrors))
 						src << output("<b>NTSL.exe Error</b>", "tcserror")
 						src << output("<font color = red>\t><b>[compileerrors]</b></font color>", "tcserror")
 					else if(length(compileerrors))
