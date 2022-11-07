@@ -9,8 +9,6 @@
 	size = 4
 	tgui_id = "NtosPaperworkPrinter"
 	program_icon = "clipboard-list"
-	var/obj/item/paper/paperwork/which
-	var/print = 1
 
 /datum/computer_file/program/paperwork_printer/ui_static_data(mob/user)
 	var/list/data = get_header_data()
@@ -27,41 +25,46 @@
 /datum/computer_file/program/paperwork_printer/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
-
-	switch(action)
-		if("PRG_print_GenReqForm")
-			which = /obj/item/paper/paperwork/general_request_form
-			print = 1
-		if("PRG_print_ComplaintForm")
-			which = /obj/item/paper/paperwork/complaint_form
-			print = 1
-		if("PRG_print_IncidentRepForm")
-			which = /obj/item/paper/paperwork/incident_report
-			print = 1
-		if("PRG_print_ItemReqForm")
-			which = /obj/item/paper/paperwork/item_form
-			print = 1
-		if("PRG_print_CyberConsentForm")
-			which = /obj/item/paper/paperwork/cyborg_request_form
-			print = 1
-		if("PRG_print_HOPAccessForm")
-			which = /obj/item/paper/paperwork/hopaccessrequestform
-			print = 1
-		if("PRG_print_JobReassignForm")
-			which = /obj/item/paper/paperwork/hop_job_change_form
-			print = 1
-		if("PRG_print_RDReqForm")
-			which = /obj/item/paper/paperwork/rd_form
-			print = 1
-		if("PRG_print_MechReqForm")
-			which = /obj/item/paper/paperwork/mech_form
-			print = 1
-		if("PRG_print_JobChangeCert")
-			which = /obj/item/paper/paperwork/jobchangecert
-			print = 1
-		if("PRG_print_SecRepForm")
-			which = /obj/item/paper/paperwork/sec_incident_report
-			print = 1
+	//this variable stores the object of which we're actually going to print
+	var/obj/item/paper/paperwork/which
+	//this flag determines if anything is actually printed
+	var/print = FALSE
+	if(action == "PRG_print")
+		var/paperworkToPick = params["whichpaperwork"]
+		switch(paperworkToPick)
+			if("GeneralRequest")
+				which = /obj/item/paper/paperwork/general_request_form
+				print = TRUE
+			if("ComplaintForm")
+				which = /obj/item/paper/paperwork/complaint_form
+				print = TRUE
+			if("IncidentForm")
+				which = /obj/item/paper/paperwork/incident_report
+				print = TRUE
+			if("ItemRequest")
+				which = /obj/item/paper/paperwork/item_form
+				print = TRUE
+			if("CyberizationConsent")
+				which = /obj/item/paper/paperwork/cyborg_request_form
+				print = TRUE
+			if("HOPAccessRequest")
+				which = /obj/item/paper/paperwork/hopaccessrequestform
+				print = TRUE
+			if("JobReassignment")
+				which = /obj/item/paper/paperwork/hop_job_change_form
+				print = TRUE
+			if("RDRequestForm")
+				which = /obj/item/paper/paperwork/rd_form
+				print = TRUE
+			if("MechRequest")
+				which = /obj/item/paper/paperwork/mech_form
+				print = TRUE
+			if("JobChangeCertificate")
+				which = /obj/item/paper/paperwork/jobchangecert
+				print = TRUE
+			if("SecIncidentForm")
+				which = /obj/item/paper/paperwork/sec_incident_report
+				print = TRUE
 	if(print)
 		var/obj/item/computer_hardware/printer/printer
 		print = !print
@@ -72,4 +75,6 @@
 				to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 				return
 			else
-				computer.visible_message(span_notice("\The [computer] prints out a paper."))
+				//it printed, how many pages are left?
+				var/pages_left = printer.stored_paper
+				computer.visible_message(span_notice("\The [computer] prints out a paper. There are [pages_left] pages left."))
