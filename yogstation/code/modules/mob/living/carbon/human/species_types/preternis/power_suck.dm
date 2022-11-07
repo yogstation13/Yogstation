@@ -21,7 +21,7 @@
 
 	draining = TRUE
 
-	var/siemens_coefficient = 1
+	var/siemens_coefficient = H.dna.species.siemens_coeff //makes power drain speed scale with preternis stats
 
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
@@ -43,7 +43,7 @@
 
 	H.face_atom(A)
 	H.visible_message(span_warning("[H] starts placing their hands on [A]..."), span_warning("You start placing your hands on [A]..."))
-	if(!do_after(H, 2 SECONDS, A))
+	if(!do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 1.5 SECONDS : 2 SECONDS, A))
 		to_chat(H,span_info("CONSUME protocol aborted."))
 		draining = FALSE
 		return TRUE
@@ -68,7 +68,7 @@
 			nutritionIncrease = clamp(PRETERNIS_LEVEL_FULL - charge, PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
 			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
-		if (do_after(H, 0.5 SECONDS, A))
+		if (do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 0.4 SECONDS : 0.5 SECONDS, A))
 			var/can_drain = A.can_consume_power_from()
 			if(!can_drain || istext(can_drain))
 				if(istext(can_drain))

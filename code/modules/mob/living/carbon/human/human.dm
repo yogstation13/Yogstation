@@ -1066,6 +1066,7 @@
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
 	. *= physiology.do_after_speed
+	. *= dna.species.action_speed_coefficient
 
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health

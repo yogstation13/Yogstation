@@ -215,7 +215,6 @@
 	for(var/gas in mole_adjustments)
 		breath.adjust_moles(gas, mole_adjustments[gas])
 
-
 	//-- TRACES --//
 
 	if(breath)	// If there's some other shit in the air lets deal with it here.
@@ -473,7 +472,7 @@
 
 	var/total_heat_capacity = 0
 	if(!breath || (breath.total_moles() == 0)) // Space
-		H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+		H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
 		if(COOLDOWN_FINISHED(src, last_message))
 			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
 			COOLDOWN_START(src, last_message, 30 SECONDS)
@@ -492,7 +491,7 @@
 	if(total_heat_capacity > 0)
 		var/heat_generation = (temperature + 35)/total_heat_capacity
 		if(heat_generation > 1000) // not dispelling enough heat
-			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
 			if(COOLDOWN_FINISHED(src, last_message))
 				to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
 				COOLDOWN_START(src, last_message, 30 SECONDS)

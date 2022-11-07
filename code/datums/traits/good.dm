@@ -290,5 +290,5 @@
 
 /datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && istype(prefs.pref_species, /datum/species/ipc)) // IPCs are already cybernetic
-		return "You already have cybebrnetic organs!"
+		return "You already have cybernetic organs!"
 	return FALSE

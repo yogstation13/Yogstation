@@ -111,13 +111,8 @@
 	name = ".357 Heartpiercer bullet"
 	damage = 35
 	armour_penetration = 35
-	var/penetrations = 2 //Number of mobs the bullet can hit
-
-/obj/item/projectile/bullet/a357/heartpiercer/on_hit(atom/target)
-	. = ..()
-	penetrations -= 1
-	if(ismob(target) && penetrations > 0)
-		return BULLET_ACT_FORCE_PIERCE
+	penetrating = TRUE //Goes through a single mob before ending on the next target
+	penetrations = 1
 
 /obj/item/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
