@@ -765,9 +765,8 @@
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
 	damtype = STAMINA
-	force = 18
+	force = 15
 	block_chance = 40
-	armour_penetration = 20
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
 	hitsound = "swing_hit"

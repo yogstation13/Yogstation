@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer respond to PDA messages if you cant interact with the device it's on"
