@@ -254,7 +254,7 @@
 			shock()
 		else
 			say("The decontamination process is completed, thank you for your patience.")
-			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+			playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
 			if(occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
