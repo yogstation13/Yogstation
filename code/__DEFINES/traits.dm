@@ -115,6 +115,7 @@
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
+#define TRAIT_BLIND_ECHO		"blind_echolocation"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
 #define TRAIT_DEAF				"deaf"
