@@ -691,7 +691,7 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/suit_storage_unit
+/datum/design/board/decontamination
 	name = "Machine Design (Suit Storage Unit)"
 	desc = "The circuit board for a suit storage unit."
 	id = "suit_storage_unit"
@@ -699,7 +699,7 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/decontamination
+/datum/design/board/crystallizer
 	name = "Machine Design (Crystallizer)"
 	desc = "The circuit board for a crystallizer."
 	id = "crystallizer"
