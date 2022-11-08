@@ -9442,6 +9442,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"cdC" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/machinery/armaments_dispenser,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "cdG" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Gravity Generator and SMES";
@@ -59536,6 +59544,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"tgz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "tgD" = (
 /obj/effect/landmark/start/atmospheric_technician,
 /obj/structure/chair/office/dark{
@@ -106519,10 +106534,10 @@ adj
 fdg
 hFT
 hFT
-hFT
+tgz
 wIf
 tPH
-tPH
+cdC
 xnl
 lkG
 qya

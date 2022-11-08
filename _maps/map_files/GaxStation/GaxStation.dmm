@@ -13235,7 +13235,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "guX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -28456,9 +28457,6 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "oqA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -28466,7 +28464,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = -29
 	},
-/obj/effect/landmark/xeno_spawn,
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "oqF" = (
