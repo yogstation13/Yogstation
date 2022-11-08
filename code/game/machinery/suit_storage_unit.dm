@@ -493,10 +493,10 @@
 		return
 	if(state_open)
 		close_machine()
-		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
+		playsound(src, 'sound/machines/decon/decon-close.ogg', 75, TRUE)
 	else
 		open_machine(0)
-		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 
