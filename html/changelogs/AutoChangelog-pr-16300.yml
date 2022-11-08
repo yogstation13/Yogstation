@@ -1,5 +1,0 @@
-author: "N3D6"
-delete-after: true 
-changes: 
-  - rscdel: "removes teg from roundstart rotation"
-  - tweak: "tesla/sing and SM have a 50/50 chance to spawn"
