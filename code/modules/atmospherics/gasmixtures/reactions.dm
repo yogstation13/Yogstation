@@ -75,15 +75,15 @@ nobliumformation = 1001
 /datum/gas_reaction/proc/react(datum/gas_mixture/air, atom/location)
 	return NO_REACTION
 
-/datum/gas_reaction/nobliumsupression
+/datum/gas_reaction/nobliumsuppression
 	priority = 1000 //ensure all non-HN reactions are lower than this number.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
-/datum/gas_reaction/nobliumsupression/init_reqs()
+/datum/gas_reaction/nobliumsuppression/init_reqs()
 	min_requirements = list(/datum/gas/hypernoblium = REACTION_OPPRESSION_THRESHOLD)
 
-/datum/gas_reaction/nobliumsupression/react()
+/datum/gas_reaction/nobliumsuppression/react()
 	return STOP_REACTIONS
 
 //water vapor: puts out fires?
