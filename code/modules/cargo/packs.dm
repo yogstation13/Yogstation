@@ -308,6 +308,19 @@
 					/obj/item/gun/energy/disabler)
 	crate_name = "disabler crate"
 
+/datum/supply_pack/security/ntusp
+	name = "NT-USP Crate"
+	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	cost = 2000
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp)
+	crate_name = "nt-usp crate"
+
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."

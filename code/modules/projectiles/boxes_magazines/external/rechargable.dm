@@ -25,9 +25,9 @@
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp
 	name = "NT-USP pistol"
-	desc = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring criminals."
+	desc = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
 	icon_state = "ntusp"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
 	can_suppress = FALSE
 	can_flashlight = TRUE
@@ -45,9 +45,9 @@
 //NT-USP Clip
 /obj/item/ammo_box/magazine/recharge/ntusp
 	name = "small power pack"
-	desc = "A small rechargable power pack, used in the NT-USP."
+	desc = "A small rechargable power pack that synthesizes .22HL bullets, used in the NT-USP."
 	icon_state = "powerpack_small"
-	ammo_type = /obj/item/ammo_casing/caseless/ntusp
+	ammo_type = /obj/item/ammo_casing/caseless/c22hl
 	max_ammo = 10
 
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity)
@@ -55,14 +55,14 @@
 	var/bullet_count = ammo_count() //goodbye to 60% of your ammo
 	var/bullets_to_remove = bullet_count * 0.6
 	for(var/i = 0; i < bullets_to_remove, i++)
-		get_round()
+		qdel(get_round())
 	update_icon()
 
-/obj/item/ammo_casing/caseless/ntusp
+/obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
-	projectile_type = /obj/item/projectile/bullet/ntusp
+	projectile_type = /obj/item/projectile/bullet/c22hl
 
-/obj/item/projectile/bullet/ntusp
+/obj/item/projectile/bullet/c22hl //.22 HL
 	name = "NT-USP beam"
 	icon_state = "disabler_bullet"
 	damage = 2 //ouch ouch my skin ouchie
