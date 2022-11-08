@@ -22,7 +22,7 @@
 	state_open = FALSE
 	var/locked = FALSE
 	panel_open = FALSE
-	var/safeties = FALSE
+	var/safeties = TRUE
 
 	var/uv = FALSE
 	var/uv_super = FALSE
@@ -253,7 +253,7 @@
 			QDEL_NULL(storage)
 			shock()
 		else
-			say("The decontamination process is completed, thank you for your patient.")
+			say("The decontamination process is completed, thank you for your patience.")
 			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 			if(occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
@@ -460,7 +460,7 @@
 					say("ERROR: Decontamination process is going over safety limit!!")
 					uv_cycles = 7
 				else
-					say("Please wait untill the decontamination process is completed.")
+					say("Please wait until the decontamination process is completed.")
 					uv_cycles = initial(uv_cycles)
 				if(occupant && uv_super)
 					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
