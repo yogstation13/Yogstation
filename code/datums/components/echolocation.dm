@@ -10,7 +10,7 @@
 	var/cooldown_last = 0
 	var/list/static/echo_blacklist
 	var/list/static/uniques
-	var/list/static/echo_images = list()
+	var/list/static/mutable_appearance/echo_images = list()
 
 	var/datum/action/innate/echo/E
 	var/datum/action/innate/echo/auto/A
