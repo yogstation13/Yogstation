@@ -53,11 +53,11 @@
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS)) 
-	var/bullet_count = ammo_count()
-	var/bullets_to_remove = round(bullet_count / severity)
-	for(var/i = 0; i < bullets_to_remove, i++)
-		qdel(get_round())
-	update_icon()
+		var/bullet_count = ammo_count()
+		var/bullets_to_remove = round(bullet_count / severity)
+		for(var/i = 0; i < bullets_to_remove, i++)
+			qdel(get_round())
+		update_icon()
 
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
