@@ -1,0 +1,6 @@
+author: "@LazennG   @thegoldencat413 @ToasterBiome @Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Added seismic right arm"
+  - rscdel: "Removes soulstone from tendril loot pool"
+  - imageadd: "added sprites for the arm and its abilities"
