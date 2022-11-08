@@ -457,7 +457,7 @@
 				return
 			else 
 				if(uv_super)
-					say("ERROR: Decontamination process is going over safety limit!!")
+					say("ERROR: Decontamination Process exceeds safety limit!")
 					uv_cycles = 7
 				else
 					say("Please wait until the decontamination process is completed.")
