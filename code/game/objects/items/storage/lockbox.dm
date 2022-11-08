@@ -326,4 +326,4 @@
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
 
 /obj/item/storage/lockbox/vialbox/printed
-	var/registered_name = null
+	req_access = null
