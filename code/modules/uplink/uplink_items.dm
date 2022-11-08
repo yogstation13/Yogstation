@@ -591,7 +591,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
-	cost = 12
+	cost = 8
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
