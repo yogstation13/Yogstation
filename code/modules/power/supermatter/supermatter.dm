@@ -55,6 +55,8 @@
 #define DAMAGE_HARDCAP 0.002
 #define DAMAGE_INCREASE_MULTIPLIER 0.25
 
+#define MIASMA_DELAM_PERCENTAGE 50
+
 #define THERMAL_RELEASE_MODIFIER 5         //Higher == less heat released during reaction, not to be confused with the above values
 #define PLASMA_RELEASE_MODIFIER 750        //Higher == less plasma released by reaction
 #define OXYGEN_RELEASE_MODIFIER 325        //Higher == less oxygen released at high temperature/power
@@ -363,6 +365,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, span_boldannounce("You feel reality distort for a moment..."))
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+		
+	if (T)
+		var/datum/gas_mixture/air = T.return_air()
+		if (air)
+			if (((air.get_moles(/datum/gas/miasma) / air.total_moles()) * 100) > MIASMA_DELAM_PERCENTAGE)
+				var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Supermatter Blob?", ROLE_BLOB, null, ROLE_BLOB)
+				if(candidates.len)
+					var/mob/dead/observer/new_blob = pick(candidates)
+					var/mob/camera/blob/BC = new_blob.become_overmind(200, 1.3)
+					BC.forceMove(T)
+					BC.place_blob_core(BLOB_FORCE_PLACEMENT)
+
 	if(combined_gas > MOLE_PENALTY_THRESHOLD)
 		message_admins("[src] has collapsed into a singularity. [ADMIN_JMP(src)].")
 		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
@@ -400,6 +414,19 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/stopsurging()
 	surging = 0
+
+/obj/machinery/power/supermatter_crystal/proc/calculate_damage(var/damage, var/datum/gas_mixture/removed)
+	if(takes_damage) //causing damage
+		damage = max(damage + (max(clamp(removed.total_moles() / 200, 0.5, 1) * removed.return_temperature() - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
+		damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
+		damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
+
+		//healing damage
+		if(combined_gas < MOLE_PENALTY_THRESHOLD)
+			damage = max(damage + (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
+
+		//capping damage
+		damage = min(damage + (DAMAGE_HARDCAP * explosion_point), damage)
 
 /obj/machinery/power/supermatter_crystal/process_atmos()
 	var/turf/T = loc
@@ -456,19 +483,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(takes_damage)
 			damage += max((power / 1000) * DAMAGE_INCREASE_MULTIPLIER, 0.1) // always does at least some damage
 	else
-		if(takes_damage) //causing damage
-			damage = max(damage + (max(clamp(removed.total_moles() / 200, 0.5, 1) * removed.return_temperature() - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
-			damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
-			damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
-
-			//healing damage
-			if(combined_gas < MOLE_PENALTY_THRESHOLD)
-				damage = max(damage + (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
-
-			//capping damage
-			damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
-
-
+		damage += calculate_damage(damage, removed)
 		// Calculate the gas mix ratio
 		combined_gas = max(removed.total_moles(), 0)
 
