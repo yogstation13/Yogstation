@@ -30945,6 +30945,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jBf" = (
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jBm" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -45655,9 +45663,13 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/gun/energy/disabler{
+/obj/item/gun/ballistic/automatic/pistol/ntusp{
 	pixel_x = 3;
 	pixel_y = -3
+	},
+/obj/item/ammo_box/magazine/recharge/ntusp{
+	pixel_x = 9;
+	pixel_y = -7
 	},
 /obj/item/gun/energy/disabler,
 /obj/item/gun/energy/disabler{
@@ -104738,7 +104750,7 @@ msb
 aHC
 cQp
 dSW
-aJG
+jBf
 oIh
 aJG
 uaZ
