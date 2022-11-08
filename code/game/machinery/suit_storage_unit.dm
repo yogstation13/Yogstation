@@ -240,7 +240,7 @@
 		uv = FALSE
 		locked = FALSE
 		if(uv_super)
-			say("ERROR: PLEASE CONTACT SUPPORT!!")
+			say("ERROR: PLEASE CONTACT SUPPORT!")
 			if(occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
 				mob_occupant.electrocute_act(50, src)
