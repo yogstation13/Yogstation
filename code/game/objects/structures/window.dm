@@ -496,11 +496,16 @@
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
-	armor = list(MELEE = 80, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 45, BIO = 100, RAD = 100, FIRE = 99, ACID = 100)
+	armor = list(MELEE = 60, BULLET = 5, LASER = 0, ENERGY = 100, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 150
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/plasmaglass
-	rad_insulation = RAD_NO_INSULATION
+	rad_insulation = RAD_FULL_INSULATION
+
+/obj/structure/window/plasma/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+		return FALSE
 
 /obj/structure/window/plasma/spawnDebris(location)
 	. = list()
@@ -530,7 +535,7 @@
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
-	armor = list(MELEE = 80, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 99, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 500
 	damage_deflection = 21
 	explosion_block = 2
@@ -751,7 +756,7 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	explosion_block = 3
@@ -759,6 +764,12 @@
 	level = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 	glass_amount = 2
+	rad_insulation = RAD_FULL_INSULATION
+
+/obj/structure/window/plastitanium/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+		return FALSE
 
 /obj/structure/window/plastitanium/unanchored
 	anchored = FALSE
