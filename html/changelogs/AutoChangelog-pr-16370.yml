@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds coin stacking. You can stack 8 coins together."
