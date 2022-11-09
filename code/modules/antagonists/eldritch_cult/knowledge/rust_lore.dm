@@ -10,8 +10,9 @@
 
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	target.rust_heretic_act()
-	return TRUE
+	if(user.a_intent == INTENT_HARM)
+		. = TRUE
+		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -21,9 +22,6 @@
 		if(E)
 			E.on_effect()
 			H.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART),25)
-	else if(user.a_intent == INTENT_HARM)
-		. = TRUE
-		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/rust_regen
 	name = "Leeching Walk"
