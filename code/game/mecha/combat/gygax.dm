@@ -28,11 +28,13 @@
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 	max_equip = 4
 	destruction_sleep_duration = 20
+	step_energy_drain = 0.5
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize()
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	ME.attach(src)
+	ME.projectile_energy_cost = 20
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter

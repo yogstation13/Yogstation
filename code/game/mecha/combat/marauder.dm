@@ -78,15 +78,19 @@
 	wreckage = /obj/structure/mecha_wreckage/mauler
 	max_equip = 5
 	destruction_sleep_duration = 20
+	step_energy_drain = 0.5
 
 /obj/mecha/combat/marauder/mauler/loaded/Initialize()
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg(src)
 	ME.attach(src)
+	ME.projectile_energy_cost = 20
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot(src)
 	ME.attach(src)
+	ME.projectile_energy_cost = 20
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack(src)
 	ME.attach(src)
+	ME.projectile_energy_cost = 20
 	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
