@@ -1,5 +1,0 @@
-author: "Majkl-J"
-delete-after: true 
-changes: 
-  - rscadd: "Added wires to the exosuit fabricator"
-  - tweak: "The exosuit fabricator can now be hacked"

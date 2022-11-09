@@ -147,6 +147,12 @@
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
 	required_temp = 525
 
+/datum/chemical_reaction/lemolime
+	name = "Lemoline"
+	id = /datum/reagent/lemoline
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol = 4)
+	results = list(/datum/reagent/lemoline = 4)
+
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
 	name = "Mulligan"
@@ -754,9 +760,13 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
-	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
 	required_temp = 374
+
+/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/plastic(location)
 
 /datum/chemical_reaction/plastic_solidification
 	name = "plastic solidification"
@@ -807,6 +817,17 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
+
+/datum/chemical_reaction/aloepastification
+	name = "Aloepastification"
+	id = "Aloepastification"
+	required_reagents = list(/datum/reagent/consumable/aloejuice = 30, /datum/reagent/ash  = 30)
+	mob_react = FALSE
+
+/datum/chemical_reaction/aloepastification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/aloe(location)
 
 /datum/chemical_reaction/sulfuric_acid
 	name = /datum/reagent/toxin/acid
