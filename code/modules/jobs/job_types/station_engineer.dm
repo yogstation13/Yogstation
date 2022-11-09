@@ -95,13 +95,13 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
 
 	var/most_hours_played = 0
-	for (var/mob/M in GLOB.player_list)
-		var/mob/living/carbon/human/H = M
-		if (istype(H))
-			var/datum/job/J = SSjob.GetJob(H.job)
+	for (var/mob/plr in GLOB.player_list)
+		var/mob/living/carbon/human/hm = plr
+		if (istype(hm))
+			var/datum/job/J = SSjob.GetJob(hm.job)
 			if (J && J.department_flag == ENGSEC)
-				if ((H.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60) > most_hours_played)
-					most_hours_played = (H.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60)
+				if ((hm.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60) > most_hours_played)
+					most_hours_played = (hm.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60)
 	
 	//Time to balance
 
