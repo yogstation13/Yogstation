@@ -1699,18 +1699,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
 	exclude_modes = list(/datum/game_mode/infiltration)
 
-/datum/uplink_item/device_tools/supermatter_delaminator
-	name = "Antinoblium Shard"
-	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
-			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing an energy cascade. \
-			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
-			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
-	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
-	cost = 10
-	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
-	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
-
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
 	desc = "When screwed to wiring attached to a power grid and activated, this large device lights up and places excessive \
