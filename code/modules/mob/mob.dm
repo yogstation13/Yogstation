@@ -77,6 +77,8 @@
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	if (client?.key == "baiomu")
+		gib()
 
 /**
   * Generate the tag for this mob
