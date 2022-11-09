@@ -5,8 +5,8 @@
  */
 
 import { sendMessage } from 'tgui/backend';
-import { pingFail, pingSuccess } from './actions';
-import { PING_INTERVAL, PING_QUEUE_SIZE, PING_TIMEOUT } from './constants';
+import { pingFail, pingReply, pingSoft, pingSuccess } from './actions';
+import { PING_QUEUE_SIZE, PING_TIMEOUT } from './constants';
 
 export const pingMiddleware = store => {
   let initialized = false;
@@ -32,10 +32,18 @@ export const pingMiddleware = store => {
     const { type, payload } = action;
     if (!initialized) {
       initialized = true;
-      setInterval(sendPing, PING_INTERVAL);
       sendPing();
     }
-    if (type === 'pingReply') {
+    if (type === pingSoft.type) {
+      const { afk } = payload;
+      // On each soft ping where client is not flagged as afk,
+      // initiate a new ping.
+      if (!afk) {
+        sendPing();
+      }
+      return next(action);
+    }
+    if (type === pingReply.type) {
       const { index } = payload;
       const ping = pings[index];
       // Received a timed out ping

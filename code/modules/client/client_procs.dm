@@ -525,7 +525,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
-
+	SSping.currentrun -= src
+	
 	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
 	if(CL)
 		CL.logout(mob)

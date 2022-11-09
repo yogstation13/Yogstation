@@ -297,7 +297,7 @@
 	switch(type)
 		if("ready")
 			initialized = TRUE
-		if("pingReply")
+		if("ping/Reply")
 			initialized = TRUE
 		if("suspend")
 			close(can_be_suspended = TRUE)
