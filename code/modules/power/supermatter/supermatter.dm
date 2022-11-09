@@ -136,26 +136,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// Time in deciseconds since the last sent warning
 	var/lastwarning = 0
-	var/n2comp = 0					// raw composition of each gas in the chamber, ranges from 0 to 1
-	var/plasmacomp = 0
-	var/o2comp = 0
-	var/co2comp = 0
-	var/n2ocomp = 0
-	var/pluoxiumcomp = 0
-	var/tritiumcomp = 0
-	var/bzcomp = 0
 	
 	var/rps = 0 // control how many radballs to emit
 	var/bzmol = 0
-
-	var/combined_gas = 0
-	var/gasmix_power_ratio = 0
-	var/dynamic_heat_modifier = 1
-	var/dynamic_heat_resistance = 1
-	var/powerloss_inhibitor = 1
-	var/powerloss_dynamic_scaling= 0
-	var/power_transmission_bonus = 0
-	var/mole_heat_penalty = 0
 
 	/// Additonal power to add over time comes from sliver extraction(800) or consuming(200)
 	var/matter_power = 0
@@ -217,7 +200,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	/// How much powerloss to reduce. Scale of 1-0
 	var/powerloss_inhibitor = 1
 
-	var/messages_admins = TRUE
+	/// How much is the SM surging?
+	var/surging = 0
 
 /obj/machinery/power/supermatter_crystal/Initialize()
 	. = ..()
@@ -454,14 +438,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		// Calculate the gas mix ratio
 		combined_gas = max(removed.total_moles(), 0)
 
-		plasmacomp = max(removed.get_moles(/datum/gas/plasma)/combined_gas, 0)
-		o2comp = max(removed.get_moles(/datum/gas/oxygen)/combined_gas, 0)
-		co2comp = max(removed.get_moles(/datum/gas/carbon_dioxide)/combined_gas, 0)
-		n2ocomp = max(removed.get_moles(/datum/gas/nitrous_oxide)/combined_gas, 0)
-		n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
-		pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
-		tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
-		bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
+		var/plasmacomp = max(removed.get_moles(/datum/gas/plasma)/combined_gas, 0)
+		var/o2comp = max(removed.get_moles(/datum/gas/oxygen)/combined_gas, 0)
+		var/co2comp = max(removed.get_moles(/datum/gas/carbon_dioxide)/combined_gas, 0)
+		var/n2ocomp = max(removed.get_moles(/datum/gas/nitrous_oxide)/combined_gas, 0)
+		var/n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
+		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
+		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
+		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
+		var/pluoxiumbonus = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
 		
 		bzmol = max((combined_gas * bzcomp), 0) // Calculate how many mols of BZ we have
 
