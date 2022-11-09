@@ -70,6 +70,11 @@
 	. = ..()
 	if(!took_presents)
 		took_presents = list()
+	
+	var/MM = text2num(time2text(world.timeofday, "MM"))
+	var/DD = text2num(time2text(world.timeofday, "DD")) 
+	if (DD == 25 && MM == DECEMBER)
+		gift_type = /obj/item/a_gift/anything // It's christmas time.
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
 	. = ..()
