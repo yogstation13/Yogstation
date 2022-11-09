@@ -94,6 +94,27 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	else
 		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
 
+	var/most_hours_played = 0
+	for (var/mob/M in GLOB.player_list)
+		var/mob/living/carbon/human/H = M
+		if (istype(H))
+			var/datum/job/J = SSjob.GetJob(H.job)
+			if (J && J.department_flag == ENGSEC)
+				if ((H.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60) > most_hours_played)
+					most_hours_played = (H.client.prefs.exp[EXP_TYPE_ENGINEERING] / 60)
+	
+	//Time to balance
+
+	var/x1 = 10
+	var/x2 = most_hours_played
+	var/x3 = 1000
+	var/y1 = 0.5
+	var/y3 = 120
+
+	var/a1 = (((x2 - x1) * (y3 - y1)) / (x3 - x1)) + y1
+
+	GLOB.power_mod = clamp(a1, 0.5, 100)
+
 /datum/outfit/job/engineer
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer
