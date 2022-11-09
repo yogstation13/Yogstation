@@ -80,6 +80,8 @@ SUBSYSTEM_DEF(research)
 			bitcoins[i] += boost_amt
 			science_tech.remove_stored_point_type(i, boost_amt)
 	science_tech.add_point_list(bitcoins)
+	//add RUIN_GENERATION_PER_TICK even without any servers, for things like freeminers
+	ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = RUIN_GENERATION_PER_TICK))
 	last_income = world.time
 
 /datum/controller/subsystem/research/proc/calculate_server_coefficient()	//Diminishing returns.
