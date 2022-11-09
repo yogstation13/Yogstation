@@ -2277,6 +2277,7 @@
 #include "code\modules\mining\laborcamp\laborstacker.dm"
 #include "code\modules\mining\lavaland\ash_flora.dm"
 #include "code\modules\mining\lavaland\necropolis_chests.dm"
+#include "code\modules\mining\lavaland\seismicarm.dm"
 #include "code\modules\mining\lavaland\world_anvil.dm"
 #include "code\modules\mining\lavaland\ruins\gym.dm"
 #include "code\modules\mob\death.dm"
