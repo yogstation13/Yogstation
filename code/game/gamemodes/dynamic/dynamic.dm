@@ -350,6 +350,15 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/relative_threat = LORENTZ_DISTRIBUTION(threat_curve_centre, threat_curve_width)
 	threat_level = round(lorentz_to_amount(relative_threat), 0.1)
 
+	var/most_hours_played = 0
+	for (var/mob/plr in GLOB.player_list)
+		var/mob/living/carbon/human/hm = plr
+		if (istype(hm))
+			var/datum/job/J = SSjob.GetJob(hm.job)
+			if (J && J.department_flag == ENGSEC)
+				if ((hm.client.prefs.exp[EXP_TYPE_SECURITY] / 60) > most_hours_played)
+					most_hours_played = (hm.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+	threat_level = clamp(threat_level, 0, clamp(most_hours_played, 25, 100000))
 	peaceful_percentage = round(LORENTZ_CUMULATIVE_DISTRIBUTION(relative_threat, threat_curve_centre, threat_curve_width), 0.01)*100
 
 /// Generates the midround and roundstart budgets
