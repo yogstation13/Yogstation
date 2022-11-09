@@ -353,6 +353,8 @@ Class Procs:
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	avgrating = 1
+	if (length(component_parts) <= 0)
+		return
 	for (var/obj/item/stock_parts/part in component_parts)
 		avgrating += part.rating
 	avgrating /= length(component_parts)
