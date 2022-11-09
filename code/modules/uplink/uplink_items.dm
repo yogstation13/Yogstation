@@ -1706,7 +1706,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
 			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
-	cost = 10
+	cost = 3
 	manufacturer = /datum/corporation/traitor/waffleco
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
