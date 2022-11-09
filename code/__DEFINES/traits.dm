@@ -121,6 +121,7 @@
 #define TRAIT_NEARSIGHT			"nearsighted"
 #define TRAIT_FAT				"fat"
 #define TRAIT_HUSK				"husk"
+#define TRAIT_FACELESS			"faceless"
 #define TRAIT_BADDNA			"baddna"
 #define TRAIT_CLUMSY			"clumsy"
 #define TRAIT_DUMB				"dumb"
