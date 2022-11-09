@@ -69,8 +69,6 @@ Class Procs:
       contained in the component_parts list. (example: glass and material amounts for
       the autolathe)
 
-      Default definition does nothing.
-
    process()                  'game/machinery/machine.dm'
       Called by the 'machinery subsystem' once per machinery tick for each machine that is listed in its 'machines' list.
 
