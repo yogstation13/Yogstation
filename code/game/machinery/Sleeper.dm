@@ -61,6 +61,7 @@
 			continue
 		available_treatments |= treatments[i]
 	stasis = (I >= 4)
+	. = ..()
 
 /obj/machinery/sleeper/update_icon()
 	if(state_open)

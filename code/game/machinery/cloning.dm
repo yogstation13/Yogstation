@@ -90,6 +90,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		heal_level = MINIMUM_HEAL_LEVEL
 	if(heal_level > 100)
 		heal_level = 100
+	. = ..()
 
 /obj/machinery/clonepod/examine(mob/user)
 	. = ..()

@@ -30,6 +30,7 @@
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		A += M.rating
 	accuracy = A
+	. = ..()
 
 /obj/machinery/teleport/hub/examine(mob/user)
 	. = ..()
@@ -127,6 +128,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	efficiency = E - 1
+	. = ..()
 
 /obj/machinery/teleport/station/examine(mob/user)
 	. = ..()

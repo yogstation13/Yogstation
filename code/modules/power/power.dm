@@ -93,12 +93,7 @@
 		return
 	if(chan == -1)
 		chan = power_channel
-	var/avgrating = 1
-	for (var/obj/item/stock_parts/part in component_parts)
-		avgrating += part.rating
-	avgrating /= length(component_parts)
-	amount = amount ** avgrating;
-	A.use_power(amount, chan)
+	A.use_power(amount ** (avgrating * 0.5), chan)
 
 /obj/machinery/proc/addStaticPower(value, powerchannel)
 	var/area/A = get_area(src)

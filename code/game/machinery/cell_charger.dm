@@ -119,6 +119,7 @@
 	charge_rate = 500
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		charge_rate *= C.rating
+	. = ..()
 
 /obj/machinery/cell_charger/process()
 	if(!charging || !anchored || (stat & (BROKEN|NOPOWER)))

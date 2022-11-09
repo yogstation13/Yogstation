@@ -424,6 +424,7 @@
 		if (M.rating > 3) // T4+
 			dispensable_reagents |= t4_upgrade_reagents
 	powerefficiency = round(newpowereff, 0.01)
+	. = ..()
 
 /obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(beaker)

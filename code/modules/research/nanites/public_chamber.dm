@@ -26,6 +26,7 @@
 	var/obj/item/circuitboard/machine/public_nanite_chamber/board = circuit
 	if(board)
 		cloud_id = board.cloud_id
+	. = ..()
 
 /obj/machinery/public_nanite_chamber/proc/set_busy(status, working_icon)
 	busy = status

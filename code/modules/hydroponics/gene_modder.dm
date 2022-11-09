@@ -54,6 +54,7 @@
 			max_endurance = 100
 			min_wchance = 0
 			min_wrate = 0
+	. = ..()
 
 /obj/machinery/plantgenes/update_icon()
 	..()

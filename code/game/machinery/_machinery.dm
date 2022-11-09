@@ -131,6 +131,8 @@ Class Procs:
 	var/climb_stun = 20
 	var/mob/living/machineclimber
 
+	var/avgrating
+
 /obj/machinery/Initialize()
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
@@ -352,6 +354,10 @@ Class Procs:
 	RefreshParts()
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
+	avgrating = 1
+	for (var/obj/item/stock_parts/part in component_parts)
+		avgrating += part.rating
+	avgrating /= length(component_parts)
 	return
 
 /obj/machinery/proc/default_pry_open(obj/item/I)

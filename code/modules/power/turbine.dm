@@ -104,6 +104,7 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	efficiency = E / 6
+	. = ..()
 
 /obj/machinery/power/compressor/examine(mob/user)
 	. = ..()
@@ -193,6 +194,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		P += C.rating
 	productivity = P / 6
+	. = ..()
 
 /obj/machinery/power/turbine/examine(mob/user)
 	. = ..()

@@ -75,6 +75,7 @@
 		max_seeds = staring_max_seeds * B.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		seed_multiplier = staring_seed_multiplier * M.rating
+	. = ..()
 
 /obj/machinery/seed_extractor/examine(mob/user)
 	. = ..()

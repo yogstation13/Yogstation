@@ -38,6 +38,7 @@
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		B += M.rating
 	heat_capacity = 5000 * ((B - 1) ** 2)
+	. = ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon()
 	cut_overlays()
@@ -209,6 +210,7 @@
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		L += M.rating
 	min_temperature = max(T0C - (initial(min_temperature) + L * 15), TCMB) //73.15K with T1 stock parts
+	. = ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
@@ -235,6 +237,7 @@
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		L += M.rating
 	max_temperature = T20C + (initial(max_temperature) * L) //573.15K with T1 stock parts
+	. = ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))

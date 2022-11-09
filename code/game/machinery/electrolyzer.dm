@@ -111,6 +111,7 @@
 	workingPower = lasers / 2 //used in the amount of moles processed
 
 	efficiency = (cap + 1) * 0.5 //used in the amount of charge in power cell uses
+	. = ..()
 
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)

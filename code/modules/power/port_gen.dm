@@ -112,6 +112,7 @@
 			consumption_coeff += SP.rating
 	power_gen = round(initial(power_gen) * temp_rating * 2)
 	consumption = consumption_coeff
+	. = ..()
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()

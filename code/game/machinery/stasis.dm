@@ -58,6 +58,7 @@
 	if(occupant)
 		thaw_them(occupant)
 		chill_out(occupant)
+	. = ..()
 	
 
 /obj/machinery/stasis/ComponentInitialize()

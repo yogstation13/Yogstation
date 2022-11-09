@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	heat_modifier = new_heat_mod
 	power_modifier = new_power_mod
 	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
+	. = ..()
 
 /obj/machinery/ai/data_core/process_atmos()
 	calculate_validity()

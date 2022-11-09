@@ -123,6 +123,7 @@
 		build_finish = world.time + new_build_time
 
 	update_static_data(usr)
+	. = ..()
 
 /obj/machinery/mecha_part_fabricator/examine(mob/user)
 	. = ..()

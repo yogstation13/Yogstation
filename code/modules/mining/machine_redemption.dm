@@ -47,6 +47,7 @@
 	ore_pickup_rate = ore_pickup_rate_temp
 	point_upgrade = point_upgrade_temp
 	sheet_per_ore = round(sheet_per_ore_temp, 0.01)
+	. = ..()
 
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
 	. = ..()

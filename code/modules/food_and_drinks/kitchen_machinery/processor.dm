@@ -20,6 +20,7 @@
 		rating_amount = B.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		rating_speed = M.rating
+	. = ..()
 
 /obj/machinery/processor/examine(mob/user)
 	. = ..()

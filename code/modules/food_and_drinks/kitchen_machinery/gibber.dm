@@ -29,6 +29,7 @@
 		gibtime -= 5 * M.rating
 		if(M.rating >= 2)
 			ignore_clothing = TRUE
+	. = ..()
 
 /obj/machinery/gibber/examine(mob/user)
 	. = ..()

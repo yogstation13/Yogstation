@@ -69,6 +69,7 @@ God bless America.
 		oil_efficiency += M.rating
 	oil_use = initial(oil_use) - (oil_efficiency * 0.0095)
 	fry_speed = oil_efficiency
+	. = ..()
 
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()

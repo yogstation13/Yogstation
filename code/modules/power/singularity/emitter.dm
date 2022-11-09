@@ -98,6 +98,7 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
+	. = ..()
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()

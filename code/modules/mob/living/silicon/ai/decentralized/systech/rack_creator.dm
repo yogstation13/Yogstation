@@ -39,6 +39,7 @@
 		efficiency_coeff = INFINITY
 	else
 		efficiency_coeff = 1/total_rating
+	. = ..()
 
 
 /obj/machinery/rack_creator/ui_interact(mob/user, datum/tgui/ui)

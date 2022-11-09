@@ -234,6 +234,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	build_inventory(premium, coin_records, start_empty = TRUE)
 	for(var/obj/item/vending_refill/VR in component_parts)
 		restock(VR)
+	. = ..()
 
 /obj/machinery/vending/deconstruct(disassembled = TRUE)
 	if(!refill_canister) //the non constructable vendors drop metal instead of a machine frame.

@@ -38,6 +38,7 @@
 	var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 	butchering.effectiveness = amount_produced
 	butchering.bonus_modifier = amount_produced/5
+	. = ..()
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()

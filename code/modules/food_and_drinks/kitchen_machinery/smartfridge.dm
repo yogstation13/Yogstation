@@ -61,6 +61,7 @@
 /obj/machinery/smartfridge/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		max_n_of_items = initial(max_n_of_items) * B.rating
+	. = ..()
 
 /obj/machinery/smartfridge/examine(mob/user)
 	. = ..()
@@ -616,6 +617,7 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		max_n_of_items = 20 * B.rating
 		repair_rate = max(0, STANDARD_ORGAN_HEALING * (B.rating - 1))
+	. = ..()
 
 /obj/machinery/smartfridge/organ/Destroy()
 	for(var/organ in src)

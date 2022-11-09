@@ -19,6 +19,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
 	decon_mod = T
+	. = ..()
 
 
 /obj/machinery/rnd/destructive_analyzer/proc/ConvertReqString2List(list/source_list)

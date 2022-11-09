@@ -99,6 +99,7 @@
 		new_badThingCoeff += M.rating
 	resetTime = min(resetTime, new_resetTime)
 	badThingCoeff = max(badThingCoeff, new_badThingCoeff)
+	. = ..()
 
 /obj/machinery/rnd/experimentor/examine(mob/user)
 	. = ..()

@@ -56,6 +56,7 @@
 	efficiency = E
 	productivity = P
 	max_items = max_storage
+	. = ..()
 
 /obj/machinery/biogenerator/examine(mob/user)
 	. = ..()

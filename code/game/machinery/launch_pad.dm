@@ -25,6 +25,7 @@
 		E += M.rating
 	range = initial(range)
 	range *= E
+	. = ..()
 
 /obj/machinery/launchpad/Initialize()
 	. = ..()

@@ -42,6 +42,7 @@
 		if(charging)
 			var/obj/item/stock_parts/cell/C = charging.get_cell()
 			. += "<span class='notice'>- \The [charging]'s cell is at <b>[C.percent()]%</b>.<span>"
+	. = ..()
 
 
 /obj/machinery/recharger/proc/setCharging(new_charging)

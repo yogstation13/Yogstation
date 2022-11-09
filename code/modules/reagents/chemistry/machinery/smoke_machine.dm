@@ -61,6 +61,7 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		max_range += M.rating
 	max_range = max(3, max_range)
+	. = ..()
 
 /obj/machinery/smoke_machine/process()
 	..()

@@ -27,6 +27,7 @@
 		repairs += M.rating - 1
 	for(var/obj/item/stock_parts/cell/C in component_parts)
 		recharge_speed *= C.maxcharge / 10000
+	. = ..()
 
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()

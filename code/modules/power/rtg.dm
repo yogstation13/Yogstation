@@ -35,6 +35,7 @@
 		part_level += SP.rating
 
 	power_gen = initial(power_gen) * part_level
+	. = ..()
 
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()

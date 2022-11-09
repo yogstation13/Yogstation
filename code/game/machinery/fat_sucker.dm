@@ -39,6 +39,7 @@
 		rating += L.rating
 	bite_size = initial(bite_size) + rating * 5
 	nutrient_to_meat = initial(nutrient_to_meat) - rating * 5
+	. = ..()
 
 /obj/machinery/fat_sucker/examine(mob/user)
 	. = ..()

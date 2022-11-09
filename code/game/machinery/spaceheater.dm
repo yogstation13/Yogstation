@@ -130,6 +130,7 @@
 	targetTemperature = clamp(targetTemperature,
 		max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 		settableTemperatureMedian + settableTemperatureRange)
+	. = ..()
 
 /obj/machinery/space_heater/emp_act(severity)
 	. = ..()

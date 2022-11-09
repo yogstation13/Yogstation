@@ -51,6 +51,7 @@
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		max_n_of_items = 10 * M.rating
 		break
+	. = ..()
 
 /obj/machinery/microwave/examine(mob/user)
 	. = ..()

@@ -46,6 +46,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		MC += C.rating
 	max_charge = MC * 25
+	. = ..()
 
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()

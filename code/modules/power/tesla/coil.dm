@@ -40,6 +40,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		input_power_multiplier += C.rating // Each level increases power gain by 100%
 		zap_cooldown -= (C.rating * 20) // Each level decreases cooldown by 2 seconds
+	. = ..()
 
 /obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()

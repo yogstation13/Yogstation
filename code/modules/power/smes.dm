@@ -77,6 +77,7 @@
 	capacity = MC / (15000) * 2e7
 	if(!initial(charge) && !charge)
 		charge = C / 15000 * 2e7
+	. = ..()
 
 /obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
 	//opening using screwdriver

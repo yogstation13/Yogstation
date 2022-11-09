@@ -177,6 +177,7 @@ obj/machinery/holopad/secure/Initialize()
 	for(var/obj/item/stock_parts/capacitor/B in component_parts)
 		holograph_range += 1 * B.rating
 	holo_range = holograph_range
+	. = ..()
 
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()

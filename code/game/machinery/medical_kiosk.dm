@@ -85,7 +85,7 @@
 	var/obj/item/circuitboard/machine/medical_kiosk/board = circuit
 	if(board)
 		active_price = board.custom_cost
-	return
+	. = ..()
 
 /obj/machinery/medical_kiosk/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "kiosk_open", "kiosk", O))
