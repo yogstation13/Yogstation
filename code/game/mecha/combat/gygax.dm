@@ -32,9 +32,11 @@
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize()
 	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/MW = null
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	ME.attach(src)
-	ME.projectile_energy_cost = 20
+	MW = ME
+	MW.projectile_energy_cost = 20
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
