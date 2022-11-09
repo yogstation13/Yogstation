@@ -28149,6 +28149,9 @@
 "bqs" = (
 /obj/structure/table,
 /obj/item/key/janitor,
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "bqt" = (
@@ -36314,6 +36317,9 @@
 	dir = 1
 	},
 /obj/machinery/smartfridge/drying_rack,
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "bSV" = (
@@ -36323,13 +36329,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bSW" = (
-/obj/structure/sign/poster/random{
-	pixel_y = -32
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hydroponics)
 "bSY" = (
 /obj/machinery/camera{
 	c_tag = "Aft Primary Hallway - Aft";
@@ -36992,6 +36991,9 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/watertank/high,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bVu" = (
@@ -51473,6 +51475,9 @@
 /obj/machinery/camera{
 	c_tag = "Hydroponics South";
 	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -116830,7 +116835,7 @@ bCS
 bKe
 bQH
 bKe
-bSW
+wiT
 bST
 bVu
 bsK
