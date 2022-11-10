@@ -15520,6 +15520,29 @@
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"cgq" = (
+/obj/machinery/power/apc/highcap{
+	areastring = "/area/ai_monitored/secondarydatacore";
+	dir = 4;
+	name = "AI Secondary Datacore";
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Secondary AI Core";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "cgx" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -20826,29 +20849,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"eij" = (
-/obj/machinery/power/apc/highcap{
-	areastring = "/area/ai_monitored/secondarydatacore";
-	dir = 4;
-	name = "AI Secondary Datacore";
-	pixel_x = 24
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Secondary AI Core";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "eil" = (
 /obj/machinery/paystand/register{
 	dir = 1
@@ -28692,13 +28692,6 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"hvn" = (
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/vr_sleeper/netmin{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "hvG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -33931,6 +33924,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"jEf" = (
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/obj/machinery/compsci_reciever,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "jEn" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall,
@@ -61245,6 +61246,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"vji" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/vr_sleeper/netmin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "vjj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -67042,14 +67050,6 @@
 	},
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"xLK" = (
-/obj/structure/table,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 10
-	},
-/obj/machinery/compsci_reciever,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "xLR" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/green{
@@ -118970,7 +118970,7 @@ inv
 tdM
 tcI
 xgE
-xLK
+jEf
 oxg
 fqr
 dNX
@@ -119227,7 +119227,7 @@ rDw
 oGM
 eTo
 iQG
-hvn
+vji
 oxg
 fqr
 fud
@@ -120511,7 +120511,7 @@ cNW
 cOe
 oGM
 hcP
-eij
+cgq
 dFr
 oxg
 wZY

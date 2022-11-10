@@ -65,6 +65,9 @@
 "by" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"bP" = (
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "bY" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/light,
@@ -248,6 +251,17 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"iH" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/ai_cpu/advanced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "iM" = (
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/floor/plating/airless,
@@ -311,6 +325,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"kp" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "kA" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -319,6 +337,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"lg" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/storage/secure/safe/scientist_raid{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "lR" = (
 /turf/open/space/basic,
@@ -535,10 +561,6 @@
 /obj/item/reagent_containers/blood/random,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"tU" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating/airless,
-/area/awaymission/vr/hub)
 "uf" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
@@ -585,6 +607,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"vH" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "crew maintenance compartment"
+	},
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "vP" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -748,6 +776,10 @@
 /obj/machinery/compsci_reciever,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/scientist_raid)
+"Ak" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "Ar" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -834,6 +866,10 @@
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"CF" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "CJ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -969,12 +1005,6 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
-"GA" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "crew maintenance compartment"
-	},
-/turf/open/floor/plating/airless,
-/area/awaymission/vr/hub)
 "Hh" = (
 /obj/machinery/door/airlock/research/glass{
 	name = "Exploration Drone Distpatch"
@@ -999,10 +1029,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/awaymission/vr/hub)
-"Ii" = (
-/obj/structure/table,
-/turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
 "Ix" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -1068,6 +1094,11 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Lr" = (
+/obj/structure/table,
+/obj/item/storage/toolbox,
+/turf/open/floor/plating,
+/area/awaymission/vr/hub)
 "LF" = (
 /obj/machinery/light{
 	dir = 4
@@ -1126,11 +1157,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
-"NA" = (
-/obj/structure/table,
-/obj/item/storage/toolbox,
-/turf/open/floor/plating/airless,
-/area/awaymission/vr/hub)
 "NC" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -1138,6 +1164,13 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"NG" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/computer/compsci_mission_selector{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/hub)
 "NN" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/item/ammo_casing/n762{
@@ -1160,17 +1193,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
-"Oo" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/ai_cpu/advanced,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/awaymission/vr/scientist_raid)
 "Ov" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle{
@@ -1332,10 +1354,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
-"RP" = (
-/obj/machinery/recharge_station,
-/turf/open/floor/plating/airless,
-/area/awaymission/vr/hub)
 "RQ" = (
 /obj/machinery/door/airlock/science{
 	name = "Computer Science"
@@ -1487,9 +1505,6 @@
 /obj/machinery/ai/server_cabinet,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"Vk" = (
-/turf/open/floor/plating/airless,
-/area/awaymission/vr/hub)
 "Vx" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/white,
@@ -1620,14 +1635,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/awaymission/vr/scientist_raid)
-"XX" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/storage/secure/safe/scientist_raid{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "XY" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -8129,7 +8136,7 @@ Dd
 Dd
 Dd
 Dd
-fr
+NG
 ya
 fm
 fm
@@ -9408,9 +9415,9 @@ db
 db
 db
 ai
-RP
-RP
-RP
+kp
+kp
+kp
 ai
 ai
 ai
@@ -9664,10 +9671,10 @@ db
 db
 db
 db
-GA
-Vk
-Vk
-tU
+vH
+bP
+bP
+CF
 ai
 db
 db
@@ -9922,9 +9929,9 @@ db
 db
 db
 ai
-Vk
-Vk
-Vk
+bP
+bP
+bP
 ai
 db
 db
@@ -10179,9 +10186,9 @@ MV
 db
 db
 ai
-NA
-Ii
-Ii
+Lr
+Ak
+Ak
 ai
 db
 db
@@ -12191,7 +12198,7 @@ lR
 lR
 lR
 oT
-Oo
+iH
 om
 om
 om
@@ -14005,7 +14012,7 @@ oT
 oT
 VZ
 Yf
-XX
+lg
 wJ
 oT
 oT
