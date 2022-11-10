@@ -1,12 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate,
+/obj/item/crowbar,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ag" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/blue,
+/area/awaymission/vr/scientist_raid)
 "ai" = (
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/vr/hub)
+"ao" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/structure/table,
+/obj/item/melee/baton/cattleprod,
+/obj/item/electropack,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "ar" = (
 /obj/structure/table,
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"bf" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/scalpel,
+/obj/item/paper/fluff/awaymissions/scientist_raid/report4,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"bk" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "bu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -14,6 +52,16 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"bv" = (
+/obj/machinery/door/airlock/command{
+	name = "Personal Quarters"
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"bx" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "by" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
@@ -22,9 +70,50 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"co" = (
+/obj/machinery/door/airlock/science{
+	name = "Experimental Computer Science"
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"cu" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"cO" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"cS" = (
+/obj/effect/turf_decal/trimline/green/filled/line,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "db" = (
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"df" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = -9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"dw" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"dB" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/carpet/blue,
+/area/awaymission/vr/scientist_raid)
 "ew" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -37,6 +126,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"eB" = (
+/obj/machinery/door/window/southright,
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ff" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"fk" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "fm" = (
 /turf/open/space/transit/horizontal,
 /area/awaymission/vr/hub)
@@ -44,6 +151,11 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"fu" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/machinery/light,
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
 "gf" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -53,6 +165,33 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"gn" = (
+/obj/machinery/door/window/southright,
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"gz" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = -9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"gK" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "gS" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -65,12 +204,42 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"gU" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "hm" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"hq" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"hy" = (
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"hI" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/ai_cpu/advanced,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "hM" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -80,11 +249,32 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"hS" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"iM" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/floor/plating/airless,
+/area/awaymission/vr/scientist_raid)
 "iU" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"iZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/plating,
+/area/awaymission/vr/scientist_raid)
 "ji" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -94,6 +284,59 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"jj" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
+"jz" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"kl" = (
+/obj/effect/landmark/vr_spawn/vr_mission/scientist_raid,
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/vr/scientist_raid)
+"km" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ko" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"kA" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"lR" = (
+/turf/open/space/basic,
+/area/awaymission/vr/scientist_raid)
+"mc" = (
+/obj/machinery/door/airlock/medical{
+	name = "Discarded Research"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
 "my" = (
 /turf/closed/indestructible/riveted,
 /area/awaymission/vr/hub)
@@ -106,6 +349,42 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"nD" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/structure/table,
+/obj/item/restraints/handcuffs/cable/red{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/restraints/handcuffs/cable/red{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"nF" = (
+/turf/closed/indestructible/riveted,
+/area/awaymission/vr/scientist_raid)
+"oa" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ob" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ok" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"om" = (
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "oq" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
@@ -115,6 +394,34 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"oR" = (
+/obj/structure/table,
+/obj/item/ai_cpu,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"oT" = (
+/turf/closed/wall,
+/area/awaymission/vr/scientist_raid)
+"pc" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/obj/structure/bed,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"ph" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "pt" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -124,12 +431,64 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"pJ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"pK" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"pO" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 5
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"qs" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"qI" = (
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"rf" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/obj/structure/table,
+/obj/item/ai_cpu,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "rs" = (
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"rw" = (
+/obj/structure/sign/poster/official/random,
+/turf/closed/wall,
+/area/awaymission/vr/scientist_raid)
+"rJ" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "rN" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
@@ -146,13 +505,129 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"rZ" = (
+/obj/item/grenade/flashbang{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"sg" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/structure/table/reinforced,
+/obj/item/melee/baton/loaded,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"sD" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/machinery/door/window/southright,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"sU" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
+"tf" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"tO" = (
+/obj/structure/closet,
+/obj/item/paper/crumpled/bloody/fluff/awaymissions/scientist_raid/report5,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"tP" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/blood/random,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "tU" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"uf" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/awaymission/vr/scientist_raid)
+"un" = (
+/obj/machinery/door/airlock/security{
+	name = "Organic Storage"
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"uB" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"uV" = (
+/obj/machinery/vending/snack/random,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"vp" = (
+/obj/structure/chair/comfy/brown{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/awaymission/vr/scientist_raid)
+"vu" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/awaymission/vr/scientist_raid)
+"vy" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"vP" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"vQ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "vT" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"vV" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"wa" = (
+/obj/machinery/door/airlock/mining{
+	name = "Cargo"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "wh" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
@@ -166,6 +641,34 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"wJ" = (
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"wQ" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"xd" = (
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"xp" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
 "xs" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room"
@@ -183,25 +686,135 @@
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"yB" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"yD" = (
+/obj/structure/bodycontainer/morgue,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
+"yI" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/bot,
+/obj/item/paper/fluff/awaymissions/scientist_raid/report2,
+/obj/item/trash/energybar,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"za" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 10
+	},
+/obj/item/twohanded/required/kirbyplants/dead,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"zi" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"zo" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "zx" = (
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"zC" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"zE" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/obj/structure/closet,
+/obj/item/paper/fluff/awaymissions/scientist_raid/report3,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "zI" = (
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"zO" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"zT" = (
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
+"Ad" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/compsci_reciever,
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/vr/scientist_raid)
+"Ar" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = -9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Au" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/floor/plating/airless,
+/area/awaymission/vr/scientist_raid)
+"Ax" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rd,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"AN" = (
+/turf/open/floor/carpet/blue,
+/area/awaymission/vr/scientist_raid)
 "AQ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"AT" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"AW" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Bn" = (
 /obj/structure/table,
 /obj/machinery/recharger,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"BC" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/medical,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"BE" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/vr/scientist_raid)
 "BK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -214,6 +827,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"BQ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"BU" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/table,
+/obj/item/circular_saw,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"Ce" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 5
+	},
+/obj/item/twohanded/required/kirbyplants/dead,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"CJ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Da" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/white,
@@ -221,6 +861,14 @@
 "Dd" = (
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"Dj" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Dk" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -230,6 +878,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"Do" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/bot,
+/obj/item/trash/sosjerky,
+/obj/item/trash/can,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Et" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Ev" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "EM" = (
 /obj/machinery/computer{
 	dir = 4;
@@ -237,6 +907,25 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"EZ" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Fc" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating/airless,
+/area/awaymission/vr/scientist_raid)
+"Fr" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Ft" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
@@ -253,6 +942,14 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"FI" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "FJ" = (
 /obj/structure/showcase/cyborg{
 	desc = "A stand with the empty body of an early exploration cyborg bolted to it. The series were retired after the Company realized they never found any survivors...";
@@ -260,6 +957,24 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"FM" = (
+/obj/machinery/door/airlock/public{
+	name = "Canteen"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Ga" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Gd" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Gl" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "storage compartment"
@@ -279,6 +994,17 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Hv" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"HM" = (
+/obj/item/twohanded/required/kirbyplants/dead,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Ig" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/table,
@@ -291,12 +1017,103 @@
 /obj/structure/table,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"Ix" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Iz" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"IW" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"IX" = (
+/obj/item/twohanded/fireaxe,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"Jm" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/table/optable,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"JN" = (
+/obj/structure/chair/office/dark,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Kp" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/twohanded/required/kirbyplants/dead,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"Kz" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"KG" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Ld" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"LF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/vr/scientist_raid)
+"LX" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"MC" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
 "MQ" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"MR" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "MV" = (
 /obj/machinery/light{
 	dir = 4
@@ -304,6 +1121,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"MW" = (
+/obj/machinery/door/airlock/public{
+	name = "Bathroom"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
 "Nn" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -321,14 +1144,101 @@
 /obj/item/storage/toolbox,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"NC" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"NN" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "NS" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Ob" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Od" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"Ov" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"OG" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"OH" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"OI" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/item/twohanded/required/kirbyplants/dead,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"OQ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"Pf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Pn" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/large,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "PI" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -342,6 +1252,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"PO" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "PZ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -351,16 +1267,58 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"Qi" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Qr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/vr/scientist_raid)
 "Qs" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"Qw" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Qy" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
 "QF" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"QQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Rb" = (
+/obj/machinery/ai/server_cabinet,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Rr" = (
 /turf/open/space/basic,
 /area/space)
@@ -380,12 +1338,68 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"RQ" = (
+/obj/machinery/door/airlock/science{
+	name = "Computer Science"
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"RR" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"RS" = (
+/obj/effect/turf_decal/trimline/green/filled/line,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Sq" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Ss" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"SM" = (
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
+"SU" = (
+/obj/machinery/door/airlock/command{
+	name = "Head Researcher"
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"SW" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Tm" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Tu" = (
+/obj/item/ammo_casing/n762{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/ammo_casing/n762{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Tw" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -401,6 +1415,14 @@
 /obj/effect/vr_clean_master,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"TJ" = (
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/scientist_raid/report1,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "TR" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/white,
@@ -411,14 +1433,125 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"Up" = (
+/obj/machinery/ai/server_cabinet,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"Uw" = (
+/obj/structure/bodycontainer/morgue,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/scientist_raid)
+"UB" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "UD" = (
 /obj/structure/table,
 /obj/item/toy/talking/AI,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"UH" = (
+/turf/closed/wall/mineral/titanium/interior,
+/area/awaymission/vr/scientist_raid)
+"UP" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/obj/structure/table/reinforced,
+/obj/item/restraints/handcuffs/cable/red{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/restraints/handcuffs/cable/red{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Vh" = (
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Vk" = (
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"Vx" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"VB" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"VC" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/clothing/head/soft,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"VE" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"VG" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"VQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"VZ" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/paper_bin{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"Wm" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "WA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -434,15 +1567,105 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"WW" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"WY" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/gold,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"Xo" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Xp" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"Xq" = (
+/obj/machinery/door/airlock/mining{
+	name = "Cargo"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Xx" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/item/soap/nanotrasen,
+/obj/structure/curtain,
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
+"XD" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"XG" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
+"XY" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Ye" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Yf" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
+"Yp" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "Yr" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketspicy,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Yu" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 6
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/blood/random,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "YF" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
@@ -453,6 +1676,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"YG" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
 "YZ" = (
 /obj/machinery/computer{
 	dir = 4;
@@ -460,6 +1689,25 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"Zv" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/scientist_raid)
+"Zy" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -11
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/scientist_raid)
+"ZE" = (
+/turf/closed/wall/mineral/titanium,
+/area/awaymission/vr/scientist_raid)
 
 (1,1,1) = {"
 Rr
@@ -652,34 +1900,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
 my
 my
 my
@@ -909,34 +2157,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -1166,34 +2414,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+ZE
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -1423,34 +2671,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+BE
+BE
+BE
+BE
+Ad
+BE
+BE
+BE
+UH
+ZE
+Au
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -1680,34 +2928,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+Fc
+uf
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -1937,34 +3185,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+Qr
+BE
+BE
+kl
+BE
+kl
+BE
+BE
+BE
+Fc
+uf
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -2194,34 +3442,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+BE
+Fc
+uf
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -2451,34 +3699,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+BE
+BE
+BE
+BE
+LF
+BE
+BE
+BE
+UH
+ZE
+iM
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -2708,34 +3956,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+ZE
+ZE
+ZE
+ZE
+iZ
+ZE
+iZ
+ZE
+ZE
+ZE
+ZE
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -2965,34 +4213,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+jz
+PO
+YG
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -3222,34 +4470,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+oT
+oT
+oT
+oT
+QQ
+vV
+km
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -3479,34 +4727,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+oT
+zE
+IW
+UP
+Ss
+df
+gz
+oT
+jz
+PO
+VQ
+PO
+YG
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -3736,34 +4984,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+oT
+WW
+JN
+sg
+Fr
+xd
+oa
+oT
+Ss
+ac
+xd
+Pn
+Qi
+oT
+Wm
+cu
+uV
+za
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -3993,34 +5241,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+oT
+VE
+cO
+sD
+Ss
+xd
+zC
+oT
+Ss
+Pn
+xd
+fk
+Qi
+oT
+OG
+xd
+xd
+RS
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -4250,34 +5498,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+oT
+oT
+oT
+oT
+Ar
+Kz
+NN
+oT
+Ss
+BC
+xd
+fk
+Qi
+oT
+kA
+Sq
+xd
+cS
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -4507,34 +5755,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+Ss
+xd
+MR
+Iz
+yB
+xd
+xd
+xd
+Qi
+oT
+Ov
+Hv
+Ix
+pK
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -4764,34 +6012,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+UB
+zo
+Tu
+xd
+xd
+xd
+xd
+xd
+Qi
+oT
+oT
+oT
+FM
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -5021,34 +6269,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+Qw
+bk
+Yp
+Yp
+KG
+EZ
+wQ
+xd
+Qi
+Xq
+xd
+xd
+xd
+Ob
+xd
+xd
+zO
+HM
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -5278,34 +6526,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+rw
+oT
+oT
+oT
+XY
+xd
+ob
+EZ
+VB
+oT
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -5535,34 +6783,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+Dj
+VC
+gU
+tf
+uB
+wa
+xd
+xd
+xd
+Zv
+xd
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -5792,34 +7040,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+xd
+xd
+bx
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -6049,34 +7297,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+Xo
+qI
+TJ
+WY
+oR
+oT
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -6306,34 +7554,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+pJ
+om
+om
+om
+hy
+oT
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -6563,34 +7811,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+pJ
+om
+om
+om
+VG
+oT
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -6820,34 +8068,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+oT
+oT
+pJ
+om
+om
+om
+VG
+RQ
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -7077,34 +8325,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+yD
+Uw
+yD
+yD
+oT
+pJ
+om
+om
+om
+VG
+oT
+xd
+xd
+xd
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -7334,34 +8582,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+sU
+SM
+SM
+SM
+oT
+pJ
+om
+om
+om
+VG
+oT
+oT
+MW
+oT
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -7591,34 +8839,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+SM
+jj
+jj
+SM
+oT
+Ce
+AW
+ph
+Up
+Rb
+oT
+Zy
+zT
+zT
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -7848,34 +9096,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+SM
+yD
+yD
+SM
+oT
+oT
+RQ
+oT
+oT
+oT
+oT
+MC
+zT
+fu
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -8105,34 +9353,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+SM
+SM
+SM
+SM
+oT
+xd
+xd
+xd
+oT
+lR
+oT
+zT
+zT
+zT
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -8362,34 +9610,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+mc
+oT
+oT
+oT
+xd
+xd
+xd
+oT
+lR
+oT
+Xx
+oT
+Qy
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -8619,34 +9867,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+xd
+xd
+xd
+xd
+Ob
+xd
+xd
+xd
+bx
+oT
+lR
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
 my
 fm
 fm
@@ -8876,34 +10124,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+Do
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -9133,34 +10381,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+yI
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -9390,34 +10638,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+oT
+co
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -9647,34 +10895,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+oT
+vQ
+vP
+LX
+Kp
+XG
+OI
+bf
+Jm
+BU
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -9904,34 +11152,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+oT
+CJ
+om
+Vh
+ff
+om
+Vx
+FI
+RR
+OQ
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+lR
 my
 fm
 fm
@@ -10161,34 +11409,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+oT
+CJ
+om
+Vh
+ff
+om
+Vx
+gK
+BQ
+qs
+oT
+xd
+xd
+Ob
+xd
+xd
+xd
+Ev
+xd
+HM
+oT
+lR
 my
 fm
 fm
@@ -10418,34 +11666,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+oT
+oT
+oT
+CJ
+om
+Vh
+ff
+om
+om
+om
+om
+VG
+co
+xd
+xd
+xd
+xd
+xd
+AT
+xd
+df
+xd
+oT
+lR
 my
 fm
 fm
@@ -10675,34 +11923,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+oT
+rf
+XG
+XD
+om
+XD
+om
+om
+om
+om
+om
+VG
+oT
+HM
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+xd
+oT
+lR
 my
 fm
 fm
@@ -10932,34 +12180,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+oT
+hI
+om
+om
+om
+om
+om
+om
+om
+om
+om
+VG
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+xd
+xd
+bx
+oT
+lR
 my
 fm
 fm
@@ -11189,34 +12437,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+oT
+pO
+AW
+AW
+AW
+AW
+AW
+AW
+ph
+tP
+tP
+Yu
+oT
+lR
+lR
+lR
+lR
+lR
+oT
+Ld
+Ld
+xd
+oT
+lR
 my
 fm
 fm
@@ -11446,34 +12694,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+un
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+oT
+Et
+Ga
+xd
+oT
+lR
 my
 fm
 fm
@@ -11703,34 +12951,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+NC
+pc
+ko
+Ye
+oT
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+dB
+vu
+vp
+wJ
+oT
+rZ
+xd
+xd
+oT
+lR
 my
 fm
 fm
@@ -11960,34 +13208,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+WW
+eB
+hS
+dw
+oT
+lR
+lR
+lR
+oT
+Ax
+hq
+oT
+dB
+ag
+vp
+wJ
+oT
+xd
+xd
+xd
+oT
+lR
 my
 fm
 fm
@@ -12217,34 +13465,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+vy
+Pf
+Gd
+dw
+oT
+lR
+lR
+lR
+oT
+OH
+xp
+bv
+AN
+AN
+AN
+wJ
+SU
+xd
+xd
+xd
+oT
+lR
 my
 fm
 fm
@@ -12474,34 +13722,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+zi
+pc
+xd
+dw
+oT
+lR
+lR
+lR
+oT
+tO
+IX
+oT
+wJ
+wJ
+wJ
+wJ
+oT
+HM
+Zv
+xd
+oT
+lR
 my
 fm
 fm
@@ -12731,34 +13979,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+WW
+gn
+xd
+nD
+oT
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+VZ
+Yf
+ok
+wJ
+oT
+oT
+oT
+oT
+oT
+lR
 my
 fm
 fm
@@ -12988,34 +14236,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+SW
+rJ
+cO
+ao
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -13245,34 +14493,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+oT
+oT
+oT
+oT
+oT
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -13502,34 +14750,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+oT
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -13759,34 +15007,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -14016,34 +15264,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -14273,34 +15521,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
+lR
 my
 fm
 fm
@@ -14530,34 +15778,34 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
 my
 my
 my
