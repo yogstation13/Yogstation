@@ -124,7 +124,8 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	if(!istype(user, /mob/living/carbon/human/virtual_reality))
 		return
 	if(GLOB.compsci_vr.current_mission && istype(I, GLOB.compsci_vr.current_mission.completion_item))
-		I.forceMove(GLOB.compsci_vr_mission_reciever.drop_location())
+		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
+		I.forceMove(station_machine.drop_location())
 		GLOB.compsci_vr.complete_mission()
 		to_chat(user, span_notice("Successfully transferred artifact. Now reverting to reality.."))
 		qdel(user)
