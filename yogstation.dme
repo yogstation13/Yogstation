@@ -3349,6 +3349,7 @@
 #include "code\modules\vending\wardrobes.dm"
 #include "code\modules\vending\youtool.dm"
 #include "code\modules\VR\vr_compsci.dm"
+#include "code\modules\VR\vr_compsci_artifacts.dm"
 #include "code\modules\VR\vr_human.dm"
 #include "code\modules\VR\vr_netmin.dm"
 #include "code\modules\VR\vr_sleeper.dm"
