@@ -622,3 +622,8 @@
 	suffix = "gax"
 	name = "ai ship shuttle (Gax)"
 
+/datum/map_template/shuttle/emergency/tour
+	suffix = "tour"
+	name = "Lakon Spaceways Tourbus"
+	description = "Designed with an open-air environment in mind, this tour shuttle designed to show tourists around systems and dazzle them with views of beautiful stars can now bring you home for the right price. Mind the gap!"
+	credit_cost = 6000

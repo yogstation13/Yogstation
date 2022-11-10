@@ -1,0 +1,954 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ae" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"aB" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"be" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/shuttle/engine/heater,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ce" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"cq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"dz" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_y = -4;
+	pixel_x = -4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"hF" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/shuttle/escape)
+"hL" = (
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"hT" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"ih" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"iO" = (
+/obj/machinery/sleeper,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"iQ" = (
+/obj/machinery/computer/emergency_shuttle,
+/obj/machinery/computer/communications,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"iS" = (
+/obj/machinery/door/airlock/shuttle/glass,
+/obj/docking_port/mobile/emergency,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"jQ" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"jX" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"kC" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"mP" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"np" = (
+/obj/item/storage/firstaid/fire{
+	pixel_y = 4;
+	pixel_x = 4
+	},
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/brute{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = -8;
+	pixel_x = 7
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"nU" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/space/basic,
+/area/shuttle/escape)
+"oh" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"pH" = (
+/obj/machinery/stasis,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"qe" = (
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"qf" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"rs" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution{
+	pixel_y = -8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"rF" = (
+/obj/effect/turf_decal/arrows{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"sW" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ti" = (
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"wI" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/stasis,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"xg" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_y = -4;
+	pixel_x = -4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"xv" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"yd" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_y = -4;
+	pixel_x = -4
+	},
+/obj/item/clothing/suit/space/eva{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"ym" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"zh" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/shuttle/escape)
+"zK" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/shuttle/escape)
+"AG" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Bt" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"BP" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Di" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/radio/intercom,
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"DQ" = (
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Ge" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"HA" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Id" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"IM" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"LQ" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Mh" = (
+/obj/structure/sign/departments/medbay/alt,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Ml" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Np" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"NY" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"OA" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"Rb" = (
+/turf/open/space/basic,
+/area/space)
+"Sl" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"SV" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"TF" = (
+/obj/effect/turf_decal/loading_area/white,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Uf" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"UZ" = (
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"VV" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 10
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Wv" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Xa" = (
+/obj/effect/turf_decal/caution,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Ym" = (
+/obj/effect/turf_decal/arrows,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Yt" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"YH" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ZJ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+
+(1,1,1) = {"
+ih
+iS
+ih
+ih
+ih
+ih
+ih
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+"}
+(2,1,1) = {"
+ih
+rF
+yd
+yd
+yd
+yd
+ih
+Rb
+zK
+Rb
+Rb
+zK
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+zK
+jQ
+BP
+BP
+BP
+BP
+be
+nU
+"}
+(3,1,1) = {"
+ih
+ti
+Ym
+Sl
+hL
+Xa
+Id
+zh
+zh
+Rb
+Rb
+zK
+Rb
+Rb
+zK
+Rb
+zK
+Rb
+Rb
+Wv
+qe
+xv
+Ge
+xv
+aB
+Rb
+"}
+(4,1,1) = {"
+ih
+LQ
+dz
+dz
+dz
+dz
+ih
+Rb
+zh
+zh
+zh
+zh
+zh
+zh
+zK
+zK
+zh
+zh
+zh
+qf
+TF
+xv
+qe
+xv
+aB
+Rb
+"}
+(5,1,1) = {"
+ih
+hT
+Ym
+Sl
+hL
+Xa
+Id
+zh
+zh
+Rb
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+Rb
+zK
+Rb
+Wv
+qe
+xv
+Ge
+xv
+aB
+Rb
+"}
+(6,1,1) = {"
+ih
+xg
+xg
+xg
+xg
+xg
+ih
+Rb
+zh
+Rb
+zK
+hF
+zK
+Rb
+Rb
+Rb
+zK
+zK
+Rb
+YH
+qe
+xv
+qe
+xv
+aB
+Rb
+"}
+(7,1,1) = {"
+ih
+ih
+ih
+ih
+ih
+ih
+ih
+zK
+zh
+zK
+zK
+Rb
+zK
+zK
+Rb
+Rb
+Rb
+Rb
+Rb
+rs
+qe
+xv
+Ge
+xv
+aB
+Rb
+"}
+(8,1,1) = {"
+Rb
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+ym
+qe
+HA
+HA
+kC
+Rb
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+YH
+qe
+xv
+qe
+xv
+aB
+Rb
+"}
+(9,1,1) = {"
+Rb
+Rb
+zK
+zK
+Rb
+Rb
+Rb
+mP
+Np
+UZ
+Np
+DQ
+Rb
+Rb
+Rb
+zK
+zK
+Rb
+Rb
+rs
+qe
+xv
+Ge
+xv
+aB
+Rb
+"}
+(10,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+mP
+Np
+OA
+Np
+DQ
+Rb
+Rb
+Rb
+Rb
+Rb
+zK
+zK
+YH
+qe
+xv
+qe
+xv
+aB
+Rb
+"}
+(11,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+mP
+Np
+UZ
+Np
+DQ
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+AG
+qe
+xv
+Ge
+xv
+aB
+Rb
+"}
+(12,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+sW
+ZJ
+ZJ
+ZJ
+Ml
+Rb
+Rb
+IM
+Di
+BP
+BP
+BP
+qe
+qe
+cq
+cq
+cq
+aB
+Rb
+"}
+(13,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Uf
+NY
+jX
+qe
+qe
+qe
+Yt
+pH
+qe
+qe
+ce
+Rb
+"}
+(14,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Uf
+iQ
+jX
+qe
+qe
+qe
+Yt
+Mh
+iO
+np
+ce
+Rb
+"}
+(15,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+zK
+zK
+oh
+VV
+Bt
+Bt
+Bt
+Bt
+ae
+wI
+Bt
+Bt
+SV
+nU
+"}
+(16,1,1) = {"
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+Rb
+zK
+Rb
+Rb
+Rb
+Rb
+"}
