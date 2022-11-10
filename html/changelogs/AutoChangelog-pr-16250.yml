@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "machine overload will spawn a single spark on the exploding machine"

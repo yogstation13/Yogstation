@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Can now print vial boxes after researching them"
-  - tweak: "Vial box can now go in the medical toolbelt"
