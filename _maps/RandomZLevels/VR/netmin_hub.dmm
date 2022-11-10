@@ -377,11 +377,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"ok" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/turf/open/floor/wood,
-/area/awaymission/vr/scientist_raid)
 "om" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
@@ -1707,6 +1702,14 @@
 /area/awaymission/vr/scientist_raid)
 "ZE" = (
 /turf/closed/wall/mineral/titanium,
+/area/awaymission/vr/scientist_raid)
+"ZO" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/storage/secure/safe/scientist_raid{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 
 (1,1,1) = {"
@@ -13999,7 +14002,7 @@ oT
 oT
 VZ
 Yf
-ok
+ZO
 wJ
 oT
 oT
