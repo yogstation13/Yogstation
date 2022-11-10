@@ -177,8 +177,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(null, list(/obj/item/storage/secure/briefcase))
 	STR.max_w_class = 8						//??
-	if(l_code && l_set)
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
+		
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)
