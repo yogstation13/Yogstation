@@ -85,7 +85,7 @@
 
 /obj/machinery/vr_sleeper/ui_interact(mob/user, datum/tgui/ui)
 	if(!ui)
-		ui = new(user, src, "vr_sleeper", "VR Sleeper")
+		ui = new(user, src, "VRSleeper", "VR Sleeper")
 		ui.open()
 
 /obj/machinery/vr_sleeper/ui_act(action, params)
@@ -149,7 +149,6 @@
 				status = "Barely Conscious"
 		data["vr_avatar"] = list("name" = vr_human.name, "status" = status, "health" = vr_human.health, "maxhealth" = vr_human.maxHealth)
 	data["toggle_open"] = state_open
-	data["emagged"] = you_die_in_the_game_you_die_for_real
 	data["isoccupant"] = (user == occupant)
 	return data
 
