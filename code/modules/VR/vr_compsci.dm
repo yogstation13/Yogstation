@@ -127,5 +127,5 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		I.forceMove(GLOB.compsci_vr_mission_reciever.drop_location())
 		GLOB.compsci_vr.complete_mission()
 		to_chat(user, span_notice("Successfully transferred artifact. Now reverting to reality.."))
-		user.death()
+		qdel(user)
 		return TRUE
