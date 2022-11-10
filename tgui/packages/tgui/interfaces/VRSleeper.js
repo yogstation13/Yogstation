@@ -16,7 +16,7 @@ export const VRSleeper = (props, context) => {
               <LabeledList.Item label="Name">{data.vr_avatar.name}</LabeledList.Item>
               <LabeledList.Item label="Status">{data.vr_avatar.status}</LabeledList.Item>
               <LabeledList.Item label="Health">
-                <ProgressBar min="0" max={data.vr_avatar.maxhealth} value={data.vr_avatar.health}>{Math.round(data.vr_avatar.health/data.vr_avatar.maxhealth)}</ProgressBar>
+                <ProgressBar min="0" max={data.vr_avatar.maxhealth} value={data.vr_avatar.health}>{Math.round(data.vr_avatar.health/data.vr_avatar.maxhealth * 100) + "%"}</ProgressBar>
               </LabeledList.Item>
             </LabeledList>
           </Section>

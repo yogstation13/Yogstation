@@ -43,7 +43,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	if(current_mission)
 		return
 	var/datum/compsci_mission/found_mission
-	for(var/datum/compsci_mission/unlocked in unlocked_missions)
+	for(var/datum/compsci_mission/unlocked as anything in unlocked_missions)
 		if(initial(unlocked.id) == id)
 			found_mission = unlocked
 			break
@@ -82,7 +82,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 /obj/machinery/computer/compsci_mission_selector/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
 	data["missions"] = list()
-	for(var/datum/compsci_mission/M in GLOB.compsci_vr.unlocked_missions)
+	for(var/datum/compsci_mission/M as anything in GLOB.compsci_vr.unlocked_missions)
 		data["missions"] += list(list("name" = initial(M.name), "desc" = initial(M.desc), "id" = initial(M.id)))
 	return data
 
