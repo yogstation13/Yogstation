@@ -36,6 +36,6 @@
 	name = "Unknown Small Research Station"
 	desc = "A recurring distress beacon has been detected from a nearby unidentified research station."
 	id = "scientist_raid"
-	completion_item = /obj/item/vr_artifact
+	completion_item = /obj/item/ai_cpu/organic
 
 VR_SPAWNER(scientist_raid, /datum/outfit/vr/mission)
