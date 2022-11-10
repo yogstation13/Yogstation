@@ -24,17 +24,17 @@ export const VRSleeper = (props, context) => {
           <Section title="Virtual Avatar">No Virtual Avatar Detected</Section>
         )}
         <Section title="VR Commands">
-            <Button icon={data.toggle_open ? "times" : "plus"} onClick={() => act('toggle_open')}>
-                {data.toggle_open ? "Close" : "Open"}
+          <Button icon={data.toggle_open ? "times" : "plus"} onClick={() => act('toggle_open')}>
+            {data.toggle_open ? "Close" : "Open"}
+          </Button>
+          {!!data.isoccupant && (
+            <Button icon="signal" onClick={() => act('vr_connect')}>
+              Connect to VR
             </Button>
-            {!!data.isoccupant && (
-              <Button icon="signal" onClick={() => act('vr_connect')}>
-                Connect to VR
-              </Button>
-            )}
-            {!!data.vr_avatar && (
-              <Button icon="ban" onClick={() => act('delete_avatar')}>Delete Virtual Avatar</Button>
-            )}
+          )}
+          {!!data.vr_avatar && (
+            <Button icon="ban" onClick={() => act('delete_avatar')}>Delete Virtual Avatar</Button>
+          )}
         </Section>
       </Window.Content>
     </Window>
