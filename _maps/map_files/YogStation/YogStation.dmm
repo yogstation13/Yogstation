@@ -25646,19 +25646,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"gdO" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/crew_quarters/public_lounge)
 "gdU" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -42152,13 +42139,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"ndG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/mob/living/simple_animal/pet/axolotl/bop,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "ndK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -58852,6 +58832,12 @@
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/carpet,
 /area/library)
+"uiC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "uiF" = (
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
@@ -61598,6 +61584,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vsN" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/grassybush,
+/mob/living/simple_animal/pet/axolotl/bop,
+/turf/open/floor/grass,
+/area/crew_quarters/public_lounge)
 "vsP" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -97608,7 +97608,7 @@ xYw
 okh
 ozR
 lik
-gdO
+vsN
 dcO
 uXU
 bqP
@@ -98376,7 +98376,7 @@ vAP
 pKD
 wrd
 fai
-ndG
+uiC
 xWX
 lik
 nDH
