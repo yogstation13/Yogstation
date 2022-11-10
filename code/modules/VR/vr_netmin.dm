@@ -6,7 +6,7 @@
 	if(!GLOB.compsci_vr.emagged)
 		GLOB.compsci_vr.emag()
 
-/obj/machinery/vr_sleeper/netmin/proc/get_vr_spawnpoint() //proc so it can be overridden for team games or something
+/obj/machinery/vr_sleeper/netmin/get_vr_spawnpoint() //proc so it can be overridden for team games or something
 	if(GLOB.compsci_vr.current_mission)
 		return safepick(GLOB.compsci_mission_markers[GLOB.compsci_vr.current_mission.id])
 	return safepick(GLOB.vr_spawnpoints[vr_category])

@@ -1,6 +1,7 @@
-#define VR_SPAWNER(_id, _outfit = /datum/outfit/vr/mission) /obj/effect/landmark/vr_spawn/vr_mission/_id { \
-		id = #_id;
-		vr_outfit = #_outfit;
+#define VR_SPAWNER(_id, _outfit) \
+	/obj/effect/landmark/vr_spawn/vr_mission/##_id { \
+		id = #_id; \
+		vr_outfit = #_outfit; \
 	}; \
 
 
@@ -36,4 +37,4 @@
 	id = "scientist_raid"
 	completion_item = /obj/item/vr_artifact
 
-VR_SPAWNER("scientist_raid")
+VR_SPAWNER(scientist_raid, /datum/outfit/vr/mission)
