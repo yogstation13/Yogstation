@@ -88,8 +88,13 @@ Credit where due:
 			R.undeploy()
 			to_chat(AI, span_userdanger("Anomaly Detected. Returned to core!")) //The AI needs to be in its core to properly be converted
 
-	. = L.mind.add_antag_datum(C)
-
+	var/clockies_count = 0
+	for (var/datum/antagonist/clockcult/H in GLOB.antagonists)
+		clockies_count++
+	if (clockies_count <= (GLOB.player_list.len) / 2)
+		. = L.mind.add_antag_datum(C)
+	else
+		. = FALSE
 	if(.)
 		var/datum/antagonist/clockcult/servant = .
 		var/datum/team/clockcult/cult = servant.get_team()
