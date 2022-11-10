@@ -36,7 +36,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		current_mission.complete()
 		QDEL_NULL(current_mission)
 
-/datum/compsci_vr/proc/start_mission(id)
+/datum/compsci_vr/proc/start_mission(id, mob/user)
 	if(current_mission)
 		return
 	var/datum/compsci_mission/found_mission
@@ -53,13 +53,20 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	var/obj/effect/landmark/vr_spawn/vr_mission/V_landmark = safepick(GLOB.compsci_mission_markers[current_mission.id])
 	var/turf/T = get_turf(V_landmark)
 	var/datum/outfit/mission_outfit = new(V_landmark.vr_outfit)
-	if(human_occupant)
-		mission_outfit.equip(human_occupant)
-		human_occupant.forceMove(T)
+	if(user)
+		mission_outfit.equip(user)
+		user.forceMove(T)
 
-	if(ai_occupant)
-		mission_outfit.equip(ai_occupant)
-		ai_occupant.forceMove(T)
+/datum/compsci_vr/proc/join_ongoing(mob/user)
+	if(!current_mission)
+		return
+
+	var/obj/effect/landmark/vr_spawn/vr_mission/V_landmark = safepick(GLOB.compsci_mission_markers[current_mission.id])
+	var/turf/T = get_turf(V_landmark)
+	var/datum/outfit/mission_outfit = new(V_landmark.vr_outfit)
+	if(user)
+		mission_outfit.equip(user)
+		user.forceMove(T)
 
 
 /obj/machinery/computer/compsci_mission_selector
@@ -79,6 +86,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 /obj/machinery/computer/compsci_mission_selector/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
 	data["missions"] = list()
+	data["ongoing"] = GLOB.compsci_vr.current_mission ? TRUE : FALSE
 	for(var/datum/compsci_mission/M as anything in GLOB.compsci_vr.unlocked_missions)
 		data["missions"] += list(list("name" = initial(M.name), "desc" = initial(M.desc), "id" = initial(M.id)))
 	return data
@@ -90,7 +98,9 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	switch(action)
 		if("start_mission")
 			var/mission_id = params["mission_id"]
-			GLOB.compsci_vr.start_mission(mission_id)
+			GLOB.compsci_vr.start_mission(mission_id, usr)
+		if("join_ongoing")
+			GLOB.compsci_vr.join_ongoing(usr)
 
 
 /obj/machinery/compsci_reciever
