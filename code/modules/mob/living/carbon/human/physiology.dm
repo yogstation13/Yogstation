@@ -1,17 +1,17 @@
 //Stores several modifiers in a way that isn't cleared by changing species
 
 /datum/physiology
-	var/brute_mod = 1   	// % of brute damage taken from all sources
-	var/burn_mod = 1    	// % of burn damage taken from all sources
-	var/tox_mod = 1     	// % of toxin damage taken from all sources
-	var/oxy_mod = 1     	// % of oxygen damage taken from all sources
-	var/clone_mod = 1   	// % of clone damage taken from all sources
+	var/brute_mod = 1 + fun_mod   	// % of brute damage taken from all sources
+	var/burn_mod = 1 + fun_mod    	// % of burn damage taken from all sources
+	var/tox_mod = 1 + fun_mod     	// % of toxin damage taken from all sources
+	var/oxy_mod = 1 + fun_mod     	// % of oxygen damage taken from all sources
+	var/clone_mod = 1 + fun_mod   	// % of clone damage taken from all sources
 	var/stamina_mod = 1 	// % of stamina damage taken from all sources
-	var/brain_mod = 1   	// % of brain damage taken from all sources
+	var/brain_mod = 1 + fun_mod   	// % of brain damage taken from all sources
 
-	var/pressure_mod = 1	// % of brute damage taken from low or high pressure (stacks with brute_mod)
-	var/heat_mod = 1    	// % of burn damage taken from heat (stacks with burn_mod)
-	var/cold_mod = 1    	// % of burn damage taken from cold (stacks with burn_mod)
+	var/pressure_mod = 1 + fun_mod	// % of brute damage taken from low or high pressure (stacks with brute_mod)
+	var/heat_mod = 1 + fun_mod    	// % of burn damage taken from heat (stacks with burn_mod)
+	var/cold_mod = 1 + fun_mod    	// % of burn damage taken from cold (stacks with burn_mod)
 
 	var/damage_resistance = 0 // %damage reduction from all sources
 

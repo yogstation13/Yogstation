@@ -65,3 +65,14 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 
 	chameleon_extras = /obj/item/gun/syringe
+
+var/most_hours_played = 0
+	for (var/mob/plr in GLOB.player_list)
+		var/mob/living/carbon/human/hm = plr
+		if (istype(hm))
+			var/datum/job/J = SSjob.GetJob(hm.job)
+			if (J && J.department_flag == MEDSCI)
+				if ((hm.client.prefs.exp[EXP_TYPE_MEDICAL] / 60) > most_hours_played)
+					most_hours_played = (hm.client.prefs.exp[EXP_TYPE_MEDICAL] / 60)
+
+	GLOB.fun_mod = clamp(max((most_hours_played - 200)/800, 0), 0.5, 100)
