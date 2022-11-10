@@ -41,7 +41,7 @@
 	name = "secure safe"
 
 /obj/item/storage/secure/safe/scientist_raid/Initialize()
-	. = ..()
 	l_code = "7295"
 	l_set = TRUE
 	new /obj/item/ai_cpu/organic(src)
+	. = ..()

@@ -30,10 +30,7 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = 14
 	cut_overlays()
-	if(l_code && l_set)
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
-	else
-		add_overlay(icon_opened)
+	add_overlay(icon_opened)
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -180,6 +177,8 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(null, list(/obj/item/storage/secure/briefcase))
 	STR.max_w_class = 8						//??
+	if(l_code && l_set)
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)

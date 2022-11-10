@@ -53,9 +53,9 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	var/datum/compsci_mission/new_m = new found_mission()
 	current_mission = new_m
 
-	var/obj/effect/landmark/vr_spawn/vr_mission/V_landmark = GLOB.compsci_mission_markers[current_mission.id]
+	var/obj/effect/landmark/vr_spawn/vr_mission/V_landmark = safepick(GLOB.compsci_mission_markers[current_mission.id])
 	var/turf/T = get_turf(V_landmark)
-	var/datum/outfit/mission_outfit = V_landmark.vr_outfit
+	var/datum/outfit/mission_outfit = new(V_landmark.vr_outfit)
 	if(human_occupant)
 		mission_outfit.equip(human_occupant)
 		human_occupant.forceMove(T)
