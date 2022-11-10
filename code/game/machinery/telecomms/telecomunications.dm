@@ -190,7 +190,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		stat |= EMPED
 		var/duration = (300 * 10)/severity
 		addtimer(CALLBACK(src, .proc/de_emp), rand(duration - 20, duration + 20))
-
+		if (prob(10))
+			on = FALSE
 /obj/machinery/telecomms/proc/de_emp()
 	stat &= ~EMPED
 
