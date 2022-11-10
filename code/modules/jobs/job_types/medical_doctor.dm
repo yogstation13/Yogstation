@@ -75,4 +75,4 @@ var/most_hours_played = 0
 				if ((hm.client.prefs.exp[EXP_TYPE_MEDICAL] / 60) > most_hours_played)
 					most_hours_played = (hm.client.prefs.exp[EXP_TYPE_MEDICAL] / 60)
 
-	GLOB.fun_mod = clamp(max((most_hours_played - 200)/800, 0), 0.5, 100)
+	GLOB.fun_mod = clamp(max((most_hours_played - 200)/800, -0.25), -0.25, 100)
