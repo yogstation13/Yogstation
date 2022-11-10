@@ -825,6 +825,9 @@
 
 //Hack and From Card interactions share some code, so leave that here for both to use.
 /obj/mecha/proc/ai_enter_mech(mob/living/silicon/ai/AI, interaction)
+
+	if (AI.nuking)
+		minor_announce("Unauthorised upload into \a [name] detected. Please remove any artifical intelligences from the vehicle.","Central Command Technical Solutions", TRUE)
 	AI.ai_restore_power()
 	AI.forceMove(src)
 	occupant = AI
