@@ -8,10 +8,11 @@
 	var/arms_required = 1	//why not?
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown = 0
+	var/riding_component_type = /datum/component/riding
 
 /obj/vehicle/ridden/Initialize()
 	. = ..()
-	LoadComponent(/datum/component/riding)
+	LoadComponent(riding_component_type)
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()
@@ -85,7 +86,7 @@
 				to_chat(user, span_warning("You can't seem to manage that with[how_many_arms ? " your arm[how_many_arms > 1 ? "s" : null]" : "out arms"]..."))
 				message_cooldown = world.time + 5 SECONDS
 			return FALSE
-	var/datum/component/riding/R = GetComponent(/datum/component/riding)
+	var/datum/component/riding/R = GetComponent(riding_component_type)
 	R.handle_ride(user, direction)
 	return ..()
 
