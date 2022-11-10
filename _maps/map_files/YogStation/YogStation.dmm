@@ -20826,6 +20826,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"eij" = (
+/obj/machinery/power/apc/highcap{
+	areastring = "/area/ai_monitored/secondarydatacore";
+	dir = 4;
+	name = "AI Secondary Datacore";
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Secondary AI Core";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "eil" = (
 /obj/machinery/paystand/register{
 	dir = 1
@@ -28669,6 +28692,13 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"hvn" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/vr_sleeper/netmin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "hvG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -36419,12 +36449,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"kIf" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets,
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "kIl" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -43635,14 +43659,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"nLQ" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "nNg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -61515,32 +61531,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"vqF" = (
-/obj/machinery/power/apc/highcap{
-	areastring = "/area/ai_monitored/secondarydatacore";
-	dir = 4;
-	name = "AI Secondary Datacore";
-	pixel_x = 24
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Secondary AI Core";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/obj/machinery/vr_sleeper/netmin{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "vra" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -67052,6 +67042,14 @@
 	},
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"xLK" = (
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/obj/machinery/compsci_reciever,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "xLR" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/green{
@@ -118972,7 +118970,7 @@ inv
 tdM
 tcI
 xgE
-nLQ
+xLK
 oxg
 fqr
 dNX
@@ -119229,7 +119227,7 @@ rDw
 oGM
 eTo
 iQG
-kIf
+hvn
 oxg
 fqr
 fud
@@ -120513,7 +120511,7 @@ cNW
 cOe
 oGM
 hcP
-vqF
+eij
 dFr
 oxg
 wZY

@@ -232,14 +232,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"hI" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/ai_cpu/advanced,
-/turf/open/floor/plasteel/white,
-/area/awaymission/vr/scientist_raid)
 "hM" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -1168,6 +1160,17 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"Oo" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/ai_cpu/advanced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/scientist_raid)
 "Ov" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle{
@@ -1618,6 +1621,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"XX" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/storage/secure/safe/scientist_raid{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
 "XY" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -1702,14 +1713,6 @@
 /area/awaymission/vr/scientist_raid)
 "ZE" = (
 /turf/closed/wall/mineral/titanium,
-/area/awaymission/vr/scientist_raid)
-"ZO" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/storage/secure/safe/scientist_raid{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 
 (1,1,1) = {"
@@ -8349,7 +8352,7 @@ om
 om
 VG
 oT
-xd
+Zv
 xd
 xd
 oT
@@ -12188,7 +12191,7 @@ lR
 lR
 lR
 oT
-hI
+Oo
 om
 om
 om
@@ -14002,7 +14005,7 @@ oT
 oT
 VZ
 Yf
-ZO
+XX
 wJ
 oT
 oT
