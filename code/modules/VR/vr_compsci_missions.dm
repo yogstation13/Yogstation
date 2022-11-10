@@ -23,6 +23,7 @@
 /obj/effect/landmark/vr_spawn/vr_mission/Initialize()
 	. = ..()
 	LAZYADD(GLOB.compsci_mission_markers[id], src)
+	LAZYREMOVE(GLOB.vr_spawnpoints[vr_category], src)
 
 /obj/effect/landmark/vr_spawn/vr_mission/Destroy()
 	LAZYREMOVE(GLOB.compsci_mission_markers[id], src)

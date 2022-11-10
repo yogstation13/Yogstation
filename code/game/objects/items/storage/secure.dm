@@ -30,7 +30,10 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = 14
 	cut_overlays()
-	add_overlay(icon_opened)
+	if(l_code && l_set)
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
+	else
+		add_overlay(icon_opened)
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
