@@ -28,6 +28,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		return FALSE
 	if(isAI(user) && ai_occupant)
 		return FALSE
+	return TRUE
 
 /datum/compsci_vr/proc/emag(mob/user)
 	emagged = TRUE

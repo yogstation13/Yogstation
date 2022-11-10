@@ -84,8 +84,9 @@
 	close_machine(target)
 
 /obj/machinery/vr_sleeper/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "VRSleeper", "VR Sleeper")
+		ui = new(user, src, "VRSleeper", name)
 		ui.open()
 
 /obj/machinery/vr_sleeper/ui_act(action, params)
