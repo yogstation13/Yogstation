@@ -10,11 +10,7 @@
 	if(GLOB.compsci_vr.current_mission)
 		return safepick(GLOB.compsci_mission_markers[GLOB.compsci_vr.current_mission.id])
 	return safepick(GLOB.vr_spawnpoints[vr_category])
-
-/obj/machinery/vr_sleeper/netmin/build_virtual_human(mob/living/carbon/human/H, location, var/datum/outfit/outfit, transfer = TRUE)
-	. = ..()
-	if(vr_human)
-		GLOB.compsci_vr.human_occupant = vr_human
+		
 
 /obj/machinery/vr_sleeper/netmin/ui_act(action, params)
 	if(action == "vr_connect")

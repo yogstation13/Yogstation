@@ -13,7 +13,6 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 
 	var/datum/compsci_mission/current_mission
 
-	var/mob/living/human_occupant
 	var/mob/living/ai_occupant
 
 	var/emagged = TRUE
@@ -24,8 +23,6 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	unlocked_missions |= roundstart_missions
 
 /datum/compsci_vr/proc/can_join(mob/user)
-	if(ishuman(user) && human_occupant)
-		return FALSE
 	if(isAI(user) && ai_occupant)
 		return FALSE
 	return TRUE

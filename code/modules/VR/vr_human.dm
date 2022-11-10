@@ -65,8 +65,6 @@
 			if(vr_sleeper.you_die_in_the_game_you_die_for_real)
 				to_chat(real_mind, span_warning("You feel everything fading away..."))
 				real_mind.current.death(0)
-	if(vr_sleeper && GLOB.compsci_vr.human_occupant == vr_sleeper.vr_human)
-		GLOB.compsci_vr.human_occupant = null
 	
 	if(deathchecks && vr_sleeper)
 		vr_sleeper.vr_human = null
