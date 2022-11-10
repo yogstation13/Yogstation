@@ -226,8 +226,6 @@
 	if(!istype(target, /datum/ai_network) && !isAI(target))
 		stack_trace("Attempted to add_ram with non-AI/network target! T: [target]")
 		return
-	if(isAI(target) && human_lock)
-		return
 
 	
 	ram_assigned[target] += amount
@@ -241,8 +239,6 @@
 
 	if(!istype(target, /datum/ai_network) && !isAI(target))
 		stack_trace("Attempted to remove_ram with non-AI/network target! T: [target]")
-		return
-	if(isAI(target) && human_lock)
 		return
 	
 	if(ram_assigned[target] - amount < 0)
@@ -258,8 +254,6 @@
 		return
 	if(!istype(target, /datum/ai_network) && !isAI(target))
 		stack_trace("Attempted to clear_ai_resources with non-AI/network target! T: [target]")
-		return
-	if(isAI(target) && human_lock)
 		return
 
 	
