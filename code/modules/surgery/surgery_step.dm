@@ -259,6 +259,7 @@
 ///Attempts to deal damage if the patient isn't sedated or under painkillers
 /datum/surgery_step/proc/cause_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
 	var/ouchie_mod = 1
+	var/final_wound_bonus = 15 //I SURE hope you like BLEEDING
 	for(var/datum/reagent/R in ouchie_modifying_chems)
 		if(target.reagents?.has_reagent(R))
 			ouchie_mod *= ouchie_modifying_chems[R]
@@ -271,7 +272,10 @@
 	if(!prob(final_ouchie_chance))
 		return
 	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target] flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
-	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
+	var/obj/item/bodypart/BP = get_bodypart(target_zone)
+	if(BP?.mangled_state = MANGLED_FLESH)
+		final_wound_bonus = 0 //'ate bone wounds
+	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone, wound_bonus = final_wound_bonus)
 
 ///Deal damage if the user moved during the op
 /datum/surgery_step/proc/move_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
