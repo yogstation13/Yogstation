@@ -1,4 +1,0 @@
-author: " BurgerBB"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes NTSL script sanitization being too strict."
