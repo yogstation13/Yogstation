@@ -64,6 +64,8 @@
 				iter_wound.remove_wound()
 	if(!C.InCritical() && prob(4))
 		playsound(C, pick(spooks), 50, TRUE, 10)
+	if (C.pulling)
+		C.stop_pulling()
 
 //Congrats you somehow died so hard you stopped being a zombie
 /datum/species/zombie/infectious/spec_death(mob/living/carbon/C)
