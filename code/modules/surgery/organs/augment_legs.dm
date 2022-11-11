@@ -219,7 +219,7 @@
 	if(implant_ability)
 		implant_ability.Remove(owner)
 
-/datum/action/innate/wheelies//legally distinct dash ability
+/datum/action/innate/wheelies
 	name = "Toggle Wheely-Heel's Wheels"
 	desc = "Pops out or in your wheely-heel's wheels."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
@@ -240,13 +240,7 @@
 	QDEL_NULL(W)
 	. = ..()
 
-/datum/action/innate/wheelies/IsAvailable()
-	return isliving(holder) //always ready to wheelies
-
 /datum/action/innate/wheelies/Activate()
-	if(!IsAvailable())
-		return FALSE
-
 	if(!(W.is_occupant(holder)))
 		wheelToggle = FALSE
 	if(wheelToggle)
@@ -257,6 +251,64 @@
 	W.buckle_mob(holder)
 	wheelToggle = TRUE
 
+//dash boots implant
+/obj/item/organ/cyberimp/leg/airshoes
+	name = "Advanced propulsion implant"
+	desc = "An implant that uses propulsion technology to keep you above the ground and let you move faster."
+	syndicate_implant = TRUE
+	implant_type = "airshoes"
+	var/datum/action/innate/boost/implant_dash
+	var/datum/action/innate/airshoes/implant_scooter
+	
+/obj/item/organ/cyberimp/leg/airshoes/l
+	zone = BODY_ZONE_L_LEG
+
+/obj/item/organ/cyberimp/leg/airshoes/AddEffect()
+	implant_dash = new
+	implant_dash.Grant(owner)
+	implant_dash.jumpdistance = 7
+	implant_dash.jumpspeed = 5//this makes it function like the airshoes
+	implant_scooter = new
+	implant_scooter.Grant(owner)
+
+/obj/item/organ/cyberimp/leg/airshoes/RemoveEffect()
+	if(implant_dash)
+		implant_dash.Remove(owner)
+	if(implant_scooter)
+		implant_scooter.Remove(owner)
+
+
+/datum/action/innate/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+	var/mob/living/carbon/human/holder
+	var/wheelToggle = FALSE //False means wheels are not popped out
+	var/obj/vehicle/ridden/scooter/airshoes/W
+
+/datum/action/innate/airshoes/Grant(mob/user)
+	. = ..()
+	holder = user
+	W = new /obj/vehicle/ridden/scooter/airshoes(null)
+
+/datum/action/innate/airshoes/Remove(mob/M)
+	if(wheelToggle)
+		W.unbuckle_mob(holder)
+		wheelToggle = FALSE
+	QDEL_NULL(W)
+	. = ..()
+
+/datum/action/innate/airshoes/Activate()
+	if(!(W.is_occupant(holder)))
+		wheelToggle = FALSE
+	if(wheelToggle)
+		W.unbuckle_mob(holder)
+		wheelToggle = FALSE
+		return
+	W.forceMove(get_turf(holder))
+	W.buckle_mob(holder)
+	wheelToggle = TRUE
 //magboot implant
 /*
 /obj/item/organ/cyberimp/leg/magboot
