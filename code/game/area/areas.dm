@@ -611,7 +611,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Add a power value amount to the stored used_x variables
   */
 /area/proc/use_power(amount, chan)
-
+	if (GLOB.power_mod == -1)
+		GLOB.power_mod = CONFIG_GET(power_modifier)
+	amount *= GLOB.power_mod
 	switch(chan)
 		if(EQUIP)
 			used_equip += amount
