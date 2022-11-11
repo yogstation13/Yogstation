@@ -21,7 +21,7 @@
 	/// Chems that will modify the chance for fuckups while operating on conscious patients, stacks.
 	var/list/ouchie_modifying_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/consumable/ethanol/inocybeshine = 0.5, /datum/reagent/medicine/morphine = 0.5) 
 	/// Base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
-	var/fuckup_damage = 10			
+	var/fuckup_damage = 15			
 	/// Damage type fuckup_damage is dealt as
 	var/fuckup_damage_type = BRUTE
 	/// If silicons have to deal with success chance
