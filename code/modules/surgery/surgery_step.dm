@@ -272,7 +272,7 @@
 	if(!prob(final_ouchie_chance))
 		return
 	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target] flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
-	var/obj/item/bodypart/BP = get_bodypart(target_zone)
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 	if(BP?.get_mangled_state() = MANGLED_FLESH)
 		final_wound_bonus = -80 they are already quite fucked up, we don't want to KILL them do we? that would make it easy on them.
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone, wound_bonus = final_wound_bonus)
