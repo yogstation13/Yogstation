@@ -69,7 +69,7 @@
 			span_warning("[user] screws up, causing blood to spurt out of [H]'s chest!"))
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
 		BP.generic_bleedstacks += 10
-		H.adjustOrganLoss(ORGAN_SLOT_HEART, 10)
+		H.adjustOrganLoss(ORGAN_SLOT_HEART, 15)
 		H.adjustBruteLoss(10)
 
 //grafts a coronary bypass onto the individual's heart, success chance is 90% base again
@@ -80,7 +80,7 @@
 	preop_sound = 'sound/surgery/hemostat1.ogg'
 	success_sound = 'sound/surgery/hemostat1.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
-	fuckup_damage = 20
+	fuckup_damage = 25
 
 /datum/surgery_step/coronary_bypass/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to graft a bypass onto [target]'s heart..."),
