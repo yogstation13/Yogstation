@@ -6,6 +6,8 @@
 // Definitions
 /////////////////////////////
 
+//Multiplier of all power consumed.
+#define POWER_MOD 1
 /obj/machinery/power
 	name = null
 	icon = 'icons/obj/power.dmi'
