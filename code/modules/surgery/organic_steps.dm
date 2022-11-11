@@ -31,7 +31,6 @@
 			if(BP)
 				BP.generic_bleedstacks += bleeding
 	return TRUE
-
 /datum/surgery_step/incise/nobleed
 	fuckup_damage = 0
 	bleeding = 0
@@ -47,6 +46,7 @@
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/surgery/hemostat1.ogg'
+	fuckup_damage = 20 //because you're clamping bleeders. You miss and accidentally stab the bleeder instead? Should deal damage
 
 /datum/surgery_step/clamp_bleeders/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to clamp bleeders in [target]'s [parse_zone(target_zone)]..."),
@@ -71,6 +71,7 @@
 	time = 2.4 SECONDS
 	preop_sound = 'sound/surgery/retractor1.ogg'
 	success_sound = 'sound/surgery/retractor2.ogg'
+	//no fuckup here under anesthesia because like, retracting skin isn't necessarily painful in real world
 
 /datum/surgery_step/retract_skin/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to retract the skin in [target]'s [parse_zone(target_zone)]..."),
@@ -131,7 +132,7 @@
 		/obj/item = 'sound/surgery/scalpel1.ogg',
 	) 
 	success_sound = 'sound/surgery/bone3.ogg'
-	fuckup_damage = 20
+	fuckup_damage = 40 //this should REALLY fucking hurt if it fails
 
 /datum/surgery_step/saw/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to saw through the bone in [target]'s [parse_zone(target_zone)]..."),
@@ -150,7 +151,7 @@
 	name = "drill bone"
 	implements = list(TOOL_DRILL = 100, /obj/item/pickaxe/drill = 60, /obj/item/mecha_parts/mecha_equipment/drill = 60, TOOL_SCREWDRIVER = 20)
 	time = 3 SECONDS
-	fuckup_damage = 15
+	fuckup_damage = 20 //this should ALSO really fucking hurt if it fails
 	preop_sound = 'sound/weapons/circsawhit.ogg'
 	success_sound = 'sound/surgery/bone3.ogg'
 
