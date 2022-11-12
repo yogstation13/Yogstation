@@ -13,8 +13,7 @@
 					/obj/item/assembly/flash/handheld = 5,
 					/obj/item/reagent_containers/food/snacks/donut = 12,
 					/obj/item/storage/box/evidence = 6,
-					/obj/item/flashlight/seclite = 4,
-					/obj/item/restraints/legcuffs/bola/energy = 7)
+					/obj/item/flashlight/seclite = 4)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
 					  /obj/item/storage/box/fancy/donut_box = 2)
 	premium = list(/obj/item/storage/belt/security/webbing = 5,

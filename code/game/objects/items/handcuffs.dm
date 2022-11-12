@@ -327,6 +327,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
 	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
+	slowdown = 4
 
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
@@ -338,7 +339,9 @@
 	breakouttime = 35//easy to apply, easy to break out of
 	gender = NEUTER
 	break_strength = 3
+	slowdown = 2
 	var/immobilize = 0
+	var/autoremovetime = 10 SECONDS //seconds until the bola falls off by itself
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
 	if(!..())
@@ -364,6 +367,14 @@
 	to_chat(hit_carbon, span_userdanger("\The [src] ensnares you!"))
 	hit_carbon.Immobilize(immobilize)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+	if(autoremovetime != -1)
+		addtimer(CALLBACK(src, .proc/slideoff, hit_carbon), autoremovetime)
+
+
+/obj/item/restraints/legcuffs/bola/proc/slideoff(mob/living/carbon/mobtoremove)
+	visible_message(span_danger("\The [src] loses tension, and falls to the ground."))
+	mobtoremove.legcuffed = null
+	forceMove(get_turf(src))
 
 /obj/item/restraints/legcuffs/bola/proc/impactAnimal(mob/living/simple_animal/hit_animal, datum/thrownthing/throwingdatum)
 	return // Does nothing by default
@@ -376,6 +387,8 @@
 	breakouttime = 70
 	immobilize = 20
 	break_strength = 4
+	slowdown = 5.25
+	autoremovetime = 20 SECONDS
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
 	name = "watcher Bola"
@@ -393,6 +406,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	breakouttime = 6 SECONDS
 	break_strength = 2
+	autoremovetime = -1
 
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom))
