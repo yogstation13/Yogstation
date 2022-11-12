@@ -25,7 +25,7 @@
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if((method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))) //blood gain is handled elsewhere for everything that cares about it
+		if((method == INGEST) && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits)) //blood gain is handled elsewhere for everything that cares about it
 			return
 		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT))
 			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type))
