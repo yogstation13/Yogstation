@@ -493,14 +493,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"bC" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_x = -28
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "bD" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/mineral/titanium/white,
@@ -677,6 +669,15 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Vc" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -1020,7 +1021,7 @@ ac
 bp
 Jx
 Jx
-bC
+Vc
 bF
 ac
 "}

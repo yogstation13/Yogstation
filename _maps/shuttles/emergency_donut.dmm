@@ -674,6 +674,10 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"JB" = (
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "ZL" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -893,7 +897,7 @@ am
 bc
 bg
 bg
-bg
+JB
 ab
 bs
 bt

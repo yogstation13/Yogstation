@@ -305,19 +305,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"au" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "av" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -1526,6 +1513,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"yR" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Ba" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2144,7 +2145,7 @@ ab
 ad
 af
 am
-au
+yR
 aB
 aG
 aJ

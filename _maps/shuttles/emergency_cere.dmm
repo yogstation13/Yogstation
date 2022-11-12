@@ -1249,22 +1249,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"cA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cB" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1926,6 +1910,23 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/escape)
+"vT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "xv" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2682,7 +2683,7 @@ ab
 ch
 co
 cv
-cA
+vT
 cE
 cH
 ab

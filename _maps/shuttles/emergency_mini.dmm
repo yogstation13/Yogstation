@@ -12,18 +12,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"bP" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cc" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -598,6 +586,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"Af" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Ap" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom";
@@ -928,7 +929,7 @@ mU
 xi
 xi
 Xn
-bP
+Af
 sw
 rI
 pH

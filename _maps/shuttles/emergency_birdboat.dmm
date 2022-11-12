@@ -499,6 +499,10 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"Ko" = (
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -712,7 +716,7 @@ ab
 ab
 bb
 aZ
-ai
+Ko
 ai
 aD
 an
