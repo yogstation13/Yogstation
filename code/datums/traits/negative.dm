@@ -650,7 +650,7 @@
 
 /datum/quirk/junkie/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/junkie/smoker
@@ -760,7 +760,7 @@
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/kleptomaniac
