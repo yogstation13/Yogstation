@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(floppy_disk_doors)
+
 /obj/machinery/door/password
 	name = "door"
 	desc = "This door only opens when provided a password."
@@ -16,6 +18,28 @@
 /obj/machinery/door/password/voice
 	voice_activated = TRUE
 
+/obj/machinery/door/password/floppy_disk
+	desc = "This door only opens when provided with a decrypted floppy drive."
+	var/id
+
+/obj/machinery/door/password/floppy_disk/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/disk/puzzle))
+		var/obj/item/disk/puzzle/P = I
+		if(P.id == id)
+			if(P.decrypted)
+				open()
+			else
+				to_chat(user, span_warning("This this doesn't seem to be decrypted!"))
+		else
+			to_chat(user, span_warning("This disk doesn't belong to this door!"))
+
+/obj/machinery/door/password/floppy_disk/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating)
+		return
+	if(density)
+		do_animate("deny")
 
 /obj/machinery/door/password/Initialize(mapload)
 	. = ..()

@@ -80,21 +80,30 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_CRYPTO "Cryptocurrency Mining"
 #define AI_RESEARCH "Research Assistance"
 #define AI_REVIVAL "AI Restoration"
+#define AI_PUZZLE "Floppy Drive Decryption"
 
 GLOBAL_LIST_INIT(possible_ainet_activities, list(
 	"[AI_CRYPTO]",
 	"[AI_RESEARCH]",
-	"[AI_REVIVAL]"
+	"[AI_REVIVAL]",
+	"[AI_PUZZLE]"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_tagline, list(
 	"[AI_CRYPTO]" = "Use CPU to generate credits!",
 	"[AI_RESEARCH]" = "Use CPU to generate regular research points!",
-	"[AI_REVIVAL]" = "Revive a dead AI using CPU!"
+	"[AI_REVIVAL]" = "Revive a dead AI using CPU!",
+	"[AI_PUZZLE]" = "Use CPU to break encryption on floppy drives!"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_description, list(
 	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income.",
 	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points.",
-	"[AI_REVIVAL]" = "If you've inserted a volatile neural core into a connected data core this will revive it using CPU."
+	"[AI_REVIVAL]" = "If you've inserted a volatile neural core into a connected data core this will revive it using CPU.",
+	"[AI_PUZZLE]" = "If you've found an inserted an encrypted floppy drive into a connected server cabinet you can decrypt it using CPU."
 ))
+
+
+//Exploration defines
+#define AI_FLOPPY_DECRYPTION_COST 2500
+#define AI_FLOPPY_EXPONENT 1.25

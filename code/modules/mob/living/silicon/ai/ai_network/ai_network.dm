@@ -9,6 +9,7 @@
 
 	var/list/ai_list = list() 	//List of all AIs in this network
 	var/list/reviving_ais = list()
+	var/list/decryption_drives = list()
 
 	var/list/remote_networks = list()
 	
@@ -82,6 +83,21 @@
 					DC.dead_ai_blackbox.stored_ai = null
 					QDEL_NULL(DC.dead_ai_blackbox)
 					reviving_ais -= DC
+
+	if(local_cpu_usage[AI_PUZZLE])
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_PUZZLE] * total_cpu * resources_assigned)), 0)
+		points = max(0, points)
+		var/total_decrypting_drives = decryption_drives.len
+		if(total_decrypting_drives)
+			var/distributed_points = points / total_decrypting_drives
+			for(var/obj/machinery/ai/server_cabinet/SC in decryption_drives)
+				if(!SC.puzzle_disk)
+					decryption_drives -= SC
+				SC.puzzle_disk.decryption_progress += distributed_points
+				if(SC.puzzle_disk.decryption_progres >= (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT))
+					SC.puzzle_disk.decrypted = TRUE
+					SC.puzzle_disk.forceMove(SC.drop_location())
+					decryption_drives -= SC
 
 	var/locally_used = 0
 	for(var/A in local_cpu_usage)

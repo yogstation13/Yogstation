@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 	var/obj/ai_smoke/smoke
 
-
+	var/obj/item/disk/puzzle/puzzle_disk
 
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
@@ -174,6 +174,15 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
 		return TRUE
+	
+	if(istype(O, /obj/item/disk/puzzle))
+		if(puzzle_disk)
+			to_chat(user, span_warning("There's already a floppy drive inserted!"))
+			return
+
+		puzzle_disk = O
+		network.decryption_drives |= src
+		return TRUE
 
 	return ..()
 
@@ -205,9 +214,16 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	. = ..()
 	if(network)
 		network.update_resources()
+		if(puzzle_disk)
+			network.decryption_drives |= src
 
 /obj/machinery/ai/server_cabinet/disconnect_from_network()
 	var/datum/ai_network/temp = network
+	if(puzzle_disk)
+		network.decryption_drives -= src
 	. = ..()
 	if(temp)
 		temp.update_resources()
+		if(puzzle_disk)
+			temp.decryption_drives |= src
+		
