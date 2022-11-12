@@ -7,12 +7,19 @@
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	var/obj/item/clothing/mask/breath/machine/attached_mask
 	var/obj/item/tank/attached_tank = null
+	var/is_roundstart = FALSE
 	var/mask_out = FALSE
+
+/obj/machinery/anesthetic_machine/roundstart
+	is_roundstart = TRUE
 
 /obj/machinery/anesthetic_machine/Initialize()
 	. = ..()
 	attached_mask = new /obj/item/clothing/mask/breath/machine(src)
 	attached_mask.machine_attached = src
+	if(is_roundstart)
+		var/obj/item/tank/T = new /obj/item/tank/internals/anesthetic(src)
+		attached_tank = T
 	update_icon()
 
 /obj/machinery/anesthetic_machine/update_icon()
