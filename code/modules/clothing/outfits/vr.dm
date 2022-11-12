@@ -2,7 +2,7 @@
 	name = "Basic VR"
 	uniform = /obj/item/clothing/under/rank/cargotech
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	id = /obj/item/card/id
+	id = /obj/item/card/id/no_bank
 
 /datum/outfit/vr/pre_equip(mob/living/carbon/human/H)
 	H.dna.species.before_equip_job(null, H)

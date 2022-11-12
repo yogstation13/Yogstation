@@ -356,6 +356,10 @@ update_label("John Doe", "Clowny")
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 
+//a card that can't register a bank account IC
+/obj/item/card/id/silver/no_bank/AltClick(mob/living/user)
+	return FALSE
+
 /obj/item/card/id/silver
 	name = "silver identification card"
 	desc = "A silver card which shows honour and dedication."
