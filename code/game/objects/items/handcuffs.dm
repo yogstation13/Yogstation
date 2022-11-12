@@ -408,6 +408,10 @@
 	break_strength = 2
 	autoremovetime = -1
 
+/obj/item/restraints/legcuffs/bola/energy/emp_act()
+	visible_message(span_danger("\The [src] fizzles out!"))
+	qdel(src)
+	
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom))
 		var/obj/item/restraints/legcuffs/beartrap/B = new /obj/item/restraints/legcuffs/beartrap/energy/cyborg(get_turf(hit_atom))
