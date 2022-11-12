@@ -60,7 +60,10 @@
 	if(has_buckled_mobs())
 		unbuckle_all_mobs()
 
+	var/mob/living/carbon/human/alienprisoner = M
 	if(buckle_mob(M))
+		alienprisoner.handcuffed = new /obj/item/restraints/handcuffs/alien/beno(alienprisoner)
+		alienprisoner.update_handcuffed()
 		M.visible_message(\
 			"[user.name] secretes a thick vile goo, securing [M.name] into [src]!",\
 			span_danger("[user.name] drenches you in a foul-smelling resin, trapping you in [src]!"),\
