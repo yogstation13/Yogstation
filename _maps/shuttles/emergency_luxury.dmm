@@ -131,7 +131,7 @@
 /turf/open/floor/mineral/diamond,
 /area/shuttle/escape/luxury)
 "gT" = (
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/mineral/gold{
 	dir = 4
 	},

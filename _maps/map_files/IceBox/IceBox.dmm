@@ -57067,7 +57067,7 @@
 	pixel_x = 22
 	},
 /obj/machinery/light,
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "eVv" = (

@@ -500,7 +500,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Ko" = (
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 

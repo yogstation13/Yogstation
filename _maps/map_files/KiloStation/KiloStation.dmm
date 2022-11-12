@@ -85092,7 +85092,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "eXl" = (

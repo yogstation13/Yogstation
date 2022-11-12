@@ -119148,7 +119148,7 @@
 /obj/item/radio/intercom{
 	pixel_y = -26
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_a)
 "fsR" = (
@@ -122894,7 +122894,7 @@
 /obj/item/radio/intercom{
 	pixel_y = -26
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_c)
 "maR" = (
@@ -123443,7 +123443,7 @@
 /obj/item/radio/intercom{
 	pixel_y = -26
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_b)
 "mHo" = (

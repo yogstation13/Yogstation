@@ -2521,7 +2521,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "IK" = (
-/obj/machinery/anesthetic_machine,
+/obj/machinery/anesthetic_machine/roundstart,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "Jh" = (
