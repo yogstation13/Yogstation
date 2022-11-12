@@ -64,7 +64,9 @@
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
 	..()
-	if(user.transferItemToLoc(src, get_turf(M)))
+	if(isalien(user) && do_after_mob(user, M, 2 SECONDS))
+		Leap(M, TRUE)
+	else if(user.transferItemToLoc(src, get_turf(M)))
 		Leap(M)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
@@ -142,7 +144,7 @@
 
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/proc/Leap(mob/living/M)
+/obj/item/clothing/mask/facehugger/proc/Leap(mob/living/M, force = FALSE)
 	if(!valid_to_attach(M))
 		return FALSE
 	if(iscarbon(M))
@@ -160,10 +162,16 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.is_mouth_covered(head_only = 1))
-				H.visible_message(span_danger("[src] smashes against [H]'s [H.head]!"), \
-									span_userdanger("[src] smashes against [H]'s [H.head]!"))
-				Die()
-				return FALSE
+				if(force)//if they are wearing a helmet to remove and this is a manual application
+					var/obj/item/clothing/helmet = target.head
+					if(target.dropItemToGround(helmet))
+						target.visible_message(span_danger("[src] wedges it's limbs under [helmet] and tears it off of [target]'s head!"), \
+											span_userdanger("[src] wedges it's limbs under [helmet] and tears it off of [target]'s head!"))
+				else
+					H.visible_message(span_danger("[src] smashes against [H]'s [H.head]!"), \
+										span_userdanger("[src] smashes against [H]'s [H.head]!"))
+					Die()
+					return FALSE
 
 		if(target.wear_mask)
 			var/obj/item/clothing/W = target.wear_mask
