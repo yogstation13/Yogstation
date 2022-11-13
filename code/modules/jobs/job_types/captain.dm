@@ -29,8 +29,7 @@
 	mail_goodies = list(
 		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
 		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
-		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10,
-		/obj/item/sharpener = 1
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10
 	)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
