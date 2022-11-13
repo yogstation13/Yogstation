@@ -376,7 +376,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					var/mob/camera/blob/BC = new_blob.become_overmind(200, 1.3)
 					BC.forceMove(T)
 					BC.place_blob_core(BLOB_FORCE_PLACEMENT)
-
+					
+					message_admins("[src] has created a blob. [ADMIN_JMP(src)].")
+					investigate_log("has created a blob.", INVESTIGATE_SUPERMATTER)
+					qdel(src)
+					return
 	if(combined_gas > MOLE_PENALTY_THRESHOLD)
 		message_admins("[src] has collapsed into a singularity. [ADMIN_JMP(src)].")
 		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
