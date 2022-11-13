@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "dealing damage to a corpse buckled to a chair also damages the chair"
