@@ -269,7 +269,7 @@
 	item_state = "bola_cult"
 	breakouttime = 60
 	immobilize = 20
-	autoremovetime = -1
+	autoremovetime = 20 SECONDS
 
 /obj/item/restraints/legcuffs/bola/cult/pickup(mob/living/user)
 	. = ..()
