@@ -43,7 +43,7 @@
 					return
 				if(airlock.density)
 					if(airlock.locked || airlock.aac)
-						A.request_from_door(src)
+						A.request_from_door(airlock)
 						return
 
 /datum/wires/advanced_airlock_controller/on_cut(wire, mend)
