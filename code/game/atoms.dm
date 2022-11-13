@@ -646,6 +646,7 @@
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
+	return FALSE //needs this here so it won't return true if things don't wash
 
 ///Is this atom in space
 /atom/proc/isinspace()

@@ -109,7 +109,7 @@
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown)
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown * (check_eva() ? EVA_MODIFIER : 1))
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(atom/target)
 	if(!chassis)
@@ -117,7 +117,7 @@
 	var/C = chassis.loc
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	. = do_after(chassis.occupant, equip_cooldown, target)
+	. = do_after(chassis.occupant, equip_cooldown * (check_eva() ? EVA_MODIFIER : 1), target)
 	set_ready_state(1)
 	if(!chassis || 	chassis.loc != C || src != chassis.selected || !(get_dir(chassis, target)&chassis.dir))
 		return 0
@@ -185,9 +185,15 @@
 /obj/item/mecha_parts/mecha_equipment/proc/needs_rearm()
 	return 0
 
+
 //used for equipment, such as melee weapons, that have passive effects
 /obj/item/mecha_parts/mecha_equipment/proc/on_select()
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/proc/on_deselect()
 	return 0
+
+// Is the occupant wearing a pilot suit?
+/obj/item/mecha_parts/mecha_equipment/proc/check_eva()
+	return chassis?.check_eva()
+

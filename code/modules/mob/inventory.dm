@@ -298,7 +298,6 @@
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
-	SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
 	I.do_drop_animation(src)
 
@@ -325,6 +324,7 @@
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
 
+	SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
 	var/hand_index = get_held_index_of_item(I)
 	if(hand_index)
 		held_items[hand_index] = null
