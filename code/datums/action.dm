@@ -564,7 +564,7 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, span_warning("You dont have any usable hands!"))
+			to_chat(owner, span_warning("You don't have any usable hands!"))
 		else
 			to_chat(owner, span_warning("Your hands are full!"))
 
