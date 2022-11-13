@@ -167,7 +167,7 @@
 
 
 /datum/action/innate/mecha/mech_defence_mode
-	name = "Toggle Defence Mode"
+	name = "Toggle Defense Mode"
 	button_icon_state = "mech_defense_mode_off"
 
 /datum/action/innate/mecha/mech_defence_mode/Activate(forced_state = null)
