@@ -129,7 +129,7 @@
 	desc = "A sign labeling the engineering department of the station. The fewer moving parts the better."
 	icon_state = "minskyengi"
 
-/obj/structure/sign/departments/minsky/engineering/telecommmunications
+/obj/structure/sign/departments/minsky/engineering/telecommunications
 	name = "Telecommunications Department"
 	desc = "A sign labeling the telecommunications division of the station. 'Nuff said."
 	icon_state = "minskytcom"
