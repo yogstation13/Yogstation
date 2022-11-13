@@ -50,7 +50,7 @@
 	else
 		scan_target = null
 	if(!trackable_targets_exist)
-		to_chat(owner, span_assimilator("The psychic energies eminating from afar have died down... for now"))
+		to_chat(owner, span_assimilator("The psychic energies emanating from afar have died down... for now"))
 		owner.remove_status_effect(STATUS_EFFECT_HIVE_RADAR)
 
 //"Trackable" status effect
