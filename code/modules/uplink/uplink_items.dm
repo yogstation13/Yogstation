@@ -413,6 +413,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/dangerous/backstab
+	name = "Backstabbing Switchblade"
+	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
+			Still does a moderate amount of damage when applied from the front."
+	item = /obj/item/switchblade/backstab
+	cost = 5
+	// backstabs are pretty funny, clown ops can have this one
+
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."

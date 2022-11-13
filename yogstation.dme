@@ -3386,6 +3386,7 @@
 #include "yogstation\code\datums\world_topic.dm"
 #include "yogstation\code\datums\actions\ninja.dm"
 #include "yogstation\code\datums\antagonists\vampire.dm"
+#include "yogstation\code\datums\components\backstabs.dm"
 #include "yogstation\code\datums\components\crawl.dm"
 #include "yogstation\code\datums\components\daniel.dm"
 #include "yogstation\code\datums\components\fishable.dm"
