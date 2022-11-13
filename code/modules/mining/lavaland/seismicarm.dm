@@ -147,9 +147,11 @@
 			M.attempt_drill()
 			L.adjustBruteLoss(5)
 		if(Q.density)
+			to_chat(user, span_warning("There's no room to do this!"))
 			return
-		for(var/obj/D in T.contents)
+		for(var/obj/D in Q.contents)
 			if(D.density == TRUE)
+				to_chat(user, span_warning("There's no room to do this!"))
 				return
 		for(var/obj/machinery/door/window/E in Z.contents)
 			if(E.density == TRUE)
