@@ -142,6 +142,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		if (shock(user, 50))
 			return
+		if (!do_after(user, 0.5 SECONDS, src))
+			return
 		user.visible_message("[user] cuts the cable.", span_notice("You cut the cable."))
 		investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 		add_fingerprint(user)
