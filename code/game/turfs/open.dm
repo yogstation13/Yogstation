@@ -595,13 +595,13 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen))
+	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen) && !(air.get_moles(/datum/gas/hypernoblium)>=REACTION_OPPRESSION_THRESHOLD))
 		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
 		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength * 0.001),0))
 		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength * 0.002),0))
 		air.adjust_moles(/datum/gas/pluoxium, pulse_strength * 0.004)
 		air_update_turf()
-	if (air.get_moles(/datum/gas/hydrogen))
+	if (air.get_moles(/datum/gas/hydrogen) && !(air.get_moles(/datum/gas/hypernoblium)>=REACTION_OPPRESSION_THRESHOLD))
 		pulse_strength = min(pulse_strength, air.get_moles(/datum/gas/hydrogen) * 1000)
 		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
