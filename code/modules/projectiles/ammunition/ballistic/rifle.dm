@@ -1,27 +1,27 @@
 // 7.62 (Nagant Rifle)
 
 /obj/item/ammo_casing/a762
-	name = "7.62 bullet casing"
-	desc = "A 7.62 bullet casing."
+	name = "7.62mm bullet casing"
+	desc = "A 7.62mm bullet casing."
 	icon_state = "762-casing"
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/a762
 
 /obj/item/ammo_casing/a762/raze
-	name = "7.62 Raze bullet casing"
-	desc = "A 7.62 Raze bullet casing."
+	name = "7.62mm Raze bullet casing"
+	desc = "A 7.62mm Raze bullet casing."
 	icon_state = "762R-casing"
 	projectile_type = /obj/item/projectile/bullet/a762/raze
 
 /obj/item/ammo_casing/a762/pen
-	name = "7.62 anti-material bullet casing"
-	desc = "A 7.62 anti-material bullet casing."
+	name = "7.62mm anti-material bullet casing"
+	desc = "A 7.62mm anti-material bullet casing."
 	icon_state = "762P-casing"
 	projectile_type = /obj/item/projectile/bullet/a762/pen
 
 /obj/item/ammo_casing/a762/vulcan
-	name = "7.62 Vulcan bullet casing"
-	desc = "A 7.62 Vulcan bullet casing."
+	name = "7.62mm Vulcan bullet casing"
+	desc = "A 7.62mm Vulcan bullet casing."
 	icon_state = "762I-casing"
 	projectile_type = /obj/item/projectile/bullet/a762/vulcan
 
