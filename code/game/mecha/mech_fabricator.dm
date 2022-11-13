@@ -136,7 +136,7 @@
 	if(I.GetID())
 		var/obj/item/card/id/C = I.GetID()
 		if(obj_flags & EMAGGED)
-			to_chat(user, span_warning("The authentification slot spits sparks at you and the display reads scrambled text!"))
+			to_chat(user, span_warning("The authentication slot spits sparks at you and the display reads scrambled text!"))
 			do_sparks(1, FALSE, src)
 			authorization_override = TRUE //just in case it wasn't already for some reason. keycard reader is busted.
 			return
