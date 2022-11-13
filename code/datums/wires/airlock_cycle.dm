@@ -4,10 +4,10 @@
 
 /datum/wires/advanced_airlock_controller/New(atom/holder)
 	wires = list(
-		WIRE_POWER,
+		WIRE_POWER, WIRE_ACTIVATE,
 		WIRE_IDSCAN, WIRE_AI
 	)
-	add_duds(3)
+	add_duds(1)
 	..()
 
 /datum/wires/advanced_airlock_controller/interactable(mob/user)
@@ -37,6 +37,14 @@
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
 			addtimer(CALLBACK(A, /obj/machinery/advanced_airlock_controller.proc/reset, wire), 100)
+		if(WIRE_ACTIVATE) // Toggle airlock cycles
+			for(var/obj/machinery/door/airlock/airlock in A.airlocks)
+				if(airlock.operating || (airlock.obj_flags & EMAGGED))
+					return
+				if(airlock.density)
+					if(airlock.locked || airlock.aac)
+						A.request_from_door(src)
+						return
 
 /datum/wires/advanced_airlock_controller/on_cut(wire, mend)
 	var/obj/machinery/advanced_airlock_controller/A = holder
