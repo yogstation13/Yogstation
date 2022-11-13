@@ -239,6 +239,26 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"ls" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "engsm";
+	name = "Radiation Shutters Control";
+	pixel_x = 24;
+	pixel_y = 0;
+	req_access_txt = "10"
+	},
+/obj/structure/rack,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/clothing/glasses/meson/engine,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "my" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -269,20 +289,6 @@
 	name = "Radiation Shutters Control";
 	pixel_x = 0;
 	pixel_y = -24;
-	req_access_txt = "10"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"of" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/button/door{
-	dir = 4;
-	id = "engsm";
-	name = "Radiation Shutters Control";
-	pixel_x = 24;
-	pixel_y = 0;
 	req_access_txt = "10"
 	},
 /turf/open/floor/plasteel,
@@ -1029,7 +1035,7 @@ aO
 Lj
 ul
 Lj
-of
+ls
 Lj
 zG
 Lj
