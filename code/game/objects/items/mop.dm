@@ -1,5 +1,5 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
+	desc = "The world of Janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'yogstation/icons/obj/janitor.dmi'
 	icon_state = "mop"
