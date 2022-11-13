@@ -51,7 +51,7 @@
 /obj/effect/proc_holder/spell/targeted/mindread/cast(list/targets, mob/living/carbon/human/user = usr)
 	for(var/mob/living/M in targets)
 		if(usr.anti_magic_check(FALSE, FALSE, TRUE, 0) || M.anti_magic_check(FALSE, FALSE, TRUE, 0))
-			to_chat(usr, span_warning("As you reach out with your mind, you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
+			to_chat(usr, span_warning("As you reach out with your mind, you're suddenly stopped by a vision of a massive tinfoil wall that stretches beyond visible range. It seems you've been foiled."))
 			return
 		if(M.stat == DEAD)
 			to_chat(user, span_boldnotice("[M] is dead!"))
