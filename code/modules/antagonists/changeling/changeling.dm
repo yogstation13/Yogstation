@@ -83,6 +83,7 @@
 	generate_name()
 	create_actions()
 	reset_powers()
+	make_absorbable() // Lings need to be able to absorb other lings
 	create_initial_profile()
 	if(give_objectives)
 		if(team_mode)
@@ -102,6 +103,12 @@
 			B.decoy_override = FALSE
 	remove_changeling_powers()
 	. = ..()
+
+/datum/antagonist/changeling/proc/make_absorbable()
+	var/mob/living/carbon/C = owner.current
+	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
+		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
+		C.set_species(/datum/species/human, TRUE, TRUE)
 
 /datum/antagonist/changeling/proc/remove_clownmut()
 	if (owner)
