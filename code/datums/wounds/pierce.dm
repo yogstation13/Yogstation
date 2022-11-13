@@ -176,7 +176,7 @@
 /datum/wound/pierce/critical
 	name = "Ruptured Cavity"
 	desc = "Patient's internal tissue and circulatory system is shredded, causing significant internal bleeding and damage to internal organs."
-	treat_text = "Surgical repair of puncture wound, followed by supervised resanguination."
+	treat_text = "Surgical repair of puncture wound, followed by supervised blood infusion."
 	examine_desc = "is ripped clear through, barely held together by exposed bone"
 	occur_text = "blasts apart, sending chunks of viscera flying in all directions"
 	sound_effect = 'sound/effects/wounds/pierce3.ogg'
