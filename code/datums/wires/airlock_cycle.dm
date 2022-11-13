@@ -41,10 +41,17 @@
 			for(var/obj/machinery/door/airlock/airlock in A.airlocks)
 				if(airlock.operating || (airlock.obj_flags & EMAGGED))
 					return
-				if(airlock.density)
+				var/is_allowed = TRUE
+				if(!airlock.allowed(usr))
+					if(is_allowed)
+						is_allowed = FALSE
+						to_chat(usr, span_danger("Access denied."))
+					if(airlock.density)
+						spawn()
+							airlock.do_animate("deny")
+				if(is_allowed && airlock.density)
 					if(airlock.locked || airlock.aac)
 						A.request_from_door(airlock)
-						return
 
 /datum/wires/advanced_airlock_controller/on_cut(wire, mend)
 	var/obj/machinery/advanced_airlock_controller/A = holder
