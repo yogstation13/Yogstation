@@ -642,11 +642,11 @@
 		SSshuttle.request_transit_dock(src)
 
 /obj/docking_port/mobile/proc/setTimer(wait)
-	timer = world.time + wait
+	timer = REALTIMEOFDAY + wait
 	last_timer_length = wait
 
 /obj/docking_port/mobile/proc/modTimer(multiple)
-	var/time_remaining = timer - world.time
+	var/time_remaining = timer - REALTIMEOFDAY
 	if(time_remaining < 0 || !last_timer_length)
 		return
 	time_remaining *= multiple
@@ -656,7 +656,7 @@
 /obj/docking_port/mobile/proc/invertTimer()
 	if(!last_timer_length)
 		return
-	var/time_remaining = timer - world.time
+	var/time_remaining = timer - REALTIMEOFDAY
 	if(time_remaining > 0)
 		var/time_passed = last_timer_length - time_remaining
 		setTimer(time_passed)
@@ -670,7 +670,7 @@
 	if(!timer)
 		ds_remaining = callTime * engine_coeff
 	else
-		ds_remaining = max(0, timer - world.time)
+		ds_remaining = max(0, timer - REALTIMEOFDAY)
 
 	. = round(ds_remaining / divisor, 1)
 
