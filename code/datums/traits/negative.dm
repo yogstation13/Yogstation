@@ -830,3 +830,21 @@
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
+
+/datum/quirk/monochromatic
+	name = "Monochromacy"
+	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
+	value = -2
+	medical_record_text = "Patient is afflicted with almost complete color blindness."
+
+/datum/quirk/monochromatic/add()
+	quirk_holder.add_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/monochromatic/post_add()
+	if(quirk_holder.mind.assigned_role == "Detective")
+		to_chat(quirk_holder, span_boldannounce("Mmm. Nothing's ever clear on this station. It's all shades of gray..."))
+		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
+
+/datum/quirk/monochromatic/remove()
+	if(quirk_holder)
+		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
