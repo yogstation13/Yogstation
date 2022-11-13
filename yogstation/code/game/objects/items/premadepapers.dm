@@ -317,99 +317,6 @@
 /**
   *
   * 
-  * A form for testing employee literacy.
-  *
-  * A form for employee literacy testing. The bane of everyone.
-  *
-  */
-/obj/item/paper/paperwork/literacytest
-	name = "Literacy Test for NT Employees (Form NT-43)"
-
-/obj/item/paper/paperwork/literacytest/Initialize()
-	. = ..()
-	//a list of questions for the test
-	var/list/questions = list(
-		"In the first space below, write the year the Credit was introduced.<br>218",
-		"In the first space below, write the year the UN split.<br>220",
-		"What was the first race discovered by humanity? Answer below.<br>",
-		"Who is the CEO of Nanotrasen? Answer below.<br>",
-		"From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>"
-	)
-	//select test question 1
-	var/question_one = pick(questions)
-	//remove from pool
-	questions -= question_one
-	//select test question 2
-	var/question_two = pick(questions)
-	//remove from pool
-	questions -= question_two
-	//select test question 3
-	var/question_three = pick(questions)
-	//remove from pool
-	questions -= question_three
-	//select test question 4
-	var/question_four = pick(questions)
-	//remove from pool
-	questions -= question_four
-	//select final test question
-	var/question_five = pick(questions)
-	//remove final pick from pool
-	questions -= question_five
-	written = list()
-	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
-	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<br>",/datum/language/common)
-	written += new/datum/langtext("<b>Name of Test-Taker:</b> ",/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("<b>Do what you are told in each statement, nothing more and nothing less. Each correct answer is worth 2 points.</b><hr>",/datum/language/common)
-	written += new/datum/langtext(question_one,/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext(question_two,/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext(question_three,/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext(question_four,/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext(question_five,/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<hr>" ,/datum/language/common)
-	written += new/datum/langtext("Sign your name where there is an option.<br>",/datum/language/common)
-	written += new/datum/langtext("<b>I,</b> ",/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
-	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
-	update_icon()
-/**
-  *
-  * 
-  * The answer key to the literacy test.
-  *
-  * Nobody will know the answers if I don't include this.
-  *
-  */
-/obj/item/paper/paperwork/literacytest/answers
-	name = "Literacy Test Answers (NT-44)"
-
-/obj/item/paper/paperwork/literacytest/answers/Initialize()
-	. = ..()
-	written = list()
-	written += new/datum/langtext("<center><h3>NT-44 Literacy Test Answer Key</h3></center><hr>",/datum/language/common)
-	written += new/datum/langtext("<b>1. In the first space below, write the year the credit was introduced.</b> <u>The credit was introduced in 2181.</u><br>",/datum/language/common)
-	written += new/datum/langtext("<b>2. In the first space below, write the year the UN split.</b> <u>The UN split in 2205.</u><br>",/datum/language/common)
-	written += new/datum/langtext("<b>3. What was the first race discovered by humanity? Answer below.</b> <u>Plasmamen</u><br>",/datum/language/common)
-	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
-	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
-	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
-	update_icon()
-/**
-  *
-  * 
   * A form for requesting something be researched.
   *
   * Do not use. Everyone will hate you.
@@ -496,6 +403,104 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><br><b>Stamp:</b>",/datum/language/common)
 	written += new/datum/langtext("",/datum/language/common)
+	update_icon()
+
+/**
+  *
+  * 
+  * A form for testing employee literacy.
+  *
+  * A form for employee literacy testing. The bane of everyone.
+  *
+  */
+/obj/item/paper/paperwork/literacytest
+	name = "Literacy Test for NT Employees (Form NT-43)"
+	id = 12
+
+/obj/item/paper/paperwork/literacytest/Initialize()
+	. = ..()
+	//a list of questions for the test
+	var/list/questions = list(
+		"In the first space below, write the year the Credit was introduced.<br>218",
+		"In the first space below, write the year the UN split.<br>220",
+		"What was the first race discovered by humanity? Answer below.<br>",
+		"Who is the CEO of Nanotrasen? Answer below.<br>",
+		"From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>"
+	)
+	//select test question 1
+	var/question_one = pick(questions)
+	//remove from pool
+	questions -= question_one
+	//select test question 2
+	var/question_two = pick(questions)
+	//remove from pool
+	questions -= question_two
+	//select test question 3
+	var/question_three = pick(questions)
+	//remove from pool
+	questions -= question_three
+	//select test question 4
+	var/question_four = pick(questions)
+	//remove from pool
+	questions -= question_four
+	//select final test question
+	var/question_five = pick(questions)
+	//remove final pick from pool
+	questions -= question_five
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br>",/datum/language/common)
+	written += new/datum/langtext("<b>Name of Test-Taker:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Do what you are told in each statement, nothing more and nothing less. Each correct answer is worth 2 points.</b><hr>",/datum/language/common)
+	written += new/datum/langtext(question_one,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_two,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_three,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_four,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_five,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>" ,/datum/language/common)
+	written += new/datum/langtext("Sign your name where there is an option.<br>",/datum/language/common)
+	written += new/datum/langtext("<b>I,</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
+	update_icon()
+
+/**
+  *
+  * 
+  * The answer key to the literacy test.
+  *
+  * Nobody will know the answers if I don't include this.
+  *
+  */
+/obj/item/paper/paperwork/literacytest/answers
+	name = "Literacy Test Answers (NT-44)"
+	id = 13
+	printable = FALSE
+
+/obj/item/paper/paperwork/literacytest/answers/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-44 Literacy Test Answer Key</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>1. In the first space below, write the year the credit was introduced.</b> <u>The credit was introduced in 2181.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>2. In the first space below, write the year the UN split.</b> <u>The UN split in 2205.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>3. What was the first race discovered by humanity? Answer below.</b> <u>Plasmamen</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
+	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
 	update_icon()
 
 // How to perform autopsy
