@@ -8,10 +8,13 @@
 	glass_icon_state = "catsip"
 	glass_name = "Catsip"
 	glass_desc = "Unfortunately has a tendency to induce the peculiar vocal tics of a wapanese mutant in the imbiber."
+	/// Number of times the chemical is allowed to cause forced speech
+	var/meowcount = 2
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_life(mob/living/M)
-	if(prob(8))
+	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
+		meowcount--
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)

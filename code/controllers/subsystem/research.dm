@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_designs = list()			//associative id = node datum
 	var/list/datum/techweb/techwebs = list()
 	var/datum/techweb/science/science_tech
+	var/datum/techweb/ruin/ruin_tech
 	var/datum/techweb/admin/admin_tech
 	var/datum/techweb_node/error_node/error_node	//These two are what you get if a node/design is deleted and somehow still stored in a console.
 	var/datum/design/error_design/error_design
@@ -46,6 +47,7 @@ SUBSYSTEM_DEF(research)
 	initialize_all_techweb_designs()
 	initialize_all_techweb_nodes()
 	science_tech = new /datum/techweb/science
+	ruin_tech = new /datum/techweb/ruin
 	admin_tech = new /datum/techweb/admin
 	autosort_categories()
 	error_design = new
@@ -73,7 +75,13 @@ SUBSYSTEM_DEF(research)
 	science_tech.last_bitcoins = bitcoins  // Doesn't take tick drift into account
 	for(var/i in bitcoins)
 		bitcoins[i] *= income_time_difference / 10
+		if(science_tech.stored_research_points[i])
+			var/boost_amt = clamp(0, bitcoins[i], science_tech.stored_research_points[i]) //up to 2x research speed when burning stored research
+			bitcoins[i] += boost_amt
+			science_tech.remove_stored_point_type(i, boost_amt)
 	science_tech.add_point_list(bitcoins)
+	//add RUIN_GENERATION_PER_TICK even without any servers, for things like freeminers
+	ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = RUIN_GENERATION_PER_TICK))
 	last_income = world.time
 
 /datum/controller/subsystem/research/proc/calculate_server_coefficient()	//Diminishing returns.

@@ -17,11 +17,14 @@
 	response_harm = "slashes"
 	melee_damage_lower = 13
 	melee_damage_upper = 15
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
 	faction = list("rat")
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	var/datum/action/cooldown/coffer
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
@@ -36,11 +39,6 @@
 	coffer.Grant(src)
 	riot.Grant(src)
 	domain.Grant(src)
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be his crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
-	if(LAZYLEN(candidates) && !mind)
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
-		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
 	var/kingdom = pick("Plague","Miasma","Maintenance","Trash","Garbage","Rat","Vermin","Cheese")
 	var/title = pick("King","Lord","Prince","Emperor","Supreme","Overlord","Master","Shogun","Bojar","Tsar","Hetman")
 	name = "[kingdom] [title]"
@@ -74,7 +72,7 @@
 			. += "<span class='notice'>This is your king. Long live his majesty!</span>"
 		else
 			. += "<span class='warning'>This is a false king! Strike him down!</span>"
-	else if(istype(user,/mob/living/simple_animal/hostile/regalrat))
+	else if(istype(user,/mob/living/simple_animal/hostile/regalrat) && (user != src))
 		. += "<span class='warning'>Who is this foolish false king? This will not stand!</span>"
 
 /mob/living/simple_animal/hostile/regalrat/handle_environment(datum/gas_mixture/environment)
@@ -100,7 +98,10 @@
 	. = ..()
 	if(!.)
 		return
-	var/turf/T = get_turf(owner)
+	var/turf/T = owner.loc
+	if(!istype(T))
+		to_chat(owner, "There is no cheese in here!")
+		return
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
@@ -146,6 +147,9 @@
 	. = ..()
 	if(!.)
 		return
+	if(!isopenturf(owner.loc))
+		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
+		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
 	for(var/mob/living/simple_animal/mouse/M in oview(owner, 5))
@@ -180,13 +184,16 @@
 	name = "Rat King's Domain"
 	desc = "Corrupts this area to be more suitable for your rat army."
 	check_flags = AB_CHECK_CONSCIOUS
-	cooldown_time = 6 SECONDS
+	cooldown_time = 10 SECONDS
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	background_icon_state = "bg_clock"
 	button_icon_state = "smoke"
 
-/datum/action/cooldown/domain/proc/domain()
-	var/turf/T = get_turf(owner)
+/datum/action/cooldown/domain/Trigger()
+	var/turf/T = owner.loc
+	if(!istype(T))
+		to_chat(owner, "Building our domain here is for cowards!")
+		return FALSE
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
 		if (8)
@@ -197,11 +204,6 @@
 			new /obj/effect/decal/cleanable/oil/slippery(T)
 		else
 			new /obj/effect/decal/cleanable/dirt(T)
-	StartCooldown()
-
-/datum/action/cooldown/domain/Trigger()
-	StartCooldown(10 SECONDS)
-	domain()
 	StartCooldown()
 
 #define REGALRAT_INTERACTION "regalrat"
@@ -220,7 +222,7 @@
 			target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
-		to_chat(src, span_green("You eat [src], restoring some health."))
+		to_chat(src, span_green("You eat [target], restoring some health."))
 		heal_bodypart_damage(30)
 		qdel(target)
 
@@ -308,8 +310,8 @@
 	. = ..()
 	INVOKE_ASYNC(src, .proc/get_player)
 
-/mob/living/simple_animal/hostile/regalrat/proc/get_player()
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_SENTIENCE, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
+/mob/living/simple_animal/hostile/regalrat/controlled/proc/get_player()
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_MOUSE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key

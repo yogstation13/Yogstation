@@ -13,14 +13,19 @@
 
 	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer")
 
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
-	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
+	added_access = list()
+	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
+	minimal_character_age = 20 //Probably just needs some baseline experience with bureaucracy, enough trust to land the position
 
 	changed_maps = list("OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/circuitboard/machine/emitter = 3
+	)
 
 /datum/job/qm/proc/OmegaStationChanges()
 	return TRUE
@@ -29,7 +34,7 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	pda_type = /obj/item/pda/quartermaster
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo

@@ -16,7 +16,7 @@
 
 	var/helpful = FALSE //keeping track if they're helpful or not
 	var/regeneration = FALSE //if limbs are regenerating
-	var/datum/disease/advance/tumor/ownerdisease //what disease it comes from
+	var/datum/symptom/tumor/owner_symptom //what symptom of the disease it comes from
 
 /obj/item/organ/tumor/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
@@ -26,11 +26,11 @@
 	. = ..()
 	var/tumors_left = FALSE
 	for(var/obj/item/organ/tumor/IT in owner.internal_organs)
-		if(IT.ownerdisease == ownerdisease)
+		if(IT.owner_symptom == owner_symptom)
 			tumors_left = TRUE
 	if(!tumors_left)
 		//cure the disease, removing all tumors 
-		ownerdisease.cure()
+		owner_symptom.disease.cure(FALSE)
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/organ/tumor/process()
@@ -56,8 +56,7 @@
 			owner.emote("scream")
 			owner.visible_message(span_warning("Gnarly tumors burst out of [owner]'s stump and form into a [parse_zone(limb_to_regenerate)]!"), span_notice("You scream as your [parse_zone(limb_to_regenerate)] reforms."))
 	if(prob(spread_chance))
-		if(ownerdisease)
-			ownerdisease.spread(owner, TRUE)
+		owner_symptom?.spread(owner, TRUE)
 
 
 /obj/item/organ/tumor/premalignant

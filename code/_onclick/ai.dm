@@ -26,7 +26,7 @@
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
@@ -181,7 +181,7 @@
 
 /* Humans (With upgrades) */
 /mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
-	
+
 	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
 		if(user.canExamineHumans)
 			user.examinate(src)

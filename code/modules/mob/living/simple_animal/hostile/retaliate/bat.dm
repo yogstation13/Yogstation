@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/bat
-	name = "Space Bat"
+	name = "space bat"
 	desc = "A rare breed of bat which roosts in spaceships, probably not vampiric."
 	icon_state = "bat"
 	icon_living = "bat"
@@ -15,6 +15,7 @@
 	health = 15
 	spacewalk = TRUE
 	see_in_dark = 10
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	harm_intent_damage = 6
 	melee_damage_lower = 6
 	melee_damage_upper = 5
@@ -23,6 +24,7 @@
 	pass_flags = PASSTABLE
 	faction = list("hostile")
 	attack_sound = 'sound/weapons/bite.ogg'
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -32,9 +34,7 @@
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
 	var/max_tox = 0
-
-
-	//Space bats need no air to fly in.
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0) //Space bats need no air to fly in.
 	minbodytemp = 0
+	can_be_held = TRUE
 

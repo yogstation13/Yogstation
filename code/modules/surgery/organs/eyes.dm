@@ -69,15 +69,45 @@
 		if((organ_flags & ORGAN_FAILING))
 			C.become_blind(EYE_DAMAGE)
 		else if(damage > 30)
-			C.overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 2)
+			C.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 2)
 		else
-			C.overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 1)
+			C.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 1)
 	//called once since we don't want to keep clearing the screen of eye damage for people who are below 20 damage
 	else if(damaged)
 		damaged = FALSE
 		C.clear_fullscreen("eye_damage")
 	return
 
+#define OFFSET_X 1
+#define OFFSET_Y 2
+
+/// This proc generates a list of overlays that the eye should be displayed using for the given parent
+/obj/item/organ/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
+	if(!istype(parent) || parent.getorgan(/obj/item/organ/eyes) != src)
+		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
+
+	var/mutable_appearance/eye_overlay = mutable_appearance('icons/mob/human_face.dmi', eye_icon_state, -BODY_LAYER)
+	var/list/overlays = list(eye_overlay)
+
+	if((EYECOLOR in parent.dna.species.species_traits))
+		eye_overlay.color = "#" + eye_color
+
+	// Cry emote overlay
+	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
+		var/mutable_appearance/tears_overlay = mutable_appearance('icons/mob/human_face.dmi', "tears", -BODY_ADJ_LAYER)
+		tears_overlay.color = COLOR_DARK_CYAN
+		overlays += tears_overlay
+
+	if(OFFSET_FACE in parent.dna?.species.offset_features)
+		var/offset = parent.dna.species.offset_features[OFFSET_FACE]
+		for(var/mutable_appearance/overlay in overlays)
+			overlay.pixel_x += offset[OFFSET_X]
+			overlay.pixel_y += offset[OFFSET_Y]
+
+	return overlays
+
+#undef OFFSET_X
+#undef OFFSET_Y
 
 /obj/item/organ/eyes/night_vision
 	name = "shadow eyes"
@@ -132,17 +162,37 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(10 * severity))
+	if(prob(20 * severity))
 		return
-	to_chat(owner, span_warning("Static obfuscates your vision!"))
-	owner.flash_act(visual = 1)
+	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	to_chat(owner, span_danger("your eyes overload and blind you!"))
+	owner.flash_act(override_blindness_check = 1)
+	owner.blind_eyes(5)
+	owner.blur_eyes(8)
+	eyes.applyOrganDamage(25)
 
 /obj/item/organ/eyes/robotic/xray
+	name = "\improper meson eyes"
+	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
+	eye_color = "00FF00"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	sight_flags = SEE_TURFS
+	see_in_dark = 4
+
+/obj/item/organ/eyes/robotic/xray/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_MESONS, src)
+
+/obj/item/organ/eyes/robotic/xray/Remove(mob/living/carbon/M, special = 0)
+	. = ..()
+	REMOVE_TRAIT(M, TRAIT_MESONS, src)
+
+/obj/item/organ/eyes/robotic/xray/syndicate
 	name = "\improper X-ray eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	desc = "These cybernetic eyes will give you true X-ray vision. Blinking is futile."
 	eye_color = "000"
-	see_in_dark = 8
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
+	see_in_dark = 8
 
 /obj/item/organ/eyes/robotic/thermals
 	name = "thermal eyes"

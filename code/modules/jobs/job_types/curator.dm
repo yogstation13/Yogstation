@@ -13,18 +13,19 @@
 
 	alt_titles = list("Librarian", "Journalist", "Archivist")
 
-	access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
-	minimal_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
+	added_access = list()
+	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
+	minimal_character_age = 18 //Don't need to be some aged-ass fellow to know how to care for things, possessions could easily have come from parents and the like. Bloodsucker knowledge is another thing, though that's likely mostly consulted by the book
 
 /datum/outfit/job/curator
 	name = "Curator"
 	jobtype = /datum/job/curator
 
-	pda_type = /obj/item/pda/curator
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/curator

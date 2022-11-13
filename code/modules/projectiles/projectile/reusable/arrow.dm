@@ -2,10 +2,11 @@
 	name = "Arrow"
 	desc = "Woosh!"
 	damage = 20
+	speed = 0.6
 	flag = MELEE
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
-	var/embed_chance = 0.5
+	var/embed_chance = 0.4
 	var/break_chance = 10
 	var/fauna_damage_bonus = 20
 
@@ -40,7 +41,7 @@
 	name = "Ashen arrow"
 	desc = "Fire Hardened arrow."
 	damage = 25
-	embed_chance = 0.3
+	embed_chance = 0.25
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
@@ -49,7 +50,7 @@
 	desc = "An arrow made from bone, wood, and sinew."
 	damage = 30
 	armour_penetration = 20
-	embed_chance = 0.4
+	embed_chance = 0.33
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
@@ -68,7 +69,7 @@
 	damage = 25
 	fauna_damage_bonus = 40
 	armour_penetration = 35
-	embed_chance = 0.5
+	embed_chance = 0.4
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
 
@@ -76,8 +77,8 @@
 	name = "Bamboo arrow"
 	desc = "An arrow made from bamboo."
 	damage = 10
-	embed_chance = 0.7
-	break_chance = 67
+	embed_chance = 0.5
+	break_chance = 50
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
 /obj/item/projectile/bullet/reusable/arrow/bronze //Inferior metal. Slightly better than ashen
@@ -93,16 +94,16 @@
 	name = "Glass arrow"
 	desc = "Glass tipped arrow"
 	damage = 15
-	embed_chance = 0.5
-	break_chance = 33
+	embed_chance = 0.3
+	break_chance = 25
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
 
 /obj/item/projectile/bullet/reusable/arrow/glass/plasma //Immensely capable of puncturing through materials; plasma is a robust material, more capable of slicing through protection
 	name = "Plasma Glass arrow"
 	desc = "Plasma Glass tipped arrow"
-	damage = 15
-	armour_penetration = 50
-	embed_chance = 0.5
+	damage = 18
+	armour_penetration = 60
+	embed_chance = 0.4
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
@@ -136,47 +137,49 @@
 	desc = "A burning arrow"
 
 /obj/item/projectile/bullet/reusable/arrow/flaming/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.apply_damage(10, BURN)
+		M.apply_damage(8, BURN)
 		M.adjust_fire_stacks(1)
 		M.IgniteMob()
+	return ..()
 
-/obj/item/projectile/energy/arrow //Hardlight projectile. Slightly more robust than a standard laser. Capable of hardening in target's flesh
+/obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh
 	name = "energy bolt"
 	icon_state = "arrow_energy"
-	damage = 25
+	damage = 32
 	damage_type = BURN
-	var/embed_chance = 0.5
+	speed = 0.6
+	var/embed_chance = 0.4
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(!blocked && iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
 		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
 			embede.embed_object(new embed_type(), part, FALSE)
+	return ..()
 
-/obj/item/projectile/energy/arrow/disabler //Hardlight projectile. Forceful impact makes the impact more draining than a standard disabler. Needs to be competitive in DPS
+/obj/item/projectile/energy/arrow/disabler //Hardlight projectile. Much more draining than a standard disabler. Needs to be competitive in DPS
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 20
+	damage = 48
 	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 
-/obj/item/projectile/energy/arrow/xray //Slightly weakened arrow capable of passing through material; also irradiates targets moderately
+/obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Massive irradiation on hit.
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
-	damage = 15
-	irradiate = 300
+	damage = 21
+	irradiate = 400
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
+	damage = 18
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt

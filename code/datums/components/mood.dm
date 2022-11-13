@@ -10,8 +10,8 @@
 	var/mood_modifier = 1 //Modifier to allow certain mobs to be less affected by moodlets
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
-	var/obj/screen/mood/screen_obj
-	var/obj/screen/sanity/screen_obj_sanity
+	var/atom/movable/screen/mood/screen_obj
+	var/atom/movable/screen/sanity/screen_obj_sanity
 
 /datum/component/mood/Initialize()
 	if(!isliving(parent))
@@ -35,7 +35,7 @@
 	return ..()
 
 /datum/component/mood/proc/print_mood(mob/user)
-	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
+	var/msg = "[span_info("<EM>Your Current Mood:</EM>")]\n"
 	msg += span_notice("My mental status: ") //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
@@ -79,7 +79,7 @@
 			msg += event.description
 	else
 		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
-	to_chat(user || parent, msg)
+	to_chat(user || parent, examine_block(msg))
 
 /datum/component/mood/proc/update_mood() //Called whenever a mood event is added or removed
 	mood = 0
@@ -231,15 +231,15 @@
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
 			setInsanityEffect(MAJOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.75, movetypes=(~FLYING))
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
 			setInsanityEffect(MINOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
 			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
 			setInsanityEffect(0)
@@ -314,6 +314,8 @@
 	if(!screen_obj)
 		return
 	var/mob/living/owner = parent
+	if(!owner)
+		return
 	var/datum/hud/hud = owner.hud_used
 	if(hud && hud.infodisplay)
 		hud.infodisplay -= screen_obj
@@ -359,6 +361,10 @@
 			clear_event(null, "charge")
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
+		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
+			add_event(null, "charge", /datum/mood_event/overcharged)
+		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
+			add_event(null, "charge", /datum/mood_event/supercharged)
 
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)

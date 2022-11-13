@@ -4,6 +4,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
+	cryo_preserve = TRUE
 	var/braintype = "Cyborg"
 	var/obj/item/radio/radio = null //Let's give it a radio.
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -19,6 +20,9 @@
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
 	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
 	var/reboot_timer = null
+	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
+	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
+	Being placed in a mech does not slave you to any laws.</b>"
 
 /obj/item/mmi/update_icon()
 	if(!brain)
@@ -154,6 +158,7 @@
 		brain.name = "[L.real_name]'s brain"
 
 	name = "[initial(name)]: [brainmob.real_name]"
+	to_chat(brainmob, welcome_message)
 	update_icon()
 	return
 
@@ -227,9 +232,9 @@
 
 		else
 			. += span_notice("The MMI indicates the brain is active.")
-	. += span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these uploded laws.")
+	. += span_notice("It has a port for reading AI law modules.")
 	if(laws)
-		. += "<b>The following laws are loaded into [src]: </b>"
+		. += span_notice("Any AI created using this MMI will use these uploaded laws:")
 		for(var/law in laws.get_law_list())
 			. += law
 

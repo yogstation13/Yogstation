@@ -12,6 +12,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 21
 	melee_damage_upper = 21
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 	a_intent = INTENT_HARM

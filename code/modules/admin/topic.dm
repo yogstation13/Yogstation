@@ -175,6 +175,14 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
 					log_admin("[key_name(usr)] failed to create a CentCom response team.")
+			if("centcom_custom")
+				message_admins("[key_name(usr)] is creating a Uplinked CentCom response team...")
+				if(src.makeUplinkEmergencyResponseTeam())
+					message_admins("[key_name(usr)] created a Uplinked CentCom response team.")
+					log_admin("[key_name(usr)] created a Uplinked CentCom response team.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a Uplinked CentCom response team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a Uplinked CentCom response team.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())
@@ -240,23 +248,14 @@
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
-	else if(href_list["editrightsbrowser"])
-		edit_admin_permissions(0)
+	// else if(href_list["editrightsbrowser"])
+	// 	edit_admin_permissions(0)
 
-	else if(href_list["editrightsbrowserlog"])
-		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+	// else if(href_list["editrightsbrowserlog"])
+	// 	edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
 
-	if(href_list["editrightsbrowsermanage"])
-		if(href_list["editrightschange"])
-			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
-		else if(href_list["editrightsremove"])
-			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
-		else if(href_list["editrightsremoverank"])
-			remove_rank(href_list["editrightsremoverank"])
-		edit_admin_permissions(2)
-
-	else if(href_list["editrights"])
-		edit_rights_topic(href_list)
+	// else if(href_list["editrights"])
+	// 	edit_rights_topic(href_list)
 
 	else if(href_list["gamemode_panel"])
 		if(!check_rights(R_ADMIN))
@@ -1688,9 +1687,6 @@
 					break
 		return
 
-	else if(href_list["secrets"])
-		Secrets_topic(href_list["secrets"],href_list)
-
 	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		if(!check_rights(R_ADMIN))
 			return
@@ -1984,7 +1980,14 @@
 			SD.r_code = code
 		message_admins("[key_name_admin(usr)] has set the self-destruct \
 			code to \"[code]\".")
-
+	else if(href_list["set_beer_code"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/code = random_nukecode()
+		for(var/obj/machinery/nuclearbomb/beer/BN in GLOB.nuke_list)
+			BN.r_code = code
+		message_admins("[key_name_admin(usr)] has set the beer nuke \
+			code to \"[code]\".")
 	else if(href_list["add_station_goal"])
 		if(!check_rights(R_ADMIN))
 			return

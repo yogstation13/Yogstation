@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "splashing requires contact with skin, so heavy duty armor will protect from it"

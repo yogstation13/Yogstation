@@ -63,7 +63,7 @@
 				. = pod
 
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R, empty)
-	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["makeup"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty)
+	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["makeup"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty, R.fields["mood"])
 
 /obj/machinery/computer/cloning/process()
 	if(!(scanner && LAZYLEN(pods) && autoprocess))
@@ -80,6 +80,9 @@
 
 		if(pod.occupant)
 			break
+
+		if(!canclone(pod))
+			return
 
 		var/result = grow_clone_from_record(pod, R)
 		if(result & CLONING_SUCCESS)
@@ -477,41 +480,28 @@
 				temp = "<font class='bad'>Cannot initiate regular cloning with body-only scans.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
+			if(!canclone(pod, empty))
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+				return
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs. Or if there isn't any meat available.
-			if(!LAZYLEN(pods))
-				temp = "<font class='bad'>No Clonepods detected.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(!pod)
-				temp = "<font class='bad'>No Clonepods available.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(!CONFIG_GET(flag/revival_cloning) && !empty)
-				temp = "<font class='bad'>Unable to initiate cloning cycle.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(pod.occupant)
-				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(pod.biomass < 100)
-				temp = "<font class ='bad'>Insufficient biomass levels.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else
-				var/result = grow_clone_from_record(pod, C, empty)
-				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
-				if(result & CLONING_SUCCESS)
-					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
-					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-					if(active_record == C)
-						active_record = null
-					menu = 1
-					if(!empty)
-						log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
-					else
-						log_cloning("[key_name(usr)] initiated EMPTY cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
-				if(result &	CLONING_DELETE_RECORD)
-					temp = "[C.fields["name"]] => <font class='bad'>Record deleted.</font>"
-					if(active_record == C)
-						active_record = null
-					menu = 1
-					records -= C
+			var/result = grow_clone_from_record(pod, C, empty)
+			temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
+			if(result & CLONING_SUCCESS)
+				temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
+				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+				if(active_record == C)
+					active_record = null
+				menu = 1
+				if(!empty)
+					log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
+				else
+					log_cloning("[key_name(usr)] initiated EMPTY cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
+			if(result &	CLONING_DELETE_RECORD)
+				temp = "[C.fields["name"]] => <font class='bad'>Record deleted.</font>"
+				if(active_record == C)
+					active_record = null
+				menu = 1
+				records -= C
 		else
 			temp = "<font class='bad'>Data corruption.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -541,31 +531,10 @@
 	if(isbrain(mob_occupant))
 		dna = B.stored_dna
 
-	if(!istype(dna))
-		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+	if(!canscan(mob_occupant, body_only))
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
-		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
-		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
-		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
-		return
-	if((HAS_TRAIT(mob_occupant, TRAIT_HUSK)) && (src.scanner.scan_level < 2))
-		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
-		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
-		return
-	if (!body_only && isnull(mob_occupant.mind))
-		scantemp = "<font class='bad'>Mental interface failure.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(!body_only && SSeconomy.full_ancap)
-		if(!has_bank_account)
-			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			return
+		return 
+
 	var/datum/data/record/R = new()
 	if(dna.species)
 		// We store the instance rather than the path, because some
@@ -590,6 +559,10 @@
 	for(var/V in mob_occupant.roundstart_quirks)
 		var/datum/quirk/T = V
 		R.fields["quirks"][T.type] = T.clone_data()
+	if(mob_occupant.GetComponent(/datum/component/mood))
+		R.fields["mood"] = TRUE
+	else
+		R.fields["mood"] = FALSE
 
 	R.fields["traumas"] = list()
 	if(ishuman(mob_occupant))
@@ -626,3 +599,61 @@
 	records += R
 	log_cloning("[M ? key_name(M) : "Autoprocess"] added the [body_only ? "body-only " : ""]record of [key_name(mob_occupant)] to [src] at [AREACOORD(src)].")
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)
+
+/obj/machinery/computer/cloning/proc/canscan(mob/living/mob_occupant, body_only = FALSE)
+	var/datum/dna/dna
+	var/datum/bank_account/has_bank_account
+
+	// Do not use unless you know what they are.
+	var/mob/living/carbon/C = mob_occupant
+	var/mob/living/brain/B = mob_occupant
+
+	if(ishuman(mob_occupant))
+		dna = C.has_dna()
+		var/obj/item/card/id/I = C.get_idcard(TRUE)
+		if(I)
+			has_bank_account = I.registered_account
+	if(isbrain(mob_occupant))
+		dna = B.stored_dna
+ 
+	if(HAS_TRAIT(mob_occupant, TRAIT_NOCLONE))
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
+	if(!istype(dna))
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
+	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
+		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
+		return FALSE
+	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
+		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
+		return FALSE
+	if((HAS_TRAIT(mob_occupant, TRAIT_HUSK)) && (src.scanner.scan_level < 2))
+		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
+		return FALSE
+	if (!body_only && isnull(mob_occupant.mind))
+		scantemp = "<font class='bad'>Mental interface failure.</font>"
+		return FALSE
+	if(!body_only && SSeconomy.full_ancap)
+		if(!has_bank_account)
+			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
+			return FALSE
+	return TRUE
+
+/obj/machinery/computer/cloning/proc/canclone(obj/machinery/clonepod/pod, empty = FALSE)
+	if(!LAZYLEN(pods))
+		temp = "<font class='bad'>No Clonepods detected.</font>"
+		return FALSE
+	else if(!pod)
+		temp = "<font class='bad'>No Clonepods available.</font>"
+		return FALSE
+	else if(!CONFIG_GET(flag/revival_cloning) && !empty)
+		temp = "<font class='bad'>Unable to initiate cloning cycle.</font>"
+		return FALSE
+	else if(pod.occupant)
+		temp = "<font class='bad'>Cloning cycle already in progress.</font>"
+		return FALSE
+	else if(pod.biomass < 100)
+		temp = "<font class ='bad'>Insufficient biomass levels.</font>"
+		return FALSE
+	return TRUE

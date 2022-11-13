@@ -97,9 +97,12 @@
 
 		if(W.tool_behaviour == TOOL_MULTITOOL)
 			if(istype(device, /obj/item/assembly/control)) // User Feedback
+				var/obj/item/assembly/control/controller = device
 				var/obj/item/multitool/P = W
-				if(!id) // Generate New ID if none exists
-					id = rand(1, 25565) // rare enough that ids should never conflict
+				if(controller.id)
+					id = controller.id
+				else if(!id) // Generate New ID if none exists
+					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
 				P.buffer = id
@@ -301,6 +304,11 @@
 
 /obj/machinery/button/crematorium/indestructible
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/machinery/button/holosign
+	name = "holosign button"
+	desc = "A remote control switch for a holosign."
+	device_type = /obj/item/assembly/control/holosign
 
 /obj/item/wallframe/button
 	name = "button frame"

@@ -60,8 +60,19 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<10)
 
+//AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
 #define BLOBS_ALLOWED (1<<1)
+/// If mining tunnel generation is allowed in this area
+#define CAVES_ALLOWED (1<<2)
+/// If flora are allowed to spawn in this area randomly through tunnel generation
+#define FLORA_ALLOWED (1<<3)
+/// If mobs can be spawned by natural random generation
+#define MOB_SPAWN_ALLOWED (1<<4)
+/// If megafauna can be spawned by natural random generation
+#define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
+/// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
+
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)

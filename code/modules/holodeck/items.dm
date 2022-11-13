@@ -24,34 +24,35 @@
 	w_class = WEIGHT_CLASS_SMALL
 	hitsound = "swing_hit"
 	armour_penetration = 50
-	var/active = 0
+	var/active = FALSE
+	var/saber_color
 
 /obj/item/holo/esword/green/Initialize()
 	. = ..()
-	item_color = "green"
+	saber_color = "green"
 
 
 /obj/item/holo/esword/red/Initialize()
 	. = ..()
-	item_color = "red"
+	saber_color = "red"
 
 /obj/item/holo/esword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		return ..()
-	return 0
+	return FALSE
 
 /obj/item/holo/esword/attack(target as mob, mob/user as mob)
 	..()
 
 /obj/item/holo/esword/Initialize()
 	. = ..()
-	item_color = pick("red","blue","green","purple")
+	saber_color = pick("red","blue","green","purple")
 
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
 		force = 30
-		icon_state = "sword[item_color]"
+		icon_state = "sword[saber_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		hitsound = 'sound/weapons/blade1.ogg'
 		playsound(user, 'sound/weapons/saberon.ogg', 20, 1)
@@ -104,7 +105,8 @@
 	density = TRUE
 
 /obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob, params)
-	if(get_dist(src,user)<2)
+	var/dist = get_dist(src,user)
+	if(dist<2 || (islizard(user) && dist<4))
 		if(user.transferItemToLoc(W, drop_location()))
 			visible_message(span_warning(" [user] dunks [W] into \the [src]!"))
 
@@ -226,4 +228,4 @@
 
 /obj/item/paper/fluff/holodeck/disclaimer
 	name = "Holodeck Disclaimer"
-	info = "Bruises sustained in the holodeck can be healed simply by sleeping."
+	info = "Any fatigue experienced in the holodeck will wear off by itself over time."

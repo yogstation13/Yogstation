@@ -137,7 +137,7 @@
 
 /obj/item/clothing/mask/cowmask
 	name = "cow mask"
-	icon = 'icons/mob/mask.dmi'
+	icon = 'icons/mob/clothing/mask/mask.dmi'
 	icon_state = "cowmask"
 	item_state = "cowmask"
 	clothing_flags = VOICEBOX_TOGGLABLE
@@ -263,6 +263,7 @@
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
 			nk.name = "[name] neckerchief"
 			nk.desc = "[desc] It's tied up like a neckerchief."
+			nk.mob_overlay_icon = 'icons/blank.dmi'
 			nk.icon_state = icon_state
 			nk.sourceBandanaType = src.type
 			var/currentHandIndex = user.get_held_index_of_item(src)

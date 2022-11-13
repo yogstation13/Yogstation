@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/floor_cluwne
 	max_occurrences = 1
 	min_players = 20
-
+	weight = 5
 
 /datum/round_event/floor_cluwne/start()
 	var/list/spawn_locs = list()
@@ -19,4 +19,5 @@
 	playsound(S, 'yogstation/sound/misc/bikehorn_creepy.ogg', 50, 1, -1)
 	message_admins("A floor cluwne has been spawned at [COORD(T)][ADMIN_JMP(T)]")
 	log_game("A floor cluwne has been spawned at [COORD(T)]")
+	announce_to_ghosts(S)
 	return SUCCESSFUL_SPAWN

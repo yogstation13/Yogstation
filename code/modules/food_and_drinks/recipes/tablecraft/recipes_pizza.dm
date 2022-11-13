@@ -19,7 +19,7 @@
 	name = "Dank Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris = 3,
+		/obj/item/reagent_containers/food/snacks/grown/cannabis = 3,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
@@ -88,6 +88,17 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
+	subcategory = CAT_PIZZA
+
+/datum/crafting_recipe/food/seafoodpizza
+	name = "Tuna Pizza"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/flatdough = 1,
+		/obj/item/reagent_containers/food/snacks/fish/tuna = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/pizza/seafood/raw
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/vegetablepizza

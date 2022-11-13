@@ -29,6 +29,7 @@ RSF
 								/obj/item/storage/pill_bottle/dice = 200,
 								/obj/item/pen = 50,
 								/obj/item/clothing/mask/cigarette = 10,
+								/obj/item/plate = 25,
 								)
 	var/list/allowed_surfaces = list(/obj/structure/table) 	///A list of surfaces that we are allowed to place things on.
 	var/action_type = "Dispensing" 	///The verb that describes what we're doing, for use in text

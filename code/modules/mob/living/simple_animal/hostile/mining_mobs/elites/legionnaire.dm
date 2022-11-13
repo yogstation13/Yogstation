@@ -24,10 +24,12 @@
 	icon_aggro = "legionnaire"
 	icon_dead = "legionnaire_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "legionnaire"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes its arms at"
 	//attack_verb_simple = "slash your arms at"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -224,6 +226,7 @@
 	health = 80
 	melee_damage_lower = 10
 	melee_damage_upper = 10
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites at"
 	//attack_verb_simple = "bite at"
 	attack_sound = 'sound/effects/curse1.ogg'

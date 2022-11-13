@@ -172,20 +172,20 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build Your Own Shuttle"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
 
 /datum/map_template/shuttle/emergency/construction/small
 	suffix = "construction_small"
 	name = "Build Your Own Shuttle, Jr."
-	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
+	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 2000
 
 /datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 12000
+	return world.time - SSticker.round_start_time < 30 MINUTES
 
 /datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
@@ -241,7 +241,7 @@
 	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
 	admin_notes = "This shuttle will likely crush escape, killing anyone there."
 	credit_cost = 15000
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	movement_force = list("KNOCKDOWN" = 6, "THROW" = 10)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/luxury
@@ -327,7 +327,7 @@
 	credit_cost = -1000
 	description = "Due to a lack of functional emergency shuttles, we bought this second hand from a scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile."
 	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight."
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/narnar
@@ -375,7 +375,7 @@
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
 	credit_cost = 7500
 	emag_buy = TRUE
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
 
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
@@ -446,23 +446,23 @@
 	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
 /datum/map_template/shuttle/whiteship/box
-	suffix = "box"
+	suffix = "1"
 	name = "Hospital Ship"
 
 /datum/map_template/shuttle/whiteship/meta
-	suffix = "meta"
+	suffix = "2"
 	name = "Salvage Ship"
 
 /datum/map_template/shuttle/whiteship/pubby
-	suffix = "pubby"
+	suffix = "3"
 	name = "NT White UFO"
 
 /datum/map_template/shuttle/whiteship/cere
-	suffix = "cere"
+	suffix = "4"
 	name = "NT Construction Vessel"
 
 /datum/map_template/shuttle/whiteship/delta
-	suffix = "delta"
+	suffix = "5"
 	name = "NT Frigate"
 
 /datum/map_template/shuttle/whiteship/pod

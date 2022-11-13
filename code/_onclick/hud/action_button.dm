@@ -1,6 +1,6 @@
 #define ACTION_BUTTON_DEFAULT_BACKGROUND "default"
 
-/obj/screen/movable/action_button
+/atom/movable/screen/movable/action_button
 	var/datum/action/linked_action
 	var/actiontooltipstyle = ""
 	screen_loc = null
@@ -11,7 +11,7 @@
 	var/id
 	var/ordered = TRUE //If the button gets placed into the default bar
 
-/obj/screen/movable/action_button/proc/can_use(mob/user)
+/atom/movable/screen/movable/action_button/proc/can_use(mob/user)
 	if (linked_action)
 		return linked_action.owner == user
 	else if (isobserver(user))
@@ -20,14 +20,14 @@
 	else
 		return TRUE
 
-/obj/screen/movable/action_button/MouseDrop(over_object)
+/atom/movable/screen/movable/action_button/MouseDrop(over_object)
 	if(!can_use(usr))
 		return
-	if((istype(over_object, /obj/screen/movable/action_button) && !istype(over_object, /obj/screen/movable/action_button/hide_toggle)))
+	if((istype(over_object, /atom/movable/screen/movable/action_button) && !istype(over_object, /atom/movable/screen/movable/action_button/hide_toggle)))
 		if(locked)
 			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
 			return
-		var/obj/screen/movable/action_button/B = over_object
+		var/atom/movable/screen/movable/action_button/B = over_object
 		var/list/actions = usr.actions
 		actions.Swap(actions.Find(src.linked_action), actions.Find(B.linked_action))
 		moved = FALSE
@@ -38,7 +38,7 @@
 	else
 		return ..()
 
-/obj/screen/movable/action_button/Click(location,control,params)
+/atom/movable/screen/movable/action_button/Click(location,control,params)
 	if (!can_use(usr))
 		return
 
@@ -67,7 +67,7 @@
 	return TRUE
 
 //Hide/Show Action Buttons ... Button
-/obj/screen/movable/action_button/hide_toggle
+/atom/movable/screen/movable/action_button/hide_toggle
 	name = "Hide Buttons"
 	desc = "Shift-click any button to reset its position, and Control-click it to lock it in place. Alt-click this button to reset all buttons to their default positions."
 	icon = 'icons/mob/actions.dmi'
@@ -77,7 +77,7 @@
 	var/hide_state = "hide"
 	var/show_state = "show"
 
-/obj/screen/movable/action_button/hide_toggle/Click(location,control,params)
+/atom/movable/screen/movable/action_button/hide_toggle/Click(location,control,params)
 	if (!can_use(usr))
 		return
 
@@ -98,7 +98,9 @@
 	if(modifiers["alt"])
 		for(var/V in usr.actions)
 			var/datum/action/A = V
-			var/obj/screen/movable/action_button/B = A.button
+			if(A.owner != usr)
+				continue // This isnt your button fuck off
+			var/atom/movable/screen/movable/action_button/B = A.button
 			B.moved = FALSE
 			if(B.id && usr.client)
 				usr.client.prefs.action_buttons_screen_locs["[B.name]_[B.id]"] = null
@@ -120,10 +122,12 @@
 	update_icon()
 	usr.update_action_buttons()
 
-/obj/screen/movable/action_button/hide_toggle/AltClick(mob/user)
+/atom/movable/screen/movable/action_button/hide_toggle/AltClick(mob/user)
 	for(var/V in user.actions)
 		var/datum/action/A = V
-		var/obj/screen/movable/action_button/B = A.button
+		if(A.owner != user)
+			continue // This isnt your button fuck off
+		var/atom/movable/screen/movable/action_button/B = A.button
 		B.moved = FALSE
 	if(moved)
 		moved = FALSE
@@ -131,7 +135,7 @@
 	to_chat(user, span_notice("Action button positions have been reset."))
 
 
-/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(datum/hud/owner_hud)
+/atom/movable/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(datum/hud/owner_hud)
 	var/settings = owner_hud.get_action_buttons_icons()
 	icon = settings["bg_icon"]
 	icon_state = settings["bg_state"]
@@ -140,17 +144,17 @@
 	show_state = settings["toggle_show"]
 	update_icon()
 
-/obj/screen/movable/action_button/hide_toggle/update_icon()
+/atom/movable/screen/movable/action_button/hide_toggle/update_icon()
 	cut_overlays()
 	add_overlay(mutable_appearance(hide_icon, hidden ? show_state : hide_state))
 
 
-/obj/screen/movable/action_button/MouseEntered(location,control,params)
+/atom/movable/screen/movable/action_button/MouseEntered(location,control,params)
 	if(!QDELETED(src))
 		openToolTip(usr,src,params,title = name,content = desc,theme = actiontooltipstyle)
 
 
-/obj/screen/movable/action_button/MouseExited()
+/atom/movable/screen/movable/action_button/MouseExited()
 	closeToolTip(usr)
 
 /datum/hud/proc/get_action_buttons_icons()
@@ -171,7 +175,7 @@
 		A.UpdateButtonIcon(status_only)
 
 //This is the proc used to update all the action buttons.
-/mob/proc/update_action_buttons(reload_screen)
+/mob/proc/update_action_buttons(reload_screen, skip_observers=FALSE)
 	if(!hud_used || !client)
 		return
 
@@ -179,7 +183,6 @@
 		return
 
 	var/button_number = 0
-
 	if(hud_used.action_buttons_hidden)
 		for(var/datum/action/A in actions)
 			A.button.screen_loc = null
@@ -187,13 +190,14 @@
 				client.screen += A.button
 	else
 		for(var/datum/action/A in actions)
+			var/is_owner = (A.owner == src)
 			A.UpdateButtonIcon()
-			var/obj/screen/movable/action_button/B = A.button
+			var/atom/movable/screen/movable/action_button/B = A.button
 			if(B.ordered)
 				button_number++
-			if(B.moved)
+			if(B.moved && is_owner)
 				B.screen_loc = B.moved
-			else
+			else if(is_owner) // Prevent buttons from shifting around to the original owner
 				B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			if(reload_screen)
 				client.screen += B
@@ -208,6 +212,11 @@
 		hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.moved
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
+
+	if(!skip_observers)
+		for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
+			O.actions = actions + O.originalactions
+			O.update_action_buttons(skip_observers=TRUE)
 
 
 
@@ -224,7 +233,7 @@
 
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:-6"
 
-/datum/hud/proc/SetButtonCoords(obj/screen/button,number)
+/datum/hud/proc/SetButtonCoords(atom/movable/screen/button,number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/x_offset = 32*(col-1) + 4 + 2*col

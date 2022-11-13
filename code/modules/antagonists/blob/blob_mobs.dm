@@ -249,7 +249,7 @@
 	force_threshold = 10
 	pressure_resistance = 50
 	mob_size = MOB_SIZE_LARGE
-	hud_type = /datum/hud/blobbernaut
+	hud_type = /datum/hud/living/blobbernaut
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/Life()
 	if(..())
@@ -285,15 +285,6 @@
 				I.color = overmind.blobstrain.complementary_color
 			flick_overlay_view(I, src, 8)
 
-/mob/living/simple_animal/hostile/blob/blobbernaut/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(updating_health)
-		update_health_hud()
-
-/mob/living/simple_animal/hostile/blob/blobbernaut/update_health_hud()
-	if(hud_used)
-		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#e36600'>[round((health / maxHealth) * 100, 0.5)]%</font></div>"
-
 /mob/living/simple_animal/hostile/blob/blobbernaut/AttackingTarget()
 	. = ..()
 	if(. && isliving(target) && overmind)
@@ -315,6 +306,8 @@
 	if(factory)
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
+	if(overmind)
+		to_chat(overmind, "<font color=\"#EE4000\">[src] has died in [get_area(src)]!</font>")
 	flick("blobbernaut_death", src)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent

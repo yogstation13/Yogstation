@@ -30,7 +30,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
@@ -41,7 +41,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -56,7 +56,7 @@
 	new /obj/item/restraints/legcuffs/bola/energy(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
@@ -70,7 +70,7 @@
 	ears = /obj/item/radio/headset/headset_cent/alt
 	mask = /obj/item/clothing/mask/cigarette/lit
 	belt = /obj/item/storage/belt/military/occupying_officer
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/occupying
+	suit_store = /obj/item/gun/ballistic/automatic/wt550/armory
 	back = /obj/item/melee/baton/cattleprod/tactical
 	head = /obj/item/clothing/head/helmet/sec/occupying
 	l_pocket = /obj/item/reagent_containers/food/drinks/beer

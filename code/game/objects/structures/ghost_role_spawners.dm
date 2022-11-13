@@ -179,8 +179,8 @@
 		notify_ghosts("\A [initial(species.prefix)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_GOLEM)
 	if(has_owner && creator)
 		short_desc = "You are a Golem."
-		flavour_text = "You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. \
-		Serve [creator], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
+		flavour_text = "You move slowly and are unable to wear clothes, but can still use most tools. Depending on the material you were made of, you will have different strengths and weaknesses \
+		Serve [creator.real_name], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
 		owner = creator
 
 /obj/effect/mob_spawn/human/golem/special(mob/living/new_spawn, name)
@@ -638,6 +638,7 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
+	outfit = /datum/outfit/pirate/space/gunner
 
 //The Innkeeper, a iceplanet ghostrole for peacefully operating a rest stop complete with food and drinks.
 /obj/effect/mob_spawn/human/innkeeper

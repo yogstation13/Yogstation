@@ -1,78 +1,94 @@
-/obj/screen/ghost
+/atom/movable/screen/ghost
 	icon = 'icons/mob/screen_ghost.dmi'
 
-/obj/screen/ghost/MouseEntered()
+/atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/obj/screen/ghost/jumptomob
+/atom/movable/screen/ghost/jumptomob
 	name = "Jump to mob"
 	icon_state = "jumptomob"
 
-/obj/screen/ghost/jumptomob/Click()
+/atom/movable/screen/ghost/jumptomob/Click()
 	var/mob/dead/observer/G = usr
 	G.jumptomob()
 
-/obj/screen/ghost/orbit
+/atom/movable/screen/ghost/orbit
 	name = "Orbit"
 	icon_state = "orbit"
 
-/obj/screen/ghost/orbit/Click()
+/atom/movable/screen/ghost/orbit/Click()
 	var/mob/dead/observer/G = usr
 	G.follow()
 
-/obj/screen/ghost/reenter_corpse
+/atom/movable/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
 	icon_state = "reenter_corpse"
 
-/obj/screen/ghost/reenter_corpse/Click()
+/atom/movable/screen/ghost/reenter_corpse/Click()
 	var/mob/dead/observer/G = usr
 	G.reenter_corpse()
 
-/obj/screen/ghost/teleport
+/atom/movable/screen/ghost/teleport
 	name = "Teleport"
 	icon_state = "teleport"
 
-/obj/screen/ghost/teleport/Click()
+/atom/movable/screen/ghost/teleport/Click()
 	var/mob/dead/observer/G = usr
 	G.dead_tele()
 
-/obj/screen/ghost/spawners
+/atom/movable/screen/ghost/spawners
 	name = "Ghost role spawners"
 	icon_state = "spawners"
 
-/obj/screen/ghost/spawners/Click()
+/atom/movable/screen/ghost/spawners/Click()
 	var/mob/dead/observer/G = usr
 	G.open_spawners_menu()
 
 /datum/hud/ghost/New(mob/owner)
 	..()
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
-	using = new /obj/screen/ghost/jumptomob()
+	using = new /atom/movable/screen/ghost/jumptomob()
 	using.screen_loc = ui_ghost_jumptomob
 	static_inventory += using
 
-	using = new /obj/screen/ghost/orbit()
+	using = new /atom/movable/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_orbit
 	static_inventory += using
 
-	using = new /obj/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse()
 	using.screen_loc = ui_ghost_reenter_corpse
 	static_inventory += using
 
-	using = new /obj/screen/ghost/teleport()
+	using = new /atom/movable/screen/ghost/teleport()
 	using.screen_loc = ui_ghost_teleport
 	static_inventory += using
 
-	using = new /obj/screen/ghost/spawners()
+	using = new /atom/movable/screen/ghost/spawners()
 	using.screen_loc = ui_ghost_spawners
 	static_inventory += using
 
-	using = new /obj/screen/ghost/pai()
+	using = new /atom/movable/screen/ghost/med_scan()
+	using.screen_loc = ui_ghost_med
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/chem_scan()
+	using.screen_loc = ui_ghost_chem
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/nanite_scan()
+	using.screen_loc = ui_ghost_nanite
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/wound_scan()
+	using.screen_loc = ui_ghost_wound
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/pai()
 	using.screen_loc = ui_ghost_pai
 	static_inventory += using
 
-	using = new /obj/screen/language_menu/ghost
+	using = new /atom/movable/screen/language_menu/ghost
 	using.icon = ui_style
 	static_inventory += using
 

@@ -3,63 +3,69 @@
 
 GLOBAL_LIST_EMPTY(radial_menus)
 
-/obj/screen/radial
+/atom/movable/screen/radial
 	icon = 'icons/mob/radial.dmi'
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	var/datum/radial_menu/parent
 
-/obj/screen/radial/slice
+/atom/movable/screen/radial/slice
 	icon_state = "radial_slice"
 	var/choice
 	var/next_page = FALSE
 	var/tooltips = FALSE
 
-/obj/screen/radial/slice/MouseEntered(location, control, params)
+/atom/movable/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_slice_focus"
 	if(tooltips)
-		openToolTip(usr, src, params, title = name)
+		openToolTip(usr, src, params, title = name, content = desc)
 
-/obj/screen/radial/slice/MouseExited(location, control, params)
+/atom/movable/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_slice"
 	if(tooltips)
 		closeToolTip(usr)
 
-/obj/screen/radial/slice/Click(location, control, params)
+/atom/movable/screen/radial/slice/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		if(next_page)
 			parent.next_page()
 		else
 			parent.element_chosen(choice,usr)
 
-/obj/screen/radial/center
+/atom/movable/screen/radial/center
 	name = "Close Menu"
 	icon_state = "radial_center"
 
-/obj/screen/radial/center/MouseEntered(location, control, params)
+/atom/movable/screen/radial/center/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_center_focus"
 
-/obj/screen/radial/center/MouseExited(location, control, params)
+/atom/movable/screen/radial/center/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_center"
 
-/obj/screen/radial/center/Click(location, control, params)
+/atom/movable/screen/radial/center/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		parent.finished = TRUE
 
 /datum/radial_menu
-	var/list/choices = list() //List of choice id's
-	var/list/choices_icons = list() //choice_id -> icon
-	var/list/choices_values = list() //choice_id -> choice
-	var/list/page_data = list() //list of choices per page
+	/// List of choice IDs
+	var/list/choices = list()
+	/// choice_id -> icon
+	var/list/choices_icons = list()
+	/// choice_id -> choice
+	var/list/choices_values = list()
+	/// choice_id -> /datum/radial_menu_choice
+	var/list/choice_datums = list()
+	///list of choices per page
+	var/list/page_data = list()
 
 
 	var/selected_choice
-	var/list/obj/screen/elements = list()
-	var/obj/screen/radial/center/close_button
+	var/list/atom/movable/screen/elements = list()
+	var/atom/movable/screen/radial/center/close_button
 	var/client/current_user
 	var/atom/anchor
 	var/image/menu_holder
@@ -121,7 +127,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(elements.len < max_elements)
 		var/elements_to_add = max_elements - elements.len
 		for(var/i in 1 to elements_to_add) //Create all elements
-			var/obj/screen/radial/slice/new_element = new /obj/screen/radial/slice
+			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice
 			new_element.tooltips = use_tooltips
 			new_element.parent = src
 			elements += new_element
@@ -153,23 +159,24 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/list/page_choices = page_data[current_page]
 	var/angle_per_element = round(zone / page_choices.len)
 	for(var/i in 1 to elements.len)
-		var/obj/screen/radial/E = elements[i]
+		var/atom/movable/screen/radial/E = elements[i]
 		var/angle = WRAP(starting_angle + (i - 1) * angle_per_element,0,360)
 		if(i > page_choices.len)
 			HideElement(E)
 		else
 			SetElement(E,page_choices[i],angle,anim = anim,anim_order = i)
 
-/datum/radial_menu/proc/HideElement(obj/screen/radial/slice/E)
+/datum/radial_menu/proc/HideElement(atom/movable/screen/radial/slice/E)
 	E.cut_overlays()
 	E.alpha = 0
 	E.name = "None"
+	E.desc = null
 	E.maptext = null
 	E.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	E.choice = null
 	E.next_page = FALSE
 
-/datum/radial_menu/proc/SetElement(obj/screen/radial/slice/E,choice_id,angle,anim,anim_order)
+/datum/radial_menu/proc/SetElement(atom/movable/screen/radial/slice/E,choice_id,angle,anim,anim_order)
 	//Position
 	var/py = round(cos(angle) * radius) + py_shift
 	var/px = round(sin(angle) * radius)
@@ -188,21 +195,32 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.alpha = 255
 	E.mouse_opacity = MOUSE_OPACITY_ICON
 	E.cut_overlays()
+	E.vis_contents.Cut()
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Next Page"
+		E.desc = null
 		E.next_page = TRUE
 		E.add_overlay("radial_next")
 	else
 		if(istext(choices_values[choice_id]))
 			E.name = choices_values[choice_id]
+		else if(ispath(choices_values[choice_id],/atom))
+			var/atom/A = choices_values[choice_id]
+			E.name = initial(A.name)
 		else
 			var/atom/movable/AM = choices_values[choice_id] //Movables only
 			E.name = AM.name
+
+		if(choices_icons[choice_id])
+			E.add_overlay(choices_icons[choice_id])
+
+		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
+		if(choice_datum && istext(choice_datum.info))
+			E.desc = choice_datum.info
+
 		E.choice = choice_id
 		E.maptext = null
 		E.next_page = FALSE
-		if(choices_icons[choice_id])
-			E.add_overlay(choices_icons[choice_id])
 
 /datum/radial_menu/New()
 	close_button = new
@@ -231,11 +249,18 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			var/I = extract_image(new_choices[E])
 			if(I)
 				choices_icons[id] = I
+
+			if (istype(new_choices[E], /datum/radial_menu_choice))
+				choice_datums[id] = new_choices[E]
 	setup_menu(use_tooltips)
 
 
-/datum/radial_menu/proc/extract_image(E)
-	var/mutable_appearance/MA = new /mutable_appearance(E)
+/datum/radial_menu/proc/extract_image(to_extract_from)
+	if (istype(to_extract_from, /datum/radial_menu_choice))
+		var/datum/radial_menu_choice/choice = to_extract_from
+		to_extract_from = choice.image
+
+	var/mutable_appearance/MA = new /mutable_appearance(to_extract_from)
 	if(MA)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.appearance_flags |= RESET_TRANSFORM
@@ -315,3 +340,15 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		if(!menu.custom_check_callback.Invoke())
 			return
 	return answer
+
+/// Can be provided to choices in radial menus if you want to provide more information
+/datum/radial_menu_choice
+	/// Required -- what to display for this button
+	var/image
+
+	/// If provided, will display an info button that will put this text in your chat
+	var/info
+
+/datum/radial_menu_choice/Destroy(force, ...)
+	. = ..()
+	QDEL_NULL(image)

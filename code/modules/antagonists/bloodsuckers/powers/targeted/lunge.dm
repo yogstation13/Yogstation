@@ -4,7 +4,7 @@
 	button_icon_state = "power_lunge"
 	power_explanation = "<b>Predatory Lunge</b>:\n\
 		Click any player to instantly dash at them if above power level 3, aggressively grabbing them.\n\
-		If not on level 3, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work\n\
+		If below level 3, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work\n\
 		You cannot use the Power if you are aggressively grabbed.\n\
 		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
 		If grabbed from behind or from the darkness (Cloak of Darkness counts) with a power level at or above 4, will additionally knock the target down.\n\
@@ -64,7 +64,7 @@
 	var/turf/targeted_turf = get_turf(target)
 
 	owner.face_atom(target_atom)
-	if(level_current <= 3 && !prepare_target_lunge(target_atom))
+	if(level_current < 3 && !prepare_target_lunge(target_atom))
 		PowerActivatedSuccessfully()
 		return
 	user.Immobilize(10 SECONDS)

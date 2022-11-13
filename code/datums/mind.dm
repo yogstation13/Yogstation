@@ -300,7 +300,7 @@
 		return
 
 	var/list/all_contents = traitor_mob.GetAllContents()
-	var/obj/item/pda/PDA = locate() in all_contents
+	var/obj/item/modular_computer/PDA = locate() in all_contents
 	var/obj/item/radio/R = locate() in all_contents
 	var/obj/item/pen/P
 
@@ -629,7 +629,7 @@
 	to_chat(current, span_notice("Your current objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
-		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
+		to_chat(current, "<B>[O.objective_name] #[obj_count]</B>: [O.explanation_text]")
 		obj_count++
 
 /datum/mind/proc/find_syndicate_uplink()

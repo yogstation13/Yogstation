@@ -16,14 +16,22 @@
 
 	outfit = /datum/outfit/job/chemist
 
-	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_GENETICS, ACCESS_CLONING)
+	base_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
+	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
+		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
+		///obj/item/reagent_containers/glass/bottle/leadacetate = 5,
+		/obj/item/paper/secretrecipe = 1
+	)
 
 /datum/job/chemist/proc/OmegaStationChanges()
 	return TRUE
@@ -36,7 +44,7 @@
 	name = "Chemist"
 	jobtype = /datum/job/chemist
 
-	pda_type = /obj/item/pda/chemist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/chem
 
 	glasses = /obj/item/clothing/glasses/science
 	ears = /obj/item/radio/headset/headset_med

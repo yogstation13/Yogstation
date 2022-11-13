@@ -197,9 +197,10 @@
 	
 /obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
+	return TRUE
 	
 /obj/item/reagent_containers/syringe/embed_tick(embedde, part)
-	reagents.trans_to(embedde, amount_per_transfer_from_this * 0.2)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
@@ -281,12 +282,6 @@
 	desc = "An advanced syringe that can hold 60 units of chemicals."
 	amount_per_transfer_from_this = 20
 	volume = 60
-
-/obj/item/reagent_containers/syringe/noreact
-	name = "cryo syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	volume = 20
-	reagent_flags = TRANSPARENT | NO_REACT
 
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"

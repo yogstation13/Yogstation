@@ -14,14 +14,21 @@
 
 	outfit = /datum/outfit/job/scientist
 
-	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
-	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
+	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
+	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	mail_goodies = list(
+		///obj/item/raw_anomaly_core/random = 10,
+		///obj/item/disk/tech_disk/spaceloot = 2,
+		/obj/item/camera_bug = 1
+	)
 
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
@@ -30,15 +37,15 @@
 /datum/job/scientist/proc/OmegaStationChanges()
 	total_positions = 3
 	spawn_positions = 3
-	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
-	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
+	added_access = list()
+	base_access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/pda/toxins
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist

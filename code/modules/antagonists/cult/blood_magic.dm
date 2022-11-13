@@ -177,7 +177,7 @@
 
 /datum/action/innate/cult/blood_spell/construction
 	name = "Twisted Construction"
-	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
+	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
 	button_icon_state = "transmute"
 	magic_path = "/obj/item/melee/blood_magic/construction"
 	health_cost = 12
@@ -600,8 +600,6 @@
 	. += {"<u>A sinister spell used to convert:</u>\n
 	Plasteel into runed metal\n
 	[METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal into a construct shell\n
-	Living cyborgs into constructs after a delay\n
-	Cyborg shells into construct shells\n
 	Airlocks into brittle runed airlocks after a delay (harm intent)"}
 
 /obj/item/melee/blood_magic/construction/afterattack(atom/target, mob/user, proximity_flag, click_parameters)

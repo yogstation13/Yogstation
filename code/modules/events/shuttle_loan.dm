@@ -6,6 +6,7 @@
 #define PIZZA_DELIVERY 6
 #define ITS_HIP_TO 7
 #define MY_GOD_JC 8
+#define PETA 9
 
 
 /datum/round_event_control/shuttle_loan
@@ -24,7 +25,7 @@
 	var/thanks_msg = "The cargo shuttle should return in five minutes. Have some supply points for your trouble."
 
 /datum/round_event/shuttle_loan/setup()
-	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, ANTIDOTE_NEEDED, PIZZA_DELIVERY, ITS_HIP_TO, MY_GOD_JC)
+	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, ANTIDOTE_NEEDED, PIZZA_DELIVERY, ITS_HIP_TO, MY_GOD_JC, PETA)
 
 /datum/round_event/shuttle_loan/announce(fake)
 	SSshuttle.shuttle_loan = src
@@ -52,6 +53,10 @@
 			priority_announce("Cargo: We have discovered an active Syndicate bomb near our VIP shuttle's fuel lines. If you feel up to the task, we will pay you for defusing it.", "CentCom Security Division")
 			thanks_msg = "Live explosive ordnance incoming via supply shuttle. Evacuating cargo bay is recommended."
 			bonus_points = 45000 //If you mess up, people die and the shuttle gets turned into swiss cheese
+		if(PETA)
+			priority_announce("Cargo: A group calling themselves PETA whatever that means is asking to inspect your station. Do you want to check it out?", "CentCom Diplomatic Corps")
+			thanks_msg = "Inspectors Incoming."
+			bonus_points = 10000 // Funny hostile mobs
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
 	priority_announce(thanks_msg, "Cargo shuttle commandeered by CentCom.")
@@ -83,6 +88,8 @@
 			SSshuttle.centcom_message += "Biohazard cleanup incoming."
 		if(MY_GOD_JC)
 			SSshuttle.centcom_message += "Live explosive ordnance incoming. Exercise extreme caution."
+		if(PETA)
+			SSshuttle.centcom_message += "Inspectors Incoming."
 
 /datum/round_event/shuttle_loan/tick()
 	if(dispatched)
@@ -226,6 +233,17 @@
 					shuttle_spawns.Add(/obj/item/paper/fluff/cargo/bomb)
 				else
 					shuttle_spawns.Add(/obj/item/paper/fluff/cargo/bomb/allyourbase)
+
+			if(PETA)
+				for(var/i in 1 to 20)
+					if(prob(50))
+						shuttle_spawns.Add(/mob/living/simple_animal/hostile/rat/loan)
+					if(prob(40))
+						shuttle_spawns.Add(/mob/living/simple_animal/hostile/carp/loan)
+					if(prob(20))
+						shuttle_spawns.Add(/mob/living/simple_animal/hostile/bear/loan)
+					if(prob(30))
+						shuttle_spawns.Add(/mob/living/simple_animal/hostile/feral_cat/loan)
 
 		var/false_positive = 0
 		while(shuttle_spawns.len && empty_shuttle_turfs.len)

@@ -8,16 +8,6 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_trac
-	name = "Speed Loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
-	id = "c38_trac"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
-	build_path = /obj/item/ammo_box/c38/trac
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
 	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
@@ -35,6 +25,17 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
 	build_path = /obj/item/ammo_box/c38/iceblox
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/c38_gutterpunch
+	name = "Speed Loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	id = "c38_gutterpunch"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
+	build_path = /obj/item/ammo_box/c38/gutterpunch
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -294,7 +295,7 @@
 	materials = list(/datum/material/silver = 6000, /datum/material/iron = 8000, /datum/material/uranium = 2000)
 	build_path = /obj/item/gun/energy/ionrifle/carbine
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/wormhole_projector
 	name = "Bluespace Wormhole Projector"
@@ -310,7 +311,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
@@ -320,7 +321,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -328,7 +329,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
@@ -336,7 +337,7 @@
 
 /datum/design/mag_oldsmg/rubber_mag
 	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
-	desc = "A 20 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
@@ -392,16 +393,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/cryostatis_shotgun_dart
-	name = "Cryostatis Shotgun Dart"
-	desc = "A shotgun dart designed with similar internals to that of a cryostatis beaker, allowing reagents to not react when inside."
-	id = "shotgundartcryostatis"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 3500)
-	build_path = /obj/item/ammo_casing/shotgun/dart/noreact
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/hardlightbow
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
@@ -409,5 +400,45 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
 	build_path = /obj/item/gun/ballistic/bow/energy
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/simple_sight
+	name = "Simple Sight"
+	desc = "A simple yet elegant scope. Better than ironsights."
+	id = "simple_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2500)
+	build_path = /obj/item/attachment/scope/simple
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/holo_sight
+	name = "Holographic Sight"
+	desc = "A highly advanced sight that projects a holographic design onto its lens, providing unobscured and precise view of your target."
+	id = "holo_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2500, /datum/material/gold = 1000, /datum/material/plastic = 1000)
+	build_path = /obj/item/attachment/scope/holo
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/vert_grip
+	name = "Vertical Grip"
+	desc = "A tactile grip that increases the control and steadiness of your weapon."
+	id = "vert_grip"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/titanium = 2500)
+	build_path = /obj/item/attachment/grip/vertical
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/laser_sight
+	name = "Laser Sight"
+	desc = "A glorified laser pointer. Good for knowing what you're aiming at."
+	id = "laser_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/gold = 1000, /datum/material/uranium = 1000, /datum/material/glass = 500)
+	build_path = /obj/item/attachment/laser_sight
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

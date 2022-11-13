@@ -141,18 +141,19 @@
 
 /obj/item/melee/touch_attack/raisehand
 	name = "\improper raise bloodman"
-	desc = "Blood covers your hand like a glove as it waits for a new host."
+	desc = "Prepare to raise a bloodman for about 5% of your blood or 5 brain damage if you're a bloodless race."
 	on_use_sound = 'sound/magic/wandodeath.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
 	color = "#FF0000"
+	
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/living/carbon/human/M = target
 	if(!ishuman(M) || M.stat != DEAD)
-		to_chat(M, span_notice("You must be targeting a dead humanoid!"))
+		to_chat(user, span_notice("You must be targeting a dead humanoid!"))
 		return
 	if(GLOB.bloodmen_list.len > 2)
-		to_chat(M, span_notice("You can't control that many minions!"))
+		to_chat(user, span_notice("You can't control that many minions!"))
 		return
 	if(NOBLOOD in M.dna.species.species_traits)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
@@ -163,9 +164,8 @@
 		L.stored_mob = M
 		M.forceMove(L)
 		qdel(src)
-		user.blood_volume -= 50 // 9% blood cost, cheaper than the other spell because its not like you can stop near a corpse or find one near you in a fight 
-		to_chat(user, "<span class ='userdanger'>You curse the body with your blood, leaving you feeling a bit light-headed.</span>")
-
+		user.blood_volume -= 25 
+		to_chat(user, span_notice("You curse the body with your blood, leaving you feeling a bit light-headed."))
 
 /obj/item/melee/touch_attack/pacifism
     name = "\improper pacifism touch"

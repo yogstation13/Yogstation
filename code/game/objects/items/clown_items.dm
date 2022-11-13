@@ -59,7 +59,7 @@
 	uses = 300
 
 /obj/item/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
+	desc = "A homemade bar of soap. Smells of...not much."
 	icon_state = "soapgibs"
 	cleanspeed = 30 // faster to reward chemists for going to the effort
 
@@ -153,6 +153,7 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
+	fryable = TRUE
 
 /obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

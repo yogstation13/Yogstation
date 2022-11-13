@@ -27,6 +27,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	wound_bonus = -5
 	bare_wound_bonus = 10 // BEAR wound bonus am i right
 	sharpness = SHARP_EDGED
@@ -43,6 +44,9 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 
 	do_footstep = TRUE
+
+/mob/living/simple_animal/hostile/bear/loan
+	faction = list("hostile")
 
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson

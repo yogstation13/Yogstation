@@ -64,6 +64,14 @@
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/ert/medic/alert
 
+/datum/antagonist/ert/common
+	outfit = /datum/outfit/ert
+
+/datum/antagonist/ert/common/leader
+	name = "Emergency Response Commander"
+	role = "Commander"
+	outfit = /datum/outfit/ert/commonleader
+
 /datum/antagonist/ert/commander
 	role = "Commander"
 	outfit = /datum/outfit/ert/commander

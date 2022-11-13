@@ -28,6 +28,7 @@
 	visor_flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = FIRE_PROOF
+	hattable = FALSE
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
@@ -41,7 +42,7 @@
 	desc = "You put the cake on your head. Brilliant."
 	icon_state = "hardhat0_cakehat"
 	item_state = "hardhat0_cakehat"
-	item_color = "cakehat"
+	hat_type = "cakehat"
 	hitsound = 'sound/weapons/tap.ogg'
 	flags_inv = HIDEEARS|HIDEHAIR
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
@@ -112,11 +113,12 @@
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"
 	item_state = "hardhat0_pumpkin"
-	item_color = "pumpkin"
+	hat_type = "pumpkin"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	brightness_on = 2 //luminosity when on
 	flags_cover = HEADCOVERSEYES
+	hattable = FALSE
 
 /*
  * Kitty ears
@@ -136,7 +138,7 @@
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
 		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
-			to_chat(user, "Your mind floods with thoughts of hairballs.")
+			to_chat(user, "Your mind is filled with the knowledge of huntspeak... Well thats what felinids want you to believe anyway.")
 			LH.grant_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	..()
 
@@ -144,7 +146,7 @@
 	..()
 	var/datum/language_holder/LH = user.get_language_holder()
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
-		to_chat(user, "You rid yourself of degeneracy.")
+		to_chat(user, "You lose the keenness in your ears.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	
 
@@ -161,7 +163,7 @@
 	desc = "Some fake antlers and a very fake red nose."
 	icon_state = "hardhat0_reindeer"
 	item_state = "hardhat0_reindeer"
-	item_color = "reindeer"
+	hat_type = "reindeer"
 	flags_inv = 0
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	brightness_on = 1 //luminosity when on
@@ -280,6 +282,7 @@
 	item_state = "foilhat"
 	armor = list(MELEE = 0, BULLET = 0, LASER = -5,ENERGY = 0, BOMB = 0, BIO = 0, RAD = -5, FIRE = 0, ACID = 0)
 	equip_delay_other = 140
+	hattable = FALSE
 	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
 	var/warped = FALSE
 
@@ -367,3 +370,4 @@
 	desc = "A cute, multicoloured flower. Makes you feel all warm and fuzzy inside."
 	icon_state = "rflower"
 	item_state = "rflower"
+	w_class = WEIGHT_CLASS_TINY

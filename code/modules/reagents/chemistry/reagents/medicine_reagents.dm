@@ -133,6 +133,7 @@
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
 	color = "#0000C8"
 	taste_description = "sludge"
+	overdose_threshold = 100 //no chugging
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
 	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
@@ -433,6 +434,39 @@
 			M.reagents.remove_reagent(R.type,1)
 	..()
 
+/datum/reagent/medicine/system_cleaner
+	name = "System Cleaner"
+	description = "Neutralizes harmful chemical compounds inside synthetic systems."
+	reagent_state = LIQUID
+	color = "#F1C40F"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
+	M.adjustToxLoss(-2*REM, 0)
+	. = 1
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R != src)
+			M.reagents.remove_reagent(R.type,1)
+	..()
+
+/datum/reagent/medicine/liquid_solder
+	name = "Liquid Solder"
+	description = "Repairs brain damage in synthetics."
+	color = "#727272"
+	taste_description = "metallic"
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_SPECIAL))
+			C.cure_trauma_type(BRAIN_TRAUMA_SPECIAL)
+		else if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_MILD))
+			C.cure_trauma_type(BRAIN_TRAUMA_MILD)
+	..()
+
 /datum/reagent/medicine/omnizine
 	name = "Omnizine"
 	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."
@@ -441,6 +475,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	var/healing = 0.5
 	overdose_threshold = 30
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)
@@ -689,6 +724,7 @@
 	..()
 	L.ignore_slowdown(type)
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
@@ -1154,12 +1190,12 @@
 	reagent_state = LIQUID
 	color = "#43bf1d"
 	taste_description = "bug intestines"
-	overdose_threshold = 10
+	overdose_threshold = 20
 	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(7,7)
-	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
+	M.heal_bodypart_damage(3,3)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1*REM)
 	..()
 	return TRUE
 
@@ -1300,9 +1336,10 @@
 	// Heart attack code will not do damage if corazone is present
 	// because it's SPACE MAGIC ASPIRIN
 	name = "Corazone"
-	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks."
+	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks. Causes rapid organ failure when overdosed."
 	color = "#F5F5F5"
 	self_consuming = TRUE
+	overdose_threshold = 30
 
 /datum/reagent/medicine/corazone/on_mob_metabolize(mob/living/M)
 	..()
@@ -1312,6 +1349,12 @@
 /datum/reagent/medicine/corazone/on_mob_end_metabolize(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_STABLEHEART, type)
 	REMOVE_TRAIT(M, TRAIT_STABLELIVER, type)
+	..()
+
+/datum/reagent/medicine/corazone/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.5 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.8 * REM)
 	..()
 
 /datum/reagent/medicine/muscle_stimulant
@@ -1791,3 +1834,15 @@
 
 #undef PERF_BASE_DAMAGE
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
+
+/datum/reagent/medicine/coagulant/seraka_extract
+	name = "Seraka Extract"
+	description = "A deeply coloured oil present in small amounts in seraka mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
+	color = "#00767C"
+	taste_description = "intensely savoury bitterness"
+	glass_name = "glass of seraka extract"
+	glass_desc = "Deeply savoury and bitter. Slows your blood flow. Dangerous in moderate quantities."
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+	clot_rate = 0.4 //slightly better than regular coagulant
+	passive_bleed_modifier = 0.5
+	overdose_threshold = 10 //but easier to overdose on

@@ -14,18 +14,30 @@
 
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
+	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_COOK
+	minimal_character_age = 18 //My guy they just a cook
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		///obj/item/storage/box/ingredients/random = 80,
+		/obj/item/reagent_containers/glass/bottle/caramel = 20,
+		/obj/item/reagent_containers/food/condiment/flour = 20,
+		/obj/item/reagent_containers/food/condiment/rice = 20,
+		/obj/item/reagent_containers/food/condiment/enzyme = 15,
+		/obj/item/reagent_containers/food/condiment/soymilk = 15,
+		/obj/item/kitchen/knife = 4,
+		/obj/item/kitchen/knife/butcher = 2
+	)
+
 /datum/job/cook/proc/OmegaStationChanges()
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
-	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	added_access = list()
+	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 
 /datum/job/cook/proc/EclipseStationChanges()
 	total_positions = 4
@@ -35,7 +47,7 @@
 	name = "Cook"
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/pda/cook
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef

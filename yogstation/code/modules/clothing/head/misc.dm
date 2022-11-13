@@ -29,7 +29,7 @@
 /obj/item/clothing/head/helmet/juggernaut
 	name = "Juggernaut Helmet"
 	desc = "I...am...the...JUGGERNAUT!!!."
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "juggernauthelm"
 	item_state = "juggernauthelm"
@@ -50,7 +50,7 @@
 /obj/item/clothing/head/yogs/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64

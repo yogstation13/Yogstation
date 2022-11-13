@@ -51,6 +51,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_headset_message,	/*send an message to somebody through their headset as CentCom*/
 	/client/proc/cmd_admin_rejuvenate,	/*Rejuvivates Mobs*/
+	/client/proc/cmd_admin_offer_rename, /*offers a mob the ability to change its name variables for itself*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
 	/client/proc/check_antagonists,		/*shows all antags*/
@@ -201,6 +202,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_view_range,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/cmd_admin_offer_rename,
 	/client/proc/cmd_admin_headset_message,
 	/client/proc/cmd_admin_check_contents,
 	/datum/admins/proc/access_news_network,
@@ -262,7 +264,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		control_freak = CONTROL_FREAK_SKIN | CONTROL_FREAK_MACROS
 
-		var/rights = holder.rank.rights
+		var/rights = GLOB.permissions.get_rights_for(src)
 		add_verb(src, GLOB.admin_verbs_default)
 		add_verb(src, GLOB.mentor_verbs) // yogs - give admins mentor verbs
 		if(rights & R_BUILDMODE)
@@ -495,7 +497,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -584,7 +586,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
 /client/proc/give_spell(mob/T in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
 
@@ -608,7 +610,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		message_admins(span_danger("Spells given to mindless mobs will not be transferred in mindswap or cloning!"))
 
 /client/proc/remove_spell(mob/T in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Remove Spell"
 	set desc = "Remove a spell from the selected mob."
 
@@ -621,7 +623,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
@@ -650,7 +652,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Admin.Round Interaction"
-	if (!(holder.rank.rights & R_BUILDMODE))
+	if (!(check_rights(R_BUILDMODE)))
 		return
 	if(src.mob)
 		togglebuildmode(src.mob)
@@ -703,10 +705,10 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin"
 	set desc = "Regain your admin powers."
 
-	var/datum/admins/A = GLOB.deadmins[ckey]
+	var/datum/admins/A = GLOB.permissions.deadmins[ckey]
 
 	if(!A)
-		A = GLOB.admin_datums[ckey]
+		A = GLOB.permissions.admin_datums[ckey]
 		if (!A)
 			var/msg = " is trying to readmin but they have no deadmin entry"
 			message_admins("[key_name_admin(src)][msg]")

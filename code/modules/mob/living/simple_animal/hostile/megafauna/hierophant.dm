@@ -43,6 +43,7 @@ Difficulty: Hard
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	icon_state = "hierophant"
 	icon_living = "hierophant"
+	health_doll_icon = "hierophant"
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/hierophant_new.dmi'
 	faction = list("boss") //asteroid mobs? get that shit out of my beautiful square house
@@ -55,8 +56,9 @@ Difficulty: Hard
 	ranged = TRUE
 	ranged_cooldown_time = 40
 	aggro_vision_range = 21 //so it can see to one side of the arena to the other
-	loot = list(/obj/item/hierophant_club)
-	crusher_loot = list(/obj/item/hierophant_club, /obj/item/crusher_trophy/vortex_talisman)
+	loot = list(/obj/item/hierophant_club, /obj/item/gem/purple)
+	crusher_loot = list(/obj/item/hierophant_club, /obj/item/crusher_trophy/vortex_talisman, /obj/item/gem/purple)
+	butcher_results = list(/obj/item/hierophant_club, /obj/item/gem/purple)
 	wander = FALSE
 	internal_type = /obj/item/gps/internal/hierophant
 	del_on_death = TRUE
@@ -741,3 +743,7 @@ Difficulty: Hard
 	gpstag = "Zealous Signal"
 	desc = "Heed its words."
 	invisibility = 100
+
+/mob/living/simple_animal/hostile/megafauna/hierophant/gib()
+	death()
+	..()

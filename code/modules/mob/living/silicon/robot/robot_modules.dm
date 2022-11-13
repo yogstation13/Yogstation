@@ -296,7 +296,6 @@
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/surgical_drapes,
 		/obj/item/retractor,
 		/obj/item/hemostat,
 		/obj/item/cautery,
@@ -587,6 +586,7 @@
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/miner,
 		/obj/item/clockwork/weapon/ratvarian_spear,
+		/datum/action/innate/call_weapon/brass_bow,
 		/obj/item/borg/sight/xray/truesight_lens)
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
@@ -639,7 +639,6 @@
 		/obj/item/reagent_containers/borghypo/syndicate,
 		/obj/item/twohanded/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
-		/obj/item/surgical_drapes,
 		/obj/item/retractor,
 		/obj/item/hemostat,
 		/obj/item/cautery,
@@ -648,8 +647,7 @@
 		/obj/item/bonesetter,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
-		/obj/item/card/emag,
-		/obj/item/crowbar/cyborg,
+		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/stack/medical/gauze/cyborg,
@@ -668,6 +666,7 @@
 	name = "Syndicate Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/kitchen/knife/combat/cyborg,
 		/obj/item/borg/sight/thermal,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,

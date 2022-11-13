@@ -34,10 +34,9 @@
 
 /obj/structure/closet/bluespace/internal/Initialize()
 	if(SSbluespace_locker.internal_locker && SSbluespace_locker.internal_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.internal_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/internal/get_other_locker()
 	return SSbluespace_locker.external_locker
@@ -144,14 +143,13 @@
 
 /obj/structure/closet/bluespace/external/Initialize()
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.external_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/external/Destroy()
 	SSbluespace_locker.external_locker = null
-	SSbluespace_locker.bluespaceify_random_locker()
+	SSbluespace_locker.redistribute_locker()
 	return ..()
 
 /obj/structure/closet/bluespace/external/can_open()

@@ -13,6 +13,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	idle_power_usage = 1000
 	use_power = IDLE_POWER_USE
 
+	critical_machine = TRUE
+
 	var/primary = FALSE
 
 	var/valid_ticks = MAX_AI_DATA_CORE_TICKS //Limited to MAX_AI_DATA_CORE_TICKS. Decrement by 1 every time we have an invalid tick, opposite when valid 
@@ -48,7 +50,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	power_modifier = new_power_mod
 	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
 
-/obj/machinery/ai/data_core/process()
+/obj/machinery/ai/data_core/process_atmos()
 	calculate_validity()
 
 

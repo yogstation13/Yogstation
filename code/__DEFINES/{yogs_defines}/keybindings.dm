@@ -103,6 +103,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_USESELF "Use Self"
 #define ACTION_DROP "Drop"
 #define ACTION_EQUIP "Equip"
+#define ACTION_REST "Rest"
 
 #define ACTION_TARGETHEAD "Target Head"
 #define ACTION_TARGETRARM "Target RArm"
@@ -115,6 +116,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_GIVE "Give"
 #define ACTION_RESIST "Resist"
 
+#define ACTION_TOGGLEWALKRUN "Toggle Walk Run"
 #define ACTION_TOGGLETHROW "Toggle Throw"
 #define ACTION_INTENTHELP "Intent Help"
 #define ACTION_INTENTDISARM "Intent Disarm"
@@ -129,6 +131,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_BUILDMODE "Build Mode"
 #define ACTION_STEALTHMIN "Stealthmin"
 #define ACTION_DSAY "Deadchat"
+#define ACTION_DONATORSAY "Donatorsay"
 
 
 GLOBAL_LIST_INIT(keybinding_default, list(
@@ -154,6 +157,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_USESELF = "Z",
 	ACTION_DROP = "Q",
 	ACTION_EQUIP = "E",
+	ACTION_REST = "V",
 
 	ACTION_TARGETHEAD = "Numpad8",
 	ACTION_TARGETRARM = "Numpad4",
@@ -166,6 +170,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_GIVE = "C",
 	ACTION_RESIST = "B",
 
+	ACTION_TOGGLEWALKRUN = "J",
 	ACTION_TOGGLETHROW = "R",
 	ACTION_INTENTHELP = "1",
 	ACTION_INTENTDISARM = "2",
@@ -179,6 +184,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_PLAYERPANEL = "F6",
 	ACTION_BUILDMODE = "F7",
 	ACTION_STEALTHMIN = "F8",
+	ACTION_DONATORSAY = "F9",
 	ACTION_DSAY = "F10",
 ))
 

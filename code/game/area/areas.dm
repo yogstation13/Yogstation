@@ -14,17 +14,14 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
 
+	var/area_flags = 0
+
 	var/map_name // Set in New(); preserves the name set by the map maker, even if renamed by the Blueprints.
 
 	var/valid_territory = TRUE // If it's a valid territory for gangs to claim
 	var/blob_allowed = TRUE // Does it count for blobs score? By default, all areas count.
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
-
-	var/tunnel_allowed = FALSE // if tunnels can be created on this area for mining generation
-	var/flora_allowed = FALSE // if plants may spawn in this area
-	var/mob_spawn_allowed = FALSE // if mobs can be spawned by natural generation
-	var/megafauna_spawn_allowed = FALSE // if megafauna can be spawned by natural generation in this area
 
 	var/fire = null
 	var/atmos = TRUE
@@ -91,6 +88,9 @@
 	var/airlock_wires = /datum/wires/airlock
 
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
+
+	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	var/datum/map_generator/map_generator
 /**
   * A list of teleport locations
   *
@@ -190,6 +190,21 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   */
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
+
+/area/proc/RunGeneration()
+	if(map_generator)
+		map_generator = new map_generator()
+		var/list/turfs = list()
+		for(var/turf/T in contents)
+			turfs += T
+		map_generator.generate_terrain(turfs)
+
+/area/proc/test_gen()
+	if(map_generator)
+		var/list/turfs = list()
+		for(var/turf/T in contents)
+			turfs += T
+		map_generator.generate_terrain(turfs)
 
 /**
   * Register this area as belonging to a z level

@@ -55,6 +55,9 @@
 
 	var/tod = null // Time of death
 
+	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
+	var/life_tickrate = 1 
+
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
 
@@ -72,6 +75,8 @@
 	var/last_played_vent
 
 	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+
+	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
 
 	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 

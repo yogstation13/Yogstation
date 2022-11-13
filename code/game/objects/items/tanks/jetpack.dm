@@ -8,6 +8,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	distribute_pressure = ONE_ATMOSPHERE * O2STANDARD
 	actions_types = list(/datum/action/item_action/set_internals, /datum/action/item_action/toggle_jetpack, /datum/action/item_action/jetpack_stabilization)
+	cryo_preserve = TRUE
 	var/gas_type = /datum/gas/oxygen
 	var/on = FALSE
 	var/stabilizers = FALSE

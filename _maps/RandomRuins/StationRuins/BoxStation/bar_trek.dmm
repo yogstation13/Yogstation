@@ -1295,12 +1295,16 @@
 /obj/machinery/griddle,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
-"xl" = (
+"uZ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -1814,7 +1818,7 @@ bo
 al
 bF
 bR
-xl
+uZ
 sm
 bQ
 bQ

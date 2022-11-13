@@ -6,7 +6,7 @@
 
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
-import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../hotkeys';
+import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../../common/keycodes';
 import { createLogger } from '../logging';
 import { Box } from './Box';
 import { Icon } from './Icon';
@@ -23,6 +23,7 @@ export const Button = props => {
     iconSize,
     iconSpin,
     iconColor,
+    iconPosition,
     color,
     disabled,
     selected,
@@ -60,6 +61,7 @@ export const Button = props => {
         ellipsis && 'Button--ellipsis',
         circular && 'Button--circular',
         compact && 'Button--compact',
+        iconPosition && 'Button--iconPosition--' + iconPosition,
         (color && typeof color === 'string')
           ? 'Button--color--' + color
           : 'Button--color--default',
@@ -89,7 +91,7 @@ export const Button = props => {
         }
       }}
       {...rest}>
-      {icon && (
+      {(icon && iconPosition !== 'right') && (
         <Icon
           name={icon}
           rotation={iconRotation}
@@ -256,13 +258,6 @@ export class ButtonInput extends Component {
             'display': !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
-          onBlur={e => {
-            if (!this.state.inInput) {
-              return;
-            }
-            this.setInInput(false);
-            this.commitResult(e);
-          }}
           onKeyDown={e => {
             if (e.keyCode === KEY_ENTER) {
               this.setInInput(false);
@@ -271,6 +266,7 @@ export class ButtonInput extends Component {
             }
             if (e.keyCode === KEY_ESCAPE) {
               this.setInInput(false);
+              return;
             }
           }}
         />

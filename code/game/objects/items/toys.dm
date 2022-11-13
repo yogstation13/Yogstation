@@ -260,18 +260,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/hacked = FALSE
+	var/saber_color = "blue"
 
 /obj/item/toy/sword/attack_self(mob/user)
 	active = !( active )
 	if (active)
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(user, 'sound/weapons/saberon.ogg', 20, 1)
-		if(hacked)
-			icon_state = "swordrainbow"
-			item_state = "swordrainbow"
-		else
-			icon_state = "swordblue"
-			item_state = "swordblue"
+		icon_state = "sword[saber_color]"
+		item_state = "sword[saber_color]"
 		w_class = WEIGHT_CLASS_BULKY
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
@@ -292,13 +289,13 @@
 			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
-				newSaber.item_color = "rainbow"
+				newSaber.saber_color = "rainbow"
 			qdel(W)
 			qdel(src)
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			to_chat(user, span_warning("RNBW_ENGAGE"))
 
 			if(active)
@@ -323,6 +320,24 @@
 	attack_verb = list("pricked", "absorbed", "gored")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball
+	name = "toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "baseballbat_donk"
+	item_state = "baseball_bat_donk"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	attack_verb = list("beat", "smacked")
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball/nerf
+	name = "antique toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle is almost rubbed off...\"nerf or nothing\"? what does that mean"
+	icon_state = "baseballbat"
+	item_state = "baseball_bat_plastic"
 
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
@@ -390,7 +405,7 @@
 	icon_state = "singulo_wakizashi"
 	item_state = "singulo_wakizashi"
 	force = 0 //sorry, no
-	throwforce = 0 
+	throwforce = 0
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 /*
@@ -816,8 +831,8 @@
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the deck."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the deck."))
 
@@ -944,7 +959,7 @@
 
 /obj/item/toy/cards/singlecard
 	name = "card"
-	desc = "a card"
+	desc = "A card."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "singlecard_down_nanotrasen"
 	w_class = WEIGHT_CLASS_TINY
@@ -1263,8 +1278,8 @@ obj/item/toy/turn_tracker
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the turn tracker."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the turn tracker."))
 	else

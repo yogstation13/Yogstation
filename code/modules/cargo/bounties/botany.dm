@@ -82,7 +82,7 @@
 /datum/bounty/item/botany/cannabis_ultimate
 	name = "Omega Weed Leaves"
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/ultimate)
-	multiplier = 6
+	multiplier = 10
 	bonus_desc = "Under no circumstances mention this shipment to security."
 	foodtype = "batch of \"brownies\""
 
@@ -170,10 +170,16 @@
 	multiplier = 2
 	foodtype = "omelet"
 
+/datum/bounty/item/botany/destryoingangels
+	name = "Destroying Angels"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/mushroom/angel)
+	bonus_desc = "He insists that \"he knows what he's doing\"."
+	multiplier = 8
+	foodtype = "stroganoff"
+
 /datum/bounty/item/botany/nettles_death
 	name = "Death Nettles"
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/nettle/death)
-	multiplier = 2
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/nettle/death) //multiplier removed because botanists will have this by the 8 minute mark most often.
 	bonus_desc = "Wear protection when handling them."
 	foodtype = "cheese"
 
@@ -208,3 +214,37 @@
 	name = "Corn"
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/corn)
 	foodtype = "chowder"
+
+/datum/bounty/item/botany/steelcaps
+	name = "Steel-Cap Logs"
+	wanted_types = list(/obj/item/grown/log/steel)
+	required_count = 20
+	multiplier = 5
+	foodtype = "kebab"
+
+/datum/bounty/item/botany/steelcaps/New()
+	description = "Central Command's head chef wants only the best organic skewers for a fine [foodtype]."
+
+/datum/bounty/item/botany/towercaps
+	name = "Tower-Cap Logs"
+	wanted_types = list(/obj/item/grown/log)
+	exclude_types = list(/obj/item/grown/log/steel)
+	required_count = 20
+	foodtype = "grill-out"
+
+/datum/bounty/item/botany/towercaps/New()
+	description = "Central Command's head chef wants only the best wood as fuel for a corporate [foodtype]."
+
+/datum/bounty/item/botany/killertomato
+	name = "Killer Tomato Meat"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/meat/slab/killertomato)
+	required_count = 3
+	multiplier = 7
+	foodtype = "vegan raclette"
+
+/datum/bounty/item/botany/walkingshroom
+	name = "Walking Mushroom Meat"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/hugemushroomslice)
+	required_count = 6
+	multiplier = 6
+	foodtype = "vegan wellington"

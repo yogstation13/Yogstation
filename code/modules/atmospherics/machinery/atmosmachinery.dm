@@ -233,6 +233,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		var/datum/gas_mixture/env_air = loc.return_air()
 		pressures = int_air.return_pressure() - env_air.return_pressure()
 
+	if(user.mob_has_heavy_gravity())
+		return
+
 	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
 
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir

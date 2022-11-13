@@ -111,7 +111,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				severity = 7
 		hud_used.healths.icon_state = "elite_health[severity]"
 		if(severity > 0)
-			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+			overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
 
@@ -206,7 +206,7 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(activator != null && activator.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(activator))
 		onEliteWon()
-	if(mychild != null && mychild.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(mychild))
+	if(mychild != null && mychild.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(mychild) || mychild.faction == activator.faction)
 		onEliteLoss()
 
 /obj/structure/elite_tumor/proc/arena_trap()

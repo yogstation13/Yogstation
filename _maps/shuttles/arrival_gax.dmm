@@ -5,33 +5,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
-"d" = (
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/arrival)
 "g" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/arrival)
-"h" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/arrival)
-"k" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_y = 32;
-	use_power = 0
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -51,6 +30,15 @@
 /obj/item/clothing/mask/breath,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/clothing/mask/breath,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"n" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "o" = (
@@ -86,25 +74,34 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
+"v" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "w" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"y" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = 32;
+	use_power = 0
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "C" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/status_display/ai{
 	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/arrival)
-"D" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Arrivals Shuttle Airlock"
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
-"E" = (
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -133,12 +130,32 @@
 /obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
+"O" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "R" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"S" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/arrival)
 "T" = (
 /obj/structure/chair/comfy/shuttle{
@@ -196,15 +213,15 @@ o
 "}
 (4,1,1) = {"
 o
-k
+y
 b
 K
 b
-w
+b
 s
 "}
 (5,1,1) = {"
-D
+S
 K
 K
 K
@@ -214,15 +231,15 @@ s
 "}
 (6,1,1) = {"
 o
-d
+n
 b
 M
 b
-w
+b
 s
 "}
 (7,1,1) = {"
-D
+S
 K
 K
 K
@@ -232,11 +249,11 @@ s
 "}
 (8,1,1) = {"
 o
-h
+v
 b
 K
 b
-w
+b
 s
 "}
 (9,1,1) = {"
@@ -245,7 +262,7 @@ g
 w
 K
 w
-E
+O
 o
 "}
 (10,1,1) = {"

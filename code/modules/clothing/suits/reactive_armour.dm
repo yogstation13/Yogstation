@@ -10,6 +10,7 @@
 	var/static/list/anomaly_armor_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
+		/obj/effect/anomaly/pyro	  			    = /obj/item/clothing/suit/armor/reactive/fire,
 		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport
 		)
 
@@ -79,22 +80,7 @@
 			owner.visible_message(span_danger("The reactive teleport system is still recharging! It fails to teleport [H]!"))
 			return
 		owner.visible_message(span_danger("The reactive teleport system flings [H] clear of [attack_text], shutting itself off in the process!"))
-		playsound(get_turf(owner),'sound/magic/blink.ogg', 100, 1)
-		var/list/turfs = new/list()
-		for(var/turf/T in orange(tele_range, H))
-			if(T.density)
-				continue
-			if(T.x>world.maxx-tele_range || T.x<tele_range)
-				continue
-			if(T.y>world.maxy-tele_range || T.y<tele_range)
-				continue
-			turfs += T
-		if(!turfs.len)
-			turfs += pick(/turf in orange(tele_range, H))
-		var/turf/picked = pick(turfs)
-		if(!isturf(picked))
-			return
-		H.forceMove(picked)
+		do_teleport(H, get_turf(H), tele_range, asoundin = 'sound/magic/blink.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 		H.rad_act(rad_amount)
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return 1
@@ -178,7 +164,9 @@
 	if(!active)
 		return FALSE
 	if(!damage)
-		return 0
+		return FALSE
+	if(owner.stat == DEAD)
+		return FALSE
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread

@@ -280,7 +280,7 @@
 /obj/item/clothing/head/helmet/plate/crusader/prophet
 	name = "Prophet's Hat"
 	desc = "A religious-looking hat."
-	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 70, BIO = 50, RAD = 50, FIRE = 60, ACID = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64

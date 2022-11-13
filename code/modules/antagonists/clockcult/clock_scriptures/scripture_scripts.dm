@@ -124,10 +124,22 @@
 /datum/clockwork_scripture/clockwork_armaments/scripture_effects()
 	invoker.visible_message(span_warning("A shimmer of yellow light infuses [invoker]!"), \
 	span_brass("You bind clockwork equipment to yourself. Use Clockwork Armaments and Call Spear to summon them."))
-	var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
-	S.Grant(invoker)
 	var/datum/action/innate/clockwork_armaments/A = new()
 	A.Grant(invoker)
+	var/choice = input(invoker,"What weapon do you want to call upon?", "Clockwork Armaments") as anything in list("Brass Spear","Brass Battlehammer","Brass Sword", "Brass Bow")
+	switch(choice)
+		if("Brass Spear")
+			var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
+			S.Grant(invoker)
+		if("Brass Battlehammer")
+			var/datum/action/innate/call_weapon/battlehammer/H = new()
+			H.Grant(invoker)
+		if("Brass Sword")
+			var/datum/action/innate/call_weapon/sword/SW = new()
+			SW.Grant(invoker)
+		if("Brass Bow")
+			var/datum/action/innate/call_weapon/brass_bow/B = new()
+			B.Grant(invoker)
 	return TRUE
 
 //Clockwork Armaments: Equips a set of clockwork armor. Three-minute cooldown.
@@ -195,24 +207,23 @@
 	desc = "Calls a Ratvarian spear into your hands to fight your enemies."
 	weapon_type = /obj/item/clockwork/weapon/ratvarian_spear
 
-//Brass Bow: Creates a brass bow, which is capable of firing redlight arrows.
-/datum/clockwork_scripture/create_object/brass_bow
-	descname = "Self Recharging Ranged Weapon"
-	name = "Brass Bow"
-	desc = "Creates a bow capable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1 1/2 seconds."
-	invocations = list("Grant me armaments...", "...from the forge of Armorer!") // Temp text
-	channel_time = 10
-	power_cost = 400
-	whispered = TRUE
-	object_path = /obj/item/gun/ballistic/bow/energy/clockwork
-	creator_message = span_brass("You form a Brass Bow, which is capable of firing redlight arrows.")
-	usage_tip = "The bow will recharge after 1 1/2 seconds."
-	tier = SCRIPTURE_SCRIPT
-	space_allowed = TRUE
-	primary_component = BELLIGERENT_EYE
-	sort_priority = 6
-	quickbind = TRUE
-	quickbind_desc = "Creates a brass bow capable of firing redlight arrows, doing moderate damage but recharges after use."
+//Call Sword: Calls forth a brass sword.
+/datum/action/innate/call_weapon/sword
+	name = "Call Sword"
+	desc = "Calls a brass longsword into your hands to fight your enemies."
+	weapon_type = /obj/item/clockwork/weapon/brass_sword
+
+//Call Spear: Calls forth a brass hammer.
+/datum/action/innate/call_weapon/battlehammer
+	name = "Call Battlehammer"
+	desc = "Calls a brass battlehammer into your hands to fight your enemies."
+	weapon_type = /obj/item/clockwork/weapon/brass_battlehammer
+
+//Call brass bow: Creates or calls a brass bow, which is capable of firing redlight arrows.
+/datum/action/innate/call_weapon/brass_bow
+	name = "Call Brass Bow"
+	desc = "Calls a brass bowcapable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1.5 seconds.."
+	weapon_type = /obj/item/gun/ballistic/bow/energy/clockwork
 
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.

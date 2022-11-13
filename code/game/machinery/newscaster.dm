@@ -796,20 +796,11 @@ GLOBAL_LIST_EMPTY(allCasters)
 /obj/machinery/newscaster/proc/scan_user(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.wear_id)
-			if(istype(human_user.wear_id, /obj/item/pda))
-				var/obj/item/pda/P = human_user.wear_id
-				if(P.id)
-					scanned_user = "[P.id.registered_name] ([P.id.assignment])"
-				else
-					scanned_user = "Unknown"
-			else if(istype(human_user.wear_id, /obj/item/card/id) )
-				var/obj/item/card/id/ID = human_user.wear_id
-				scanned_user ="[ID.registered_name] ([ID.assignment])"
-			else
-				scanned_user ="Unknown"
+		if(human_user.wear_id && human_user.wear_id.GetID())
+			var/obj/item/card/id/ID = human_user.wear_id.GetID()
+			scanned_user = "[ID.registered_name] ([ID.assignment])"
 		else
-			scanned_user ="Unknown"
+			scanned_user = "Unknown"
 	else if(issilicon(user))
 		var/mob/living/silicon/ai_user = user
 		scanned_user = "[ai_user.name] ([ai_user.job])"

@@ -101,7 +101,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/horde
 	name = "Horde"
-	desc = "Bring all your existing bloodmen to you at the cost of 18% blood (15 brain damage for those without blood)."
+	desc = "Bring all your existing bloodmen to you at the cost of 3% blood per bloodman or 5 brain damage per bloodman if you're a bloodless race."
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "horde"
 	var/list/summon_type = list("/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman")
@@ -123,7 +123,7 @@
 			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 			to_chat(usr, span_notice("<span class ='userdanger'>You can almost feel your brain writhing as you call your bloodmen to you.</span>"))
 		else
-			user.blood_volume -= 30
+			user.blood_volume -= 15
 			to_chat(usr, span_notice("<span class ='userdanger'>You feel yourself becoming paler with every minion called.</span>"))
 		if(T)
 			bloodman.forceMove(T)

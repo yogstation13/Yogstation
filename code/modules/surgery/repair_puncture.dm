@@ -8,6 +8,8 @@
 ///// Repair puncture wounds
 /datum/surgery/repair_puncture
 	name = "Repair puncture"
+	icon = 'icons/obj/stack_medical.dmi'
+	icon_state = "suture_3"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/repair_innards, /datum/surgery_step/seal_veins, /datum/surgery_step/close) // repeat between steps 2 and 3 until healed
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
@@ -72,6 +74,8 @@
 	name = "weld veins" // if your doctor says they're going to weld your blood vessels back together, you're either A) on SS13, or B) in grave mortal peril
 	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70, /obj/item = 30)
 	time = 4 SECONDS
+	preop_sound = 'sound/surgery/cautery1.ogg'
+	success_sound = 'sound/surgery/cautery2.ogg'
 
 /datum/surgery_step/seal_veins/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)

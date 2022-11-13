@@ -299,10 +299,12 @@
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
-	return doUnEquip(I, force, newloc, FALSE, silent = silent)
+	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
@@ -322,6 +324,7 @@
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
 
+	SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
 	var/hand_index = get_held_index_of_item(I)
 	if(hand_index)
 		held_items[hand_index] = null

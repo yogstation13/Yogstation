@@ -21,6 +21,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "pecks"
 	attack_sound = "goose"
 	speak_emote = list("honks")

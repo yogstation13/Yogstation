@@ -72,7 +72,9 @@
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
-	if(prob(10))
+	if(istype(otherEmag, /obj/item/card/emag/improvised))
+		return
+	if(prob(7))
 		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))
 		playsound(src.loc, "sparks", 50, 1)
 		qdel(otherEmag)

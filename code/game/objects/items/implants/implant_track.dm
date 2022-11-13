@@ -5,15 +5,19 @@
 	var/lifespan_postmortem = 10 MINUTES //for how long after user death will the implant work?
 	var/allow_teleport = TRUE //will people implanted with this act as teleporter beacons?
 
-/obj/item/implant/tracking/c38
+/obj/item/implant/tracking/tra32
 	name = "TRAC implant"
 	desc = "A smaller tracking implant that supplies power for only a few minutes."
-	var/lifespan = 15 MINUTES //how long does the implant last?
+	var/lifespan = 5 MINUTES //how long does the implant last?
 	allow_teleport = FALSE
 
-/obj/item/implant/tracking/c38/Initialize()
+/obj/item/implant/tracking/tra32/Initialize()
 	. = ..()
 	QDEL_IN(src, lifespan)
+
+/obj/item/implant/tracking/tra32/emp_act(severity) //Demands to call the severity and I do not care to oppose it
+	. = ..()
+	Destroy()
 
 /obj/item/implant/tracking/New()
 	..()
