@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "granite is generated in the same step as basalt"
-  - tweak: "loading announcement will properly mention lavaland"

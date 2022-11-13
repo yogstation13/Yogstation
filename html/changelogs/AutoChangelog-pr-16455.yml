@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added the backstabbing switchblade to the uplink for 5TC"
-  - rscdel: "Removed noslips and camera bug from the bloodspai traitor kit"
-  - tweak: "Replaced the switchblade with the backstabbing switchblade in the bloodyspai traitor kit"

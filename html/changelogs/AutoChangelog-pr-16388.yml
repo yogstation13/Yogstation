@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Crew pinpointer/lifeline program can track mob has monitor nanite"
-  - bugfix: "Fix lifeline name overwriting each others"

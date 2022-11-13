@@ -1,4 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Ballistic arrows and energy arrows now have the same projectile speed (ballistic ones are slower, energy ones are faster)"

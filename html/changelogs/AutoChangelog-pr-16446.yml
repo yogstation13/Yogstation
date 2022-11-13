@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "The station gets 9 mail a minute instead of 15"
-  - tweak: "You can send mail back on the cargo shuttle"
-  - tweak: "generic mail loot includes various coins"
-  - tweak: "the chance of filling an empty space in the mail crate with junkmail was reduced from 100% to 45%"

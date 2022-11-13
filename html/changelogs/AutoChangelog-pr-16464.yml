@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Medsprays now hold 100u instead of 30u and apply 25u per use instead of 10u"
-  - tweak: "Medsprays are no longer refillable"

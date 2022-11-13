@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "removes rogue tiles in AsteroidStation cargo space"
-  - mapping: "centers AsteroidStation cargo room, moves things from Cargo Office to in the room"
