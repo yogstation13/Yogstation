@@ -396,6 +396,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
+"sN" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "sQ" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 1
@@ -585,19 +597,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Af" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Ap" = (
 /obj/item/radio/intercom{
@@ -929,7 +928,7 @@ mU
 xi
 xi
 Xn
-Af
+sN
 sw
 rI
 pH

@@ -2520,10 +2520,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"IK" = (
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "Jh" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/computer/emergency_shuttle,
@@ -3131,7 +3127,7 @@ ax
 ax
 aU
 bf
-IK
+bf
 bf
 bK
 ew

@@ -1864,22 +1864,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"xD" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "yq" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1900,6 +1884,21 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"Gk" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "HB" = (
 /obj/effect/turf_decal/bot,
@@ -2143,7 +2142,7 @@ Ve
 cg
 cm
 ZP
-xD
+Gk
 cN
 cW
 cL

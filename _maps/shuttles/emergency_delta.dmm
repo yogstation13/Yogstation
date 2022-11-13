@@ -1415,6 +1415,19 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"cX" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "dO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1512,20 +1525,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"yR" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Ba" = (
 /obj/effect/turf_decal/tile/blue{
@@ -2145,7 +2144,7 @@ ab
 ad
 af
 am
-yR
+cX
 aB
 aG
 aJ

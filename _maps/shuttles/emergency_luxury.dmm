@@ -130,12 +130,6 @@
 /obj/machinery/computer/station_alert,
 /turf/open/floor/mineral/diamond,
 /area/shuttle/escape/luxury)
-"gT" = (
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/mineral/gold{
-	dir = 4
-	},
-/area/shuttle/escape/luxury)
 "gU" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1192,7 +1186,7 @@ jr
 jr
 ni
 zQ
-gT
+zQ
 pv
 zM
 mt

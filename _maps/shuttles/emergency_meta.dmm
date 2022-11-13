@@ -987,19 +987,18 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"En" = (
+/obj/structure/sink{
+	dir = 1;
+	icon_state = "sink"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "EF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"Ka" = (
-/obj/structure/sink{
-	dir = 1;
-	icon_state = "sink"
-	},
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "LY" = (
 /turf/open/floor/mineral/titanium,
@@ -1283,7 +1282,7 @@ ac
 bk
 Vs
 Vs
-Ka
+En
 Yb
 "}
 (16,1,1) = {"

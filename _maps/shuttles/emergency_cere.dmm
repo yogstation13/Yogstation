@@ -1419,6 +1419,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
+"cL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "cM" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -1910,23 +1926,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"vT" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/anesthetic_machine/roundstart,
-/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "xv" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2683,7 +2682,7 @@ ab
 ch
 co
 cv
-vT
+cL
 cE
 cH
 ab
