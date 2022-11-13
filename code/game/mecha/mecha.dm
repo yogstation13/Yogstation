@@ -218,7 +218,7 @@
 	equipment_disabled = FALSE
 	if(occupant)
 		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
+		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfully.</span>")
 		occupant.update_mouse_pointer()
 
 /obj/mecha/CheckParts(list/parts_list)
