@@ -90495,7 +90495,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/structure/sign/departments/minsky/engineering/telecommmunications{
+/obj/structure/sign/departments/minsky/engineering/telecommunications{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
