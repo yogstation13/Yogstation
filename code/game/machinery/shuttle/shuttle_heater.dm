@@ -234,7 +234,7 @@
 
 /obj/machinery/power/engine_capacitor_bank/escape_pod
 	name = "emergency thruster capacitor bank"
-	desc = "A single-use, non-rechargable, high-capacitor capacitor bank used for getting shuttles away from a location fast."
+	desc = "A single-use, non-rechargeable, high-capacitor capacitor bank used for getting shuttles away from a location fast."
 	//Starts with maximum power
 	stored_power = 600
 	//Cannot be recharged
