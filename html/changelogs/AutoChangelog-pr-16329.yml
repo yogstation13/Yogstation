@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "icon \"check\" will now appear in warnings column when there are no harazdous icons"
-  - rscadd: "icon \"question\" will now appear in warnings column when suit sensor is at binary level"
-  - rscadd: "wound check will now detect embed objs in body"

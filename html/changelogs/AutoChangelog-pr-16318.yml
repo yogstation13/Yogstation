@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Removes the preternis resize thing"
-  - tweak: "Makes water damage do damage faster"
-  - tweak: "Gives preternis a unique footstep and punch sound"
-  - tweak: "Makes preternis ability change icon on toggle"
