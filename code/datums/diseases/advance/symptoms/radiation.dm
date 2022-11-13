@@ -1,6 +1,6 @@
 /datum/symptom/radiation
-	name = "Ionizing Cellular Emission"
-	desc = "Causes the host's cells to emit ionizing radiation."
+	name = "Ionising Cellular Emission"
+	desc = "Causes the host's cells to emit ionising radiation."
 	stealth = -3
 	resistance = 2
 	stage_speed = -1
