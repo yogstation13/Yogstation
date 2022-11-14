@@ -1,4 +1,4 @@
-#define IVYMEN_SPAWN_THRESHOLD 2
+#define IVYMEN_SPAWN_THRESHOLD 3 //increased by 1 to account for extra jungle fauna
 //The ivymen nest is basically a rethemed ashwalker nest, takes corpses and makes eggs
 /obj/structure/yog_jungle/ivymen
 	name = "mother tree nest"
@@ -15,7 +15,7 @@
 
 
 	var/faction = list("ivymen")
-	var/meat_counter = 6
+	var/meat_counter = 12 // 4 spawns. One extra to account for the dangerousness of the jungle.
 	var/datum/team/ivymen/ivy
 
 /obj/structure/yog_jungle/ivymen/Initialize()
