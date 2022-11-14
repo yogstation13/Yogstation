@@ -602,3 +602,13 @@
 			return FALSE
 
 	return TRUE
+	
+/proc/unbiased_pick(var/list/L) 
+	var/range = length(L)
+
+	var/rng_max = round(2**32/range) * range; 
+	var/x = round(rand() * 2**32)
+	while (x &= rng_max)
+		x = round(rand() * 2**32)
+	var/idx = (x % range) + 1
+	return L[idx]

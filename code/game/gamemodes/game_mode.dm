@@ -365,7 +365,7 @@
 					return player.mind
 
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
-		return pick(candidates)
+		return unbiased_pick(candidates)
 
 	// Tickets start at 100
 	var/DEFAULT_ANTAG_TICKETS = CONFIG_GET(number/default_antag_tickets)
