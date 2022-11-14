@@ -605,10 +605,10 @@
 	
 /proc/unbiased_pick(var/list/L) 
 	var/range = length(L)
-
-	var/rng_max = round(2**32/range) * range; 
-	var/x = round(rand() * 2**32)
-	while (x &= rng_max)
-		x = round(rand() * 2**32)
+	var/v1 = 16777216
+	var/rng_max = round(v1/range) * range; 
+	var/x = round(rand() * v1)
+	while (x >= rng_max)
+		x = round(rand() * v1)
 	var/idx = round((x % range)) + 1
 	return L[idx]
