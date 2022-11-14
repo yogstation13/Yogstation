@@ -50,9 +50,8 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier)	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * (check_eva() ? EVA_MODIFIER : 1))	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
-//THIS ISNT EVEN CLOSE TO DONE YET 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)
 	if(!action_checks(target))
@@ -111,8 +110,7 @@
 	minimum_damage = 20			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
-	playsound(chassis, attack_sound, 50, 1)
-	sleep(2)								//Slight windup, lines up with sound file
+	playsound(chassis, attack_sound, 150, 1)						//Slight windup, lines up with sound file
 	var/turf/M = get_turf(chassis)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -143,7 +141,8 @@
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
 				O.take_damage(object_damage, dam_type, "melee", 0)
 
-	new cleave_effect(get_turf(src), chassis.dir)
+	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
+	new cleave_effect(cleave_effect_loc, chassis.dir)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
 	if(isliving(target))						
@@ -171,7 +170,7 @@
 	else
 		return
 	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
-	playsound(chassis, attack_sound, 50, 1)
+	playsound(chassis, attack_sound, 150, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe
 	name = "\improper SH-NT \"Killerhurtz\" energy axe"
@@ -188,8 +187,7 @@
 	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
-	playsound(chassis, attack_sound, 50, 1)
-	sleep(2)
+	playsound(chassis, attack_sound, 150, 1)
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -223,8 +221,8 @@
 			else if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
 				var/turf/closed/wall/W = A
 				W.dismantle_wall()
-
-	new cleave_effect(get_turf(src), chassis.dir)
+	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)	//Big sprite needs to be centered properly
+	new cleave_effect(cleave_effect_loc, chassis.dir)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
 	START_PROCESSING(SSobj, src)
