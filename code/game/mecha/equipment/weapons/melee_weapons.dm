@@ -124,7 +124,6 @@
 					var/obj/item/bodypart/body_part = pick(C.bodyparts)	//Cleave attack isn't very precise
 					var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)
 					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
-
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
@@ -133,6 +132,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
+				L.playsound(L, 'sound/weapons/bladeslice.ogg', 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
@@ -140,6 +140,12 @@
 					continue
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
 				O.take_damage(object_damage, dam_type, "melee", 0)
+				if(istype(O, /obj/structure/window))
+					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
+				else
+					if(istype(A, /obj/mecha))					
+						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of its [src]!"))	//Don't really need to make a message for EVERY object, just important ones
+					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
 
 	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
 	new cleave_effect(cleave_effect_loc, chassis.dir)
@@ -153,7 +159,6 @@
 			var/obj/item/bodypart/body_part = chassis.occupant.zone_selected
 			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//and get more AP
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
-
 		else
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
@@ -186,8 +191,8 @@
 	attack_speed_modifier = 1.5 //Kinda chunky
 	light_color = LIGHT_COLOR_RED
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
-	playsound(chassis, attack_sound, 150, 1)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()	//Mostly copy-pasted sword cleave code with minor tweaks.
+	playsound(chassis, attack_sound, 150, 1)										//Not hard to change some of this to be based on vars if you REALLY wanted to
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -201,7 +206,6 @@
 					var/obj/item/bodypart/body_part = pick(C.bodyparts)	//Cleave attack isn't very precise
 					var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)
 					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
-
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
@@ -210,6 +214,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
+				L.playsound(L, 'sound/weapons/blade1.ogg', 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
@@ -217,10 +222,17 @@
 					continue
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
 				O.take_damage(object_damage, dam_type, "melee", 0)
+				if(istype(O, /obj/structure/window))
+					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
+				else
+					if(istype(A, /obj/mecha))					
+						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of its [src]!"))
+					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
 
-			else if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
-				var/turf/closed/wall/W = A
-				W.dismantle_wall()
+		if(istype(T, /turf/closed/wall))		//IT BREAKS WALLS TOO
+			var/turf/closed/wall/W = T
+			W.dismantle_wall()
+
 	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)	//Big sprite needs to be centered properly
 	new cleave_effect(cleave_effect_loc, chassis.dir)
 
