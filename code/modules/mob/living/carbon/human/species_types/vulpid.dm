@@ -9,7 +9,7 @@
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Fox", "ears" = "Fox", "wings" = "None")
-	rare_say_mod = list("meows"= 10)
+	rare_say_mod = list("yips"= 10)
 	liked_food = SEAFOOD | DAIRY | MICE
 	disliked_food = GROSS | RAW
 	toxic_food = TOXIC | CHOCOLATE
@@ -17,3 +17,6 @@
 	mutanttail = /obj/item/organ/tail/cat/fox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	//species_language_holder = /datum/language_holder/foxxy
+
+/datum/species/human/vulpine/qualifies_for_rank(rank, list/features)
+	return TRUE
