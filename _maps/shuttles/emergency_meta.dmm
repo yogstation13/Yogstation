@@ -81,6 +81,13 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"ak" = (
+/obj/structure/sink{
+	dir = 1;
+	icon_state = "sink"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "al" = (
 /obj/structure/table,
 /obj/item/phone{
@@ -987,13 +994,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"En" = (
-/obj/structure/sink{
-	dir = 1;
-	icon_state = "sink"
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "EF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -1282,7 +1282,7 @@ ac
 bk
 Vs
 Vs
-En
+ak
 Yb
 "}
 (16,1,1) = {"
