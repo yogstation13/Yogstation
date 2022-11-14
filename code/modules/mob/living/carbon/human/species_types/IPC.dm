@@ -6,7 +6,7 @@
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutant_brain = /obj/item/organ/brain/positron
 	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
@@ -15,8 +15,7 @@
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
 	mutantstomach = /obj/item/organ/stomach/cell
 	mutantears = /obj/item/organ/ears/robot
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/mouth/breathing_tube)
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
@@ -25,12 +24,19 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	payday_modifier = 0.6 //Mass producible labor
-	burnmod = 1.5
-	heatmod = 1
+
+	//stat mods
 	brutemod = 1
+	burnmod = 1.5
 	toxmod = 0
+	oxymod = 0
+	tempmod = 2 //they heat up and cool down faster because regular metal conducts heat quickly 
+	heatmod = 1.5 //machines don't like heat
+	coldmod = 0
 	clonemod = 0
+	acidmod = 1.5
 	staminamod = 0.8
+
 	siemens_coeff = 1.75
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
@@ -56,6 +62,10 @@
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
+	var/obj/item/organ/lungs/L = C.getorganslot(ORGAN_SLOT_LUNGS)
+	if(L)
+		L.Remove(C)
+		QDEL_NULL(L)
 	if(ishuman(C) && !change_screen)
 		change_screen = new
 		change_screen.Grant(C)
@@ -197,6 +207,12 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !H.particles)//smokin hot
+		H.particles = new /particles/smoke()
+	if(H.particles && H.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)//remove if cool
+		QDEL_NULL(H.particles)
+
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
@@ -254,6 +270,10 @@ ipc martial arts stuff
 
 
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	H.hallucination += rand(50, 100)
+	H.dizziness += rand(10,20)
+	H.jitteriness += rand(10,20)	
+
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
