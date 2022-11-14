@@ -25,7 +25,7 @@
 	var/list/valid_shuttle_templates = list()
 	for(var/shuttle_id in SSmapping.shuttle_templates)
 		var/datum/map_template/shuttle/template = SSmapping.shuttle_templates[shuttle_id]
-		if(!template.emag_buy && template.credit_cost < INFINITY) //if we could get it from the communications console, it's cool for us to get it here
+		if(template.credit_cost < INFINITY) //if we could get it from the emagged communications console, it's cool for us to get it here
 			valid_shuttle_templates += template
 	new_shuttle = pick(valid_shuttle_templates)
 
