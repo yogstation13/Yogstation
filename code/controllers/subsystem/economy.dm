@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(economy)
 	if(D)
 		D.adjust_money(engineering_cash)
 	if(C)
-		C.adjust_money(engineering_cash*0.3)
+		C.adjust_money(engineering_cash*0.5)
 
 
 /datum/controller/subsystem/economy/proc/car_payout()
