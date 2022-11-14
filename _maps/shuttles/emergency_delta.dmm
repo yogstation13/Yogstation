@@ -305,19 +305,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"au" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "av" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -1428,6 +1415,19 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"cX" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "dO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -2144,7 +2144,7 @@ ab
 ad
 af
 am
-au
+cX
 aB
 aG
 aJ

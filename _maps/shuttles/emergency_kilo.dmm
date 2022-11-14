@@ -1513,21 +1513,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
-"cE" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "cF" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1900,6 +1885,21 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"Gk" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "HB" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/chair/comfy/shuttle{
@@ -2142,7 +2142,7 @@ Ve
 cg
 cm
 ZP
-cE
+Gk
 cN
 cW
 cL

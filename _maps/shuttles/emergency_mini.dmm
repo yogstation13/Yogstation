@@ -12,18 +12,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"bP" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cc" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -405,6 +393,18 @@
 /obj/item/storage/firstaid/regular{
 	pixel_x = -2;
 	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"sN" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -928,7 +928,7 @@ mU
 xi
 xi
 Xn
-bP
+sN
 sw
 rI
 pH
