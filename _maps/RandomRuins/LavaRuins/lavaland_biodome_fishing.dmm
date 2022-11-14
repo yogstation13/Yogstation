@@ -1553,7 +1553,7 @@
 /area/ruin/powered/fishing/hall)
 "KH" = (
 /obj/effect/turf_decal/pool,
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,

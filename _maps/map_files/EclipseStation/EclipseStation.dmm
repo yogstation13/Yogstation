@@ -35438,7 +35438,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
 "bwe" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
@@ -64538,7 +64538,7 @@
 /area/hallway/primary/starboard)
 "cDS" = (
 /obj/machinery/light,
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/darkgreen{
@@ -70969,7 +70969,7 @@
 /turf/open/floor/carpet/exoticgreen,
 /area/hallway/primary/port)
 "cPC" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /turf/open/floor/circuit,
@@ -72717,7 +72717,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cTz" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /obj/machinery/light/small,
@@ -75337,7 +75337,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmospherics_engine)
 "cZB" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -75751,7 +75751,7 @@
 /turf/open/floor/plasteel/white,
 /area/tcommsat/computer)
 "dav" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,

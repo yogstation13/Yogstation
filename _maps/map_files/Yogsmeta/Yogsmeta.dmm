@@ -70621,7 +70621,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "qpG" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
 /obj/structure/cable{

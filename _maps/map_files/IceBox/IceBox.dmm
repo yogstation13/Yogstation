@@ -58044,7 +58044,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -59459,7 +59459,7 @@
 	pixel_y = -26
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel,

@@ -181,7 +181,7 @@
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "cL" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_x = -32;
 	pixel_y = 0
 	},

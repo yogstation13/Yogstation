@@ -56685,7 +56685,7 @@
 /turf/open/floor/wood/broken/seven,
 /area/maintenance/starboard/fore)
 "sjq" = (
-/obj/structure/sign/departments/minsky/engineering/telecommunications{
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line{
