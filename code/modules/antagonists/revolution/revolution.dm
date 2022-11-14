@@ -122,8 +122,7 @@
 	.["Demote"] = CALLBACK(src,.proc/admin_demote)
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
-	var/list/L = owner.current.get_contents()
-	var/obj/item/assembly/flash/flash = locate() in L
+	var/obj/item/organ/cyberimp/arm/flash/rev/flash = owner.current.getorgan(/obj/item/organ/cyberimp/arm/flash/rev)
 	if (!flash)
 		to_chat(admin, span_danger("Deleting flash failed!"))
 		return
@@ -160,7 +159,7 @@
 	name = "Head Revolutionary"
 	hud_type = "rev_head"
 	var/remove_clumsy = FALSE
-	var/give_flash = FALSE
+	var/give_flash = TRUE
 	var/give_hud = TRUE
 
 /datum/antagonist/rev/head/antag_listing_name()
@@ -253,17 +252,9 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/assembly/flash/handheld/T = new(H)
-		var/list/slots = list (
-			"backpack" = SLOT_IN_BACKPACK,
-			"left pocket" = SLOT_L_STORE,
-			"right pocket" = SLOT_R_STORE
-		)
-		var/where = H.equip_in_one_of_slots(T, slots)
-		if (!where)
-			to_chat(H, "The Syndicate were unfortunately unable to get you a flash.")
-		else
-			to_chat(H, "The flash in your [where] will help you to persuade the crew to join your cause.")
+		var/obj/item/organ/cyberimp/arm/flash/rev/T = new
+		T.Insert(H, special = TRUE, drop_if_replaced = FALSE)
+		to_chat(H, span_boldnotice("The flash implant in your arm will allow you to persuade the crew to join your cause. It is one of a kind, so do not lose it."))
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
@@ -333,7 +324,7 @@
 				rev.promote()
 
 	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
-	
+
 /datum/team/revolution/proc/save_members()
 	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
 	ex_revs = get_antag_minds(/datum/antagonist/rev, TRUE)
@@ -376,7 +367,7 @@
 		revs = ex_revs
 	else
 		revs = get_antag_minds(/datum/antagonist/rev, TRUE)
-		
+
 	if(check_victory())
 		for(var/H in revs)
 			var/datum/mind/M = H

@@ -5,6 +5,7 @@
 	due_date = 0 // Game time in deciseconds
 	unique = 1   // 0  Normal book, 1  Should not be treated as normal book, unable to be copied, unable to be modified
 	var/list/remarks = list() //things to read about while learning.
+	var/ordered = FALSE //determines if the remarks should display in order rather than randomly
 	var/pages_to_mastery = 3 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
@@ -13,7 +14,9 @@
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
 	if(do_after(user, 5 SECONDS, user))
-		if(remarks.len)
+		if(remarks.len && ordered)
+			to_chat(user, span_notice("[popleft(remarks)]"))
+		else if(remarks.len)
 			to_chat(user, span_notice("[pick(remarks)]"))
 		else
 			to_chat(user, span_notice("You keep reading..."))
@@ -441,7 +444,6 @@
 	if(oneuse == TRUE)
 		desc = "It's completely blank."
 		name = "empty scroll"
-		icon_state = "blankscroll"
 
 /obj/item/book/granter/martial/preternis_stealth
 	martial = /datum/martial_art/stealth
@@ -508,6 +510,30 @@
 	..()
 	if(oneuse == TRUE)
 		desc = "It's completely blank."
+
+/obj/item/book/granter/martial/ultra_violence
+	martial = /datum/martial_art/ultra_violence
+	name = "Version one upgrade module"
+	martialname = "Ultra Violence"
+	desc = "A module full of forbidden techniques from a horrific event long since passed, or perhaps yet to come."
+	greet = "<span class='sciradio'>You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
+	blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.</span>"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
+	ordered = TRUE
+
+/obj/item/book/granter/martial/ultra_violence/already_known(mob/user)
+	if(!isipc(user))
+		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/ultra_violence/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's a damaged upgrade module."
+		name = "damaged board"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 

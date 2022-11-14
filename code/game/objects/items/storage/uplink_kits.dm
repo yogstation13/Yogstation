@@ -35,16 +35,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //31 TCish
+		if("bloodyspai") //32 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
-			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade(src) //1 TC, if even. 20 force melee is good but it's no edagger
+			new /obj/item/switchblade/backstab(src) //5 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
@@ -185,6 +183,7 @@
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
 			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
 			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
+			new /obj/item/clothing/head/wizard/black(src) //Works as a fix for the robe check now until I think of something new
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
 			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
 			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes

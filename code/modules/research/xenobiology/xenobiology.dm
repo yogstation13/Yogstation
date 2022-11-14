@@ -944,6 +944,10 @@
 	if(L.gender != MALE && L.gender != FEMALE)
 		to_chat(user, span_warning("The potion can only be used on gendered things!"))
 		return
+	if(user != L)
+		L.visible_message(span_notice("[user] tries to feed [src] to [L]..."), span_boldwarning("[user] tries to feed [src] to you!"))
+		if(!do_mob(user, L, 10 SECONDS))
+			return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))

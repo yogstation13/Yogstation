@@ -1,4 +1,5 @@
 /datum/map_generator/cave_generator/lavaland
+	name = "Lavaland Base"
 	open_turf_types = list(/turf/open/floor/plating/asteroid/basalt/lava_land_surface = 1)
 	closed_turf_types = list(/turf/closed/mineral/random/volcanic = 1)
 
@@ -54,35 +55,24 @@
 		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
 		var/node_gen2 = rustg_cnoise_generate("[initial_granite_chance]", "[granite_smoothing_interations]", "[granite_birth_limit]", "[granite_death_limit]", "[size_x + 1]", "[size_y + 1]")
 		var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
-		var/list/changing_turfs_harder = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
 		for(var/turf/T in changing_turfs) //shitcode
 			if(!ismineralturf(T))
 				continue
 			var/index = changing_turfs.Find(T)
-			var/hardened = text2num(node_gen[index])
+			var/hardened = text2num(node_gen[index]) + text2num(node_gen2[index]) //babe how hard are u right now? "2"
 			if(!hardened)
 				continue
-			var/hard_path = text2path("[T.type]/hard")
-			if(!ispath(hard_path)) //erm what the shit we dont have a hard type
+			var/hard_path
+			switch(hardened)
+				if(1)
+					hard_path = text2path("[T.type]/hard")
+				if(2)
+					hard_path = text2path("[T.type]/hard/harder")
+			if(!ispath(hard_path)) //erm what the shit we dont have a hard(or er) type
 				continue
 			var/turf/new_turf = hard_path
 			new_turf = T.ChangeTurf(new_turf, initial(new_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
-		for(var/turf/H in changing_turfs_harder) //shitcode 2, shit harder
-			if(!ismineralturf(H))
-				continue
-			var/index = changing_turfs_harder.Find(H)
-			var/hardeneder = text2num(node_gen2[index])
-			if(!hardeneder)
-				continue
-			var/harder_path = text2path("[H.type]/hard/harder")
-			if(!ispath(harder_path))
-				continue
-			var/turf/new_turf2 = harder_path
-			new_turf2 = H.ChangeTurf(new_turf2, initial(new_turf2.baseturfs), CHANGETURF_DEFER_CHANGE)
 
-	var/message = "Basalt generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	var/message2 = "Granite generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
+	var/message = "Lavaland Auxiliary generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, span_boldannounce("[message]"))
-	to_chat(world, span_boldannounce("[message2]"))
 	log_world(message)
-	log_world(message2)
