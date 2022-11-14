@@ -610,5 +610,5 @@
 	var/x = round(rand() * 2**32)
 	while (x &= rng_max)
 		x = round(rand() * 2**32)
-	var/idx = (x % range) + 1
+	var/idx = round((x % range)) + 1
 	return L[idx]
