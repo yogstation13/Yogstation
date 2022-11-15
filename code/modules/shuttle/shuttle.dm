@@ -500,8 +500,8 @@
 	for(var/t in return_turfs())
 		var/turf/T = t
 		for(var/mob/living/M in T.GetAllContents())
-			// If they have a mind and they're not in the brig, they escaped
-			if(M.mind && !istype(t, /turf/open/floor/plasteel/shuttle/red) && !istype(t, /turf/open/floor/mineral/plastitanium/red/brig))
+			// If they have a mind and they're not handcuffed, they escaped
+			if(M.mind && !M.handcuffed)
 				M.mind.force_escaped = TRUE
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			M.notransform = TRUE
