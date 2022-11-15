@@ -2726,7 +2726,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -5178,7 +5178,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -6237,7 +6237,7 @@
 /turf/open/floor/plating,
 /area/security/processing)
 "aKp" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/storage/tools)
 "aKt" = (
@@ -7014,10 +7014,10 @@
 /turf/closed/wall,
 /area/security/detectives_office)
 "aOr" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "aOs" = (
@@ -12244,7 +12244,6 @@
 	id = "atmos";
 	name = "Atmospherics Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -12260,6 +12259,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "byZ" = (
@@ -13666,7 +13666,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -14783,7 +14783,7 @@
 /turf/open/space,
 /area/solar/port/fore)
 "bWJ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/engine/foyer)
 "bWK" = (
@@ -21677,7 +21677,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -24882,7 +24882,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -26684,6 +26684,10 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"gDO" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/eva)
 "gEt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -30619,7 +30623,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -36290,7 +36294,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "kHL" = (
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "kHS" = (
@@ -39075,11 +39078,11 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "lXW" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "genedesk";
 	name = "genetics lab shutters"
 	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/genetics)
 "lYc" = (
@@ -44243,7 +44246,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
 "obO" = (
@@ -46590,7 +46593,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -53552,7 +53555,6 @@
 /turf/closed/wall,
 /area/medical/paramedic)
 "rZO" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
 	name = "Atmospherics Blast Door"
@@ -53563,6 +53565,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "rZU" = (
@@ -55076,7 +55079,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -55619,7 +55622,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -58145,7 +58148,7 @@
 	id = "robotics";
 	name = "robotics lab shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "tWf" = (
@@ -62631,7 +62634,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
 "vQx" = (
@@ -63697,6 +63700,10 @@
 "wmY" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/aft_starboard)
+"wnh" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/quartermaster/sorting)
 "wnz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -91662,7 +91669,7 @@ fUQ
 bgv
 fUQ
 iqB
-bjl
+wnh
 gwQ
 phL
 atU
@@ -91919,13 +91926,13 @@ cGg
 nmL
 jOw
 sjh
-bjl
-kHL
+wnh
+boR
 gXQ
 kHL
 nsk
 aOr
-kHL
+boR
 bwe
 bwe
 bzy
@@ -92176,7 +92183,7 @@ uEH
 mmY
 mGV
 wPS
-bjl
+wnh
 dBh
 xJY
 sZy
@@ -94725,7 +94732,7 @@ aDE
 aQD
 ciq
 aQD
-aDE
+gDO
 hVj
 aJq
 urO
@@ -95239,7 +95246,7 @@ aDE
 aQD
 aHN
 aQD
-aDE
+gDO
 qSX
 hOb
 urO
