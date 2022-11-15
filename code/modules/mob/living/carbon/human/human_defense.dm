@@ -551,11 +551,9 @@
 				informed = TRUE
 			switch(severity)
 				if(1)
-					L.receive_damage(0,10)
-					Paralyze(10 SECONDS)
+					L.receive_damage(0,10,200)
 				if(2)
-					L.receive_damage(0,5)
-					Paralyze(5 SECONDS)
+					L.receive_damage(0,5,100)
 
 			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
 				if(prob(5))

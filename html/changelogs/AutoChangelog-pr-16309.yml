@@ -1,0 +1,6 @@
+author: " warface1234455, baiomu"
+delete-after: true 
+changes: 
+  - tweak: "Gives ability for free golem, free miner and delta station crew to research on a new research network"
+  - mapping: "Gives ability for free golem, free miner and delta station crew to research"
+  - mapping: "Fix exosuit techfab on free miner ship facing into wall result in not able to print stuffs"
