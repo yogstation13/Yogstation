@@ -25,8 +25,6 @@ SUBSYSTEM_DEF(lag_compensation)
 		if (text2num(T) < (current_tick - MAX_HISTORY_TICKS))
 			mob_lagcomp_history.Remove(T)
 
-	. = ..()
-
 
 /datum/controller/subsystem/lag_compensation/proc/set_mob_loc(var/mob/M, var/list/record)
 	M.loc = record[4]
