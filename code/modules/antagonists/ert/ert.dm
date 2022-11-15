@@ -40,7 +40,7 @@
 			var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[ertmember.key]
 			if(H)
 				TC_uses += H.total_spent
-				purchases += H.generate_render(show_key = FALSE)
+				purchases += H.generate_render(show_key = FALSE, currency = "WC")
 		report += "<br>"
 		report += "(ERT was equipped with [initial(uplink_type.name)]s and used [TC_uses] WC) [purchases]"
 		if(TC_uses == 0 && win)
