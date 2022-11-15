@@ -384,7 +384,30 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			to_chat(user, span_notice("The radio can now be attached and modified!"))
 		else
 			to_chat(user, span_notice("The radio can no longer be modified or attached!"))
-	if(W.tool_behaviour == TOOL_MULTITOOL)
+
+	else if(istype(W, /obj/item/encryptionkey/) && unscrewed)
+		if(keyslot && keyslot2)
+			to_chat(user, span_warning("The radio can't hold another key!"))
+			return
+
+		if(!keyslot)
+			if(!user.transferItemToLoc(W, src))
+				return
+			keyslot = W
+
+		else
+			if(!user.transferItemToLoc(W, src))
+				return
+			keyslot2 = W
+
+		recalculateChannels()
+	else
+		to_chat(user, span_warning("You cannot put anything in when [src]'s panel is closed!"))
+		return
+
+/obj/item/radio/AltClick(mob/user)
+	. = ..()
+	if(unscrewed)
 		if(keyslot || keyslot2)
 			for(var/ch_name in channels)
 				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
@@ -404,24 +427,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else
 			to_chat(user, span_warning("This radio doesn't have any encryption keys!"))
 
-	else if(istype(W, /obj/item/encryptionkey/))
-		if(keyslot && keyslot2)
-			to_chat(user, span_warning("The radio can't hold another key!"))
-			return
-
-		if(!keyslot)
-			if(!user.transferItemToLoc(W, src))
-				return
-			keyslot = W
-
-		else
-			if(!user.transferItemToLoc(W, src))
-				return
-			keyslot2 = W
-
-		recalculateChannels()
 	else
-		return ..()
+		to_chat(user, span_warning("You have to unscrew the panel to do this!"))
+		
 
 /obj/item/radio/emp_act(severity)
 	. = ..()
