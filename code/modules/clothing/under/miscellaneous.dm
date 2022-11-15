@@ -790,6 +790,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
+	mech_speed = 0.8
 
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
