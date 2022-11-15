@@ -87,9 +87,8 @@
 		QDEL_NULL(item)
 	else
 		for(var/mob/living/carbon/C in targets)
-			if(C.get_active_held_item())
-				C.dropItemToGround(C.get_active_held_item())
-			C.put_in_hands(make_item(), TRUE)
+			if(C.dropItemToGround(C.get_active_held_item()))
+				C.put_in_hands(make_item(), TRUE)
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/Destroy()
 	if(item)
