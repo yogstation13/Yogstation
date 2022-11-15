@@ -233,6 +233,7 @@
 	stage_speed = -3
 	transmittable = -2
 	level = 8
+	severity = 4
 	passive_message = span_notice("The pain from your wounds makes you feel oddly sleepy...")
 	var/deathgasp = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
