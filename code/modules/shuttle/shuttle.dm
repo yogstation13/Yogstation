@@ -501,8 +501,13 @@
 		var/turf/T = t
 		for(var/mob/living/M in T.GetAllContents())
 			// If they have a mind and they're not handcuffed, they escaped
-			if(M.mind && !M.handcuffed)
-				M.mind.force_escaped = TRUE
+			if(M.mind)
+				if (iscarbon(M))
+					var/mob/living/carbon/C  = M
+					if (!C.handcuffed)
+						M.mind.force_escaped = TRUE
+				else
+					M.mind.force_escaped = TRUE
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			M.notransform = TRUE
 			M.ghostize(FALSE)
