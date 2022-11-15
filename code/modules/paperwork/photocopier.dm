@@ -91,36 +91,6 @@
 				else
 					break
 			updateUsrDialog()
-		else if(ass) //ASS COPY. By Miauw
-			for(var/i = 0, i < copies, i++)
-				var/icon/temp_img
-				if(ishuman(ass) && (ass.get_item_by_slot(SLOT_W_UNIFORM) || ass.get_item_by_slot(SLOT_WEAR_SUIT)))
-					to_chat(usr, span_notice("You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.") ) // '
-					break
-				else if(toner >= 5 && !busy && check_ass()) //You have to be sitting on the copier and either be a xeno or a human without clothes on.
-					if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
-						temp_img = icon('icons/ass/assalien.png')
-					else if(ishuman(ass)) //Suit checks are in check_ass
-						temp_img = icon(ass.gender == FEMALE ? 'icons/ass/assfemale.png' : 'icons/ass/assmale.png')
-						if(iscatperson(ass))
-							temp_img = icon('icons/ass/asscat.png')
-					else if(isdrone(ass)) //Drones are hot
-						temp_img = icon('icons/ass/assdrone.png')
-					else
-						break
-					busy = TRUE
-					sleep(1.5 SECONDS)
-					var/obj/item/photo/p = new /obj/item/photo (loc)
-					var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
-					p.pixel_x = rand(-10, 10)
-					p.pixel_y = rand(-10, 10)
-					toEmbed.psize_x = 128
-					toEmbed.psize_y = 128
-					p.set_picture(toEmbed, TRUE, TRUE)
-					toner -= 5
-					busy = FALSE
-				else
-					break
 		updateUsrDialog()
 	else if(href_list["remove"])
 		if(copy)
@@ -132,8 +102,6 @@
 		else if(doccopy)
 			remove_photocopy(doccopy, usr)
 			doccopy = null
-		else if(check_ass())
-			to_chat(ass, span_notice("You feel a slight pressure on your ass."))
 		updateUsrDialog()
 	else if(href_list["min"])
 		if(copies > 1)
@@ -238,54 +206,6 @@
 		new /obj/effect/decal/cleanable/oil(get_turf(src))
 		toner = 0
 
-/obj/machinery/photocopier/MouseDrop_T(mob/target, mob/user)
-	check_ass() //Just to make sure that you can re-drag somebody onto it after they moved off.
-	if (!istype(target) || target.anchored || target.buckled || !Adjacent(target) || !user.canUseTopic(src, BE_CLOSE) || target == ass || copier_blocked())
-		return
-	src.add_fingerprint(user)
-	if(target == user)
-		user.visible_message("[user] starts climbing onto the photocopier!", span_notice("You start climbing onto the photocopier..."))
-	else
-		user.visible_message(span_warning("[user] starts putting [target] onto the photocopier!"), span_notice("You start putting [target] onto the photocopier..."))
-
-	if(do_after(user, 2 SECONDS, src))
-		if(!target || QDELETED(target) || QDELETED(src) || !Adjacent(target)) //check if the photocopier/target still exists.
-			return
-
-		if(target == user)
-			user.visible_message("[user] climbs onto the photocopier!", span_notice("You climb onto the photocopier."))
-		else
-			user.visible_message(span_warning("[user] puts [target] onto the photocopier!"), span_notice("You put [target] onto the photocopier."))
-
-		target.forceMove(drop_location())
-		ass = target
-
-		if(photocopy)
-			photocopy.forceMove(drop_location())
-			visible_message(span_warning("[photocopy] is shoved out of the way by [ass]!"))
-			photocopy = null
-
-		else if(copy)
-			copy.forceMove(drop_location())
-			visible_message(span_warning("[copy] is shoved out of the way by [ass]!"))
-			copy = null
-	updateUsrDialog()
-
-/obj/machinery/photocopier/proc/check_ass() //I'm not sure wether I made this proc because it's good form or because of the name.
-	if(!ass)
-		return 0
-	if(ass.loc != src.loc)
-		ass = null
-		updateUsrDialog()
-		return 0
-	else if(ishuman(ass))
-		if(!ass.get_item_by_slot(SLOT_W_UNIFORM) && !ass.get_item_by_slot(SLOT_WEAR_SUIT))
-			return 1
-		else
-			return 0
-	else
-		return 1
-
 /obj/machinery/photocopier/proc/copier_blocked()
 	if(QDELETED(src))
 		return
@@ -299,7 +219,7 @@
 	return 0
 
 /obj/machinery/photocopier/proc/copier_empty()
-	if(copy || photocopy || doccopy || check_ass())
+	if(copy || photocopy || doccopy)
 		return 0
 	else
 		return 1
