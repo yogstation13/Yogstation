@@ -29,6 +29,8 @@
 		/obj/item/toy/plush/plushvar = 1
 	)
 
+	smells_like = "scented candles and fanatic zeal"
+
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
 	. = ..()

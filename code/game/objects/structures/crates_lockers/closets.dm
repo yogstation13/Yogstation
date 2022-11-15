@@ -631,3 +631,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(air_contents)
 		return air_contents.return_temperature()
 	return ..()
+
+/obj/structure/closet/CanAStarPass(ID, dir, caller)
+	if(can_open(caller) || allowed(caller))
+		return TRUE
+	. = ..()
+	

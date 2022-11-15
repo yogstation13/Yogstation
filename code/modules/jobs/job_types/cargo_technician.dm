@@ -31,6 +31,8 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	smells_like = "cardboard and metal"
+
 /datum/job/cargo_tech/proc/EclipseStationChanges()
 	total_positions = 5
 	spawn_positions = 4
