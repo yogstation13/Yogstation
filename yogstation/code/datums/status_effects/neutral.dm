@@ -76,6 +76,7 @@
 	// 	stink_hud.remove_from_hud(owner)
 
 /datum/status_effect/scent_hunter/blood
+	id = "blood_smelly"
 
 /datum/status_effect/scent_hunter/blood/on_creation(mob/living/owner, mob/living/target, target_color)
 	return ..(owner, target, COLOR_RED)
