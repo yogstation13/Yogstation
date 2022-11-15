@@ -429,6 +429,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	else
 		to_chat(user, span_warning("You have to unscrew the panel to do this!"))
+		return
 		
 
 /obj/item/radio/emp_act(severity)
