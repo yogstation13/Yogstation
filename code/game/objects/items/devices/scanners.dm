@@ -44,7 +44,7 @@ GENE SCANNER
 /obj/item/t_scanner/attack_self(mob/user)
 	toggle_on()
 	
-/obj/item/t_scanner/CtrlClick(mob/user)
+/obj/item/t_scanner/AltClick(mob/user)
 	toggle_on()
 
 /obj/item/t_scanner/cyborg_unequip(mob/user)
