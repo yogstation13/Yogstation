@@ -38,14 +38,14 @@
 // 7.62 (Nagant Rifle + K-41s DMR)
 
 /obj/item/projectile/bullet/a762
-	name = "7.62 bullet"
+	name = "7.62mm bullet"
 	speed = 0.3
 	damage = 60
 	wound_bonus = -35
 	wound_falloff_tile = 0
 
 /obj/item/projectile/bullet/a762/raze
-	name = "7.62 Raze bullet"
+	name = "7.62mm Raze bullet"
 	damage = 40
 	irradiate = 300
 
@@ -56,7 +56,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/a762/pen
-	name = "7.62 anti-material bullet"
+	name = "7.62mm anti-material bullet"
 	damage = 52
 	armour_penetration = 40
 	penetrating = TRUE //Passes through two objects, stops on a mob or on a third object
@@ -64,7 +64,7 @@
 	penetration_type = 1
 
 /obj/item/projectile/bullet/a762/vulcan
-	name = "7.62 Vulcan bullet"
+	name = "7.62mm Vulcan bullet"
 	damage = 47
 
 /obj/item/projectile/bullet/a762/vulcan/on_hit(atom/target, blocked = FALSE) //God-forsaken mutant of explosion and incendiary code that makes it so it does an explosion basically without the throwing around
@@ -80,7 +80,7 @@
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a762_enchanted
-	name = "enchanted 7.62 bullet"
+	name = "enchanted 7.62mm bullet"
 	damage = 20
 	stamina = 80
 
