@@ -405,7 +405,7 @@
 
 /datum/design/mindflayer
 	name = "Mind Flayer"
-	desc = "A compact weapon made to destroy the mind rather than the body."
+	desc = "A compact weapon made to destroy the brain."
 	id = "mind_flayer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
