@@ -90,10 +90,6 @@
 
 /mob/living/simple_animal/hostile/mining_drone/welder_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if(mode == MINEDRONE_ATTACK)
-		to_chat(user, span_info("[src] can't be repaired while in attack mode!"))
-		return
-
 	if(maxHealth == health)
 		to_chat(user, span_info("[src] is at full integrity."))
 		return
