@@ -8,6 +8,11 @@
 	route = PATH_ASH
 	tier = TIER_PATH
 
+/datum/eldritch_knowledge/base_ash/on_gain(mob/user)
+	. = ..()
+	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
+	user.put_in_hands(realknife)
+
 /datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!iscarbon(target))
