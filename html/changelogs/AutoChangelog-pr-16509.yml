@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "COMSIG_ITEM_PREDROPPED is only called if there is an item to drop"
