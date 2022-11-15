@@ -35,16 +35,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //31 TCish
+		if("bloodyspai") //32 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
-			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade(src) //1 TC, if even. 20 force melee is good but it's no edagger
+			new /obj/item/switchblade/backstab(src) //5 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC

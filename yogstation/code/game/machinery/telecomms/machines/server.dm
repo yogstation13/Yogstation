@@ -52,15 +52,13 @@
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
 	if(is_banned_from(user.ckey, "Network Admin"))
 		to_chat(user, span_warning("You are banned from using NTSL."))
-		return
+		return "Unauthorized access."
 	if(Compiler)
-		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE))
+		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE, allow_newline = TRUE, allow_code = TRUE))
 			rawcode = null
-			to_chat(user, span_warning("Server is out of memory. Please shorten your script."))
-			return
+			return "Please use galactic common characters only."
 		if(!COOLDOWN_FINISHED(src, compile_cooldown))
-			to_chat(user, span_warning("Recharging. Please wait"))
-			return
+			return "Servers are recharging, please wait."
 		var/list/compileerrors = Compiler.Compile(rawcode)
 		COOLDOWN_START(src, compile_cooldown, 2 SECONDS)
 		if(!compileerrors.len && (compiledcode != rawcode))

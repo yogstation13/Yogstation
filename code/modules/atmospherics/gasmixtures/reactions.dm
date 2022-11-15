@@ -68,15 +68,15 @@
 		location = get_turf(holder)
 	return location
 
-/datum/gas_reaction/nobliumsupression
+/datum/gas_reaction/nobliumsuppression
 	priority = NOBLIUMSUPPRESSION //ensure all non-HN reactions are lower than this number.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
-/datum/gas_reaction/nobliumsupression/init_reqs()
+/datum/gas_reaction/nobliumsuppression/init_reqs()
 	min_requirements = list(GAS_HYPERNOB = REACTION_OPPRESSION_THRESHOLD)
 
-/datum/gas_reaction/nobliumsupression/react()
+/datum/gas_reaction/nobliumsuppression/react()
 	return STOP_REACTIONS
 
 //water vapor: puts out fires?
@@ -1004,7 +1004,7 @@
 		air.adjust_moles(GAS_BZ, -consumed_amount)
 	else
 		for(var/mob/living/carbon/L in location)
-			L.hallucination += (air.get_moles(GAS_BZ * 0.7))
+			L.hallucination += (air.get_moles(GAS_BZ) * 0.7)
 	energy_released += 100
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()

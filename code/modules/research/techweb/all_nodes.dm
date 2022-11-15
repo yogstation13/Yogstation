@@ -70,7 +70,7 @@
 	display_name = "Advanced Biotechnology"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
-	design_ids = list("hypospray", "piercesyringe", "hypospraypierceupg", "hyposprayspeedupg", "pinpointer_crew", "smoke_machine", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "detective_scanner", "detective_scanner_advanced" , "defibrillator_compact")
+	design_ids = list("hypospray", "piercesyringe", "hypospraypierceupg", "hyposprayspeedupg", "pinpointer_crew", "smoke_machine", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "detective_scanner", "detective_scanner_advanced" , "defibrillator_compact", "vialbox")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/xenoorgan_biotech
@@ -343,7 +343,7 @@
 	display_name = "Cyborg Upgrades: Medical"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer")
+	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
 /datum/techweb_node/cyborg_upg_surgkit
