@@ -515,12 +515,12 @@
 		frn = is_banned_from(ckey, "Appearance")
 		if(QDELETED(src))
 			return
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_NO_STATIC))
+		frn = TRUE
 	if(frn)
 		client.prefs.random_character()
 		client.prefs.accent = null
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
-	client.prefs.copy_to(H)
-
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(mind)

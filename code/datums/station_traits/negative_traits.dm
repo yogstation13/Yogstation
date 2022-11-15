@@ -142,3 +142,11 @@
 	//Randomise the frequency of SSevents, overall making events likelier.
 	SSevents.frequency_lower = rand(1 MINUTES, 2 MINUTES)
 	SSevents.frequency_upper = rand(3 MINUTES, 6 MINUTES)
+
+/datum/station_trait/cloning_malfunction
+	name = "Cloning malfunction"
+	report_message = "The cloning pods that were used to deploy you after the shift have malfunctioned."
+	trait_type = STATION_TRAIT_NEGATIVE
+	trait_flags = NONE
+	weight = 4
+	trait_to_give = STATION_TRAIT_NO_STATIC
