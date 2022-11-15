@@ -1004,7 +1004,8 @@
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker
-
+	var/datum/action/imnuclear = new /datum/action/innate/ai/nuke_station
+	imnuclear.Grant(src)
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
 	if(camera_light_on)
