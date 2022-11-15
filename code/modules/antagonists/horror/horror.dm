@@ -106,7 +106,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 4 SECONDS))
+		if(!do_mob(src, C, 3 SECONDS))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
