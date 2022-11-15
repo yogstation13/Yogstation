@@ -218,7 +218,7 @@
 			update_icon()
 			var/turf/source_turf = get_turf(src)
 			log_virus("A culture bottle was printed for the virus [A.admin_details()] at [loc_name(source_turf)] by [key_name(usr)]")
-			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 50)
+			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 5)
 			. = TRUE
 		if("create_vaccine_bottle")
 			if (wait)
