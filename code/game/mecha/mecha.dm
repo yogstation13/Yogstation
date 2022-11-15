@@ -656,13 +656,14 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
-		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
 
-	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
+		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
+
+	if(istype(newloc, /turf/closed/indestructible))
+		return	//If the turf is indestructible don't bother trying
+
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
