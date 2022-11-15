@@ -132,7 +132,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
-				L.playsound(L, 'sound/weapons/bladeslice.ogg', 50)
+				playsound(L, 'sound/weapons/bladeslice.ogg', 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
@@ -214,7 +214,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
-				L.playsound(L, 'sound/weapons/blade1.ogg', 50)
+				playsound(L, 'sound/weapons/blade1.ogg', 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
