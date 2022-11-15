@@ -50,7 +50,14 @@
 	to_chat(C, "[info_text]")
 
 	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
+	var/obj/effect/proc_holder/spell/aoe_turf/veil/spell = new /obj/effect/proc_holder/spell/aoe_turf/veil(null)
+	spell.panel = "Spells"
+	C.mind?.AddSpell(spell)
 
+/datum/species/shadow/nightmare/on_species_loss(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.mind.RemoveSpell(/obj/effect/proc_holder/spell/aoe_turf/veil)
+	
 /datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
