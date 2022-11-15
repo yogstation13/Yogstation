@@ -101,13 +101,13 @@
 	name = "\improper GD6 \"Jaeger\" shortsword"
 	desc = "An extendable arm-mounted blade with a nasty edge. It is small and fast enough to deflect some incoming attacks."
 	energy_drain = 20
-	weapon_damage = 10
-	precise_weapon_damage = 15
+	weapon_damage = 15
+	precise_weapon_damage = 20
 	fauna_damage_bonus = 30		//because why not
 	deflect_bonus = 15
 	base_armor_piercing = 15
-	structure_damage_mult = 2	//Sword is not as smashy
-	minimum_damage = 20			
+	structure_damage_mult = 2.5	//Sword is not as smashy
+	minimum_damage = 25			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
 	playsound(chassis, attack_sound, 50, 1)					
@@ -183,11 +183,11 @@
 	icon_state = "mecha_energy_axe"
 	precise_attacks = FALSE		//This is not a weapon of precision, it is a weapon of destruction
 	energy_drain = 40
-	weapon_damage = 25
+	weapon_damage = 30
 	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
 	base_armor_piercing = 40
 	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
-	minimum_damage = 35			
+	minimum_damage = 40			
 	attack_speed_modifier = 1.5 //Kinda chunky
 	light_color = LIGHT_COLOR_RED
 
@@ -252,7 +252,7 @@
 	precise_attacks = FALSE		
 	cleave = FALSE
 	range = null				//This should just make the mech punch stuff, which is what we want!
-	weapon_damage = 15
+	weapon_damage = 20
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_select()
 	chassis.force += weapon_damage	//PUNCH HARDER
