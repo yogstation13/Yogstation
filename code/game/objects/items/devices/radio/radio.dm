@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
-	desc = "A basic handheld radio that communicates with local telecommunication networks."
+	desc = "A basic handheld radio that communicates with local telecommunication networks. Altclick to remove encryption key if panel is open."
 	dog_fashion = /datum/dog_fashion/back
 
 	flags_1 = CONDUCT_1 | HEAR_1
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if (frequency && in_range(src, user))
 		. += span_notice("It is set to broadcast over the [frequency/10] frequency.")
 	if (unscrewed)
-		. += span_notice("It can be attached and modified.")
+		. += span_notice("It can be attached and modified. [(keyslot || keyslot2)? "Altclick to remove encryption key." : ""]")
 	else
 		. += span_notice("It cannot be modified or attached.")
 

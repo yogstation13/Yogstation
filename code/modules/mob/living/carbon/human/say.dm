@@ -69,11 +69,6 @@
 		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio))	
 			radio.talk_into(src, message, , spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
-		var/obj/item/storage/storage = locate() in src
-		if(get_item_by_slot(SLOT_BELT) == storage)
-			if(locate(radio) in storage)
-				storage.talk_into(src, message, , spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
 		if(ears)
 			ears.talk_into(src, message, , spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
@@ -86,11 +81,6 @@
 		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio))	
 			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
-		var/obj/item/storage/storage = locate() in src
-		if(get_item_by_slot(SLOT_BELT) == storage)
-			if(locate(radio) in storage)
-				storage.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
 		if(ears)
 			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
@@ -102,11 +92,6 @@
 		var/obj/item/radio/radio = locate() in src
 		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio))	
 			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-			return ITALICS | REDUCE_RANGE
-		var/obj/item/storage/storage = locate() in src
-		if(get_item_by_slot(SLOT_BELT) == storage)
-			if(locate(radio) in storage)
-				storage.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 		if(ears)
 			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
