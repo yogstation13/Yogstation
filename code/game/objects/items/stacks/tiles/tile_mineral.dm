@@ -88,6 +88,16 @@
 	mineralType = "plastitanium"
 	materials = list(/datum/material/titanium=250, /datum/material/plasma=250)
 
+/obj/item/stack/tile/mineral/plastitanium/red/brig
+	name = "brig plastitanium tile"
+	singular_name = "brig plastitanium floor tile"
+	desc = "A tile made of plastitanium, used for shuttle brig."
+	icon_state = "tile_darkshuttle"
+	item_state = "tile-darkshuttle"
+	turf_type = /turf/open/floor/mineral/plastitanium/red/brig
+	mineralType = "plastitanium"
+	materials = list(/datum/material/titanium=250, /datum/material/plasma=500)
+
 /obj/item/stack/tile/mineral/snow
 	name = "snow tile"
 	singular_name = "snow tile"
