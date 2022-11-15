@@ -28,13 +28,12 @@
 	var/toner = 40 //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
 	var/greytoggle = "Greyscale"
-	var/mob/living/ass //i can't believe i didn't write a stupid-ass comment about this var when i first coded asscopy.
 	var/busy = FALSE
 
 /obj/machinery/photocopier/ui_interact(mob/user)
 	. = ..()
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>Photocopier<BR><BR>"
-	if(copy || photocopy || doccopy || (ass && (ass.loc == src.loc)))
+	if(copy || photocopy || doccopy)
 		dat += "<a href='byond://?src=[REF(src)];remove=1'>Remove Paper</a><BR>"
 		if(toner)
 			dat += "<a href='byond://?src=[REF(src)];copy=1'>Copy</a><BR>"
