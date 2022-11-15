@@ -110,7 +110,7 @@
 	minimum_damage = 20			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
-	playsound(chassis, attack_sound, 150, 1)						//Slight windup, lines up with sound file
+	playsound(chassis, attack_sound, 50, 1)					
 	var/turf/M = get_turf(chassis)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -129,7 +129,7 @@
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
-				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
+				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 				playsound(L, 'sound/weapons/bladeslice.ogg', 50)
@@ -144,7 +144,7 @@
 					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
 				else
 					if(istype(A, /obj/mecha))					
-						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of its [src]!"))	//Don't really need to make a message for EVERY object, just important ones
+						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of [src]!"))	//Don't really need to make a message for EVERY object, just important ones
 					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
 
 	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
@@ -164,7 +164,7 @@
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
 
-		L.visible_message(span_danger("[chassis.name] strikes [L] with its [src]!"), \
+		L.visible_message(span_danger("[chassis.name] strikes [L] with [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
@@ -175,7 +175,7 @@
 	else
 		return
 	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
-	playsound(chassis, attack_sound, 150, 1)
+	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe
 	name = "\improper SH-NT \"Killerhurtz\" energy axe"
@@ -183,16 +183,16 @@
 	icon_state = "mecha_energy_axe"
 	precise_attacks = FALSE		//This is not a weapon of precision, it is a weapon of destruction
 	energy_drain = 40
-	weapon_damage = 20
+	weapon_damage = 25
 	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
 	base_armor_piercing = 40
-	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech and it's a terrifying axe
-	minimum_damage = 30			
+	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
+	minimum_damage = 35			
 	attack_speed_modifier = 1.5 //Kinda chunky
 	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()	//Mostly copy-pasted sword cleave code with minor tweaks.
-	playsound(chassis, attack_sound, 150, 1)										//Not hard to change some of this to be based on vars if you REALLY wanted to
+	playsound(chassis, attack_sound, 50, 1)											//Not hard to change some of this to be based on vars if you REALLY wanted to
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -211,7 +211,7 @@
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
-				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
+				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 				playsound(L, 'sound/weapons/blade1.ogg', 50)
@@ -226,7 +226,7 @@
 					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
 				else
 					if(istype(A, /obj/mecha))					
-						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of its [src]!"))
+						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of [src]!"))
 					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
 
 		if(istype(T, /turf/closed/wall))		//IT BREAKS WALLS TOO
