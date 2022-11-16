@@ -1348,7 +1348,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_tools/spy_bug
 	name = "Box of Spy Bugs"
 	desc = "A box of 10 spy bugs. These attach onto the target invisibly and cannot be removed, and broadcast all they hear to the secure syndicate channel.\
-	Can be attached to animals and objects."
+	Can be attached to animals and objects. Does not come with a syndicate encryption key."
 	item = /obj/item/storage/box/syndie_kit/bugs
 	cost = 1
 /datum/uplink_item/stealthy_tools/agent_card
