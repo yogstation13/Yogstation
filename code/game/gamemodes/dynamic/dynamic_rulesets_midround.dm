@@ -551,61 +551,6 @@
 
 //////////////////////////////////////////////
 //                                          //
-//                VAMPIRE                   //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/midround/autovamp
-	name = "Vampire"
-	antag_flag = ROLE_VAMPIRE
-	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
-	required_candidates = 1
-	weight = 5
-	cost = 15
-	requirements = list(80,70,60,50,50,45,30,30,25,25)
-	minimum_players = 25
-
-/datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
-	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
-	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
-	var/max_vamp = round(player_count / 10) + 1
-	if ((antag_count < max_vamp) && prob(mode.threat_level))//adding vampire if the antag population is getting low
-		return ..()
-	else
-		return FALSE
-
-/datum/dynamic_ruleset/midround/autovamp/trim_candidates()
-	..()
-	for(var/mob/living/player in living_players)
-		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
-			living_players -= player
-			continue
-		if(is_centcom_level(player.z))
-			living_players -= player // We don't autotator people in CentCom
-			continue
-		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
-			living_players -= player // We don't autovamp people with roles already
-			continue
-		if(!(ROLE_VAMPIRE in player.client.prefs.be_special))
-			living_players -= player
-
-/datum/dynamic_ruleset/midround/autovamp/ready(forced = FALSE)
-	if (required_candidates > living_players.len)
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/autovamp/execute()
-	var/mob/M = pick(living_players)
-	assigned += M
-	living_players -= M
-	var/datum/antagonist/vampire/newVampire = new
-	M.mind.add_antag_datum(newVampire)
-	return TRUE
-
-//////////////////////////////////////////////
-//                                          //
 //              ZOMBIE (GHOST)              //
 //                                          //
 //////////////////////////////////////////////
@@ -693,60 +638,6 @@
 		new_character.mind.add_antag_datum(new_role, new_team)
 
 #undef ABDUCTOR_MAX_TEAMS
-
-//////////////////////////////////////////////
-//                                          //
-//               BLOODSUCKER                //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/midround/bloodsucker
-	name = "Vampiric Accident"
-	antag_datum = /datum/antagonist/bloodsucker
-	antag_flag = ROLE_VAMPIRICACCIDENT
-	antag_flag_override = ROLE_BLOODSUCKER
-	protected_roles = list(
-		"Captain", "Head of Personnel", "Head of Security",
-		"Warden", "Security Officer", "Detective", "Brig Physician",
-		"Curator"
-	)
-	restricted_roles = list("AI","Cyborg", "Positronic Brain")
-	required_candidates = 1
-	weight = 5
-	cost = 10
-	requirements = list(40,30,20,10,10,10,10,10,10,10)
-	minimum_players = 25
-	repeatable = FALSE
-
-/datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
-	. = ..()
-	for(var/mob/living/player in living_players)
-		if(iscarbon(player))
-			var/mob/living/carbon/C = player
-			if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
-				living_players -= player
-				continue
-		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
-			living_players -= player
-		else if(is_centcom_level(player.z))
-			living_players -= player // We don't allow people in CentCom
-		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
-			living_players -= player // We don't allow people with roles already
-
-/datum/dynamic_ruleset/midround/bloodsucker/execute()
-	var/mob/selected_mobs = pick(living_players)
-	assigned += selected_mobs
-	living_players -= selected_mobs
-	var/datum/mind/bloodsuckermind = selected_mobs
-	var/datum/antagonist/bloodsucker/sucker = new
-	if(!bloodsuckermind.make_bloodsucker(selected_mobs))
-		assigned -= selected_mobs
-		message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
-		return FALSE
-	sucker.bloodsucker_level_unspent = rand(2,3)
-	message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
-	log_game("DYNAMIC: [key_name(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
-	return TRUE
 
 /// Revenant ruleset
 /datum/dynamic_ruleset/midround/from_ghosts/revenant
