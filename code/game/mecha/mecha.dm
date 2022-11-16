@@ -361,7 +361,7 @@
 			if(armor.acid)
 				readout += "\nACID [armor_to_protection_class(armor.acid)]"
 			if(deflect_chance)
-				readout += "\nDEFLECT CHANCE: [damage_deflection]%"
+				readout += "\nDEFLECT CHANCE: [deflect_chance]%"
 			if(max_temperature)
 				readout += "\nMAX TEMPERATURE: [max_temperature] KELVIN"
 
