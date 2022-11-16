@@ -220,6 +220,12 @@
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
+"tK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/computer/rdconsole/nolock/ruin,
+/turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
 "uc" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -455,13 +461,6 @@
 /obj/machinery/door/airlock/survival_pod/glass,
 /turf/open/floor/pod,
 /area/ruin/powered/golem_ship)
-"HB" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/rdconsole/nolock/ruin{
-	dir = 1
-	},
-/turf/open/floor/pod,
-/area/ruin/powered/golem_ship)
 "HQ" = (
 /obj/machinery/computer/shuttle{
 	dir = 4
@@ -618,6 +617,7 @@
 "Pu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
+/obj/machinery/mecha_part_fabricator/ruin,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "Pz" = (
@@ -678,6 +678,10 @@
 /obj/machinery/door/airlock/survival_pod/glass,
 /turf/open/floor/pod,
 /area/ruin/powered/golem_ship)
+"Ue" = (
+/obj/machinery/rnd/production/protolathe,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/golem_ship)
 "UB" = (
 /obj/structure/table/reinforced,
 /obj/item/circular_saw,
@@ -728,6 +732,11 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
+"Wk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "WR" = (
 /obj/machinery/light{
@@ -981,7 +990,7 @@ Ht
 yu
 Ht
 Ht
-XR
+tK
 Do
 YP
 YP
@@ -1002,7 +1011,7 @@ PC
 mY
 uB
 Hv
-da
+Ue
 xc
 ER
 xc
@@ -1023,11 +1032,11 @@ Ud
 Hp
 Jj
 Hv
-YP
+Wk
 xc
 Hp
 xc
-HB
+xc
 Hp
 YP
 MQ

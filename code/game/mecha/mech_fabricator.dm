@@ -793,3 +793,12 @@
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+
+/obj/machinery/mecha_part_fabricator/ruin
+	link_on_init = FALSE
+	authorization_override = TRUE
+	hacked = TRUE
+
+/obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+	stored_research = SSresearch.ruin_tech
+	return ..()
