@@ -800,5 +800,5 @@
 	hacked = TRUE
 
 /obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+	. = ..()
 	stored_research = SSresearch.ruin_tech
-	return ..()
