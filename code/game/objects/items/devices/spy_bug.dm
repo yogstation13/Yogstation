@@ -1,5 +1,6 @@
 /datum/component/bugged/proc/Hear(datum/source, list/hearing_args)
-	var/datum/signal/subspace/vocal/signal = new(src, FREQ_SYNDICATE, hearing_args[HEARING_SPEAKER], /datum/language/common, hearing_args[HEARING_RAW_MESSAGE], list(SPAN_ROBOT), list())
+	var/atom/movable/virtualspeaker/speaker = new(null, hearing_args[HEARING_SPEAKER], null)
+	var/datum/signal/subspace/vocal/signal = new(hearing_args[HEARING_SPEAKER], FREQ_SYNDICATE, speaker, /datum/language/common, hearing_args[HEARING_RAW_MESSAGE], list(SPAN_ROBOT), list())
 	signal.send_to_receivers()
 
 /datum/component/bugged/Initialize()
@@ -12,8 +13,10 @@
 	icon_state = "bug"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/spy_bug/attack_self(mob/user)
-	return ..()
+/obj/item/spy_bug/Bump(atom/A)
+	A.AddComponent(/datum/component/bugged)
+	qdel(src)
+	. = ..()
 
 
 /obj/item/spy_bug/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
