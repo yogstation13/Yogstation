@@ -43956,16 +43956,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"cyD" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cyE" = (
 /obj/machinery/camera{
 	c_tag = "Toxins - Lab";
@@ -43994,19 +43984,6 @@
 	dir = 1
 	},
 /obj/machinery/meter,
-/turf/open/floor/plasteel,
-/area/science/mixing)
-"cyH" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cyI" = (
@@ -44535,14 +44512,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/aft)
-"cAG" = (
-/obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cAH" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
@@ -62037,6 +62006,19 @@
 	dir = 1
 	},
 /area/crew_quarters/kitchen)
+"lhm" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "lij" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -71804,6 +71786,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"rHC" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "rHE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -78921,6 +78913,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"wuv" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "wuF" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -114291,7 +114291,7 @@ cuQ
 cdJ
 cwT
 crQ
-cyD
+rHC
 mom
 crB
 cBv
@@ -115319,7 +115319,7 @@ euk
 vsa
 rrV
 crR
-cyH
+lhm
 czx
 crG
 cBs
@@ -115835,7 +115835,7 @@ cqD
 crR
 cyJ
 czB
-cAG
+wuv
 crO
 cCC
 cDp
