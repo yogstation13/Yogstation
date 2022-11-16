@@ -99,6 +99,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	jobtype = /datum/job/engineer
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/engineering
+	old_pda_type = /obj/item/pda/engineering
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng

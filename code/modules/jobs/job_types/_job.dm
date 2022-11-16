@@ -205,6 +205,7 @@
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	var/obj/item/pda/old_pda_type = /obj/item/pda
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -270,22 +271,37 @@
 			C.registered_account = B
 			B.bank_cards += C
 		H.sec_hud_set_ID()
-
-	var/obj/item/modular_computer/PDA = new pda_type()
-	if(istype(PDA))
-		if (H.id_in_pda)
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-		else // just in case you hate change
-			H.equip_to_slot_if_possible(PDA, pda_slot)
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_OLD_PDAS))
+		var/obj/item/pda/PDA = new old_pda_type()
+		if(istype(PDA))
+			if (H.id_in_pda)
+				PDA.InsertID(C)
+				H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+			else // just in case you hate change
+				H.equip_to_slot_if_possible(PDA, pda_slot)
+				H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+			PDA.update_label()
+			PDA.update_icon()
+		else
 			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-		
-		PDA.update_label()
-		PDA.update_icon()
-		PDA.update_filters()
-		
+			
+			
 	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		var/obj/item/modular_computer/PDA = new pda_type()
+		if(istype(PDA))
+			if (H.id_in_pda)
+				PDA.InsertID(C)
+				H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+			else // just in case you hate change
+				H.equip_to_slot_if_possible(PDA, pda_slot)
+				H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+			
+			PDA.update_label()
+			PDA.update_icon()
+			PDA.update_filters()
+			
+		else
+			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()

@@ -32,6 +32,7 @@
 	jobtype = /datum/job/miningmedic
 	
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	old_pda_type = /obj/item/pda/miningmed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1)

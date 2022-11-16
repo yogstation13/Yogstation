@@ -32,6 +32,7 @@
 	jobtype = /datum/job/lawyer
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+	old_pda_type = /obj/item/pda/lawyer
 
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit

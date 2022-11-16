@@ -39,6 +39,7 @@
 	jobtype = /datum/job/bartender
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+	old_pda_type = /obj/item/pda/bar
 
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
 	ears = /obj/item/radio/headset/headset_srv

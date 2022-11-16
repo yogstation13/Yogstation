@@ -39,6 +39,7 @@
 	jobtype = /datum/job/clown
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/clown
+	old_pda_type = /obj/item/pda/clown
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/clown

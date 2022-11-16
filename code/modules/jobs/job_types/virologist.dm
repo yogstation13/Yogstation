@@ -43,6 +43,7 @@
 	jobtype = /datum/job/virologist
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	old_pda_type = /obj/item/pda/viro
 
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/virologist

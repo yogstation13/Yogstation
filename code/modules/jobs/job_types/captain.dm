@@ -48,6 +48,7 @@
 
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
+	old_pda_type = /obj/item/pda/captain
 	
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt

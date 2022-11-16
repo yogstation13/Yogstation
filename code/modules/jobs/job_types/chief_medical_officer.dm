@@ -47,6 +47,7 @@
 
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
+	old_pda_type = /obj/item/pda/heads/cmo
 
 	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo

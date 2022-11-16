@@ -40,6 +40,7 @@
 	jobtype = /datum/job/mining
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	old_pda_type = /obj/item/pda/shaftminer
 
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining

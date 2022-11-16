@@ -113,7 +113,7 @@
 
 /datum/station_trait/quick_shuttle
 	name = "Quick Shuttle"
-	trait_type = STATION_TRAIT_NEUTRAL
+	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
 	report_message = "Due to proximity to our supply station, the cargo shuttle will have a quicker flight time to your cargo department."
@@ -122,3 +122,11 @@
 /datum/station_trait/quick_shuttle/on_round_start()
 	. = ..()
 	SSshuttle.supply.callTime *= 0.5
+
+/datum/station_trait/old_pdas
+	name = "Old PDAs"
+	trait_type = STATION_TRAIT_POSITIVE
+	weight = 5
+	show_in_report = TRUE
+	report_message = "We found some new old-stock of the classic PDAs. Try them out for us."
+	trait_to_give = STATION_TRAIT_OLD_PDAS

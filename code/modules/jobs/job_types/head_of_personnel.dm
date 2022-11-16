@@ -58,6 +58,7 @@
 
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
+	old_pda_type = /obj/item/pda/heads/hop
 
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/head_of_personnel

@@ -51,6 +51,7 @@
 	jobtype = /datum/job/doctor
 
 	pda_type= /obj/item/modular_computer/tablet/pda/preset/medical
+	old_pda_type = /obj/item/pda/medical
 
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical

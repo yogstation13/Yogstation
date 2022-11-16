@@ -47,6 +47,7 @@
 	jobtype = /datum/job/cargo_tech
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
+	old_pda_type = /obj/item/pda/cargo
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargotech
