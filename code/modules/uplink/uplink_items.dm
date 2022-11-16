@@ -1345,6 +1345,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
 
+/datum/uplink_item/stealthy_tools/spy_bug
+	name = "Box of Spy Bugs"
+	desc = "A box of 10 spy bugs. These attach onto the target invisibly and cannot be removed, and broadcast all they hear to the secure syndicate channel.\
+	Can be attached to animals and objects."
+	item = /obj/item/storage/box/syndie_kit/bugs
+	cost = 1
 /datum/uplink_item/stealthy_tools/agent_card
 	name = "Agent Identification Card"
 	desc = "Agent cards prevent artificial intelligences from tracking the wearer, and can copy access \
