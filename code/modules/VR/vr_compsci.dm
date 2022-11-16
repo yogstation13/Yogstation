@@ -88,7 +88,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	data["missions"] = list()
 	data["ongoing"] = GLOB.compsci_vr.current_mission ? TRUE : FALSE
 	for(var/datum/compsci_mission/M as anything in GLOB.compsci_vr.unlocked_missions)
-		data["missions"] += list(list("name" = initial(M.name), "desc" = initial(M.desc), "id" = initial(M.id)))
+		data["missions"] += list(list("name" = initial(M.name), "desc" = initial(M.desc), "id" = initial(M.id), "tags" = initial(M.tags)))
 	return data
 
 /obj/machinery/computer/compsci_mission_selector/ui_act(action, list/params)

@@ -10,6 +10,7 @@
 	var/desc
 	var/id
 	var/completion_item
+	var/tags
 
 /datum/compsci_mission/proc/complete()
 	return
