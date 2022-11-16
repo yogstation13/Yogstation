@@ -122,8 +122,6 @@
 	return null
 
 /obj/item/computer_hardware/hard_drive/Destroy()
-	for(var/F in stored_files)
-		qdel(F)
 	stored_files = null
 	return ..()
 

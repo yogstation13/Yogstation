@@ -53,7 +53,7 @@
 	name = "Warden"
 	jobtype = /datum/job/warden
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/warden
+	pda_type = /obj/item/pda/warden
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/warden

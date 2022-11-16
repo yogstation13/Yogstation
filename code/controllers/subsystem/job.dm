@@ -507,7 +507,6 @@ SUBSYSTEM_DEF(job)
 				newplayer.new_character = living_mob
 			else
 				M = living_mob
-			
 		SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
 
 		if(M.client.holder)

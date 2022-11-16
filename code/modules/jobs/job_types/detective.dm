@@ -52,7 +52,7 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/pda/detective
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det
@@ -67,7 +67,8 @@
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
 		/obj/item/detective_scanner=1,\
-		/obj/item/melee/classic_baton=1)
+		/obj/item/melee/classic_baton=1,\
+		/obj/item/modular_computer/tablet/pda/preset/basic=1)
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)

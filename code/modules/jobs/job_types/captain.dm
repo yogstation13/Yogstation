@@ -47,7 +47,7 @@
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
+	pda_type = /obj/item/pda/captain
 	
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt
@@ -58,7 +58,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap=1) //yogs - adds egun/removes civ budget
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap
