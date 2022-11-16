@@ -8,7 +8,7 @@
 /obj/item/energy_harvester
 	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model."
 	name = "Energy Harvesting Module"
-	icon_state = "powersink0"
+	icon_state = "powersinknew0"
 	icon = 'icons/obj/device.dmi'
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
