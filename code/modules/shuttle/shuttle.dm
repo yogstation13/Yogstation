@@ -283,7 +283,7 @@
 	var/launch_status = NOLAUNCH
 
 	///Whether or not you want your ship to knock people down, and also whether it will throw them several tiles upon launching.
-	var/list/movement_force = list("KNOCKDOWN" = 6, "THROW" = 10)
+	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
 	var/engine_coeff = 1

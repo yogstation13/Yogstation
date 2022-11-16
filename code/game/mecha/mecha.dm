@@ -798,6 +798,9 @@
 	//Allows the Malf to scan a mech's status and loadout, helping it to decide if it is a worthy chariot.
 	if(user.can_dominate_mechs)
 		examine(user) //Get diagnostic information!
+		if(user.nuking)
+			to_chat(user, span_warning("Unable to assume control of mech while attempting to self-destruct the station."))
+			return
 		for(var/obj/item/mecha_parts/mecha_tracking/B in trackers)
 			to_chat(user, span_danger("Warning: Tracking Beacon detected. Enter at your own risk. Beacon Data:"))
 			to_chat(user, "[B.get_mecha_info()]")
