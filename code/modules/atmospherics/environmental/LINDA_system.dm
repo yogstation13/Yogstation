@@ -58,15 +58,16 @@
 
 	conductivity_blocked_directions = 0
 
+	var/src_contains_firelock = 1
+	if(locate(/obj/machinery/door/firedoor) in src)
+		src_contains_firelock |= 2
+
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
 		if(!istype(T))
 			conductivity_blocked_directions |= direction
 			continue
 
-		var/src_contains_firelock = 1
-		if(locate(/obj/machinery/door/firedoor) in src)
-			src_contains_firelock |= 2
 
 		var/other_contains_firelock = 1
 		if(locate(/obj/machinery/door/firedoor) in T)
@@ -77,7 +78,7 @@
 		if(isopenturf(T) && !(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (canvpass && CANVERTICALATMOSPASS(T, src)) : (canpass && CANATMOSPASS(T, src))) )
 			LAZYINITLIST(atmos_adjacent_turfs)
 			LAZYINITLIST(T.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[T] = other_contains_firelock
+			atmos_adjacent_turfs[T] = other_contains_firelock | src_contains_firelock
 			T.atmos_adjacent_turfs[src] = src_contains_firelock
 		else
 			if (atmos_adjacent_turfs)
