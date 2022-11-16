@@ -642,7 +642,7 @@
 	if(issilicon(user))
 		return TRUE
 	id_card = user.get_idcard(hand_first = TRUE)
-	return ACCESS_HEADS in id_card.access
+	return ACCESS_HEADS in id_card?.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()
