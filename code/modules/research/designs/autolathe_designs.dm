@@ -300,6 +300,15 @@
 	category = list("hacked","Miscellaneous","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/ipc_coolant_tank
+	name = "IPC Coolant Tank"
+	id = "ipc_coolant_tank"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 800)
+	build_path = /obj/item/tank/internals/ipc_coolant/empty
+	category = list("hacked","Miscellaneous","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
+
 /datum/design/metal
 	name = "Metal"
 	id = "metal"

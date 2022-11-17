@@ -183,6 +183,17 @@
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
+// IPC survival box
+/obj/item/storage/box/ipc/PopulateContents()
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains sterile latex gloves."
