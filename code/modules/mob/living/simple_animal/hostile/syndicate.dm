@@ -51,6 +51,13 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/syndicate/space/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	. = ..()
+	for (var/codeword in GLOB.syndicate_code_phrase)
+		if (findtext(raw_message, codeword))
+			friends.Add(speaker)
+			say(pick(GLOB.syndicate_code_response))
+
 /mob/living/simple_animal/hostile/syndicate/sentience_act()
 	faction -= ROLE_SYNDICATE
 ///////////////Melee////////////
