@@ -422,32 +422,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/proc/reset_deadly_shot()
 	deadly_shot = FALSE
-
-//hierophant
-/obj/item/crusher_trophy/vortex_talisman
-	name = "vortex talisman"
-	desc = "A glowing trinket that was originally the Hierophant's beacon. Suitable as a trophy for a kinetic crusher."
-	icon_state = "vortex_talisman"
-	denied_type = /obj/item/crusher_trophy/vortex_talisman
-
-/obj/item/crusher_trophy/vortex_talisman/effect_desc()
-	return "mark detonation to create a barrier you can pass"
-
-/obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
-	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
-	var/area/current_area = current_location.loc //yogs more location check stuff
-	if(current_area.noteleport) //yogs added noteleport
-		to_chat(user, "[src] fizzles uselessly.")
-		return
-	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
-	var/turf/otherT = get_step(T, turn(user.dir, 90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	otherT = get_step(T, turn(user.dir, -90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-
+	
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 75
 

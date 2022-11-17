@@ -164,7 +164,6 @@
 	desc = "Contains an assortment of kinetic crusher equipment."
 	respawn_loot = list(
 		/obj/item/twohanded/required/kinetic_crusher=1,
-		/obj/item/crusher_trophy/vortex_talisman=1,
 		/obj/item/crusher_trophy/demon_claws=1,
 		/obj/item/crusher_trophy/tail_spike=1,
 		/obj/item/crusher_trophy/miner_eye=1,
