@@ -39,7 +39,8 @@
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/card_slot/secondary)
+								/obj/item/computer_hardware/card_slot/secondary,
+								/obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	finish_color = "yellow"

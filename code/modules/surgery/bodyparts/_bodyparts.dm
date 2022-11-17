@@ -865,6 +865,8 @@
 		limb.icon = icon
 		if(should_draw_gender)
 			limb.icon_state = "[body_zone]_[icon_gender]"
+		else if(use_digitigrade)
+			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)

@@ -5,7 +5,7 @@
 	icon_state = "gummy"
 	item_state = "gummy"
 	possible_transfer_amounts = list()
-	volume = 15
+	volume = 30
 	grind_results = list()
 	color = null
 	var/apply_type = INGEST

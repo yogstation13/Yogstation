@@ -324,3 +324,6 @@
 /obj/item/storage/lockbox/vialbox/blood/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/printed
+	req_access = null

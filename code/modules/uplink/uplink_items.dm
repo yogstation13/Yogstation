@@ -413,6 +413,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/dangerous/backstab
+	name = "Backstabbing Switchblade"
+	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
+			Still does a moderate amount of damage when applied from the front."
+	item = /obj/item/switchblade/backstab
+	cost = 5
+	// backstabs are pretty funny, clown ops can have this one
+
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
@@ -515,6 +523,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
+/datum/uplink_item/dangerous/nukiedmr
+	name = "K-41s Designated Marksman Rifle"
+	desc = "A long-range rifle that fires powerful 7.62 rounds from an 11-round magazine. It possesses \
+			a short-range scope to better see over distances."
+	item = /obj/item/gun/ballistic/automatic/k41s
+	cost = 12
+	include_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
 	desc = "Ranged fury, Syndicate style. Guaranteed to cause shock and awe or your TC back!"
@@ -583,7 +599,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
-	cost = 12
+	cost = 8
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -903,14 +919,40 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/smgm45/venom
 	cost = 4
 
-/datum/uplink_item/ammo/sniper
-	cost = 4
+/datum/uplink_item/ammo/nukiedmr
+	name = "7.62 Rifle Magazine"
+	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62 rounds."
+	item = /obj/item/ammo_box/magazine/ks762
+	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/ammo/sniper/basic
+/datum/uplink_item/ammo/nukiedmr/raze
+	name = "7.62 Raze Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Raze 7.62 rounds. \
+			These rounds do notably less damage, but release radium dust in targets that severely damages their DNA structure."
+	item = /obj/item/ammo_box/magazine/ks762/raze
+	cost = 4
+
+/datum/uplink_item/ammo/nukiedmr/pen
+	name = "7.62 Anti-Material Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with anti-material 7.62 rounds. \
+			These rounds offer less stopping power, but pierce through a couple of objects before stopping."
+	item = /obj/item/ammo_box/magazine/ks762/pen
+	cost = 5
+
+/datum/uplink_item/ammo/nukiedmr/vulcan
+	name = "7.62 Vulcan Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Vulcan 7.62 rounds. \
+			These rounds are loaded with an incendiary payload that causes fire to erupt out upon impact."
+	item = /obj/item/ammo_box/magazine/ks762/vulcan
+	cost = 4
+
+/datum/uplink_item/ammo/sniper
 	name = ".50 Magazine"
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
 	item = /obj/item/ammo_box/magazine/sniper_rounds
+	cost = 4
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/sniper/penetrator
 	name = ".50 Penetrator Magazine"
@@ -1940,6 +1982,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/implants/spinal
+	name = "Neural Overclocker Implant"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	cost = 20
+	surplus = 0
+	limited_stock = 1
+	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
 // Events
 /datum/uplink_item/services

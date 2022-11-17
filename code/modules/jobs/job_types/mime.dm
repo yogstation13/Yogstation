@@ -21,6 +21,13 @@
 	display_order = JOB_DISPLAY_ORDER_MIME
 	minimal_character_age = 18 //Mime?? Might increase this a LOT depending on how mime lore turns out
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/baguette = 15,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
+		/obj/item/book/mimery = 1,
+	)
+
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	H.apply_pref_name("mime", M.client)
 

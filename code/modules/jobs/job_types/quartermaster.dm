@@ -23,6 +23,10 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/circuitboard/machine/emitter = 3
+	)
+
 /datum/job/qm/proc/OmegaStationChanges()
 	return TRUE
 

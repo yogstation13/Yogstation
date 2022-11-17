@@ -454,7 +454,7 @@
 
 // Bloodsuckers moodlets //
 /datum/mood_event/drankblood
-	description = "<span class='nicegreen'>I have fed greedly from that which nourishes me.</span>\n"
+	description = "<span class='nicegreen'>I have fed greedily from that which nourishes me.</span>\n"
 	mood_change = 10
 	timeout = 8 MINUTES
 

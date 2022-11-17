@@ -11,6 +11,7 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define EVA_MODIFIER 0.8
 
 /obj/mecha
 	name = "mecha"
@@ -403,22 +404,22 @@
 				if(0.75 to INFINITY)
 					occupant.clear_alert("charge")
 				if(0.5 to 0.75)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 1)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 1)
 				if(0.25 to 0.5)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 2)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 2)
 				if(0.01 to 0.25)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 3)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 3)
 				else
-					occupant.throw_alert("charge", /obj/screen/alert/emptycell)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/emptycell)
 
 		var/integrity = obj_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 1)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 1)
 			if(15 to 35)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 2)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 2)
 			if(-INFINITY to 15)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
 		var/atom/checking = occupant.loc
@@ -616,18 +617,18 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
+	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
 			take_damage(2, BRUTE)
-		can_move = world.time + step_in
+		can_move = world.time + step_in * (check_eva() ? EVA_MODIFIER : 1)
 		return TRUE
 	return FALSE
 
@@ -670,7 +671,7 @@
 					flick(phase_state, src)
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
-				sleep(step_in*3)
+				sleep(step_in * (check_eva() ? 0.8 : 1)*3)
 				can_move = TRUE
 	else
 		if(..()) //mech was thrown
@@ -746,6 +747,9 @@
 	//Allows the Malf to scan a mech's status and loadout, helping it to decide if it is a worthy chariot.
 	if(user.can_dominate_mechs)
 		examine(user) //Get diagnostic information!
+		if(user.nuking)
+			to_chat(user, span_warning("Unable to assume control of mech while attempting to self-destruct the station."))
+			return
 		for(var/obj/item/mecha_parts/mecha_tracking/B in trackers)
 			to_chat(user, span_danger("Warning: Tracking Beacon detected. Enter at your own risk. Beacon Data:"))
 			to_chat(user, "[B.get_mecha_info()]")
@@ -1083,10 +1087,10 @@
 				newloc = GLOB.primary_data_core
 			else if(LAZYLEN(GLOB.data_cores))
 				newloc = GLOB.data_cores[1]
-				
+
 			if(!istype(newloc, /obj/machinery/ai/data_core))
 				to_chat(AI, span_userdanger("No cores available. Core code corrupted."))
-				
+
 			is_ai_user = TRUE
 	else
 		return
@@ -1226,4 +1230,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_notice("You can't fit any more ammo of this type!"))
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
+	return FALSE
+
+// Is the occupant wearing a pilot suit?
+/obj/mecha/proc/check_eva()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		return istype(H.w_uniform, /obj/item/clothing/under/mech_suit)
 	return FALSE

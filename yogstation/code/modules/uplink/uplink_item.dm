@@ -166,6 +166,15 @@
 	item = /obj/item/book/granter/martial/explosive_fist
 	restricted_species = list("plasmaman")
 
+/datum/uplink_item/race_restricted/ultra_violence
+	name = "Version one upgrade module"
+	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed."
+	cost = 20
+	item = /obj/item/book/granter/martial/ultra_violence
+	restricted_species = list("ipc")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+	cant_discount = TRUE
+
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
 	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."

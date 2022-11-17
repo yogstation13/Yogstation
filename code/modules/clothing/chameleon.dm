@@ -220,7 +220,7 @@
 		var/obj/item/I = target
 		I.item_state = initial(picked_item.item_state)
 		I.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
-		if(istype(I, /obj/item/clothing) && istype(initial(picked_item), /obj/item/clothing))
+		if(istype(I, /obj/item/clothing) && istype(picked_item, /obj/item/clothing))
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
