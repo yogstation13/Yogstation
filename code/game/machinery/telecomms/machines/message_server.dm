@@ -137,8 +137,9 @@
 		signal.logged = M
 	else if(istype(signal, /datum/signal/subspace/messaging/ntospda))
 		var/datum/computer_file/program/pdamessager/recipient = signal.data["targets"][1]
-		GLOB.NTPDAMessages += list(list(signal.data["program"].username, recipient.username, signal.data["message"]))
-		var/datum/data_pda_msg/M = new(recipient.username, signal.data["program"].username, signal.data["message"])
+		var/datum/computer_file/program/pdamessager/sender = signal.data["program"]
+		GLOB.NTPDAMessages += list(list(sender.username, recipient.username, signal.data["message"]))
+		var/datum/data_pda_msg/M = new(recipient.username, sender.username, signal.data["message"])
 		pda_msgs += M
 		signal.logged = TRUE
 		var/datum/signal/subspace/current = signal
