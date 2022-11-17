@@ -7,6 +7,7 @@
 	density = TRUE
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
+	occupant_typecache = list(/mob/living, /obj/item)
 
 	var/obj/item/clothing/suit/space/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
@@ -162,7 +163,7 @@
 		locked = FALSE
 		if(uv_emagged)
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
-			if(occupant)
+			if(mob_occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
 				mob_occupant.electrocute_act(50, src)
 			else
@@ -172,11 +173,14 @@
 			QDEL_NULL(suit)
 			QDEL_NULL(mask)
 			QDEL_NULL(storage)
+			var/obj/item/item = locate() in occupant
+			if(item)
+				QDEL_NULL(item)			
 			shock()
 		else
 			say("The decontamination process is completed, thank you for your patient.")
 			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
-			if(occupant)
+			if(mob_occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
 			else
@@ -415,7 +419,7 @@
 				else
 					say("Please wait untill the decontamination process is completed.")
 					uv_cycles = initial(uv_cycles)
-				if(occupant && uv_emagged)
+				if(mob_occupant && uv_emagged)
 					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
 				else
 					to_chat(mob_occupant, span_warning("[src]'s confines grow warm. You're being decontaminated."))
