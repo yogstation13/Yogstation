@@ -514,7 +514,7 @@
 	// At 70C burn damage will start happening
 	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
 	if(total_heat_capacity > 0)
-		var/ipc_heat_capacity = 20*ONE_ATMOSPHERE*BREATH_VOLUME/(R_IDEAL_GAS_EQUATION*T20C) // perfectly balanced to have an equilibrium of 40C with one atmosphere of air, not accounting for environmental cooling/heating
+		var/ipc_heat_capacity = 20*ONE_ATMOSPHERE*BREATH_VOLUME/(R_IDEAL_GAS_EQUATION*T20C) // balanced to have an equilibrium of around 40C with one atmosphere of air at room temperature, not accounting for passive cooling/heating from the environment
 		var/heat_generation = 20 + ((temperature - (H.bodytemperature + 20)) * organ_efficiency * total_heat_capacity / (total_heat_capacity + ipc_heat_capacity)) // heat up by 20 kelvin while being cooled by the gas
 		H.adjust_bodytemperature(heat_generation, 73, 500)
 		if(heat_generation > 0 && H.bodytemperature > T0C+50) // not dispelling enough heat
