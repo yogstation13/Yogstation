@@ -1,6 +1,6 @@
 // SUIT STORAGE DECONTAMINATION UNIT!! /////////////////
 /obj/machinery/decontamination_unit
-	name = "advanced decontamination suit storage unit"
+	name = "advanced decontamination unit"
 	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
 	icon_state = "industrial"
@@ -30,11 +30,6 @@
 	var/breakout_time = 300
 
 	var/datum/looping_sound/oven/decon   //im borrowing oven sound because it suits this
-
-/obj/machinery/decontamination_unit/radsuit
-	suit_type = /obj/item/clothing/suit/radiation
-	helmet_type = /obj/item/clothing/head/radiation
-	storage_type = /obj/item/geiger_counter
 
 /obj/machinery/decontamination_unit/open
 	state_open = TRUE
