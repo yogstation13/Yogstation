@@ -88,6 +88,9 @@
 	/// Internals box. Will be inserted at the start of backpack_contents
 	var/box
 
+	/// Special internals box for IPCs.
+	var/ipc_box = /obj/item/storage/box/ipc
+
 	/** 
 	  * Any implants the mob should start implanted with
 	  *

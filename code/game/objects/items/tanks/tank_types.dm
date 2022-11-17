@@ -186,11 +186,11 @@
 	force = 5
 	volume = 6
 	w_class = WEIGHT_CLASS_SMALL
-	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
+	distribute_pressure = 8
 
 /obj/item/tank/internals/ipc_coolant/populate_gas()
-	air_contents.set_moles(/datum/gas/nitrogen, (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*(T0C-50)))
-	air_contents.set_temperature(T0C-50)
+	air_contents.set_moles(/datum/gas/nitrogen, (10 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * (T0C - 50)))
+	air_contents.set_temperature(T0C - 50)
 
 /obj/item/tank/internals/ipc_coolant/empty/populate_gas()
 	return

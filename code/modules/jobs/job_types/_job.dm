@@ -202,7 +202,7 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
-	var/ipc_box = /obj/item/storage/box/ipc
+	ipc_box = /obj/item/storage/box/ipc
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
