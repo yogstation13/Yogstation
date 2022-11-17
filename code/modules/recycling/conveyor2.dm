@@ -120,9 +120,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/update_icon()
-	icon_state = "conveyor[inverted ? -operating : operating]"
 	if(!operating)
 		icon_state = "conveyor[inverted ? "-0" : "0"]"
+	else
+		icon_state = "conveyor[inverted ? -operating : operating]"
 
 /obj/machinery/conveyor/proc/update()
 	. = TRUE
