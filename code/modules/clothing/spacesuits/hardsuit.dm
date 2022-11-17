@@ -209,7 +209,7 @@
 	icon_state = "hardsuit0-flight"
 	item_state = "flighthelmet"
 	hardsuit_type = "flight"
-	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20)
+	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 80, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20)
 	heat_protection = HEAD												//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -220,7 +220,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal shielding. This one is made with the toughest and rarest materials available to man."
 	icon_state = "flightsuit"
 	item_state = "flightsuit"
-	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20)
+	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 80, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/elder_atmosian
@@ -537,7 +537,7 @@
 	hardsuit_type = "rd"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 100, BIO = 100, RAD = 60, FIRE = 60, ACID = 80, WOUND = 15)
+	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 90, BIO = 100, RAD = 60, FIRE = 60, ACID = 80, WOUND = 15)
 	var/explosion_detection_dist = 21
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SCAN_REAGENTS
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_research_scanner)
@@ -576,7 +576,7 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
 	/obj/item/hand_tele, /obj/item/aicard)
-	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 100, BIO = 100, RAD = 60, FIRE = 60, ACID = 80, WOUND = 15)
+	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 90, BIO = 100, RAD = 60, FIRE = 60, ACID = 80, WOUND = 15)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
 
 
@@ -1045,7 +1045,7 @@
 	desc = "An advanced tactical space helmet."
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -1060,7 +1060,7 @@
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/kitchen/knife/combat)
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -1077,7 +1077,7 @@
 	max_charges = 4
 	current_charges = 4
 	recharge_delay = 15
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
@@ -1089,7 +1089,7 @@
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	hardsuit_type = "syndi"
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()

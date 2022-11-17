@@ -235,7 +235,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
@@ -248,7 +248,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 3
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -256,7 +256,7 @@
 	clothing_flags = THICKMATERIAL
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "thunderdome suit"
@@ -370,7 +370,7 @@
 	icon_state = "dragon"
 	desc = "A suit of armour fashioned from the remains of an ash drake."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
-	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 60, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -382,7 +382,7 @@
 	name = "drake helm"
 	icon_state = "dragon"
 	desc = "The skull of a dragon."
-	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 60, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -392,7 +392,7 @@
 	desc = "A superb armor made with the toughest and rarest materials available to man."
 	icon_state = "h2armor"
 	item_state = "h2armor"
-	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 75, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

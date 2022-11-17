@@ -254,7 +254,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 2.0 //gotta pretend we're balanced.
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 60, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
 
 /obj/item/clothing/suit/armor/plate/crusader/red
 	icon_state = "crusader-red"
@@ -268,7 +268,7 @@
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_inv = HIDEHAIR|HIDEEARS|HIDEFACE
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 60, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
 
 /obj/item/clothing/head/helmet/plate/crusader/blue
 	icon_state = "crusader-blue"
@@ -342,7 +342,7 @@
 	desc = "Metal boots, they look heavy."
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_NORMAL
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 60, BIO = 0, RAD = 0, FIRE = 60, ACID = 60) //does this even do anything on boots?
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 60) //does this even do anything on boots?
 	clothing_flags = NOSLIP
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT

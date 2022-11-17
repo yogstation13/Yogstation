@@ -441,7 +441,9 @@
 				gib()
 				return
 			else
-				brute_loss = 500
+				brute_loss = 600
+				brute_loss *= 1 - (bomb_armor/100)
+				burn_loss = brute_loss/2
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
 				damage_clothes(400 - bomb_armor, BRUTE, BOMB)
@@ -450,8 +452,8 @@
 			brute_loss = 60
 			burn_loss = 60
 			if(bomb_armor)
-				brute_loss = 30*(2 - round(bomb_armor/75, 0.05))	//0-66% damage reduction
-				burn_loss = brute_loss					//40-120 total combined brute + burn
+				brute_loss *= 1 - (bomb_armor/100)	//0-100% damage reduction
+				burn_loss = brute_loss						//0-120 total combined brute + burn
 			damage_clothes(200 - bomb_armor, BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30, 120)
@@ -462,7 +464,7 @@
 		if (EXPLODE_LIGHT)
 			brute_loss = 24
 			if(bomb_armor)
-				brute_loss = 12*(2 - round(bomb_armor/75, 0.05))	//8-24 damage total depending on bomb armor
+				brute_loss *= 1 - (bomb_armor/100)	//0-24 damage total depending on bomb armor
 			damage_clothes(max(40 - bomb_armor, 0), BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)

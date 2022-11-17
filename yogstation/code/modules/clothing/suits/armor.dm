@@ -94,7 +94,7 @@
 	icon_state = "juggernaut"
 	item_state = "juggernaut"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
-	armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 0, FIRE = 90, ACID = 90)
+	armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 50, BOMB = 70, BIO = 100, RAD = 0, FIRE = 90, ACID = 90)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	cold_protection = CHEST|GROIN|LEGS|ARMS|FEET
 	heat_protection = CHEST|GROIN|LEGS|ARMS|FEET
