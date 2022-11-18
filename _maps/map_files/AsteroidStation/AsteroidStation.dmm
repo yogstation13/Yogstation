@@ -4825,14 +4825,6 @@
 "aLR" = (
 /turf/closed/wall,
 /area/security/checkpoint/auxiliary)
-"aLS" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "aLW" = (
 /mob/living/simple_animal/opossum,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -35249,6 +35241,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
+"lfd" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "lfG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -65474,13 +65474,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"vmu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "vmz" = (
 /obj/structure/rack,
 /obj/item/restraints/legcuffs/beartrap,
@@ -67809,6 +67802,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"wcP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "wcV" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -113069,8 +113069,8 @@ oHB
 wUw
 fpC
 rhV
-aLS
-vmu
+lfd
+wcP
 asI
 amT
 jfX
