@@ -4825,6 +4825,14 @@
 "aLR" = (
 /turf/closed/wall,
 /area/security/checkpoint/auxiliary)
+"aLS" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "aLW" = (
 /mob/living/simple_animal/opossum,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -63980,13 +63988,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"uHk" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "uHm" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 30
@@ -65473,6 +65474,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"vmu" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "vmz" = (
 /obj/structure/rack,
 /obj/item/restraints/legcuffs/beartrap,
@@ -65697,14 +65705,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"vrV" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "vrZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -113069,8 +113069,8 @@ oHB
 wUw
 fpC
 rhV
-uHk
-vrV
+aLS
+vmu
 asI
 amT
 jfX
