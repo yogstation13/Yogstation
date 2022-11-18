@@ -64,7 +64,7 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_available = FALSE
+	//always_available = FALSE
 
 /datum/crafting_recipe/makeshiftpistol
 	name = "Makeshift Pistol"
