@@ -3,11 +3,11 @@
 	name = "advanced decontamination unit"
 	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
-	icon_state = "industrial"
+	icon_state = "tube"
 	density = TRUE
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
-	occupant_typecache = list(/mob/living, /obj/item)
+	layer = ABOVE_WINDOW_LAYER
 
 	var/obj/item/clothing/suit/space/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
@@ -19,6 +19,7 @@
 	var/helmet_type = null
 	var/mask_type = null
 	var/storage_type = null
+	var/list/container = list()
 
 	state_open = FALSE
 	var/locked = FALSE
@@ -30,7 +31,8 @@
 	var/message_cooldown
 	var/breakout_time = 300
 
-	var/datum/looping_sound/oven/decon   //im borrowing oven sound because it suits this
+	var/datum/looping_sound/decontamination_unit/decon
+	var/datum/looping_sound/decontamination_unit/emagged/decon_emagged
 
 /obj/machinery/decontamination_unit/open
 	state_open = TRUE
@@ -39,6 +41,7 @@
 /obj/machinery/decontamination_unit/Initialize()
 	. = ..()
 	decon = new(list(src), FALSE)
+	decon_emagged = new(list(src), FALSE)
 	if(suit_type)
 		suit = new suit_type(src)
 	if(helmet_type)
@@ -55,40 +58,18 @@
 	QDEL_NULL(helmet)
 	QDEL_NULL(mask)
 	QDEL_NULL(storage)
+	QDEL_NULL(container)
 	return ..()
 
 /obj/machinery/decontamination_unit/update_icon()
-	cut_overlays()
+	. = ..()
+	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
 
-	if(panel_open)
-		add_overlay("[icon_state]_panel")
-	if(state_open)
-		add_overlay("[icon_state]_open")
-		if(suit)
-			add_overlay("[icon_state]_suit")
-		if(helmet)
-			add_overlay("[icon_state]_helm")
-		if(storage)
-			add_overlay("[icon_state]_storage")
-	if(!(stat & BROKEN || stat & NOPOWER))
-		if(state_open)
-			add_overlay("[icon_state]_lights_open")
-		else
-			if(uv)
-				if(uv_emagged)
-					add_overlay("[icon_state]_super")
-				add_overlay("[icon_state]_lights_red") 
-			else
-				add_overlay("[icon_state]_lights_closed") 
-		if(uv)
-			if(uv_emagged)
-				add_overlay("[icon_state]_uvstrong")
-			else
-				add_overlay("[icon_state]_uv")
-		else if(locked)
-			add_overlay("[icon_state]_locked") 
-		else
-			add_overlay("[icon_state]_ready")
+/obj/machinery/decontamination_unit/proc/store_items()
+	var/atom/pickup_zone = drop_location()
+	for(var/obj/item/to_pickup in pickup_zone)
+		to_pickup.forceMove(src)
+		container += to_pickup
 
 /obj/machinery/decontamination_unit/power_change()
 	. = ..()
@@ -104,6 +85,7 @@
 	mask = null
 	storage = null
 	occupant = null
+	container = list()
 
 /obj/machinery/decontamination_unit/MouseDrop_T(atom/A, mob/living/user)
 	if(!istype(user) || user.stat || !Adjacent(user) || !Adjacent(A) || !isliving(A))
@@ -145,9 +127,9 @@
 		uv = TRUE
 		locked = TRUE
 		update_icon()
-		addtimer(CALLBACK(src, .proc/cook), 50)
 		if(uv_emagged)
 			radiation_pulse(src, 500, 5)
+			decon_emagged.start()
 			if(mob_occupant)
 				mob_occupant.adjustFireLoss(rand(15, 26))
 				mob_occupant.radiation += 500
@@ -156,12 +138,17 @@
 			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
 				//Awake, organic and screaming
 				mob_occupant.emote("scream")
-		decon.start()
+		else
+			decon.start()
+		addtimer(CALLBACK(src, .proc/cook), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
 		locked = FALSE
 		if(uv_emagged)
+			decon_emagged.stop()
+			flick("tube_up", src)
+			sleep(8)
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
 			if(mob_occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
@@ -173,13 +160,15 @@
 			QDEL_NULL(suit)
 			QDEL_NULL(mask)
 			QDEL_NULL(storage)
-			var/obj/item/item = locate() in occupant
-			if(item)
-				QDEL_NULL(item)			
+			for(var/obj/item/item in container)	
+				QDEL_NULL(item)
 			shock()
 		else
+			decon.stop()
+			flick("tube_up", src)
+			sleep(8)
 			say("The decontamination process is completed, thank you for your patient.")
-			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 			if(mob_occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
@@ -201,12 +190,13 @@
 			if(occupant)
 				things_to_clear += occupant
 				things_to_clear += occupant.GetAllContents()
+			if(container.len)
+				things_to_clear += container
 			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 				var/atom/movable/dirty_movable = am
 				dirty_movable.wash(CLEAN_ALL)
-		open_machine(FALSE)
-		decon.stop()
-		if(occupant)
+		open_machine(0)
+		if(occupant || container.len)
 			dump_contents()
 
 /obj/machinery/decontamination_unit/proc/shock(mob/user)
@@ -294,7 +284,7 @@
 		. += span_warning("Its maintenance panel is smoking slightly.")
 
 /obj/machinery/decontamination_unit/proc/resist_open(mob/user)
-	if(!state_open && occupant && (user in src) && user.stat == 0) // Check they're still here.
+	if(!state_open && !uv && occupant && (user in src) && user.stat == 0) // Check they're still here.
 		visible_message(span_notice("You see [user] burst out of [src]!"), \
 			span_notice("You escape the cramped confines of [src]!"))
 		open_machine()
@@ -338,7 +328,6 @@
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			panel_open = !panel_open
 			user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-			update_icon()
 			I.play_tool_sound(src, 50)
 			return
 		if(default_deconstruction_crowbar(I))
@@ -396,11 +385,12 @@
 		if("door")
 			if(state_open)
 				close_machine()
-				playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
+				store_items()
+				playsound(src, 'sound/machines/decon/decon-close.ogg', 50, TRUE)
 			else
 				open_machine(0)
-				playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
-				if(occupant)
+				playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
+				if(occupant || container.len)
 					dump_contents() // Dump out contents if someone is in there.
 			. = TRUE
 		if("lock")
@@ -410,7 +400,7 @@
 			. = TRUE
 		if("uv")
 			var/mob/living/mob_occupant = occupant
-			if(!helmet && !mask && !suit && !storage && !occupant)
+			if(!helmet && !mask && !suit && !storage && !occupant && !container.len)
 				return
 			else 
 				if(uv_emagged)
@@ -423,6 +413,7 @@
 					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
 				else
 					to_chat(mob_occupant, span_warning("[src]'s confines grow warm. You're being decontaminated."))
+				flick("tube_down", src)
 				cook()
 				. = TRUE
 		if("dispense")
@@ -450,11 +441,12 @@
 		return
 	if(state_open)
 		close_machine()
-		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
+		store_items()
+		playsound(src, 'sound/machines/decon/decon-close.ogg', 75, TRUE)
 	else
 		open_machine(0)
-		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
-		if(occupant)
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
+		if(occupant || container.len)
 			dump_contents() // Dump out contents if someone is in there.
 
 /obj/machinery/decontamination_unit/CtrlShiftClick(mob/user)

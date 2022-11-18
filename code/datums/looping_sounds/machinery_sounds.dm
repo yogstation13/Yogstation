@@ -59,3 +59,16 @@
 	mid_length = 10
 	end_sound = 'sound/machines/microwave/microwave-end.ogg'
 	volume = 90
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/decontamination_unit
+	start_sound = 'sound/machines/decon/decon-down.ogg'
+	start_length = 7
+	mid_sounds = list('sound/machines/decon/decon-scan.ogg' = 1)
+	mid_length = 10
+	end_sound = 'sound/machines/decon/decon-up.ogg'
+	volume = 50
+
+/datum/looping_sound/decontamination_unit/emagged
+	mid_sounds = list('sound/machines/decon/decon-scan-emagged.ogg' = 1)
