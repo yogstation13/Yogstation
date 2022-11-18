@@ -289,24 +289,8 @@
 					to_chat(target, span_danger("A terrible red light floods your mind. You collapse as conscious thought is wiped away."))
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-						if(ispreternis(target))
-							to_chat(user, span_notice("Your servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
-							user.visible_message(span_warning("[user] growls in frustration, then dips their head with determination!"))
-						else
-							to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
-							user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
-						to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
-						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
-							to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
-							to_chat(target, span_userdanger("You wrest yourself away from [user]'s hands and compose yourself!"))
-							enthralling = FALSE
-							return
-						to_chat(user, span_notice("The nanobots composing the mindshield implant have been rendered inert. Now to continue."))
-						user.visible_message(span_warning("[user] relaxes again."))
-						for(var/obj/item/implant/mindshield/L in target)
-							if(L)
-								qdel(L)
-						to_chat(target, span_boldannounce("Your mental protection unexpectedly falters, dims, dies."))
+						to_chat(user, span_notice("They are protected by an implant. It is too strong to break through! You marvel at the ingenuity of Nanotrasen's engineers."))
+						return
 				if(3)
 					to_chat(user, span_notice("You begin planting the tumor that will control the new thrall..."))
 					user.visible_message(span_warning("A strange energy passes from [user]'s hands into [target]'s head!"))
