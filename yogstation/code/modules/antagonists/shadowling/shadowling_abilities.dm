@@ -52,7 +52,7 @@
 	name = "Glare"
 	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = "Shadowling Abilities"
-	charge_max = 300
+	charge_max = 30 SECONDS
 	human_req = TRUE
 	clothes_req = FALSE
 	action_icon_state = "glare"
@@ -61,7 +61,19 @@
 /obj/effect/proc_holder/spell/targeted/sling/glare/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
 	if(!target)
-		return
+		//Pick the closest mob in 3 tiles.
+		var/mob/living/carbon/human/closest
+		var/dist = 10
+		for (var/mob/living/carbon/human/M in view(3))
+			if (get_dist(M, usr) < dist)
+				closest = M
+				dist = get_dist(M, usr)
+		if (!closest)
+			revert_cast()
+			return
+		else
+			target = closest
+
 	if(!caller.getorganslot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You need eyes to glare!"))
 		revert_cast()
@@ -277,6 +289,8 @@
 			return
 		if(!target.client)
 			to_chat(user, span_warning("[target]'s mind is vacant of activity."))
+			revert_cast()
+			return
 		enthralling = TRUE
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
@@ -509,7 +523,7 @@
 	desc = "Deafens, stuns, and confuses nearby people. Also shatters windows."
 	panel = "Shadowling Abilities"
 	range = 7
-	charge_max = 300
+	charge_max = 30 SECONDS
 	human_req = TRUE
 	clothes_req = FALSE
 	action_icon_state = "screech"
@@ -549,7 +563,7 @@
 	desc = "Empowers a thrall. You can only have 3 empowered thralls at a time. Empowered thralls become lesser versions of yourself, gaining a small selection of your abilities as well as your healing in the dark and aversion to light."
 	panel = "Shadowling Abilities"
 	range = 1
-	charge_max = 600
+	charge_max = 60 SECONDS
 	human_req = TRUE
 	clothes_req = FALSE
 	include_user = FALSE
