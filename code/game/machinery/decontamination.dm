@@ -256,9 +256,13 @@
 		open_machine()
 		dump_contents()
 		return
+	if(uv)
+		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
+			span_notice("You cannot escape while it's active!"))
+		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the doors of [src]!"), \
+	user.visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 		span_notice("You start kicking against the doors... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a thump from [src]."))
 	if(do_after(user, (breakout_time), src))
@@ -271,7 +275,7 @@
 
 	add_fingerprint(user)
 	if(locked)
-		visible_message(span_notice("You see [user] kicking against the doors of [src]!"), \
+		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
 		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
 	else
