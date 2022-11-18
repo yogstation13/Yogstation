@@ -519,6 +519,11 @@
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
+		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
+			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
+				to_chat(user, span_warning("You don't want to harm other living beings!"))
+				return
 		if(selected.action(target,params))
 			selected.start_cooldown()
 	else
