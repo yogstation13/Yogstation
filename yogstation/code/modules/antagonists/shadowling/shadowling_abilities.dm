@@ -101,7 +101,7 @@
 	name = "Veil"
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
-	charge_max = 120 //Short cooldown because people can just turn the lights back on
+	charge_max = 8 SECONDS //Short cooldown because people can just turn the lights back on
 	human_req = TRUE
 	clothes_req = FALSE
 	range = 5
@@ -198,7 +198,7 @@
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	panel = "Shadowling Abilities"
 	range = 3
-	charge_max = 1 MINUTES
+	charge_max = 40 SECONDS
 	human_req = TRUE
 	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
@@ -667,7 +667,7 @@
 				thrallToRevive.Unconscious(500)
 				thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] collapses in exhaustion."), \
 				   span_warning("<b><i>You collapse in exhaustion... nap..... dark.</b></i>"))
-
+GLOBAL_VAR_INIT(shadowlings_engines_destroyed, FALSE)
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
 	desc = "Sacrifice a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
@@ -682,6 +682,9 @@
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle/cast(list/targets, mob/living/carbon/human/user = usr)
 	if(!shadowling_check(user))
 		revert_cast()
+		return
+	if (GLOB.shadowlings_engines_destroyed)
+		to_chat(user, "span class='warning'>Can't destroy a destroyed engine.</span>")
 		return
 	for(var/mob/living/carbon/human/target in targets)
 		if(target.stat)
@@ -716,9 +719,7 @@
 			priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 			SSshuttle.emergency.setTimer(timer)
 			SSshuttle.emergencyNoRecall = TRUE
-		user.mind.spell_list.Remove(src) //Can only be used once!
-		qdel(src)
-
+			shadowlings_engines_destroyed = TRUE
 //Loosely adapted from the Nightmare's Shadow Walk, but different enough that
 //inheriting would have been more hacky code.
 //Unlike Shadow Walk, jaunting shadowlings can move through lit areas unmolested,
