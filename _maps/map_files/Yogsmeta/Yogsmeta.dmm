@@ -22738,11 +22738,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
-"bcv" = (
-/obj/structure/chair/office/light,
-/obj/effect/landmark/start/scientist,
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "bcz" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals - Station Entrance";
@@ -64955,6 +64950,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"ngA" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "ngF" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -113531,7 +113530,7 @@ cEr
 cEr
 cIg
 cIb
-bcv
+ngA
 cJS
 cIg
 bGP
