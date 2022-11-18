@@ -733,7 +733,7 @@ GLOBAL_VAR_INIT(shadowlings_engines_destroyed, FALSE)
 			priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 			SSshuttle.emergency.setTimer(timer)
 			SSshuttle.emergencyNoRecall = TRUE
-			shadowlings_engines_destroyed = TRUE
+			GLOB.shadowlings_engines_destroyed = TRUE
 //Loosely adapted from the Nightmare's Shadow Walk, but different enough that
 //inheriting would have been more hacky code.
 //Unlike Shadow Walk, jaunting shadowlings can move through lit areas unmolested,
