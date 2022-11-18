@@ -304,6 +304,7 @@
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 						to_chat(user, span_notice("They are protected by an implant. It is too strong to break through! You marvel at the ingenuity of Nanotrasen's engineers."))
+						target.say(pick(";TAMPER ATTEMPT DETECTED.", ";TAMPERING OF NANOTRASEN PROPERTY IS PROHIBITED.", ";Error detected in protection routines. Please contact your local NanoTrasen representative."), spans = list(SPAN_ROBOT))
 						return
 				if(3)
 					to_chat(user, span_notice("You begin planting the tumor that will control the new thrall..."))
