@@ -67,6 +67,7 @@
 	body_part = ARM_LEFT
 	aux_zone = BODY_ZONE_PRECISE_L_HAND
 	aux_layer = HANDS_PART_LAYER
+	disable_threshold = 1
 	body_damage_coeff = 0.75
 	held_index = 1
 	px_x = -6
@@ -140,12 +141,14 @@
 	px_x = 0
 	px_y = 0
 	max_damage = 100
+	disable_threshold = 0
 	animal_origin = ALIEN_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
 /obj/item/bodypart/l_arm/devil
 	max_damage = 5000
+	disable_threshold = 0
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
@@ -161,6 +164,7 @@
 	body_part = ARM_RIGHT
 	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
+	disable_threshold = 1
 	body_damage_coeff = 0.75
 	held_index = 2
 	px_x = 6
@@ -235,12 +239,14 @@
 	px_x = 0
 	px_y = 0
 	max_damage = 100
+	disable_threshold = 0
 	animal_origin = ALIEN_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_arm/devil
 	max_damage = 5000
+	disable_threshold = 0
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
@@ -254,6 +260,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
+	disable_threshold = 1
 	body_damage_coeff = 0.75
 	px_x = -2
 	px_y = 12
@@ -322,12 +329,14 @@
 	px_x = 0
 	px_y = 0
 	max_damage = 100
+	disable_threshold = 0
 	animal_origin = ALIEN_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
 /obj/item/bodypart/l_leg/devil
 	max_damage = 5000
+	disable_threshold = 0
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
@@ -343,6 +352,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
+	disable_threshold = 1
 	body_damage_coeff = 0.75
 	px_x = 2
 	px_y = 12
@@ -411,12 +421,14 @@
 	px_x = 0
 	px_y = 0
 	max_damage = 100
+	disable_threshold = 0
 	animal_origin = ALIEN_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_leg/devil
 	max_damage = 5000
+	disable_threshold = 0
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE

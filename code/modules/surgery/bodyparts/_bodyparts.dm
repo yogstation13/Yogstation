@@ -692,10 +692,7 @@
 		brutestate = 0
 		burnstate = 0
 
-	if(status == BODYPART_ROBOTIC)
-		disable_threshold = 1
-	else
-		disable_threshold = 0
+	disable_threshold = 1
 
 	if(change_icon_to_default)
 		if(status == BODYPART_ORGANIC)
