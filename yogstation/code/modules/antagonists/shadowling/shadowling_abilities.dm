@@ -86,6 +86,10 @@
 		to_chat(usr, span_warning("You cannot glare at allies!"))
 		revert_cast()
 		return
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		to_chat(user, span_notice("They are protected by a mindshield! We cannot glare or convert [target]."))
+		target.say(pick(";TAMPER ATTEMPT DETECTED.", ";TAMPERING OF NANOTRASEN PROPERTY IS PROHIBITED.", ";Error detected in protection routines. Please contact your local NanoTrasen representative."), spans = list(SPAN_ROBOT))
+		return
 	var/mob/living/carbon/human/M = target
 	usr.visible_message(span_warning("<b>[usr]'s eyes flash a purpleish-red!</b>"))
 	var/distance = get_dist(target, usr)
