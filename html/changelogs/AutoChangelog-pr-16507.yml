@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Fixes various errors around MetaStation science (Maint APC, Unconnected Disposals, walled door)"
+  - mapping: "Remerges Nyx's medbay 3.0 as some turf and decal changes were missing."
