@@ -1992,6 +1992,22 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	limited_stock = 1
 	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
+/datum/uplink_item/implants/augmentation
+	name = "Full Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Provides superior damage resistance, immunity to cold and vacuum, \
+			but renders the subject vulnerable to electromagnetic pulses. They will also require repair with a welder and wires, rather than traditional medicine."
+	item = /obj/item/storage/box/syndie_kit/augmentation
+	cost = 15
+	surplus = 0
+
+/datum/uplink_item/implants/augmentation/superior
+	name = "Superior Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
+			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
+	item = /obj/item/storage/box/syndie_kit/augmentation/superior
+	cost = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
 // Events
 /datum/uplink_item/services
 	category = "Services"
