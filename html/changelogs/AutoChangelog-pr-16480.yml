@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed cerulean poly-crystals duplicating warpcrystals"
+  - tweak: "made cerulean poly-crystal punish you significantly less for using it on antag currency"
