@@ -186,7 +186,7 @@
 	radiation_pulse(src, 600) // It gets stronker as time passes
 	adjustBruteLoss(-1)
 	adjustFireLoss(-1) //gets healed over time
-	ADD_TRAIT(src, TRAIT_RADIMMUNE, src)
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"
