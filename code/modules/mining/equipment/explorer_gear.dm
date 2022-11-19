@@ -80,7 +80,7 @@
 
 /obj/item/clothing/suit/space/hostile_environment
 	name = "H.E.C.K. suit"
-	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
+	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner. It seems to lose its strength when there are no monsters around."
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
@@ -100,6 +100,14 @@
 	return ..()
 
 /obj/item/clothing/suit/space/hostile_environment/process()
+	var/turf/T = get_turf(src)
+	if(is_station_level(T.z))
+		max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
+		armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, RAD = 60, FIRE = 100, ACID = 100)
+	else
+		max_heat_protection_temperature = initial(src.max_heat_protection_temperature)
+		armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)		
+
 	var/mob/living/carbon/C = loc
 	if(istype(C) && prob(2)) //cursed by bubblegum
 		if(prob(15))
@@ -110,7 +118,7 @@
 
 /obj/item/clothing/head/helmet/space/hostile_environment
 	name = "H.E.C.K. helmet"
-	desc = "Hostile Environiment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
+	desc = "Hostile Environiment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner. It seems to lose its strength when there are no monsters around."
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -122,7 +130,21 @@
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spraycan_paintable)
+	START_PROCESSING(SSobj, src)
 	update_icon()
+
+/obj/item/clothing/head/helmet/space/hostile_environment/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/head/helmet/space/hostile_environment/process()
+	var/turf/T = get_turf(src)
+	if(is_station_level(T.z))
+		max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
+		armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, RAD = 60, FIRE = 60, ACID = 100)
+	else
+		max_heat_protection_temperature = initial(src.max_heat_protection_temperature)
+		armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/head/helmet/space/hostile_environment/update_icon()
 	..()
