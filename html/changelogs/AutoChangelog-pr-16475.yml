@@ -1,0 +1,4 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - rscadd: "Added Anesthesia Tank Holder, ported from BeeStation"
