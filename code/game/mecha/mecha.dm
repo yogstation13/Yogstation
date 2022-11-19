@@ -1233,5 +1233,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		for(var/obj/item/clothing/clothes in H.get_equipped_items())
-			evaNum *= clothes.mech_speed
+			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
+			if(MP)
+				evaNum *= MP.piloting_speed
 	return evaNum
