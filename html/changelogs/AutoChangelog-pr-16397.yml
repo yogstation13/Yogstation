@@ -1,0 +1,6 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "all syringe guns except the dart pistol can no longer fire piercing syringes"
+  - tweak: "piercing syringes now hold 15u from 10u"
+  - tweak: "bonus: syringes that are supposed to pierce armor now do so in melee"
