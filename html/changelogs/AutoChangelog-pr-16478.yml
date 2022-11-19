@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "embedded syringes now properly trigger reactions instead of just transferring the reagent onto your body"
