@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/cooldown = 0
 	var/mob/living/summoner
 	var/range = 10 //how far from the user the spirit can be
-	var/toggle_button_type = /obj/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
+	var/toggle_button_type = /atom/movable/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/playstyle_string = "<span class='holoparasite bold'>You are a standard Guardian. You shouldn't exist!</span>"
 	var/magic_fluff_string = span_holoparasite("You draw the Coder, symbolizing bugs and errors. This shouldn't happen! Submit a bug report!")
@@ -589,7 +589,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	name = "holoparasite injector"
 	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
 	icon = 'icons/obj/syringe.dmi'
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	theme = "tech"
 	mob_name = "Holoparasite"
 	use_message = span_holoparasite("You start to power on the injector...")

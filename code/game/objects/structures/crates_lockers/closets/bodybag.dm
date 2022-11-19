@@ -121,12 +121,16 @@
 	for(var/obj/item/bodybag/bluespace/B in src)
 		to_chat(usr, span_warning("You can't recursively fold bluespace body bags!"))
 		return
+	if(the_folder in src)
+		to_chat(usr, span_warning("You can't fold a bluespace body bag from the inside!"))
+		return
 	return TRUE
 
 /obj/structure/closet/body_bag/bluespace/perform_fold(mob/living/carbon/human/the_folder)
 	visible_message("<span class='notice'>[usr] folds up [src].</span>")
 	var/obj/item/bodybag/B = foldedbag_instance || new foldedbag_path
 	var/max_weight_of_contents = initial(B.w_class)
+	usr.put_in_hands(B)
 	for(var/am in contents)
 		var/atom/movable/content = am
 		content.forceMove(B)
@@ -140,7 +144,6 @@
 			continue
 		max_weight_of_contents = A_is_item.w_class
 	B.w_class = max_weight_of_contents
-	usr.put_in_hands(B)
 
 /// Environmental bags
 

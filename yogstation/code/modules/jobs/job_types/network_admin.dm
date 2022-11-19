@@ -23,6 +23,10 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 20
+	)
+
 /datum/job/network_admin/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)
@@ -32,7 +36,7 @@
 	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/network_admin
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network

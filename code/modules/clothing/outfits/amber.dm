@@ -41,6 +41,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge(src)
 	new /obj/item/reagent_containers/medspray/synthflesh(src) // for getting people back to defib range
+	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)
 	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)
 	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)

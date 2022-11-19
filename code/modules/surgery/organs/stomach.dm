@@ -70,13 +70,13 @@
 			H.clear_alert("disgust")
 			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			H.throw_alert("disgust", /obj/screen/alert/gross)
+			H.throw_alert("disgust", /atom/movable/screen/alert/gross)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/gross)
 		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			H.throw_alert("disgust", /obj/screen/alert/verygross)
+			H.throw_alert("disgust", /atom/movable/screen/alert/verygross)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/verygross)
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			H.throw_alert("disgust", /obj/screen/alert/disgusted)
+			H.throw_alert("disgust", /atom/movable/screen/alert/disgusted)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/disgusted)
 
 /obj/item/organ/stomach/Remove(mob/living/carbon/M, special = 0)
@@ -93,6 +93,7 @@
 	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	disgust_metabolism = 1.2	//Slightly more efficient at stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded
 	name = "upgraded cybernetic stomach"
@@ -100,6 +101,7 @@
 	icon_state = "stomach-c-u"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
+	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded/on_life()
 	if(owner.nutrition >= NUTRITION_LEVEL_FULL && nutriment_stashed < NUTRI_STASH_MAX)
@@ -123,6 +125,37 @@
 	name = "digestive crystal"
 	icon_state = "stomach-p"
 	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
+
+/obj/item/organ/stomach/cell
+	name = "micro-cell"
+	icon_state = "microcell"
+	w_class = WEIGHT_CLASS_NORMAL
+	zone = "chest"
+	slot = "stomach"
+	attack_verb = list("assault and battery'd")
+	desc = "A micro-cell, for IPC use only. Do not swallow."
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
+/obj/item/organ/stomach/cell/emp_act(severity)
+	switch(severity)
+		if(1)
+			owner.adjust_nutrition(-150)
+			to_chat(owner, "<span class='warning'>Alert: Heavy EMP Detected. Rebooting power cell to prevent damage.</span>")
+		if(2)
+			owner.adjust_nutrition(-50)
+			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>")
+
+/obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
+	. = ..()
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+
+/obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
+
+/obj/item/organ/stomach/cell/proc/charge(datum/source, amount, repairs)
+	owner.nutrition = clamp(owner.nutrition + (amount/100), 0, NUTRITION_LEVEL_FULL) // no fat ipcs
 
 /obj/item/organ/stomach/ethereal
 	name = "biological battery"
@@ -154,7 +187,7 @@
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
-	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
+	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_DANGEROUS)
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"

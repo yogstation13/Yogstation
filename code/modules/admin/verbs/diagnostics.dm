@@ -92,8 +92,7 @@
 	if(confirm !="Yes")
 		return
 
-	refresh_admin_files() //yogs - DB support
-	load_admins()
+	GLOB.permissions.start()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	message_admins("[key_name_admin(usr)] manually reloaded admins")
 

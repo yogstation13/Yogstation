@@ -21,6 +21,14 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/blood_loss = 10,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
+	)
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1
@@ -34,7 +42,7 @@
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic
 
-	pda_type = /obj/item/pda/para
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	ears = /obj/item/radio/headset/headset_med

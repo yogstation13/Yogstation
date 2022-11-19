@@ -34,6 +34,12 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/monkeycubes = 30,
+		///obj/item/circuitboard/machine/sleeper/party = 3,
+		/obj/item/borg/upgrade/ai = 2
+	)
+
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
 
@@ -42,7 +48,7 @@
 	jobtype = /datum/job/rd
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/rd
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 
 	ears = /obj/item/radio/headset/heads/rd
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
@@ -53,7 +59,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removes sci budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes sci budget
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

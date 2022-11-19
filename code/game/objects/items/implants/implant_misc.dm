@@ -153,3 +153,23 @@
 	name = "implanter (internal syndicate radio)"
 	imp_type = /obj/item/implant/radio/syndicate
 
+/obj/item/implant/empshield
+	name = "EMP shield implant"
+	activated = 0
+
+/obj/item/implant/empshield/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	if(..())
+		if(ishuman(target))
+			target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+		return TRUE
+
+/obj/item/implant/empshield/removed(mob/target, silent = FALSE, special = 0)
+	if(..())
+		if(ishuman(target))
+			var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
+			empshield.RemoveComponent()
+		return TRUE
+
+/obj/item/implanter/empshield
+	name = "implanter (EMP shield)"
+	imp_type = /obj/item/implant/empshield

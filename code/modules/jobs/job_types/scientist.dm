@@ -24,6 +24,12 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	mail_goodies = list(
+		///obj/item/raw_anomaly_core/random = 10,
+		///obj/item/disk/tech_disk/spaceloot = 2,
+		/obj/item/camera_bug = 1
+	)
+
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
@@ -39,7 +45,7 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/pda/toxins
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist

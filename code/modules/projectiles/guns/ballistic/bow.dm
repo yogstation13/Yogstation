@@ -125,7 +125,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
-	desc = "A bow with a locing mechanism that more closly resembles a modern gun."
+	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
 	icon_state = "crossbow"
 	spread = 0
 	draw_time = 2 SECONDS
@@ -135,7 +135,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow/magfed
 	name = "wooden magfed crossbow"
-	desc = "A bow with a locing mechanism that more closly resembles a modern gun. This one seems to be outfited with a automatic loading mechanism."
+	desc = "A bow with a locking mechanism that more closely resembles a modern gun. This one seems to be outfitted with an automatic loading mechanism."
 	mag_type = /obj/item/ammo_box/magazine/arrow
 	internal_magazine = FALSE
 
@@ -261,7 +261,7 @@
 
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "Syndicate Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
+	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed by the Syndicate for silent takedowns of targets."
 	icon_state = "bow_syndicate"
 	item_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
@@ -274,6 +274,10 @@
 	draw_sound = null
 	var/folded = FALSE
 	var/stored_ammo ///what was stored in the magazine before being folded?
+
+/obj/item/gun/ballistic/bow/energy/syndicate/examine(mob/user)
+	. = ..()
+	. += "It can be folded into a compact form by using CTRL + CLICK."
 
 /obj/item/gun/ballistic/bow/energy/syndicate/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	if(!folded)
@@ -319,7 +323,7 @@
 
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "Brass Bow"
-	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
+	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and fabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	item_state = "bow_clockwork"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult

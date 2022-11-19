@@ -17,7 +17,7 @@
 /area/shuttle/escape)
 "ae" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/computer/communications,
+/obj/machinery/computer/communications/unlocked,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "af" = (

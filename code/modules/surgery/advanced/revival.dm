@@ -16,6 +16,8 @@
 /datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
 		return FALSE
+	if(HAS_TRAIT(target, TRAIT_NODEFIB))
+		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
 	if(target.suiciding || target.hellbound || HAS_TRAIT(target, TRAIT_HUSK))
@@ -27,7 +29,7 @@
 
 /datum/surgery_step/revive
 	name = "shock brain"
-	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100)
+	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100, /obj/item/rod_of_asclepius = 100)
 	time = 12 SECONDS
 	success_sound = 'sound/magic/lightningbolt.ogg'
 	failure_sound = 'sound/machines/defib_zap.ogg'

@@ -302,7 +302,18 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+
+	var/random_sound = SSstation.announcer.get_rand_welcome_sound()
+	var/default_sound = SSstation.default_announcer.get_rand_welcome_sound()
+	if(istype(SSstation.announcer, /datum/centcom_announcer/default))
+		default_sound = random_sound
+
+	for(var/mob/P in GLOB.player_list)
+		if(P.client && P.client.prefs)
+			if(P.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(P, sound(default_sound))
+				continue
+		SEND_SOUND(P, sound(random_sound))
 
 	current_state = GAME_STATE_PLAYING
 	webhook_send_roundstatus("ingame") //yogs - webhook support
@@ -430,7 +441,7 @@ SUBSYSTEM_DEF(ticker)
 			qdel(player)
 			living.notransform = TRUE
 			if(living.client)
-				var/obj/screen/splash/S = new(living.client, TRUE)
+				var/atom/movable/screen/splash/S = new(living.client, TRUE)
 				S.Fade(TRUE)
 				living.client.init_verbs()
 			livings += living
@@ -456,7 +467,7 @@ SUBSYSTEM_DEF(ticker)
 			m = pick(memetips)
 
 	if(m)
-		to_chat(world, span_purple("<b>Tip of the round: </b>[html_encode(m)]"))
+		to_chat(world, span_purple(examine_block("<b>Tip of the round: </b>[html_encode(m)]")))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
@@ -727,5 +738,3 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()

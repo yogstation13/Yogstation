@@ -9,6 +9,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
 	alt_titles = list("Counsellor", "Therapist", "Mentalist")
+	minimal_player_age = 5 //stop griefing
 
 	outfit = /datum/outfit/job/psych
 
@@ -20,6 +21,10 @@
 	minimal_character_age = 24 //Psychology, therapy, and the like; all branches that would probably need to be certified as properly educated
 
 	changed_maps = list("OmegaStation","GaxStation")
+
+	mail_goodies = list(
+		/obj/item/gun/ballistic/revolver/russian = 1
+	)
 
 /datum/job/psych/proc/OmegaStationChanges()
 	return TRUE

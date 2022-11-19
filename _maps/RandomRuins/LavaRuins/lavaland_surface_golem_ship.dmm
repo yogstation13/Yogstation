@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bL" = (
+/obj/effect/decal/cleanable/oil,
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
 "bN" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -32,8 +37,18 @@
 /obj/item/mining_scanner,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
+"dQ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/mecha_part_fabricator/ruin,
+/turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
 "fy" = (
 /turf/open/floor/carpet/exoticpurple,
+/area/ruin/powered/golem_ship)
+"gl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/rnd/production/protolathe,
+/turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "gU" = (
 /obj/machinery/light{
@@ -112,6 +127,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/pod/dark,
+/area/ruin/powered/golem_ship)
+"kX" = (
+/obj/machinery/computer/rdconsole/nolock/ruin,
+/turf/open/floor/pod,
 /area/ruin/powered/golem_ship)
 "lK" = (
 /turf/open/floor/plating/lavaland_baseturf,
@@ -218,6 +237,7 @@
 "ty" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
+/obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "uc" = (
@@ -997,7 +1017,7 @@ uB
 Hv
 da
 xc
-ER
+gl
 xc
 pT
 yp
@@ -1018,7 +1038,7 @@ Jj
 Hv
 YP
 xc
-Hp
+kX
 xc
 xc
 Hp
@@ -1039,7 +1059,7 @@ Ht
 Ht
 Pu
 xc
-LB
+bL
 xc
 ty
 Hp
@@ -1060,7 +1080,7 @@ pq
 Ht
 YA
 Hp
-ID
+dQ
 Hp
 ER
 Hp

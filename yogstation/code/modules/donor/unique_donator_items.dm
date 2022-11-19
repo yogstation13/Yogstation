@@ -153,11 +153,32 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Transdimensional halo"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
+	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower"
 	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
+
+/datum/donator_gear/alvcyktor
+	name = "Shark Hoodie"
+	ckey = "alvcyktor"
+	unlock_path = /obj/item/clothing/accessory/sharkhoodie
+
+/datum/donator_gear/isotope
+	name = "Dark Scientist Jumpsuit and Badass Lighter"
+	ckey = "Nightmare1243"
+	unlock_path = /obj/item/storage/box/isotope
+
+/datum/donator_gear/cuackles
+	name = "punk jacket"
+	ckey = "cuackles"
+	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
+
+/datum/donator_gear/hisa
+	name = "Hunter Stash"
+	ckey = "hisakaki"
+	unlock_path = /obj/item/storage/box/hisa
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie

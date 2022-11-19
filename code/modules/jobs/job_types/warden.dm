@@ -29,6 +29,16 @@
 
 	changed_maps = list("YogsPubby", "OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/fancy/cigarettes = 15,
+		/obj/item/storage/box/handcuffs = 10,
+		/obj/item/storage/box/teargas = 10,
+		/obj/item/storage/box/flashbangs = 10,
+		/obj/item/storage/box/rubbershot = 10,
+		/obj/effect/spawner/lootdrop/techshell = 10,
+		/obj/item/storage/box/lethalshot = 5
+	)
+
 /datum/job/warden/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 
@@ -44,7 +54,7 @@
 	name = "Warden"
 	jobtype = /datum/job/warden
 
-	pda_type = /obj/item/pda/warden
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/warden
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/warden

@@ -149,7 +149,7 @@
 /datum/crafting_recipe/food/baseballburger
 	name = "Home Run Baseball Burger"
 	reqs = list(
-			/obj/item/melee/baseball_bat = 1,
+			/obj/item/twohanded/required/baseball_bat = 1,
 			/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/baseball
@@ -323,5 +323,5 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/roburger
 	subcategory = CAT_MISCFOOD
-	always_availible = FALSE
+	always_available = FALSE
 

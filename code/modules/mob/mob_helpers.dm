@@ -310,7 +310,7 @@
 	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
-		return B.eye_blind
+		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
 
 ///Is the mob hallucinating?
@@ -379,7 +379,7 @@
   * The kitchen sink of notification procs
   *
   * Arguments:
-  * * message 
+  * * message
   * * ghost_sound sound to play
   * * enter_link Href link to enter the ghost role being notified for
   * * source The source of the notification
@@ -409,7 +409,7 @@
 			if(flashwindow)
 				window_flash(O.client)
 			if(source)
-				var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+				var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 				if(A)
 					if(O.client.prefs && O.client.prefs.UI_style)
 						A.icon = ui_style2icon(O.client.prefs.UI_style)
@@ -458,7 +458,7 @@
 		return
 	return TRUE
 
-/** 
+/**
   * Offer control of the passed in mob to dead player
   *
   * Automatic logging and uses pollCandidatesForMob, how convenient
@@ -538,7 +538,7 @@
 			colored_message = "<font color=[color]>[message]</font>"
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
-	
+
 	//This makes readability a bit better for admins.
 	switch(message_type)
 		if(LOG_WHISPER)
@@ -549,7 +549,7 @@
 			colored_message = "(ASAY) [colored_message]"
 		if(LOG_EMOTE)
 			colored_message = "(EMOTE) [colored_message]"
-	
+
 	var/list/timestamped_message = list("\[[worldtime2text()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
 
 	logging[smessage_type] += timestamped_message
@@ -562,6 +562,9 @@
 ///Can the mob hear
 /mob/proc/can_hear()
 	. = TRUE
+
+/mob/proc/has_mouth()
+	return FALSE
 
 /**
   * Examine text for traits shared by multiple types.

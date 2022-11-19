@@ -227,6 +227,23 @@
 		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
 	)
 
+/datum/asset/simple/minesweeper
+	assets = list(
+		"minesweeper_1.png" = 'icons/UI_Icons/Minesweeper/minesweeper_1.png',
+		"minesweeper_2.png" = 'icons/UI_Icons/Minesweeper/minesweeper_2.png',
+		"minesweeper_3.png" = 'icons/UI_Icons/Minesweeper/minesweeper_3.png',
+		"minesweeper_4.png" = 'icons/UI_Icons/Minesweeper/minesweeper_4.png',
+		"minesweeper_5.png" = 'icons/UI_Icons/Minesweeper/minesweeper_5.png',
+		"minesweeper_6.png" = 'icons/UI_Icons/Minesweeper/minesweeper_6.png',
+		"minesweeper_7.png" = 'icons/UI_Icons/Minesweeper/minesweeper_7.png',
+		"minesweeper_8.png" = 'icons/UI_Icons/Minesweeper/minesweeper_8.png',
+		"minesweeper_empty.png" = 'icons/UI_Icons/Minesweeper/minesweeper_empty.png',
+		"minesweeper_flag.png" = 'icons/UI_Icons/Minesweeper/minesweeper_flag.png',
+		"minesweeper_hidden.png" = 'icons/UI_Icons/Minesweeper/minesweeper_hidden.png',
+		"minesweeper_mine.png" = 'icons/UI_Icons/Minesweeper/minesweeper_mine.png',
+		"minesweeper_minehit.png" = 'icons/UI_Icons/Minesweeper/minesweeper_minehit.png',
+	)
+
 /datum/asset/spritesheet/simple/pills
 	name ="pills"
 	assets = list(
@@ -344,6 +361,10 @@
 
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
+		if(ispath(item, /obj/item/ammo_box))
+			var/obj/item/ammo_box/ammoitem = item
+			if(initial(ammoitem.multiple_sprites))
+				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
 		var/icon/I
 
 		var/icon_states_list = icon_states(icon_file)
@@ -365,6 +386,49 @@
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
+	return ..()
+
+/datum/asset/spritesheet/uplink
+	name = "uplink"
+
+/datum/asset/spritesheet/uplink/register()
+	for(var/path in GLOB.uplink_items)
+		var/datum/uplink_item/U = path
+		if (!ispath(U, /datum/uplink_item))
+			continue
+
+		var/atom/item = initial(U.item)
+		if (!ispath(item, /atom))
+			continue
+
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+		if(ispath(item, /obj/item/ammo_box))
+			var/obj/item/ammo_box/ammoitem = item
+			if(initial(ammoitem.multiple_sprites))
+				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
+		var/icon/I
+
+		var/icon_states_list = icon_states(icon_file)
+		if(icon_state in icon_states_list)
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(c, ICON_MULTIPLY)
+		else
+			var/icon_states_string
+			for (var/an_icon_state in icon_states_list)
+				if (!icon_states_string)
+					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
+				else
+					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
+			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
+			I = icon('icons/turf/floors.dmi', "", SOUTH)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		if(!sprites[imgid])
+			Insert(imgid, I)
 	return ..()
 
 /datum/asset/simple/genetics

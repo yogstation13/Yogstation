@@ -54,7 +54,7 @@
 
 /datum/design/heart
 	name = "Heart"
-	id = "heart"
+	id = "hearton"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
 	build_path = /obj/item/organ/heart

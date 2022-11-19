@@ -100,6 +100,7 @@
 	density = FALSE
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
+	resistance_flags = FIRE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
@@ -192,7 +193,7 @@
 	return ..()
 
 /obj/structure/holobed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.7)
+	AddComponent(/datum/component/surgery_bed, 0.8)
 
 /obj/structure/holobed/examine(mob/user)
 	. = ..()

@@ -54,29 +54,37 @@
 	var/list/mind_traits
 	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
-	/// Map Specific changes
-	var/list/changed_maps = list()
-	/*
-		If you want to change a job on a specific map with this system, you will want to go onto that job datum
-		and add said map's name to the changed_maps list, like so:
 
+	/// Goodies that can be received via the mail system.
+	// this is a weighted list.
+	/// Keep the _job definition for this empty and use /obj/item/mail to define general gifts.
+	var/list/mail_goodies = list()
+
+	/// If this job's mail goodies compete with generic goodies.
+	var/exclusive_mail_goodies = FALSE
+
+	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+/*
+	If you want to change a job on a specific map with this system, you will want to go onto that job datum
+	and add said map's name to the changed_maps list, like so:
+	changed_maps = list("OmegaStation")
+
+	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
+	actually making the changes, like so:
+
+	/datum/job/miner/proc/OmegaStationChanges()
+
+	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
+	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
+	on OmegaStation, we'd do the following:
+
+	/datum/job/warden
 		changed_maps = list("OmegaStation")
 
-		Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
-		actually making the changes, like so:
-
-		/datum/job/miner/proc/OmegaStationChanges()
-
-		If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
-		whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
-		on OmegaStation, we'd do the following:
-
-		/datum/job/warden
-			changed_maps = list("OmegaStation")
-
-		/datum/job/warden/proc/OmegaStationChanges()
-			total_positions = 2
-			spawn_positions = 2
+	/datum/job/warden/proc/OmegaStationChanges()
+		total_positions = 2
+		spawn_positions = 2
 	*/
 
 /datum/job/New()
@@ -124,6 +132,7 @@
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
@@ -195,7 +204,7 @@
 	box = /obj/item/storage/box/survival
 
 	var/obj/item/id_type = /obj/item/card/id
-	var/obj/item/pda_type = /obj/item/pda
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -255,22 +264,15 @@
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == H.account_id)
-				C.registered_account = B
-				B.bank_cards += C
-				break
+		var/acc_id = "[H.account_id]"
+		if(acc_id in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = SSeconomy.bank_accounts[acc_id]
+			C.registered_account = B
+			B.bank_cards += C
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = new pda_type()
+	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		if(H.mind?.role_alt_title)
-			PDA.ownjob = H.mind.role_alt_title
-		else
-			PDA.ownjob = J.title
-
 		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
@@ -292,6 +294,10 @@
 	types += satchel
 	types += duffelbag
 	return types
+
+/// An overridable getter for more dynamic goodies.
+/datum/job/proc/get_mail_goodies(mob/recipient)
+	return mail_goodies
 
 //Warden and regular officers add this result to their get_access()
 /datum/job/proc/check_config_for_sec_maint()

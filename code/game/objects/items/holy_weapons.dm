@@ -764,6 +764,7 @@
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
+	damtype = STAMINA
 	force = 15
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK

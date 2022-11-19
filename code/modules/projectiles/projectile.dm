@@ -49,6 +49,11 @@
 	var/ricochet_chance = 30
 	var/force_hit = FALSE //If the object being hit can pass ths damage on to something else, it should not do it for this bullet.
 
+	//Atom penetration, set to mobs by default
+	var/penetrating = FALSE
+	var/penetrations = INFINITY
+	var/penetration_type = 0 //Set to 1 if you only want to have it penetrate objects. Set to 2 if you want it to penetrate objects and mobs.
+
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
 	var/list/beam_segments	//assoc list of datum/point or datum/point/vector, start = end. Used for hitscan effect generation.
@@ -162,11 +167,20 @@
 
 		W.add_dent(WALL_DENT_SHOT, hitx, hity)
 
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	if(!isliving(target))
 		if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
+
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	var/mob/living/L = target
@@ -183,6 +197,11 @@
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
 			else
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
+			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
+			if(B.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
+				do_sparks(2, FALSE, target.loc)
+				if(prob(25))
+					new /obj/effect/decal/cleanable/oil(target_loca)
 			if(prob(33))
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)

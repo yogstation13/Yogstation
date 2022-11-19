@@ -2,7 +2,7 @@
 	name = "QMC Libital Injector"
 	desc = "A quick-mix capital combat injector loaded with libital."
 	amount_per_transfer_from_this = 5
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 50
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 50)
 
@@ -10,7 +10,7 @@
 	name = "QMC Aiuri Injector"
 	desc = "A quick-mix capital combat injector loaded with aiuri."
 	amount_per_transfer_from_this = 5
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 50
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 50)
 
@@ -39,6 +39,11 @@
 	volume = 50
 	amount_per_transfer_from_this = 25
 	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
+
+/obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill/attack(mob/living/M, mob/user)
+	. = ..()
+	var/enlightenment = pick(strings(REDPILL_FILE, "redpill_questions"))
+	to_chat(M, span_notice("[enlightenment]"))
 
 /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill/update_icon()
 	if(reagents.total_volume > 25)

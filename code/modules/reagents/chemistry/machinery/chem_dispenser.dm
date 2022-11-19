@@ -53,36 +53,39 @@
 		/datum/reagent/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
-		/datum/reagent/uranium/radium,
 		/datum/reagent/silicon,
 		/datum/reagent/silver,
 		/datum/reagent/sodium,
-		/datum/reagent/stable_plasma,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
-		/datum/reagent/toxin/acid
-	)
-	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/iron,
 		/datum/reagent/water,
-		/datum/reagent/fuel
+		/datum/reagent/oil,
+		/datum/reagent/uranium/radium,
+		/datum/reagent/stable_plasma,
+		/datum/reagent/sulfur
+	)
+	var/list/t2_upgrade_reagents = list(
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/fuel,
+		/datum/reagent/toxin/acid
 	)
 	var/list/t3_upgrade_reagents = list(
+		/datum/reagent/acetone,
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
-		/datum/reagent/oil
 	)
 	var/list/t4_upgrade_reagents = list(
-		/datum/reagent/acetone,
+		/datum/reagent/gold,
 		/datum/reagent/diethylamine,
-		/datum/reagent/saltpetre
+		/datum/reagent/saltpetre,
+		/datum/reagent/medicine/charcoal
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
 		/datum/reagent/medicine/mine_salve,
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin
+		/datum/reagent/toxin,
+		/datum/reagent/uranium
 	)
 
 	var/list/saved_recipes = list()
@@ -205,7 +208,7 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	var/data = list()
 	data["amount"] = amount
-	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	data["energy"] = FLOOR(cell.charge, 1) ? FLOOR(cell.charge, 1) * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 
@@ -347,6 +350,22 @@
 		update_icon()
 		return
 	if(default_deconstruction_crowbar(I))
+		return
+	if(panel_open && user.a_intent != INTENT_HARM)
+		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+			return // Feedback in proc
+		if(HAS_TRAIT(I, TRAIT_NODROP))
+			to_chat(user, span_notice("[I] is stuck to your hand!"))
+			return
+		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
+		if(istype(I, /obj/item/stock_parts/cell))
+			if(!user.put_in_hands(cell))
+				cell.forceMove(get_turf(src))
+			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
+			I.moveToNullspace() // Now get out of contents
+			to_chat(user, span_notice("You replace [cell] with [I]."))
+			cell = I // Set the cell
+			component_parts += I // Add new cell
 		return
 	if(istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
 		var/obj/item/reagent_containers/B = I
@@ -537,6 +556,7 @@
 /obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize()
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
+	display_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
@@ -607,6 +627,7 @@
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	t2_upgrade_reagents = null
 	t3_upgrade_reagents = null
@@ -618,7 +639,7 @@
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
 	flags_1 = NODECONSTRUCT_1
-
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(
 		/datum/reagent/toxin/mutagen,
 		/datum/reagent/saltpetre,

@@ -28,6 +28,14 @@
 
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5
+		///obj/item/clothing/mask/whistle = 5,
+		///obj/item/melee/baton/security/boomerang/loaded = 1
+	)
+
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14
 	spawn_positions = 10
@@ -138,7 +146,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	name = "Security Officer"
 	jobtype = /datum/job/officer
 
-	pda_type = /obj/item/pda/security
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security

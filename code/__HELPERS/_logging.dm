@@ -160,6 +160,9 @@
 	if (CONFIG_GET(flag/log_vote))
 		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
 
+/proc/log_donator(text)
+	if (CONFIG_GET(flag/log_donator))
+		WRITE_LOG(GLOB.world_game_log, "DONATOR: [text]")
 
 /proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")

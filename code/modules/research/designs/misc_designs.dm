@@ -225,7 +225,17 @@
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/clothing/glasses/science
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/night_sci_goggles
+	name = "Night Vision Science Goggles"
+	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine. Now with night vision!"
+	id = "nightscigoggles"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/silver = 350, /datum/material/plastic = 150)
+	build_path = /obj/item/clothing/glasses/science/night
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/diskplantgene
 	name = "Plant Data Disk"
@@ -512,7 +522,7 @@
 	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
 	id = "platingmkiv"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 40000, /datum/material/titanium = 30000, /datum/material/gold = 15000, /datum/material/diamond = 15000)
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 10000, /datum/material/gold = 7500, /datum/material/diamond = 2000)
 	build_path = /obj/item/kevlar_plating/mkiv
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

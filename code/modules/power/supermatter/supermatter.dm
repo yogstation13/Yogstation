@@ -74,6 +74,7 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
+#define RADIATION_ANOMALY "radiation_anomaly"
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -131,7 +132,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/power = 0
 
 	/// Yogs - radiation modifier. After all power calculations, multiplies the intensity of the rad pulse by this value. Used for making engines more hugbox.
-	var/radmodifier = 1.1
+	var/radmodifier = 1.5
 
 	/// Time in deciseconds since the last sent warning
 	var/lastwarning = 0
@@ -201,6 +202,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// How much powerloss to reduce. Scale of 1-0
 	var/powerloss_inhibitor = 1
+
+	/// How much is the SM surging?
+	var/surging = 0
 
 
 /obj/machinery/power/supermatter_crystal/Initialize()
@@ -390,6 +394,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			E.energy = power
 		qdel(src)
 
+/obj/machinery/power/supermatter_crystal/proc/surge(amount)
+	surging = amount
+	addtimer(CALLBACK(src, .proc/stopsurging), rand(30 SECONDS, 2 MINUTES))
+
+/obj/machinery/power/supermatter_crystal/proc/stopsurging()
+	surging = 0
+
 /obj/machinery/power/supermatter_crystal/process_atmos()
 	var/turf/T = loc
 
@@ -498,6 +509,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			power = max(power + removed_matter, 0)
 			matter_power = max(matter_power - removed_matter, 0)
 
+		if(surging)
+			power += surging
+
 		if(gasmix_power_ratio > 0.8)
 			// with a perfect gas mix, make the power less based on heat
 			icon_state = "[initial(icon_state)]_glow"
@@ -553,10 +567,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(l.hallucination, 0, 200)
 
-	for(var/mob/living/l in range(src, round((power / 100) ** 0.25)))
-		var/rads = (power / 10) * sqrt( 1 / max(get_dist(l, src),1) )
-		l.rad_act(rads)
-
 	power -= ((power/500)**3) * powerloss_inhibitor
 
 	if(power > POWER_PENALTY_THRESHOLD || damage > damage_penalty_point)
@@ -581,6 +591,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
+			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -736,11 +748,22 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
+		var/datum/brain_trauma/mild/reality_dissociation/T = new()
+		var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in C.internal_organs
+		B.name = "supermatter-fried [B.name]"
+		C.emote("scream")
+		C.visible_message(span_danger("[C.name] screams in horror as [C.p_their()] mind is consumed by [src]!"))
+		C.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 		to_chat(C, span_userdanger("That was a really dense idea."))
-		C.ghostize()
-		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
-		rip_u.Remove(C)
-		qdel(rip_u)
+		switch(rand(1,8))
+			if(1 to 3)
+				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+			if(4 to 6)
+				C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+			if(7 to 8)
+				C.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH)
 
 /obj/machinery/power/supermatter_crystal/attack_paw(mob/user)
 	dust_mob(user, cause = "monkey attack")
@@ -871,6 +894,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			else
 				to_chat(user, span_notice("You fail to extract a sliver from \The [src]. \the [W] isn't sharp enough anymore!"))
 			return
+	if(istype(W, /obj/item/hemostat/supermatter))
+		to_chat(user, span_boldwarning("[W]'s tongs produce an unhealthy sizzling sound as they come into contact with [src]; it seems you will need to part a sample from [src] with another tool."))
+		return
 	if(istype(W, /obj/item/supermatter_corruptor))
 		if(corruptor_attached)
 			to_chat(user, "A corruptor is already attached!")
@@ -912,6 +938,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if (moveable)
 		default_unfasten_wrench(user, tool, time = 20)
 	return TRUE
+
+/obj/machinery/power/supermatter_crystal/Bump(atom/A)
+	if (ismovable(A))
+		var/atom/movable/AM = A
+		Bumped(AM)
 
 /obj/machinery/power/supermatter_crystal/Bumped(atom/movable/AM)
 	if(isliving(AM))
@@ -1027,6 +1058,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				new /obj/effect/anomaly/grav(L, 250)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 200)
+			if(RADIATION_ANOMALY)
+				new /obj/effect/anomaly/radiation(L, 300)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1100,3 +1133,4 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 #undef GRAVITATIONAL_ANOMALY
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
+#undef RADIATION_ANOMALY

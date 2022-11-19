@@ -21,6 +21,14 @@
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 	minimal_character_age = 21 //I shouldn't have to explain this one
 
+	mail_goodies = list(
+		/obj/item/storage/box/rubbershot = 30,
+		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
+		/obj/item/stack/sheet/mineral/plasma = 10,
+		/obj/item/stack/sheet/mineral/uranium = 10,
+		/obj/item/reagent_containers/food/drinks/shaker = 5,
+	)
+
 	changed_maps = list("OmegaStation")
 
 /datum/job/bartender/proc/OmegaStationChanges()
@@ -31,7 +39,7 @@
 	name = "Bartender"
 	jobtype = /datum/job/bartender
 
-	pda_type = /obj/item/pda/bar
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
 	ears = /obj/item/radio/headset/headset_srv

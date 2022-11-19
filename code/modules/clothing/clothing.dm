@@ -3,6 +3,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 80
+	fryable = TRUE
 	var/damaged_clothes = CLOTHING_PRISTINE //similar to machine's BROKEN stat and structure's broken var
 	var/flash_protect = 0		//What level of bright light protection item has. 1 = Flashers, Flashes, & Flashbangs | 2 = Welding | -1 = OH GOD WELDING BURNT OUT MY RETINAS
 	var/tint = 0				//Sets the item's level of visual impairment tint, normally set to the same as flash_protect
@@ -65,8 +66,8 @@
 	if(ismecha(M.loc)) // stops inventory actions in a mech
 		return
 
-	if(!M.incapacitated() && loc == M && istype(over_object, /obj/screen/inventory/hand))
-		var/obj/screen/inventory/hand/H = over_object
+	if(!M.incapacitated() && loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
 
@@ -221,13 +222,6 @@
 	if(damaged_clothes == CLOTHING_SHREDDED)
 		. += span_warning("<b>It is completely shredded and requires mending before it can be worn again!</b>")
 		return
-	switch (max_heat_protection_temperature)
-		if (400 to 1000)
-			. += "[src] offers the wearer limited protection from fire."
-		if (1001 to 1600)
-			. += "[src] offers the wearer some protection from fire."
-		if (1601 to 35000)
-			. += "[src] offers the wearer robust protection from fire."
 	for(var/zone in damage_by_parts)
 		var/pct_damage_part = damage_by_parts[zone] / limb_integrity * 100
 		var/zone_name = parse_zone(zone)
@@ -255,6 +249,60 @@
 			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
+
+	if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee || armor.fire || armor.acid|| flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
+
+/obj/item/clothing/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["list_armor"])
+		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee)
+			readout += "\n<b>ARMOR (I-X)</b>"
+			if(armor.bio)
+				readout += "\nTOXIN [armor_to_protection_class(armor.bio)]"
+			if(armor.bomb)
+				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
+			if(armor.bullet)
+				readout += "\nBULLET [armor_to_protection_class(armor.bullet)]"
+			if(armor.energy)
+				readout += "\nENERGY [armor_to_protection_class(armor.energy)]"
+			if(armor.laser)
+				readout += "\nLASER [armor_to_protection_class(armor.laser)]"
+			if(armor.melee)
+				readout += "\nMELEE [armor_to_protection_class(armor.melee)]"
+		if(armor.fire || armor.acid)
+			readout += "\n<b>DURABILITY (I-X)</b>"
+			if(armor.fire)
+				readout += "\nFIRE [armor_to_protection_class(armor.fire)]"
+			if(armor.acid)
+				readout += "\nACID [armor_to_protection_class(armor.acid)]"
+		if(flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
+			var/list/things_blocked = list()
+			if(flags_cover & HEADCOVERSMOUTH)
+				things_blocked += "facehuggers"
+			if(flags_cover & HEADCOVERSEYES)
+				things_blocked += "pepperspray"
+			if(length(things_blocked))
+				readout += "\n<b>COVERAGE</b>"
+				readout += "\nIt will block [english_list(things_blocked)]."
+
+		readout += "</span>"
+
+		to_chat(usr, "[readout.Join()]")
+
+/**
+  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
+  *
+  * Arguments:
+  * * armor_value - Number we're converting
+  */
+/obj/item/clothing/proc/armor_to_protection_class(armor_value)
+	if (armor_value < 0)
+		. = "-"
+	. += "\Roman[round(abs(armor_value), 10) / 10]"
+	return .
 
 /obj/item/clothing/obj_break(damage_flag)
 	damaged_clothes = CLOTHING_DAMAGED
@@ -475,7 +523,7 @@ BLIND     // can't see anything
 		return
 	if(prob(0.2))
 		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
-		
+
 /*obj/item/clothing/proc/set_sensor_glob()
 	var/mob/living/carbon/human/H = src.loc
 
@@ -484,8 +532,8 @@ BLIND     // can't see anything
 		if (U.has_sensor && U.sensor_mode && U.has_sensor != BROKEN_SENSORS)
 			GLOB.suit_sensors_list |= H
 
-		else 
+		else
 			GLOB.suit_sensors_list -= H
 
-	else 
+	else
 		GLOB.suit_sensors_list -= H	*/

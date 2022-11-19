@@ -119,6 +119,7 @@
 	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
 	throw_speed = 1
 	clumsy_check = 0
+	icon_state = "bananaeshield1"
 	base_icon_state = "bananaeshield"
 	force = 0
 	throwforce = 0
@@ -267,7 +268,7 @@
 	icon_state = "darkhonker"
 	max_integrity = 300
 	deflect_chance = 15
-	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 35, BOMB = 20, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 35, BOMB = 20, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 35000
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)

@@ -321,6 +321,24 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
+/obj/item/toy/foamblade/baseball
+	name = "toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "baseballbat_donk"
+	item_state = "baseball_bat_donk"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	attack_verb = list("beat", "smacked")
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball/nerf
+	name = "antique toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle is almost rubbed off...\"nerf or nothing\"? what does that mean"
+	icon_state = "baseballbat"
+	item_state = "baseball_bat_plastic"
+
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
 	desc = "A replica toolbox that rumbles when you turn the key."
@@ -387,7 +405,7 @@
 	icon_state = "singulo_wakizashi"
 	item_state = "singulo_wakizashi"
 	force = 0 //sorry, no
-	throwforce = 0 
+	throwforce = 0
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 /*
@@ -813,8 +831,8 @@
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the deck."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the deck."))
 
@@ -1260,8 +1278,8 @@ obj/item/toy/turn_tracker
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the turn tracker."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the turn tracker."))
 	else

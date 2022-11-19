@@ -1,12 +1,17 @@
 /datum/eldritch_knowledge/base_ash
 	name = "Nightwatcher's Secret"
-	desc = "Opens up the path of ash to you. Allows you to transmute a match with a knife or its derivatives into an ashen blade. Additionally empowers your mansus grasp to throw away enemies."
+	desc = "Opens up the path of ash to you. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally empowers your mansus grasp to throw away enemies."
 	gain_text = "The City Guard knows their watch. If you ask them past dusk they may tell you tales of the Ashy Lantern."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
 	cost = 1
 	route = PATH_ASH
 	tier = TIER_PATH
+
+/datum/eldritch_knowledge/base_ash/on_gain(mob/user)
+	. = ..()
+	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
+	user.put_in_hands(realknife)
 
 /datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

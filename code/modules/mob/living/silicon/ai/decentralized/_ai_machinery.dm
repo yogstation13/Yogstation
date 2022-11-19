@@ -9,6 +9,16 @@
 	icon_state = "RD-server-on"
 	density = TRUE
 
+/obj/machinery/ai/Initialize(mapload)
+	. = ..()
+	
+	SSair.atmos_machinery += src 
+	
+/obj/machinery/ai/Destroy()
+	. = ..()
+	
+	SSair.atmos_machinery -= src 
+
 /obj/machinery/ai/proc/valid_holder()
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE

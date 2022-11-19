@@ -103,6 +103,8 @@
 			new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
+	new /obj/item/clothing/head/beret/emt/green(src)
+	new /obj/item/clothing/head/beret/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
@@ -125,6 +127,7 @@
 		new /obj/item/storage/backpack/satchel/med(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
+	new /obj/item/clothing/head/beret/emt/mining(src)
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new /obj/item/cartridge/medical(src)
@@ -138,6 +141,7 @@
 	new /obj/item/sensor_device(src)
 	new /obj/item/bodybag/environmental(src)
 	new /obj/item/extinguisher/mini(src)
+	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."

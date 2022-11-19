@@ -17,7 +17,7 @@
 	key_third_person = "handholds"
 	restraint_check = TRUE
 
-/datum/emote/living/raisehand/run_emote(mob/user, params)
+/datum/emote/living/handhold/run_emote(mob/user, params)
 	. = ..()
 	var/obj/item/handholding/HH = new(user)
 	if(user.put_in_hands(HH))

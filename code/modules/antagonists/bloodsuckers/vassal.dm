@@ -67,6 +67,7 @@
 	//Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric)
 	update_vassal_icons_removed(owner.current)
+	UnregisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT)
 	return ..()
 
 /datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
@@ -132,7 +133,16 @@
 				return
 			playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
 			vassal.set_species(/datum/species/szlachta)
-	
+		if(CLAN_TOREADOR)
+			BuyPower(/datum/action/bloodsucker/targeted/mesmerize)
+			RegisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT, .proc/toreador_levelup_mesmerize)
+
+/datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
+	for(var/datum/action/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
+		if(!istype(mesmerize_power))
+			continue
+		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
+
 /// If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)
 /datum/antagonist/vassal/can_be_owned(datum/mind/new_owner)
 	if(!master)
@@ -173,13 +183,13 @@
  *	Unlike the Monster hunter one, this one is permanently active, and has no power needed to activate it.
  */
 
-/obj/screen/alert/status_effect/agent_pinpointer/vassal_edition
+/atom/movable/screen/alert/status_effect/agent_pinpointer/vassal_edition
 	name = "Blood Bond"
 	desc = "You always know where your master is."
 
 /datum/status_effect/agent_pinpointer/vassal_edition
 	id = "agent_pinpointer"
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/vassal_edition
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/vassal_edition
 	minimum_range = VASSAL_SCAN_MIN_DISTANCE
 	tick_interval = VASSAL_SCAN_PING_TIME
 	duration = -1

@@ -139,6 +139,11 @@
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
 
+/obj/item/grenade/chem_grenade/emp_act(severity)
+	..()
+	if(prob(40/severity))
+		prime()
+
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
 	var/obj/item/assembly/A = wires.get_attached(wires.get_wire(1))
 	if(A)
@@ -596,6 +601,25 @@
 
 	B1.reagents.add_reagent(/datum/reagent/potassium, 100)
 	B2.reagents.add_reagent(/datum/reagent/water/holywater, 100)
+
+	beakers += B1
+	beakers += B2
+
+/obj/item/grenade/chem_grenade/holywater
+	name = "holy foam grenade"
+	desc = "A vessel of concentrated religious foam."
+	icon_state = "holy_grenade"
+	stage = GRENADE_READY
+
+/obj/item/grenade/chem_grenade/holywater/Initialize()
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B2.reagents.add_reagent(/datum/reagent/water, 30)
+	B2.reagents.add_reagent(/datum/reagent/water/holywater, 30)
+	B2.reagents.add_reagent(/datum/reagent/consumable/sodiumchloride, 30)
 
 	beakers += B1
 	beakers += B2

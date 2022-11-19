@@ -2,22 +2,31 @@
 	name = "mecha weapon"
 	range = MECHA_RANGED
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
+	/// Typepath of the projectile
 	var/projectile
+	/// Firing Sound
 	var/fire_sound
+	/// How many projectiles does it shoot
 	var/projectiles_per_shot = 1
+	/// Amount of preditable spread in the shot
 	var/variance = 0
-	var/randomspread = 0 //use random spread for machineguns, instead of shotgun scatter
+	/// Amount of unpredictable spread in the shot
+	var/randomspread = 0
+	/// Firing delay
 	var/projectile_delay = 0
-	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
-	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
+	/// Visual effect when fired
+	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect
+	/// Will this push the mech back when used in no gravity
+	var/kickback = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT
+	var/restricted = TRUE //for our special hugbox exofabs
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(!..())
 		return FALSE
 	if(istype(M, /obj/mecha/combat))
 		return TRUE
-	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !(locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment))
+	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
 		return TRUE
 	return FALSE
 
@@ -153,8 +162,28 @@
 	projectile = /obj/item/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	harmful = TRUE
+	restricted = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
+	if(..()) //combat mech
+		return 1
+	else if(M.equipment.len < M.max_equip && istype(M))
+		return 1
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
+	equip_cooldown = 10
+	name = "Exosuit Proto-kinetic Accelerator"
+	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
+	icon_state = "mecha_kineticgun"
+	energy_drain = 30
+	projectile = /obj/item/projectile/kinetic/mech
+	fire_sound = 'sound/weapons/kenetic_accel.ogg'
+	harmful = TRUE
+	restricted = FALSE
+
+//attachable to all mechas, like the plasma cutter
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun/can_attach(obj/mecha/M)
 	if(..()) //combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))

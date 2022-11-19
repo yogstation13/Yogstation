@@ -69,15 +69,45 @@
 		if((organ_flags & ORGAN_FAILING))
 			C.become_blind(EYE_DAMAGE)
 		else if(damage > 30)
-			C.overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 2)
+			C.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 2)
 		else
-			C.overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 1)
+			C.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 1)
 	//called once since we don't want to keep clearing the screen of eye damage for people who are below 20 damage
 	else if(damaged)
 		damaged = FALSE
 		C.clear_fullscreen("eye_damage")
 	return
 
+#define OFFSET_X 1
+#define OFFSET_Y 2
+
+/// This proc generates a list of overlays that the eye should be displayed using for the given parent
+/obj/item/organ/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
+	if(!istype(parent) || parent.getorgan(/obj/item/organ/eyes) != src)
+		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
+
+	var/mutable_appearance/eye_overlay = mutable_appearance('icons/mob/human_face.dmi', eye_icon_state, -BODY_LAYER)
+	var/list/overlays = list(eye_overlay)
+
+	if((EYECOLOR in parent.dna.species.species_traits))
+		eye_overlay.color = "#" + eye_color
+
+	// Cry emote overlay
+	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
+		var/mutable_appearance/tears_overlay = mutable_appearance('icons/mob/human_face.dmi', "tears", -BODY_ADJ_LAYER)
+		tears_overlay.color = COLOR_DARK_CYAN
+		overlays += tears_overlay
+
+	if(OFFSET_FACE in parent.dna?.species.offset_features)
+		var/offset = parent.dna.species.offset_features[OFFSET_FACE]
+		for(var/mutable_appearance/overlay in overlays)
+			overlay.pixel_x += offset[OFFSET_X]
+			overlay.pixel_y += offset[OFFSET_Y]
+
+	return overlays
+
+#undef OFFSET_X
+#undef OFFSET_Y
 
 /obj/item/organ/eyes/night_vision
 	name = "shadow eyes"

@@ -95,7 +95,7 @@
 	name = "lesser mining charge"
 	desc = "A mining charge. This one seems less powerful than normal. Only works on rocks!"
 	icon_state = "mining-charge-1"
-	boom_sizes = list(1,1,1)
+	boom_sizes = list(1,2,3)
 
 /obj/item/grenade/plastic/miningcharge/mega
 	name = "mega mining charge"
@@ -103,6 +103,3 @@
 	icon_state = "mining-charge-3"
 	boom_sizes = list(2,4,7)
 
-/obj/item/storage/backpack/duffelbag/miningcharges/PopulateContents()
-	for(var/i in 1 to 3)
-		new /obj/item/grenade/plastic/miningcharge/lesser(src)

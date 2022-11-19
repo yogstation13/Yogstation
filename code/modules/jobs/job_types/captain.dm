@@ -26,6 +26,12 @@
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
+	mail_goodies = list(
+		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
+		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10
+	)
+
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
 
@@ -41,7 +47,7 @@
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/pda/captain
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt
@@ -52,7 +58,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - adds egun/removes civ budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap

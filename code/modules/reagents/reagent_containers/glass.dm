@@ -376,7 +376,7 @@
 				return
 			to_chat(user, "You start grinding...")
 			if((do_after(user, 2.5 SECONDS, src)) && grinded)
-				user.adjustStaminaLoss(40)
+				user.adjustStaminaLoss(14)
 				if(grinded.reagents) //food and pills
 					grinded.reagents.trans_to(src, grinded.reagents.total_volume, transfered_by = user)
 				if(grinded.juice_results) //prioritize juicing

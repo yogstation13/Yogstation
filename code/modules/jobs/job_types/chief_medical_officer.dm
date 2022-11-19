@@ -31,6 +31,13 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/organ_spawner = 10,
+		/obj/effect/spawner/lootdrop/memeorgans = 8,
+		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 4,
+		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
+	)
+
 /datum/job/cmo/proc/OmegaStationChanges()
 	return TRUE
 
@@ -39,7 +46,7 @@
 	jobtype = /datum/job/cmo
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/cmo
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
 
 	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo
@@ -51,7 +58,7 @@
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen/paramedic
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removes med budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

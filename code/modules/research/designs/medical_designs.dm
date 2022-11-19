@@ -92,16 +92,6 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/noreactsyringe
-	name = "Cryo Syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	id = "noreactsyringe"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 1000)
-	build_path = /obj/item/reagent_containers/syringe/noreact
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/piercesyringe
 	name = "Piercing Syringe"
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
@@ -119,6 +109,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2500)
 	build_path = /obj/item/reagent_containers/syringe/dart
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/vialbox
+	name = "vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	id = "vialbox"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 1500)
+	build_path = /obj/item/storage/lockbox/vialbox/printed
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -268,6 +268,26 @@
 	build_path = /obj/item/hypospray
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/plastic = 1500, /datum/material/silver = 3000, /datum/material/titanium = 3000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/hypospraypierceupg
+	name = "Hypospray Piercing Upgrade"
+	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
+	id = "hypospraypierceupg"
+	build_path = /obj/item/hypospray_upgrade/piercing
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/hyposprayspeedupg
+	name = "Hypospray Speed Upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	id = "hyposprayspeedupg"
+	build_path = /obj/item/hypospray_upgrade/speed
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000, /datum/material/titanium = 500)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -674,7 +694,7 @@
 	id = "surgery_exp_dissection"
 	surgery = list(/datum/surgery/experimental_dissection/adv/exp)
 
-/datum/design/surgery/experimental_dissection/exp
+/datum/design/surgery/experimental_dissection/alien
 	name = "Extraterrestrial Dissection"
 	id = "surgery_ext_dissection"
 	surgery = list(/datum/surgery/experimental_dissection/adv/alien)

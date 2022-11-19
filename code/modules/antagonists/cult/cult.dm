@@ -125,7 +125,7 @@
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
-	current.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
+	current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
 	if(cult_team.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
@@ -433,6 +433,12 @@
 /datum/objective/sacrifice
 	var/sacced = FALSE
 	var/sac_image
+
+/datum/objective/sacrifice/is_valid_target(possible_target)
+	. = ..()
+	var/datum/mind/M = possible_target
+	if(istype(M) && isipc(M.current))
+		return FALSE
 
 /datum/objective/sacrifice/check_completion()
 	return sacced || completed

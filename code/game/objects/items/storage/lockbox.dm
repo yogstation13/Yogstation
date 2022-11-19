@@ -235,7 +235,7 @@
 	name = "vial box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	icon = 'icons/obj/vial_box.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "vialbox"
 	req_access = list(ACCESS_MEDICAL)
 	icon_locked = "vialbox"
@@ -324,3 +324,6 @@
 /obj/item/storage/lockbox/vialbox/blood/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/printed
+	req_access = null
