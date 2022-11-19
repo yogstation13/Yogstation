@@ -242,6 +242,10 @@
 /obj/item/weldingtool/tool_start_check(mob/living/user, amount=0)
 	. = tool_use_check(user, amount)
 	if(. && user)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
+				return
 		user.flash_act(light_intensity)
 
 // Flash the user during welding progress
@@ -249,6 +253,10 @@
 	. = ..()
 	if(. && user)
 		if (progress_flash_divisor == 0)
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
+					return
 			user.flash_act(min(light_intensity,1))
 			progress_flash_divisor = initial(progress_flash_divisor)
 		else
