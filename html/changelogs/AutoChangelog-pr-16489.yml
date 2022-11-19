@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Add a new hack wire for advanced airlock controller that can toggle cycle by pulsing"
+  - tweak: "Reduced dumb wire to 1"
