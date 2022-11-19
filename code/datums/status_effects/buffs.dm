@@ -499,7 +499,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/regenerative_core
 
 /datum/status_effect/regenerative_core/on_apply()
-	if(is_station_level(get_turf(owner)))
+	var/turf/T = get_turf(owner)
+	if(is_station_level(T.z))
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
