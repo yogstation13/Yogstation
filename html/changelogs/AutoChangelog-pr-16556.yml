@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer murderize AIs by repairing the broken mech they're in"
