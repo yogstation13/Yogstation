@@ -617,19 +617,15 @@
 	var/move_result = 0
 	var/oldloc = loc
 
-	// Damage slowdown
-	// Slowdown starts at below 75% integrity
-	// Builds based on how damaged you are below 75%
-	// Max slowdown (2.5x slower) at 30% integrity
-	var/slowdown = clamp(0.75 / (obj_integrity/max_integrity), 1, 2.5)
-	
+
+
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE( step_in * (check_eva() ? EVA_MODIFIER : 1) * slowdown ))
+		set_glide_size(DELAY_TO_GLIDE_SIZE( step_in * (check_eva() ? EVA_MODIFIER : 1) ))
 		move_result = mechsteprand()
 	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE( step_in * (check_eva() ? EVA_MODIFIER : 1) * slowdown ))
+		set_glide_size(DELAY_TO_GLIDE_SIZE( step_in * (check_eva() ? EVA_MODIFIER : 1) ))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
