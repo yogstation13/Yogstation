@@ -312,6 +312,9 @@
 			if(isturf(loc) && thing != src)
 				var/atom/movable/X = thing
 				if(get_dist(X, src) > consume_range)
+					var/obj/machinery/field/containment/C = locate() in T
+					if(src in range(grav_pull, C))
+						return
 					X.singularity_pull(src, current_size)
 				else
 					consume(X)
