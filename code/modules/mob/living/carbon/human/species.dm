@@ -1325,7 +1325,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(HAS_TRAIT(H, TRAIT_EAT_MORE))
 			hunger_rate *= 3 //hunger rate tripled
 		if(HAS_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH))
-			nutrition = min(nutrition, NUTRITION_LEVEL_MOSTLY_FULL) //capped, can never be truly full
+			H.nutrition = min(H.nutrition, NUTRITION_LEVEL_MOSTLY_FULL) //capped, can never be truly full
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
