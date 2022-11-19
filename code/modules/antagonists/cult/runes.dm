@@ -981,7 +981,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 				to_chat(G, span_cultitalic("Your body can no longer sustain the connection!"))
 				break
 
-			if (get_dist(G, affecting) > 7)
+			if (get_dist(G, affecting) > 21)
 				G.forceMove(get_turf(affecting))
 			sleep(0.5 SECONDS)
 		CM.Remove(G)
