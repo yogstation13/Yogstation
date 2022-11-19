@@ -35,16 +35,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //31 TCish
+		if("bloodyspai") //32 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
-			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade(src) //1 TC, if even. 20 force melee is good but it's no edagger
+			new /obj/item/switchblade/backstab(src) //5 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
@@ -530,14 +528,14 @@
 	new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo
-	name = "10mm magazine box"
+	real_name = "10mm magazine box"
 
 /obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
-	name = "10mm soporific magazine box"
+	real_name = "10mm soporific magazine box"
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
 	for(var/i in 1 to 2)
@@ -668,3 +666,25 @@
 /obj/item/storage/box/official_posters/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/poster/random_official(src)
+
+/obj/item/storage/box/syndie_kit/augmentation
+	real_name = "augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
+	new /obj/item/autosurgeon/limb/head/robot(src)
+	new /obj/item/autosurgeon/limb/chest/robot(src)
+	new /obj/item/autosurgeon/limb/l_arm/robot(src)
+	new /obj/item/autosurgeon/limb/r_arm/robot(src)
+	new /obj/item/autosurgeon/limb/l_leg/robot(src)
+	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+
+/obj/item/storage/box/syndie_kit/augmentation/superior
+	real_name = "superior augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/superior/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/upgraded_cyberheart(src)
+	new /obj/item/autosurgeon/upgraded_cyberliver(src)
+	new /obj/item/autosurgeon/upgraded_cyberlungs(src)
+	new /obj/item/autosurgeon/upgraded_cyberstomach(src)
+	new /obj/item/implanter/empshield(src)

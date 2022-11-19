@@ -296,7 +296,11 @@
 	if(href_list["select_equip"])
 		var/obj/item/mecha_parts/mecha_equipment/equip = locate(href_list["select_equip"]) in src
 		if(equip && equip.selectable)
+			if(selected)
+				var/obj/item/mecha_parts/mecha_equipment/unequip = selected	//What we're lowering
+				unequip.on_deselect()
 			selected = equip
+			equip.on_select()
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
 			send_byjax(usr,"exosuit.browser","eq_list",src.get_equipment_list())

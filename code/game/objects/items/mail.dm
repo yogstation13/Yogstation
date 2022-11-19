@@ -17,11 +17,17 @@
 	/// How many goodies this mail contains.
 	var/goodie_count = 1
 	/// Goodies which can be given to anyone. The base weight for cash is 56. For there to be a 50/50 chance of getting a department item, they need 56 weight as well.
-	var/list/generic_goodies = list(
-		/obj/item/stack/spacecash/c50 = 10,
-		/obj/item/stack/spacecash/c100 = 25,
-		/obj/item/stack/spacecash/c200 = 15,
-		/obj/item/stack/spacecash/c500 = 5,
+	var/list/generic_goodies = list( //yogs, add coins, sorted least valuable to most valuable
+		/obj/item/coin/iron = 2,
+		/obj/item/coin/silver = 2,
+		/obj/item/coin/gold = 2,
+		/obj/item/coin/plasma = 2,
+		/obj/item/stack/spacecash/c50 = 5,
+		/obj/item/stack/spacecash/c100 = 20,
+		/obj/item/coin/diamond = 10,
+		/obj/item/stack/spacecash/c200 = 6,
+		/obj/item/coin/bananium = 4,
+		/obj/item/stack/spacecash/c500 = 2,
 		/obj/item/stack/spacecash/c1000 = 1,
 	)
 	// Overlays (pure fluff)
@@ -210,7 +216,7 @@
 	else
 		icon_state = "[initial(icon_state)]sealed"
 
-/// Fills this mail crate with N pieces of mail, where N is the lower of the amount var passed, and the maximum capacity of this crate. If N is larger than the number of alive human players, the excess will be junkmail.
+/// Fills this mail crate with N pieces of mail, where N is the lower of the amount var passed, and the maximum capacity of this crate. If N is larger than the number of alive human players, it will be padded by a proportional amount of junkmail.
 /obj/structure/closet/crate/mail/proc/populate(amount)
 	var/mail_count = min(amount, storage_capacity)
 	// Fills the
@@ -236,7 +242,7 @@
 		var/datum/mind/recipient = pick_n_take(mail_recipients)
 		if(recipient)
 			new_mail.initialize_for_recipient(recipient)
-		else
+		else if(prob(MAIL_JUNK_CHANCE))
 			new_mail.junk_mail()
 
 	update_icon()

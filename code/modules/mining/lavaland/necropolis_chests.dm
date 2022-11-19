@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/clothing/under/drip(src)
 			new /obj/item/clothing/shoes/drip(src)
 		if(3)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(4)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
 		if(5)
@@ -389,6 +389,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(teleporting)
 		return
+	if(!is_mining_level(current_location.z))
+		user.visible_message(span_danger("[user] starts fiddling with [src]!"))
+		if(!do_after(user, 3 SECONDS, user))
+			return
 	teleporting = TRUE
 	linked.teleporting = TRUE
 	var/turf/T = get_turf(src)
@@ -1815,7 +1819,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
 		if(3)

@@ -11,6 +11,7 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define EVA_MODIFIER 0.8
 
 /obj/mecha
 	name = "mecha"
@@ -113,7 +114,7 @@
 	//Action vars
 	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
-	var/defence_mode_deflect_chance = 35
+	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
 	var/leg_overload_coeff = 100
 	var/zoom_mode = FALSE
@@ -518,6 +519,11 @@
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
+		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
+			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
+				to_chat(user, span_warning("You don't want to harm other living beings!"))
+				return
 		if(selected.action(target,params))
 			selected.start_cooldown()
 	else
@@ -616,18 +622,18 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
+	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
 			take_damage(2, BRUTE)
-		can_move = world.time + step_in
+		can_move = world.time + step_in * (check_eva() ? EVA_MODIFIER : 1)
 		return TRUE
 	return FALSE
 
@@ -655,13 +661,14 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
-		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
 
-	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
+		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
+
+	if(istype(newloc, /turf/closed/indestructible))
+		return	//If the turf is indestructible don't bother trying
+
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
@@ -670,7 +677,7 @@
 					flick(phase_state, src)
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
-				sleep(step_in*3)
+				sleep(step_in * (check_eva() ? 0.8 : 1)*3)
 				can_move = TRUE
 	else
 		if(..()) //mech was thrown
@@ -746,6 +753,9 @@
 	//Allows the Malf to scan a mech's status and loadout, helping it to decide if it is a worthy chariot.
 	if(user.can_dominate_mechs)
 		examine(user) //Get diagnostic information!
+		if(user.nuking)
+			to_chat(user, span_warning("Unable to assume control of mech while attempting to self-destruct the station."))
+			return
 		for(var/obj/item/mecha_parts/mecha_tracking/B in trackers)
 			to_chat(user, span_danger("Warning: Tracking Beacon detected. Enter at your own risk. Beacon Data:"))
 			to_chat(user, "[B.get_mecha_info()]")
@@ -1226,4 +1236,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_notice("You can't fit any more ammo of this type!"))
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
+	return FALSE
+
+// Is the occupant wearing a pilot suit?
+/obj/mecha/proc/check_eva()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		return istype(H.w_uniform, /obj/item/clothing/under/mech_suit)
 	return FALSE

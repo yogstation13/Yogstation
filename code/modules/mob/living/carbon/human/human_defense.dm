@@ -379,8 +379,9 @@
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
 /mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
-
-	if(M.occupant.a_intent == INTENT_HARM)
+	if(M.selected?.melee_override)
+		M.selected.action(src)
+	else if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
@@ -551,11 +552,9 @@
 				informed = TRUE
 			switch(severity)
 				if(1)
-					L.receive_damage(0,10)
-					Paralyze(10 SECONDS)
+					L.receive_damage(0,10,200)
 				if(2)
-					L.receive_damage(0,5)
-					Paralyze(5 SECONDS)
+					L.receive_damage(0,5,100)
 
 			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
 				if(prob(5))

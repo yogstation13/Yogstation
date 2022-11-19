@@ -159,7 +159,7 @@
 	name = "Head Revolutionary"
 	hud_type = "rev_head"
 	var/remove_clumsy = FALSE
-	var/give_flash = FALSE
+	var/give_flash = TRUE
 	var/give_hud = TRUE
 
 /datum/antagonist/rev/head/antag_listing_name()
