@@ -341,6 +341,7 @@
 	sleep(duration)
 	victim.remove_movespeed_modifier(MOVESPEED_ID_YELLOW_ORB)
 	to_chat(victim, span_notice("You slow down."))
+
 /obj/item/deployablemine/creampie
 	name = "deployable creampie mine"
 	desc = "An unarmed creampie mine designed to be rapidly placeable."
