@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "ipcs can no longer become zombies if someone manually implants the tumor"
