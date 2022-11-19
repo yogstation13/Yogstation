@@ -459,12 +459,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine,
 /area/science/storage)
-"adt" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "adw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -34345,6 +34339,13 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation)
+"kNL" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "kNP" = (
 /obj/effect/overlay/palmtree_l{
 	pixel_x = 15;
@@ -99746,9 +99747,9 @@ tHP
 apG
 qXR
 iBk
-adt
+kNL
 ppv
-adt
+kNL
 qri
 aGU
 aKc

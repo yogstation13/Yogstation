@@ -64057,6 +64057,16 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/aft)
+"mBU" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "mBZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -70210,15 +70220,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qJA" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "qJB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -101722,7 +101723,7 @@ ihx
 xDp
 yaP
 mSa
-qJA
+mBU
 jHJ
 rme
 ofy
