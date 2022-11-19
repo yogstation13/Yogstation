@@ -17,6 +17,7 @@
 	var/category = "Misc"				//Category
 	var/ui_x = 805 // It's location - override this in techweb_layout.dm
 	var/ui_y = 805
+	var/list/approved_jobs = list("Scientist", "Roboticist", "Research Director", "Captain", "AI", "Cyborg")
 
 /datum/techweb_node/error_node
 	id = "ERROR"
@@ -93,4 +94,9 @@
 		return research_costs
 
 /datum/techweb_node/proc/price_display(datum/techweb/TN)
-	return techweb_point_display_generic(get_price(TN))
+	var/list/price = get_price(TN)
+	price = price.Copy()
+	if(!(usr?.job in approved_jobs) && !is_special_character(usr))
+		for(var/L in price)
+			price[L] *= 1.25
+	return techweb_point_display_generic(price)

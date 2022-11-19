@@ -14,7 +14,12 @@
 		if(stored_research.researched_nodes[node_])
 			class = ""
 		else if(stored_research.available_nodes[node_])
-			if(stored_research.can_afford(node.get_price(stored_research)))
+			var/list/price = node.get_price(stored_research)
+			price = price.Copy()
+			if(!(usr?.job in node.approved_jobs) && !is_special_character(usr))
+				for(var/L in price)
+					price[L] *= 1.25
+			if(stored_research.can_afford(price))
 				class = "available"
 			else
 				class = "too-expensive"

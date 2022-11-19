@@ -221,18 +221,23 @@
 /datum/techweb/proc/printout_points()
 	return techweb_point_display_generic(research_points)
 
-/datum/techweb/proc/research_node_id(id, force, auto_update_points)
-	return research_node(SSresearch.techweb_node_by_id(id), force, auto_update_points)
+/datum/techweb/proc/research_node_id(id, force, auto_update_points, mob/researcher)
+	return research_node(SSresearch.techweb_node_by_id(id), force, auto_update_points, researcher)
 
-/datum/techweb/proc/research_node(datum/techweb_node/node, force = FALSE, auto_adjust_cost = TRUE)
+/datum/techweb/proc/research_node(datum/techweb_node/node, force = FALSE, auto_adjust_cost = TRUE, mob/researcher)
 	if(!istype(node))
 		return FALSE
+	var/list/price = node.get_price(src)
+	price = price.Copy()
+	if(!(researcher?.job in node.approved_jobs) && !is_special_character(researcher))
+		for(var/L in price)
+			price[L] *= 1.25
 	update_node_status(node)
 	if(!force)
-		if(!available_nodes[node.id] || (auto_adjust_cost && (!can_afford(node.get_price(src)))))
+		if(!available_nodes[node.id] || (auto_adjust_cost && (!can_afford(price))))
 			return FALSE
 	if(auto_adjust_cost)
-		remove_point_list(node.get_price(src))
+		remove_point_list(price)
 	researched_nodes[node.id] = TRUE				//Add to our researched list
 	for(var/id in node.unlock_ids)
 		visible_nodes[id] = TRUE

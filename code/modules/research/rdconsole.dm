@@ -28,8 +28,6 @@ Nothing else in the console has ID requirements.
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
-	req_access = list(ACCESS_TOX)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
-
 	//UI VARS
 	var/screen = RDSCREEN_MENU
 	var/back = RDSCREEN_MENU
@@ -159,11 +157,15 @@ Nothing else in the console has ID requirements.
 		say("Node unlock failed: Unknown error.")
 		return FALSE
 	var/list/price = TN.get_price(stored_research)
+	price = price.Copy()
+	if(!(user?.job in TN.approved_jobs) && !is_special_character(user))
+		for(var/L in price)
+			price[L] *= 1.25
 	if(stored_research.can_afford(price))
 		investigate_log("[key_name(user)] researched [id]([json_encode(price)]) on techweb id [stored_research.id].", INVESTIGATE_RESEARCH)
 		if(stored_research == SSresearch.science_tech)
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[json_encode(price)]", "time" = SQLtime()))
-		if(stored_research.research_node_id(id))
+		if(stored_research.research_node_id(id, researcher = user))
 			say("Successfully researched [TN.display_name].")
 			var/logname = "Unknown"
 			if(isAI(user))
