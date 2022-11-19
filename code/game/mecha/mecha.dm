@@ -114,7 +114,7 @@
 	//Action vars
 	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
-	var/defence_mode_deflect_chance = 35
+	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
 	var/leg_overload_coeff = 100
 	var/zoom_mode = FALSE
@@ -519,6 +519,11 @@
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
+		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
+			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
+				to_chat(user, span_warning("You don't want to harm other living beings!"))
+				return
 		if(selected.action(target,params))
 			selected.start_cooldown()
 	else
@@ -656,13 +661,14 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
-		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
 
-	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
+		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
+
+	if(istype(newloc, /turf/closed/indestructible))
+		return	//If the turf is indestructible don't bother trying
+
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
