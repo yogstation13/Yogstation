@@ -14,7 +14,7 @@
 /datum/round_event/shuttle_catastrophe
 	var/datum/map_template/shuttle/new_shuttle
 	var/list/datum/map_template/shuttle/blacklisted_shuttles = list(/datum/map_template/shuttle/emergency/arena, /datum/map_template/shuttle/emergency/construction,
-	/datum/map_template/shuttle/emergency/construction/small, /datum/map_template/shuttle/emergency/discoinferno)
+	/datum/map_template/shuttle/emergency/construction/small, /datum/map_template/shuttle/emergency/discoinferno, /datum/map_template/shuttle/emergency/meteor)
 /datum/round_event/shuttle_catastrophe/announce(fake)
 	var/cause = pick("was attacked by [syndicate_name()] Operatives", "mysteriously teleported away", "had its refuelling crew mutiny",
 		"was found with its engines stolen", "\[REDACTED\]", "flew into the sunset, and melted", "fell into a black hole",
