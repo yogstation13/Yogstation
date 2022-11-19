@@ -23,6 +23,10 @@
 
 	changed_maps = list("EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 30
+	)
+
 /datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 1
