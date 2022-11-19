@@ -124,8 +124,8 @@
 			to_chat(user, span_warning("You will not heal while your Masquerade ability is active."))
 			return
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
-		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
-		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
+		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
+		costMult *= 0 // No cost if we're sleeping in a coffin.
 		user.ExtinguishMob()
 		user.remove_all_embedded_objects() // Remove Embedded!
 		if(check_limbs(costMult))
