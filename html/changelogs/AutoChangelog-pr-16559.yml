@@ -1,0 +1,7 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed unnable to research on rnd ruin console"
+  - bugfix: "Fixed unnable to sync ruin exosuit techfab"
+  - bugfix: "Fixed runtime spam in mech_fabricator.dm"
+  - mapping: "Replaced and added missing stuffs"
