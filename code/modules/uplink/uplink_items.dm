@@ -1325,6 +1325,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
+	cant_discount = TRUE
 	cost = 60 //Yogs change
 
 /datum/uplink_item/support/honker
@@ -1333,13 +1334,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/mecha/combat/honker/dark/loaded
 	cost = 60 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+	cant_discount = TRUE
+	
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
 	item = /obj/mecha/combat/marauder/mauler/loaded
-	cost = 105 //Yogscast change
+	cant_discount = TRUE
+	cost = 105 //Yogs change
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools
