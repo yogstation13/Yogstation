@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "You can now add encryption key to station bounce radio and remove it by altclicking on it after its panel is opened"
-  - tweak: "You can now use prefix \";\" , as well as \":(channel_prefix)\" to send comms message while the bounce radio is in your pocket, belt or in hands."

@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Message monitor now views NTOS PDA messages"
-  - bugfix: "NTOS PDA Messages no longer log the user's name rather than the program's username"

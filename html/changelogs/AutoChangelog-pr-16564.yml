@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Examinating mecha now pop up armor tag list (Requires you to be inside the mech to see the armor tag)"
-  - rscadd: "Mech will now get environment air data, this is for when you want to see what is the current environment air status when having internal tank on"

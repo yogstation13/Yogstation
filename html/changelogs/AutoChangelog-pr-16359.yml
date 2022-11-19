@@ -1,8 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds limb autosurgeons that are designed specifically for limbs, a full set found in both augmentation kits"
-  - rscadd: "Adds upgraded cyberorgan autosurgeons, found in the superior augmentation kit"
-  - rscadd: "Adds the EMP shield implanter, which renders the subject's limbs, organs, and implants immune to EMP, found in the superior augmentation kit"
-  - rscadd: "Adds the augmentation and superior augmentation kit. The former is 15 TC for any uplink, the latter is 25 TC for nukies only"
-  - tweak: "Stechkin magazine boxes should now only be readable by Syndicate"

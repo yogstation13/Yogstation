@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "minebots no longer take atmospheric damage"
-  - tweak: "minebots can be repaired while in combat mode"
