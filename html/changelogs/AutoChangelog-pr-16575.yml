@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - tweak: "Bloodsuckers heal 1.6x faster in coffins and it doesn't cost them blood"
