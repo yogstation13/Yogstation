@@ -196,10 +196,14 @@
 		M.update_inv_hands()
 	
 /obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 	return TRUE
 	
 /obj/item/reagent_containers/syringe/embed_tick(embedde, part)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/syringe/epinephrine
