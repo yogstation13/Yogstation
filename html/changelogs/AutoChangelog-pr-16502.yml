@@ -1,0 +1,4 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - bugfix: "lore-based paperwork can now be printed by the paperwork printing software"
