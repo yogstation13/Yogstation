@@ -23,6 +23,10 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 20
+	)
+
 /datum/job/network_admin/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)

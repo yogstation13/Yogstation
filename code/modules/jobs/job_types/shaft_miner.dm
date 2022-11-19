@@ -22,6 +22,16 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 10,
+		/obj/item/grenade/plastic/miningcharge/lesser = 10,
+		/obj/item/card/mining_point_card = 10,
+		/obj/item/grenade/plastic/miningcharge = 5,
+		/obj/item/card/mining_point_card/thousand = 5,
+		/obj/item/grenade/plastic/miningcharge/mega = 1,
+		/obj/item/card/mining_point_card/fivethousand = 1
+	)
+
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
 	spawn_positions = 2
