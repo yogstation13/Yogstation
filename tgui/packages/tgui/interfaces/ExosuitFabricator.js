@@ -271,7 +271,7 @@ const Authorization = (props, context) => {
         <br />
         Combat ready designs {combat_parts_allowed ? "available" : "unavailable"}
         <br />
-        {auth_override ? "Authorization overriden by Head Personel\n" : ""}
+        {auth_override ? "Authorization overriden\n" : ""}
         {alert_level < 2 ? "" : "Credible threat to the station in effect\n"}
       </font>
     </Section>
