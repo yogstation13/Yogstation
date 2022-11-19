@@ -2,6 +2,51 @@
 /datum/team/ert
 	name = "Emergency Response Team"
 	var/datum/objective/mission //main mission
+	var/obj/item/ntuplink/uplink_type
+
+/datum/team/ert/roundend_report()
+	if(!show_roundend_report)
+		return
+
+	var/list/report = list()
+
+	report += span_header("[name]:")
+	report += "The [member_name]s were:"
+	report += printplayerlist(members)
+
+	var/win = FALSE
+	if(objectives.len)
+		report += span_header("ERT had following objectives:")
+		win = TRUE
+		var/objective_count = 1
+		for(var/datum/objective/objective in objectives)
+			if(objective.check_completion())
+				report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+			else
+				report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+				win = FALSE
+			objective_count++
+		if(win)
+			report += span_greentext("The [name] was successful!")
+		else
+			report += span_redtext("The [name] have failed!")
+
+	if(uplink_type)
+		var/purchases = ""
+		var/TC_uses = 0
+		LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
+		for(var/I in members)
+			var/datum/mind/ertmember = I
+			var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[ertmember.key]
+			if(H)
+				TC_uses += H.total_spent
+				purchases += H.generate_render(show_key = FALSE, currency = "WC")
+		report += "<br>"
+		report += "(ERT was equipped with [initial(uplink_type.name)]s and used [TC_uses] WC) [purchases]"
+		if(TC_uses == 0 && win)
+			report += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
+
+	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
 /datum/antagonist/ert
 	name = "Emergency Response Officer"
