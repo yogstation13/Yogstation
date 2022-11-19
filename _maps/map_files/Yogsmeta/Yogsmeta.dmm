@@ -2773,6 +2773,10 @@
 "ahc" = (
 /turf/open/floor/plasteel,
 /area/security/range)
+"ahf" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/closed/wall/r_wall,
+/area/science/mixing/chamber)
 "ahg" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -22738,11 +22742,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
-"bcv" = (
-/obj/structure/chair/office/light,
-/obj/effect/landmark/start/scientist,
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "bcz" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals - Station Entrance";
@@ -42582,17 +42581,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cum" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cun" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -42615,18 +42603,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cuB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cuD" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/storage/box/lights/mixed,
@@ -43956,16 +43932,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"cyD" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cyE" = (
 /obj/machinery/camera{
 	c_tag = "Toxins - Lab";
@@ -43994,19 +43960,6 @@
 	dir = 1
 	},
 /obj/machinery/meter,
-/turf/open/floor/plasteel,
-/area/science/mixing)
-"cyH" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cyI" = (
@@ -44535,14 +44488,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/aft)
-"cAG" = (
-/obj/structure/window/reinforced,
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cAH" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
@@ -44804,35 +44749,6 @@
 "cCs" = (
 /turf/template_noop,
 /area/template_noop)
-"cCt" = (
-/obj/structure/closet/bombcloset,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
-"cCu" = (
-/obj/item/assembly/signaler{
-	pixel_y = 8
-	},
-/obj/item/assembly/signaler{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/assembly/signaler{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/assembly/signaler{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cCv" = (
 /obj/item/transfer_valve{
 	pixel_x = -5
@@ -54087,6 +54003,18 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"fTc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "fTh" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
@@ -55424,6 +55352,12 @@
 /obj/effect/turf_decal/trimline/red/filled/corner,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"gNB" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "gOO" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -57135,6 +57069,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"hZS" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
+	dir = 1;
+	name = "toxins space injector"
+	},
+/turf/open/space,
+/area/science/mixing/chamber)
 "ibb" = (
 /obj/effect/spawner/lootdrop/maintenance{
 	lootcount = 3;
@@ -57394,6 +57336,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"ike" = (
+/obj/effect/turf_decal/stripes{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/binary/pump/on,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "ikT" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -59818,6 +59767,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jPA" = (
+/obj/structure/closet/bombcloset,
+/obj/effect/turf_decal/stripes,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "jPG" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel/dark,
@@ -61509,6 +61463,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"kTi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "kTm" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -62037,6 +62000,19 @@
 	dir = 1
 	},
 /area/crew_quarters/kitchen)
+"lhm" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "lij" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -64955,6 +64931,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"ngA" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "ngF" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -68285,6 +68265,28 @@
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"psi" = (
+/obj/item/assembly/signaler{
+	pixel_y = 8
+	},
+/obj/item/assembly/signaler{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/assembly/signaler{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/assembly/signaler{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "psG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -71804,6 +71806,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"rHC" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "rHE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -73307,6 +73319,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"sIp" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "sJK" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -78921,6 +78944,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"wuv" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "wuF" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -111473,8 +111504,8 @@ nHk
 bPe
 bPF
 cta
-cum
-cuB
+sIp
+fTc
 cFh
 cFh
 cKH
@@ -113266,10 +113297,10 @@ crQ
 cyz
 cFr
 crA
-cFr
-cCt
-wQA
-cEq
+kTi
+ike
+ahf
+hZS
 cEq
 cEq
 cIg
@@ -113523,15 +113554,15 @@ crQ
 cyA
 cBs
 crB
-cBs
-cCt
+gNB
+jPA
 wQA
 cEr
 cEr
 cEr
 cIg
 cIb
-bcv
+ngA
 cJS
 cIg
 bGP
@@ -113781,7 +113812,7 @@ crj
 fIp
 crB
 cBt
-cCu
+psi
 wQA
 cEs
 cFn
@@ -114291,7 +114322,7 @@ cuQ
 cdJ
 cwT
 crQ
-cyD
+rHC
 mom
 crB
 cBv
@@ -115319,7 +115350,7 @@ euk
 vsa
 rrV
 crR
-cyH
+lhm
 czx
 crG
 cBs
@@ -115835,7 +115866,7 @@ cqD
 crR
 cyJ
 czB
-cAG
+wuv
 crO
 cCC
 cDp

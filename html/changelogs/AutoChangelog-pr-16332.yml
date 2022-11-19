@@ -1,7 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed non-bloodsuckers not consistently showing that they have pale skin."
-  - bugfix: "Fixed some sorts of bloodsucking not reducing blood volume."
-  - bugfix: "Fixed some wines not always displaying their taste correctly."
-  - bugfix: "Fixed the King Goat plushie maybe not correctly eating his cabbage."
