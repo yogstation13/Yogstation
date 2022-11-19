@@ -107,3 +107,14 @@
 		/obj/item/stack/rods = 1
 	)
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/ashtray
+	name = "Ashtray"
+	result = /obj/item/ashtray
+	time = 2 SECONDS
+	reqs = list (
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/sheet/metal = 1
+	)
+	tools = list(/obj/item/weldingtool)
+	category = CAT_STRUCTURES
