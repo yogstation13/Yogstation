@@ -32,7 +32,8 @@
 			return
 
 		to_chat(user, "You address the \"letter\" to[names[A] == user ? "... yourself?" : " [names[A]]." ]")
-		initialize_for_recipient(names[A].mind)
+		var/datum/mind/recipient = names[A].mind
+		initialize_for_recipient(recipient)
 		letterbomb = new /obj/item/grenade/mailbomb(src)
 		contents = null
 		contents += letterbomb //overwrite the contents of the mail with a bomb
@@ -54,7 +55,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	active = 0
 	display_timer = 0
-	det_time = 2.5 SECONDS //better throw it quickly
+	det_time = 1.5 SECONDS //better throw it quickly
 
 /obj/item/grenade/mailbomb/forceMove(atom/destination)//the moment it gets moved from the mail to the player's hands it primes
 	. = ..()
