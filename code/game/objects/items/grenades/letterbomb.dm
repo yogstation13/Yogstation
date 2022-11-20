@@ -32,8 +32,8 @@
 			return
 
 		to_chat(user, "You address the \"letter\" to[names[A] == user ? "... yourself?" : " [names[A]]." ]")
-		var/datum/mind/recipient = names[A].mind
-		initialize_for_recipient(recipient)
+		var/mob/living/carbon/human/victim = names[A]
+		initialize_for_recipient(victim.mind)
 		letterbomb = new /obj/item/grenade/mailbomb(src)
 		contents = null
 		contents += letterbomb //overwrite the contents of the mail with a bomb
