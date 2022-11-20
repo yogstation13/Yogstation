@@ -318,9 +318,16 @@
 	icon_state = "drone_scout"
 	icon_living = "drone_scout"
 	icon_aggro = "drone_scout"
+	move_to_delay = 2
+	speed = 1
 	ranged_cooldown_time = 30
 	projectiletype = /obj/item/projectile/stalpike/weak
 	projectilesound = 'sound/weapons/ionrifle.ogg'
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/GiveTarget(new_target)
+	if(..())
+		if(isliving(target) && !target.Adjacent(targets_from) && ranged_cooldown <= world.time)
+			OpenFire(target)
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
