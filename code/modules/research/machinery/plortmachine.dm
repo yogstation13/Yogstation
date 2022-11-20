@@ -11,6 +11,7 @@
 	speed_process = TRUE
 	var/research_point_multiplier = 1
 	var/point_gain = 0
+	var/datum/techweb/linked_techweb
 
 /obj/machinery/plortrefinery/examine(mob/user)
 	. = ..()
@@ -37,13 +38,13 @@
 	if(!powered())
 		return
 
-	if(istype(O, /obj/item/slime_extract))
-		refine_plort(O)
-		qdel(O)
+	if(istype(W, /obj/item/slime_extract))
+		refine_plort(W)
+		qdel(W)
 		return
 
-/obj/machinery/plortrefinery/proc/refine_plort()
-	point_gain = plort_value * research_point_multiplier
+/obj/machinery/plortrefinery/proc/refine_plort(var/obj/item/slime_extract/W)
+	point_gain = W.plort_value * research_point_multiplier
 	linked_techweb.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
 
 
