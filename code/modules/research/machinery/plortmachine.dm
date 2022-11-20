@@ -9,25 +9,19 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	speed_process = TRUE
-	var/research_upgrade = 1
+	var/research_point_multiplier = 1
 	var/point_gain = 0
-
-/obj/machinery/plortrefinery/accept_check(obj/item/O)
-	if(istype(O, /obj/item/slime_extract))
-		return TRUE
-	else
-		return FALSE
 
 /obj/machinery/plortrefinery/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Converting cores at <b>[research_upgrade*100]%</b> their value.<span>"
+		. += "<span class='notice'>The status display reads: Selling cores at <b>[research_point_multiplier*100]%</b> their value.<span>"
 
 /obj/machinery/plortrefinery/RefreshParts()
-	var/research_upgrade_temp = 1
+	var/research_point_multiplier_temp = 1
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		research_upgrade_temp = 1 * M.rating
-	research_upgrade = research_upgrade_temp
+		research_point_multiplier_temp = 1 * M.rating
+	research_point_multiplier = research_point_multiplier_temp
 
 /obj/machinery/plortrefinery/attackby(obj/item/W, mob/user, params)
 	if(default_unfasten_wrench(user, W))
@@ -49,7 +43,7 @@
 		return
 
 /obj/machinery/plortrefinery/proc/refine_plort()
-	point_gain = plort_value * research_upgrade
+	point_gain = plort_value * research_point_multiplier
 	linked_techweb.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
 
 
