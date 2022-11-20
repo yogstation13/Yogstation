@@ -45,7 +45,7 @@
 
 /obj/machinery/plortrefinery/proc/refine_plort(var/obj/item/slime_extract/W)
 	point_gain = W.plort_value * research_point_multiplier
-	linked_techweb.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
 
 
 /obj/machinery/plortrefinery/Initialize()
