@@ -1,26 +1,43 @@
 /obj/item/mail/explosive
 	var/assigned = FALSE //whether or not the details of the mail have been added
-	var/letterbomb = /obj/item/grenade/mailbomb()
-
-/obj/item/mail/explosive/Initialize(mapload)
-	. = ..()
-	
-	var/atom/movable/target_atom = new letterbomb(src)
-	body.log_message("[key_name(body)] received [target_atom.name] in the mail ([target_good])", LOG_GAME)
+	var/letterbomb = /obj/item/grenade/mailbomb
 
 /obj/item/mail/explosive/attack_self(mob/user)
-	if(!assigned)
-		/*
-		what department are they in?
-		ACCOUNT_CIV = COLOR_WHITE,
-		ACCOUNT_ENG = COLOR_PALE_ORANGE,
-		ACCOUNT_SCI = COLOR_PALE_PURPLE_GRAY,
-		ACCOUNT_MED = COLOR_PALE_BLUE_GRAY,
-		ACCOUNT_SRV = COLOR_PALE_GREEN_GRAY,
-		ACCOUNT_CAR = COLOR_BEIGE,
-		ACCOUNT_SEC = COLOR_PALE_RED_GRAY,
-		color = 
-		*/
+	if(!assigned)//mixed pinpointer code with mailbox populate code to let people select the recipient of the mail
+		var/list/name_counts = list()
+		var/list/names = list()
+
+		for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+			if(!H.mind)
+				continue
+
+			var/crewmember_name = "Unknown"
+			if(H.wear_id)
+				var/obj/item/card/id/I = H.wear_id.GetID()
+				if(I && I.registered_name)
+					crewmember_name = I.registered_name
+
+			while(crewmember_name in name_counts)
+				name_counts[crewmember_name]++
+				crewmember_name = text("[] ([])", crewmember_name, name_counts[crewmember_name])
+			names[crewmember_name] = H
+			name_counts[crewmember_name] = 1
+
+		if(!names.len)
+			user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
+			return
+
+		var/A = input(user, "Person to track", "Pinpoint") in sortList(names)// pick who the mail is for
+		if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !ishuman(A))
+			return
+			
+		var/mob/living/carbon/human/victim = A
+		if(!victim.mind)
+			return
+
+		var/datum/mind/recipient = victim.mind
+		initialize_for_recipient(names[recipient])
+		contents = new letterbomb(src) //overwrite the contents of the mail with a bomb
 		assigned = TRUE
 	else
 		. = ..()
@@ -41,15 +58,15 @@
 	display_timer = 0
 	det_time = 1 SECONDS //better throw it quickly
 
-/obj/item/grenade/mailbomb/Initialize()
+/obj/item/grenade/mailbomb/pickup(mob/user)
 	. = ..()
-	if(ishuman(src.loc))
-		to_chat(src.loc, span_userdanger("Oh fuck!"))
-		preprime(src, FALSE, FALSE)	
+	if(ishuman(user))
+		to_chat(user, span_userdanger("Oh fuck!"))
+		preprime(user, FALSE, FALSE)	
 		return TRUE	//good luck~
 	else
 		visible_message(span_warning("[src] starts beeping!"))
-		preprime(finder, FALSE, FALSE)	
+		preprime(loc, FALSE, FALSE)	
 		return FALSE
 
 /obj/item/grenade/mailbomb/prime()
