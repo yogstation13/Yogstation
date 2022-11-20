@@ -60450,6 +60450,14 @@
 	},
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
+"klj" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Mix to waste";
+	on = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "kmH" = (
 /obj/machinery/door/airlock/external{
 	name = "Auxiliary Escape Airlock"
@@ -61402,7 +61410,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61457,7 +61465,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -62414,7 +62422,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 1;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -63997,6 +64005,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
+"mAo" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/bz,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "mAJ" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -65651,7 +65664,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 1;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -77747,6 +77760,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "vFr" = (
@@ -78085,10 +78101,10 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "vQi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/turf/closed/wall,
 /area/engine/atmos_distro)
 "vQl" = (
 /obj/structure/cable/yellow{
@@ -78465,7 +78481,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -79400,7 +79416,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80130,7 +80146,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -121727,7 +121743,7 @@ ccK
 wBy
 blF
 aaO
-aaO
+mAo
 bxc
 bLX
 apc
@@ -121984,7 +122000,7 @@ lRH
 bCi
 aiN
 aiN
-aiN
+mAo
 bxc
 bLY
 boM
@@ -125329,7 +125345,7 @@ nGc
 fOy
 rSb
 vOi
-vQi
+vOi
 vOi
 vOi
 qLB
@@ -125586,7 +125602,7 @@ pkQ
 uUY
 viE
 rcV
-uUY
+klj
 lOy
 ggy
 lpw
@@ -126100,7 +126116,7 @@ mlH
 lKl
 pSX
 isn
-isn
+vQi
 eEi
 cHd
 xuK
