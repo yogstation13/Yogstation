@@ -597,6 +597,7 @@
 #include "code\datums\mutations\cold.dm"
 #include "code\datums\mutations\heat_adaptation.dm"
 #include "code\datums\mutations\hulk.dm"
+#include "code\datums\mutations\juggernaut.dm"
 #include "code\datums\mutations\radioactive.dm"
 #include "code\datums\mutations\sight.dm"
 #include "code\datums\mutations\space_adaptation.dm"
