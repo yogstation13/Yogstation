@@ -49,9 +49,9 @@
 /turf/closed/wall/clockwork
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	explosion_block = 2
-	hardness = 6
-	slicing_duration = 100
+	explosion_block = 3
+	hardness = 5
+	slicing_duration = 150
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
@@ -89,6 +89,9 @@
 		color = "#960000"
 		animate(src, color = previouscolor, time = 0.8 SECONDS)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
+
+/turf/closed/wall/clockwork/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+	return FALSE
 
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)

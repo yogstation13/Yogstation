@@ -44,6 +44,7 @@
 #define VOICEBOX_DISABLED (1<<8) // The voicebox is currently turned off.
 #define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
 #define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
+#define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
 
 /// Flags for the organ_flags var on /obj/item/organ
 

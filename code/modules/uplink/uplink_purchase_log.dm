@@ -39,11 +39,11 @@ GLOBAL_LIST(uplink_purchase_logs_by_key)	//assoc key = /datum/uplink_purchase_lo
 /datum/uplink_purchase_log/proc/TotalTelecrystalsSpent()
 	. = total_spent
 
-/datum/uplink_purchase_log/proc/generate_render(show_key = TRUE)
+/datum/uplink_purchase_log/proc/generate_render(show_key = TRUE, currency = "TC")
 	. = ""
 	for(var/hash in purchase_log)
 		var/datum/uplink_purchase_entry/UPE = purchase_log[hash]
-		. += span_tooltip_container("\[[UPE.icon_b64][show_key?"([owner])":""]<span class='tooltip_hover'><b>[UPE.name]</b><br>[UPE.spent_cost ? "[UPE.spent_cost] TC" : "[UPE.base_cost] TC<br>(Surplus)"]<br>[UPE.desc]</span>[(UPE.amount_purchased > 1) ? "x[UPE.amount_purchased]" : ""]\]")
+		. += span_tooltip_container("\[[UPE.icon_b64][show_key?"([owner])":""]<span class='tooltip_hover'><b>[UPE.name]</b><br>[UPE.spent_cost ? "[UPE.spent_cost] [currency]" : "[UPE.base_cost] [currency]<br>(Surplus)"]<br>[UPE.desc]</span>[(UPE.amount_purchased > 1) ? "x[UPE.amount_purchased]" : ""]\]")
 
 /datum/uplink_purchase_log/proc/LogPurchase(atom/A, datum/uplink_item/uplink_item, spent_cost)
 	var/datum/uplink_purchase_entry/UPE

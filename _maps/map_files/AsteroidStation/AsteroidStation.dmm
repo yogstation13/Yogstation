@@ -459,12 +459,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine,
 /area/science/storage)
-"adt" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "adw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -15640,6 +15634,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"eqh" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "eqq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -34345,6 +34346,13 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation)
+"kNL" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "kNP" = (
 /obj/effect/overlay/palmtree_l{
 	pixel_x = 15;
@@ -63027,6 +63035,14 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
+"usj" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "usq" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
@@ -63980,13 +63996,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"uHk" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "uHm" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 30
@@ -65697,14 +65706,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"vrV" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "vrZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -99746,9 +99747,9 @@ tHP
 apG
 qXR
 iBk
-adt
+kNL
 ppv
-adt
+kNL
 qri
 aGU
 aKc
@@ -113069,8 +113070,8 @@ oHB
 wUw
 fpC
 rhV
-uHk
-vrV
+usj
+eqh
 asI
 amT
 jfX

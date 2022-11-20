@@ -974,7 +974,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	name = "Vxtvul Hammer"
-	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. \
+	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
 	force_wielded = 24 
@@ -1124,7 +1124,7 @@
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"
 	name = "pirate Vxtvul Hammer"
-	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
+	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
 /obj/item/twohanded/vxtvulhammer/pirate/update_icon()

@@ -249,7 +249,7 @@
 	minimum_players = 25
 	repeatable = FALSE
 
-/datum/dynamic_ruleset/latejoin/trim_candidates()
+/datum/dynamic_ruleset/latejoin/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/living/carbon/C in candidates)
 		if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))

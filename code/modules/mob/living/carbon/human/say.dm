@@ -65,17 +65,41 @@
 		return .
 
 	if(message_mods[MODE_HEADSET])
+		var/obj/item/radio/radio = locate() in src
+		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio) || (get_item_by_slot(SLOT_S_STORE) == radio))	
+			radio.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
 		if(ears)
 			ears.talk_into(src, message, , spans, language, message_mods)
-		return ITALICS | REDUCE_RANGE
+			return ITALICS | REDUCE_RANGE
+		for (var/obj/item/radio/intercom/I in view(1, null))
+			if(I)
+				I.talk_into(src, message, , spans, language, message_mods)
+				return ITALICS | REDUCE_RANGE
 	else if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT)
-		if(ears)
-			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-		return ITALICS | REDUCE_RANGE
-	else if(GLOB.radiochannels[message_mods[RADIO_EXTENSION]])
+		var/obj/item/radio/radio = locate() in src
+		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio) || (get_item_by_slot(SLOT_S_STORE) == radio))	
+			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
 		if(ears)
 			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
+		for (var/obj/item/radio/intercom/I in view(1, null))
+			if(I)
+				I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+				return ITALICS | REDUCE_RANGE
+	else if(GLOB.radiochannels[message_mods[RADIO_EXTENSION]])
+		var/obj/item/radio/radio = locate() in src
+		if((get_item_by_slot(SLOT_BELT) == radio) || (get_active_held_item() == radio) || (get_item_by_slot(SLOT_R_STORE) == radio) || (get_item_by_slot(SLOT_L_STORE) == radio) || (get_item_by_slot(SLOT_S_STORE) == radio))	
+			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		for (var/obj/item/radio/intercom/I in view(1, null))
+			if(I)
+				I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+				return ITALICS | REDUCE_RANGE
 
 	return 0
 
