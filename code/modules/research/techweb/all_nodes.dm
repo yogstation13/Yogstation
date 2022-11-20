@@ -925,6 +925,22 @@
 	design_ids = list("mech_diamond_drill")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/mech_rocket_fist
+	id = "mech_rocket_fist"
+	display_name = "Exosuit Weapon (DD-2 \"Atom Smasher\" Rocket Fist)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","weaponry")
+	design_ids = list("mech_rocket_fist")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_shortsword
+	id = "mech_shortsword"
+	display_name = "Exosuit Weapon (GD6 \"Jaeger\" Shortsword)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","adv_weaponry")
+	design_ids = list("mech_shortsword")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
 /////////////////////////Nanites/////////////////////////
 /datum/techweb_node/nanite_base
 	id = "nanite_base"
