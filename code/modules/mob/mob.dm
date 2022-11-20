@@ -1148,9 +1148,9 @@
 			if(ID.registered_name == oldname)
 				ID.registered_name = newname
 				ID.update_label()
-				if(istype(ID.loc, /obj/item/modular_computer))
-					var/obj/item/modular_computer/MC = ID.loc
-					MC.update_label()
+				if(istype(ID.loc, /obj/item/computer_hardware/card_slot))
+					var/obj/item/computer_hardware/card_slot/CS = ID.loc
+					CS.holder.update_label()
 				if(ID.registered_account?.account_holder == oldname)
 					ID.registered_account.account_holder = newname
 				if(!search_pda)
