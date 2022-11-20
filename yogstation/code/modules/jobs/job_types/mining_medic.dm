@@ -25,7 +25,8 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
-		/obj/item/extraction_pack = 5
+		/obj/item/extraction_pack = 5,
+		/obj/item/fulton_core = 1
 	)
 
 /datum/job/miningmedic/proc/EclipseStationChanges()
