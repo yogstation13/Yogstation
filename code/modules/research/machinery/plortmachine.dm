@@ -43,6 +43,13 @@
 		refine_plort(W)
 		qdel(W)
 		return
+	
+	if(istype(W, /obj/item/storage/bag/bio))
+		for(var/obj/G in W.contents)
+			if(istype(G, /obj/item/slime_extract()))
+				refine_plort(G)
+				qdel(G)
+				return
 
 /obj/machinery/plortrefinery/proc/refine_plort(var/obj/item/slime_extract/W)
 	point_gain = W.plort_value * research_point_multiplier
