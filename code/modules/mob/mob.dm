@@ -1150,7 +1150,7 @@
 				ID.update_label()
 				if(istype(ID.loc, /obj/item/computer_hardware/card_slot))
 					var/obj/item/computer_hardware/card_slot/CS = ID.loc
-					CS.holder.update_label()
+					CS.holder?.update_label()
 				if(ID.registered_account?.account_holder == oldname)
 					ID.registered_account.account_holder = newname
 				if(!search_pda)
