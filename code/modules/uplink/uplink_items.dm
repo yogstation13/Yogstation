@@ -2430,7 +2430,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Explosive letter"
 	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
 	item = /obj/item/mail/explosive
-	cost = 4
+	cost = 1
 	restricted_roles = list("Quartermaster","Cargo Technician")
 
 // Pointless
