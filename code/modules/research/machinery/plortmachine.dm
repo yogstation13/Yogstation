@@ -28,13 +28,6 @@
 	if(default_unfasten_wrench(user, W))
 		return
 
-	if(default_deconstruction_screwdriver(user, "ore_redemption-open", "ore_redemption", W))
-		updateUsrDialog()
-		return
-
-	if(default_deconstruction_crowbar(W))
-		return
-
 	if(!powered())
 		return
 
