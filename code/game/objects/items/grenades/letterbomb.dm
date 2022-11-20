@@ -11,11 +11,11 @@
 			if(!H.mind)
 				continue
 
-			var/crewmember_name = "Unknown"
-			if(H.wear_id)
-				var/obj/item/card/id/I = H.wear_id.GetID()
-				if(I && I.registered_name)
-					crewmember_name = I.registered_name
+			var/datum/job/this_job = SSjob.GetJob(H.mind.assigned_role)
+			if(!this_job || this_job.faction != "Station")//if they aren't someone that can normally get mail, they can't be a target
+				continue
+
+			var/crewmember_name = H.name
 
 			while(crewmember_name in name_counts)
 				name_counts[crewmember_name]++
@@ -27,17 +27,15 @@
 			user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
 			return
 
-		var/A = input(user, "Person to track", "Pinpoint") in sortList(names)// pick who the mail is for
-		if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !ishuman(A))
-			return
-			
-		var/mob/living/carbon/human/victim = A
-		if(!victim.mind)
+		var/A = input(user, "Recipient of mail", "Target Selector") in sortList(names)// pick who the mail is for
+		if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 			return
 
-		var/datum/mind/recipient = victim.mind
-		initialize_for_recipient(names[recipient])
-		contents = new letterbomb(src) //overwrite the contents of the mail with a bomb
+		to_chat(user, "You address the \"letter\" to[names[A] == user ? "... yourself?" : " [names[A]]." ]")
+		initialize_for_recipient(names[A].mind)
+		letterbomb = new /obj/item/grenade/mailbomb(src)
+		contents = null
+		contents += letterbomb //overwrite the contents of the mail with a bomb
 		assigned = TRUE
 	else
 		. = ..()
@@ -56,20 +54,22 @@
 	slot_flags = ITEM_SLOT_BELT
 	active = 0
 	display_timer = 0
-	det_time = 1 SECONDS //better throw it quickly
+	det_time = 2.5 SECONDS //better throw it quickly
 
-/obj/item/grenade/mailbomb/pickup(mob/user)
+/obj/item/grenade/mailbomb/forceMove(atom/destination)//the moment it gets moved from the mail to the player's hands it primes
 	. = ..()
-	if(ishuman(user))
-		to_chat(user, span_userdanger("Oh fuck!"))
-		preprime(user, FALSE, FALSE)	
-		return TRUE	//good luck~
+	if(ishuman(destination))
+		to_chat(destination, span_userdanger("Oh fuck!"))
+		preprime(destination, null, FALSE)	
 	else
 		visible_message(span_warning("[src] starts beeping!"))
-		preprime(loc, FALSE, FALSE)	
-		return FALSE
+		preprime(loc, null, FALSE)	
+
+/obj/item/grenade/mailbomb/preprime(mob/user, delayoverride, msg, volume)
+	. = ..()
+	icon_state = initial(icon_state)//there's no active icon for pipe bombs, so just force revert it to the default
 
 /obj/item/grenade/mailbomb/prime()
 	update_mob()
-	explosion(src.loc,-1,1,4)	// small explosion
+	explosion(src.loc,0,1,1)	//targeted, but if they can throw it away in time, little overall collateral damage
 	qdel(src)
