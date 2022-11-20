@@ -12,6 +12,7 @@
 	var/research_point_multiplier = 1
 	var/point_gain = 0
 	var/datum/techweb/linked_techweb
+	circuit = /obj/item/circuitboard/machine/plort
 
 /obj/machinery/plortrefinery/examine(mob/user)
 	. = ..()
@@ -26,6 +27,13 @@
 
 /obj/machinery/plortrefinery/attackby(obj/item/W, mob/user, params)
 	if(default_unfasten_wrench(user, W))
+		return
+
+	if(default_deconstruction_screwdriver(user, "ore_redemption-open", "ore_redemption", W))
+		updateUsrDialog()
+		return
+
+	if(default_deconstruction_crowbar(W))
 		return
 
 	if(!powered())
