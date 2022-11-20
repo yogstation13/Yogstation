@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart
 	name = "stalwart"
 	desc = "A graceful, floating construct. It emits a soft hum."
-	health = 2000
-	maxHealth = 2000
+	health = 2500
+	maxHealth = 2500
 	attacktext = "zaps"
 	attack_sound = 'sound/weapons/resonator_blast.ogg'
 	icon_state = "stalwart"
