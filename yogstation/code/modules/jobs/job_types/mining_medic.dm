@@ -24,7 +24,8 @@
 	changed_maps = list("EclipseStation")
 
 	mail_goodies = list(
-		/obj/item/reagent_containers/autoinjector/medipen/survival = 30
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
+		/obj/item/extraction_pack = 5
 	)
 
 /datum/job/miningmedic/proc/EclipseStationChanges()
