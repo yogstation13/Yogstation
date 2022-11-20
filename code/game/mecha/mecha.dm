@@ -1227,7 +1227,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
 	return FALSE
 
-// Is the occupant wearing a pilot suit or jacket? if so, how much does it affect
+// Checks the pilot and their clothing for mech speed buffs
 /obj/mecha/proc/check_eva()
 	var/evaNum = 1
 	if(ishuman(occupant))
