@@ -383,6 +383,7 @@
 
 /obj/effect/anomaly/radiation/detonate()
 	INVOKE_ASYNC(src, .proc/makegoat)
+	radiation_pulse(src, 1000, 2)
 	var/turf/T = get_turf(src)
 	for(var/i = 1 to 72)
 		var/angle = i * 10
