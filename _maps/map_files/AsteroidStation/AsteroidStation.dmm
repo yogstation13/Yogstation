@@ -15634,6 +15634,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"eqh" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "eqq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -63028,6 +63035,14 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
+"usj" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "usq" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
@@ -63981,13 +63996,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"uHk" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "uHm" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 30
@@ -65698,14 +65706,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"vrV" = (
-/obj/machinery/portable_atmospherics/canister,
-/obj/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "vrZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -113070,8 +113070,8 @@ oHB
 wUw
 fpC
 rhV
-uHk
-vrV
+usj
+eqh
 asI
 amT
 jfX
