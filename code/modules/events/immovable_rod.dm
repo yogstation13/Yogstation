@@ -56,6 +56,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	var/notify = TRUE
 	var/atom/special_target
 	var/notdebris = FALSE
+	movement_type = UNSTOPPABLE
 
 /obj/effect/immovablerod/New(atom/start, atom/end, aimed_at)
 	..()
