@@ -955,7 +955,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Fancy PDA:</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[GLOB.donor_pdas[donor_pda]]</a><BR>"
 				dat += "<b>Purrbation (Humans only)</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? (purrbation > 1 ? "Fox" : "Cat") : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
@@ -1353,7 +1353,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("pda")
 					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
-					purrbation = !purrbation
+					purrbation = (purrbation + 1) % 3
 		else
 			message_admins("EXPLOIT \[donor\]: [user] tried to access donor only functions (as a non-donor). Attempt made on \"[href_list["preference"]]\" -> \"[href_list["task"]]\".")
 	// yogs end

@@ -8,8 +8,12 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.purrbation)
-		purrbation_toggle_onlyhumans(H)
+	switch(C.prefs.purrbation)
+		if(PURRBATION_CAT)
+			purrbation_toggle_onlyhumans(H)
+		if(PURRBATION_FOX)
+			if(ishumanbasic(H))
+				H.set_species(/datum/species/human/vulpine)
 
 	if(C.prefs.donor_hat)
 		var/type = C.prefs.donor_hat
@@ -110,10 +114,10 @@
 
 			if(!bar_sanitize)
 				choice = "Random"
-		
+
 		if(choice == "Random")
 			choice = pick(GLOB.potential_box_bars)
-		
+
 		var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
 		if(!template)

@@ -105,7 +105,7 @@
 		purrbation_remove(H, silent)
 		. = FALSE
 
-/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants
+/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants //accidental my ASS they knew what they signed up for and they LIKED IT
 	if(!ishumanbasic(H))
 		return
 	if(!iscatperson(H))
@@ -169,7 +169,7 @@
 	. = ..()
 	if((H.client && H.client.prefs.mood_tail_wagging) && !is_wagging_tail() && H.mood_enabled)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
-		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2))
 			return
 		var/chance = 0
 		switch(mood.shown_mood)

@@ -537,7 +537,6 @@ ROUNDSTART_RACES preternis
 ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 ROUNDSTART_RACES ipc
-ROUNDSTART_RACES vulpine //REMOVE THIS WHEN DONE TESTING
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal

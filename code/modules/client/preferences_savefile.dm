@@ -151,7 +151,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		preferred_map = null
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
-		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -225,7 +224,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["show_credits"], show_credits)
 	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
 	READ_FILE(S["balloon_alerts"] , disable_balloon_alerts)
-	
+
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
 	READ_FILE(S["donor_hat"], donor_hat)
@@ -250,7 +249,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	UI_style			= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
 	hotkeys				= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
 	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
-	max_chat_length 	= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))	
+	max_chat_length 	= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes		= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 	tgui_fancy			= sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
@@ -300,7 +299,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
-	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
+	purrbation      = sanitize_integer(purrbation, 0, 2, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
@@ -379,7 +378,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["purrbation"], purrbation)
 
 	WRITE_FILE(S["accent"], accent) // Accents, too!
-	
+
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
 
