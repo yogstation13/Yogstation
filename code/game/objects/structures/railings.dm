@@ -81,7 +81,7 @@
 	return TRUE
 
 /obj/structure/railing/CheckExit(atom/movable/O, turf/target)
-	if (istype(mover, /obj/effect/immovablerod))
+	if (istype(O, /obj/effect/immovablerod))
 		return TRUE
 	if(get_dir(O.loc, target) == dir)
 		return FALSE
