@@ -57,6 +57,7 @@
 #endif
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
+#define DEMO_WRITER (world.system_type == MS_WINDOWS ? "demo-writer.dll" : "libdemo-writer.so")
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 514
