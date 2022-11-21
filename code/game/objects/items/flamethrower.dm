@@ -249,7 +249,8 @@
 		STOP_PROCESSING(SSobj,src)
 		return FALSE
 
-	if(isspaceturf(target)) // No air to hold the flame
+	var/datum/gas_mixture/turf_air = target.return_air()
+	if(turf_air.get_moles(/datum/gas/oxygen) < 5) // No air to hold the flame
 		return TRUE
 
 	//Burn it
