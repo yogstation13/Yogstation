@@ -11,6 +11,7 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
+	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
@@ -129,6 +130,8 @@
 	status = ORGAN_ROBOTIC
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc/emp_act(severity)
+	if(prob(10))
+		return
 	to_chat(owner, "<span class='warning'>Alert: Your Substance Processor has been damaged. An internal chemical leak is affecting performance.</span>")
 	switch(severity)
 		if(1)

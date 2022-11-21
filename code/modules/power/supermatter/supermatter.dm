@@ -132,7 +132,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/power = 0
 
 	/// Yogs - radiation modifier. After all power calculations, multiplies the intensity of the rad pulse by this value. Used for making engines more hugbox.
-	var/radmodifier = 1.1
+	var/radmodifier = 1.5
 
 	/// Time in deciseconds since the last sent warning
 	var/lastwarning = 0
@@ -567,10 +567,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(l.hallucination, 0, 200)
 
-	for(var/mob/living/l in range(src, round((power / 100) ** 0.25)))
-		var/rads = (power / 10) * sqrt( 1 / max(get_dist(l, src),1) )
-		l.rad_act(rads)
-
 	power -= ((power/500)**3) * powerloss_inhibitor
 
 	if(power > POWER_PENALTY_THRESHOLD || damage > damage_penalty_point)
@@ -942,6 +938,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if (moveable)
 		default_unfasten_wrench(user, tool, time = 20)
 	return TRUE
+
+/obj/machinery/power/supermatter_crystal/Bump(atom/A)
+	if (ismovable(A))
+		var/atom/movable/AM = A
+		Bumped(AM)
 
 /obj/machinery/power/supermatter_crystal/Bumped(atom/movable/AM)
 	if(isliving(AM))

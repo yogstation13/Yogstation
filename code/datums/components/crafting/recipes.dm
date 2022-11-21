@@ -598,6 +598,16 @@
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
+/datum/crafting_recipe/maint_pumpup
+	name = "Maintenance Pump-Up"
+	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
+	tools = list(TOOL_SCREWDRIVER)
+	time = 4 SECONDS
+	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
+				/obj/item/reagent_containers/syringe = 1,
+				/datum/reagent/drug/pumpup = 15)
+	category = CAT_MEDICAL
+
 /datum/crafting_recipe/refill_epinephrine_medipen
 	name = "Refill Epinephrine Medipen"
 	result = /obj/item/reagent_containers/autoinjector/medipen
@@ -612,6 +622,14 @@
 	time = 4 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
 				/datum/reagent/medicine/atropine = 10)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/refill_maint_pumpup
+	name = "Refill Maintenance Pump-Up"
+	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
+	time = 4 SECONDS
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/mothplush
@@ -688,3 +706,11 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 4,
 				/obj/item/stack/medical/suture = 1) //for reinforcement, so its not just...cloth.
 	category = CAT_MEDICAL
+
+/datum/crafting_recipe/makeshiftsuture/tribal
+	name = "Sinew Suture"
+	result = /obj/item/stack/medical/suture/emergency/makeshift/tribal
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/sinew = 6,
+				/datum/reagent/consumable/tinlux = 1)
+	category = CAT_PRIMAL

@@ -302,7 +302,7 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	
+
 	var/random_sound = SSstation.announcer.get_rand_welcome_sound()
 	var/default_sound = SSstation.default_announcer.get_rand_welcome_sound()
 	if(istype(SSstation.announcer, /datum/centcom_announcer/default))
@@ -441,7 +441,7 @@ SUBSYSTEM_DEF(ticker)
 			qdel(player)
 			living.notransform = TRUE
 			if(living.client)
-				var/obj/screen/splash/S = new(living.client, TRUE)
+				var/atom/movable/screen/splash/S = new(living.client, TRUE)
 				S.Fade(TRUE)
 				living.client.init_verbs()
 			livings += living

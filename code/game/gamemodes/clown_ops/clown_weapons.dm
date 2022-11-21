@@ -119,6 +119,7 @@
 	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
 	throw_speed = 1
 	clumsy_check = 0
+	icon_state = "bananaeshield1"
 	base_icon_state = "bananaeshield"
 	force = 0
 	throwforce = 0

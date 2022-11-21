@@ -26,6 +26,12 @@
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
+	mail_goodies = list(
+		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
+		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10
+	)
+
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
 

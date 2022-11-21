@@ -34,7 +34,7 @@
 /datum/antagonist/brainwashed/greet()
 	to_chat(owner, span_warning("Your mind reels as it begins focusing on a single purpose..."))
 	to_chat(owner, "<big><span class='warning'><b>Follow the Directives, at any cost!</b></span></big>")
-	owner.current.throw_alert("brainwash_notif", /obj/screen/alert/brainwashed)
+	owner.current.throw_alert("brainwash_notif", /atom/movable/screen/alert/brainwashed)
 	SEND_SOUND(owner.current, sound('sound/ambience/ambimystery.ogg'))
 	SEND_SOUND(owner.current, sound('sound/effects/glassbr1.ogg'))
 	var/i = 1

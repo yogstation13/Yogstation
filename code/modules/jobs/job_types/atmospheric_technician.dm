@@ -21,6 +21,14 @@
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
+	mail_goodies = list(
+		///obj/item/rpd_upgrade/unwrench = 30,
+		/obj/item/grenade/gas_crystal/crystal_foam = 10,
+		/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 10,
+		/obj/item/grenade/gas_crystal/healium_crystal = 10,
+		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/atmos/proc/OmegaStationChanges()

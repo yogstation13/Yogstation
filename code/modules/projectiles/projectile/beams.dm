@@ -45,12 +45,12 @@
 	impact_type = /obj/effect/projectile/impact/heavy_laser
 
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.IgniteMob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
+	return ..()
 
 /obj/item/projectile/beam/weak
 	damage = 15
@@ -150,12 +150,12 @@
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/item/projectile/beam/lasertag/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(ishuman(target))
+	if((blocked != 100) && ishuman(target)) //Anyone who knows the cheaters that held up objects to block their tag position knows that adding the block check to this is valid
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit))
 			if(M.wear_suit.type in suit_types)
 				M.adjustStaminaLoss(34)
+	return ..()
 
 /obj/item/projectile/beam/lasertag/redtag
 	icon_state = "laser"

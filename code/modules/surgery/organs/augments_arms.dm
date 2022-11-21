@@ -202,7 +202,7 @@
 /obj/item/organ/cyberimp/arm/toolset/Destroy()
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
-	
+
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
@@ -412,4 +412,10 @@
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
-	zone = "l_arm" 
+	zone = "l_arm"
+
+/obj/item/organ/cyberimp/arm/flash/rev
+	name = "revolutionary brainwashing implant"
+	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
+	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
+	syndicate_implant = TRUE

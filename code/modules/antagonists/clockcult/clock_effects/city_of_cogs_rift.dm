@@ -70,7 +70,7 @@
 	do_sparks(5, TRUE, AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
-		L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+		L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 		L.clear_fullscreen("flash", 5)
 		var/obj/item/transfer_valve/TTV = locate() in L.GetAllContents()
 		if(TTV)

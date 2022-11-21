@@ -5,16 +5,16 @@
 /obj/item/modular_computer
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
-	
+
 	flags_1 = RAD_PROTECT_CONTENTS_1
 	/// Whether the computer is turned on.
-	var/enabled = FALSE	
-	/// Whether the computer is active/opened/it's screen is on.									
+	var/enabled = FALSE
+	/// Whether the computer is active/opened/it's screen is on.
 	var/screen_on = TRUE
-	/// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.								
-	var/device_theme = "ntos"	
-	/// A currently active program running on the computer.							
-	var/datum/computer_file/program/active_program = null	
+	/// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
+	var/device_theme = "ntos"
+	/// A currently active program running on the computer.
+	var/datum/computer_file/program/active_program = null
 	// A flag that describes this device type
 	var/hardware_flag = 0
 	var/last_power_usage = 0
@@ -38,18 +38,18 @@
 	var/icon_state_unpowered = null
 	/// Icon state when the computer is turned on.
 	var/icon_state_powered = null
-	/// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.	
+	/// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
 	var/icon_state_menu = "menu"
 	/// If we should update the name of the computer with the name and job of the stored ID.
 	var/id_rename = FALSE
-	/// Icon state overlay when the computer is turned off, but not out of power.										
+	/// Icon state overlay when the computer is turned off, but not out of power.
 	var/icon_state_screensaver = "standby"
-	/// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.					
+	/// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
 	var/max_hardware_size = 0
-	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.								
+	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/steel_sheet_cost = 5
-	/// What set of icons should be used for program overlays.								
-	var/overlay_skin = null									
+	/// What set of icons should be used for program overlays.
+	var/overlay_skin = null
 
 	integrity_failure = 50
 	max_integrity = 100
@@ -63,16 +63,16 @@
 	var/max_bays = 0
 	/// Idle programs on background. They still receive process calls but can't be interacted with.
 	var/list/idle_threads
-	/// Object that represents our computer. It's used for Adjacent() and UI visibility checks.							
+	/// Object that represents our computer. It's used for Adjacent() and UI visibility checks.
 	var/obj/physical = null
-	///If the computer has a flashlight/LED light/what-have-you installed									
+	///If the computer has a flashlight/LED light/what-have-you installed
 	var/has_light = FALSE
-	///If that light is enabled						
+	///If that light is enabled
 	var/light_on = FALSE
-	///The brightness of that light						
+	///The brightness of that light
 	var/comp_light_luminosity = 3
-	///The color of that light				
-	var/comp_light_color			
+	///The color of that light
+	var/comp_light_color
 
 	// Preset Stuff
 	var/list/starting_components = list()
@@ -112,15 +112,15 @@
 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
 		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
-		return 
+		return
 	return ..()
 
 /obj/item/modular_computer/pre_attack(atom/A, mob/living/user, params)
 	if(active_program?.clickon(A, user, params))
 		playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		return 
+		return
 	return ..()
-	 
+
 /**
  * Plays a sound through the computer's speakers.
  */
@@ -206,7 +206,7 @@
 
 /obj/item/modular_computer/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && usr.canUseTopic(src, BE_CLOSE))
+	if((!istype(over_object, /atom/movable/screen)) && usr.canUseTopic(src, BE_CLOSE))
 		return attack_self(M)
 	return ..()
 

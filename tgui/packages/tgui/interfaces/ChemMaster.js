@@ -233,6 +233,10 @@ const PackagingControls = (props, context) => {
     setBottleAmount,
   ] = useSharedState(context, 'bottleAmount', 1);
   const [
+    gummyAmount,
+    setGummyAmount,
+  ] = useSharedState(context, 'gummyAmount', 1);
+  const [
     packAmount,
     setPackAmount,
   ] = useSharedState(context, 'packAmount', 1);
@@ -294,6 +298,32 @@ const PackagingControls = (props, context) => {
           onCreate={() => act('create', {
             type: 'bottle',
             amount: bottleAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!condi && (
+        <PackagingControlsItem
+          label="Gummy Bears"
+          amount={gummyAmount}
+          amountUnit="gummies"
+          sideNote="max 15u"
+          onChangeAmount={(e, value) => setGummyAmount(value)}
+          onCreate={() => act('create', {
+            type: 'gummy',
+            amount: gummyAmount,
+            volume: 'auto',
+          })} />
+      )}
+      {!!condi && (
+        <PackagingControlsItem
+          label="Gummy Bears"
+          amount={gummyAmount}
+          amountUnit="gummies"
+          sideNote="max 30u"
+          onChangeAmount={(e, value) => setGummyAmount(value)}
+          onCreate={() => act('create', {
+            type: 'gummy',
+            amount: gummyAmount,
             volume: 'auto',
           })} />
       )}

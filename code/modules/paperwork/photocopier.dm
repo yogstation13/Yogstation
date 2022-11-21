@@ -151,7 +151,7 @@
 			if(tempAI.aicamera.stored.len == 0)
 				to_chat(usr, span_boldannounce("No images saved"))
 				return
-			var/datum/picture/selection = tempAI.aicamera.selectpicture(usr)
+			var/datum/picture/selection = tempAI.aicamera?.selectpicture(usr)
 			var/obj/item/photo/photo = new(loc, selection)
 			photo.pixel_x = rand(-10, 10)
 			photo.pixel_y = rand(-10, 10)

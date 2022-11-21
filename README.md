@@ -35,7 +35,7 @@ code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
-## The Yogstation codebase recommends compiling using version [514.1583](https://www.byond.com/download/build/514/514.1583_byond.exe) and may potentially NOT work on newer or older versions.
+## The Yogstation codebase recommends compiling using version [514.1589](https://www.byond.com/download/build/514/514.1589_byond.exe) and may potentially NOT work on newer or older versions.
 
 ## :exclamation: How to compile :exclamation:
 
@@ -117,7 +117,6 @@ Yogstation currently comes equipped with the following maps.
 * [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
 * [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
 * [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
-
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
 

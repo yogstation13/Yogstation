@@ -275,7 +275,7 @@
 	if(final)
 		playsound(origin, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 		remote_eye.setLoc(get_turf(final))
-		C.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+		C.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 		C.clear_fullscreen("flash", 3) //Shorter flash than normal since it's an ~~advanced~~ console!
 	else
 		playsound(origin, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)
@@ -360,6 +360,11 @@
 	if(!AR.clockwork_warp_allowed)
 		to_chat(user, "[span_sevtug_small("[AR.clockwork_warp_fail]")]")
 		return
+
+	if (user.w_uniform && user.w_uniform.name == initial(user.w_uniform.name))
+		if (alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", "Yes", "No") == "No" )
+			return
+	
 	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
 		return
 	do_sparks(5, TRUE, user)

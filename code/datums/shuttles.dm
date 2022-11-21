@@ -128,7 +128,7 @@
 
 /datum/map_template/shuttle/arrival
 	port_id = "arrival"
-
+	movement_force = list("KNOCKDOWN" = 2, "THROW" = 2)
 /datum/map_template/shuttle/infiltrator
 	port_id = "infiltrator"
 

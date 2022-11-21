@@ -29,6 +29,16 @@
 
 	changed_maps = list("YogsPubby", "OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/fancy/cigarettes = 15,
+		/obj/item/storage/box/handcuffs = 10,
+		/obj/item/storage/box/teargas = 10,
+		/obj/item/storage/box/flashbangs = 10,
+		/obj/item/storage/box/rubbershot = 10,
+		/obj/effect/spawner/lootdrop/techshell = 10,
+		/obj/item/storage/box/lethalshot = 5
+	)
+
 /datum/job/warden/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 

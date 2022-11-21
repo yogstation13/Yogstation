@@ -26,6 +26,17 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
+	mail_goodies = list(
+		///obj/item/storage/fancy/cigarettes = 25,
+		/obj/item/ammo_box/c38 = 25,
+		///obj/item/ammo_box/c38/dumdum = 5,
+		/obj/item/ammo_box/c38/hotshot = 5,
+		/obj/item/ammo_box/c38/iceblox = 5,
+		///obj/item/ammo_box/c38/match = 5,
+		/obj/item/ammo_box/tra32 = 5,
+		///obj/item/storage/belt/holster/detective/full = 1
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/detective/proc/EclipseStationChanges()

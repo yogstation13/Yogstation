@@ -311,8 +311,39 @@
 	knife_y_offset = 12
 	actions_types = list() //So you can't avoid the fire_delay
 	mag_display = TRUE
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_BULKY
+
+// K-41s DMR //
+
+/obj/item/gun/ballistic/automatic/k41s
+	name = "\improper K-41s DMR"
+	desc = "A sleek, urban camouflage rifle that fires powerful 7.62mm rounds. Comes with a mid-range scope."
+	icon_state = "dmr"
+	item_state = "dmr"
+	fire_sound = "sound/weapons/dmrshot.ogg"
+	fire_sound_volume = 70 //Might be too loud
+	vary_fire_sound = FALSE
+	load_sound = "sound/weapons/rifleload.ogg"
+	load_empty_sound = "sound/weapons/rifleload.ogg"
+	rack_sound = "sound/weapons/riflerack.ogg"
+	eject_sound = "sound/weapons/rifleunload.ogg"
+	eject_empty_sound = "sound/weapons/rifleunload.ogg"
+	mag_type = /obj/item/ammo_box/magazine/ks762
+	fire_delay = 5 //Can fire slightly faster than the LWT-650
+	burst_size = 1
+	can_suppress = FALSE
+	zoomable = TRUE
+	zoom_amt = 5 //Not as significant a scope as the sniper
+	actions_types = list() //So you can't avoid the fire_delay
+	pin = /obj/item/firing_pin/implant/pindicate
+	mag_display = TRUE
+	empty_indicator = TRUE
+	weapon_weight = WEAPON_MEDIUM
+	w_class = WEIGHT_CLASS_NORMAL //Just stuff it in the bag
+
+/obj/item/gun/ballistic/automatic/k41s/unrestricted
+	pin = /obj/item/firing_pin
 
 // SNIPER //
 

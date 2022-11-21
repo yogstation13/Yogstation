@@ -35,16 +35,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //31 TCish
+		if("bloodyspai") //32 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
-			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade(src) //1 TC, if even. 20 force melee is good but it's no edagger
+			new /obj/item/switchblade/backstab(src) //5 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
@@ -147,16 +145,19 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
-		if("bond")
-			new /obj/item/gun/ballistic/automatic/pistol(src)
-			new /obj/item/suppressor(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/clothing/under/chameleon/syndicate(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/reagent_containers/syringe/stimulants(src)
-			new /obj/item/reagent_containers/glass/rag(src)
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+		if("v") //Big Boss. Total of ~28 TC.
+			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
+			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
+			new /obj/item/clothing/shoes/combat(src) //Drip is essential. Free
+			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 4 TC
+			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
+			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
+			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
+			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
+			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
+			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
+			new /obj/item/lighter(src) //Need to light the cigar
 
 		if("oddjob") //Total TC value of 27ish TC
 			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
@@ -182,6 +183,7 @@
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
 			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
 			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
+			new /obj/item/clothing/head/wizard/black(src) //Works as a fix for the robe check now until I think of something new
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
 			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
 			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
@@ -526,14 +528,14 @@
 	new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo
-	name = "10mm magazine box"
+	real_name = "10mm magazine box"
 
 /obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
-	name = "10mm soporific magazine box"
+	real_name = "10mm soporific magazine box"
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
 	for(var/i in 1 to 2)
@@ -664,3 +666,25 @@
 /obj/item/storage/box/official_posters/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/poster/random_official(src)
+
+/obj/item/storage/box/syndie_kit/augmentation
+	real_name = "augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
+	new /obj/item/autosurgeon/limb/head/robot(src)
+	new /obj/item/autosurgeon/limb/chest/robot(src)
+	new /obj/item/autosurgeon/limb/l_arm/robot(src)
+	new /obj/item/autosurgeon/limb/r_arm/robot(src)
+	new /obj/item/autosurgeon/limb/l_leg/robot(src)
+	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+
+/obj/item/storage/box/syndie_kit/augmentation/superior
+	real_name = "superior augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/superior/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/upgraded_cyberheart(src)
+	new /obj/item/autosurgeon/upgraded_cyberliver(src)
+	new /obj/item/autosurgeon/upgraded_cyberlungs(src)
+	new /obj/item/autosurgeon/upgraded_cyberstomach(src)
+	new /obj/item/implanter/empshield(src)

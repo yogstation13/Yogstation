@@ -167,23 +167,22 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(NUTRITION_LEVEL_FED to INFINITY)
 			H.clear_alert("nutrition")
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-			H.throw_alert("nutrition", /obj/screen/alert/lowcell, 2)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
 		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /obj/screen/alert/lowcell, 3)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
 		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /obj/screen/alert/emptycell)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		return ..()
-	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
 	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
 	return
 
-/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)	
+/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
 	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
 	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
@@ -207,6 +206,14 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
+		H.blood_in_hands = 0
+		H.wash(CLEAN_TYPE_BLOOD)
+		to_chat(H,"You absorb the blood covering you to heal.")
+		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
+		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	if(C == user)
@@ -219,17 +226,53 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to shove [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to shove [O] down [C]'s port!"))
-	
+
 /datum/species/ipc/drink_text(obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] pours some of [O] into their port."), span_notice("You pour some of [O] down your input port."))
 	else
 		C.visible_message(span_danger("[user] pours some of [O] into [C]'s port."), span_userdanger("[user] pours some of [O]'s into [C]'s port."))
-	
+
 /datum/species/ipc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
+
+/*------------------------
+
+ipc martial arts stuff
+
+--------------------------*/
+/datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.reagents.del_reagent(chem.type)//only one big tick of healing
+
+
+/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.in_throw_mode)//if countering the emp
+			add_empproof(H)
+			throw_lightning(H)
+		else//if just getting hit
+			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+
+/datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
+	siemens_coeff = 0
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	siemens_coeff = initial(siemens_coeff)
+
+/datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
+	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+
+/datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
+	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
+	if(ipcmartial)
+		ipcmartial.Destroy()
 
 #undef CONCIOUSAY

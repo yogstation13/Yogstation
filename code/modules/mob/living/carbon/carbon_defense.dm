@@ -68,7 +68,7 @@
 						update_inv_hands()
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
-						I.transform = initial(I.transform)	
+						I.transform = initial(I.transform)
 						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
 						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
 						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
@@ -101,7 +101,7 @@
 	if(deal_damage)
 		body_part.receive_damage(embedding.w_class*embedding.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
 	if(!silent)
-		throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+		throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 		visible_message(span_danger("[embedding] embeds itself in [src]'s [body_part.name]!"), span_userdanger("[embedding] embeds itself in your [body_part.name]!"))
 	return TRUE
 
@@ -127,7 +127,7 @@
 	return TRUE
 
 /**
-  *	Called when a mob tries to remove an embedded object from this carbon 
+  *	Called when a mob tries to remove an embedded object from this carbon
   */
 /mob/living/carbon/proc/try_remove_embedded_object(mob/user)
 	var/list/choice_list = list()
@@ -146,7 +146,8 @@
 	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
 		return
 	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class
-	body_part.receive_damage(damage_amount, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+	body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+	body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
 	if(remove_embedded_object(choice, get_turf(src), damage_amount))
 		user.put_in_hands(choice)
 		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))
@@ -331,7 +332,7 @@
 
 /mob/living/carbon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & EMP_PROTECT_SELF)
 		return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X

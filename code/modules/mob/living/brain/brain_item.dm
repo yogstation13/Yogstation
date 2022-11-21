@@ -258,6 +258,8 @@
 	organ_flags = ORGAN_SYNTHETIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
+	if(prob(25))
+		return
 	switch(severity)
 		if(1)
 			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)

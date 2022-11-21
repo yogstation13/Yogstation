@@ -57,7 +57,10 @@
 /obj/item/reagent_containers/food/snacks/popcorn
 	name = "popcorn"
 	desc = "Now let's find some cinema."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon_state = "popcorn"
+	item_state = "popcorn"
 	trash = /obj/item/trash/popcorn
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0

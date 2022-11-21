@@ -51,7 +51,8 @@
 	var/atom/movable/pulled
 
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
-	return (destination.get_lumcount() <= SHADOWWALK_THRESHOLD ? MOVE_ALLOWED : DEFER_MOVE)
+	var/turf/closed/mineral/obstruction = destination
+	return ((destination.get_lumcount() <= SHADOWWALK_THRESHOLD && !istype(obstruction)) ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
 	if(user.pulling)

@@ -108,7 +108,7 @@
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
-//Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
+//Slime people are able to split like slimes, retaining a single mind that can swap between bodies.
 
 /datum/species/jelly/slime
 	name = "Slimeperson"
@@ -147,20 +147,6 @@
 		else
 			bodies |= C
 
-/datum/species/jelly/slime/spec_death(gibbed, mob/living/carbon/human/H)
-	if(slime_split)
-		if(!H.mind || !H.mind.active)
-			return
-
-		var/list/available_bodies = (bodies - H)
-		for(var/mob/living/L in available_bodies)
-			if(!swap_body.can_swap(L))
-				available_bodies -= L
-
-		if(!LAZYLEN(available_bodies))
-			return
-
-		swap_body.swap_to_dupe(H.mind, pick(available_bodies))
 
 //If you're cloned you get your body pool back
 /datum/species/jelly/slime/copy_properties_from(datum/species/jelly/slime/old_species)
@@ -483,7 +469,7 @@
 		button_icon_state = "slimeeject"
 	..()
 
-/datum/action/innate/integrate_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/integrate_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
@@ -537,7 +523,7 @@
 			return TRUE
 		return FALSE
 
-/datum/action/innate/use_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))

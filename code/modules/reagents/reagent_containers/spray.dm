@@ -220,7 +220,7 @@
 	volume = 60
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red = 20) //red dye)
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red/pepperspray = 20) //red dye)
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null

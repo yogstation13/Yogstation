@@ -254,7 +254,7 @@
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)
 		return
-	var/obj/screen/counter = owner.current.hud_used.psi_counter
+	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[psi]</font></div>"
 
 /datum/antagonist/darkspawn/proc/regain_abilities()

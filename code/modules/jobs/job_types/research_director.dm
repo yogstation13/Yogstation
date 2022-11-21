@@ -34,6 +34,12 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/monkeycubes = 30,
+		///obj/item/circuitboard/machine/sleeper/party = 3,
+		/obj/item/borg/upgrade/ai = 2
+	)
+
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
 
