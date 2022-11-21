@@ -598,7 +598,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
 		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
 		"https://www.youtube.com/watch?v=imjMjnczqkU",	// Pete Gold - Ive Been a Bad Boy
-		"https://www.youtube.com/watch?v=aAkMkVFwAoo"   //Mariah Carey, All I Want For Christmas Is You
+		"https://www.youtube.com/watch?v=aAkMkVFwAoo",   //Mariah Carey, All I Want For Christmas Is You
+		"https://www.youtube.com/watch?v=1HGQlV2AWGs"	// Phineas and Ferb - We Wish You a Merry Christmas
 		)
 	mail_holiday = TRUE
 
