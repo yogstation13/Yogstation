@@ -57,6 +57,7 @@
 /datum/action/guardian/place_beacon
 	name = "Place Bluespace Beacon"
 	desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
+	button_icon_state = "omae_wa_shinderu"
 
 /datum/action/guardian/place_beacon/on_use(mob/living/simple_animal/hostile/guardian/user)
 	var/turf/beacon_loc = get_turf(user)
