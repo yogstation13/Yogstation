@@ -6,7 +6,7 @@
 	var/name = "Condition Symptom"
 	var/severity = 0
 
-/datum/condition_symptom/proc/process_effects(var/datum/condition/parent)
+/datum/condition_symptom/proc/process_effects(var/datum/condition/parent, var/mob/living/carbon/human/H)
 	return FALSE
 	
 /datum/condition_symptom/proc/modify_test_results(var/list/test_results)
