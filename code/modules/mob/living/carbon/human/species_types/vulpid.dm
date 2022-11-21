@@ -16,7 +16,6 @@
 	mutantears = /obj/item/organ/ears/cat/fox
 	mutanttail = /obj/item/organ/tail/cat/fox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	//species_language_holder = /datum/language_holder/foxxy
 
 /datum/species/human/vulpine/qualifies_for_rank(rank, list/features)
 	return TRUE
