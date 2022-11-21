@@ -77877,10 +77877,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior{
 	id_tag = "incinerator_airlock_interior";
 	name = "Incinerator Interior Airlock"
