@@ -235,6 +235,10 @@
 	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
 	// 16 damage at 1 mole transfer or having 20 moles in the tank
 	var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+	// harder to achieve than plasma
+	damage += air_transfer.get_moles(/datum/gas/tritium) * 32
+	damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+	// still capped
 	damage = min(damage, 16)
 	if(damage < 4)
 		visible_message(span_danger("\The [src] lets out a sighed hiss and automatically shuts off."))
