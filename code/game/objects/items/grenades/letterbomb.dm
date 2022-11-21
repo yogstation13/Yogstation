@@ -71,6 +71,9 @@
 	icon_state = initial(icon_state)//there's no active icon for pipe bombs, so just force revert it to the default
 
 /obj/item/grenade/mailbomb/prime()
+	if(ishuman(loc))//special snowflake check to make it stronger than a light, but weaker than a heavy explosion. but only to the person if they can't throw it away in time
+		var/mob/living/carbon/human/H = loc
+		H.take_overall_damage(30,30)
 	update_mob()
-	explosion(src.loc,0,1,1)	//targeted, but if they can throw it away in time, little overall collateral damage
+	explosion(loc,0,0,2, flame_range = 2)	//targeted, but if they can throw it away in time, little overall collateral damage
 	qdel(src)
