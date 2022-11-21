@@ -58447,6 +58447,43 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"sNC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4";
+	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "xenobio_l";
+	name = "Left side containment blast doors";
+	pixel_x = -6;
+	pixel_y = 30;
+	req_access_txt = "55"
+	},
+/obj/machinery/button/door{
+	id = "xenobio_r";
+	name = "Right side containment blast doors";
+	pixel_x = 6;
+	pixel_y = 30;
+	req_access_txt = "55"
+	},
+/obj/machinery/button/door{
+	id = "xenobio_main";
+	name = "Main containment blast doors";
+	pixel_y = 39;
+	req_access_txt = "55"
+	},
+/obj/machinery/plortrefinery,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "sNR" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/firedoor/border_only{
@@ -65053,42 +65090,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/execution/transfer)
-"vdO" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "xenobio_l";
-	name = "Left side containment blast doors";
-	pixel_x = -6;
-	pixel_y = 30;
-	req_access_txt = "55"
-	},
-/obj/machinery/button/door{
-	id = "xenobio_r";
-	name = "Right side containment blast doors";
-	pixel_x = 6;
-	pixel_y = 30;
-	req_access_txt = "55"
-	},
-/obj/machinery/button/door{
-	id = "xenobio_main";
-	name = "Main containment blast doors";
-	pixel_y = 39;
-	req_access_txt = "55"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "veG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -104863,7 +104864,7 @@ lRf
 efg
 bIF
 fdH
-vdO
+sNC
 aAH
 uJc
 rkV

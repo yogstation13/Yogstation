@@ -2471,6 +2471,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"bjq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/plortrefinery,
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "bjJ" = (
 /obj/structure/rack,
 /obj/machinery/power/apc{
@@ -86762,7 +86771,7 @@ rVt
 xUB
 uvf
 jJD
-uvf
+bjq
 aoG
 uln
 gpL
