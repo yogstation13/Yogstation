@@ -555,9 +555,6 @@
 	return ..()
 
 /obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
-	if(!allowed(user) && !combat_parts_allowed && !isobserver(user) && !hacked)
-		to_chat(user, span_warning("You do not have the proper credentials to operate this device!"))
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExosuitFabricator")
@@ -645,7 +642,7 @@
 	if(issilicon(user))
 		return TRUE
 	id_card = user.get_idcard(hand_first = TRUE)
-	return ACCESS_HEADS in id_card.access
+	return ACCESS_HEADS in id_card?.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()
@@ -796,3 +793,12 @@
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+
+/obj/machinery/mecha_part_fabricator/ruin
+	link_on_init = FALSE
+	authorization_override = TRUE
+	hacked = TRUE
+
+/obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+	. = ..()
+	stored_research = SSresearch.ruin_tech

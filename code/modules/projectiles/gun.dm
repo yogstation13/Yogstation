@@ -228,7 +228,7 @@
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
-		if(ismob(target) && user.a_intent == INTENT_GRAB)
+		if(ismob(target) && user.a_intent == INTENT_GRAB && !istype(user.mind.martial_art, /datum/martial_art/ultra_violence))//remove gunpoint from ipc martial art, it's slow
 			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
 				if(G && G.weapon == src) //spam check
 					return

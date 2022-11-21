@@ -67,7 +67,7 @@
 
 
 //Returns null if there is any bad text in the string
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE, require_pretty=TRUE)
+/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE, require_pretty=TRUE, allow_newline=FALSE, allow_code=FALSE)
 	if(require_pretty && isnotpretty(text))
 		return
 	var/char_count = 0
@@ -80,9 +80,17 @@
 		if(char_count > max_length)
 			return
 		switch(text2ascii(char))
-			if(62, 60, 92, 47) // <, >, \, /
+			if(9, 62, 60, 92, 47) // tab, <, >, \, /
+				if(!allow_code)
+					return
+			if(10, 13) //Carriage returns (CR) and newline (NL)
+				if(!allow_newline)
+					return
+			if(0 to 8)
 				return
-			if(0 to 31)
+			if(11, 12)
+				return
+			if(14 to 31)
 				return
 			if(32)
 				continue

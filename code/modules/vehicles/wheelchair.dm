@@ -165,3 +165,59 @@
 /obj/item/wheelchair/Destroy()
 	wheelchair = null
 	. = ..()
+
+/obj/vehicle/ridden/wheelchair/explosive //reference to something i've never actually watched
+
+/obj/vehicle/ridden/wheelchair/explosive/generate_actions()
+	. = ..()
+	initialize_controller_action_type(/datum/action/vehicle/ridden/wheelchair/explosive/kaboom, VEHICLE_CONTROL_DRIVE)
+
+/obj/vehicle/ridden/wheelchair/explosive/obj_destruction(damage_flag)
+	explosion(src, 1, 3, 5)
+	qdel(src)
+
+/datum/action/vehicle/ridden/wheelchair/explosive/kaboom
+	name = "Ding!"
+	desc = "Ring the cute little bell on your wheelchair."
+	icon_icon = 'icons/obj/bell.dmi'
+	button_icon_state = "bell"
+	var/exploding = FALSE
+	var/explode_delay = 2 SECONDS
+	var/explode_size = list(2, 3, 6)
+
+/datum/action/vehicle/ridden/wheelchair/explosive/kaboom/Trigger()
+	playsound(vehicle_target, 'sound/items/bell.ogg', 40, FALSE)
+	if(exploding)
+		return
+	vehicle_target.visible_message(span_boldwarning("The bell on [vehicle_target] dings loudly!"))
+	exploding = TRUE
+	sleep(explode_delay)
+	vehicle_target.visible_message(span_boldwarning("[vehicle_target] explodes!!"))
+	explosion(vehicle_target, explode_size[1], explode_size[2], explode_size[3])
+	qdel(vehicle_target)
+
+/obj/item/wheelchair/explosive
+
+/obj/vehicle/ridden/wheelchair/explosive/MouseDrop(over_object, src_location, over_location)  //Lets you collapse wheelchair
+	. = ..()
+	if(over_object != usr || !Adjacent(usr))
+		return FALSE
+	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		return FALSE
+	if(has_buckled_mobs())
+		to_chat(usr, span_warning("You need to unbuckle the passenger from [src] first!"))
+		return FALSE
+	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
+	var/obj/item/wheelchair/wheelchair_folded = new /obj/item/wheelchair/explosive(get_turf(src))
+	forceMove(wheelchair_folded)
+	wheelchair_folded.desc = "A collapsed [name] that can be carried around." 
+	wheelchair_folded.name = name
+	wheelchair_folded.wheelchair = src
+	usr.put_in_hands(wheelchair_folded)
+
+/obj/item/wheelchair/explosive/deploy_wheelchair(mob/user, atom/location)
+	if(!wheelchair)
+		wheelchair = new /obj/vehicle/ridden/wheelchair/explosive(location)
+	wheelchair.add_fingerprint(user)
+	wheelchair.forceMove(location)
+	qdel(src)

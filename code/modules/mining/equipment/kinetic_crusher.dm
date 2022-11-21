@@ -21,6 +21,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharpness = SHARP_EDGED
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
