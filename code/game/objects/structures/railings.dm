@@ -66,6 +66,8 @@
 	return TRUE
 
 /obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	if (istype(mover, /obj/effect/immovablerod))
+		return TRUE
 	. = ..()
 	var/attempted_dir = get_dir(loc, target)
 	if(attempted_dir == dir)
@@ -73,11 +75,14 @@
 	if(attempted_dir != dir)
 		return TRUE
 
+
 /obj/structure/railing/corner/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
 /obj/structure/railing/CheckExit(atom/movable/O, turf/target)
+	if (istype(mover, /obj/effect/immovablerod))
+		return TRUE
 	if(get_dir(O.loc, target) == dir)
 		return FALSE
 	return TRUE
