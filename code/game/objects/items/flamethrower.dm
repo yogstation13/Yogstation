@@ -228,6 +228,7 @@
 
 	// /obj/structure/blob/normal
 
+// Return value tells the parent whether to continue calculating the line
 /obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
 	//Fetch and remove 5% of current tank air contents
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
@@ -247,6 +248,9 @@
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
 		return FALSE
+
+	if(isspaceturf(target)) // No air to hold the flame
+		return TRUE
 
 	//Burn it
 	var/list/hit_list = list()
