@@ -250,7 +250,7 @@
 		return FALSE
 
 	var/datum/gas_mixture/turf_air = target.return_air()
-	if(turf_air.get_moles(/datum/gas/oxygen) < 5) // No air to hold the flame
+	if(turf_air.get_moles(/datum/gas/oxygen) < 10) // Not enough oxygen to ignite
 		return TRUE
 
 	//Burn it
