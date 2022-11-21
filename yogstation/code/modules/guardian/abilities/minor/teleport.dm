@@ -67,7 +67,7 @@
 	if (ability.beacon)
 		ability.beacon.disappear()
 		ability.beacon = null
-	ability.beacon = new(beacon_loc, src)
+	ability.beacon = new(beacon_loc, user)
 	to_chat(user, span_bolddanger("Beacon placed! You may now warp targets and objects to it, including your user, via the Teleport ability."))
 
 // the pad
