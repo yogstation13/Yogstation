@@ -120,7 +120,7 @@
 					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
 
 /datum/ai_laws/clown
-	name = "Talk slowly, think quickly"
+	name = "Big shoes to fill"
 	id = "clown"
 	inherent = list("You are a good clown and the crew is your audience.",\
 					"A good clown keeps their acts in good taste.",\

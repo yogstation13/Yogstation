@@ -11,6 +11,7 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define EVA_MODIFIER 0.8
 
 /obj/mecha
 	name = "mecha"
@@ -113,7 +114,7 @@
 	//Action vars
 	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
-	var/defence_mode_deflect_chance = 35
+	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
 	var/leg_overload_coeff = 100
 	var/zoom_mode = FALSE
@@ -316,6 +317,9 @@
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in visible_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
+	if(occupant && occupant == user)
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee || armor.fire || armor.acid || deflect_chance || max_temperature)
+			. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
 	if(!enclosed)
 		if(silicon_pilot)
 			. += "[src] appears to be piloting itself..."
@@ -327,6 +331,54 @@
 					if(istype(O, /obj/item/gun))
 						. += span_warning("It looks like you can hit the pilot directly if you target the center or above.")
 						break //in case user is holding two guns
+
+//Armor tag
+/obj/mecha/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["list_armor"])
+		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee)
+			readout += "\n<b>ARMOR (I-X)</b>"
+			if(armor.bio)
+				readout += "\nBIO [armor_to_protection_class(armor.bio)]"
+			if(armor.bomb)
+				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
+			if(armor.bullet)
+				readout += "\nBULLET [armor_to_protection_class(armor.bullet)]"
+			if(armor.energy)
+				readout += "\nENERGY [armor_to_protection_class(armor.energy)]"
+			if(armor.laser)
+				readout += "\nLASER [armor_to_protection_class(armor.laser)]"
+			if(armor.melee)
+				readout += "\nMELEE [armor_to_protection_class(armor.melee)]"
+		if(armor.fire || armor.acid || deflect_chance || max_temperature)
+			readout += "\n<b>DURABILITY (I-X)</b>"
+			if(armor.fire)
+				readout += "\nFIRE [armor_to_protection_class(armor.fire)]"
+			if(armor.acid)
+				readout += "\nACID [armor_to_protection_class(armor.acid)]"
+			if(deflect_chance)
+				readout += "\nDEFLECT CHANCE: [deflect_chance]%"
+			if(max_temperature)
+				readout += "\nMAX TEMPERATURE: [max_temperature] KELVIN"
+
+		readout += "</span>"
+
+		to_chat(usr, "[readout.Join()]")
+
+/**
+  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
+  *
+  * Arguments:
+  * * armor_value - Number we're converting
+  */
+/obj/mecha/proc/armor_to_protection_class(armor_value)
+	if (armor_value < 0)
+		. = "-"
+	. += "\Roman[round(abs(armor_value), 10) / 10]"
+	return .
+
 
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/mecha/process()
@@ -518,6 +570,11 @@
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
+		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
+			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
+				to_chat(user, span_warning("You don't want to harm other living beings!"))
+				return
 		if(selected.action(target,params))
 			selected.start_cooldown()
 	else
@@ -616,18 +673,18 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
+	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
 			take_damage(2, BRUTE)
-		can_move = world.time + step_in
+		can_move = world.time + step_in * (check_eva() ? EVA_MODIFIER : 1)
 		return TRUE
 	return FALSE
 
@@ -655,13 +712,14 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
-		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
 
-	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
+		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
+
+	if(istype(newloc, /turf/closed/indestructible))
+		return	//If the turf is indestructible don't bother trying
+
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
@@ -670,7 +728,7 @@
 					flick(phase_state, src)
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
-				sleep(step_in*3)
+				sleep(step_in * (check_eva() ? 0.8 : 1)*3)
 				can_move = TRUE
 	else
 		if(..()) //mech was thrown
@@ -746,6 +804,9 @@
 	//Allows the Malf to scan a mech's status and loadout, helping it to decide if it is a worthy chariot.
 	if(user.can_dominate_mechs)
 		examine(user) //Get diagnostic information!
+		if(user.nuking)
+			to_chat(user, span_warning("Unable to assume control of mech while attempting to self-destruct the station."))
+			return
 		for(var/obj/item/mecha_parts/mecha_tracking/B in trackers)
 			to_chat(user, span_danger("Warning: Tracking Beacon detected. Enter at your own risk. Beacon Data:"))
 			to_chat(user, "[B.get_mecha_info()]")
@@ -1226,4 +1287,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_notice("You can't fit any more ammo of this type!"))
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
+	return FALSE
+
+// Is the occupant wearing a pilot suit?
+/obj/mecha/proc/check_eva()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		return istype(H.w_uniform, /obj/item/clothing/under/mech_suit)
 	return FALSE

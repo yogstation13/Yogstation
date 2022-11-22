@@ -206,6 +206,14 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
+		H.blood_in_hands = 0
+		H.wash(CLEAN_TYPE_BLOOD)
+		to_chat(H,"You absorb the blood covering you to heal.")
+		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
+		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	if(C == user)
@@ -230,5 +238,41 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
+
+/*------------------------
+
+ipc martial arts stuff
+
+--------------------------*/
+/datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.reagents.del_reagent(chem.type)//only one big tick of healing
+
+
+/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.in_throw_mode)//if countering the emp
+			add_empproof(H)
+			throw_lightning(H)
+		else//if just getting hit
+			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+
+/datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
+	siemens_coeff = 0
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	siemens_coeff = initial(siemens_coeff)
+
+/datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
+	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+
+/datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
+	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
+	if(ipcmartial)
+		ipcmartial.Destroy()
 
 #undef CONCIOUSAY

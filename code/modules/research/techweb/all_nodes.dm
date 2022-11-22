@@ -343,7 +343,7 @@
 	display_name = "Cyborg Upgrades: Medical"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer")
+	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
 /datum/techweb_node/cyborg_upg_surgkit
@@ -925,6 +925,22 @@
 	design_ids = list("mech_diamond_drill")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/mech_rocket_fist
+	id = "mech_rocket_fist"
+	display_name = "Exosuit Weapon (DD-2 \"Atom Smasher\" Rocket Fist)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","weaponry")
+	design_ids = list("mech_rocket_fist")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_shortsword
+	id = "mech_shortsword"
+	display_name = "Exosuit Weapon (GD6 \"Jaeger\" Shortsword)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","adv_weaponry")
+	design_ids = list("mech_shortsword")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
 /////////////////////////Nanites/////////////////////////
 /datum/techweb_node/nanite_base
 	id = "nanite_base"
@@ -1012,7 +1028,7 @@
 	/obj/item/weldingtool/abductor, /obj/item/wirecutters/abductor, /obj/item/circuitboard/machine/abductor, /obj/item/abductor/baton, /obj/item/abductor)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	hidden = TRUE
-	design_ids = list("alienalloy")
+	design_ids = list("alienalloy", "mind_flayer")
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"

@@ -413,6 +413,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/dangerous/backstab
+	name = "Backstabbing Switchblade"
+	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
+			Still does a moderate amount of damage when applied from the front."
+	item = /obj/item/switchblade/backstab
+	cost = 5
+	// backstabs are pretty funny, clown ops can have this one
+
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
@@ -618,7 +626,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
 	desc = "A miniaturized version of a normal syringe gun. It is very quiet when fired and can fit into any \
-			space a small item can."
+			space a small item can, and it features a modified reciever capable of chambering piercing syringes."
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
@@ -1259,6 +1267,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 35
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/wheelchair
+	name = "Explosive Wheelchair"
+	desc = "A wheelchair with a high yield bomb strapped to it... why would anyone ever want this?"
+	item = /obj/item/wheelchair/explosive
+	cost = 4
+	surplus = 0
+	limited_stock = 1
+	include_modes = list(/datum/objective/martyr)
+
 //Support and Mechs
 /datum/uplink_item/support
 	category = "Support and Exosuits"
@@ -1317,26 +1334,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
-	cost = 80
+	cant_discount = TRUE
+	cost = 60 //Yogs change
 
 /datum/uplink_item/support/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 80
+	cost = 60 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+	cant_discount = TRUE
+	
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
 	item = /obj/mecha/combat/marauder/mauler/loaded
-	cost = 140
+	cant_discount = TRUE
+	cost = 105 //Yogs change
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
 
+/datum/uplink_item/stealthy_tools/spy_bug
+	name = "Box of Spy Bugs"
+	desc = "A box of 10 spy bugs. These attach onto the target invisibly and cannot be removed, and broadcast all they hear to the secure syndicate channel.\
+	Can be attached to animals and objects. Does not come with a syndicate encryption key."
+	item = /obj/item/storage/box/syndie_kit/bugs
+	cost = 1
 /datum/uplink_item/stealthy_tools/agent_card
 	name = "Agent Identification Card"
 	desc = "Agent cards prevent artificial intelligences from tracking the wearer, and can copy access \
@@ -1983,6 +2009,22 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	limited_stock = 1
 	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
+
+/datum/uplink_item/implants/augmentation
+	name = "Full Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Provides superior damage resistance, immunity to cold and vacuum, \
+			but renders the subject vulnerable to electromagnetic pulses. They will also require repair with a welder and wires, rather than traditional medicine."
+	item = /obj/item/storage/box/syndie_kit/augmentation
+	cost = 15
+	surplus = 0
+
+/datum/uplink_item/implants/augmentation/superior
+	name = "Superior Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
+			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
+	item = /obj/item/storage/box/syndie_kit/augmentation/superior
+	cost = 25
+	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
 /datum/uplink_item/services

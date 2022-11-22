@@ -75,6 +75,14 @@
 	var/tank_pressure = 0
 	var/tank_temperature = 0
 	var/cabin_pressure = 0
+	var/datum/gas_mixture/env_air = 0
+	var/environment_pressure = 0
+	var/environment_temperature = 0
+	var/turf/T = get_turf(src)
+	if (T)
+		env_air = T.return_air()
+		environment_pressure = round(env_air.return_pressure(),0.01)
+		environment_temperature = env_air.return_temperature()
 	if (internal_tank)
 		int_tank_air = internal_tank.return_air()
 		tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
@@ -89,6 +97,8 @@
 						<b>Airtank temperature: </b>[internal_tank?"[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C":"N/A"]<br>
 						<b>Cabin pressure: </b>[internal_tank?"[cabin_pressure>WARNING_HIGH_PRESSURE ? span_danger("[cabin_pressure]"): cabin_pressure]kPa":"N/A"]<br>
 						<b>Cabin temperature: </b> [internal_tank?"[return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C":"N/A"]<br>
+						<b>Environment pressure: </b>[environment_pressure>WARNING_HIGH_PRESSURE ? span_danger("[environment_pressure]"): environment_pressure]kPa<br>
+						<b>Environment temperature: </b> [environment_temperature]&deg;K|[environment_temperature - T0C]&deg;C<br>
 						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":""]<br>
 						[thrusters_action.owner ? "<b>Thrusters: </b> [thrusters_active ? "Enabled" : "Disabled"]<br>" : ""]
 						[defense_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
@@ -296,7 +306,11 @@
 	if(href_list["select_equip"])
 		var/obj/item/mecha_parts/mecha_equipment/equip = locate(href_list["select_equip"]) in src
 		if(equip && equip.selectable)
+			if(selected)
+				var/obj/item/mecha_parts/mecha_equipment/unequip = selected	//What we're lowering
+				unequip.on_deselect()
 			selected = equip
+			equip.on_select()
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
 			send_byjax(usr,"exosuit.browser","eq_list",src.get_equipment_list())
