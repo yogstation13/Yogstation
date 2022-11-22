@@ -223,6 +223,7 @@
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
+#define TRAIT_MAGBOOTS			"magboots"
 /// This person is crying
 #define TRAIT_CRYING "crying"
 

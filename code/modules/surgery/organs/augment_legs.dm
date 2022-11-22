@@ -87,7 +87,7 @@
 /obj/item/organ/cyberimp/leg/proc/RemoveEffect()
 	return
 
-//water noslip implant
+//------------water noslip implant
 /obj/item/organ/cyberimp/leg/galosh
 	name = "Antislip Implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
@@ -102,7 +102,7 @@
 /obj/item/organ/cyberimp/leg/galosh/RemoveEffect()
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
 
-//true noslip implant
+//------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "Advanced Antislip Implant"
 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
@@ -119,7 +119,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
 
 
-//clown shoes implant
+//------------clown shoes implant
 /obj/item/organ/cyberimp/leg/clownshoes
 	name = "Clownshoes implant"
 	desc = "Advanced clown technology has allowed the implanting of bananium to allow for hightened prankage."
@@ -148,7 +148,7 @@
 		playsound(owner, pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg'), 50, 1, -1)
 	stepcount ++
 
-//dash boots implant
+//------------dash boots implant
 /obj/item/organ/cyberimp/leg/jumpboots
 	name = "Jumpboots implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
@@ -201,7 +201,7 @@
 	else
 		to_chat(holder, span_warning("Something prevents you from dashing forward!"))
 
-//wheelys implant
+//------------wheelies implant
 /obj/item/organ/cyberimp/leg/wheelies
 	name = "Wheelies implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
@@ -251,7 +251,7 @@
 	W.buckle_mob(holder)
 	wheelToggle = TRUE
 
-//dash boots implant
+//------------Airshoes implant
 /obj/item/organ/cyberimp/leg/airshoes
 	name = "Advanced propulsion implant"
 	desc = "An implant that uses propulsion technology to keep you above the ground and let you move faster."
@@ -276,7 +276,6 @@
 		implant_dash.Remove(owner)
 	if(implant_scooter)
 		implant_scooter.Remove(owner)
-
 
 /datum/action/innate/airshoes
 	name = "Toggle thrust on air shoes."
@@ -310,22 +309,21 @@
 	W.buckle_mob(holder)
 	wheelToggle = TRUE
 
-//magboot implant
-
+//------------magboot implant
 /obj/item/organ/cyberimp/leg/magboot
 	name = "Magboot implant"
-	desc = "Integrated maglock implants, allows easy movement in a zero-gravity environment."
+	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	implant_type = "magboot"
 	var/datum/action/innate/maglock/implant_ability
 
-/obj/item/organ/cyberimp/leg/clownshoes/l
+/obj/item/organ/cyberimp/leg/magboot/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/clownshoes/AddEffect()
+/obj/item/organ/cyberimp/leg/magboot/AddEffect()
 	implant_ability = new
 	implant_ability.Grant(owner)
 	
-/obj/item/organ/cyberimp/leg/clownshoes/RemoveEffect()
+/obj/item/organ/cyberimp/leg/magboot/RemoveEffect()
 	if(implant_ability)
 		implant_ability.Remove(owner)
 	owner.remove_movespeed_modifier("Magbootimplant")
@@ -352,10 +350,13 @@
 /datum/action/innate/maglock/Trigger()
 	if(!lockdown)
 		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
+		ADD_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
+		button_icon_state = "magboots1"
 	else
 		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
-	button_icon_state = "magboots0"
-	update_icon()
+		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
+		button_icon_state = "magboots0"
+	UpdateButtonIcon()
 	lockdown = !lockdown
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())
@@ -365,10 +366,3 @@
 		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(owner.has_movespeed_modifier("Magbootimplant"))
 		owner.remove_movespeed_modifier("Magbootimplant")
-
-/datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
-	return (..() || lockdown)
-
-/datum/species/preternis/has_heavy_gravity()
-	return (..() || lockdown)
-

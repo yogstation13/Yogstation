@@ -49,10 +49,10 @@
 			. = 1
 
 /mob/living/carbon/human/mob_negates_gravity()
-	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
+	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)) || HAS_TRAIT(src, TRAIT_MAGBOOTS))
 
 /mob/living/carbon/human/mob_has_heavy_gravity()
-	return (shoes && shoes.negates_gravity() || (dna.species.has_heavy_gravity(src)))
+	return (shoes && shoes.negates_gravity() || (dna.species.has_heavy_gravity(src)) || HAS_TRAIT(src, TRAIT_MAGBOOTS))
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
