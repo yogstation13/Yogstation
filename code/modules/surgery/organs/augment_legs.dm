@@ -10,12 +10,8 @@
 
 /obj/item/organ/cyberimp/leg/Initialize()
 	. = ..()
-	if(ispath(holder))
-		holder = new holder(src)
-
 	update_icon()
 	SetSlotFromZone()
-	items_list = contents.Copy()
 
 /obj/item/organ/cyberimp/leg/proc/SetSlotFromZone()
 	switch(zone)
@@ -116,7 +112,7 @@
 //------------clown shoes implant
 /obj/item/organ/cyberimp/leg/clownshoes
 	name = "Clownshoes implant"
-	desc = "Advanced clown technology has allowed the implanting of bananium to allow for hightened prankage."
+	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
 	implant_type = "clownshoes"
 	var/datum/component/waddle
 	var/stepcount = 0
@@ -308,7 +304,7 @@
 	name = "Magboot implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	implant_type = "magboot"
-	var/datum/action/innate/maglock/implant_ability
+	var/datum/action/innate/magboots/implant_ability
 
 /obj/item/organ/cyberimp/leg/magboot/l
 	zone = BODY_ZONE_L_LEG
@@ -322,7 +318,7 @@
 		implant_ability.Remove(owner)
 	owner.remove_movespeed_modifier("Magbootimplant")
 
-/datum/action/innate/maglock
+/datum/action/innate/magboots
 	var/lockdown = FALSE
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -330,18 +326,18 @@
 	icon_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
-/datum/action/innate/maglock/Grant(mob/M)
+/datum/action/innate/magboots/Grant(mob/M)
 	if(!ishuman(M))
 		return
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
 	owner = M
 	. = ..()
 
-/datum/action/innate/maglock/Remove(mob/M)
+/datum/action/innate/magboots/Remove(mob/M)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	. = ..()
 
-/datum/action/innate/maglock/Trigger()
+/datum/action/innate/magboots/Trigger()
 	if(!lockdown)
 		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
 		ADD_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
@@ -355,7 +351,7 @@
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())
 
-/datum/action/innate/maglock/proc/UpdateSpeed()	
+/datum/action/innate/magboots/proc/UpdateSpeed()	
 	if(lockdown && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
 		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(owner.has_movespeed_modifier("Magbootimplant"))
