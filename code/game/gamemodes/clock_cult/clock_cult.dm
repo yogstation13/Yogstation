@@ -191,6 +191,8 @@ Credit where due:
 		greet_servant(L)
 		equip_servant(L)
 		add_servant_of_ratvar(L, TRUE)
+		GLOB.data_core.manifest_inject(L)
+
 	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
 	for(var/turf/T in cog_spawns)
 		new /obj/item/clockwork/construct_chassis/cogscarab(T)
@@ -277,10 +279,8 @@ Credit where due:
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack
 	ears = /obj/item/radio/headset
-	gloves = /obj/item/clothing/gloves/color/yellow
-	belt = /obj/item/storage/belt/utility/servant
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
+	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1, /obj/item/clothing/gloves/color/yellow = 1, /obj/item/storage/belt/utility/servant = 1)
 	id = /obj/item/pda
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 

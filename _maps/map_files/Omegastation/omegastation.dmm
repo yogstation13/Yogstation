@@ -18635,23 +18635,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"aSf" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical)
 "aSj" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -29111,6 +29094,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"hCT" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel,
+/area/medical)
 "hEz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -84908,7 +84909,7 @@ axV
 aph
 awG
 axU
-aSf
+hCT
 aqw
 gPR
 tTx

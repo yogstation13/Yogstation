@@ -8,6 +8,7 @@
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
 	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	default_features = list("plasmaman_helmet")
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
@@ -168,6 +169,10 @@
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
+
+	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
+	plasmeme_helmet.set_design(H)
+
 	return 0
 
 /datum/species/plasmaman/random_name(gender,unique,lastname)
