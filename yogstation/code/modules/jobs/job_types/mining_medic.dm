@@ -23,7 +23,7 @@
 
 	changed_maps = list("EclipseStation")
 
-	smells_like = "blood and soot"
+	smells_like = "bloody soot"
 
 /datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2

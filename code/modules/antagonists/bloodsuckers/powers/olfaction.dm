@@ -69,7 +69,7 @@
 			var/datum/job/J = SSjob.GetJob(C.job)
 			if(!J)
 				J = new()
-			var/stink_string = "the scent of [J.smells_like] and [C.dna.species.smells_like]"
+			var/stink_string = "[J.smells_like] and [C.dna.species.smells_like]"
 			possible |= stink_string
 			possible[stink_string] = C
 	

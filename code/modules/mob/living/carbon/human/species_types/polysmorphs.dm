@@ -32,7 +32,7 @@
 	mutantlungs = /obj/item/organ/lungs/xeno
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
-	smells_like = "charred meat that burns your nose"
+	smells_like = "charred, acidic meat"
 
 /datum/species/polysmorph/random_name(gender,unique,lastname)
 	if(unique)

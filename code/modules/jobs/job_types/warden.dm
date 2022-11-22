@@ -39,7 +39,7 @@
 		/obj/item/storage/box/lethalshot = 5
 	)
 
-	smells_like = "gunpowder and justice"
+	smells_like = "gunpowdery justice"
 
 /datum/job/warden/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
