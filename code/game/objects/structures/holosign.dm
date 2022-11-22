@@ -103,10 +103,25 @@
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
+	var/obj/machinery/atmospherics/components/unary/outlet_injector/injector
 
 /obj/structure/holosign/barrier/atmos/Initialize()
 	. = ..()
 	air_update_turf(TRUE)
+
+/obj/structure/holosign/barrier/atmos/snowflake
+	name = "super holofirelock"
+
+/obj/structure/holosign/barrier/atmos/snowflake/New(loc, source_projector, source_injector)
+	if(source_injector)
+		injector = source_injector
+	..()
+
+/obj/structure/holosign/barrier/atmos/snowflake/Destroy()
+	if(injector)
+		injector = null
+	..()
+	
 
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"

@@ -24,7 +24,7 @@
 	pipe_state = "injector"
 
 
-/obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user)
+/obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user) //this proc is unused because it is overwritten lower in this file
 	if(can_interact(user))
 		on = !on
 		update_icon()
@@ -70,6 +70,11 @@
 		air_update_turf()
 
 		update_parents()
+
+/obj/machinery/atmospherics/components/unary/outlet_injector/proc/toggle(mob/user) //need this proc so we can do stuff when it's toggled
+	on = !on
+	update_icon()
+	return
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/proc/inject()
 
@@ -123,7 +128,7 @@
 		on = text2num(signal.data["power"])
 
 	if("power_toggle" in signal.data)
-		on = !on
+		toggle()
 
 	if("inject" in signal.data)
 		spawn inject()
@@ -164,7 +169,7 @@
 
 	switch(action)
 		if("power")
-			on = !on
+			toggle(usr)
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("rate")
@@ -194,7 +199,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
-	on = !on
+	toggle(user)
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
@@ -257,3 +262,29 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input
 	name = "toxins mixing input injector"
 	id = ATMOS_GAS_MONITOR_INPUT_TOXINS_LAB
+
+//Snowflake injector that creates a spacetile under it
+/obj/machinery/atmospherics/components/unary/outlet_injector/space
+	name = "super space injector"
+
+/obj/machinery/atmospherics/components/unary/outlet_injector/space/toggle(mob/user)
+	. = ..()
+	if(on)
+		for(var/turf/open/floor/F in orange(1, src))
+			if(F == get_turf(src))
+				continue
+			if(!is_blocked_turf(F, TRUE))
+				new /obj/structure/holosign/barrier/atmos/snowflake(F,null,src)
+		spawn(1)
+			var/turf/self_turf = get_turf(src)
+			if(self_turf)
+				self_turf.PlaceOnTop(/turf/open/space,flags = CHANGETURF_DEFER_CHANGE)
+	else
+		var/turf/self_turf = get_turf(src)
+		if(self_turf)
+			self_turf.ScrapeAway(1,CHANGETURF_INHERIT_AIR)
+		spawn(1)
+			for(var/obj/structure/holosign/barrier/atmos/snowflake/B in orange(1, src))
+				if(B.injector == src)
+					qdel(B)
+		
