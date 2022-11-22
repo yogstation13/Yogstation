@@ -26,7 +26,7 @@
 		/obj/item/gun/ballistic/revolver/russian = 1
 	)
 
-	smells_like = "scented candles and peace"
+	smells_like = "calm peace"
 
 /datum/job/psych/proc/OmegaStationChanges()
 	return TRUE

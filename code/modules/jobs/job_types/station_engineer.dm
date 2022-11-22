@@ -33,7 +33,7 @@
 		/obj/item/clothing/head/hardhat/red/upgraded = 1
 	)
 
-	smells_like = "oil and petroleum"
+	smells_like = "welding fuel"
 
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6

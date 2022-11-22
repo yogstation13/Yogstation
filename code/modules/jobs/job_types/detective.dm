@@ -39,7 +39,7 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
-	smells_like = "whisky and despair"
+	smells_like = "whisky-soaked despair"
 
 /datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2
