@@ -8,13 +8,6 @@
 	//to determine what type of implant for checking if both legs are the same
 	var/implant_type = "leg implant"
 
-	var/list/items_list = list()
-	// Used to store a list of all items inside, for multi-item implants.
-	// I would use contents, but they shuffle on every activation/deactivation leading to interface inconsistencies.
-
-	var/obj/item/holder = null
-	// You can use this var for item path, it would be converted into an item on New()
-
 /obj/item/organ/cyberimp/leg/Initialize()
 	. = ..()
 	if(ispath(holder))
@@ -42,6 +35,7 @@
 /obj/item/organ/cyberimp/leg/examine(mob/user)
 	. = ..()
 	. += span_info("[src] is assembled in the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg configuration. You can use a screwdriver to reassemble it.")
+	. += span_info("You will need two of the same type of implant for them to properly function.")
 
 /obj/item/organ/cyberimp/leg/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()

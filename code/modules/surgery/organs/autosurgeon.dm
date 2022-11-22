@@ -160,3 +160,43 @@
 
 /obj/item/autosurgeon/syndicate/spinalspeed
 	starting_organ = /obj/item/organ/cyberimp/chest/spinalspeed
+
+//implants all the organs back to back, only single use
+/obj/item/multisurgeon
+	name = "multisurgeon"
+	desc = "A device that automatically inserts a number of implants or organs into the user without the hassle of extensive surgery. Far more precision and fine tuning has gone into this device, it probably can't be reused."
+	w_class = WEIGHT_CLASS_SMALL
+	var/obj/item/organ/storedorgans
+	var/uses = 1
+
+/obj/item/multisurgeon/attack_self(mob/user)//when the object it used...
+	if(!uses)
+		to_chat(user, span_warning("[src] has already been used. The tools are dull and won't reactivate."))
+		return
+	else if(!storedorgan)
+		to_chat(user, span_notice("[src] currently has no implant stored."))
+		return
+	if(istype(storedorgan, /obj/item/organ/cyberimp/arm)) //these cunts have two limbs to select from, we'll want to check both because players are too lazy to do that themselves
+		var/obj/item/organ/cyberimp/arm/bastard = storedorgan
+		if(user.getorganslot(bastard.slot)) //FUCK IT WE BALL
+			var/original_zone = storedorgan.zone
+			if(bastard.zone == BODY_ZONE_R_ARM) // i do not like them sam i am  i do not like if else and ham
+				bastard.zone = BODY_ZONE_L_ARM
+			else
+				bastard.zone = BODY_ZONE_R_ARM
+			bastard.SetSlotFromZone()
+			if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
+				bastard.zone = original_zone //MISSION ABORT
+				bastard.SetSlotFromZone()
+			bastard.update_icon()
+	storedorgan.Insert(user)//insert stored organ into the user
+	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
+	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
+	storedorgan = null
+	name = initial(name)
+	if(uses != INFINITE)
+		uses--
+	if(!uses)
+		desc = "[initial(desc)] Looks like it's been used up."
+
+/obj/item/multisurgeon
