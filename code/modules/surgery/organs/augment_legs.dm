@@ -309,56 +309,66 @@
 	W.forceMove(get_turf(holder))
 	W.buckle_mob(holder)
 	wheelToggle = TRUE
+
 //magboot implant
-/*
+
 /obj/item/organ/cyberimp/leg/magboot
 	name = "Magboot implant"
 	desc = "Integrated maglock implants, allows easy movement in a zero-gravity environment."
 	implant_type = "magboot"
-	var/maglock = FALSE
+	var/datum/action/innate/maglock/implant_ability
 
 /obj/item/organ/cyberimp/leg/clownshoes/l
 	zone = BODY_ZONE_L_LEG
 
 /obj/item/organ/cyberimp/leg/clownshoes/AddEffect()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
+	implant_ability = new
+	implant_ability.Grant(owner)
 	
 /obj/item/organ/cyberimp/leg/clownshoes/RemoveEffect()
+	if(implant_ability)
+		implant_ability.Remove(owner)
 	owner.remove_movespeed_modifier("Magbootimplant")
 
-/obj/item/organ/cyberimp/leg/clownshoes/proc/UpdateSpeed()
-	owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
-
 /datum/action/innate/maglock
-	var/datum/species/preternis/owner_species
 	var/lockdown = FALSE
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots1"
+	button_icon_state = "magboots0"
 	icon_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/maglock/Grant(mob/M)
-	if(!ispreternis(M))
+	if(!ishuman(M))
 		return
-	var/mob/living/carbon/human/H = M 
-	owner_species = H.dna.species
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
+	owner = M
+	. = ..()
+
+/datum/action/innate/maglock/Remove(mob/M)
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	. = ..()
 
 /datum/action/innate/maglock/Trigger()
-	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
-		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
 	else
-		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
+	button_icon_state = "magboots0"
+	update_icon()
 	lockdown = !lockdown
-	owner_species.lockdown = !owner_species.lockdown
-	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
-	H.update_gravity(H.has_gravity())
+	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
+	owner.update_gravity(owner.has_gravity())
+
+/datum/action/innate/maglock/proc/UpdateSpeed()	
+	if(lockdown && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
+		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	else if(owner.has_movespeed_modifier("Magbootimplant"))
+		owner.remove_movespeed_modifier("Magbootimplant")
 
 /datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
 	return (..() || lockdown)
 
 /datum/species/preternis/has_heavy_gravity()
 	return (..() || lockdown)
-*/
+
