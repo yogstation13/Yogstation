@@ -854,7 +854,6 @@
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 30
 	antag_cap = 3
-	var/datum/team/shadowling/shadowling
 
 /datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
