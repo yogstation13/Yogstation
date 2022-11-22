@@ -8,7 +8,6 @@
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
 	layer = ABOVE_WINDOW_LAYER
-	var/debug_up = 9
 
 	var/obj/item/clothing/suit/space/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
@@ -149,7 +148,7 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(debug_up)
+			sleep(8)
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
 			if(mob_occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
@@ -168,7 +167,7 @@
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(debug_up)
+			sleep(8)
 			say("The decontamination process is completed, thank you for your patient.")
 			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 			if(mob_occupant)
