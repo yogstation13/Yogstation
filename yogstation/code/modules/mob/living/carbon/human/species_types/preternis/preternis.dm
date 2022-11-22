@@ -159,23 +159,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.reagents.has_reagent(/datum/reagent/fuel))
 		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
-	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
+	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
-		if(H.health < 50 && H.health > 0)
-			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustBruteLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 		H.AdjustParalyzed(-3)
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		charge = clamp(charge - 10 * REAGENTS_METABOLISM,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
-		burnmod = 200
+		charge = clamp(charge + 10 * REAGENTS_METABOLISM, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)//more power charges you, why would it drain you
+		burnmod = 20
 		tesliumtrip = TRUE
-	else if(tesliumtrip)
-		burnmod = initial(burnmod)
-		tesliumtrip = FALSE
-		H.remove_movespeed_modifier("preternis_teslium")
 
 	if (istype(chem,/datum/reagent/consumable))
 		var/datum/reagent/consumable/food = chem
@@ -212,6 +207,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(tesliumtrip && !H.reagents.has_reagent(/datum/reagent/teslium))//remove teslium effects if you don't have it in you
+		burnmod = initial(burnmod)
+		tesliumtrip = FALSE
+		H.remove_movespeed_modifier("preternis_teslium")
 
 	if(H.stat == DEAD)
 		return
