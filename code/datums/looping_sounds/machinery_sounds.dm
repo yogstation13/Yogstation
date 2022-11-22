@@ -65,8 +65,8 @@
 /datum/looping_sound/decontamination_unit
 	start_sound = 'sound/machines/decon/decon-down.ogg'
 	start_length = 10
-	mid_sounds = list('sound/machines/decon/decon-scan1.ogg'=10, 'sound/machines/decon/decon-scan2.ogg'=1)
-	mid_length = 29
+	mid_sounds = list('sound/machines/decon/decon-scan1.ogg'=1, 'sound/machines/decon/decon-scan2.ogg'=1)
+	mid_length = 18
 	volume = 70
 
 /datum/looping_sound/decontamination_unit/emagged
