@@ -160,7 +160,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
-		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustBruteLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
@@ -169,7 +169,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
 		charge = clamp(charge + 10 * REAGENTS_METABOLISM, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)//more power charges you, why would it drain you
-		burnmod = 20
+		burnmod = 10
 		tesliumtrip = TRUE
 
 	if (istype(chem,/datum/reagent/consumable))
