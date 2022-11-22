@@ -521,12 +521,6 @@
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"zF" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -746,6 +740,15 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating,
+/area/engine/engineering)
+"MJ" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "MO" = (
 /obj/structure/cable/orange{
@@ -1147,7 +1150,7 @@ SN
 (7,1,1) = {"
 iM
 sm
-zF
+MJ
 PS
 Xa
 nq
@@ -1161,7 +1164,7 @@ vP
 DK
 Xa
 dU
-zF
+MJ
 di
 SN
 SN

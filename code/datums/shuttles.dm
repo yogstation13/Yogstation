@@ -128,7 +128,7 @@
 
 /datum/map_template/shuttle/arrival
 	port_id = "arrival"
-
+	movement_force = list("KNOCKDOWN" = 2, "THROW" = 2)
 /datum/map_template/shuttle/infiltrator
 	port_id = "infiltrator"
 
@@ -241,7 +241,7 @@
 	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
 	admin_notes = "This shuttle will likely crush escape, killing anyone there."
 	credit_cost = 15000
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 10)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/luxury
@@ -327,7 +327,7 @@
 	credit_cost = -1000
 	description = "Due to a lack of functional emergency shuttles, we bought this second hand from a scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile."
 	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight."
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/narnar
@@ -375,7 +375,7 @@
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
 	credit_cost = 7500
 	emag_buy = TRUE
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"

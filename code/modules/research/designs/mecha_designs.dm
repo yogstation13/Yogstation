@@ -488,3 +488,21 @@
 	construction_time = 250
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam
 	category = list("Exosuit Equipment")
+
+/datum/design/mech_rocket_fist
+	name = "Exosuit Weapon (DD-2 \"Atom Smasher\" Rocket Fist)"
+	id = "mech_rocket_fist"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist
+	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_shortsword
+	name = "Exosuit Weapon (GD6 \"Jaeger\" Shortsword)"
+	id = "mech_shortsword"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/shortsword
+	materials = list(/datum/material/iron=15000,/datum/material/titanium=10000,/datum/material/plasma=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")

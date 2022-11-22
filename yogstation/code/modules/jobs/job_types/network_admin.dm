@@ -23,6 +23,10 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 20
+	)
+
 	smells_like = "thermal paste"
 
 /datum/job/network_admin/proc/OmegaStationChanges()

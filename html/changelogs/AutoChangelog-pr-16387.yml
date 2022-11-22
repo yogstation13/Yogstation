@@ -1,0 +1,5 @@
+author: "00ze-cyclone"
+delete-after: true 
+changes: 
+  - rscadd: "Added the mind flayer to the alien technology node, a gun to give people brain damage."
+  - imageadd: "added unique sprites for the mind flayer and its rays"
