@@ -191,8 +191,12 @@
 	if(!prosthetic)
 		return
 	
+	var/spot = src.loc
 	moveToNullspace()
-	prosthetic.loc = get_turf(user)
+	if(spot == user && !user.get_inactive_held_item())
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.loc = get_turf(user)
 	qdel(src)
 	
 /obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
@@ -213,8 +217,12 @@
 	if(!prosthetic)
 		return
 
+	var/spot = src.loc
 	moveToNullspace()
-	prosthetic.loc = get_turf(user)
+	if(spot == user && !user.get_inactive_held_item())
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.loc = get_turf(user)
 	qdel(src)
 	
 
