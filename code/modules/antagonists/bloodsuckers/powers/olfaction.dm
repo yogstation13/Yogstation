@@ -1,3 +1,6 @@
+#define TRACKING_SCENT			(1<<0)
+#define TRACKING_BLOOD			(1<<1)
+
 /datum/action/bloodsucker/olfaction
 	name = "Sanguine Olfaction"
 	desc = "Smells blood."
@@ -27,8 +30,6 @@
 	var/sensitive = TRUE
 	///tracking blood or scents. blood for bloodsuckers, scent for genetics olfaction
 	var/tracking_flags = TRACKING_SCENT
-	///which status effect is being applied on use
-	//var/status_effect = STATUS_EFFECT_SCENT_HUNTER
 
 	var/datum/action/bloodsucker/olfaction/follow_scent/follow = new /datum/action/bloodsucker/olfaction/follow_scent()
 
@@ -109,10 +110,8 @@
 	return ..()
 
 /datum/action/bloodsucker/olfaction/acquire_scent/sanguine
-	//sensitivity = 0
 	sensitive = FALSE
 	tracking_flags = TRACKING_BLOOD
-	//status_effect = STATUS_EFFECT_BLOOD_HUNTER
 	purchase_flags = BLOODSUCKER_CAN_BUY
 
 	follow = new /datum/action/bloodsucker/olfaction/follow_scent/sanguine()
@@ -130,10 +129,8 @@
 
 	buttontooltipstyle = ""
 
-	// sensitivity = 1
 	sensitive = TRUE
 	tracking_flags = TRACKING_SCENT
-	//status_effect = STATUS_EFFECT_SCENT_HUNTER
 	power_explanation = "<b>Transcendent Olfaction</b>:\n\
 		Activating this Power will search all objects and items in a 1-tile radius around you for scents.\n\
 		If these objects or items have been used by humanoid beings and still have their scent, you will see the option to track one of those scents.\n\
@@ -171,7 +168,6 @@
 /datum/action/bloodsucker/olfaction/follow_scent/Trigger()
 	if(!..())
 		return FALSE
-	//start_cooldown()
 	DeactivatePower()
 	if(!tracking_target)
 		to_chat(owner, span_warning("You're not tracking a scent, but the game thought you were. Something's gone wrong! Report this as a bug."))
@@ -198,18 +194,14 @@
 	//if there's no scent color we will use the tracked target's mutant_color from their dna, provided it's of a vibrant enough color to see
 	if(iscarbon(tracking_target))
 		var/mob/living/carbon/carbon_target = tracking_target
-		//message_admins(round((ReadHSV(RGBtoHSV(carbon_target.dna.features["mcolor"]))[2]/255)*100))
 		if(round((ReadHSV(RGBtoHSV(carbon_target.dna.features["mcolor"]))[2]/255)*100) > 40)
 			var/mcolor = carbon_target.dna.features["mcolor"]
 			if(length(mcolor) < 6)
 				mcolor = repeat_string(2, mcolor[1]) + repeat_string(2, mcolor[2])+repeat_string(2, mcolor[3])
 			scent_color = sanitize_hexcolor(mcolor, 6, TRUE)
-			//scent_color = sanitize_hexcolor(carbon_target.dna.features["mcolor"], 6, TRUE)
 	
-	//if(round((ReadHSV(RGBtoHSV(scent_color))[2]/255)*100) < 50)
 	if(ishuman(tracking_target) && !scent_color)
 		var/mob/living/carbon/human/human_target = tracking_target
-		//message_admins(round((ReadHSV(RGBtoHSV(human_target.eye_color))[2]/255)*100))
 		if(round((ReadHSV(RGBtoHSV(human_target.eye_color))[2]/255)*100) > 40)
 			var/eyecolor = human_target.eye_color
 			if(length(eyecolor) < 6)
@@ -242,17 +234,13 @@
 				//this is neccessary because if you get the direction while travelling horizontally, the resulting directional sprite needs to be flipped
 				//travelling south and turning east gives you the correct south to east bend 
 				//but travelling east and turning south gives you another south to east bend
-				//if(get_dir(trail_step, trail_step_next) == NORTH || get_dir(trail_step, trail_step_next) == SOUTH)
 				invert = TRUE
-					//message_admins("inverting")
 				scent_dir = get_dir(trail_step_next, trail_step_prev)
-				//please
 			else
 				scent_dir = get_dir(trail_step_prev, trail_step_next)
 			scent_dir = get_dir(trail_step_prev, trail_step_next)
 		
 		if((locate(/obj/structure/falsewall) in get_turf(trail_step)))
-			message_admins("falsewall found")
 			continue
 		new /obj/effect/temp_visual/scent_trail(trail_step, scent_dir, sniffer, invert, scent_color)
 		sleep(0.1 SECONDS)
@@ -260,7 +248,6 @@
 /datum/action/bloodsucker/olfaction/follow_scent/sanguine
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
-	//button_icon_state = "power_recup"
 	
 	status_effect = STATUS_EFFECT_BLOOD_HUNTER
 

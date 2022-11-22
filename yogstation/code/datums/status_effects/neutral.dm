@@ -71,9 +71,6 @@
 		for(var/image/I in sniffer.client.images)
 			if(I.name==id)
 				sniffer.client.images -= I
-	//var/datum/atom_hud/alternate_appearance/basic/stink_hud = 
-	// if(stink_hud)
-	// 	stink_hud.remove_from_hud(owner)
 
 /datum/status_effect/scent_hunter/blood
 	id = "blood_smelly"

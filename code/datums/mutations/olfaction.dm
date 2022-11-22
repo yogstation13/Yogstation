@@ -1,7 +1,3 @@
-#define TRACKING_SCENT			(1<<0)
-#define TRACKING_BLOOD			(1<<1)
-#define TRACKING_HIDDENPRINTS	(1<<2)
-
 /datum/mutation/human/olfaction
 	name = "Transcendent Olfaction"
 	desc = "Your sense of smell is comparable to that of a canine."
@@ -185,7 +181,3 @@
 			new effect_type(oldposition, trail_dir, sniffer, flip, trail_color)
 			
 	oldposition = get_turf(holder)
-
-// #undef TRACKING_SCENT
-// #undef TRACKING_BLOOD		
-// #undef TRACKING_HIDDENPRINTS
