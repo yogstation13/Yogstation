@@ -1107,6 +1107,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"axJ" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "axR" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -30698,8 +30704,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "pCr" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -42321,6 +42327,13 @@
 /obj/effect/turf_decal/trimline/green/filled/corner,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"vId" = (
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/engine/atmos_distro)
 "vIr" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -64143,7 +64156,7 @@ wnM
 xSg
 orF
 aCD
-hoI
+vId
 mnb
 wQK
 ygV
@@ -66468,7 +66481,7 @@ hzo
 dve
 dFV
 pCr
-rXM
+axJ
 vTP
 tjk
 peO
