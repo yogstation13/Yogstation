@@ -1446,6 +1446,7 @@
 #include "code\modules\antagonists\bloodsuckers\powers\gangrel.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\gohome.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\masquerade.dm"
+#include "code\modules\antagonists\bloodsuckers\powers\olfaction.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\recuperate.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\veil.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\_powers_targeted.dm"

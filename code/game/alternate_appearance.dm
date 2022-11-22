@@ -202,7 +202,7 @@ datum/atom_hud/alternate_appearance/basic/onePerson
 /datum/atom_hud/alternate_appearance/basic/scent_hunter/mobShouldSee(mob/M)
 	if(isliving(M))
 		var/mob/living/L = M
-		if(L.has_status_effect(STATUS_EFFECT_SCENT_HUNTER))
+		if(L.has_status_effect(STATUS_EFFECT_SCENT_HUNTER) || L.has_status_effect(STATUS_EFFECT_BLOOD_HUNTER))
 			return TRUE
 	if(isobserver(M))
 		return TRUE

@@ -31,7 +31,7 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
-	smells_like = "fertilizer and weeds. Actually wait, that's just weed"
+	smells_like = "fertilizer and weed"
 
 /datum/job/hydro/proc/OmegaStationChanges()
 	added_access = list()

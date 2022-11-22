@@ -21,6 +21,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "pre-packaged oxygen"
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1

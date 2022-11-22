@@ -39,6 +39,8 @@
 		///obj/effect/spawner/random/engineering/tool_advanced = 3
 	)
 
+	smells_like = "industry leadership"
+
 /datum/outfit/job/ce
 	name = "Chief Engineer"
 	jobtype = /datum/job/chief_engineer

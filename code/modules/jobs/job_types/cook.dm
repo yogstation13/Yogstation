@@ -35,6 +35,8 @@
 		/obj/item/kitchen/knife/butcher = 2
 	)
 
+	smells_like = "delicious food"
+
 /datum/job/cook/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)

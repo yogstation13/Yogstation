@@ -23,6 +23,8 @@
 
 	changed_maps = list("OmegaStation")
 
+	smells_like = "thermal paste"
+
 /datum/job/network_admin/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)

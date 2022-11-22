@@ -36,6 +36,8 @@
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
 
+	smells_like = "bloody grass"
+
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
 	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))

@@ -78,14 +78,11 @@
 /datum/status_effect/scent_hunter/blood
 	id = "blood_smelly"
 
-/datum/status_effect/scent_hunter/blood/on_creation(mob/living/owner, mob/living/target, target_color)
-	return ..(owner, target, COLOR_RED)
-
 /datum/status_effect/bloodthirsty
 	id = "bloodthirsty"
 	duration = 1.5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = null
+	alert_type = /atom/movable/screen/alert/status_effect/bloodthirsty
 	var/mob/living/thirster
 	//that sweet blood sings to you and makes your screen reddish tinged
 	var/atom/movable/screen/fullscreen/brute/red_thirst
@@ -105,3 +102,10 @@
 /datum/status_effect/bloodthirsty/on_remove()
 	owner.remove_movespeed_modifier(src)
 	owner.clear_fullscreen("thirsting")
+
+/atom/movable/screen/alert/status_effect/bloodthirsty
+	icon = 'yogstation/icons/mob/screen_alert.dmi'
+	icon_state = "default"
+	name = "Bloodthirsty"
+	desc = "You smell blood in the air."
+	icon_state = "bloodthirsty"

@@ -30,6 +30,8 @@
 		/obj/item/modular_computer/tablet/preset/advanced = 5
 	)
 
+	smells_like = "burnt solder"
+
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"
 

@@ -22,6 +22,8 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	smells_like = "ash and dust"
+
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
 	spawn_positions = 2

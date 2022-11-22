@@ -22,6 +22,8 @@
 
 	changed_maps = list("OmegaStation","GaxStation")
 
+	smells_like = "scented candles and peace"
+
 /datum/job/psych/proc/OmegaStationChanges()
 	return TRUE
 

@@ -23,6 +23,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "crimson guardianship"
+
 /datum/job/brigphysician/proc/OmegaStationChanges()
 	return TRUE
 

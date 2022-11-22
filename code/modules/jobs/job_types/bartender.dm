@@ -30,7 +30,7 @@
 
 	changed_maps = list("OmegaStation")
 
-	smells_like = "reeks of alcohol"
+	smells_like = "alcohol"
 
 /datum/job/bartender/proc/OmegaStationChanges()
 	added_access = list()

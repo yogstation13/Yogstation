@@ -65,6 +65,7 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
+	///The text a person using olfaction will see for the job of the target's scent
 	var/smells_like = "a freeloader"
 
 /*

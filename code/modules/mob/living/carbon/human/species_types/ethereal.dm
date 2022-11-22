@@ -45,6 +45,8 @@
 	var/static/b2 = 149
 	//this is shit but how do i fix it? no clue.
 
+	smells_like = "crackling sweetness"
+
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	.=..()

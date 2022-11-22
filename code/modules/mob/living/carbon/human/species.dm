@@ -180,6 +180,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
 
+	var/smells_like = "something alien"
+
 ///////////
 // PROCS //
 ///////////
