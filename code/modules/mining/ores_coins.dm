@@ -5,6 +5,8 @@
 
 #define ORESTACK_OVERLAYS_MAX 10
 
+#define COINSTACK_MAX 8
+
 /**********************Mineral ores**************************/
 
 /obj/item/stack/ore
@@ -320,6 +322,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/cooldown = 0
 	var/value = 1
 	var/coinflip
+	var/coin_stack_icon_state = "coin_stack"
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -353,10 +356,29 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(value)
 		. += span_info("It's worth [value] credit\s.")
 
+/obj/item/coin/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I,/obj/item/coin))
+		var/obj/item/coinstack/cs = new/obj/item/coinstack(null)
+		if(user.is_holding(src))
+			var/currentHandIndex = user.get_held_index_of_item(src)
+			user.transferItemToLoc(src, null)
+			cs.add_to_stack(src, user, message = FALSE)
+			cs.add_to_stack(I, user, message = FALSE)
+			user.put_in_hand(cs, currentHandIndex)
+		else
+			var/oldLoc = src.loc
+			cs.pixel_x = pixel_x
+			cs.pixel_y = pixel_y
+			cs.add_to_stack(src, user, message = FALSE)
+			cs.add_to_stack(I, user, message = FALSE)
+			cs.forceMove(oldLoc)
+		to_chat(user,span_notice("You stack [I] on [src]."))
+
 /obj/item/coin/gold
 	name = "gold coin"
 	cmineral = "gold"
 	icon_state = "coin_gold_heads"
+	coin_stack_icon_state = "coin_gold_stack"
 	value = 25
 	materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/gold = 4)
@@ -365,6 +387,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "silver coin"
 	cmineral = "silver"
 	icon_state = "coin_silver_heads"
+	coin_stack_icon_state = "coin_silver_stack"
 	value = 10
 	materials = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/silver = 4)
@@ -373,6 +396,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "diamond coin"
 	cmineral = "diamond"
 	icon_state = "coin_diamond_heads"
+	coin_stack_icon_state = "coin_diamond_stack"
 	value = 100
 	materials = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/carbon = 4)
@@ -381,6 +405,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "iron coin"
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
+	coin_stack_icon_state = "coin_iron_stack"
 	value = 1
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/iron = 4)
@@ -389,6 +414,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "plasma coin"
 	cmineral = "plasma"
 	icon_state = "coin_plasma_heads"
+	coin_stack_icon_state = "coin_plasma_stack"
 	value = 40
 	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/toxin/plasma = 4)
@@ -397,6 +423,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "uranium coin"
 	cmineral = "uranium"
 	icon_state = "coin_uranium_heads"
+	coin_stack_icon_state = "coin_uranium_stack"
 	value = 25
 	materials = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/uranium = 4)
@@ -405,6 +432,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "bananium coin"
 	cmineral = "bananium"
 	icon_state = "coin_bananium_heads"
+	coin_stack_icon_state = "coin_bananium_stack"
 	value = 200 //makes the clown cry
 	materials = list(/datum/material/bananium = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/consumable/banana = 4)
@@ -413,18 +441,21 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "adamantine coin"
 	cmineral = "adamantine"
 	icon_state = "coin_adamantine_heads"
+	coin_stack_icon_state = "coin_adamantine_stack"
 	value = 100
 
 /obj/item/coin/mythril
 	name = "mythril coin"
 	cmineral = "mythril"
 	icon_state = "coin_mythril_heads"
+	coin_stack_icon_state = "coin_mythril_stack"
 	value = 300
 
 /obj/item/coin/twoheaded
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
 	desc = "Hey, this coin's the same on both sides!"
+	coin_stack_icon_state = "coin_iron_stack"
 	sideslist = list("heads")
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	value = 1
@@ -433,6 +464,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/antagtoken
 	name = "antag token"
 	icon_state = "coin_valid_valid"
+	coin_stack_icon_state = "coin_valid_stack"
 	cmineral = "valid"
 	desc = "A novelty coin that helps the heart know what hard evidence cannot prove."
 	sideslist = list("valid", "salad")
@@ -530,4 +562,99 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF
 
+/obj/item/coinstack
+	name = "stack of coins"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/list/obj/item/coin/coins //a stack of coins
+
+/obj/item/coinstack/Initialize()
+	. = ..()
+	coins = list()
+	update_icon()
+
+/obj/item/coinstack/examine(mob/user)
+	. = ..()
+	var/value = 0
+	var/antag = 0
+	for(var/obj/item/coin/C in coins)
+		value += C.value
+		if(istype(C,/obj/item/coin/antagtoken))
+			antag++
+	. += span_info("The stack is worth [value] credit\s.")
+	if(antag > 1)
+		. += span_info("But they told me I could only have one at a time...")
+
+/obj/item/coinstack/update_icon()
+	cut_overlays()
+	for(var/i in 1 to length(coins))
+		var/obj/item/coin/C = coins[i]
+		src.add_overlay(image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2))
+
+/obj/item/coinstack/attack_hand(mob/user) ///take a coin off the top of the stack
+	remove_from_stack(user)
+	return
+
+/obj/item/coinstack/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I,/obj/item/coin))
+		var/success = add_to_stack(I,user)
+		if(success)
+			to_chat(user,span_notice("You add [I] to the top of the stack of coins."))
+		else
+			to_chat(user,span_warning("The coin stack is already full!"))
+		return
+	..()
+
+/obj/item/coinstack/proc/add_to_stack(obj/item/coin/C, mob/living/user, message = TRUE) //returns TRUE if it was successfully added to the stack.
+	if(length(coins) >= COINSTACK_MAX)
+		return FALSE
+	coins += C
+	C.forceMove(src)
+	C.pixel_x = 0
+	C.pixel_y = 0
+	src.add_fingerprint(user)
+	to_chat(user,span_notice("You add [C] to the stack of coins."))
+	update_icon()
+	return TRUE
+
+/obj/item/coinstack/proc/remove_from_stack(mob/living/user) //you can only remove the topmost coin from the stack
+	var/obj/item/coin/top_coin = coins[length(coins)]
+	if(top_coin)
+		coins -= top_coin
+		user.put_in_active_hand(top_coin)
+	update_icon()
+	if(length(coins) <= 1) //one coin left, we're done here
+		var/obj/item/coin/lastCoin = coins[1]
+		coins -= coins[1]
+		if(user.is_holding(src))
+			var/currentHandIndex = user.get_held_index_of_item(src)
+			user.transferItemToLoc(src, null)
+			user.put_in_hand(lastCoin, currentHandIndex)
+		else
+			lastCoin.pixel_x = pixel_x
+			lastCoin.pixel_y = pixel_y
+			lastCoin.forceMove(loc)
+		qdel(src)
+
+
+/obj/item/coinstack/MouseDrop(atom/over_object)
+	. = ..()
+	var/mob/living/M = usr
+	if(!istype(M) || !(M.mobility_flags & MOBILITY_PICKUP))
+		return
+	if(Adjacent(usr))
+		if(over_object == M && loc != M)
+			M.put_in_hands(src)
+			pixel_x = 0
+			pixel_y = 0
+			to_chat(usr, span_notice("You pick up the coin stack."))
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
+			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
+				pixel_x = 0
+				pixel_y = 0
+				to_chat(usr, span_notice("You pick up the deck."))
+	else
+		to_chat(usr, span_warning("You can't reach it from here!"))
+
 #undef ORESTACK_OVERLAYS_MAX
+#undef COINSTACK_MAX

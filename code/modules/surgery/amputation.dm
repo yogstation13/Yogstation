@@ -10,6 +10,7 @@
 /datum/surgery/amputation/mechanic
 	requires_bodypart_type = BODYPART_ROBOTIC
 	lying_required = FALSE
+	self_operable = TRUE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,

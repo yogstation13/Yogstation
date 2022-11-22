@@ -321,6 +321,8 @@
 		. += span_notice("[src] has a quickloading mechanism, allowing tactical reloads by using a container on it.")
 	if(penetrates)
 		. += span_notice("[src] has a diamond tipped needle, allowing it to pierce thick clothing.")
+	if(speedup)
+		. += span_notice("[src] has a springloaded mechanism, allowing it to inject with reduced delay.")
 	if(container)
 		. += span_notice("[container] has [container.reagents.total_volume]u remaining.")
 	else

@@ -78,6 +78,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
+		chassis.selected.on_select()
 		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
@@ -86,13 +87,17 @@
 	var/number = 0
 	for(var/A in available_equipment)
 		number++
-		if(A == chassis.selected)
+		if(A == chassis.selected)	//Swapping to no equipment from something
 			if(available_equipment.len == number)
+				chassis.selected.on_deselect()
 				chassis.selected = null
 				chassis.occupant_message("You switch to no equipment")
 				button_icon_state = "mech_cycle_equip_off"
 			else
+				if(chassis.selected)	//If we're swapping off of an equipment, remove effects
+					chassis.selected.on_deselect()
 				chassis.selected = available_equipment[number+1]
+				chassis.selected.on_select()
 				chassis.occupant_message("You switch to [chassis.selected]")
 				button_icon_state = "mech_cycle_equip_on"
 			send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
@@ -179,10 +184,10 @@
 		chassis.defence_mode = !chassis.defence_mode
 	button_icon_state = "mech_defense_mode_[chassis.defence_mode ? "on" : "off"]"
 	if(chassis.defence_mode)
-		chassis.deflect_chance = chassis.defence_mode_deflect_chance
+		chassis.deflect_chance += chassis.defence_mode_deflect_chance
 		chassis.occupant_message(span_notice("You enable [chassis] defence mode."))
 	else
-		chassis.deflect_chance = initial(chassis.deflect_chance)
+		chassis.deflect_chance -= chassis.defence_mode_deflect_chance
 		chassis.occupant_message(span_danger("You disable [chassis] defence mode."))
 	chassis.log_message("Toggled defence mode.", LOG_MECHA)
 	UpdateButtonIcon()

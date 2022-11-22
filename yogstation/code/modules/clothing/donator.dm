@@ -89,7 +89,22 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "megumu_dress"
 	item_state = "megumu_dress"
-
+/obj/item/clothing/suit/yogs/adventurerskirt
+	name = "adventurer skirt"
+	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
+	icon_state = "adventurer_skirt"
+	item_state = "adventurer_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS|HANDS
+/obj/item/clothing/gloves/yogs/arm_sleeves
+	name = "Arm Sleeves"
+	desc = "White marked sleeves, signal of a skillful Hunter."
+	icon_state = "arm_sleeves"
+	item_state = "arm_sleeves"
+/obj/item/clothing/under/yogs/skin_tight_garmet
+	name = "Skin Tight Garmet"
+	desc = "With this on you can barely breath."
+	icon_state = "skin_tight_garmet"
+	item_state = "skin_tight_garmet"
 /obj/item/clothing/neck/yogs/megumu
 	name = "Megumu's Cape"
 	desc = "Tofu!"
@@ -140,3 +155,12 @@
 	. = ..()
 	new /obj/item/clothing/under/rank/scientist/black(src)
 	new /obj/item/lighter/badass(src)
+/obj/item/storage/box/hisa
+	name = "Hunters Stash"
+	desc = "Legend has it if this box is not held by a hunter, its held by prey" 
+
+/obj/item/storage/box/hisa/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/suit/yogs/adventurerskirt(src)
+	new /obj/item/clothing/under/yogs/skin_tight_garmet(src)
+	new /obj/item/clothing/gloves/yogs/arm_sleeves(src)

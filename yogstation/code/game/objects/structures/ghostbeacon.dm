@@ -39,6 +39,9 @@
 	if(is_banned_from(user.key, ROLE_GHOSTBEACON))
 		to_chat(user, span_warning("You are banned from materializing"))
 		return
+	if(user.mind && LAZYLEN(user.mind.antag_datums))
+		to_chat(user, span_warning("You are unable to materialize when you've played as an antag!"))
+		return
 	var/response = alert("Materialize? (You will not be revivable)", "Beacon", "Yes", "No")
 	if(response == "No")
 		return

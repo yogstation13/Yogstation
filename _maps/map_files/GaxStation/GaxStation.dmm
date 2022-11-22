@@ -20394,6 +20394,11 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"kqo" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "kqq" = (
 /obj/structure/closet/firecloset/full,
 /obj/effect/turf_decal/stripes/end{
@@ -22214,10 +22219,6 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"liw" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "lix" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -29594,12 +29595,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"pbK" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "pcs" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
@@ -40986,6 +40981,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"vaO" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "vbo" = (
 /obj/machinery/light_switch{
 	pixel_y = -24
@@ -76700,11 +76702,11 @@ hdt
 wJJ
 juB
 klG
-pbK
+vaO
 uBP
 weE
 asv
-liw
+kqo
 txq
 pZb
 uBc

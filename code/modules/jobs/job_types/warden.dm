@@ -35,6 +35,7 @@
 		/obj/item/storage/box/teargas = 10,
 		/obj/item/storage/box/flashbangs = 10,
 		/obj/item/storage/box/rubbershot = 10,
+		/obj/effect/spawner/lootdrop/techshell = 10,
 		/obj/item/storage/box/lethalshot = 5
 	)
 

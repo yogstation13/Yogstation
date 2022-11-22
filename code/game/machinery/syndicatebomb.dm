@@ -270,6 +270,10 @@
 /obj/item/bombcore/ex_act(severity, target) // Little boom can chain a big boom.
 	detonate()
 
+/obj/item/bombcore/microwave_act(obj/machinery/microwave/M)
+	detonate()
+	. = ..()
+	
 
 /obj/item/bombcore/burn()
 	detonate()
