@@ -7,6 +7,14 @@
 
 // above ground only
 
+/datum/map_template/ruin/icemoon/icemoonminingbase
+
+	name = "Icemoon Mining Base"
+	id = "icemoonminingbase"
+	description = "The mining base for Icemoon."
+	suffix = "icemoonminingbase.dmm"
+	always_place = TRUE
+
 /datum/map_template/ruin/icemoon/transitshuttle
 	name = "Transit Shuttle"
 	id = "transitshuttle"
