@@ -826,7 +826,7 @@
 	dir = newdir
 
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/M)
+/atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return
 
 /**

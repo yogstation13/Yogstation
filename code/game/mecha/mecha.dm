@@ -736,7 +736,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src)
+					obstacle.mech_melee_attack(src, equip_allowed = FALSE)	//No bump smash sword attacks
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
