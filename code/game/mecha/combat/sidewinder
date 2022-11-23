@@ -1,0 +1,42 @@
+/obj/mecha/combat/sidewinder
+	desc = "A squat, nimble mech taking advantage of advanced synthetic muscles. Orignally used for gladiatorial combat, now it finds use in a variety of situations."
+	name = "\improper Sidewinder"
+	icon_state = "sidewinder"
+	step_in = 2.5	//Faster than a gygax
+	dir_in = 1 //Facing North.
+	max_integrity = 200
+	deflect_chance = 10
+	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
+	max_temperature = 25000
+	infra_luminosity = 6
+	wreckage = /obj/structure/mecha_wreckage/gygax
+	internal_damage_threshold = 25	//Reinforced internal components
+	max_equip = 3
+	step_energy_drain = 3
+	omnidirectional_attacks = TRUE	//Thus the name
+	turnsound = 'sound/mecha/mechmove01.ogg'
+
+/obj/mecha/proc/click_action(atom/target,mob/user,params)
+	//Check all this stuff because this has to happen BEFORE we call the parent so that we can sword in the right direction
+	if(!occupant || occupant != user )
+		return
+	if(!locate(/turf) in list(target,target.loc)) // Prevents inventory from being drilled
+		return
+	if(completely_disabled)
+		return
+	if(is_currently_ejecting)
+		return
+	if(user.incapacitated())
+		return
+	if(state)
+		occupant_message(span_warning("Maintenance protocols in effect."))
+		return
+	if(!get_charge())
+		return
+	if(src == target)
+		return
+	if(!equipment_disabled)								//EMP will disable the turning temporarily
+		var/sidewind_dir = getDir(src, target)
+		setDir(sidewind_dir)							//Turn on click, very nimble
+		playsound(src,'sound/mecha/mechmove01.ogg',40,1)
+	return ..()
