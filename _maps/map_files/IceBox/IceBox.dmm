@@ -17977,17 +17977,6 @@
 	},
 /turf/closed/mineral/random/snow,
 /area/icemoon/surface/outdoors)
-"aKN" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 5;
-	height = 7;
-	id = "supply_home";
-	name = "Cargo Bay";
-	width = 12
-	},
-/turf/closed/mineral/random/snow,
-/area/icemoon/surface/outdoors)
 "aKO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -53132,13 +53121,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cfE" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/quartermaster/miningdock)
 "cfF" = (
 /obj/machinery/suit_storage_unit/ce,
 /obj/effect/turf_decal/stripes/line{
@@ -57156,6 +57138,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fco" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 3;
+	height = 5;
+	id = "mining_home";
+	name = "mining shuttle bay";
+	roundstart_template = /datum/map_template/shuttle/mining/box;
+	width = 7
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "feu" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral,
@@ -63178,6 +63172,17 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"vsA" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 5;
+	height = 7;
+	id = "supply_home";
+	name = "Cargo Bay";
+	width = 12
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "vth" = (
 /obj/structure/table/wood,
 /obj/structure/mirror{
@@ -81812,18 +81817,18 @@ bdH
 bjg
 bji
 bkF
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -82069,18 +82074,18 @@ aQM
 aQM
 bgQ
 bkE
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -82326,18 +82331,18 @@ aXQ
 aXQ
 bek
 bkF
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -82583,18 +82588,18 @@ cfP
 aXQ
 bek
 bkF
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -82840,18 +82845,18 @@ bgr
 aXQ
 bek
 bkF
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -83097,18 +83102,18 @@ bfa
 aXQ
 bgT
 bkE
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -83354,18 +83359,18 @@ bgs
 aXQ
 bgT
 bkF
-aae
-aae
-aae
-aae
-aae
-aae
-aKN
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+vsA
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -83882,13 +83887,13 @@ aae
 aae
 aae
 aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -84139,13 +84144,13 @@ aae
 aae
 aae
 aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+abY
+abY
+abY
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -84396,13 +84401,13 @@ aae
 aae
 aae
 aae
-aae
-aae
 abY
 abY
 abY
-aae
-aae
+abY
+abY
+abY
+abY
 aae
 aae
 aae
@@ -84653,13 +84658,13 @@ aag
 aae
 aae
 aae
-aae
 abY
 abY
 abY
 abY
 abY
-aae
+abY
+abY
 aae
 aae
 aae
@@ -84910,13 +84915,13 @@ aae
 aae
 aae
 aae
-aae
 abY
-cfE
 abY
-cfE
 abY
-aae
+fco
+abY
+abY
+abY
 aae
 aae
 aae
