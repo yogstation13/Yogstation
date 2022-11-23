@@ -107,8 +107,14 @@
 		ET.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
-	var/list/assassination = list()
-	var/list/protection = list()
+
+	//Yogstation change: Gathers heretics for the heretic betray/assassinate objective.
+	var/list/all_heretics = list()
+	for(var/datum/antagonist/heretic/H in GLOB.antagonists)
+		all_heretics += H.owner
+	//End of yogstation change.
+
+	var/list/target_blacklist = list() //Yogstation change: Prevents double assassinate or double protect objectives.
 	for(var/i in 1 to 2)
 		var/pck = pick("assassinate","protect")
 		switch(pck)
@@ -117,15 +123,30 @@
 				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
-				A.find_target(owners,protection)
-				assassination += A.target
+				//Yogstation change: 20% chance to target other heretics.
+				if(prob(20) && length(other_heretics)) //20% chance to target other heretics.
+					all_heretics -= A.owners() //Remove owners of this objective.
+					all_heretics -= target_blacklist //Remove those who are already being targeted.
+					if(length(all_heretics)
+						A.target = pick(all_heretics)
+						A.update_explanation_text()
+					else
+						A.find_target(owners,target_blacklist)
+				else
+					A.find_target(owners,target_blacklist)
+				//End of yogstation change.
+				//Yogstation change: Prevents double assassinate or double protect objectives.
+				target_blacklist += A.target
+				//End of yogstation change.
 				objectives += A
 			if("protect")
 				var/datum/objective/protect/P = new
 				P.owner = owner
 				var/list/owners = P.get_owners()
-				P.find_target(owners,assassination)
-				protection += P.target
+				//Yogstation change: Prevents double assassinate or double protect objectives.
+				P.find_target(owners,target_blacklist)
+				target_blacklist += P.target
+				//End of yogstation change.
 				objectives += P
 
 	var/datum/objective/sacrifice_ecult/SE = new
