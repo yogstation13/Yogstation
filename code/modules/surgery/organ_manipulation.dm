@@ -112,6 +112,9 @@
 		else if(istype(tool, /obj/item/organ/brain))
 			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
 			return -1
+	else if(istype(tool, /obj/item/organ/brain/positron))
+		to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
+		return -1
 
 	if(isorgan(tool))
 		current_type = "insert"
