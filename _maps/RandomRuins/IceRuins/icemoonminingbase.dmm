@@ -308,6 +308,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"dt" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/mine/infirmary)
 "dv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1329,6 +1337,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"tl" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/turf/open/floor/plating,
+/area/mine/infirmary)
 "tt" = (
 /obj/machinery/camera{
 	c_tag = "Break Room";
@@ -1486,10 +1506,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
-"uT" = (
-/obj/structure/lattice/catwalk,
-/turf/open/openspace/icemoon,
-/area/icemoon/surface/outdoors)
 "uW" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/door/poddoor/preopen{
@@ -2333,6 +2349,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/mine/vacant)
+"FN" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "FW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -3075,9 +3095,6 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/mine/maintenance)
-"PM" = (
-/turf/open/openspace/icemoon,
-/area/icemoon/surface/outdoors)
 "PO" = (
 /obj/structure/mirror{
 	pixel_x = 28
@@ -3125,9 +3142,6 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
-"Qg" = (
-/turf/open/openspace/icemoon,
-/area/lavaland/surface/outdoors)
 "Qs" = (
 /obj/machinery/atmospherics/pipe/simple/violet/visible{
 	dir = 10
@@ -3909,9 +3923,9 @@ cK
 cK
 cK
 cK
-PM
-PM
-PM
+Ia
+Ia
+Ia
 cK
 cK
 cK
@@ -3920,8 +3934,8 @@ cK
 cK
 cK
 Ia
-PM
-PM
+Ia
+Ia
 cK
 cK
 cK
@@ -3959,9 +3973,9 @@ cK
 Ia
 cK
 Ia
-PM
-PM
-PM
+Ia
+Ia
+Ia
 Ia
 Ia
 Ia
@@ -3969,16 +3983,16 @@ Ia
 cK
 cK
 cK
-PM
-PM
 Ia
 Ia
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
+Ia
 cK
 cK
-PM
+Ia
 MD
 MD
 MD
@@ -4011,7 +4025,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 yq
 yq
 pc
@@ -4019,21 +4033,21 @@ yq
 yq
 Ia
 Ia
-PM
-PM
-PM
+Ia
+Ia
+Ia
 OU
 OU
 OU
 OU
 OU
-PM
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
 MD
 MD
-PM
+Ia
 MD
 MD
 MD
@@ -4063,7 +4077,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 yq
 UZ
 na
@@ -4072,21 +4086,21 @@ yq
 Ia
 Ia
 Ia
-PM
-PM
+Ia
+Ia
 OU
 ha
 os
 yZ
 OU
-uT
-uT
-PM
-PM
-PM
-PM
-PM
-PM
+FN
+FN
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
 MD
 MD
 MD
@@ -4115,7 +4129,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 yq
 FK
 Ng
@@ -4132,14 +4146,14 @@ YP
 Ob
 OU
 hE
-uT
-uT
-uT
-uT
-uT
-uT
-PM
-PM
+FN
+FN
+FN
+FN
+FN
+FN
+Ia
+Ia
 MD
 MD
 MD
@@ -4189,10 +4203,10 @@ oi
 oi
 oi
 oi
-uT
-uT
-PM
-PM
+FN
+FN
+Ia
+Ia
 MD
 MD
 MD
@@ -4242,9 +4256,9 @@ cN
 aN
 HZ
 Et
-uT
-uT
-PM
+FN
+FN
+Ia
 Ia
 MD
 MD
@@ -4295,8 +4309,8 @@ Yh
 bX
 oe
 oe
-uT
-PM
+FN
+Ia
 Ia
 MD
 MD
@@ -4347,8 +4361,8 @@ Yr
 bm
 Et
 oe
-uT
-PM
+FN
+Ia
 Ia
 Ia
 MD
@@ -4399,8 +4413,8 @@ Cx
 bX
 oe
 oe
-uT
-PM
+FN
+Ia
 Ia
 Ia
 MD
@@ -4450,8 +4464,8 @@ VZ
 ft
 WZ
 Et
-uT
-uT
+FN
+FN
 Ia
 Ia
 Ia
@@ -4501,8 +4515,8 @@ Du
 ce
 ne
 ne
-uT
-uT
+FN
+FN
 Ia
 Ia
 Ia
@@ -4553,7 +4567,7 @@ hr
 xY
 Or
 rb
-uT
+FN
 Ia
 Ia
 Ia
@@ -4605,7 +4619,7 @@ Nc
 Lc
 zc
 rb
-uT
+FN
 Ia
 Ia
 Ia
@@ -4889,7 +4903,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 fA
 lU
 lJ
@@ -4918,8 +4932,8 @@ at
 zo
 LL
 MM
-PM
-PM
+Ia
+Ia
 Ia
 Ia
 Ia
@@ -4941,7 +4955,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 fA
 lU
 lJ
@@ -4969,8 +4983,8 @@ GV
 Lc
 Or
 rb
-Qg
-PM
+Ia
+Ia
 Ia
 Ia
 Ia
@@ -4993,7 +5007,7 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 KX
 KX
 bv
@@ -5021,7 +5035,7 @@ YN
 cc
 gu
 gu
-Qg
+Ia
 Ia
 Ia
 Ia
@@ -5149,7 +5163,7 @@ Ia
 Ia
 MD
 MD
-PM
+Ia
 KX
 Sg
 FL
@@ -5201,7 +5215,7 @@ Ia
 MD
 MD
 MD
-PM
+Ia
 VQ
 kX
 yS
@@ -5230,7 +5244,7 @@ RG
 Fa
 Fz
 iH
-iH
+tl
 Ia
 Ia
 Ia
@@ -5253,7 +5267,7 @@ MD
 MD
 MD
 MD
-PM
+Ia
 KX
 kX
 hY
@@ -5281,8 +5295,8 @@ iX
 ad
 Pd
 gu
-iH
-PM
+dt
+Ia
 Ia
 Ia
 Ia
@@ -5305,7 +5319,7 @@ MD
 MD
 MD
 MD
-PM
+Ia
 KX
 KX
 KX
@@ -5333,8 +5347,8 @@ gu
 gu
 gu
 gu
-PM
-PM
+Ia
+Ia
 Ia
 Ia
 Ia
@@ -5357,8 +5371,8 @@ MD
 MD
 MD
 MD
-PM
-PM
+Ia
+Ia
 MD
 MD
 Ia
@@ -5371,7 +5385,7 @@ pH
 yq
 Ia
 Ia
-PM
+Ia
 Ia
 Ia
 gu
@@ -5382,11 +5396,11 @@ uW
 Ia
 Ia
 Ia
-PM
-PM
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
+Ia
 Ia
 Ia
 Ia
@@ -5422,23 +5436,23 @@ nb
 Jq
 yq
 Ia
-PM
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
 gu
 sJ
 oN
 OS
 gu
 Ia
-PM
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
 MD
-PM
-PM
+Ia
+Ia
 Ia
 MD
 Ia
@@ -5474,23 +5488,23 @@ rw
 yq
 yq
 Ia
-PM
+Ia
 cK
 cK
-PM
+Ia
 gu
 gu
 gu
 gu
 gu
-PM
-PM
+Ia
+Ia
 cK
 cK
 cK
 MD
 MD
-PM
+Ia
 Ia
 MD
 MD
@@ -5525,18 +5539,18 @@ Ia
 Ia
 Ia
 Ia
-PM
-PM
-cK
-cK
-PM
-PM
-PM
-PM
-PM
 Ia
-PM
-PM
+Ia
+cK
+cK
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
 cK
 cK
 cK
@@ -5578,17 +5592,17 @@ Ia
 Ia
 Ia
 Ia
-PM
+Ia
 cK
-PM
-PM
-PM
-PM
-PM
-PM
-PM
-PM
-PM
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
+Ia
 cK
 cK
 cK
@@ -5634,11 +5648,11 @@ cK
 cK
 cK
 cK
-PM
+Ia
 cK
-PM
-PM
-PM
+Ia
+Ia
+Ia
 cK
 cK
 cK
@@ -5686,7 +5700,7 @@ cK
 cK
 cK
 cK
-PM
+Ia
 cK
 cK
 cK
