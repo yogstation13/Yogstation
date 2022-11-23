@@ -869,3 +869,71 @@
 		H.remove_hud_from(user)
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
 		H2.remove_hud_from(user)
+
+/obj/item/nullrod/cross
+	name = "golden crucifix"
+	desc = "Resist the devil, and he will flee from you."
+	icon_state = "cross"
+	item_state = "cross"
+	force = 0 // How often we forget
+	throwforce = 0 // Faith without works is...
+	attack_verb = list("blessed")
+	var/held_up = FALSE
+	COOLDOWN_DECLARE(holy_notification)
+
+/obj/item/nullrod/cross/attack_self(mob/user)
+	. = ..()
+	if(held_up)
+		unwield(user)
+		return
+	user.visible_message(span_notice("[user] raises \the [src]."), span_notice("You raise \the [src]."))
+	held_up = TRUE
+	w_class = WEIGHT_CLASS_GIGANTIC // Heavy, huh?
+	slot_flags = 0
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/nullrod/cross/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+/obj/item/nullrod/cross/proc/unwield(mob/user)
+	if(!held_up)
+		return
+	user.visible_message(span_notice("[user] lowers \the [src]."), span_notice("You lower \the [src]."))
+	held_up = FALSE
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	STOP_PROCESSING(SSfastprocess, src)
+
+/obj/item/nullrod/cross/process()
+	if(!held_up)
+		return PROCESS_KILL // something has gone terribly wrong
+	if(!isliving(loc))
+		return PROCESS_KILL // something has gone terribly wrong
+	
+	var/notify = FALSE
+	if(COOLDOWN_FINISHED(src, holy_notification))
+		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)
+		notify = TRUE
+
+	for(var/turf/open/T in cone_helper(get_turf(src), loc.dir, 4, TRUE))
+		for(var/mob/living/L in T)
+			if(!L.mind?.holy_role) // Priests are unaffeted
+				if(notify)
+					to_chat(L, span_userdanger("The holy light burns you!"))
+				// Unholy creatures take more damage
+				// Everyone else still takes damage but less real damage
+				// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
+				// Should be incredibly difficult to metacheck with this due to RNG and fast processing
+				if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
+					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
+					L.adjustStaminaLoss(2)
+				else
+					L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
+					L.adjustStaminaLoss(3)
+
+/obj/item/nullrod/cross/examine(mob/user)
+	. = ..()
+	. += "[span_notice("Use in-hand while facing evil to ")][span_danger("purge it.")]"
