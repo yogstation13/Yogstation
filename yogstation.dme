@@ -1904,6 +1904,8 @@
 #include "code\modules\conditions\condition.dm"
 #include "code\modules\conditions\conditions\hypothyroidism.dm"
 #include "code\modules\conditions\symptoms\tiredness.dm"
+#include "code\modules\conditions\tests\orexin.dm"
+#include "code\modules\conditions\tests\test.dm"
 #include "code\modules\corporations\corporation.dm"
 #include "code\modules\demo\hooks.dm"
 #include "code\modules\detectivework\detective_work.dm"
