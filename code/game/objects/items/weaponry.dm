@@ -430,6 +430,20 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
+/obj/item/switchblade/backstab
+	var/nt = FALSE
+
+/obj/item/switchblade/backstab/nt
+	nt = TRUE
+
+/obj/item/switchblade/backstab/examine(mob/user)
+	. = ..()
+	. += span_danger("\The [src] has a [nt ? "Nanotrasen" : "Syndicate"] marking on the blade.")
+
+/obj/item/switchblade/backstab/Initialize()
+	. = ..()
+	AddComponent(/datum/component/backstabs, 1.75) // 35 damage
+
 /obj/item/phone
 	name = "red phone"
 	desc = "Should anything ever go wrong..."

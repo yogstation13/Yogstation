@@ -9,7 +9,7 @@
 	armor = list(MELEE = 40, BULLET = 35, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 50, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	infra_luminosity = 8
-	force = 40
+	force = 35
 	wreckage = /obj/structure/mecha_wreckage/durand
 
 /obj/mecha/combat/durand/GrantActions(mob/living/user, human_occupant = 0)
