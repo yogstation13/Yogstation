@@ -97,7 +97,7 @@
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 4) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 4.
+	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
 		if(!SSticker.mode.exchange_red)
 			SSticker.mode.exchange_red = owner
 		else
