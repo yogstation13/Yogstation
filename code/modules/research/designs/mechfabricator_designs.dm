@@ -945,3 +945,12 @@
 	materials = list(/datum/material/iron = 10000 , /datum/material/glass = 5000)
 	construction_time = 150
 	category = list("IPC Components")
+
+/datum/design/ipcclone
+	name = "Blank IPC"
+	id = "blankipc"
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = 100000, /datum/material/glass = 50000, /datum/material/plasma = 1000)
+	construction_time = 900 //one and a half minutes
+	build_path = /mob/living/carbon/human/species/ipc/empty //apparently this works
+	category = list("IPC Components")
