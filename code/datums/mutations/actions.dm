@@ -194,3 +194,38 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 /obj/effect/proc_holder/spell/self/void/cast(mob/living/user = usr)
 	. = ..()
 	user.apply_status_effect(STATUS_EFFECT_VOIDED)
+
+
+/datum/mutation/human/remoteviewing
+	name = "Remote Viewing"
+	desc = "Allows the subject to see through the eyes of others."
+	quality = POSITIVE
+	text_gain_indication = span_notice("You see all.")
+	difficulty = 20
+	power = /obj/effect/proc_holder/spell/remoteviewing
+	instability = 40
+	energy_coeff = 1
+
+
+/obj/effect/proc_holder/spell/remoteviewing
+	name = "Remote View"
+	desc = "See through the eyes of someone else."
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	charge_max = 0
+	action_icon = 'icons/mob/actions/actions_humble.dmi'
+	action_icon_state = "summon_servant"
+
+/obj/effect/proc_holder/spell/remoteviewing/cast(list/targets, mob/user)
+	. = ..()
+	user.eye = targets[1]
+
+/obj/effect/proc_holder/spell/remoteviewing/choose_targets(mob/user = usr)
+	var/list/targets = GLOB.player_list
+	for (var/mob/M in targets)
+		if (M.z != user.z)
+			targets.Remove(M)
+	
+	M = input("Choose the target for the spell.", "Targeting") as null|mob in targets
+
+	perform(list(M),user=user)
