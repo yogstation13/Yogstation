@@ -19,7 +19,7 @@
 	perform(null, user=user)
 
 ///This proc creates a list of turfs that are hit by the cone
-/proc/cone_helper(turf/starter_turf, dir_to_use, cone_levels = 3, respect_density = FALSE)
+/obj/effect/proc_holder/spell/cone/proc/cone_helper(turf/starter_turf, dir_to_use, cone_levels = 3)
 	var/list/turfs_to_return = list()
 	var/turf/turf_to_use = starter_turf
 	var/turf/left_turf
@@ -50,12 +50,12 @@
 			level_turfs += left_turf
 			right_turf = get_step(turf_to_use, right_dir)
 			level_turfs += right_turf
-			for(var/left_i in 1 to i -calculate_cone_shape(i, cone_levels))
+			for(var/left_i in 1 to i -calculate_cone_shape(i))
 				if(left_turf.density && respect_density)
 					break
 				left_turf = get_step(left_turf, left_dir)
 				level_turfs += left_turf
-			for(var/right_i in 1 to i -calculate_cone_shape(i, cone_levels))
+			for(var/right_i in 1 to i -calculate_cone_shape(i))
 				if(right_turf.density && respect_density)
 					break
 				right_turf = get_step(right_turf, right_dir)
@@ -68,7 +68,7 @@
 	return turfs_to_return
 
 /obj/effect/proc_holder/spell/cone/cast(list/targets,mob/user = usr)
-	var/list/cone_turfs = cone_helper(get_turf(user), user.dir, cone_levels, respect_density)
+	var/list/cone_turfs = cone_helper(get_turf(user), user.dir, cone_levels)
 	for(var/list/turf_list in cone_turfs)
 		do_cone_effects(turf_list)
 
@@ -99,7 +99,7 @@
 	return
 
 ///This proc adjusts the cones width depending on the level.
-/obj/effect/proc_holder/spell/cone/proc/calculate_cone_shape(current_level, cone_levels)
+/obj/effect/proc_holder/spell/cone/proc/calculate_cone_shape(current_level)
 	var/end_taper_start = round(cone_levels * 0.8)
 	if(current_level > end_taper_start)
 		return (current_level % end_taper_start) * 2 //someone more talented and probably come up with a better formula.
@@ -119,7 +119,7 @@
 
 /obj/effect/proc_holder/spell/cone/staggered/cast(list/targets,mob/user = usr)
 	var/level_counter = 0
-	var/list/cone_turfs = cone_helper(get_turf(user), user.dir, cone_levels, respect_density)
+	var/list/cone_turfs = cone_helper(get_turf(user), user.dir, cone_levels)
 	for(var/list/turf_list in cone_turfs)
 		level_counter++
 		addtimer(CALLBACK(src, .proc/do_cone_effects, turf_list, level_counter), 2 * level_counter)

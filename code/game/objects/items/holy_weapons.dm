@@ -879,10 +879,14 @@
 	throwforce = 0 // Faith without works is...
 	attack_verb = list("blessed")
 	var/held_up = FALSE
+	var/mutable_appearance/holy_glow_fx
+	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
 	COOLDOWN_DECLARE(holy_notification)
 
-/obj/item/nullrod/cross/attack_self(mob/user)
+/obj/item/nullrod/cross/attack_self(mob/living/user)
 	. = ..()
+	if(!istype(user))
+		return // sanity
 	if(held_up)
 		unwield(user)
 		return
@@ -890,6 +894,9 @@
 	held_up = TRUE
 	w_class = WEIGHT_CLASS_GIGANTIC // Heavy, huh?
 	slot_flags = 0
+	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
+	user.add_overlay(holy_glow_fx)
+	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
 	START_PROCESSING(SSfastprocess, src)
 
@@ -904,6 +911,11 @@
 	held_up = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
+	if(holy_glow_fx)
+		cut_overlay(holy_glow_fx)
+		holy_glow_fx = null
+	if(holy_glow_light)
+		QDEL_NULL(holy_glow_light)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	STOP_PROCESSING(SSfastprocess, src)
 
@@ -918,21 +930,20 @@
 		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)
 		notify = TRUE
 
-	for(var/turf/open/T in cone_helper(get_turf(src), loc.dir, 4, TRUE))
-		for(var/mob/living/L in T)
-			if(!L.mind?.holy_role) // Priests are unaffeted
-				if(notify)
-					to_chat(L, span_userdanger("The holy light burns you!"))
-				// Unholy creatures take more damage
-				// Everyone else still takes damage but less real damage
-				// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
-				// Should be incredibly difficult to metacheck with this due to RNG and fast processing
-				if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
-					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
-					L.adjustStaminaLoss(2)
-				else
-					L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
-					L.adjustStaminaLoss(3)
+	for(var/mob/living/L in view(2, get_teleport_loc(get_turf(loc), loc, 2)))
+		if(!L.mind?.holy_role) // Priests are unaffeted, trying to use it as a non-priest will harm you
+			if(notify)
+				to_chat(L, span_userdanger("The holy light burns you!"))
+			// Unholy creatures take more damage
+			// Everyone else still takes damage but less real damage
+			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
+			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
+			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
+				L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
+				L.adjustStaminaLoss(2)
+			else
+				L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
+				L.adjustStaminaLoss(3)
 
 /obj/item/nullrod/cross/examine(mob/user)
 	. = ..()

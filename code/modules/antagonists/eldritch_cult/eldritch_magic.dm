@@ -660,7 +660,7 @@
 		var/mob/living/carbon/carbon_victim = victim
 		carbon_victim.reagents.add_reagent(/datum/reagent/eldritch, min(1, 6-level))
 
-/obj/effect/proc_holder/spell/cone/staggered/entropic_plume/calculate_cone_shape(current_level, cone_levels)
+/obj/effect/proc_holder/spell/cone/staggered/entropic_plume/calculate_cone_shape(current_level)
 	if(current_level == cone_levels)
 		return 5
 	else if(current_level == cone_levels-1)
