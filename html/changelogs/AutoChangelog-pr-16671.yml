@@ -1,0 +1,7 @@
+author: "Annoying-plant"
+delete-after: true 
+changes: 
+  - rscadd: "Added the mix to engine pipe on the mix loop"
+  - rscdel: "Removed the pure to engine pipe on incinerator line"
+  - rscadd: "changed area name of a single tile to engine instead of SM chamber"
+  - rscdel: "Removed the random tile named SM chamber inside engi"
