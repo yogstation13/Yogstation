@@ -44,7 +44,7 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	armor = list(MELEE = 60, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 2, RAD = 0, FIRE = 0, ACID = 50) //Medieval armor was exceptional against melee weaponry and shrapnel, as highlighted by breastplate usage during the Napoleonic Wars, but suffered against ballistics
-	slowdown = 0.5 //Have you ever worn full plate armor before
+	slowdown = 0.3 //Have you ever worn full plate armor before
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	blocks_shove_knockdown = FALSE
 
@@ -54,7 +54,7 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	armor = list(MELEE = 45, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 30, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
-	slowdown = 0.2 //See above
+	slowdown = 0.05 //See above
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -101,7 +101,7 @@
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
 	armor = list(MELEE = 65, BULLET = 20, LASER = 15, ENERGY = 15, BOMB = 20, BIO = 4, RAD = 0, FIRE = 40, ACID = 60) //LITERALLY made of stone; this is BASICALLY miner armor with HARD slowdown
-	slowdown = 0.7 //ROCK; full set is slowdown equal to firesuit
+	slowdown = 0.4 //ROCK; full set is slowdown equal to firesuit
 
 /obj/item/clothing/head/helmet/chaplain/ancient
 	name = "ancient helmet"
@@ -109,7 +109,7 @@
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
 	armor = list(MELEE = 50, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 15, BIO = 4, RAD = 0, FIRE = 40, ACID = 60)
-	slowdown = 0.3 //Pretty sure riot is just strictly better because lmao
+	slowdown = 0.1 //Pretty sure riot is just strictly better because lmao
 
 /obj/item/storage/box/holy/witchhunter
 	name = "Witchhunter Kit"
@@ -198,7 +198,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list(MELEE = 25, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 15, BIO = 30, RAD = 30, FIRE = 70, ACID = 50) //Crappier version of the standard armor
-	slowdown = 0.45 //No sir you are NOT a space marine you are in CHUNKY power armor
+	slowdown = 0.25 //No sir you are NOT a space marine you are in CHUNKY power armor
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplar
 
