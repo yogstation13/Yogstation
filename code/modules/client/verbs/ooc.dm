@@ -141,6 +141,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 				SEND_SOUND(C,pingsound)
 				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
 			to_chat(C,sentmsg)
+	to_chat(SSdemo, oocmsg);
 	//YOGS END
 	var/data = list()
 	data["normal"] = oocmsg

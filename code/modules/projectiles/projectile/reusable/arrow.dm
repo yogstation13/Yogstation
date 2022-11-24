@@ -2,6 +2,7 @@
 	name = "Arrow"
 	desc = "Woosh!"
 	damage = 20
+	speed = 0.6
 	flag = MELEE
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
@@ -148,6 +149,7 @@
 	icon_state = "arrow_energy"
 	damage = 32
 	damage_type = BURN
+	speed = 0.6
 	var/embed_chance = 0.4
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
 	

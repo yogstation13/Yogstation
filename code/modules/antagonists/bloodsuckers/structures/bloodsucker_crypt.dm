@@ -672,7 +672,7 @@
 	/// Conversion Process
 	if(convert_progress > 0)
 		to_chat(user, span_notice("You spill some blood and prepare to initiate [target] into your service."))
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_COST)
+		bloodsuckerdatum.AddBloodVolume(-text2num(TORTURE_BLOOD_COST))
 		if(!do_torture(user,target))
 			to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		else
@@ -717,7 +717,7 @@
 		to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
 		return
 	/// Convert to Vassal!
-	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
+	bloodsuckerdatum.AddBloodVolume(-text2num(TORTURE_CONVERSION_COST))
 	if(bloodsuckerdatum && bloodsuckerdatum.attempt_turn_vassal(target))
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)

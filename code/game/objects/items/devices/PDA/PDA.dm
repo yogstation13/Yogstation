@@ -23,6 +23,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 #define PDA_PRINTING_RESEARCH_REQUEST             "8"
 #define PDA_PRINTING_MECH_REQUEST                 "9"
 #define PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE "10"
+#define PDA_PRINTING_LITERACY_TEST                "11"
+#define PDA_PRINTING_LITERACY_ANSWERS             "12"
 
 
 /obj/item/pda
@@ -419,6 +421,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_RESEARCH_REQUEST]'>Research Request Form</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_MECH_REQUEST]'>Mech Request Form</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE]'>Job Reassignment Certificate</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_LITERACY_TEST]'>Literacy Test</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_LITERACY_ANSWERS]'>Literacy Test Answers</a></li>"
 				dat += "</ul>"
 
 			// I swear, whoever thought that these magical numbers were a good way to create a menu was a good idea should be fucking shot.
@@ -668,6 +672,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 							usr.put_in_hands(new /obj/item/paper/paperwork/mech_form(user_turf))
 						if (PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE)
 							usr.put_in_hands(new /obj/item/paper/paperwork/jobchangecert(user_turf))
+						if (PDA_PRINTING_LITERACY_TEST)
+							usr.put_in_hands(new /obj/item/paper/paperwork/literacytest(user_turf))
+						if (PDA_PRINTING_LITERACY_ANSWERS)
+							usr.put_in_hands(new /obj/item/paper/paperwork/literacytest/answers(user_turf))
 				else if (cartridge.access & CART_SECURITY)
 					to_chat(usr, span_warning("The PDA whirrs as a paper materializes!"))
 					playsound(src,"sound/items/polaroid1.ogg",30,1)
@@ -787,6 +795,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	for(var/mob/M in GLOB.player_list)
 		if(isobserver(M) && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTPDA))
 			to_chat(M, "[FOLLOW_LINK(M, user)] [ghost_message]")
+	to_chat(SSdemo, "[FOLLOW_LINK(SSdemo, user)] [ghost_message]")
 	// Log in the talk log
 	user.log_talk(message, LOG_PDA, tag="PDA: [initial(name)] to [target_text]")
 	to_chat(user, span_info("Message sent to [target_text]: \"[message]\""))
@@ -1275,4 +1284,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 #undef PDA_PRINTING_RESEARCH_REQUEST
 #undef PDA_PRINTING_MECH_REQUEST
 #undef PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE
+#undef PDA_PRINTING_LITERACY_TEST
+#undef PDA_PRINTING_LITERACY_ANSWERS
 

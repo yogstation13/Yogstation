@@ -219,11 +219,11 @@
 	switch(fire_stacks)
 		if(1 to INFINITY)
 			msg += "[t_He] [t_is] covered in something flammable.\n"
-		if(-1)
+		if(-5 to -1)
 			msg += "[t_He] look[p_s()] a little damp.\n"
-		if(-2 to -4)
+		if(-10 to -5)
 			msg += "[t_He] look[p_s()] a little soaked.\n"
-		if(-5 to -INFINITY)
+		if(-INFINITY to -10)
 			msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
