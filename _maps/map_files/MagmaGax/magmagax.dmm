@@ -31927,16 +31927,36 @@
 /obj/machinery/light,
 /obj/structure/rack,
 /obj/item/clothing/mask/breath{
-	pixel_x = -6
+	pixel_x = -10;
+	pixel_y = 3
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -6
+	pixel_x = -5;
+	pixel_y = 1
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -6
+	pixel_x = -11;
+	pixel_y = -4
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -6
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/obj/item/key{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/key{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/key{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/key{
+	pixel_x = 10;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
