@@ -259,6 +259,31 @@
 	new /obj/item/shield/energy/bananium(src.loc)
 	qdel(src)
 
+/obj/item/shield/energy/ballistics
+	name = "ballistics combat shield"
+	desc = "Utilising the finest in Gorlex forcefield technology, this shield is able to accurately track and reflect ballistic projectiles, however this comes at the cost of energy projectiles."
+
+/obj/item/shield/energy/ballistics/Initialize()
+	. = ..()
+	var/icon/I = icon
+	I.SetIntensity(2, 1, 0)
+	icon = I	
+	var/icon/I = lefthand_file
+	I.SetIntensity(2, 1, 0)
+	lefthand_file = I	
+	var/icon/I = righthand_file
+	I.SetIntensity(2, 1, 0)
+	righthand_file = I
+
+/obj/item/shield/energy/ballistics/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(active)
+		if (istype(hitby, /obj/item/projectile/bullet))
+			return 1
+	return 0
+
+/obj/item/shield/energy/ballistics/IsReflect()
+	return 0
+	
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."

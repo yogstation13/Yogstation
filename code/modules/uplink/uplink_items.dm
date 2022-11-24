@@ -436,7 +436,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 16
 	surplus = 20
 	include_modes = list(/datum/game_mode/nuclear)
-
+/datum/uplink_item/dangerous/shield/ballistics
+	name = "Ballistics Shield"
+	desc = "A shield that lets you completely protect yourself from ballistic projectile attacks."
+	item = /obj/item/shield/energy/ballistics
+	cost = 30
+	surplus = 40
+	include_modes = list(/datum/game_mode/nuclear)
 /datum/uplink_item/dangerous/flamethrower
 	name = "Flamethrower"
 	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from Nanotrasen \
