@@ -42,7 +42,7 @@ map kilostation
 	disabled
 endmap
 
-map gaxstation
+map magmagax
 	maxplayers 40
 	votable
 endmap

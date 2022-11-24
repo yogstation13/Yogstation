@@ -1,0 +1,23 @@
+{
+	"map_name": "MagmaGax",
+	"map_path": "map_files/MagmaGax",
+	"map_file": "MagmaGax.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"cargo": "cargo_gax",
+		"ferry": "ferry_fancy",
+		"emergency": "emergency_box"
+	},
+	"traits": [
+		{
+			"Down": 1,
+			"Baseturf": "/turf/open/floor/plating/asteroid/basalt/lava_land_surface",
+			"Linkage": null,
+			"Weather_Ashstorm": true,
+			"Mining": true,
+			"Gravity": true
+		}
+	],
+	"minetype": "underworld"
+}

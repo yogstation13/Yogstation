@@ -34,7 +34,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "aI" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
@@ -225,7 +225,7 @@
 /area/ai_monitored/turret_protected/ai)
 "dL" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "dQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -250,7 +250,7 @@
 	c_tag = "MiniSat Exterior - Aft";
 	network = list("minisat","ss13")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "ep" = (
 /obj/effect/spawner/structure/solars/solar_96,
@@ -345,7 +345,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "fF" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -451,7 +451,7 @@
 	dir = 6;
 	network = list("minisat","ss13")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/tcommsat/server)
 "ij" = (
 /obj/structure/table,
@@ -482,7 +482,7 @@
 	dir = 1;
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "iD" = (
 /obj/machinery/light,
@@ -513,8 +513,8 @@
 /area/ai_monitored/turret_protected/ai)
 "jR" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
 "jY" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -530,7 +530,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "kl" = (
 /obj/structure/lattice/catwalk,
@@ -539,7 +539,7 @@
 	dir = 1;
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/storage/satellite)
 "kp" = (
 /obj/structure/lattice/catwalk,
@@ -549,7 +549,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "kC" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
@@ -582,7 +582,7 @@
 /area/tcommsat/server)
 "kY" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "la" = (
 /obj/structure/cable/yellow{
@@ -613,10 +613,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
-"ln" = (
-/obj/effect/landmark/carpspawn,
-/turf/open/space/basic,
-/area/space)
 "lo" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -773,7 +769,7 @@
 	dir = 4;
 	network = list("minisat","ss13")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "oH" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -818,7 +814,7 @@
 	icon_state = "2-4"
 	},
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "pQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -847,7 +843,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "qf" = (
 /obj/machinery/status_display/ai_core,
@@ -900,7 +896,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "sb" = (
 /obj/machinery/advanced_airlock_controller{
@@ -1069,8 +1065,8 @@
 "vi" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
 "vr" = (
 /obj/machinery/light{
 	dir = 8
@@ -1194,7 +1190,7 @@
 	dir = 1;
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "ys" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -1209,8 +1205,8 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "yu" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
 "yy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -1236,7 +1232,7 @@
 	name = "Waste Ejector"
 	},
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/storage/satellite)
 "zf" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
@@ -1328,7 +1324,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "Bf" = (
 /obj/structure/table,
@@ -1373,7 +1369,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "BJ" = (
 /obj/machinery/telecomms/processor/preset_four,
@@ -1471,7 +1467,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "FC" = (
 /obj/docking_port/stationary{
@@ -1482,8 +1478,8 @@
 	name = "ai ship bay";
 	width = 5
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "FQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/dark,
@@ -1639,11 +1635,11 @@
 /obj/structure/lattice,
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
 "Je" = (
-/turf/open/space/basic,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "Jk" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1847,7 +1843,7 @@
 	c_tag = "MiniSat Exterior - Aft Port";
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/aisat_interior)
 "ND" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1893,7 +1889,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "Oq" = (
 /obj/machinery/status_display/ai{
@@ -1955,8 +1951,8 @@
 "OP" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
 "OW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2041,7 +2037,7 @@
 "QY" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/storage/satellite)
 "Rf" = (
 /obj/structure/cable/yellow{
@@ -2286,7 +2282,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/solar/port/aft)
 "Vc" = (
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -2330,7 +2326,7 @@
 /area/ai_monitored/turret_protected/ai)
 "VP" = (
 /turf/closed/wall/r_wall,
-/area/space/nearstation)
+/area/template_noop)
 "Wx" = (
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -2379,7 +2375,7 @@
 	dir = 10;
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/tcommsat/server)
 "Xf" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -2491,7 +2487,7 @@
 	c_tag = "MiniSat Exterior - Aft Starboard";
 	network = list("minisat")
 	},
-/turf/open/space/basic,
+/turf/template_noop,
 /area/ai_monitored/turret_protected/ai)
 "Zq" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -2620,7 +2616,7 @@ Je
 Je
 Je
 Je
-ln
+Je
 Je
 Je
 Je
@@ -2735,7 +2731,7 @@ Je
 (7,1,1) = {"
 Je
 Je
-ln
+Je
 Je
 Je
 Je
@@ -3296,7 +3292,7 @@ Je
 Je
 Je
 Je
-ln
+Je
 Je
 Je
 Je
@@ -3358,7 +3354,7 @@ Je
 Je
 Je
 Je
-ln
+Je
 Je
 Je
 "}
@@ -4520,7 +4516,7 @@ Je
 (58,1,1) = {"
 Je
 Je
-ln
+Je
 Je
 Je
 Je
@@ -4549,7 +4545,7 @@ Je
 Je
 Je
 Je
-ln
+Je
 Je
 "}
 (59,1,1) = {"
@@ -4630,7 +4626,7 @@ Je
 Je
 Je
 Je
-VP
+Je
 VP
 Je
 yu
@@ -4850,7 +4846,7 @@ Je
 Je
 Je
 Je
-ln
+Je
 Je
 Je
 Je

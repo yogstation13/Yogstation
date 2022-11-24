@@ -283,9 +283,11 @@ SUBSYSTEM_DEF(mapping)
 
 #ifndef LOWMEMORYMODE
 	// TODO: remove this when the DB is prepared for the z-levels getting reordered
+	/*
 	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+	*/
 
 	// load mining
 	if(config.minetype == "lavaland")
@@ -293,6 +295,8 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "icemoon")
 		LoadGroup(FailedZs, "Ice moon", "map_files/mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
 		LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
+	else if(config.minetype == "underworld")
+		LoadGroup(FailedZs, "Underworld", "map_files/mining", "Underworld.dmm", default_traits = ZTRAITS_UNDERWORLD)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif

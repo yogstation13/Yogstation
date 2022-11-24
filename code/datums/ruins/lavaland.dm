@@ -259,7 +259,7 @@
 	id = "miningbase"
 	description = "The mining base that Nanotrasen uses for their mining operations."
 	suffix = "miningbase.dmm"
-	always_place = TRUE
+	always_place = FALSE
 	unpickable = TRUE
 	cost = 0
 
