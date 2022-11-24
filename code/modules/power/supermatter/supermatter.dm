@@ -26,7 +26,6 @@
 #define BZ_TRANSMIT_MODIFIER -2
 #define TRITIUM_TRANSMIT_MODIFIER 30 //We divide by 10, so this works out to 3
 #define PLUOXIUM_TRANSMIT_MODIFIER -5 //Should halve the power output
-#define HALON_TRANSMIT_MODIFIER -10 
 #define H2O_TRANSMIT_MODIFIER 2
 #define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
@@ -215,7 +214,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	/// Doesnt do anything they are influenced by gases
 	var/damage_mod = 1
 	var/heal_mod = 1
-	var/explosion_mod = 1
 
 
 /obj/machinery/power/supermatter_crystal/Initialize()
@@ -386,7 +384,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			S.consume(src)
 	else
 		if(antinoblium_attached)
-			explosion_power = explosion_power * 2 * explosion_mod
+			explosion_power = explosion_power * 2
 			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
 			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 				message_admins("[src] has exploded in empty space.")
@@ -477,7 +475,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				damage = max(damage + heal_mod * (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
 
 			//capping damage
-			damage = min(damage_archived + (DAMAGE_HARDCAP * damage_mod * explosion_point),damage)
+			damage = damage_mod * min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
 
 
 		// Calculate the gas mix ratio
@@ -500,16 +498,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
 
 		if (healcomp >= 0.1)
-			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1
+			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1 //Increases healing and healing cap
 		else
 			heal_mod = 1
 		
 		if (zaukcomp >= 0.05)
-			damage_mod = (zaukcomp * ZAUKER_DAMAGE_MOD) + 1
-			explosion_mod = max(zaukcomp * ZAUKER_DAMAGE_MOD, 2)
+			damage_mod = (zaukcomp * ZAUKER_DAMAGE_MOD) + 1 //Increases damage taken and damage cap
 		else
 			damage_mod = 1
-			explosion_mod = 1
 
 		// Mole releated calculations
 		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
