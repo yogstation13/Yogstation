@@ -268,10 +268,10 @@
 	var/icon/I = icon
 	I.SetIntensity(2, 1, 0)
 	icon = I	
-	var/icon/I = lefthand_file
+	I = lefthand_file
 	I.SetIntensity(2, 1, 0)
 	lefthand_file = I	
-	var/icon/I = righthand_file
+	I = righthand_file
 	I.SetIntensity(2, 1, 0)
 	righthand_file = I
 
