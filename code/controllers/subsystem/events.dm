@@ -7,9 +7,9 @@ SUBSYSTEM_DEF(events)
 	init_order = INIT_ORDER_EVENTS
 	runlevels = RUNLEVEL_GAME
 
-	var/datum/event_timer/mild/mild_events
-	var/datum/event_timer/severe/severe_events
-	var/datum/event_timer/catastrophic/catastrophic_events
+	var/datum/event_timer/mild/mild_events = new()
+	var/datum/event_timer/severe/severe_events = new()
+	var/datum/event_timer/catastrophic/catastrophic_events = new()
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/list/all_events = list()
