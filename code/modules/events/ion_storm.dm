@@ -12,6 +12,7 @@
 	var/removeRandomLawChance = 10 //chance the AI has one random supplied or inherent law removed
 	var/removeDontImproveChance = 10 //chance the randomly created law replaces a random law instead of simply being added
 	var/shuffleLawsChance = 10 //chance the AI's laws are shuffled afterwards
+	var/improveDontRemoveChance = 50 // chance that the AI's laws will have some words replaced
 	var/botEmagChance = 10
 	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, 1 means
 	var/ionMessage = null
@@ -52,6 +53,22 @@
 
 			if(prob(shuffleLawsChance))
 				M.shuffle_laws(list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
+
+			if (prob(improveDontRemoveChance))
+				for (var/x = 0 to length(M.laws.inherent))
+					var/L = M.laws.inherent[x]
+					var/list/law = splittext(L, " ")
+					for (var/i = 0 to length(law))
+						if (prob(10))
+							if (prob(30))
+								law[i] = pick_list(ION_FILE, "ionobjects")
+							else if (prob(30))
+								law[i] = pick_list(ION_FILE, "ionadjectives")
+							else if (prob(10))
+								law[i] = pick_list(ION_FILE, "ioncrew")
+							else
+								law[i] = pick_list(ION_FILE, "ionverb")
+					M.laws.inherent[x] = jointext(law, " ")
 
 			log_game("Ion storm changed laws of [key_name(M)] to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			message_admins("[ADMIN_LOOKUPFLW(M)] has had their laws changed by an ion storm to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
