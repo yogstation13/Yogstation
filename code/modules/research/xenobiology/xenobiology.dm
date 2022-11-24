@@ -883,6 +883,7 @@
 			return ..()
 		I.slowdown--
 		// yogs end
+		
 
 	if(istype(C, /obj/vehicle))
 		var/obj/vehicle/V = C
