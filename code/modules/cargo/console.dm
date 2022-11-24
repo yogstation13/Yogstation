@@ -115,7 +115,7 @@
 				"name" = P.group,
 				"packs" = list()
 			)
-		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || !pack.can_order())
+		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || !P.can_order())
 			continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
