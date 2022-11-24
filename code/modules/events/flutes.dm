@@ -13,7 +13,7 @@
 	max_occurrences = 1
 	weight = 1
 	min_players = 30
-	event_type = EVENT_TYPE_CATASTROPHIC
+	event_type = EVENT_TYPE_SEVERE
 
 //--------------------
 //ROUND EVENT "FLUTES"
