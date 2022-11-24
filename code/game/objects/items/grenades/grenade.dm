@@ -63,6 +63,13 @@
 /obj/item/grenade/proc/log_grenade(mob/user, turf/T)
 	log_bomber(user, "has primed a", src, "for detonation")
 
+/obj/item/grenade/proc/start_timer()
+	playsound(src, 'sound/weapons/armbomb.ogg', volume, 1)
+	active = TRUE
+	icon_state = initial(icon_state) + "_active"
+	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+
+
 /obj/item/grenade/proc/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
 	var/turf/T = get_turf(src)
 	log_grenade(user, T) //Inbuilt admin procs already handle null users
@@ -73,10 +80,8 @@
 			C.throw_mode_on()
 		if(msg)
 			to_chat(user, span_warning("You prime [src]! [capitalize(DisplayTimeText(det_time))]!"))
-	playsound(src, 'sound/weapons/armbomb.ogg', volume, 1)
-	active = TRUE
-	icon_state = initial(icon_state) + "_active"
-	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+	RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/start_timer)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/start_timer)
 
 /obj/item/grenade/proc/prime()
 
