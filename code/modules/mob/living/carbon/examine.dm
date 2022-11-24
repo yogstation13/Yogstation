@@ -133,7 +133,7 @@
 		else if(InCritical())
 			. += "[t_His] breathing is shallow and labored."
 
-		if(digitalcamo && mind?.has_antag_datum(/datum/antagonist/changeling))
+		if(digitalcamo && mind?.has_antag_datum(/datum/antagonist/changeling) || mind?.has_antag_datum(/datum/antagonist/bloodsucker))
 			. += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner."
 
 	var/trait_exam = common_trait_examine()
