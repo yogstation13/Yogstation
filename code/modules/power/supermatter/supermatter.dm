@@ -215,6 +215,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	/// Doesnt do anything they are influenced by gases
 	var/damage_mod = 1
 	var/heal_mod = 1
+	var/explosion_mod = 1
 
 
 /obj/machinery/power/supermatter_crystal/Initialize()
@@ -385,7 +386,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			S.consume(src)
 	else
 		if(antinoblium_attached)
-			explosion_power = explosion_power * 2 * expolsion_mod
+			explosion_power = explosion_power * 2 * explosion_mod
 			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
 			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 				message_admins("[src] has exploded in empty space.")
