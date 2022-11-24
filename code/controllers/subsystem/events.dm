@@ -7,9 +7,9 @@ SUBSYSTEM_DEF(events)
 	init_order = INIT_ORDER_EVENTS
 	runlevels = RUNLEVEL_GAME
 
-	var/datum/event_timer/mild/mild_events = new()
-	var/datum/event_timer/severe/severe_events = new()
-	var/datum/event_timer/catastrophic/catastrophic_events = new()
+	var/datum/event_timer/mild/mild_events
+	var/datum/event_timer/severe/severe_events
+	var/datum/event_timer/catastrophic/catastrophic_events
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/list/all_events = list()
@@ -106,6 +106,9 @@ SUBSYSTEM_DEF(events)
 		if(!E.typepath)
 			continue				//don't want this one! leave it for the garbage collector
 		all_events += E			
+	mild_events = new()
+	severe_events = new()
+	catastrophic_events = new()
 	getHoliday()
 	return ..()
 
