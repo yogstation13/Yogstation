@@ -34,6 +34,9 @@
 	fill(C)
 	return C
 
+/datum/supply_pack/proc/can_order()
+	return TRUE
+
 /datum/supply_pack/proc/get_cost()
 	. = cost
 	. *= SSeconomy.pack_price_modifier
@@ -521,6 +524,17 @@
 					/obj/item/gun/energy/e_gun/dragnet)
 	crate_name = "\improper DRAGnet crate"
 
+/datum/supply_pack/security/armory/taser
+	name = "TASER crate"
+	desc = "Contains three experimental TASERs capable of downing a target in a single hit. Requires armory access to open."
+	cost = 6000
+	contains = list(/obj/item/gun/energy/e_gun/advtaser,
+					/obj/item/gun/energy/e_gun/advtaser,
+					/obj/item/gun/energy/e_gun/advtaser)
+	crate_name = "\improper TASER crate"
+
+/datum/supply_pack/security/armory/taser/can_order()
+	return GLOB.war_has_been_declared
 /datum/supply_pack/security/armory/energy_single
 	name = "Energy Gun Single-Pack"
 	desc = "Contains one energy gun, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
