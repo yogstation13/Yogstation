@@ -204,7 +204,6 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	difficulty = 20
 	power = /obj/effect/proc_holder/spell/remoteviewing
 	instability = 40
-	energy_coeff = 1
 
 
 /obj/effect/proc_holder/spell/remoteviewing
@@ -218,7 +217,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 
 /obj/effect/proc_holder/spell/remoteviewing/cast(list/targets, mob/user)
 	. = ..()
-	user.eye = targets[1]
+	user.client?.eye = targets[1]
 
 /obj/effect/proc_holder/spell/remoteviewing/choose_targets(mob/user = usr)
 	var/list/targets = GLOB.player_list
@@ -226,6 +225,6 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 		if (M.z != user.z)
 			targets.Remove(M)
 	
-	M = input("Choose the target for the spell.", "Targeting") as null|mob in targets
+	var/mob/M = input("Choose the target for the spell.", "Targeting") as null|mob in targets
 
 	perform(list(M),user=user)
