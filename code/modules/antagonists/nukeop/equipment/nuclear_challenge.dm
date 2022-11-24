@@ -4,7 +4,7 @@
 #define CHALLENGE_SHUTTLE_DELAY 15000 // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
-GLOBAL_VAR_INIT(war_has_been_declared)
+GLOBAL_VAR_INIT(war_has_been_declared, 0)
 /obj/item/nuclear_challenge
 	name = "Declaration of War (Challenge Mode)"
 	icon = 'icons/obj/device.dmi'
