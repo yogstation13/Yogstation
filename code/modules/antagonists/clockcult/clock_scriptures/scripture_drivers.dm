@@ -71,7 +71,7 @@
 	desc = "Charges your slab with divine energy, allowing you to overwhelm a target with Ratvar's light."
 	invocations = list("Divinity, show them your light!")
 	whispered = TRUE
-	channel_time = 40
+	channel_time = 1 SECONDS
 	power_cost = 150
 	usage_tip = "The light can be used from up to two tiles away. Damage taken will GREATLY REDUCE the stun's duration."
 	tier = SCRIPTURE_DRIVER
@@ -82,7 +82,7 @@
 	ranged_message = "<span class='brass'><i>You charge the clockwork slab with divine energy.</i>\n\
 	<b>Left-click a target within melee range to stun!\n\
 	Click your slab to cancel.</b></span>"
-	timeout_time = 50
+	timeout_time = 30 SECONDS
 	chant_slowdown = 1
 	no_mobility = FALSE
 	important = TRUE
