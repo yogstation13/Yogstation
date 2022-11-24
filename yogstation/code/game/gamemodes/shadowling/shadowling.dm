@@ -194,7 +194,6 @@ Made by Xhuis
 	if(world.time >= charge_time+last_charge)
 		shadow_charges = min(shadow_charges + 1, 3)
 		last_charge = world.time
-	H.fire_stacks = 0
 
 /datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc

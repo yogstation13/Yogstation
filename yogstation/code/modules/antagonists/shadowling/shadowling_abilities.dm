@@ -96,6 +96,20 @@
 	remove_ranged_ability()
 	usr = null
 	target = null
+/obj/effect/proc_holder/spell/self/sling/extinguish 
+	name = "Extinguish"
+	desc = "Cleanse yourself of fire."
+	panel = "Shadowling Abilities"
+	charge_max = 5 SECONDS
+	human_req = TRUE
+	clothes_req = FALSE
+	action_icon_state = "icy_veins"
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+
+/obj/effect/proc_holder/spell/self/sling/extinguish/cast(list/targets, mob/user)
+	. = ..()
+	user.extinguish()
+	user.fire_stacks -= 5
 
 /obj/effect/proc_holder/spell/aoe_turf/veil //Puts out most nearby lights except for flares and yellow slime cores
 	name = "Veil"
