@@ -33,3 +33,4 @@
 	//user.add_movespeed_modifier("juggernaut", update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	ADD_TRAIT(user, TRAIT_STUNIMMUNE, "juggernaut")
 	addtimer(CALLBACK(src, .proc/end_juggernaut, user), 1.5 SECONDS)
+	user.say(pick("DON'T YOU KNOW WHO I AM??", "I'M THE JUGGERNAUT, BITCH!", "OUT OF THE WAY!!!"))
