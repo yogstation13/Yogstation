@@ -76,7 +76,7 @@
 	. = ..()
 	return TRUE
 
-/obj/structure/railing/CheckExit(atom/movable/O, turf/target)
+/obj/structure/railing/CheckExit(atom/movable/mover, turf/target)
 	..()
 	if(get_dir(loc, target) & dir)
 		var/checking = UNSTOPPABLE | FLYING | FLOATING
