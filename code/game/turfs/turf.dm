@@ -571,5 +571,5 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/proc/crush(mob/crusher)
 	visible_message("[crusher] smashes straight through \the [name]!")
+	playsound(src, pick('sound/effects/meteorimpact.ogg', 'sound/effects/bang.ogg'), rand(90, 100), 1)
 	ScrapeAway()
-	
