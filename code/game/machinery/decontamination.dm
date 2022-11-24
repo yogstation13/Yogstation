@@ -268,7 +268,7 @@
 			updateUsrDialog()
 
 		//Adding items from a bag
-		if(istype(I, /obj/item/storage/bag))
+		else
 			var/loaded = 0
 			for(var/obj/G in I.contents)
 				if(contents.len >= max_n_of_items)
