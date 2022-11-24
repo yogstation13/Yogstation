@@ -33,3 +33,6 @@
 		last_sleep_time = world.time
 		return TRUE
 
+/datum/condition_symptom/tiredness/orexin/modify_test_results(var/datum/condition_test_results/test_results)
+	for (var)
+	test_results

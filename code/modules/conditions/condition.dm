@@ -12,10 +12,10 @@
 /datum/condition/proc/is_cured(var/mob/living/carbon/human/H)
 	return FALSE
 
-/datum/condition/proc/modify_test_results(var/list/test_results)
+/datum/condition/proc/modify_test_results(var/datum/condition_test_results/test_results)
 	for (var/datum/condition_symptom/symptom in symptoms)
-		symptom.modify_test_results(test_results)
-	return FALSE
+		test_results = symptom.modify_test_results(test_results)
+	return test_results
 
 /datum/condition/proc/tick(var/mob/living/carbon/human/H)
 	return FALSE
