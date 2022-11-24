@@ -263,9 +263,9 @@
 			to_chat(user, span_warning("\The [src] is full!"))
 			return FALSE
 
-		
-		load(I)
-		updateUsrDialog()
+		if(!(istype(I, /obj/item/storage/bag)))
+			load(I)
+			updateUsrDialog()
 
 		//Adding items from a bag
 		if(istype(I, /obj/item/storage/bag))
@@ -275,7 +275,6 @@
 					break
 				load(G)
 				loaded++
-			update_icon()
 			updateUsrDialog()
 
 			if(loaded)
