@@ -56,6 +56,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	var/notify = TRUE
 	var/atom/special_target
 	var/notdebris = FALSE
+	var/explosive = 0
 
 /obj/effect/immovablerod/New(atom/start, atom/end, aimed_at)
 	..()
@@ -76,6 +77,9 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		walk_towards(src, special_target, 1)
 	else if(end && end.z==z_original)
 		walk_towards(src, destination, 1)
+	if (prob(1))
+		name = "explosive immovable rod"
+		explosive = 1
 
 /obj/effect/immovablerod/Topic(href, href_list)
 	if(href_list["orbit"])
@@ -127,7 +131,14 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 			if(isturf(clong))
 				SSexplosions.medturf += clong
 			if(isobj(clong))
-				SSexplosions.med_mov_atom += clong
+				if (explosive)
+					var/big_boom = prob(10)
+					if (big_boom)
+						explosion(clong, 1, 2, 5, 10)
+					else
+						explosion(clong, 0, 1, 2, 5)
+				else
+					SSexplosions.med_mov_atom += clong
 
 	else if(isliving(clong))
 		penetrate(clong)
