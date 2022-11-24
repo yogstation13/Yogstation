@@ -108,8 +108,9 @@
 
 /obj/effect/proc_holder/spell/self/sling/extinguish/cast(list/targets, mob/user)
 	. = ..()
-	user.extinguish()
-	user.fire_stacks -= 5
+	var/mob/living/carbon/human/H = user
+	H.extinguish()
+	H.fire_stacks -= 5
 
 /obj/effect/proc_holder/spell/aoe_turf/veil //Puts out most nearby lights except for flares and yellow slime cores
 	name = "Veil"
