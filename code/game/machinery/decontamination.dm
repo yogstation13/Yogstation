@@ -1,25 +1,16 @@
-// SUIT STORAGE DECONTAMINATION UNIT!! /////////////////
+// DECONTAMINATION STORAGE UNIT!! /////////////////
 /obj/machinery/decontamination_unit
-	name = "advanced decontamination unit"
-	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
+	name = "advanced decontamination storage unit"
+	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment. Can store upto 1000."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
 	icon_state = "tube"
 	density = TRUE
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
 	layer = ABOVE_WINDOW_LAYER
-
-	var/obj/item/clothing/suit/space/suit = null
-	var/obj/item/clothing/head/helmet/space/helmet = null
-	var/obj/item/clothing/mask/mask = null
-	var/obj/item/storage = null
 								// if you add more storage slots, update cook() to clear their radiation too.
 
-	var/suit_type = null
-	var/helmet_type = null
-	var/mask_type = null
-	var/storage_type = null
-	var/list/container = list()
+	var/max_n_of_items = 1000
 
 	state_open = FALSE
 	var/locked = FALSE
@@ -42,23 +33,7 @@
 	. = ..()
 	decon = new(list(src), FALSE)
 	decon_emagged = new(list(src), FALSE)
-	if(suit_type)
-		suit = new suit_type(src)
-	if(helmet_type)
-		helmet = new helmet_type(src)
-	if(mask_type)
-		mask = new mask_type(src)
-	if(storage_type)
-		storage = new storage_type(src)
 	update_icon()
-
-/obj/machinery/decontamination_unit/Destroy()
-	QDEL_NULL(suit)
-	QDEL_NULL(helmet)
-	QDEL_NULL(mask)
-	QDEL_NULL(storage)
-	QDEL_NULL(container)
-	return ..()
 
 /obj/machinery/decontamination_unit/update_icon()
 	. = ..()
@@ -68,23 +43,22 @@
 	var/atom/pickup_zone = drop_location()
 	for(var/obj/item/to_pickup in pickup_zone)
 		to_pickup.forceMove(src)
-		container += to_pickup
 
 /obj/machinery/decontamination_unit/power_change()
 	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
-		dump_contents()
+		dump_mob()
 	update_icon()
 
-/obj/machinery/decontamination_unit/proc/dump_contents()
-	dropContents()
-	helmet = null
-	suit = null
-	mask = null
-	storage = null
+/obj/machinery/decontamination_unit/proc/dump_mob()
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/A in contents)
+		if(isliving(A))
+			var/mob/living/L = A
+			L.forceMove(T)
+			L.update_mobility()
 	occupant = null
-	container = list()
 
 /obj/machinery/decontamination_unit/MouseDrop_T(atom/A, mob/living/user)
 	if(!istype(user) || user.stat || !Adjacent(user) || !Adjacent(A) || !isliving(A))
@@ -100,9 +74,6 @@
 	if(!is_operational())
 		to_chat(user, span_warning("The unit is not operational!"))
 		return
-	if(occupant || helmet || suit || storage)
-		to_chat(user, span_warning("It's too cluttered inside to fit in!"))
-		return
 
 	if(target == user)
 		user.visible_message(span_warning("[user] starts squeezing into [src]!"), span_notice("You start working your way into [src]..."))
@@ -110,8 +81,6 @@
 		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
 
 	if(do_mob(user, target, 30))
-		if(occupant || helmet || suit || storage)
-			return
 		if(target == user)
 			user.visible_message(span_warning("[user] slips into [src] and closes the door behind [user.p_them()]!"), "<span class=notice'>You slip into [src]'s cramped space and shut its door.</span>")
 		else
@@ -156,11 +125,7 @@
 			else
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
-			QDEL_NULL(helmet)
-			QDEL_NULL(suit)
-			QDEL_NULL(mask)
-			QDEL_NULL(storage)
-			for(var/obj/item/item in container)	
+			for(var/obj/item/item in contents)	
 				QDEL_NULL(item)
 			shock()
 		else
@@ -176,29 +141,17 @@
 			else
 				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
-			if(suit)
-				things_to_clear += suit
-				things_to_clear += suit.GetAllContents()
-			if(helmet)
-				things_to_clear += helmet
-				things_to_clear += helmet.GetAllContents()
-			if(mask)
-				things_to_clear += mask
-				things_to_clear += mask.GetAllContents()
-			if(storage)
-				things_to_clear += storage
-				things_to_clear += storage.GetAllContents()
 			if(occupant)
 				things_to_clear += occupant
 				things_to_clear += occupant.GetAllContents()
-			if(container.len)
-				things_to_clear += container
+			if(contents.len)
+				things_to_clear += contents
 			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 				var/atom/movable/dirty_movable = am
 				dirty_movable.wash(CLEAN_ALL)
 		open_machine(0)
-		if(occupant || container.len)
-			dump_contents()
+		if(occupant)
+			dump_mob()
 
 /obj/machinery/decontamination_unit/proc/shock(mob/user)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -227,7 +180,7 @@
 			to_chat(user, span_warning("[src]'s door won't budge!"))
 		return
 	open_machine()
-	dump_contents()
+	dump_mob()
 
 /obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
@@ -255,7 +208,7 @@
 /obj/machinery/decontamination_unit/container_resist(mob/living/user)
 	if(!locked)
 		open_machine()
-		dump_contents()
+		dump_mob()
 		return
 	if(uv)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
@@ -272,7 +225,7 @@
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
 			span_notice("You successfully break out of [src]!"))
 		open_machine()
-		dump_contents()
+		dump_mob()
 
 	add_fingerprint(user)
 	if(locked)
@@ -281,12 +234,21 @@
 		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
 	else
 		open_machine()
-		dump_contents()
+		dump_mob()
+
+/obj/machinery/decontamination_unit/RefreshParts()
+	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
+		max_n_of_items = initial(max_n_of_items) * B.rating
 
 /obj/machinery/decontamination_unit/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
 		. += span_warning("Its maintenance panel is smoking slightly.")
+	if(in_range(user, src) || isobserver(user))
+		if (contents.len >= max_n_of_items)
+			. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")
+		else
+			. += span_notice("The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.")
 
 /obj/machinery/decontamination_unit/proc/resist_open(mob/user)
 	if(!state_open && !uv && occupant && (user in src) && user.stat == 0) // Check they're still here.
@@ -296,34 +258,39 @@
 
 /obj/machinery/decontamination_unit/attackby(obj/item/I, mob/user, params)
 	if(state_open && is_operational())
-		if(istype(I, /obj/item/clothing/suit))
-			if(suit)
-				to_chat(user, span_warning("The unit already contains a suit!."))
-				return
-			if(!user.transferItemToLoc(I, src))
-				return
-			suit = I
-		else if(istype(I, /obj/item/clothing/head))
-			if(helmet)
-				to_chat(user, span_warning("The unit already contains a helmet!"))
-				return
-			if(!user.transferItemToLoc(I, src))
-				return
-			helmet = I
-		else if(istype(I, /obj/item/clothing/mask))
-			if(mask)
-				to_chat(user, span_warning("The unit already contains a mask!"))
-				return
-			if(!user.transferItemToLoc(I, src))
-				return
-			mask = I
-		else
-			if(storage)
-				to_chat(user, span_warning("The auxiliary storage compartment is full!"))
-				return
-			if(!user.transferItemToLoc(I, src))
-				return
-			storage = I
+		//Unable to add an item, it's already full.
+		if(contents.len >= max_n_of_items)
+			to_chat(user, span_warning("\The [src] is full!"))
+			return FALSE
+
+		
+		load(I)
+		updateUsrDialog()
+
+		//Adding items from a bag
+		if(istype(I, /obj/item/storage/bag))
+			var/loaded = 0
+			for(var/obj/G in I.contents)
+				if(contents.len >= max_n_of_items)
+					break
+				load(G)
+				loaded++
+			update_icon()
+			updateUsrDialog()
+
+			if(loaded)
+				if(contents.len >= max_n_of_items)
+					user.visible_message("[user] loads \the [src] with \the [I].", \
+									 span_notice("You fill \the [src] with \the [I]."))
+				else
+					user.visible_message("[user] loads \the [src] with \the [I].", \
+										 span_notice("You load \the [src] with \the [I]."))
+				if(I.contents.len > 0)
+					to_chat(user, span_warning("Some items are refused."))
+				return TRUE
+			else
+				to_chat(user, span_warning("There is nothing in [I] to put in [src]!"))
+				return FALSE
 
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
 		update_icon()
@@ -338,7 +305,7 @@
 		if(default_deconstruction_crowbar(I))
 			return
 	if(default_pry_open(I))
-		dump_contents()
+		dump_mob()
 		return
 
 	return ..()
@@ -353,7 +320,8 @@
 /obj/machinery/decontamination_unit/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SuitStorageUnit", name)
+		ui = new(user, src, "Decon", name)
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /obj/machinery/decontamination_unit/ui_data()
@@ -361,22 +329,20 @@
 	data["locked"] = locked
 	data["open"] = state_open
 	data["uv_active"] = uv
-	if(helmet)
-		data["helmet"] = helmet.name
-	else
-		data["helmet"] = null
-	if(suit)
-		data["suit"] = suit.name
-	else
-		data["suit"] = null
-	if(mask)
-		data["mask"] = mask.name
-	else
-		data["mask"] = null
-	if(storage)
-		data["storage"] = storage.name
-	else
-		data["storage"] = null
+
+	var/listofitems = list()
+	for (var/I in src)
+		var/atom/movable/O = I
+		if (!QDELETED(O))
+			var/md5name = md5(O.name)
+			if (listofitems[md5name])
+				listofitems[md5name]["amount"]++
+			else
+				listofitems[md5name] = list("name" = O.name, "type" = O.type, "amount" = 1)
+	sortList(listofitems)
+
+	data["contents"] = listofitems
+	data["name"] = name
 	if(occupant)
 		data["occupied"] = TRUE
 	else
@@ -395,8 +361,8 @@
 			else
 				open_machine(0)
 				playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
-				if(occupant || container.len)
-					dump_contents() // Dump out contents if someone is in there.
+				if(occupant)
+					dump_mob()
 			. = TRUE
 		if("lock")
 			if(state_open)
@@ -405,7 +371,7 @@
 			. = TRUE
 		if("uv")
 			var/mob/living/mob_occupant = occupant
-			if(!helmet && !mask && !suit && !storage && !occupant && !container.len)
+			if(!occupant && !contents.len)
 				return
 			else 
 				if(uv_emagged)
@@ -421,19 +387,60 @@
 				flick("tube_down", src)
 				cook()
 				. = TRUE
-		if("dispense")
-			if(!state_open)
+		if("Release")
+			var/desired = 0
+
+			if (params["amount"])
+				desired = text2num(params["amount"])
+			else
+				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
+
+			if(desired <= 0)
 				return
 
-			var/static/list/valid_items = list("helmet", "suit", "mask", "storage")
-			var/item_name = params["item"]
-			if(item_name in valid_items)
-				var/obj/item/I = vars[item_name]
-				vars[item_name] = null
-				if(I)
-					I.forceMove(loc)
+			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
+				return
+
+			//Retrieving a single item into your hand
+			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
+				for(var/obj/item/O in src)
+					if(O.name == params["name"])
+						dispense(O, usr)
+						break
+				. = TRUE
+
+			//Retrieving many items
+			for(var/obj/item/O in src)
+				if(desired <= 0)
+					break
+				if(O.name == params["name"])
+					dispense(O, usr)
+					desired--
 			. = TRUE
 	update_icon()
+
+/obj/machinery/decontamination_unit/proc/load(obj/item/O)
+	if(ismob(O.loc))
+		var/mob/M = O.loc
+		if(!M.transferItemToLoc(O, src))
+			to_chat(usr, span_warning("\The [O] is stuck to your hand, you cannot put it in \the [src]!"))
+			return FALSE
+		else
+			return TRUE
+	else
+		if(SEND_SIGNAL(O.loc, COMSIG_CONTAINS_STORAGE))
+			return SEND_SIGNAL(O.loc, COMSIG_TRY_STORAGE_TAKE, O, src)
+		else
+			O.forceMove(src)
+			return TRUE
+
+/obj/machinery/decontamination_unit/proc/dispense(obj/item/O, var/mob/M)
+	if(!M.put_in_hands(O))
+		O.forceMove(drop_location())
+		adjust_item_drop_location(O)
+
+/obj/machinery/decontamination_unit/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
+	SStgui.update_uis(src)
 
 /obj/machinery/decontamination_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -451,8 +458,8 @@
 	else
 		open_machine(0)
 		playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
-		if(occupant || container.len)
-			dump_contents() // Dump out contents if someone is in there.
+		if(occupant)
+			dump_mob()
 
 /obj/machinery/decontamination_unit/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
