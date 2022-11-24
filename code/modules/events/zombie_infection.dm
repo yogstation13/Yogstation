@@ -5,6 +5,7 @@
 	min_players = 20
 	weight = 4
 	dynamic_should_hijack = TRUE
+	event_type = EVENT_TYPE_CATASTROPHIC
 /datum/round_event/ghost_role/zombie
 	minimum_required = 1
 	role_name = "zombie"

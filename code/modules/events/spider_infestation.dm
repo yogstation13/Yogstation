@@ -5,6 +5,7 @@
 	max_occurrences = 1
 	min_players = 25
 	dynamic_should_hijack = TRUE
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/spider_infestation
 	announceWhen	= 400

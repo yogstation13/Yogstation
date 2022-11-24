@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/obsessed
 	max_occurrences = 1
 	min_players = 20
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/obsessed
 	fakeable = FALSE

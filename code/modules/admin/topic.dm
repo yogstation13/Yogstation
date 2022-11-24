@@ -230,7 +230,7 @@
 	else if(href_list["forceevent"])
 		if(!check_rights(R_FUN))
 			return
-		var/datum/round_event_control/E = locate(href_list["forceevent"]) in SSevents.control
+		var/datum/round_event_control/E = locate(href_list["forceevent"]) in SSevents.all_events
 		if(E)
 			E.admin_setup(usr)
 			var/datum/round_event/event = E.runEvent()

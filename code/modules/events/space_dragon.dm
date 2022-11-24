@@ -5,6 +5,7 @@
 	weight = 5
 	earliest_start = 60 MINUTES
 	min_players = 30
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/ghost_role/space_dragon
 	minimum_required = 1

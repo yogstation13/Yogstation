@@ -5,6 +5,7 @@
 
 	min_players = 15
 	max_occurrences = 1
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/brand_intelligence
 	announceWhen	= 21

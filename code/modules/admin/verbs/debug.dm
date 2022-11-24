@@ -1071,7 +1071,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!holder)
 		return
 
-	SSevents.scheduled = world.time
+
+	SSevents.mild_events.scheduled = world.time
+	SSevents.severe_events.scheduled = world.time
+	SSevents.catastrophic_events.scheduled = world.time
 
 	message_admins(span_adminnotice("[key_name_admin(src)] pumped a random event."))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Pump Random Event")

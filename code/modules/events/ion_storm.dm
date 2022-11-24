@@ -5,6 +5,7 @@
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/ion_storm
 	var/addIonLawChance = 100 // chance a new ion law will be added in addition to other ion effects

@@ -1,60 +1,49 @@
+#define EVENT_TYPE_MILD 1
+#define EVENT_TYPE_SEVERE 2
+#define EVENT_TYPE_CATASTROPHIC 3
+#define EVENT_TYPE_NULL 0
 SUBSYSTEM_DEF(events)
 	name = "Events"
 	init_order = INIT_ORDER_EVENTS
 	runlevels = RUNLEVEL_GAME
 
-	var/list/control = list()	//list of all datum/round_event_control. Used for selecting events based on weight and occurrences.
-	var/list/running = list()	//list of all existing /datum/round_event
-	var/list/currentrun = list()
-
-	var/scheduled = 0			//The next world.time that a naturally occuring random event can be selected.
-	var/frequency_lower = 2 MINUTES //2 minutes lower bound.
-	var/frequency_upper = 9 MINUTES //9 minutes upper bound. Basically an event will happen every 2 to 9 minutes.
+	var/datum/event_timer/mild/mild_events
+	var/datum/event_timer/severe/severe_events
+	var/datum/event_timer/catastrophic/catastrophic_events
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
+	var/list/all_events = list()
+	var/list/running_events = list()
+	var/list/currently_running_events = list()
 	var/wizardmode = FALSE
+	var/multiplier = 1
 
-/datum/controller/subsystem/events/Initialize(time, zlevel)
-	for(var/type in typesof(/datum/round_event_control))
-		var/datum/round_event_control/E = new type()
+/datum/event_timer
+	var/event_type = EVENT_TYPE_NULL
+	var/scheduled = 0			//The next world.time that a naturally occuring random event can be selected.
+	var/frequency_lower = 2 MINUTES
+	var/frequency_upper = 9 MINUTES
+	var/list/events = list()
+
+/datum/event_timer/New()
+	. = ..()
+	for(var/etype in typesof(/datum/round_event_control))
+		var/datum/round_event_control/E = new etype()
 		if(!E.typepath)
 			continue				//don't want this one! leave it for the garbage collector
-		control += E				//add it to the list of all events (controls)
+		if (E.event_type == event_type)			//If he's just our type
+			events += E				//add it to the list of all events (controls)
 	reschedule()
-	getHoliday()
-	return ..()
 
+/datum/event_timer/proc/TriggerEvent(datum/round_event_control/E)
+	. = E.preRunEvent()
+	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
+		E.max_occurrences = 0
+	else if(. == EVENT_READY)
+		E.random = TRUE
+		E.runEvent()
 
-/datum/controller/subsystem/events/fire(resumed = 0)
-	if(!resumed)
-		checkEvent() //only check these if we aren't resuming a paused fire
-		src.currentrun = running.Copy()
-
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-
-	while(currentrun.len)
-		var/datum/thing = currentrun[currentrun.len]
-		currentrun.len--
-		if(thing)
-			thing.process()
-		else
-			running.Remove(thing)
-		if (MC_TICK_CHECK)
-			return
-
-//checks if we should select a random event yet, and reschedules if necessary
-/datum/controller/subsystem/events/proc/checkEvent()
-	if(scheduled <= world.time)
-		spawnEvent()
-		reschedule()
-
-//decides which world.time we should select another random event at.
-/datum/controller/subsystem/events/proc/reschedule()
-	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
-
-//selects a random event based on whether it can occur and it's 'weight'(probability)
-/datum/controller/subsystem/events/proc/spawnEvent()
+/datum/event_timer/proc/play_event()
 	set waitfor = FALSE	//for the admin prompt
 	if(!CONFIG_GET(flag/allow_random_events))
 		return
@@ -64,7 +53,7 @@ SUBSYSTEM_DEF(events)
 	// Only alive, non-AFK human players count towards this.
 
 	var/sum_of_weights = 0
-	for(var/datum/round_event_control/E in control)
+	for(var/datum/round_event_control/E in events)
 		if(!E.canSpawnEvent(players_amt, gamemode))
 			continue
 		if(E.weight < 0)						//for round-start events etc.
@@ -77,7 +66,7 @@ SUBSYSTEM_DEF(events)
 
 	sum_of_weights = rand(0,sum_of_weights)	//reusing this variable. It now represents the 'weight' we want to select
 
-	for(var/datum/round_event_control/E in control)
+	for(var/datum/round_event_control/E in events)
 		if(!E.canSpawnEvent(players_amt, gamemode))
 			continue
 		sum_of_weights -= E.weight
@@ -86,13 +75,64 @@ SUBSYSTEM_DEF(events)
 			if(TriggerEvent(E))
 				return
 
-/datum/controller/subsystem/events/proc/TriggerEvent(datum/round_event_control/E)
-	. = E.preRunEvent()
-	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
-		E.max_occurrences = 0
-	else if(. == EVENT_READY)
-		E.random = TRUE
-		E.runEvent()
+/datum/event_timer/proc/reschedule()
+	var/multiplier = SSevents.multiplier
+	if (SSevents.wizardmode)
+		multiplier *= 0.5 
+	scheduled = world.time + (rand(frequency_lower, max(frequency_lower,frequency_upper)) * 0.5)
+
+/datum/event_timer/proc/check_event()
+	if(scheduled <= world.time)
+		play_event()
+		reschedule()
+/datum/event_timer/mild
+	event_type = EVENT_TYPE_MILD
+	frequency_lower = 2 MINUTES
+	frequency_upper = 5 MINUTES
+
+/datum/event_timer/severe
+	event_type = EVENT_TYPE_SEVERE
+	frequency_lower = 10 MINUTES
+	frequency_upper = 20 MINUTES
+
+/datum/event_timer/catastrophic
+	event_type = EVENT_TYPE_CATASTROPHIC
+	frequency_lower = 20 MINUTES
+	frequency_upper = 60 MINUTES
+
+/datum/controller/subsystem/events/Initialize(time, zlevel)
+	for(var/etype in typesof(/datum/round_event_control))
+		var/datum/round_event_control/E = new etype()
+		if(!E.typepath)
+			continue				//don't want this one! leave it for the garbage collector
+		all_events += E			
+	getHoliday()
+	return ..()
+
+
+/datum/controller/subsystem/events/fire(resumed = 0)
+	if(!resumed)
+		checkEvent() //only check these if we aren't resuming a paused fire
+		src.currently_running_events = running_events.Copy()
+
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currently_running_events
+
+	while(currentrun.len)
+		var/datum/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if(thing)
+			thing.process()
+		else
+			running_events.Remove(thing)
+		if (MC_TICK_CHECK)
+			return
+
+//checks if we should select a random event yet, and reschedules if necessary
+/datum/controller/subsystem/events/proc/checkEvent()
+	mild_events.check_event()
+	severe_events.check_event()
+	catastrophic_events.check_event()
 
 //allows a client to trigger an event
 //aka Badmin Central
@@ -112,7 +152,7 @@ SUBSYSTEM_DEF(events)
 	var/normal 	= ""
 	var/magic 	= ""
 	var/holiday = ""
-	for(var/datum/round_event_control/E in SSevents.control)
+	for(var/datum/round_event_control/E in SSevents.all_events)
 		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];forceevent=[REF(E)]'>[E]</A>"
 		if(E.holidayID)
 			holiday	+= dat
@@ -178,10 +218,5 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/proc/toggleWizardmode()
 	wizardmode = !wizardmode
-	message_admins("Summon Events has been [wizardmode ? "enabled, events will occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes" : "disabled"]!")
+	message_admins("Summon Events has been [wizardmode ? "enabled" : "disabled"]!")
 	log_game("Summon Events was [wizardmode ? "enabled" : "disabled"]!")
-
-
-/datum/controller/subsystem/events/proc/resetFrequency()
-	frequency_lower = initial(frequency_lower)
-	frequency_upper = initial(frequency_upper)

@@ -6,7 +6,7 @@
 	min_players = 30
 	dynamic_should_hijack = TRUE
 	gamemode_blacklist = list("blob") //Just in case a blob survives that long
-	
+	event_type = EVENT_TYPE_SEVERE
 /datum/round_event/ghost_role/blob
 	announceWhen	= -1
 	role_name = "blob overmind"

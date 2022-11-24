@@ -5,7 +5,7 @@
 	max_occurrences = 1
 	min_players = 25
 	gamemode_blacklist = list("nuclear","wizard","revolution")
-
+	event_type = EVENT_TYPE_SEVERE
 /datum/round_event/ghost_role/abductor
 	minimum_required = 2
 	role_name = "abductor team"

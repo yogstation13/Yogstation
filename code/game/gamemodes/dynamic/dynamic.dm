@@ -655,8 +655,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 			// A random event antag would have rolled had this injection check passed.
 			// As a refund, spawn a non-ghost-role random event.
-			SSevents.spawnEvent()
-			SSevents.reschedule()
+			SSevents.catastrophic_events.play_event()
+			SSevents.catastrophic_events.reschedule()
 
 		random_event_hijacked = HIJACKED_NOTHING
 

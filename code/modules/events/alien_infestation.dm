@@ -7,6 +7,8 @@
 
 	dynamic_should_hijack = TRUE
 
+	event_type = EVENT_TYPE_CATASTROPHIC
+
 /datum/round_event_control/alien_infestation/canSpawnEvent()
 	. = ..()
 	if(!.)

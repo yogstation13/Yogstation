@@ -60,6 +60,7 @@
 	min_players = 20
 	max_occurrences = 3
 	earliest_start = 35 MINUTES
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/meteor_wave/threatening
 	wave_name = "threatening"
@@ -71,6 +72,7 @@
 	min_players = 25
 	max_occurrences = 3
 	earliest_start = 45 MINUTES
+	event_type = EVENT_TYPE_CATASTROPHIC
 
 /datum/round_event/meteor_wave/catastrophic
 	wave_name = "catastrophic"

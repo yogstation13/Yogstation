@@ -2,6 +2,7 @@
 	name = "Radiation Storm"
 	typepath = /datum/round_event/radiation_storm
 	max_occurrences = 2
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/radiation_storm/announce(fake)
 	priority_announce("High levels of radiation detected near the station. Maintenance is best shielded from radiation.", "Anomaly Alert", ANNOUNCER_RADIATION)

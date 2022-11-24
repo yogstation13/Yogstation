@@ -35,6 +35,8 @@
 	/// Whether or not dynamic should hijack this event
 	var/dynamic_should_hijack = FALSE
 
+	var/event_type = EVENT_TYPE_MILD
+
 /datum/round_event_control/New()
 	if(config && !wizardevent) // Magic is unaffected by configs
 		earliest_start = CEILING(earliest_start * CONFIG_GET(number/events_min_time_mul), 1)
@@ -236,14 +238,14 @@
 //which should be the only place it's referenced.
 //Called when start(), announce() and end() has all been called.
 /datum/round_event/proc/kill()
-	SSevents.running -= src
+	SSevents.running_events -= src
 
 
 //Sets up the event then adds the event to the the list of running events
 /datum/round_event/New(my_processing = TRUE)
 	setup()
 	processing = my_processing
-	SSevents.running += src
+	SSevents.running_events += src
 	return ..()
 
 #undef RANDOM_EVENT_ADMIN_INTERVENTION_TIME

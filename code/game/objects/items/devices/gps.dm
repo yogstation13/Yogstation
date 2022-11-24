@@ -237,6 +237,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
   * Relays that the [Blue Space Artillery] [/obj/machinery/computer/bsa_control] has shot the ship to the event, then qdels
   */
 /obj/item/gps/pirate/proc/on_shoot()
-	var/datum/round_event/pirates/r = locate() in SSevents.running
+	var/datum/round_event/pirates/r = locate() in SSevents.running_events
 	r?.shot_down()
 	qdel(src)

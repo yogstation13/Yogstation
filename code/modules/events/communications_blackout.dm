@@ -2,6 +2,7 @@
 	name = "Communications Blackout"
 	typepath = /datum/round_event/communications_blackout
 	weight = 30
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/communications_blackout
 	announceWhen	= 1

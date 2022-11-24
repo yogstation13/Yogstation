@@ -4,7 +4,8 @@
 	weight = 20
 	max_occurrences = 2
 	min_players = 40 // To avoid shafting lowpop
-
+	event_type = EVENT_TYPE_SEVERE
+	
 /datum/round_event/heart_attack/start()
 	var/list/heart_attack_contestants = list()
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.player_list))

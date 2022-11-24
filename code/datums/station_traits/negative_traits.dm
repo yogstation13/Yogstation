@@ -104,7 +104,7 @@
 
 /datum/station_trait/random_event_weight_modifier/on_round_start()
 	. = ..()
-	var/datum/round_event_control/modified_event = locate(event_control_path) in SSevents.control
+	var/datum/round_event_control/modified_event = locate(event_control_path) in SSevents.all_events
 	if(!modified_event)
 		CRASH("[type] could not find a round event controller to modify on round start (likely has an invalid event_control_path set)!")
 
@@ -136,9 +136,9 @@
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = NONE
 	weight = 5
+	show_in_report = TRUE
 
 /datum/station_trait/more_events/on_round_start()
 	. = ..()
 	//Randomise the frequency of SSevents, overall making events likelier.
-	SSevents.frequency_lower = rand(1 MINUTES, 2 MINUTES)
-	SSevents.frequency_upper = rand(3 MINUTES, 6 MINUTES)
+	SSevents.multiplier *= rand(0.25, 0.5)

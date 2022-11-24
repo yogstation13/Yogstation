@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/grid_check
 	weight = 10
 	max_occurrences = 3
+	event_type = EVENT_TYPE_SEVERE
 
 /datum/round_event/grid_check
 	announceWhen	= 1

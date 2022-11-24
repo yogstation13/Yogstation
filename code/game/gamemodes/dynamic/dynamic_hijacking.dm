@@ -7,8 +7,8 @@
 
 	if (random_event_hijacked != HIJACKED_NOTHING)
 		dynamic_log("Random event [round_event_control.name] tried to roll, but Dynamic vetoed it (random event has already ran).")
-		SSevents.spawnEvent()
-		SSevents.reschedule()
+		SSevents.severe_events.play_event()
+		SSevents.severe_events.reschedule()
 		return CANCEL_PRE_RANDOM_EVENT
 
 	var/time_range = rand(random_event_hijack_minimum, random_event_hijack_maximum)
