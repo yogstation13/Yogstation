@@ -499,12 +499,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
 		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
 
-		if (healcomp >= .1)
+		if (healcomp >= 0.1)
 			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1
 		else
 			heal_mod = 1
 		
-		if (zaukcomp >= .05)
+		if (zaukcomp >= 0.05)
 			damage_mod = (zaukcomp * ZAUKER_DAMAGE_MOD) + 1
 			explosion_mod = max(zaukcomp * ZAUKER_DAMAGE_MOD, 2)
 		else
