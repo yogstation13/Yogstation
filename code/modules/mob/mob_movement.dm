@@ -154,6 +154,12 @@
 
 	. = ..()
 
+	if (!.)
+		if (L.move_force >= MOVE_FORCE_UNSTOPPABLE)
+			var/turf/target_turf = get_step(L, direct)
+			if(isclosedturf(target_turf))
+				target_turf.crush(L)
+
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
 		add_delay *= 1.414214 // sqrt(2)
 	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
