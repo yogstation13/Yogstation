@@ -103,7 +103,7 @@
 				return
 			to_chat(H, span_shadowling("<b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i>"))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/extinguish(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/sling/extinguish(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
