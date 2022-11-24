@@ -12,4 +12,4 @@
 /datum/mutation/human/fasttwitch/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_movespeed_modifier("genetics", TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1, movetypes=(~FLYING))
+	owner.remove_movespeed_modifier("genetics")
