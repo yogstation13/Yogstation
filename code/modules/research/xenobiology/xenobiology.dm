@@ -877,11 +877,9 @@
 		return
 	if(isitem(C))
 	
-	//ahh testing why wont this work ahhhhh!
-	
 		// yogs start - change speed potion
 		var/obj/item/I = C
-		if(I.slowdown <= 0.9 || I.obj_flags & IMMUTABLE_SLOW)
+		if(I.slowdown <= 0.8 || I.obj_flags & IMMUTABLE_SLOW)
 			to_chat(user, span_warning("The [C] can't be made any faster!"))
 			return ..()
 		I.slowdown--
