@@ -686,3 +686,4 @@
 		chosen = find_record("name", choice, GLOB.data_core.general)
 
 #undef PLACE_SPEED
+ 
