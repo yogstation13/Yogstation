@@ -395,27 +395,31 @@
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
 
 			if(desired <= 0)
-				return
+				return FALSE
 
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
-				return
+				return FALSE
 
 			//Retrieving a single item into your hand
 			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
 				for(var/obj/item/O in src)
-					if(O.name == params["name"])
+					var/check_name1 = replacetext(O.name,"\improper","")
+					var/check_name2 = replacetext(O.name,"\proper","")
+					if((check_name1 || check_name2) == params["name"])
 						dispense(O, usr)
 						break
-				. = TRUE
+				return TRUE
 
 			//Retrieving many items
 			for(var/obj/item/O in src)
 				if(desired <= 0)
 					break
-				if(O.name == params["name"])
+				var/check_name1 = replacetext(O.name,"\improper","")
+				var/check_name2 = replacetext(O.name,"\proper","")
+				if((check_name1 || check_name2) == params["name"])
 					dispense(O, usr)
 					desired--
-			. = TRUE
+			return TRUE
 	update_icon()
 
 /obj/machinery/decontamination_unit/proc/load(obj/item/O)
