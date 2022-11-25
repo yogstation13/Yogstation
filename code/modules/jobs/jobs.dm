@@ -77,12 +77,12 @@ GLOBAL_LIST_INIT(alt_engineering_positions, list(
 
 GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Medical Director", "Head of Medical",
-	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
+	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
 	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer",
 	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist",
 	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
 	"EMT", "Paramedic Trainee", "Rapid Response Medic",
-	"Councilor", "Therapist", "Mentalist",
+	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer",
 	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
 
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Barkeep", "Tapster", "Barista", "Mixologist",
 	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
-	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker",
+	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
 	"Librarian", "Journalist", "Archivist",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
 	"Priest", "Preacher", "Cleric", "Exorcist",
