@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
 	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
-	"Librarian", "Journalist", "Archivist",
+	"Librarian", "Journalist", "Archivist", "Cartographer",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
 	"Priest", "Preacher", "Cleric", "Exorcist",
 	"Entertainer", "Comedian", "Jester",

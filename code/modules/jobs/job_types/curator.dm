@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/curator
 
-	alt_titles = list("Librarian", "Journalist", "Archivist")
+	alt_titles = list("Librarian", "Journalist", "Archivist", "Cartographer")
 
 	added_access = list()
 	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
