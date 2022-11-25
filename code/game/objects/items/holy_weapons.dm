@@ -698,7 +698,11 @@
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
-
+	
+/obj/item/nullrod/whip/Initialize()
+	. = ..()
+	weapon_stats[REACH] = 3
+	
 /obj/item/nullrod/fedora
 	name = "atheist's fedora"
 	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
