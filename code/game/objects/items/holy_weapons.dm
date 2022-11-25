@@ -929,7 +929,7 @@
 		notify = TRUE
 
 	var/list/chapview = view(4, get_turf(loc))
-	for(var/mob/living/L in view(2, get_teleport_loc(get_turf(loc), loc, 2)))
+	for(var/mob/living/L in range(2, get_teleport_loc(get_turf(loc), loc, 2)))
 		if(!L.mind?.holy_role && (L in chapview)) // Priests are unaffected, trying to use it as a non-priest will harm you
 			if(notify)
 				to_chat(L, span_userdanger("The holy light burns you!"))
