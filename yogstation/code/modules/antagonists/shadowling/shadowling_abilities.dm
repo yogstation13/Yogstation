@@ -195,7 +195,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
+	desc = "Instantly freezes the blood of nearby people, slowing them, causing burn damage, and destroying certain genetic abnormalities."
 	panel = "Shadowling Abilities"
 	range = 3
 	charge_max = 1 MINUTES
