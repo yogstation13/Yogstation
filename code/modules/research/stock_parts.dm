@@ -14,6 +14,9 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
 	var/alt_sound = null
 
+/obj/item/storage/part_replacer/proc/after_exchange(obj/machinery/MA)	
+	return FALSE
+
 /obj/item/storage/part_replacer/pre_attack(obj/machinery/T, mob/living/user, params)
 	if(!istype(T) || (!T.component_parts && !T.works_with_rped_anyways))
 		return ..()
@@ -25,6 +28,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 				to_chat(user, span_warning("Out of range!"))
 				return
 		T.exchange_parts(user, src)
+		after_exchange(T)
 		return FALSE
 	return ..()
 
@@ -34,6 +38,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	if(works_from_distance)
 		user.Beam(T, icon_state = "rped_upgrade", time = 5)
 		T.exchange_parts(user, src)
+		after_exchange(T)
 		return
 	return ..()
 
@@ -111,6 +116,15 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	item_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+
+/obj/item/storage/part_replacer/disposable
+	name = "disposable rapid part exchange device"
+	desc = "Like a regular RPED, but it only has one use. Simpler to make."
+
+
+/obj/item/storage/part_replacer/disposable/after_exchange(obj/machinery/MA)
+	qdel(src)
+	return TRUE
 
 /proc/cmp_rped_sort(obj/item/A, obj/item/B)
 	return B.get_part_rating() - A.get_part_rating()

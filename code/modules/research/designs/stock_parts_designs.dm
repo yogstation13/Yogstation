@@ -11,6 +11,16 @@
 	build_path = /obj/item/storage/part_replacer
 	category = list("Stock Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+/datum/design/drped
+	name = "Disposable Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one only has one use, but is cheaper."
+	id = "drped"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000) //hardcore
+	build_path = /obj/item/storage/part_replacer/disposable
+	lathe_time_factor = 0.1
+	category = list("Stock Parts")
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/BS_RPED
 	name = "Bluespace RPED"
