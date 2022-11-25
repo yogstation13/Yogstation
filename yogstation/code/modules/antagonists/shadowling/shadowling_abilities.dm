@@ -226,6 +226,7 @@
 				M.adjust_bodytemperature(-100, 50)
 			if(M.reagents)
 				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5) //some amount of a cryo sting fucked if I care
+				M.reagents.add_reagent(/datum/reagent/medicine/mutadone, 2) //try reinforced glowy instead of powered :)
 				M.reagents.add_reagent(/datum/reagent/shadowfrost, 5)
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
