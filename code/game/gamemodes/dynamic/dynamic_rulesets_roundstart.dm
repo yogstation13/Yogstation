@@ -849,7 +849,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 3
-	cost = 30
+	cost = 101
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 30
