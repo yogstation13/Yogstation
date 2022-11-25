@@ -49653,10 +49653,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"dmD" = (
-/obj/structure/displaycase/trophy,
-/turf/open/floor/wood,
-/area/library)
 "dmF" = (
 /turf/closed/wall,
 /area/quartermaster/sorting)
@@ -101174,9 +101170,9 @@ bue
 bwb
 mTv
 aln
-dmD
 bzE
-dmD
+bzE
+bzE
 sBa
 bHR
 bzE
