@@ -4,8 +4,8 @@
 /obj/machinery/plortrefinery
 	name = "plort redemption machine"
 	desc = "A machine that accepts slime cores, and sells them to the highest bidder. This generates research, depending on the rarity."
-	icon = 'icons/obj/machines/mining_machines.dmi' // TODO	
-	icon_state = "ore_redemption" // TODO
+	icon = 'icons/obj/machines/plortmachine.dmi'
+	icon_state = "plortmachine"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	speed_process = TRUE
