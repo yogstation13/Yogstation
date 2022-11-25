@@ -912,7 +912,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	if(holy_glow_fx)
-		cut_overlay(holy_glow_fx)
+		user.cut_overlay(holy_glow_fx)
 		holy_glow_fx = null
 	if(holy_glow_light)
 		QDEL_NULL(holy_glow_light)
@@ -934,6 +934,7 @@
 		if(!L.mind?.holy_role) // Priests are unaffeted, trying to use it as a non-priest will harm you
 			if(notify)
 				to_chat(L, span_userdanger("The holy light burns you!"))
+				new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 			// Unholy creatures take more damage
 			// Everyone else still takes damage but less real damage
 			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
