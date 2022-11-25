@@ -900,11 +900,12 @@
 	allowed = null
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	var/current_charges = 3
-	var/max_charges = 3 //How many charges total the shielding has
-	var/recharge_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
+	var/shield_hp = 75
+	var/shield_max_hp = 75 //Health until shield is depleted
+	var/recharge_delay = 5 SECONDS //How long after we've been shot before we can start recharging. 5 seconds here
+	var/recharge_delay_busted = 20 SECONDS //delay until shield can recharge when fully depleted
 	var/recharge_cooldown = 0 //Time since we've last been shot
-	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
+	var/recharge_rate = 15 //How much HP the shield recharges per cycle
 	var/shield_state = "shield-old"
 	var/shield_on = "shield-old"
 
@@ -914,19 +915,20 @@
 		allowed = GLOB.advanced_hardsuit_allowed
 
 /obj/item/clothing/suit/space/hardsuit/shielded/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	recharge_cooldown = world.time + recharge_delay
-	if(current_charges > 0)
+	if(shield_hp > 0)
 		var/datum/effect_system/spark_spread/s = new
 		s.set_up(2, 1, src)
 		s.start()
 		owner.visible_message(span_danger("[owner]'s shields deflect [attack_text] in a shower of sparks!"))
-		current_charges--
+		shield_hp -= damage
+		recharge_cooldown = world.time + recharge_delay
 		if(recharge_rate)
 			START_PROCESSING(SSobj, src)
-		if(current_charges <= 0)
+		if(shield_hp <= 0)
 			owner.visible_message("[owner]'s shield overloads!")
 			shield_state = "broken"
 			owner.update_inv_wear_suit()
+			recharge_cooldown = world.time + recharge_delay_busted //Long cooldown if the shield gets depleted
 		return 1
 	return 0
 
@@ -936,10 +938,10 @@
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/shielded/process()
-	if(world.time > recharge_cooldown && current_charges < max_charges)
-		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
+	if(world.time > recharge_cooldown && shield_hp < shield_max_hp)
+		shield_hp = clamp((shield_hp + recharge_rate), 0, shield_max_hp)
 		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
-		if(current_charges == max_charges)
+		if(shield_hp == shield_max_hp)
 			playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 			STOP_PROCESSING(SSobj, src)
 		shield_state = "[shield_on]"
@@ -967,7 +969,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
 	armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, RAD = 100, FIRE = 95, ACID = 95)
 	slowdown = 0
-	max_charges = 5
+	shield_max_hp = 100
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/red
 	name = "red team armor"
@@ -1074,8 +1076,8 @@
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	hardsuit_type = "syndi"
-	max_charges = 4
-	current_charges = 4
+	shield_max_hp = 90
+	shield_hp = 90
 	recharge_delay = 15
 	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	strip_delay = 130
