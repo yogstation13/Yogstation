@@ -56,15 +56,15 @@
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/jammer(src) //5 TC
 
-		if("guns") //Total cost of 31 TC
+		if("guns") //Total cost of 29 TC
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/a357(src) //1 TC for two
+			new /obj/item/ammo_box/a357(src) //See above
+			new /obj/item/ammo_box/a357(src) //1 TC for two
+			new /obj/item/ammo_box/a357(src) //See above
 			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
 			new /obj/item/ammo_box/magazine/m10mm(src) //See above
 			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
@@ -124,11 +124,11 @@
 			new /obj/item/pizzabox/bomb(src) //6 TC
 			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
-		if("sniper") //30 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
+		if("sniper") //28 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
 			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
 			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
-			new /obj/item/ammo_box/a357/heartpiercer(src) //3 TC
+			new /obj/item/ammo_box/a357/heartpiercer(src) //1 TC
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
@@ -540,6 +540,20 @@
 /obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm/sp(src)
+
+/obj/item/storage/box/syndie_kit/revolverammo
+	real_name = ".357 speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolverammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/a357(src)
+
+/obj/item/storage/box/syndie_kit/revolvershotgunammo
+	real_name = ".357 Ironfeather speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/a357(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"
