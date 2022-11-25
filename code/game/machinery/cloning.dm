@@ -220,6 +220,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
+		if (NODNA in mrace.species_traits)
+			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
 	biomass -= 100

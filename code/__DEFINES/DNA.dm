@@ -151,6 +151,8 @@
 #define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
 #define NOMOUTH			27
+// no dna, cant be cloned
+#define NODNA 			28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
