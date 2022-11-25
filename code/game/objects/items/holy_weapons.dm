@@ -695,14 +695,14 @@
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
 	
 /obj/item/nullrod/whip/Initialize()
 	. = ..()
 	weapon_stats[REACH] = 3
-	
+
 /obj/item/nullrod/fedora
 	name = "atheist's fedora"
 	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
