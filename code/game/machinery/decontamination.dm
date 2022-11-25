@@ -405,7 +405,7 @@
 				for(var/obj/item/O in src)
 					var/check_name1 = replacetext(O.name,"\improper","")
 					var/check_name2 = replacetext(O.name,"\proper","")
-					if((check_name1 || check_name2) == params["name"])
+					if((check_name1 == params["name"]) || (check_name2 == params["name"]))
 						dispense(O, usr)
 						break
 				return TRUE
@@ -416,7 +416,7 @@
 					break
 				var/check_name1 = replacetext(O.name,"\improper","")
 				var/check_name2 = replacetext(O.name,"\proper","")
-				if((check_name1 || check_name2) == params["name"])
+				if((check_name1 == params["name"]) || (check_name2 == params["name"]))
 					dispense(O, usr)
 					desired--
 			return TRUE
@@ -439,7 +439,7 @@
 
 /obj/machinery/decontamination_unit/proc/dispense(obj/item/O, var/mob/M)
 	if(!M.put_in_hands(O))
-		O.forceMove(drop_location())
+		O.forceMove(get_turf(M))
 		adjust_item_drop_location(O)
 
 /obj/machinery/decontamination_unit/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
