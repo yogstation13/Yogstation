@@ -898,11 +898,8 @@
 	user.add_overlay(holy_glow_fx)
 	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/unwield)
 	START_PROCESSING(SSfastprocess, src)
-
-/obj/item/nullrod/cross/dropped(mob/user)
-	. = ..()
-	unwield(user)
 
 /obj/item/nullrod/cross/proc/unwield(mob/user)
 	if(!held_up)
@@ -917,6 +914,7 @@
 	if(holy_glow_light)
 		QDEL_NULL(holy_glow_light)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 	STOP_PROCESSING(SSfastprocess, src)
 
 /obj/item/nullrod/cross/process()

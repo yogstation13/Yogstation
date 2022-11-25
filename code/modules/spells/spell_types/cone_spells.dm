@@ -106,14 +106,6 @@
 	else
 		return 2
 
-// Global ver
-/proc/calculate_cone_shape(current_level, cone_levels)
-	var/end_taper_start = round(cone_levels * 0.8)
-	if(current_level > end_taper_start)
-		return (current_level % end_taper_start) * 2 //someone more talented and probably come up with a better formula.
-	else
-		return 2
-
 ///This type of cone gradually affects each level of the cone instead of affecting the entire area at once.
 /obj/effect/proc_holder/spell/cone/staggered
 
