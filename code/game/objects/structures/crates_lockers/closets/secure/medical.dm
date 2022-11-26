@@ -130,6 +130,7 @@
 	new /obj/item/clothing/head/beret/emt/mining(src)
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
+	new /obj/item/cartridge/medical(src)
 	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
