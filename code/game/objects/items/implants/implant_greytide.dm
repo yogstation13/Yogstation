@@ -36,14 +36,14 @@
 		to_chat(holder, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
-	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT>"))
+	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isn't something you will do.</FONT>"))
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)
 	GT.master = user
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
-	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers! Remember not to harm other's "
+	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers! Remember not to harm others "
 	ADD_TRAIT(target, TRAIT_PACIFISM, "Greytide Implant")
 
 	message_admins("[target.ckey] was implanted by with greytide implant ")

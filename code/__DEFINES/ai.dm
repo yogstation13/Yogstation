@@ -15,7 +15,7 @@
 
 //AI Project Categories.
 #define AI_PROJECT_HUDS "Sensor HUDs"
-#define AI_PROJECT_CAMERAS "Visiblity Upgrades"
+#define AI_PROJECT_CAMERAS "Visibility Upgrades"
 #define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_SURVEILLANCE "Surveillance"
 #define AI_PROJECT_EFFICIENCY "Efficiency"

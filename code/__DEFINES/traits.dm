@@ -169,6 +169,7 @@
 #define TRAIT_DEPRESSION		"depression"
 #define TRAIT_JOLLY				"jolly"
 #define TRAIT_NOCRITDAMAGE		"no_crit"
+#define TRAIT_NOSLIPICE			"noslip_ice"
 #define TRAIT_NOSLIPWATER		"noslip_water"
 #define TRAIT_NOSLIPALL			"noslip_all"
 #define TRAIT_NODEATH			"nodeath"
@@ -223,6 +224,7 @@
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
+#define TRAIT_MAGBOOTS			"magboots"
 /// This person is crying
 #define TRAIT_CRYING "crying"
 

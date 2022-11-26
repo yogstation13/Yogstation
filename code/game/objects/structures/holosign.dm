@@ -167,7 +167,7 @@
 
 /obj/structure/holobed
 	name = "holobed"
-	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile enviroment for surgery."
+	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile environment for surgery."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "opmat_holo"
 	anchored = TRUE

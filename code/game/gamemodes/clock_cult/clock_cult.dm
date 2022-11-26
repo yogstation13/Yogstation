@@ -93,8 +93,11 @@ Credit where due:
 	if(.)
 		var/datum/antagonist/clockcult/servant = .
 		var/datum/team/clockcult/cult = servant.get_team()
-		cult.check_size()
-
+		cult.check_size()	
+		if (GLOB.ratvar_approaches)
+			L.set_species(/datum/species/golem/clockwork/no_scrap)
+			to_chat(L, "<span class='heavy_brass'>The beacon is active! You are reformed in Ratvar's image.</span>")
+	
 	if(!silent && L)
 		if(.)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
@@ -320,7 +323,7 @@ Credit where due:
 	Here's a quick primer on what you should know here.\
 	<ol>\
 	<li>You're in a place called Reebe right now. The crew can't get here normally.</li>\
-	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area sorunding you is an inaccessible area that the crew can walk between \
+	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area surrounding you is an inaccessible area that the crew can walk between \
 	once they arrive (more on that later.) Everything between that space is an open area.</li>\
 	<li>Your job as a servant is to build fortifications and defenses to protect the Ark and your base once the Ark activates. You can do this \
 	however you like, but work with your allies and coordinate your efforts.</li>\
@@ -329,15 +332,15 @@ Credit where due:
 	crew and defend it accordingly.</li>\
 	</ol>\
 	<hr>\
-	Here is the layout of Reebe, from inner to outter:\
+	Here is the layout of Reebe, from inner to outer:\
 	<ul>\
 	<li><b>Ark Chamber:</b> Houses the Ark in the very center.</li>\
 	<li><b>Listening Station:</b> (Bottom Left Corner of Circle) Contains intercoms, a telecomms relay, and a list of frequencies.</li>\
 	<li><b>Observation Room:</b> (Bottom Right Corner of Circle) Contains six camera observers. These can be used to watch the station through its cameras, as well as to teleport down \
 	to most areas. To do this, use the Warp action while hovering over the tile you want to warp to.</li>\
-	<li><b>Infirmary:</b> (Uper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
+	<li><b>Infirmary:</b> (Upper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
 	This room is generally more useful during the preparation phase; when defending the Ark, scripture is more useful.</li>\
-	<li><b>Summoning Room:</b> (Uper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which alows the clock cult to declare war.</li>\
+	<li><b>Summoning Room:</b> (Upper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which allows the clock cult to declare war.</li>\
 	</ul>\
 	<hr>\
 	<h2>Things that have changed:</h2>\

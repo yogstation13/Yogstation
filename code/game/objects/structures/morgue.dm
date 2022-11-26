@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
-	name = "creamatorium"
+	name = "crematorium"
 	desc = "A human incinerator. Works well during ice cream socials."
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)

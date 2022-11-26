@@ -206,7 +206,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
+	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
 		H.blood_in_hands = 0
 		H.wash(CLEAN_TYPE_BLOOD)
 		to_chat(H,"You absorb the blood covering you to heal.")

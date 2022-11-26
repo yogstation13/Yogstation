@@ -102,7 +102,7 @@
 	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
 	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
 	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
-	var/datum/action/innate/mecha/mech_defence_mode/defense_action = new
+	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
 	var/datum/effect_system/smoke_spread/smoke_system = new //not an action, but trigged by one
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
@@ -219,7 +219,7 @@
 	equipment_disabled = FALSE
 	if(occupant)
 		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
+		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfully.</span>")
 		occupant.update_mouse_pointer()
 
 /obj/mecha/CheckParts(list/parts_list)
