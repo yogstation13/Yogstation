@@ -56,7 +56,8 @@
 		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						// Chris Christodoulou - Dies Irae
 		"https://www.youtube.com/watch?v=Nn9trJXUrp0",						// Chris Christodoulou - ...con lentitud poderosa
 		"https://www.youtube.com/watch?v=rkas-NHQnsI",						// Clint Eastwood - Magnum Force Theme 
-		"https://www.youtube.com/watch?v=e3t_dbLaw-M"						// DM Dokuro - Treasures Within The Abomination
+		"https://www.youtube.com/watch?v=e3t_dbLaw-M",						// DM Dokuro - Treasures Within The Abomination
+		"https://www.youtube.com/watch?v=hZb_6_WfquU"						// Steam Powered Giraffe - Fire Fire
 		)						
 	selected_lobby_music = pick(songs)
 
