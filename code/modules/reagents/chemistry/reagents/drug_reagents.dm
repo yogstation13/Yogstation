@@ -14,6 +14,14 @@
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 30
 
+/datum/reagent/drug/space_drugs/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.grant_language(/datum/language/beachbum, TRUE, TRUE, LANGUAGE_STONER)
+	
+/datum/reagent/drug/space_drugs/on_mob_end_metabolize(mob/living/M)
+	L.remove_language(/datum/language/beachbum, TRUE, TRUE, LANGUAGE_STONER)
+	. = ..()	
+
 /datum/reagent/drug/space_drugs/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(15)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
