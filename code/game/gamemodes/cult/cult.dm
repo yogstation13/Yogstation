@@ -217,7 +217,7 @@
 			anchor_target = B
 	SSticker.mode.anchor_bloodstone = anchor_target
 	anchor_target.name = "anchor bloodstone"
-	anchor_target.desc = "It pulses rythmetically with migrane-inducing light. Something is being reflected on every surface, something that isn't quite there..."
+	anchor_target.desc = "It pulses rhythmically with migraine-inducing light. Something is being reflected on every surface, something that isn't quite there..."
 	anchor_target.anchor = TRUE
 	anchor_target.max_integrity = 1200
 	anchor_target.obj_integrity = 1200

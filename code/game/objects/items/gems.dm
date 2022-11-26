@@ -142,7 +142,7 @@
 
 /obj/item/gem/bloodstone
 	name = "\improper Ichorium"
-	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
+	desc = "A weird, sticky substance, known to coalesce in the presence of otherworldly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
 	icon_state = "red"
 	point_value = 2000
 	light_range = 2
