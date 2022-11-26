@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a traitor cargo/qm item that's just a bomb in a letter"
