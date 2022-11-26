@@ -88,9 +88,11 @@
 
 /obj/item/organ/cyberimp/leg/galosh/AddEffect()
 	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
+	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Antislip_implant")
 
 /obj/item/organ/cyberimp/leg/galosh/RemoveEffect()
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Antislip_implant")
 
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
@@ -149,10 +151,12 @@
 	zone = BODY_ZONE_L_LEG
 
 /obj/item/organ/cyberimp/leg/jumpboots/AddEffect()
+	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
 	implant_ability = new
 	implant_ability.Grant(owner)
 
 /obj/item/organ/cyberimp/leg/jumpboots/RemoveEffect()
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
 	if(implant_ability)
 		implant_ability.Remove(owner)
 
@@ -254,6 +258,7 @@
 	zone = BODY_ZONE_L_LEG
 
 /obj/item/organ/cyberimp/leg/airshoes/AddEffect()
+	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Airshoes_implant")
 	implant_dash = new
 	implant_dash.Grant(owner)
 	implant_dash.jumpdistance = 7
@@ -262,6 +267,7 @@
 	implant_scooter.Grant(owner)
 
 /obj/item/organ/cyberimp/leg/airshoes/RemoveEffect()
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "Airshoes_implant")
 	if(implant_dash)
 		implant_dash.Remove(owner)
 	if(implant_scooter)
@@ -340,10 +346,12 @@
 /datum/action/innate/magboots/Trigger()
 	if(!lockdown)
 		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
+		ADD_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
 		ADD_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
 		button_icon_state = "magboots1"
 	else
 		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock implant")
+		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
 		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
 		button_icon_state = "magboots0"
 	UpdateButtonIcon()
