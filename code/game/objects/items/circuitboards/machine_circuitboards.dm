@@ -1311,7 +1311,7 @@
 
 /obj/item/circuitboard/machine/electrolyzer
 	name = "Electrolyzer (Machine Board)"
-	icon_state = "generic"
+	icon_state = "engineering"
 	build_path = /obj/machinery/electrolyzer
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 2,
@@ -1325,7 +1325,7 @@
 
 /obj/item/circuitboard/machine/scrubber
 	name = "Scrubber (Machine Board)"
-	icon_state = "generic"
+	icon_state = "engineering"
 	build_path = /obj/machinery/portable_atmospherics/scrubber
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 5,
@@ -1336,7 +1336,7 @@
 
 /obj/item/circuitboard/machine/huge_scrubber
 	name = "Scrubber (Machine Board)"
-	icon_state = "generic"
+	icon_state = "engineering"
 	build_path = /obj/machinery/portable_atmospherics/scrubber/huge
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 10,
