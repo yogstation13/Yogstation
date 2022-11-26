@@ -40,9 +40,9 @@
 		return
 	if(!equipment_disabled)								//EMP will disable the turning temporarily
 		var/sidewind_dir = get_dir(src, target)
-		var/initial_direction = chassis.dir
+		var/initial_direction = dir
 		setDir(sidewind_dir)
-		var/new_direction = chassis.dir	
+		var/new_direction = dir	
 		if(initial_direction != new_direction)				//Shitty placeholder code, will probably need to change this
 			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
