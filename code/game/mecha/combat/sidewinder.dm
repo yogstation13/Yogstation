@@ -16,7 +16,7 @@
 	omnidirectional_attacks = TRUE	//Thus the name
 	turnsound = 'sound/mecha/mechmove01.ogg'
 
-/obj/mecha/proc/click_action(atom/target,mob/user,params)
+/obj/mecha/combat/sidewinder/click_action(atom/target,mob/user,params)
 	//Check all this stuff because this has to happen BEFORE we call the parent so that we can sword in the right direction
 	if(!occupant || occupant != user )
 		return
@@ -36,7 +36,7 @@
 	if(src == target)
 		return
 	if(!equipment_disabled)								//EMP will disable the turning temporarily
-		var/sidewind_dir = getDir(src, target)
+		var/sidewind_dir = get_dir(src, target)
 		setDir(sidewind_dir)							//Turn on click, very nimble
 		playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
