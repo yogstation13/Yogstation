@@ -183,13 +183,12 @@
 	store_file(new/datum/computer_file/program/ntnetdownload/emagged(src))
 	store_file(new/datum/computer_file/program/filemanager(src))
 
-/// For PDAs, comes pre-equipped with PDA messaging & chat client
+/// For PDAs, comes pre-equipped with PDA messaging
 /obj/item/computer_hardware/hard_drive/small/pda
 /obj/item/computer_hardware/hard_drive/small/pda/install_default_programs()
 	..()
 	store_file(new/datum/computer_file/program/themeify(src))
 	store_file(new/datum/computer_file/program/pdamessager(src))
-	store_file(new/datum/computer_file/program/chatclient(src))
 
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops

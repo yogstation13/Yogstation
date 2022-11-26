@@ -2001,6 +2001,19 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/implants/noslipall
+	name = "Slip Prevention Implant"
+	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	item = /obj/item/multisurgeon/noslipall
+	cost = 6	//tax for them being nigh impossible to steal or lose
+
+/datum/uplink_item/implants/airshoes
+	name = "Air Shoes Implant"
+	desc = "As a result of extreme popularity of the Air Shoes an implant version was developed. Just like the boots there are jets allowing the users to reach high speeds for prolonged durations and short bursts."
+	item = /obj/item/multisurgeon/airshoes
+	cost = 6	//2 tc tax for them being nigh impossible to steal or lose
+	manufacturer = /datum/corporation/traitor/cybersun
+
 /datum/uplink_item/implants/spinal
 	name = "Neural Overclocker Implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
@@ -2425,6 +2438,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
 	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
+
+/datum/uplink_item/role_restricted/letterbomb
+	name = "Explosive letter"
+	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
+	item = /obj/item/mail/explosive
+	cost = 1
+	restricted_roles = list("Quartermaster","Cargo Technician")
 
 // Pointless
 /datum/uplink_item/badass
