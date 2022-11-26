@@ -38204,16 +38204,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"cbH" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cbI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -49653,10 +49643,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"dmD" = (
-/obj/structure/displaycase/trophy,
-/turf/open/floor/wood,
-/area/library)
 "dmF" = (
 /turf/closed/wall,
 /area/quartermaster/sorting)
@@ -52995,6 +52981,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"fjx" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/plortrefinery,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "fjI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -101174,9 +101171,9 @@ bue
 bwb
 mTv
 aln
-dmD
 bzE
-dmD
+bzE
+bzE
 sBa
 bHR
 bzE
@@ -117173,7 +117170,7 @@ aaa
 cRi
 mBa
 dcr
-cbH
+fjx
 dcD
 dcN
 cSd
@@ -123302,7 +123299,7 @@ moI
 xrY
 xrY
 xrY
-uBz
+tWL
 lMJ
 lMJ
 aaa
@@ -123559,7 +123556,7 @@ rjN
 rjN
 qtD
 xrY
-uBz
+tWL
 lMJ
 lMJ
 lMJ
@@ -123816,7 +123813,7 @@ nSS
 kcB
 kRB
 xrY
-uBz
+tWL
 lMJ
 aaa
 aaa
@@ -124330,7 +124327,7 @@ fIG
 kcB
 kRB
 xrY
-uBz
+tWL
 lMJ
 aaa
 aaa
@@ -124587,7 +124584,7 @@ jTL
 jTL
 dWv
 xrY
-uBz
+tWL
 lMJ
 lMJ
 lMJ
@@ -124844,7 +124841,7 @@ xrY
 xrY
 xrY
 xrY
-uBz
+tWL
 lMJ
 lMJ
 aaa

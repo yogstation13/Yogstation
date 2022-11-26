@@ -1887,9 +1887,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(BRAIN)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent * H.physiology.brain_mod)
 	
-	if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
-		var/obj/structure/sitter = H.buckled
-		sitter.take_damage(damage, damagetype)
+	if(H.stat == DEAD && (H.mobility_flags & MOBILITY_STAND))
+		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
+			var/obj/structure/sitter = H.buckled
+			sitter.take_damage(damage, damagetype)
 	return 1
 
 /datum/species/proc/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
@@ -1921,6 +1922,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
+
+	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
+		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
+			H.adjust_fire_stacks(-2)
+		else
+			H.adjust_fire_stacks(-1)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())

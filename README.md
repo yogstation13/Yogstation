@@ -22,6 +22,51 @@
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
+<details><summary>Click here to view the Yogstation GitHub Guidelines</summary>
+
+## Yogstation GitHub Guidelines
+
+### General Rules
+
+**Yogstation is an open source community-driven project that allows everybody to contribute their ideas towards making rounds on Space Station 13 as fun as possible by means of pull requests and issue reports to the main repository.**
+
+**Although we allow conversation on GitHub in Pull Requests/Issues, we ask that all contributors and maintainers maintain a sense of decorum and respect the author and other people contributing to the discussion.** If someone is constantly contributing negative statements or is not constructive in their criticism they may be asked to stop or have their right to contribute removed in the future.
+
+**The GitHub Terms and Conditions must be followed.** Failure to follow the terms and conditions of GitHub may result in your exclusion from contribution in the future. 
+
+**We do not require people to be signed up on the forums or Discord in order to contribute to the GitHub; however, there must be a way for maintainers to be able to contact you, either via Discord (preferably) or e-mail when concerns with identity are found and need to be resolved.** Being banned from the server does not automatically ban you from GitHub and vice versa; however, this is up to the discretion of the head developers. Your pull requests may all be placed on hold until you accept this request for communication.
+
+### Contributors
+
+**When you are creating a Pull Request/Issue Report**, please make sure you name the Pull Request/Issue something relevant to what is being changed, added, or removed. Do not attempt to mislead people about the content of the Pull Request/Issue. Make sure you fill out any applicable templates as clearly and concisely as possible, and link any relevant issues your Pull Request solves.
+
+**We do not limit the amount of Pull Requests which can be submitted per day**; however, please do not submit more than is necessary. Additionally, please do not harass any member of the development team to expedite or merge your Pull Request. In certain circumstances, such as the case of a game breaking bug or issue, please reach out and inform them as soon as possible.
+
+**We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
+
+### Maintainers
+
+**As a maintainer, you are a representative of the development team, as such you should act with a somewhat professional manner when dealing with contributions, including constructively commenting on PRs.**
+
+**All maintainers should follow set standards for handling Pull Requests.** These standards include waiting 24 hours before merging or closing a Pull Request, as well as merging only Pull Requests that fall under your area of expertise (i.e. an Art Maintainer should not merge code, and a Code Maintainer should not merge art.) Lastly, revert Pull Requests should only be merged by a Head Developer. The above limitations do not apply to round-breaking or repo-breaking changes; however, please notify any head developers if this occurs.
+
+**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close draft Pull Requests if:
+* A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
+* A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
+* A contributor has not contributed to their draft Pull Request in a week’s time.
+
+**If a Maintainer/Director gets banned from the server/Discord, there will be an automatic review process triggered.** During this time access to GitHub merging and in-game ranks will be removed until the review is complete. After this review, roles and permissions may be returned depending on the result.
+
+### Contributor-Maintainer Disputes
+
+**If you have any complaints about maintainers or contributors you can use the GitHub report function**; however, abuse of this feature will be addressed if needed.
+
+**You may also raise an issue on discord by going to the #head-dev-complaints channel and creating a private thread**, then pinging head developers to make sure they are notified.
+
+**These policies are enforced by the Head Developer(s) and are subject to change at their discretion, with or without notification to the general public.**
+
+</details>
+
  
 ## DOWNLOADING
 
