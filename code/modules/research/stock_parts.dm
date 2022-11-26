@@ -98,11 +98,11 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/storage/part_replacer/cargo/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor(src)
-		new /obj/item/stock_parts/scanning_module(src)
-		new /obj/item/stock_parts/manipulator(src)
-		new /obj/item/stock_parts/micro_laser(src)
-		new /obj/item/stock_parts/matter_bin(src)
+		new /obj/item/stock_parts/capacitor/super(src)
+		new /obj/item/stock_parts/scanning_module/phasic(src)
+		new /obj/item/stock_parts/manipulator/pico(src)
+		new /obj/item/stock_parts/micro_laser/ultra(src)
+		new /obj/item/stock_parts/matter_bin/super(src)
 
 /obj/item/storage/part_replacer/cyborg
 	name = "rapid part exchange device"
