@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fix changing rank button in record console disappear when pressing cancel button"
+  - bugfix: "Fix radio being funky when switching radio and unnable to put TC into radio uplink"
