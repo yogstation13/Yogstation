@@ -1,0 +1,7 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Touches up AsteroidStation Engineering"
+  - mapping: "Shortens AsteroidStation Engineering Foyer"
+  - mapping: "Expands AsteroidStation Chief Engineer Office"
+  - mapping: "Fix bad wall by AsteroidStation Vacant Room"
