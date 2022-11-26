@@ -417,7 +417,7 @@
 			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
-				if(I.use_tool(src, user, 180, volume = 100))
+				if(I.use_tool(src, user, 8 SECONDS, volume = 100))
 					to_chat(user, span_notice("The security bolts are glowing white hot and look ready to be removed."))
 					state = RWINDOW_BOLTS_HEATED
 					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
@@ -426,7 +426,7 @@
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message(span_notice("[user] digs into the heated security screws and starts removing them..."),
 										span_notice("You dig into the heated screws hard and they start turning..."))
-				if(I.use_tool(src, user, 80, volume = 50))
+				if(I.use_tool(src, user, 4 SECONDS, volume = 50))
 					state = RWINDOW_BOLTS_OUT
 					to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the pane."))
 				return
@@ -434,7 +434,7 @@
 			if(I.tool_behaviour == TOOL_CROWBAR)
 				user.visible_message(span_notice("[user] wedges \the [I] into the gap in the frame and starts prying..."),
 										span_notice("You wedge \the [I] into the gap in the frame and start prying..."))
-				if(I.use_tool(src, user, 50, volume = 50))
+				if(I.use_tool(src, user, 5 SECONDS, volume = 50))
 					state = RWINDOW_POPPED
 					to_chat(user, span_notice("The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut."))
 				return
@@ -442,7 +442,7 @@
 			if(I.tool_behaviour == TOOL_WIRECUTTER)
 				user.visible_message(span_notice("[user] starts cutting the exposed bars on \the [src]..."),
 										span_notice("You start cutting the exposed bars on \the [src]"))
-				if(I.use_tool(src, user, 30, volume = 50))
+				if(I.use_tool(src, user, 3 SECONDS, volume = 50))
 					state = RWINDOW_BARS_CUT
 					to_chat(user, span_notice("The panels falls out of the way exposing the frame bolts."))
 				return
@@ -450,7 +450,7 @@
 			if(I.tool_behaviour == TOOL_WRENCH)
 				user.visible_message(span_notice("[user] starts unfastening \the [src] from the frame..."),
 					span_notice("You start unfastening the bolts from the frame..."))
-				if(I.use_tool(src, user, 50, volume = 50))
+				if(I.use_tool(src, user, 5 SECONDS, volume = 50))
 					to_chat(user, span_notice("You unscrew the bolts from the frame and the window pops loose."))
 					state = WINDOW_OUT_OF_FRAME
 					setAnchored(FALSE)
@@ -781,8 +781,8 @@
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	max_integrity = 80
-	armor = list(MELEE = 60, BULLET = 25, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	max_integrity = 150
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	decon_speed = 40
 	glass_type = /obj/item/stack/tile/brass
@@ -835,7 +835,7 @@
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 120
+	max_integrity = 600
 	level = 3
 	glass_amount = 2
 

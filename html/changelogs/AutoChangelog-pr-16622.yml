@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Mining Medic and Brig physician PDA start with Lifeline and suit monitor pre installed"

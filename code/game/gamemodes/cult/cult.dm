@@ -1,4 +1,4 @@
-#define CULT_SCALING_COEFFICIENT 9.3 //Roughly one new cultist at roundstart per this many players
+#define CULT_SCALING_COEFFICIENT 8.3 //Roughly one new cultist at roundstart per this many players
 
 /datum/game_mode
 	var/list/datum/mind/cult = list()

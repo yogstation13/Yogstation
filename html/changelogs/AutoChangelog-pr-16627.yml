@@ -1,0 +1,6 @@
+author: " @cuackles @MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the Plort Redemption machine"
+  - wip: "This is work in progress"
+  - mapping: "puts it in xenobio"

@@ -80,6 +80,7 @@
 		if(target_turf)
 			var/turflist = getline(user, target_turf)
 			log_combat(user, target, "flamethrowered", src)
+			user.changeNext_move(0.8 SECONDS)
 			flame_turf(turflist)
 
 /obj/item/flamethrower/attackby(obj/item/W, mob/user, params)
@@ -192,13 +193,31 @@
 	for(var/turf/T in turflist)
 		if(T == previousturf)
 			continue	//so we don't burn the tile we be standin on
+		for(var/obj/structure/blob/B in T)
+			// This is run before atmos checks because blob can be atmos blocking but we still want to hit them
+			// See /proc/default_ignite
+			var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.05)
+			var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+			damage = min(damage, 16)
+			if(damage < 4)
+				// Turn off because we're out
+				visible_message(span_danger("\The [src] lets out a sighed hiss and automatically shuts off."))
+				lit = FALSE
+				set_light(0)
+				playsound(loc, deac_sound, 50, TRUE)
+				STOP_PROCESSING(SSobj,src)
+				break // Out of gas, stop running pointlessly
+			else
+				B.take_damage(damage, BURN, FIRE)
 		var/list/turfs_sharing_with_prev = previousturf.GetAtmosAdjacentTurfs(alldir=1)
 		if(!(T in turfs_sharing_with_prev))
-			break
+			break // Hit something that blocks atmos
 		if(igniter)
-			igniter.ignite_turf(src,T)
+			if(!igniter.ignite_turf(src,T))
+				break // Out of gas, stop running pointlessly
 		else
-			default_ignite(T)
+			if(!default_ignite(T))
+				break // Out of gas, stop running pointlessly
 		sleep(0.1 SECONDS)
 		previousturf = T
 	operating = FALSE
@@ -207,17 +226,52 @@
 			attack_self(M)
 
 
-/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
-	//Transfer 5% of current tank air contents to turf
-	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
-	target.assume_air(air_transfer)
-	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
-	//location.hotspot_expose(1000,500,1)
-	SSair.add_to_active(target, 0)
+	// /obj/structure/blob/normal
 
+// Return value tells the parent whether to continue calculating the line
+/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
+	//Fetch and remove 5% of current tank air contents
+	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
+
+	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
+	// 16 damage at 1 mole transfer or having 20 moles in the tank
+	var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+	// harder to achieve than plasma
+	damage += air_transfer.get_moles(/datum/gas/tritium) * 32
+	damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+	// still capped
+	damage = min(damage, 16)
+	if(damage < 4)
+		visible_message(span_danger("\The [src] lets out a sighed hiss and automatically shuts off."))
+		lit = FALSE
+		set_light(0)
+		playsound(loc, deac_sound, 50, TRUE)
+		STOP_PROCESSING(SSobj,src)
+		return FALSE
+
+	var/datum/gas_mixture/turf_air = target.return_air()
+	if(turf_air.get_moles(/datum/gas/oxygen) < 10) // Not enough oxygen to ignite
+		return TRUE
+
+	//Burn it
+	var/list/hit_list = list()
+	hit_list += src
+	new /obj/effect/hotspot(target)
+	target.hotspot_expose(damage*50,damage*25,1)
+	for(var/mob/living/L in target.contents)
+		if(L in hit_list)
+			continue
+		hit_list += L
+		L.adjustFireLoss(damage)
+		to_chat(L, "<span class='userdanger'>A waft of flames overtakes you!</span>")
+	// deals damage to mechs
+	for(var/obj/mecha/M in target.contents)
+		if(M in hit_list)
+			continue
+		hit_list += M
+		M.take_damage(damage, BURN, FIRE, 1)
+	
+	return TRUE
 
 /obj/item/flamethrower/Initialize(mapload)
 	. = ..()
@@ -253,4 +307,4 @@
 	location.hotspot_expose(700,2)
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
-	F.default_ignite(location,release_amount)
+	return F.default_ignite(location,release_amount)

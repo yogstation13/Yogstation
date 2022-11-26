@@ -371,9 +371,21 @@
 		fire_nuclear_particle_wimpy()
 	radiation_pulse(src, 100, 2)
 
+/obj/effect/anomaly/radiation/proc/makegoat()
+	var/turf/open/T = get_turf(src)
+	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = new(T)
+
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a radioactive goat?", ROLE_SENTIENCE, null, null, 100, S, POLL_IGNORE_PYROSLIME)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/chosen = pick(candidates)
+		S.key = chosen.key
+		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
+
 /obj/effect/anomaly/radiation/detonate()
-    var/turf/T = get_turf(src)
-    for(var/i = 1 to 72)
-        var/angle = i * 10
-        T.fire_nuclear_particle_wimpy(angle)
-        sleep(1)
+	INVOKE_ASYNC(src, .proc/makegoat)
+	radiation_pulse(src, 3000, 5)
+	var/turf/T = get_turf(src)
+	for(var/i = 1 to 72)
+		var/angle = i * 10
+		T.fire_nuclear_particle_wimpy(angle)
+		sleep(1)

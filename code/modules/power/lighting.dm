@@ -170,6 +170,8 @@
 						newlight = new /obj/machinery/light/built(loc)
 					if("bulb")
 						newlight = new /obj/machinery/light/small/built(loc)
+					if("floor")
+						newlight = new /obj/machinery/light/floor/built(loc)
 				newlight.setDir(dir)
 				transfer_fingerprints_to(newlight)
 				if(cell)
@@ -196,7 +198,12 @@
 	fixture_type = "bulb"
 	sheets_refunded = 1
 
-
+/obj/structure/light_construct/floor
+	name = "floor light fixture frame"
+	icon_state = "floor-construct-stage1"
+	fixture_type = "floor"
+	sheets_refunded = 1
+	layer = LOW_OBJ_LAYER
 
 // the standard tube light fixture
 /obj/machinery/light
@@ -279,6 +286,14 @@
 	status = LIGHT_EMPTY
 	update(0)
 
+/obj/machinery/light/floor/built
+	icon_state = "floor-empty"
+
+/obj/machinery/light/floor/built/Initialize()
+	. = ..()
+	status = LIGHT_EMPTY
+	update(0)
+
 /obj/machinery/light/small/built
 	icon_state = "bulb-empty"
 
@@ -307,6 +322,10 @@
 				if(prob(2))
 					break_light_tube(1)
 			if("bulb")
+				brightness = 4
+				if(prob(5))
+					break_light_tube(1)
+			if("floor bulb")
 				brightness = 4
 				if(prob(5))
 					break_light_tube(1)
@@ -537,6 +556,10 @@
 			if("bulb")
 				newlight = new /obj/structure/light_construct/small(src.loc)
 				newlight.icon_state = "bulb-construct-stage[cur_stage]"
+
+			if("floor bulb")
+				newlight = new /obj/structure/light_construct/floor(src.loc)
+				newlight.icon_state = "floor-construct-stage[cur_stage]"
 		newlight.setDir(src.dir)
 		newlight.stage = cur_stage
 		if(!disassembled)
@@ -915,6 +938,30 @@
 	base_state = "floor"		// base description and icon_state
 	icon_state = "floor"
 	brightness = 4
-	layer = 2.5
+	layer = LOW_OBJ_LAYER
 	light_type = /obj/item/light/bulb
-	fitting = "bulb"
+	fitting = "floor bulb"
+
+/obj/item/floor_light
+	name = "floor light frame"
+	desc = "Used for building lights."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "floor-construct-stage1"
+
+/obj/item/floor_light/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Use in-hand to place a [src].\n"
+
+/obj/item/floor_light/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, span_warning("You need more space to place a [src] here."))
+		return
+	if((locate(/obj/machinery/light/floor) in user.loc) || (locate(/obj/structure/light_construct/floor) in user.loc))
+		to_chat(user, span_warning("There is already a [src] here."))
+		return
+	to_chat(user, span_notice("You anchor the [src] in place."))
+	playsound(user, 'sound/machines/click.ogg', 50, 1)
+	var/obj/structure/light_construct/floor/M = new(user.loc)
+	transfer_fingerprints_to(M)
+	qdel(src)
+
