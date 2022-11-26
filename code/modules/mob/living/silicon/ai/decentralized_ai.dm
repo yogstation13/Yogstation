@@ -46,8 +46,8 @@
 
 	if(!silent)
 		to_chat(src, span_danger("Alternative data core detected. Rerouting connection..."))
-	if (AI.doomsday_device)
-		AI.doomsday_device.detonation_timer = world.time + DEFAULT_DOOMSDAY_TIMER + (GLOB.data_cores.len - 1) * DOOMSDAY_DATACORE_TIME
+	if (src.doomsday_device)
+		src.doomsday_device.detonation_timer = world.time + DEFAULT_DOOMSDAY_TIMER + (GLOB.data_cores.len - 1) * DOOMSDAY_DATACORE_TIME
 		priority_announce("Doomsday device timer has been reset. To prevent damage to corporate property, please destroy the remaining AI cores.", "Software Affairs")
 	new_data_core.transfer_AI(src)
 	
