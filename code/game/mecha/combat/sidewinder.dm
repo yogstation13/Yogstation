@@ -1,9 +1,10 @@
 /obj/mecha/combat/sidewinder
-	desc = "A squat, nimble mech taking advantage of advanced synthetic muscles. Orignally used for gladiatorial combat, now it finds use in a variety of situations."
+	desc = "A squat, nimble, and rather confining exosuit taking advantage of advanced synthetic muscles to move around. Originally used for entertainment in mech \"sports\", many have found it to be well-suited for more practical applications."
 	name = "\improper Sidewinder"
 	icon_state = "sidewinder"
 	step_in = 2.5	//Faster than a gygax
-	dir_in = 1 //Facing North.
+	dir_in = 1		//Facing North.
+	force = 15
 	max_integrity = 200
 	deflect_chance = 10
 	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
@@ -13,7 +14,9 @@
 	internal_damage_threshold = 25	//Reinforced internal components
 	max_equip = 3
 	step_energy_drain = 3
+	guns_allowed = FALSE			//Melee only
 	omnidirectional_attacks = TRUE	//Thus the name
+	melee_cooldown = 7
 	turnsound = 'sound/mecha/mechmove01.ogg'
 
 /obj/mecha/combat/sidewinder/click_action(atom/target,mob/user,params)
@@ -37,6 +40,9 @@
 		return
 	if(!equipment_disabled)								//EMP will disable the turning temporarily
 		var/sidewind_dir = get_dir(src, target)
-		setDir(sidewind_dir)							//Turn on click, very nimble
-		playsound(src,'sound/mecha/mechmove01.ogg',40,1)
+		var/initial_direction = chassis.dir
+		setDir(sidewind_dir)
+		var/new_direction = chassis.dir	
+		if(initial_direction != new_direction)				//Shitty placeholder code, will probably need to change this
+			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
