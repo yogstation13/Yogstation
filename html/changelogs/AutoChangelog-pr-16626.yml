@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscdel: "Remove chat client program from basic pda"
+  - rscadd: "give atmos pda supermatter monitor"
