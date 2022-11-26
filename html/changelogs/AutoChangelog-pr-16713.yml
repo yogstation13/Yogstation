@@ -1,0 +1,4 @@
+author: " Cark"
+delete-after: true 
+changes: 
+  - bugfix: "blind people can't be flashed anymore"
