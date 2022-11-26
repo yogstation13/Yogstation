@@ -16,7 +16,7 @@
 	name = "Sanguine Olfaction"
 	desc = "Acquire a scent from the environment immediately around you to track."
 	power_explanation = "<b>Sanguine Olfaction</b>:\n\
-		Activating this Power will search around you in a 1-tile radius for bloodied objects and floors.\n\
+		Activating this power will search around you in a 1-tile radius for bloodied objects and floors.\n\
 		If these objects are covered in blood from another humanoid being, you will see the option to track one of those scents.\n\
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that blood.\n\
 		WARNING: it will be difficult to see around you while following a scent trail due to the the color being drained from all your vision except for the trail and your target."
@@ -132,7 +132,7 @@
 	sensitive = TRUE
 	tracking_flags = TRACKING_SCENT
 	power_explanation = "<b>Transcendent Olfaction</b>:\n\
-		Activating this Power will search all objects and items in a 1-tile radius around you for scents.\n\
+		Activating this power will search all objects and items in a 1-tile radius around you for scents.\n\
 		If these objects or items have been used by humanoid beings and still have their scent, you will see the option to track one of those scents.\n\
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that scent.\n\
 		WARNING: it will be difficult to see around you while following a scent trail due to the the color being drained from all your vision except for the trail and your target."
@@ -144,7 +144,7 @@
 	desc = "Begin following the scent of your target."
 	button_icon_state = "power_olfac"
 	power_explanation = "<b>Follow the Scent</b>:\n\
-		Activating this Power will create a trail you can follow to the target scent you selected with Olfaction.\n\
+		Activating this power will create a trail you can follow to the target scent you selected with Olfaction.\n\
 		During this time, the target you're tracking will also leave a trail behind them as they move.\n\
 		WARNING: The path created for you to follow may bring you to doors you can't open and areas you don't have access to. If this happens, try again later or from a new area. \n\
 		Color will be drained from everything in your vision except for the trail and your target.\n\
