@@ -8,6 +8,8 @@
 	var/overpressure_m = 80
 	volume = 1000
 
+	circuit = /obj/item/circuitboard/machine/scrubber
+
 	var/list/scrubbing = list(
 		/datum/gas/plasma,
 		/datum/gas/carbon_dioxide,
@@ -139,6 +141,8 @@
 	overpressure_m = 200
 	volume_rate = 1500
 	volume = 50000
+
+	circuit = /obj/item/circuitboard/machine/huge_scrubber
 
 	var/movable = FALSE
 
