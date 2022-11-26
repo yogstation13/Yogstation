@@ -1178,6 +1178,7 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/nolock/ruin
 	name = "R&D Console"
 	desc = "A console used to interface with R&D tools. This one seems to run on different research tech and does not have access requirement."
+	circuit = /obj/item/circuitboard/computer/rdconsole/ruin
 
 /obj/machinery/computer/rdconsole/nolock/ruin/Initialize()
     . = ..()
