@@ -142,10 +142,6 @@
 	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	for(var/mob/living/L in T.contents)
 		var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
-		if(ismineralturf(Q))
-			var/turf/closed/mineral/M = Q
-			M.attempt_drill()
-			L.adjustBruteLoss(5)
 		if(Q.density)
 			to_chat(user, span_warning("There's no room to do this!"))
 			return
