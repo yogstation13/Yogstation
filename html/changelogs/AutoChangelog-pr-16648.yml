@@ -1,0 +1,5 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Several random things in the game no longer store data that is not used for anything at all."
+  - bugfix: "Compatibility with OpenDream has been improved, very slightly."

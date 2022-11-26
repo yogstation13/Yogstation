@@ -168,9 +168,25 @@
 	light_power = 5
 	light_range = 4
 	light_color = LIGHT_COLOR_GREEN
+	melee_damage_lower = 25
+	melee_damage_upper = 50
+	speed = -0.5
+	robust_searching = 1
+	stat_attack = UNCONSCIOUS
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
+	. = ..()
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		// abosrbs nuclear particle to heal
+		P.damage = 0
+		adjustBruteLoss(-10)
+		adjustFireLoss(-10)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
 	radiation_pulse(src, 600) // It gets stronker as time passes
+	adjustBruteLoss(-1)
+	adjustFireLoss(-1) //gets healed over time
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"

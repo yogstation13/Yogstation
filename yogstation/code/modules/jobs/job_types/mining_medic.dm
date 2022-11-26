@@ -23,6 +23,12 @@
 
 	changed_maps = list("EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
+		/obj/item/extraction_pack = 5,
+		/obj/item/fulton_core = 1
+	)
+
 /datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 1
@@ -31,7 +37,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 	
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1)

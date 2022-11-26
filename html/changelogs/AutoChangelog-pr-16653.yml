@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "fix ruin tech research console switching to station tech when reconstructing the console"
+  - tweak: "free miner vendor R&D kit has been replaced with ruin reserch console circuit"
