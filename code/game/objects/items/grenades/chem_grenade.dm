@@ -142,6 +142,13 @@
 /obj/item/grenade/chem_grenade/emp_act(severity)
 	..()
 	if(prob(40/severity))
+		var/reagent_string = ""
+		var/beaker_number = 1
+		for(var/obj/exploded_beaker in beakers)
+		if(!exploded_beaker.reagents)
+			continue
+		reagent_string += " ([exploded_beaker.name] [beaker_number++] : " + pretty_string_from_reagent_list(exploded_beaker.reagents.reagent_list) + ");"
+		log_bomber(null, "an emp has primed a", src, "containing:[reagent_string]")
 		prime()
 
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
