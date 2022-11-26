@@ -397,7 +397,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	short_desc = "You are a space bartender!"
-	flavour_text = "Time to mix drinks and change lives. Smoking space drugs makes it easier to understand your patrons' odd dialect."
+	flavour_text = "Time to mix drinks and change lives. Unfortunately, you can't understand your patrons' odd dialect."
 	assignedrole = "Space Bartender"
 	id_job = "Bartender"
 
