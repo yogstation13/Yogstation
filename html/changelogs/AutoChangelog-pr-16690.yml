@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Nukies can no longer buy the default aug kit"
+  - tweak: "The superior aug kit that nukies can only buy has had its price raised to 45 from 25 TC."
