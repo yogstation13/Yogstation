@@ -14,6 +14,8 @@
 ![b-a-d-g-e](https://forthebadge.com/images/badges/uses-git.svg)
 ![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
 
+GUIDELINES: https://docs.google.com/document/d/1DNGBnkMQAWrNHs-wgR5AkxSrigPUMB9KbH_SJGkbv7I/edit?usp=sharing
+
 [**Website**](https://yogstation.net)
 
 [**Code**](https://github.com/yogstation13/yogstation)
