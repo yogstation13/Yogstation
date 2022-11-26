@@ -102,7 +102,7 @@
 	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
 	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
 	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
-	var/datum/action/innate/mecha/mech_defense_mode/defense_action = new
+	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
 	var/datum/effect_system/smoke_spread/smoke_system = new //not an action, but trigged by one
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
@@ -649,9 +649,9 @@
 		return FALSE
 	if(!has_charge(step_energy_drain))
 		return FALSE
-	if(defense_mode)
+	if(defence_mode)
 		if(world.time - last_message > 20)
-			occupant_message(span_danger("Unable to move while in defense mode"))
+			occupant_message(span_danger("Unable to move while in defence mode"))
 			last_message = world.time
 		return FALSE
 	if(zoom_mode)
