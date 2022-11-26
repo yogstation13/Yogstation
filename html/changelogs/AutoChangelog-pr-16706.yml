@@ -1,0 +1,4 @@
+author: "Annoying-plant"
+delete-after: true 
+changes: 
+  - tweak: "Changes slowdown required on gear from &lt;=2 to &lt;=0.9"
