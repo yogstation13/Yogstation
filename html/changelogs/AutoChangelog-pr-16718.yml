@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Makeshift pistol can no longer jam"
+  - tweak: "Makeshift pistol now fires slightly slower"
