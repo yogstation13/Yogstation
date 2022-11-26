@@ -152,6 +152,10 @@
 	to_chat(S, span_warning("An inhospitable area may be created as a result of destroying this object. Aborting."))
 	return FALSE
 
+/obj/machinery/ai/data_core/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, span_warning("This machinery is too complicated to be deconstructed. Aborting."))
+	return FALSE
+
 /obj/machinery/telecomms/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("This communications relay should be preserved, it will be a useful resource to our masters in the future. Aborting."))
 	return FALSE
