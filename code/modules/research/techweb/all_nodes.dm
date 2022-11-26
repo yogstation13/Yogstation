@@ -394,7 +394,7 @@
 	description = "Honk?!"
 	prereq_ids = list("base")
 	design_ids = list("air_horn", "honker_main", "honker_peri", "honker_targ", "honk_chassis", "honk_head", "honk_torso", "honk_left_arm", "honk_right_arm",
-	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "clown_mine", "clownshot")
+	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "clown_mine", "clownshot", "clownshoesimplant")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////Computer tech////////////////////////
@@ -519,7 +519,7 @@
 	display_name = "Advanced Cybernetic Implants"
 	description = "Upgraded and more powerful cybernetic implants."
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
-	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus")
+	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "jumpbootsimplant", "wheeliesimplant", "magbootimplant")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/combat_cyber_implants
@@ -535,7 +535,7 @@
 	display_name = "Illegal Cybernetic Implants"
 	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
 	prereq_ids = list("combat_cyber_implants","syndicate_basic")
-	design_ids = list("ci-xray")
+	design_ids = list("ci-xray", "noslipwater")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 ////////////////////////Tools////////////////////////
