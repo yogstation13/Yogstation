@@ -691,6 +691,22 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/scrubber
+	name = "Machine Design (Scrubber Board)"
+	desc = "The circuit board for a scrubber."
+	id = "scrubber"
+	build_path = /obj/item/circuitboard/machine/scrubber
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/huge_scrubber
+	name = "Machine Design (Huge Scrubber Board)"
+	desc = "The circuit board for a huge scrubber."
+	id = "h_scrubber"
+	build_path = /obj/item/circuitboard/machine/huge_scrubber
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/crystallizer
 	name = "Machine Design (Crystallizer)"
 	desc = "The circuit board for a crystallizer."
