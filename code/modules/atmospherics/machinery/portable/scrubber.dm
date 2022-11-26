@@ -43,6 +43,10 @@
 	if(connected_port)
 		add_overlay("scrubber-connector")
 
+/obj/machinery/portable_atmospherics/scrubber/RefreshParts()
+	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
+		lasers *= L.rating
+
 /obj/machinery/portable_atmospherics/scrubber/process_atmos()
 	..()
 	if(!on)
