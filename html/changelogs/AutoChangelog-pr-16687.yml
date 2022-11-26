@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - tweak: "adds flag NOSLIP_ICE to jump boots, winter boots, and mining boots"
