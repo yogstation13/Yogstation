@@ -2439,6 +2439,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
 	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
 
+/datum/uplink_item/role_restricted/letterbomb
+	name = "Explosive letter"
+	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
+	item = /obj/item/mail/explosive
+	cost = 1
+	restricted_roles = list("Quartermaster","Cargo Technician")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
