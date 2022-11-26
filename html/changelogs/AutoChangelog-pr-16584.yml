@@ -1,9 +1,0 @@
-author: "Warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "add an upgraded version of the normal suit storage unit (Same code as suit storage unit but tweaked a bit and smartfridge combination). This storage can contain upto 1000 items"
-  - tweak: "Normal suit storage can no longer clear mob radiation (not contamination) due to the lack of tech, now the advanced suit storage will do the job."
-  - soundadd: "Add sound for suit storage unit"
-  - rscadd: "Suit storage can now be buit"
-  - bugfix: "Fixed being able to open machine with alt click while panel is open for suit storage unit"
-  - bugfix: "Fixed being able to open suit storage unit with alt click while machine is running"
