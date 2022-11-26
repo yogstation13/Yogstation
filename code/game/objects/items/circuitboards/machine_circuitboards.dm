@@ -1323,6 +1323,28 @@
 
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/scrubber
+	name = "Scrubber (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/portable_atmospherics/scrubber
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stack/sheet/mineral/diamond = 1)
+
+	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/huge_scrubber
+	name = "Scrubber (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/portable_atmospherics/scrubber/huge
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 10,
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/mineral/diamond = 5)
+
+	needs_anchored = FALSE
+
 /obj/item/circuitboard/machine/shuttle/engine
 	name = "Thruster (Machine Board)"
 	build_path = /obj/machinery/shuttle/engine
