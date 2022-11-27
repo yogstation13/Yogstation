@@ -260,7 +260,7 @@
 		return power * 0.5
 	else if(M.IsSleeping())
 		return power * 0.25
-	else if(M.getBruteLoss() + M.getFireLoss() >= 70 && !active_coma)
+	else if(M.getBruteLoss() + M.getFireLoss() >= 90 && !active_coma)
 		to_chat(M, span_warning("You feel yourself slip into a regenerative coma..."))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
