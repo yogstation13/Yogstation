@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(infiltrator_objective_areas, typecacheof(list(/area/yogs/infilt
 		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
+	var/list/datum/mind/owners = get_owners()
 	for(var/mob/living/player in GLOB.player_list)
 		var/datum/mind/M = player.mind
 		if(!M)

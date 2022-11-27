@@ -116,13 +116,12 @@
 				var/datum/objective/sole_survivor/survive_objective = new
 				survive_objective.owner = owner
 				add_objective(survive_objective)
-				SSticker.has_hijackers = TRUE
 			else
 				var/datum/objective/hijack/hijack_objective = new
 				hijack_objective.owner = owner
 				add_objective(hijack_objective)
-				SSticker.has_hijackers = TRUE
-				return
+			SSticker.mode.has_hijackers = TRUE
+			return
 		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
