@@ -171,6 +171,11 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	chameleon_extras = list(/obj/item/gun/energy/disabler, /obj/item/clothing/glasses/hud/security/sunglasses, /obj/item/clothing/head/helmet)
 	//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
 
+/datum/outfit/job/security/equip(mob/living/carbon/human/H, visualsOnly)
+	if (length(GLOB.player_list) <= 20)
+		suit_store = /obj/item/gun/energy/e_gun/advtaser
+	. = ..()
+	
 
 /obj/item/radio/headset/headset_sec/alt/department/Initialize()
 	. = ..()
