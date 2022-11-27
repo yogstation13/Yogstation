@@ -102,7 +102,7 @@ Stabilized extracts:
 
 /obj/item/slimecross/stabilized/red
 	colour = "red"
-	effect_desc = "Makes the owner slightly faster."
+	effect_desc = "Nullifies all equipment based slowdowns."
 
 /obj/item/slimecross/stabilized/green
 	colour = "green"
