@@ -593,7 +593,7 @@
 	if(client.prefs.be_special.len > 0)
 		has_antags = TRUE
 	if(client.prefs.job_preferences.len == 0)
-		if(mind && mind.antag_datums.len > 0)
+		if(mind && mind.antag_datums?.len > 0)
 			message_admins("[src.ckey] has no jobs enabled, but rolled antag. This shouldn't happen, notify coders.")
 			log_admin("[src.ckey] has rolled antag with no jobs enabled")
 			return TRUE

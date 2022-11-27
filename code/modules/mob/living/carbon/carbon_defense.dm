@@ -1,5 +1,7 @@
 /mob/living/carbon/get_eye_protection()
 	. = ..()
+	if(HAS_TRAIT(src, TRAIT_BLIND))
+		return INFINITY //Can't get flashed if you cant see
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
 		return INFINITY //Can't get flashed without eyes

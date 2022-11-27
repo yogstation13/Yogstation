@@ -695,9 +695,13 @@
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
+	
+/obj/item/nullrod/whip/Initialize()
+	. = ..()
+	weapon_stats[REACH] = 3
 
 /obj/item/nullrod/fedora
 	name = "atheist's fedora"
@@ -841,7 +845,7 @@
 		H.remove_hud_from(user)
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
-	desc = "Even in death, i still serve"
+	desc = "Even in death, I still serve"
 	icon = 'icons/obj/clothing/neck.dmi'
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "servoskull"
@@ -869,3 +873,82 @@
 		H.remove_hud_from(user)
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
 		H2.remove_hud_from(user)
+
+/obj/item/nullrod/cross
+	name = "golden crucifix"
+	desc = "Resist the devil, and he will flee from you."
+	icon_state = "cross"
+	item_state = "cross"
+	force = 0 // How often we forget
+	throwforce = 0 // Faith without works is...
+	attack_verb = list("blessed")
+	var/held_up = FALSE
+	var/mutable_appearance/holy_glow_fx
+	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
+	COOLDOWN_DECLARE(holy_notification)
+
+/obj/item/nullrod/cross/attack_self(mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return // sanity
+	if(held_up)
+		unwield(user)
+		return
+	user.visible_message(span_notice("[user] raises \the [src]."), span_notice("You raise \the [src]."))
+	held_up = TRUE
+	w_class = WEIGHT_CLASS_GIGANTIC // Heavy, huh?
+	slot_flags = 0
+	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
+	user.add_overlay(holy_glow_fx)
+	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/unwield)
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/nullrod/cross/proc/unwield(mob/user)
+	if(!held_up)
+		return
+	user.visible_message(span_notice("[user] lowers \the [src]."), span_notice("You lower \the [src]."))
+	held_up = FALSE
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT
+	if(holy_glow_fx)
+		user.cut_overlay(holy_glow_fx)
+		holy_glow_fx = null
+	if(holy_glow_light)
+		QDEL_NULL(holy_glow_light)
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
+	STOP_PROCESSING(SSfastprocess, src)
+
+/obj/item/nullrod/cross/process()
+	if(!held_up)
+		return PROCESS_KILL // something has gone terribly wrong
+	if(!isliving(loc))
+		return PROCESS_KILL // something has gone terribly wrong
+	
+	var/notify = FALSE
+	if(COOLDOWN_FINISHED(src, holy_notification))
+		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)
+		notify = TRUE
+
+	var/list/chapview = view(4, get_turf(loc))
+	for(var/mob/living/L in range(2, get_teleport_loc(get_turf(loc), loc, 2)))
+		if(!L.mind?.holy_role && (L in chapview)) // Priests are unaffected, trying to use it as a non-priest will harm you
+			if(notify)
+				to_chat(L, span_userdanger("The holy light burns you!"))
+				new /obj/effect/temp_visual/cult/sparks(get_turf(L))
+			// Unholy creatures take more damage
+			// Everyone else still takes damage but less real damage
+			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
+			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
+			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
+				L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
+				L.adjustStaminaLoss(2)
+			else
+				L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
+				L.adjustStaminaLoss(3)
+
+/obj/item/nullrod/cross/examine(mob/user)
+	. = ..()
+	. += "[span_notice("Use in-hand while facing evil to ")][span_danger("purge it.")]"

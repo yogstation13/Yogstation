@@ -599,6 +599,14 @@
 	ui_x = -640
 	ui_y = -896
 
+/datum/techweb_node/mech_rocket_fist
+	ui_x = -576
+	ui_y = 32
+
+/datum/techweb_node/mech_shortsword
+	ui_x = -640
+	ui_y = 32
+
 /datum/techweb_node/bshipc
 	ui_x = -224
 	ui_y = 32
