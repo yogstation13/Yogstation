@@ -198,11 +198,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !H.particles) // spicy metal
-		H.particles = new /particles/smoke()
-	if(H.particles && H.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
-		QDEL_NULL(H.particles)
-
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
