@@ -22,7 +22,7 @@
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
-[**Yogstation GitHub Guidelines**](https://docs.google.com/document/d/1DNGBnkMQAWrNHs-wgR5AkxSrigPUMB9KbH_SJGkbv7I/edit?usp=sharing)
+[**Yogstation GitHub Guidelines**](https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md#yogstation-github-guidelines)
 
 
  
