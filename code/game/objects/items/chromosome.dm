@@ -80,7 +80,7 @@
 	name = "reinforcement chromosome"
 	desc = "A chromosome that renders mutations immune to mutadone."
 	icon_state = "chromosome-reinforcer"
-	weight = 3
+	weight = -1
 
 /obj/item/chromosome/reinforcer/can_apply(datum/mutation/human/HM)
 	if(!HM || !(HM.can_chromosome == CHROMOSOME_NONE))

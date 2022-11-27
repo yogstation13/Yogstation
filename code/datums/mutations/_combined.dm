@@ -32,3 +32,7 @@
 /datum/generecipe/cerebral
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/mindreader"
 	result = CEREBRAL
+
+/datum/generecipe/hulk
+	required = "/datum/mutation/human/strong; /datum/mutation/human/radioactive"
+	result = GENETICS_HULK
