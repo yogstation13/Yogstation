@@ -318,7 +318,7 @@
 
 /obj/item/gun/ballistic/automatic/k41s
 	name = "\improper K-41s DMR"
-	desc = "A sleek, urban camouflage rifle that fires powerful 7.62 rounds. Comes with a mid-range scope."
+	desc = "A sleek, urban camouflage rifle that fires powerful 7.62mm rounds. Comes with a mid-range scope."
 	icon_state = "dmr"
 	item_state = "dmr"
 	fire_sound = "sound/weapons/dmrshot.ogg"

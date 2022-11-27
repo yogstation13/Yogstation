@@ -522,10 +522,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(is_type_in_typecache(target, GLOB.blacklisted_malf_machines))
 		to_chat(ranged_ability_user, span_warning("You cannot overload that device!"))
 		return
-	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 50, 0)
+	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 4 SECONDS, 0)
 	attached_action.adjust_uses(-1)
 	target.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [target]!"))
-	addtimer(CALLBACK(attached_action, /datum/action/innate/ai/ranged/overload_machine.proc/detonate_machine, target), 50) //kaboom!
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
+	spark_system.attach(target)
+	spark_system.set_up(1, 0, target)
+	addtimer(CALLBACK(attached_action, /datum/action/innate/ai/ranged/overload_machine.proc/detonate_machine, target), 4 SECONDS) //kaboom!
 	remove_ranged_ability(span_danger("Overcharging machine..."))
 	return TRUE
 

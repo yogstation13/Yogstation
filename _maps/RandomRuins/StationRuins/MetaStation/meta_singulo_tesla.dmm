@@ -273,20 +273,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"of" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/button/door{
-	dir = 4;
-	id = "engsm";
-	name = "Radiation Shutters Control";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access_txt = "10"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "oj" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -335,6 +321,16 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"sb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/table,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/clothing/glasses/meson/engine,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "sm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -464,6 +460,20 @@
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"wr" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "engsm";
+	name = "Radiation Shutters Control";
+	pixel_x = 24;
+	pixel_y = 0;
+	req_access_txt = "10"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "xa" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -510,12 +520,6 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"zF" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
@@ -661,6 +665,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Kb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/table,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Ks" = (
 /obj/machinery/button/door{
 	dir = 8;
@@ -725,6 +740,15 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating,
+/area/engine/engineering)
+"MJ" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "MO" = (
 /obj/structure/cable/orange{
@@ -1029,7 +1053,7 @@ aO
 Lj
 ul
 Lj
-of
+wr
 Lj
 zG
 Lj
@@ -1061,7 +1085,7 @@ vP
 sZ
 Gp
 Xa
-Uj
+sb
 pN
 RA
 SN
@@ -1087,7 +1111,7 @@ cR
 vP
 tW
 Xa
-Uj
+Kb
 pN
 gD
 SN
@@ -1126,7 +1150,7 @@ SN
 (7,1,1) = {"
 iM
 sm
-zF
+MJ
 PS
 Xa
 nq
@@ -1140,7 +1164,7 @@ vP
 DK
 Xa
 dU
-zF
+MJ
 di
 SN
 SN

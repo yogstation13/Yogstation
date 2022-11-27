@@ -38,11 +38,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
-	//special_step_sounds = list()  //uncomment when i actually decide what sounds i want for footsteps
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	attack_sound = 'sound/items/trayhit2.ogg'
 	//deathsound = //change this when sprite gets reworked
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //change this when sprite gets reworked
-	wings_icon = "Robotic"
+	wings_icon = "Robotic" //maybe change this eventually
 	species_language_holder = /datum/language_holder/preternis	
 	//new variables
 	var/datum/action/innate/maglock/maglock
@@ -73,11 +74,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		
 	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
-	var/matrix/new_transform = matrix()//tall and skinny, bug like, just like skrem envisioned
-	new_transform.Scale(0.95, 1/0.95)
-	C.transform = new_transform.Multiply(C.transform)
-	C.update_transform()
-
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	for (var/V in C.bodyparts)
@@ -89,28 +85,24 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
 	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
-	var/matrix/new_transform = matrix()//returns them to normal shape if they swap to a different species
-	new_transform.Scale(1/0.95, 0.95)
-	C.transform = new_transform.Multiply(C.transform)
-	C.update_transform()
-
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
+	C.remove_movespeed_modifier("preternis_maglock")
 
+	if(lockdown)
+		maglock.Trigger(TRUE)
 	if(maglock)
 		maglock.Remove(C)
-	if(lockdown)
-		REMOVE_TRAIT(C, TRAIT_NOSLIPWATER, "preternis_maglock")
-		C.remove_movespeed_modifier("preternis_maglock")
+
 
 /datum/action/innate/maglock
 	var/datum/species/preternis/owner_species
 	var/lockdown = FALSE
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots1"
+	button_icon_state = "magboots0"
 	icon_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
@@ -121,15 +113,19 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	owner_species = H.dna.species
 	. = ..()
 
-/datum/action/innate/maglock/Trigger()
+/datum/action/innate/maglock/Trigger(silent = FALSE)
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		button_icon_state = "magboots1"
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		button_icon_state = "magboots0"
+	UpdateButtonIcon()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
-	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
+	if(!silent)
+		to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	H.update_gravity(H.has_gravity())
 
 /datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
@@ -225,9 +221,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
+		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(8)
-		H.adjustFireLoss(4)
+		H.adjustStaminaLoss(20)
+		H.adjustFireLoss(10)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts

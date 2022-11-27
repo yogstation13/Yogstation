@@ -10,6 +10,16 @@
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "transform"
 	action_background_icon_state = "bg_demon"
+	var/list/stored_access
+
+/obj/effect/proc_holder/spell/targeted/touch/envy/on_gain(mob/living/user)
+	RegisterSignal(user, COMSIG_MOB_ALLOWED, .proc/envy_access)
+
+/obj/effect/proc_holder/spell/targeted/touch/envy/on_lose(mob/living/user)
+	UnregisterSignal(user, COMSIG_MOB_ALLOWED)
+
+/obj/effect/proc_holder/spell/targeted/touch/envy/proc/envy_access(datum/source, obj/O)
+	return O.check_access_list(stored_access)
 
 /obj/item/melee/touch_attack/envy
 	name = "Envious Hand"
@@ -31,7 +41,11 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(user.real_name != H.dna.real_name)
-			user.real_name = H.dna.real_name
+			if(attached_spell)
+				var/obj/effect/proc_holder/spell/targeted/touch/envy/E = attached_spell
+				var/obj/item/card/id/A = H.get_idcard()
+				E.stored_access = A?.access
+			user.fully_replace_character_name(user.real_name, H.dna.real_name)
 			H.dna.transfer_identity(user, transfer_SE=1)
 			user.updateappearance(mutcolor_update=1)
 			user.domutcheck()

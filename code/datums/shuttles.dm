@@ -263,7 +263,7 @@
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
 	name = "The Arena"
-	description = "The crew must pass through an otherworldy arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
+	description = "The crew must pass through an otherworldly arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
 	admin_notes = "RIP AND TEAR."
 	credit_cost = 10000
 	emag_buy = TRUE
@@ -392,7 +392,7 @@
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidentally warped a building from the past into our second Disco Inferno shuttle. \
 	It resembles a 1990s era rollerdome all the way down to the carpet texture."
 	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
 	credit_cost = 2500
