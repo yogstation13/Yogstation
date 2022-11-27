@@ -63,6 +63,7 @@
 	var/list/cultists_to_cult = list() //the cultists we'll convert
 
 	var/datum/team/cult/main_cult
+	reroll_friendly = 1
 
 
 /datum/game_mode/cult/pre_setup()

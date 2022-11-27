@@ -11,6 +11,7 @@
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
 	title_icon = "nukeops"
+	reroll_friendly = 1
 
 	announce_span = "danger"
 	announce_text = "Syndicate forces are approaching the station in an attempt to destroy it!\n\

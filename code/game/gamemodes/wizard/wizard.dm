@@ -19,6 +19,7 @@
 	<span class='notice'>Crew</span>: Eliminate the wizard before they can succeed!"
 	var/finished = 0
 	title_icon = "wizard"
+	reroll_friendly = 1
 
 /datum/game_mode/wizard/pre_setup()
 	var/datum/mind/wizard = antag_pick(antag_candidates)

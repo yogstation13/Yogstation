@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14
+	reroll_friendly = 1
 
 	announce_span = "zombie"
 	announce_text = "Some crew members have been infected with a zombie virus!\n\

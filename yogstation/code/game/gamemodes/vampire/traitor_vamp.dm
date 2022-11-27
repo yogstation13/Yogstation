@@ -7,7 +7,7 @@
 	required_players = 25
 	required_enemies = 1	// how many of each type are required
 	recommended_enemies = 3
-	reroll_friendly = 1
+	reroll_friendly = 0
 
 	var/list/possible_vampires = list()
 	var/const/vampire_amt = 2 //hard limit on vampires if scaling is turned off

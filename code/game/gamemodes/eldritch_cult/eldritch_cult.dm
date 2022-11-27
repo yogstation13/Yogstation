@@ -9,7 +9,7 @@
 	required_players = 25
 	required_enemies = 1
 	recommended_enemies = 4
-	reroll_friendly = 1
+	reroll_friendly = 0
 	enemy_minimum_age = 0
 
 	announce_span = "danger"

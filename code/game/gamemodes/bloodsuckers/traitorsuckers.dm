@@ -13,7 +13,7 @@
 	required_players = 25
 	required_enemies = 2 // How many of each type are required
 	recommended_enemies = 4
-	reroll_friendly = 1
+	reroll_friendly = 0
 	announce_span = "Traitors and Bloodsuckers"
 	announce_text = "There are vampiric monsters on the station along with some syndicate operatives out for their own gain! Do not let the bloodsuckers or the traitors succeed!"
 

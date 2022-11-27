@@ -21,6 +21,7 @@
 	required_enemies = 2
 	recommended_enemies = 3
 	enemy_minimum_age = 14
+	reroll_friendly = 1
 
 	announce_span = "Revolution"
 	announce_text = "Some crewmembers are attempting a coup!\n\
