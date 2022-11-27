@@ -205,7 +205,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 
 	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-		H.particles.spawning = 5
+		H.particles.spawning = 4
 	else
 		H.particles.spawning = 0
 
