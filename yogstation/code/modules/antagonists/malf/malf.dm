@@ -12,7 +12,11 @@
 	protect_objective.find_target()
 	add_objective(protect_objective)
 
-	if(!protect_objective.target || !prob(80)) //Gameplay optimization.
+	if(GLOB.joined_player_list.len >= 40)
+		var/datum/objective/robot_army/army_objective = new //Have 8 or more connected cyborgs.
+		army_objective.owner = owner
+		add_objective(army_objective)
+	else if(!protect_objective.target || !prob(80)) //Gameplay optimization.
 		var/list/possible_pets = list()
 		for(var/mob/living/simple_animal/M in GLOB.alive_mob_list)
 			//This is a hacky way of getting unique pets.
@@ -31,10 +35,7 @@
 			pettect_objective.protect_target = pick(possible_pets)
 			pettect_objective.update_explanation_text()
 			add_objective(pettect_objective)
-	else if(GLOB.joined_player_list.len >= 20 && prob(GLOB.joined_player_list.len*2))
-		var/datum/objective/robot_army/army_objective = new //Have 8 or more connected cyborgs.
-		army_objective.owner = owner
-		add_objective(army_objective)
+
 
 	murderbone_objective = new murderbone_objective
 	murderbone_objective.owner = owner
