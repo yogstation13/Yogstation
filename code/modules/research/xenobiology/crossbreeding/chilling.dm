@@ -140,9 +140,10 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/bluespace
 	colour = "bluespace"
-	effect_desc = "Touching people with this extract adds them to a list, when it is activated it teleports everyone on that list to the user."
+	effect_desc = "Touching people with this extract adds them to a limited list, when it is activated it teleports everyone on that list to the user."
 	var/list/allies = list()
 	var/active = FALSE
+	var/linkcap = 5
 
 /obj/item/slimecross/chilling/bluespace/afterattack(atom/target, mob/user, proximity)
 	if(!proximity || !isliving(target) || active)
@@ -150,9 +151,11 @@ Chilling extracts:
 	if(target in allies)
 		allies -= target
 		to_chat(user, span_notice("You unlink [src] with [target]."))
-	else
+	else if(LAZYLEN(allies) < linkcap)
 		allies |= target
 		to_chat(user, span_notice("You link [src] with [target]."))
+	else
+		to_chat(user, span_notice("The [src] seems to be unable to handle more links."))
 	return
 
 /obj/item/slimecross/chilling/bluespace/do_effect(mob/user)
