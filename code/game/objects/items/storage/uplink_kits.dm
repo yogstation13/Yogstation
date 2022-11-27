@@ -315,7 +315,7 @@
 
 /obj/item/carpcaller/attack_self(mob/user)
 	var/datum/round_event_control/carp_migration/newCarpControl = new /datum/round_event_control/carp_migration() //code taken from the portal storm ritual
-	var/datum/round_event/datum/round_event/carp_migration/newCarpStorm = newCarpControl.runEvent()
+	var/datum/round_event/carp_migration/newCarpStorm = newCarpControl.runEvent()
 	newCarpStorm.setup()
 	remaining_uses -= 1
 	to_chat(user, "You call a school of space carps to the station")
