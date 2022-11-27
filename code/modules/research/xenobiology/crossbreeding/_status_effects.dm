@@ -679,9 +679,8 @@ datum/status_effect/stabilized/blue/on_remove()
 			do_sparks(5,FALSE,owner)
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
 			to_chat(owner, span_warning("You feel sick after [linked_extract] dragged you through bluespace."))
-			owner.vomit()
 			owner.Stun(1 SECONDS)
-			owner.dizziness += 20
+			owner.dizziness += 30
 	healthcheck = owner.health
 	return ..()
 
