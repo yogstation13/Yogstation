@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(events)
 			if(res == EVENT_INTERRUPTED)
 				continue	//like it never happened
 			if(res == EVENT_CANT_RUN)
-				return
+				continue
 		sum_of_weights += E.weight
 
 	sum_of_weights = rand(0,sum_of_weights)	//reusing this variable. It now represents the 'weight' we want to select
@@ -74,6 +74,9 @@ SUBSYSTEM_DEF(events)
 		if(sum_of_weights <= 0)				//we've hit our goal
 			if(TriggerEvent(E))
 				return
+	//If we're still here, there's no event that's been triggered, so we run another event again until one gets hit.
+	scheduled = world.time + 1 MINUTES
+
 
 /datum/event_timer/proc/reschedule()
 	var/multiplier = SSevents.multiplier
