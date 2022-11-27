@@ -169,11 +169,7 @@
 			return
 		for(var/obj/D in T.contents)
 			if(D.density == TRUE)
-				
 				return
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
 		if(T)
 			sleep(0.1 SECONDS)
 			user.forceMove(T)
@@ -185,15 +181,11 @@
 					var/turf/Q = get_step(get_turf(user), user.dir)
 					var/mob/living/U = user
 					animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
-					if(ismineralturf(Q))
-						var/turf/closed/mineral/M = Q
-						M.attempt_drill()
-						L.adjustBruteLoss(5)
 					if(Q.density)
 						return
 					for(var/obj/D in Q.contents)
 						if(D.density == TRUE)
-							return
+							D.take_damage(400)
 					U.forceMove(get_turf(L))
 					to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
 					U.visible_message(span_warning("[U] hits [L] and drags them through the dirt!"))
