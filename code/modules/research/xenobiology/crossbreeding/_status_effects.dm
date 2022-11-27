@@ -648,7 +648,7 @@ datum/status_effect/stabilized/blue/on_remove()
 
 /datum/status_effect/bluespacestabilization
 	id = "stabilizedbluespacecooldown"
-	duration = 1200
+	duration = 3 MINUTES
 	alert_type = null
 
 /datum/status_effect/stabilized/bluespace
@@ -678,6 +678,10 @@ datum/status_effect/stabilized/blue/on_remove()
 			to_chat(owner, span_notice("[linked_extract] will take some time to re-align you on the bluespace axis."))
 			do_sparks(5,FALSE,owner)
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
+			to_chat(owner, span_warning("You feel sick after [linked_extract] dragged you through bluespace."))
+			owner.vomit()
+			owner.Stun(1 SECONDS)
+			owner.dizziness += 20
 	healthcheck = owner.health
 	return ..()
 
