@@ -51,18 +51,18 @@
 			return FALSE
 	return TRUE
 
+//Start of Yogstation change: Victory criteria.
 /datum/game_mode/malf/set_round_result()
 	..()
-
-	if(station_was_nuked)
-		SSticker.mode_result = "win - AI doomsday"
-	else if(didAntagsWin(traitors, /datum/antagonist/traitor/malf))
-		SSticker.mode_result = "win - AI achieved their objectives"
+	if(didAntagsWin(traitors, /datum/antagonist/traitor/malf))
+		SSticker.mode_result = "AI Major Victory - AI achieved their objectives"
+	else if(station_was_nuked)
+		SSticker.mode_result = "AI Minor Victory - AI did not achieve their objectives, but nuked the station."
 	else if(!are_special_antags_dead())
-		SSticker.mode_result = "halfwin - evacuation - AI survived"
-
+		SSticker.mode_result = "Crew Minor Victory - AI did not achieve their objectives, but survived."
 	else
-		SSticker.mode_result = "loss - evacuation - AI killed"
+		SSticker.mode_result = "Crew Major Victory - AI did not achieve their objectives, and did not survive."
+//End of Yogstation change: Victory criteria.
 
 /datum/game_mode/malf/generate_report()
 	return "A [pick(list("huge electrical storm","photon emitter","meson generator","blue swirly thing"))] was recently picked up by a nearby station's sensors in your sector. \
