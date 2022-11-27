@@ -53,6 +53,7 @@
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
+	C.particles = new /particles/smoke/ipc()
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
@@ -72,6 +73,7 @@
 
 datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
+	QDEL_NULL(C.particles)
 	if(change_screen)
 		change_screen.Remove(C)
 
@@ -198,14 +200,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /particles/smoke/ipc // exact same smoke visual, but no offset
 	position = list(0, 0, 0)
+	spawning = 0
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !H.particles) // 
-		H.particles = new /particles/smoke/ipc()
-	if(H.particles && H.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
-		QDEL_NULL(H.particles)
+	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
+		H.particles.spawning = 4
+	else
+		H.particles.spawning = 0
 
 	if(H.oxyloss)
 		H.setOxyLoss(0)
