@@ -718,6 +718,8 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/cerulean/tick()
 	if(owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
+			owner.visible_message(span_warning("[owner] begins to glow with brilliant light."))
+			sleep(30 SECONDS)
 			owner.visible_message(span_warning("[owner] blazes with brilliant light, [linked_extract] whisking [owner.p_their()] soul away."),
 				span_notice("You feel a warm glow from [linked_extract], and you open your eyes... elsewhere."))
 			if(owner.mind)
