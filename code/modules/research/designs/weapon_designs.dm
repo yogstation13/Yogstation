@@ -403,6 +403,16 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/mindflayer
+	name = "Mind Flayer"
+	desc = "A compact weapon made to destroy the brain."
+	id = "mind_flayer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
+	build_path = /obj/item/gun/energy/mindflayer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/simple_sight
 	name = "Simple Sight"
 	desc = "A simple yet elegant scope. Better than ironsights."

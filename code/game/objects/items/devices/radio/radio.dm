@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else
 			to_chat(user, span_notice("The radio can no longer be modified or attached!"))
 
-	else if(istype(W, /obj/item/encryptionkey/) && unscrewed)
+	else if(istype(W, /obj/item/encryptionkey/))
 		if(keyslot && keyslot2)
 			to_chat(user, span_warning("The radio can't hold another key!"))
 			return
@@ -401,35 +401,30 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			keyslot2 = W
 
 		recalculateChannels()
+	
 	else
-		to_chat(user, span_warning("You cannot put anything in when [src]'s panel is closed!"))
-		return
+		return ..()
 
 /obj/item/radio/AltClick(mob/user)
 	. = ..()
-	if(unscrewed)
-		if(keyslot || keyslot2)
-			for(var/ch_name in channels)
-				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
-				secure_radio_connections[ch_name] = null
+	if(keyslot || keyslot2)
+		for(var/ch_name in channels)
+			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
+			secure_radio_connections[ch_name] = null
 
 
-			if(keyslot)
-				user.put_in_hands(keyslot)
-				keyslot = null
-			if(keyslot2)
-				user.put_in_hands(keyslot2)
-				keyslot2 = null
+		if(keyslot)
+			user.put_in_hands(keyslot)
+			keyslot = null
+		if(keyslot2)
+			user.put_in_hands(keyslot2)
+			keyslot2 = null
 
-			recalculateChannels()
-			to_chat(user, span_notice("You pop out the encryption key in the radio."))
-
-		else
-			to_chat(user, span_warning("This radio doesn't have any encryption keys!"))
+		recalculateChannels()
+		to_chat(user, span_notice("You pop out the encryption key in the radio."))
 
 	else
-		to_chat(user, span_warning("You have to unscrew the panel to do this!"))
-		return
+		to_chat(user, span_warning("This radio doesn't have any encryption keys!"))
 		
 
 /obj/item/radio/emp_act(severity)

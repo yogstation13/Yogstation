@@ -656,7 +656,7 @@
 
 /datum/quirk/junkie/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/junkie/smoker
@@ -766,7 +766,7 @@
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/kleptomaniac
@@ -797,7 +797,7 @@
 	desc = "Thinking big words makes brain go hurt."
 	value = -2
 	human_only = TRUE
-	gain_text = "You feel your vocabularly slipping away."
+	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
 

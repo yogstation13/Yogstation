@@ -756,11 +756,11 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "red"
 
 /datum/status_effect/stabilized/red/on_apply()
-	owner.ignore_slowdown("slimestatus")
+	owner.add_movespeed_modifier("stabilized_red_speed", update=TRUE, priority=100, multiplicative_slowdown=-0.3, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
 /datum/status_effect/stabilized/red/on_remove()
-	owner.unignore_slowdown("slimestatus")
+	owner.remove_movespeed_modifier("stabilized_red_speed")
 
 /datum/status_effect/stabilized/green
 	id = "stabilizedgreen"
