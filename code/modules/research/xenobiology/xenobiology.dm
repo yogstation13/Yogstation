@@ -894,7 +894,7 @@
 
 /obj/item/slimepotion/speed/afterattack(atom/target, mob/user)
 	. = ..()
-	if(!istype(target, /mob/living/simple_animal))
+	if(!isanimal(target))
 		to_chat(user, span_warning("The potion can only be used on simple animals!"))
 		return
 	var/mob/living/simple_animal/zipzoom = target
