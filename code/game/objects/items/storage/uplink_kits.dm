@@ -314,10 +314,10 @@
 	var/remaining_uses = 3
 
 /obj/item/syndicatedetonator/attack_self(mob/user)
-	var/datum/round_event_control/carp_migration/newCarpControl = new /datum/round_event_control/carp_migration //code taken from the portal storm ritual
+	var/datum/round_event_control/carp_migration/newCarpControl = new /datum/round_event_control/carp_migration() //code taken from the portal storm ritual
 	var/datum/round_event/datum/round_event/carp_migration/newCarpStorm = newCarpControl.runEvent()
 	newCarpStorm.setup()
-	emaining_uses -= 1
+	remaining_uses -= 1
 	to_chat(user, "You call a school of space carps to the station")
 	if(remaining_uses <= 0) {
 		to_chat(user, span_warning("The [src] disappear to carpspace."))
