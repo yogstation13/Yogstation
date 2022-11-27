@@ -904,8 +904,8 @@
 
 	zipzoom.set_varspeed(-1)
 	to_chat(user, span_notice("You slather the red gunk over [target], making it faster."))
-	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-	C.add_atom_colour("#FF0000", FIXED_COLOUR_PRIORITY)
+	zipzoom.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	zipzoom.add_atom_colour("#FF0000", FIXED_COLOUR_PRIORITY)
 	qdel(src)
 
 /obj/item/slimepotion/fireproof
