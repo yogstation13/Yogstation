@@ -78095,7 +78095,10 @@
 /area/medical/morgue)
 "vQi" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 4
+	dir = 4;
+	name = "Scrubbers Pipe";
+	color = "#ff0000";
+	pipe_color = "#ff0000"
 	},
 /turf/closed/wall,
 /area/engine/atmos_distro)
