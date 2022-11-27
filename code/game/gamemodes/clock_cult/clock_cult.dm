@@ -362,7 +362,7 @@ Credit where due:
 
 /obj/item/paper/servant_primer/infirmarypaper
 	name = "IOU"
-	info = "We pawned the sleepers and medkits in here off for some tomato sauce so we wouldn't have to eat dry pasta anymore. Shouldn't be an issue, if you need to heal yourself or a fellow servant cast Sentinel's Compromise or use a Vitality Matrix"
+	info = "We pawned the sleepers and medkits in here off for some tomato sauce so we wouldn't have to eat dry pasta anymore. Shouldn't be an issue, if you need to heal yourself or a fellow servant cast Sentinel's Compromise or use a Vitality Matrix."
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"
