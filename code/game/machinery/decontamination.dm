@@ -1,7 +1,7 @@
 // DECONTAMINATION STORAGE UNIT!! /////////////////
 /obj/machinery/decontamination_unit
 	name = "advanced decontamination storage unit"
-	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment. Can store upto 1000 items."
+	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
 	icon_state = "tube"
 	density = TRUE
