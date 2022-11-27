@@ -494,12 +494,7 @@
 		touch_msg = "[ADMIN_LOOKUPFLW(toucher)]."
 	message_admins("Slime Explosion reaction started at [ADMIN_VERBOSEJMP(T)]. Last Fingerprint: [touch_msg]")
 	log_game("Slime Explosion reaction started at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"].")
-	T.visible_message(span_danger("The slime extract begins to vibrate violently !"))
-	addtimer(CALLBACK(src, .proc/boom, holder), 50)
-	var/obj/item/slime_extract/M = holder.my_atom
-	deltimer(M.qdel_timer)
-	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
+	boom(holder)
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder && holder.my_atom)
