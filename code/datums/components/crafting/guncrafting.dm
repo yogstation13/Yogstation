@@ -106,3 +106,9 @@
 	desc = "An unusual set of parts that entirely cannibalize an energy gun to create a modern energy bow."
 	required_item = /obj/item/gun/energy/e_gun
 	result = /obj/item/gun/ballistic/bow/energy
+
+/obj/item/weaponcrafting/gunkit/mindflayer
+	name = "alien looking parts kit"
+	desc = "An otherworldly set of parts capable of inflicting neural damage on anyone shot by the finished product. Even looking at it makes your head hurt."
+	required_item = /obj/item/gun/energy/laser
+	result = /obj/item/gun/energy/mindflayer

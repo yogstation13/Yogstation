@@ -404,12 +404,12 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mindflayer
-	name = "Mind Flayer"
+	name = "Mind Flayer kit"
 	desc = "A compact weapon made to destroy the brain."
 	id = "mind_flayer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
-	build_path = /obj/item/gun/energy/mindflayer
+	build_path = /obj/item/weaponcrafting/gunkit/mindflayer
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
