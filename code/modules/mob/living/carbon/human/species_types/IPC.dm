@@ -40,6 +40,7 @@
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
+	var/smoking = 0 // 0 for off, 1 for standing, 2 for lying down
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
@@ -195,8 +196,17 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
+/particles/smoke/ipc // exact same smoke visual, but no offset
+	position = list(0, 0, 0)
+
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !H.particles) // 
+		H.particles = new /particles/smoke/ipc()
+	if(H.particles && H.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
+		QDEL_NULL(H.particles)
+
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
