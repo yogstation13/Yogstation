@@ -1,3 +1,4 @@
+#define CARP_CARP_CARP		1
 
 /obj/item/storage/box/syndicate
 	name = "suspicious box"
@@ -145,7 +146,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
 		if("v") //Big Boss. Total of ~28 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -189,13 +190,19 @@
 			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
 			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
-		if("white_whale_holy_grail") //Unique items that don't appear anywhere else
+		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
 			new /obj/item/pneumatic_cannon/speargun(src)
 			new /obj/item/storage/backpack/magspear_quiver(src)
-			new /obj/item/clothing/suit/space/hardsuit/carp(src)
-			new /obj/item/clothing/mask/gas/carp(src)
-			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
+			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
 			new /obj/item/twohanded/pitchfork/trident(src)
+			new /obj/item/grenade/clusterbuster/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
+			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
+			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
+			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyaltyand cuddliness
 
 		if("mad_scientist")
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
@@ -267,6 +274,8 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
+#undef CARP_CARP_CARP
+
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
 	kill_chance = 0
@@ -292,6 +301,35 @@
 		if(!M.implant(H, owner.current))
 			qdel(M)
 	. = ..() //sure ok you stole the arrow
+
+/obj/item/carpcaller
+	name = "Carp signal"
+	desc = "Emit a carp'sian bluespace wave disturbing carpspace that will pull space carps from all over the galaxy to the surrounding area of the station."
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "bigred"
+	item_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	var/remaining_uses = 3
+
+/obj/item/syndicatedetonator/attack_self(mob/user)
+	var/datum/round_event_control/carp_migration/newCarpControl = new /datum/round_event_control/carp_migration //code taken from the portal storm ritual
+	var/datum/round_event/datum/round_event/carp_migration/newCarpStorm = newCarpControl.runEvent()
+	newCarpStorm.setup()
+	emaining_uses -= 1
+	to_chat(user, "You call a school of space carps to the station")
+	if(remaining_uses <= 0) {
+		to_chat(user, span_warning("The [src] disappear to carpspace."))
+		qdel(src)
+	} else {
+		to_chat(user, span_warning("The [src] has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left."))
+	}
+
+/obj/item/carpcaller/examine(mob/user)
+	. = ..()
+	if(remaining_uses != -1)
+		. += "It has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left."
 
 /obj/item/storage/box/syndicate/contract_kit
 	real_name = "Contract Kit"
