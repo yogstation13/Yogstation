@@ -133,7 +133,7 @@ Slimecrossing Armor
 	item_state = "adamsuit"
 	flags_inv = NONE
 	obj_flags = IMMUTABLE_SLOW
-	armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 0, FIRE = 90, ACID = 90)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 0, ENERGY = 30, BOMB = 70, BIO = 100, RAD = 0, FIRE = 70, ACID = 70)
 	slowdown = 4
 	var/hit_reflect_chance = 40
 
