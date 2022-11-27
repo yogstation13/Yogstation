@@ -48,7 +48,7 @@
 //remove fat
 /datum/surgery_step/remove_fat
 	name = "remove loose fat"
-	implements = list(/obj/item/retractor = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
+	implements = list(TOOL_RETRACTOR = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
 	time = 3.2 SECONDS
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
