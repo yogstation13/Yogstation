@@ -273,7 +273,7 @@
 	
 
 /obj/item/nullrod/attack_self(mob/user)
-	if(user.mind && (user.mind.holy_role) && !reskinned)
+	if(user.mind && (user.mind.holy_role) && !reskinned && type == /obj/item/nullrod)
 		reskin_holy_weapon(user)
 
   /*
@@ -902,8 +902,16 @@
 	user.add_overlay(holy_glow_fx)
 	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/unwield)
+	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, .proc/drop_unwield)
 	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/nullrod/cross/Destroy()
+	if(held_up && isliving(loc))
+		unwield(loc)
+	. = ..()
+
+/obj/item/nullrod/cross/proc/drop_unwield(obj/item, mob/user)
+	unwield(user)
 
 /obj/item/nullrod/cross/proc/unwield(mob/user)
 	if(!held_up)
