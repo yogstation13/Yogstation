@@ -740,6 +740,7 @@
 	icon_state = "trident"
 	name = "trident"
 	desc = "A trident recovered from the ruins of atlantis"
+	slot_flags = ITEM_SLOT_BELT
 	force = 14
 	throwforce = 23
 	force_wielded = 6
