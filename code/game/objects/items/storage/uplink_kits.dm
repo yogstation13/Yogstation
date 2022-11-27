@@ -192,7 +192,7 @@
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
 			new /obj/item/pneumatic_cannon/speargun(src)
-			new /obj/item/storage/backpack/magspear_quiver(src)
+			new /obj/item/storage/magspear_quiver(src)
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
 			new /obj/item/twohanded/pitchfork/trident(src)
@@ -202,7 +202,7 @@
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
-			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyaltyand cuddliness
+			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyalty and cuddliness
 
 		if("mad_scientist")
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
