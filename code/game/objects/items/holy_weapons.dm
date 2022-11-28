@@ -273,7 +273,7 @@
 	
 
 /obj/item/nullrod/attack_self(mob/user)
-	if(user.mind && (user.mind.holy_role) && !reskinned && type == /obj/item/nullrod)
+	if(user.mind && (user.mind.holy_role) && !reskinned)
 		reskin_holy_weapon(user)
 
   /*
