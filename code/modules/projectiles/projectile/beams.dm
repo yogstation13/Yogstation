@@ -203,3 +203,13 @@
 		var/mob/living/carbon/M = target
 		M.visible_message(span_danger("[M] explodes into a shower of gibs!"))
 		M.gib()
+
+/obj/item/projectile/beam/plasma
+	pass_flags = NONE
+	light_color = LIGHT_COLOR_BLUE
+	name = "plasma ball"
+	icon_state = "plasmagun"
+	damage = 35
+
+/obj/item/projectile/beam/plasma/pistol
+	damage = 25

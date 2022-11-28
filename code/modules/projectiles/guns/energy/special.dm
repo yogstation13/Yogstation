@@ -429,3 +429,101 @@
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	var/power = 4
+
+// 40K Weapons Below
+/obj/item/gun/energy/plasma
+	name = "Plasma Weapon"
+	desc = "A very deadly weapon. Fires plasma."
+	icon_state = "ppistol"
+	item_state = "plaspistol"
+	icon = 'icons/obj/guns/grimdark.dmi'
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	cell_type = "/obj/item/stock_parts/cell/high"
+
+/obj/item/gun/energy/plasma/pistol
+	name = "Plasma Pistol"
+	desc = "A very deadly weapon used by high ranking members of the Imperium..."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "ppistol"
+	item_state = "ppistol"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/pistol)
+	cell_type = "/obj/item/stock_parts/cell/high"
+
+/obj/item/gun/energy/plasma/pistol/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "ppistol-crit" && heat < 25)
+		icon_state = "ppistol"
+
+/obj/item/gun/energy/plasma/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	if(select == 1)
+		heat += 2
+	else if(select == 2)
+		heat += 13
+	else
+		user << "\red There's a bit of an error... Please report this to a developer. Mention that it is located on line 266 of special.dm if you would."
+	if(heat >= 25)
+		icon_state = "ppistol-crit"
+		if(prob(75))
+			user << "\red [src] is heating up in your hands!"
+	var/selectprob = 20
+	if(select == 2) selectprob = 50
+	if(heat >= 30 && prob(selectprob))
+		var/turf/T = get_turf(src.loc)
+		if (isliving(loc))
+			var/mob/living/M = loc
+			M.show_message("\red Your [src] critically overheats!", 1)
+			M.fire_stacks += 3
+			M.IgniteMob()
+		if(T)
+			T.hotspot_expose(700,125)
+			explosion(T, -1, -1, 2, 3)
+		qdel(src)
+	return
+
+/obj/item/gun/energy/plasma/rifle
+	name = "Heavy Plasma Rifle"
+	desc = "A very deadly weapon used by high ranking members of the Imperium..."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "prifle"
+	item_state = "prifle"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	cell_type = "/obj/item/stock_parts/cell/high"
+	modifystate = -1 //Will need to outright override icon modifications to get around the troublesome initial() statements.
+	var/heat = 0
+
+/obj/item/gun/energy/plasma/rifle/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "prifle-crit" && heat < 25)
+		icon_state = "prifle"
+	return 1
+	// Figure out why process isnt calluing
+
+/obj/item/gun/energy/plasma/rifle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	if(select == 1)
+		heat += 2
+	else if(select == 2)
+		heat += 13
+	else
+		user << "\red There's a bit of an error... Please report this to a developer. Mention that it is located on line 266 of special.dm if you would."
+	if(heat >= 25)
+		icon_state = "prifle-crit"
+		if(prob(75))
+			user << "\red [src] is heating up in your hands!"
+	var/selectprob = 20
+	if(select == 2) selectprob = 50
+	if(heat >= 30 && prob(selectprob))
+		var/turf/T = get_turf(src.loc)
+		if (isliving(loc))
+			var/mob/living/M = loc
+			M.show_message("\red Your [src] critically overheats!", 1)
+			M.fire_stacks += 3
+			M.IgniteMob()
+		if(T)
+			T.hotspot_expose(700,125)
+			explosion(T, -1, -1, 2, 3)
+		qdel(src)
+	return
