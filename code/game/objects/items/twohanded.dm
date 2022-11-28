@@ -1001,7 +1001,7 @@
 	spark_system.attach(src)
 
 /obj/item/twohanded/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
 		final_block_chance = 0 //Please show me how you can block a bullet with an industrial hammer I would LOVE to see it
 	return ..()
 
