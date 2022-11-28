@@ -5,8 +5,8 @@
 	desc = "The virus causes benign growths all over your body."
 	stealth = 0
 	resistance = 4
-	stage_speed = 0
-	transmittable = 0
+	stage_speed = -2
+	transmittable = -2
 	level = 3
 	severity = 2
 	symptom_delay_min = 5
