@@ -13,10 +13,17 @@
 	icon_state = "steam_vent_[opacity]"
 	if(opacity)
 		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 50, TRUE)
-
+		START_PROCESSING(SSfastprocess, src)
 	else
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
+		STOP_PROCESSING(SSfastprocess, src)
 
+/obj/structure/destructible/clockwork/trap/steam_vent/process()
+	. = ..()
+	for (var/obj/structure/table/T in get_turf(src))
+		visible_message("\the [T] melts underneath the steam!")
+		qdel(T)
+	
 /obj/structure/destructible/clockwork/trap/steam_vent/Crossed(atom/movable/AM)
 	. = ..()
 	if(isliving(AM) && opacity)
