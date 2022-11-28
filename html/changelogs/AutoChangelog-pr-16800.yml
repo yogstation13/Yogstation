@@ -1,0 +1,4 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - bugfix: "fixed anime reference plasmaman helmet being offset"
