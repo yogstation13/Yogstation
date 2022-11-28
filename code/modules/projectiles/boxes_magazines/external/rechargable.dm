@@ -18,3 +18,8 @@
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
 	return
+
+
+/obj/item/ammo_box/magazine/recharge/lasgun
+	max_ammo = 30
+	
