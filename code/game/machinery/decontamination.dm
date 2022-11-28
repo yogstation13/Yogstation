@@ -10,7 +10,7 @@
 	layer = ABOVE_WINDOW_LAYER
 								// if you add more storage slots, update cook() to clear their radiation too.
 
-	var/max_n_of_items = 1000
+	var/max_n_of_items = 53
 
 	state_open = FALSE
 	var/locked = FALSE
@@ -117,7 +117,7 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(8)
+			sleep(8) //stop
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
 			if(mob_occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
@@ -132,7 +132,7 @@
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(8)
+			sleep(8) //why
 			say("The decontamination process is completed, thank you for your patient.")
 			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 			if(mob_occupant)
@@ -181,14 +181,6 @@
 		return
 	open_machine()
 	dump_mob()
-
-/obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
-	if(default_unfasten_wrench(user, W))
-		return
-	if(W.tool_behaviour == TOOL_MULTITOOL)
-		reset_emag(user)
-		return
-	return ..()
 
 /obj/machinery/decontamination_unit/proc/reset_emag(mob/user)
 	if(panel_open)
@@ -256,7 +248,16 @@
 			span_notice("You escape the cramped confines of [src]!"))
 		open_machine()
 
+/obj/machinery/decontamination_unit/is_operational()
+	return ..() && anchored
+
 /obj/machinery/decontamination_unit/attackby(obj/item/I, mob/user, params)
+	if(default_unfasten_wrench(user, W))
+		return
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		reset_emag(user)
+		return
+
 	if(state_open && is_operational())
 		//Unable to add an item, it's already full.
 		if(contents.len >= max_n_of_items)
@@ -350,6 +351,9 @@
 
 /obj/machinery/decontamination_unit/ui_act(action, params)
 	if(..() || uv)
+		return
+
+	if (!anchored)
 		return
 	switch(action)
 		if("door")
