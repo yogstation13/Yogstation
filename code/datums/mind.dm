@@ -368,8 +368,23 @@
 		I.implant(traitor_mob, null, silent = TRUE)
 		if(!silent)
 			to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly implanted you with a Syndicate Uplink (although uplink implants cost valuable TC, so you will have slightly less). Simply trigger the uplink to access it.</span>")
-		return I
+		. = I
 
+	var/datum/uplink_holder = .
+	var/datum/component/uplink/U = uplink_holder.GetComponent(/datum/component/uplink)
+	var/datum/job/hos = SSjob.GetJob("Head of Security")
+	var/datum/job/warden = SSjob.GetJob("Warden")
+	var/datum/job/officers = SSjob.GetJob("Security Officer")
+	var/sec_amount = hos.current_positions + warden.current_positions + officers.current_positions
+	// 0 sec = 13TC
+	// 1 sec = 15TC
+	// 2 sec = 17TC
+	// 3 sec = 19TC
+	// Latejoin sec will give TC back to get back to 20TC
+	if(sec_amount < 4)
+		U.telecrystals = (TELECRYSTALS_DEFAULT - 7) + sec_amount * 2
+		U.docked = TELECRYSTALS_DEFAULT - U.telecrystals
+		to_chat(traitor_mob, span_userdanger("Your telecrystal amount is lower than normal due to low security in this sector. You will be compensated if more security are hired."))
 
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.

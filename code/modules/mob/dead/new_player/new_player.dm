@@ -403,6 +403,19 @@
 
 		character.update_parallax_teleport()
 
+		if(rank == "Head of Security" || rank == "Warden" || rank == "Security Officer")
+			for(var/datum/component/uplink/U in GLOB.uplinks)
+				if(U.docked > 0)
+					var/amt = 2
+					U.docked -= amt
+					if(U.docked < 0)
+						amt += U.docked
+						U.docked = 0
+					U.telecrystals += amt
+					if(U.owner)
+						to_chat(U.owner, span_notice("You have been given [amt]TC due to a member of security being hired."))
+
+
 	SSticker.minds += character.mind
 	character.client.init_verbs() // init verbs for the late join
 	var/mob/living/carbon/human/humanc

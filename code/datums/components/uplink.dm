@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/locked = TRUE
 	var/allow_restricted = TRUE
 	var/telecrystals
+	var/docked = 0 // If this uplink was docked due to low security or other reasons, and how much it can be re-compensated
 	var/selected_cat
 	var/owner = null
 	var/datum/game_mode/gamemode
