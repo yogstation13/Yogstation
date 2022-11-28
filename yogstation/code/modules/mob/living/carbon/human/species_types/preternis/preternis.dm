@@ -11,7 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	species_traits = list(MUTCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -25,7 +25,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
-	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
@@ -42,7 +42,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_sound = 'sound/items/trayhit2.ogg'
 	//deathsound = //change this when sprite gets reworked
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	yogs_draw_robot_hair = TRUE //change this when sprite gets reworked
 	wings_icon = "Robotic" //maybe change this eventually
 	species_language_holder = /datum/language_holder/preternis	
 	//new variables
@@ -58,9 +57,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
-	for (var/V in C.bodyparts)
-		var/obj/item/bodypart/BP = V
-		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
+	for (var/obj/item/bodypart/BP in C.bodyparts)
+		BP.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.burn_reduction = 1
 		BP.brute_reduction = 1
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
@@ -223,8 +221,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(20)
-		H.adjustFireLoss(10)
+		H.adjustStaminaLoss(2 * -H.fire_stacks)
+		H.adjustFireLoss(1 * -H.fire_stacks)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
