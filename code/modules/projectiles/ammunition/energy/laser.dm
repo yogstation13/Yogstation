@@ -75,3 +75,23 @@
 	projectile_type = /obj/item/projectile/beam/mindflayer
 	select_name = "MINDFUCK"
 	fire_sound = 'sound/weapons/laser.ogg'
+
+/obj/item/ammo_casing/energy/laser/lasgun
+	projectile_type = /obj/item/projectile/beam/laser/lasgun
+	e_cost = 100
+	fire_sound = 'sound/weapons/lasgun.ogg'
+
+/obj/item/ammo_casing/energy/laser/longlas
+	projectile_type = /obj/item/projectile/beam/laser/lasgun
+	e_cost = 150
+	fire_sound = 'sound/weapons/lasgun.ogg'
+
+/obj/item/ammo_casing/energy/laser/laspistol
+	projectile_type = /obj/item/projectile/beam/laser/lasgun
+	e_cost = 80
+	fire_sound = 'sound/weapons/lasgun.ogg'
+
+/obj/item/ammo_casing/energy/laser/hotshot
+	projectile_type = /obj/item/projectile/beam/laser/lasgun
+	e_cost = 250
+	fire_sound = 'sound/weapons/lasgun.ogg'

@@ -412,3 +412,35 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+// 40k Laser Weaponry
+
+/obj/item/gun/energy/laser/lasgun
+	name ="Imperial Lasgun"
+	desc = "A relic of a weapon. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
+	icon_state = "longlas"
+	item_state = "longlas"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasgun)
+
+/obj/item/gun/energy/laser/longlas
+	name ="Imperial Longlas"
+	desc = "A Sniper variant of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight. "
+	icon_state = "longlas"
+	item_state = "longlas"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/longlas)
+	zoomable = TRUE
+	zoom_amt = 8
+
+/obj/item/gun/energy/laser/laspistol
+	name ="Imperial Laspistol"
+	desc = "A smaller, pistol sized version of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
+	icon_state = "laspistol-80"
+	item_state = "laspistol-80"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/laspistol)
+
+/obj/item/gun/energy/laser/hotshot
+	name ="Imperial Hotshot Lasgun"
+	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completley useless by its users."
+	icon_state = "hotshot"
+	item_state = "hotshot"
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hotshot)

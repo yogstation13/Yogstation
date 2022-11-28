@@ -210,6 +210,23 @@
 	name = "plasma ball"
 	icon_state = "plasmagun"
 	damage = 35
+	wound_bonus = 0
+	speed = 1.4 // plasma ball slow
 
 /obj/item/projectile/beam/plasma/pistol
+	damage = 25
+
+/obj/item/projectile/beam/laser/lasgun
+	name = "Laser Bolt"
+
+/obj/item/projectile/beam/laser/longlas
+	name = "Laser Bolt"
+	damage = 30
+
+/obj/item/projectile/beam/laser/laspistol
+	name = "Laser Bolt"
+	damage = 15
+
+/obj/item/projectile/beam/laser/hotshot
+	name = "Laser Bolt"
 	damage = 25
