@@ -24,7 +24,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
-	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
@@ -61,7 +61,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
-		BP.burn_reduction = 2	//good against individual burn hits
+		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
 			continue
@@ -225,8 +225,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(1.5 * -H.fire_stacks)
-		H.adjustFireLoss(0.75 * -H.fire_stacks)
+		H.adjustStaminaLoss(2 * -H.fire_stacks)
+		H.adjustFireLoss(1 * -H.fire_stacks)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
