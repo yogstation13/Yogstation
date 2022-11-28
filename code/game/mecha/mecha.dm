@@ -95,6 +95,9 @@
 	var/silicon_icon_state = null //if the mech has a different icon when piloted by an AI or MMI
 	var/is_currently_ejecting = FALSE //Mech cannot use equiptment when true, set to true if pilot is trying to exit mech
 
+	var/guns_allowed = FALSE	//Whether or not the mech is allowed to mount guns (mecha_equipment/weapon)
+	var/melee_allowed = FALSE	//Whether or not the mech is allowed to mount melee weapons (mecha_equipment/melee_weapon)
+	
 	//Action datums
 	var/datum/action/innate/mecha/mech_eject/eject_action = new
 	var/datum/action/innate/mecha/mech_toggle_internals/internals_action = new
