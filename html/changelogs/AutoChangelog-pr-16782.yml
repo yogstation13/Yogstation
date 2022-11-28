@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "puts the SM chamber area back in front of the SM air alarm on GaxStation"
