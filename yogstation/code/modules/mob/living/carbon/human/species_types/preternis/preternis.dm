@@ -33,6 +33,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 	payday_modifier = 0.8 //Highly efficient workers, more than worth their price, NT still racist though
+	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
