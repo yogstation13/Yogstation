@@ -252,9 +252,9 @@
 	return ..() && anchored
 
 /obj/machinery/decontamination_unit/attackby(obj/item/I, mob/user, params)
-	if(default_unfasten_wrench(user, W))
+	if(default_unfasten_wrench(user, I))
 		return
-	if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
 		reset_emag(user)
 		return
 
