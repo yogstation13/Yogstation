@@ -71,7 +71,8 @@
 	for(var/obj/item/gps/G in H.contents)
 		G.gpstag = "MINE[gps_number]"
 		gps_number ++
-
+	if (prob(10))
+		H.dna?.add_mutation(DWARFISM, MUT_EXTRA)
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"
 	suit = /obj/item/clothing/suit/hooded/explorer
