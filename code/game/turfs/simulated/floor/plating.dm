@@ -114,7 +114,7 @@
 
 /turf/open/floor/plating/wrench_act(mob/living/user, obj/item/I)
 	to_chat(user, span_notice("You start removing the bolts from \the [name]."))
-	if(I.use_tool(src, user, 1.5 SECONDS))
+	if(I.use_tool(src, user, 1.5 SECONDS, volume = 100))
 		to_chat(user, span_notice("You deconstruct \the [name]."))
 		src.ScrapeAway()
 	return TRUE
