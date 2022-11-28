@@ -32,6 +32,7 @@
 		. += span_notice("There are a few attachment holes for a new <i>tile</i>, reinforcement <i>sheets</i> or catwalk <i>rods</i>.")
 	else
 		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
+	. += span_notice("The bolts are <b>wrenched</b> tight.")
 
 /turf/open/floor/plating/Initialize()
 	if (!broken_states)
@@ -109,6 +110,13 @@
 		burnt = FALSE
 		broken = FALSE
 
+	return TRUE
+
+/turf/open/floor/plating/wrench_act(mob/living/user, obj/item/I)
+	to_chat(user, span_notice("You start removing the bolts from \the [name]."))
+	if(I.use_tool(src, user, 1.5 SECONDS))
+		to_chat(user, span_notice("You deconstruct \the [name]."))
+		src.ScrapeAway()
 	return TRUE
 
 /turf/open/floor/plating/rust_heretic_act()
