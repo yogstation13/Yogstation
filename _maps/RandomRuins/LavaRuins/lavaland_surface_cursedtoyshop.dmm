@@ -241,12 +241,6 @@
 /obj/item/gun/magic/wand{
 	pixel_x = 6
 	},
-/obj/item/gun/magic/wand/fireball/inert{
-	desc = "It's not just a stick, it's a MAGIC stick!";
-	icon_state = "nothingwand";
-	name = "wand of nothing";
-	pixel_x = -6
-	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aJ" = (
