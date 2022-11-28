@@ -209,7 +209,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	. = ..()
 
 	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
-		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(H.has_movespeed_modifier("preternis_magboot"))
 		H.remove_movespeed_modifier("preternis_magboot")
 	
