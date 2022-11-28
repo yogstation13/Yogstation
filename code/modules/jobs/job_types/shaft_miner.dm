@@ -69,9 +69,9 @@
 	if(H.stat == DEAD)
 		return
 	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "MINE[gps_number]"
+		G.gpstag = "[H.name]"
 		gps_number ++
-	if (prob(10))
+	if (H.client?.prefs.miner_dwarf)
 		H.dna?.add_mutation(DWARFISM, MUT_EXTRA)
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"

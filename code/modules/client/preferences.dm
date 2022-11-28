@@ -89,6 +89,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/mood_tail_wagging = TRUE
 
+	var/miner_dwarf = TRUE
+
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
@@ -821,7 +823,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
 				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
-
+			dat += "<b>If miner, be dwarf:</b> <a href='?_src_=prefs;preference=miner_dwarf'>[miner_dwarf ? "Yes" : "No"] </a><br>"
 			dat += "</td><td width='300px' height='300px' valign='top'>"
 
 			dat += "<h2>Special Role Settings</h2>"
@@ -2200,6 +2202,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("moodtailwagging")
 					mood_tail_wagging = !mood_tail_wagging
+				if ("miner_dwarf")
+					miner_dwarf = !miner_dwarf
 				// yogs end
 
 	ShowChoices(user)
