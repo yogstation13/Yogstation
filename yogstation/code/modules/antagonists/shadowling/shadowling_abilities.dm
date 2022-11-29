@@ -145,7 +145,7 @@
 				deltimer(G.current_nullify_timer) // Stacks
 			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 5 SECONDS, TIMER_STOPPABLE)
 
-/obj/effect/proc_holder/spell/aoe_turf/veil/proc/giveGlowyBack(mob/living/carbon/M)
+/obj/effect/proc_holder/spell/aoe_turf/proc/giveGlowyBack(mob/living/carbon/M)
 	if(!M)
 		return
 	var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
