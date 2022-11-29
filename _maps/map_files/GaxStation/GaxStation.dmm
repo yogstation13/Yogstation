@@ -1423,6 +1423,13 @@
 /obj/structure/railing,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"aGT" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "aGU" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -2065,6 +2072,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"aXT" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "aXZ" = (
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
@@ -2488,6 +2502,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"biL" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "bjo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3246,6 +3267,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
+"bEq" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "bEx" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/closet/secure_closet/personal/patient,
@@ -13391,6 +13417,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"gwS" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "gxb" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -16320,6 +16350,19 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"hYe" = (
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics Storage";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "hYs" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -29660,26 +29703,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"oXJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 8;
-	sortType = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "oXL" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -31568,6 +31591,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
+"pXy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 6
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "pXU" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
@@ -38463,19 +38506,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"tCK" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "tDw" = (
 /obj/structure/sign/departments/minsky/medical/virology/virology2{
 	pixel_y = 32
@@ -38880,19 +38910,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"tOb" = (
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics Storage";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "tOk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -44286,19 +44303,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"wDO" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "wEc" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -70038,8 +70042,8 @@ brd
 dBO
 xib
 xTt
-tOb
-oXJ
+hYe
+pXy
 btb
 xTt
 cNu
@@ -86777,11 +86781,11 @@ uzX
 vFY
 vRP
 vRP
-vFY
+aXT
 vRP
 vRP
 vRP
-vFY
+aXT
 vRP
 vRP
 aCD
@@ -87032,14 +87036,14 @@ meI
 mKF
 uzX
 sLn
-crc
-crc
-wDO
-crc
-crc
-crc
-tCK
-crc
+bEq
+gwS
+gwS
+gwS
+gwS
+gwS
+gwS
+aGT
 crc
 eux
 aCD
@@ -87291,11 +87295,11 @@ uzX
 tkl
 vRP
 vRP
-vFY
+biL
 vRP
 vRP
 vRP
-vFY
+biL
 vRP
 vRP
 aCD
