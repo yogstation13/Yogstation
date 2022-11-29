@@ -28,6 +28,7 @@
 	var/datum/action/cooldown/coffer
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
+	var/datum/action/cooldown/sewerskewers
 	var/opening_airlock = FALSE
 	///Number assigned to rats and mice, checked when determining infighting.
 
@@ -36,9 +37,11 @@
 	coffer = new /datum/action/cooldown/coffer
 	riot = new /datum/action/cooldown/riot
 	domain = new /datum/action/cooldown/domain
+	sewerskewers = new /datum/action/cooldown/sewerskewers
 	coffer.Grant(src)
 	riot.Grant(src)
 	domain.Grant(src)
+	sewerskewers.Grant(src)
 	var/kingdom = pick("Plague","Miasma","Maintenance","Trash","Garbage","Rat","Vermin","Cheese")
 	var/title = pick("King","Lord","Prince","Emperor","Supreme","Overlord","Master","Shogun","Bojar","Tsar","Hetman")
 	name = "[kingdom] [title]"
@@ -50,6 +53,9 @@
 	else if(prob(50))
 		coffer.Trigger()
 	return ..()
+
+/mob/living/simple_animal/hostile/regalrat/can_use_guns()
+	return TRUE
 
 /mob/living/simple_animal/hostile/regalrat/CanAttack(atom/the_target)
 	if(istype(the_target,/mob/living/simple_animal))
@@ -133,6 +139,41 @@
 /**
   *This action checks all nearby mice, and converts them into hostile rats. If no mice are nearby, creates a new one.
   */
+
+/datum/action/cooldown/sewerskewers
+	name = "Sewer Skewers"
+	desc = "Give yourself an unlimited mag Tommy Gun for 8 seconds."
+	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	background_icon_state = "bg_clock"
+	button_icon_state = "projectile"
+	cooldown_time = 120 SECONDS
+	var/obj/item/gun/ballistic/automatic/tommygun/gun
+
+/datum/action/cooldown/sewerskewers/proc/end()
+	
+	var/mob/living/simple_animal/hostile/regalrat/twitch = owner
+
+	twitch.drop_all_held_items()
+	twitch.dextrous = FALSE
+	qdel(gun)
+	
+/datum/action/cooldown/sewerskewers/Trigger()
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/simple_animal/hostile/regalrat/twitch = owner
+
+	twitch.dextrous = TRUE
+	gun = new /obj/item/gun/ballistic/automatic/tommygun(src)
+	twitch.put_in_active_hand(gun)
+
+	owner.say(pick("SEWER SKEWERS FOR EVERYBODY!!", "SHARE THIS!!"))
+
+	addtimer(CALLBACK(src, .proc/end), 8 SECONDS)
+
+	StartCooldown()
+
+//
 
 /datum/action/cooldown/riot
 	name = "Raise Army"
@@ -281,7 +322,7 @@
 	..()
 	if(HAS_TRAIT(L, TRAIT_AGEUSIA))
 		return
-	to_chat(L, span_notice("This food has a funny taste!"))
+	to_chat(L, span_notice("This tastes awful!"))
 
 /datum/reagent/rat_spit/overdose_start(mob/living/M)
 	..()
