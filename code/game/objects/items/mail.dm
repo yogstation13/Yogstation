@@ -223,7 +223,7 @@
 	var/list/mail_recipients = list()
 
 	for(var/mob/living/carbon/human in GLOB.player_list)
-		if(human.stat == DEAD || !human.mind)
+		if(human.stat == DEAD || !human.mind || HAS_TRAIT(human, TRAIT_NOMAIL))
 			continue
 		// Skip wizards, nuke ops, cyborgs; Centcom does not send them mail
 		var/datum/job/this_job = SSjob.GetJob(human.mind.assigned_role)

@@ -225,6 +225,7 @@
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
 #define TRAIT_MAGBOOTS			"magboots"
+#define TRAIT_NOMAIL			"nomail"	//You never get sent mail
 /// This person is crying
 #define TRAIT_CRYING "crying"
 
