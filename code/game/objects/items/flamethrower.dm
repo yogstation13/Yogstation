@@ -308,3 +308,13 @@
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
 	return F.default_ignite(location,release_amount)
+
+
+/obj/item/flamethrower/flamer
+	name = "Imperial Flamer"
+	desc = "Burn the traitor, the mutant, the heretic."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "flamer"
+	item_state = "flamer"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'

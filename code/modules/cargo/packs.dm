@@ -560,6 +560,54 @@
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
 
+/datum/supply_pack/security/armory/imperialarmor
+	name = "Imperial Equipment Crate"
+	desc = "The might of the Emperor is at your command! Contains three sets of armor, uniforms, and more to have you fit the bill of a Guardsman! Requires Armory access to open."
+	cost = 6000
+	contraband = TRUE
+	contains = list(
+		// add clothes once uhh coded
+	)
+
+/datum/supply_pack/security/armory/imperial
+	name = "Imperial Weapons Crate"
+	desc = "The might of the Emperor is at your command! Contains three of the strongest weapons the Imperium has to offer. Requires Armory access to open."
+	cost = 10000
+	contraband = TRUE
+	contains = list(
+/obj/item/gun/ballistic/automatic/laser/lasgun, 
+/obj/item/gun/ballistic/automatic/laser/longlas,
+/obj/item/gun/ballistic/automatic/laser/laspistol,
+/obj/item/gun/ballistic/automatic/laser/hotshot,
+/obj/item/gun/energy/plasma/pistol,
+/obj/item/gun/energy/plasma/rifle,
+// Flamer
+// Bolt pistol
+)
+
+
+/datum/supply_pack/security/armory/imperial/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 3)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/security/armory/imperialadmin
+	name = "Imperial Weapons Crate"
+	desc = "The might of the Emperor is at your command! Contains all of the strongest weapons the Imperium has to offer. Requires Armory access to open."
+	cost = 10000
+	contraband = TRUE
+	admin_spawned = TRUE
+	contains = list(/obj/item/gun/ballistic/automatic/laser/lasgun, 
+/obj/item/gun/ballistic/automatic/laser/longlas,
+/obj/item/gun/ballistic/automatic/laser/laspistol,
+/obj/item/gun/ballistic/automatic/laser/hotshot,
+/obj/item/gun/energy/plasma/pistol,
+/obj/item/gun/energy/plasma/rifle,
+// Flamer
+// Bolt pistol
+)
+
+
 /datum/supply_pack/security/armory/mindshield
 	name = "Mindshield Implants Crate"
 	desc = "Prevent against radical thoughts with three Mindshield implants. Requires Armory access to open."
