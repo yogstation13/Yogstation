@@ -415,32 +415,47 @@
 
 // 40k Laser Weaponry
 
-/obj/item/gun/energy/laser/lasgun
+/obj/item/gun/ballistic/automatic/laser/lasgun
 	name ="Imperial Lasgun"
 	desc = "A relic of a weapon. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
-	icon_state = "longlas"
-	item_state = "longlas"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasgun)
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "lasgun"
+	item_state = "lasgun"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun
 
-/obj/item/gun/energy/laser/longlas
+/obj/item/gun/ballistic/automatic/laser/longlas
 	name ="Imperial Longlas"
 	desc = "A Sniper variant of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight. "
+	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "longlas"
 	item_state = "longlas"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/longlas)
+	mag_display = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/sniper
 	zoomable = TRUE
 	zoom_amt = 8
 
-/obj/item/gun/energy/laser/laspistol
+/obj/item/gun/ballistic/automatic/laser/laspistol
 	name ="Imperial Laspistol"
 	desc = "A smaller, pistol sized version of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
-	icon_state = "laspistol-80"
-	item_state = "laspistol-80"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/laspistol)
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "laspistol"
+	item_state = "laspistol"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/pistol
 
-/obj/item/gun/energy/laser/hotshot
+/obj/item/gun/ballistic/automatic/laser/hotshot
 	name ="Imperial Hotshot Lasgun"
 	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completley useless by its users."
+	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "hotshot"
+	mag_display = TRUE
+	empty_indicator = TRUE
 	item_state = "hotshot"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/hotshot)
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/hotshot

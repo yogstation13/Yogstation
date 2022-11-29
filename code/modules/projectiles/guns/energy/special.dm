@@ -499,7 +499,7 @@
 	if(icon_state == "prifle-crit" && heat < 25)
 		icon_state = "prifle"
 	return 1
-	// Figure out why process isnt calluing
+	// Figure out why process isnt calling
 
 /obj/item/gun/energy/plasma/rifle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()

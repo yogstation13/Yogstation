@@ -221,7 +221,7 @@
 
 /obj/item/projectile/beam/laser/longlas
 	name = "Laser Bolt"
-	damage = 30
+	damage = 25
 
 /obj/item/projectile/beam/laser/laspistol
 	name = "Laser Bolt"
@@ -229,4 +229,5 @@
 
 /obj/item/projectile/beam/laser/hotshot
 	name = "Laser Bolt"
-	damage = 25
+	damage = 30
+	wound_bonus = -5
