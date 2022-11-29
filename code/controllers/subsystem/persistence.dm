@@ -17,6 +17,8 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
 
+	var/list/obj/effect/decal/cleanable/muck = list()
+
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
 	LoadChiselMessages()
@@ -27,6 +29,7 @@ SUBSYSTEM_DEF(persistence)
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	LoadPaintings()
+	LoadMuck();
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -153,6 +156,7 @@ SUBSYSTEM_DEF(persistence)
 	SaveRandomizedRecipes()
 	SavePaintings()
 	SaveScars()
+	SaveMuck();
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
@@ -359,3 +363,22 @@ SUBSYSTEM_DEF(persistence)
 			original_human.save_persistent_scars(TRUE)
 		else
 			original_human.save_persistent_scars()
+
+/datum/controller/subsystem/persistence/proc/SaveMuck()
+	var/json_file = file("data/muck.json")
+	fdel(json_file)
+
+	var/list/packed_muck = list()
+
+	for (var/obj/effect/decal/cleanable/C in muck)
+		packed_muck.Add(muck.pack())
+
+	WRITE_FILE(json_file, json_encode(packed_muck))
+
+/datum/controller/subsystem/persistence/proc/LoadMuck()
+	var/json_file = file("data/muck.json")
+	if(fexists(json_file))
+		var/list/packed_muck = json_decode(file2text(json_file))
+		for (var/list/data in packed_muck)
+			var/obj/effect/decal/cleanable/C = new text2path(data["path"])
+			C.unpack(data)

@@ -24,6 +24,7 @@
 				diseases_to_add += D
 		if(LAZYLEN(diseases_to_add))
 			AddComponent(/datum/component/infective, diseases_to_add)
+	SSpersistence.muck += src
 
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)
@@ -104,3 +105,33 @@
 	..()
 	qdel(src)
 	return TRUE
+
+/obj/effect/decal/cleanable/Destroy(force)
+	SSpersistence.muck -= src
+	. = ..()
+	
+
+/obj/effect/decal/cleanable/proc/pack()
+	var/list/data = list()
+	var/original_turf = get_turf(src)
+	data["x"] = original_turf.x
+	data["y"] = original_turf.y
+	data["z"] = original_turf.z
+	data["icon_state"] = icon_state
+	data["dir"] = dir2text(dir)
+	data["path"] = "[type]"
+	return data
+
+/obj/effect/decal/cleanable/proc/unpack(list/data)
+	if(!islist(data))
+		return
+	
+	icon_state = data["icon_state"]
+	dir = text2dir(data["dir"])
+	var/x = data["x"]
+	var/y = data["y"]
+	var/z = data["z"]
+	var/turf/newloc = locate(x, y, z)
+	if(isturf(newloc))
+		forceMove(newloc)
+	update_icon()
