@@ -25,6 +25,7 @@
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
 	var/obj/item/suppressor/suppressed	//whether or not a message is displayed when fired
+	var/obj/item/enloudener/enloudened	//whether or not an additional sound is played
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gunshot_silenced.ogg'
 	var/suppressed_volume = 10
@@ -200,8 +201,9 @@
 			qdel(suppressed)
 			suppressed = null
 			update_icon()
-
 	else
+		if(enloudened && enloudened.enloudened_sound)
+			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
 		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 		if(message)
 			if(pointblank)
