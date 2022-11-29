@@ -13853,10 +13853,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"gKj" = (
-/obj/structure/lattice/catwalk,
-/turf/closed/wall/r_wall,
-/area/science/xenobiology)
 "gKv" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -13868,19 +13864,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
-"gKC" = (
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics Storage";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "gKH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -26613,26 +26596,6 @@
 "nrB" = (
 /turf/open/floor/engine/o2,
 /area/engine/atmos_distro)
-"nsv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 8;
-	sortType = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "nsF" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 6
@@ -29697,6 +29660,26 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"oXJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 6
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "oXL" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -38897,6 +38880,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"tOb" = (
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics Storage";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "tOk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -70042,8 +70038,8 @@ brd
 dBO
 xib
 xTt
-gKC
-nsv
+tOb
+oXJ
 btb
 xTt
 cNu
@@ -87291,7 +87287,7 @@ kvs
 ibA
 efl
 vIw
-gKj
+uzX
 tkl
 vRP
 vRP
@@ -87548,7 +87544,7 @@ uzX
 vIw
 uli
 vIw
-gKj
+uzX
 tkl
 vRP
 tib
@@ -87805,7 +87801,7 @@ uzX
 uzX
 uzX
 uzX
-gKj
+uzX
 tkl
 vRP
 tib
