@@ -623,3 +623,22 @@
 
 	beakers += B1
 	beakers += B2
+
+
+/obj/item/grenade/chem_grenade/blood
+	name = "blood grenade"
+	desc = "Why would anyone make this?" //for testing
+	stage = GRENADE_READY
+
+/obj/item/grenade/chem_grenade/blood/Initialize()
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/blood, 100)
+	B1.reagents.add_reagent(/datum/reagent/potassium, 40)
+	B2.reagents.add_reagent(/datum/reagent/phosphorus, 40)
+	B2.reagents.add_reagent(/datum/reagent/consumable/sugar, 40)
+
+	beakers += B1
+	beakers += B2

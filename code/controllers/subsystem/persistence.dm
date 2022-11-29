@@ -365,22 +365,35 @@ SUBSYSTEM_DEF(persistence)
 			original_human.save_persistent_scars()
 
 /datum/controller/subsystem/persistence/proc/SaveMuck()
-	var/json_file = file("data/muck.json")
+	var/time_start = REALTIMEOFDAY
+	var/json_file = file("data/muck+[SSmapping.config.map_name].json")
 	fdel(json_file)
 
 	var/list/packed_muck = list()
 
 	for (var/obj/effect/decal/cleanable/C in muck)
 		if (C)
-			packed_muck.Add(C.pack())
-
+			packed_muck.Add(list(C.pack()))
+	log_world("Saved [packed_muck.len] cleanables on map [SSmapping.config.map_name] in [(REALTIMEOFDAY - time_start) / 10] seconds.")
 	WRITE_FILE(json_file, json_encode(packed_muck))
 
 /datum/controller/subsystem/persistence/proc/LoadMuck()
-	var/json_file = file("data/muck.json")
+	var/time_start = REALTIMEOFDAY
+	var/json_file = file("data/muck+[SSmapping.config.map_name].json")
 	if(fexists(json_file))
 		var/list/packed_muck = json_decode(file2text(json_file))
 		for (var/list/data in packed_muck)
 			var/typepath = text2path(data["path"])
-			var/obj/effect/decal/cleanable/C = new typepath
+			var/xvar = data["x"]
+			var/yvar = data["y"]
+			var/zvar = data["z"]
+
+			if(!xvar || !yvar || !zvar)
+				continue
+
+			var/turf/T = locate(xvar, yvar, zvar)
+			if(!isturf(T))
+				continue
+			var/obj/effect/decal/cleanable/C = new typepath(T)
 			C.unpack(data)
+		log_world("Loaded [packed_muck.len] cleanables on map [SSmapping.config.map_name] in [(REALTIMEOFDAY - time_start) / 10] seconds.")

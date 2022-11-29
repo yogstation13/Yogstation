@@ -115,10 +115,9 @@
 
 /obj/effect/decal/cleanable/proc/pack()
 	var/list/data = list()
-	var/turf/original_turf = get_turf(src)
-	data["x"] = original_turf.x
-	data["y"] = original_turf.y
-	data["z"] = original_turf.z
+	data["x"] = x
+	data["y"] = y
+	data["z"] = z
 	data["icon_state"] = icon_state
 	data["dir"] = dir2text(dir)
 	data["path"] = "[type]"

@@ -74,3 +74,11 @@
 
 /obj/vehicle/ridden/janicart/upgraded
 	floorbuffer = TRUE
+
+/obj/vehicle/ridden/janicart/blood_driver
+	name = "The Blood Driver"
+	desc = "Blood for the blood guys"
+
+/obj/vehicle/ridden/janicart/blood_driver/Move(newloc, dir)
+	. = ..()
+	new /obj/effect/decal/cleanable/blood(newloc)
