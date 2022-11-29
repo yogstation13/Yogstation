@@ -371,7 +371,8 @@ SUBSYSTEM_DEF(persistence)
 	var/list/packed_muck = list()
 
 	for (var/obj/effect/decal/cleanable/C in muck)
-		packed_muck.Add(C.pack())
+		if (C)
+			packed_muck.Add(C.pack())
 
 	WRITE_FILE(json_file, json_encode(packed_muck))
 
