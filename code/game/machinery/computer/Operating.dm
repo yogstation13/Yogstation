@@ -16,8 +16,7 @@
 
 /obj/machinery/computer/operating/Initialize()
 	. = ..()
-	linked_techweb = SSresearch.science_tech
-	linked_ruin_techweb = SSresearch.ruin_tech
+	find_tech()
 	find_table()
 
 /obj/machinery/computer/operating/Destroy()
@@ -44,11 +43,6 @@
 		if(!istype(D))
 			continue
 		advanced_surgeries |= D.surgery
-	for(var/i in linked_ruin_techweb.researched_designs)
-		var/datum/design/surgery/D = SSresearch.techweb_design_by_id(i)
-		if(!istype(D))
-			continue
-		advanced_surgeries |= D.surgery
 
 /obj/machinery/computer/operating/proc/find_table()
 	for(var/direction in GLOB.alldirs)
@@ -58,6 +52,14 @@
 		var/datum/component/surgery_bed/SB = table.GetComponent(/datum/component/surgery_bed)
 		if(SB && SB.link_computer(src))
 			break
+
+/obj/machinery/computer/operating/proc/find_tech()
+	for(var/direction in GLOB.alldirs)
+		var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in urange(30, src)
+		if(ruin_tech)
+			linked_techweb = SSresearch.ruin_tech
+		else
+			linked_techweb = SSresearch.science_tech
 
 /obj/machinery/computer/operating/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
