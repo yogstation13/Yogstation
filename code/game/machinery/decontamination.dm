@@ -183,8 +183,6 @@
 	dump_mob()
 
 /obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
-	if(default_unfasten_wrench(user, W))
-		return
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		reset_emag(user)
 		return
