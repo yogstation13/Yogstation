@@ -1,6 +1,0 @@
-author: " warface1234455(port man), WalterJe(sprite),  GoldenAlpharex(code)"
-delete-after: true 
-changes: 
-  - rscadd: "Added tooltip for conveyor upon examinating"
-  - rscdel: "Removed some useless procs and codes"
-  - imageadd: "Added new sprite for conveyor, better visual of direction it is moving to"

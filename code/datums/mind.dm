@@ -708,6 +708,7 @@
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	spell_list += S
 	S.action.Grant(current)
+	S.on_gain(current)
 
 /datum/mind/proc/owns_soul()
 	return soulOwner == src
@@ -720,6 +721,7 @@
 		var/obj/effect/proc_holder/spell/S = X
 		if(istype(S, spell))
 			spell_list -= S
+			S.on_lose(current)
 			qdel(S)
 	current?.client << output(null, "statbrowser:check_spells")
 
@@ -755,6 +757,7 @@
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
 		S.action.Grant(new_character)
+		S.on_gain(new_character)
 
 /datum/mind/proc/disrupt_spells(delay, list/exceptions = New())
 	for(var/X in spell_list)

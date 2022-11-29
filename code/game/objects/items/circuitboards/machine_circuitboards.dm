@@ -1049,6 +1049,13 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
 
+/obj/item/circuitboard/machine/plort
+	name = "Machine Design (Plort Redemption Machine)"
+	icon_state = "science"
+	build_path = /obj/machinery/plortrefinery
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 3,
+		/obj/item/stack/cable_coil = 2)
 
 //Security
 

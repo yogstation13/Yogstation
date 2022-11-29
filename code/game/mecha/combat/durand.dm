@@ -14,9 +14,9 @@
 
 /obj/mecha/combat/durand/GrantActions(mob/living/user, human_occupant = 0)
 	..()
-	defense_action.Grant(user, src)
+	defence_action.Grant(user, src)
 
 /obj/mecha/combat/durand/RemoveActions(mob/living/user, human_occupant = 0)
 	..()
-	defense_action.Remove(user)
+	defence_action.Remove(user)
 

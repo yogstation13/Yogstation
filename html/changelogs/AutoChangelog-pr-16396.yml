@@ -1,5 +1,0 @@
-author: "CMOisLing"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new SM gas reactions"
-  - bugfix: "new gases now actually react with SM"

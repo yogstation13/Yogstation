@@ -2030,13 +2030,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/augmentation
 	cost = 15
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/augmentation/superior
 	name = "Superior Augmentation Kit"
 	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
 			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
 	item = /obj/item/storage/box/syndie_kit/augmentation/superior
-	cost = 25
+	cost = 45
 	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
@@ -2438,6 +2439,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
 	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
+
+/datum/uplink_item/role_restricted/letterbomb
+	name = "Explosive letter"
+	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
+	item = /obj/item/mail/explosive
+	cost = 1
+	restricted_roles = list("Quartermaster","Cargo Technician")
 
 // Pointless
 /datum/uplink_item/badass
