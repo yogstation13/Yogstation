@@ -56,3 +56,12 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
 	pda_slot = SLOT_L_STORE
+
+/datum/outfit/job/miningmedic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(visualsOnly)
+		return
+	if(H.stat == DEAD)
+		return
+	for(var/obj/item/gps/G in H.contents)
+		G.gpstag = "[H]"
