@@ -11,7 +11,6 @@
 	var/list/obj/linked_beds = list()
 	var/list/advanced_surgeries = list()
 	var/datum/techweb/linked_techweb
-	var/datum/techweb/linked_ruin_techweb
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/operating/Initialize()
@@ -54,12 +53,11 @@
 			break
 
 /obj/machinery/computer/operating/proc/find_tech()
-	for(var/direction in GLOB.alldirs)
-		var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in urange(30, src)
-		if(ruin_tech)
-			linked_techweb = SSresearch.ruin_tech
-		else
-			linked_techweb = SSresearch.science_tech
+	var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in urange(30, src)
+	if(ruin_tech)
+		linked_techweb = SSresearch.ruin_tech
+	else
+		linked_techweb = SSresearch.science_tech
 
 /obj/machinery/computer/operating/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
