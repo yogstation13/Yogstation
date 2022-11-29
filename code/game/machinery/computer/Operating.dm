@@ -53,7 +53,7 @@
 			break
 
 /obj/machinery/computer/operating/proc/find_tech()
-	var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in urange(30, src)
+	var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in range(10, src)
 	if(ruin_tech)
 		linked_techweb = SSresearch.ruin_tech
 	else
