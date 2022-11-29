@@ -69,7 +69,7 @@
 	if(H.stat == DEAD)
 		return
 	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "[H.name]"
+		G.gpstag = "MINE[gps_number]"
 		gps_number ++
 	if (H.client?.prefs.miner_dwarf)
 		H.dna?.add_mutation(DWARFISM, MUT_EXTRA)
