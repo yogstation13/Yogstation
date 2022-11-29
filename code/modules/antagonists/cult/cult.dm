@@ -444,8 +444,6 @@
 		return FALSE
 
 /datum/objective/sacrifice/check_completion()
-	if(killed)
-		return CULT_NARSIE_KILLED // You failed so hard that even the code went backwards.
 	return sacced || completed
 
 /datum/objective/sacrifice/update_explanation_text()
@@ -473,6 +471,8 @@
 	explanation_text = "Summon Nar-Sie by invoking the rune 'Summon Nar-Sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
 
 /datum/objective/eldergod/check_completion()
+	if(killed)
+		return CULT_NARSIE_KILLED // You failed so hard that even the code went backwards.
 	return summoned || completed
 
 /datum/team/cult/proc/check_cult_victory()
