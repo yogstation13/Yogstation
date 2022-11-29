@@ -1423,13 +1423,6 @@
 /obj/structure/railing,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"aGT" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "aGU" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -2072,13 +2065,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aXT" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "aXZ" = (
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
@@ -2502,13 +2488,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"biL" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "bjo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3267,11 +3246,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"bEq" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "bEx" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/closet/secure_closet/personal/patient,
@@ -13417,10 +13391,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"gwS" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "gxb" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -16006,6 +15976,26 @@
 "hQr" = (
 /turf/closed/wall,
 /area/maintenance/solars/starboard/aft)
+"hQR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 6
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "hRF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -16350,19 +16340,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"hYe" = (
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics Storage";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "hYs" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -21725,6 +21702,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"kXq" = (
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics Storage";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "kYc" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -27570,6 +27560,9 @@
 /obj/machinery/ore_silo,
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
+"nLv" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/solars/starboard/aft)
 "nLV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
@@ -28283,6 +28276,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ofP" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "ogh" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
@@ -31591,26 +31588,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
-"pXy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 8;
-	sortType = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "pXU" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
@@ -32717,6 +32694,13 @@
 /obj/item/beacon,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"qFV" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "qFZ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -39871,6 +39855,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"upB" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "upY" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -40928,6 +40917,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"uSX" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "uTb" = (
 /turf/closed/wall/r_wall,
 /area/library)
@@ -46052,6 +46048,13 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"xsS" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/aft)
 "xsV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -70042,8 +70045,8 @@ brd
 dBO
 xib
 xTt
-hYe
-pXy
+kXq
+hQR
 btb
 xTt
 cNu
@@ -85222,13 +85225,13 @@ uyM
 nbe
 uzX
 uzX
-uzX
-uzX
-uzX
-uzX
-uzX
-uzX
-uzX
+nLv
+nLv
+nLv
+nLv
+nLv
+nLv
+nLv
 uzX
 uzX
 vFY
@@ -86781,11 +86784,11 @@ uzX
 vFY
 vRP
 vRP
-aXT
+xsS
 vRP
 vRP
 vRP
-aXT
+xsS
 vRP
 vRP
 aCD
@@ -87036,14 +87039,14 @@ meI
 mKF
 uzX
 sLn
-bEq
-gwS
-gwS
-gwS
-gwS
-gwS
-gwS
-aGT
+upB
+ofP
+ofP
+ofP
+ofP
+ofP
+ofP
+qFV
 crc
 eux
 aCD
@@ -87295,11 +87298,11 @@ uzX
 tkl
 vRP
 vRP
-biL
+uSX
 vRP
 vRP
 vRP
-biL
+uSX
 vRP
 vRP
 aCD
