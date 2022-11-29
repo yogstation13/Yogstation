@@ -52,6 +52,8 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 **We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
 
+**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change.
+
 ### Maintainers
 
 **As a maintainer, you are a representative of the development team, as such you should act with a somewhat professional manner when dealing with contributions, including constructively commenting on PRs.**
@@ -62,6 +64,8 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 * A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
 * A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
 * A contributor has not contributed to their draft Pull Request in a week’s time.
+* The Pull Request was opened with inadequate rationale or is lacking naming or following existing guidelines.
+
 
 **If a Maintainer/Director gets banned from the server/Discord, there will be an automatic review process triggered.** During this time access to GitHub merging and in-game ranks will be removed until the review is complete. After this review, roles and permissions may be returned depending on the result.
 
