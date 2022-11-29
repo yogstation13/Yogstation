@@ -24,7 +24,8 @@
 				diseases_to_add += D
 		if(LAZYLEN(diseases_to_add))
 			AddComponent(/datum/component/infective, diseases_to_add)
-	SSpersistence.muck += src
+	if (is_station_level(z))
+		SSpersistence.muck += src
 
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)
@@ -107,7 +108,8 @@
 	return TRUE
 
 /obj/effect/decal/cleanable/Destroy(force)
-	SSpersistence.muck -= src
+	if (src in SSpersistence.muck)
+		SSpersistence.muck -= src
 	. = ..()
 	
 
