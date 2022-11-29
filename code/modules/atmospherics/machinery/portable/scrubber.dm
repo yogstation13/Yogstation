@@ -8,6 +8,8 @@
 	var/overpressure_m = 80
 	volume = 1000
 
+	circuit = /obj/item/circuitboard/machine/scrubber
+
 	var/list/scrubbing = list(
 		/datum/gas/plasma,
 		/datum/gas/carbon_dioxide,
@@ -40,6 +42,10 @@
 		add_overlay("scrubber-open")
 	if(connected_port)
 		add_overlay("scrubber-connector")
+
+/obj/machinery/portable_atmospherics/scrubber/RefreshParts()
+	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
+		volume_rate *= L.rating
 
 /obj/machinery/portable_atmospherics/scrubber/process_atmos()
 	..()
@@ -139,6 +145,8 @@
 	overpressure_m = 200
 	volume_rate = 1500
 	volume = 50000
+
+	circuit = /obj/item/circuitboard/machine/huge_scrubber
 
 	var/movable = FALSE
 
