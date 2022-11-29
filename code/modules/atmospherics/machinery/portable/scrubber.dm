@@ -44,8 +44,10 @@
 		add_overlay("scrubber-connector")
 
 /obj/machinery/portable_atmospherics/scrubber/RefreshParts()
+	var/rate = 1
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
-		volume_rate *= L.rating
+		rate *= L.rating
+	volume_rate = initial(volume_rate) * rate
 
 /obj/machinery/portable_atmospherics/scrubber/process_atmos()
 	..()
