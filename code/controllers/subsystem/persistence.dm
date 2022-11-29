@@ -380,5 +380,6 @@ SUBSYSTEM_DEF(persistence)
 	if(fexists(json_file))
 		var/list/packed_muck = json_decode(file2text(json_file))
 		for (var/list/data in packed_muck)
-			var/obj/effect/decal/cleanable/C = new text2path(data["path"])
+			var/typepath = text2path(data["path"])
+			var/obj/effect/decal/cleanable/C = new typepath
 			C.unpack(data)

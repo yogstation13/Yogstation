@@ -113,7 +113,7 @@
 
 /obj/effect/decal/cleanable/proc/pack()
 	var/list/data = list()
-	var/original_turf = get_turf(src)
+	var/turf/original_turf = get_turf(src)
 	data["x"] = original_turf.x
 	data["y"] = original_turf.y
 	data["z"] = original_turf.z
