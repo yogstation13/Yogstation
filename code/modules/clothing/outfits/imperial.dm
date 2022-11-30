@@ -1,14 +1,56 @@
 // Imperial ERT outfits and Clothing
 
-/obj/item/clothing/under/rank/security/grey/amber
-	name = "Imperial Guard Jumpsuit"
+/obj/item/clothing/neck/imperial
+	name = "golden aquilla"
+	desc = "A symbol of the Imperium. Left eye closed, and right eye open, it symbolises how the Imperium never looks back."
+	icon_state = "guard_neckpiece"
+	item_state = "guard_neckpiece"
 
+/obj/item/clothing/head/helmet/imperial
+	name = "Flak Helmet"
+	desc = "Standard-issue flak helmet for members of the Imperial Guard"
+	icon_state = "guard_helmet"
+	item_state = "guard_helmet"
+	armor = list(MELEE = 50, BULLET = 35, LASER = 35,ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5)
 
+/obj/item/clothing/under/imperial
+	name = "Guardsman Fatigues"
+	desc = "A set of kahki fatigues. Standard issue for imperial guardsmen"
+	icon_state = "guard_uniform"
+	item_state = "guard_uniform"
 
+/obj/item/clothing/shoes/combat/imperial
+	name = "Flak Boots"
+	desc = "A pair of heavy duty armored shoes, providing protection up to the knees. Standard issue in the Imperial Guard"
+	icon_state = "guard_shoes"
+	item_state = "guard_shoes"
+	cold_protection = LEGS|FEET
+	heat_protection = LEGS|FEET
+	body_parts_covered = LEGS|FEET
 
+/obj/item/clothing/suit/armor/imperial
+	name = "armor vest"
+	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats."
+	icon_state = "guard_armor"
+	item_state = "guard_armor"
+	blood_overlay_type = "armor"
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor = list(MELEE = 50, BULLET = 40, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 10)
+
+/obj/item/storage/belt/military/imperial
+	name = "Imperial Belt"
+	icon_state = "guard_belt"
+	item_state = "guard_belt"
+
+/obj/item/card/id/ert/imperial
+	name = "\improper Imperial Guard ID"
+	desc = "An Imperial Guard ID card."
+	assignment = "Imperial Guard"
+	originalassignment = "Imperial Guard
 
 // Belts
-
 /obj/item/storage/belt/military/imperial/ComponentInitialize() // Imperial Guardsman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
@@ -19,7 +61,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-/obj/item/storage/belt/military/imperial_plasma/ComponentInitialize() // Plasma gunner
+/obj/item/storage/belt/military/imperial/plasma/ComponentInitialize() // Plasma gunner
 	. = ..()
     new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
     new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
@@ -29,7 +71,7 @@
 	new /obj/item/jawsoflife/jimmy(src)
     new /obj/item/stack/medical/mesh(src) // for when his gun inevitably explodes
 
-/obj/item/storage/belt/military/imperial_hotshot/ComponentInitialize() // Veteran
+/obj/item/storage/belt/military/imperial/hotshot/ComponentInitialize() // Veteran
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
@@ -39,7 +81,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-/obj/item/storage/belt/military/imperial_sniper/ComponentInitialize() // Marksman
+/obj/item/storage/belt/military/imperial/sniper/ComponentInitialize() // Marksman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
@@ -50,7 +92,7 @@
     new /obj/item/twohanded/binoculars(src)
 
 
-/obj/item/storage/belt/military/imperial_sergeant/ComponentInitialize() // Sergeant
+/obj/item/storage/belt/military/imperial/sergeant/ComponentInitialize() // Sergeant
 	. = ..()
 	new /obj/item/ammo_box/magazine/boltpistol(src)
 	new /obj/item/ammo_box/magazine/boltpistol(src)
@@ -60,49 +102,21 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /datum/outfit/imperial
 	name = "Imperial Guardsman"
 
-	uniform = 
-	suit = 
-	shoes = 
+	uniform = /obj/item/clothing/under/imperial
+	suit = /obj/item/clothing/suit/armor/imperial
+	shoes = /obj/item/clothing/shoes/combat/imperial
 	gloves = /obj/item/clothing/gloves/combat
-	ears = 
+	ears = /obj/item/radio/headset/headset_cent/alt
 	mask = /obj/item/clothing/mask/breath/tactical
-	belt = 
+	belt = /obj/item/storage/belt/military/imperial
 	suit_store = /obj/item/gun/ballistic/automatic/laser/lasgun
-	back = 
-	head = 
-    neck = 
-	l_pocket = 
+	head = /obj/item/clothing/head/helmet/imperial
+    neck = /obj/item/clothing/neck/imperial
     r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
-	id = 
+	id = /obj/item/card/id/ert/imperial
 	implants = list(/obj/item/implant/mindshield)
 	
 /datum/outfit/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -128,18 +142,17 @@
 
 /datum/outfit/imperial/commander
 	name = "Sergeant"
-	head = 
-	belt = /obj/item/storage/belt/military/imperial_sergeant
+	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
 	
 /datum/outfit/imperial/marksman
 	name = "Marksman"
-	belt = /obj/item/storage/belt/military/imperial_sniper
+	belt = /obj/item/storage/belt/military/imperial/sniper
 
 /datum/outfit/imperial/plasma
 	name = "Plasma Gunner"
-	belt = /obj/item/storage/belt/military/imperial_plasma
+	belt = /obj/item/storage/belt/military/imperial/plasma
 
 /datum/outfit/imperial/veteran
 	name = "Veteran"
-	belt = /obj/item/storage/belt/military/imperial_hotshot
+	belt = /obj/item/storage/belt/military/imperial/hotshot
