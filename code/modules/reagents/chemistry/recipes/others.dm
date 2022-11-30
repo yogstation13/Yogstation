@@ -760,9 +760,13 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
-	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
 	required_temp = 374
+
+/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/plastic(location)
 
 /datum/chemical_reaction/plastic_solidification
 	name = "plastic solidification"

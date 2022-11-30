@@ -38,3 +38,4 @@ cp -r strings/* $1/strings/
 #dlls on windows
 cp rust_g* $1/ || true
 cp *byond-extools.* $1/ || true
+cp *demo-writer.* $1/ || true

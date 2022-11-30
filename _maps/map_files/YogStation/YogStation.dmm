@@ -15096,14 +15096,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"cbz" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/camera{
-	c_tag = "Xenobiology Desk Interior";
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cbY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -20208,6 +20200,21 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dUl" = (
+/obj/effect/turf_decal/arrows/white{
+	color = "#99ccff"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "dUN" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Chief Medical Officer";
@@ -27072,12 +27079,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"gQe" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "gQo" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -34757,21 +34758,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"jWA" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "jWI" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -38338,18 +38324,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"lzU" = (
-/obj/effect/turf_decal/arrows/white{
-	color = "#99ccff"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "lAr" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
@@ -38688,6 +38662,15 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"lKH" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/camera{
+	c_tag = "Xenobiology Desk Interior";
+	dir = 1
+	},
+/obj/machinery/plortrefinery,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "lLe" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 4
@@ -54689,6 +54672,22 @@
 "sAV" = (
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
+"sBy" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "sBI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -66202,6 +66201,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xqr" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "xqu" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -104802,7 +104812,7 @@ lYh
 nuL
 qIz
 hbQ
-lzU
+dUl
 ogm
 oNE
 piL
@@ -107120,7 +107130,7 @@ pjc
 hLI
 hcZ
 fYJ
-jWA
+sBy
 shN
 ejf
 qGf
@@ -108148,7 +108158,7 @@ kub
 hLI
 jte
 jhR
-gQe
+xqr
 tSl
 ayu
 aJk
@@ -112277,7 +112287,7 @@ qgG
 qgG
 oRb
 gIc
-cbz
+lKH
 bDb
 bDb
 bDb

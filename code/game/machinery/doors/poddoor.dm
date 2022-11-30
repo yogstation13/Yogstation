@@ -17,6 +17,7 @@
 	poddoor = TRUE
 	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
 	var/constructionstate = INTACT // Decounstruction Stuff
+	rad_insulation = RAD_FULL_INSULATION
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -93,7 +94,6 @@
 		icon_state = "closed"
 	else
 		icon_state = "open"
-	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
 	return

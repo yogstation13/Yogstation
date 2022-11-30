@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart
 	name = "stalwart"
 	desc = "A graceful, floating construct. It emits a soft hum."
-	health = 3000 //thicc boi
-	maxHealth = 3000
+	health = 2500
+	maxHealth = 2500
 	attacktext = "zaps"
 	attack_sound = 'sound/weapons/resonator_blast.ogg'
 	icon_state = "stalwart"
@@ -27,8 +27,7 @@
 							   /datum/action/innate/megafauna_attack/cardinalpikes,
 							   /datum/action/innate/megafauna_attack/backup,
 							   /datum/action/innate/megafauna_attack/stalnade,
-							   /datum/action/innate/megafauna_attack/stalnadespiral,
-							   /datum/action/innate/megafauna_attack/invulnerable)
+							   /datum/action/innate/megafauna_attack/stalnadespiral)
 	small_sprite_type = /datum/action/small_sprite/megafauna/stalwart
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
@@ -72,76 +71,35 @@
 	chosen_message = span_boldannounce("You are now firing a spiral of slow, high damaging projectiles.")
 	chosen_attack_num = 5
 
-/datum/action/innate/megafauna_attack/invulnerable
-	name = "Protective Shield"
-	icon_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "shield-red"
-	chosen_message = span_boldannounce("You are now manifesting an impenetrable protective shield around yourself.")
-	chosen_attack_num = 6
-
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	if(!client)
-		switch(rand(1,4))
+		switch(rand(1,5))
 			if(1)
-				if(health <= 1500)
-					invulnerable()
-				if(health <= 900)
-					telegraph()
-					stalnade()
-				else
-					telegraph()
-					energy_pike()
-			if(2)
 				telegraph()
-				sspiral_shoot()
-				if(health <= 1500)
-					invulnerable()
+				stalnade()
+			if(2)
+				select_spiral_shoot()
 			if(3)
 				telegraph()
 				backup()
-				if(health <= 1500)
-					invulnerable()
 			if(4)
-				if(health <= 1500)
-					invulnerable()
-				if(health <= 300)
-					telegraph()
-					sspiral_shoot_death()
-				else
-					telegraph()
-					sspiral_shoot()
+				telegraph()
+				energy_pike()
 
 	if(client)
 		switch(chosen_attack)
 			if(1)
 				telegraph()
-				sspiral_shoot()
+				stalnade()
 			if(2)
-				telegraph()
-				energy_pike()
+				select_spiral_shoot()
 			if(3)
 				telegraph()
 				backup()
 			if(4)
-				if(health <= 900)
-					telegraph()
-					stalnade()
-				else
-					to_chat(client,span_warning("Your health is too high to use this."))
-			if(5)
-				if(health <= 300)
-					telegraph()
-					sspiral_shoot_death()
-				else
-					to_chat(client,span_warning("Your health is too high to use this."))
-			if(6)
-				if(health <= 1500)
-					invulnerable()
-				else
-					to_chat(client,span_warning("Your health is too high to use this."))
+				telegraph()
+				energy_pike()
 		return
-
-
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
@@ -152,21 +110,12 @@
 	else
 		move_to_delay = initial(move_to_delay)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/invulnerable()
-	add_atom_colour(rgb(195, 0, 255), TEMPORARY_COLOUR_PRIORITY)
-	visible_message(span_boldwarning("[src] forms an impenetrable shield around itself!"))
-	move_to_delay = move_to_delay * 100
-	src.apply_status_effect(STATUS_EFFECT_DODGING_STALWART)
-	SetRecoveryTime(0, 1 MINUTES)
-	SLEEP_CHECK_DEATH(100)
-	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	move_to_delay = initial(move_to_delay)
-
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/telegraph()
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			flash_color(M.client, "#0d00c8", 1)
 			shake_camera(M, 4, 3)
+			sleep(0.5 SECONDS)
 	playsound(src, 'sound/machines/sm/accent/delam/14.ogg', 400, 1)
 	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
@@ -205,7 +154,8 @@
 		P.original = target
 	P.fire(set_angle)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/sspiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
+	telegraph()
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
 	var/counter = counter_start
 	for(var/i in 1 to 22)
@@ -219,26 +169,33 @@
 			counter = 16
 		shoot_projectile_spiral(start_turf, counter * 22.5)
 		SLEEP_CHECK_DEATH(1)
-	SetRecoveryTime(0, 8 SECONDS)
+	SetRecoveryTime(0, 3 SECONDS)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/sspiral_shoot_death(negative = pick(TRUE, FALSE), counter_start = 8)
-	if(health >= 200)
-		return
-	else
-		var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
-		var/counter = counter_start
-		for(var/i in 1 to 8)
-			if(negative)
-				counter--
-			else
-				counter++
-			if(counter > 16)
-				counter = 1
-			if(counter < 1)
-				counter = 16
-			shoot_projectile_spiral_death(start_turf, counter * 45)
-			SLEEP_CHECK_DEATH(1)
-		SetRecoveryTime(0, 3 SECONDS)
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/spiral_shoot_death(negative = pick(TRUE, FALSE), counter_start = 8)
+	var/oldcolor = color
+	animate(src, color = "#0d00c8", time = 0.5 SECONDS)
+	telegraph()
+	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
+	var/counter = counter_start
+	for(var/i in 1 to 8)
+		if(negative)
+			counter--
+		else
+			counter++
+		if(counter > 16)
+			counter = 1
+		if(counter < 1)
+			counter = 16
+		shoot_projectile_spiral_death(start_turf, counter * 45)
+		SLEEP_CHECK_DEATH(1)
+	sleep(0.5 SECONDS)
+	animate(src, color = oldcolor, time = 0.2 SECONDS)
+	SetRecoveryTime(0, 3 SECONDS)
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/select_spiral_shoot()
+	if(health < maxHealth/3)
+		return spiral_shoot_death()
+	return spiral_shoot()
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/bombsaway(turf/marker, set_angle)
 	playsound(src, 'sound/weapons/ionrifle.ogg', 400, 1)
@@ -253,6 +210,8 @@
 	P.fire(set_angle)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade(set_angle)
+	if(health < maxHealth/3)
+		return energy_pike()
 	ranged_cooldown = world.time + 20
 	var/turf/target_turf = get_turf(target)
 	newtonian_move(get_dir(target_turf, src))
@@ -262,43 +221,43 @@
 	var/static/list/stalwart_bomb_shot_angles = list(12.5, 7.5, 2.5, -2.5, -7.5, -12.5)
 	for(var/i in stalwart_bomb_shot_angles)
 		bombsaway(target_turf, angle_to_target + i)
-	SetRecoveryTime(0, 1 MINUTES)
+	SetRecoveryTime(0, 5 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
+	var/total = 3
 	visible_message(span_danger("[src] attempts to warp in mini mechanoids!"))
 	playsound(src, 'sound/magic/castsummon.ogg', 300, 1, 2)
-	for(var/turf/open/H in range(1, target))
-		switch(rand(1,2))
-			if(1)
-				if(prob(20))
-					var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(H.loc)
-					S.GiveTarget(target)
-					S.friends = friends
-					S.faction = faction
-			if(2)
-				if(prob(10))
-					var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/R = new(H.loc)
-					R.GiveTarget(target)
-					R.friends = friends
-					R.faction = faction
-	SetRecoveryTime(0, 7 SECONDS)
+	switch(rand(1,2))
+		if(1)
+			for(var/i = 0 to total)
+				var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(loc)
+				S.GiveTarget(target)
+				S.friends = friends
+				S.faction = faction
+		if(2)
+			for(var/i = 0 to total)
+				var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/R = new(loc)
+				R.GiveTarget(target)
+				R.friends = friends
+				R.faction = faction
+	SetRecoveryTime(0, 5 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup2()
+	var/total = 7
 	visible_message(span_danger("[src] warps in many mini mechanoids!"))
 	playsound(src, 'sound/magic/castsummon.ogg', 300, 1, 2)
-	for(var/turf/open/H in range(4, target))
-		if(prob(50))
-			var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(H.loc)
-			S.GiveTarget(target)
-			S.friends = friends
-			S.faction = faction
-	SetRecoveryTime(0, 3 SECONDS)
+	for(var/i = 0 to total)
+		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/S = new(loc)
+		S.GiveTarget(target)
+		S.friends = friends
+		S.faction = faction
+	SetRecoveryTime(0, 5 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
 	dir_shots(GLOB.diagonals)
 	dir_shots(GLOB.cardinals)
 	SLEEP_CHECK_DEATH(10)
-	SetRecoveryTime(0, 3.5 SECONDS)
+	SetRecoveryTime(0, 5 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
 	if(!islist(dirs))
@@ -359,9 +318,16 @@
 	icon_state = "drone_scout"
 	icon_living = "drone_scout"
 	icon_aggro = "drone_scout"
+	move_to_delay = 2
+	speed = 1
 	ranged_cooldown_time = 30
 	projectiletype = /obj/item/projectile/stalpike/weak
 	projectilesound = 'sound/weapons/ionrifle.ogg'
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/GiveTarget(new_target)
+	if(..())
+		if(isliving(target) && !target.Adjacent(targets_from) && ranged_cooldown <= world.time)
+			OpenFire(target)
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
@@ -414,7 +380,7 @@
 /obj/item/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
-	damage = 100
+	damage = 40
 	armour_penetration = 60
 	speed = 10
 	eyeblur = 0

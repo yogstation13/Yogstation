@@ -11,6 +11,7 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
+	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
@@ -122,7 +123,7 @@
 	name = "substance processor"
 	icon_state = "substance_processor"
 	attack_verb = list("processed")
-	desc = "A machine component, installed in the chest. This grants the Machine the ability to process chemicals that enter its systems."
+	desc = "A machine component, installed in the chest. This grants the machine the ability to process chemicals that enter its systems."
 	alcohol_tolerance = 0
 	toxTolerance = -1
 	toxLethality = 0
