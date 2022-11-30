@@ -180,9 +180,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
 
-	// infra_luminosity specific to this species
-	var/infra_lum = 10
-
 ///////////
 // PROCS //
 ///////////
@@ -451,8 +448,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(flying_species && isnull(fly))
 		fly = new
 		fly.Grant(C)
-
-	C.infra_luminosity = infra_lum
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
 
