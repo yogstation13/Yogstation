@@ -581,8 +581,7 @@
 /obj/item/gun/ballistic/automatic/laser/hotshot,
 /obj/item/gun/energy/plasma/pistol,
 /obj/item/gun/energy/plasma/rifle,
-// Flamer
-// Bolt pistol
+/obj/item/gun/ballistic/automatic/pistol/boltpistol
 )
 
 
@@ -603,8 +602,7 @@
 /obj/item/gun/ballistic/automatic/laser/hotshot,
 /obj/item/gun/energy/plasma/pistol,
 /obj/item/gun/energy/plasma/rifle,
-// Flamer
-// Bolt pistol
+/obj/item/gun/ballistic/automatic/pistol/boltpistol
 )
 
 
