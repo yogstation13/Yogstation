@@ -489,4 +489,5 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "prifle"
 	item_state = "prifle"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma)	
+	w_class = WEIGHT_CLASS_HUGE
