@@ -16,9 +16,15 @@
 	var/priority = 1 //Since only one client.color can be rendered on screen, we take the one with the highest priority value:
 	//eg: "Bloody screen" > "goggles colour" as the former is much more important
 
+/datum/client_colour/proc/apply()
+	return TRUE
+
+/datum/client_colour/proc/remove()
+	return TRUE
 
 /mob
 	var/list/client_colours = list()
+	var/datum/client_colour/last_used_client_colour = null
 
 
 
@@ -60,12 +66,16 @@
 /mob/proc/update_client_colour()
 	if(!client)
 		return
+	if (last_used_client_colour)
+		last_used_client_colour.remove(src)
 	client.color = ""
 	if(!client_colours.len)
 		return
 	var/datum/client_colour/CC = client_colours[1]
 	if(CC)
 		client.color = CC.colour
+		last_used_client_colour = CC
+		CC.apply(src)
 
 
 
@@ -120,3 +130,17 @@
 		 			0,0,0,1,
 		 			0,0,0,0)
 	priority = INFINITY + 1
+
+/datum/client_colour/grue/apply(var/mob/M)
+	. = ..()
+	if(M.hud_used)
+		var/atom/movable/screen/plane_master/lighting/L = M.hud_used.plane_masters["[LIGHTING_PLANE]"]
+		L.blend_mode = BLEND_SUBTRACT
+		L.alpha = 64
+
+/datum/client_colour/grue/remove(var/mob/M)
+	. = ..()
+	if(M.hud_used)
+		var/atom/movable/screen/plane_master/lighting/L = M.hud_used.plane_masters["[LIGHTING_PLANE]"]
+		L.blend_mode = BLEND_MULTIPLY
+		L.alpha = 255

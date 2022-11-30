@@ -25,6 +25,8 @@
 /mob/living/simple_animal/hostile/grue/Initialize()
 	. = ..()
 	light_damage = AddComponent(/datum/component/light_damage, 0.3, 4.5)
+	light_damage.damage_types = list(BURN)
+	light_damage.ramping_scaler = 1.5
 	set_life_stage(life_stage)
 	add_client_colour(/datum/client_colour/grue)
 
@@ -64,7 +66,7 @@
 		L.gib()
 		if (istype(L, /mob/living/carbon/human))
 			eaten_count++
-
+	update_power()
 /mob/living/simple_animal/hostile/grue/proc/try_open_airlock(obj/machinery/door/airlock/A)
 	if((!A.requiresID() || A.allowed(src)) && A.hasPower())
 		return

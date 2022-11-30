@@ -16,17 +16,17 @@
 	var/damage_enabled = TRUE
 	var/healing_enabled = TRUE
 
-/datum/component/light_damage/Initialize(damage_per_second, heal_per_second, ramping_scaler = 1, speed_up_in_darkness = 0, speed_down_in_light = 0)
+/datum/component/light_damage/Initialize(_damage_per_second, _heal_per_second, _ramping_scaler = 1, _speed_up_in_darkness = 0, _speed_down_in_light = 0)
 	. = ..()
 	if(!isliving(parent)) //Must be a mob
 		return COMPONENT_INCOMPATIBLE
 	var/mob/living/L = parent
 
-	src.damage_per_second = damage_per_second
-	src.heal_per_second = heal_per_second
-	src.ramping_scaler = ramping_scaler
-	src.speed_up_in_darkness = speed_up_in_darkness
-	src.speed_down_in_light = speed_down_in_light
+	src.damage_per_second = _damage_per_second
+	src.heal_per_second = _heal_per_second
+	src.ramping_scaler = _ramping_scaler
+	src.speed_up_in_darkness = _speed_up_in_darkness
+	src.speed_down_in_light = _speed_down_in_light
 
 	L.add_movespeed_modifier(MOVESPEED_ID_LIGHT_DAMAGE, update = FALSE, priority = 1000, override=TRUE, multiplicative_slowdown=0.0)
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, .proc/on_life)
@@ -54,7 +54,7 @@
 	else 
 		//We are healing
 		if (healing_enabled)
-			var/heal = light_amount * (heal_per_second * delta_time_seconds)
+			var/heal = (1 - light_amount) * (heal_per_second * delta_time_seconds)
 			source.heal_ordered_damage(heal, heal_types)
 		current_ramp = initial(current_ramp)
 		speed = speed_up_in_darkness * (1 - light_amount)
