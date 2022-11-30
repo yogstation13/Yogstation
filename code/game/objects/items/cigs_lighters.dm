@@ -737,7 +737,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat = 1499 //lol
 	icon_state = "blighter"
 	light_color = LIGHT_COLOR_RED
-	overlay_state = "badass"
+	overlay_state = "badass_sus"
 
 ///////////
 //ROLLING//

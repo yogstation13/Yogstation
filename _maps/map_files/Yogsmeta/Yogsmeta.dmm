@@ -77757,7 +77757,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -78094,7 +78094,7 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "vQi" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
 /turf/closed/wall,
