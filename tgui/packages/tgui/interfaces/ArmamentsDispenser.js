@@ -30,49 +30,48 @@ export const ArmamentsDispenser = (props, context) => {
         )}
         <Flex
           justify="space-between"
-          spacing={1}
-          >
-        {inventory.map(weapon => (
-        <Flex.Item>
-          <Button
-            key={weapon}
-            fluid
-            disabled={!data.allowed || !data.can_claim}
-            width="260px"
-            height="260px"
-            textAlign="center"
-            onClick={() => act('dispense_weapon', {
-              weapon: weapon.path,
-              magazine: weapon.mag_path
-            })} >
-            <Flex
-              height="100%"
-              direction="column">
-              <Box
-                as="img"
-                class="gun_icon"
-                position="relative"
-                src={resolveAsset(weapon.gun_icon)}
-                height="100%"
-                width="100%"
-                style={{
-                  '-ms-interpolation-mode': 'nearest-neighbor'}} />
-              {!!(weapon.mag_icon) && (
-              <Box
-              as="img"
-              class="gun_icon"
-              position="absolute"
-              left="40%"
-              bottom = "10%"
-              src={resolveAsset(weapon.mag_icon)}
-              height="50%"
-              width="50%"
-              style={{
-                '-ms-interpolation-mode': 'nearest-neighbor'}} />)}
-            </Flex>
-          </Button>
+          spacing={1}>
+          {inventory.map(weapon => (
+            <Flex.Item>
+              <Button
+                key={weapon}
+                fluid
+                disabled={!data.allowed || !data.can_claim}
+                width="260px"
+                height="260px"
+                textAlign="center"
+                onClick={() => act('dispense_weapon', {
+                  weapon: weapon.path,
+                  magazine: weapon.mag_path,
+                })} >
+                <Flex
+                  height="100%"
+                  direction="column">
+                  <Box
+                    as="img"
+                    class="gun_icon"
+                    position="relative"
+                    src={resolveAsset(weapon.gun_icon)}
+                    height="100%"
+                    width="100%"
+                    style={{
+                      '-ms-interpolation-mode': 'nearest-neighbor' }} />
+                  {!!(weapon.mag_icon) && (
+                    <Box
+                      as="img"
+                      class="gun_icon"
+                      position="absolute"
+                      left="40%"
+                      bottom="10%"
+                      src={resolveAsset(weapon.mag_icon)}
+                      height="50%"
+                      width="50%"
+                      style={{
+                        '-ms-interpolation-mode': 'nearest-neighbor' }} />)}
+                </Flex>
+              </Button>
 
-      </Flex.Item>))}
+            </Flex.Item>))}
         </Flex>
 
       </Window.Content>
