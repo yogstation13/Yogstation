@@ -207,6 +207,7 @@
 /obj/item/projectile/beam/plasma
 	pass_flags = NONE
 	light_color = LIGHT_COLOR_BLUE
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	name = "plasma ball"
 	icon_state = "plasmagun"
 	damage = 50
@@ -223,7 +224,6 @@
 
 /obj/item/projectile/beam/plasma/pistol
 	damage = 35
-	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
 /obj/item/projectile/beam/laser/lasgun
 	name = "Laser Bolt"

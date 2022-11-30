@@ -29,11 +29,12 @@
 	body_parts_covered = LEGS|FEET
 
 /obj/item/clothing/suit/armor/imperial
-	name = "armor vest"
+	name = "Flak Vest"
 	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats."
 	icon_state = "guard_armor"
 	item_state = "guard_armor"
 	blood_overlay_type = "armor"
+
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -58,9 +59,9 @@
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "imp_chainswordon"
 	item_state = "imp_chainswordon"
-	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_integrity = 200
 	force = 30
@@ -163,8 +164,8 @@
 	name = "Sergeant"
 	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
-	suit_store = /obj/item/chainsaw_sword
-	back = /obj/item/gun/ballistic/automatic/pistol/boltpistol
+	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
+	back = /obj/item/chainsaw_sword
 	
 /datum/outfit/imperial/marksman
 	name = "Marksman"
@@ -176,8 +177,10 @@
 	name = "Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
 	suit_store = /obj/item/gun/energy/plasma/rifle
+	back = /obj/item/gun/ballistic/automatic/laser/laspistol
 
 /datum/outfit/imperial/veteran
 	name = "Veteran"
 	belt = /obj/item/storage/belt/military/imperial/hotshot
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
+	back = /obj/item/gun/ballistic/automatic/laser/laspistol

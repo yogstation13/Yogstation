@@ -450,7 +450,7 @@
 	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/gun/energy/plasma/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/energy/plasma/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	heat += 2
 	if(heat >= 25)
@@ -487,4 +487,3 @@
 	icon_state = "prifle"
 	item_state = "prifle"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma)	
-	w_class = WEIGHT_CLASS_HUGE
