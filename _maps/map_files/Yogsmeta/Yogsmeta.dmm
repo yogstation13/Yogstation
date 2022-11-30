@@ -5298,10 +5298,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anu" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anw" = (
@@ -5742,6 +5739,14 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = -8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aoH" = (
@@ -16754,6 +16759,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/folder/red,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aOm" = (
@@ -17344,9 +17351,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPD" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/folder/red,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -17356,6 +17360,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aPE" = (
@@ -61410,7 +61415,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61465,7 +61470,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -62422,7 +62427,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 1;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -65664,7 +65669,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 1;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -78481,7 +78486,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -79416,7 +79421,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80146,7 +80151,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
