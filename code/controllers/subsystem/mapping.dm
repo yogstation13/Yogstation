@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(mapping)
 		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
 		to_chat(world, span_boldannounce("Virtual reality loaded."))
 
-	load_new_z_level("_maps/RandomZLevels/VR/netmin_hub.dmm", "Automated Exploration Hub")
+	load_new_z_level("_maps/RandomZLevels/VR/netmin_hub.dmm", "Automated Exploration Hub", TRUE)
 
 	// Generate mining ruins
 	loading_ruins = TRUE
