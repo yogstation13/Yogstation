@@ -161,7 +161,7 @@
 			else
 				goodies += job_goodies
 
-	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_NOMAIL))	//reduce the weight of every item by 10
+	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_BADMAIL))	//reduce the weight of every item by 10
 		for(var/item in goodies)
 			goodies[item] -= 10
 			if(goodies[item] <= 0)	 //remove everything with a weight below 0
