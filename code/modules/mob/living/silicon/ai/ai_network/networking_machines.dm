@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 /obj/machinery/ai/networking
 	name = "networking machine"
 	desc = "A high powered combined transmitter and receiver. Capable of connecting remote AI networks with near-zero delay. It is possible to manually connect other machines using a multitool."
-	icon = 'goon/icons/obj/power.dmi'
-	icon_state = "sp_base"
+	icon = 'icons/obj/networking_machine.dmi'
+	icon_state = "base"
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
@@ -17,8 +17,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	//For mapping, will connect to machine with this label if found
 	var/roundstart_connection
 
-	var/mutable_appearance/panelstructure
-	var/mutable_appearance/paneloverlay
+	var/mutable_appearance/dish_overlay
 
 	var/obj/machinery/ai/networking/partner
 	var/rotation_to_partner = 0
@@ -34,9 +33,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	if(!label)
 		label = num2hex(rand(1,65535), -1)
 	GLOB.ai_networking_machines += src
-	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
-	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
-	paneloverlay.color = "#599ffa"
+	dish_overlay = mutable_appearance(icon, "top", FLY_LAYER)
 	update_icon()
 
 /obj/machinery/ai/networking/Destroy(mapload)
@@ -137,9 +134,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	cut_overlays()
 	var/matrix/turner = matrix()
 	turner.Turn(rotation_to_partner)
-	panelstructure.transform = turner
-	paneloverlay.transform = turner
-	add_overlay(list(paneloverlay, panelstructure))
+	dish_overlay.transform = turner
+	add_overlay(dish_overlay)
 
 /obj/machinery/ai/networking/proc/disconnect()
 	if(partner)
