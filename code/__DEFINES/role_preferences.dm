@@ -47,6 +47,7 @@
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
+#define ROLE_GRUE				"Grue" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
 #define ROLE_BLOODSUCKER		"Bloodsucker"
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
@@ -97,7 +98,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER,
 	ROLE_SPACE_DRAGON,
-	ROLE_SINFULDEMON
+	ROLE_SINFULDEMON,
+	ROLE_GRUE
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

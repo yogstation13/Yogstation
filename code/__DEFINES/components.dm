@@ -44,7 +44,7 @@
 #define COMSIG_GLOB_CREWMEMBER_JOINED "!crewmember_joined"
 // signals from globally accessible objects
 /// from SSsun when the sun changes position : (azimuth)
-#define COMSIG_SUN_MOVED "sun_moved"
+#define COMSIG_SUN_MOVED "!sun_moved"
 /// Random event is trying to roll. (/datum/round_event_control/random_event)
 /// Called by (/datum/round_event_control/preRunEvent).
 #define COMSIG_GLOB_PRE_RANDOM_EVENT "!pre_random_event"
@@ -223,6 +223,7 @@
 #define COMSIG_PROCESS_BORGCHARGER_OCCUPANT "living_charge"		//sent from borg recharge stations: (amount, repairs)
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"		//sent when a mob/login() finishes: (client)
 #define COMSIG_LIVING_SHOCK_PREVENTED "living_shock_prevented"	///sent when items with siemen coeff. of 0 block a shock: (power_source, source, siemens_coeff, dist_check)
+#define COMSIG_LIVING_LIFE "living_life"						///sent from living/Life(). (deltatime, times_fired)
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)

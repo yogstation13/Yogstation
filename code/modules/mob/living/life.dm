@@ -2,6 +2,8 @@
 	set waitfor = FALSE
 	set invisibility = 0
 
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds * 10, times_fired)
+
 	if(digitalinvis)
 		handle_diginvis() //AI becomes unable to see mob
 
