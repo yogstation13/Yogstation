@@ -59,6 +59,6 @@
 		current_ramp = initial(current_ramp)
 		speed = speed_up_in_darkness * (1 - light_amount)
 
-	source.add_movespeed_modifier(MOVESPEED_ID_LIGHT_DAMAGE, update = TRUE, 1000, override=TRUE, multiplicative_slowdown=speed)
+	source.add_movespeed_modifier(MOVESPEED_ID_LIGHT_DAMAGE, update = TRUE, priority = 1000, override=TRUE, multiplicative_slowdown=speed)
 
 
