@@ -94,7 +94,7 @@
 				if(!SC.puzzle_disk)
 					decryption_drives -= SC
 				SC.puzzle_disk.decryption_progress += distributed_points
-				if(SC.puzzle_disk.decryption_progres >= (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT))
+				if(SC.puzzle_disk.decryption_progress >= (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT))
 					SC.puzzle_disk.decrypted = TRUE
 					SC.puzzle_disk.forceMove(SC.drop_location())
 					decryption_drives -= SC

@@ -175,12 +175,12 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
 		return TRUE
 	
-	if(istype(O, /obj/item/disk/puzzle))
+	if(istype(W, /obj/item/disk/puzzle))
 		if(puzzle_disk)
 			to_chat(user, span_warning("There's already a floppy drive inserted!"))
 			return
 
-		puzzle_disk = O
+		puzzle_disk = W
 		network.decryption_drives |= src
 		return TRUE
 
