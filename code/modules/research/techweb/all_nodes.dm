@@ -637,7 +637,7 @@
 	display_name = "Weapon Development Technology"
 	description = "Our researchers have found new ways to weaponize just about everything now."
 	prereq_ids = list("engineering", "sec_basic")
-	design_ids = list("pin_testing", "tele_shield", "platingmki", "platingmkiii", "vert_grip", "laser_sight")
+	design_ids = list("pin_testing", "tele_shield", "platingmki", "platingmkiii", "vert_grip", "laser_sight", "infra_sight")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/smartmine
