@@ -605,6 +605,23 @@
 /obj/item/gun/ballistic/automatic/pistol/boltpistol
 )
 
+/datum/supply_pack/security/armory/imperialammo
+	name = "Imperial Ammunition Crate"
+	desc = "The might of the Emperor is at your command! Contains spare magazines for imperial weponry. Requires Armory access to open."
+	cost = 6000 // its just ammo
+	contraband = TRUE
+	contains = list(
+/obj/item/ammo_box/magazine/recharge/lasgun,
+/obj/item/ammo_box/magazine/recharge/lasgun,
+/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
+/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
+/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
+/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
+/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
+/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
+/obj/item/ammo_box/magazine/boltpistol,
+/obj/item/ammo_box/magazine/boltpistol
+)
 
 /datum/supply_pack/security/armory/mindshield
 	name = "Mindshield Implants Crate"

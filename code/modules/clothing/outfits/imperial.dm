@@ -50,6 +50,25 @@
 	assignment = "Imperial Guard"
 	originalassignment = "Imperial Guard"
 
+/obj/item/chainsaw_sword
+	name = "Imperial Chainsword"
+	desc = "Cuts through Flesh, Bone, and most types of metal as if it wasnt there."
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
+	hitsound = 'sound/weapons/chainsawhit.ogg'
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	icon_state = "imp_chainswordon"
+	item_state = "imp_chainswordon"
+	block_chance = 50
+	sharpness = SHARP_EDGED
+	max_integrity = 200
+	force = 30
+	throwforce = 10
+	w_class = WEIGHT_CLASS_HUGE
+	flags_1 = CONDUCT_1
+
+
 // Belts
 /obj/item/storage/belt/military/imperial/guardsman/ComponentInitialize() // Imperial Guardsman
 	. = ..()
@@ -144,7 +163,7 @@
 	name = "Sergeant"
 	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
-	suit_store = /obj/item/nullrod/claymore/chainsaw_sword
+	suit_store = /obj/item/chainsaw_sword
 	back = /obj/item/gun/ballistic/automatic/pistol/boltpistol
 	
 /datum/outfit/imperial/marksman
