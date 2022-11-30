@@ -465,6 +465,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
 	var/nob_formed = min(air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
+	nob_formed = clamp(nob_formed, 0, 10)
+
 	var/old_heat_capacity = air.heat_capacity()
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
