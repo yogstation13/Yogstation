@@ -173,26 +173,26 @@
 	W.update_label(W.registered_name, W.assignment)
 
 /datum/outfit/imperial/commander
-	name = "Sergeant"
+	name = "Imperial Sergeant"
 	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
 	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
 	back = /obj/item/chainsaw_sword
 	
 /datum/outfit/imperial/marksman
-	name = "Marksman"
+	name = "Imperial Marksman"
 	belt = /obj/item/storage/belt/military/imperial/sniper
 	suit_store = /obj/item/gun/ballistic/automatic/laser/longlas
 	l_pocket = /obj/item/gun/energy/plasma/pistol
 
 /datum/outfit/imperial/plasma
-	name = "Plasma Gunner"
+	name = "Imperial Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
 	suit_store = /obj/item/gun/energy/plasma/rifle
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
 
 /datum/outfit/imperial/veteran
-	name = "Veteran"
+	name = "Imperial Veteran"
 	belt = /obj/item/storage/belt/military/imperial/hotshot
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
