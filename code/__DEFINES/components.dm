@@ -164,7 +164,7 @@
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (proc args list(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode))
 #define HEARING_MESSAGE 1
 #define HEARING_SPEAKER 2
-//#define HEARING_LANGUAGE 3
+#define HEARING_LANGUAGE 3
 #define HEARING_RAW_MESSAGE 4
 	/* #define HEARING_RADIO_FREQ 5
 #define HEARING_SPANS 6
