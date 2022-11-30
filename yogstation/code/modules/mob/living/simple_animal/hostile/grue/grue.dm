@@ -119,22 +119,56 @@
 /mob/living/simple_animal/hostile/grue/proc/try_moult()
 	to_chat(src, span_notice("You begin moulting."))
 	visible_message(span_warning("\The [src] morphs into a chrysalis..."))
-	
+	moulting = TRUE
+	var/next_life_stage = GRUE_JUVENILE
+	stat = UNCONSCIOUS
+	if (life_stage == GRUE_SPAWN)
+		desc = "A small grue chrysalis."
+		name = "grue chrysalis"
+		icon_state = "moult1"
+		icon_living = "moult1"
+		icon_dead = "moult1"
+		maxHealth = 25
+	else if (life_stage == GRUE_JUVENILE)
+		desc = "A grue chrysalis."
+		name = "grue chrysalis"
+		icon_state = "moult2"
+		icon_living = "moult2"
+		icon_dead = "moult2"
+		maxHealth = 50
+		next_life_stage = GRUE_ADULT
+	notransform = TRUE
+	addtimer(CALLBACK(src, .proc/moult, next_life_stage), 30 SECONDS)
+
+/mob/living/simple_animal/hostile/grue/proc/moult(var/next_life_stage)
+	if (stat == DEAD)
+		return // We died trying to moult
+
+	visible_message(span_warning("The chrysalis shifts as it morphs into a grue!"))
+	notransform = FALSE
+	set_life_stage(next_life_stage)
+	if(life_stage==GRUE_JUVENILE)
+		to_chat(src, span_warning("You finish moulting! You are now a juvenile, and are strong enough to force open doors."))
+	else if(life_stage==GRUE_ADULT)
+		to_chat(src, span_warning("You finish moulting! You are now fully-grown, and can eat sentient beings to gain their strength."))
+	playsound(src, 'sound/effects/grue_moult.ogg', 50, 1)
+
 
 /mob/living/simple_animal/hostile/grue/proc/can_lay_egg()
 	if (life_stage != GRUE_ADULT)
-		to_chat(owner, span_warning("You can't use this!"))
+		to_chat(src, span_warning("You can't use this!"))
 		return FALSE
 	if (spawn_count >= eaten_count)
-		to_chat(owner, span_warning("You need to eat more before laying an egg!"))
+		to_chat(src, span_warning("You need to eat more before laying an egg!"))
 		return FALSE
 	
 /mob/living/simple_animal/hostile/grue/proc/try_lay_egg()
-	to_chat(owner, span_notice("You begin to lay an egg. This will take 15 seconds."))
-	if (do_mob(owner, owner, 15 SECONDS))
-		new /mob/living/simple_animal/grue_egg(get_turf(owner))
-		to_chat(owner, span_notice("You lay an egg!"))
-		dad.spawn_count++
+	to_chat(src, span_notice("You begin to lay an egg. This will take 15 seconds."))
+	if (do_mob(src, src, 15 SECONDS))
+		var/mob/living/simple_animal/grue_egg/egg = new /mob/living/simple_animal/grue_egg(get_turf(src))
+		egg.parent_grue = src
+		to_chat(src, span_notice("You lay an egg!"))
+		spawn_count++
 		update_antag_datum()
 
 /mob/living/simple_animal/hostile/grue/proc/update_antag_datum()
@@ -182,6 +216,13 @@
 		ventcrawler = VENTCRAWLER_NONE
 		update_power()
 	icon_state = icon_living
+
+
+/mob/living/simple_animal/hostile/grue/death(gibbed)
+	if(!gibbed)
+		playsound(src, 'sound/misc/grue_screech.ogg', 50, 1)
+	desc="[desc]<br>This one seems dead and lifeless."
+	..()
 
 /mob/living/simple_animal/hostile/grue/gruespawn
 	life_stage = GRUE_SPAWN

@@ -58,6 +58,7 @@
 
 		var/mob/living/simple_animal/hostile/grue/gruespawn/G = new(get_turf(src))
 		candidate.mind.transfer_to(G, TRUE)
+		G.mind.add_antag_datum(/datum/antagonist/grue/hatched)
 		playsound((src), 'sound/effects/splat.ogg', 50, 1)
 		src.visible_message(span_notice("\The [name] bursts open!"))
 	else
