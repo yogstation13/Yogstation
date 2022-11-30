@@ -13,12 +13,11 @@
 	var/static/list/immunelist = typecacheof(list(
 		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
-		/turf/open/indestructible,
-		/turf/closed/wall/r_wall)
+		/turf/open/indestructible)
 		)
 	
 	var/static/list/resistlist = typecacheof(
-		/turf/closed/wall/mineral
+		/turf/closed/wall/r_wall
 		)
 
 /datum/component/thermite/Initialize(_amount)
