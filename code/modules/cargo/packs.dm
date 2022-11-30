@@ -563,26 +563,43 @@
 /datum/supply_pack/security/armory/imperialarmor
 	name = "Imperial Equipment Crate"
 	desc = "The might of the Emperor is at your command! Contains three sets of armor, uniforms, and more to have you fit the bill of a Guardsman! Requires Armory access to open."
-	cost = 6000
+	cost = 9000
 	contraband = TRUE
-	contains = list(
-		// add clothes once uhh coded
-	)
+	contains = list(/obj/item/clothing/neck/imperial,
+					/obj/item/clothing/neck/imperial,
+					/obj/item/clothing/neck/imperial,
+					/obj/item/clothing/head/helmet/imperial/orderable,
+					/obj/item/clothing/head/helmet/imperial/orderable,
+					/obj/item/clothing/head/helmet/imperial/orderable,
+					/obj/item/clothing/under/imperial,
+					/obj/item/clothing/under/imperial, // three sets of drip, to go with your three new guns.
+					/obj/item/clothing/under/imperial,
+					/obj/item/clothing/shoes/combat/imperial/orderable,
+					/obj/item/clothing/shoes/combat/imperial/orderable,
+					/obj/item/clothing/shoes/combat/imperial/orderable,
+					/obj/item/clothing/suit/armor/imperial/orderable,
+					/obj/item/clothing/suit/armor/imperial/orderable,
+					/obj/item/clothing/suit/armor/imperial/orderable,
+					/obj/item/storage/belt/military/imperial,
+					/obj/item/storage/belt/military/imperial,
+					/obj/item/storage/belt/military/imperial,
+					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/combat)
 
 /datum/supply_pack/security/armory/imperial
 	name = "Imperial Weapons Crate"
 	desc = "The might of the Emperor is at your command! Contains three of the strongest weapons the Imperium has to offer. Requires Armory access to open."
-	cost = 10000
+	cost = 12000 // Irrelivent to any half-decent cargo crew
 	contraband = TRUE
 	contains = list(
-/obj/item/gun/ballistic/automatic/laser/lasgun, 
-/obj/item/gun/ballistic/automatic/laser/longlas,
-/obj/item/gun/ballistic/automatic/laser/laspistol,
-/obj/item/gun/ballistic/automatic/laser/hotshot,
-/obj/item/gun/energy/plasma/pistol,
-/obj/item/gun/energy/plasma/rifle,
-/obj/item/gun/ballistic/automatic/pistol/boltpistol
-)
+					/obj/item/gun/ballistic/automatic/laser/lasgun, 
+					/obj/item/gun/ballistic/automatic/laser/longlas,
+					/obj/item/gun/ballistic/automatic/laser/laspistol,
+					/obj/item/gun/ballistic/automatic/laser/hotshot,
+					/obj/item/gun/energy/plasma/pistol,
+					/obj/item/gun/energy/plasma/rifle,
+					/obj/item/gun/ballistic/automatic/pistol/boltpistol)
 
 
 /datum/supply_pack/security/armory/imperial/fill(obj/structure/closet/crate/C)
@@ -593,17 +610,16 @@
 /datum/supply_pack/security/armory/imperialadmin
 	name = "Imperial Weapons Crate"
 	desc = "The might of the Emperor is at your command! Contains all of the strongest weapons the Imperium has to offer. Requires Armory access to open."
-	cost = 10000
+	cost = 696969
 	contraband = TRUE
 	admin_spawned = TRUE
 	contains = list(/obj/item/gun/ballistic/automatic/laser/lasgun, 
-/obj/item/gun/ballistic/automatic/laser/longlas,
-/obj/item/gun/ballistic/automatic/laser/laspistol,
-/obj/item/gun/ballistic/automatic/laser/hotshot,
-/obj/item/gun/energy/plasma/pistol,
-/obj/item/gun/energy/plasma/rifle,
-/obj/item/gun/ballistic/automatic/pistol/boltpistol
-)
+					/obj/item/gun/ballistic/automatic/laser/longlas,
+					/obj/item/gun/ballistic/automatic/laser/laspistol,
+					/obj/item/gun/ballistic/automatic/laser/hotshot,
+					/obj/item/gun/energy/plasma/pistol,
+					/obj/item/gun/energy/plasma/rifle,
+					/obj/item/gun/ballistic/automatic/pistol/boltpistol)
 
 /datum/supply_pack/security/armory/imperialammo
 	name = "Imperial Ammunition Crate"
@@ -611,17 +627,16 @@
 	cost = 6000 // its just ammo
 	contraband = TRUE
 	contains = list(
-/obj/item/ammo_box/magazine/recharge/lasgun,
-/obj/item/ammo_box/magazine/recharge/lasgun,
-/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
-/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
-/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
-/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
-/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
-/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
-/obj/item/ammo_box/magazine/boltpistol,
-/obj/item/ammo_box/magazine/boltpistol
-)
+					/obj/item/ammo_box/magazine/recharge/lasgun,
+					/obj/item/ammo_box/magazine/recharge/lasgun,
+					/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
+					/obj/item/ammo_box/magazine/recharge/lasgun/pistol,
+					/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
+					/obj/item/ammo_box/magazine/recharge/lasgun/hotshot,
+					/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
+					/obj/item/ammo_box/magazine/recharge/lasgun/sniper,
+					/obj/item/ammo_box/magazine/boltpistol,
+					/obj/item/ammo_box/magazine/boltpistol)
 
 /datum/supply_pack/security/armory/mindshield
 	name = "Mindshield Implants Crate"
