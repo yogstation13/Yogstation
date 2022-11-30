@@ -439,6 +439,10 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
 	cell_type = "/obj/item/stock_parts/cell/high"
+	
+/obj/item/gun/energy/plasma/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
 
 /obj/item/gun/energy/plasma/process()
 	if(heat > 0)
@@ -448,19 +452,12 @@
 
 /obj/item/gun/energy/plasma/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(select == 1)
-		heat += 2
-	else if(select == 2)
-		heat += 13
-	else
-		user << "\red There's a bit of an error... Please report this to a developer. Mention that it is located on line 266 of special.dm if you would."
+	heat += 2
 	if(heat >= 25)
 		icon_state = "[initial(icon_state)]-crit"
 		if(prob(75))
-			user << "\red [src] is heating up in your hands!"
-	var/selectprob = 20
-	if(select == 2) selectprob = 50
-	if(heat >= 30 && prob(selectprob))
+			to_chat(user, span_warning("The gun begins to heat up in your hands! Careful!"))
+	if(heat >= 30 && prob(20))
 		var/turf/T = get_turf(src.loc)
 		if (isliving(loc))
 			var/mob/living/M = loc
@@ -470,9 +467,9 @@
 		if(T)
 			T.hotspot_expose(700,125)
 			explosion(T, -1, -1, 2, 3)
+		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 	return
-
 
 /obj/item/gun/energy/plasma/pistol
 	name = "Plasma Pistol"

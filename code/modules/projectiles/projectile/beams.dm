@@ -209,25 +209,42 @@
 	light_color = LIGHT_COLOR_BLUE
 	name = "plasma ball"
 	icon_state = "plasmagun"
-	damage = 35
+	damage = 50
 	wound_bonus = 0
 	speed = 1.4 // plasma ball slow
 
+/obj/item/projectile/beam/plasma/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.med_mov_atom += target
+		else
+			SSexplosions.medturf += target
+
 /obj/item/projectile/beam/plasma/pistol
-	damage = 25
+	damage = 35
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
 /obj/item/projectile/beam/laser/lasgun
 	name = "Laser Bolt"
+	icon_state = "las_laser"
+	speed = 0.9
 
 /obj/item/projectile/beam/laser/longlas
 	name = "Laser Bolt"
 	damage = 25
+	icon_state = "las_laser"
+	speed = 0.9
 
 /obj/item/projectile/beam/laser/laspistol
 	name = "Laser Bolt"
 	damage = 15
+	icon_state = "las_laser"
+	speed = 0.9
 
 /obj/item/projectile/beam/laser/hotshot
 	name = "Laser Bolt"
 	damage = 30
 	wound_bonus = -5
+	icon_state = "las_laser"
+	speed = 0.9
