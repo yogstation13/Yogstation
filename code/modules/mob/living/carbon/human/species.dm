@@ -2012,6 +2012,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
 
+	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision
+	// 37C has 12 range (11 tiles)
+	// 20C has 7 range (6 tiles)
+	// 10C has 3 range (2 tiles)
+	// 0C has 0 range (0 tiles)
+	H.infra_luminosity = round(max((H.bodytemperature - T0C)/3, 0))
+
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = H.calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
 	switch(adjusted_pressure)
