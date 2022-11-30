@@ -7,20 +7,20 @@
 	item_state = "guard_neckpiece"
 
 /obj/item/clothing/head/helmet/imperial
-	name = "Flak Helmet"
+	name = "flak helmet"
 	desc = "Standard-issue flak helmet for members of the Imperial Guard"
 	icon_state = "guard_helmet"
 	item_state = "guard_helmet"
 	armor = list(MELEE = 50, BULLET = 35, LASER = 35,ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5)
 
 /obj/item/clothing/under/imperial
-	name = "Guardsman Fatigues"
+	name = "guardsman fatigues"
 	desc = "A set of kahki fatigues. Standard issue for imperial guardsmen"
 	icon_state = "guard_uniform"
 	item_state = "guard_uniform"
 
 /obj/item/clothing/shoes/combat/imperial
-	name = "Flak Boots"
+	name = "flak Boots"
 	desc = "A pair of heavy duty armored shoes, providing protection up to the knees. Standard issue in the Imperial Guard"
 	icon_state = "guard_shoes"
 	item_state = "guard_shoes"
@@ -29,7 +29,7 @@
 	body_parts_covered = LEGS|FEET
 
 /obj/item/clothing/suit/armor/imperial
-	name = "Flak Vest"
+	name = "flak Vest"
 	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats."
 	icon_state = "guard_armor"
 	item_state = "guard_armor"
@@ -41,7 +41,7 @@
 	armor = list(MELEE = 50, BULLET = 40, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 10)
 
 /obj/item/storage/belt/military/imperial
-	name = "Imperial Belt"
+	name = "imperial Belt"
 	desc = "A well worn belt, standard issue among imperial guard forces."
 	icon_state = "guard_belt"
 	item_state = "guard_belt"
@@ -53,7 +53,7 @@
 	originalassignment = "Imperial Guard"
 
 /obj/item/chainsaw_sword
-	name = "Imperial Chainsword"
+	name = "imperial chainsword"
 	desc = "Cuts through Flesh, Bone, and most types of metal as if it wasnt there."
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
