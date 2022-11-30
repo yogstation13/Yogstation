@@ -42,6 +42,7 @@
 
 /obj/item/storage/belt/military/imperial
 	name = "Imperial Belt"
+	desc = "A well worn belt, standard issue among imperial guard forces."
 	icon_state = "guard_belt"
 	item_state = "guard_belt"
 
@@ -171,16 +172,16 @@
 	name = "Marksman"
 	belt = /obj/item/storage/belt/military/imperial/sniper
 	suit_store = /obj/item/gun/ballistic/automatic/laser/longlas
-	back = /obj/item/gun/energy/plasma/pistol
+	l_pocket = /obj/item/gun/energy/plasma/pistol
 
 /datum/outfit/imperial/plasma
 	name = "Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
 	suit_store = /obj/item/gun/energy/plasma/rifle
-	back = /obj/item/gun/ballistic/automatic/laser/laspistol
+	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
 
 /datum/outfit/imperial/veteran
 	name = "Veteran"
 	belt = /obj/item/storage/belt/military/imperial/hotshot
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
-	back = /obj/item/gun/ballistic/automatic/laser/laspistol
+	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol

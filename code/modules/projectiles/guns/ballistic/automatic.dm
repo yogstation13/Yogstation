@@ -448,6 +448,7 @@
 	empty_indicator = TRUE
 	fire_sound = 'sound/weapons/lasgun.ogg'
 	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/pistol
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gun/ballistic/automatic/laser/hotshot
 	name ="Imperial Hotshot Lasgun"
