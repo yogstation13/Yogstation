@@ -32,7 +32,8 @@ export const ArmamentsDispenser = (props, context) => {
           justify="space-between"
           spacing={1}>
           {inventory.map(weapon => (
-            <Flex.Item>
+            <Flex.Item
+              key={weapon}>
               <Button
                 key={weapon}
                 fluid
