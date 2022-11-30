@@ -51,7 +51,7 @@
 	originalassignment = "Imperial Guard"
 
 // Belts
-/obj/item/storage/belt/military/imperial/ComponentInitialize() // Imperial Guardsman
+/obj/item/storage/belt/military/imperial/guardsman/ComponentInitialize() // Imperial Guardsman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
@@ -85,7 +85,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
-	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
+	new /obj/item/stack/medical/mesh(src) // for when his pistol inevitably explodes
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
@@ -111,7 +111,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	mask = /obj/item/clothing/mask/breath/tactical
-	belt = /obj/item/storage/belt/military/imperial
+	belt = /obj/item/storage/belt/military/imperial/guardsman
 	suit_store = /obj/item/gun/ballistic/automatic/laser/lasgun
 	head = /obj/item/clothing/head/helmet/imperial
 	neck = /obj/item/clothing/neck/imperial
@@ -144,15 +144,21 @@
 	name = "Sergeant"
 	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
+	suit_store = /obj/item/nullrod/claymore/chainsaw_sword
+	back = /obj/item/gun/ballistic/automatic/pistol/boltpistol
 	
 /datum/outfit/imperial/marksman
 	name = "Marksman"
 	belt = /obj/item/storage/belt/military/imperial/sniper
+	suit_store = /obj/item/gun/ballistic/automatic/laser/longlas
+	back = /obj/item/gun/energy/plasma/pistol
 
 /datum/outfit/imperial/plasma
 	name = "Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
+	suit_store = /obj/item/gun/energy/plasma/rifle
 
 /datum/outfit/imperial/veteran
 	name = "Veteran"
 	belt = /obj/item/storage/belt/military/imperial/hotshot
+	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot

@@ -66,6 +66,11 @@
 	sharpness = SHARP_EDGED
 	wound_bonus = 5
 
+/obj/item/projectile/bullet/boltpistol/on_hit(atom/target, blocked = FALSE)
+	..()
+	explosion(target, -1, 0, 2)
+	return BULLET_ACT_HIT
+
 /obj/item/projectile/bullet/boltpistol/admin
 	damage = 100
 
