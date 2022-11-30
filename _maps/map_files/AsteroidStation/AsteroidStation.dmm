@@ -1637,11 +1637,6 @@
 "anj" = (
 /turf/closed/wall,
 /area/maintenance/starboard)
-"ank" = (
-/obj/structure/table,
-/obj/item/key/janitor,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "anm" = (
 /turf/closed/wall,
 /area/chapel/office)
@@ -2656,13 +2651,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"auL" = (
-/obj/structure/table,
-/obj/item/kitchen/knife,
-/obj/item/kitchen/fork,
-/obj/item/reagent_containers/glass/mixbowl,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "auT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -22306,6 +22294,14 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/solar/port/aft)
+"gFv" = (
+/obj/structure/table,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/fork,
+/obj/item/reagent_containers/glass/mixbowl,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "gFE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -32146,15 +32142,6 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
-"jUr" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/item/reagent_containers/glass/bucket,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "jUu" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -37161,6 +37148,12 @@
 /obj/item/reagent_containers/syringe,
 /turf/open/floor/plating/airless,
 /area/ruin/powered)
+"lQj" = (
+/obj/structure/table,
+/obj/item/key/janitor,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "lQw" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -67731,6 +67724,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/server)
+"vZB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "vZC" = (
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/plasteel,
@@ -100549,7 +100549,7 @@ wWd
 aRI
 aZa
 aGb
-jUr
+vZB
 akZ
 agw
 ape
@@ -101575,8 +101575,8 @@ xXv
 aFr
 lkU
 aRI
-ank
-auL
+lQj
+gFv
 dwg
 akZ
 aRI
