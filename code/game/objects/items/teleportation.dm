@@ -135,7 +135,7 @@
 	cryo_preserve = TRUE
 	var/list/active_portal_pairs
 	var/max_portal_pairs = 3
-	var/atmos_link_override
+	var/atmos_link_override = TRUE
 
 /obj/item/hand_tele/Initialize()
 	. = ..()
