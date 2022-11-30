@@ -392,7 +392,7 @@ SUBSYSTEM_DEF(persistence)
 				continue
 
 			var/turf/T = locate(xvar, yvar, zvar)
-			if(!isturf(T))
+			if(!isopenturf(T))
 				continue
 			var/obj/effect/decal/cleanable/C = new typepath(T)
 			C.unpack(data)
