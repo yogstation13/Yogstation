@@ -48,14 +48,14 @@
 	name = "\improper Imperial Guard ID"
 	desc = "An Imperial Guard ID card."
 	assignment = "Imperial Guard"
-	originalassignment = "Imperial Guard
+	originalassignment = "Imperial Guard"
 
 // Belts
 /obj/item/storage/belt/military/imperial/ComponentInitialize() // Imperial Guardsman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
-    new /obj/item/ammo_box/magazine/recharge/lasgun(src)
+	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -63,19 +63,19 @@
 
 /obj/item/storage/belt/military/imperial/plasma/ComponentInitialize() // Plasma gunner
 	. = ..()
-    new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
-    new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
+	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
+	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
-    new /obj/item/stack/medical/mesh(src) // for when his gun inevitably explodes
+	new /obj/item/stack/medical/mesh(src) // for when his gun inevitably explodes
 
 /obj/item/storage/belt/military/imperial/hotshot/ComponentInitialize() // Veteran
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
-    new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
+	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -85,11 +85,11 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
-    new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
+	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
-    new /obj/item/twohanded/binoculars(src)
+	new /obj/item/twohanded/binoculars(src)
 
 
 /obj/item/storage/belt/military/imperial/sergeant/ComponentInitialize() // Sergeant
@@ -114,8 +114,8 @@
 	belt = /obj/item/storage/belt/military/imperial
 	suit_store = /obj/item/gun/ballistic/automatic/laser/lasgun
 	head = /obj/item/clothing/head/helmet/imperial
-    neck = /obj/item/clothing/neck/imperial
-    r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
+	neck = /obj/item/clothing/neck/imperial
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	id = /obj/item/card/id/ert/imperial
 	implants = list(/obj/item/implant/mindshield)
 	

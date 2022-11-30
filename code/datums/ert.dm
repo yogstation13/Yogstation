@@ -154,8 +154,7 @@
 	code = "HOOOOOOOOOONK"
 
 /datum/ert/imperial
-	roles = list(/datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/hotshot,
-	 /datum/antagonist/ert/imperial/marksman, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/specialist)
+	roles = list(/datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/hotshot, /datum/antagonist/ert/imperial/sniper, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/plasma)
 	leader_role = /datum/antagonist/ert/imperial/sergeant
 	teamsize = 7
 	rename_team = "Imperial Guard"
