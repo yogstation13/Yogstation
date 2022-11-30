@@ -161,6 +161,15 @@
 			else
 				goodies += job_goodies
 
+	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_NOMAIL))	//reduce the weight of every item by 10
+		for(var/item in goodies)
+			goodies[item] -= 10
+			if(goodies[item] <= 0)	 //remove everything with a weight below 0
+				goodies -= item
+
+	if(!goodies) //if everything was removed for some reason
+		return FALSE 
+
 	for(var/iterator in 1 to goodie_count)
 		var/target_good = pickweight(goodies)
 		var/atom/movable/target_atom = new target_good(src)
@@ -223,7 +232,7 @@
 	var/list/mail_recipients = list()
 
 	for(var/mob/living/carbon/human in GLOB.player_list)
-		if(human.stat == DEAD || !human.mind || HAS_TRAIT(human, TRAIT_NOMAIL))
+		if(human.stat == DEAD || !human.mind)
 			continue
 		// Skip wizards, nuke ops, cyborgs; Centcom does not send them mail
 		var/datum/job/this_job = SSjob.GetJob(human.mind.assigned_role)

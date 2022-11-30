@@ -857,6 +857,6 @@
 
 /datum/quirk/nomail
 	name = "Loser"
-	desc = "You are a complete nobody, no one would ever bother to send you mail."
+	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
 	value = -1
 	mob_trait = TRAIT_NOMAIL
