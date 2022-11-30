@@ -5,6 +5,7 @@
 	var/blood_state = "" //I'm sorry but cleanable/blood code is ass, and so is blood_DNA
 	var/bloodiness = 0 //0-100, amount of blood in this decal, used for making footprints and affecting the alpha of bloody footprints
 	var/mergeable_decal = TRUE //when two of these are on a same tile or do we need to merge them into just one?
+	var/rounds_remaining = 5 // How many rounds remain until it no longer appears in persistence
 
 /obj/effect/decal/cleanable/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -121,6 +122,7 @@
 	data["icon_state"] = icon_state
 	data["dir"] = dir2text(dir)
 	data["path"] = "[type]"
+	data["rounds_remaining"] = "[rounds_remaining]" 
 	return data
 
 /obj/effect/decal/cleanable/proc/unpack(list/data)
@@ -129,6 +131,7 @@
 	
 	icon_state = data["icon_state"]
 	dir = text2dir(data["dir"])
+	rounds_remaining = text2num(data["rounds_remaining"]) - 1
 	var/x = data["x"]
 	var/y = data["y"]
 	var/z = data["z"]

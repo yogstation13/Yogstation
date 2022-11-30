@@ -383,6 +383,8 @@ SUBSYSTEM_DEF(persistence)
 	if(fexists(json_file))
 		var/list/packed_muck = json_decode(file2text(json_file))
 		for (var/list/data in packed_muck)
+			if (text2num(data["rounds_remaining"]) <= 0)
+				continue
 			var/typepath = text2path(data["path"])
 			var/xvar = data["x"]
 			var/yvar = data["y"]
