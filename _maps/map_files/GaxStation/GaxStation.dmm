@@ -25314,13 +25314,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"mCV" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "mDn" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -41539,6 +41532,20 @@
 "vhl" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
+"vho" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/structure/chair/stool,
+/obj/machinery/button/door{
+	id = "rnd";
+	name = "Shutters Control Button";
+	pixel_x = -7;
+	pixel_y = -24;
+	req_access_txt = "47"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vhy" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -86789,7 +86796,7 @@ rak
 eiF
 dkD
 ykr
-mCV
+vho
 quU
 tLc
 cXY
