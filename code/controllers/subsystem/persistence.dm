@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(persistence)
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	LoadPaintings()
-	LoadMuck();
+	LoadMuck()
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(persistence)
 	SaveRandomizedRecipes()
 	SavePaintings()
 	SaveScars()
-	SaveMuck();
+	SaveMuck()
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
