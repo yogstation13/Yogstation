@@ -189,6 +189,7 @@
 #define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_THERMAL_VISION    "thermal_vision"
+#define TRAIT_INFRARED_VISION	"infrared_vision"
 #define TRAIT_ABDUCTOR_TRAINING "abductor-training"
 #define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
 #define TRAIT_SURGEON           "surgeon"
@@ -292,6 +293,7 @@
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
+#define ATTACHMENT_TRAIT "attachment-trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

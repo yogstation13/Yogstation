@@ -10,6 +10,7 @@
 	resistance_flags = NONE
 	materials = list(/datum/material/glass = 250)
 	var/vision_flags = 0
+	var/infrared = FALSE // use BYOND native see_infrared
 	var/darkness_view = 2//Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING	//admin only for now
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -370,6 +371,22 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	thermal_overload()
+
+/obj/item/clothing/glasses/infrared
+	name = "optical infrared scanner"
+	desc = "Infrared goggles that allow you to see living things in the dark."
+	icon_state = "material"
+	item_state = "glasses"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	flash_protect = -1
+	glass_colour_type = /datum/client_colour/glass_colour/blue
+	infrared = TRUE
+
+/obj/item/clothing/glasses/infrared/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return

@@ -627,6 +627,7 @@
 		return
 
 	sight = initial(sight)
+	see_infrared = initial(see_infrared)
 	lighting_alpha = initial(lighting_alpha)
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
@@ -646,6 +647,8 @@
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
 		sight |= G.vision_flags
+		if(G.infrared) // no sense in forcing infrared off
+			see_infrared = G.infrared
 		see_in_dark = max(G.darkness_view, see_in_dark)
 		if(G.invis_override)
 			see_invisible = G.invis_override
@@ -653,6 +656,10 @@
 			see_invisible = min(G.invis_view, see_invisible)
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+
+	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		see_infrared = TRUE
+		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
 
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
 		sight |= (SEE_MOBS)
