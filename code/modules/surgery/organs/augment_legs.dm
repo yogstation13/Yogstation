@@ -18,24 +18,26 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	
-	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
-		return
-
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
 	if(!L)	//how did you get an implant in a limb you don't have?
 		return
 
-	L.receive_damage(0,5)	//disable the bodypart and do some damage
-	L.set_disabled(TRUE)
+	L.receive_damage(5,0,10)	//always take a least a little bit of damage to the leg
+
+	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
+		to_chat(owner, span_warning("The EMP causes the [src] in your [L] to twitch randomly!"))
+		return
+
+	L.set_disabled(TRUE)	//disable the bodypart
 	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	if(severity & EMP_HEAVY && prob(20))	//10% chance on getting hit by a heavy emp to break your leg (technically more since you have two)
-		to_chat(owner, span_warning("The EMP causes your [src] to thrash your leg around wildly breaking it!"))	
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly breaking it!"))	
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)
 		L.receive_damage(20)
 	else
-		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your leg from moving!"))
+		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your [L] from moving!"))
 
 /obj/item/organ/cyberimp/leg/proc/reenableleg()
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
