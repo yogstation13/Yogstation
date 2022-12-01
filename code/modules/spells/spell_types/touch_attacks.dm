@@ -77,15 +77,18 @@
 /obj/effect/proc_holder/spell/targeted/touch/teleport/ChargeHand(mob/living/carbon/user)
 	. = ..()
 	var/obj/item/melee/touch_attack/teleport/T = attached_hand
-	
+	var/A = null
 
-	if(!randomise_selection)
-		A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
-	else
-		A = pick(GLOB.teleportlocs)
+	A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
+	
 	if(!A)
+		A = pick(GLOB.teleportlocs)
+	
+	if (!A)
 		return
-	T.to_teleport_to = GLOB.teleportlocs[A]
+	var/area/thearea = GLOB.teleportlocs[A]
+
+	return thearea
 	
 
 /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
