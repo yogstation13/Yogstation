@@ -7,6 +7,7 @@
 	var/spawn_count = 0
 
 	var/is_hatched = FALSE
+	show_to_ghosts = TRUE
 
 /datum/antagonist/grue/greet()
 	to_chat(owner?.current?.client, span_alertsyndie("You are a grue."))
