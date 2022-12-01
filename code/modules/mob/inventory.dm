@@ -303,6 +303,9 @@
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
 	I.do_drop_animation(src)
 
+/mob/proc/drop_active_held_item(force = FALSE, silent = FALSE)
+	dropItemToGround(get_active_held_item(), force, silent)
+
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
 	. = doUnEquip(I, force, newloc, FALSE, silent = silent)

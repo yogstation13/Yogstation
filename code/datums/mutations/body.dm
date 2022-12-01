@@ -496,3 +496,34 @@
 		return
 	owner.physiology.stamina_mod /= 0.7
 	owner.physiology.stun_mod /= 0.85
+
+/datum/mutation/human/trigger_finger
+	name = "Trigger Finger"
+	desc = "This mutation lets you fire bullets simply by flicking them."
+	quality = POSITIVE
+	difficulty = 16
+	instability = 20
+
+/datum/mutation/human/trigger_finger/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	RegisterSignal(owner, COMSIG_MOB_THROW, .proc/on_throw)
+
+/datum/mutation/human/trigger_finger/proc/on_throw(atom/target)
+	var/obj/item/currently_held = owner.get_active_held_item()
+	if (istype(currently_held, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/casing = currently_held
+
+		if (casing.BB)
+			casing.BB.preparePixelProjectile(target, owner)	
+			casing.BB.firer = owner
+			casing.BB.fired_from = owner
+			casing.BB.fire()
+
+			owner.drop_active_held_item()
+			return
+
+/datum/mutation/human/trigger_finger/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	UnregisterSignal(owner, COMSIG_MOB_THROW)
