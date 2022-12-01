@@ -25,7 +25,7 @@
 	var/inertia_next_move = 0
 	var/inertia_move_delay = 5
 	var/pass_flags = NONE
-	/// If false makes CanPass call CanPassThrough on this type instead of using default behaviour 
+	/// If false makes CanPass call CanPassThrough on this type instead of using default behaviour
 	var/generic_canpass = TRUE
 	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
