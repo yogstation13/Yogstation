@@ -7,6 +7,7 @@
 	icon_dead = "spiderbot-smashed"
 	initial_language_holder = /datum/language_holder/spiderbot
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	faction = list("neutral","silicon","turrets","spiders")
 	minbodytemp = 0
 	maxbodytemp = 500
 	wander = FALSE
@@ -31,6 +32,7 @@
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBOTICS //Access needed to pop out the brain.
 	var/emagged = 0
+	var/manip_level = 1 //This is used for actually upgrading the spiderbots
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
@@ -164,10 +166,11 @@
 	eject_brain()
 	return ..()
 
-/mob/living/simple_animal/spiderbot/Initialize()
+/mob/living/simple_animal/spiderbot/Initialize(mapload, obj/item/stock_parts/manipulator/M)
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
+	manip_level = M.rating
 	camera.c_tag = name
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
