@@ -30,10 +30,28 @@
 	desc = "A polarizing camera that picks up infrared radiation. The quality is rather poor, so it ends up making it harder to aim."
 	icon_state = "ifr_sight"
 	accuracy = -2
+	actions_list = list(/datum/action/item_action/toggle_infrared_sight)
+
+/obj/item/attachment/scope/infrared/attack_self(mob/user)
+	. = ..()
+	toggle_on()
+
+/obj/item/attachment/scope/infrared/proc/toggle_on()
+	is_on = !is_on
+	playsound(get_turf(loc), is_on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
+	if(attached_gun)
+		if(is_on)
+			attached_gun.spread -= accuracy
+			if(current_user?.is_holding(attached_gun))
+				pickup_user(current_user)
+		else
+			attached_gun.spread += accuracy
+			drop_user(current_user)
+	update_icon()
 
 /obj/item/attachment/scope/infrared/pickup_user(mob/user)
 	. = ..()
-	if(user)
+	if(user && is_on)
 		ADD_TRAIT(user, TRAIT_INFRARED_VISION, ATTACHMENT_TRAIT)
 		user.update_sight()
 
