@@ -417,7 +417,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/lasgun
 	name ="Imperial Lasgun"
-	desc = "A relic of a weapon. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
+	desc = "A relic of a weapon. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "lasgun"
 	item_state = "lasgun"
@@ -428,7 +428,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/longlas
 	name ="Imperial Longlas"
-	desc = "A Sniper variant of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight. "
+	desc = "A sniper variant of the lasgun. Despite being immensely powerful, it has acquired  a reputation of being essentially a flashlight. "
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "longlas"
 	item_state = "longlas"
@@ -440,7 +440,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/laspistol
 	name ="Imperial Laspistol"
-	desc = "A smaller, pistol sized version of the lasgun. Despite being immesnsely powerful, its aquired a reputation of being essentially a flashlight."
+	desc = "A smaller, pistol sized version of the lasgun. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "laspistol"
 	item_state = "laspistol"
@@ -452,7 +452,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/hotshot
 	name ="Imperial Hotshot Lasgun"
-	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completley useless by its users."
+	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completely useless by it's users."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "hotshot"
 	mag_display = TRUE
