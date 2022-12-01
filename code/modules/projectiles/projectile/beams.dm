@@ -17,6 +17,11 @@
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
 
+/obj/item/projectile/beam/can_hit_target(atom/target, list/passthrough, direct_target, ignore_loc)
+	. = ..()
+	if (istype(target, /obj/structure/window))
+		return FALSE
+
 /obj/item/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
