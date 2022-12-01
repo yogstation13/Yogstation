@@ -6,6 +6,8 @@
 	var/eaten_count = 0
 	var/spawn_count = 0
 
+	var/is_hatched = FALSE
+
 /datum/antagonist/grue/greet()
 	to_chat(owner?.current?.client, span_alertsyndie("You are a grue."))
 	to_chat(owner?.current?.client, span_warning("Darkness is your ally; bright light is harmful to your kind. You hunger... specifically for sentient beings, but you are still young and cannot eat until you are fully mature."))
@@ -13,13 +15,16 @@
 
 /datum/antagonist/grue/on_gain()
 	. = ..()
-	objectives += new /datum/objective/grue/eat_sentients
-	objectives += new /datum/objective/grue/spawn_offspring
+	if (!is_hatched)
+		objectives += new /datum/objective/grue/eat_sentients
+		objectives += new /datum/objective/grue/spawn_offspring
 
 /datum/antagonist/grue/hatched
 	name = "Fresh Grue"
+	is_hatched = TRUE
 
 /datum/antagonist/grue/hatched/on_gain()
+	. = ..()
 	objectives += new /datum/objective/grue/grue_basic
 	
 /datum/objective/grue/grue_basic
