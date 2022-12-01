@@ -1,7 +1,7 @@
 /datum/action/innate/cult/blood_magic //Blood magic handles the creation of blood spells (formerly talismans)
 	name = "Prepare Blood Magic"
 	button_icon_state = "carve"
-	desc = "Prepare blood magic by carving runes into your flesh. This is easier with an <b>empowering rune</b>."
+	desc = "Prepare blood magic by carving runes into your flesh. This needs an <b>empowering rune</b>."
 	var/list/spells = list()
 	var/channeling = FALSE
 
@@ -38,6 +38,9 @@
 	for(var/obj/effect/rune/empower/R in range(1, owner))
 		rune = TRUE
 		break
+	if (!rune)
+		to_chat(owner, span_cultitalic("We need an <b>empowering rune</b> to store spells!"))
+		return
 	if(rune)
 		limit = MAX_BLOODCHARGE
 	listclearnulls(spells)
