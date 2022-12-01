@@ -172,7 +172,7 @@
 		update_antag_datum()
 
 /mob/living/simple_animal/hostile/grue/proc/update_antag_datum()
-	var/datum/antagonist/grue = mind?.has_antag_datum(/datum/antagonist/grue)
+	var/datum/antagonist/grue/grue = mind?.has_antag_datum(/datum/antagonist/grue)
 
 	if (grue)
 		grue.spawn_count = spawn_count
