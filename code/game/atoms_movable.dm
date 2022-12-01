@@ -7,7 +7,7 @@
 	var/move_force = MOVE_FORCE_DEFAULT
 	var/pull_force = PULL_FORCE_DEFAULT
 	var/datum/thrownthing/throwing = null
-	var/throw_speed = 2 //How many tiles to move per ds when being thrown. Float values are fully supported
+	var/throw_speed = 2 //How many tiles to move per ds when being thrown. Float values are fully supported	
 	var/throw_range = 7
 	var/mob/pulledby = null
 	var/initial_language_holder = /datum/language_holder
