@@ -571,6 +571,9 @@
 	if(has_gravity(src))
 		return TRUE
 
+	if(pulledby)
+		return TRUE
+
 	if(throwing)
 		return TRUE
 
