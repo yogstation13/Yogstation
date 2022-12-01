@@ -71,8 +71,8 @@ export const SpaceHeater = (props, context) => {
                     target: value,
                   })} />
               ) || (
-                  data.targetTemp + '°C'
-                )}
+                data.targetTemp + '°C'
+              )}
             </LabeledList.Item>
             <LabeledList.Item label="Mode">
               {!data.open && 'Auto' || (
