@@ -509,11 +509,11 @@
 		return
 	RegisterSignal(owner, COMSIG_MOB_THROW, .proc/on_throw)
 
-/datum/mutation/human/trigger_finger/proc/on_throw(atom/target)
+/datum/mutation/human/trigger_finger/proc/on_throw(mob/user, atom/target)
 	var/obj/item/currently_held = owner.get_active_held_item()
 	if (istype(currently_held, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/casing = currently_held
-		casing.fire_casing(target, owner, null, null, null, ran_zone(), 0, owner)
+		casing.fire_casing(target, owner, null, null, null, null, 0, owner)
 		owner.drop_active_held_item()
 		casing.bounce_away()
 

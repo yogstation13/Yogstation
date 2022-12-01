@@ -152,6 +152,16 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+/obj/item/dnainjector/anti_trigger_finger
+	name = "\improper DNA injector (Anti-TRIGGER_FINGER)"
+	desc = "No pew."
+	remove_mutations = list(TRIGGER_FINGER)
+
+/obj/item/dnainjector/trigger_finger
+	name = "\improper DNA injector (TRIGGER_FINGER)"
+	desc = "Pew."
+	add_mutations = list(TRIGGER_FINGER)
+
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"
 	desc = "Makes clown minions."

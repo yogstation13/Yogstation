@@ -55,6 +55,7 @@
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 #define CEREBRAL	/datum/mutation/human/cerebral
+#define TRIGGER_FINGER /datum/mutation/human/trigger_finger
 
 
 #define UI_CHANGED "ui changed"
