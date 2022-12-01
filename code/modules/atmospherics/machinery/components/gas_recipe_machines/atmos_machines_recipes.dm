@@ -99,6 +99,17 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/stimulum = 500, /datum/gas/freon = 500, /datum/gas/nitryl = 800)
 	products = list(/obj/machinery/the_singularitygen/tesla = 1)
 
+/datum/gas_recipe/crystallizer/supermatter
+	id = "supermatter"
+	name = "Supermatter shard"
+	min_temp = 100000
+	max_temp = 200000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 5500000
+	dangerous = TRUE
+	requirements = list(/datum/gas/bz = 200, /datum/gas/hypernoblium = 250, /datum/gas/tritium = 500, datum/gas/plasma = 5000, datum/gas/oxygen = 2500)
+	products = list(/obj/machinery/power/supermatter_crystal/shard = 1)
+
 /datum/gas_recipe/crystallizer/n2o_crystal
 	id = "n2o_crystal"
 	name = "Nitrous oxide crystal"
