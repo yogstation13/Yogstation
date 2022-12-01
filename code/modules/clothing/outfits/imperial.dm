@@ -13,6 +13,10 @@
 	item_state = "guard_helmet"
 	armor = list(MELEE = 50, BULLET = 35, LASER = 35,ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5)
 
+/obj/item/clothing/head/helmet/imperial/orderable
+	desc = "Standard-issue flak helmet for members of the Imperial Guard. This one feels lighter for some reason..."
+	armor = list(MELEE = 25, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5) // No, you cant order ERT strength armor
+
 /obj/item/clothing/under/imperial
 	name = "guardsman fatigues"
 	desc = "A set of kahki fatigues. Standard issue for imperial guardsmen"
@@ -28,17 +32,24 @@
 	heat_protection = LEGS|FEET
 	body_parts_covered = LEGS|FEET
 
+/obj/item/clothing/shoes/combat/imperial/orderable
+	desc = "A pair of heavy duty armored shoes, providing protection up to the knees. Standard issue in the Imperial Guard. This pair feels lighter for some reason..."
+	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 10, RAD = 0, FIRE = 50, ACID = 50) // No, you cant order ERT strength armor
+
 /obj/item/clothing/suit/armor/imperial
 	name = "flak Vest"
 	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats."
 	icon_state = "guard_armor"
 	item_state = "guard_armor"
 	blood_overlay_type = "armor"
-
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	body_parts_covered = CHEST|GROIN|ARMS
-	armor = list(MELEE = 50, BULLET = 40, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 10)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 10)
+
+/obj/item/clothing/suit/armor/imperial/orderable
+	armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 5)
+	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats. This one feels lighter for some reason..." // No, you cant order ERT strength armor
 
 /obj/item/storage/belt/military/imperial
 	name = "imperial Belt"
@@ -162,26 +173,26 @@
 	W.update_label(W.registered_name, W.assignment)
 
 /datum/outfit/imperial/commander
-	name = "Sergeant"
+	name = "Imperial Sergeant"
 	belt = /obj/item/storage/belt/military/imperial/sergeant
 	glasses = /obj/item/clothing/glasses/hud/security
 	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
 	back = /obj/item/chainsaw_sword
 	
 /datum/outfit/imperial/marksman
-	name = "Marksman"
+	name = "Imperial Marksman"
 	belt = /obj/item/storage/belt/military/imperial/sniper
 	suit_store = /obj/item/gun/ballistic/automatic/laser/longlas
 	l_pocket = /obj/item/gun/energy/plasma/pistol
 
 /datum/outfit/imperial/plasma
-	name = "Plasma Gunner"
+	name = "Imperial Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
 	suit_store = /obj/item/gun/energy/plasma/rifle
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
 
 /datum/outfit/imperial/veteran
-	name = "Veteran"
+	name = "Imperial Veteran"
 	belt = /obj/item/storage/belt/military/imperial/hotshot
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
