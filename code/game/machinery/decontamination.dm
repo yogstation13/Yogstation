@@ -133,7 +133,7 @@
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
 			sleep(8)
-			say("The decontamination process is completed, thank you for your patient.")
+			say("The decontamination process is completed, thank you for your patience.")
 			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 			if(mob_occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
