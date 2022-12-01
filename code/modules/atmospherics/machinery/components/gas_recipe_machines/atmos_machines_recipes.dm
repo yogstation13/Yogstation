@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	reaction_type = ENDOTHERMIC_REACTION
 	energy_release = 5500000
 	dangerous = TRUE
-	requirements = list(/datum/gas/bz = 200, /datum/gas/hypernoblium = 250, /datum/gas/tritium = 500, datum/gas/plasma = 5000, datum/gas/oxygen = 2500)
+	requirements = list(/datum/gas/bz = 200, /datum/gas/hypernoblium = 250, /datum/gas/tritium = 500, /datum/gas/plasma = 5000, /datum/gas/oxygen = 2500)
 	products = list(/obj/machinery/power/supermatter_crystal/shard = 1)
 
 /datum/gas_recipe/crystallizer/n2o_crystal
