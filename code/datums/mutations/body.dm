@@ -521,7 +521,6 @@
 			casing.BB.fire()
 
 			owner.drop_active_held_item()
-			return
 
 /datum/mutation/human/trigger_finger/on_losing(mob/living/carbon/human/owner)
 	if(..())
