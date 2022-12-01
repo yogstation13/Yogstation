@@ -90,7 +90,7 @@
 	item_state = "flagellation"
 	var/area/to_teleport_to
 
-/obj/item/melee/touch_attack/teleport/proc/try_teleport(atom/target)
+/obj/item/melee/touch_attack/teleport/proc/try_teleport(atom/target, mob/user)
 	var/list/turf/L = list()
 	for(var/turf/T in get_area_turfs(to_teleport_to.type))
 		if(!T.density)
@@ -105,8 +105,10 @@
 		to_chat(usr, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
 		return
 
-	if(target && target.buckled)
-		target.buckled.unbuckle_mob(target, force=1)
+	if (ismob(target))
+		var/mob/target_M = target
+		if(target_M && target_M.buckled)
+			target_M.buckled.unbuckle_mob(target_M, force=1)
 		
 	var/list/tempL = L
 	var/attempt = null
@@ -132,9 +134,9 @@
 	if(A)
 		if(isitem(A))
 			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
-		try_teleport(user)
+		try_teleport(user, user)
 		return ..()
-	try_teleport(target)
+	try_teleport(target, user)
 
 
 /obj/item/melee/touch_attack/fleshtostone
