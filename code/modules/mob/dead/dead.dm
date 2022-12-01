@@ -34,7 +34,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/forceMove(atom/destination)
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(destination)
-	if(is_secret_level(new_turf.z) && (!client?.holder))
+	if(is_secret_level(new_turf?.z) && (!client?.holder))
 		return
 	if (old_turf?.z != new_turf?.z)
 		onTransitZ(old_turf?.z, new_turf?.z)
