@@ -638,6 +638,12 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+	
+	for(var/image/I in infra_images)
+		if(client)
+			client.images.Remove(I)
+	infra_images = list()
+	remove_client_colour(/datum/client_colour/monochrome_infra)
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -647,8 +653,6 @@
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
 		sight |= G.vision_flags
-		if(G.infrared) // no sense in forcing infrared off
-			see_infrared = G.infrared
 		see_in_dark = max(G.darkness_view, see_in_dark)
 		if(G.invis_override)
 			see_invisible = G.invis_override
@@ -658,8 +662,18 @@
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
 
 	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		add_client_colour(/datum/client_colour/monochrome_infra)
+		var/image/A = null
 		see_infrared = TRUE
 		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+
+		if(client)
+			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.name = "white haze"
+				A.override = 1
+				infra_images |= A
+				client.images |= A
 
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
 		sight |= (SEE_MOBS)
