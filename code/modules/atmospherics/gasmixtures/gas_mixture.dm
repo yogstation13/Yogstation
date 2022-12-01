@@ -209,6 +209,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			//at this point, all requirements for the reaction are satisfied. we can now react()
 
 			. |= reaction.react(src, holder)
+			if (!reaction.bypass_nobstop)
+				continue
 			if (. & STOP_REACTIONS)
 				break
 

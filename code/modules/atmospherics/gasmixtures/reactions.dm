@@ -66,6 +66,7 @@ nobliumformation = 1001
 	var/priority = 100 //lower numbers are checked/react later than higher numbers. if two reactions have the same priority they may happen in either order
 	var/name = "reaction"
 	var/id = "r"
+	var/bypass_nobstop = FALSE
 
 /datum/gas_reaction/New()
 	init_reqs()
@@ -456,6 +457,7 @@ nobliumformation = 1001
 	priority = 1001 //Ensure this value is higher than nobstop
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
+	bypass_nobstop = TRUE	//Bypass nobsupress
 
 /datum/gas_reaction/nobliumformation/init_reqs()
 	min_requirements = list(
