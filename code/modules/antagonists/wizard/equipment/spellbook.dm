@@ -172,7 +172,7 @@
 
 /datum/spellbook_entry/teleport
 	name = "Teleport"
-	spell_type = /obj/effect/proc_holder/spell/targeted/area_teleport/teleport
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/teleport
 	category = "Mobility"
 
 /datum/spellbook_entry/mutate

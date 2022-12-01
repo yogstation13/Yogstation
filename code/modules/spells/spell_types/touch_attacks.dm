@@ -64,6 +64,30 @@
 
 	action_icon_state = "gib"
 
+/obj/effect/proc_holder/spell/targeted/touch/teleport
+	name = "Teleport"
+	desc = "This spell charges your hand with energy that can be used to translocate yourself, or victims."
+	hand_path = /obj/item/melee/touch_attack/teleport
+
+	school = "evocation"
+	charge_max = 600
+	clothes_req = TRUE
+	cooldown_min = 200 //100 deciseconds reduction per rank
+
+/obj/effect/proc_holder/spell/targeted/touch/teleport/ChargeHand(mob/living/carbon/user)
+	. = ..()
+	var/obj/item/melee/touch_attack/teleport/T = attached_hand
+	
+
+	if(!randomise_selection)
+		A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
+	else
+		A = pick(GLOB.teleportlocs)
+	if(!A)
+		return
+	T.to_teleport_to = GLOB.teleportlocs[A]
+	
+
 /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
 	name = "Flesh to Stone"
 	desc = "This spell charges your hand with the power to turn victims into inert statues for a long period of time."

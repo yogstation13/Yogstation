@@ -81,6 +81,62 @@
 	M.gib()
 	return ..()
 
+
+/obj/item/melee/touch_attack/teleport
+	name = "\improper teleporting touch"
+	desc = "This hand of mine glows with an awesome power!"
+	catchphrase = "GO AWAY!!"
+	icon_state = "flagellation"
+	item_state = "flagellation"
+	var/area/to_teleport_to
+
+/obj/item/melee/touch_attack/teleport/proc/try_teleport(atom/target)
+	var/list/turf/L = list()
+	for(var/turf/T in get_area_turfs(to_teleport_to.type))
+		if(!T.density)
+			var/clear = TRUE
+			for(var/obj/O in T)
+				if(O.density)
+					clear = FALSE
+					break
+			if(clear)
+				L+=T
+	if(!L.len)
+		to_chat(usr, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
+		return
+
+	if(target && target.buckled)
+		target.buckled.unbuckle_mob(target, force=1)
+		
+	var/list/tempL = L
+	var/attempt = null
+	var/success = FALSE
+	while(tempL.len)
+		attempt = pick_n_take(tempL)
+		do_teleport(target, attempt, channel = TELEPORT_CHANNEL_MAGIC)
+		if(get_turf(target) == attempt)
+			success = TRUE
+			break
+
+	if(!success)
+		do_teleport(target, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC)
+		playsound(get_turf(user), sound2, 50,1)
+
+/obj/item/melee/touch_attack/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity)
+		return
+	if(!user.can_speak_vocal())
+		to_chat(user, span_notice("You can't get the words out!"))
+		return
+	var/atom/A = M.anti_magic_check()
+	if(A)
+		if(isitem(A))
+			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
+		do_teleport(user)
+		return ..()
+	try_teleport(target)
+
+
 /obj/item/melee/touch_attack/fleshtostone
 	name = "\improper petrifying touch"
 	desc = "That's the bottom line, because flesh to stone said so!"
