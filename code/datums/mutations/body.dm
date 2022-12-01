@@ -513,14 +513,9 @@
 	var/obj/item/currently_held = owner.get_active_held_item()
 	if (istype(currently_held, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/casing = currently_held
-
-		if (casing.BB)
-			casing.BB.preparePixelProjectile(target, owner)	
-			casing.BB.firer = owner
-			casing.BB.fired_from = owner
-			casing.BB.fire()
-
-			owner.drop_active_held_item()
+		casing.fire_casing(target, owner, null, null, null, ran_zone(), 0, owner)
+		owner.drop_active_held_item()
+		casing.bounce_away()
 
 /datum/mutation/human/trigger_finger/on_losing(mob/living/carbon/human/owner)
 	if(..())
