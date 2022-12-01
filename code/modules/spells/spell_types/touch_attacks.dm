@@ -86,9 +86,7 @@
 	
 	if (!A)
 		return
-	var/area/thearea = GLOB.teleportlocs[A]
-
-	return thearea
+	T.to_teleport_to = GLOB.teleportlocs[A]
 	
 
 /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
