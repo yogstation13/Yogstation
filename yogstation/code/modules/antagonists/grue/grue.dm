@@ -20,7 +20,6 @@
 	name = "Fresh Grue"
 
 /datum/antagonist/grue/hatched/on_gain()
-	. = ..()
 	objectives += new /datum/objective/grue/grue_basic
 	
 /datum/objective/grue/grue_basic
@@ -39,6 +38,7 @@
 /datum/objective/grue/eat_sentients/New(text)
 	. = ..()
 	eat_objective = rand(2,3)
+	explanation_text = "Eat [eat_objective] sentient being[(eat_objective>1) ? "" : "s"]."
 
 /datum/objective/grue/eat_sentients/update_explanation_text()
 	. = ..()
@@ -58,6 +58,7 @@
 /datum/objective/grue/spawn_offspring/New(text)
 	. = ..()
 	spawn_objective = rand(1,2)
+	explanation_text = "Lay [(spawn_objective>1) ? "an egg" : "eggs"] and spawn [spawn_objective] offspring."
 
 /datum/objective/grue/spawn_offspring/update_explanation_text()
 	. = ..()

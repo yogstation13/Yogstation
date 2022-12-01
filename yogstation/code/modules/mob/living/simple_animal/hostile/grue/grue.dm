@@ -15,6 +15,8 @@
 
 	faction = list("grue") //Keep grues and grue eggs friendly to each other.
 
+	var/eggborn = FALSE
+
 	var/spawn_count = 0 //Eggs hatched.
 	var/eaten_count = 0 //Sentients eaten.
 
@@ -29,6 +31,17 @@
 	var/datum/action/cooldown/grue/moult/moult_action
 
 	see_in_dark = 128
+
+/mob/living/simple_animal/hostile/grue/mind_initialize()
+	..()
+	if(!mind.has_antag_datum(/datum/antagonist/grue))
+		if (eggborn)
+			mind.add_antag_datum(/datum/antagonist/grue/hatched)
+		else
+			mind.add_antag_datum(/datum/antagonist/grue)
+
+/mob/living/simple_animal/hostile/grue/do_attack_animation()
+	return
 
 /mob/living/simple_animal/hostile/grue/Initialize()
 	. = ..()
@@ -144,6 +157,7 @@
 		icon_dead = "moult2"
 		maxHealth = 50
 		next_life_stage = GRUE_ADULT
+	health = maxHealth
 	notransform = TRUE
 	addtimer(CALLBACK(src, .proc/moult, next_life_stage), 30 SECONDS)
 
@@ -193,7 +207,6 @@
 		name = "grue larva"
 		desc = "A scurrying thing that lives in the dark. It is still a larva."
 		maxHealth = 50
-		health = 50
 		melee_damage_lower = 3
 		melee_damage_upper = 5
 		icon_living = "gruespawn_living"
@@ -205,7 +218,6 @@
 		name = "grue"
 		desc = "A creeping thing that lives in the dark. It is still a juvenile."
 		maxHealth = 150
-		health = 150
 		melee_damage_lower = 15
 		melee_damage_upper = 20
 		icon_living = "grueling_living"
@@ -217,7 +229,6 @@
 		name = "grue"
 		desc = "A dangerous thing that lives in the dark."
 		maxHealth = 250
-		health = 250
 		melee_damage_lower = 20
 		melee_damage_upper = 30
 		icon_living = "grue_living"
@@ -227,7 +238,9 @@
 		moult_action.Remove(src)
 		lay_egg_action.Grant(src)
 		update_power()
+	life_stage = stage
 	icon_state = icon_living
+	health = maxHealth
 
 
 /mob/living/simple_animal/hostile/grue/death(gibbed)
@@ -238,6 +251,9 @@
 
 /mob/living/simple_animal/hostile/grue/gruespawn
 	life_stage = GRUE_SPAWN
+
+/mob/living/simple_animal/hostile/grue/gruespawn/eggborn
+	eggborn = TRUE
 
 /mob/living/simple_animal/hostile/grue/grueling
 	life_stage = GRUE_JUVENILE
@@ -276,6 +292,7 @@
 	var/mob/living/simple_animal/hostile/grue/dad = owner
 	if (!dad.can_moult())
 		to_chat(owner, span_warning("You can't moult!"))
+		return
 	
 	dad.try_moult()
 

@@ -56,11 +56,11 @@
 			if(G1)
 				G1.spawn_count++
 
-		var/mob/living/simple_animal/hostile/grue/gruespawn/G = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/grue/gruespawn/eggborn/G = new(get_turf(src))
 		candidate.mind.transfer_to(G, TRUE)
-		G.mind.add_antag_datum(/datum/antagonist/grue/hatched)
 		playsound((src), 'sound/effects/splat.ogg', 50, 1)
 		src.visible_message(span_notice("\The [name] bursts open!"))
+		death()
 	else
 		addtimer(CALLBACK(src, .proc/get_candidates), rand(30 SECONDS, 45 SECONDS))
 
