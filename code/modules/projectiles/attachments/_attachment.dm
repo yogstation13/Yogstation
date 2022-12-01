@@ -57,7 +57,7 @@
 	
 	if(G.loc == user)
 		set_user(user)
-		if(user.is_holding(src))
+		if(user.is_holding(G))
 			pickup_user(user)
 	G.attachment_flags |= attachment_type
 	G.current_attachments += src
