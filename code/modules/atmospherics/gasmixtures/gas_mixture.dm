@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	if(!length(reactions))
 		return
 	if (length(reactions) > 1)
-		reactions = sortTim(reactions, /proc/cmp_gas_reaction, TRUE)
+		reactions = sortTim(reactions, /proc/cmp_gas_reaction)
 	reaction_results = new
 	var/temp = return_temperature()
 	var/ener = thermal_energy()
