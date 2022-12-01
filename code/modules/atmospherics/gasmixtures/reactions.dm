@@ -58,6 +58,9 @@ nobliumformation = 1001
 			maxb = R.priority
 	return maxb - maxa
 
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
+	return B.priority - A.priority
+
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
