@@ -24,11 +24,12 @@
 /obj/effect/proc_holder/spell/targeted/area_teleport/before_cast(list/targets)
 	var/A = null
 
-	if(!randomise_selection)
-		A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
-	else
-		A = pick(GLOB.teleportlocs)
+	A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
+	
 	if(!A)
+		A = pick(GLOB.teleportlocs)
+	
+	if (!A)
 		return
 	var/area/thearea = GLOB.teleportlocs[A]
 

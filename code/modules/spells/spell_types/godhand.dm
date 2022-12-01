@@ -132,7 +132,7 @@
 	if(A)
 		if(isitem(A))
 			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
-		do_teleport(user)
+		try_teleport(user)
 		return ..()
 	try_teleport(target)
 
