@@ -13,7 +13,7 @@
 	response_harm   = "punches"
 	minbodytemp = 0
 
-	faction = "grue" //Keep grues and grue eggs friendly to each other.
+	faction = list("grue") //Keep grues and grue eggs friendly to each other.
 
 	var/spawn_count = 0 //Eggs hatched.
 	var/eaten_count = 0 //Sentients eaten.
@@ -25,14 +25,21 @@
 	var/moulting = FALSE
 
 	var/datum/component/light_damage/light_damage = null
+	var/datum/action/cooldown/grue/lay_egg/lay_egg_action
+	var/datum/action/cooldown/grue/moult/moult_action
+
+	see_in_dark = 128
 
 /mob/living/simple_animal/hostile/grue/Initialize()
 	. = ..()
 	light_damage = AddComponent(/datum/component/light_damage, 0.3, 4.5)
 	light_damage.damage_types = list(BURN)
 	light_damage.ramping_scaler = 1.5
-	set_life_stage(life_stage)
+	light_damage.speed_up_in_darkness = -1
 	add_client_colour(/datum/client_colour/grue)
+	moult_action = new
+	lay_egg_action = new
+	set_life_stage(life_stage)
 
 /mob/living/simple_animal/hostile/grue/get_status_tab_items()
 	. = ..()
@@ -45,8 +52,8 @@
 	if (eaten_count == last_seen_eaten_count)
 		return FALSE
 	last_seen_eaten_count = eaten_count
-	light_damage.heal_per_second = 4.5 * (eaten_count * 1.5)
-	light_damage.speed_up_in_darkness = -1 * (eaten_count * 0.5)
+	light_damage.heal_per_second = 4.5 + (eaten_count * 1.5)
+	light_damage.speed_up_in_darkness = -1 + -(eaten_count * 0.5)
 	melee_damage_lower = 20 + (eaten_count * 7)
 	melee_damage_upper = 30 + (eaten_count * 7)
 
@@ -161,6 +168,7 @@
 	if (spawn_count >= eaten_count)
 		to_chat(src, span_warning("You need to eat more before laying an egg!"))
 		return FALSE
+	return TRUE
 	
 /mob/living/simple_animal/hostile/grue/proc/try_lay_egg()
 	to_chat(src, span_notice("You begin to lay an egg. This will take 15 seconds."))
@@ -192,6 +200,7 @@
 		icon_dead  = "gruespawn_dead"
 		environment_smash = 0
 		ventcrawler = VENTCRAWLER_ALWAYS
+		moult_action.Grant(src)
 	else if (stage == GRUE_JUVENILE)
 		name = "grue"
 		desc = "A creeping thing that lives in the dark. It is still a juvenile."
@@ -203,6 +212,7 @@
 		icon_dead  = "grueling_dead"
 		environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 		ventcrawler = VENTCRAWLER_NONE
+		moult_action.Grant(src)
 	else if (stage == GRUE_ADULT)
 		name = "grue"
 		desc = "A dangerous thing that lives in the dark."
@@ -214,14 +224,16 @@
 		icon_dead  = "grue_dead"
 		environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 		ventcrawler = VENTCRAWLER_NONE
+		moult_action.Remove(src)
+		lay_egg_action.Grant(src)
 		update_power()
 	icon_state = icon_living
 
 
 /mob/living/simple_animal/hostile/grue/death(gibbed)
-	if(!gibbed)
-		playsound(src, 'sound/misc/grue_screech.ogg', 50, 1)
-	desc="[desc]<br>This one seems dead and lifeless."
+//	if(!gibbed)
+//		playsound(src, 'sound/misc/grue_screech.ogg', 50, 1)
+	//desc="[desc]<br>This one seems dead and lifeless."
 	..()
 
 /mob/living/simple_animal/hostile/grue/gruespawn
@@ -233,8 +245,16 @@
 /mob/living/simple_animal/hostile/grue/grueadult
 	life_stage = GRUE_ADULT
 
+/datum/action/cooldown/grue
+	button_icon = 'icons/mob/actions/backgrounds.dmi'
+	background_icon_state = "bg_grue"
+	icon_icon = 'icons/mob/actions/actions_grue.dmi'
+
 /datum/action/cooldown/grue/lay_egg
 	cooldown_time = 30 SECONDS
+	button_icon_state = "grue_egg"
+	name = "Lay Egg"
+	desc = "Lay an egg at your location. This will take about 15 seconds."
 
 /datum/action/cooldown/grue/lay_egg/Trigger()
 	. = ..()
@@ -246,7 +266,10 @@
 	dad.try_lay_egg()
 
 /datum/action/cooldown/grue/moult
-	cooldown_time = 30 SECONDS
+	cooldown_time = 30 SECONDS	
+	button_icon_state = "grue_moult"
+	name = "Moult"
+	desc = "Evolve into a higher state of life. This will take about 30 seconds."
 
 /datum/action/cooldown/grue/moult/Trigger()
 	. = ..()

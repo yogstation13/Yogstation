@@ -125,8 +125,8 @@
 /datum/client_colour/grue
 	colour = list(
 					1,0,0,1,
-					-1,0.2,0.2,1,
-	 				-1,0.2,0.2,1,
+					-1,0.5,0.5,1,
+	 				-1,0.5,0.5,1,
 		 			0,0,0,1,
 		 			0,0,0,0)
 	priority = INFINITY + 1
@@ -136,11 +136,11 @@
 	if(M.hud_used)
 		var/atom/movable/screen/plane_master/lighting/L = M.hud_used.plane_masters["[LIGHTING_PLANE]"]
 		L.blend_mode = BLEND_SUBTRACT
-		L.alpha = 64
+		//L.alpha = 64
 
 /datum/client_colour/grue/remove(var/mob/M)
 	. = ..()
 	if(M.hud_used)
 		var/atom/movable/screen/plane_master/lighting/L = M.hud_used.plane_masters["[LIGHTING_PLANE]"]
 		L.blend_mode = BLEND_MULTIPLY
-		L.alpha = 255
+		//L.alpha = 255

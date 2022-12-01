@@ -47,7 +47,7 @@
 
 
 /mob/living/simple_animal/grue_egg/proc/get_candidates()
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a juvenile grue?", ROLE_GRUE, null, null, 75, null /*src*/)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a juvenile grue?", ROLE_GRUE, null, null, 15 SECONDS, src)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/candidate = pick(candidates)
 

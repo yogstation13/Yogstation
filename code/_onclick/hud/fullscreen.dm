@@ -67,6 +67,7 @@
 	layer = FULLSCREEN_LAYER
 	plane = FULLSCREEN_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = NO_CLIENT_COLOR 
 	var/view = 7
 	var/severity = 0
 	var/show_when_dead = FALSE
@@ -155,21 +156,6 @@
 	icon = 'icons/mob/screen_gen.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
-
-/atom/movable/screen/fullscreen/color_vision
-	icon = 'icons/mob/screen_gen.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "flash"
-	alpha = 80
-
-/atom/movable/screen/fullscreen/color_vision/green
-	color = "#00ff00"
-
-/atom/movable/screen/fullscreen/color_vision/red
-	color = "#ff0000"
-
-/atom/movable/screen/fullscreen/color_vision/blue
-	color = "#0000ff"
 
 /atom/movable/screen/fullscreen/cinematic_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
