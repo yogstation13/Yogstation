@@ -11,8 +11,8 @@
 	minbodytemp = 0
 	maxbodytemp = 500
 	wander = FALSE
-	health = 10
-	maxHealth = 10
+	health = 25
+	maxHealth = 25
 	attacktext = "shocks"
 	melee_damage_type = BURN
 	melee_damage_lower = 2
