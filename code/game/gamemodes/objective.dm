@@ -519,6 +519,19 @@ GLOBAL_LIST_EMPTY(objectives)
 			return FALSE
 	return TRUE
 
+/datum/objective/escape/no_team_escape
+	team_explanation_text = "Have at least one member of your team escape on a shuttle or pod alive, without being in custody."
+
+/datum/objective/escape/no_team_escape/check_completion()
+	if(..())
+		return TRUE
+	// Require all owners escape safely.
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		if(considered_escaped(M))
+			return TRUE
+	return FALSE
+
 /datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
@@ -530,6 +543,8 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!istype(T) || isipc(T.current))
 			return FALSE
 	return TRUE
+
+
 
 /datum/objective/escape/escape_with_identity
 	name = "escape with identity"
