@@ -23,6 +23,7 @@
 	var/mob/living/carbon/human/H = usr
 	if (H)
 		if (!istype(H.get_active_held_item(), /obj/item/melee/cultblade))
+			to_chat(usr, span_cultitalic("We need our dagger in hand to use this!"))
 			return
 	cultist_commune(usr, input)
 
