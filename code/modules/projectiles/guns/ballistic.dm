@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 /obj/item/enloudener
 	name = "bikehorn \"suppressor\""
-	desc = "Advanced clown research has found that guns that honk shoot harder, faster and more accurately. (they don't)"
+	desc = "Advanced clown research has found that guns that honk shoot harder, faster and more accurately. (They don't)"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "bikehorn"
 	w_class = WEIGHT_CLASS_TINY
