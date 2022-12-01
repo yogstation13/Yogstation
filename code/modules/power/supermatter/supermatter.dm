@@ -2,7 +2,7 @@
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
 
-/// How much heat before SM prints warnings
+/// How much heat before SM prints warnings 
 #define CRITICAL_TEMPERATURE 10000
 
 /// How much energy before SM prints tesla warnings
