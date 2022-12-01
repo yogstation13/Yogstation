@@ -721,7 +721,8 @@ GLOBAL_LIST_EMPTY(possible_items)
 	for(var/datum/mind/M in owners)
 		if(!isliving(M.current))
 			continue
-
+		if (!considered_escaped(M))
+			continue
 		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
 
 		for(var/obj/I in all_items) //Check for items
@@ -734,7 +735,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
-	if (istype(team, /datum/team/infiltrator))
+	if (istype(team, /datum/team/infiltrator)) // ????????? MAKE A SUBTYPE
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
 				for (var/obj/item/I in A.GetAllContents()) //Check for items
@@ -748,7 +749,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 							return TRUE
 					CHECK_TICK
 			CHECK_TICK
-		CHECK_TICK
+		CHECK_TICK // :dead:
 	return FALSE
 
 GLOBAL_LIST_EMPTY(possible_items_special)
