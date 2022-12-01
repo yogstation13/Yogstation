@@ -122,7 +122,7 @@
 
 	if(!success)
 		do_teleport(target, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC)
-		playsound(get_turf(user), sound2, 50,1)
+		playsound(get_turf(user), 'sound/magic/teleport_app.ogg', 50,1)
 
 /obj/item/melee/touch_attack/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity)
@@ -130,12 +130,14 @@
 	if(!user.can_speak_vocal())
 		to_chat(user, span_notice("You can't get the words out!"))
 		return
-	var/atom/A = M.anti_magic_check()
-	if(A)
-		if(isitem(A))
-			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
-		try_teleport(user, user)
-		return ..()
+	if (ismob(target))
+		var/mob/M = target
+		var/atom/A = M.anti_magic_check()
+		if(A)
+			if(isitem(A))
+				target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
+			try_teleport(user, user)
+			return ..()
 	try_teleport(target, user)
 
 
