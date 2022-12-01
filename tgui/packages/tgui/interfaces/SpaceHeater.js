@@ -23,7 +23,7 @@ export const SpaceHeater = (props, context) => {
                 icon={data.on ? 'power-off' : 'times'}
                 content={data.on ? 'On' : 'Off'}
                 selected={data.on}
-                disabled={!data.hasPowercell}
+                disabled={!data.hasPowercell || (!data.on && data.powerLevel <= 0)}
                 onClick={() => act('power')} />
             </Fragment>
           )}>
@@ -71,8 +71,8 @@ export const SpaceHeater = (props, context) => {
                     target: value,
                   })} />
               ) || (
-                data.targetTemp + '°C'
-              )}
+                  data.targetTemp + '°C'
+                )}
             </LabeledList.Item>
             <LabeledList.Item label="Mode">
               {!data.open && 'Auto' || (
