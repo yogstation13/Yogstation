@@ -1,0 +1,7 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Melee damage has been reduced to 15-25"
+  - tweak: "Health increased 40 to 100"
+  - tweak: "Passive healing reduced to 0.5"
+  - tweak: "No longer shitting out rad when it is dead"
