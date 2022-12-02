@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Preternis and IPC no longer get put to sleep by regen coma"
