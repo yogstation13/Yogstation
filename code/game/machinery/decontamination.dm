@@ -118,14 +118,14 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject1), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject_emagged), 12)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject2), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject), 12)
 
-/obj/machinery/decontamination_unit/proc/decon_eject1()
+/obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
 	say("ERROR: PLEASE CONTACT SUPPORT!!")
 	if(mob_occupant)
@@ -141,7 +141,7 @@
 	if(occupant)
 		dump_mob()
 
-/obj/machinery/decontamination_unit/proc/decon_eject2()
+/obj/machinery/decontamination_unit/proc/decon_eject()
 	var/mob/living/mob_occupant = occupant
 	say("The decontamination process is completed, thank you for your patient.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
