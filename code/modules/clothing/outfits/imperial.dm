@@ -65,7 +65,7 @@
 
 /obj/item/chainsaw_sword
 	name = "imperial chainsword"
-	desc = "Cuts through flesh, bone, and most types of metal as if it wasnt there."
+	desc = "Cuts through flesh, bone, and most types of metal as if it wasn't there."
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
