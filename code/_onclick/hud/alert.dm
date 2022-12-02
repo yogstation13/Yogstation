@@ -543,7 +543,7 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 
 /atom/movable/screen/alert/ethereal_overcharge
 	name = "Blood Overcharge"
-	desc = "Your blood's electric charge is becoming dangerously high, find an outlet for your energy. Use Grab Intent on an APC to channel your energy into it."
+	desc = "Your blood's electric charge is becoming dangerously high, don't intake any more energy. You will discharge over time."
 	icon_state = "ethereal_overcharge"
 
 //Need to cover all use cases - emag, illegal upgrade module, malf AI hack, traitor cyborg
