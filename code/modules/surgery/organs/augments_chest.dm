@@ -353,3 +353,10 @@
 			time_on += 5
 			owner.adjustFireLoss(5)
 			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
+
+/obj/item/organ/cyberimp/chest/cooling_intake
+	name = "cooling intake"
+	desc = "An external port that can intake air from the environment or coolant from a tank."
+	icon_state = "implant_mask"
+	slot = ORGAN_SLOT_BREATHING_TUBE
+	w_class = WEIGHT_CLASS_TINY

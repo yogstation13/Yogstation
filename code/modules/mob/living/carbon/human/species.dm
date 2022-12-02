@@ -1324,6 +1324,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			hunger_rate *= 0.75 //hunger rate reduced by about 25%
 		if(HAS_TRAIT(H, TRAIT_EAT_MORE))
 			hunger_rate *= 3 //hunger rate tripled
+		if(HAS_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH))
+			H.nutrition = min(H.nutrition, NUTRITION_LEVEL_MOSTLY_FULL) //capped, can never be truly full
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
@@ -1925,9 +1927,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
 		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-2)
+			H.adjust_fire_stacks(-3)
 		else
-			H.adjust_fire_stacks(-1)
+			H.adjust_fire_stacks(-2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())

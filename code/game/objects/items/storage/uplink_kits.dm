@@ -25,7 +25,7 @@
 	name = initial(name)
 
 /obj/item/storage/box/syndicate/bundle_A/PopulateContents()
-	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "guns" = 2, "screwed" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sabotage" = 3, "sniper" = 1, "metaops" = 1)))
+	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "guns" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sabotage" = 3, "sniper" = 1, "metaops" = 1)))
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
@@ -57,15 +57,15 @@
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/jammer(src) //5 TC
 
-		if("guns") //Total cost of 31 TC
+		if("guns") //Total cost of 29 TC
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
-			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/a357(src) //1 TC for two
+			new /obj/item/ammo_box/a357(src) //See above
+			new /obj/item/ammo_box/a357(src) //1 TC for two
+			new /obj/item/ammo_box/a357(src) //See above
 			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
 			new /obj/item/ammo_box/magazine/m10mm(src) //See above
 			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
@@ -74,14 +74,6 @@
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
 			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
-
-		if("screwed") //Total of 31 TC
-			new /obj/item/sbeacondrop/bomb(src) //11 TC
-			new /obj/item/grenade/syndieminibomb(src) //6 TC
-			new /obj/item/sbeacondrop/powersink(src) //8 TC
-			new /obj/item/clothing/suit/space/syndicate/black/red(src) //Total of 4 TC
-			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src) //See above
-			new /obj/item/encryptionkey/syndicate(src) //2 TC
 
 		if("murder") //Total cost of 28 TC
 			new /obj/item/melee/transforming/energy/sword/saber(src) //8 TC
@@ -125,11 +117,11 @@
 			new /obj/item/pizzabox/bomb(src) //6 TC
 			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
-		if("sniper") //30 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
+		if("sniper") //28 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
 			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
 			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
-			new /obj/item/ammo_box/a357/heartpiercer(src) //3 TC
+			new /obj/item/ammo_box/a357/heartpiercer(src) //1 TC
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
@@ -147,11 +139,11 @@
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
 	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
-		if("v") //Big Boss. Total of ~28 TC.
+		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
 			new /obj/item/clothing/shoes/combat(src) //Drip is essential. Free
-			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 4 TC
+			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 2 TC
 			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
 			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
@@ -179,15 +171,17 @@
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
-		if("darklord") //This is now basically just a wizard instead of just desword: the kit. Hard to quantify the TC cost of spells, but taking SP * 4 would yield a theoretical TC of 31-ish
+		if("darklord") //This is now basically just a wizard instead of just desword: the kit. Hard to quantify the TC cost of spells, but taking SP * 4 would yield a theoretical TC of 27-ish
 			new /obj/item/melee/transforming/energy/sword/saber/red(src) //8 TC. A red lightsaber. Enough said
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
 			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
-			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
-			new /obj/item/clothing/head/wizard/black(src) //Works as a fix for the robe check now until I think of something new
+			new /obj/item/clothing/head/yogs/sith_hood(src) //The DRIP
+			new /obj/item/clothing/neck/yogs/sith_cloak(src) //See above
+			new /obj/item/clothing/suit/yogs/armor/sith_suit(src) //See above
+			new /obj/item/clothing/shoes/combat(src) //See above
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
-			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
-			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
+			new /obj/item/book/granter/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
+			new /obj/item/book/granter/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
 			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
@@ -578,6 +572,20 @@
 /obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm/sp(src)
+
+/obj/item/storage/box/syndie_kit/revolverammo
+	real_name = ".357 speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolverammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/a357(src)
+
+/obj/item/storage/box/syndie_kit/revolvershotgunammo
+	real_name = ".357 Ironfeather speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/a357(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"

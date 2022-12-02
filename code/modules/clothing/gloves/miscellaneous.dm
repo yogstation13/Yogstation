@@ -29,7 +29,7 @@
 	if(slot == SLOT_GLOVES)
 		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
-			boss.physiology.do_after_speed *= 0.9 //Does stuff 10% faster
+			boss.physiology.do_after_speed *= 0.8 //Does stuff 20% faster
 			worn = TRUE
 
 /obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
@@ -37,7 +37,7 @@
 	var/mob/living/carbon/human/boss = user
 	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
-		boss.physiology.do_after_speed /= 0.9
+		boss.physiology.do_after_speed /= 0.8
 		worn = FALSE
 
 /obj/item/clothing/gloves/botanic_leather
