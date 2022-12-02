@@ -24,7 +24,7 @@
 	name = initial(name)
 
 /obj/item/storage/box/syndicate/bundle_A/PopulateContents()
-	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "guns" = 2, "screwed" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sabotage" = 3, "sniper" = 1, "metaops" = 1)))
+	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "guns" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sabotage" = 3, "sniper" = 1, "metaops" = 1)))
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
@@ -73,14 +73,6 @@
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
 			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
-
-		if("screwed") //Total of 31 TC
-			new /obj/item/sbeacondrop/bomb(src) //11 TC
-			new /obj/item/grenade/syndieminibomb(src) //6 TC
-			new /obj/item/sbeacondrop/powersink(src) //8 TC
-			new /obj/item/clothing/suit/space/syndicate/black/red(src) //Total of 4 TC
-			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src) //See above
-			new /obj/item/encryptionkey/syndicate(src) //2 TC
 
 		if("murder") //Total cost of 28 TC
 			new /obj/item/melee/transforming/energy/sword/saber(src) //8 TC
