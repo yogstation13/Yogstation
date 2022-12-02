@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds IPC coolant tanks"
+  - rscadd: "IPCs now smoke when overheating"
+  - tweak: "IPCs now use the air they \"breathe\" to cool down, and do so more often to keep temperature stable"
+  - imageadd: "adds sprite for IPC coolant tank"
