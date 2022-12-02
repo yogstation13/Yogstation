@@ -52,7 +52,7 @@
 	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats. This one feels lighter for some reason..." // No, you cant order ERT strength armor
 
 /obj/item/storage/belt/military/imperial
-	name = "imperial Belt"
+	name = "Imperial Belt"
 	desc = "A well worn belt, standard issue among imperial guard forces."
 	icon_state = "guard_belt"
 	item_state = "guard_belt"
