@@ -1,0 +1,5 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new sole survivor objective where if two (or more) traitors get hijack, the non-first traitor (or traitors) will get an objective to be the only survivor on a shuttle."
+  - tweak: "Changes the exchange objective minimum traitor count from 8 to 6."
