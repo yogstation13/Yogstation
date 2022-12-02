@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Spare webbing, hud, gloves, and headset to mining medic locker"
+  - rscdel: "Pickaxe, earmuffs, and misplaced medkit from mining medic locker"
+  - tweak: "Mining medic now gets nitrile gloves instead of latex"
