@@ -172,6 +172,10 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		if(user.is_holding(src))
+			A.pickup_user(user)
+		else
+			A.equip_user(user)
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
@@ -631,6 +635,7 @@
 	..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		A.pickup_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Grant(user)
 	if(azoom)
@@ -640,6 +645,7 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user()
+		A.drop_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Remove(user)
 	if(azoom)
