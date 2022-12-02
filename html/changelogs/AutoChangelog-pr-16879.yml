@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added infrared weapon sights, locked behind the Weapon Development Technology node"
-  - bugfix: "Laser sights icons update properly now"
-  - bugfix: "Laser sights now play their sound properly when turned on/off on a gun"

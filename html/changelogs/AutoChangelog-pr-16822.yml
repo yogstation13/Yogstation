@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Preternis can now select one of a few colours to be"
-  - tweak: "Preternis water damage now scales based on degree of wetness"
-  - imageadd: "added duplicate limb icons that will be replaced when new ones get made"

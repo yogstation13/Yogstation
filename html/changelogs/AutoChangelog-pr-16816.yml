@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - mapping: "Moves GaxStation Xenobiology + Secondary AI Core + Toxins Launch down to give more maintenance room"
-  - mapping: "Tweaks various GaxStation Service rooms to have more things + better layout"
-  - mapping: "More Water tanks + helpful lockers around GaxStation"
-  - mapping: "Moves escape more north to give more maint room + redoes EVA"

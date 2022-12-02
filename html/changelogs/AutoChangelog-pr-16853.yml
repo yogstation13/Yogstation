@@ -1,4 +1,0 @@
-author: "Simplehorror"
-delete-after: true 
-changes: 
-  - tweak: "job gpses start with name instead of GPS0"

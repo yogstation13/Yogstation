@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds bikehorn suppressor"
-  - imageadd: "adds icon for the bikehorn suppressor item and an overlay version for all existing suppressor variants"

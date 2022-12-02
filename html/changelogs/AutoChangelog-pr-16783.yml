@@ -1,6 +1,0 @@
-author: " Carp'sie"
-delete-after: true 
-changes: 
-  - rscadd: "Added a carp signal to the white whale syndikit and at least 100 space carps"
-  - bugfix: "fixed lack of space carps in the white whale syndikit"
-  - tweak: "White grail syndikit weight reduced to 1 from 2, trident canfit on belt and magspear quiver fit on pocket slots"
