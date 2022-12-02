@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Lipoplasty checks all retractor tools, not just the retractor itself"
-  - tweak: "Lipoplasty now uses different tools"

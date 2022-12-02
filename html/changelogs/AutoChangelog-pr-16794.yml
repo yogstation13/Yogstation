@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "vampire revive now replaces the head. This is important, apparently, for being revived. I assume it was like this because it was copied from changeling revive, but changelings can put their heads back on and vampires can't."
-  - bugfix: "vampire revive no longer fails if the head is not present"
