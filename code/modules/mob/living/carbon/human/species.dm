@@ -1927,9 +1927,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
 		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-2)
+			H.adjust_fire_stacks(-3)
 		else
-			H.adjust_fire_stacks(-1)
+			H.adjust_fire_stacks(-2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
