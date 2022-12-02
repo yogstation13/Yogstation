@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a weakened version of armor polish for xenobio to make!"
+  - rscdel: "Adamantine armor is no longer available to xenobiologists."
+  - tweak: "Also armor polish has more variables for admins to play with"

@@ -1,0 +1,10 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Makes .357 Ironfeather not able to two shot at point blank"
+  - tweak: ".357 Metalshock tesla arc does even more damage now (about 33 burn on first target)"
+  - tweak: ".357 Heartpiercer has just slightly less AP to the point where it performs the same against bulletproof armor as 10mm AP HOWEVER it still 3-shots normal armor"
+  - tweak: ".357 Wallstake now does 36 damage instead of 25 since wallstun no longer exists so it's more of a meme ammo now"
+  - tweak: "You now purchase .357 and .357 Ironfeather speed loaders in pairs for 1 TC"
+  - tweak: "All other single .357 speed loaders now cost 1 TC"
+  - tweak: ".38 modified no longer has absurd spread and as slow of a fire rate; its reduced fire rate should still do less DPS than .38, even regarding lethal damage"

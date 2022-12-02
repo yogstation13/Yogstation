@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "makes dead icon on medical HUDs no longer give away fake death"
+  - bugfix: "fixes double deathgasp from death simulation and regen coma"
+  - bugfix: "fixes health on medical HUDs not updating properly"

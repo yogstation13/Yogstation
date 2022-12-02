@@ -834,7 +834,7 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
-		if(stat != DEAD)
+		if(stat != DEAD && !HAS_TRAIT(src, TRAIT_FAKEDEATH))
 			. = 1
 			if(shown_health_amount == null)
 				shown_health_amount = health
@@ -884,6 +884,7 @@
 	update_damage_hud()
 	update_health_hud()
 	update_stamina_hud()
+	med_hud_set_health()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed

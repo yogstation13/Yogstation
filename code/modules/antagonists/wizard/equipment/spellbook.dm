@@ -119,10 +119,6 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
-/datum/spellbook_entry/disintegrate
-	name = "Disintegrate"
-	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
-
 /datum/spellbook_entry/pacify
 	name = "Pacify"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify

@@ -113,6 +113,7 @@
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 100, TRUE)
 
 /obj/item/mail/attack_self(mob/user)
+	var/recipient_real = FALSE // Whether there is a recipient
 	if(recipient_ref)
 		var/datum/mind/recipient = recipient_ref.resolve()
 		// If the recipient's mind has gone, then anyone can open their mail
@@ -120,6 +121,7 @@
 		if(recipient && recipient != user?.mind)
 			to_chat(user, span_notice("You can't open somebody else's mail! That's <em>illegal</em>!"))
 			return
+		recipient_real = recipient // This will be truthy if recipient resolved successfully
 
 	to_chat(user, span_notice("You start to unwrap the package..."))
 	if(!do_after(user, 1.5 SECONDS, target = user))
@@ -128,6 +130,9 @@
 	for (var/content in contents)
 		user.put_in_hands(content)
 	playsound(loc, 'sound/items/poster_ripped.ogg', 50, TRUE)
+	if(recipient_real) // If this is official NT mail for someone, give cargo money for delivering it successfully
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		D?.adjust_money(150)
 	qdel(src)
 
 /obj/item/mail/examine_more(mob/user)

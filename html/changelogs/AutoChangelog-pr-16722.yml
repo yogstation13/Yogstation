@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: ".38 now does 25 damage with -40 AP, it has lost its stamina damage"
+  - tweak: ".38 experimental rounds raised to 20 damage as a result, though they retain the negative AP"
+  - experiment: "Police brutality."

@@ -69,6 +69,7 @@
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	box = /obj/item/storage/box/survival_mining
+	ipc_box = /obj/item/storage/box/ipc/miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 
