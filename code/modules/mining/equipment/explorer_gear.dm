@@ -103,10 +103,10 @@
 	var/turf/T = get_turf(src)
 	if(is_station_level(T.z))
 		max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-		armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
+		getArmor(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
 	else
 		max_heat_protection_temperature = initial(src.max_heat_protection_temperature)
-		armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)		
+		getArmor(initial(src.armor))		
 
 	var/mob/living/carbon/C = loc
 	if(istype(C) && prob(2)) //cursed by bubblegum
@@ -141,10 +141,10 @@
 	var/turf/T = get_turf(src)
 	if(is_station_level(T.z))
 		max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-		armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 60, ACID = 100)
+		getArmor(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
 	else
 		max_heat_protection_temperature = initial(src.max_heat_protection_temperature)
-		armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+		getArmor(initial(src.armor))
 
 /obj/item/clothing/head/helmet/space/hostile_environment/update_icon()
 	..()
