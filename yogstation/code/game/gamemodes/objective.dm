@@ -4,4 +4,3 @@ GLOBAL_LIST_INIT(infiltrator_objective_areas, typecacheof(list(/area/yogs/infilt
 	if(..())
 		return TRUE
 	return !considered_alive(target)
-	
