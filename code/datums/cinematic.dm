@@ -211,13 +211,13 @@
 
 /datum/cinematic/cult_fail/content()
 	screen.icon_state = "station_intact"
-	sleep(20)
+	sleep(2 SECONDS)
 	cinematic_sound(sound('sound/creatures/narsie_rises.ogg'))
-	sleep(60)
+	sleep(6 SECONDS)
 	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
-	sleep(10)
+	sleep(1 SECONDS)
 	cinematic_sound(sound('sound/magic/demon_dies.ogg'))
-	sleep(30)
+	sleep(3 SECONDS)
 	special()
 	
 /datum/cinematic/nuke_annihilation
