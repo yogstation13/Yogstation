@@ -1047,7 +1047,7 @@
 	else
 		set_light(0)
 		force_wielded -= 12 //Back to 4 + 24 = 28
-		armour_penetration = 50
+		armour_penetration = initial(armour_penetration)
 	update_icon()
 
 /obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
