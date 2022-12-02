@@ -623,7 +623,7 @@
 
 /datum/supply_pack/security/armory/imperialammo
 	name = "Imperial Ammunition Crate"
-	desc = "The might of the Emperor is at your command! Contains spare magazines for imperial weponry. Requires Armory access to open."
+	desc = "The might of the Emperor is at your command! Contains spare magazines for Imperial weaponry. Requires Armory access to open."
 	cost = 6000 // its just ammo
 	contraband = TRUE
 	contains = list(
