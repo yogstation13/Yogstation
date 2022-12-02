@@ -38,7 +38,7 @@
 
 /obj/item/clothing/suit/armor/imperial
 	name = "flak Vest"
-	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats."
+	desc = "A set of standard issue flak armor for Imperial Guardsmen. Protects you fairly well from most threats."
 	icon_state = "guard_armor"
 	item_state = "guard_armor"
 	blood_overlay_type = "armor"
