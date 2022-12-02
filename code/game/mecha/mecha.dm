@@ -582,7 +582,7 @@
 			return
 		if(equipment_disabled)
 			return
-		target.mech_melee_attack(src)
+		target.mech_melee_attack(src, TRUE)
 		melee_can_hit = FALSE
 		spawn(melee_cooldown)
 			melee_can_hit = TRUE
@@ -734,7 +734,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src)
+					obstacle.mech_melee_attack(src, FALSE)	//Non-equipment melee attack
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
