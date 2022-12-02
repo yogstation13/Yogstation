@@ -19,7 +19,7 @@
 
 /obj/item/clothing/under/imperial
 	name = "guardsman fatigues"
-	desc = "A set of kahki fatigues. Standard issue for imperial guardsmen"
+	desc = "A set of khaki fatigues. Standard issue for Imperial Guardsmen"
 	icon_state = "guard_uniform"
 	item_state = "guard_uniform"
 
