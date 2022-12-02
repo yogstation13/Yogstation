@@ -310,11 +310,11 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/adamantine
 	colour = "adamantine"
-	effect_desc = "Solidifies into a set of adamantine armor."
+	effect_desc = "Creates a small pile of clothing-reinforcing adamantine dust."
 
 /obj/item/slimecross/chilling/adamantine/do_effect(mob/user)
-	user.visible_message(span_notice("[src] creaks and breaks as it shifts into a heavy set of armor!"))
-	new /obj/item/clothing/suit/armor/heavy/adamantine(get_turf(user))
+	user.visible_message(span_notice("[src] suddenly falls apart, forming a small amount of fine greenish dust!"))
+	new /obj/item/armorpolish/adamantine(get_turf(user))
 	..()
 
 /obj/item/slimecross/chilling/rainbow
