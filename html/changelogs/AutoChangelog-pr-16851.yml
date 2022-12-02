@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed surgery computer and nanites hub not recognizing ruin tech. Now if there is a R&D Ruin type console nearby 20 tiles it will get its own ruin techs otherwise get station techs"
+  - rscadd: "ruin_tech will generate 10 nanite points per tick"

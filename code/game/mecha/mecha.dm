@@ -11,8 +11,6 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
-#define EVA_MODIFIER 0.8
-
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -584,7 +582,7 @@
 			return
 		if(equipment_disabled)
 			return
-		target.mech_melee_attack(src)
+		target.mech_melee_attack(src, TRUE)
 		melee_can_hit = FALSE
 		spawn(melee_cooldown)
 			melee_can_hit = TRUE
@@ -673,18 +671,18 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechsteprand()
 	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * (check_eva() ? EVA_MODIFIER : 1)))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
 			take_damage(2, BRUTE)
-		can_move = world.time + step_in * (check_eva() ? EVA_MODIFIER : 1)
+		can_move = world.time + step_in * check_eva()
 		return TRUE
 	return FALSE
 
@@ -728,7 +726,7 @@
 					flick(phase_state, src)
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
-				sleep(step_in * (check_eva() ? 0.8 : 1)*3)
+				sleep(step_in * check_eva()*3)
 				can_move = TRUE
 	else
 		if(..()) //mech was thrown
@@ -736,7 +734,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src)
+					obstacle.mech_melee_attack(src, FALSE)	//Non-equipment melee attack
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
@@ -1289,9 +1287,18 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
 	return FALSE
 
-// Is the occupant wearing a pilot suit?
+// Checks the pilot and their clothing for mech speed buffs
 /obj/mecha/proc/check_eva()
+	var/evaNum = 1
 	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
-		return istype(H.w_uniform, /obj/item/clothing/under/mech_suit)
-	return FALSE
+		var/mob/living/carbon/human/H = occupant //if the person is skilled
+		var/datum/component/mech_pilot/skill = H.GetComponent(/datum/component/mech_pilot)
+		if(skill)
+			evaNum *= skill.piloting_speed
+
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_WEAR_SUIT) //if the suit directly assists the pilot
+		if(clothes)
+			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
+			if(MP)
+				evaNum *= MP.piloting_speed
+	return evaNum

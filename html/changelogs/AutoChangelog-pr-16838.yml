@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Fixes some mistakes in AsteroidStation that I messed up"

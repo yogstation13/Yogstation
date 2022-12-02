@@ -99,8 +99,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
 			magazine.caliber = "357"
-			fire_delay = 12 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
-			spread = 25 //Can be wildly inaccurate randomly
+			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder. Plus, if you perfectly slam fire with the .38 and hit all your shots, you (should) do more lethal damage than using .357 at this fire_delay
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -115,7 +114,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return
 			magazine.caliber = "38"
-			fire_delay = 0 //Fixed again
+			fire_delay = 0 //Blessed mag dump
 			spread = 0
 			fire_sound = 'sound/weapons/revolver38shot.ogg'
 			desc = initial(desc)

@@ -1,0 +1,4 @@
+author: "Firewolf34"
+delete-after: true 
+changes: 
+  - bugfix: "Miners will not be overcompensated for gems anymore"

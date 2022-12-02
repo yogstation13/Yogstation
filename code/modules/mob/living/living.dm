@@ -1158,7 +1158,10 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
+	if(fire_stacks > 0)	//don't let people on fire instantly get -20 fire_stacks, but still let them extinguish themselves. Stops preternis from hurting themselves for trying to put out fire
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -1, 20)
+	else
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 

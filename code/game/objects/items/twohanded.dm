@@ -740,6 +740,7 @@
 	icon_state = "trident"
 	name = "trident"
 	desc = "A trident recovered from the ruins of atlantis"
+	slot_flags = ITEM_SLOT_BELT
 	force = 14
 	throwforce = 23
 	force_wielded = 6
@@ -981,6 +982,7 @@
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
+	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
 	sharpness = SHARP_NONE //Blunt, breaks bones
 	wound_bonus = -10
 	bare_wound_bonus = 15
@@ -998,6 +1000,11 @@
 	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+
+/obj/item/twohanded/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
+		final_block_chance = 0 //Please show me how you can block a bullet with an industrial hammer I would LOVE to see it
+	return ..()
 
 /obj/item/twohanded/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)
@@ -1032,12 +1039,16 @@
 /obj/item/twohanded/vxtvulhammer/AltClick(mob/living/carbon/user)
 	charge_hammer(user)
 
-/obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite
+/obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite + damage
 	supercharged = !supercharged
 	if(supercharged)
 		set_light(2) //Glows when charged
+		force_wielded += 12 //4 + 24 + 22 = 40 total damage because fuck you
+		armour_penetration = 100
 	else
 		set_light(0)
+		force_wielded -= 12 //Back to 4 + 24 = 28
+		armour_penetration = initial(armour_penetration)
 	update_icon()
 
 /obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)

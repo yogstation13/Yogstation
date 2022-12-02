@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "brig phys now has playtime and account age requirements"
