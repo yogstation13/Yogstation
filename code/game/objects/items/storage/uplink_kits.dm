@@ -146,11 +146,11 @@
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
 	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
-		if("v") //Big Boss. Total of ~28 TC.
+		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
 			new /obj/item/clothing/shoes/combat(src) //Drip is essential. Free
-			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 4 TC
+			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 2 TC
 			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
 			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
