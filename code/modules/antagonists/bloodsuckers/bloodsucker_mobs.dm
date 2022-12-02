@@ -155,9 +155,9 @@
 	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
-		bloodsucker.adjustBruteLoss(200)
 		if(bloodsucker.status_flags & GODMODE)
 			bloodsucker.status_flags -= GODMODE
+		bloodsucker.adjustBruteLoss(200)
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
 	if(maxHealth > target.maxHealth / 4 + health)

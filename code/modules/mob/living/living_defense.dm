@@ -99,8 +99,8 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M)
-	if(M.selected?.melee_override)
+/mob/living/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
 	else if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"

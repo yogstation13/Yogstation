@@ -791,6 +791,10 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
+/obj/item/clothing/under/mech_suit/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/mech_pilot, 0.8)
+
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
 	desc = "A white mech pilot's suit. Very fetching."

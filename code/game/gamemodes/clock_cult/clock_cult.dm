@@ -363,6 +363,10 @@ Credit where due:
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
 		. += span_danger("You can't understand any of the words on [src].")
 
+/obj/item/paper/servant_primer/infirmarypaper
+	name = "IOU"
+	info = "We pawned the sleepers and medkits in here off for some tomato sauce so we wouldn't have to eat dry pasta anymore. Shouldn't be an issue, if you need to heal yourself or a fellow servant cast Sentinel's Compromise or use a Vitality Matrix."
+
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"
 	lootdoubles = 0
