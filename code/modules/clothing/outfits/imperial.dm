@@ -24,7 +24,7 @@
 	item_state = "guard_uniform"
 
 /obj/item/clothing/shoes/combat/imperial
-	name = "flak Boots"
+	name = "flak boots"
 	desc = "A pair of heavy duty armored shoes, providing protection up to the knees. Standard issue in the Imperial Guard"
 	icon_state = "guard_shoes"
 	item_state = "guard_shoes"
