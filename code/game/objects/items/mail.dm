@@ -166,6 +166,15 @@
 			else
 				goodies += job_goodies
 
+	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_BADMAIL))	//reduce the weight of every item by 10
+		for(var/item in goodies)
+			goodies[item] -= 10
+			if(goodies[item] <= 0)	 //remove everything with a weight below 0
+				goodies -= item
+
+	if(!goodies) //if everything was removed for some reason
+		return FALSE 
+
 	for(var/iterator in 1 to goodie_count)
 		var/target_good = pickweight(goodies)
 		var/atom/movable/target_atom = new target_good(src)
