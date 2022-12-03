@@ -237,6 +237,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["accent"], accent) // Accents, too!
 
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
+
+	READ_FILE(S["miner_dwarf"], miner_dwarf)
 	// yogs end
 
 	//try to fix any outdated data if necessary
@@ -381,6 +383,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["accent"], accent) // Accents, too!
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
+
+	WRITE_FILE(S["miner_dwarf"], miner_dwarf)
 	// yogs end
 
 	save_keybindings(S) // yogs - Custom keybindings
@@ -462,6 +466,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
 	READ_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
+	READ_FILE(S["feature_plasmaman_helmet"], features["plasmaman_helmet"])
 
 	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
@@ -635,6 +640,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
 	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
 	WRITE_FILE(S["feature_ipc_chassis"]			, features["ipc_chassis"])
+	WRITE_FILE(S["feature_plasmaman_helmet"]	, features["plasmaman_helmet"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
