@@ -2,8 +2,8 @@
 	name = "Spider bot"
 	desc = "Unlike drones, spiderbots are actually smart and make good friends!"
 	icon = 'icons/mob/robots.dmi'
-	icon_state = "spiderbot-chassis"
-	icon_living = "spiderbot-chassis"
+	icon_state = "spiderbot"
+	icon_living = "spiderbot"
 	icon_dead = "spiderbot-smashed"
 	initial_language_holder = /datum/language_holder/spiderbot
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -15,8 +15,8 @@
 	maxHealth = 25
 	attacktext = "shocks"
 	melee_damage_type = BURN
-	melee_damage_lower = 2
-	melee_damage_upper = 2
+	melee_damage_lower = 1
+	melee_damage_upper = 3
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
@@ -142,8 +142,8 @@
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
 		return
-	icon_state = "spiderbot-chassis"
-	icon_living = "spiderbot-chassis"
+	icon_state = "spiderbot"
+	icon_living = "spiderbot"
 
 /mob/living/simple_animal/spiderbot/proc/eject_brain()
 	if(mmi)
