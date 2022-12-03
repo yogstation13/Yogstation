@@ -56,6 +56,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
 	ipc_box = /obj/item/storage/box/ipc/miner
+	r_pocket = /obj/item/gps/mining
 	pda_slot = SLOT_L_STORE
 
 /datum/outfit/job/miningmedic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -64,5 +65,6 @@
 		return
 	if(H.stat == DEAD)
 		return
-	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "[H]"
+	for(var/obj/item/gps/G in H.contents)//check all directly held items
+		G.gpstag = H.real_name
+		G.name = "global positioning system ([G.gpstag])"

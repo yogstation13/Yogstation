@@ -62,5 +62,11 @@
 		return
 	if(H.stat == DEAD)
 		return
-	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "[H]"
+	for(var/obj/item/gps/G in H.contents)//check all directly held items
+		G.gpstag = H.real_name
+		G.name = "global positioning system ([G.gpstag])"
+		return
+	for(var/obj/item/storage/B in H.contents)//check all storage items
+		for(var/obj/item/gps/G in B.contents)
+			G.gpstag = H.real_name
+			G.name = "global positioning system ([G.gpstag])"
