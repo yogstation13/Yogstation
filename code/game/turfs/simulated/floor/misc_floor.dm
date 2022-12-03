@@ -156,7 +156,6 @@
 	name = "clockwork floor"
 	desc = "Tightly-pressed brass tiles. They emit minute vibration."
 	icon_state = "plating"
-	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
