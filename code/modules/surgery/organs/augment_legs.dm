@@ -7,6 +7,7 @@
 
 	//to determine what type of implant for checking if both legs are the same
 	var/implant_type = "leg implant"
+	COOLDOWN_DECLARE(emp_notice)
 
 /obj/item/organ/cyberimp/leg/Initialize()
 	. = ..()
@@ -25,7 +26,9 @@
 	L.receive_damage(5,0,10)	//always take a least a little bit of damage to the leg
 
 	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
-		to_chat(owner, span_warning("The EMP causes the [src] in your [L] to twitch randomly!"))
+		if(COOLDOWN_FINISHED(src, emp_notice))
+			to_chat(owner, span_warning("The EMP causes the [src] in your [L] to twitch randomly!"))
+			COOLDOWN_START(src, emp_notice, 30 SECONDS)
 		return
 
 	L.set_disabled(TRUE)	//disable the bodypart
@@ -36,8 +39,9 @@
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)
 		L.receive_damage(20)
-	else
+	else if(COOLDOWN_FINISHED(src, emp_notice))
 		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your [L] from moving!"))
+		COOLDOWN_START(src, emp_notice, 30 SECONDS)
 
 /obj/item/organ/cyberimp/leg/proc/reenableleg()
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
