@@ -8,6 +8,9 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 5 //seriously stop griefing
+	exp_requirements = 100
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/brigphysician
 
@@ -34,7 +37,7 @@
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1)
 	ears = /obj/item/radio/headset/headset_medsec

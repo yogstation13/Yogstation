@@ -122,6 +122,7 @@
 			sentmsg = "[span_prefix("RELAY: [input["source"]]")] " + sentmsg
 			//no pinging across servers, thats intentional
 			to_chat(C,sentmsg)
+	to_chat(SSdemo, "[span_prefix("RELAY: [input["source"]]")] " + oocmsg)
 
 /datum/world_topic/server_hop
 	keyword = "server_hop"

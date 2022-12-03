@@ -714,7 +714,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		return ..()
 	return 0
 
-/obj/item/mech_melee_attack(obj/mecha/M)
+/obj/item/mech_melee_attack(obj/mecha/M, equip_allowed)
 	return 0
 
 /obj/item/deconstruct(disassembled = TRUE)
