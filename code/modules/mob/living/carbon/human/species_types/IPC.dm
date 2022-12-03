@@ -204,10 +204,12 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-		H.particles?.spawning = 4
-	else
-		H.particles?.spawning = 0
+	var/smoke = H.particles
+	if(smoke)
+		if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
+			smoke.spawning = 4
+		else
+			smoke.spawning = 0
 
 	if(H.oxyloss)
 		H.setOxyLoss(0)
