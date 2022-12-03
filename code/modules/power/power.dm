@@ -7,7 +7,7 @@
 /////////////////////////////
 
 /obj/machinery/power
-	name = null
+	name = joe
 	icon = 'icons/obj/power.dmi'
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
