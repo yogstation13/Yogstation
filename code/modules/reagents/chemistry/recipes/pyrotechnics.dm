@@ -103,10 +103,6 @@
 	required_temp = 474
 	strengthdiv = 6
 	modifier = 1
-	mix_message = span_boldannounce("Sparks start flying around the black powder!")
-
-/datum/chemical_reaction/reagent_explosion/blackpowder_explosion/on_reaction(datum/reagents/holder, created_volume)
-	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), rand(5,10) SECONDS)
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"

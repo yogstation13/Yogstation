@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
 	desc = "A miniaturized version of a normal syringe gun. It is very quiet when fired and can fit into any \
-			space a small item can."
+			space a small item can, and it features a modified reciever capable of chambering piercing syringes."
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
@@ -815,46 +815,42 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/m12g/flechette
 
 /datum/uplink_item/ammo/revolver
-	name = ".357 Speed Loader"
-	desc = "A speed loader that contains seven additional .357 rounds; usable with the Syndicate revolver."
-	item = /obj/item/ammo_box/a357
+	name = ".357 Speed Loader Box"
+	desc = "A box with two .357 speed loaders. These speed loaders contain seven .357 rounds each; usable with the Syndicate revolver."
+	item = /obj/item/storage/box/syndie_kit/revolverammo
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
 /datum/uplink_item/ammo/revolver/ironfeather
-	name = ".357 Ironfeather Speed Loader"
-	desc = "A speed loader that contains seven .357 Ironfeather rounds; usable with the Syndicate revolver. \
-			These shells contain six pellets which are less damaging than buckshot but mildly better over range."
-	item = /obj/item/ammo_box/a357/ironfeather
+	name = ".357 Ironfeather Speed Loader Box"
+	desc = "A box with two .357 Ironfeather speed loaders. These speed loaders contain seven .357 Ironfeather shells; usable with the Syndicate revolver. \
+			Ironfeather shells contain six pellets which are less damaging than buckshot but mildly better over range."
+	item = /obj/item/storage/box/syndie_kit/revolvershotgunammo
 
 /datum/uplink_item/ammo/revolver/nutcracker
 	name = ".357 Nutcracker Speed Loader"
 	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
 			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
 	item = /obj/item/ammo_box/a357/nutcracker
-	cost = 2
 
 /datum/uplink_item/ammo/revolver/metalshock
 	name = ".357 Metalshock Speed Loader"
 	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
 			These rounds convert some lethality into an electric payload, which can bounce between targets."
 	item = /obj/item/ammo_box/a357/metalshock
-	cost = 2
 
 /datum/uplink_item/ammo/revolver/heartpiercer
 	name = ".357 Heartpiercer Speed Loader"
 	desc = "A speed loader that contains seven .357 Heartpiercer rounds; usable with the Syndicate revolver. \
 			These rounds are less damaging, but penetrate through armor and up to two bodies at once."
 	item = /obj/item/ammo_box/a357/heartpiercer
-	cost = 3
 
 /datum/uplink_item/ammo/revolver/wallstake
 	name = ".357 Wallstake Speed Loader"
 	desc = "A speed loader that contains seven .357 Wallstake rounds; usable with the Syndicate revolver. \
-			These blunt rounds are less damaging but can knock people against walls."
+			These blunt rounds are slightly less damaging but can knock people against walls."
 	item = /obj/item/ammo_box/a357/wallstake
-	cost = 3
 
 /datum/uplink_item/ammo/rifle
 	name = "5.56mm Toploader Magazine"
@@ -1267,6 +1263,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 35
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/wheelchair
+	name = "Explosive Wheelchair"
+	desc = "A wheelchair with a high yield bomb strapped to it... why would anyone ever want this?"
+	item = /obj/item/wheelchair/explosive
+	cost = 4
+	surplus = 0
+	limited_stock = 1
+	include_modes = list(/datum/objective/martyr)
+
 //Support and Mechs
 /datum/uplink_item/support
 	category = "Support and Exosuits"
@@ -1325,26 +1330,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
-	cost = 80
+	cant_discount = TRUE
+	cost = 60 //Yogs change
 
 /datum/uplink_item/support/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 80
+	cost = 60 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+	cant_discount = TRUE
+	
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
 	item = /obj/mecha/combat/marauder/mauler/loaded
-	cost = 140
+	cant_discount = TRUE
+	cost = 105 //Yogs change
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
 
+/datum/uplink_item/stealthy_tools/spy_bug
+	name = "Box of Spy Bugs"
+	desc = "A box of 10 spy bugs. These attach onto the target invisibly and cannot be removed, and broadcast all they hear to the secure syndicate channel.\
+	Can be attached to animals and objects. Does not come with a syndicate encryption key."
+	item = /obj/item/storage/box/syndie_kit/bugs
+	cost = 1
 /datum/uplink_item/stealthy_tools/agent_card
 	name = "Agent Identification Card"
 	desc = "Agent cards prevent artificial intelligences from tracking the wearer, and can copy access \
@@ -1651,6 +1665,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			fit in any standard Nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
+
+/datum/uplink_item/device_tools/tactical_gloves
+	name = "Tactical Fingerless Gloves"
+	desc = "A pair of simple fabric gloves without fingertips that allow one to perform tasks faster and act quicker in unarmed manuevers. \
+			Also greatly assists with the carrying of bodies."
+	item = /obj/item/clothing/gloves/fingerless/bigboss
+	cost = 2
 
 /datum/uplink_item/device_tools/hacked_module
 	name = "Hacked AI Law Upload Module"
@@ -1983,6 +2004,19 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/implants/noslipall
+	name = "Slip Prevention Implant"
+	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	item = /obj/item/multisurgeon/noslipall
+	cost = 6	//tax for them being nigh impossible to steal or lose
+
+/datum/uplink_item/implants/airshoes
+	name = "Air Shoes Implant"
+	desc = "As a result of extreme popularity of the Air Shoes an implant version was developed. Just like the boots there are jets allowing the users to reach high speeds for prolonged durations and short bursts."
+	item = /obj/item/multisurgeon/airshoes
+	cost = 6	//2 tc tax for them being nigh impossible to steal or lose
+	manufacturer = /datum/corporation/traitor/cybersun
+
 /datum/uplink_item/implants/spinal
 	name = "Neural Overclocker Implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
@@ -1991,6 +2025,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	limited_stock = 1
 	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
+
+/datum/uplink_item/implants/augmentation
+	name = "Full Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Provides superior damage resistance, immunity to cold and vacuum, \
+			but renders the subject vulnerable to electromagnetic pulses. They will also require repair with a welder and wires, rather than traditional medicine."
+	item = /obj/item/storage/box/syndie_kit/augmentation
+	cost = 15
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/implants/augmentation/superior
+	name = "Superior Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
+			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
+	item = /obj/item/storage/box/syndie_kit/augmentation/superior
+	cost = 45
+	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
 /datum/uplink_item/services
@@ -2151,7 +2202,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
 
-/datum/uplink_item/support/honker
+/datum/uplink_item/role_restricted/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
@@ -2391,6 +2442,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
 	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
+
+/datum/uplink_item/role_restricted/letterbomb
+	name = "Explosive letter"
+	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
+	item = /obj/item/mail/explosive
+	cost = 1
+	restricted_roles = list("Quartermaster","Cargo Technician")
 
 // Pointless
 /datum/uplink_item/badass

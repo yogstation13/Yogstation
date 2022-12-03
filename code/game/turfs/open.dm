@@ -208,7 +208,6 @@
 	icon = 'icons/turf/snow.dmi'
 	desc = "Looks cold."
 	icon_state = "snow"
-	slowdown = 2
 	bullet_sizzle = TRUE
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND

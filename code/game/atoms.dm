@@ -106,7 +106,6 @@
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
-	SSdemo.mark_new(src)
 
 /**
   * The primary method that objects are setup in SS13 with
@@ -827,7 +826,7 @@
 	dir = newdir
 
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/M)
+/atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return
 
 /**

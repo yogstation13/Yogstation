@@ -364,7 +364,7 @@
 /datum/map_template/ruin/lavaland/ntsurveyor
 	name = "Nanotrasen Surveyor"
 	id = "ntsurveyo"
-	description = "The most tragic part about it all is the ship didnt even have any donuts"
+	description = "The most tragic part about it all is the ship didn't even have any donuts"
 	suffix = "lavaland_surface_ntsurveyor.dmm"
 	cost = 5
 	allow_duplicates = FALSE

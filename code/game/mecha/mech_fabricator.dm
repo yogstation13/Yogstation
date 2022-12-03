@@ -136,7 +136,7 @@
 	if(I.GetID())
 		var/obj/item/card/id/C = I.GetID()
 		if(obj_flags & EMAGGED)
-			to_chat(user, span_warning("The authentification slot spits sparks at you and the display reads scrambled text!"))
+			to_chat(user, span_warning("The authentication slot spits sparks at you and the display reads scrambled text!"))
 			do_sparks(1, FALSE, src)
 			authorization_override = TRUE //just in case it wasn't already for some reason. keycard reader is busted.
 			return
@@ -642,7 +642,7 @@
 	if(issilicon(user))
 		return TRUE
 	id_card = user.get_idcard(hand_first = TRUE)
-	return ACCESS_HEADS in id_card.access
+	return ACCESS_HEADS in id_card?.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()
@@ -793,3 +793,12 @@
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+
+/obj/machinery/mecha_part_fabricator/ruin
+	link_on_init = FALSE
+	authorization_override = TRUE
+	hacked = TRUE
+
+/obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+	. = ..()
+	stored_research = SSresearch.ruin_tech

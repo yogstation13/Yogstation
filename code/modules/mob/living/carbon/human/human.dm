@@ -1263,6 +1263,17 @@
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
+
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
 

@@ -324,11 +324,17 @@ Slimecrossing Items
 		return
 	var/obj/item/stack/stack_item = target
 
-	if(istype(stack_item,/obj/item/stack/telecrystal))
+	if(istype(stack_item,/obj/item/stack/telecrystal) || istype(stack_item,/obj/item/stack/ore/bluespace_crystal/refined/nt))
 		var/mob/living/carbon/carbie = user
-		to_chat(user,"<span class='big red'>You will pay for your hubris!</span>")
-		carbie.gain_trauma(/datum/brain_trauma/special/beepsky,TRAUMA_RESILIENCE_ABSOLUTE)
+		visible_message(span_userdanger("\The [src] reacts violently with the unstable nature of \the [stack_item]!"))
+		for(var/obj/machinery/light/L in get_area(src))
+			L.on = TRUE
+			L.break_light_tube()
+			L.on = FALSE
+			CHECK_TICK
+		electrocute_mob(carbie, get_area(src), src)
 		qdel(src)
 		return
+	
 	stack_item.add(amt)
 	qdel(src)

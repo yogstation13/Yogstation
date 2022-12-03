@@ -241,7 +241,7 @@
 	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
 	admin_notes = "This shuttle will likely crush escape, killing anyone there."
 	credit_cost = 15000
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 10)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/luxury
@@ -263,7 +263,7 @@
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
 	name = "The Arena"
-	description = "The crew must pass through an otherworldy arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
+	description = "The crew must pass through an otherworldly arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
 	admin_notes = "RIP AND TEAR."
 	credit_cost = 10000
 	emag_buy = TRUE
@@ -327,7 +327,7 @@
 	credit_cost = -1000
 	description = "Due to a lack of functional emergency shuttles, we bought this second hand from a scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile."
 	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight."
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/narnar
@@ -375,7 +375,7 @@
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
 	credit_cost = 7500
 	emag_buy = TRUE
-	movement_force = list("KNOCKDOWN" = 6, "THROW" = 20)
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
@@ -392,7 +392,7 @@
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidentally warped a building from the past into our second Disco Inferno shuttle. \
 	It resembles a 1990s era rollerdome all the way down to the carpet texture."
 	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
 	credit_cost = 2500
