@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
+	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulfuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
