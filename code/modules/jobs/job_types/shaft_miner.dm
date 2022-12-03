@@ -46,7 +46,6 @@
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
-	var/static/gps_number = 1
 	jobtype = /datum/job/mining
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
@@ -69,6 +68,7 @@
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	box = /obj/item/storage/box/survival_mining
+	ipc_box = /obj/item/storage/box/ipc/miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 
@@ -79,8 +79,7 @@
 	if(H.stat == DEAD)
 		return
 	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "MINE[gps_number]"
-		gps_number ++
+		G.gpstag = "[H]"
 
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"

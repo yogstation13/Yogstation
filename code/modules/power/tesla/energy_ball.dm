@@ -165,6 +165,8 @@
 		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 2)
 		throw_at(throw_at, 2, 1)
 		user.changeNext_move(CLICK_CD_RANGE)
+		return TRUE
+	. = ..()
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))

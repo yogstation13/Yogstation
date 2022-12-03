@@ -814,6 +814,7 @@ RLD
 	name = "admin RCD"
 	max_matter = INFINITY
 	matter = INFINITY
+	ranged = TRUE
 	upgrade = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
 
 

@@ -189,6 +189,7 @@
 #define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_THERMAL_VISION    "thermal_vision"
+#define TRAIT_INFRARED_VISION	"infrared_vision"
 #define TRAIT_ABDUCTOR_TRAINING "abductor-training"
 #define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
 #define TRAIT_SURGEON           "surgeon"
@@ -223,8 +224,10 @@
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
+#define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach" // Can never be full
 #define TRAIT_MESONS			"mesons"
 #define TRAIT_MAGBOOTS			"magboots"
+#define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 /// This person is crying
 #define TRAIT_CRYING "crying"
 
@@ -292,6 +295,7 @@
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
+#define ATTACHMENT_TRAIT "attachment-trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

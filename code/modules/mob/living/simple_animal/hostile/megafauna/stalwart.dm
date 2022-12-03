@@ -73,7 +73,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	if(!client)
-		switch(rand(1,5))
+		switch(rand(1,4))
 			if(1)
 				telegraph()
 				stalnade()

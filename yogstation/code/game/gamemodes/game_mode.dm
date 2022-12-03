@@ -1,3 +1,6 @@
+/datum/game_mode
+	var/has_hijackers = FALSE
+
 /datum/game_mode/get_players_for_role(role)
 	var/list/players = list() // All players who are ready and able
 	var/list/candidates = list() // All players who could POSSIBLY be an antag (acting as a fallback if filtered_candidates isn't enough)
