@@ -4,7 +4,7 @@
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "spiderbot"
 	icon_living = "spiderbot"
-	icon_dead = "spiderbot-smashed"
+	icon_dead = "spiderbot-dead"
 	initial_language_holder = /datum/language_holder/spiderbot
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	faction = list("neutral","silicon","turrets","spiders")
@@ -131,19 +131,19 @@
 	visible_message(span_warning("[src] makes an odd warbling noise, fizzles, and explodes."))
 	explosion(get_turf(src), -1, 0, 2, 3, 0, flame_range = 2) ///Explodes like a fireball
 	if(!QDELETED(src) && stat != DEAD)
-		death()
+		gib()
 
 /mob/living/simple_animal/spiderbot/proc/update_icon()
-	if(mmi)
-		if(istype(mmi, /obj/item/mmi/posibrain))
-			icon_state = "spiderbot-chassis-posi"
-			icon_living = "spiderbot-chassis-posi"
-		else
-			icon_state = "spiderbot-chassis-mmi"
-			icon_living = "spiderbot-chassis-mmi"
-		return
 	icon_state = "spiderbot"
 	icon_living = "spiderbot"
+	if(mmi)
+		if(istype(mmi, /obj/item/mmi/posibrain))
+			add_overlay("spiderbot_posi")
+		else
+			add_overlay("spiderbot_mmi")
+		return
+	else
+		overlays = null
 
 /mob/living/simple_animal/spiderbot/proc/eject_brain()
 	if(mmi)
