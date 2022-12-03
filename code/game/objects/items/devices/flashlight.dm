@@ -280,7 +280,7 @@
 	var/frng_max = 1000
 	heat = 1000
 	light_color = LIGHT_COLOR_FLARE
-	grind_results = list(/datum/reagent/sulfur = 15)
+	grind_results = list(/datum/reagent/sulphur = 15)
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()
@@ -371,7 +371,7 @@
 	frng_min = 540
 	frng_max = 700
 	heat = 2500
-	grind_results = list(/datum/reagent/sulfur = 15, /datum/reagent/potassium = 10)
+	grind_results = list(/datum/reagent/sulphur = 15, /datum/reagent/potassium = 10)
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
