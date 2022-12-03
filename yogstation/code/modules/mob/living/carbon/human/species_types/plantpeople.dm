@@ -28,6 +28,7 @@
 	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
+	exotic_blood = /datum/reagent/water
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -47,6 +48,9 @@
 	. = ..()
 	C.faction |= "plants"
 	C.faction |= "vines"
+
+	if (prob(50))
+		exotic_blood = get_random_reagent_id()
 
 /datum/species/pod/on_species_loss(mob/living/carbon/C)
 	. = ..()
