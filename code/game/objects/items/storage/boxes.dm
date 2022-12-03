@@ -180,7 +180,7 @@
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
 	new /obj/item/crowbar/red(src)
-	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 // IPC survival box
@@ -191,7 +191,7 @@
 /obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
 	new /obj/item/tank/internals/ipc_coolant(src)
 	new /obj/item/crowbar/red(src)
-	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/gloves
