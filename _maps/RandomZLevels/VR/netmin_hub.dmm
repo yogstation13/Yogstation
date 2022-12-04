@@ -603,6 +603,14 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"ik" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 10
+	},
+/obj/structure/guncase/shotgun,
+/obj/item/gun/ballistic/shotgun/doublebarrel/lethal,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "iv" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/turf_decal/trimline/green/filled/line,
@@ -1714,14 +1722,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"zt" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 10
-	},
-/obj/structure/guncase/shotgun,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/vr/combat_robot_factory)
 "zx" = (
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/white,
@@ -6224,7 +6224,7 @@ Pu
 qj
 gw
 YW
-zt
+ik
 qj
 qj
 qj
