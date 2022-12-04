@@ -12,9 +12,7 @@
 	announce_span = "Traitors and Devils"
 	announce_text = "There are infernal soul merchants along with some syndicate operatives out for their own gain! Do not let the devils or the traitors succeed!"
 	title_icon = "devil"
-
 	var/list/possible_devils = list()
-	var/list/devils = list()
 	var/const/devil_amount = 1 //hard limit on devils if scaling is turned off
 
 /datum/game_mode/traitor/devil/can_start()
