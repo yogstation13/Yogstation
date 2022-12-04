@@ -94,6 +94,8 @@
 	health = 125
 	maxHealth = 125
 	ranged = TRUE
+	retreat_distance = 5
+	minimum_distance = 5
 
 /mob/living/simple_animal/hostile/robot/advanced/Initialize()
 	. = ..()
