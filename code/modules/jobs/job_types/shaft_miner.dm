@@ -8,7 +8,7 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
-	alt_titles = list("Lavaland Scout", "Prospector", "Junior Miner", "Major Miner")
+	alt_titles = list("Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Explorer")
 
 	outfit = /datum/outfit/job/miner
 
