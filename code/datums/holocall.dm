@@ -372,7 +372,7 @@
 	outfit_type = /datum/outfit/nanotrasensoldiercorpse2
 
 /datum/preset_holoimage/cc_official
-	/datum/outfit/centcom/official
+	outfit_type = /datum/outfit/centcom/official
 
 /datum/preset_holoimage/gorilla
 	nonhuman_mobtype = /mob/living/simple_animal/hostile/gorilla
