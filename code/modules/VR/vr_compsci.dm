@@ -137,7 +137,8 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 	if(GLOB.compsci_vr_mission_reciever == src && istype(I, /obj/item/disk/puzzle))
 		if(GLOB.last_used_transmuter)
-			I.forceMove(GLOB.last_used_transmuter.drop_location())
+			var/obj/machinery/compsci_reciever/CR = GLOB.last_used_transmuter
+			I.forceMove(CR.drop_location())
 			GLOB.last_used_transmuter = null
 			return TRUE
 		return FALSE

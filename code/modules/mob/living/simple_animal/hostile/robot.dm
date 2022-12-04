@@ -15,8 +15,8 @@
 	
 	gender = NEUTER
 	mob_biotypes = list(MOB_ROBOTIC)
-	health = 50
-	maxHealth = 50
+	health = 75
+	maxHealth = 75
 	healable = FALSE
 	melee_damage_lower = 5
 	melee_damage_upper = 10
@@ -81,8 +81,8 @@
 	icon_state = "hosborg"
 	icon_living = "hosborg"
 	desc = "An old outlawed combat robot. This one has extra armor plates fitted, and sharper claws."
-	health = 100
-	maxHealth = 100
+	health = 150
+	maxHealth = 150
 	dodging = TRUE
 	projectiletype = /obj/item/projectile/robot_bullet
 	melee_damage_lower = 8
@@ -91,8 +91,8 @@
 /mob/living/simple_animal/hostile/robot/advanced/ranged
 	name = "advanced ranged combat robot"
 	desc = "An old outlawed combat robot. This one has slightly less extra armor plates fitted, but features a high-powered rifle."
-	health = 75
-	maxHealth = 75
+	health = 125
+	maxHealth = 125
 	ranged = TRUE
 
 /mob/living/simple_animal/hostile/robot/advanced/Initialize()
