@@ -194,20 +194,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"ci" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/pen{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/paper/fluff/awaymissions/robot_factory/benny,
-/turf/open/floor/carpet,
-/area/awaymission/vr/combat_robot_factory)
 "cl" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1416,6 +1402,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"ut" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/fluff/awaymissions/robot_factory/benny,
+/turf/open/floor/carpet,
+/area/awaymission/vr/combat_robot_factory)
 "uB" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 6
@@ -6998,7 +6990,7 @@ qd
 Je
 bU
 qj
-ci
+ut
 fN
 qj
 CS
