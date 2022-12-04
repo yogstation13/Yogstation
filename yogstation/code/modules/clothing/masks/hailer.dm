@@ -12,8 +12,10 @@
 	var/last_dispatch = 0
 
 /obj/item/clothing/mask/gas/sechailer/Destroy()
-	qdel(radio)
-	qdel(radio_key)
+	if(radio)
+		qdel(radio)
+	if(radio_key)
+		qdel(radio_key)
 	GLOB.sechailers -= src
 	. = ..()
 
