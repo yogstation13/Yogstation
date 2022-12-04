@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	..()
 	cut_overlays()
 	var/matrix/turner = matrix()
-	turner.Turn(360 - rotation_to_partner)
+	turner.Turn(180 - rotation_to_partner)
 	dish_overlay.transform = turner
 	add_overlay(dish_overlay)
 
