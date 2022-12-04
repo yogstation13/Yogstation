@@ -143,6 +143,8 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
+		if(M.AmountSleeping() < power SECONDS)
+			M.SetSleeping(power*2 SECONDS)
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power)
