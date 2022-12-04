@@ -491,10 +491,11 @@
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
+		var/turf/old_turf = get_turf(src)
 		var/turf/new_turf = get_turf(destination)
 		if(new_turf && ismob(src))
 			var/mob/M = src
-			if(is_secret_level(new_turf.z) && !M.client?.holder)
+			if(is_secret_level(new_turf.z) && !M.client?.holder && old_turf.z != new_turf.z)
 				return
 
 		. = doMove(destination)
