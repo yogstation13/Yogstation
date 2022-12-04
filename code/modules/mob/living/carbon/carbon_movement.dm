@@ -25,8 +25,8 @@
 	return
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
-	if(..())
-		return TRUE
+	if(!.)
+		. = ..()
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
