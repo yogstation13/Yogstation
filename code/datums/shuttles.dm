@@ -220,13 +220,19 @@
 	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
 	admin_notes = "For player punishment."
 
+/datum/map_template/shuttle/emergency/firstclass
+	suffix = "firstclass"
+	name = "First Class Shuttle"
+	description = "For those who want something more classy than the Emergency Escape Bar but not something as gaudy as the Luxury Shuttle, this shuttle provides a lounge-like environment and a comfortable ride home for your crew. Food and drink provided."
+	credit_cost = 10000 //privisional price, can see it being upped but setting at 15000 seemed too much
+
 /datum/map_template/shuttle/emergency/pool
 	suffix = "pool"
 	name = "Pool Party!"
 	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
 	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
 	credit_cost = 15000
-	
+
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -439,7 +445,7 @@
 	suffix = "fancy"
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
-	
+
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
@@ -476,7 +482,7 @@
 /datum/map_template/shuttle/cargo/birdboat
 	suffix = "birdboat"
 	name = "supply shuttle (Birdboat)"
-	
+
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
@@ -512,7 +518,7 @@
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
 	name = "mining shuttle (Box)"
-	
+
 /datum/map_template/shuttle/mining/kilo
 	suffix = "kilo"
 	name = "mining shuttle (Kilo)"
@@ -520,7 +526,7 @@
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
 	name = "labour shuttle (Box)"
-	
+
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
@@ -552,7 +558,7 @@
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
-	
+
 /datum/map_template/shuttle/arrival/kilo
 	suffix = "kilo"
 	name = "arrival shuttle (Kilo)"
