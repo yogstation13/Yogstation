@@ -22,6 +22,9 @@
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
+[**Yogstation GitHub Guidelines**](https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md#yogstation-github-guidelines)
+
+
  
 ## DOWNLOADING
 

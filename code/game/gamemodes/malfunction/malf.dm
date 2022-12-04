@@ -66,5 +66,5 @@
 
 /datum/game_mode/malf/generate_report()
 	return "A [pick(list("huge electrical storm","photon emitter","meson generator","blue swirly thing"))] was recently picked up by a nearby station's sensors in your sector. \
-	If it came into contact with your station or electrical equipment, it may have had hazardarous and unpredictable effect. \
+	If it came into contact with your station or electrical equipment, it may have had hazardous and unpredictable effect. \
 	Closely observe any non carbon based life forms for signs of unusual behaviour, but keep this information discreet at all times due to this possibly dangerous scenario."

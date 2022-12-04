@@ -40,7 +40,7 @@
 
 /obj/machinery/door/keycard
 	name = "locked door"
-	desc = "This door only opens when a keycard is swiped. It looks virtually indestructable."
+	desc = "This door only opens when a keycard is swiped. It looks virtually indestructible."
 	icon = 'icons/obj/doors/puzzledoor/default.dmi'
 	icon_state = "door_closed"
 	explosion_block = 3

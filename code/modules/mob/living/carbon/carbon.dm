@@ -627,6 +627,7 @@
 		return
 
 	sight = initial(sight)
+	see_infrared = initial(see_infrared)
 	lighting_alpha = initial(lighting_alpha)
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
@@ -637,6 +638,12 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+	
+	for(var/image/I in infra_images)
+		if(client)
+			client.images.Remove(I)
+	infra_images = list()
+	remove_client_colour(/datum/client_colour/monochrome_infra)
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -653,6 +660,20 @@
 			see_invisible = min(G.invis_view, see_invisible)
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+
+	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		add_client_colour(/datum/client_colour/monochrome_infra)
+		var/image/A = null
+		see_infrared = TRUE
+		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+
+		if(client)
+			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.name = "white haze"
+				A.override = 1
+				infra_images |= A
+				client.images |= A
 
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
 		sight |= (SEE_MOBS)
@@ -834,7 +855,7 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
-		if(stat != DEAD)
+		if(stat != DEAD && !HAS_TRAIT(src, TRAIT_FAKEDEATH))
 			. = 1
 			if(shown_health_amount == null)
 				shown_health_amount = health
@@ -884,6 +905,7 @@
 	update_damage_hud()
 	update_health_hud()
 	update_stamina_hud()
+	med_hud_set_health()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed

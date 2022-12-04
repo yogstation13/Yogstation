@@ -114965,18 +114965,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plating,
 /area/library/abandoned)
-"dTv" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_c)
 "dTw" = (
 /turf/closed/wall,
 /area/chapel/office)
@@ -119150,6 +119138,19 @@
 	heat_capacity = 1e+006
 	},
 /area/medical/storage)
+"frp" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = -26
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_a)
 "fsR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -119863,18 +119864,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"gAg" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_b)
 "gAz" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -122895,6 +122884,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"mam" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = -26
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_c)
 "maR" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -123430,6 +123432,19 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
+/area/medical/patients_rooms/room_b)
+"mHn" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = -26
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_b)
 "mHo" = (
 /obj/effect/decal/cleanable/dirt,
@@ -126805,18 +126820,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
-"shN" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_a)
 "skW" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -177747,15 +177750,15 @@ cXO
 vDf
 wgV
 tOC
-shN
+frp
 vDf
 jVW
 urY
-gAg
+mHn
 kom
 ehN
 gPI
-dTv
+mam
 iGC
 lrL
 rwT

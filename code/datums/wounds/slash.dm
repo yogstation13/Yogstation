@@ -255,7 +255,7 @@
 /datum/wound/slash/critical
 	name = "Weeping Avulsion"
 	desc = "Patient's skin is completely torn open, along with significant loss of tissue. Extreme blood loss will lead to quick death without intervention."
-	treat_text = "Immediate bandaging and either suturing or cauterization, followed by supervised resanguination."
+	treat_text = "Immediate bandaging and either suturing or cauterization, followed by supervised blood infusion."
 	examine_desc = "is carved down to the bone, spraying blood wildly"
 	occur_text = "is torn open, spraying blood wildly"
 	sound_effect = 'sound/effects/wounds/blood3.ogg'
