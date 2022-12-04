@@ -165,13 +165,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
-"eh" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "ey" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light{
@@ -223,6 +216,15 @@
 	},
 /turf/open/floor/carpet/green,
 /area/shuttle/escape)
+"lQ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "me" = (
 /obj/machinery/light{
 	dir = 8
@@ -245,12 +247,6 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/wood/fancy/exoticblue,
 /turf/open/floor/carpet/exoticblue,
-/area/shuttle/escape)
-"oz" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "oA" = (
 /obj/structure/chair/comfy/black{
@@ -543,6 +539,16 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/carpet/green,
 /area/shuttle/escape)
+"Rn" = (
+/obj/structure/table/wood/fancy,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Rz" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/green,
@@ -733,12 +739,12 @@ av
 Nk
 aH
 XL
-eh
-eh
-eh
-eh
-eh
-oz
+Rn
+Rn
+Rn
+Rn
+Rn
+lQ
 aM
 ad
 aU
@@ -853,12 +859,12 @@ sT
 te
 sT
 bI
-oz
-eh
-eh
-eh
-eh
-oz
+lQ
+Rn
+Rn
+Rn
+Rn
+lQ
 Yn
 ae
 ae
