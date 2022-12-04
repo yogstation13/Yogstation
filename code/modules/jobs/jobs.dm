@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(alt_command_positions, list(
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
 	"Head of Engineering", "Engineering Director", "Senior Engineer",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
+	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist",
 	"AI Tech Support", "SysOp"
 	))
 
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
 	"Stock Controller", "Cargo Coordinator", "Shipping Overseer",
 	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher", "Courier",
-	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Explorer"))
+	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Surveyor"))
 
 GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Barkeep", "Tapster", "Barista", "Mixologist",
