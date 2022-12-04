@@ -2445,16 +2445,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Jk" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/item/ammo_casing/shotgun/buckshot,
-/obj/item/ammo_casing/shotgun/buckshot,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/vr/combat_robot_factory)
 "Jm" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -2480,6 +2470,16 @@
 /area/awaymission/vr/combat_robot_factory)
 "Kf" = (
 /turf/open/floor/wood,
+/area/awaymission/vr/combat_robot_factory)
+"Kh" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/gun/ballistic/shotgun/doublebarrel/lethal,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "Km" = (
 /mob/living/simple_animal/pet/dog/bullterrier{
@@ -5708,7 +5708,7 @@ Lz
 sW
 qj
 xg
-Jk
+Kh
 IA
 qj
 Dn
