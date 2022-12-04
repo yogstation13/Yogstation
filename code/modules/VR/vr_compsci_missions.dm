@@ -44,3 +44,11 @@
 	completion_item = /obj/item/ai_cpu/organic
 
 VR_SPAWNER(scientist_raid, /datum/outfit/vr/mission)
+
+/datum/compsci_mission/combat_robot_factory
+	name = "Abandoned Robot Factory"
+	desc = "The records for an old abandoned robot factory have been lost. You've been sent to remake the report."
+	id = "combat_robot_factory"
+	completion_item = /obj/item/ai_cpu/organic
+
+VR_SPAWNER(combat_robot_factory, /datum/outfit/vr/mission)

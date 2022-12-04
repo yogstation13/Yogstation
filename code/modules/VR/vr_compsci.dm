@@ -106,8 +106,8 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 /obj/machinery/compsci_reciever
 	name = "bluespace item transmuter"
 	desc = "Use this to send artifacts back ot the station"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "mw"
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "transmuter"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	pass_flags = PASSTABLE
@@ -119,7 +119,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		if(!GLOB.compsci_vr_mission_reciever)
 			GLOB.compsci_vr_mission_reciever = src
 		name = "bluespace item reciever"
-		desc = "Used to recieve artifacts from remote exploration drones"
+		desc = "Used to recieve artifacts from remote exploration parties."
 
 /obj/machinery/compsci_reciever/Destroy()
 	. = ..()
@@ -136,4 +136,10 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		GLOB.compsci_vr.complete_mission()
 		to_chat(user, span_notice("Successfully transferred artifact. Now reverting to reality.."))
 		qdel(user)
+		return TRUE
+
+	if(istype(I, /obj/item/disk/puzzle))
+		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
+		I.forceMove(station_machine.drop_location())
+		to_chat(user, span_notice("Successfully transferred disk."))
 		return TRUE

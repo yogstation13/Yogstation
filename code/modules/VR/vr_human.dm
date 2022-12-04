@@ -96,7 +96,6 @@
 /mob/living/carbon/human/virtual_reality/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
-		var/turf/new_turf = get_turf(destination)
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")

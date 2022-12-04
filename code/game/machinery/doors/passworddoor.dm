@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(floppy_disk_doors)
-
 /obj/machinery/door/password
 	name = "door"
 	desc = "This door only opens when provided a password."
