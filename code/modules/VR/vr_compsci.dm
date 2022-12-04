@@ -8,7 +8,8 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 	var/unlocked_missions = list()
 
 	var/roundstart_missions = list(
-		/datum/compsci_mission/scientist_raid
+		/datum/compsci_mission/scientist_raid,
+		/datum/compsci_mission/combat_robot_factory
 	)
 
 
