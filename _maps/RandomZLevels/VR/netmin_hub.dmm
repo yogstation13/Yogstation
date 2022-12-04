@@ -567,6 +567,18 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
+"hu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/combat_robot_factory)
 "hy" = (
 /obj/structure/table,
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -3738,17 +3750,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"ZS" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/white,
-/area/awaymission/vr/combat_robot_factory)
 
 (1,1,1) = {"
 Rr
@@ -6760,7 +6761,7 @@ mU
 Rc
 pn
 bI
-ZS
+hu
 qj
 Ee
 Ee
