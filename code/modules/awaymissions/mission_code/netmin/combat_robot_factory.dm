@@ -30,61 +30,61 @@
 	preset_image_type = /datum/preset_holoimage/cc_official
 	preset_record_text = {"
 	NAME HR Representative
-	DELAY 10
+	DELAY 30
 	SAY Welcome aboard your new home for the next 12 months!
-	DELAY 10
+	DELAY 30
 	SAY As you know from the job listing your main duties will be to refill machinery, pack boxes, and most importantly..
-	DELAY 10
+	DELAY 30
 	SAY Not asking any questions.
-	DELAY 15
+	DELAY 45
 	SAY In addition, please refrain from bothering the Corporate Liason stationed here unless he specifically asks for your help.
-	DELAY 10"}
+	DELAY 30"}
 
 
 /obj/item/disk/holodisk/combat_robot/classified
 	preset_image_type = /datum/preset_holoimage/cc_official
 	preset_record_text = {"
 	NAME Mr. Nakada
-	DELAY 10
+	DELAY 30
 	SAY Research log number 63
-	DELAY 15
+	DELAY 45
 	SAY Further attempts to artifically grow and integrate a human host have failed.
-	DELAY 20
+	DELAY 60
 	SAY Attempting one further growth cycle before returning to Central Command 
-	DELAY 20
+	DELAY 60
 	SAY Using the local supervisor as the neural template.
-	DELAY 20
+	DELAY 60
 	SAY Final report is estimated to be completed within the next two weeks.
-	DELAY 10"}
+	DELAY 30"}
 
 /obj/item/disk/holodisk/combat_robot/experiment
 	preset_image_type = /datum/preset_holoimage/researcher
 	preset_record_text = {"
 	NAME Doctor Williams
-	DELAY 10
+	DELAY 30
 	SAY Beginning experiment number 31
-	DELAY 20
+	DELAY 60
 	SAY Injecting solution...
-	DELAY 15
+	DELAY 45
 	SAY Subject appears to be displaying decreased blood pressure. Subject having difficulty maintaining consciousness.
-	DELAY 20
+	DELAY 60
 	SAY Neural activity appears incompatible with capture device.  
-	DELAY 25
+	DELAY 50
 	SAY Subject has expired. End log for experiment number 31.
-	DELAY 10"}
+	DELAY 30"}
 
 /obj/item/disk/holodisk/combat_robot/factory_floor
 	preset_image_type = /datum/preset_holoimage/nanotrasenprivatesecurity
 	preset_record_text = {"
 	NAME Officer Rymes
-	DELAY 10
+	DELAY 30
 	SAY After last nights incident I believe we should reiterate the corporate policy on rioting.
-	DELAY 15
+	DELAY 45
 	SAY In case of any kind of illegal striking or insurrection by the stationed workers you are to close the blast door to the factory floor.
-	DELAY 25
+	DELAY 75
 	SAY After the situation is under control and production ready to resume you should unlock the door.
-	DELAY 20
+	DELAY 45
 	SAY For the forgetful amongst you, the password is 'Zandar' after our dear CEO.
-	DELAY 15
+	DELAY 45
 	SAY Don't forget that the door is voice activated.
-	DELAY 10"}
+	DELAY 30"}

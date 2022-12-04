@@ -182,6 +182,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 		puzzle_disk = W
 		network.decryption_drives |= src
+		puzzle_disk.forceMove(src)
 		return TRUE
 
 	return ..()
@@ -200,6 +201,9 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	for(var/obj/item/server_rack/R in installed_racks)
 		. += span_notice("There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB. Uses [R.get_power_usage()]W")
 	. += span_notice("Use a crowbar to remove all currently inserted racks.")
+
+	if(puzzle_disk)
+		. += span_notice("The inserted disk is [round(puzzle_disk.decryption_progress / (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT) * 100)]")
 
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize()

@@ -18,8 +18,8 @@
 	health = 50
 	maxHealth = 50
 	healable = FALSE
-	melee_damage_lower = 3
-	melee_damage_upper = 5
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	projectilesound = 'sound/weapons/gunshot.ogg'
@@ -85,8 +85,8 @@
 	maxHealth = 100
 	dodging = TRUE
 	projectiletype = /obj/item/projectile/robot_bullet
-	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_lower = 8
+	melee_damage_upper = 15
 
 /mob/living/simple_animal/hostile/robot/advanced/ranged
 	name = "advanced ranged combat robot"
@@ -116,8 +116,8 @@
 	minimum_distance = 3
 	retreat_distance = 3
 	obj_damage = 0
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 15
+	melee_damage_upper = 25
 	health = 500
 	maxHealth = 500
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)

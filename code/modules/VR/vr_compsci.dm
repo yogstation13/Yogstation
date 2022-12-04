@@ -1,6 +1,7 @@
 GLOBAL_DATUM_INIT(compsci_vr, /datum/compsci_vr, new)
 GLOBAL_LIST_EMPTY(compsci_mission_markers)
 GLOBAL_VAR(compsci_vr_mission_reciever)
+GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 
 /datum/compsci_vr
@@ -34,6 +35,7 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	if(current_mission)
 		unlocked_missions -= current_mission.type
 		current_mission.complete()
+		GLOB.last_used_transmuter = null
 		QDEL_NULL(current_mission)
 
 /datum/compsci_vr/proc/start_mission(id, mob/user)
@@ -125,11 +127,22 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 	. = ..()
 	if(GLOB.compsci_vr_mission_reciever == src)
 		GLOB.compsci_vr_mission_reciever = null
+	if(GLOB.last_used_transmuter == src)
+		GLOB.last_used_transmuter = null
 
 /obj/machinery/compsci_reciever/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(!istype(user, /mob/living/carbon/human/virtual_reality))
 		return
+
+	if(GLOB.compsci_vr_mission_reciever == src && istype(I, /obj/item/disk/puzzle))
+		if(GLOB.last_used_transmuter)
+			I.forceMove(GLOB.last_used_transmuter.drop_location())
+			GLOB.last_used_transmuter = null
+			return TRUE
+		return FALSE
+
+	
 	if(GLOB.compsci_vr.current_mission && istype(I, GLOB.compsci_vr.current_mission.completion_item))
 		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
 		I.forceMove(station_machine.drop_location())
@@ -142,4 +155,5 @@ GLOBAL_VAR(compsci_vr_mission_reciever)
 		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
 		I.forceMove(station_machine.drop_location())
 		to_chat(user, span_notice("Successfully transferred disk."))
+		GLOB.last_used_transmuter = src
 		return TRUE
