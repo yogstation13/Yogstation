@@ -55,18 +55,3 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-
-/datum/outfit/job/paramedic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	if(H.stat == DEAD)
-		return
-	for(var/obj/item/gps/G in H.contents)//check all directly held items
-		G.gpstag = H.real_name
-		G.name = "global positioning system ([G.gpstag])"
-		return
-	for(var/obj/item/storage/B in H.contents)//check all storage items
-		for(var/obj/item/gps/G in B.contents)
-			G.gpstag = H.real_name
-			G.name = "global positioning system ([G.gpstag])"

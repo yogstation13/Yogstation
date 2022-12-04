@@ -56,13 +56,13 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner
-	r_pocket = /obj/item/gps/mining
+	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
+	r_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(
 		/obj/item/storage/bag/ore=1,\
 		/obj/item/kitchen/knife/combat/survival=1,\
 		/obj/item/mining_voucher=1,\
-		/obj/item/stack/marker_beacon/ten=1,\
-		/obj/item/flashlight/seclite=1)
+		/obj/item/stack/marker_beacon/ten=1)
 
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
@@ -71,16 +71,6 @@
 	ipc_box = /obj/item/storage/box/ipc/miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
-
-/datum/outfit/job/miner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	if(H.stat == DEAD)
-		return
-	for(var/obj/item/gps/G in H.contents)//check all directly held items
-		G.gpstag = H.real_name
-		G.name = "global positioning system ([G.gpstag])"
 
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"
