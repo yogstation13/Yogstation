@@ -1182,15 +1182,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		T.icon_state = "supermatter_tongs"
 		stage++
 		icon_state = "[initial(icon_state)]_1"
-		user.space_notice("You carefully place down the supermatter shard on the [src].")
-		user.visible_message("You see [user] carefully place down the supermatter shard on the [src]")
+		playsound(src, 'sound/items/deconstruct.ogg', 75)
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src]."), span_notice("You carefully place down the supermatter shard on the \the [src]."))
 	else if(stage >= 2)
 		T.sliver.forceMove(src)
 		T.sliver = null
 		T.icon_state = "supermatter_tongs"
 		var/obj/machinery/power/supermatter_crystal/shard/shard = new(loc)
-		user.space_notice("You carefully place down the supermatter shard on the [src] and you can see the [shard] is charging up.")
-		user.visible_message("You see [user] carefully place down the supermatter shard on the [src] and you can see the [shard] is charging up.")
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src] and you can see \the [shard] engine is charging up."), span_notice("You carefully place down the supermatter shard on the \the [src] and you can see \the [shard] engine is charging up."))
 		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 		shard.say(span_danger("Supermatter is being charged up, please stand back."))
 		qdel(src)
@@ -1201,7 +1200,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/area/A = get_area(loc)
 	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
 	radio.talk_into(src, "Alert, new crystalline hyperstructure has been established in [A.map_name]", engineering_channel)
-	supermatter_zap(src, 3, 2000)
+	for(var/i=1 to 10)
+		addtimer(CALLBACK(src, .proc/supermatter_zap, 7, 2000), 2)
 
 /obj/structure/supermatter_base_structure/attackby(obj/item/hemostat/supermatter/tongs, mob/user)
 	if(istype(tongs))
