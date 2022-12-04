@@ -39,18 +39,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"aq" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
 "au" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
@@ -319,6 +307,17 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"tA" = (
+/obj/machinery/door/airlock/silver/glass{
+	name = "First Class Shuttle Cockpit";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "vi" = (
 /obj/machinery/light{
 	dir = 8
@@ -327,12 +326,35 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"wq" = (
+/obj/machinery/door/airlock/silver/glass{
+	name = "First Class Shuttle Brig";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "wQ" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/green,
+/area/shuttle/escape)
+"xz" = (
+/obj/structure/table/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "zq" = (
 /obj/structure/table/wood/poker,
@@ -350,14 +372,21 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Au" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
-	dir = 8
+"AD" = (
+/obj/machinery/light{
+	dir = 4
 	},
+/obj/item/pizzabox/margherita,
+/obj/item/pizzabox/meat,
+/obj/item/pizzabox/mushroom,
+/obj/item/pizzabox/pineapple,
+/obj/item/pizzabox/seafood,
+/obj/item/pizzabox/vegetable,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "AN" = (
@@ -371,39 +400,6 @@
 	pixel_y = -3
 	},
 /turf/open/floor/carpet/royalblue,
-/area/shuttle/escape)
-"AY" = (
-/obj/machinery/door/airlock/silver/glass{
-	name = "Lounge Shuttle Brig";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"Bh" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	desc = "A fridge, full of pizza!";
-	name = "Pizza Fridge"
-	},
-/obj/item/pizzabox/margherita,
-/obj/item/pizzabox/meat,
-/obj/item/pizzabox/mushroom,
-/obj/item/pizzabox/pineapple,
-/obj/item/pizzabox/seafood,
-/obj/item/pizzabox/vegetable,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "Cq" = (
 /obj/machinery/vending/boozeomat/all_access,
@@ -514,6 +510,29 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"OH" = (
+/obj/machinery/door/airlock/titanium{
+	name = "First Class Shuttle Brig Airlock";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"OW" = (
+/obj/structure/table/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "PI" = (
 /obj/structure/table/wood/poker,
 /obj/effect/spawner/lootdrop/gambling,
@@ -553,17 +572,6 @@
 /obj/structure/table/wood/poker,
 /turf/open/floor/carpet/green,
 /area/shuttle/escape)
-"Ud" = (
-/obj/machinery/door/airlock/silver/glass{
-	name = "Lounge Shuttle Cockpit";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "WW" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -577,16 +585,6 @@
 	},
 /obj/structure/table/wood/fancy/royalblue,
 /turf/open/floor/carpet/red,
-/area/shuttle/escape)
-"XB" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks/fullupgrade{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "XL" = (
 /obj/machinery/door/firedoor/border_only{
@@ -636,7 +634,7 @@ ak
 aP
 aP
 aP
-aq
+OH
 aP
 aZ
 aP
@@ -780,7 +778,7 @@ Xw
 aH
 aw
 aH
-AY
+wq
 gE
 Ap
 oA
@@ -825,7 +823,7 @@ aw
 al
 aJ
 aJ
-Ud
+tA
 aK
 aK
 aK
@@ -952,10 +950,10 @@ qs
 MN
 WW
 Cq
-XB
-Au
+OW
+xz
 Sf
-Bh
+AD
 iD
 aM
 aE
