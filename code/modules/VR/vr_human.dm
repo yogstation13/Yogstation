@@ -97,9 +97,6 @@
 	. = FALSE
 	if(destination)
 		var/turf/new_turf = get_turf(destination)
-		if(new_turf && ismob(src))
-			var/mob/M = src
-
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")

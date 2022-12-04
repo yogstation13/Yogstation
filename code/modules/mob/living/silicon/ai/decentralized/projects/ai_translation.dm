@@ -2,7 +2,7 @@
 
 /datum/ai_project/translation
 	name = "Heuristic Language Translation"
-	description = "While running this program analyzes unknown languages you encounter. After having gathered enough unique uses you will be able to permanently understand the language. Requires 10% CPU power to run"
+	description = "While running, this program analyzes unknown languages you encounter. After having gathered enough unique uses you will be able to permanently understand the language. Requires 10% CPU power to run"
 	research_cost = 1500
 	ram_required = 2
 	research_requirements_text = "None"
