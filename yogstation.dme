@@ -1762,6 +1762,7 @@
 #include "code\modules\awaymissions\mission_code\vrhub.dm"
 #include "code\modules\awaymissions\mission_code\wildwest.dm"
 #include "code\modules\awaymissions\mission_code\netmin\_puzzles.dm"
+#include "code\modules\awaymissions\mission_code\netmin\combat_robot_factory.dm"
 #include "code\modules\awaymissions\mission_code\netmin\scientist_raid.dm"
 #include "code\modules\balloon_alert\balloon_alert.dm"
 #include "code\modules\buildmode\bm_mode.dm"
