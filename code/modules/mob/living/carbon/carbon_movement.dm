@@ -27,8 +27,6 @@
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(!isturf(loc))
 		return FALSE
-	if(istype(pulledby, /mob/living)) //No space move exploiting with 2 mobs dragging each others
-		return FALSE
 	// Do we have a jetpack implant (and is it on)?
 	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
 	if(istype(T))
@@ -42,6 +40,9 @@
 
 	if(!.)
 		. = ..()
+	if(!. && pulledby && pulling) //No space move exploiting with 2 mobs dragging each others
+		pulledby.stop_pulling()
+		return TRUE
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
