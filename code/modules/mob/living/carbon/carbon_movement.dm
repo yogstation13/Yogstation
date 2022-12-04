@@ -25,6 +25,8 @@
 	return
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
+	if(..())
+		return TRUE
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
@@ -37,16 +39,6 @@
 	if(istype(J))
 		if((movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
 			. =  TRUE
-
-	if(!.)
-		. = ..()
-	if(!. && pulledby && pulling) // If it still returned false
-		pulledby.stop_pulling()
-		return TRUE
-
-	if(pulledby && pulling) //No space move exploiting with 2 mobs dragging each others
-		pulledby.stop_pulling()
-		return TRUE
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
