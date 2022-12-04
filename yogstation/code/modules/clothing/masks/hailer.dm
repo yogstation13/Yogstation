@@ -14,8 +14,6 @@
 /obj/item/clothing/mask/gas/sechailer/Destroy()
 	if(radio)
 		qdel(radio)
-	if(radio_key)
-		qdel(radio_key)
 	GLOB.sechailers -= src
 	. = ..()
 
