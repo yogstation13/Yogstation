@@ -1182,11 +1182,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		T.icon_state = "supermatter_tongs"
 		stage++
 		icon_state = "[initial(icon_state)]_1"
+		user.space_notice("You carefully place down the supermatter shard on the [src].")
+		user.visible_message("You see [user] carefully place down the supermatter shard on the [src]")
 	else if(stage >= 2)
 		T.sliver.forceMove(src)
 		T.sliver = null
 		T.icon_state = "supermatter_tongs"
 		var/obj/machinery/power/supermatter_crystal/shard/shard = new(loc)
+		user.space_notice("You carefully place down the supermatter shard on the [src] and you can see the [shard] is charging up.")
+		user.visible_message("You see [user] carefully place down the supermatter shard on the [src] and you can see the [shard] is charging up.")
 		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 		shard.say(span_danger("Supermatter is being charged up, please stand back."))
 		qdel(src)
