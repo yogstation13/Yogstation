@@ -572,8 +572,6 @@
 		return TRUE
 
 	if(pulledby)
-		if(istype(pulledby, /mob/living)) //No spacewalking exploit with 2 mobs dragging each others
-			return FALSE
 		return TRUE
 
 	if(throwing)
