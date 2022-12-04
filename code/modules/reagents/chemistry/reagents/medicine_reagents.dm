@@ -143,8 +143,9 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
-		if(M.AmountSleeping() < power*2 SECONDS)
-			M.SetSleeping(power*2 SECONDS)
+		if(prob(10))
+			M.Knockdown(1 SECONDS)
+			to_chat(M, span_danger("You feel woozy."))
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power)
