@@ -190,6 +190,10 @@
 	name = "Flesh to Stone"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
 
+/datum/spellbook_entry/touchofdeath		//yogs start
+	name = "Disintegrate"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/		//yogs end
+
 /datum/spellbook_entry/summonitem
 	name = "Summon Item"
 	spell_type = /obj/effect/proc_holder/spell/targeted/summonitem
