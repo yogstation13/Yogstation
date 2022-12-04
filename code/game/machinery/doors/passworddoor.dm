@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(floppy_disk_doors)
 			if(P.decrypted)
 				open()
 			else
-				to_chat(user, span_warning("This this doesn't seem to be decrypted!"))
+				to_chat(user, span_warning("This disk doesn't seem to have been decrypted!"))
 		else
 			to_chat(user, span_warning("This disk doesn't belong to this door!"))
 

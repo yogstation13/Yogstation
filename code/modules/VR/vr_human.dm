@@ -42,7 +42,12 @@
 
 /mob/living/carbon/human/virtual_reality/proc/check_area()
 	var/area/check = get_area(src)
-	if(!check || !istype(check, /area/awaymission/vr))
+	if(!check)
+		return
+	if(!istype(check, /area/awaymission/vr))
+		to_chat(src, span_userdanger("It is unwise to attempt to break Virtual Reality."))
+		playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
+		dust()
 		return
 	var/area/awaymission/vr/A = check
 	if(A.death)
@@ -85,3 +90,16 @@
 			VR.revert_to_reality(FALSE)
 		else
 			Remove(owner)
+
+
+//Overwritten to ensure we don't get blocked by secret level checks
+/mob/living/carbon/human/virtual_reality/forceMove(atom/destination)
+	. = FALSE
+	if(destination)
+		var/turf/new_turf = get_turf(destination)
+		if(new_turf && ismob(src))
+			var/mob/M = src
+
+		. = doMove(destination)
+	else
+		CRASH("No valid destination passed into forceMove")

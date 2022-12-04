@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(ainet_activity_description, list(
 	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income.",
 	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points.",
 	"[AI_REVIVAL]" = "If you've inserted a volatile neural core into a connected data core this will revive it using CPU.",
-	"[AI_PUZZLE]" = "If you've found an inserted an encrypted floppy drive into a connected server cabinet you can decrypt it using CPU."
+	"[AI_PUZZLE]" = "If you've found and inserted an encrypted floppy drive into a connected server cabinet you can decrypt it using CPU."
 ))
 
 
