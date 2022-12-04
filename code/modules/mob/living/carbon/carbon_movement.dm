@@ -40,7 +40,11 @@
 
 	if(!.)
 		. = ..()
-	if(!. && pulledby && pulling) //No space move exploiting with 2 mobs dragging each others
+	if(!. && pulledby && pulling) // If it still returned false
+		pulledby.stop_pulling()
+		return TRUE
+
+	if(pulledby && pulling) //No space move exploiting with 2 mobs dragging each others
 		pulledby.stop_pulling()
 		return TRUE
 
