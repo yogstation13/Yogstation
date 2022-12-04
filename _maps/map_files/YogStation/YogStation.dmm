@@ -10389,6 +10389,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bje" = (
+/obj/machinery/status_display/ai{
+	pixel_y = 32
+	},
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "bjg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -12039,13 +12052,6 @@
 /obj/structure/table,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"bxm" = (
-/obj/effect/spawner/xmastree/rdrod,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "bxn" = (
 /turf/closed/wall,
 /area/science/explab)
@@ -12170,16 +12176,6 @@
 /area/crew_quarters/heads/hor)
 "byt" = (
 /turf/closed/wall/r_wall,
-/area/crew_quarters/heads/hor)
-"byu" = (
-/obj/structure/displaycase/labcage,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "byv" = (
 /obj/machinery/door/poddoor/preopen{
@@ -17178,16 +17174,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"cBu" = (
-/obj/machinery/status_display/ai{
-	pixel_y = 32
-	},
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "cBz" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/engine,
@@ -38859,6 +38845,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"lSh" = (
+/obj/structure/displaycase/labcage,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "lSz" = (
 /obj/machinery/air_sensor{
 	id_tag = "o2_sensor"
@@ -63207,6 +63206,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wby" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/immovablerod{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "wbG" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -117893,7 +117901,7 @@ qzR
 teq
 nyu
 bvK
-cBu
+bje
 byr
 bzL
 bxZ
@@ -118150,8 +118158,8 @@ boB
 qfK
 ekZ
 bvK
-bxm
-byu
+wby
+lSh
 dbJ
 bCf
 aGs
