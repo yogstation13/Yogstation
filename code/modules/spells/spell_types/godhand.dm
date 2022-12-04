@@ -192,19 +192,19 @@
 
 /obj/item/melee/touch_attack/touchofdeath		//yogs start
 	name = "\improper necrotic touch"
-	desc = "What has a beginning, but no end?"
+	desc = "What has a beginning but no end?"
 	catchphrase = "DIM MAK!!"
 	on_use_sound = 'sound/magic/wandodeath.ogg'
-	icon_state = "disintegrate"
-	item_state = "disintegrate"
+	icon_state = "touchofdeath"
+	item_state = "touchofdeath"
 
-/obj/item/melee/touch_attack/disintegrate/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE))
+/obj/item/melee/touch_attack/touchofdeath/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity || target == user || !isliving(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE))
 		return
 	if(!user.can_speak_vocal())
 		to_chat(user, span_notice("You can't get the words out!"))
 		return
-	var/mob/M = target
+	var/mob/living/M = target
 	do_sparks(4, FALSE, M.loc)
 	for(var/mob/living/L in view(src, 7))
 		if(L != user)
@@ -224,7 +224,7 @@
 		M.visible_message(span_danger("[M]'s [suit] rots away into a pile of goo!"))
 		M.dropItemToGround(suit)
 		qdel(suit)
-		new /obj/effect/decal/cleanable/molten_object 
+		new /obj/effect/decal/cleanable/molten_object(M.loc)
 		return ..()
-	M.adjustOxyLoss(200)
+	M.death(FALSE)
 	return ..()	//yogs end

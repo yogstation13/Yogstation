@@ -114,11 +114,11 @@
 /obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs start
 	name = "Touch of Death"
 	desc = "This spell charges your hand with necrotic energy that can kill both organic and inorganic beings instantly."
-	hand_path = /obj/item/melee/touch_attack/touch_of_death
+	hand_path = /obj/item/melee/touch_attack/touchofdeath
 
 	school = "evocation"
 	charge_max = 600
 	clothes_req = TRUE
 	cooldown_min = 200 //100 deciseconds reduction per rank
 
-	action_icon_state = "gib"	//yogs end
+	action_icon_state = "touchofdeath"	//yogs end

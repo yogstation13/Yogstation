@@ -191,8 +191,8 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
 
 /datum/spellbook_entry/touchofdeath		//yogs start
-	name = "Disintegrate"
-	spell_type = /obj/effect/proc_holder/spell/targeted/touch/		//yogs end
+	name = "Touch of Death"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs end
 
 /datum/spellbook_entry/summonitem
 	name = "Summon Item"
