@@ -2041,6 +2041,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
 	item = /obj/item/storage/box/syndie_kit/augmentation/superior
 	cost = 45
+	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
