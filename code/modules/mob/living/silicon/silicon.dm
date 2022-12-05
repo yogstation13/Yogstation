@@ -491,4 +491,17 @@
 		var/obj/item/computer_hardware/hard_drive/hard_drive = modularInterface.all_components[MC_HDD]
 		var/datum/computer_file/program/pdamessager/msgr = hard_drive?.find_file_by_name("pda_client")
 		if(istype(msgr))
-			msgr.username = "[newname] ([job ? job : "Silicon"])"
+			var/jobname
+			if(job)
+				jobname = job
+			else if(istype(src, /mob/living/silicon/robot))
+				jobname = "[designation ? "[designation] " : ""]Cyborg"
+			else if(designation)
+				jobname = designation
+			else if(istype(src, /mob/living/silicon/ai))
+				jobname = "AI"
+			else if(istype(src, /mob/living/silicon/pai))
+				jobname = "pAI"
+			else
+				jobname = "Silicon"
+			msgr.username = "[newname] ([jobname])"
