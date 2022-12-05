@@ -184,7 +184,7 @@
 	numrecent ++
 	lastemp = world.time
 
-	if(recentemp >= 5 && ishuman(target))
+	if(numrecent >= 5 && ishuman(target))
 		if(warning)
 			to_chat(target, span_userdanger("You feel a twinge inside from your [src], you get the feeling it won't protect you anymore."))
 			warning = FALSE
