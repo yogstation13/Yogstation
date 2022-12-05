@@ -74,7 +74,7 @@
 		var/healthpercent = max(H.health, 0) / 100
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		H.set_light(1 + (2 * healthpercent), 1 + (1 * healthpercent), current_color)
+		H.set_light(1 + (3 * healthpercent), 1 + (2 * healthpercent), current_color)
 		fixed_mut_color = copytext_char(current_color, 2)
 	else
 		H.set_light(0)

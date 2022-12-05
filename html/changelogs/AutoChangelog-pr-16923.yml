@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a warning prompt to taking your own linked Memento Mori off"
+  - rscadd: "Adds a chat warning to taking someone elses Memento Mori off"

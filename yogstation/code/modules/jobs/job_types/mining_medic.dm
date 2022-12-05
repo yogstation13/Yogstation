@@ -23,6 +23,12 @@
 
 	changed_maps = list("EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
+		/obj/item/extraction_pack = 5,
+		/obj/item/fulton_core = 1
+	)
+
 /datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 1
@@ -31,7 +37,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 	
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1)
@@ -43,10 +49,11 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
+	ipc_box = /obj/item/storage/box/ipc/miner
 	pda_slot = SLOT_L_STORE

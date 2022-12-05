@@ -538,7 +538,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bone_bonesetter
-	name = "Bone Bonersetter"
+	name = "Bone Bonesetter"
 	result = /obj/item/bonesetter/bone
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
@@ -714,3 +714,43 @@
 				/obj/item/stack/sheet/sinew = 6,
 				/datum/reagent/consumable/tinlux = 1)
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/leftprostheticarm
+	name = "Left Prosthetic Arm"
+	result = /obj/item/bodypart/l_arm/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/rightprostheticarm
+	name = "Right Prosthetic Arm"
+	result = /obj/item/bodypart/r_arm/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/leftprostheticleg
+	name = "Left Prosthetic Leg"
+	result = /obj/item/bodypart/l_leg/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/rightprostheticleg
+	name = "Right Prosthetic Leg"
+	result = /obj/item/bodypart/r_leg/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL

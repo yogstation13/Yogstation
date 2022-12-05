@@ -785,7 +785,7 @@
 					else
 						changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
 
-					if(active_general_record)
+					if(active_general_record && changed_rank)
 						active_general_record.fields["rank"] = strip_html(changed_rank)
 						if(changed_rank in get_all_jobs())
 							active_general_record.fields["real_rank"] = changed_rank

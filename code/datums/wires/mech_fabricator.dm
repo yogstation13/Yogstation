@@ -35,7 +35,7 @@
 			F.hacked = TRUE
 			addtimer(CALLBACK(F, /obj/machinery/mecha_part_fabricator.proc/reset, wire), 5)
 		if(WIRE_ZAP)
-			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands shake and twist aggresively, grapping at limbs!"))
+			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands shake and twist aggressively, grabbing at limbs!"))
 			F.wire_break(usr)
 		if(WIRE_SHOCK)
 			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The cable sparks faintly."))

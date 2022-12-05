@@ -106,9 +106,6 @@
 	///Used for limiting the rate of clicks sends by the client to avoid abuse
 	var/list/clicklimiter
 
-	///goonchat chatoutput of the client
-	var/datum/chatOutput/chatOutput
-
  	///lazy list of all credit object bound to this client
 	//var/list/credits
 
