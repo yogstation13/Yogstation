@@ -3673,6 +3673,7 @@
 #include "yogstation\code\modules\clothing\suits\armor.dm"
 #include "yogstation\code\modules\clothing\suits\labcoat.dm"
 #include "yogstation\code\modules\clothing\suits\miscellaneous.dm"
+#include "yogstation\code\modules\clothing\suits\nerd.dm"
 #include "yogstation\code\modules\clothing\suits\wiz_robe.dm"
 #include "yogstation\code\modules\clothing\under\miscellaneous.dm"
 #include "yogstation\code\modules\clothing\under\jobs\civilian.dm"
