@@ -257,7 +257,7 @@
 /obj/vehicle/ridden/scooter/wheelys/Initialize()
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-	D.vehicle_move_delay = 0.5
+	D.vehicle_move_delay = 0.6
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
@@ -279,7 +279,7 @@
 		var/mob/living/H = buckled_mobs[1]
 		var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 		unbuckle_mob(H)
-		H.throw_at(throw_target, 3, 6)
+		H.throw_at(throw_target, 4, 6)
 		H.Paralyze(30)
 		H.adjustStaminaLoss(20)
 		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
