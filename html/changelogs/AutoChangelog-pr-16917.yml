@@ -1,0 +1,4 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - bugfix: "fixed held and wear mob sprites (As beautiful as the day I lost them)"

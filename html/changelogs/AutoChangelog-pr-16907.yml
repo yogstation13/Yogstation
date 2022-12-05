@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed laser sight change color button morphing into an infrared sight"
+  - bugfix: "fixed infrared sight button icon not updating"

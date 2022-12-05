@@ -8,6 +8,9 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 5 //seriously stop griefing
+	exp_requirements = 100
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/brigphysician
 

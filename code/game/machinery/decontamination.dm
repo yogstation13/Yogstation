@@ -1,7 +1,7 @@
 // DECONTAMINATION STORAGE UNIT!! /////////////////
 /obj/machinery/decontamination_unit
 	name = "advanced decontamination storage unit"
-	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment. Can store upto 1000."
+	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
 	icon_state = "tube"
 	density = TRUE
@@ -132,8 +132,8 @@
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(8) //why
-			say("The decontamination process is completed, thank you for your patient.")
+			sleep(8)
+			say("The decontamination process is completed, thank you for your patience.")
 			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 			if(mob_occupant)
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
