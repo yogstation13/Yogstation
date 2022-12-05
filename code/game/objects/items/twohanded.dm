@@ -1047,7 +1047,7 @@
 		armour_penetration = 100
 	else
 		set_light(0)
-		force_wielded -= 12 //Back to 4 + 24 = 28
+		force_wielded = initial(force_wielded) //Back to 4 + 24 = 28
 		armour_penetration = initial(armour_penetration)
 	update_icon()
 
