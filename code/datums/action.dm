@@ -267,7 +267,7 @@
 	att?.toggle_on()
 	UpdateButtonIcon()
 
-/datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
+/datum/action/item_action/toggle_infrared_sight/UpdateButtonIcon(status_only = FALSE, force)
 	button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"
 	..()
 

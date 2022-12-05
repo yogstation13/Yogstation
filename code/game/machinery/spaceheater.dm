@@ -58,7 +58,7 @@
 
 /obj/machinery/space_heater/update_icon()
 	if(on)
-		icon_state = "sheater-[mode]"
+		icon_state = "sheater-[on ? "[mode]" : "off"]"
 	else
 		icon_state = "sheater-off"
 
@@ -72,44 +72,49 @@
 			on = FALSE
 		return PROCESS_KILL
 
-	if(cell && cell.charge > 0)
-		var/turf/L = loc
-		if(!istype(L))
-			if(mode != HEATER_MODE_STANDBY)
-				mode = HEATER_MODE_STANDBY
-				update_icon()
-			return
+	if(!cell || cell.charge <= 0)
+		on = FALSE
+		update_icon()
+		return PROCESS_KILL
 
-		var/datum/gas_mixture/env = L.return_air()
-
-		var/newMode = HEATER_MODE_STANDBY
-		if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
-			newMode = HEATER_MODE_HEAT
-		else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
-			newMode = HEATER_MODE_COOL
-
-		if(mode != newMode)
-			mode = newMode
+	var/turf/L = loc
+	if(!istype(L))
+		if(mode != HEATER_MODE_STANDBY)
+			mode = HEATER_MODE_STANDBY
 			update_icon()
+		return
 
-		if(mode == HEATER_MODE_STANDBY)
-			return
+	var/datum/gas_mixture/env = L.return_air()
 
-		var/heat_capacity = env.heat_capacity()
-		var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
-		requiredPower = min(requiredPower, heatingPower)
+	var/newMode = HEATER_MODE_STANDBY
+	if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
+		newMode = HEATER_MODE_HEAT
+	else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
+		newMode = HEATER_MODE_COOL
 
-		if(requiredPower < 1)
-			return
+	if(mode != newMode)
+		mode = newMode
+		update_icon()
 
+	if(mode == HEATER_MODE_STANDBY)
+		return
+
+	var/heat_capacity = env.heat_capacity()
+	var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
+	requiredPower = min(requiredPower, heatingPower)
+
+	if(requiredPower < 1)
+		return
+
+	if (cell.use(requiredPower / efficiency))
 		var/deltaTemperature = requiredPower / heat_capacity
 		if(mode == HEATER_MODE_COOL)
 			deltaTemperature *= -1
 		if(deltaTemperature)
 			env.set_temperature(env.return_temperature() + deltaTemperature)
 			air_update_turf()
-		cell.use(requiredPower / efficiency)
 	else
+		//automatically turn off machine when cell depletes
 		on = FALSE
 		update_icon()
 		return PROCESS_KILL

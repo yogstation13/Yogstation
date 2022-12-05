@@ -10,7 +10,7 @@
 	layer = ABOVE_WINDOW_LAYER
 								// if you add more storage slots, update cook() to clear their radiation too.
 
-	var/max_n_of_items = 1000
+	var/max_n_of_items = 53
 
 	state_open = FALSE
 	var/locked = FALSE
@@ -49,6 +49,7 @@
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_mob()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	update_icon()
 
 /obj/machinery/decontamination_unit/proc/dump_mob()
@@ -117,41 +118,49 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(8)
-			say("ERROR: PLEASE CONTACT SUPPORT!!")
-			if(mob_occupant)
-				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
-				mob_occupant.electrocute_act(50, src)
-			else
-				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
-			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
-			for(var/obj/item/item in contents)	
-				QDEL_NULL(item)
-			shock()
+			addtimer(CALLBACK(src, .proc/decon_eject_emagged), 12)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			sleep(8)
-			say("The decontamination process is completed, thank you for your patience.")
-			playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
-			if(mob_occupant)
-				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
-				mob_occupant.radiation = 0
-			else
-				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
-			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
-			if(occupant)
-				things_to_clear += occupant
-				things_to_clear += occupant.GetAllContents()
-			if(contents.len)
-				things_to_clear += contents
-			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
-				var/atom/movable/dirty_movable = am
-				dirty_movable.wash(CLEAN_ALL)
-		open_machine(0)
-		if(occupant)
-			dump_mob()
+			addtimer(CALLBACK(src, .proc/decon_eject), 12)
+
+/obj/machinery/decontamination_unit/proc/decon_eject_emagged()
+	var/mob/living/mob_occupant = occupant
+	say("ERROR: PLEASE CONTACT SUPPORT!!")
+	if(mob_occupant)
+		visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
+		mob_occupant.electrocute_act(50, src)
+	else
+		visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
+	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
+	for(var/obj/item/item in contents)	
+		QDEL_NULL(item)
+	shock()
+	open_machine(0)
+	if(occupant)
+		dump_mob()
+
+/obj/machinery/decontamination_unit/proc/decon_eject()
+	var/mob/living/mob_occupant = occupant
+	say("The decontamination process is completed, thank you for your patient.")
+	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
+	if(mob_occupant)
+		visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
+		mob_occupant.radiation = 0
+	else
+		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
+	var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+	for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
+		var/atom/movable/dirty_movable = am
+		dirty_movable.wash(CLEAN_ALL)
+	open_machine(0)
+	if(occupant)
+		things_to_clear += occupant
+		things_to_clear += occupant.GetAllContents()
+		dump_mob()
+	if(contents.len)
+		things_to_clear += contents
 
 /obj/machinery/decontamination_unit/proc/shock(mob/user)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -181,14 +190,7 @@
 		return
 	open_machine()
 	dump_mob()
-
-/obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
-	if(default_unfasten_wrench(user, W))
-		return
-	if(W.tool_behaviour == TOOL_MULTITOOL)
-		reset_emag(user)
-		return
-	return ..()
+	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
 /obj/machinery/decontamination_unit/proc/reset_emag(mob/user)
 	if(panel_open)
@@ -209,6 +211,7 @@
 	if(!locked)
 		open_machine()
 		dump_mob()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 		return
 	if(uv)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
@@ -226,6 +229,7 @@
 			span_notice("You successfully break out of [src]!"))
 		open_machine()
 		dump_mob()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
 	add_fingerprint(user)
 	if(locked)
@@ -235,6 +239,7 @@
 	else
 		open_machine()
 		dump_mob()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
 /obj/machinery/decontamination_unit/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
@@ -255,8 +260,18 @@
 		visible_message(span_notice("You see [user] burst out of [src]!"), \
 			span_notice("You escape the cramped confines of [src]!"))
 		open_machine()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
+
+/obj/machinery/decontamination_unit/is_operational()
+	return ..() && anchored
 
 /obj/machinery/decontamination_unit/attackby(obj/item/I, mob/user, params)
+	if(default_unfasten_wrench(user, I))
+		return
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		reset_emag(user)
+		return
+
 	if(state_open && is_operational())
 		//Unable to add an item, it's already full.
 		if(contents.len >= max_n_of_items)
@@ -315,6 +330,7 @@
 		I.play_tool_sound(src, 50)
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))
 		open_machine()
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
 /obj/machinery/decontamination_unit/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -350,6 +366,9 @@
 
 /obj/machinery/decontamination_unit/ui_act(action, params)
 	if(..() || uv)
+		return
+
+	if (!anchored)
 		return
 	switch(action)
 		if("door")

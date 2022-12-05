@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/botanist
 
-	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist")
+	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener")
 
 	added_access = list(ACCESS_BAR, ACCESS_KITCHEN)
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
