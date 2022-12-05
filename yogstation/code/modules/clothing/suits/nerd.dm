@@ -1,11 +1,12 @@
 #define SOUND_BEEP_1 add_queue('sound/voice/nerdsuit/beep_1.ogg',20)
 #define SOUND_BEEP_2 add_queue('sound/voice/nerdsuit/beep_2.ogg',20)
 #define SOUND_BEEP_3 add_queue('sound/voice/nerdsuit/beep_3.ogg',20)
-#define SOUND_BELL add_queue('sound/voice/nerdsuit/bell.ogg',20)
 
 /obj/item/clothing/suit/armor/nerd
 	name = "\improper D.O.T.A. suit"
 	desc = "The Defenseless Operator Traversal Assistance suit is a highly experimental NanoTrasen designed protective full body harness designed to prolong the lifespan (and thus productivity) of an employee via surplus medical technology found in the abandoned part of maintenance no one seems to want to talk about. Unfortunately the research department couldn't design a helmet before the third quarter so this is definitely not spaceproof. One size fits most."
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "nerd"
 	item_state = "nerd"
 	blood_overlay_type = "armor"
@@ -13,6 +14,9 @@
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 50, RAD = 25, FIRE = 50, ACID = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crowbar)
+
+	strip_delay = 50
+	equip_delay_other = 50
 
 	var/list/funny_signals = list(
 		COMSIG_MOB_SAY = .proc/handle_speech,
@@ -23,12 +27,23 @@
 		COMSIG_MOB_APPLY_DAMAGE = .proc/handle_damage,
 	)
 
-	var/damage_notify_next = 0
-	var/morphine_next = 0
+	var/list/wound_to_sound = list(
+		/datum/wound/blunt/severe = 'sound/voice/nerdsuit/minor_fracture.ogg',
+		/datum/wound/blunt/critical = 'sound/voice/nerdsuit/major_fracture.ogg',
+		/datum/wound/loss = 'sound/voice/nerdsuit/major_lacerations.ogg',
+		/datum/wound/slash/severe = 'sound/voice/nerdsuit/minor_lacerations.ogg',
+		/datum/wound/slash/critical = 'sound/voice/nerdsuit/major_lacerations.ogg',
+	)
 
 	var/list/sound_queue = list()
 
+	var/damage_notify_next = 0
+	var/morphine_next = 0
+	var/sound_next = 0
+
 	var/mob/living/carbon/owner
+
+	var/emagged = FALSE
 
 /obj/item/clothing/suit/armor/nerd/Initialize()
 	. = ..()
@@ -38,6 +53,9 @@
 
 /obj/item/clothing/suit/armor/nerd/proc/process_sound_queue()
 
+	if(sound_next > world.time)
+		return FALSE
+
 	if(!length(sound_queue))
 		return FALSE
 
@@ -45,7 +63,10 @@
 	var/sound_file = sound_data[1]
 	var/sound_delay = sound_data[2]
 
-	playsound(get_turf(src), sound_file)
+	playsound(src, sound_file, 50)
+	sound_next = world.time + sound_delay
+
+	sound_queue.Cut(1,2)
 
 	addtimer(CALLBACK(src, .proc/process_sound_queue), sound_delay)
 
@@ -66,7 +87,7 @@
 	sound_queue += list(list(desired_file,desired_delay)) //BYOND is fucking weird so you have to do this bullshit if you want to add a list to a list.
 
 	if(empty_sound_queue)
-		process_sound_queue()
+		addtimer(CALLBACK(src, .proc/process_sound_queue), 10)
 
 	return TRUE
 
@@ -74,10 +95,10 @@
 //Signal handling.
 /obj/item/clothing/suit/armor/nerd/equipped(mob/M, slot)
 	. = ..()
-	if(slot == SLOT_SUIT && is_carbon(M))
+	if(slot == SLOT_WEAR_SUIT && iscarbon(M))
 		for(var/k in funny_signals)
 			RegisterSignal(M, k, funny_signals[k])
-		SOUND_BELL
+		add_queue('sound/voice/nerdsuit/bell.ogg',20,purge_queue=TRUE)
 		owner = M
 		if(emagged)
 			add_queue('sound/voice/nerdsuit/emag.ogg',270)
@@ -110,26 +131,18 @@
 	to_chat(source, span_warning(pick(cancel_messages)))
 
 //Fire
-/obj/item/clothing/suit/armor/nerd/proc/handle_ignite(/mob/living)
+/obj/item/clothing/suit/armor/nerd/proc/handle_ignite(mob/living)
 	SOUND_BEEP_3
 	add_queue('sound/voice/nerdsuit/heat.ogg',30)
 
 //Shock
-/obj/item/clothing/suit/armor/nerd/proc/handle_shock(/mob/living)
+/obj/item/clothing/suit/armor/nerd/proc/handle_shock(mob/living)
 	SOUND_BEEP_3
 	add_queue('sound/voice/nerdsuit/shock.ogg',30)
 
 
 //Wounds
-/obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
-
-	var/list/wound_to_sound = list(
-		/datum/wound/blunt/severe = 'sound/effects/minor_fracture.ogg',
-		/datum/wound/blunt/critical = 'sound/effects/major_fracture.ogg',
-		/datum/wound/loss = 'sound/effects/major_lacerations.ogg',
-		/datum/wound/slash/severe = 'sound/effects/minor_lacerations.ogg',
-		/datum/wound/slash/critical = 'sound/effects/major_lacerations.ogg',
-	)
+/obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
 
 	var/found_sound = wound_to_sound[W.type]
 	if(found_sound)
@@ -141,22 +154,22 @@
 
 	if(W.severity >= WOUND_SEVERITY_MODERATE && morphine_next <= world.time && owner.reagents)
 		if(emagged)
-			owner.reagents.add_reagent(/datum/reagent/drug/ketamine, 5)
+			owner.reagents.add_reagent(/datum/reagent/drug/ketamine, 3)
 			SOUND_BEEP_3
 			add_queue('sound/voice/nerdsuit/ketamine.ogg',20)
 		else
-			owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 4)
+			owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 			SOUND_BEEP_3
 			add_queue('sound/voice/nerdsuit/morphine.ogg',20)
 
 //General Damage
-/obj/item/clothing/suit/armor/nerd/proc/handle_damage(damage, damagetype, def_zone)
+/obj/item/clothing/suit/armor/nerd/proc/handle_damage(datum/source, damage, damagetype, def_zone)
 
 	if(damage <= 0)
-		continue
+		return
 
 	if(damage_notify_next > world.time)
-		continue
+		return
 
 	switch(owner.health)
 		if(75 to 50)
@@ -175,4 +188,3 @@
 #undef SOUND_BEEP_1
 #undef SOUND_BEEP_2
 #undef SOUND_BEEP_3
-#undef SOUND_BELL
