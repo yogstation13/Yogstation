@@ -149,15 +149,31 @@
 			SOUND_BEEP_3
 			add_queue('sound/voice/nerdsuit/seek_medical.ogg',20)
 
-	if(W.severity >= WOUND_SEVERITY_MODERATE && morphine_next <= world.time && owner.reagents)
-		if(emagged)
-			owner.reagents.add_reagent(/datum/reagent/drug/ketamine, 3)
-			SOUND_BEEP_3
-			add_queue('sound/voice/nerdsuit/ketamine.ogg',20)
-		else
-			owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
-			SOUND_BEEP_3
-			add_queue('sound/voice/nerdsuit/morphine.ogg',20)
+	if(W.severity >= WOUND_SEVERITY_MODERATE)
+		administer_morphine()
+
+/obj/item/clothing/suit/armor/nerd/proc/administer_morphine()
+
+	if(!owner.reagents)
+		return
+
+	if(morphine_next > world.time)
+		return
+
+	if(emagged)
+		owner.reagents.add_reagent(/datum/reagent/drug/ketamine, 3)
+		SOUND_BEEP_3
+		add_queue('sound/voice/nerdsuit/ketamine.ogg',20)
+	else
+		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
+		SOUND_BEEP_3
+		add_queue('sound/voice/nerdsuit/morphine.ogg',20)
+
+	morphine_next = world.time + 200
+
+	return TRUE
+
+
 
 //General Damage
 /obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
@@ -168,18 +184,24 @@
 	if(damage_notify_next > world.time)
 		return
 
-	switch(owner.health/owner.maxHealth)
-		if(0.75 to 0.5)
-			SOUND_BEEP_2
-			add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',20)
-		if(0.5 to 0.25)
-			SOUND_BEEP_3
-			add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',30)
-		if(0.25 to -INFINITY)
-			SOUND_BEEP_3
-			add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',30)
+	var/health_percent = owner.health/owner.maxHealth
 
-	damage_notify_next = world.time + 50
+	if(health_percent <= 0.25)
+		SOUND_BEEP_3
+		add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',30)
+		damage_notify_next = world.time + 50
+		administer_morphine()
+	else if(health_percent <= 0.50)
+		SOUND_BEEP_3
+		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',30)
+		damage_notify_next = world.time + 50
+		administer_morphine()
+	else if(health_percent <= 0.75)
+		SOUND_BEEP_2
+		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',20)
+		damage_notify_next = world.time + 50
+
+
 
 
 #undef SOUND_BEEP_1
