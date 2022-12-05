@@ -72,15 +72,6 @@
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 
-/datum/outfit/job/miner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	if(H.stat == DEAD)
-		return
-	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "[H]"
-
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"
 	suit = /obj/item/clothing/suit/hooded/explorer
