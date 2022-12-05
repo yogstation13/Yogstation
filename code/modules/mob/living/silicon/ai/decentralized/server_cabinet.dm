@@ -176,6 +176,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		return TRUE
 	
 	if(istype(W, /obj/item/disk/puzzle))
+		var/obj/item/disk/puzzle/P = W
+		if(P.decrypted)
+			to_chat(user, span_warning("The disk has already been decrypted!"))
+			return
 		if(puzzle_disk)
 			to_chat(user, span_warning("There's already a floppy drive inserted!"))
 			return

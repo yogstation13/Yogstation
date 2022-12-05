@@ -133,8 +133,6 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 /obj/machinery/compsci_reciever/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	if(!istype(user, /mob/living/carbon/human/virtual_reality))
-		return
 
 	if(GLOB.compsci_vr_mission_reciever == src && istype(I, /obj/item/disk/puzzle))
 		if(GLOB.last_used_transmuter)

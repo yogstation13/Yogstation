@@ -98,6 +98,7 @@
 				if(SC.puzzle_disk.decryption_progress >= (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT))
 					SC.puzzle_disk.decrypted = TRUE
 					SC.puzzle_disk.forceMove(SC.drop_location())
+					sc.puzzle_disk.name = "decrypted floppy drive"
 					decryption_drives -= SC
 
 	var/locally_used = 0
