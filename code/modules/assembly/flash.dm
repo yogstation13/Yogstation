@@ -268,7 +268,7 @@
 	overheat = TRUE
 	addtimer(CALLBACK(src, .proc/cooldown), flashcd * 2)
 
-/obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
+/obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null, burnout = FALSE)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
