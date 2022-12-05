@@ -173,9 +173,14 @@
 	speed = -0.5
 	robust_searching = 1
 	stat_attack = UNCONSCIOUS
-	health = 100
+	health = 200
 	maxHealth = 100
+	var/datum/action/innate/rad_goat/rad
 
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
+	. = ..()
+	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly)
+	
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
 	. = ..()
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
@@ -186,8 +191,8 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
 	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
+	radiation_pulse(src, 600) // It gets stronker as time passes
 	if(stat == CONSCIOUS)
-		radiation_pulse(src, 600) // It gets stronker as time passes
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5) //gets healed over time
 
