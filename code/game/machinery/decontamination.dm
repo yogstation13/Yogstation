@@ -10,7 +10,7 @@
 	layer = ABOVE_WINDOW_LAYER
 								// if you add more storage slots, update cook() to clear their radiation too.
 
-	var/max_n_of_items = 1000
+	var/max_n_of_items = 53
 
 	state_open = FALSE
 	var/locked = FALSE
@@ -192,14 +192,6 @@
 	dump_mob()
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
-/obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
-	if(default_unfasten_wrench(user, W))
-		return
-	if(W.tool_behaviour == TOOL_MULTITOOL)
-		reset_emag(user)
-		return
-	return ..()
-
 /obj/machinery/decontamination_unit/proc/reset_emag(mob/user)
 	if(panel_open)
 		if(obj_flags & EMAGGED)
@@ -270,7 +262,16 @@
 		open_machine()
 		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 
+/obj/machinery/decontamination_unit/is_operational()
+	return ..() && anchored
+
 /obj/machinery/decontamination_unit/attackby(obj/item/I, mob/user, params)
+	if(default_unfasten_wrench(user, I))
+		return
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		reset_emag(user)
+		return
+
 	if(state_open && is_operational())
 		//Unable to add an item, it's already full.
 		if(contents.len >= max_n_of_items)
@@ -365,6 +366,9 @@
 
 /obj/machinery/decontamination_unit/ui_act(action, params)
 	if(..() || uv)
+		return
+
+	if (!anchored)
 		return
 	switch(action)
 		if("door")
