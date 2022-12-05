@@ -180,7 +180,8 @@
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
 	. = ..()
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly)
-	
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
+
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
 	. = ..()
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
@@ -190,7 +191,6 @@
 		adjustFireLoss(-10)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 	if(stat == CONSCIOUS)
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5) //gets healed over time
