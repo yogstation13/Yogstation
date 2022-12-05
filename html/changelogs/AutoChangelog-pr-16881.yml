@@ -1,0 +1,4 @@
+author: "Firewolf34"
+delete-after: true 
+changes: 
+  - bugfix: "Space Heaters and Electrolyzers now obey the laws of thermodynamics."
