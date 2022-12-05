@@ -34,12 +34,12 @@
 	DELAY 30
 	SAY Welcome aboard your new home for the next 12 months!
 	DELAY 30
-	SAY As you know from the job listing your main duties will be to refill machinery, pack boxes, and most importantly..
-	DELAY 30
-	SAY Not asking any questions.
+	SAY Your main duties will consist of refilling machinery, packing boxes, and most importantly..
 	DELAY 45
+	SAY Not asking any questions.
+	DELAY 30
 	SAY In addition, please refrain from bothering the Corporate Liason stationed here unless he specifically asks for your help.
-	DELAY 30"}
+	DELAY 45"}
 
 
 /obj/item/disk/holodisk/combat_robot/classified
@@ -56,7 +56,7 @@
 	SAY Using the local supervisor as the neural template.
 	DELAY 60
 	SAY Final report is estimated to be completed within the next two weeks.
-	DELAY 30"}
+	DELAY 45"}
 
 /obj/item/disk/holodisk/combat_robot/experiment
 	preset_image_type = /datum/preset_holoimage/researcher
@@ -72,7 +72,7 @@
 	SAY Neural activity appears incompatible with capture device.  
 	DELAY 50
 	SAY Subject has expired. End log for experiment number 31.
-	DELAY 30"}
+	DELAY 45"}
 
 /obj/item/disk/holodisk/combat_robot/factory_floor
 	preset_image_type = /datum/preset_holoimage/nanotrasenprivatesecurity
@@ -88,4 +88,4 @@
 	SAY For the forgetful amongst you, the password is 'Zandar' after our dear CEO.
 	DELAY 45
 	SAY Don't forget that the door is voice activated.
-	DELAY 30"}
+	DELAY 45"}

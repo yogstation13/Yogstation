@@ -11,7 +11,8 @@
 	var/obj/item/card/id/id = H.wear_id
 	if (istype(id))
 		id.access |= get_all_accesses()
-	H.set_species(/datum/species/human)
+	if(isplasmaman(H))
+		H.set_species(/datum/species/human)
 
 /datum/outfit/vr/syndicate
 	name = "Syndicate VR Operative - Basic"
