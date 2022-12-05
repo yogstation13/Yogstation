@@ -49,6 +49,7 @@
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_box/c38/hotshot
 	name = "speed loader (.38 Hot Shot)"
