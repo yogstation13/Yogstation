@@ -17,9 +17,6 @@
 
 /datum/outfit/vr/mission
 
-/datum/outfit/vr/mission/post_equip(mob/living/carbon/human/H)
-	. = ..()
-	H.set_species(/datum/species/human)
 
 /obj/effect/landmark/vr_spawn/vr_mission
 	var/id = "debug_mission"
