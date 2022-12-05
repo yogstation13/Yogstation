@@ -1,7 +1,7 @@
 /proc/translate_legacy_chem_id(id)
 	switch (id)
 		if ("sacid")
-			return "sulphuricacid"
+			return "sulfuricacid"
 		if ("facid")
 			return "fluorosulfuricacid"
 		if ("co2")
@@ -35,7 +35,7 @@
 	var/obj/item/reagent_containers/beaker = null
 	//This will display every reagent that it could POSSIBLY dispense if it was fully upgraded (barring emagged chemicals). Ones you can't use will show what tier you need.
 	//If you want to add more to the tiers, it has to be in dispensable_reagents AND the list of what you tier you want it in below.
-	var/list/display_reagents = list() 
+	var/list/display_reagents = list()
 
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,

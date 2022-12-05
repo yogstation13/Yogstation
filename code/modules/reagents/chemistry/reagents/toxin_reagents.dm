@@ -786,7 +786,7 @@
 
 
 /datum/reagent/toxin/acid
-	name = "Sulphuric acid"
+	name = "Sulfuric acid"
 	description = "A strong mineral acid with the molecular formula H2SO4."
 	color = "#00FF32"
 	toxpwr = 1
@@ -944,7 +944,7 @@
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
 	..()
-	
+
 /datum/reagent/toxin/mushroom_powder
 	name = "Mushroom Powder"
 	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."
