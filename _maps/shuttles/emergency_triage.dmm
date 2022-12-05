@@ -1,0 +1,452 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"c" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"d" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"e" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/template_noop)
+"g" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"i" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"k" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"n" = (
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating,
+/area/template_noop)
+"q" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/template_noop)
+"u" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"v" = (
+/obj/structure/window/reinforced,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/template_noop)
+"w" = (
+/obj/machinery/door/airlock/shuttle/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/template_noop)
+"z" = (
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/template_noop)
+"B" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"C" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"E" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"G" = (
+/turf/open/floor/mineral/titanium,
+/area/template_noop)
+"I" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"J" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/atmospherics/components/unary/tank/oxygen{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"M" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"N" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"O" = (
+/obj/structure/window/shuttle,
+/turf/template_noop,
+/area/template_noop)
+"P" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"Q" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"T" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"V" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"W" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"X" = (
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+"Y" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6;
+	layer = 2.35;
+	level = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/template_noop)
+
+(1,1,1) = {"
+z
+z
+z
+z
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+z
+z
+z
+N
+N
+N
+"}
+(2,1,1) = {"
+z
+N
+N
+N
+e
+A
+A
+A
+d
+g
+Q
+Q
+Q
+Q
+M
+e
+N
+N
+N
+e
+n
+C
+"}
+(3,1,1) = {"
+N
+e
+z
+z
+N
+A
+A
+A
+N
+B
+X
+X
+X
+X
+a
+O
+G
+G
+G
+G
+q
+C
+"}
+(4,1,1) = {"
+N
+z
+z
+z
+N
+A
+A
+A
+N
+B
+X
+X
+X
+X
+a
+O
+G
+v
+t
+G
+q
+C
+"}
+(5,1,1) = {"
+N
+z
+z
+z
+N
+A
+A
+A
+N
+B
+X
+X
+X
+X
+a
+N
+G
+v
+t
+G
+q
+C
+"}
+(6,1,1) = {"
+N
+z
+z
+z
+N
+A
+A
+A
+N
+B
+X
+X
+X
+X
+D
+w
+G
+v
+t
+G
+q
+C
+"}
+(7,1,1) = {"
+N
+z
+z
+z
+N
+N
+N
+N
+N
+B
+X
+X
+X
+Y
+T
+N
+G
+v
+t
+G
+q
+C
+"}
+(8,1,1) = {"
+N
+z
+z
+z
+N
+E
+Q
+k
+Q
+P
+X
+X
+X
+i
+J
+O
+G
+v
+t
+G
+q
+C
+"}
+(9,1,1) = {"
+N
+e
+z
+z
+N
+S
+X
+X
+X
+X
+X
+X
+X
+i
+W
+O
+G
+G
+G
+G
+q
+C
+"}
+(10,1,1) = {"
+z
+N
+N
+N
+e
+c
+I
+I
+I
+I
+I
+I
+I
+u
+V
+e
+N
+N
+N
+e
+n
+C
+"}
+(11,1,1) = {"
+z
+z
+z
+z
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+z
+z
+z
+N
+N
+N
+"}
