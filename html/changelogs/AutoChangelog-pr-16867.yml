@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Replaces sleep() with addtimer() in decon unit"
+  - soundadd: "Adds missing opening sound"
