@@ -93,7 +93,8 @@
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 
 				else
-					for(var/obj/machinery/telecomms/T in urange(25, src))
+					var/turf/turf = get_turf(src)
+					for(var/obj/machinery/telecomms/T in turf.z)
 						if(T.network == network)
 							machinelist.Add(T)
 
