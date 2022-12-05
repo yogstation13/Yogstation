@@ -1,4 +1,0 @@
-author: "Simplehorror"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer use the decontamination unit as a item storage while unanchored, and it only stores 51 * level items now."
