@@ -21,7 +21,7 @@
 		COMSIG_LIVING_IGNITED = .proc/handle_ignite,
 		COMSIG_LIVING_ELECTROCUTE_ACT = .proc/handle_shock,
 		COMSIG_CARBON_GAIN_WOUND = .proc/handle_wound_add,
-		COMSIG_MOB_APPLY_DAMAGE = .proc/handle_damage,
+		COMSIG_MOB_APPLY_DAMAGE = .proc/handle_damage
 	)
 
 	var/list/wound_to_sound = list(
@@ -160,22 +160,22 @@
 			add_queue('sound/voice/nerdsuit/morphine.ogg',20)
 
 //General Damage
-/obj/item/clothing/suit/armor/nerd/proc/handle_damage(datum/source, damage, damagetype, def_zone)
+/obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
 
-	if(damage <= 0)
+	if(damage <= 0 || owner.maxHealth <= 0)
 		return
 
 	if(damage_notify_next > world.time)
 		return
 
-	switch(owner.health)
-		if(75 to 50)
+	switch(owner.health/owner.maxHealth)
+		if(0.75 to 0.5)
 			SOUND_BEEP_2
 			add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',20)
-		if(50 to 25)
+		if(0.5 to 0.25)
 			SOUND_BEEP_3
 			add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',30)
-		if(25 to -INFINITY)
+		if(0.25 to -INFINITY)
 			SOUND_BEEP_3
 			add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',30)
 
