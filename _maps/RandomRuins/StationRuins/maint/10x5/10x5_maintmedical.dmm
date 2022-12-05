@@ -196,7 +196,7 @@
 /obj/item/reagent_containers/glass/bottle/sugar{
 	pixel_x = 6
 	},
-/obj/item/reagent_containers/glass/bottle/sulphur{
+/obj/item/reagent_containers/glass/bottle/sulfur{
 	pixel_x = -6
 	},
 /obj/effect/decal/cleanable/dirt,

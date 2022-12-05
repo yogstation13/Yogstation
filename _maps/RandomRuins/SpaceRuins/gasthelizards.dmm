@@ -271,7 +271,7 @@
 	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/bottle/facid{
-	name = "fluorosulphuric acid bottle";
+	name = "fluorosulfuric acid bottle";
 	pixel_x = -3;
 	pixel_y = 6
 	},
