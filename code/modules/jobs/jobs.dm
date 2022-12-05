@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research",
-	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician",
+	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist",
 	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
