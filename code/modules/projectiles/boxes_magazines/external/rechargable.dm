@@ -48,7 +48,7 @@
 	desc = "A small rechargable power pack that synthesizes .22HL bullets, used in the NT-USP."
 	icon_state = "powerpack_small"
 	ammo_type = /obj/item/ammo_casing/caseless/c22hl
-	max_ammo = 10
+	max_ammo = 9
 
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
@@ -66,7 +66,8 @@
 /obj/item/projectile/bullet/c22hl //.22 HL
 	name = "NT-USP beam"
 	icon_state = "disabler_bullet"
+	flag = ENERGY
 	damage = 2 //ouch ouch my skin ouchie
 	damage_type = BURN
-	stamina = 20
+	stamina = 25
 
