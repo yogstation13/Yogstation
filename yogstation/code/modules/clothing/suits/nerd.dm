@@ -13,7 +13,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 50, RAD = 25, FIRE = 50, ACID = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crowbar)
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/tank/internals/ipc_coolant, /obj/item/crowbar)
 
 	var/list/funny_signals = list(
 		COMSIG_MOB_SAY = .proc/handle_speech,
@@ -68,6 +68,10 @@
 	addtimer(CALLBACK(src, .proc/process_sound_queue), sound_delay)
 
 /obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
+
+	if(owner)
+		return FALSE //Take it off!
+
 	if(emagged == FALSE)
 		emagged = TRUE
 		do_sparks(8, FALSE, get_turf(src))
@@ -97,7 +101,7 @@
 			RegisterSignal(M, k, funny_signals[k])
 		add_queue('sound/voice/nerdsuit/bell.ogg',20,purge_queue=TRUE)
 		owner = M
-		if(emagged)
+		if(prob(1))
 			add_queue('sound/voice/nerdsuit/emag.ogg',270)
 		else
 			add_queue('sound/voice/nerdsuit/welcome.ogg',80)
@@ -145,11 +149,10 @@
 	if(found_sound)
 		SOUND_BEEP_3
 		add_queue(found_sound,40)
-		if(W.severity >= WOUND_SEVERITY_MODERATE)
-			SOUND_BEEP_3
-			add_queue('sound/voice/nerdsuit/seek_medical.ogg',20)
 
 	if(W.severity >= WOUND_SEVERITY_MODERATE)
+		SOUND_BEEP_3
+		add_queue('sound/voice/nerdsuit/seek_medical.ogg',20)
 		administer_morphine()
 
 /obj/item/clothing/suit/armor/nerd/proc/administer_morphine()
@@ -161,9 +164,9 @@
 		return
 
 	if(emagged)
-		owner.reagents.add_reagent(/datum/reagent/drug/ketamine, 3)
+		owner.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/ketamine.ogg',20)
+		add_queue('sound/voice/nerdsuit/stimulants.ogg',20)
 	else
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP_3
@@ -178,13 +181,16 @@
 //General Damage
 /obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
 
-	if(damage <= 0 || owner.maxHealth <= 0)
-		return
-
 	if(damage_notify_next > world.time)
 		return
 
+	if(damage < 5 || owner.maxHealth <= 0)
+		return
+
 	var/health_percent = owner.health/owner.maxHealth
+
+	if(health_percent > 0.25 && !prob(damage*4))
+		return
 
 	if(health_percent <= 0.25)
 		SOUND_BEEP_3
@@ -195,7 +201,6 @@
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',30)
 		damage_notify_next = world.time + 50
-		administer_morphine()
 	else if(health_percent <= 0.75)
 		SOUND_BEEP_2
 		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',20)
