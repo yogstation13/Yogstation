@@ -264,5 +264,4 @@
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "nose"
 
-	cooldown = 30 SECONDS
 	status_effect = STATUS_EFFECT_SCENT_HUNTER
