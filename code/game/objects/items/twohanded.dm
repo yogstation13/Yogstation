@@ -1043,7 +1043,7 @@
 	supercharged = !supercharged
 	if(supercharged)
 		set_light(2) //Glows when charged
-		force_wielded += 12 //4 + 24 + 22 = 40 total damage because fuck you
+		force_wielded += 12 //4 + 24 + 12 = 40 total damage because fuck you
 		armour_penetration = 100
 	else
 		set_light(0)
