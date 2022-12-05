@@ -232,7 +232,8 @@
 	malfhack = null
 	apc_override = null
 	GLOB.ai_os.remove_ai(src)
-
+	if(modularInterface)
+		QDEL_NULL(modularInterface)
 	. = ..()
 
 /mob/living/silicon/ai/IgniteMob()
