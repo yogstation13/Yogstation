@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "all jobs with a gps start with it named to them"
