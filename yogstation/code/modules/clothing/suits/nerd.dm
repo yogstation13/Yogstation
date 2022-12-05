@@ -15,9 +15,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crowbar)
 
-	strip_delay = 50
-	equip_delay_other = 50
-
 	var/list/funny_signals = list(
 		COMSIG_MOB_SAY = .proc/handle_speech,
 		COMSIG_MOB_DEATH = .proc/handle_death,
