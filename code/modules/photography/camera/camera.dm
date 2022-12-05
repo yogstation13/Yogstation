@@ -307,7 +307,7 @@
 /obj/item/assembly/flash/tator
 	name = "camera"
 	desc = "This flash is morbin'. You shouldn't see it."  //Anyone wouldn't see this so it is ok
-	burnout_resistance = 999999   //No burning out
+	can_burn_out = FALSE   //No burning out
 	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "camera"
 	item_state = "camera"

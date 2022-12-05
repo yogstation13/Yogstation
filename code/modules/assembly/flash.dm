@@ -27,6 +27,8 @@
 	var/last_trigger = 0
 	///can we convert people to revolution
 	var/can_convert = FALSE
+	///will this burn out on use? only 2 that wont do this currently are the rev and camera flash
+	var/can_burn_out = TRUE
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
@@ -82,7 +84,7 @@
 
 //BYPASS CHECKS ALSO PREVENTS BURNOUT!
 /obj/item/assembly/flash/proc/AOE_flash(bypass_checks = FALSE, range = 3, power = 5, targeted = FALSE, mob/user)
-	if(!bypass_checks && !try_use_flash())
+	if(!bypass_checks && !try_use_flash(burnout = FALSE))
 		return FALSE
 	var/list/mob/targets = get_flash_targets(get_turf(src), range, FALSE)
 	if(user)
@@ -101,7 +103,7 @@
 	else
 		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
 
-/obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
+/obj/item/assembly/flash/proc/try_use_flash(mob/user = null, var/burnout = TRUE)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
@@ -111,7 +113,10 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
 	times_used++
-	flash_recharge()
+	if(!burnout)
+		flash_recharge()
+	else if(burnout)
+		burn_out()
 	update_icon(TRUE)
 	if(user && !clown_check(user))
 		return FALSE
@@ -151,12 +156,14 @@
 			M.confused += min(power, diff)
 
 /obj/item/assembly/flash/attack(mob/living/M, mob/user)
-	if(!try_use_flash(user))
-		return FALSE
 	if(iscarbon(M))
+		if(!try_use_flash(user))
+			return FALSE
 		flash_carbon(M, user, 5, 1)
 		return TRUE
 	else if(issilicon(M))
+		if(!try_use_flash(user, FALSE))
+			return FALSE
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
@@ -283,6 +290,7 @@
 	name = "syndicate flash"
 	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
 	can_convert = TRUE
+	can_burn_out = FALSE
 
 /obj/item/assembly/flash/hypnotic
 	desc = "A modified flash device, programmed to emit a sequence of subliminal flashes that can send a vulnerable target into a hypnotic trance."
