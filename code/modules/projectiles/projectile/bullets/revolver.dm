@@ -14,14 +14,16 @@
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 25 //High damaging but...
-	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
-	wound_bonus = -10
+	damage = 15 // yogs - Nerfed revolver damage
+	//knockdown = 60 //yogs - commented out
+	stamina = 35 // yogs
+	wound_bonus = -20
 	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
-	damage = 20
+	damage = 15
+	stamina = 0
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
@@ -32,7 +34,8 @@
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
 	name = ".38 Iceblox bullet"
-	damage = 20
+	damage = 15
+	stamina = 0
 	var/temperature = 100
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
@@ -43,7 +46,8 @@
 
 /obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
 	name = ".38 Gutterpunch bullet"
-	damage = 20
+	damage = 15
+	stamina = 0
 
 /obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
