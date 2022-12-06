@@ -440,6 +440,7 @@
 				if (authenticated_as_non_silicon_captain(user))
 					data["canMessageAssociates"] = TRUE
 					data["canRequestNuke"] = TRUE
+					data["canOrderERT"] = TRUE
 
 				if (!issilicon(user))
 					data["canPrintIdAndCode"] = TRUE
