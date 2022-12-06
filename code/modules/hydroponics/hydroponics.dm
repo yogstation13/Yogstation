@@ -563,7 +563,7 @@
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/water/holywater) * 0.1))
 
 	// A variety of nutrients are dissolved in club soda, without sugar.
-	// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulfur and sodium, all of which are needed for healthy plant growth.
+	// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulphur and sodium, all of which are needed for healthy plant growth.
 	if(S.has_reagent(/datum/reagent/consumable/sodawater, 1))
 		adjustWater(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 1))
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 0.1))

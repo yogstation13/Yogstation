@@ -1324,6 +1324,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			hunger_rate *= 0.75 //hunger rate reduced by about 25%
 		if(HAS_TRAIT(H, TRAIT_EAT_MORE))
 			hunger_rate *= 3 //hunger rate tripled
+		if(HAS_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH))
+			H.nutrition = min(H.nutrition, NUTRITION_LEVEL_MOSTLY_FULL) //capped, can never be truly full
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
@@ -1925,9 +1927,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
 		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-2)
+			H.adjust_fire_stacks(-3)
 		else
-			H.adjust_fire_stacks(-1)
+			H.adjust_fire_stacks(-2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
@@ -2011,6 +2013,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		H.clear_alert("temp")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
+
+	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision
+	// 37C has 12 range (11 tiles)
+	// 20C has 7 range (6 tiles)
+	// 10C has 3 range (2 tiles)
+	// 0C has 0 range (0 tiles)
+	H.infra_luminosity = round(max((H.bodytemperature - T0C)/3, 0))
 
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = H.calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.

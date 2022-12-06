@@ -3,7 +3,7 @@
 		if ("sacid")
 			return "sulphuricacid"
 		if ("facid")
-			return "fluorosulfuricacid"
+			return "fluorosulphuricacid"
 		if ("co2")
 			return "carbondioxide"
 		if ("mine_salve")
@@ -61,7 +61,7 @@
 		/datum/reagent/oil,
 		/datum/reagent/uranium/radium,
 		/datum/reagent/stable_plasma,
-		/datum/reagent/sulfur
+		/datum/reagent/sulphur
 	)
 	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/consumable/sugar,
@@ -720,7 +720,7 @@
 		/datum/reagent/sodium,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
+		/datum/reagent/sulphur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
 		/datum/reagent/fuel,
