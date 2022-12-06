@@ -609,13 +609,14 @@ GENE SCANNER
 	desc = "A hand-held long-range environmental scanner which reports current gas levels."
 	name = "Long-range gas analyzer"
 	icon_state = "analyzerranged"
+	item_state = "analyzerranged"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5, /datum/reagent/bluespace = 10, /datum/reagent/gold = 10)
 
 /obj/item/analyzer/ranged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	analyzer_act(user, src)
+	target.analyzer_act(user, src)
 
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()
