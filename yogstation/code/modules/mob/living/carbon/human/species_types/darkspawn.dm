@@ -9,7 +9,7 @@
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
 	siemens_coeff = 0
 	brutemod = 0.9
-	heatmod = 1.5
+	heatmod = 1.25
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_HEAD)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER)
@@ -64,6 +64,8 @@
 			H.SetSleeping(0)
 			H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			H.setCloneLoss(0)
+		if(upgrades["light_resistance"])
+			H.fire_stacks--
 		else if(light_amount < DARKSPAWN_BRIGHT_LIGHT && !upgrades["light_resistance"]) //not bright, but still dim
 			H.adjustFireLoss(1)
 		else if(light_amount > DARKSPAWN_BRIGHT_LIGHT && !H.has_status_effect(STATUS_EFFECT_CREEP)) //but quick death in the light

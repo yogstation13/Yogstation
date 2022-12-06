@@ -3,5 +3,5 @@
 /datum/darkspawn_upgrade/light_resistance
 	name = "\'Lightward\' Sigil"
 	id = "light_resistance"
-	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken and protects from dim light."
+	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken and protects from dim light, as well as granting fire resistance."
 	lucidity_price = 2
