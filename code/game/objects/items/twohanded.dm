@@ -1043,11 +1043,11 @@
 	supercharged = !supercharged
 	if(supercharged)
 		set_light(2) //Glows when charged
-		force_wielded += 12 //4 + 24 + 12 = 40 total damage because fuck you
+		force += 12 //40 total damage. Has to modify force itself because force_wielded is a direct modification to force when the weapon is wielded (but weapon can only supercharge when two-handed)
 		armour_penetration = 100
 	else
 		set_light(0)
-		force_wielded = initial(force_wielded) //Back to 4 + 24 = 28
+		force = initial(force)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
 
