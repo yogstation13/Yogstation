@@ -90,9 +90,9 @@
 /datum/game_mode/traitor/make_antag_chance(mob/living/carbon/human/character) //Assigns traitor to latejoiners
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
 	var/traitorcap = min(round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
-	if((SSticker.mode.traitors.len + pre_traitors.len) >= traitorcap) //Upper cap for number of latejoin antagonists
+	if((SSticker.mode.traitors.len) >= traitorcap) //Upper cap for number of latejoin antagonists
 		return
-	if((SSticker.mode.traitors.len + pre_traitors.len) <= (traitorcap - 2) || prob(100 / (tsc * 2)))
+	if((SSticker.mode.traitors.len) <= (traitorcap - 2) || prob(100 / (tsc * 2)))
 		if(antag_flag in character.client.prefs.be_special)
 			if(!is_banned_from(character.ckey, list(ROLE_TRAITOR, ROLE_SYNDICATE)) && !QDELETED(character))
 				if(age_check(character.client))
