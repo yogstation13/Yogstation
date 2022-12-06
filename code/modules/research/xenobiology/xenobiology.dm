@@ -888,38 +888,24 @@
 
 /obj/item/slimepotion/speed
 	name = "slime speed potion"
-	desc = "A potent chemical mix that will remove the slowdown from any item."
+	desc = "A potent chemical mix that will speed up any simple animal."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potyellow"
 
-/obj/item/slimepotion/speed/afterattack(obj/C, mob/user)
+/obj/item/slimepotion/speed/afterattack(atom/target, mob/user)
 	. = ..()
-	if(!istype(C))
-		to_chat(user, span_warning("The potion can only be used on items or vehicles!"))
+	if(!isanimal(target))
+		to_chat(user, span_warning("The potion can only be used on simple animals!"))
 		return
-	if(isitem(C))
-		// yogs start - change speed potion
-		var/obj/item/I = C
-		if(I.slowdown <= 0.9 || I.obj_flags & IMMUTABLE_SLOW)
-			to_chat(user, span_warning("The [C] can't be made any faster!"))
-			return ..()
-		I.slowdown--
-		// yogs end
+	var/mob/living/simple_animal/zipzoom = target
+	if(zipzoom.speed <= -1)
+		to_chat(user, span_warning("[target] is already as fast as it can be!"))
+		return
 
-	if(istype(C, /obj/vehicle))
-		var/obj/vehicle/V = C
-		var/datum/component/riding/R = V.GetComponent(/datum/component/riding)
-		if(R)
-			// yogs start - change speed potion
-			if(R.vehicle_move_delay <= 2 )
-				to_chat(user, span_warning("The [C] can't be made any faster!"))
-				return ..()
-			R.vehicle_move_delay--
-			// yogs end
-
-	to_chat(user, span_notice("You slather the red gunk over the [C], making it faster."))
-	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-	C.add_atom_colour("#FF0000", FIXED_COLOUR_PRIORITY)
+	zipzoom.set_varspeed(-1)
+	to_chat(user, span_notice("You slather the red gunk over [target], making it faster."))
+	zipzoom.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	zipzoom.add_atom_colour("#FF0000", FIXED_COLOUR_PRIORITY)
 	qdel(src)
 
 /obj/item/slimepotion/fireproof

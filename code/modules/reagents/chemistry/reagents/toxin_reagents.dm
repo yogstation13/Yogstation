@@ -828,8 +828,8 @@
 	T.acid_act(acidpwr, reac_volume)
 
 /datum/reagent/toxin/acid/fluacid
-	name = "Fluorosulfuric acid"
-	description = "Fluorosulfuric acid is an extremely corrosive chemical substance."
+	name = "Fluorosulphuric acid"
+	description = "Fluorosulphuric acid is an extremely corrosive chemical substance."
 	color = "#5050FF"
 	toxpwr = 2
 	acidpwr = 42.0

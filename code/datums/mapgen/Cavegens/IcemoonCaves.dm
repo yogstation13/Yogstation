@@ -14,7 +14,11 @@
 
 /datum/map_generator/cave_generator/icemoon/surface
 	flora_spawn_chance = 4
-	mob_spawn_list = null
+	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
+						  /mob/living/simple_animal/hostile/asteroid/polarbear = 30, /obj/structure/spawner/ice_moon/polarbear = 3, \
+						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, 
+						  /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 30,
+						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 	initial_closed_chance = 53
 	birth_limit = 5
 	death_limit = 4

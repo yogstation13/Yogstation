@@ -23,6 +23,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"aQ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "ba" = (
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating,
@@ -106,14 +117,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"dL" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "dU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -142,14 +145,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
-"ee" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "es" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -164,6 +159,14 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+"fE" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "gi" = (
@@ -365,17 +368,6 @@
 /obj/machinery/power/tesla_coil,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"tD" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -480,11 +472,6 @@
 	req_access_txt = "10;13"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"xe" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
 /area/engine/engineering)
 "yi" = (
 /obj/structure/lattice,
@@ -664,6 +651,13 @@
 	dir = 5
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"JK" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/space/basic,
 /area/engine/engineering)
 "Kb" = (
 /obj/structure/cable{
@@ -850,14 +844,6 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"RZ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Su" = (
 /turf/open/space/basic,
@@ -1206,13 +1192,13 @@ vP
 JJ
 vE
 vE
-RZ
+fE
 oj
 cG
 UG
 dX
 oj
-RZ
+fE
 vE
 vE
 Ij
@@ -1229,19 +1215,19 @@ SN
 vP
 dq
 vP
-tD
-RZ
-RZ
-RZ
+aQ
+fE
+fE
+fE
 vE
 vE
 vE
 vE
 vE
-RZ
-RZ
-RZ
-tD
+fE
+fE
+fE
+aQ
 vP
 zl
 SN
@@ -1257,15 +1243,15 @@ PQ
 vP
 Ts
 Su
-RZ
-RZ
-RZ
-RZ
-RZ
-RZ
-RZ
-RZ
-RZ
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
 Su
 eb
 vP
@@ -1437,7 +1423,7 @@ SN
 vP
 Ro
 SF
-dL
+Oj
 yi
 tg
 yi
@@ -1463,7 +1449,7 @@ SN
 nn
 zu
 SF
-ee
+JK
 QN
 Su
 Su
@@ -1489,7 +1475,7 @@ SN
 kb
 wg
 Uh
-xe
+uj
 Uh
 Su
 Su
@@ -1501,7 +1487,7 @@ Su
 Su
 Su
 Uh
-xe
+uj
 Uh
 wg
 kb

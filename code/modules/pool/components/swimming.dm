@@ -92,7 +92,7 @@
 	else if(drowning)
 		stop_drowning(L)
 		drowning = FALSE
-	L.adjust_fire_stacks(-1)
+	L.adjust_fire_stacks(-3)
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/twohanded/required/pool/helditem = victim.get_active_held_item()

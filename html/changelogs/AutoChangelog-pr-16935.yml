@@ -1,0 +1,8 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Radiation anomaly now spawn only one rad goat instead of 4"
+  - tweak: "Rad goat health is buffed to 200 accumulate this"
+  - tweak: "Slight rad emission buffs for anomaly"
+  - rscadd: "Give radioactive goat a spell that can spawn radiation anomaly (This one has fewer lifespan and won't spawn radioactive goat) spell cooldown is 90 seconds"
+  - rscadd: "Give radioactive goat rad emission switch if it wants to stop emitting radiation"

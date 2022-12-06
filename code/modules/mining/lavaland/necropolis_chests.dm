@@ -230,6 +230,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
 	return slot == SLOT_NECK
 
+/obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
+	if(active_owner && user == active_owner)
+		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
+		if(safety != "Proceed")
+			return 
+	. = ..()
+	
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -257,11 +264,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
+		RegisterSignal(user, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
+	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
 	if(!active_owner)
 		return
+	UnregisterSignal(active_owner, COMSIG_ITEM_PRESTRIP)
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
 	to_chat(H, span_userdanger("You feel your life rapidly slipping away from you!"))

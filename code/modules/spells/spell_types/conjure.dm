@@ -128,3 +128,25 @@
 		if(T)
 			bloodman.forceMove(T)
 			playsound(usr, 'sound/magic/exit_blood.ogg', 100, 1)
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly
+	name = "Spawn Radiation Anomaly"
+	desc = "Spawn a radiation anomaly, this one is too week to spawn a radioactive goat but can fire enough rad particles to heal you and damage others."
+	action_background_icon_state = "bg_default"
+	action_icon = 'icons/obj/projectiles.dmi'
+	action_icon_state = "radiation_anomaly"
+	clothes_req = FALSE
+	charge_max = 90 SECONDS
+	invocation = "none"
+	invocation_type = "none"
+	summon_type = list(/obj/effect/anomaly/radiation)
+	summon_amt = 0
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly/cast(list/targets, mob/user)
+	. = ..()
+	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = user
+	var/obj/effect/anomaly/radiation/anomaly = new (S.loc, 150)
+	anomaly.has_effect = FALSE
+	playsound(S, 'sound/weapons/resonator_fire.ogg', 100, TRUE)
+	S.visible_message(span_notice("You see \the radiation anomaly emerges from \the [S]."), span_notice("\The radiation anomaly emerges from your body."))
+	notify_ghosts("The Radioactive Goat has spawned a radiation anomaly!", source = anomaly, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Radiation Anomaly Spawned!")
