@@ -21,28 +21,25 @@
 
 /obj/mecha/combat/sidewinder/click_action(atom/target,mob/user,params)
 	//Check all this stuff because this has to happen BEFORE we call the parent so that we can sword in the right direction
-	if(!occupant || occupant != user )
+	if(!occupant || occupant != user )					//No pilot
 		return
-	if(!locate(/turf) in list(target,target.loc)) // Prevents inventory from being drilled
+	if(!locate(/turf) in list(target,target.loc)) 		//Prevents inventory from being drilled
 		return
-	if(completely_disabled)
+	if(user.incapacitated())							//Pilot can't move
 		return
-	if(is_currently_ejecting)
+	if(completely_disabled || is_currently_ejecting)	//mech can't move
 		return
-	if(user.incapacitated())
-		return
-	if(state)
+	if(state)											//Maintenance mode, can't move
 		occupant_message(span_warning("Maintenance protocols in effect."))
 		return
-	if(!get_charge())
+	if(!get_charge())									//No power, can't move
 		return
-	if(src == target)
+	if(src == target)									//We can't face ourselves
 		return
 	if(!equipment_disabled)								//EMP will disable the turning temporarily
-		var/sidewind_dir = get_dir(src, target)
 		var/initial_direction = dir
-		setDir(sidewind_dir)
+		face_atom(target)
 		var/new_direction = dir	
-		if(initial_direction != new_direction)				//Shitty placeholder code, will probably need to change this
+		if(initial_direction != new_direction)			//Make sure we actually turned
 			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
