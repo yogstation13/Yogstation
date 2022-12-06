@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "gangrel bloodsuckers have their frenzy damage from being in frenzy capped at 2 points so minor slipups won't make their objective near impossible"
