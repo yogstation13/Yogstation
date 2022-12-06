@@ -18,7 +18,7 @@
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
 	return isipc(H)
 
-/datum/martial_art/ultra_violence/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/ultra_violence/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)//A is user, D is target
 	if(!can_use(A) || D.stat == DEAD)//stop hitting a corpse
 		return FALSE
 
@@ -52,6 +52,7 @@
 /datum/martial_art/ultra_violence/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	check_streak(A,D)
+	playsound(A, 'sound/effects/servostep.ogg', 50, FALSE, -1)//feedback to know the click landed
 	return TRUE //no grabbing either
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -73,18 +74,15 @@
 	D.bleed(30)
 	D.add_splatter_floor(D.loc, TRUE)
 
-	var/obj/effect/gibspawner/blood = new /obj/effect/gibspawner/generic(D.loc)
-	blood.throw_at(get_edge_target_turf(blood, pick(GLOB.alldirs)), rand(1,1), 10)
+	new /obj/effect/gibspawner/generic(D.loc)
 
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT)
 		D.bleed(150)
 		D.death()
 		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
 		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution
-		var/obj/effect/gibspawner/moreblood = new /obj/effect/gibspawner/generic(D.loc)
-		moreblood.throw_at(get_edge_target_turf(moreblood, pick(GLOB.alldirs)), rand(1,3), 10)
-		var/obj/effect/gibspawner/evenmoreblood = new /obj/effect/gibspawner/generic(D.loc)
-		evenmoreblood.throw_at(get_edge_target_turf(evenmoreblood, pick(GLOB.alldirs)), rand(1,3), 10)//yes, technically this is all gibs, but still
+		new /obj/effect/gibspawner/generic(D.loc)
+		new /obj/effect/gibspawner/generic(D.loc)
 
 
 /mob/living/carbon/human/proc/ultra_violence_help()
@@ -117,6 +115,7 @@
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, "martial")
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, "martial")
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
+	ADD_TRAIT(H, TRAIT_NODISMEMBER, "martial")
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")///mainly so emps don't end you instantly, they still do damage though
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 	usr.click_intercept = src //probably breaks something, don't know what though
@@ -132,6 +131,7 @@
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, "martial")
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, "martial")
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
+	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, "martial")
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial")
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
@@ -168,6 +168,9 @@
 	to_chat(A, span_notice("You stash your revolver away."))	
 	qdel(src)
 
+/obj/item/gun/ballistic/revolver/martial/dropped(mob/user)//for if your arm gets chopped off while holding it
+	. = ..()
+	qdel(src)
 /*---------------------------------------------------------------
 
 	end of pocket pistol section
@@ -211,8 +214,6 @@
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
-	
-
 /obj/item/gun/ballistic/shotgun/martial/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
@@ -225,6 +226,9 @@
 	to_chat(A, span_notice("You relax your gun hand."))	
 	qdel(src)
 
+/obj/item/gun/ballistic/shotgun/martial/dropped(mob/user)//for if your arm gets chopped off while holding it
+	. = ..()
+	qdel(src)
 /*---------------------------------------------------------------
 
 	end of shotgun punch section
