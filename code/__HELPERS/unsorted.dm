@@ -1512,7 +1512,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
-		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/blue,
 		/mob/living/simple_animal/hostile/retaliate/goat/brown,
 		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
