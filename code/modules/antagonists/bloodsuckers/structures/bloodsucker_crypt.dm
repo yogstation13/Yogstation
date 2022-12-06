@@ -109,7 +109,7 @@
 /obj/structure/bloodsucker/bloodaltar/unbolt()
 	. = ..()
 	anchored = FALSE
-	
+
 /obj/structure/bloodsucker/bloodaltar/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(!.)
@@ -174,7 +174,7 @@
 	if(sacrificialtask)
 		if(sacrifices > 0)
 			. += span_boldnotice("It currently contains [sacrifices] [organ_name].")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/bloodaltar/attackby(obj/item/H, mob/user, params)
@@ -189,7 +189,7 @@
 			to_chat(usr, span_notice("You feed the heart to the altar!"))
 			qdel(H)
 			sacrifices++
-			return 
+			return
 	return ..()
 #undef ALTAR_RANKS_PER_DAY
 
@@ -209,7 +209,7 @@
 		Aid your master by bringing them what they need for these or by help getting them."
 	Hunter_desc = "This is a blood altar, where monsters ascend their powers to shadowy levels.\n\
 		They normally need ranks or blood in exchange for power, forcing them to move out of their lair and weakening them."
-	
+
 /obj/item/abyssal_essence
 	name = "abyssal essence"
 	desc = "As you glare at the abyssal essence, you feel it glaring back."
@@ -357,7 +357,6 @@
 	density = TRUE
 	Ghost_desc = "This Knight's armor will come alive once non-bloodsuckers get close to it."
 	Vamp_desc = "This is a possesed knight's armor, it will come alive once mortals get close to it.\n\
-		You don't care about it's attack's since you are brute immune.\n\
 		You can reinforce it with 5 silver bars.\n\
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
@@ -408,7 +407,7 @@
 
 /obj/structure/bloodsucker/possessedarmor/process()
 	for(var/mob/living/passerby in dview(1, get_turf(src)))
-		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
+		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby) || passerby.restrained())
 			continue
 		to_chat(passerby, span_warning("The armor starts moving!"))
 		if(upgraded)
@@ -471,7 +470,7 @@
 		if(meat_amount > 0)
 			. += span_boldnotice("It currently contains [meat_points] points to use in rituals.")
 			. += span_boldnotice("You can add meat points to the rack by using muscle, acquired from <i>Dicing</i> corpses, on it.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/vassalrack/bolt()

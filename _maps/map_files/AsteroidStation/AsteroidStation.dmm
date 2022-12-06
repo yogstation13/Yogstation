@@ -18454,10 +18454,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/server)
-"fnh" = (
-/obj/structure/chair/office/dark,
-/turf/open/floor/wood,
-/area/hallway/primary/starboard)
 "fnA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -23860,6 +23856,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"hhZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/sign/departments/minsky/engineering/engineering{
+	pixel_x = 32
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Central Access"
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "hic" = (
 /obj/machinery/modular_computer/console/preset/tcomms,
 /turf/open/floor/plasteel/grimy,
@@ -41223,13 +41241,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"ndZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "neg" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 5
@@ -41708,6 +41719,16 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/main)
+"nng" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "nnp" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -42940,6 +42961,21 @@
 /obj/item/coin/iron,
 /turf/open/floor/carpet/royalblack,
 /area/bridge/meeting_room)
+"nIu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "nIv" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -42965,6 +43001,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"nIQ" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/wood,
+/area/hallway/primary/starboard)
 "nJl" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
@@ -48325,31 +48365,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/listeningstation)
-"pyH" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/sign/departments/minsky/engineering/engineering{
-	pixel_x = 32
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Central Access"
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "pyQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -114201,11 +114216,11 @@ oWD
 bOv
 wKT
 bJJ
-bOv
+nIu
 bOv
 bOv
 uyV
-pyH
+hhZ
 uik
 qbj
 uhS
@@ -114460,7 +114475,7 @@ aJq
 aJq
 aJq
 rGi
-fnh
+nIQ
 gJm
 gok
 tbv
@@ -118573,7 +118588,7 @@ aJj
 bZq
 hSz
 uaF
-ndZ
+nng
 myA
 hJu
 ugz

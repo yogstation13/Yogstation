@@ -202,6 +202,7 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
+	ipc_box = /obj/item/storage/box/ipc
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
@@ -239,6 +240,8 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
+	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
+		box = ipc_box
 
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
@@ -286,6 +289,12 @@
 		
 	else
 		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+
+	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
+		for(var/obj/item/gps/G in H.GetAllContents())
+			G.gpstag = H.real_name
+			G.name = "global positioning system ([G.gpstag])"
+			continue
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
