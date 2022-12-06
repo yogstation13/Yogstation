@@ -1885,8 +1885,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Mech Piloting for Dummies"
 	desc = "A step-by-step guide on how to effectively pilot a mech. Written in such a way that even a clown could understand."
 	item = /obj/item/book/granter/mechpiloting
-	cost = 10	//this is genuinely a REALLY strong effect, don't sleep on it
-	cant_discount = TRUE
+	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
 // Implants
 /datum/uplink_item/implants
