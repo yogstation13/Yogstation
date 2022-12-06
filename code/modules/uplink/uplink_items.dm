@@ -1888,16 +1888,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10	//this is genuinely a REALLY strong effect, don't sleep on it
 	cant_discount = TRUE
 
-/obj/item/book/granter/mechpiloting
-	name = "Mech Piloting for Dummies"
-	desc = "A step-by-step guide on how to effectively pilot a mech. Written in such a way that even a clown could understand."
-	remarks = list("Hmm, press forward to go forwards...", "Avoid getting hit to reduce damage...", "Welding to repair..?", "Make sure to turn it on...", "EMP bad...", "I need to turn internals on?", "What's a gun ham?")
-
-/obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
-	. = ..()
-	user.AddComponent(/datum/component/mech_pilot, 0.8)
-	onlearned(user)
-
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"
