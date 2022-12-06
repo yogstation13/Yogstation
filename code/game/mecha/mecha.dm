@@ -1294,7 +1294,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /obj/mecha/proc/check_eva()
 	var/evaNum = 1
 	if(ishuman(occupant))
-    var/mob/living/carbon/human/H = occupant //if the person is skilled
+    	var/mob/living/carbon/human/H = occupant //if the person is skilled
 		var/datum/component/mech_pilot/skill = H.GetComponent(/datum/component/mech_pilot)
 		if(skill)
 			evaNum *= skill.piloting_speed
