@@ -30,7 +30,7 @@
 	P.fire(angle)
 
 /obj/item/projectile/energy/nuclear_particle/wimpy
-	irradiate = 100
+	irradiate = 500
 	damage = 2
 
 /atom/proc/fire_nuclear_particle_wimpy(angle = rand(0,360))
