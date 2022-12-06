@@ -19,6 +19,83 @@
 	if (!polldesc)
 		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
 
+/datum/ert/proc/MakeTeam()
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [polldesc] ?", "deathsquad", null)
+	var/teamSpawned = FALSE
+
+	if(candidates.len > 0)
+		//Pick the (un)lucky players
+		var/numagents = min(teamsize,candidates.len)
+		//Create team
+		var/datum/team/ert/ert_team = new team
+		if(rename_team)
+			ert_team.name = rename_team
+
+		//Asign team objective
+		var/datum/objective/missionobj = new
+		missionobj.team = ert_team
+		missionobj.explanation_text = mission
+		missionobj.completed = TRUE
+		ert_team.objectives += missionobj
+		ert_team.mission = missionobj
+
+		var/list/spawnpoints = GLOB.emergencyresponseteamspawn
+		while(numagents && candidates.len)
+			if (numagents > spawnpoints.len)
+				numagents--
+				continue // This guy's unlucky, not enough spawn points, we skip him.
+			var/spawnloc = spawnpoints[numagents]
+			var/mob/dead/observer/chosen_candidate = pick(candidates)
+			candidates -= chosen_candidate
+			if(!chosen_candidate.key)
+				continue
+
+			//Spawn the body
+			var/mob/living/carbon/human/ERTOperative = new mobtype(spawnloc)
+			chosen_candidate.client.prefs.copy_to(ERTOperative)
+			ERTOperative.key = chosen_candidate.key
+
+			if(enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
+				ERTOperative.set_species(/datum/species/human)
+
+			//Give antag datum
+			var/datum/antagonist/ert/ert_antag
+
+			if(numagents == 1)
+				ert_antag = new leader_role
+			else
+				ert_antag = roles[WRAP(numagents,1,length(roles) + 1)]
+				ert_antag = new ert_antag
+
+			ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
+			ERTOperative.mind.assigned_role = ert_antag.name
+
+			// Equip uplink
+			var/obj/item/ntuplink/upl = new uplinktype(ERTOperative, ERTOperative.key)
+			if(istype(upl))
+				ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
+				ert_team.uplink_type = uplinktype // Type path
+
+			//Logging and cleanup
+			//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
+			numagents--
+			teamSpawned++
+
+		if (teamSpawned)
+			message_admins("[polldesc] has spawned with the mission: [mission]")
+
+		//Open the Armory doors
+		if(opendoors)
+			for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
+				INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+
+		//Open the Mech Bay
+		if(openmech)
+			for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
+				INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+		return TRUE
+
+	return FALSE
 /datum/ert/blue
 	opendoors = FALSE
 	code = "Blue"

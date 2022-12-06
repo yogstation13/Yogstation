@@ -269,6 +269,7 @@ const PageMain = (props, context) => {
     canBuyShuttles,
     canMakeAnnouncement,
     canMakeVoiceAnnouncement,
+    canOrderERT,
     canMessageAssociates,
     canRecallShuttles,
     canRequestNuke,
@@ -439,6 +440,14 @@ const PageMain = (props, context) => {
             disabled={!importantActionReady}
             onClick={() => setMessagingAssociates(true)}
           />}
+
+          {!!canOrderERT && <Button
+            icon="shopping-cart"
+            content={`Order ERT from CentComm`}
+            disabled={!importantActionReady}
+            onClick={() => act("OrderERT")}
+          />}
+
 
           {!!canRequestNuke && <Button
             icon="radiation"

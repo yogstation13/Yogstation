@@ -263,6 +263,28 @@
 			to_chat(usr, span_notice("Backup routing data restored."))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			obj_flags &= ~EMAGGED
+		if ("OrderERT")
+
+			var/type_to_credits = list("Red" = 100000, "Blue" = 30000, "Amber" = 10000, "Janitor" = 20000, "Holy" = 50000)
+			var/type_to_path = list("Red" = /datum/ert/red, "Blue" = /datum/ert/blue, "Amber" = /datum/ert/amber, "Janitor" = /datum/ert/janitor, "Holy" = /datum/ert/inquisition)
+			var/type = input(usr, "What ERT would you like to order?", "Order's up!") in list("Red", "Blue", "Amber", "Janitor", "Holy")
+			if (!type)
+				return
+			var/credits_cost = type_to_credits[type]
+
+			var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if (bank_account.account_balance < credits_cost)
+				to_chat(usr, span_warning("You can't afford this ERT! (have [bank_account.account_balance], need [credits_cost])"))
+				return
+			
+			var/datum/ert/ert = new type_to_path[type]
+
+			if (ert.MakeTeam())
+				bank_account.adjust_money(-credits_cost)
+				to_chat(usr, span_notice("ERT is on the way. Standby."))
+			else
+				to_chat(usr, span_warning("All units are currently unavailable, please try again later."))
+			
 		if ("sendToOtherSector")
 			if (!authenticated_as_non_silicon_captain(usr))
 				return
