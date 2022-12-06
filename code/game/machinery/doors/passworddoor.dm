@@ -27,6 +27,8 @@
 		if(P.id == id)
 			if(P.decrypted)
 				open()
+				to_chat(user, span_notice("You insert [P]."))
+				qdel(P)
 			else
 				to_chat(user, span_warning("This disk doesn't seem to have been decrypted!"))
 		else
