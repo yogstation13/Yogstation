@@ -92,8 +92,8 @@
 	var/traitorcap = min(round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
 	var/cur_traitors = SSticker.mode.traitors.len
 	// [SANITY] Uh oh! Somehow the pre_traitors aren't in the traitors list! Add them!
-	if(SSticker.mode.traitors.len < pre_traitors)
-		cur_traitors += pre_traitors
+	if(SSticker.mode.traitors.len < pre_traitors.len)
+		cur_traitors += pre_traitors.len
 	if(cur_traitors >= traitorcap) //Upper cap for number of latejoin antagonists
 		return
 	if((cur_traitors) <= (traitorcap - 2) || prob(100 / (tsc * 2)))
