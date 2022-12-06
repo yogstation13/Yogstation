@@ -16,7 +16,7 @@
 /obj/effect/acid_act()
 	return
 
-/obj/effect/mech_melee_attack(obj/mecha/M)
+/obj/effect/mech_melee_attack(obj/mecha/M, equip_allowed)
 	return 0
 
 /obj/effect/blob_act(obj/structure/blob/B)

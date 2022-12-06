@@ -3,9 +3,9 @@
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 1
+	damage = 5
 	damage_type = BURN
-	irradiate = 20
+	irradiate = 400
 	speed = 0.4
 	hitsound = 'sound/weapons/emitter2.ogg'
 	impact_type = /obj/effect/projectile/impact/xray
@@ -31,7 +31,7 @@
 
 /obj/item/projectile/energy/nuclear_particle/wimpy
 	irradiate = 100
-	damage = 3
+	damage = 2
 
 /atom/proc/fire_nuclear_particle_wimpy(angle = rand(0,360))
 	var/obj/item/projectile/energy/nuclear_particle/wimpy/P = new /obj/item/projectile/energy/nuclear_particle/wimpy(src)

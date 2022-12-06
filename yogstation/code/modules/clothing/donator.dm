@@ -155,6 +155,7 @@
 	. = ..()
 	new /obj/item/clothing/under/rank/scientist/black(src)
 	new /obj/item/lighter/badass(src)
+
 /obj/item/storage/box/hisa
 	name = "Hunters Stash"
 	desc = "Legend has it if this box is not held by a hunter, its held by prey" 
@@ -164,3 +165,12 @@
 	new /obj/item/clothing/suit/yogs/adventurerskirt(src)
 	new /obj/item/clothing/under/yogs/skin_tight_garmet(src)
 	new /obj/item/clothing/gloves/yogs/arm_sleeves(src)
+
+/obj/item/storage/box/manatee
+	name = "Discharge package"
+	desc = "Thank you for your service. Please dont come back."
+
+/obj/item/storage/box/manatee/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/accessory/dogtags(src)
+	new /obj/item/clothing/head/peacekeeperberet(src)
