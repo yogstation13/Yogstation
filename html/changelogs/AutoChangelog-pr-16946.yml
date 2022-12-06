@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "standard nuclear particles do more damage, weak ones do less"
+  - tweak: "nuclear particles can be redirected by reflectors"
+  - tweak: "nuclear particles deflect off of preternis"
