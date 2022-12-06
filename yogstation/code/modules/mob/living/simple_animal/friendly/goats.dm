@@ -185,9 +185,9 @@
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		// abosrbs nuclear particle to heal
+		P.damage = 0 //No damaging goat
 		adjustBruteLoss(-10)
 		adjustFireLoss(-10)
-		return BULLET_ACT_BLOCK //No damaging goat
 	return ..()
 
 
