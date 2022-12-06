@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "AI now spawns with an integrated tablet instead of a deprecated PDA"
-  - tweak: "Cyborgs and AIs now spawn with PDA messengers pre-installed and set-up"
