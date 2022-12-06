@@ -610,13 +610,23 @@ GENE SCANNER
 	name = "Long-range gas analyzer"
 	icon_state = "analyzerranged"
 	item_state = "analyzerranged"
+	color = null
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5, /datum/reagent/bluespace = 10, /datum/reagent/gold = 10)
 
 /obj/item/analyzer/ranged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	target.analyzer_act(user, src)
+	add_fingerprint(user)
+	if(istype(target, /turf))
+		var/turf/U = get_turf(target)
+		atmosanalyzer_scan(U.return_air(), user, target)
+	else if(istype(target, /obj/effect/anomaly))
+		var/obj/effect/anomaly/A
+		A.analyzer_act(user, src)
+		to_chat(user, span_notice("Analyzing... [A]'s unstable field is fluctuating along frequency [format_frequency(A.aSignal.frequency)], code [A.aSignal.code]."))
+	else
+		target.analyzer_act(user, src)
 
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()

@@ -30,7 +30,7 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
 	build_path = /obj/item/analyzer/ranged
-	category = list("Tool Design")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/shuttlecreator
