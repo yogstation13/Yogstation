@@ -49,7 +49,7 @@
 
 /obj/item/clothing/suit/armor/imperial/orderable
 	armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 5)
-	desc = "A set of standard issue flak armor for Imperial guardsmen. Protects you fairly well from most threats. This one feels lighter for some reason..." // No, you cant order ERT strength armor
+	desc = "A set of standard issue flak armor for Imperial Guardsmen. Protects you fairly well from most threats. This one feels lighter for some reason..." // No, you cant order ERT strength armor
 
 /obj/item/storage/belt/military/imperial
 	name = "Imperial Belt"
