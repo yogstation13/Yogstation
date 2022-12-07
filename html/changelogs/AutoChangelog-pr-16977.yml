@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes a bug where preternis legs just disappeared sometimes"
-  - imageadd: "adds preternis squished digitigrade leg sprites"
