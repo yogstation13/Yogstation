@@ -174,8 +174,10 @@
 	LAZYCLEARLIST(round_end_events)
 
 	RollCredits()
-	for(var/client/C in GLOB.clients)
-		C.playtitlemusic(40)
+	// Don't interrupt admin music
+	if(REALTIMEOFDAY >= SSticker.music_available)
+		for(var/client/C in GLOB.clients)
+			C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
