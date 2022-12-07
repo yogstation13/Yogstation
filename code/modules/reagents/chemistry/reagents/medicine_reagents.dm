@@ -1440,6 +1440,7 @@
 	color = "#07E79E"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 30
+	var/last_disgust = 0 //last disgust the mob had
 
 /datum/reagent/medicine/psicodine/on_mob_metabolize(mob/living/L)
 	..()
@@ -1450,10 +1451,14 @@
 	..()
 
 /datum/reagent/medicine/psicodine/on_mob_life(mob/living/carbon/M)
+	if(M.disgust >= last_disgust)
+		holder.remove_reagent(/datum/reagent/medicine/psicodine, 10)
 	M.jitteriness = max(0, M.jitteriness-6)
 	M.dizziness = max(0, M.dizziness-6)
 	M.confused = max(0, M.confused-6)
-	M.disgust = max(0, M.disgust-6)
+	if (current_cycle >= 5)
+		M.disgust = max(0, M.disgust-6)
+	last_disgust = M.disgust
 	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 	if(mood && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
 		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
