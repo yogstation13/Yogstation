@@ -9,10 +9,9 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "nerd"
 	item_state = "nerd"
-	blood_overlay_type = "armor"
+	blood_overlay_type = "suit"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 100, RAD = 100, FIRE = 50, ACID = 50)
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/tank/internals/ipc_coolant, /obj/item/crowbar)
 
 	var/list/funny_signals = list(
@@ -41,6 +40,9 @@
 	var/mob/living/carbon/owner
 
 	var/emagged = FALSE
+
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDEGLOVES
 
 /obj/item/clothing/suit/armor/nerd/Initialize()
 	. = ..()
