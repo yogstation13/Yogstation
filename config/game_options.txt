@@ -108,6 +108,7 @@ PROBABILITY DARKSPAWN 6
 PROBABILITY HERESY 4
 PROBABILITY INFILTRATION 0
 PROBABILITY BLOODSUCKER 4
+PROBABILITY TRAITORDEVIL 0 #DISABLED UNTIL TESTING AND FEEDBACK IS DONE -GUS
 
 # Lowpop
 PROBABILITY TRAITOR 5
@@ -166,6 +167,7 @@ CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
 CONTINUOUS HERESY
+CONTINOUS TRAITORDEVIL
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -188,6 +190,7 @@ MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
 MIDROUND_ANTAG MALF
+MIDROUND_ANTAG TRAITORDEVIL
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -250,6 +253,7 @@ SHUTTLE_REFUEL_DELAY 12000
 TRAITOR_SCALING_COEFF 7
 BROTHER_SCALING_COEFF 10
 CHANGELING_SCALING_COEFF 8
+DEVIL_SCALING_COEFF 4 #SUBJECT TO CHANGE -GUS
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)
