@@ -84,6 +84,7 @@
 	icon_state = "bracers"
 	item_state = "bracers"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //They're not gloves?
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
