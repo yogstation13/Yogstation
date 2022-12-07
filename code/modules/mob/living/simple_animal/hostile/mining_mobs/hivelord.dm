@@ -140,6 +140,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
 	visible_message(span_warning("The skulls on [src] wail in anger as they flee from their dying host!"))
+	playsound(get_turf(src), pick('sound/hallucinations/far_noise.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg'), 50, TRUE, 5)
 	var/turf/T = get_turf(src)
 	if(T)
 		if(stored_mob)
