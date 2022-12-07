@@ -8,6 +8,9 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 5
+	exp_requirements = 180
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/miningmedic
 

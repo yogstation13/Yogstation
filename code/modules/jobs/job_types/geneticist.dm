@@ -8,8 +8,9 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#d4ebf2"
-	exp_type = EXP_TYPE_CREW
+	minimal_player_age = 1
 	exp_requirements = 60
+	exp_type = EXP_TYPE_CREW
 	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer")
 
 	outfit = /datum/outfit/job/geneticist

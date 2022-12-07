@@ -8,6 +8,7 @@
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 2
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "General Practitioner")
