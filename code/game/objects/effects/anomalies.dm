@@ -364,7 +364,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "radiation_anomaly"
 	density = TRUE
-	var/has_effect = TRUE //For goat spawning
+	var/spawn_goat = TRUE //For goat spawning
 
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
@@ -384,7 +384,7 @@
 
 /obj/effect/anomaly/radiation/detonate()
 	INVOKE_ASYNC(src, .proc/rad_Spin)
-	has_effect = FALSE //Don't want rad anomaly to keep spamming rad goat
+	spawn_goat = FALSE //Don't want rad anomaly to keep spamming rad goat
 
 /obj/effect/anomaly/radiation/proc/rad_Spin()
 	radiation_pulse(src, 5000, 7)
@@ -398,7 +398,7 @@
 	anomalyEffect()
 	if(death_time < world.time)
 		if(loc)
-			if(has_effect)
+			if(spawn_goat)
 				INVOKE_ASYNC(src, .proc/makegoat)
 			detonate()
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 150)
