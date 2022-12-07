@@ -5,6 +5,7 @@
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //What no if you touch things with your bare fingies you're gonna get shocked
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
