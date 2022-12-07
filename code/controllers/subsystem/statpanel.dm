@@ -2,7 +2,9 @@ SUBSYSTEM_DEF(statpanels)
 	name = "Stat Panels"
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
+	init_stage = INITSTAGE_EARLY
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	flags = SS_NO_INIT
 	var/list/currentrun = list()
 	var/encoded_global_data
 	var/mc_data_encoded
