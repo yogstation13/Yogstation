@@ -178,6 +178,10 @@
 	if(REALTIMEOFDAY >= SSticker.music_available)
 		for(var/client/C in GLOB.clients)
 			C.playtitlemusic(40)
+	else // this looks worse but is better than uselessly comparing for every client
+		for(var/client/C in GLOB.clients)
+			if(!(C.prefs.toggles & SOUND_MIDI))
+				C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
