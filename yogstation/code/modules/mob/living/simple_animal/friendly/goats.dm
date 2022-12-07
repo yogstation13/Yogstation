@@ -191,8 +191,8 @@
 	. = ..()
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		// abosrbs nuclear particle to heal
-		adjustBruteLoss(-0.2)
-		adjustFireLoss(-0.2)
+		adjustBruteLoss(1)
+		adjustFireLoss(1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
 	if(stat == CONSCIOUS)
