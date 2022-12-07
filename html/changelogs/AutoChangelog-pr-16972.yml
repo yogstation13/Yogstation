@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed a bug where some screen alerts weren't showing up"
