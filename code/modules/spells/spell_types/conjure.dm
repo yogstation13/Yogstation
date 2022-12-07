@@ -146,7 +146,7 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = user
 	var/obj/effect/anomaly/radiation/anomaly = new (S.loc, 150)
-	anomaly.has_effect = FALSE
+	anomaly.spawn_goat = FALSE
 	playsound(S, 'sound/weapons/resonator_fire.ogg', 100, TRUE)
 	S.visible_message(span_notice("You see \the radiation anomaly emerges from \the [S]."), span_notice("\The radiation anomaly emerges from your body."))
 	notify_ghosts("The Radioactive Goat has spawned a radiation anomaly!", source = anomaly, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Radiation Anomaly Spawned!")
