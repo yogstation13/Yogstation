@@ -186,8 +186,8 @@
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		// abosrbs nuclear particle to heal
 		P.damage = 0 //No damaging goat
-		adjustBruteLoss(-10)
-		adjustFireLoss(-10)
+		adjustBruteLoss(-0.2)
+		adjustFireLoss(-0.2)
 	return ..()
 
 
