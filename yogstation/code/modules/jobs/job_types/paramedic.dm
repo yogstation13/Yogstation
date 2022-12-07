@@ -9,8 +9,8 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
 	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic")
-	minimal_player_age = 4
-	exp_requirements = 160
+	minimal_player_age = 1
+	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/paramedic
