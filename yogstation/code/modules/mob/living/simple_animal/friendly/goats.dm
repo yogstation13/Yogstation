@@ -171,6 +171,8 @@
 	melee_damage_upper = 25
 	speed = -0.5
 	robust_searching = 1
+	turns_per_move = 5
+	dodging = 1
 	stat_attack = UNCONSCIOUS
 	health = 75
 	maxHealth = 75
