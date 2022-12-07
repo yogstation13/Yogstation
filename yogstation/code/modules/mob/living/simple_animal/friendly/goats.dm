@@ -184,12 +184,15 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
-		// abosrbs nuclear particle to heal
 		P.damage = 0 //No damaging goat
-		adjustBruteLoss(-0.2)
-		adjustFireLoss(-0.2)
 	return ..()
 
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
+	. = ..()
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		// abosrbs nuclear particle to heal
+		adjustBruteLoss(-0.2)
+		adjustFireLoss(-0.2)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
 	if(stat == CONSCIOUS)
