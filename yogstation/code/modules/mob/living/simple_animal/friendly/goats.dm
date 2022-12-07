@@ -172,8 +172,8 @@
 	speed = -0.5
 	robust_searching = 1
 	stat_attack = UNCONSCIOUS
-	health = 60
-	maxHealth = 60
+	health = 75
+	maxHealth = 75
 	var/datum/action/innate/rad_goat/rad_switch
 	var/rad_emit = TRUE
 
