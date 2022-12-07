@@ -12,7 +12,6 @@
 		/obj/item/storage/belt/medical = 1,
 		/obj/item/storage/box/syringes = 1,
 		/obj/item/reagent_containers/glass/bottle/toxin = 1,
-		/obj/item/reagent_containers/glass/bottle/morphine = 2,
 		/obj/item/reagent_containers/glass/bottle/epinephrine= 3,
 		/obj/item/reagent_containers/glass/bottle/charcoal = 3,
 		/obj/item/storage/box/rxglasses = 1)
