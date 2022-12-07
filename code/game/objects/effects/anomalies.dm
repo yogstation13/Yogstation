@@ -368,7 +368,7 @@
 
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
-	for(var/i = 1 to 10)
+	for(var/i = 1 to 15)
 		fire_nuclear_particle_wimpy()
 	radiation_pulse(src, 500, 5)
 
