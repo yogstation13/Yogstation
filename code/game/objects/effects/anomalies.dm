@@ -364,7 +364,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "radiation_anomaly"
 	density = TRUE
-	var/has_effect = TRUE //For goat spawning
+	var/has_effect = FALSE //For goat spawning
 
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
