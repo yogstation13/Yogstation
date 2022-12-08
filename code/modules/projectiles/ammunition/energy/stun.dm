@@ -21,6 +21,7 @@
 	e_cost = 50
 	fire_sound = 'sound/weapons/taser2.ogg'
 	harmful = FALSE
+	click_cooldown_override = CLICK_CD_RAPID
 
 /obj/item/ammo_casing/energy/disabler/cyborg
 	e_cost = 100
