@@ -125,7 +125,6 @@
 /obj/machinery/electrolyzer/RefreshParts()
 	var/lasers = 0
 	var/cap = 0
-	charge_rate = 500
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
 		lasers += L.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
