@@ -201,7 +201,6 @@
 	data["on"] = on
 	data["mode"] = setMode
 	data["hasPowercell"] = !!cell
-	data["HasPower"] = use_power
 	if(cell)
 		data["powerLevel"] = round(cell.percent(), 1)
 	data["targetTemp"] = round(targetTemperature - T0C, 1)

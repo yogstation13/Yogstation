@@ -178,7 +178,6 @@
 	data["open"] = panel_open
 	data["on"] = on
 	data["hasPowercell"] = !isnull(cell)
-	data["HasPower"] = use_power
 	if(cell)
 		data["powerLevel"] = round(cell.percent(), 1)
 	return data
