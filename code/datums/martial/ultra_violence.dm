@@ -83,9 +83,12 @@
 		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
 		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution
 		new /obj/effect/gibspawner/generic(D.loc)
-		new /obj/effect/gibspawner/generic(D.loc)
 
+/*---------------------------------------------------------------
 
+	training related section
+
+---------------------------------------------------------------*/
 /mob/living/carbon/human/proc/ultra_violence_help()
 	set name = "Cyber Grind"
 	set desc = "You mentally practice the teachings of Ultra Violence."
@@ -316,5 +319,6 @@
 ---------------------------------------------------------------*/
 
 #undef GUN_HAND
+#undef POCKET_PISTOl
 #undef BLOOD_BURST
 #undef MAX_DASH_DIST
