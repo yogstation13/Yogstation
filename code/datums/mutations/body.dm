@@ -191,7 +191,7 @@
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
-	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
+	var/obj/effect/dummy/luminescent_glow/glowy/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
 	var/color
@@ -199,11 +199,21 @@
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
+/obj/effect/dummy/luminescent_glow/glowy
+	var/resilient = FALSE
+
+/obj/effect/dummy/luminescent_glow/glowy/set_light(range, power, color)
+	if (resilient && (range <= 1 || power <= 1))
+		return
+	. = ..()
+
+
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
 	glowth = new(owner)
+	glowth.resilient = mutadone_proof
 	modify()
 
 /datum/mutation/human/glow/modify()
