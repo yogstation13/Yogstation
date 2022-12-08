@@ -144,31 +144,56 @@
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/revolver/martial/gun = new /obj/item/gun/ballistic/revolver/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You whip out your revolver."))	
 	streak = ""
 	
-/obj/item/gun/ballistic/revolver/martial
+/obj/item/gun/ballistic/revolver/ipcmartial
 	desc = "Your trusty revolver."
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
 
-/obj/item/gun/ballistic/revolver/martial/Initialize(mapload)
+/obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
+	name = "\improper Russian revolver cylinder"
+	ammo_type = /obj/item/ammo_casing/ipcmartial
+	caliber = "357"
+	max_ammo = 1
+
+/obj/item/ammo_casing/ipcmartial
+	name = ".357 piercer bullet casing"
+	desc = "A .357 piercer bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/ipcmartial
+
+/obj/item/projectile/bullet/ipcmartial	//one shot, make it count
+	name = ".357 piercer bullet"
+	damage = 40
+	armour_penetration = 40
+	wound_bonus = -50	//more wounds
+	penetrating = TRUE
+
+/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+	. = ..()
+	if(ishuman(target) && !blocked)
+		var/mob/living/carbon/human/H = target
+		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
+
+/obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
 
-/obj/item/gun/ballistic/revolver/martial/process_chamber(empty_chamber, from_firing, chamber_next_round)
+/obj/item/gun/ballistic/revolver/ipcmartial/process_chamber(empty_chamber, from_firing, chamber_next_round)
 	. = ..()
 	qdel(src)
 
-/obj/item/gun/ballistic/revolver/martial/attack_self(mob/living/A)
+/obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You stash your revolver away."))	
 	qdel(src)
 
-/obj/item/gun/ballistic/revolver/martial/dropped(mob/user)//for if your arm gets chopped off while holding it
+/obj/item/gun/ballistic/revolver/ipcmartial/dropped(mob/user)//for if your arm gets chopped off while holding it
 	. = ..()
 	qdel(src)
 /*---------------------------------------------------------------
@@ -183,50 +208,54 @@
 ---------------------------------------------------------------*/
 
 /datum/martial_art/ultra_violence/proc/gun_hand(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/shotgun/martial/gun = new /obj/item/gun/ballistic/shotgun/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+	var/obj/item/gun/ballistic/shotgun/ipcmartial/gun = new /obj/item/gun/ballistic/shotgun/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You ready your gun hand."))	
 	streak = ""
 
-/obj/item/gun/ballistic/shotgun/martial
+/obj/item/gun/ballistic/shotgun/ipcmartial
 	desc = "Your hand is also a shotgun."
 	lefthand_file = null  ///We don't want it to be visible inhands because it is your hand
 	righthand_file = null
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/martial
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
 
-/obj/item/ammo_box/magazine/internal/shot/lethal/martial
-	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/martial
+/obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
+	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/ipcmartial
 
-/obj/item/ammo_casing/shotgun/buckshot/martial
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot/martial
+/obj/item/ammo_casing/shotgun/buckshot/ipcmartial
+	projectile_type = /obj/item/projectile/bullet/pellet/ipcmartial
 	pellets = 6
 	variance = 15
 
-/obj/item/projectile/bullet/pellet/shotgun_buckshot/martial
-	wound_falloff_tile = -1.5 // more wounds
+/obj/item/projectile/bullet/pellet/ipcmartial //one shot, make it count
+	name = "violence buckshot pellet"
+	damage = 16 //don't let them point blank you
+	wound_bonus = 5
+	bare_wound_bonus = 5
+	wound_falloff_tile = -1 // less wound falloff
 
-/obj/item/projectile/bullet/pellet/shotgun_buckshot/martial/on_hit(atom/target, blocked)//the real reason i made a whole new ammo type
+/obj/item/projectile/bullet/pellet/ipcmartial/on_hit(atom/target, blocked)//the real reason i made a whole new ammo type
 	. = ..()
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
-/obj/item/gun/ballistic/shotgun/martial/Initialize(mapload)
+/obj/item/gun/ballistic/shotgun/ipcmartial/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
 
-/obj/item/gun/ballistic/shotgun/martial/process_chamber(empty_chamber, from_firing, chamber_next_round)
+/obj/item/gun/ballistic/shotgun/ipcmartial/process_chamber(empty_chamber, from_firing, chamber_next_round)
 	. = ..()
 	qdel(src)
 
-/obj/item/gun/ballistic/shotgun/martial/attack_self(mob/living/A)
+/obj/item/gun/ballistic/shotgun/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You relax your gun hand."))	
 	qdel(src)
 
-/obj/item/gun/ballistic/shotgun/martial/dropped(mob/user)//for if your arm gets chopped off while holding it
+/obj/item/gun/ballistic/shotgun/ipcmartial/dropped(mob/user)//for if your arm gets chopped off while holding it
 	. = ..()
 	qdel(src)
 /*---------------------------------------------------------------
