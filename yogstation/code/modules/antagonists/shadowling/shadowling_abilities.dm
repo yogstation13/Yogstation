@@ -140,18 +140,7 @@
 		var/mob/living/carbon/M = H
 		var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
 		if(G)
-			G.glowth.set_light(0, 0) // Set glowy to no light
-			if(G.current_nullify_timer)
-				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 5 SECONDS, TIMER_STOPPABLE)
-
-/obj/effect/proc_holder/spell/aoe_turf/proc/giveGlowyBack(mob/living/carbon/M)
-	if(!M)
-		return
-	var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
-	if(G)
-		G.modify() // Re-sets glowy
-		G.current_nullify_timer = null
+			M.dna.remove_mutation(GLOWY)
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
