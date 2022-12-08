@@ -171,11 +171,9 @@
 	melee_damage_upper = 25
 	speed = -0.5
 	robust_searching = 1
-	turns_per_move = 5
-	dodging = 1
 	stat_attack = UNCONSCIOUS
-	health = 75
-	maxHealth = 75
+	health = 200
+	maxHealth = 200
 	var/datum/action/innate/rad_goat/rad_switch
 	var/rad_emit = TRUE
 
@@ -184,17 +182,13 @@
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly)
 	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
-		P.damage = 0 //No damaging goat
-	return ..()
-
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
 	. = ..()
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		// abosrbs nuclear particle to heal
-		adjustBruteLoss(1)
-		adjustFireLoss(1)
+		P.damage = 0
+		adjustBruteLoss(-10)
+		adjustFireLoss(-10)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
 	if(stat == CONSCIOUS)
