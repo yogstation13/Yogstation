@@ -293,7 +293,7 @@
 		return
 
 	else
-		playsound(H, 'sound/effects/space_wind_big.ogg', 50)
+		playsound(H, 'sound/effects/dodge.ogg', 50)
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 		REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial") //can't immobilize if has stun immune, technically means they can be stunned mid-dash
 		H.Immobilize(30 SECONDS) //to prevent cancelling the dash
