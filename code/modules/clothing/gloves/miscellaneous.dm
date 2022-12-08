@@ -12,7 +12,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
 	undyeable = TRUE
-	var/tacticalspeed = 0.8
+	var/tacticalspeed = 0.9
 	var/worn
 
 /obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/boss = user
 	if(slot == SLOT_GLOVES)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
-			boss.physiology.do_after_speed *= tacticalspeed //Does channels 20% faster
+			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
 			worn = TRUE
 
 /obj/item/clothing/gloves/fingerless/dropped(mob/user)
@@ -34,7 +34,7 @@
 	name = "tactical fingerless gloves"
 	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
 	var/carrytrait = TRAIT_QUICKER_CARRY
-	tacticalspeed = 0.5 //Does channels 50% faster
+	tacticalspeed = 0.66 //Does channels 34% faster
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
