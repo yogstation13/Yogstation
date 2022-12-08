@@ -4,6 +4,7 @@
 
 	if(digitalinvis)
 		handle_diginvis() //AI becomes unable to see mob
+	last_heal -= clamp(seconds * max_heal_per_second, 0, last_heal)
 
 	if((movement_type & FLYING) && !(movement_type & FLOATING))	//TODO: Better floating
 		float(on = TRUE)

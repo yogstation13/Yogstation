@@ -153,6 +153,8 @@
 /mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if (amount < 0)
+		amount = -limit_heal(-amount)
 	bruteloss = clamp((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -164,6 +166,8 @@
 /mob/living/proc/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if (amount < 0)
+		amount = -limit_heal(-amount)
 	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -183,6 +187,8 @@
 /mob/living/proc/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if (amount < 0)
+		amount = -limit_heal(-amount)
 	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -202,6 +208,8 @@
 /mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if (amount < 0)
+		amount = -limit_heal(-amount)
 	fireloss = clamp((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -213,6 +221,8 @@
 /mob/living/proc/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if (amount < 0)
+		amount = -limit_heal(-amount)
 	cloneloss = clamp((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -243,6 +253,13 @@
 
 /mob/living/proc/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
+
+/mob/living/proc/limit_heal(damage = 0)
+	if (last_heal >= DS2TICKS(max_heal_per_second / 10))
+		return 0
+	
+	damage = clamp(damage, 0, DS2TICKS(max_heal_per_second / 10))
+	return damage
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
@@ -284,7 +301,7 @@
 /mob/living/proc/heal_ordered_damage(amount, list/damage_types, required_status)
 	. = amount //we'll return the amount of damage healed
 	for(var/i in damage_types)
-		var/amount_to_heal = min(amount, get_damage_amount(i)) //heal only up to the amount of damage we have
+		var/amount_to_heal = limit_heal(min(amount, get_damage_amount(i))) //heal only up to the amount of damage we have
 		if(amount_to_heal)
 			apply_damage_type(-amount_to_heal, i, required_status)
 			amount -= amount_to_heal //remove what we healed from our current amount

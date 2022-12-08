@@ -1466,3 +1466,8 @@
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
+
+
+/mob/living
+	var/max_heal_per_second = 5 //Can heal 5 damage per second
+	var/last_heal = 0
