@@ -202,8 +202,8 @@
 /obj/effect/dummy/luminescent_glow/glowy
 	var/resilient = FALSE
 
-/obj/effect/dummy/luminescent_glow/glowy/set_light(range, power, color = NONSENSICAL_VALUE)
-	if (resilient && (range <= 1 || power <= 1))
+/obj/effect/dummy/luminescent_glow/glowy/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
+	if (resilient && (l_range <= 1 || l_power <= 1))
 		return
 	. = ..()
 
