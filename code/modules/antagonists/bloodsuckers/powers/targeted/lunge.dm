@@ -3,7 +3,7 @@
 	desc = "Spring at a humanoid to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
 	power_explanation = "<b>Predatory Lunge</b>:\n\
-		Click any player to instantly dash at them if above power level 1, aggressively grabbing them.\n\
+		Click any player to instantly dash at them if at level 2 or more, aggressively grabbing them.\n\
 		If below level 2, you will have to charge your lunge for a while. During this time you'll have to stand still for lunge to work.\n\
 		You cannot use the Power if you are aggressively grabbed.\n\
 		If the target is wearing riot gear or is a Monster Hunter, you will merely passively grab them.\n\
