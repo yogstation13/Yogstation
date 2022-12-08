@@ -351,7 +351,7 @@
 
 /obj/structure/bloodsucker/possessedarmor
 	name = "knight's armor"
-	desc = "I swear i saw its eyes move..."
+	desc = "I swear I saw its eyes move..."
 	icon_state = "posarmor"
 	anchored = FALSE
 	density = TRUE
