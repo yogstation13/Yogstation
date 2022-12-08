@@ -357,7 +357,6 @@
 	density = TRUE
 	Ghost_desc = "This Knight's armor will come alive once non-bloodsuckers get close to it."
 	Vamp_desc = "This is a possesed knight's armor, it will come alive once mortals get close to it.\n\
-		You don't care about its attacks since you are brute immune.\n\
 		You can reinforce it with 5 silver bars.\n\
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."

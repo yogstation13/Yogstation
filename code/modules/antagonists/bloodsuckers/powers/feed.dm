@@ -323,7 +323,7 @@
 	if(first_hit)
 		target.Unconscious(5 SECONDS,0)
 	target.Paralyze(40 + 5 * level_current)
-	ADD_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
+	target.ADD_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 
 /datum/action/bloodsucker/feed/DeactivatePower()
 	. = ..() // activate = FALSE
@@ -334,8 +334,8 @@
 		else
 			owner.visible_message(
 				span_warning("[owner] unclenches their teeth from [feed_target]'s neck."),
-				span_warning("You retract your fangs and release [feed_target] from your bite."))
-				REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
+				span_warning("You retract your fangs and release [feed_target] from your bite.")),
+				target.REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		log_combat(owner, feed_target, "fed on blood", addition="(and took [amount_taken] blood)")
 	// Did we kill our target?
 	if(was_alive)
