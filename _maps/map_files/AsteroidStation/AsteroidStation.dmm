@@ -43646,6 +43646,15 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"nVc" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen";
+	name = "Kitchen APC";
+	pixel_x = -7;
+	pixel_y = -31
+	},
+/turf/closed/wall,
+/area/hallway/secondary/service)
 "nVd" = (
 /obj/machinery/vending/sovietsoda,
 /obj/effect/decal/cleanable/dirt,
@@ -43837,14 +43846,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
-"nYE" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/kitchen";
-	name = "Kitchen APC";
-	pixel_y = -23
-	},
-/turf/closed/wall,
-/area/hallway/secondary/service)
 "nYG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -100290,7 +100291,7 @@ gLJ
 ape
 qkB
 aRI
-nYE
+nVc
 aRI
 aRI
 vvh
