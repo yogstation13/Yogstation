@@ -161,7 +161,7 @@
 	var/mob/gun_owner
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
-	name = "\improper Russian revolver cylinder"
+	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
 	caliber = "357"
 	max_ammo = 1
@@ -176,7 +176,7 @@
 	name = ".357 piercer bullet"
 	damage = 40
 	armour_penetration = 40
-	wound_bonus = -50	//more wounds
+	wound_bonus = -30	//more wounds
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
