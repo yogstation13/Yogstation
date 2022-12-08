@@ -37,7 +37,7 @@
 		speed_boost(A, 6, "bloodburst")
 		return TRUE
 
-	if(D.health <= HEALTH_THRESHOLD_CRIT) //no getting shotguns off people that aren't fighting back
+	if(D.health <= HEALTH_THRESHOLD_FULLCRIT) //no getting shotguns off people that aren't fighting back
 		return FALSE
 
 	if(findtext(streak, GUN_HAND))
@@ -52,7 +52,8 @@
 /datum/martial_art/ultra_violence/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	check_streak(A,D)
-	playsound(A, 'sound/effects/servostep.ogg', 50, FALSE, -1)//feedback to know the click landed
+	if(D.stat != DEAD)//feedback to know the click landed, but only if it's actually able to do something
+		playsound(A, 'sound/effects/servostep.ogg', 80, FALSE, -1)
 	return TRUE //no grabbing either
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
