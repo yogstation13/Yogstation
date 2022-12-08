@@ -23,7 +23,6 @@ export const Electrolyzer = (props, context) => {
                 icon={data.on ? 'power-off' : 'times'}
                 content={data.on ? 'On' : 'Off'}
                 selected={data.on}
-                disabled={!data.hasPowercell && data.hasPower == 0}
                 onClick={() => act('power')} />
             </Fragment>
           )}>
