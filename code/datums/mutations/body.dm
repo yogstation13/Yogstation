@@ -202,7 +202,7 @@
 /obj/effect/dummy/luminescent_glow/glowy
 	var/resilient = FALSE
 
-/obj/effect/dummy/luminescent_glow/glowy/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
+/obj/effect/dummy/luminescent_glow/glowy/set_light(l_range, l_power, l_color = -99999)
 	if (resilient && (l_range <= 1 || l_power <= 1))
 		return
 	. = ..()
