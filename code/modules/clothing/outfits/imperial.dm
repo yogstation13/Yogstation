@@ -53,7 +53,7 @@
 
 /obj/item/storage/belt/military/imperial
 	name = "Imperial Belt"
-	desc = "A well worn belt, standard issue among imperial guard forces."
+	desc = "A well worn belt, standard issue among Imperial Guard forces."
 	icon_state = "guard_belt"
 	item_state = "guard_belt"
 
