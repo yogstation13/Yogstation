@@ -1,6 +1,6 @@
 /obj/item/stack/hypernoblium_crystal
 	name = "Hypernoblium Crystal"
-	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to pressureproof your clothes."
+	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to environmental proof your clothes."
 	icon_state = "hypernoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
 
