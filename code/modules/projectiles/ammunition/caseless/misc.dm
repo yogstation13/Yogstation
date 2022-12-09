@@ -16,10 +16,10 @@
 	projectile_type = /obj/item/projectile/beam/laser/lasgun
 
 /obj/item/ammo_casing/caseless/laser/longlas
-	projectile_type = /obj/item/projectile/beam/laser/longlas
+	projectile_type = /obj/item/projectile/beam/laser/lasgun/longlas
 
 /obj/item/ammo_casing/caseless/laser/laspistol
-	projectile_type = /obj/item/projectile/beam/laser/hotshot
+	projectile_type = /obj/item/projectile/beam/laser/lasgun/hotshot
 
 /obj/item/ammo_casing/caseless/laser/hotshot
-	projectile_type = /obj/item/projectile/beam/laser/laspistol
+	projectile_type = /obj/item/projectile/beam/laser/lasgun/laspistol
