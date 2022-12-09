@@ -161,7 +161,7 @@
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
-	var/crystal_charge = ETHEREAL_CHARGE_FULL
+	var/crystal_charge = ETHEREAL_CHARGE_ALMOSTFULL
 
 /obj/item/organ/stomach/ethereal/on_life()
 	..()
