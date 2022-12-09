@@ -5,10 +5,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"ac" = (
-/obj/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "ad" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
@@ -161,6 +157,12 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"br" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/iv_drip,
+/obj/structure/closet/crate/freezer/blood,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "bt" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -184,22 +186,6 @@
 	dir = 1
 	},
 /turf/open/floor/noslip,
-/area/shuttle/escape)
-"eH" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"fM" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "gI" = (
 /obj/machinery/door/airlock/shuttle,
@@ -255,20 +241,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"iJ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/closet/secure_closet{
-	name = "Plasmaman Supplies Locker";
-	req_access_txt = "5"
-	},
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/tank/internals/plasmaman,
-/obj/item/tank/internals/plasmaman,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "jq" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -312,20 +284,6 @@
 /obj/machinery/computer/operating{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"km" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 10
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/item/storage/toolbox/drone,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "kN" = (
@@ -479,12 +437,14 @@
 /obj/item/storage/firstaid/advanced,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"wy" = (
+"wG" = (
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Triage Shuttle Cabin"
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "wQ" = (
@@ -615,6 +575,15 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"EG" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "ES" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -666,6 +635,20 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"Nk" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/closet/secure_closet{
+	name = "Plasmaman Supplies Locker";
+	req_access_txt = "5"
+	},
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/tank/internals/plasmaman,
+/obj/item/tank/internals/plasmaman,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "NG" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -689,6 +672,18 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"Pe" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Pk" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning,
@@ -725,6 +720,16 @@
 "RU" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"Sm" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Uq" = (
@@ -777,11 +782,11 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"Wb" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/iv_drip,
-/obj/structure/closet/crate/freezer/blood,
-/turf/open/floor/mineral/titanium/white,
+"VQ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Wx" = (
 /obj/machinery/sleeper{
@@ -803,11 +808,19 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"YL" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+"Zi" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -4;
+	pixel_y = 10
 	},
-/turf/open/floor/mineral/titanium,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/storage/toolbox/drone,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -827,10 +840,10 @@ Uw
 Uw
 ae
 ae
-ae
 gI
+BC
+Sm
 ae
-eH
 ae
 BC
 ae
@@ -853,10 +866,10 @@ Vx
 ki
 qA
 ai
-WK
+EG
 aK
 aK
-aK
+VQ
 sW
 yy
 Uq
@@ -879,8 +892,8 @@ aX
 hI
 aD
 at
-AQ
-fM
+EG
+aK
 aK
 aK
 aK
@@ -905,7 +918,7 @@ aX
 hI
 aD
 ad
-ac
+EG
 kj
 Es
 lY
@@ -931,7 +944,7 @@ aV
 hI
 aa
 ah
-ac
+EG
 GO
 aK
 AV
@@ -956,8 +969,8 @@ aX
 af
 hI
 aX
-km
-ac
+Zi
+EG
 GO
 aK
 AV
@@ -983,7 +996,7 @@ uz
 xm
 wQ
 Pk
-wy
+wG
 aK
 aK
 AV
@@ -1008,8 +1021,8 @@ aX
 aX
 aX
 aX
-iJ
-ac
+Nk
+EG
 GO
 aK
 AV
@@ -1034,8 +1047,8 @@ aX
 aX
 aX
 aX
-Wb
-ac
+br
+EG
 GO
 aK
 AV
@@ -1061,7 +1074,7 @@ yv
 NG
 yv
 gT
-ac
+EG
 PY
 GX
 VO
@@ -1087,7 +1100,7 @@ aX
 dz
 aX
 dI
-ac
+EG
 aK
 aK
 aK
@@ -1113,8 +1126,8 @@ oi
 zR
 ba
 kk
-WK
-YL
+Pe
+aK
 gW
 gW
 sW
@@ -1140,7 +1153,7 @@ Qr
 ae
 Gy
 ae
-ae
+Gy
 Qr
 Qr
 Qr
