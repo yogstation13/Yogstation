@@ -1,452 +1,581 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
+/area/shuttle/escape)
+"b" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "c" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"d" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"e" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/template_noop)
-"g" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 9
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"i" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"k" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"n" = (
-/obj/structure/shuttle/engine/heater,
-/turf/open/floor/plating,
-/area/template_noop)
-"q" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/heater,
-/turf/open/floor/plating,
-/area/template_noop)
-"t" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/titanium/blue,
-/area/template_noop)
-"u" = (
+/area/shuttle/escape)
+"d" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10
+/obj/structure/table/optable{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"v" = (
+/area/shuttle/escape)
+"e" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/stasis,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/noslip,
+/area/shuttle/escape)
+"f" = (
+/obj/machinery/computer/operating,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"g" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"h" = (
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"i" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"j" = (
 /obj/structure/window/reinforced,
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/template_noop)
-"w" = (
-/obj/machinery/door/airlock/shuttle/glass,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium,
-/area/template_noop)
-"z" = (
-/turf/template_noop,
-/area/template_noop)
-"A" = (
+/area/shuttle/escape)
+"k" = (
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/template_noop)
-"B" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
+/area/shuttle/escape)
+"l" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"C" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating,
-/area/template_noop)
-"D" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning,
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"E" = (
+/area/shuttle/escape)
+"m" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"G" = (
-/turf/open/floor/mineral/titanium,
-/area/template_noop)
-"I" = (
+/area/shuttle/escape)
+"n" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/stasis,
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"J" = (
+/area/shuttle/escape)
+"o" = (
+/obj/structure/window/shuttle,
+/turf/template_noop,
+/area/shuttle/escape)
+"p" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"q" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"r" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/brute{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/brute,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"s" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"M" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"N" = (
-/turf/closed/wall/mineral/titanium,
-/area/template_noop)
-"O" = (
-/obj/structure/window/shuttle,
-/turf/template_noop,
-/area/template_noop)
-"P" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"Q" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"S" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"T" = (
+/area/shuttle/escape)
+"t" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"V" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
+/area/shuttle/escape)
+"u" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/escape)
+"v" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"w" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/machinery/atmospherics/components/unary/cryo_cell{
-	dir = 1
-	},
+/obj/item/storage/firstaid/fire,
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"W" = (
+/area/shuttle/escape)
+"x" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/atmospherics/components/unary/cryo_cell{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/template_noop)
-"X" = (
+/area/shuttle/escape)
+"y" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"z" = (
+/turf/template_noop,
 /area/template_noop)
-"Y" = (
+"A" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/obj/item/storage/firstaid/advanced{
+	pixel_y = 10
+	},
+/obj/machinery/door/window/brigdoor/southright,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"B" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/sleeper,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"C" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"D" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"E" = (
+/obj/structure/table/optable,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"F" = (
+/obj/machinery/sleeper,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"G" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"H" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"I" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"J" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"K" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
 	layer = 2.35;
 	level = 1
 	},
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"L" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"M" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"N" = (
+/turf/closed/wall/mineral/titanium,
 /area/template_noop)
+"O" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"P" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"Q" = (
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"R" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"S" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"T" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/sleeper,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"U" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/docking_port/mobile/emergency,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"V" = (
+/obj/machinery/door/airlock/shuttle/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"W" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"X" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"Y" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"Z" = (
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 z
 z
 z
 z
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
+J
+J
+J
+k
+J
+U
+J
+J
+J
+J
+J
+J
 z
 z
 z
-N
-N
-N
+J
+J
+J
 "}
 (2,1,1) = {"
 z
-N
-N
-N
-e
-A
-A
-A
-d
-g
-Q
-Q
-Q
+J
+J
+J
+u
+f
+v
 Q
 M
-e
-N
-N
-N
-e
-n
-C
+b
+d
+H
+d
+K
+D
+u
+J
+J
+J
+u
+h
+q
 "}
 (3,1,1) = {"
-N
-e
-z
-z
-N
-A
-A
-A
-N
-B
-X
-X
-X
-X
-a
-O
-G
-G
-G
-G
-q
-C
-"}
-(4,1,1) = {"
-N
-z
-z
-z
-N
-A
-A
-A
-N
-B
-X
-X
-X
-X
-a
-O
-G
-v
-t
-G
-q
-C
-"}
-(5,1,1) = {"
-N
-z
-z
-z
-N
-A
-A
-A
-N
-B
-X
-X
-X
-X
-a
-N
-G
-v
-t
-G
-q
-C
-"}
-(6,1,1) = {"
-N
-z
-z
-z
-N
-A
-A
-A
-N
-B
-X
-X
-X
-X
-D
-w
-G
-v
-t
-G
-q
-C
-"}
-(7,1,1) = {"
-N
-z
-z
-z
-N
-N
-N
-N
-N
-B
-X
-X
-X
-Y
-T
-N
-G
-v
-t
-G
-q
-C
-"}
-(8,1,1) = {"
-N
-z
-z
-z
-N
+J
+u
+Z
+Z
+J
 E
 Q
-k
-Q
-P
-X
-X
-X
 i
 J
-O
+P
+b
+b
+b
 G
-v
-t
-G
+x
+o
+g
+Z
+Z
+g
+I
 q
+"}
+(4,1,1) = {"
+J
+Z
+g
+Z
+J
+A
+Q
+i
+J
+y
+b
+b
+p
+G
+s
+o
+Z
+j
+c
+Z
+I
+q
+"}
+(5,1,1) = {"
+J
+Z
+Z
+Z
+J
+F
+Q
+i
+J
+P
+S
+S
+S
+O
+t
+J
+Z
+j
+c
+Z
+I
+q
+"}
+(6,1,1) = {"
+J
+Z
+g
+Z
+J
+R
+v
+i
+N
+P
+r
+w
+W
+b
 C
+V
+Z
+j
+c
+Z
+I
+q
+"}
+(7,1,1) = {"
+J
+Z
+Z
+Z
+J
+J
+J
+J
+J
+P
+b
+b
+b
+b
+X
+J
+Z
+j
+c
+Z
+I
+q
+"}
+(8,1,1) = {"
+J
+Z
+g
+Z
+J
+b
+a
+m
+m
+l
+p
+b
+b
+p
+X
+o
+Z
+j
+c
+Z
+I
+q
 "}
 (9,1,1) = {"
-N
-e
-z
-z
-N
-S
+J
+u
+Z
+Z
+J
+b
+p
+b
+b
+b
+b
+b
+b
+b
 X
-X
-X
-X
-X
-X
-X
-i
-W
-O
-G
-G
-G
-G
+o
+g
+Z
+Z
+g
+I
 q
-C
 "}
 (10,1,1) = {"
 z
-N
-N
-N
-e
-c
-I
-I
-I
-I
-I
-I
-I
+J
+J
+J
 u
-V
-e
-N
-N
-N
-e
+B
+T
+T
+L
 n
-C
+Y
+n
+n
+Y
+e
+u
+J
+J
+J
+u
+h
+q
 "}
 (11,1,1) = {"
 z
 z
 z
 z
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
-N
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
+J
 z
 z
 z
-N
-N
-N
+J
+J
+J
 "}
