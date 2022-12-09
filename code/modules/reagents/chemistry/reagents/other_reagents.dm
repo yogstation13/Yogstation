@@ -851,7 +851,7 @@
 	..()
 
 /datum/reagent/sulphur
-	name = "sulphur"
+	name = "Sulphur"
 	description = "A sickly yellow solid mostly known for its nasty smell. It's actually much more helpful than it looks in biochemisty."
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
