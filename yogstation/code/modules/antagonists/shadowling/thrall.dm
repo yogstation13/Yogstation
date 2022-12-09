@@ -28,6 +28,11 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	owner.special_role = "thrall"
 	message_admins("[key_name_admin(owner.current)] was enthralled by a shadowling!")
 	log_game("[key_name(owner.current)] was enthralled by a shadowling!")
+
+	var/mob/living/carbon/M = owner
+	if (M)
+		M.dna.add_mutation(ANTIGLOWY)
+
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/lesser_glare(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadow_walk(null))
@@ -44,6 +49,9 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 		if(is_type_in_typecache(S, GLOB.thrall_spell_types)) //only remove thrall spells!
 			owner.RemoveSpell(S)
 	var/mob/living/M = owner.current
+	var/mob/living/carbon/C = owner
+	if (C)
+		C.dna.remove_mutation(ANTIGLOWY)
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))
 		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude..."))
