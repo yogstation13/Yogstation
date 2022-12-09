@@ -255,6 +255,20 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"iJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/closet/secure_closet{
+	name = "Plasmaman Supplies Locker";
+	req_access_txt = "5"
+	},
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/tank/internals/plasmaman,
+/obj/item/tank/internals/plasmaman,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "jq" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -300,6 +314,20 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"km" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/storage/toolbox/drone,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "kN" = (
 /obj/machinery/light{
 	dir = 4
@@ -340,11 +368,6 @@
 "mz" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"ni" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "oi" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -558,19 +581,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"Dk" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 7
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "El" = (
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
@@ -638,11 +648,6 @@
 	pixel_y = -30
 	},
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"JB" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/closet/emcloset,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Kj" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -771,6 +776,12 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Wb" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/iv_drip,
+/obj/structure/closet/crate/freezer/blood,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Wx" = (
 /obj/machinery/sleeper{
@@ -945,7 +956,7 @@ aX
 af
 hI
 aX
-Dk
+km
 ac
 GO
 aK
@@ -997,7 +1008,7 @@ aX
 aX
 aX
 aX
-JB
+iJ
 ac
 GO
 aK
@@ -1023,7 +1034,7 @@ aX
 aX
 aX
 aX
-ni
+Wb
 ac
 GO
 aK
