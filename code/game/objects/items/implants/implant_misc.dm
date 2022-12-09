@@ -155,7 +155,7 @@
 
 /obj/item/implant/empshield
 	name = "EMP shield implant"
-	desc = "An implant that completely protects from electro magnetic pulses. It will shut down briefly if triggered too often."
+	desc = "An implant that completely protects from electro-magnetic pulses. It will shut down briefly if triggered too often."
 	activated = 0
 	var/lastemp = 0
 	var/numrecent = 0
