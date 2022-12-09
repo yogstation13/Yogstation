@@ -1,0 +1,31 @@
+/obj/item/stack/hypernoblium_crystal
+	name = "Hypernoblium Crystal"
+	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to pressureproof your clothes."
+	icon_state = "hypernoblium_crystal"
+	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
+
+/obj/item/stack/hypernoblium_crystal/afterattack(obj/target_object, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	var/obj/item/clothing/worn_item = target_object
+	if(!istype(worn_item))
+		to_chat(user, span_warning("The crystal can only be used on clothing!"))
+		return
+	if(istype(worn_item))
+		if(!istype(worn_item, /obj/item/clothing/suit/space))
+			worn_item.clothing_flags |= STOPSPRESSUREDAMAGE
+		to_chat(user, span_notice("You see how the [worn_item] changes color, it's now environmental proof."))
+		worn_item.name = "environmental-proof [worn_item.name]"
+		worn_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		worn_item.add_atom_colour("#00fff7", FIXED_COLOUR_PRIORITY)
+		worn_item.cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.flags_prot = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+		worn_item.body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.max_heat_protection_temperature = INFINITY
+		worn_item.min_cold_protection_temperature = -INFINITY
+		worn_item.resistance_flags |= FIRE_PROOF
+		worn_item.resistance_flags |= ACID_PROOF
+		worn_item.resistance_flags |= FREEZE_PROOF
+	amount--
