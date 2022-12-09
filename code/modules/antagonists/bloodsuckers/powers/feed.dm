@@ -7,7 +7,7 @@
 		If <b>passively</b> grabbed, you will feed faster than default.\n\
 		If <b>aggressively</b> grabbed, along with drinking even faster, your victim will additionally be put to sleep.\n\
 		You cannot talk while Feeding, as your mouth is full of Blood.\n\
-				If you feed off of a Rat, unless you are Malkavian or Nosferatu, you will lose <b>Humanity</b> and get a mood debuff.\n\
+		If you feed off of a Rat, unless you are Malkavian or Nosferatu, you will lose <b>Humanity</b> and get a mood debuff.\n\
 		Feeding off of someone until they die will cause you to lose <b>Humanity</b>.\n\
 		If you are seen feeding off of someone (2 tiles) while your target is grabbed, you will break the Masquerade.\n\
 		Higher levels will increase the feeding's speed."
