@@ -119,9 +119,9 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/stimulum = 500, /datum/gas/freon = 500, /datum/gas/nitryl = 800)
 	products = list(/obj/machinery/the_singularitygen/tesla = 1)
 
-/datum/gas_recipe/crystallizer/supermatter
+/datum/gas_recipe/crystallizer/supermatter_silver
 	id = "supermatter"
-	name = "Supermatter shard"
+	name = "Supermatter silver"
 	min_temp = 100000
 	max_temp = 200000
 	reaction_type = ENDOTHERMIC_REACTION
