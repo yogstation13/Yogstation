@@ -369,7 +369,7 @@
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
 	for(var/i = 1 to 15)
-		fire_nuclear_particle_wimpy()
+		fire_nuclear_particle()
 	radiation_pulse(src, 500, 5)
 
 /obj/effect/anomaly/radiation/proc/makegoat()
@@ -391,7 +391,7 @@
 	var/turf/T = get_turf(src)
 	for(var/i=1 to 100)
 		var/angle = i * 10
-		T.fire_nuclear_particle_wimpy(angle)
+		T.fire_nuclear_particle(angle)
 		sleep(0.7)
 
 /obj/effect/anomaly/radiation/process()
