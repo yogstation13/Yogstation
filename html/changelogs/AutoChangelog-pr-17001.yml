@@ -1,4 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - spellcheck: ".32 TRAC speedloader properly reports that it lasts 5 minutes instead of 15"
