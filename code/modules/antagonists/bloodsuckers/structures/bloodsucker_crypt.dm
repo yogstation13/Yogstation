@@ -351,7 +351,7 @@
 
 /obj/structure/bloodsucker/possessedarmor
 	name = "knight's armor"
-	desc = "I swear I saw its eyes move..."
+	desc = "I swear i saw it's eyes move..."
 	icon_state = "posarmor"
 	anchored = FALSE
 	density = TRUE
@@ -360,7 +360,7 @@
 		You can reinforce it with 5 silver bars.\n\
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
-	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, I shouldn't get too close."
+	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, i shouldn't get too close."
 	var/upgraded = FALSE
 
 /obj/structure/bloodsucker/possessedarmor/upgraded
@@ -963,7 +963,7 @@
 			if(!do_mob(user, target, 1 SECONDS))
 				return
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
-			to_chat(target, span_notice("Your master has mutated you into a gargantuan monster!"))
+			to_chat(target, span_notice("Your master has mutated you into a gigartuan monster!"))
 			B.blood_volume -= 300
 			T = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest(target.loc)
 			target.forceMove(T)
