@@ -32,7 +32,16 @@
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBOTICS //Access needed to pop out the brain.
 	var/emagged = 0
-	var/manip_level = 1 //This is used for actually upgrading the spiderbots
+
+	var/spiderbot_upgrade_level = 1 //This is used for actually upgrading the spiderbots, derived from manipulators used on construction
+	var/list/spiderbot_upgrades = list()
+	var/list/valid_upgrades = list(/obj/item/bot_assembly/cleanbot,
+									/obj/item/bot_assembly/floorbot,
+									/obj/item/bot_assembly/medbot,
+									/obj/item/bot_assembly/honkbot,
+									/obj/item/bot_assembly/firebot,
+									/obj/item/bot_assembly/atmosbot
+	)
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
@@ -70,7 +79,7 @@
 		update_icon()
 		return 1
 
-	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
+	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src))
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -105,6 +114,25 @@
 		else
 			to_chat(user, span_warning("You swipe your card, with no effect."))
 			return 0
+	else if(istype(O, /obj/item/bot_assembly)) //Upgrades people, upgrades
+		if(spiderbot_upgrades.len >= spiderbot_upgrade_level) //Better have this on >= just in case
+			to_chat(user, span_warning("The [src]'s upgrade slots are already full!"))
+			return FALSE
+		else if(O.type in valid_upgrades)
+			if(O.type in spiderbot_upgrades)
+				to_chat(user, span_warning("The [src] is already upgraded with this assembly!"))
+				return FALSE
+			else
+				if(!user.temporarilyRemoveItemFromInventory(O))
+					return
+				O.forceMove(src)
+				spiderbot_upgrades += O.type
+				to_chat(user, span_warning("You insert the assembly into one of [src]'s upgrade slots!"))
+				return TRUE
+		else
+			to_chat(user, span_warning("The [O] won't fit into the [src]."))
+			return FALSE
+
 	return ..()
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(obj/item/mmi/M)
@@ -170,7 +198,7 @@
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
-	manip_level = M.rating
+	spiderbot_upgrade_level = M.rating
 	camera.c_tag = name
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
