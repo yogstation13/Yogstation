@@ -8891,6 +8891,18 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"bVb" = (
+/obj/machinery/smartfridge/disks,
+/obj/structure/table,
+/obj/item/book/manual/wiki/hydroponicsguide{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/book/manual/wiki/hydroponicsplants{
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "bVg" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 8
@@ -10041,6 +10053,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"cmW" = (
+/obj/item/wirecutters,
+/obj/item/toy/figure/botanist,
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/closet/crate/hydroponics,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/shovel/spade,
+/obj/item/wrench,
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "cnh" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
@@ -10411,28 +10439,6 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"cvX" = (
-/obj/item/wirecutters,
-/obj/item/toy/figure/botanist,
-/obj/item/reagent_containers/glass/bucket,
-/obj/structure/closet/crate/hydroponics,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/shovel/spade,
-/obj/item/book/manual/wiki/hydroponicsplants{
-	pixel_x = -3
-	},
-/obj/item/book/manual/wiki/hydroponicsguide{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/hydroponics)
 "cwc" = (
 /mob/living/simple_animal/cockroach,
 /obj/structure/cable/orange{
@@ -27356,11 +27362,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"ipU" = (
-/obj/machinery/smartfridge/disks,
-/obj/structure/table,
-/turf/open/floor/plasteel/dark,
-/area/hydroponics)
 "iqf" = (
 /obj/machinery/light{
 	dir = 4
@@ -32898,6 +32899,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"kkd" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen";
+	name = "Kitchen APC";
+	pixel_x = -7;
+	pixel_y = -32
+	},
+/turf/closed/wall,
+/area/hallway/secondary/service)
 "kkO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -43646,15 +43656,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"nVc" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/kitchen";
-	name = "Kitchen APC";
-	pixel_x = -7;
-	pixel_y = -31
-	},
-/turf/closed/wall,
-/area/hallway/secondary/service)
 "nVd" = (
 /obj/machinery/vending/sovietsoda,
 /obj/effect/decal/cleanable/dirt,
@@ -73732,10 +73733,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/warning,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"yby" = (
-/obj/item/wrench,
-/turf/closed/wall,
-/area/hydroponics)
 "ycd" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -100291,7 +100288,7 @@ gLJ
 ape
 qkB
 aRI
-nVc
+kkd
 aRI
 aRI
 vvh
@@ -101073,7 +101070,7 @@ jIC
 gPx
 jmh
 rkz
-cvX
+cmW
 ape
 wRc
 iOa
@@ -101322,7 +101319,7 @@ aYf
 ajH
 aYf
 azd
-yby
+ape
 vpv
 aVL
 vIl
@@ -101582,7 +101579,7 @@ azd
 ape
 dYR
 pHg
-ipU
+bVb
 dhZ
 eUz
 kjy
