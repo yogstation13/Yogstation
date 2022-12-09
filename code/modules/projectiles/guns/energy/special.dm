@@ -440,8 +440,6 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
 	cell_type = "/obj/item/stock_parts/cell/high"
-	var/overheat_alert
-	
 	COOLDOWN_DECLARE(overheat_alert)
 
 /obj/item/gun/energy/plasma/Initialize()
