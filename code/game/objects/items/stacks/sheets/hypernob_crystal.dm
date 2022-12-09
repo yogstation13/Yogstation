@@ -3,6 +3,7 @@
 	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to environmental proof your clothes."
 	icon_state = "hypernoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
+	merge_type = /obj/item/stack/hypernoblium_crystal
 
 /obj/item/stack/hypernoblium_crystal/afterattack(obj/target_object, mob/user, proximity)
 	. = ..()
