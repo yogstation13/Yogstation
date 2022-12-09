@@ -234,7 +234,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
 		soggy = TRUE
-		H.throw_alert("preternis_wet", /obj/screen/alert/preternis_wet)
+		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
 	else if(soggy)
 		H.remove_movespeed_modifier("preternis_water")
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
@@ -263,3 +263,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
+
+/datum/species/preternis/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	// called before a projectile hit
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		H.fire_nuclear_particle_wimpy()
+		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
+		return 1
+	return 0

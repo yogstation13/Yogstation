@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Rad particles no longer deal damage to mob that has 100 rad armor"

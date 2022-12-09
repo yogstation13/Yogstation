@@ -98,7 +98,11 @@
 	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
 	env.merge(removed) //put back the new gases in the turf
 	air_update_turf()
-	cell.use((5 * proportion * workingPower) / (efficiency + workingPower))
+	if (!cell.use((5 * proportion * workingPower) / (efficiency + workingPower)))
+		//automatically turn off machine when cell depletes
+		on = FALSE
+		update_icon()
+		return PROCESS_KILL
 
 /obj/machinery/electrolyzer/RefreshParts()
 	var/lasers = 0

@@ -290,6 +290,12 @@
 	else
 		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
+	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
+		for(var/obj/item/gps/G in H.GetAllContents())
+			G.gpstag = H.real_name
+			G.name = "global positioning system ([G.gpstag])"
+			continue
+
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
 	types -= /obj/item/storage/backpack //otherwise this will override the actual backpacks

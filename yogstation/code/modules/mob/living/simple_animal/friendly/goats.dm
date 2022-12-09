@@ -167,14 +167,20 @@
 	gold_core_spawnable = NO_SPAWN
 	light_power = 5
 	light_range = 4
-	light_color = LIGHT_COLOR_GREEN
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 	speed = -0.5
 	robust_searching = 1
 	stat_attack = UNCONSCIOUS
-	health = 100
-	maxHealth = 100
+	health = 200
+	maxHealth = 200
+	var/datum/action/innate/rad_goat/rad_switch
+	var/rad_emit = TRUE
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
+	. = ..()
+	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/radiation_anomaly)
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
 	. = ..()
@@ -185,11 +191,31 @@
 		adjustFireLoss(-10)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 	if(stat == CONSCIOUS)
-		radiation_pulse(src, 600) // It gets stronker as time passes
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5) //gets healed over time
+	if(rad_emit)
+		light_color = LIGHT_COLOR_GREEN
+		radiation_pulse(src, 600)
+	else
+		light_color = initial(light_color)
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
+	. = ..()
+	rad_switch = new
+	rad_switch.Grant(src)
+
+/datum/action/innate/rad_goat //This is for rad goat only.
+	name = "Rad emission switch"
+	desc = "If you want to enable/disable radiation emission."
+	background_icon_state = "bg_default"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "greentext"
+
+/datum/action/innate/rad_goat/Activate()
+	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = owner
+	S.rad_emit = !S.rad_emit
+	to_chat(S, span_notice("You [S.rad_emit? "enable" : "disable"] radiation emission."))
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"

@@ -740,7 +740,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 2
+		X.adjust_fire_stacks(2)
 		X.IgniteMob()
 
 
@@ -851,7 +851,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 1
+		X.adjust_fire_stacks(1)
 		X.IgniteMob()
 		X.adjustBruteLoss(5)
 

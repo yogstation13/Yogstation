@@ -883,7 +883,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/capture/living/update_explanation_text()
 	. = ..()
-	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
+	explanation_text = "Capture [target_amount] sapient lifeform\s with an energy net. Only living specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"

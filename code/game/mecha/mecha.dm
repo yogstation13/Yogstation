@@ -504,7 +504,7 @@
 	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
-			occupant.fire_stacks += 1
+			occupant.adjust_fire_stacks(1)
 		occupant.IgniteMob()
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.

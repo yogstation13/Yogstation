@@ -69,3 +69,8 @@
 	unit_name = "pair"
 	message = "of handcuffs"
 	export_types = list(/obj/item/restraints/handcuffs)
+
+/datum/export/weapon/gibtonite
+	cost = 1000
+	unit_name = "Gibtonite Chunk"
+	export_types = list(/obj/item/twohanded/required/gibtonite)
