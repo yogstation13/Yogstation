@@ -473,7 +473,7 @@
 
 /obj/item/gun/energy/plasma/pistol
 	name = "Plasma Pistol"
-	desc = "A very deadly weapon used by high ranking members of the Imperium."
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "ppistol"
 	item_state = "ppistol"
@@ -483,7 +483,7 @@
 
 /obj/item/gun/energy/plasma/rifle
 	name = "Heavy Plasma Rifle"
-	desc = "A very deadly weapon used by high ranking members of the Imperium."
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "prifle"
 	item_state = "prifle"

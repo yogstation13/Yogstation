@@ -110,7 +110,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/boltpistol
 	name = "Imperial Bolt Pistol"
-	desc = "A smaller, sidearm variant of the Bolter. Typically blowing people into chunks with every shot. Fires .75 caliber rounds."
+	desc = "A smaller, sidearm variant of the Bolter. Typically blows people into chunks with every shot. Fires .75 caliber rounds."
 	icon_state = "bpistol"
 	item_state = "bpistol"
 	icon = 'icons/obj/guns/grimdark.dmi'
