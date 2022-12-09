@@ -226,25 +226,16 @@
 	damage = 35
 
 /obj/item/projectile/beam/laser/lasgun
-	name = "Laser Bolt"
+	name = "Las bolt"
 	icon_state = "las_laser"
-	speed = 0.9
+	speed = 0.8
 
-/obj/item/projectile/beam/laser/longlas
-	name = "Laser Bolt"
+/obj/item/projectile/beam/laser/lasgun/longlas
 	damage = 25
-	icon_state = "las_laser"
-	speed = 0.9
 
-/obj/item/projectile/beam/laser/laspistol
-	name = "Laser Bolt"
+/obj/item/projectile/beam/laser/lasgun/laspistol
 	damage = 15
-	icon_state = "las_laser"
-	speed = 0.9
 
-/obj/item/projectile/beam/laser/hotshot
-	name = "Laser Bolt"
+/obj/item/projectile/beam/laser/lasgun/hotshot
 	damage = 30
 	wound_bonus = -5
-	icon_state = "las_laser"
-	speed = 0.9
