@@ -29,7 +29,7 @@
 			var/mob/living/carbon/human/H = C
 			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 			if(istype(stomach))
-				stomach.adjust_charge(20)
+				stomach.adjust_charge(200)
 				to_chat(C,span_notice("You get charged by [src]."))
 		//yogstation edit end ---------------------------------------------
 
