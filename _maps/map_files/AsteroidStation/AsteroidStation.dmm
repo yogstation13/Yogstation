@@ -7164,6 +7164,15 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"boE" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "boS" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Hydroponics";
@@ -10353,16 +10362,6 @@
 	dir = 4
 	},
 /area/science/xenobiology)
-"cuD" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/machinery/light/small,
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/dark,
-/area/hydroponics)
 "cuH" = (
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
@@ -13443,6 +13442,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"dAt" = (
+/obj/machinery/light/small,
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "dAy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -14560,6 +14565,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"dUV" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "dVp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -32903,8 +32915,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/kitchen";
 	name = "Kitchen APC";
-	pixel_x = -7;
-	pixel_y = -32
+	pixel_y = -23
 	},
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -33028,6 +33039,11 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"kmu" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "knh" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -36155,6 +36171,17 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lxV" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "25;26;35;28;46;37;38"
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "lye" = (
 /obj/structure/window/reinforced,
 /obj/structure/bodycontainer/morgue,
@@ -37440,12 +37467,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"lVl" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "lVv" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -48400,6 +48421,17 @@
 /obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
+"pAv" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "pAM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -52580,17 +52612,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"qSo" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
-	},
-/turf/open/floor/plating,
-/area/hydroponics)
 "qSK" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/matches,
@@ -54502,28 +54523,6 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel,
 /area/storage/tech)
-"rvL" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "rwa" = (
 /obj/structure/sign/poster/official/random{
 	pixel_y = -32
@@ -55859,15 +55858,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/security/brig)
-"rTc" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/dark,
-/area/hydroponics)
 "rTj" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -63237,6 +63227,28 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"utA" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "25;26;35;28;46;37;38"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "utD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -98747,7 +98759,7 @@ aao
 rPj
 aRI
 aRI
-rvL
+utA
 aRI
 aDP
 kod
@@ -99265,7 +99277,7 @@ dhE
 uUb
 ape
 oyi
-aoi
+pAv
 xFN
 aoi
 mDo
@@ -99520,7 +99532,7 @@ nyt
 fjw
 ecy
 bnn
-qSo
+lxV
 aSl
 aJf
 aJf
@@ -100800,7 +100812,7 @@ kCn
 aFr
 dpR
 ape
-lVl
+boE
 aYf
 aYf
 iiJ
@@ -101327,7 +101339,7 @@ cmA
 mys
 mys
 mys
-cuD
+dAt
 ape
 vGN
 aZG
@@ -101574,7 +101586,7 @@ ape
 bRx
 sLo
 rEG
-aYf
+dUV
 azd
 ape
 dYR
@@ -101584,7 +101596,7 @@ dhZ
 eUz
 kjy
 mys
-rTc
+kmu
 ape
 hDv
 qcD
