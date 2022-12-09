@@ -431,6 +431,8 @@
 	var/power = 4
 
 // 40K Weapons Below
+COOLDOWN_DECLARE(overheat_alert)
+
 /obj/item/gun/energy/plasma
 	name = "Plasma Weapon"
 	desc = "A very deadly weapon. Fires plasma."
@@ -455,8 +457,9 @@
 	heat += 2
 	if(heat >= 25)
 		icon_state = "[initial(icon_state)]-crit"
-		if(prob(75))
+		if(COOLDOWN_FINISHED(src, overheat_alert))
 			to_chat(user, span_warning("The gun begins to heat up in your hands! Careful!"))
+			COOLDOWN_START(src, overheat_alert, 2 SECONDS)
 	if(heat >= 30 && prob(20))
 		var/turf/T = get_turf(src.loc)
 		if (isliving(loc))
