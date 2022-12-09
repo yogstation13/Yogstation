@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Roundstart traitors are no longer counted twice over when considering midround traitor spawns"
