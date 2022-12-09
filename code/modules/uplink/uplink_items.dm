@@ -2035,12 +2035,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/implants/augmentation/superior
+/datum/uplink_item/implants/superior_augmentation
 	name = "Superior Augmentation Kit"
 	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
 			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
 	item = /obj/item/storage/box/syndie_kit/augmentation/superior
 	cost = 45
+	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
@@ -2488,7 +2489,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiefedora
 	name = "Syndicate Fedora"
-	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style! Layered with immensively protective fibers! \
+			The fedora can be activated to extend sharp blades out of its rim, functioning as a saw-like melee weapon that can be thrown for immense damage. Upon successfully hitting an object, the fedora will boomerang back to your hands."
 	item = /obj/item/clothing/head/det_hat/evil
 	cost = 6
 
