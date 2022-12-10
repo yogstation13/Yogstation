@@ -42,7 +42,7 @@
 
 			var/datum/effect_system/smoke_spread/chem/smokey = new
 			smokey.attach(vent)
-			smokey.set_up(R, 8, get_turf(vent), TRUE)
+			smokey.set_up(R, 10, get_turf(vent), TRUE)
 			smokey.start()
 		CHECK_TICK
 
@@ -103,7 +103,7 @@
 
 			var/datum/effect_system/smoke_spread/chem/smokey = new
 			smokey.attach(vent)
-			smokey.set_up(R, 8, get_turf(vent), TRUE)
+			smokey.set_up(R, 10, get_turf(vent), TRUE)
 			smokey.start()
 		CHECK_TICK
 
@@ -122,7 +122,7 @@
 
 			var/datum/effect_system/smoke_spread/chem/smokey = new
 			smokey.attach(vent)
-			smokey.set_up(R, 8, get_turf(vent), TRUE)
+			smokey.set_up(R, 10, get_turf(vent), TRUE)
 			smokey.start()
 		CHECK_TICK
 
@@ -133,6 +133,6 @@
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent && vent.loc)
 			var/datum/effect_system/smoke_spread/freezing/decon/smoke = new
-			smoke.set_up(7, get_turf(vent), 7)
+			smoke.set_up(10, get_turf(vent), 7)
 			smoke.start()
 		CHECK_TICK
