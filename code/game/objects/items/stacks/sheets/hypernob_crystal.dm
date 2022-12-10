@@ -14,8 +14,10 @@
 		to_chat(user, span_warning("The crystal can only be used on clothing!"))
 		return
 	if(istype(worn_item))
-		if(!istype(worn_item, /obj/item/clothing/suit/space))
-			worn_item.clothing_flags |= STOPSPRESSUREDAMAGE|THICKMATERIAL
+		if(!(worn_item.clothing_flags & STOPSPRESSUREDAMAGE))
+			worn_item.clothing_flags |= STOPSPRESSUREDAMAGE
+		if(!(worn_item.clothing_flags & THICKMATERIAL))
+			worn_item.clothing_flags |= THICKMATERIAL
 		if(istype(worn_item, /obj/item/clothing/under))
 			to_chat(user, span_notice("Cannot apply \the [src] to this type of clothing!"))
 			return
@@ -23,9 +25,8 @@
 		worn_item.name = "environmental-proof [worn_item.name]"
 		worn_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		worn_item.add_atom_colour("#00fff7", FIXED_COLOUR_PRIORITY)
-		worn_item.cold_protection |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-		worn_item.heat_protection |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-		worn_item.body_parts_covered |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.cold_protection = worn_item.body_parts_covered
+		worn_item.heat_protection = worn_item.body_parts_covered
 		worn_item.flags_prot |= HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 		worn_item.max_heat_protection_temperature = 1e31
 		worn_item.min_cold_protection_temperature = -1e31
