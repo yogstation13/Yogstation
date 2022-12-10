@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Touch of Death, a wizard spell (AKA disintergrate lite). Still has the same counters as before, but kills instead of gibbing."
