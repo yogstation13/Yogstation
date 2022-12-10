@@ -107,7 +107,6 @@
 
 
 /obj/effect/particle_effect/foam/proc/kill_foam()
-	set waitfor = FALSE
 	STOP_PROCESSING(SSfastprocess, src)
 	switch(metal)
 		if(ALUMINUM_FOAM)
@@ -182,7 +181,6 @@
 	return 1
 
 /obj/effect/particle_effect/foam/proc/spread_foam()
-	set waitfor = FALSE
 	var/turf/t_loc = get_turf(src)
 	for(var/turf/T in t_loc.GetAtmosAdjacentTurfs())
 		var/obj/effect/particle_effect/foam/foundfoam = locate() in T //Don't spread foam where there's already foam!
