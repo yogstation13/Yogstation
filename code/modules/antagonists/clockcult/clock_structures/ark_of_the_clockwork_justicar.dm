@@ -7,6 +7,10 @@
 	return G.active
 
 //The gateway to Reebe, from which Ratvar emerges.
+
+/obj/item/gps/internal/ark
+	gpstag = "Bluespace Anomaly"
+
 /obj/structure/destructible/clockwork/massive/celestial_gateway
 	name = "\improper Ark of the Clockwork Justicar"
 	desc = "A massive, hulking amalgamation of parts. It seems to be maintaining a very unstable bluespace anomaly."
@@ -37,6 +41,7 @@
 	var/recalling
 	var/next_spaghetti = 0
 	var/spaghetti_cooldown = 50
+	var/obj/item/gps/internal/ark/gps
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
@@ -95,6 +100,10 @@
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
 	set_security_level(SEC_LEVEL_GAMMA)
+
+	if (GLOB.ratvar_approaches)
+		gps = new()
+
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
