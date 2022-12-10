@@ -834,10 +834,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"WK" = (
-/obj/machinery/light,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
 "XY" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/structure/window/reinforced{
@@ -878,7 +874,7 @@ ae
 (2,1,1) = {"
 az
 ae
-ae
+BC
 ae
 ae
 av
@@ -903,7 +899,7 @@ aL
 "}
 (3,1,1) = {"
 ae
-WK
+av
 bt
 ox
 EY
@@ -1111,7 +1107,7 @@ aL
 "}
 (11,1,1) = {"
 ae
-WK
+av
 os
 aK
 Wx
@@ -1138,7 +1134,7 @@ aL
 (12,1,1) = {"
 az
 ae
-ae
+Gy
 ae
 ae
 av
