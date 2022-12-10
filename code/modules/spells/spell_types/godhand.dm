@@ -226,5 +226,5 @@
 		qdel(suit)
 		new /obj/effect/decal/cleanable/molten_object(M.loc)
 		return ..()
-	M.death(FALSE)
+	M.gib(FALSE, FALSE, FALSE)
 	return ..()	//yogs end
