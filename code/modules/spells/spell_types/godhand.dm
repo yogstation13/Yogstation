@@ -189,3 +189,42 @@
     H.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
     to_chat(H, span_notice("You feel calm..."))
     return ..()
+
+/obj/item/melee/touch_attack/touchofdeath		//yogs start
+	name = "\improper necrotic touch"
+	desc = "What has a beginning but no end?"
+	catchphrase = "DIM MAK!!"
+	on_use_sound = 'sound/magic/wandodeath.ogg'
+	icon_state = "touchofdeath"
+	item_state = "touchofdeath"
+
+/obj/item/melee/touch_attack/touchofdeath/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity || target == user || !isliving(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE))
+		return
+	if(!user.can_speak_vocal())
+		to_chat(user, span_notice("You can't get the words out!"))
+		return
+	var/mob/living/M = target
+	do_sparks(4, FALSE, M.loc)
+	for(var/mob/living/L in view(src, 7))
+		if(L != user)
+			L.flash_act(affect_silicon = FALSE)
+	var/atom/A = M.anti_magic_check()
+	if(A)
+		if(isitem(A))
+			target.visible_message(span_warning("[target]'s [A] glows brightly as it wards off the spell!"))
+		user.visible_message(span_warning("[user]'s arm becomes a pale shade of grey and falls off!"),span_userdanger("The spell bounces from [M]'s skin back into your arm!"))
+		user.flash_act()
+		var/obj/item/bodypart/part = user.get_holding_bodypart_of_item(src)
+		if(part)
+			part.dismember()
+		return ..()
+	var/obj/item/clothing/suit/hooded/bloated_human/suit = M.get_item_by_slot(SLOT_WEAR_SUIT)
+	if(istype(suit))
+		M.visible_message(span_danger("[M]'s [suit] rots away into a pile of goo!"))
+		M.dropItemToGround(suit)
+		qdel(suit)
+		new /obj/effect/decal/cleanable/molten_object(M.loc)
+		return ..()
+	M.death(FALSE)
+	return ..()	//yogs end
