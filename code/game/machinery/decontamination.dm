@@ -25,7 +25,7 @@
 	var/datum/looping_sound/decontamination_unit/decon
 	var/datum/looping_sound/decontamination_unit/emagged/decon_emagged
 
-	var/eject_time = 9.5
+	var/flick_waitTime = 9.5 //Waits for flick animation to complete before opening the door or it will be weird..
 
 /obj/machinery/decontamination_unit/open
 	state_open = TRUE
@@ -120,12 +120,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), eject_time)
+			addtimer(CALLBACK(src, .proc/decon_eject_emagged), flick_waitTime)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), eject_time)
+			addtimer(CALLBACK(src, .proc/decon_eject), flick_waitTime)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
