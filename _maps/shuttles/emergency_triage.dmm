@@ -5,13 +5,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"ad" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/atmospherics/components/unary/tank/oxygen{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "ae" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
@@ -207,6 +200,15 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"im" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1;
+	name = "Connector Port (Air Supply)"
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "in" = (
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/mineral/titanium,
@@ -235,20 +237,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"jr" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 10
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/item/storage/toolbox/drone,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "jJ" = (
 /obj/structure/chair/comfy/shuttle{
@@ -418,18 +406,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"uz" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/toxin{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/toxin,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "uJ" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/advanced{
@@ -438,6 +414,19 @@
 	},
 /obj/item/storage/firstaid/advanced,
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"va" = (
+/obj/structure/table,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/item/storage/toolbox/drone,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "wa" = (
 /obj/machinery/stasis{
@@ -671,6 +660,20 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"OI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/wrench/medical,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Pk" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning,
@@ -928,7 +931,7 @@ aX
 aX
 hI
 aD
-ad
+im
 AJ
 zB
 Es
@@ -980,7 +983,7 @@ aX
 af
 hI
 aX
-jr
+OI
 tu
 lU
 aK
@@ -1003,7 +1006,7 @@ ae
 Mw
 qa
 wQ
-uz
+va
 xm
 wQ
 Pk
