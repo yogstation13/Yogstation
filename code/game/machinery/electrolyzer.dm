@@ -65,6 +65,7 @@
 		on = FALSE
 	if(!on)
 		active_power_usage = 0
+		update_icon()
 		return PROCESS_KILL
 
 	if((stat & NOPOWER) && (!cell || cell.charge <= 0))

@@ -68,6 +68,8 @@
 	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
+		active_power_usage = 0
+		update_icon()
 		return PROCESS_KILL
 
 	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
