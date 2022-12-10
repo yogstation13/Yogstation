@@ -6108,27 +6108,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aJP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/cell_charger{
-	pixel_y = 4
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 6;
-	pixel_y = -2
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "aJR" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -22713,6 +22692,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"eVe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "eVf" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 1
@@ -27756,6 +27744,22 @@
 /obj/item/twohanded/required/pool/rubber_ring,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"hfN" = (
+/obj/structure/chair/stool,
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "hfW" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrous_input{
 	dir = 8
@@ -39656,11 +39660,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
-"mjI" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "mjU" = (
 /obj/machinery/light_switch{
 	pixel_x = -20
@@ -116841,7 +116840,7 @@ pAi
 qed
 blI
 bnn
-aJP
+eVe
 fJC
 abd
 wTW
@@ -117099,7 +117098,7 @@ biW
 blK
 bnp
 boA
-mjI
+hfN
 xcV
 wTW
 qMc
