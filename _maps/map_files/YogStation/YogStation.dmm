@@ -2483,6 +2483,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"anO" = (
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "anQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -33070,21 +33086,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jop" = (
-/obj/structure/table,
-/obj/machinery/cell_charger{
-	pixel_y = 4
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 6;
-	pixel_y = -2
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "joq" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -38833,15 +38834,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"lSS" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "lST" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -67226,6 +67218,15 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"xVJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "xWd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -116839,7 +116840,7 @@ pAi
 qed
 blI
 bnn
-lSS
+xVJ
 fJC
 abd
 wTW
@@ -117097,7 +117098,7 @@ biW
 blK
 bnp
 boA
-jop
+anO
 xcV
 wTW
 qMc
