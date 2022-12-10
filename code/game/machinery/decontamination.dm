@@ -25,6 +25,8 @@
 	var/datum/looping_sound/decontamination_unit/decon
 	var/datum/looping_sound/decontamination_unit/emagged/decon_emagged
 
+	var/eject_time = 9.5
+
 /obj/machinery/decontamination_unit/open
 	state_open = TRUE
 	density = FALSE
@@ -118,12 +120,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject_emagged), emagged_time)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject), ejected_time)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
