@@ -64,6 +64,7 @@
 	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
+		active_power_usage = 0
 		return PROCESS_KILL
 
 	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
