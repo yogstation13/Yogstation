@@ -25,8 +25,9 @@
 		worn_item.name = "environmental-proof [worn_item.name]"
 		worn_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		worn_item.add_atom_colour("#00fff7", FIXED_COLOUR_PRIORITY)
-		worn_item.cold_protection = worn_item.body_parts_covered
-		worn_item.heat_protection = worn_item.body_parts_covered
+		worn_item.cold_protection |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.heat_protection |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+		worn_item.body_parts_covered |= CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 		worn_item.flags_prot |= HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 		worn_item.max_heat_protection_temperature = 1e31
 		worn_item.min_cold_protection_temperature = -1e31
