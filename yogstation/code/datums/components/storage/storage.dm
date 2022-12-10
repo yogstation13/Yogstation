@@ -98,7 +98,7 @@
 		log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
 		
 		var/obj/singularity/ohshit = new /obj/singularity(loccheck)
-		ohshit.expand(STAGE_THREE)
+		ohshit.energy = 800
 		qdel(W)
 		qdel(A)
 		return
