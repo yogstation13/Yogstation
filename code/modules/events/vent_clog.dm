@@ -45,6 +45,11 @@
 			smokey.set_up(R, 8, get_turf(vent), TRUE)
 			smokey.start()
 
+			var/datum/effect_system/foam_spread/foam = new
+			foam.one_apply_per_object = TRUE
+			foam.set_up(200, get_turf(vent), R)
+			foam.start()
+
 		CHECK_TICK
 
 /datum/round_event_control/vent_clog/threatening
@@ -106,11 +111,6 @@
 			foam.one_apply_per_object = TRUE
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
-
-			var/datum/effect_system/smoke_spread/chem/smokey = new
-			smokey.attach(vent)
-			smokey.set_up(R, 8, get_turf(vent), TRUE)
-			smokey.start()
 		CHECK_TICK
 
 /datum/round_event/vent_clog/cleaner
