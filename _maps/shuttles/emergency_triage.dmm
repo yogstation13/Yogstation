@@ -148,19 +148,20 @@
 "aX" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"ba" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "bt" = (
 /obj/structure/table,
 /obj/machinery/recharger,
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"cr" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 31;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "dI" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -328,12 +329,6 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"oi" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "os" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -358,6 +353,16 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"px" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "qa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -371,12 +376,6 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/hypospray/basic/hypo,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"qu" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "qA" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -399,6 +398,25 @@
 "qN" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"rn" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 9
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"rB" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 31;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "sW" = (
 /obj/structure/closet,
@@ -1005,7 +1023,7 @@ aK
 aK
 aK
 oA
-Kj
+rn
 ax
 ay
 ay
@@ -1109,15 +1127,15 @@ Gy
 ae
 ae
 av
-qu
+cr
 QU
-ba
+rB
 QU
-oi
+rB
 QU
-oi
+rB
 QU
-ba
+rB
 kk
 RX
 aK
@@ -1136,12 +1154,12 @@ az
 az
 ae
 ae
+Qr
 ae
+px
 ae
-Gy
 Qr
-Qr
-Qr
+ae
 Qr
 ae
 Gy
