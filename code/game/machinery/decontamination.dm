@@ -157,7 +157,6 @@
 		dump_mob()
 	if(contents.len)
 		things_to_clear += contents
-	things_to_clear += src //clean itself aswell
 	for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 		var/atom/movable/dirty_movable = am
 		dirty_movable.wash(CLEAN_ALL)
