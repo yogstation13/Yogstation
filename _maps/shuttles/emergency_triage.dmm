@@ -153,16 +153,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"cr" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/machinery/defibrillator_mount/loaded{
-	pixel_x = 31;
-	pixel_y = -5
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "dI" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/stasis{
@@ -288,12 +278,15 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"kN" = (
+"lQ" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/light,
-/turf/closed/wall/mineral/titanium,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "lU" = (
 /obj/structure/chair/comfy/shuttle,
@@ -329,6 +322,16 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"nj" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 31;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "os" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -352,16 +355,6 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"px" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "qa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -398,25 +391,6 @@
 "qN" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"rn" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 9
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"rB" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/defibrillator_mount/loaded{
-	pixel_x = 31;
-	pixel_y = -5
-	},
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "sW" = (
 /obj/structure/closet,
@@ -649,6 +623,13 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"Mw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/escape)
 "NM" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -786,6 +767,16 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"UP" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 31;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "Vc" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/closet/secure_closet{
@@ -822,6 +813,15 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"XI" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 9
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "XY" = (
 /obj/structure/chair/comfy/shuttle,
@@ -1000,7 +1000,7 @@ ae
 Gy
 ma
 ae
-kN
+Mw
 qa
 wQ
 uz
@@ -1023,7 +1023,7 @@ aK
 aK
 aK
 oA
-rn
+XI
 ax
 ay
 ay
@@ -1127,15 +1127,15 @@ Gy
 ae
 ae
 av
-cr
+UP
 QU
-rB
+nj
 QU
-rB
+nj
 QU
-rB
+nj
 QU
-rB
+nj
 kk
 RX
 aK
@@ -1156,7 +1156,7 @@ ae
 ae
 Qr
 ae
-px
+lQ
 ae
 Qr
 ae
