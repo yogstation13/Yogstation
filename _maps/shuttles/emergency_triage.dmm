@@ -162,15 +162,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"dz" = (
-/obj/machinery/stasis{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "dI" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/stasis{
@@ -215,12 +206,6 @@
 /obj/machinery/computer/communications,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"hG" = (
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "hI" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
@@ -240,6 +225,15 @@
 	pixel_y = -30
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"jp" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "jq" = (
 /obj/structure/window/reinforced{
@@ -453,6 +447,13 @@
 /obj/item/storage/firstaid/advanced,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"wa" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "wQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -470,14 +471,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"xo" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "yv" = (
@@ -499,18 +492,6 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"zR" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "zV" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -650,17 +631,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"NG" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "NM" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -703,15 +673,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"OK" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "Pk" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/machinery/door/firedoor/border_only{
@@ -735,6 +696,16 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"QU" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "QW" = (
 /obj/machinery/light,
@@ -1087,13 +1058,13 @@ aK
 uJ
 gZ
 ED
-xo
+jp
 yv
-NG
+jp
 yv
-NG
+jp
 yv
-NG
+jp
 yv
 gT
 NM
@@ -1113,13 +1084,13 @@ aK
 Wx
 QW
 aw
-hG
+wa
 aX
-dz
+wa
 aX
-dz
+wa
 aX
-dz
+wa
 aX
 dI
 tu
@@ -1139,13 +1110,13 @@ ae
 ae
 av
 qu
-OK
+QU
 ba
-zR
+QU
 oi
-zR
+QU
 oi
-zR
+QU
 ba
 kk
 RX
