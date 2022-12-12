@@ -1,0 +1,5 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - spellcheck: "Adds literacy to bloodsuckers' dev (they're still illiterate just less)"
+  - rscdel: "Removed some references to Malkavians and Nosferatu in bloodsucker help because they don't exist"
