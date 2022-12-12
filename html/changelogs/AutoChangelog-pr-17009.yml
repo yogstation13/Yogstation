@@ -1,0 +1,8 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Rad particles irradiation from rad anomaly is higher than standard rad particles by 100 (500 irradiation to 400 irradiation)"
+  - tweak: "Rad anomaly ball counts per shot 10->15"
+  - tweak: "Nerf rad goat healing from anomaly particles(10->1)"
+  - tweak: "Nerf rad goat health 200->75"
+  - bugfix: "fix rad particles damaging rad goat"
