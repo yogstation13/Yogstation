@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fix decontamination unit not clearing contamination from objects"
+  - bugfix: "Fix icon flickering"
