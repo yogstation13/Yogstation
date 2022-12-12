@@ -97,8 +97,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 		log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
 		
-		var/obj/singularity/ohshit = new /obj/singularity(loccheck)
-		ohshit.expand(STAGE_THREE)
+		new /obj/singularity(loccheck, 800)
 		qdel(W)
 		qdel(A)
 		return
