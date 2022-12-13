@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed debug fish showing up"
+  - spellcheck: "Uncapitalized balloons and gems"
