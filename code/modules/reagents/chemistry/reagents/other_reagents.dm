@@ -1068,7 +1068,8 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(1, 0)
+	if(!ispreternis(M) || !isipc(M))
+		M.adjustToxLoss(1, 0)
 	..()
 	return TRUE
 
