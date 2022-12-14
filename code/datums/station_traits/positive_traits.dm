@@ -122,3 +122,11 @@
 /datum/station_trait/quick_shuttle/on_round_start()
 	. = ..()
 	SSshuttle.supply.callTime *= 0.5
+
+/datum/station_trait/taser
+	name = "TASER"
+	trait_type = STATION_TRAIT_POSITIVE
+	weight = 0.1
+	show_in_report = TRUE
+	report_message = "R&D has come up with a brilliant new security weapon. They have been distributed to all security personnel."
+	trait_to_give = STATION_TRAIT_TASER
