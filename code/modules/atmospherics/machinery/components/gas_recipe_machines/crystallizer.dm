@@ -230,7 +230,7 @@
 		if(55 to 64)
 			quality_control = "average"
 		if(35 to 54)
-			quality_control = "ok"
+			quality_control = "okay"
 		if(15 to 34)
 			quality_control = "poor"
 		if(5 to 14)
