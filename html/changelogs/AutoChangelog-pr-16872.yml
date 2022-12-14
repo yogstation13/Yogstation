@@ -1,0 +1,4 @@
+author: "Simplehorror"
+delete-after: true 
+changes: 
+  - rscadd: "Janitor can now access the lobby of every department"
