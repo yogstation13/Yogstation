@@ -612,6 +612,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 30
 	addiction_threshold = 25
+	var/sheer_heart_attack_triggered = FALSE
 
 /datum/reagent/medicine/ephedrine/on_mob_metabolize(mob/living/L)
 	..()
@@ -622,11 +623,12 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/carbon/M)
-	if(prob(20) && iscarbon(M))
-		var/obj/item/I = M.get_active_held_item()
-		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
-			M.Jitter(10)
+
+	if (current_cycle > 50 && !sheer_heart_attack_triggered)
+		to_chat(M, span_userdanger("Your heart skips a beat."))
+		addtimer(CALLBACK(M, /mob/living/carbon/proc/set_heartattack, TRUE), 10 SECONDS)
+		sheer_heart_attack_triggered = TRUE
+		metabolization_rate *= 20
 
 	M.AdjustAllImmobility(-20, FALSE)
 	M.adjustStaminaLoss(-1*REM, FALSE)
