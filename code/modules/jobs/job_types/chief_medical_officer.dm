@@ -57,7 +57,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen/paramedic
-	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
 
 	backpack = /obj/item/storage/backpack/medic
