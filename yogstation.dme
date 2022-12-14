@@ -3687,7 +3687,6 @@
 #include "yogstation\code\modules\economy\pay_stand.dm"
 #include "yogstation\code\modules\events\bad_wizard.dm"
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
-#include "yogstation\code\modules\events\dolphin_migration.dm"
 #include "yogstation\code\modules\events\floorcluwne.dm"
 #include "yogstation\code\modules\events\immovable_duck.dm"
 #include "yogstation\code\modules\events\infiltrators.dm"
@@ -3895,7 +3894,7 @@
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\vending\fishing.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
-#include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\code\modules\xenoarch\loot\guns.dm"
+#include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE
