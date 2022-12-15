@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Chaplain armors from the armament beacon are actually now all different instead of just deriving armor from the crusader armor or having basically none; the hardier the armor, the better but it'll also make you slower"
+  - tweak: "Removes flash protection from the Black Templar armors"
+  - spellcheck: "Changes descriptions of most of the chaplain armament armors with \"cool lore\" involved and implied"
