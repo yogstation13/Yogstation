@@ -190,11 +190,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 		for(var/obj/item/card/id/miner in shuttle_area.gem_payout)
 			miner.mining_points += shuttle_area.gem_payout[miner]
-			shuttle_area.gem_payout &= miner
 			playsound(miner, 'sound/machines/ping.ogg', 15, TRUE)
 			var/mob/card_holder = recursive_loc_check(miner, /mob)
 			if(ismob(card_holder))
 				to_chat(card_holder, "You have been credited with [shuttle_area.gem_payout[miner]] mining points from sold gems!")
+			shuttle_area.gem_payout.Remove(miner)
 
 	if(ex.exported_atoms)
 		ex.exported_atoms += "." //ugh

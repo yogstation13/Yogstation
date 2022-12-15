@@ -8,6 +8,10 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 4
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/miningmedic
 
@@ -49,10 +53,11 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
+	ipc_box = /obj/item/storage/box/ipc/miner
 	pda_slot = SLOT_L_STORE

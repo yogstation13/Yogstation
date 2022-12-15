@@ -511,7 +511,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	alerttooltipstyle = "parasite"
 
 //IPC martial arts
-/obj/screen/alert/ipcmartial
+/atom/movable/screen/alert/ipcmartial
 	name = "Dashes"
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"

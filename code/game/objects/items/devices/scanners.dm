@@ -726,7 +726,8 @@ GENE SCANNER
 /proc/atmosanalyzer_scan(mixture, mob/living/user, atom/target = src)
 	var/list/combined_msg = list()
 	var/icon = target
-	user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", span_notice("You use the analyzer on [icon2html(icon, user)] [target]."))
+	if(!isobserver(user))
+		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", span_notice("You use the analyzer on [icon2html(icon, user)] [target]."))
 	combined_msg += span_boldnotice("Results of analysis of [icon2html(icon, user)] [target].")
 
 	var/list/airs = islist(mixture) ? mixture : list(mixture)

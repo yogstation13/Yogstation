@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Spray bottle stream mode applies reagents via touch rather than vapour"

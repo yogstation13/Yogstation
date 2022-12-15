@@ -109,7 +109,7 @@
 /obj/structure/bloodsucker/bloodaltar/unbolt()
 	. = ..()
 	anchored = FALSE
-	
+
 /obj/structure/bloodsucker/bloodaltar/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(!.)
@@ -174,7 +174,7 @@
 	if(sacrificialtask)
 		if(sacrifices > 0)
 			. += span_boldnotice("It currently contains [sacrifices] [organ_name].")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/bloodaltar/attackby(obj/item/H, mob/user, params)
@@ -189,7 +189,7 @@
 			to_chat(usr, span_notice("You feed the heart to the altar!"))
 			qdel(H)
 			sacrifices++
-			return 
+			return
 	return ..()
 #undef ALTAR_RANKS_PER_DAY
 
@@ -209,7 +209,7 @@
 		Aid your master by bringing them what they need for these or by help getting them."
 	Hunter_desc = "This is a blood altar, where monsters ascend their powers to shadowy levels.\n\
 		They normally need ranks or blood in exchange for power, forcing them to move out of their lair and weakening them."
-	
+
 /obj/item/abyssal_essence
 	name = "abyssal essence"
 	desc = "As you glare at the abyssal essence, you feel it glaring back."
@@ -351,7 +351,7 @@
 
 /obj/structure/bloodsucker/possessedarmor
 	name = "knight's armor"
-	desc = "I swear i saw it's eyes move..."
+	desc = "I swear I saw its eyes move..."
 	icon_state = "posarmor"
 	anchored = FALSE
 	density = TRUE
@@ -360,7 +360,7 @@
 		You can reinforce it with 5 silver bars.\n\
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
-	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, i shouldn't get too close."
+	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, I shouldn't get too close."
 	var/upgraded = FALSE
 
 /obj/structure/bloodsucker/possessedarmor/upgraded
@@ -407,7 +407,7 @@
 
 /obj/structure/bloodsucker/possessedarmor/process()
 	for(var/mob/living/passerby in dview(1, get_turf(src)))
-		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
+		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby) || passerby.restrained())
 			continue
 		to_chat(passerby, span_warning("The armor starts moving!"))
 		if(upgraded)
@@ -470,7 +470,7 @@
 		if(meat_amount > 0)
 			. += span_boldnotice("It currently contains [meat_points] points to use in rituals.")
 			. += span_boldnotice("You can add meat points to the rack by using muscle, acquired from <i>Dicing</i> corpses, on it.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/vassalrack/bolt()
@@ -963,7 +963,7 @@
 			if(!do_mob(user, target, 1 SECONDS))
 				return
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
-			to_chat(target, span_notice("Your master has mutated you into a gigartuan monster!"))
+			to_chat(target, span_notice("Your master has mutated you into a gargantuan monster!"))
 			B.blood_volume -= 300
 			T = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest(target.loc)
 			target.forceMove(T)

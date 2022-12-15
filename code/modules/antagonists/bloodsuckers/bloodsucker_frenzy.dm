@@ -106,4 +106,4 @@
 		user.clear_cuffs(legcuffs, TRUE)
 	if(!bloodsuckerdatum.frenzied)
 		return
-	user.adjustFireLoss(0.5 + (bloodsuckerdatum.humanity_lost / 15))
+	user.adjustFireLoss(min(0.5 + (bloodsuckerdatum.humanity_lost / 15), bloodsuckerdatum.my_clan == CLAN_GANGREL ? 2 : 100))

@@ -17,7 +17,7 @@
 		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
 		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
 		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
-		At level 1, your target will additionally be Muted.\n\
+		At level 1, your target will additionally be muted.\n\
 		At level 3, you will be able to use the power through items covering your face.\n\
 		At level 5, you will be able to mesmerize regardless of your target's direction.\n\
 		At level 6, you will cause your target to fall asleep.\n\

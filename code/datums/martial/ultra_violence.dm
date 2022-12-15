@@ -118,7 +118,7 @@
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, "martial")
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")///mainly so emps don't end you instantly, they still do damage though
-	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
+	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
@@ -241,7 +241,7 @@
 	dashes = clamp(dashes, 0, 3)
 	if(dashes == 3)
 		deltimer(dash_timer)//stop regen when full
-	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
+	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
 	if(H.a_intent == INTENT_DISARM && !H.IsUnconscious())
@@ -263,7 +263,7 @@
 		dashing = TRUE
 		H.throw_at(A, MAX_DASH_DIST, 1.5, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
-		H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
+		H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 
 /datum/martial_art/ultra_violence/proc/dash_end(mob/living/carbon/human/H)
 	dashing = FALSE

@@ -3,7 +3,7 @@
 		if ("sacid")
 			return "sulphuricacid"
 		if ("facid")
-			return "fluorosulfuricacid"
+			return "fluorosulphuricacid"
 		if ("co2")
 			return "carbondioxide"
 		if ("mine_salve")
@@ -61,7 +61,7 @@
 		/datum/reagent/oil,
 		/datum/reagent/uranium/radium,
 		/datum/reagent/stable_plasma,
-		/datum/reagent/sulfur
+		/datum/reagent/sulphur
 	)
 	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/consumable/sugar,
@@ -357,8 +357,8 @@
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
@@ -720,7 +720,7 @@
 		/datum/reagent/sodium,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
+		/datum/reagent/sulphur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
 		/datum/reagent/fuel,

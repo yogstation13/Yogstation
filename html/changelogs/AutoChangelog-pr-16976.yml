@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a book to traitor uplink to learn better mech piloting skills"
+  - bugfix: "Check_Eva now properly checks inner suit and not outer suit"
+  - tweak: "Mech pilot suit gives less mech piloting speed"

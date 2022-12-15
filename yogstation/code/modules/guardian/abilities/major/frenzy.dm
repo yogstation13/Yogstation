@@ -67,14 +67,12 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		return
 	if (!isliving(target))
 		to_chat(guardian, span_italics(span_danger("[target] is not a living thing.")))
-		revert_cast()
 		return
 	if (!guardian.stats)
 		revert_cast()
 		return
 	if (get_dist_euclidian(guardian.summoner?.current, target) > guardian.range)
 		to_chat(guardian, span_italics(span_danger("[target] is out of your range!")))
-		revert_cast()
 		return
 	remove_ranged_ability()
 	guardian.forceMove(get_step(get_turf(target), turn(target.dir, 180)))
