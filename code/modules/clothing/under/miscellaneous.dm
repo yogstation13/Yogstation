@@ -793,7 +793,7 @@
 
 /obj/item/clothing/under/mech_suit/ComponentInitialize()
 	..()
-	AddComponent(/datum/component/mech_pilot, 0.8)
+	AddComponent(/datum/component/mech_pilot, 0.9)
 
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
