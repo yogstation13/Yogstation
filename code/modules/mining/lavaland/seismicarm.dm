@@ -46,6 +46,8 @@
 			user.forceMove(T)
 			walk_towards(F,user,0, 1.5)
 			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+			if(user.IsStun() || user.IsParalyzed())
+				return // stops you from lariating someone while in time stop
 			for(var/mob/living/L in T.contents)
 				if(L != user)
 					user.forceMove(get_turf(L))
@@ -94,6 +96,8 @@
 			user.forceMove(T)
 			walk_towards(F,user,0, 1.5)
 			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+			if(user.IsStun() || user.IsParalyzed())
+				return // stops you from mopping people in timestop
 			for(var/mob/living/L in T.contents)
 				if(L != user)
 					mopped |= L
