@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "items blacklisted from crafting recipes can no longer be used in those crafting recipes"
