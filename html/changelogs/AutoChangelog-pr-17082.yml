@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Missing the click on Frenzy teleport won't cancel the ability and force you to re-select the button"
