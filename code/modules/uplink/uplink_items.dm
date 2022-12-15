@@ -2027,10 +2027,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Neural Overclocker Implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
-	cost = 20
+	cost = 14
 	surplus = 0
 	limited_stock = 1
-	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
 /datum/uplink_item/implants/augmentation
 	name = "Full Augmentation Kit"
