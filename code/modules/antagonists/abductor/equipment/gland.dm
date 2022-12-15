@@ -478,8 +478,8 @@
 /obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
 	if(!owner)
 		return
-	owner.visible_message(span_danger("[owner] vomits a cloud of plasma!"))
+	owner.visible_message(span_danger("[owner] vomits a cloud of miasma!")) //Yogstation change: plasma -> miasma
 	var/turf/open/T = get_turf(owner)
 	if(istype(T))
-		T.atmos_spawn_air("plasma=50;TEMP=[T20C]")
+		T.atmos_spawn_air("miasma=50;TEMP=[T20C]") //Yogstation change: plasma -> miasma
 	owner.vomit()
