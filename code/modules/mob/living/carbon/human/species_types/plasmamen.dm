@@ -7,7 +7,7 @@
 	species_traits = list(NOBLOOD,NOTRANSSTING,HAS_BONE, AGENDER)
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	default_features = list("plasmaman_helmet")
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
