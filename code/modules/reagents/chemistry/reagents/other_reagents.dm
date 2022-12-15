@@ -27,7 +27,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) && !IS_BLOODSUCKER(C))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
 				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
