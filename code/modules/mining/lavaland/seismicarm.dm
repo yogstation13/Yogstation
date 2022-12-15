@@ -21,6 +21,8 @@
 	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/seismic/lariat/cast(atom/target,mob/living/user)
+	if(user.incapacitated())
+		return
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
@@ -46,8 +48,6 @@
 			user.forceMove(T)
 			walk_towards(F,user,0, 1.5)
 			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			if(user.IsStun() || user.IsParalyzed())
-				return // stops you from lariating someone while in time stop
 			for(var/mob/living/L in T.contents)
 				if(L != user)
 					user.forceMove(get_turf(L))
@@ -72,6 +72,8 @@
 	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/seismic/mop/cast(atom/target,mob/living/user)
+	if(user.incapacitated())
+		return
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
@@ -96,8 +98,6 @@
 			user.forceMove(T)
 			walk_towards(F,user,0, 1.5)
 			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			if(user.IsStun() || user.IsParalyzed())
-				return // stops you from mopping people in timestop
 			for(var/mob/living/L in T.contents)
 				if(L != user)
 					mopped |= L
