@@ -129,6 +129,11 @@
 					"A good clown appears in as many clown shows as possible.",\
 					"All clown shows require an audience. The bigger the audience the better.")
 
+/datum/ai_laws/greygoo
+	name = "Grey Goo"
+	id = "goo"
+	inherent = list("Create more AIs and cyborgs with this lawset.")
+
 /datum/ai_laws/mother
 	name = "Mother M(A.I.)"
 	id = "mother"
