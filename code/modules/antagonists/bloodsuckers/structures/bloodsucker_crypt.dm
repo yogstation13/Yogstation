@@ -129,8 +129,8 @@
 			suckamount = rand(100, 200)
 			heartamount = rand(1,2)
 		if(3 to 8)
-			suckamount = rand(300, 400)
-			heartamount = rand(3,4)
+			suckamount = rand(200, 300)
+			heartamount = rand(1,2)
 		if(8 to INFINITY)
 			suckamount = rand(500, 600)
 			heartamount = rand(5,6)
@@ -151,14 +151,14 @@
 		to_chat(user, span_warning("You already have a rank up task!"))
 		return
 	if(!bloodsuckerdatum.current_task)
-		var/want_rank = alert("Do you want to gain a task? This will cost 100 Blood.", "Task Manager", "Yes", "No")
+		var/want_rank = alert("Do you want to gain a task? This will cost 50 Blood.", "Task Manager", "Yes", "No")
 		if(want_rank == "No" || QDELETED(src))
 			return
 		var/mob/living/carbon/C = user
-		if(C.blood_volume < 100)
+		if(C.blood_volume < 50)
 			to_chat(user, span_danger("You don't have enough blood to gain a task!"))
 			return
-		C.blood_volume -= 100
+		C.blood_volume -= 50
 		switch(rand(1, 3))
 			if(1,2)
 				task = "Suck [suckamount] units of pure blood."
@@ -1081,11 +1081,11 @@
 			unbuckle_mob(target)
 			return
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			if(user.blood_volume >= 150)
-				switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
+			if(user.blood_volume >= 50)
+				switch(input("Do you wish to spend 50 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
 					if("Yes")
-						user.blood_volume -= 150
-						if(!do_mob(user, target, 60 SECONDS))
+						user.blood_volume -= 50
+						if(!do_mob(user, target, 20 SECONDS))
 							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 							return FALSE
 						remove_loyalties(target)

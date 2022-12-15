@@ -148,7 +148,6 @@
 	if(istype(feed_target, /mob/living/simple_animal/mouse))
 		if(bloodsuckerdatum_power.my_clan == CLAN_TOREADOR)
 			to_chat(user, span_danger("I am not going to drink blood of a lesser lifeform."))
-			bloodsuckerdatum_power.AddHumanityLost(1) //Even attempting to do this disguisting action is against your morale, so get humanity loss
 			DeactivatePower()
 			return
 		var/mob/living/simple_animal/mouse_target = feed_target
