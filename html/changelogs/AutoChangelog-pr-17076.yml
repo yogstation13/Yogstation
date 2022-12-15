@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "The bookbinder should now print off the entire contents of the paper it gets inserted with. What do you mean you never use the bookbinder?"
