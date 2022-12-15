@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Hemophilia/heparin no longer making bleeding worse when you're already dead"
