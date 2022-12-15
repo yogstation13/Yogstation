@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Emp immunity implant overloads if emped too often"
+  - bugfix: "Emp immunity from the implant now properly gets removed if the implant does"
