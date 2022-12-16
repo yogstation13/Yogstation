@@ -1,9 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "bloodsucker mobs no longer take their attack damage as unarmed damage when punched"
-  - bugfix: "possessed armor will no longer activate and target restrained people, and will not attack bloodsuckers"
-  - tweak: "rabidism no longer causes you to attack yourself"
-  - bugfix: "tear now actually works"
-  - tweak: "rewriting and spellchecks in some descriptions"
-  - tweak: "both wolf head accessories now provide armor to the head"
