@@ -220,25 +220,25 @@
 	var/quality_control
 	switch(total_quality)
 		if(100)
-			quality_control = "Masterwork"
+			quality_control = "masterwork"
 		if(95 to 99)
-			quality_control = "Supreme"
+			quality_control = "supreme"
 		if(75 to 94)
-			quality_control = "Good"
+			quality_control = "good"
 		if(65 to 74)
-			quality_control = "Decent"
+			quality_control = "decent"
 		if(55 to 64)
-			quality_control = "Average"
+			quality_control = "average"
 		if(35 to 54)
-			quality_control = "Ok"
+			quality_control = "okay"
 		if(15 to 34)
-			quality_control = "Poor"
+			quality_control = "poor"
 		if(5 to 14)
-			quality_control = "Ugly"
+			quality_control = "ugly"
 		if(1 to 4)
-			quality_control = "Cracked"
+			quality_control = "cracked"
 		if(0)
-			quality_control = "Oh God why"
+			quality_control = "terrible"
 
 	for(var/path in selected_recipe.products)
 		var/amount_produced = selected_recipe.products[path]
