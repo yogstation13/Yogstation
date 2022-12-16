@@ -1,9 +1,0 @@
-author: "Sniblet"
-delete-after: true 
-changes: 
-  - tweak: "Blood altars require less blood and fewer hearts before rank 8"
-  - tweak: "Candelabra costs 50 blood from 150 to start de-shielding, takes 20 seconds to finish from 60"
-  - tweak: "Frenzy removes damage slowdown instead of decreasing it"
-  - tweak: "Predatory Lunge is instant at rank 2 instead of 3, Mesmerize mutes at 1 instead of 2"
-  - tweak: "Changelings, cultists, heretics, and obsessed can be vassalized"
-  - tweak: "Possessed armor will only attack Toreador or clanless bloodsuckers (too human play a real clan)"

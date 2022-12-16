@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Speed potion now reduces speed by 1 rather than setting it to -1"

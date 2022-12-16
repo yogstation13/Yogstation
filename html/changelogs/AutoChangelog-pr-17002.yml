@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Fingerless gloves now make your do_after coefficient 0.9 what it normally is (do stuff 10% faster!)"
-  - tweak: "do_after coefficient on the tactical fingerless gloves has been lowered to 0.66 from 0.8 (because they aren't metashielded)"
-  - tweak: "All fingerless gloves and bracers now do nothing against shocks (as opposed to halving the shock power)"

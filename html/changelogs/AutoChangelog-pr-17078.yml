@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: true 
-changes: 
-  - bugfix: "The seismic arm no longer lets you finish performing lariats or mops while in stopped time. Or if you're otherwise stunned or paralysed.  (No, you don't get to use a magnet either)."
