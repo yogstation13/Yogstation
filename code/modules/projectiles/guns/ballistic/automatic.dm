@@ -42,7 +42,7 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
-	var/spread_difference = initial(spread) - 5 //Set this way so laser sights work properly. Default value of 0
+	var/spread_difference = initial(spread) - default_spread //Set this way so laser sights work properly. Default value of 0
 	select = !select
 	if(!select)
 		burst_size = 1
@@ -169,7 +169,7 @@
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
-	var/spread_difference = initial(spread) - 5 //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
+	var/spread_difference = initial(spread) - default_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
 	switch(select)
 		if(0)
 			select = 1
