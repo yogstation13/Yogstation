@@ -328,7 +328,7 @@
 	icon_state = "hallS"
 
 /area/ruin/space/derelict/hallway/primary/port
-	name = "Derelict Port Hallway"
+	name = "Derelict Port (W) Hallway"
 	icon_state = "hallFP"
 
 /area/ruin/space/derelict/arrival
