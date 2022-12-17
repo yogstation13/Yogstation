@@ -246,8 +246,8 @@
 			var/obj/creation = new path(get_step(src, SOUTH))
 			creation.name = "[quality_control] [creation.name]"
 			if(selected_recipe.dangerous)
-				investigate_log("has been created in the crystallizer.", INVESTIGATE_SUPERMATTER)
-				message_admins("[src] has been created in the crystallizer [ADMIN_JMP(src)].")
+				investigate_log("[selected_recipe.name] has been created in the crystallizer.", INVESTIGATE_SUPERMATTER)
+				message_admins("[selected_recipe.name] has been created in the crystallizer [ADMIN_JMP(src)].")
 
 
 	quality_loss = 0
