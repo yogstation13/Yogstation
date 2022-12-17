@@ -161,7 +161,7 @@
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
-	var/crystal_charge = ETHEREAL_CHARGE_FULL
+	var/crystal_charge = ETHEREAL_CHARGE_ALMOSTFULL
 
 /obj/item/organ/stomach/ethereal/on_life()
 	..()
@@ -183,7 +183,7 @@
 /obj/item/organ/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
 	if(illusion)
 		return
-	adjust_charge(shock_damage * siemens_coeff * 2)
+	adjust_charge(shock_damage * siemens_coeff * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
