@@ -179,3 +179,13 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	energy_release = 2900000
 	requirements = list(/datum/gas/hypernoblium = 5, /datum/gas/zauker = 10, /datum/gas/bz = 7.5)
 	products = list(/obj/item/stack/sheet/mineral/zaukerite = 2)
+
+/datum/gas_recipe/crystallizer/hypernoblium_crystal
+	id = "hyper_crystalium"
+	name = "Hypernoblium Crystal"
+	min_temp = 100000
+	max_temp = 200000
+	reaction_type = EXOTHERMIC_REACTION
+	energy_release = 2800000
+	requirements = list(/datum/gas/bz = 100, /datum/gas/hypernoblium = 100, /datum/gas/oxygen = 1000)
+	products = list(/obj/item/stack/hypernoblium_crystal = 1)

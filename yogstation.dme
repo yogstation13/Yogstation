@@ -1143,6 +1143,7 @@
 #include "code\game\objects\items\stacks\sheets\ammonia_crystals.dm"
 #include "code\game\objects\items\stacks\sheets\glass.dm"
 #include "code\game\objects\items\stacks\sheets\hot_ice.dm"
+#include "code\game\objects\items\stacks\sheets\hypernob_crystal.dm"
 #include "code\game\objects\items\stacks\sheets\leather.dm"
 #include "code\game\objects\items\stacks\sheets\light.dm"
 #include "code\game\objects\items\stacks\sheets\mineral.dm"
