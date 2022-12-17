@@ -1,0 +1,6 @@
+author: " TheBoondock, warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Add a new long range gas analyzer (This can be printed from engi lathe and sci lathe after researching advanced eng tech)"
+  - rscadd: "RD and CE will spawn with one"
+  - rscadd: "One will spawn in CE and RD locker aswell"
