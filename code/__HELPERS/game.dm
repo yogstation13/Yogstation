@@ -8,6 +8,10 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
+#define UNDERFLOOR_HIDDEN 0
+#define UNDERFLOOR_VISIBLE 1
+#define UNDERFLOOR_INTERACTABLE 2
+
 /proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)

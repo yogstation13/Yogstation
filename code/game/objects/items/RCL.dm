@@ -178,7 +178,7 @@
 		if(last)
 			if(get_dist(last, user) == 1) //hacky, but it works
 				var/turf/T = get_turf(user)
-				if(T.intact || !T.can_have_cabling())
+				if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
 					last = null
 					return
 				if(get_dir(last, user) == last.d2)
@@ -203,7 +203,7 @@
 		return
 
 	T = get_turf(user)
-	if(T.intact || !T.can_have_cabling())
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
 		return
 
 	for(var/obj/structure/cable/C in T)
@@ -263,7 +263,7 @@
 		return
 
 	var/turf/T = get_turf(user)
-	if(T.intact || !T.can_have_cabling())
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
 		return
 
 	loaded.color = colors[current_color_index]

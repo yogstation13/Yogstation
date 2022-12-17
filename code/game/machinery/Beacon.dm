@@ -16,7 +16,7 @@
 	Beacon = new(T)
 	Beacon.invisibility = INVISIBILITY_MAXIMUM
 
-	hide(T.intact)
+	hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /obj/machinery/bluespace_beacon/Destroy()
 	QDEL_NULL(Beacon)
