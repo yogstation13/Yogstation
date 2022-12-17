@@ -79,7 +79,6 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
-#define RADIATION_ANOMALY "radiation_anomaly"
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -618,8 +617,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
-			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -1097,8 +1094,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				new /obj/effect/anomaly/grav(L, 250)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 400)
-			if(RADIATION_ANOMALY)
-				new /obj/effect/anomaly/radiation(L, 400)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1217,4 +1212,3 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 #undef GRAVITATIONAL_ANOMALY
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
-#undef RADIATION_ANOMALY
