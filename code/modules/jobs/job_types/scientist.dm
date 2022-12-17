@@ -29,6 +29,8 @@
 		/obj/item/camera_bug = 1
 	)
 
+	smells_like = "slime"
+
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5

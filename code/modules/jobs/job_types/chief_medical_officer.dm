@@ -38,6 +38,8 @@
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
 	)
 
+	smells_like = "blood-soaked stress"
+
 /datum/job/cmo/proc/OmegaStationChanges()
 	return TRUE
 

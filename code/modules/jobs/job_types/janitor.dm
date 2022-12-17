@@ -30,6 +30,8 @@
 		/obj/item/lightreplacer = 10
 	)
 
+	smells_like = "bleach"
+
 /datum/job/janitor/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)

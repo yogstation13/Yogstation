@@ -34,6 +34,8 @@
 		///obj/effect/spawner/random/medical/memeorgans = 1
 	)
 
+	smells_like = "a hospital"
+
 /datum/job/doctor/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5

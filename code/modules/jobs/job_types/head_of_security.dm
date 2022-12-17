@@ -33,6 +33,8 @@
 
 	changed_maps = list("YogsPubby")
 
+	smells_like = "deadly authority"
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 

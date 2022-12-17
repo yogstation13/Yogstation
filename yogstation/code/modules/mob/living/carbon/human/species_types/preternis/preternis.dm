@@ -56,6 +56,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/draining = FALSE
 	var/soggy = FALSE
 
+	smells_like = "lemony steel"
+
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	fixed_mut_color = C.dna.features["pretcolor"]

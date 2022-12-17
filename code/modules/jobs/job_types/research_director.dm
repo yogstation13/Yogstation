@@ -40,6 +40,8 @@
 		/obj/item/borg/upgrade/ai = 2
 	)
 
+	smells_like = "theorhetical education"
+
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
 
