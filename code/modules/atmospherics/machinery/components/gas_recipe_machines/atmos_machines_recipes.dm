@@ -150,6 +150,16 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/carbon_dioxide = 10000)
 	products = list(/obj/item/stack/sheet/mineral/diamond = 1)
 
+/datum/gas_recipe/crystallizer/uranium
+	id = "uranium"
+	name = "Uranium"
+	min_temp = 1000
+	max_temp = 5000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 2500000
+	requirements = list(/datum/gas/tritium = 200, /datum/gas/hypernoblium = 50)
+	products = list(/obj/item/stack/sheet/mineral/uranium = 1)
+
 /datum/gas_recipe/crystallizer/plasma_sheet
 	id = "plasma_sheet"
 	name = "Plasma sheet"
