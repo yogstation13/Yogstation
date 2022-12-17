@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "New crystallizer recipe for Uranium. Requires 200 moles of trit, 50 hypernob and temp from range 1000K-5000K for one uranium sheet"
