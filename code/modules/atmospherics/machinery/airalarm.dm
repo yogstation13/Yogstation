@@ -82,6 +82,9 @@
 	var/danger_level = 0
 	var/mode = AALARM_MODE_SCRUBBING
 
+	///manual alarm for when you want to have permanently blue lights
+	var/manual_alarm = FALSE
+
 	var/locked = TRUE
 	var/aidisabled = 0
 	var/shorted = 0
@@ -452,11 +455,17 @@
 			var/area/A = get_area(src)
 			if(A.atmosalert(2, src))
 				post_alert(2)
+			for(var/obj/machinery/airalarm/AA in A)
+				AA.manual_alarm = !AA.manual_alarm
+				AA.update_icon()
 			. = TRUE
 		if("reset")
 			var/area/A = get_area(src)
 			if(A.atmosalert(0, src))
 				post_alert(0)
+			for(var/obj/machinery/airalarm/AA in A)
+				AA.manual_alarm = !AA.manual_alarm
+				AA.update_icon()
 			. = TRUE
 	update_icon()
 
@@ -687,6 +696,9 @@
 
 	if(old_danger_level != danger_level)
 		apply_danger_level()
+	else if((old_danger_level == danger_level) && !manual_alarm)
+		apply_danger_level()
+
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
@@ -719,6 +731,7 @@
 
 	var/new_area_danger_level = 0
 	for(var/obj/machinery/airalarm/AA in A)
+		AA.manual_alarm = FALSE
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
 	if(A.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
