@@ -1,5 +1,0 @@
-author: "Orca (Sprite), warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a new hypernob crystal. It's ability is to turn normal clothing into pressure-resistant, fire-resistant and temperature-resistant."
-  - rscadd: "Adds a new hypernob crystal recipe: bz 100, hypernob 100, oxygen 1000 (TEMP range: 100000-200000 Kelvin)"

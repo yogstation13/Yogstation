@@ -1,9 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "New crystallizer recipe for supermatter silver: 100 bz, 125 hypernob, 250 tritium, 750 plasma (Temp range: 100000K - 200000K)"
-  - rscadd: "New crystallizer recipe for supermatter hemostat: 5 bz, 100 hydrogen, 5 hypernob (Temp range: 50000K - 150000K)"
-  - rscadd: "New crystallizer recipe for supermatter base structure: 100 bz, 1000 hydrogen, 10 hypernob (Temp range: 50000K - 150000K)"
-  - rscadd: "New bounty for cargo: 20000 credits reward for 2 supermatter silvers"
-  - tweak: "Supermatter shard engine is now buidable"
-  - bugfix: "fix admin and log not reporting properly"

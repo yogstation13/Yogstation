@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "IPC martial art guns disappear when the limb gets cut off"
-  - tweak: "IPC martial art now plays a sound when doing the grab intent action"
-  - tweak: "IPC martial art gives TRAIT_NODISMEMBER"
-  - tweak: "IPC martial art revolver now uses a special ammo"
