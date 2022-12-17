@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	max_temp = 5000
 	reaction_type = ENDOTHERMIC_REACTION
 	energy_release = 2500000
-	requirements = list(/datum/gas/tritium = 200)
+	requirements = list(/datum/gas/tritium = 200, /datum/gas/hypernoblium = 50)
 	products = list(/obj/item/stack/sheet/mineral/uranium = 1)
 
 /datum/gas_recipe/crystallizer/plasma_sheet
