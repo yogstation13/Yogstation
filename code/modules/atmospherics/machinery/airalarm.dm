@@ -453,18 +453,16 @@
 			. = TRUE
 		if("alarm")
 			var/area/A = get_area(src)
-			if(A.atmosalert(2, src))
-				post_alert(2)
 			for(var/obj/machinery/airalarm/AA in A)
-				AA.manual_alarm = !AA.manual_alarm
+				AA.manual_alarm = TRUE
+				AA.post_alert(2)
 				AA.update_icon()
 			. = TRUE
 		if("reset")
 			var/area/A = get_area(src)
-			if(A.atmosalert(0, src))
-				post_alert(0)
 			for(var/obj/machinery/airalarm/AA in A)
-				AA.manual_alarm = !AA.manual_alarm
+				AA.manual_alarm = FALSE
+				AA.post_alert(0)
 				AA.update_icon()
 			. = TRUE
 	update_icon()
@@ -691,13 +689,15 @@
 		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
 
-	var/old_danger_level = danger_level
+	var/old_danger_level = initial(danger_level)
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
 	if(old_danger_level != danger_level)
 		apply_danger_level()
+		post_alert(2)
 	else if((old_danger_level == danger_level) && !manual_alarm)
 		apply_danger_level()
+		post_alert(0)
 
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
@@ -718,11 +718,13 @@
 	if(alert_level==2)
 		alert_signal.data["alert"] = "severe"
 		A.set_vacuum_alarm_effect()
+		A.atmosalert(2, src)
 	else if (alert_level==1)
 		alert_signal.data["alert"] = "minor"
 	else if (alert_level==0)
 		alert_signal.data["alert"] = "clear"
 		A.unset_vacuum_alarm_effect()
+		A.atmosalert(0, src)
 
 	frequency.post_signal(src, alert_signal, range = -1)
 
@@ -734,8 +736,6 @@
 		AA.manual_alarm = FALSE
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
-	if(A.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
-		post_alert(new_area_danger_level)
 
 	update_icon()
 
