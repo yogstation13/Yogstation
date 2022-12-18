@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "Self sustaining extracts (aka dark purple crossbreed) should no longer spawn and become unclickable"
