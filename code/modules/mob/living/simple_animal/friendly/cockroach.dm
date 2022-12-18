@@ -57,7 +57,7 @@
 	
 /mob/living/simple_animal/cockroach/clownbug
 	name = "clown bug"
-	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has [20-death_count] lives left.."
+	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has [(20-death_count)] lives left.."
 	icon_state = "clowngoblin"
 	icon_dead = "clowngoblin"
 	gold_core_spawnable = HOSTILE_SPAWN
