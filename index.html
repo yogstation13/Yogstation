@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(474 modules,
-    726/7467 macros, 9.7%)</aside></h3>
+<aside>(473 modules,
+    726/7471 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -442,10 +442,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     </ul></li>
     <li><span class="no-substance">songs&#x2F;</span><a href="code/modules/instruments/songs/_song.html" title="code&#x2F;modules&#x2F;instruments&#x2F;songs&#x2F;_song">_song</a></li>
     </ul></li>
-    <li class="has-children"><span title="code&#x2F;modules&#x2F;jobs">jobs</span><ul class="index-tree">
-    <li><a href="code/modules/jobs/access.html" title="code&#x2F;modules&#x2F;jobs&#x2F;access">access</a></li>
-    <li><span class="no-substance">job_types&#x2F;</span><a href="code/modules/jobs/job_types/chief_engineer.html" title="code&#x2F;modules&#x2F;jobs&#x2F;job_types&#x2F;chief_engineer">chief_engineer</a></li>
-    </ul></li>
+    <li><span class="no-substance">jobs&#x2F;</span><a href="code/modules/jobs/access.html" title="code&#x2F;modules&#x2F;jobs&#x2F;access">access</a></li>
     <li><a href="code/modules/keybindings.html" title="code&#x2F;modules&#x2F;keybindings">In-code keypress handling system</a> - This whole system is heavily based off of forum_account's keyboard library.
 Thanks to forum_account for saving the day, the library can be found
 <a href="https://secure.byond.com/developer/Forum_account/Keyboard">here</a>!</li>
@@ -735,7 +732,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(554 detailed/1213 documented/26836 total, 4.5%)</aside></h3>
+<aside>(561 detailed/1219 documented/26856 total, 4.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -818,6 +815,10 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     </ul></li>
     <li><a href="datum/action/bloodsucker/gohome.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;gohome">Vanishing Act</a></li>
     <li><a href="datum/action/bloodsucker/masquerade.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;masquerade">Masquerade</a></li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;olfaction">olfaction</span><ul class="index-tree">
+    <li><a href="datum/action/bloodsucker/olfaction/acquire_scent.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;olfaction&#x2F;acquire_scent">Sanguine Olfaction</a></li>
+    <li><a href="datum/action/bloodsucker/olfaction/follow_scent.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;olfaction&#x2F;follow_scent">Follow the Scent</a></li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;recuperate">Sanguine Recuperation</span> - Used by Vassals</li>
     <li class="has-children"><a href="datum/action/bloodsucker/targeted.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;targeted">targeted</a><ul class="index-tree">
     <li><a href="datum/action/bloodsucker/targeted/brawn.html" title="&#x2F;datum&#x2F;action&#x2F;bloodsucker&#x2F;targeted&#x2F;brawn">Brawn</a></li>
@@ -1127,13 +1128,15 @@ DONKPOCCKETS</li>
     <li><a href="datum/dynamic_snapshot.html" title="&#x2F;datum&#x2F;dynamic_snapshot">dynamic_snapshot</a> - A &quot;snapshot&quot; of dynamic at an important point in time.
 Exported to JSON in the dynamic.json log file.</li>
     <li><a href="datum/dynamic_snapshot_ruleset.html" title="&#x2F;datum&#x2F;dynamic_snapshot_ruleset">dynamic_snapshot_ruleset</a> - A ruleset chosen during a snapshot</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;effect_system">effect_system</span><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;datum&#x2F;effect_system">effect_system</span><ul class="index-tree">
     <li><span class="no-substance">steam_spread&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;steam_spread&#x2F;bloodsucker">bloodsucker</span> - STEP FIVE: Create animal at prev location
 TELEPORT: Move to Coffin &amp; Close it!</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
+    <li class="has-children"><span title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
 just pass in the object to attach it to in set_up
 Then do start() to start it and stop() to stop it, obviously
-and don't call start() in a loop that will be repeated otherwise it'll get spammed!</li>
+and don't call start() in a loop that will be repeated otherwise it'll get spammed!<ul class="index-tree">
+    <li><a href="datum/effect_system/trail_follow/scent.html" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow&#x2F;scent">scent</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/eldritch_knowledge.html" title="&#x2F;datum&#x2F;eldritch_knowledge">Basic knowledge</a> - #Eldritch Knowledge<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;basic">Break of Dawn</span> - Base lore</li>
@@ -1165,6 +1168,7 @@ note of an instrument.*</li>
     <li><a href="datum/job/atmos.html" title="&#x2F;datum&#x2F;job&#x2F;atmos">atmos</a></li>
     <li><a href="datum/job/captain.html" title="&#x2F;datum&#x2F;job&#x2F;captain">captain</a></li>
     <li><a href="datum/job/chemist.html" title="&#x2F;datum&#x2F;job&#x2F;chemist">chemist</a></li>
+    <li><a href="datum/job/chief_engineer.html" title="&#x2F;datum&#x2F;job&#x2F;chief_engineer">chief_engineer</a></li>
     <li><a href="datum/job/clown.html" title="&#x2F;datum&#x2F;job&#x2F;clown">clown</a></li>
     <li><a href="datum/job/cook.html" title="&#x2F;datum&#x2F;job&#x2F;cook">cook</a></li>
     <li><a href="datum/job/detective.html" title="&#x2F;datum&#x2F;job&#x2F;detective">detective</a></li>
@@ -1306,11 +1310,7 @@ Convert a certain amount of vassals</li>
     </ul></li>
     <li class="has-children"><a href="datum/outfit.html" title="&#x2F;datum&#x2F;outfit">Outfit datums</a> - This is a clean system of applying outfits to mobs, if you need to equip someone in a uniform
 this is the way to do it cleanly and properly.<ul class="index-tree">
-    <li class="has-children"><a href="datum/outfit/job.html" title="&#x2F;datum&#x2F;outfit&#x2F;job">Standard Gear</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;outfit&#x2F;job&#x2F;ce">Chief Engineer</span> - obj/item/stack/sheet/mineral/uranium/five = 15,
-obj/item/stack/sheet/mineral/plasma/five = 15,
-obj/effect/spawner/random/engineering/tool_advanced = 3</li>
-    </ul></li>
+    <li><a href="datum/outfit/job.html" title="&#x2F;datum&#x2F;outfit&#x2F;job">Standard Gear</a></li>
     </ul></li>
     <li><a href="datum/parsed_map.html" title="&#x2F;datum&#x2F;parsed_map">parsed_map</a></li>
     <li class="has-children"><a href="datum/permissions_controller.html" title="&#x2F;datum&#x2F;permissions_controller">permissions_controller</a><ul class="index-tree">
@@ -1418,6 +1418,7 @@ This deals with everything entering/exiting Frenzy is meant to deal with.</li>
     <li><span class="no-substance">incapacitating&#x2F;</span><a href="datum/status_effect/incapacitating/stasis.html" title="&#x2F;datum&#x2F;status_effect&#x2F;incapacitating&#x2F;stasis">stasis</a></li>
     <li><a href="datum/status_effect/limp.html" title="&#x2F;datum&#x2F;status_effect&#x2F;limp">limp</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;masquerade">Status effect</span> - This is what the Masquerade power gives, handles their bonuses and gives them a neat icon to tell them they're on Masquerade.</li>
+    <li><a href="datum/status_effect/scent_hunter.html" title="&#x2F;datum&#x2F;status_effect&#x2F;scent_hunter">scent_hunter</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized">stabilized</span> - STABILIZED EXTRACTS</li>
     <li><a href="datum/status_effect/wound.html" title="&#x2F;datum&#x2F;status_effect&#x2F;wound">wound</a></li>
     </ul></li>
@@ -1681,6 +1682,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><a href="obj/effect/spawner/lootdrop/randomfood.html" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;randomfood">randomfood</a></li>
     </ul></li>
     <li><a href="obj/effect/sunlight.html" title="&#x2F;obj&#x2F;effect&#x2F;sunlight">sunlight</a> - Over Time, tick down toward a &quot;Solar Flare&quot; of UV buffeting the station. This period is harmful to vamps.</li>
+    <li><span class="no-substance">temp_visual&#x2F;</span><a href="obj/effect/temp_visual/scent_trail.html" title="&#x2F;obj&#x2F;effect&#x2F;temp_visual&#x2F;scent_trail">&#x2F;improper scent trail</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal">turf_decal</span><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal&#x2F;tile">tile</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal&#x2F;tile&#x2F;bar">bar corner</span> - Weird snowflake ones</li>
@@ -1907,8 +1909,8 @@ the program that displays laws should always be usable, and the exceptions were 
 This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy<ul class="index-tree">
     <li><span class="no-substance">automatic&#x2F;pistol&#x2F;</span><a href="obj/item/gun/ballistic/automatic/pistol/martial.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;automatic&#x2F;pistol&#x2F;martial">martial</a> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
     <li><span class="no-substance">bow&#x2F;energy&#x2F;</span><a href="obj/item/gun/ballistic/bow/energy/syndicate.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;bow&#x2F;energy&#x2F;syndicate">Syndicate Hardlight Bow</a></li>
-    <li><span class="no-substance">revolver&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;revolver&#x2F;martial">martial</span> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
-    <li><span class="no-substance">shotgun&#x2F;</span><a href="obj/item/gun/ballistic/shotgun/martial.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;shotgun&#x2F;martial">martial</a> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
+    <li><span class="no-substance">revolver&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;revolver&#x2F;ipcmartial">ipcmartial</span> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
+    <li><span class="no-substance">shotgun&#x2F;</span><a href="obj/item/gun/ballistic/shotgun/ipcmartial.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;shotgun&#x2F;ipcmartial">ipcmartial</a> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy">energy</span><ul class="index-tree">
     <li><a href="obj/item/gun/energy/beam_rifle.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy&#x2F;beam_rifle">particle acceleration rifle</a></li>
@@ -2369,6 +2371,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;statue&#x2F;uranium">uranium</span> - //////////////STATUES//////////////////////////
 uranium</li>
     </ul></li>
+    <li><a href="obj/structure/supermatter_base_structure.html" title="&#x2F;obj&#x2F;structure&#x2F;supermatter_base_structure">supermatter base structure</a></li>
     <li><a href="obj/structure/swarmer.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer">swarmer ui</a></li>
     <li><a href="obj/structure/swarmer_beacon.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer_beacon">Swarmer Beacon</a> - Beacon which creates sentient player swarmers.</li>
     <li><a href="obj/structure/table.html" title="&#x2F;obj&#x2F;structure&#x2F;table">table</a></li>
@@ -2402,7 +2405,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5baf4bfcee1a74595fb599d079898075f0a34587">5baf4bf</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e1fcceb200daed4f66b45194bef3fee386d05f89">e1fcceb</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
