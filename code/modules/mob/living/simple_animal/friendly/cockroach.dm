@@ -66,13 +66,19 @@
 	verb_exclaim = "honks loudly"
 	verb_yell = "honks loudly"
 	speak_emote = list("honks")
+	var/death_count = 0
 
 
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
+	if(deathcount > 20)
+		return ..()
 	var/turf/T = get_turf(src)
 	if(T)
 		var/mob/living/simple_animal/cockroach/clownbug/C = new /mob/living/simple_animal/cockroach/clownbug(T)
 		if(mind)
+			deathcount++
+			C.deathcount = deathcount
 			mind.transfer_to(C)
+			
 		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
 	..()
