@@ -72,6 +72,7 @@
 					return
 				if("View invoice")
 					to_chat(user,span_notice("Current invoice:[invoice]<br>Total Cost: [price] credits."))
+					return
 				if("View stats")
 					to_chat(user,span_notice("Transactions Processed: [paynum]<br>Total earned: [amount_deposited]"))
 					return
