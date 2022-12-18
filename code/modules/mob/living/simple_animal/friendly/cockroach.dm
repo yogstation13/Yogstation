@@ -58,7 +58,7 @@
 /mob/living/simple_animal/cockroach/clownbug
 	var/death_count = 0	
 	name = "clown bug"
-	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has died [death_count] times.. After 20 it will be brain dead."
+	desc = "Absolutely disgusting... almost as horrid as that one green clown."
 	icon_state = "clowngoblin"
 	icon_dead = "clowngoblin"
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -67,7 +67,11 @@
 	verb_exclaim = "honks loudly"
 	verb_yell = "honks loudly"
 	speak_emote = list("honks")
-	
+
+/mob/living/simple_animal/cockroach/clownbug/Initialize()
+	. = ..()
+	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has [(20-death_count)] lives left.."
+
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
 	var/turf/T = get_turf(src)
 	if(T && death_count < 20)
