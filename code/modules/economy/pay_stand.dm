@@ -25,7 +25,6 @@
 					return
 				name = msg
 				desc = "Owned by [assistant_mains_need_to_die.registered_account.account_holder], pays directly into [user.p_their()] account."
-				log_admin("The paystand at X:[src.x] Y:[src.y] Z:[src.z][ADMIN_COORDJMP(src)] was named [msg] by [ADMIN_LOOKUPFLW(user)]")
 				my_card = assistant_mains_need_to_die
 				to_chat(user, "You link the stand to your account.")
 				return
@@ -49,7 +48,7 @@
 							invoice = invoice + "<br>[msg]\tFREE!"
 							to_chat(user,span_notice("Added [msg] for free to the invoice! Invoice Total: [price] credits!"))
 							playsound(src, 'sound/machines/beep.ogg', 100)
-							visible_message("[src] displays, " + span_notice("\"[msg] - <i>FREE</i>\""))
+							visible_message("[icon2html(src,world)][src] displays, " + span_notice("\"[msg] - <i>FREE</i>\""))
 							askAdd = input(user, "Add another item?", src.name) as null|anything in list("Yes","No")
 							if(!askAdd || askAdd == "No")
 								addAnotherItem = FALSE
@@ -58,7 +57,7 @@
 							invoice = invoice + "<br>[msg]\t[cost] credits"
 							to_chat(user,span_notice("Added [msg] for [cost] credits to the invoice! Invoice Total: [price] credits!"))
 							playsound(src, 'sound/machines/beep.ogg', 100)
-							visible_message("[src] displays, " + span_notice("\"[msg] - <i>[cost] credits</i>\""))
+							visible_message("[icon2html(src,world)][src] displays, " + span_notice("\"[msg] - <i>[cost] credits</i>\""))
 							askAdd = input(user, "Add another item?", src.name) as null|anything in list("Yes","No")
 							if(!askAdd || askAdd == "No")
 								addAnotherItem = FALSE
@@ -68,7 +67,7 @@
 					price = 0
 					to_chat(user,span_warning("Invoice cleared!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 100)
-					visible_message("[src] displays, " + span_warning("Invoice cleared."))
+					visible_message("[icon2html(src,world)][src] displays, " + span_warning("Invoice cleared."))
 					return
 				if("View invoice")
 					to_chat(user,span_notice("Current invoice:[invoice]<br>Total Cost: [price] credits."))
@@ -185,7 +184,6 @@
 
 /obj/machinery/paystand/proc/handle_receipt(card_pay)
 	playsound(src, "sound/items/scanner_match.ogg", 100)
-	audible_message("[src] gleefully says, \"Thank you!\"")
 	paynum += 1
 	var/obj/item/paper/P = new /obj/item/paper(src)
 	var/obj/item/paper/M = new /obj/item/paper(src)
