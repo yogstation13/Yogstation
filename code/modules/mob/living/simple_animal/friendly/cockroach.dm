@@ -70,10 +70,8 @@
 
 
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
-	if(death_count > 20)
-		return ..()
 	var/turf/T = get_turf(src)
-	if(T)
+	if(T && death_count < 20)
 		var/mob/living/simple_animal/cockroach/clownbug/C = new /mob/living/simple_animal/cockroach/clownbug(T)
 		if(mind)
 			death_count++
