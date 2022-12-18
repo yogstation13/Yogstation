@@ -79,6 +79,5 @@
 			deathcount++
 			C.deathcount = deathcount
 			mind.transfer_to(C)
-			
 		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
 	..()
