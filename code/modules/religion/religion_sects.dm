@@ -135,7 +135,7 @@
 	var/did_we_charge = FALSE
 	var/obj/item/organ/stomach/ethereal/eth_stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 	if(istype(eth_stomach))
-		eth_stomach.adjust_charge(3)
+		eth_stomach.adjust_charge(15 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 		did_we_charge = TRUE
 	if(ispreternis(H))
 		var/datum/species/preternis/preternis = H.dna.species

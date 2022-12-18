@@ -84,3 +84,5 @@
 	var/visible_tumors = FALSE //if you are seem with some tumors, for examine
 
 	COOLDOWN_DECLARE(bleeding_message_cd)
+
+	var/list/image/infra_images

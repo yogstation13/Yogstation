@@ -50,7 +50,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * (check_eva() ? EVA_MODIFIER : 1))	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)

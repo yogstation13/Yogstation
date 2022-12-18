@@ -1116,8 +1116,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		QDEL_NULL(inserted_item)
 	return ..()
 
-//AI verb and proc for sending PDA messages.
-
+//pAI verb and proc for sending PDA messages.
 /mob/living/silicon/proc/cmd_send_pdamesg(mob/user)
 	var/list/plist = list()
 	var/list/namecounts = list()
@@ -1151,30 +1150,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	aiPDA.create_message(src, selected)
-
-
-/mob/living/silicon/ai/verb/cmd_toggle_pda_receiver()
-	set category = "AI Commands"
-	set name = "PDA - Toggle Sender/Receiver"
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	if(!isnull(aiPDA))
-		aiPDA.toff = !aiPDA.toff
-		to_chat(usr, span_notice("PDA sender/receiver toggled [(aiPDA.toff ? "Off" : "On")]!"))
-	else
-		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
-
-/mob/living/silicon/ai/verb/cmd_toggle_pda_silent()
-	set category = "AI Commands"
-	set name = "PDA - Toggle Ringer"
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	if(!isnull(aiPDA))
-		//0
-		aiPDA.silent = !aiPDA.silent
-		to_chat(usr, span_notice("PDA ringer toggled [(aiPDA.silent ? "Off" : "On")]!"))
-	else
-		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
 
 /mob/living/silicon/ai/proc/cmd_show_message_log(mob/user)
 	if(incapacitated())

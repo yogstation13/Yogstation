@@ -854,3 +854,9 @@
 /datum/quirk/monochromatic/remove()
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/nomail
+	name = "Loser"
+	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
+	value = -1
+	mob_trait = TRAIT_BADMAIL

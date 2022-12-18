@@ -10,7 +10,7 @@
 	selection_color = "#ffeeff"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer")
+	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist")
 
 	outfit = /datum/outfit/job/roboticist
 
@@ -29,6 +29,8 @@
 		/obj/item/stack/sheet/metal/twenty = 15,
 		/obj/item/modular_computer/tablet/preset/advanced = 5
 	)
+
+	smells_like = "burnt solder"
 
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"

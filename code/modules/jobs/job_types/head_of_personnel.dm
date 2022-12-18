@@ -40,6 +40,8 @@
 		/obj/item/stack/sheet/bone = 5
 	)
 
+	smells_like = "bureaucracy"
+
 /datum/job/hop/proc/OmegaStationChanges()
 	added_access = get_all_accesses()
 	base_access = get_all_accesses()

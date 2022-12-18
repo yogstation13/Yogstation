@@ -650,7 +650,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/research_director
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/rd
-	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

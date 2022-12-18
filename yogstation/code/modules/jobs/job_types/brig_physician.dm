@@ -8,6 +8,9 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 5 //seriously stop griefing
+	exp_requirements = 100
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/brigphysician
 
@@ -22,6 +25,8 @@
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYSICIAN
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "crimson guardianship"
 
 /datum/job/brigphysician/proc/OmegaStationChanges()
 	return TRUE
@@ -46,7 +51,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
 	r_hand = /obj/item/modular_computer/laptop/preset/brig_physician
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/phys
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

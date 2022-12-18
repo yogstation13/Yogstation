@@ -13,6 +13,9 @@
 	if(!air)
 		return
 
+	if(air.get_moles(/datum/gas/hypernoblium) > REACTION_OPPRESSION_THRESHOLD)
+		return
+
 	var/oxy = air.get_moles(/datum/gas/oxygen)
 	if (oxy < 0.5)
 		return

@@ -47,7 +47,7 @@
 #define STIMULUM_SECOND_RISE				0.0009
 #define STIMULUM_ABSOLUTE_DROP				0.00000335
 #define REACTION_OPPRESSION_THRESHOLD		5
-#define NOBLIUM_FORMATION_ENERGY			2e7 	//1 Mole of Noblium takes the planck energy to condense.
+#define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
 #define STIM_BALL_GAS_AMOUNT				5
 #define STIM_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
 #define STIM_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted
