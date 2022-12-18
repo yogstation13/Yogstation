@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "Bag of holdings should now appear in your hands, on your back and... head."
