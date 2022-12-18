@@ -24,6 +24,7 @@
 				if(!msg)
 					return
 				name = msg
+				log_admin("The paystand at X:[src.x] Y:[src.y] Z:[src.z][ADMIN_COORDJMP(src)] was named [msg] by [ADMIN_LOOKUPFLW(user)]")
 				desc = "Owned by [assistant_mains_need_to_die.registered_account.account_holder], pays directly into [user.p_their()] account."
 				my_card = assistant_mains_need_to_die
 				to_chat(user, "You link the stand to your account.")
