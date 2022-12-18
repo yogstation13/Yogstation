@@ -57,7 +57,7 @@
 	
 /mob/living/simple_animal/cockroach/clownbug
 	name = "clown bug"
-	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has ([20-deathcount] lives left.."
+	desc = "Absolutely disgusting... almost as horrid as that one green clown. It has [20-death_count] lives left.."
 	icon_state = "clowngoblin"
 	icon_dead = "clowngoblin"
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -70,14 +70,14 @@
 
 
 /mob/living/simple_animal/cockroach/clownbug/death(gibbed)
-	if(deathcount > 20)
+	if(death_count > 20)
 		return ..()
 	var/turf/T = get_turf(src)
 	if(T)
 		var/mob/living/simple_animal/cockroach/clownbug/C = new /mob/living/simple_animal/cockroach/clownbug(T)
 		if(mind)
-			deathcount++
-			C.deathcount = deathcount
+			death_count++
+			C.death_count = death_count
 			mind.transfer_to(C)
 		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
 	..()
