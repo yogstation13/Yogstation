@@ -3,7 +3,7 @@
 #define SCIENCE "research"
 #define MONEY "money"
 
-// stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
+// stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 #define RAD_COLLECTOR_EFFICIENCY 80 	// radiation needs to be over this amount to get power
 #define RAD_COLLECTOR_COEFFICIENT 100
 #define RAD_COLLECTOR_STORED_OUT 0.1	// (this*100)% of stored power outputted per tick. Doesn't actualy change output total, lower numbers just means collectors output for longer in absence of a source
@@ -40,6 +40,10 @@
 	var/list/giving = list(/datum/gas/tritium = 1)
 	/// Last output used to calculate per minute
 	var/last_output = 0
+	// Higher machine tier will give more power
+	var/machine_tier = 0
+	// Higher power bonus will give more power
+	var/power_bonus = 0
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
@@ -290,7 +294,7 @@
 /obj/machinery/power/rad_collector/rad_act(pulse_strength)
 	. = ..()
 	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
-		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
+		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
 /obj/machinery/power/rad_collector/update_icon()
 	cut_overlays()
@@ -301,6 +305,14 @@
 	if(active)
 		add_overlay("on")
 
+//honestly this should be balanced
+/obj/machinery/power/rad_collector/RefreshParts()
+	for(var/obj/item/stock_parts/capacitor/c in component_parts)
+		power_bonus = initial(power_bonus) + c.rating
+	for(var/obj/item/stock_parts/manipulator/l in component_parts)
+		drainratio = initial(drainratio)/l.rating
+	for(var/obj/item/stock_parts/matter_bin/b in component_parts)
+		machine_tier = initial(machine_tier) + b.rating
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active

@@ -58,6 +58,9 @@ nobliumformation = 1001
 			maxb = R.priority
 	return maxb - maxa
 
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares the priority of two gas reactions
+	return b.priority - a.priority
+
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
@@ -464,7 +467,7 @@ nobliumformation = 1001
 		"TEMP" = 5000000)
 
 /datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
-	var/nob_formed = min(air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
+	var/nob_formed = min(max(air.get_moles(/datum/gas/bz), 1) * (log(air.return_temperature())**2), air.get_moles(/datum/gas/tritium)/10, air.get_moles(/datum/gas/nitrogen)/20)
 	var/old_heat_capacity = air.heat_capacity()
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)

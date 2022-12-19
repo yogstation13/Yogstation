@@ -291,6 +291,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
+"nQ" = (
+/obj/item/mecha_parts/chassis/clarke,
+/turf/open/floor/plasteel/recharge_floor,
+/area/shuttle/abandoned)
 "nZ" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
@@ -612,10 +616,6 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"wu" = (
-/obj/structure/mecha_wreckage/clarke,
-/turf/open/floor/plasteel/recharge_floor,
-/area/shuttle/abandoned)
 "wF" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -890,11 +890,6 @@
 "Hb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
-/area/shuttle/abandoned)
-"HA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/light,
-/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "HB" = (
 /obj/structure/mirror{
@@ -1216,19 +1211,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"QQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/structure/closet/crate,
-/obj/item/circuitboard/mecha/clarke/main,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
-/obj/item/circuitboard/mecha/clarke/peripherals,
-/obj/item/mecha_parts/chassis/clarke,
-/obj/item/mecha_parts/mecha_equipment/drill,
-/obj/item/mecha_parts/mecha_equipment/mining_scanner,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "Rg" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -32
@@ -1359,6 +1341,22 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
+"Uo" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/closet/crate,
+/obj/item/circuitboard/mecha/clarke/main,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/circuitboard/mecha/clarke/peripherals,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/part/clarke_head,
+/obj/item/mecha_parts/part/clarke_left_arm,
+/obj/item/mecha_parts/part/clarke_right_arm,
+/obj/item/mecha_parts/part/clarke_torso,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Ux" = (
 /obj/structure/window/shuttle,
@@ -1834,7 +1832,7 @@ ih
 IZ
 Pj
 Es
-QQ
+Uo
 EI
 "}
 (16,1,1) = {"
@@ -1863,11 +1861,11 @@ EI
 JC
 lv
 Jl
-HA
+qq
 qq
 Xh
 cF
-wu
+nQ
 LW
 EI
 "}

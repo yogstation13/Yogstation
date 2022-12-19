@@ -165,7 +165,7 @@
 
 /obj/item/disabled_boh
 	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless"
+	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless."
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "brokenpack"
 	item_state = "holdingpack"

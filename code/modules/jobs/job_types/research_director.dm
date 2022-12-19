@@ -40,6 +40,8 @@
 		/obj/item/borg/upgrade/ai = 2
 	)
 
+	smells_like = "theorhetical education"
+
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
 
@@ -51,7 +53,7 @@
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 
 	ears = /obj/item/radio/headset/heads/rd
-	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
 	uniform = /obj/item/clothing/under/rank/research_director
 	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
@@ -59,7 +61,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes sci budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/analyzer/ranged=1) //yogs - removes sci budget
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

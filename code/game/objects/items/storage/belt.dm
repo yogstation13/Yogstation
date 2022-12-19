@@ -102,6 +102,7 @@
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
+	new	/obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
 	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
@@ -115,6 +116,7 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
+	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
 	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	new /obj/item/storage/bag/construction/admin/full(src)
@@ -548,6 +550,7 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
+	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)

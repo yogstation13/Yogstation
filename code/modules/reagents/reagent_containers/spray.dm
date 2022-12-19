@@ -112,12 +112,12 @@
 				if(isliving(T))
 					var/mob/living/M = T
 					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
-						D.reagents.reaction(M, VAPOR)
+						D.reagents.reaction(M, TOUCH)
 						puff_reagent_left -= 1
 						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
 						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
 				else if(!range_left)
-					D.reagents.reaction(T, VAPOR)
+					D.reagents.reaction(T, TOUCH)
 			else
 				D.reagents.reaction(T, VAPOR)
 				if(ismob(T))

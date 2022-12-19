@@ -14,16 +14,14 @@
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 15 // yogs - Nerfed revolver damage
-	//knockdown = 60 //yogs - commented out
-	stamina = 35 // yogs
-	wound_bonus = -20
+	damage = 25 //High damaging but...
+	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
+	wound_bonus = -10
 	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
-	damage = 15
-	stamina = 0
+	damage = 20
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
@@ -34,8 +32,7 @@
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
 	name = ".38 Iceblox bullet"
-	damage = 15
-	stamina = 0
+	damage = 20
 	var/temperature = 100
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
@@ -46,8 +43,7 @@
 
 /obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
 	name = ".38 Gutterpunch bullet"
-	damage = 15
-	stamina = 0
+	damage = 20
 
 /obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
@@ -82,7 +78,7 @@
 
 /obj/item/projectile/bullet/pellet/a357_ironfeather
 	name = ".357 Ironfeather pellet"
-	damage = 8.5 //Total of 51 damage assuming PBS
+	damage = 8 //Total of 48 damage assuming PBS; so no, it's not a two-shot anymore
 	wound_bonus = 7 //So it might be able to actually wound things
 	bare_wound_bonus = 7
 	tile_dropoff = 0.4 //Loses 0.05 damage less per tile than standard damaging pellets
@@ -104,20 +100,20 @@
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
 	..()
-	tesla_zap(target, 4, 17500, TESLA_MOB_DAMAGE)
+	tesla_zap(target, 4, 20000, TESLA_MOB_DAMAGE) //Should do around 33 burn to the first target it
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"
 	damage = 35
-	armour_penetration = 35
+	armour_penetration = 30 //Not as good AP-wise relative to the stechy - both are a 5-hit against bulletproof armor, whereas this 3-hits normal armor versus 4 hits. Revolver has much lower RoF, too
 	penetrating = TRUE //Goes through a single mob before ending on the next target
 	penetrations = 1
 
 /obj/item/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
-	damage = 25 //Consider that they're also being thrown into the wall
-	wound_bonus = -50 //Minor chance of dislocation from the bullet itself
+	damage = 36 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
+	wound_bonus = -60 //Minor chance of dislocation from the bullet itself
 	sharpness = SHARP_NONE //Blunt
 
 /obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)
