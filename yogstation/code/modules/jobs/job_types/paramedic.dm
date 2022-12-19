@@ -29,6 +29,8 @@
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
 	)
 
+	smells_like = "pre-packaged oxygen"
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1

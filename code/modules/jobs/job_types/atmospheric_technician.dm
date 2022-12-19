@@ -31,6 +31,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "a gas leak"
+
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3
 	supervisors = "the captain and the head of personnel"

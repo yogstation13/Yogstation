@@ -9,3 +9,5 @@
 	spawn_positions = 0
 	department_head = null
 	department_flag = null
+
+	smells_like = "ethanol and isolation"
