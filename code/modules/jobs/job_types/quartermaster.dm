@@ -27,6 +27,8 @@
 		/obj/item/circuitboard/machine/emitter = 3
 	)
 
+	smells_like = "capitalism"
+
 /datum/job/qm/proc/OmegaStationChanges()
 	return TRUE
 

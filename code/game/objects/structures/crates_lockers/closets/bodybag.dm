@@ -267,7 +267,7 @@
 	if(!sinched)
 		for(var/mob/living/target in contents)
 			to_chat(target, span_userdanger("You feel the lining of [src] tighten around you! Soon, you won't be able to escape!"))
-		user.visible_message(span_notice("You begin sinching down the buckles on [src]."))
+		user.visible_message(span_notice("You begin cinching down the buckles on [src]."))
 		if(!(do_after(user, (sinch_time), src)))
 			return
 	sinched = !sinched

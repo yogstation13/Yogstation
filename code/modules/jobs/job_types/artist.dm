@@ -19,6 +19,8 @@
 	display_order = JOB_DISPLAY_ORDER_ARTIST
 	minimal_character_age = 18 //Young folks can be crazy crazy artists, something talented that can be self-taught feasibly
 
+	smells_like = "pain-t"
+
 /datum/outfit/job/artist
 	name = "Artist"
 	jobtype = /datum/job/artist

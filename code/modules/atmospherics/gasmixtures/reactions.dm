@@ -41,6 +41,9 @@
 		reaction = new r
 		. += reaction
 
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares the priority of two gas reactions
+	return b.priority - a.priority
+
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
@@ -485,7 +488,8 @@
 	var/initial_n2 = air.get_moles(GAS_N2)
 	var/initial_bz = air.get_moles(GAS_BZ)
 
-	var/nob_formed = min(initial_trit/10,initial_n2/20)
+	var/nob_formed = min(max(initial_bz, 1) * (log(air.return_temperature())**2), initial_trit / 10, initial_n2 / 20)
+	
 	var/old_thermal_energy = air.thermal_energy()
 
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(initial_bz,1)))

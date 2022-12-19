@@ -402,6 +402,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
+		if(H.can_see_reagents() && reagents?.total_volume > 0)
+			. += "Reagents detected: [reagents.total_volume]u of [LAZYLEN(reagents.reagent_list)] chemicals."
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
 			var/perpname = get_face_name(get_id_name(""))
 			if(perpname)

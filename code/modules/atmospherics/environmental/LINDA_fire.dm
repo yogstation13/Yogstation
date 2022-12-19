@@ -13,7 +13,7 @@
 	if(!air)
 		return
 
-	if (air.get_moles(GAS_O2) < 0.5)
+	if (air.get_moles(GAS_O2) < 0.5 || air.get_moles(GAS_HYPERNOB) > REACTION_OPPRESSION_THRESHOLD)
 		return
 
 	var/has_fuel = air.get_moles(GAS_PLASMA) > 0.5 || air.get_moles(GAS_TRITIUM) > 0.5 || air.get_moles(GAS_H2) > 0.5

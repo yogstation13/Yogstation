@@ -30,6 +30,8 @@
 	var/heat_stunmod = 0
 	var/last_heat_stunmod = 0
 
+	smells_like = "putrid scales"
+
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_lizard_name(gender)

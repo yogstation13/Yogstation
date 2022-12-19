@@ -157,21 +157,6 @@
 	icon_dead = "pixelgoat_dead"
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive
-	name = "Radioactive Goat"
-	desc = "I would not get near this goat if I were you."
-	icon = 'yogstation/icons/mob/goats/radioactive_goat.dmi'
-	icon_state = "radioactivegoat"
-	icon_living = "radioactivegoat"
-	icon_dead = "radioactivegoat_dead"
-	gold_core_spawnable = NO_SPAWN
-	light_power = 5
-	light_range = 4
-	light_color = LIGHT_COLOR_GREEN
-
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	radiation_pulse(src, 600) // It gets stronker as time passes
-
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"
 	desc = "WHAT DOES IT MEANNNNNNN!"

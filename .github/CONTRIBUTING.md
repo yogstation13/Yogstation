@@ -6,7 +6,7 @@ See [this page](http://tgstation13.org/wiki/Reporting_Issues) for a guide and fo
 
 ## Introduction
 
-Hello and welcome to Yogstation's contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below; at yogstation, we strive to maintain code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
+Hello and welcome to Yogstation's contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below; at Yogstation, we strive to maintain code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
 
 First things first, we want to make it clear how you can contribute (if you've never contributed before), as well as the kinds of powers the team has over your additions, to avoid any unpleasant surprises if your pull request is closed for a reason you didn't foresee.
 
@@ -16,21 +16,66 @@ Yogstation doesn't have a list of goals and features to add; we instead allow fr
 
 If you want to contribute the first thing you'll need to do is [set up Git](https://wiki.yogstation.net/wiki/Setting_up_git) so you can download the source code.
 
-We have a [list of guides on the wiki](https://wiki.yogstation.net/wiki/Guides#Development_and_Contribution_Guides) that will help you get started contributing to yogstation with Git and Dream Maker. For beginners, it is recommended you work on small projects like bugfixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
+We have a [list of guides on the wiki](https://wiki.yogstation.net/wiki/Guides#Development_and_Contribution_Guides) that will help you get started contributing to Yogstation with Git and Dream Maker. For beginners, it is recommended you work on small projects like bug fixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
 
 You can of course, as always, ask for help in #coder-public on the [discord](https://discord.gg/0keg6hQH05Ha8OfO). We're just here to have fun and help out, so please don't expect professional support.
 
 ## Meet the Team
 
-**Headcoder**
+**Head Developer**
 
-The Headcoder is responsible for controlling, adding, and removing maintainers from the project. In addition to filling the role of a normal maintainer, they have sole authority on who becomes a maintainer, as well as who remains a maintainer and who does not.
+The Head Developer(s) are responsible for controlling, adding, and removing maintainers from the project. In addition to filling the role of a normal maintainer, they have sole authority on who becomes a maintainer, as well as who remains a maintainer and who does not.
 
 **Maintainers**
 
-Maintainers are quality control. If a proposed pull request doesn't meet the following specifications, they can request you to change it, or simply just close the pull request. Maintainers are required to give a reason for closing the pull request.
+Maintainers are quality control. If a proposed pull request doesn't meet the specifications laid out in this document, they can request you to change it, or simply just close the pull request. Maintainers are required to wait 24 hours before closing a pull request, and must give a reason for closing the pull request.
 
 Maintainers can revert your changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
+
+## Yogstation GitHub Guidelines
+
+### General Rules
+
+**Yogstation is an open source community-driven project that allows everybody to contribute their ideas towards making rounds on Space Station 13 as fun as possible by means of pull requests and issue reports to the main repository.**
+
+**Although we allow conversation on GitHub in Pull Requests/Issues, we ask that all contributors and maintainers maintain a sense of decorum and respect the author and other people contributing to the discussion.** If someone is constantly contributing negative statements or is not constructive in their criticism they may be asked to stop or have their right to contribute removed in the future.
+
+**The GitHub Terms and Conditions must be followed.** Failure to follow the terms and conditions of GitHub may result in your exclusion from contribution in the future. 
+
+**We do not require people to be signed up on the forums or Discord in order to contribute to the GitHub; however, there must be a way for maintainers to be able to contact you, either via Discord (preferably) or e-mail when concerns with identity are found and need to be resolved.** Being banned from the server does not automatically ban you from GitHub and vice versa; however, this is up to the discretion of the head developers. Your pull requests may all be placed on hold until you accept this request for communication.
+
+### Contributors
+
+**When you are creating a Pull Request/Issue Report**, please make sure you name the Pull Request/Issue something relevant to what is being changed, added, or removed. Do not attempt to mislead people about the content of the Pull Request/Issue. Make sure you fill out any applicable templates as clearly and concisely as possible, and link any relevant issues your Pull Request solves.
+
+**We do not limit the amount of Pull Requests which can be submitted per day**; however, please do not submit more than is necessary. Additionally, please do not harass any member of the development team to expedite or merge your Pull Request. In certain circumstances, such as the case of a game breaking bug or issue, please reach out and inform them as soon as possible.
+
+**We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
+
+**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change.
+
+### Maintainers
+
+**As a maintainer, you are a representative of the development team, as such you should act with a somewhat professional manner when dealing with contributions, including constructively commenting on PRs.**
+
+**All maintainers should follow set standards for handling Pull Requests.** These standards include waiting 24 hours before merging or closing a Pull Request, as well as merging only Pull Requests that fall under your area of expertise (i.e. an Art Maintainer should not merge code, and a Code Maintainer should not merge art.) Lastly, revert Pull Requests should only be merged by a Head Developer. The above limitations do not apply to round-breaking or repo-breaking changes; however, please notify any head developers if this occurs.
+
+**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close draft Pull Requests if:
+* A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
+* A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
+* A contributor has not contributed to their draft Pull Request in a week’s time.
+* The Pull Request was opened with inadequate rationale or is lacking naming or following existing guidelines.
+
+
+**If a Maintainer/Director gets banned from the server/Discord, there will be an automatic review process triggered.** During this time access to GitHub merging and in-game ranks will be removed until the review is complete. After this review, roles and permissions may be returned depending on the result.
+
+### Contributor-Maintainer Disputes
+
+**If you have any complaints about maintainers or contributors you can use the GitHub report function**; however, abuse of this feature will be addressed if needed.
+
+**You may also raise an issue on discord by going to the #head-dev-complaints channel and creating a private thread**, then pinging head developers to make sure they are notified.
+
+**These policies are enforced by the Head Developer(s) and are subject to change at their discretion, with or without notification to the general public.**
 
 ## Specifications
 

@@ -20,8 +20,8 @@ REVIVAL_BRAIN_LIFE -1
 JOB_SPECIES_WHITELIST /datum/job/captain human
 JOB_SPECIES_WHITELIST /datum/job/hop human
 JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis,polysmorph
-JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis,polysmorph,ipc
+JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph,ipc
 JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
 
 

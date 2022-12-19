@@ -183,6 +183,17 @@
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
+// IPC survival box
+/obj/item/storage/box/ipc/PopulateContents()
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains sterile latex gloves."
@@ -1195,7 +1206,7 @@
 	new /obj/item/circuitboard/machine/protolathe(src)
 	new /obj/item/circuitboard/machine/destructive_analyzer(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
-	new /obj/item/circuitboard/computer/rdconsole(src)
+	new /obj/item/circuitboard/computer/rdconsole/ruin(src)
 
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"
