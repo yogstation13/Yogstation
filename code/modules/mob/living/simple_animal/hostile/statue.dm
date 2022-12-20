@@ -137,8 +137,11 @@
 
 // Cannot talk
 
+/mob/living/simple_animal/hostile/statue/IsVocal()
+	return FALSE
+
 /mob/living/simple_animal/hostile/statue/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	return 0
+	return FALSE
 
 // Turn to dust when gibbed
 
