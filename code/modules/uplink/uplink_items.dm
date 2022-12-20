@@ -2211,7 +2211,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
-	item = /obj/mecha/combat/honker/dark/loaded
+	item = /obj/mecha/combat/honker/dark/crew/loaded
 	cost = 20
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
