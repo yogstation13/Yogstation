@@ -5,7 +5,10 @@
 /mob/key_down(datum/keyinfo/I, client/user)
 	switch(I.action)
 		if(ACTION_SAY)
-			get_say()
+			if(can_speak())
+				get_say()
+			else
+				to_chat(src, span_warning("You cannot speak!"))
 			return
 		if(ACTION_ME)
 			me_verb()
