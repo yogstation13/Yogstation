@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: true 
-changes: 
-  - bugfix: "The St. Credit bible should no longer break upon stea- getting donations from those who have no id or bank accounts. Or if you decide to go and lose your ID."

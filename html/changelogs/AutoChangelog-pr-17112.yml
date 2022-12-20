@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Embedded objects should actually fall out now"
