@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - bugfix: "Plort machine no longer turns invisible when screwdrivered"
