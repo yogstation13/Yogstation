@@ -1,5 +1,6 @@
 /mob/living/carbon
 	blood_volume = BLOOD_VOLUME_GENERIC
+	var/boob_jiggle = FALSE
 
 /mob/living/carbon/Initialize()
 	. = ..()
