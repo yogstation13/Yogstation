@@ -67,7 +67,15 @@
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/shotgun/shell/Range()
+/obj/item/projectile/bullet/shotgun/slug/uranium
+	name = "depleted uranium slug"
+	icon_state = "ubullet"
+	damage = 26
+	armour_penetration = 60 // he he funny round go through armor
+	wound_bonus = -40
+	penetrating = TRUE //Goes through an infinite number of mobs
+
+/obj/item/projectile/bullet/shotgun/slug/Range()
 	..()
 	if(damage > 0)
 		damage -= tile_dropoff
@@ -128,23 +136,6 @@
 		var/mob/living/M = target
 		M.adjust_bodytemperature((temperature - M.bodytemperature))
 
-/obj/item/projectile/bullet/shotgun/slug/uranium
-	name = "depleted uranium slug"
-	icon_state = "ubullet"
-	damage = 26
-	armour_penetration = 60 // he he funny round go through armor
-	wound_bonus = -40
-	penetrating = TRUE //Goes through an infinite number of mobs
-
-/obj/item/projectile/bullet/pellet/Range()
-	..()
-	if(damage > 0)
-		damage -= tile_dropoff
-	if(stamina > 0)
-		stamina -= tile_dropoff_s
-	if(damage < 0 && stamina < 0)
-		qdel(src)
-
 /obj/item/projectile/bullet/pellet/shotgun_improvised
 	name = "improvised pellet"
 	damage = 6
@@ -159,6 +150,26 @@
 /obj/item/projectile/bullet/pellet/shotgun_improvised/on_range()
 	do_sparks(1, TRUE, src)
 	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot
+	name = "thundershot pellet"
+	damage = 3
+	sharpness = SHARP_NONE
+	hitsound = 'sound/magic/lightningbolt.ogg'
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
+	..()
+	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
+
+/obj/item/projectile/bullet/pellet/Range()
+	..()
+	if(damage > 0)
+		damage -= tile_dropoff
+	if(stamina > 0)
+		stamina -= tile_dropoff_s
+	if(damage < 0 && stamina < 0)
+		qdel(src)
 
 // Mech Scattershot
 
@@ -177,15 +188,4 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
-
-/obj/item/projectile/bullet/pellet/shotgun_thundershot
-	name = "thundershot pellet"
-	damage = 3
-	sharpness = SHARP_NONE
-	hitsound = 'sound/magic/lightningbolt.ogg'
-
-/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
-	..()
-	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
-	return BULLET_ACT_HIT
 	
