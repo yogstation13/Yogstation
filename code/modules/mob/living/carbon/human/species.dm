@@ -2120,7 +2120,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
-	var/tail = H.getorganslot(ORGAN_SLOT_TAIL)
+	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
 	return tail.get_availability(H.dna.species)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
