@@ -1,5 +1,6 @@
 /obj/item/organ/alien
 	icon_state = "xgibmid2"
+	visual = FALSE
 	var/list/alien_powers = list()
 
 /obj/item/organ/alien/Initialize()
