@@ -35,6 +35,8 @@
 		/obj/item/stack/sheet/mineral/uranium = 5,
 	)
 
+	smells_like = "germlessness"
+
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE
 

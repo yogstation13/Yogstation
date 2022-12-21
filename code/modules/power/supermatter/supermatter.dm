@@ -79,7 +79,6 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
-#define RADIATION_ANOMALY "radiation_anomaly"
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -618,8 +617,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
-			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -1055,6 +1052,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	name = "supermatter crystal"
 	icon_state = "darkmatter"
 
+// Base stucture if you want to build a supermatter shard engine
+// Will require one supermatter shard
+/obj/structure/supermatter_base_structure
+	name = "supermatter base structure"
+	desc = "A tremendously strong, robust, and environment-resistant structure formed of condensed metallic hydrogen. A supermatter shard can fit inside the condensed hyper-noblium container on top of this structure."
+	icon = 'icons/obj/supermatter.dmi'
+	icon_state = "darkmatter_base"
+	density = TRUE
+	max_integrity = 500
+	armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 70, RAD = 70, FIRE = 10, ACID = 10)
+	var/stage = 1
+
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 	for(var/atom/movable/P in orange(pull_range,center))
@@ -1084,9 +1093,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(GRAVITATIONAL_ANOMALY)
 				new /obj/effect/anomaly/grav(L, 250)
 			if(PYRO_ANOMALY)
-				new /obj/effect/anomaly/pyro(L, 200)
-			if(RADIATION_ANOMALY)
-				new /obj/effect/anomaly/radiation(L, 300)
+				new /obj/effect/anomaly/pyro(L, 400)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1156,8 +1163,52 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			supermatter_zap(target_structure, 5, power / 1.5)
 
+//////////////////////////////////////////////
+///////////FOR SUPERMATTER BUILDING///////////
+//////////////////////////////////////////////
+
+
+/obj/structure/supermatter_base_structure/proc/load(obj/item/hemostat/supermatter/T, mob/user)
+	if(!istype(T) || !T.sliver)
+		return FALSE
+	if(stage < 2)
+		T.sliver.forceMove(src)
+		T.sliver = null
+		T.icon_state = "supermatter_tongs"
+		stage++
+		icon_state = "[initial(icon_state)]_1"
+		playsound(src, 'sound/items/deconstruct.ogg', 75)
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src]."), span_notice("You carefully place down the supermatter shard on the \the [src]."))
+	else if(stage >= 2)
+		T.sliver.forceMove(src)
+		T.sliver = null
+		T.icon_state = "supermatter_tongs"
+		var/obj/machinery/power/supermatter_crystal/shard/shard = new(loc)
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src] and you can see \the [shard] engine is charging up."), span_notice("You carefully place down the supermatter shard on the \the [src] and you can see \the [shard] engine is charging up."))
+		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
+		shard.say(span_danger("Supermatter is being charged up, please stand back."))
+		qdel(src)
+		addtimer(CALLBACK(shard, /obj/machinery/power/supermatter_crystal/shard.proc/trigger), 60)
+	return TRUE
+	
+/obj/machinery/power/supermatter_crystal/shard/proc/trigger()
+	var/area/A = get_area(loc)
+	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
+	radio.talk_into(src, "Alert, new crystalline hyperstructure has been established in [A.map_name]", engineering_channel)
+	for(var/i=1 to 10)
+		addtimer(CALLBACK(src, .proc/chargedUp_zap), 30)
+
+/obj/machinery/power/supermatter_crystal/shard/proc/chargedUp_zap()
+	supermatter_zap(src, 7, 3000)
+	playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
+
+/obj/structure/supermatter_base_structure/attackby(obj/item/hemostat/supermatter/tongs, mob/user)
+	if(istype(tongs))
+		load(tongs, user)
+	else
+		return ..()
+
 #undef HALLUCINATION_RANGE
 #undef GRAVITATIONAL_ANOMALY
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
-#undef RADIATION_ANOMALY

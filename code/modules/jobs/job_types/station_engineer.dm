@@ -33,6 +33,8 @@
 		/obj/item/clothing/head/hardhat/red/upgraded = 1
 	)
 
+	smells_like = "welding fuel"
+
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5

@@ -1043,11 +1043,11 @@
 	supercharged = !supercharged
 	if(supercharged)
 		set_light(2) //Glows when charged
-		force_wielded += 12 //4 + 24 + 22 = 40 total damage because fuck you
+		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
 		armour_penetration = 100
 	else
 		set_light(0)
-		force_wielded -= 12 //Back to 4 + 24 = 28
+		force = initial(force) + (wielded ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
 

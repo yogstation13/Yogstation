@@ -33,6 +33,8 @@
 		/obj/item/paper/secretrecipe = 1
 	)
 
+	smells_like = "chemicals"
+
 /datum/job/chemist/proc/OmegaStationChanges()
 	return TRUE
 

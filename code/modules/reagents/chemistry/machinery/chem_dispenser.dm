@@ -357,8 +357,8 @@
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
