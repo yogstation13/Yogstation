@@ -15,12 +15,12 @@
 	
 /obj/item/buster/proc/hit(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/effect/proc_holder/spell/targeted/buster/proc/grab(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/item/buster
@@ -58,6 +58,9 @@
 	for(var/mob/living/carbon/C in targets)
 		var/GUN = new summon_path
 		C.put_in_r_hand(GUN)
+		if(C.active_hand_index % 2 == 1)
+			C.swap_hand(0) //making the grappling hook hand (right) the active one so using it is streamlined
+
 
 /obj/item/gun/magic/wire/Initialize()
 	. = ..()
@@ -125,7 +128,7 @@
 			if(istype(H))
 				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))
 				L.throw_at(get_step_towards(H,L), 8, 4)
-				L.Immobilize(1 SECONDS)
+				L.Immobilize(1.5 SECONDS)
 	if(iswallturf(target))
 		var/turf/W = target
 		zip(H, W)
@@ -139,33 +142,47 @@
 	qdel(wire)
 	return ..()
 
-/obj/effect/proc_holder/spell/targeted/buster/grap
+/obj/effect/proc_holder/spell/targeted/touch/buster/grap
 	name = "Grapple"
 	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off when \
 	throwing the victim."
+	hand_path = /obj/item/buster/graphand
+	school = "transmutation"
+	charge_max = 30
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "lariat"
-	charge_max = 30
+	sound = 'sound/magic/fleshtostone.ogg'
+	clothes_req = FALSE
 	var/jumpdistance = 4
 
-/obj/effect/proc_holder/spell/targeted/buster/grap/cast(list/targets, mob/living/user)
-	var/obj/item/buster/graphand/G = new()
-	var/result = (user.put_in_l_hand(G))
-	if(!result)
-		to_chat(user, span_warning("You can't do this with your left hand full!"))
+/obj/effect/proc_holder/spell/targeted/touch/buster/grap/cast(list/targets, mob/user = usr)
+	if(!QDELETED(attached_hand))
+		remove_hand(TRUE)
+		to_chat(user, span_notice("[dropmessage]"))
+		return
+
+	for(var/mob/living/carbon/C in targets)
+		if(!attached_hand)
+			if(ChargeHand(C))
+				recharging = FALSE
+				return
 
 /obj/item/buster/graphand
 	name = "open hand"
 	desc = "Your fingers occasionally curl as if they have their own urge to dig into something."
 	color = "#f14b4b"
+	var/obj/effect/proc_holder/spell/targeted/touch/attached_spell
 	var/throwdist = 5
 	var/throwdam = 15
 	var/slamdam = 10
-	var/objdam = 100
+	var/objdam = 50
 
 /obj/item/buster/graphand/afterattack(atom/target, mob/living/user, proximity)
 	var/turf/Z = get_turf(user)
 	var/list/thrown = list()
+	var/obj/item/bodypart/l_arm/robot/buster/L = user.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/r_arm/robot/buster/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/side = user.get_held_index_of_item(src)
 	target.add_fingerprint(user, FALSE)
 	if(!proximity)
 		return
@@ -175,12 +192,24 @@
 		return
 	if(isitem(target))
 		return
-	if(isstructure(target) || ismachinery(target))
-		qdel(src)
+	if(isstructure(target) || ismachinery(target) ||ismecha(target))
 		var/obj/I = target
 		var/old_density = I.density
+		qdel(src)
+		if(istype(I, /obj/mecha))
+			if(side == LEFT_HANDS)
+				(L?.set_disabled(TRUE))
+				addtimer(CALLBACK(L, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+			if(side == RIGHT_HANDS)
+				(R?.set_disabled(TRUE))
+				addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+			to_chat(user, span_userdanger("The strain of lifting [I] disables your arm for a few seconds!"))
+			I.anchored = FALSE
 		if(I.anchored == TRUE)
-			if(!istype(I, /obj/machinery/vending))
+			if(istype(I, /obj/machinery/vending))
+				I.anchored = FALSE
+				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
+			else
 				return
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
@@ -191,6 +220,8 @@
 		walk(I,0)
 		thrown |= I
 		I.density = old_density
+		if(istype(I, /obj/mecha))
+			I.anchored = TRUE
 		animate(I, transform = null, time = 0.5 SECONDS, loop = 0)
 	if(isliving(target))
 		var/mob/living/L = target
@@ -223,8 +254,6 @@
 				T.Remove(L)
 				user.put_in_l_hand(T)
 		thrown |= L
-	if(ismecha(target))
-		return
 	target.visible_message(span_warning("[user] throws [target]!"))
 	var/direction = user.dir
 	var/turf/P = get_turf(user)
@@ -280,7 +309,11 @@
 					var/atom/throw_target = get_edge_target_turf(K, direction)
 					K.throw_at(throw_target, 6, 4, user, 3)
 				animate(K, transform = null, time = 0.5 SECONDS, loop = 0)
-					
+
+/obj/item/buster/graphand/Destroy()
+	if(attached_spell)
+		attached_spell.on_hand_destroy(src)
+	return ..()
 
 /obj/item/buster/graphand/ignition_effect(atom/A, mob/user)
 	playsound(user,'sound/misc/fingersnap2.ogg', 20, 1)
@@ -468,7 +501,9 @@
 /obj/item/buster/megabuster/afterattack(atom/target, mob/living/user, proximity)
 	var/direction = user.dir
 	var/obj/item/bodypart/l_arm/R = user.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/r_arm/Q = user.get_bodypart(BODY_ZONE_R_ARM)
 	var/list/knockedback = list()
+	var/side = user.get_held_index_of_item(src)
 	var/mob/living/L = target
 	if(!proximity)
 		return
@@ -493,8 +528,12 @@
 			W.dismantle_wall(1)
 			qdel(src)
 			to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
-			(R?.set_disabled(TRUE))
-			addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+			if(side == LEFT_HANDS)
+				(R?.set_disabled(TRUE))
+				addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+			if(side == RIGHT_HANDS)
+				(Q?.set_disabled(TRUE))
+				addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
 		else
 			W.dismantle_wall(1)
 		user.visible_message(span_warning("[user] demolishes [W]!"))
@@ -503,8 +542,12 @@
 		var/obj/mecha/A = target
 		A.take_damage(mechdam)
 		user.visible_message(span_warning("[user] crushes [target]!"))
-		(R?.set_disabled(TRUE))
-		addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+		if(side == LEFT_HANDS)
+			(R?.set_disabled(TRUE))
+			addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+		if(side == RIGHT_HANDS)
+			(Q?.set_disabled(TRUE))
+			addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
 	if(isstructure(target) || ismachinery(target))
 		user.visible_message(span_warning("[user] strikes [target]!"))
 		var/obj/I = target
@@ -517,13 +560,17 @@
 			return
 	if(isliving(L))
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
-		var/armor = L.run_armor_check(limb_to_hit, MELEE)
+		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
 		qdel(src, force = TRUE)
-		(R?.set_disabled(TRUE))
 		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
 		shake_camera(L, 4, 3)
 		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
-		addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+		if(side == LEFT_HANDS)
+			(R?.set_disabled(TRUE))
+			addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+		if(side == RIGHT_HANDS)
+			(Q?.set_disabled(TRUE))
+			addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
 		if(!limb_to_hit)
 			limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
 		if(iscarbon(L))
@@ -624,11 +671,11 @@
 			unbuckle_mob(M)
 			add_fingerprint(user)
 
-/obj/effect/proc_holder/spell/targeted/buster/grap/right
+/obj/effect/proc_holder/spell/targeted/touch/buster/grap/right
 	desc = "Prepare your right hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off when \
 	throwing the victim."
 
-/obj/effect/proc_holder/spell/targeted/buster/grap/right/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/targeted/touch/buster/grap/right/cast(list/targets, mob/living/user)
 	var/obj/item/buster/graphand/G = new()
 	var/result = (user.put_in_r_hand(G))
 	if(!result)
@@ -637,7 +684,7 @@
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/right
 
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/right/cast(list/targets, mob/living/user)
-	var/obj/item/buster/megabuster/right/B = new()
+	var/obj/item/buster/megabuster/B = new()
 	user.visible_message(span_userdanger("[user]'s arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
@@ -648,128 +695,6 @@
 		user.visible_message(span_danger("[user]'s arm begins!"))
 		B.fizzle(user, right = TRUE)
 
-/obj/item/buster/megabuster/right
-
-/obj/item/buster/megabuster/right/afterattack(atom/target, mob/living/user, proximity)
-	var/direction = user.dir
-	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
-	var/list/knockedback = list()
-	var/mob/living/L = target
-	if(!proximity)
-		return
-	if(target == user)
-		return
-	if(isitem(target))
-		var/obj/I = target
-		if(!isturf(I.loc))
-			if(!istype(I, /obj/item/clothing/mask/cigarette))
-				to_chat(user, span_warning("You probably shouldn't attack something on your person."))
-			return
-		if(!istype(I, /obj/item/clothing/mask/cigarette))
-			I.take_damage(objdam)
-			user.visible_message(span_warning("[user] pulverizes [I]!"))
-		return
-	if(isopenturf(target))
-		return
-	playsound(L, 'sound/effects/gravhit.ogg', 60, 1)
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		if(!istype(W, /turf/closed/wall/r_wall))
-			W.dismantle_wall(1)
-		else
-			W.dismantle_wall(1)
-			qdel(src)
-			to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
-			(R?.set_disabled(TRUE))
-			addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
-		user.visible_message(span_warning("[user] demolishes [W]!"))
-		return
-	if(ismecha(target))
-		var/obj/mecha/A = target
-		A.take_damage(mechdam)
-		user.visible_message(span_warning("[user] crushes [target]!"))
-		(R?.set_disabled(TRUE))
-		addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
-	if(isstructure(target) || ismachinery(target))
-		user.visible_message(span_warning("[user] strikes [target]!"))
-		var/obj/I = target
-		if(I.anchored == TRUE)
-			I.take_damage(objdam)
-			return
-		I.take_damage(50)
-		knockedback |= I
-		if(QDELETED(I))
-			return
-	if(isliving(L))
-		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
-		var/armor = L.run_armor_check(limb_to_hit, MELEE)
-		qdel(src, force = TRUE)
-		(R?.set_disabled(TRUE))
-		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
-		shake_camera(L, 4, 3)
-		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
-		addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
-		if(!limb_to_hit)
-			limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
-		if(iscarbon(L))
-			if(limb_to_hit.brute_dam == limb_to_hit.max_damage)
-				if(istype(limb_to_hit, /obj/item/bodypart/chest))
-					knockedback |= L
-				else
-					var/atom/throw_target = get_edge_target_turf(L, direction)
-					to_chat(L, span_userdanger("[user] blows [limb_to_hit] off with inhuman force!"))
-					user.visible_message(span_warning("[user] punches [L]'s [limb_to_hit] clean off!"))
-					limb_to_hit.drop_limb()
-					limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
-					L.Paralyze(3 SECONDS)
-					return
-		L.SpinAnimation(0.5 SECONDS, 2)
-		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
-		user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
-		knockedback |= L
-	for(var/mob/M in view(7, user))
-		shake_camera(2, 3)
-	var/turf/P = get_turf(user)
-	for(var/i = 2 to flightdist)
-		var/turf/T = get_ranged_target_turf(P, direction, i)
-		if(T.density)
-			var/turf/closed/wall/W = T
-			for(var/mob/living/S in knockedback)
-				hit(user, S, colldam)
-				if(isanimal(S) && S.stat == DEAD)
-					S.gib()
-			if(!istype(W, /turf/closed/wall/r_wall))
-				W.dismantle_wall(1)
-			else
-				return
-		for(var/obj/D in T.contents)
-			if(D.density == TRUE && D.anchored == FALSE)
-				knockedback |= D
-				D.take_damage(50)
-			if(D.density == TRUE && D.anchored == TRUE)
-				D.take_damage(objdam)
-				if(D.density == TRUE)
-					return
-				for(var/mob/living/S in knockedback)
-					hit(user, S, colldam)
-					if(isanimal(S) && S.stat == DEAD)
-						S.gib()		
-		for(var/mob/living/M in T.contents)
-			hit(user, M, colldam)
-			for(var/mob/living/S in knockedback)
-				hit(user, S, colldam)
-			knockedback |= M
-		if(T)
-			for(var/atom/movable/K in knockedback)
-				K.SpinAnimation(0.2 SECONDS, 1)
-				sleep(0.001 SECONDS)
-				K.forceMove(T)
-				if(istype(T, /turf/open/space))
-					var/atom/throw_target = get_edge_target_turf(K, direction)
-					animate(K, transform = null, time = 0.5 SECONDS, loop = 0)
-					K.throw_at(throw_target, 6, 4, user, 3)
-					return
-
 /obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right/cast(list/targets, mob/user)
 	for(var/obj/item/gun/magic/wire/T in user)
 		qdel(T)
@@ -778,6 +703,8 @@
 	for(var/mob/living/carbon/C in targets)
 		var/GUN = new summon_path
 		C.put_in_l_hand(GUN)
+		if(C.active_hand_index % 2 == 0)
+			C.swap_hand(0) //switching to hook in left hand 
 
 //buster Arm
 
@@ -791,18 +718,18 @@
 /obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/C, special)
 	. = ..()
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/wire_snatch)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/grap)
+	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/buster/grap)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/mop)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/suplex)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/megabuster)
 
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/C = owner
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/wire_snatch)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/grap)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/buster/grap)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/mop)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/suplex)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/megabuster)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/megabuster/right)
 	..()
 
 /obj/item/bodypart/l_arm/robot/buster/attack(mob/living/L, proximity)
@@ -810,9 +737,9 @@
 		return
 	if(!ishuman(L))
 		return
-	replace_limb(L)//why isnt the arm sprite showing up
-
-/obj/item/bodypart/l_arm/robot/buster/screwdriver_act(mob/living/user, obj/item/I)
+	replace_limb(L)
+/obj/item/bodypart/l_arm/robot/buster/attack_self(mob/user)
+	. = ..()
 	to_chat(user, span_notice("You modify [src] to be installed on the right arm."))
 	new /obj/item/bodypart/r_arm/robot/buster(user)
 	qdel(src)
@@ -829,9 +756,10 @@
 		return
 	if(!ishuman(L))
 		return
-	replace_limb(L)//why isnt the arm sprite showing up
+	replace_limb(L)
 
-/obj/item/bodypart/r_arm/robot/buster/screwdriver_act(mob/living/user, obj/item/I)
+/obj/item/bodypart/r_arm/robot/buster/attack_self(mob/user)
+	. = ..()
 	to_chat(user, span_notice("You modify [src] to be installed on the left arm."))
 	new /obj/item/bodypart/l_arm/robot/buster(user)
 	qdel(src)
@@ -839,7 +767,7 @@
 /obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/C, special)
 	. = ..()
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/grap/right)
+	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/buster/grap/right)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/mop)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/suplex)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/megabuster/right)
@@ -847,7 +775,7 @@
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/C = owner
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/grap/right)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/buster/grap/right)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/mop)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/suplex)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/megabuster/right)
