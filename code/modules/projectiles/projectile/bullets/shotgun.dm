@@ -1,6 +1,8 @@
 /obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
+	var/tile_dropoff = 2
+	var/tile_dropoff_s = 1.5
 	damage = 46
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
@@ -65,10 +67,19 @@
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
+/obj/item/projectile/bullet/shotgun/shell/Range()
+	..()
+	if(damage > 0)
+		damage -= tile_dropoff
+	if(stamina > 0)
+		stamina -= tile_dropoff_s
+	if(damage < 0 && stamina < 0)
+		qdel(src)
+
 /obj/item/projectile/bullet/pellet
 	speed = 0.5 //Shotgun = slower
-	var/tile_dropoff = 0.45
-	var/tile_dropoff_s = 0.35
+	var/tile_dropoff = 0.4
+	var/tile_dropoff_s = 0.3
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
