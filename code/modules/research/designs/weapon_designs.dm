@@ -120,7 +120,7 @@
 	desc = "A high-explosive breaching round for a 12 gauge shotgun."
 	id = "heslug"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 7500) //More inefficient because you don't have to put it together manually
+	materials = list(/datum/material/iron = 7500, /datum/material/plasma = 500) //More inefficient because you don't have to put it together manually
 	build_path = /obj/item/ammo_casing/shotgun/frag12
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
