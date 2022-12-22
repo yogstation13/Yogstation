@@ -198,6 +198,19 @@
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
 	var/obj/item/card/id/id_cardu = user.get_idcard()
+	if(!id_card)
+		to_chat(user,span_notice("[H] doesn't seem to have an id card to 'donate' from for your blessing..."))
+		return
+	if(!id_card.registered_account)
+		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
+		return
+	if(!id_cardu)
+		to_chat(user,span_notice("You have no id card to recieve your 'donation'"))
+		return
+	if(!id_cardu.registered_account)
+		to_chat(user,span_notice("You have no bank account to recieve your 'donation'"))
+		return
+
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
 	if(money_to_donate <= 0)
