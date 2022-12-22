@@ -1872,7 +1872,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/vert_grip
 	name = "Vertical Grip"
 	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
-	item = /obj/item/attachment/grip
+	item = /obj/item/attachment/grip/vertical
 	cost = 2
 
 /datum/uplink_item/device_tools/laser_sight
