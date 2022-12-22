@@ -121,7 +121,7 @@
 
 /obj/item/ammo_casing/shotgun/laserbuckshot
 	name = "laser buckshot"
-	desc = "An advanced shotgun shell that uses  micro lasers to replicate the effects of a laser weapon in a ballistic package."
+	desc = "An advanced shotgun shell that uses micro lasers to replicate the effects of a laser weapon in a ballistic package."
 	icon_state = "lshell"
 	projectile_type = /obj/item/projectile/beam/laser/buckshot
 	pellets = 5

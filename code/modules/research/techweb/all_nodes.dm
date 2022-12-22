@@ -728,6 +728,14 @@
 	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox", "c38_gutterpunch")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/experimental_shells
+	id = "experimental_shells"
+	display_name = "Experimental Shells"
+	description = "A set of experimental techshells, already assembled for quick usage."
+	prereq_ids = list("exotic_ammo")
+	design_ids = list("pslug", "Ishell", "ionshell", "heslug", "lasershell", "thundershell", "duslug", "cryoshell")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
 /datum/techweb_node/gravity_gun
 	id = "gravity_gun"
 	display_name = "One-point Bluespace-gravitational Manipulator"

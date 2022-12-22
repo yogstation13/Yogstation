@@ -85,6 +85,86 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/pulse_slug
+	name = "Pulse Slug"
+	desc = "A primed energy shell that releases a single projectile that is capable of significantly damaging structures."
+	id = "pslug"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 500, /datum/material/uranium = 100) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/pulseslug
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/dragonbreath_shell
+	name = "Dragonbreath Shell"
+	desc = "A shotgun shell which fires a spread of incendiary pellets."
+	id = "Ishell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4500, /datum/material/glass = 400) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/dragonsbreath
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/ion_shell
+	name = "Ion Shell"
+	desc = "A primed energy shell that releases several pellets that replicate the effects of ion projectiles."
+	id = "ionshell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4500, /datum/material/glass = 1500, /datum/material/silver = 300, /datum/material/gold = 300, /datum/material/uranium = 100) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/ion
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/frag12_slug
+	name = "FRAG-12 Slug"
+	desc = "A high-explosive breaching round for a 12 gauge shotgun."
+	id = "heslug"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/frag12
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/laser_buckshot_shell
+	name = "Laser Buckshot Shell"
+	desc = "An advanced shotgun shell that uses micro lasers to replicate the effects of a laser weapon in a ballistic package."
+	id = "lasershell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4500, /datum/material/glass = 400) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/laserbuckshot
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/thundershot_shell
+	name = "Thundershot Shell"
+	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
+	id = "thundershell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 400, /datum/material/gold = 200) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/thundershot
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/du_slug
+	name = "Depleted Uranium Slug"
+	desc = "A relatively low-tech shell with very impressive armor penetration capabilities."
+	id = "duslug"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/uranium = 6000) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/uraniumpenetrator
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/cryo_shell
+	name = "Cryoshot Shell"
+	desc = "A state-of-the-art shell that snap freezes targets without causing them much harm."
+	id = "cryoshell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4500, /datum/material/glass = 400) //More inefficient because you don't have to put it together manually
+	build_path = /obj/item/ammo_casing/shotgun/cryoshot
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/pin_testing
 	name = "Test-Range Firing Pin"
 	desc = "This safety firing pin allows firearms to be operated within proximity to a firing range."

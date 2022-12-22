@@ -503,6 +503,10 @@
 	ui_x = -704
 	ui_y = -672
 
+/datum/techweb_node/experimental_shells
+	ui_x = -786
+	ui_y = -736
+
 /datum/techweb_node/gravity_gun
 	ui_x = -320
 	ui_y = -288
