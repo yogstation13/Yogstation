@@ -8,8 +8,7 @@
 	..()
 	if(ishuman(target))
 		target.reagents.add_reagent(/datum/reagent/toxin/polonium/ebow, 5)
-		target.reagents.add_reagent(/datum/reagent/toxin/mutagen, 8)
-		target.reagents.add_reagent(/datum/reagent/peaceborg/tire, 8)
+		target.reagents.add_reagent(/datum/reagent/toxin/relaxant, 8)
 		target.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 8)
 		target.reagents.add_reagent(/datum/reagent/toxin/anacea, 4)
 

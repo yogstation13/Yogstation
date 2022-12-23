@@ -239,6 +239,20 @@
 		M.hallucination += 5
 	return ..()
 
+/datum/reagent/toxin/relaxant
+	name = "Muscle Relaxant"
+	description = "A potent paralytic chemical that causes the patient to move and act slower."
+	toxpwr = 0
+
+/datum/reagent/toxin/relaxant/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.next_move_modifier = L.next_move_modifier * 3
+
+/datum/reagent/toxin/relaxant/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	L.next_move_modifier = L.next_move_modifier / 3
+
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
