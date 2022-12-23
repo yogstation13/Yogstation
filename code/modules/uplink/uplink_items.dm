@@ -1337,7 +1337,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 60 //Yogs change
+	cost = 35 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	cant_discount = TRUE
 	
@@ -1872,7 +1872,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/vert_grip
 	name = "Vertical Grip"
 	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
-	item = /obj/item/attachment/scope/holo
+	item = /obj/item/attachment/grip/vertical
 	cost = 2
 
 /datum/uplink_item/device_tools/laser_sight
@@ -1880,6 +1880,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An aesthetic laser sight that improves your accuracy and shows you where you're aiming."
 	item = /obj/item/attachment/laser_sight
 	cost = 2
+
+/datum/uplink_item/device_tools/mechpilotguide
+	name = "Mech Piloting for Dummies"
+	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
+	item = /obj/item/book/granter/mechpiloting
+	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
 // Implants
 /datum/uplink_item/implants
@@ -2021,10 +2027,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Neural Overclocker Implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
-	cost = 20
+	cost = 14
 	surplus = 0
 	limited_stock = 1
-	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
 /datum/uplink_item/implants/augmentation
 	name = "Full Augmentation Kit"
@@ -2038,7 +2043,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/superior_augmentation
 	name = "Superior Augmentation Kit"
 	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
-			Finally, it includes an implant to render the subject and their innards immune to EMP. Repair of body will still require a welder and wires."
+			Finally, it includes an implant to render the subject and their innards immune to EMP; however, it will shut down briefly if triggered too often. Repair of the body will still require a welder and wires."
 	item = /obj/item/storage/box/syndie_kit/augmentation/superior
 	cost = 45
 	surplus = 0
@@ -2207,7 +2212,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 35
+	cost = 20
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0

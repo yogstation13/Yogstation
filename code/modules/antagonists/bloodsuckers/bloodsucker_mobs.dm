@@ -60,6 +60,7 @@
 	response_help = "pokes"
 	response_disarm = "pushes"
 	response_harm = "punches"
+	faction = list("hostile", "bloodhungry")
 	maxHealth = 250
 	health = 250
 	attacktext = "rends"

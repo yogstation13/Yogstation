@@ -31,6 +31,8 @@
 		/obj/item/grenade/plastic/miningcharge/mega = 1,
 		/obj/item/card/mining_point_card/fivethousand = 1
 	)
+	
+	smells_like = "ash and dust"
 
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
