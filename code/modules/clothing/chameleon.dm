@@ -503,8 +503,8 @@
 	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
 	if(vchange)
 		flags_inv |= HIDEFACE
-	else if(current_disguise)
-		flags_inv = initial(current_disguise.flags_inv)
+	else if(chameleon_action.current_disguise)
+		flags_inv = initial(chameleon_action.current_disguise.flags_inv)
 
 /obj/item/clothing/mask/chameleon/drone
 	//Same as the drone chameleon hat, undroppable and no protection
