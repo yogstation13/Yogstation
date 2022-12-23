@@ -689,7 +689,7 @@
 					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						stomach.adjust_charge(5)
+						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return

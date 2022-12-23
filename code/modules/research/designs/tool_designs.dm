@@ -23,6 +23,16 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/rangedanalyzer
+	name = "Experimental Long-range Gas Analyzer"
+	desc = "An experimental gas analyzer capable of operating at long distance"
+	id = "rangedanalyzer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
+	build_path = /obj/item/analyzer/ranged
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/shuttlecreator
 	name = "Rapid Shuttle Designator"
 	desc = "An advanced device capable of defining areas for use in the creation of shuttles"

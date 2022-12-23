@@ -31,6 +31,8 @@
 		/obj/item/grenade/chem_grenade/holy = 1 //holy hand grenade
 	)
 
+	smells_like = "zealous fervor"
+
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
 	. = ..()
