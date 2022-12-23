@@ -86,7 +86,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow
 	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects a some poison into the victim."
+	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
