@@ -225,6 +225,8 @@
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
 			CL.flags_inv = initial(PCL.flags_inv)
+			if(istype(CL, /obj/item/clothing/mask/chameleon))
+				CL.flags_inv |= HIDEFACE // We always want the chameleon mask hiding the face!
 	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
@@ -342,6 +344,7 @@
 	icon_state = "meson"
 	item_state = "meson"
 	resistance_flags = NONE
+	body_parts_covered = HEAD
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
