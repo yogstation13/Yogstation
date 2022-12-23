@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - imageadd: "Fixes a wonky pixel for two uniforms"
