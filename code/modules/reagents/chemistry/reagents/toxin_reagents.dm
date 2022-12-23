@@ -395,10 +395,15 @@
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
 	process_flags = ORGANIC | SYNTHETIC
+	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += 40
+	M.radiation += radpower
 	..()
+
+/datum/reagent/toxin/polonium/ebow
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	radpower = 80
 
 /datum/reagent/toxin/histamine
 	name = "Histamine"
