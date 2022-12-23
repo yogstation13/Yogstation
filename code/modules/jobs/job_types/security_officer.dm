@@ -36,6 +36,8 @@
 		///obj/item/melee/baton/security/boomerang/loaded = 1
 	)
 
+	smells_like = "donuts"
+
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14
 	spawn_positions = 10

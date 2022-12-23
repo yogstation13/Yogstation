@@ -134,7 +134,3 @@
 	prereq_ids = list("shuttle_route_upgrade_hyper", "alientech")
 	design_ids = list("engine_void", "disk_shuttle_route_void")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-
-
-/datum/techweb_node/nanite_harmonic
-	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")

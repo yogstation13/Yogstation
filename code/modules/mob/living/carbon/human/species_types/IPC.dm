@@ -46,6 +46,8 @@
 
 	var/datum/action/innate/change_screen/change_screen
 
+	smells_like = "industrial lubricant"
+
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name

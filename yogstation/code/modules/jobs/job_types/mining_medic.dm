@@ -27,6 +27,7 @@
 
 	changed_maps = list("EclipseStation")
 
+	smells_like = "bloody soot"
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,

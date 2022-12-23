@@ -28,6 +28,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "monkey hair"
+
 /datum/job/geneticist/proc/OmegaStationChanges()
 	return TRUE
 

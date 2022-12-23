@@ -17,6 +17,8 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	smells_like = "inorganic indifference"
+
 /datum/job/cyborg/proc/EclipseStationChanges()
 	spawn_positions = 3
 

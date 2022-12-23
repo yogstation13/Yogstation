@@ -70,11 +70,7 @@
 	var/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		/datum/antagonist/monsterhunter,
-		/datum/antagonist/changeling,
-		/datum/antagonist/cult,
-		/datum/antagonist/heretic,
 		/datum/antagonist/xeno,
-		/datum/antagonist/obsessed
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
