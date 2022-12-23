@@ -20,6 +20,12 @@
 	name = "incendiary slug"
 	damage = 20
 
+/obj/item/projectile/bullet/incendiary/shotgun/on_hit(atom/target, blocked = FALSE)
+	if(istype(target, /mob/living/carbon/human)
+		if(isdarkspawn(target)
+			target.Dust()
+		
+
 /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
 	name = "dragonsbreath pellet"
 	damage = 5
