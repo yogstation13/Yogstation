@@ -88,7 +88,7 @@
 	damage = 8 //Total of 48 damage assuming PBS; so no, it's not a two-shot anymore
 	wound_bonus = 7 //So it might be able to actually wound things
 	bare_wound_bonus = 7
-	tile_dropoff = 0.4 //Loses 0.05 damage less per tile than standard damaging pellets
+	tile_dropoff = 0.35 //Loses 0.05 damage less per tile than standard damaging pellets
 	wound_falloff_tile = -1.5 //Still probably won't cause wounds at range
 
 /obj/item/projectile/bullet/a357/nutcracker
