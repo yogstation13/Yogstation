@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed Dark H.O.N.K. wreckage not reconstructing into a Dark H.O.N.K."
+  - bugfix: "Fixed traitor Dark H.O.N.K. requiring nukie access"
