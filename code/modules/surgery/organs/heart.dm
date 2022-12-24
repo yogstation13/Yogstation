@@ -33,7 +33,7 @@
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
-		icon_state = "[icon_base]-off"
+		icon_state = "[icon_base]"
 
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()

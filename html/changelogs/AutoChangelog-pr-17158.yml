@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Protolathe .38 speed loader design moved to armory lathe"
+  - tweak: ".38 printed at an autolathe can only be done while hacked, also only prints single bullets"
