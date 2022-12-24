@@ -8,7 +8,7 @@
 
 	//PLAYER GENERATION
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
 			players += player
 			if(player.client.prefs.yogtoggles & QUIET_ROUND)
 				player.mind.quiet_round = TRUE
