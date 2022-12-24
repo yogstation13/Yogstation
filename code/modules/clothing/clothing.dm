@@ -343,13 +343,13 @@ BLIND     // can't see anything
 	var/icon/female_clothing_icon	= icon(icon, t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
 	var/icon/female_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
-	GLOB.female_clothing_icons[index] = SSdemo.embed_resource(fcopy_rsc(female_clothing_icon)) //Then it saves the icon in a global list so it doesn't have to make it again
+	GLOB.female_clothing_icons[index] = fcopy_rsc(female_clothing_icon) //Then it saves the icon in a global list so it doesn't have to make it again
 
 /proc/generate_skinny_clothing(index,t_color,icon,type) //Works the exact same as above but for skinny people
 	var/icon/skinny_clothing_icon	= icon(icon, t_color)
 	var/icon/skinny_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
 	skinny_clothing_icon.Blend(skinny_s, ICON_MULTIPLY)
-	GLOB.skinny_clothing_icons[index] = SSdemo.embed_resource(fcopy_rsc(skinny_clothing_icon))
+	GLOB.skinny_clothing_icons[index] = fcopy_rsc(skinny_clothing_icon)
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
