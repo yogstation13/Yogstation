@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - tweak: "CentCom won't tell you to call the shuttle if it's already been called"
