@@ -1,0 +1,4 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - tweak: "Tweaks the weights of AI laws for roundstart and Ion laws."
