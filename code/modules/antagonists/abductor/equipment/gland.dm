@@ -462,7 +462,7 @@
 	owner.adjustToxLoss(-5, TRUE, TRUE)
 	..()
 
-/obj/item/organ/heart/gland/plasma
+/obj/item/organ/heart/gland/gas //Yogstation change: plasma -> gas
 	true_name = "effluvium sanguine-synonym emitter"
 	cooldown_low = 2 MINUTES
 	cooldown_high = 3 MINUTES
@@ -470,12 +470,12 @@
 	mind_control_uses = 1
 	mind_control_duration = 80 SECONDS
 
-/obj/item/organ/heart/gland/plasma/activate()
+/obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
-	addtimer(CALLBACK(src, .proc/vomit_plasma), 20 SECONDS)
+	addtimer(CALLBACK(src, .proc/vomit_gas), 20 SECONDS) //Yogstation change: plasma -> gas
 
-/obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
+/obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas
 	if(!owner)
 		return
 	owner.visible_message(span_danger("[owner] vomits a cloud of miasma!")) //Yogstation change: plasma -> miasma
