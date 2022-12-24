@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: ".357 has innate 15 AP now, Heartpiercer buffed to compensate"
-  - tweak: "All pistol and revolver ammunition types have scarier wound bonuses that should be semi-relevant so you can't just shrug off being SHOT"
-  - tweak: "All revolver ammo types have half the normal wound chance falloff"

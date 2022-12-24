@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "10mm incind and EMP now both do 25 damage instead of 20"
-  - tweak: "10mm EMP heavy EMPs the tile it hits and does a light EMP in the tile around rather than just a light EMP on its own tile so it actually counters sec"

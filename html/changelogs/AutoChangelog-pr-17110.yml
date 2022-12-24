@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Black powder metabolization rate increased (0.05 -> 1)"
-  - tweak: "Black powder explosion temp required increased (474 -> 737)"

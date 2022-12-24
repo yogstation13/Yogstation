@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Changed all ship directions to have compass direction hints e.g. Port will now say (W) as in \"West\""
