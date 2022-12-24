@@ -8,7 +8,7 @@
 
 
 /area/awaymission/BMPship/Aft
-	name = "Aft Block"
+	name = "Aft (S) Block"
 	icon_state = "away1"
 	requires_power = TRUE
 
@@ -18,7 +18,7 @@
 	requires_power = TRUE
 
 /area/awaymission/BMPship/Fore
-	name = "Fore Block"
+	name = "Fore (N) Block"
 	icon_state = "away3"
 	requires_power = TRUE
 
