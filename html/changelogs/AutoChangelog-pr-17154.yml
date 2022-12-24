@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Chameleon armor and glasses now provide armor correctly"
-  - bugfix: "Chameleon items will no longer hide parts of your face or body if the disguised item does not. Chameleon masks will always hide your face (but not always headset, glasses, etc) if the voice changer is on."
