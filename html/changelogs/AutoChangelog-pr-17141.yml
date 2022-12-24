@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Shotgun slugs now lose 2 damage and 1.5 stamina damage per tile traveled"
+  - tweak: "Pellet damage falloff is minorly less bad"
