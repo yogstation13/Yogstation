@@ -1,0 +1,4 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "Adds GPS Signals to Tumor Fauna"

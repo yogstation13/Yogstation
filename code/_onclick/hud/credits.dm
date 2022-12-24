@@ -16,7 +16,6 @@ GLOBAL_LIST(end_titles)
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.show_credits)
 			C.screen += new /atom/movable/screen/credit/title_card(null, null, SSticker.mode.title_icon)
-	SSdemo.flush()
 	sleep(CREDIT_SPAWN_SPEED * 3)
 	for(var/i in 1 to GLOB.end_titles.len)
 		var/C = GLOB.end_titles[i]
@@ -24,7 +23,6 @@ GLOBAL_LIST(end_titles)
 			continue
 
 		create_credit(C)
-		SSdemo.flush()
 		sleep(CREDIT_SPAWN_SPEED)
 
 

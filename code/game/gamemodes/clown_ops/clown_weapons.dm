@@ -300,6 +300,24 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache()//The mousetrap mortar was not up-to-snuff.
 	ME.attach(src)
 
+/obj/mecha/combat/honker/dark/crew
+	operation_req_access = list()
+	internals_req_access = list()
+	wreckage = /obj/structure/mecha_wreckage/honker/dark/crew
+
+/obj/mecha/combat/honker/dark/crew/loaded/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker()
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/bombanana()//Needed more offensive weapons.
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache()//The mousetrap mortar was not up-to-snuff.
+	ME.attach(src)
+
 /obj/structure/mecha_wreckage/honker/dark
 	name = "\improper Dark H.O.N.K wreckage"
 	icon_state = "darkhonker-broken"
+	orig_mecha = /obj/mecha/combat/honker/dark
+
+/obj/structure/mecha_wreckage/honker/dark/crew
+	orig_mecha = /obj/mecha/combat/honker/dark/crew

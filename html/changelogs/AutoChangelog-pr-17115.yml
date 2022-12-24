@@ -1,0 +1,5 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - rscadd: "Adds name logging to paystand naming"
+  - tweak: "tweaks paystands to have more personality"

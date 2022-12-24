@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "If a gun is more inaccurate than most other guns AND it fires in bursts, setting it to semi-automatic sets its inaccuracy to normal (for any gun)"

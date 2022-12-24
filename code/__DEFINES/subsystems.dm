@@ -213,6 +213,8 @@
 			}\
 		}\
 		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		if(isturf(A)){SSdemo.mark_turf(A);}\
+		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
 	} while (FALSE)
 
 
