@@ -1,0 +1,4 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - tweak: "lowered volume on suit storage unit open/closing"
