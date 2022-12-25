@@ -29,7 +29,7 @@
 /datum/job/lawyer/proc/OmegaStationChanges()
 	return TRUE
 
-/datum/job/psych/proc/GaxStationChanges()
+/datum/job/lawyer/proc/GaxStationChanges()
 	return TRUE
 
 /datum/outfit/job/lawyer
