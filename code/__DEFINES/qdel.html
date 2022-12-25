@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;qdel.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/qdel.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/qdel.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/81026581431b4fbf8749d310d7531be124d38d7f/code/__DEFINES/qdel.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/qdel.html#define/GC_QUEUE_FILTER">GC_QUEUE_FILTER</a></th><td>short queue to filter out quick gc successes so they don't hang around in the main queue for 5 minutes</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/GC_QUEUE_CHECK">GC_QUEUE_CHECK</a></th><td>main queue that waits 5 minutes because thats the longest byond can hold a reference to our shit.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/GC_QUEUE_HARDDELETE">GC_QUEUE_HARDDELETE</a></th><td>short queue for things that hard delete instead of going thru the gc subsystem, this is purely so if they <em>can</em> softdelete, they will soft delete rather then wasting time with a hard delete.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/GC_QUEUE_COUNT">GC_QUEUE_COUNT</a></th><td>Number of queues, used for allocating the nested lists. Don't forget to increase this if you add a new queue stage</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/GC_QUEUE_CHECK"><aside class="declaration">#define </aside>GC_QUEUE_CHECK
+            <a href="https://github.com/yogstation13/Yogstation/blob/81026581431b4fbf8749d310d7531be124d38d7f/code/__DEFINES/qdel.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 16"/></a>
+    </h3>
+    <p>main queue that waits 5 minutes because thats the longest byond can hold a reference to our shit.</p><h3 id="define/GC_QUEUE_COUNT"><aside class="declaration">#define </aside>GC_QUEUE_COUNT
+            <a href="https://github.com/yogstation13/Yogstation/blob/81026581431b4fbf8749d310d7531be124d38d7f/code/__DEFINES/qdel.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 18"/></a>
+    </h3>
+    <p>Number of queues, used for allocating the nested lists. Don't forget to increase this if you add a new queue stage</p><h3 id="define/GC_QUEUE_FILTER"><aside class="declaration">#define </aside>GC_QUEUE_FILTER
+            <a href="https://github.com/yogstation13/Yogstation/blob/81026581431b4fbf8749d310d7531be124d38d7f/code/__DEFINES/qdel.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 15"/></a>
+    </h3>
+    <p>short queue to filter out quick gc successes so they don't hang around in the main queue for 5 minutes</p><h3 id="define/GC_QUEUE_HARDDELETE"><aside class="declaration">#define </aside>GC_QUEUE_HARDDELETE
+            <a href="https://github.com/yogstation13/Yogstation/blob/81026581431b4fbf8749d310d7531be124d38d7f/code/__DEFINES/qdel.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 17"/></a>
+    </h3>
+    <p>short queue for things that hard delete instead of going thru the gc subsystem, this is purely so if they <em>can</em> softdelete, they will soft delete rather then wasting time with a hard delete.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/81026581431b4fbf8749d310d7531be124d38d7f">8102658</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
+</body>
+</html>
