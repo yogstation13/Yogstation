@@ -45,7 +45,7 @@
 		body += "\[<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.permissions.admin_datums[M.client.ckey] || GLOB.permissions.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank_name() : "Player"]</A>\]"
 		if(CONFIG_GET(flag/use_exp_tracking))
 			body += "\[<A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living() + "</a> | "
-			body += " <A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M)]'>Toggle Exempt</a>\]"
+			body += " <A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M.client)]'>Toggle Exempt</a>\]"
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
