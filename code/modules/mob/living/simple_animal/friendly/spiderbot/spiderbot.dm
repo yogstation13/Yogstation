@@ -44,6 +44,10 @@
 	)
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
+	var/default_speed = -1
+	var/slowed_speed = 2
+	var/clean_on_move = FALSE
+
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/mmi))
 		var/obj/item/mmi/M = O
@@ -128,6 +132,7 @@
 				O.forceMove(src)
 				spiderbot_upgrades += O.type
 				to_chat(user, span_warning("You insert the assembly into one of [src]'s upgrade slots!"))
+				update_upgrades()
 				return TRUE
 		else
 			to_chat(user, span_warning("The [O] won't fit into the [src]."))
@@ -204,6 +209,7 @@
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
 			  /mob/living/simple_animal/spiderbot/proc/get_item))
 	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_death)
+	update_upgrades()
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_MOB_DEATH)

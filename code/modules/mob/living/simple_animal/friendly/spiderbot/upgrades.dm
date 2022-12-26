@@ -1,5 +1,7 @@
 // Contains all the interaction procs for spiderbots, also contains upgrade stuff
-
+/mob/living/simple_animal/spiderbot/proc/update_upgrades()
+	if("/obj/item/bot_assembly/cleanbot" in spiderbot_upgrades)
+		add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/cleaning_mode()))
 //Hiding under tables
 /mob/living/simple_animal/spiderbot/proc/hide()
 	set name = "Hide"
@@ -62,4 +64,22 @@
 		return 0
 
 	to_chat(src, span_warning("There is nothing of interest to take."))
+	return 0
+
+mob/living/simple_animal/spiderbot/proc/cleaning_mode()
+	set name = "Switch cleaning protocols"
+	set category = "Spiderbot"
+	set desc = "Allows you to clean when moving, but slows you down"
+
+	if(clean_on_move == FALSE)
+		clean_on_move = TRUE
+		AddComponent(/datum/component/cleaning)
+		speed = slowed_speed
+		to_chat(src, span_warning("You turn on your cleaning protocols."))
+	else
+		clean_on_move = FALSE
+		qdel(GetComponent(/datum/component/cleaning))
+		speed = default_speed
+		to_chat(src, span_warning("You disable your cleaning protocols."))
+	
 	return 0
