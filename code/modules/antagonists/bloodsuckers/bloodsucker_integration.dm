@@ -137,5 +137,6 @@
 	// Special check: Nosferatu will always be Pale Death
 	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
 		return BLOODSUCKER_HIDE_BLOOD
+	return BLOODSUCKER_SHOW_BLOOD
 	// If a Bloodsucker is malnourished, AND if his temperature matches his surroundings (aka he hasn't fed recently and looks COLD)
 //	return blood_volume < BLOOD_VOLUME_OKAY // && !(bodytemperature <= get_temperature() + 2)
