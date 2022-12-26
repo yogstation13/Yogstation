@@ -1,0 +1,7 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Removes Lawyer Office from NVS Gax (and thus Lawyers)"
+  - mapping: "Expands NVS Gax brig and moves Detective Office"
+  - mapping: "various NVS Gax fixes including fixed firelocks and more wall-mounted things that were missing"
+  - mapping: "NVS Gax Robotics door replaced with a blast door, still retaining 2 (3) ways into robotics."
