@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Bomb cores will no longer detonate when exploded unless in a bomb case"
