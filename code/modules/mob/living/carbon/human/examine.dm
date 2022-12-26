@@ -253,15 +253,14 @@
 		apparent_blood_volume -= 150 // enough to knock you down one tier
 	// Fulp edit START - Bloodsuckers
 	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
-	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
-		msg += bloodDesc
-	else switch(get_blood_state())
-		if(BLOOD_OKAY)
-			msg += "[t_He] [t_has] pale skin.\n"
-		if(BLOOD_BAD)
-			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
-		if(BLOOD_DEAD to BLOOD_SURVIVE)
-			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	if(bloodDesc == BLOODSUCKER_SHOW_BLOOD)
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
+				msg += "[t_He] [t_has] pale skin.\n"
+			if(BLOOD_BAD)
+				msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+			if(BLOOD_DEAD to BLOOD_SURVIVE)
+				msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 
 	if(bleedsuppress)
 		msg += "[t_He] [t_is] imbued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
