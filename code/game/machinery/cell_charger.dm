@@ -35,7 +35,7 @@
 	if(istype(W, /obj/item/crowbar) && !panel_open)
 		if(!charging)
 			return
-		user.transferItemToLoc(charging, src))
+		charging.forceMove(drop_location())
 		user.visible_message("[user] removes [charging] from [src].", span_notice("You remove [charging] from [src]."))
 		removecell()
 	if(istype(W, /obj/item/stock_parts/cell) && !panel_open)
