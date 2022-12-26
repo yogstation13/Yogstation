@@ -174,11 +174,11 @@
 	desc = "A peel from a banana. Why is it beeping?"
 	seed = null
 	var/det_time = 50
-	var/obj/item/grenade/syndieminibomb/bomb
+	var/obj/item/grenade/syndieminibomb/concussion/bomb
 
 /obj/item/grown/bananapeel/bombanana/Initialize()
 	. = ..()
-	bomb = new /obj/item/grenade/syndieminibomb(src)
+	bomb = new /obj/item/grenade/syndieminibomb/concussion(src)
 	bomb.det_time = det_time
 	if(iscarbon(loc))
 		to_chat(loc, "[src] begins to beep.")
