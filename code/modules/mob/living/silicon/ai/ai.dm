@@ -1141,3 +1141,7 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/send_borg_death_warning(mob/living/silicon/robot/R)
+	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))
+	AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
