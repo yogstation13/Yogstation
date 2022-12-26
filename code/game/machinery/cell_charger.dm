@@ -32,6 +32,12 @@
 		. += "<span class='notice'>The status display reads: Charge rate at <b>[charge_rate]J</b> per cycle.<span>"
 
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/crowbar) && !panel_open)
+		if(!charging)
+			return
+		user.put_in_hands(charging)
+		user.visible_message("[user] removes [charging] from [src].", span_notice("You remove [charging] from [src]."))
+		removecell()
 	if(istype(W, /obj/item/stock_parts/cell) && !panel_open)
 		if(stat & BROKEN)
 			to_chat(user, span_warning("[src] is broken!"))
@@ -114,6 +120,12 @@
 
 	if(charging)
 		charging.emp_act(severity)
+
+/obj/machinery/cell_charger/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/stock_parts/cell))
+		attackby(dropping, user)
+	else
+		..()
 
 /obj/machinery/cell_charger/RefreshParts()
 	charge_rate = 500
