@@ -1,7 +1,7 @@
 // Contains all the interaction procs for spiderbots, also contains upgrade stuff
 /mob/living/simple_animal/spiderbot/proc/update_upgrades()
 	if("/obj/item/bot_assembly/cleanbot" in spiderbot_upgrades)
-		add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/cleaning_mode()))
+		add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/cleaning_mode))
 //Hiding under tables
 /mob/living/simple_animal/spiderbot/proc/hide()
 	set name = "Hide"
