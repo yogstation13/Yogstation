@@ -12133,6 +12133,21 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"dai" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "das" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -26279,26 +26294,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"hTV" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/service";
-	name = "Service Hall APC";
-	pixel_y = -23
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "hUy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -101324,7 +101319,7 @@ rft
 rft
 ayi
 aFr
-hTV
+dai
 ape
 iiJ
 aYf
