@@ -132,7 +132,8 @@ nobliumformation = 1001
 	var/initial_trit = air.get_moles(/datum/gas/tritium)// Yogs
 	if(air.get_moles(/datum/gas/oxygen) < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
 		burned_fuel = air.get_moles(/datum/gas/oxygen)/TRITIUM_BURN_OXY_FACTOR
-		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
+		if(burned_fuel > initial_trit) 
+			burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		air.adjust_moles(/datum/gas/tritium, -burned_fuel)
 	else
 		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
@@ -635,7 +636,7 @@ nobliumformation = 1001
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-		air.adjust_moles(/datum/gas/water_vapor, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
+		air.adjust_moles(/datum/gas/water_vapor, burned_fuel)
 
 		cached_results["fire"] += burned_fuel
 
