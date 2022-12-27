@@ -57,7 +57,6 @@ SUBSYSTEM_DEF(title)
 			continue
 		var/atom/movable/screen/splash/S = new(thing, FALSE)
 		S.Fade(FALSE,FALSE)
-	SSdemo.flush()
 
 /datum/controller/subsystem/title/Shutdown()
 	if(file_path)
