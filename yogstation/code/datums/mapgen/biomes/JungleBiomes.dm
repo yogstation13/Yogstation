@@ -26,7 +26,6 @@
 	if((!closed || spawn_fauna_on_closed) && length(fauna_types) && prob(fauna_density))
 		var/mob/fauna = pickweight(fauna_types)
 		new fauna(gen_turf)
-
 	. = gen_turf.ChangeTurf(chosen_turf, initial(chosen_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
 
 /datum/biome/jungleland/proc/spawn_dense_flora(turf/gen_turf)
