@@ -628,14 +628,6 @@
 	build_path = /obj/item/ammo_casing/shotgun/rubbershot
 	category = list("initial", "Security")
 
-/datum/design/c38
-	name = "Speed Loader (.38)"
-	id = "c38"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 20000)
-	build_path = /obj/item/ammo_box/c38
-	category = list("initial", "Security")
-
 /datum/design/recorder
 	name = "Universal Recorder"
 	id = "recorder"
@@ -910,6 +902,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 50000) //Comes with 40 darts
 	build_path = /obj/item/ammo_box/foambox/riot
+	category = list("hacked", "Security")
+
+/datum/design/c38
+	name = ".38 Bullet"
+	id = "c38"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 3000)
+	build_path = /obj/item/ammo_casing/c38
 	category = list("hacked", "Security")
 
 /datum/design/a357
