@@ -918,7 +918,7 @@
 	},
 /obj/item/reagent_containers/syringe,
 /obj/item/reagent_containers/glass/bottle/facid{
-	name = "fluorosulfuric acid bottle";
+	name = "fluorosulphuric acid bottle";
 	pixel_x = -3;
 	pixel_y = 6
 	},
@@ -38209,16 +38209,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"cbH" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cbI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -39471,15 +39461,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
-"chF" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "chI" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -49658,10 +49639,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"dmD" = (
-/obj/structure/displaycase/trophy,
-/turf/open/floor/wood,
-/area/library)
 "dmF" = (
 /turf/closed/wall,
 /area/quartermaster/sorting)
@@ -53000,6 +52977,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"fjx" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/plortrefinery,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "fjI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -64387,6 +64375,15 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"mLc" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "mLJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -77765,7 +77762,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -77882,10 +77879,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior{
 	id_tag = "incinerator_airlock_interior";
 	name = "Incinerator Interior Airlock"
@@ -78106,7 +78099,7 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "vQi" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
 /turf/closed/wall,
@@ -101183,9 +101176,9 @@ bue
 bwb
 mTv
 aln
-dmD
 bzE
-dmD
+bzE
+bzE
 sBa
 bHR
 bzE
@@ -117182,7 +117175,7 @@ aaa
 cRi
 mBa
 dcr
-cbH
+fjx
 dcD
 dcN
 cSd
@@ -117640,7 +117633,7 @@ bKm
 unU
 bNE
 ajk
-chF
+mLc
 bKe
 dGj
 ifQ
@@ -123311,7 +123304,7 @@ moI
 xrY
 xrY
 xrY
-uBz
+tWL
 lMJ
 lMJ
 aaa
@@ -123568,7 +123561,7 @@ rjN
 rjN
 qtD
 xrY
-uBz
+tWL
 lMJ
 lMJ
 lMJ
@@ -123825,7 +123818,7 @@ nSS
 kcB
 kRB
 xrY
-uBz
+tWL
 lMJ
 aaa
 aaa
@@ -124339,7 +124332,7 @@ fIG
 kcB
 kRB
 xrY
-uBz
+tWL
 lMJ
 aaa
 aaa
@@ -124596,7 +124589,7 @@ jTL
 jTL
 dWv
 xrY
-uBz
+tWL
 lMJ
 lMJ
 lMJ
@@ -124853,7 +124846,7 @@ xrY
 xrY
 xrY
 xrY
-uBz
+tWL
 lMJ
 lMJ
 aaa

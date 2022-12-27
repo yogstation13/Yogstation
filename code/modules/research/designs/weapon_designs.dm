@@ -2,11 +2,15 @@
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
 
-/datum/design/c38/sec
+/datum/design/c38_sec
+	name = "Speed Loader (.38)"
+	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38
 	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
@@ -450,5 +454,15 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/gold = 1000, /datum/material/uranium = 1000, /datum/material/glass = 500)
 	build_path = /obj/item/attachment/laser_sight
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/infra_sight
+	name = "Infrared Sight"
+	desc = "A polarizing camera that picks up infrared radiation. The quality is rather poor, so it ends up making it harder to aim."
+	id = "infra_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2500, /datum/material/uranium = 1500, /datum/material/gold = 1000, /datum/material/plastic = 1000)
+	build_path = /obj/item/attachment/scope/infrared
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

@@ -422,6 +422,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000")
 		WRITE_FILE(S["feature_ethcolor"]	, "9c3030")
 
+	if(!S["feature_pretcolor"] || S["feature_pretcolor"] == "#000")
+		WRITE_FILE(S["feature_pretcolor"]	, "9c3030")
+
 	//Character
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["name_is_always_random"], be_random_name)
@@ -444,6 +447,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_gradientstyle"], features["gradientstyle"])
 	READ_FILE(S["feature_gradientcolor"], features["gradientcolor"])
 	READ_FILE(S["feature_ethcolor"], features["ethcolor"])
+	READ_FILE(S["feature_pretcolor"], features["pretcolor"])
 	READ_FILE(S["feature_lizard_tail"], features["tail_lizard"])
 	READ_FILE(S["feature_lizard_snout"], features["snout"])
 	READ_FILE(S["feature_lizard_horns"], features["horns"])
@@ -462,6 +466,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
 	READ_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
+	READ_FILE(S["feature_plasmaman_helmet"], features["plasmaman_helmet"])
 
 	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
@@ -515,6 +520,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
+	if(!features["pretcolor"] || features["pretcolor"] == "#000")
+		features["pretcolor"] = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)]
+
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
@@ -548,6 +556,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
 	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], 3, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
+	features["pretcolor"]	= copytext_char(features["pretcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
@@ -614,6 +623,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_gradientstyle"]	, features["gradientstyle"])
 	WRITE_FILE(S["feature_gradientcolor"]	, 	features["gradientcolor"])
 	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
+	WRITE_FILE(S["feature_pretcolor"]					, features["pretcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]			, features["tail_lizard"])
 	WRITE_FILE(S["feature_polysmorph_tail"]			, features["tail_polysmorph"])
 	WRITE_FILE(S["feature_human_tail"]				, features["tail_human"])
@@ -635,6 +645,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
 	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
 	WRITE_FILE(S["feature_ipc_chassis"]			, features["ipc_chassis"])
+	WRITE_FILE(S["feature_plasmaman_helmet"]	, features["plasmaman_helmet"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

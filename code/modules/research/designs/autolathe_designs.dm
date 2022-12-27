@@ -300,6 +300,15 @@
 	category = list("hacked","Miscellaneous","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/ipc_coolant_tank
+	name = "IPC Coolant Tank"
+	id = "ipc_coolant_tank"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 800)
+	build_path = /obj/item/tank/internals/ipc_coolant/empty
+	category = list("hacked","Miscellaneous","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
+
 /datum/design/metal
 	name = "Metal"
 	id = "metal"
@@ -619,14 +628,6 @@
 	build_path = /obj/item/ammo_casing/shotgun/rubbershot
 	category = list("initial", "Security")
 
-/datum/design/c38
-	name = "Speed Loader (.38)"
-	id = "c38"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 20000)
-	build_path = /obj/item/ammo_box/c38
-	category = list("initial", "Security")
-
 /datum/design/recorder
 	name = "Universal Recorder"
 	id = "recorder"
@@ -901,6 +902,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 50000) //Comes with 40 darts
 	build_path = /obj/item/ammo_box/foambox/riot
+	category = list("hacked", "Security")
+
+/datum/design/c38
+	name = ".38 Bullet"
+	id = "c38"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 3000)
+	build_path = /obj/item/ammo_casing/c38
 	category = list("hacked", "Security")
 
 /datum/design/a357

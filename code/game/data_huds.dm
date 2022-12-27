@@ -51,6 +51,9 @@
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD)
 	do_silicon_check = TRUE
 
+/datum/atom_hud/data/human/security/advanced/hos
+	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD, STATUS_HUD, HEALTH_HUD)
+
 /datum/atom_hud/data/diagnostic
 
 /datum/atom_hud/data/diagnostic/basic
@@ -153,6 +156,9 @@
 	if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
 	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+		if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
+			holder.icon_state = "huddefib"
+			return
 		if(tod)
 			var/tdelta = round(world.time - timeofdeath)
 			if(tdelta < (DEFIB_TIME_LIMIT))

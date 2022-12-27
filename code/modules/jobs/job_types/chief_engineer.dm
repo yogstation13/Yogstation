@@ -15,7 +15,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
-	alt_titles = list("Engineering Director", "Head of Engineering")
+	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer")
 
 	outfit = /datum/outfit/job/ce
 
@@ -38,6 +38,8 @@
 		/obj/item/stack/sheet/mineral/gold = 15
 		///obj/effect/spawner/random/engineering/tool_advanced = 3
 	)
+
+	smells_like = "industry leadership"
 
 /datum/outfit/job/ce
 	name = "Chief Engineer"

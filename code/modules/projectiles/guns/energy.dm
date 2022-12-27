@@ -25,6 +25,7 @@
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)

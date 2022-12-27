@@ -155,6 +155,7 @@
 	. = ..()
 	new /obj/item/clothing/under/rank/scientist/black(src)
 	new /obj/item/lighter/badass(src)
+
 /obj/item/storage/box/hisa
 	name = "Hunters Stash"
 	desc = "Legend has it if this box is not held by a hunter, its held by prey" 
@@ -164,3 +165,22 @@
 	new /obj/item/clothing/suit/yogs/adventurerskirt(src)
 	new /obj/item/clothing/under/yogs/skin_tight_garmet(src)
 	new /obj/item/clothing/gloves/yogs/arm_sleeves(src)
+
+/obj/item/storage/box/manatee
+	name = "Discharge package"
+	desc = "Thank you for your service. Please dont come back."
+
+/obj/item/storage/box/manatee/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/accessory/dogtags(src)
+	new /obj/item/clothing/head/peacekeeperberet(src)
+
+/obj/item/toy/plush/axolotlplushie
+	name = "axolotl plushie"
+	desc = "An adorable stuffed toy that resembles an axolotl. Not to be mistaken for the real thing."
+	icon_state = "plushie_axolotl"
+	lefthand_file = 'icons/mob/pets_held_lh.dmi'
+	righthand_file = 'icons/mob/pets_held_rh.dmi'
+	item_state = "axolotl"
+	attack_verb = list("nibbles", "splats")
+	squeak_override = list('sound/effects/axolotl.ogg' = 1)

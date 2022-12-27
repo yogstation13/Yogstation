@@ -140,9 +140,10 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/bluespace
 	colour = "bluespace"
-	effect_desc = "Touching people with this extract adds them to a list, when it is activated it teleports everyone on that list to the user."
+	effect_desc = "Touching people with this extract adds them to a limited list, when it is activated it teleports everyone on that list to the user."
 	var/list/allies = list()
 	var/active = FALSE
+	var/linkcap = 5
 
 /obj/item/slimecross/chilling/bluespace/afterattack(atom/target, mob/user, proximity)
 	if(!proximity || !isliving(target) || active)
@@ -150,9 +151,11 @@ Chilling extracts:
 	if(target in allies)
 		allies -= target
 		to_chat(user, span_notice("You unlink [src] with [target]."))
-	else
+	else if(LAZYLEN(allies) < linkcap)
 		allies |= target
 		to_chat(user, span_notice("You link [src] with [target]."))
+	else
+		to_chat(user, span_notice("The [src] seems to be unable to handle more links."))
 	return
 
 /obj/item/slimecross/chilling/bluespace/do_effect(mob/user)
@@ -310,11 +313,11 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/adamantine
 	colour = "adamantine"
-	effect_desc = "Solidifies into a set of adamantine armor."
+	effect_desc = "Creates a small pile of clothing-reinforcing adamantine dust."
 
 /obj/item/slimecross/chilling/adamantine/do_effect(mob/user)
-	user.visible_message(span_notice("[src] creaks and breaks as it shifts into a heavy set of armor!"))
-	new /obj/item/clothing/suit/armor/heavy/adamantine(get_turf(user))
+	user.visible_message(span_notice("[src] suddenly falls apart, forming a small amount of fine greenish dust!"))
+	new /obj/item/armorpolish/adamantine(get_turf(user))
 	..()
 
 /obj/item/slimecross/chilling/rainbow

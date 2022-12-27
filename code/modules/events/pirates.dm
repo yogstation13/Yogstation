@@ -15,7 +15,7 @@
 	return ..()
 
 /datum/round_event/pirates
-	startWhen = 60 //2 minutes to answer
+	startWhen = 150 //5 minutes to answer
 	var/datum/comm_message/threat
 	var/payoff = 0
 	var/payoff_min = 20000

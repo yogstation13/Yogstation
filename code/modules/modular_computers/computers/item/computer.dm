@@ -582,7 +582,7 @@
 	if(starting_components.len < 1)
 		return
 	for(var/part in starting_components)
-		var/new_part = new part
+		var/new_part = new part(src)
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)

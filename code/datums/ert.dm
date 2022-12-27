@@ -37,7 +37,7 @@
 	opendoors = FALSE
 	code = "Blue"
 	rename_team = "Peacekeeping Force"
-	mission = "Enforce space law. Occupy the station. Minimize crew casulties."
+	mission = "Enforce space law. Occupy the station. Minimize crew casualties."
 	polldesc = "the Peacekeeping Force"
 	teamsize = 5 // redundant but keeping this here for clarity
 	leader_role = /datum/antagonist/ert/occupying/commander

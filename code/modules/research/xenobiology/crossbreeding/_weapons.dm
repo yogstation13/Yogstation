@@ -58,6 +58,7 @@ Slimecrossing Weapons
 	w_class = WEIGHT_CLASS_HUGE
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 	slot_flags = ITEM_SLOT_BACK
+	slowdown = 0.2	//it's a big heavy shield, it's gonna slow you at least a bit
 	block_chance = 75
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2

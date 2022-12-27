@@ -10,7 +10,7 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer")
+	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist")
 
 	outfit = /datum/outfit/job/atmos
 
@@ -30,6 +30,8 @@
 	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "a gas leak"
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3
