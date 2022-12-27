@@ -29,8 +29,11 @@
 	max_integrity = 400
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
+	var/obj/item/gps/internal/gps 
+
 /obj/item/tar_crystal/Initialize()
 	. = ..()
+	gps = new /obj/item/gps/internal/tar_king_crystal()
 	icon_state = "tar_crystal_part[pick(0,1,2)]"
 
 /obj/item/full_tar_crystal
@@ -369,3 +372,10 @@
 				</body>
 				</html>
 			"}
+
+/obj/item/gps/internal/tar_king_crystal
+	icon_state = null
+	gpstag = "Reckoning Signal"
+	desc = "It's time to repay due debts..."
+	invisibility = 100
+

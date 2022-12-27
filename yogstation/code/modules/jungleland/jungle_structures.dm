@@ -177,6 +177,7 @@
 		return ..()
 	
 	add_overlay(image(icon = src.icon, icon_state = "tar_altar_crystal"))
+	qdel(I)
 	INVOKE_ASYNC(src,.proc/summon)
 
 /obj/structure/tar_altar/proc/summon()
