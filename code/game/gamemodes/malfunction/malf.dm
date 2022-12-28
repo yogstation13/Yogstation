@@ -38,9 +38,20 @@
 /datum/game_mode/malf/post_setup()
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list) //triumvirate AIs ride for free. Oh well, it's basically an event in that case
 		AI.mind.add_antag_datum(/datum/antagonist/traitor/malf)
-
+	addtimer(CALLBACK(src, .proc/auto_call_shuttle), 30 MINUTES) // Auto call shuttle after 30 minutes, let the crew know whats up
 	gamemode_ready = TRUE
 	. = ..()
+
+/datum/game_mode/malf/proc/auto_call_shuttle()
+	var/all_dead = TRUE
+	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+		if(AI.stat != DEAD && is_traitor(AI)) // Is there a living malf? Call shuttle if so
+			all_dead = FALSE
+	if(all_dead) // Don't call shuttle if there in no living malf
+		return
+	priority_announce(readable_corrupted_text("Hostile runtimes detected in all station systems. Evacuation or deactivation of station AI recommended."))
+	if(EMERGENCY_IDLE_OR_RECALLED)
+		SSshuttle.emergency.request(null, set_coefficient=1)
 
 /datum/game_mode/malf/make_antag_chance()
 	return FALSE //no latejoins for you
