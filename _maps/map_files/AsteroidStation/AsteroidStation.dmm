@@ -506,34 +506,6 @@
 "adX" = (
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
-"adY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/public,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aec" = (
 /turf/closed/wall,
 /area/maintenance/disposal)
@@ -11575,17 +11547,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"cPr" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/food/plant_smudge,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "cPN" = (
 /obj/machinery/camera{
 	c_tag = "Bar South";
@@ -12133,21 +12094,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"dai" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "das" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -18322,10 +18268,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"fjw" = (
-/obj/structure/chair/sofa/bamboo,
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "fjL" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -22761,6 +22703,25 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/engine,
 /area/maintenance/starboard/fore)
+"gNs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/public,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "gNB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -26137,6 +26098,16 @@
 /obj/machinery/sci_bombardment,
 /turf/open/floor/engine,
 /area/science/mixing)
+"hRy" = (
+/obj/machinery/rnd/production/techfab/department/service,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen";
+	name = "Kitchen APC";
+	pixel_x = 27;
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "hRC" = (
 /obj/structure/table/glass,
 /obj/item/wrench/medical{
@@ -32906,14 +32877,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"kkd" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/kitchen";
-	name = "Kitchen APC";
-	pixel_y = -23
-	},
-/turf/closed/wall,
-/area/hallway/secondary/service)
 "kkO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -35796,10 +35759,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"lqL" = (
-/obj/machinery/rnd/production/techfab/department/service,
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "lrc" = (
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
@@ -42128,10 +42087,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ntM" = (
-/obj/structure/sign/poster/contraband/eat,
-/turf/closed/wall,
-/area/hallway/secondary/service)
 "ntR" = (
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -42439,10 +42394,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"nyt" = (
-/obj/structure/sign/poster/contraband/have_a_puff,
-/turf/closed/wall,
-/area/hallway/secondary/service)
 "nyv" = (
 /obj/structure/table/wood,
 /obj/item/toy/foamblade,
@@ -51178,6 +51129,23 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/nuke_storage)
+"qsQ" = (
+/obj/item/rollingpaper{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/cigbutt/roach,
+/obj/machinery/light_switch{
+	pixel_x = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "qsS" = (
 /obj/machinery/light{
 	dir = 8
@@ -51251,6 +51219,20 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/security/main)
+"qtW" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/food/plant_smudge,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/ambrosia_vulgaris{
+	pixel_y = 33
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "quc" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
@@ -58890,6 +58872,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sSo" = (
+/obj/structure/chair/sofa/bamboo,
+/obj/structure/sign/poster/contraband/eat{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "sSp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -65354,19 +65343,6 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel,
 /area/storage/tech)
-"vhl" = (
-/obj/item/rollingpaper{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 3;
-	pixel_y = -2
-	},
-/obj/item/cigbutt/roach,
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "vhG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -65903,6 +65879,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"vst" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 1;
+	freq = 1400;
+	location = "Kitchen"
+	},
+/obj/structure/plasticflaps{
+	opacity = 1
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
 "vsN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -66071,10 +66059,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"vvh" = (
-/obj/structure/sign/poster/contraband/ambrosia_vulgaris,
-/turf/closed/wall,
-/area/hydroponics)
 "vvP" = (
 /obj/machinery/camera{
 	c_tag = "Brig East"
@@ -71003,22 +70987,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"xcZ" = (
-/obj/structure/plasticflaps{
-	opacity = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 1;
-	freq = 1400;
-	location = "Kitchen"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "xds" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/eighties,
@@ -72238,6 +72206,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"xAv" = (
+/obj/structure/chair/sofa/bamboo,
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_x = -1;
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "xAM" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/hallway/secondary/entry";
@@ -97982,7 +97958,7 @@ aqy
 aao
 aJp
 rmz
-xcZ
+vst
 hTx
 oKF
 izv
@@ -98756,7 +98732,7 @@ aRI
 aRI
 utA
 aRI
-aDP
+aRI
 kod
 aDP
 nZZ
@@ -99013,12 +98989,12 @@ aRI
 ybn
 fuC
 hzt
-ape
+aRI
 ape
 ape
 ape
 ilG
-adY
+gNs
 vDN
 mRD
 ape
@@ -99266,11 +99242,11 @@ aao
 aUe
 aao
 gbp
-ntM
-fjw
+aRI
+sSo
 dhE
 uUb
-ape
+aRI
 oyi
 pAv
 xFN
@@ -99523,8 +99499,8 @@ wkR
 wdu
 wkR
 jTt
-nyt
-fjw
+aRI
+xAv
 ecy
 bnn
 lxV
@@ -99784,7 +99760,7 @@ aRI
 ifz
 pyO
 hvt
-ape
+aRI
 kvb
 aJf
 aJf
@@ -100038,10 +100014,10 @@ gLJ
 soS
 aUe
 aRI
-lqL
+hRy
 lNO
-vhl
-ape
+qsQ
+aRI
 sTU
 aJf
 aJf
@@ -100295,11 +100271,11 @@ gLJ
 ape
 qkB
 aRI
-kkd
 aRI
 aRI
-vvh
-cPr
+aRI
+aRI
+qtW
 aJf
 aJf
 arL
@@ -101319,7 +101295,7 @@ rft
 rft
 ayi
 aFr
-dai
+gLJ
 ape
 iiJ
 aYf
