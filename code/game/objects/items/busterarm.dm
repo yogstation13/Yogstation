@@ -118,8 +118,12 @@
 		var/obj/item/I = target
 		if(!I?.anchored)
 			I.throw_at(get_step_towards(H,I), 8, 2)
-			H.put_in_hands(I)
-			I.visible_message(span_danger("[I] is pulled by [H]'s wire!"))
+			H.visible_message(span_danger("[I] is pulled by [H]'s wire!"))
+			if(istype(I, /obj/item/clothing/head))
+				H.equip_to_slot_if_possible(I, SLOT_HEAD)
+				H.visible_message(span_danger("[H] pulls [I] onto [H.p_their()] head!"))
+			else
+				H.put_in_hands(I)
 			return
 		zip(H, target)
 	if(isliving(target))
@@ -130,8 +134,10 @@
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
 		if(!L.anchored)
 			if(istype(H))
-				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))
+				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
 				L.Immobilize(1.5 SECONDS)
+				if(prob(5))
+					firer.say("GET OVER HERE!!")//slicer's request
 				if(T.density)
 					to_chat(H, span_warning("[H] catches [L] and throws [L.p_them()] against [T]!"))
 					to_chat(L, span_userdanger("[H] crushes you against [T]!"))
@@ -191,7 +197,7 @@
 			return
 
 /obj/item/buster/graphand
-	name = "open hand"
+	name = "grapple"
 	desc = "Your fingers occasionally curl as if they have their own urge to dig into something."
 	color = "#f14b4b"
 	var/obj/effect/proc_holder/spell/targeted/touch/attached_spell
@@ -242,6 +248,8 @@
 		I.density = FALSE 
 		walk_towards(I, user, 0, 2)
 		sleep(2 SECONDS)
+		if(get_dist(I, user) > 1)
+			I.density = old_density
 		walk(I,0)
 		thrown |= I
 		I.density = old_density
@@ -258,9 +266,11 @@
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air!"))
 		L.forceMove(Z)
 		F.buckle_mob(target)
-		F.pixel_y = 50
 		walk_towards(F, user, 0, 2)
 		sleep(1 SECONDS)
+		if(get_dist(L, user) > 1)
+			L.density = old_density
+			return
 		hit(user, L, throwdam)
 		if(iscarbon(L))
 			if(!limb_to_hit)
@@ -310,6 +320,8 @@
 			for(var/obj/O in thrown)
 				if(D.density == TRUE)
 					O.take_damage(objdam)	
+					if(istype(O, /obj/mecha))
+						thrown -= O
 			if(D.density == TRUE && D.anchored == FALSE)
 				thrown |= D
 				D.take_damage(50)
@@ -439,7 +451,7 @@
 	 If there's a solid object behind you when the move is successfully performed then it will \ take substantial damage."
 	action_icon = 'icons/mob/actions/actions_arm.dmi'	
 	action_icon_state = "suplex"
-	charge_max = 5
+	charge_max = 7
 	var/supdam = 20
 	var/crashdam = 10
 	var/walldam = 30
@@ -506,26 +518,26 @@
 			animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 		
 /obj/effect/proc_holder/spell/targeted/buster/megabuster
-	name = "mega buster"
+	name = "Mega Buster"
 	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying if they're not anchored. \
 	Flying targets will have a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun \
 	its owner. Once the five seconds are up or a strong wall or person is hit, the entire arm will be unusable for 15 seconds. Punching a person, reinforced wall, or exosuit will\
 	disable the arm"
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "ponch"
-	charge_max = 150
+	charge_max = 60
 
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/cast(list/targets, mob/living/user)
 	var/obj/item/buster/megabuster/B = new()
 	user.visible_message(span_userdanger("[user]'s arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
-	var/result = (user.put_in_l_hand(B))
-	if(!result)
-		to_chat(user, span_warning("You can't do this with your left hand full!"))
-	if(result)
-		user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
-		B.fizzle(user)
+	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
+		var/result = (user.put_in_l_hand(B))
+		if(!result)
+			to_chat(user, span_warning("You can't do this with your left hand full!"))
+		if(result)
+			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
+			B.fizzle(user)
 
 /obj/item/buster/megabuster
 	name = "supercharged emitter"
@@ -577,7 +589,7 @@
 		if(istype(W, /turf/closed/wall/r_wall))
 			W.dismantle_wall(1)
 			qdel(src)
-			to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
+			to_chat(user, span_warning("The huge impact takes the arm out of commission! It won't be ready for 15 seconds!"))
 			if(side == LEFT_HANDS)
 				(R?.set_disabled(TRUE))
 				addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
@@ -612,7 +624,7 @@
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
 		qdel(src, force = TRUE)
-		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
+		to_chat(user, span_warning("The huge impact takes the arm out of commission! It won't be ready for 15 seconds!"))
 		shake_camera(L, 4, 3)
 		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 		if(side == LEFT_HANDS)
@@ -694,9 +706,11 @@
 	if(right)
 		(R?.set_disabled(TRUE))
 		addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+		to_chat(user, span_warning("The energy output shorts out the buster arm! It won't be ready for 15 seconds!"))
 	else
 		(L?.set_disabled(TRUE))
 		addtimer(CALLBACK(L, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+		to_chat(user, span_warning("The energy output shorts out the buster arm! It won't be ready for 15 seconds!"))
 
 /obj/structure/bed/grip
 	name = ""
@@ -746,13 +760,13 @@
 	var/obj/item/buster/megabuster/B = new()
 	user.visible_message(span_userdanger("[user]'s arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
-	var/result = (user.put_in_r_hand(B))
-	if(!result)
-		to_chat(user, span_warning("You can't do this with your right hand full!"))
-	if(result)
-		user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
-		B.fizzle(user, right = TRUE)
+	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
+		var/result = (user.put_in_r_hand(B))
+		if(!result)
+			to_chat(user, span_warning("You can't do this with your right hand full!"))
+		if(result)
+			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
+			B.fizzle(user, right = TRUE)
 
 /obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right/cast(list/targets, mob/user)
 	for(var/obj/item/gun/magic/wire/T in user)
@@ -769,7 +783,7 @@
 
 /obj/item/bodypart/l_arm/robot/buster
 	name = "buster left arm"
-	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power."
+	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power. <b>It can be configured by hand to fit on the opposite arm.</b>"
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
@@ -812,7 +826,7 @@
 
 /obj/item/bodypart/r_arm/robot/buster
 	name = "buster right arm"
-	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power."
+	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power. <b>It can be configured by hand to fit on the opposite arm.</b>"
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
