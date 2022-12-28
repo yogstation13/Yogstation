@@ -177,7 +177,7 @@
 
 /obj/item/watertank/atmos
 	name = "backpack firefighter tank"
-	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
+	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer. The resin launcher costs 50 units of water and regenerates every 5 seconds. The resin foamer starts with 5 charges and regenerates one every 5 seconds."
 	item_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
 	volume = 300
