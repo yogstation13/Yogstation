@@ -60,6 +60,8 @@
 			"items" = (category == selected_cat ? list() : null))
 		for(var/module in possible_modules[category])
 			var/datum/AI_Module/AM = possible_modules[category][module]
+			if(istype(user, /mob/living/silicon/ai) && !AM.can_use(user))
+				continue
 			cat["items"] += list(list(
 				"name" = AM.name,
 				"cost" = AM.cost,
@@ -98,6 +100,8 @@
 	if(!AI || AI.stat == DEAD)
 		return
 	if(AM.cost > processing_time)
+		return
+	if(!AM.can_use(AI))
 		return
 
 	var/datum/action/innate/ai/action = locate(AM.power_type) in AI.actions
