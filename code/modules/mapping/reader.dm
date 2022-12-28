@@ -778,6 +778,8 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	if(turf_blacklist?[crds])
 		return
 
+	SSatoms.map_loader_stop() // yogs - needed to properly initialize areas
+
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
 	index = members.len
@@ -805,6 +807,8 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 		if(GLOB.use_preloader)
 			world.preloader_load(area_instance)
+
+	SSatoms.map_loader_begin() // yogs - needed to properly initialize areas
 
 	// Index right before /area is /turf
 	index--
