@@ -20496,6 +20496,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fYo" = (
+/obj/machinery/door/window/southleft{
+	base_state = "left";
+	dir = 2;
+	icon_state = "left";
+	name = "Kitchen Delivery";
+	req_access_txt = "28"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "fYQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -25149,19 +25160,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"hAz" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "hAL" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -26251,17 +26249,6 @@
 "hTw" = (
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
-"hTx" = (
-/obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
-	name = "Kitchen Delivery";
-	req_access_txt = "28"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plating,
-/area/crew_quarters/kitchen)
 "hTy" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/wood,
@@ -48408,17 +48395,6 @@
 /obj/machinery/computer/ai_server_console,
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"pAv" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "pAM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -50423,6 +50399,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/brig)
+"qeT" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/machinery/firealarm{
+	pixel_x = -32;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "qeX" = (
 /obj/structure/girder,
 /obj/machinery/door/firedoor/border_only{
@@ -59299,6 +59286,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"sYt" = (
+/obj/machinery/rnd/production/techfab/department/service,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen";
+	name = "Kitchen APC";
+	pixel_x = 27;
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "sYw" = (
 /obj/machinery/airalarm/tcomms{
 	pixel_y = 24
@@ -59677,6 +59674,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"teW" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	pixel_x = 32;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "tfj" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -66451,16 +66461,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"vAI" = (
-/obj/machinery/rnd/production/techfab/department/service,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/kitchen";
-	name = "Kitchen APC";
-	pixel_x = 25;
-	pixel_y = -32
-	},
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "vAT" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 4
@@ -97962,7 +97962,7 @@ aao
 aJp
 rmz
 pxl
-hTx
+fYo
 oKF
 izv
 oLd
@@ -98743,7 +98743,7 @@ qKr
 pRf
 iPe
 ckP
-hAz
+teW
 aDP
 izg
 aZG
@@ -99251,7 +99251,7 @@ dhE
 uUb
 aRI
 oyi
-pAv
+qeT
 xFN
 aoi
 mDo
@@ -100017,7 +100017,7 @@ gLJ
 soS
 aUe
 aRI
-vAI
+sYt
 lNO
 fxf
 aRI
