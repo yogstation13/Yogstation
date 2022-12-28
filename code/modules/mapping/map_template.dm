@@ -78,9 +78,9 @@
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
 		return
-	if(T.x+width > world.maxx)
+	if((T.x+width) - 1 > world.maxx)
 		return
-	if(T.y+height > world.maxy)
+	if((T.y+height) - 1 > world.maxy)
 		return
 
 	// Accept cached maps, but don't save them automatically - we don't want
