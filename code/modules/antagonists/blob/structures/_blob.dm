@@ -73,7 +73,7 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/blob/CanAtmosPass(turf/T)
+/obj/structure/blob/CanAtmosPass(turf/T, vertical = FALSE)
 	return !atmosblock
 
 /obj/structure/blob/CanAStarPass(ID, dir, caller)

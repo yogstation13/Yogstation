@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
-		pipe_color = obj_color
+		set_pipe_color(obj_color)
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)
 	level = T.intact ? 2 : 1
@@ -349,3 +349,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 
 /obj/machinery/atmospherics/proc/update_layer()
 	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
+
+/// Setter for pipe color, so we can ensure it's all uniform and save cpu time
+/obj/machinery/atmospherics/proc/set_pipe_color(pipe_colour)
+	src.pipe_color = pipe_colour

@@ -18,6 +18,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 
 	var/blocks_air = FALSE
+	// If this turf should initialize atmos adjacent turfs or not
+	// Optimization, not for setting outside of initialize
+	var/init_air = TRUE
 
 	flags_1 = CAN_BE_DIRTY_1
 
@@ -91,7 +94,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
 
-/turf/proc/Initalize_Atmos(times_fired)
+/// Initializes our adjacent turfs. If you want to avoid this, do not override it, instead set init_air to FALSE
+/turf/proc/Initalize_Atmos(time)
 	CALCULATE_ADJACENT_TURFS(src)
 
 /turf/Destroy(force)

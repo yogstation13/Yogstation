@@ -36,8 +36,7 @@
 
 /turf/open/Initialize()
 	if(!blocks_air)
-		air = new
-		air.copy_from_turf(src)
+		air = create_gas_mixture()
 		update_air_ref()
 	. = ..()
 
@@ -52,6 +51,18 @@
 /turf/proc/update_air_ref()
 
 /////////////////GAS MIXTURE PROCS///////////////////
+
+///Copies all gas info from the turf into a new gas_mixture, along with our temperature
+///Returns the created gas_mixture
+/turf/proc/create_gas_mixture()
+	var/datum/gas_mixture/mix = SSair.parse_gas_string(initial_gas_mix)
+
+	//acounts for changes in temperature
+	var/turf/parent = parent_type
+	if(temperature != initial(temperature) || temperature != initial(parent.temperature))
+		mix.temperature = temperature
+
+	return mix
 
 /turf/open/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	if(!giver)
@@ -76,9 +87,8 @@
 
 /turf/return_air()
 	RETURN_TYPE(/datum/gas_mixture)
-	var/datum/gas_mixture/GM = new
-	GM.copy_from_turf(src)
-	return GM
+	var/datum/gas_mixture/copied_mixture = create_gas_mixture()
+	return copied_mixture
 
 /turf/open/return_air()
 	RETURN_TYPE(/datum/gas_mixture)
@@ -187,7 +197,7 @@
 		FD.emergency_pressure_stop()
 		reconsider_adj = TRUE
 	if(reconsider_adj)
-		T2.ImmediateCalculateAdjacentTurfs() // We want those firelocks closed yesterday.
+		T2.immediate_calculate_adjacent_turfs() // We want those firelocks closed yesterday.
 
 /turf/proc/handle_decompression_floor_rip()
 /turf/open/floor/handle_decompression_floor_rip(sum)

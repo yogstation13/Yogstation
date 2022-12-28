@@ -28,7 +28,7 @@
 	. = ..()
 	icon_state = "turnstile"
 
-/obj/machinery/turnstile/CanAtmosPass(turf/T)
+/obj/machinery/turnstile/CanAtmosPass(turf/T, vertical = FALSE)
 	return TRUE
 
 /obj/machinery/turnstile/Cross(atom/movable/mover)

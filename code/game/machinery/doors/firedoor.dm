@@ -72,7 +72,7 @@
 	var/turf/T = get_turf(src)
 	spawn(0)
 		if(T)
-			T.ImmediateCalculateAdjacentTurfs()
+			T.immediate_calculate_adjacent_turfs()
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
@@ -280,7 +280,7 @@
 		if(reconsider_immediately)
 			var/turf/open/T = FD.loc
 			if(istype(T))
-				T.ImmediateCalculateAdjacentTurfs()
+				T.immediate_calculate_adjacent_turfs()
 
 /obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
 	set waitfor = 0
@@ -389,7 +389,7 @@
 	else
 		return TRUE
 
-/obj/machinery/door/firedoor/border_only/CanAtmosPass(turf/T)
+/obj/machinery/door/firedoor/border_only/CanAtmosPass(turf/T, vertical = FALSE)
 	if(get_dir(loc, T) == dir)
 		return !density
 	else

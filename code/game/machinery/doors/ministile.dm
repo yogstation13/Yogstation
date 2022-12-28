@@ -24,7 +24,7 @@
 	. = ..()
 	icon_state = "ministile"
 
-/obj/machinery/ministile/CanAtmosPass(turf/T)
+/obj/machinery/ministile/CanAtmosPass(turf/T, vertical = FALSE)
 	return TRUE
 
 /obj/machinery/ministile/Cross(atom/movable/mover)

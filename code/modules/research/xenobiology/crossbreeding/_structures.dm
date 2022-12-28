@@ -180,12 +180,12 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	range_type = "view"
 
 /obj/structure/slime_crystal/blue/process()
+	var/datum/gas_mixture/base_mix = SSair.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
 	for(var/turf/open/T in view(2, src))
-		if(isspaceturf(T))
+		if(T.blocks_air)
 			continue
-		var/datum/gas_mixture/gas = T.return_air()
-		gas.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
-		T.air_update_turf()
+		
+		T.assume_air(base_mix)
 
 /obj/structure/slime_crystal/metal
 	colour = "metal"

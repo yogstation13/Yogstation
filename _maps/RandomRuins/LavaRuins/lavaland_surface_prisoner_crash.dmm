@@ -54,7 +54,7 @@
 "l" = (
 /obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "n" = (
@@ -76,13 +76,13 @@
 "r" = (
 /obj/structure/lattice,
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/lavaland/surface/outdoors/explored)
 "t" = (
 /obj/item/shard,
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/lavaland/surface/outdoors/explored)
 "u" = (
@@ -156,7 +156,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "N" = (
@@ -175,12 +175,12 @@
 /area/lavaland/surface/outdoors/explored)
 "U" = (
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/lavaland/surface/outdoors/explored)
 "W" = (
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "X" = (
@@ -193,7 +193,7 @@
 /obj/item/toy/figure/secofficer,
 /obj/item/tank/internals/oxygen/red,
 /turf/open/floor/mineral/plastitanium/red{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "Y" = (

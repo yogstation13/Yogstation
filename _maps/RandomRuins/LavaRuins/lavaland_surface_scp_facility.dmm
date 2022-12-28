@@ -240,7 +240,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/corpse/damaged,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "hy" = (
@@ -254,7 +254,7 @@
 /area/ruin/unpowered)
 "hD" = (
 /turf/open/floor/plasteel/cult{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "hL" = (
@@ -381,7 +381,7 @@
 /area/ruin/unpowered)
 "mt" = (
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "mS" = (
@@ -416,7 +416,7 @@
 	pixel_y = -24
 	},
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "pq" = (
@@ -528,13 +528,13 @@
 	icon_state = "cobweb2"
 	},
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "rM" = (
 /mob/living/simple_animal/hostile/abomination/super,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "rW" = (
@@ -613,7 +613,7 @@
 /obj/item/clothing/head/culthood,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cult{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "vE" = (
@@ -633,7 +633,7 @@
 "wC" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "wX" = (
@@ -661,7 +661,7 @@
 "xO" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "xW" = (
@@ -829,7 +829,7 @@
 	},
 /mob/living/simple_animal/hostile/faithless,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "Fd" = (
@@ -973,7 +973,7 @@
 	icon_state = "tracks"
 	},
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "NB" = (
@@ -1006,7 +1006,7 @@
 	melee_damage_upper = 30
 	},
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "NX" = (
@@ -1020,7 +1020,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/yogs/cluwne,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "Og" = (
@@ -1290,7 +1290,7 @@
 "ZN" = (
 /mob/living/simple_animal/hostile/abomination/altform1,
 /turf/open/floor/engine{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered)
 "ZZ" = (

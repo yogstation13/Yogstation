@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(adjacent_air)
 		var/turf/currT = queue[1]
 		queue.Cut(1,2)
 
-		currT.ImmediateCalculateAdjacentTurfs()
+		currT.immediate_calculate_adjacent_turfs()
 
 		if(mc_check)
 			if(MC_TICK_CHECK)

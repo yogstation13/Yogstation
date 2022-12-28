@@ -474,14 +474,14 @@
 "qg" = (
 /mob/living/simple_animal/hostile/russian/ranged/mosin,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "qF" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "rK" = (
@@ -495,7 +495,7 @@
 "um" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "vc" = (
@@ -523,7 +523,7 @@
 "xW" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "xZ" = (
@@ -559,7 +559,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /mob/living/simple_animal/hostile/russian/ranged/mosin,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "Cf" = (
@@ -582,7 +582,7 @@
 "DN" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "DQ" = (
@@ -707,7 +707,7 @@
 	dir = 1
 	},
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "PR" = (
@@ -726,13 +726,13 @@
 /area/ruin/unpowered/russianbunker)
 "Rh" = (
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "Rv" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "RY" = (
@@ -766,13 +766,13 @@
 	dir = 1
 	},
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "Wj" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/pod{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/unpowered/russianbunker)
 "XY" = (

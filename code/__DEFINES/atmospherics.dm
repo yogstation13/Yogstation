@@ -232,8 +232,9 @@
 /// just check density
 #define ATMOS_PASS_DENSITY -2
 
-#define CANATMOSPASS(A, O) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
-#define CANVERTICALATMOSPASS(A, O) ( A.CanAtmosPassVertical == ATMOS_PASS_PROC ? A.CanAtmosPass(O, TRUE) : ( A.CanAtmosPassVertical == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPassVertical ) )
+///Check if an atom (A) and a turf (O) allow gas passage based on the atom's can_atmos_pass var, do not use.
+///(V) is if the share is vertical or not. True or False
+#define CANATMOSPASS(A, O, V) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O, V) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
 
 //OPEN TURF ATMOS
 /// the default air mix that open turfs spawn
@@ -278,7 +279,7 @@
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50
 
 //PLANETARY ATMOS MIXES
-#define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
+#define LAVALAND_DEFAULT_ATMOS "LAVALAND_ATMOS"
 #define ICEMOON_DEFAULT_ATMOS "o2=14;n2=23;TEMP=180"
 
 //ATMOSIA GAS MONITOR TAGS
@@ -465,6 +466,18 @@ GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #else
 #define CALCULATE_ADJACENT_TURFS(T) SSadjacent_air.queue[T] = 1
 #endif
+
+///Directly adds a gas to a gas mixture without checking for its presence beforehand, use only if is certain the absence of said gas
+#define ADD_GAS(gas_id, out_list)\
+	var/list/tmp_gaslist = GLOB.gaslist_cache[gas_id]; out_list[gas_id] = tmp_gaslist.Copy();
+
+///Adds a gas to a gas mixture but checks if is already present, faster than the same proc
+#define ASSERT_GAS(gas_id, gas_mixture) if (!gas_mixture.gases[gas_id]) { ADD_GAS(gas_id, gas_mixture.gases) };
+
+//If you're doing spreading things related to atmos, DO NOT USE CANATMOSPASS, IT IS NOT CHEAP. use this instead, the info is cached after all. it's tweaked just a bit to allow for circular checks
+#define TURFS_CAN_SHARE(T1, T2) (LAZYACCESS(T2.atmos_adjacent_turfs, T1) || LAZYLEN(T1.atmos_adjacent_turfs & T2.atmos_adjacent_turfs))
+//Use this to see if a turf is fully blocked or not, think windows or firelocks. Fails with 1x1 non full tile windows, but it's not worth the cost.
+#define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
 
 GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) one or init_monstermos will be called twice because reasons
 #define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
