@@ -180,7 +180,7 @@
 	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
 	item_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
-	volume = 400
+	volume = 300
 	slowdown = 0
 
 /obj/item/watertank/atmos/Initialize()
