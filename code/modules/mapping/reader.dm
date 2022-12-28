@@ -275,6 +275,10 @@
 	// And we are done lads, call it off
 	SSatoms.map_loader_stop()
 
+	if(new_z)
+		for(var/z_index in bounds[MAP_MINZ] to bounds[MAP_MAXZ])
+			SSmapping.build_area_turfs(z_index)
+
 	if(!no_changeturf)
 		for(var/turf/T as anything in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
 			//we do this after we load everything in. if we don't, we'll have weird atmos bugs regarding atmos adjacent turfs
@@ -793,6 +797,10 @@ GLOBAL_LIST_EMPTY(map_model_default)
 					CRASH("[area_type] failed to be new'd, what'd you do?")
 			loaded_areas[area_type] = area_instance
 
+		if(!new_z)
+			var/area/old_area = crds.loc
+			old_area.turfs_to_uncontain += crds
+			area_instance.contained_turfs.Add(crds)
 		area_instance.contents.Add(crds)
 
 		if(GLOB.use_preloader)
