@@ -76,9 +76,6 @@
 		if(LAZYLEN(instance.hotkey_keys))
 			for(var/bound_key in instance.hotkey_keys)
 				LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
-	// Sort all the keybindings by their weight
-	for(var/key in GLOB.keybinding_list_by_key)
-		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])
 
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes

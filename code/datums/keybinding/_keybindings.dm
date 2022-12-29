@@ -18,3 +18,6 @@
 
 /datum/keybinding/proc/up(client/user)
 	return FALSE
+
+/datum/keybinding/proc/can_use(client/user)
+	return TRUE
