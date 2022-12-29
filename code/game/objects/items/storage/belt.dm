@@ -110,6 +110,10 @@
 	new /obj/item/holosign_creator/multi/CE(src)
 	//much roomier now that we've managed to remove two tools
 
+/obj/item/storage/belt/utility/chief/full/ert
+	name = "advanced nanotrasen toolbelt"
+	desc = "Full of top of the line tools for all of your engineering needs."
+
 /obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
 	new /obj/item/construction/rcd/combat/admin(src)
 	new /obj/item/pipe_dispenser(src)
