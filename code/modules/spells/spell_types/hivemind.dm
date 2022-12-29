@@ -347,7 +347,7 @@
 	to_chat(src, span_warning("You find yourself unable to speak, you aren't in control of your body!"))
 	return FALSE
 
-/mob/living/passenger/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/passenger/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	to_chat(src, span_warning("You find yourself unable to emote, you aren't in control of your body!"))
 	return
 
