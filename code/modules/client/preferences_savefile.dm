@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	38
+#define SAVEFILE_VERSION_MAX	39
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -51,6 +51,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_ALT
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
+	if (current_version < 39)
+		// TODO: convert old keybinds
+		key_bindings = sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
+		key_bindings["T"] = list(1 = "say")
+		key_bindings["M"] = list(1 = "me")
+		key_bindings["O"] = list(1 = "ooc")
+		key_bindings["L"] = list(1 = "looc")
+		WRITE_FILE(S["key_bindings"], key_bindings)
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -223,8 +231,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
-	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
-	READ_FILE(S["balloon_alerts"] , disable_balloon_alerts)
+	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
+	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	READ_FILE(S["key_bindings"], key_bindings)
 	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
@@ -286,6 +295,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
 	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
 	disable_balloon_alerts = sanitize_integer(disable_balloon_alerts, FALSE, TRUE, initial(disable_balloon_alerts))
+	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
@@ -304,8 +314,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
-
-	load_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 
@@ -369,6 +377,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["bar_choice"], bar_choice)
 	WRITE_FILE(S["alternative_announcers"], disable_alternative_announcers)
 	WRITE_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	WRITE_FILE(S["key_bindings"], key_bindings)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -382,8 +391,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
-
-	save_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 

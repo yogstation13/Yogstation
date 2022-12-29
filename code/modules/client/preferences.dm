@@ -27,7 +27,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/UI_style = null
 	var/buttons_locked = FALSE
-	var/hotkeys = TRUE // yogs - Rebindable Keybindings
+	var/hotkeys = FALSE
+	// Custom Keybindings
+	var/list/key_bindings = list()
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
@@ -739,7 +741,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Balloon Alerts:</b> <a href='?_src_=prefs;task=input;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
+			dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -979,78 +981,36 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
-
-		// yogs start - Custom keybindings
 		if (4) // Keybindings
-			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a>"
-			dat += "<a href='?_src_=prefs;preference=reset_bindings'>Reset to default</a></center>"
-			if(hotkeys)
-				var/button
-				var/button_bound
+			// Create an inverted list of keybindings -> key
+			var/list/user_binds = list()
+			for (var/key in key_bindings)
+				for(var/kb_name in key_bindings[key])
+					user_binds[kb_name] = key
 
-				dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-				dat += "<h2>Client</h2>"
-				BUTTON_KEY_MOVEMENT("Move North (up)", ACTION_MOVENORTH, NORTH)
-				BUTTON_KEY_MOVEMENT("Move West (left)", ACTION_MOVEWEST, WEST)
-				BUTTON_KEY_MOVEMENT("Move South (down)", ACTION_MOVESOUTH, SOUTH)
-				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
+			var/list/kb_categories = list()
+			// Group keybinds by category
+			for (var/name in GLOB.keybindings_by_name)
+				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+				if (!(kb.category in kb_categories))
+					kb_categories[kb.category] = list()
+				kb_categories[kb.category] += list(kb)
 
-				BUTTON_KEY("OOC", ACTION_OOC)
-				BUTTON_KEY("LOOC", ACTION_LOOC)
-				BUTTON_KEY("Adminhelp", ACTION_AHELP)
-				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
-				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
+			dat += "<style>label { display: inline-block; width: 200px; }</style><body>"
 
+			for (var/category in kb_categories)
+				dat += "<h3>[category]</h3>"
+				for (var/i in kb_categories[category])
+					var/datum/keybinding/kb = i
+					var/bound_key = user_binds[kb.name]
+					bound_key = (bound_key) ? bound_key : "Unbound"
 
-				dat += "<h2>Mob</h2>"
-				BUTTON_KEY("Say", ACTION_SAY)
-				BUTTON_KEY("Emote", ACTION_ME)
-				BUTTON_KEY("Stop pulling", ACTION_STOPPULLING)
-				BUTTON_KEY("Cycle intent clockwise", ACTION_INTENTRIGHT)
-				BUTTON_KEY("Cycle intent counter-clockwise", ACTION_INTENTLEFT)
-				BUTTON_KEY("Swap hands", ACTION_SWAPHAND)
-				BUTTON_KEY("Use item on self", ACTION_USESELF)
-				BUTTON_KEY("Drop", ACTION_DROP)
-				BUTTON_KEY("Equip", ACTION_EQUIP)
-				BUTTON_KEY("Rest", ACTION_REST)
-				BUTTON_KEY("Toggle Walk Run", ACTION_TOGGLEWALKRUN)
+					dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [kb.key] )</a>"
+					dat += "<br>"
 
-				dat += "</td><td width='300px' height='300px' valign='top'>"
-
-				dat += "<h2>Mob</h2>"
-				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
-				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
-				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
-				BUTTON_KEY("Target left arm", ACTION_TARGETLARM)
-				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
-				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
-				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
-				BUTTON_KEY("Offer item", ACTION_GIVE)
-				BUTTON_KEY("Resist", ACTION_RESIST)
-				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
-				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
-				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
-				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
-				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
-
-				if(parent)
-					if(parent.mentor_datum)
-						dat += "<h2>Mentor</h2>"
-						BUTTON_KEY("Mentorsay", ACTION_MENTORCHAT)
-
-					if(parent.holder)
-						dat += "<h2>Admin</h2>"
-						BUTTON_KEY("Adminchat", ACTION_ASAY)
-						BUTTON_KEY("Admin ghost", ACTION_AGHOST)
-						BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
-						BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
-						BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
-						BUTTON_KEY("Deadchat", ACTION_DSAY)
-
-				dat += "</td></tr></table>"
-			else
-				dat += "<b>Default keybindings selected</b>"
-		// yogs end
+			dat += "<br><br>"
+			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
+			dat += "</body>"
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -1068,6 +1028,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
+
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+	var/HTML = {"
+	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
+	<script>
+	document.onkeyup = function(e) {
+		var shift = e.shiftKey ? 1 : 0;
+		var alt = e.altKey ? 1 : 0;
+		var ctrl = e.ctrlKey ? 1 : 0;
+		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
+		var escPressed = e.keyCode == 27 ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
+		window.location=url;
+	}
+	document.getElementById('focus').focus();
+	</script>
+	"}
+	winshow(user, "capturekeypress", TRUE)
+	var/datum/browser/popup = new(user, "capturekeypress", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "capturekeypress", src)
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Research Director", "Head of Personnel"), widthPerColumn = 295, height = 620)
 	if(!SSjob)
@@ -2030,10 +2012,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					disable_alternative_announcers = !disable_alternative_announcers
 				if("balloon_alerts")
 					disable_balloon_alerts = !disable_balloon_alerts
-			// yogs start - Custom keybindings
-			if(href_list["keybinding"])
-				update_keybindings(user, href_list["keybinding"], href_list["dir"])
-			// yogs end
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -2052,11 +2030,77 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
-						bindings.bind_movement() // yogs - Rebindable keys
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 					else
-						bindings.unbind_movement() // yogs - Rebindable keys
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
+
+				if("keybindings_capture")
+					var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+					var/old_key = href_list["old_key"]
+					CaptureKeybinding(user, kb, old_key)
+					return
+
+				if("keybindings_set")
+					var/kb_name = href_list["keybinding"]
+					if(!kb_name)
+						user << browse(null, "window=capturekeypress")
+						ShowChoices(user)
+						return
+
+					var/clear_key = text2num(href_list["clear_key"])
+					var/old_key = href_list["old_key"]
+					if(clear_key)
+						if(old_key != "Unbound") // if it was already set
+							key_bindings[old_key] -= kb_name
+							key_bindings["Unbound"] += list(kb_name)
+						user << browse(null, "window=capturekeypress")
+						save_preferences()
+						ShowChoices(user)
+						return
+
+					var/key = href_list["key"]
+					var/numpad = text2num(href_list["numpad"])
+					var/AltMod = text2num(href_list["alt"]) ? "Alt-" : ""
+					var/CtrlMod = text2num(href_list["ctrl"]) ? "Ctrl-" : ""
+					var/ShiftMod = text2num(href_list["shift"]) ? "Shift-" : ""
+					// var/key_code = text2num(href_list["key_code"])
+
+					var/new_key = uppertext(key)
+
+					// This is a mapping from JS keys to Byond - ref: https://keycode.info/
+					var/static/list/_kbMap = list(
+						"UP" = "North",
+						"RIGHT" = "East",
+						"DOWN" = "South",
+						"LEFT" = "West",
+						"INSERT" = "Insert",
+						"HOME" = "Northwest",
+						"PAGEUP" = "Northeast",
+						"DEL" = "Delete",
+						"END" = "Southwest",
+						"PAGEDOWN" = "Southeast",
+						"SPACEBAR" = "Space",
+						"ALT" = "Alt",
+						"SHIFT" = "Shift",
+						"CONTROL" = "Ctrl"
+					)
+					new_key = _kbMap[new_key] ? _kbMap[new_key] : new_key
+
+					if (numpad)
+						new_key = "Numpad[new_key]"
+
+					var/full_key = "[AltMod][CtrlMod][ShiftMod][new_key]"
+					if(!key_bindings[old_key])
+						key_bindings[old_key] = list()
+					key_bindings[old_key] -= kb_name
+					key_bindings[full_key] += list(kb_name)
+					key_bindings[full_key] = sortList(key_bindings[full_key])
+
+					user << browse(null, "window=capturekeypress")
+					save_preferences()
+
+				if("keybindings_reset")
+					key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
 				if("chat_on_map")
 					chat_on_map = !chat_on_map
 				if("see_chat_non_mob")
@@ -2217,16 +2261,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("changeslot")
 					if(!load_character(text2num(href_list["num"])))
 						random_character()
+						key_bindings = deepCopyList(GLOB.keybinding_list_by_key) // give them default keybinds too
 						real_name = random_unique_name(gender)
 						save_character()
 
 				if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
-
-				// yogs start - Custom keybindings
-				if("reset_bindings")
-					reset_keybindings()
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD

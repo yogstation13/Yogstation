@@ -1,5 +1,10 @@
 //Speech verbs.
 
+/mob/verb/say_wrapper()
+	set hidden = TRUE
+	var/message = input("", "Say") as text
+	say_verb(message)
+
 ///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"

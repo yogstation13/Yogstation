@@ -99,6 +99,9 @@
 /// Number of identical messages required before the spam-prevention will automute you
 #define SPAM_TRIGGER_AUTOMUTE	10
 
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+
 #define STICKYBAN_DB_CACHE_TIME 10 SECONDS
 #define STICKYBAN_ROGUE_CHECK_TIME 5
 
