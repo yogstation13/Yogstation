@@ -30,6 +30,8 @@
 	var/list/parent_message
 	var/normal_desc
 	//--end of love :'(--
+	var/donor_ckey = null //yogs: donor plushies
+
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
