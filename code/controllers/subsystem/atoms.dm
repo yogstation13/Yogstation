@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(atoms)
 
 	var/init_start_time
 
+	initialized = INITIALIZATION_INSSATOMS
+
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	init_start_time = world.time
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
