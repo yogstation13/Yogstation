@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - bugfix: "You will now stop hitting people when using the geiger counter"
