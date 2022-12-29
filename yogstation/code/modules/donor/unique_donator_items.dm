@@ -144,11 +144,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
 
-/datum/donator_gear/azeelium
-	name = "Utatul-Azeel plushie"
-	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
-
 /datum/donator_gear/mqiib
 	name = "Singularity Necklace"
 	ckey = "Mqiib"
