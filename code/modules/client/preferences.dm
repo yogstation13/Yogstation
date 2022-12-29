@@ -971,6 +971,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=donor;task=item'>Pick</a> [temp_item]<BR>"
 				if(donor_item)
 					qdel(temp_item)
+				dat += "<b>Donor Plushie:</b> "
+				///Whatever plush the donator has chosen to apply.
+				var/typeplush = donor_plushie
+				var/temp_plush = donor_plushie ? (new typeplush()) : "None selected"
+				dat += "<a href='?_src_=prefs;preference=donor;task=item'>Pick</a> [temp_plush]<BR>"
+				if(donor_plushie)
+					qdel(temp_plush)
 				dat += "<b>Fancy PDA:</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[GLOB.donor_pdas[donor_pda]]</a><BR>"
 				dat += "<b>Purrbation (Humans only)</b> "
