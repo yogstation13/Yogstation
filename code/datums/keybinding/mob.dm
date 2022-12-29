@@ -22,7 +22,7 @@
 /datum/keybinding/mob/cycle_intent_right
 	hotkey_keys = list("Northwest") // HOME
 	name = "cycle_intent_right"
-	full_name = "cycle intent right"
+	full_name = "Cycle intent right"
 	description = ""
 
 /datum/keybinding/mob/cycle_intent_right/down(client/user)
@@ -34,7 +34,7 @@
 /datum/keybinding/mob/cycle_intent_left
 	hotkey_keys = list("Insert")
 	name = "cycle_intent_left"
-	full_name = "cycle intent left"
+	full_name = "Cycle intent left"
 	description = ""
 
 /datum/keybinding/mob/cycle_intent_left/down(client/user)
@@ -154,7 +154,7 @@
 /datum/keybinding/mob/target_r_arm
 	hotkey_keys = list("Numpad4")
 	name = "target_r_arm"
-	full_name = "Target: right arm"
+	full_name = "Target: Right arm"
 	description = "Pressing this key targets the right arm. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_r_arm/down(client/user)
@@ -176,7 +176,7 @@
 /datum/keybinding/mob/target_left_arm
 	hotkey_keys = list("Numpad6")
 	name = "target_left_arm"
-	full_name = "Target: left arm"
+	full_name = "Target: Left arm"
 	description = "Pressing this key targets the body. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_left_arm/down(client/user)
@@ -209,7 +209,7 @@
 /datum/keybinding/mob/target_left_leg
 	hotkey_keys = list("Numpad3")
 	name = "target_left_leg"
-	full_name = "Target: left leg"
+	full_name = "Target: Left leg"
 	description = "Pressing this key targets the left leg. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_left_leg/down(client/user)
