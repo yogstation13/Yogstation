@@ -124,6 +124,7 @@
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
+	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)//they get a snowflake emp effect instead
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
 	..()
@@ -141,6 +142,9 @@
 	H.clear_alert("dash_charge")
 	usr.click_intercept = null //un-breaks the thing that i don't know is broken
 	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
+	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
+	if(ipcmartial)
+		ipcmartial.Destroy()
 
 /*---------------------------------------------------------------
 

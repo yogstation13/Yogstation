@@ -48,6 +48,9 @@
 
 	smells_like = "industrial lubricant"
 
+	//ipc martial art
+	var/empadapted = FALSE
+
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name
@@ -266,27 +269,25 @@ ipc martial arts stuff
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
 
-
-/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)//special snowflake ipc martial art emp affect
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.in_throw_mode)//if countering the emp
-			add_empproof(H)
 			throw_lightning(H)
-		else//if just getting hit
-			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+		else if(!empadapted)//if getting hit without being adapted, use the snowflake damage effect
+			H.take_overall_damage( 0, 50)
+			H.emote("scream")
+			to_chat(H, span_userdanger("Your Ultra Violence subsystem mitigates the electro-magnetic pulse!"))
+			to_chat(H, span_usernotice("Your Ultra Violence subsystem prepares for additonal pulses."))
+		empadapted = TRUE
+		addtimer(CALLBACK(src, .proc/remove_adapted, H), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/species/ipc/proc/remove_adapted(mob/living/carbon/human/H)
+	to_chat(H, span_usernotice("Your Ultra Violence subsystem stops preparing for electro-magnetic pulses."))
+	empadapted = FALSE
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
 	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
 	siemens_coeff = initial(siemens_coeff)
-
-/datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
-	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
-
-/datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
-	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
-	if(ipcmartial)
-		ipcmartial.Destroy()
 
 #undef CONCIOUSAY
