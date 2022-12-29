@@ -281,8 +281,9 @@
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
-	if(H.a_intent == INTENT_DISARM && !H.IsUnconscious())
-		dash(H, A)
+	if(H.a_intent != INTENT_DISARM || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen())
+		return
+	dash(H, A)
 
 /datum/martial_art/ultra_violence/proc/dash(mob/living/carbon/human/H, atom/A)
 	if(dashing)

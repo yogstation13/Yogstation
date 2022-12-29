@@ -213,9 +213,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		comp.audible_message("[icon2html(comp, hearers(comp))] *[ringtone]*", null, 3)
 		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
 		if(istype(comp, /obj/item/modular_computer/tablet))
-			var/mob/living/carbon/C = comp.loc
-			if(istype(C))
-				msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
+			msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
 		comp.visible_message(span_notice(msg), null, null, 1)
 	
 	return TRUE

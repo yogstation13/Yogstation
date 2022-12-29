@@ -93,10 +93,7 @@ Credit where due:
 	if(.)
 		var/datum/antagonist/clockcult/servant = .
 		var/datum/team/clockcult/cult = servant.get_team()
-		cult.check_size()	
-		if (GLOB.ratvar_approaches)
-			L.set_species(/datum/species/golem/clockwork/no_scrap)
-			to_chat(L, "<span class='heavy_brass'>The beacon is active! You are reformed in Ratvar's image.</span>")
+		cult.check_size()
 	
 	if(!silent && L)
 		if(.)

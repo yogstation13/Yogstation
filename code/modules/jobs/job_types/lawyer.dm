@@ -22,11 +22,14 @@
 	display_order = JOB_DISPLAY_ORDER_LAWYER
 	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "GaxStation")
 
 	smells_like = "legal lies"
 
 /datum/job/lawyer/proc/OmegaStationChanges()
+	return TRUE
+
+/datum/job/lawyer/proc/GaxStationChanges()
 	return TRUE
 
 /datum/outfit/job/lawyer
