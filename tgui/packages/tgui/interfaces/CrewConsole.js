@@ -225,7 +225,7 @@ export const CrewConsoleContent = (props, context) => {
             {sensors.map(sensor => (
               <Table.Row key={sensor.name} fontSize={0.85} style={{
                 'border': '1px solid',
-                'border-color': '#303030',
+                'border-color': '#202020',
                 'font-family': 'Verdana, sans-serif',
               }}>
                 <Table.Cell
