@@ -3,58 +3,6 @@
 	weight = WEIGHT_MOB
 
 
-/datum/keybinding/mob/face_north
-	hotkey_keys = list("CtrlW", "CtrlNorth")
-	classic_keys = list("CtrlNorth")
-	name = "face_north"
-	full_name = "Face North"
-	description = ""
-
-/datum/keybinding/mob/face_north/down(client/user)
-	var/mob/M = user.mob
-	M.northface()
-	return TRUE
-
-
-/datum/keybinding/mob/face_east
-	hotkey_keys = list("CtrlD", "CtrlEast")
-	classic_keys = list("CtrlEast")
-	name = "face_east"
-	full_name = "Face East"
-	description = ""
-
-/datum/keybinding/mob/face_east/down(client/user)
-	var/mob/M = user.mob
-	M.eastface()
-	return TRUE
-
-
-/datum/keybinding/mob/face_south
-	hotkey_keys = list("CtrlS", "CtrlSouth")
-	classic_keys = list("CtrlSouth")
-	name = "face_south"
-	full_name = "Face South"
-	description = ""
-
-/datum/keybinding/mob/face_south/down(client/user)
-	var/mob/M = user.mob
-	M.southface()
-	return TRUE
-
-
-/datum/keybinding/mob/face_west
-	hotkey_keys = list("CtrlA", "CtrlWest")
-	classic_keys = list("CtrlWest")
-	name = "face_west"
-	full_name = "Face West"
-	description = ""
-
-/datum/keybinding/mob/face_west/down(client/user)
-	var/mob/M = user.mob
-	M.westface()
-	return TRUE
-
-
 /datum/keybinding/mob/stop_pulling
 	hotkey_keys = list("H", "Delete")
 	classic_keys = list("Delete")
@@ -108,30 +56,6 @@
 	return TRUE
 
 
-/datum/keybinding/mob/say
-	hotkey_keys = list("T")
-	name = "say"
-	full_name = "Say"
-	description = ""
-
-/datum/keybinding/mob/say/down(client/user)
-	var/mob/M = user.mob
-	M.say_wrapper()
-	return TRUE
-
-
-/datum/keybinding/mob/emote
-	hotkey_keys = list("M")
-	name = "emote"
-	full_name = "Emote"
-	description = ""
-
-/datum/keybinding/mob/me/down(client/user)
-	var/mob/M = user.mob
-	M.me_verb()
-	return TRUE
-
-
 /datum/keybinding/mob/activate_inhand
 	hotkey_keys = list("Z")
 	classic_keys = list("Southeast") // PAGEDOWN
@@ -164,7 +88,7 @@
 
 
 /datum/keybinding/mob/toggle_move_intent
-	hotkey_keys = list("Alt")
+	hotkey_keys = list("C")
 	name = "toggle_move_intent"
 	full_name = "Hold to toggle move intent"
 	description = "Held down to cycle to the other move intent, release to cycle back"
@@ -195,11 +119,33 @@
 /datum/keybinding/mob/target_head_cycle
 	hotkey_keys = list("Numpad8")
 	name = "target_head_cycle"
-	full_name = "Target: Cycle head"
-	description = ""
+	full_name = "Target: Cycle Head"
+	description = "Pressing this key targets the head, and continued presses will cycle to the eyes and mouth. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_head_cycle/down(client/user)
 	user.body_toggle_head()
+	return TRUE
+
+
+/datum/keybinding/mob/target_eyes
+	hotkey_keys = list("Numpad7")
+	name = "target_eyes"
+	full_name = "Target: Eyes"
+	description = "Pressing this key targets the eyes. This will impact where you hit people, and can be used for surgery."
+
+/datum/keybinding/mob/target_eyes/down(client/user)
+	user.body_eyes()
+	return TRUE
+
+
+/datum/keybinding/mob/target_mouth
+	hotkey_keys = list("Numpad9")
+	name = "target_mouths"
+	full_name = "Target: Mouth"
+	description = "Pressing this key targets the mouth. This will impact where you hit people, and can be used for surgery."
+
+/datum/keybinding/mob/target_mouth/down(client/user)
+	user.body_mouth()
 	return TRUE
 
 
@@ -207,7 +153,7 @@
 	hotkey_keys = list("Numpad4")
 	name = "target_r_arm"
 	full_name = "Target: right arm"
-	description = ""
+	description = "Pressing this key targets the right arm. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_r_arm/down(client/user)
 	user.body_r_arm()
@@ -218,7 +164,7 @@
 	hotkey_keys = list("Numpad5")
 	name = "target_body_chest"
 	full_name = "Target: Body"
-	description = ""
+	description = "Pressing this key targets the body. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_body_chest/down(client/user)
 	user.body_chest()
@@ -229,7 +175,7 @@
 	hotkey_keys = list("Numpad6")
 	name = "target_left_arm"
 	full_name = "Target: left arm"
-	description = ""
+	description = "Pressing this key targets the body. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_left_arm/down(client/user)
 	user.body_l_arm()
@@ -240,7 +186,7 @@
 	hotkey_keys = list("Numpad1")
 	name = "target_right_leg"
 	full_name = "Target: Right leg"
-	description = ""
+	description = "Pressing this key targets the right leg. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_right_leg/down(client/user)
 	user.body_r_leg()
@@ -251,7 +197,7 @@
 	hotkey_keys = list("Numpad2")
 	name = "target_body_groin"
 	full_name = "Target: Groin"
-	description = ""
+	description = "Pressing this key targets the groin. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_body_groin/down(client/user)
 	user.body_groin()
@@ -262,8 +208,27 @@
 	hotkey_keys = list("Numpad3")
 	name = "target_left_leg"
 	full_name = "Target: left leg"
-	description = ""
+	description = "Pressing this key targets the left leg. This will impact where you hit people, and can be used for surgery."
 
 /datum/keybinding/mob/target_left_leg/down(client/user)
 	user.body_l_leg()
 	return TRUE
+
+
+/datum/keybinding/mob/prevent_movement
+	hotkey_keys = list("Alt")
+	name = "block_movement"
+	full_name = "Block movement"
+	description = "Prevents you from moving"
+
+/datum/keybinding/mob/prevent_movement/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.movement_locked = TRUE
+
+/datum/keybinding/mob/prevent_movement/up(client/user)
+	. = ..()
+	if(.)
+		return
+	user.movement_locked = FALSE

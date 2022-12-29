@@ -28,13 +28,13 @@
     return TRUE
 
 
-/datum/keybinding/admin/player_panel_new
+/datum/keybinding/admin/player_panel
     hotkey_keys = list("F6")
-    name = "player_panel_new"
-    full_name = "Player Panel New"
-    description = "Opens up the new player panel"
+    name = "player_panel"
+    full_name = "Player Panel"
+    description = "Opens up the player panel"
 
-/datum/keybinding/admin/player_panel_new/down(client/user)
+/datum/keybinding/admin/player_panel/down(client/user)
 	user.holder.player_panel_new()
 	return TRUE
 

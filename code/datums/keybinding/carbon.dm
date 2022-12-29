@@ -12,7 +12,6 @@
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
 	description = "Toggle throwing the current item or not."
-	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/toggle_throw_mode/down(client/user)
 	if (!iscarbon(user.mob))
@@ -22,25 +21,11 @@
 	return TRUE
 
 
-/datum/keybinding/carbon/lay_down
-	hotkey_keys = list("F")
-	name = "lay_down"
-	full_name = "Lay down"
-	description = "Toggle laying down on the floor."
-	category = CATEGORY_CARBON
-
-/datum/keybinding/carbon/lay_down/down(client/user)
-	var/mob/living/carbon/C = user.mob
-	C.lay_down()
-	return TRUE
-
-
 /datum/keybinding/carbon/select_help_intent
 	hotkey_keys = list("1")
 	name = "select_help_intent"
 	full_name = "Select help intent"
 	description = ""
-	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/select_help_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_HELP)
@@ -52,7 +37,6 @@
 	name = "select_disarm_intent"
 	full_name = "Select disarm intent"
 	description = ""
-	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/select_disarm_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_DISARM)
@@ -64,7 +48,6 @@
 	name = "select_grab_intent"
 	full_name = "Select grab intent"
 	description = ""
-	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/select_grab_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_GRAB)
@@ -76,8 +59,19 @@
 	name = "select_harm_intent"
 	full_name = "Select harm intent"
 	description = ""
-	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/select_harm_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_HARM)
+	return TRUE
+
+
+/datum/keybinding/carbon/give
+	hotkey_keys = list("G")
+	name = "Give_Item"
+	full_name = "Give item"
+	description = "Give the item you're currently holding"
+
+/datum/keybinding/carbon/give/down(client/user)
+	var/mob/living/carbon/C = user.mob
+	C.give()
 	return TRUE

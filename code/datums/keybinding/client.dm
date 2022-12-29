@@ -34,25 +34,3 @@
 /datum/keybinding/client/minimal_hud/down(client/user)
 	user.mob.button_pressed_F12()
 	return TRUE  
-
-
-/datum/keybinding/client/ooc
-	hotkey_keys = list("O")
-	name = "ooc"
-	full_name = "OOC"
-	description = ""
-
-/datum/keybinding/client/ooc/down(client/user)
-	user.ooc_wrapper()
-	return TRUE
-
-
-/datum/keybinding/client/looc
-	hotkey_keys = list("L")
-	name = "looc"
-	full_name = "LOOC"
-	description = ""
-
-/datum/keybinding/client/looc/down(client/user)
-	user.looc_wrapper()
-	return TRUE

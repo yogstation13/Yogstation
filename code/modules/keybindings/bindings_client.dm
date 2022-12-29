@@ -6,9 +6,10 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/movement = movement_keys[_key]
-	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
-		next_move_dir_add |= movement
+	if(!movement_locked)
+		var/movement = movement_keys[_key]
+		if(!(next_move_dir_sub & movement))
+			next_move_dir_add |= movement
 
 	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
 	if(!prefs.hotkeys && length(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
@@ -40,10 +41,14 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	if(!keys_held[_key])
+		return
+
 	keys_held -= _key
-	var/movement = movement_keys[_key]
-	if(!(next_move_dir_add & movement))
-		next_move_dir_sub |= movement
+	if(!movement_locked)
+		var/movement = movement_keys[_key]
+		if(!(next_move_dir_add & movement))
+			next_move_dir_sub |= movement
 
 	// We don't do full key for release, because for mod keys you
 	// can hold different keys and releasing any should be handled by the key binding specifically

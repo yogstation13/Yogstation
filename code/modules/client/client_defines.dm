@@ -152,3 +152,5 @@
 
 	///custom movement keys for this client
 	var/list/movement_keys = list()
+	///Are we locking our movement input?
+	var/movement_locked = FALSE

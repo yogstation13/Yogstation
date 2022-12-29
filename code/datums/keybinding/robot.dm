@@ -17,6 +17,7 @@
 	R.toggle_module(1)
 	return TRUE
 
+
 /datum/keybinding/robot/moduletwo
 	hotkey_keys = list("2")
 	name = "module_two"
@@ -27,6 +28,7 @@
 	var/mob/living/silicon/robot/R = user.mob
 	R.toggle_module(2)
 	return TRUE
+
 
 /datum/keybinding/robot/modulethree
 	hotkey_keys = list("3")
@@ -39,6 +41,7 @@
 	R.toggle_module(3)
 	return TRUE
 
+
 /datum/keybinding/robot/intent_cycle
 	hotkey_keys = list("4")
 	name = "cycle_intent"
@@ -49,6 +52,7 @@
 	var/mob/living/silicon/robot/R = user.mob
 	R.a_intent_change(INTENT_HOTKEY_LEFT)
 	return TRUE
+
 
 /datum/keybinding/robot/unequip_module
 	hotkey_keys = list("Q")

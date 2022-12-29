@@ -40,3 +40,5 @@
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 	else
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
+	
+	update_special_keybinds()
