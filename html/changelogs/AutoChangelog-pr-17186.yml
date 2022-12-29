@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added 357 ammo boxes to the hacked autolathe"
+  - tweak: "Reduced the material cost of 357 bullets in the autolathe"
