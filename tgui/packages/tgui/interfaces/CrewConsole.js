@@ -226,6 +226,7 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Row key={sensor.name} fontSize={0.85} style={{
                 'border': '1px solid',
                 'border-color': '#303030',
+                'font-family': 'Verdana, sans-serif',
               }}>
                 <Table.Cell
                   bold={jobIsHead(sensor.ijob)}
