@@ -29,6 +29,14 @@
 				if(!H.put_in_hands(item))
 					item.forceMove(BP)
 
+	if(C.prefs.donor_plushie)
+		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+		if(BP)
+			var/type = C.prefs.donor_plushie
+			if(type)
+				var/obj/item = new type()
+				item.forceMove(BP)
+
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
