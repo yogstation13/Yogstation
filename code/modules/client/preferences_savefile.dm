@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	38
+#define SAVEFILE_VERSION_MAX	39
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -151,6 +151,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		preferred_map = null
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
+	if(current_version < 39) //sanity for updating saves
+		if(!ispath(donor_hat))
+			donor_hat = null
+		if(!ispath(donor_item))
+			donor_item = null
+		donor_plushie = null
 		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
@@ -229,6 +235,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
 	READ_FILE(S["donor_hat"], donor_hat)
+	READ_FILE(S["donor_plushie"],donor_plushie)
 	READ_FILE(S["borg_hat"], borg_hat)
 	READ_FILE(S["donor_item"], donor_item)
 	READ_FILE(S["purrbation"], purrbation)
@@ -376,6 +383,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["borg_hat"], borg_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
+	WRITE_FILE(S["donor_plushie"],donor_plushie)
 	WRITE_FILE(S["purrbation"], purrbation)
 
 	WRITE_FILE(S["accent"], accent) // Accents, too!
