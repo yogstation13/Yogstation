@@ -33,6 +33,19 @@ export const DonorGear = (props, context) => {
               </Section>);
           })}
         </Section>
+        <Section title="Available plushies:">
+        {Object.keys(data.items_info.plushies).map(key => {
+            let value = data.items_info.plushies[key];
+            return (
+              <Section title={`${value.name}`} key={key}>
+                <Button
+                  content={`Select ${value.name}`}
+                  icon="check-square"
+                  color={value.selected && "good"}
+                  onClick={() => act('target', { target: value.id })} />
+              </Section>);
+          })}
+        </Section>
       </Window.Content>
     </Window>
   );

@@ -46,6 +46,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 	var/list/items_info = list()
 	items_info["hats"] = list()
 	items_info["items"] = list()
+	items_info["plushies"] = list()
 	data["items_info"] = items_info
 	for(var/datum/donator_gear/S in GLOB.donator_gear.donor_items)
 		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
@@ -57,6 +58,9 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			if(S.slot == SLOT_HEAD)
 				var/list/L = items_info["hats"] //To dodge the annoying linting error. This one really irks me.
 				items_info["hats"][++L.len] = item_info
+			else if(S.plushie == TRUE)
+				var/list/L = items_info["plushie"] //To dodge the annoying linting error. This one really irks me.
+				items_info["plushies"][++L.len] = item_info
 			else
 				var/list/L = items_info["items"] //To dodge the annoying linting error. This one really irks me.
 				items_info["items"][++L.len] = item_info
@@ -67,6 +71,16 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
 /datum/donator_gear_resources/New()
 	. = ..()
+	for(var/obj/item/toy/plush/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
+		var/datum/donator_gear/P = new /datum/donator_gear
+		P.name = Plushtype.name
+		P.unlock_path = Plushtype.type
+		P.plushie = TRUE
+		if(!P.unlock_path)
+			message_admins("WARNING: [P] has no unlock path, this is NOT intended. Please let a coder know. Clearing it out.")
+			qdel(P)
+			continue
+		donor_items += P
 	for(var/Stype in subtypesof(/datum/donator_gear))
 		var/datum/donator_gear/S = new Stype
 		if(!S.unlock_path)
@@ -80,6 +94,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 	var/ckey = null ///A valid ckey belonging to a player with donator status.
 	var/unlock_path = null ///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
 	var/slot = null ///Is this a hat? For categorisation in the UI.
+	var/plushie = null //Is this a plushie? For categorisation in the UI
 
 ///Method to set the desired client's "fancy item" to their custom item.
 /datum/donator_gear/proc/equip(var/client/C)
@@ -87,6 +102,8 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		return FALSE
 	if(slot == SLOT_HEAD)
 		C.prefs.donor_hat = unlock_path
+	else if (plushie == TRUE)
+		C.prefs.donor_plushie = unlock_path
 	else
 		C.prefs.donor_item = unlock_path
 	C.prefs.save_preferences()
