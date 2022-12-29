@@ -52,13 +52,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
 	if (current_version < 39)
-		// TODO: convert old keybinds
-		key_bindings = sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
-		key_bindings["T"] = list(1 = "say")
-		key_bindings["M"] = list(1 = "me")
-		key_bindings["O"] = list(1 = "ooc")
-		key_bindings["L"] = list(1 = "looc")
-		WRITE_FILE(S["key_bindings"], key_bindings)
+		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.update_movement_keys()
+		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [hotkeys ? "Hotkey" : "Classic"] mode</span>")
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -295,7 +291,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
 	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
 	disable_balloon_alerts = sanitize_integer(disable_balloon_alerts, FALSE, TRUE, initial(disable_balloon_alerts))
-	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
+	key_bindings 	= sanitize_islist(key_bindings, list())
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)

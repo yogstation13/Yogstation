@@ -6,17 +6,26 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/movement = SSinput.movement_keys[_key]
+	var/movement = movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
+	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
+	if(!prefs.hotkeys && length(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
+		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
+		return
+
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
-
-	var/AltMod = keys_held["Alt"] ? "Alt-" : ""
-	var/CtrlMod = keys_held["Ctrl"] ? "Ctrl-" : ""
-	var/ShiftMod = keys_held["Shift"] ? "Shift-" : ""
-	var/full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
+	var/AltMod = keys_held["Alt"] ? "Alt" : ""
+	var/CtrlMod = keys_held["Ctrl"] ? "Ctrl" : ""
+	var/ShiftMod = keys_held["Shift"] ? "Shift" : ""
+	var/full_key
+	switch(_key)
+		if("Alt", "Ctrl", "Shift")
+			full_key = "[AltMod][CtrlMod][ShiftMod]"
+		else
+			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
@@ -24,15 +33,15 @@
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
-	holder?.key_down(full_key, src)
-	mob.focus?.key_down(full_key, src)
+	holder?.key_down(_key, src)
+	mob.focus?.key_down(_key, src)
 
 /client/verb/keyUp(_key as text)
 	set instant = TRUE
 	set hidden = TRUE
 
 	keys_held -= _key
-	var/movement = SSinput.movement_keys[_key]
+	var/movement = movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 

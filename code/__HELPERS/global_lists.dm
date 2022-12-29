@@ -59,16 +59,23 @@
 		var/datum/sprite_accessory/hair_gradient/H = new path()
 		GLOB.hair_gradients_list[H.name] = H
 
-	// Keybindings
+	// Keybindings (classic)
 	for(var/KB in subtypesof(/datum/keybinding))
 		var/datum/keybinding/keybinding = KB
-		if(!initial(keybinding.key))
+		if(!initial(keybinding.hotkey_keys))
 			continue
 		var/datum/keybinding/instance = new keybinding
-		GLOB.keybindings_by_name[initial(instance.name)] = instance
-		if (!GLOB.keybinding_list_by_key[initial(instance.key)])
-			GLOB.keybinding_list_by_key[initial(instance.key)] = list()
-		GLOB.keybinding_list_by_key[initial(instance.key)] += instance.name
+		GLOB.keybindings_by_name[instance.name] = instance
+
+		// Classic
+		if(LAZYLEN(instance.classic_keys))
+			for(var/bound_key in instance.classic_keys)
+				LAZYADD(GLOB.classic_keybinding_list_by_key[bound_key], list(instance.name))
+
+		// Hotkey
+		if(LAZYLEN(instance.hotkey_keys))
+			for(var/bound_key in instance.hotkey_keys)
+				LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
 	// Sort all the keybindings by their weight
 	for(var/key in GLOB.keybinding_list_by_key)
 		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])

@@ -4,7 +4,8 @@
 
 
 /datum/keybinding/mob/face_north
-	key = "Ctrl-W"
+	hotkey_keys = list("CtrlW", "CtrlNorth")
+	classic_keys = list("CtrlNorth")
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -16,7 +17,8 @@
 
 
 /datum/keybinding/mob/face_east
-	key = "Ctrl-D"
+	hotkey_keys = list("CtrlD", "CtrlEast")
+	classic_keys = list("CtrlEast")
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -28,7 +30,8 @@
 
 
 /datum/keybinding/mob/face_south
-	key = "Ctrl-S"
+	hotkey_keys = list("CtrlS", "CtrlSouth")
+	classic_keys = list("CtrlSouth")
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -40,7 +43,8 @@
 
 
 /datum/keybinding/mob/face_west
-	key = "Ctrl-A"
+	hotkey_keys = list("CtrlA", "CtrlWest")
+	classic_keys = list("CtrlWest")
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
@@ -52,14 +56,15 @@
 
 
 /datum/keybinding/mob/stop_pulling
-	key = "Delete"
+	hotkey_keys = list("H", "Delete")
+	classic_keys = list("Delete")
 	name = "stop_pulling"
 	full_name = "Stop pulling"
 	description = ""
 
 /datum/keybinding/mob/stop_pulling/down(client/user)
 	var/mob/M = user.mob
-	if (M.pulling)
+	if (!M.pulling)
 		to_chat(user, "<span class='notice'>You are not pulling anything.</span>")
 	else
 		M.stop_pulling()
@@ -67,7 +72,7 @@
 
 
 /datum/keybinding/mob/cycle_intent_right
-	key = "Home"
+	hotkey_keys = list("Northwest") // HOME
 	name = "cycle_intent_right"
 	full_name = "cycle intent right"
 	description = ""
@@ -79,7 +84,7 @@
 
 
 /datum/keybinding/mob/cycle_intent_left
-	key = "Insert"
+	hotkey_keys = list("Insert")
 	name = "cycle_intent_left"
 	full_name = "cycle intent left"
 	description = ""
@@ -91,7 +96,8 @@
 
 
 /datum/keybinding/mob/swap_hands
-	key = "X"
+	hotkey_keys = list("X")
+	classic_keys = list("Northeast") // PAGEUP
 	name = "swap_hands"
 	full_name = "Swap hands"
 	description = ""
@@ -103,7 +109,7 @@
 
 
 /datum/keybinding/mob/say
-	key = "T"
+	hotkey_keys = list("T")
 	name = "say"
 	full_name = "Say"
 	description = ""
@@ -115,7 +121,7 @@
 
 
 /datum/keybinding/mob/emote
-	key = "M"
+	hotkey_keys = list("M")
 	name = "emote"
 	full_name = "Emote"
 	description = ""
@@ -127,7 +133,8 @@
 
 
 /datum/keybinding/mob/activate_inhand
-	key = "Z"
+	hotkey_keys = list("Z")
+	classic_keys = list("Southeast") // PAGEDOWN
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have in your active hand"
@@ -139,7 +146,7 @@
 
 
 /datum/keybinding/mob/drop_item
-	key = "Q"
+	hotkey_keys = list("Q")
 	name = "drop_item"
 	full_name = "Drop Item"
 	description = ""
@@ -157,7 +164,7 @@
 
 
 /datum/keybinding/mob/toggle_move_intent
-	key = "Alt"
+	hotkey_keys = list("Alt")
 	name = "toggle_move_intent"
 	full_name = "Hold to toggle move intent"
 	description = "Held down to cycle to the other move intent, release to cycle back"
@@ -173,8 +180,20 @@
 	return TRUE
 
 
+/datum/keybinding/mob/toggle_move_intent_alternative
+	hotkey_keys = list("Unbound")
+	name = "toggle_move_intent_alt"
+	full_name = "Press to cycle move intent"
+	description = "Pressing this cycle to the opposite move intent, does not cycle back"
+
+/datum/keybinding/mob/toggle_move_intent_alternative/down(client/user)
+	var/mob/M = user.mob
+	M.toggle_move_intent()
+	return TRUE
+
+
 /datum/keybinding/mob/target_head_cycle
-	key = "Numpad8"
+	hotkey_keys = list("Numpad8")
 	name = "target_head_cycle"
 	full_name = "Target: Cycle head"
 	description = ""
@@ -185,7 +204,7 @@
 
 
 /datum/keybinding/mob/target_r_arm
-	key = "Numpad4"
+	hotkey_keys = list("Numpad4")
 	name = "target_r_arm"
 	full_name = "Target: right arm"
 	description = ""
@@ -196,7 +215,7 @@
 
 
 /datum/keybinding/mob/target_body_chest
-	key = "Numpad5"
+	hotkey_keys = list("Numpad5")
 	name = "target_body_chest"
 	full_name = "Target: Body"
 	description = ""
@@ -207,7 +226,7 @@
 
 
 /datum/keybinding/mob/target_left_arm
-	key = "Numpad6"
+	hotkey_keys = list("Numpad6")
 	name = "target_left_arm"
 	full_name = "Target: left arm"
 	description = ""
@@ -218,7 +237,7 @@
 
 
 /datum/keybinding/mob/target_right_leg
-	key = "Numpad1"
+	hotkey_keys = list("Numpad1")
 	name = "target_right_leg"
 	full_name = "Target: Right leg"
 	description = ""
@@ -229,7 +248,7 @@
 
 
 /datum/keybinding/mob/target_body_groin
-	key = "Numpad2"
+	hotkey_keys = list("Numpad2")
 	name = "target_body_groin"
 	full_name = "Target: Groin"
 	description = ""
@@ -240,7 +259,7 @@
 
 
 /datum/keybinding/mob/target_left_leg
-	key = "Numpad3"
+	hotkey_keys = list("Numpad3")
 	name = "target_left_leg"
 	full_name = "Target: left leg"
 	description = ""

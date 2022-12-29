@@ -1,6 +1,6 @@
 /client/verb/looc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "LOOC") as text
+	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
 
 /client/verb/looc(msg as text)
@@ -126,4 +126,3 @@
 			return
 	else
 		GLOB.dlooc_allowed = !GLOB.dlooc_allowed
-		

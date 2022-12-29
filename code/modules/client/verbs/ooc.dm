@@ -4,7 +4,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "OOC") as text
+	var/message = input("", "OOC \"text\"") as null|text
 	ooc(message)
 
 /client/verb/ooc(msg as text)
