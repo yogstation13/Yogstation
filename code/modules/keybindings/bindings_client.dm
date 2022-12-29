@@ -5,6 +5,9 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
+
 	keys_held[_key] = world.time
 	if(!movement_locked)
 		var/movement = movement_keys[_key]
