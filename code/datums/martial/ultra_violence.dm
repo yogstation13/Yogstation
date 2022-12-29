@@ -25,7 +25,7 @@
 	if(findtext(streak, POCKET_PISTOl))
 		streak = ""
 		pocket_pistol(A,D)
-		speed_boost(A, 2, "pocketpistol")
+		speed_boost(A, 2 SECONDS, "pocketpistol")
 		return TRUE
 
 	if(A == D) //you can pull your gun out by "grabbing" yourself
@@ -34,7 +34,7 @@
 	if(findtext(streak, BLOOD_BURST))
 		streak = ""
 		blood_burst(A,D)
-		speed_boost(A, 6, "bloodburst")
+		speed_boost(A, 6 SECONDS, "bloodburst")
 		return TRUE
 
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT) //no getting shotguns off people that aren't fighting back
@@ -43,7 +43,7 @@
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A)
-		speed_boost(A, 6, "gunhand")
+		speed_boost(A, 6 SECONDS, "gunhand")
 		return TRUE
 
 /datum/martial_art/ultra_violence/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -58,8 +58,7 @@
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
-	if(check_streak(A,D))
-		return FALSE
+	check_streak(A,D)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
