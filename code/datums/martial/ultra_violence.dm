@@ -72,13 +72,14 @@
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
 
 	A.add_mob_blood(D)
-	D.bleed(30)
+	D.apply_damage( 6, BRUTE, A.zone_selected, wound_bonus = 5, bare_wound_bonus = 5, sharpness = SHARP_EDGED)//between 11 and 20 brute damage, 6 of which is sharp and can wound
+	D.bleed(20)
 	D.add_splatter_floor(D.loc, TRUE)
 
 	new /obj/effect/gibspawner/generic(D.loc)
 
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT)
-		D.bleed(150)
+		D.bleed(130)
 		D.death()
 		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
 		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution
