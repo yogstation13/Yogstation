@@ -80,7 +80,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		donor_items += S
 	for(var/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
 		var/datum/donator_gear/P = new
-		var/obj/myplush = new Plushtype
+		var/obj/item/toy/plush/myplush = new Plushtype
 		if(myplush.donor_blacklist) //don't give dehydrated carp plushie to donors
 			qdel(P)
 			qdel(myplush)
@@ -93,6 +93,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		qdel(myplush)
 		if(!P.unlock_path)
 			message_admins("WARNING: [P] has no unlock path, this is NOT intended. Please let a coder know. Clearing it out.")
+			qdel(myplush)
 			qdel(P)
 			continue
 		donor_items += P
