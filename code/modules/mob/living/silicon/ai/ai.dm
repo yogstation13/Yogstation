@@ -110,7 +110,7 @@
 	//Can we (simple) examine humans?
 	var/canExamineHumans = FALSE
 	//Reduces/Increases download speed by this modifier
-	var/downloadSpeedModifier = 1
+	var/downloadSpeedModifier = 1.5
 
 	var/login_warned_temp = FALSE
 
