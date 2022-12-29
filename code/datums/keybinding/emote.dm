@@ -11,4 +11,4 @@
 	description = "Do the emote '*[emote_key]'"
 
 /datum/keybinding/emote/down(client/user)
-	return user.mob.emote(emote_key, intentional=TRUE)
+	return user.mob.emote(emote_key, intentional=TRUE, is_keybind=TRUE)
