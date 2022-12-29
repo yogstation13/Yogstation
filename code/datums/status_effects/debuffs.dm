@@ -463,6 +463,7 @@
 		qdel(src)
 	else
 		add_bleed(-1)
+		owner.apply_damage(10)
 
 /datum/status_effect/saw_bleed/proc/add_bleed(amount)
 	owner.cut_overlay(bleed_overlay)
