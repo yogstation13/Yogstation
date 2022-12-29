@@ -1,5 +1,5 @@
 /obj/item/toy/plush
-	name = "plush"
+	name = "coder plush"
 	desc = "This is the special coder plush, do not steal."
 	icon = 'icons/obj/plushes.dmi'
 	icon_state = "debug"

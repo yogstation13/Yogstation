@@ -85,6 +85,10 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(P)
 			qdel(myplush)
 			continue
+		if(myplush.name == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH
+			qdel(P)
+			qdel(myplush)
+			continue
 		P.name = myplush.name
 		P.unlock_path = myplush.type
 		P.plushie = TRUE
