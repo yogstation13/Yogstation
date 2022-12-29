@@ -78,12 +78,14 @@
 /datum/keybinding/mob/drop_item/down(client/user)
 	if(iscyborg(user.mob)) //cyborgs can't drop items
 		return FALSE
+
 	var/mob/M = user.mob
 	var/obj/item/I = M.get_active_held_item()
 	if(!I)
 		to_chat(user, "<span class='warning'>You have nothing to drop in your hand!</span>")
 	else
 		user.mob.dropItemToGround(I)
+
 	return TRUE
 
 
@@ -216,19 +218,13 @@
 
 
 /datum/keybinding/mob/prevent_movement
-	hotkey_keys = list("Alt")
+	hotkey_keys = list("Ctrl")
 	name = "block_movement"
 	full_name = "Block movement"
 	description = "Prevents you from moving"
 
 /datum/keybinding/mob/prevent_movement/down(client/user)
-	. = ..()
-	if(.)
-		return
 	user.movement_locked = TRUE
 
 /datum/keybinding/mob/prevent_movement/up(client/user)
-	. = ..()
-	if(.)
-		return
 	user.movement_locked = FALSE
