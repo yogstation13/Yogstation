@@ -18,6 +18,36 @@
 	return TRUE
 
 
+/datum/keybinding/carbon/lay_down
+	key = "F"
+	name = "lay_down"
+	full_name = "Lay down"
+	description = "Toggle laying down on the floor."
+	category = CATEGORY_CARBON
+
+/datum/keybinding/carbon/lay_down/down(client/user)
+	if (!iscarbon(user.mob))
+		return FALSE
+	var/mob/living/carbon/C = user.mob
+	C.lay_down()
+	return TRUE
+
+
+/datum/keybinding/carbon/toggle_walk_run
+	key = "F"
+	name = "toggle_walk_run"
+	full_name = "Lay down"
+	description = "Toggle laying down on the floor."
+	category = CATEGORY_CARBON
+
+/datum/keybinding/carbon/lay_down/down(client/user)
+	if (!iscarbon(user.mob))
+		return FALSE
+	var/mob/living/carbon/C = user.mob
+	C.lay_down()
+	return TRUE
+
+
 /datum/keybinding/carbon/select_help_intent
 	key = "1"
 	name = "select_help_intent"

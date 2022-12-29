@@ -38,6 +38,7 @@
 	M.southface()
 	return TRUE
 
+
 /datum/keybinding/mob/face_west
 	key = "Ctrl-A"
 	name = "face_west"
@@ -49,8 +50,9 @@
 	M.westface()
 	return TRUE
 
+
 /datum/keybinding/mob/stop_pulling
-	key = "H"
+	key = "Delete"
 	name = "stop_pulling"
 	full_name = "Stop pulling"
 	description = ""
@@ -63,6 +65,7 @@
 		M.stop_pulling()
 	return TRUE
 
+
 /datum/keybinding/mob/cycle_intent_right
 	key = "Home"
 	name = "cycle_intent_right"
@@ -73,6 +76,7 @@
 	var/mob/M = user.mob
 	M.a_intent_change(INTENT_HOTKEY_RIGHT)
 	return TRUE
+
 
 /datum/keybinding/mob/cycle_intent_left
 	key = "Insert"
@@ -85,6 +89,7 @@
 	M.a_intent_change(INTENT_HOTKEY_LEFT)
 	return TRUE
 
+
 /datum/keybinding/mob/swap_hands
 	key = "X"
 	name = "swap_hands"
@@ -95,6 +100,7 @@
 	var/mob/M = user.mob
 	M.swap_hand()
 	return TRUE
+
 
 /datum/keybinding/mob/say
 	key = "T"
@@ -107,10 +113,11 @@
 	M.say_wrapper()
 	return TRUE
 
-/datum/keybinding/mob/me
+
+/datum/keybinding/mob/emote
 	key = "M"
-	name = "me"
-	full_name = "Me"
+	name = "emote"
+	full_name = "Emote"
 	description = ""
 
 /datum/keybinding/mob/me/down(client/user)
@@ -118,16 +125,18 @@
 	M.me_verb()
 	return TRUE
 
+
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
-	description = "Uses whatever item you have inhand"
+	description = "Uses whatever item you have in your active hand"
 
 /datum/keybinding/mob/activate_inhand/down(client/user)
 	var/mob/M = user.mob
 	M.mode()
 	return TRUE
+
 
 /datum/keybinding/mob/drop_item
 	key = "Q"
@@ -146,6 +155,7 @@
 		user.mob.dropItemToGround(I)
 	return TRUE
 
+
 /datum/keybinding/mob/toggle_move_intent
 	key = "Alt"
 	name = "toggle_move_intent"
@@ -153,7 +163,7 @@
 	description = "Held down to cycle to the other move intent, release to cycle back"
 
 /datum/keybinding/mob/toggle_move_intent/down(client/user)
-	var/mob/M = user.mob
+	var/mob/M = user.mob // Broken?
 	M.toggle_move_intent()
 	return TRUE
 
@@ -161,6 +171,7 @@
 	var/mob/M = user.mob
 	M.toggle_move_intent()
 	return TRUE
+
 
 /datum/keybinding/mob/target_head_cycle
 	key = "Numpad8"
@@ -172,6 +183,7 @@
 	user.body_toggle_head()
 	return TRUE
 
+
 /datum/keybinding/mob/target_r_arm
 	key = "Numpad4"
 	name = "target_r_arm"
@@ -181,6 +193,7 @@
 /datum/keybinding/mob/target_r_arm/down(client/user)
 	user.body_r_arm()
 	return TRUE
+
 
 /datum/keybinding/mob/target_body_chest
 	key = "Numpad5"
@@ -192,6 +205,7 @@
 	user.body_chest()
 	return TRUE
 
+
 /datum/keybinding/mob/target_left_arm
 	key = "Numpad6"
 	name = "target_left_arm"
@@ -201,6 +215,7 @@
 /datum/keybinding/mob/target_left_arm/down(client/user)
 	user.body_l_arm()
 	return TRUE
+
 
 /datum/keybinding/mob/target_right_leg
 	key = "Numpad1"
@@ -212,6 +227,7 @@
 	user.body_r_leg()
 	return TRUE
 
+
 /datum/keybinding/mob/target_body_groin
 	key = "Numpad2"
 	name = "target_body_groin"
@@ -221,6 +237,7 @@
 /datum/keybinding/mob/target_body_groin/down(client/user)
 	user.body_groin()
 	return TRUE
+
 
 /datum/keybinding/mob/target_left_leg
 	key = "Numpad3"

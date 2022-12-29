@@ -13,6 +13,7 @@
     user.get_admin_say()
     return TRUE
 
+
 /datum/keybinding/admin/admin_ghost
     key = "F5"
     name = "admin_ghost"
@@ -22,6 +23,7 @@
 /datum/keybinding/admin/admin_ghost/down(client/user)
     user.admin_ghost()
     return TRUE
+
 
 /datum/keybinding/admin/player_panel_new
     key = "F6"
@@ -33,6 +35,7 @@
 	user.holder.player_panel_new()
 	return TRUE
 
+
 /datum/keybinding/admin/toggle_buildmode_self
 	key = "F7"
 	name = "toggle_buildmode_self"
@@ -42,6 +45,7 @@
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)
 	user.togglebuildmodeself()
 	return TRUE
+
 
 /datum/keybinding/admin/stealthmode
 	key = "Ctrl-F8"
@@ -53,6 +57,7 @@
 	user.stealth()
 	return TRUE
 
+
 /datum/keybinding/admin/invisimin
 	key = "F8"
 	name = "invisimin"
@@ -62,6 +67,7 @@
 /datum/keybinding/admin/invisimin/down(client/user)
 	user.invisimin()
 	return TRUE
+
 
 /datum/keybinding/admin/deadsay
 	key = "F10"

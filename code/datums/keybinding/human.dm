@@ -14,6 +14,7 @@
     H.quick_equip()
     return TRUE
 
+
 /datum/keybinding/human/quick_equipbelt
     key = "Shift-E"
     name = "quick_equipbelt"
@@ -24,6 +25,7 @@
     var/mob/living/carbon/human/H = user.mob
     H.smart_equipbelt()
     return TRUE
+
 
 /datum/keybinding/human/bag_equip
 	key = "Shift-B"

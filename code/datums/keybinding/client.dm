@@ -24,6 +24,7 @@
     winset(user, null, "command=.screenshot [!user.keys_held["shift"] ? "auto" : ""]")
     return TRUE
 
+
 /datum/keybinding/client/minimal_hud
     key = "F12"
     name = "minimal_hud"
@@ -34,6 +35,7 @@
     user.mob.button_pressed_F12()
     return TRUE  
 
+
 /datum/keybinding/client/ooc
 	key = "O"
 	name = "ooc"
@@ -42,4 +44,15 @@
 
 /datum/keybinding/client/ooc/down(client/user)
 	user.ooc_wrapper()
+	return TRUE
+
+
+/datum/keybinding/client/looc
+	key = "L"
+	name = "looc"
+	full_name = "LOOC"
+	description = ""
+
+/datum/keybinding/client/looc/down(client/user)
+	user.looc_wrapper()
 	return TRUE
