@@ -52,14 +52,14 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
 			var/list/item_info = list()
 			item_info["name"] = S.name
-			item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
+			item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_plushie]" == "[S.unlock_path]"
 			item_info["id"] = "\ref[S]"
 			//Bit of sorting on the UI to make it nicer to look at.
 			if(S.slot == SLOT_HEAD)
 				var/list/L = items_info["hats"] //To dodge the annoying linting error. This one really irks me.
 				items_info["hats"][++L.len] = item_info
-			else if(S.plushie == TRUE)
-				var/list/L = items_info["plushie"] //To dodge the annoying linting error. This one really irks me.
+			else if(S.plushie)
+				var/list/L = items_info["plushies"] //To dodge the annoying linting error. This one really irks me.
 				items_info["plushies"][++L.len] = item_info
 			else
 				var/list/L = items_info["items"] //To dodge the annoying linting error. This one really irks me.
@@ -71,16 +71,6 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
 /datum/donator_gear_resources/New()
 	. = ..()
-	for(var/obj/item/toy/plush/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
-		var/datum/donator_gear/P = new /datum/donator_gear
-		P.name = Plushtype.name
-		P.unlock_path = Plushtype.type
-		P.plushie = TRUE
-		if(!P.unlock_path)
-			message_admins("WARNING: [P] has no unlock path, this is NOT intended. Please let a coder know. Clearing it out.")
-			qdel(P)
-			continue
-		donor_items += P
 	for(var/Stype in subtypesof(/datum/donator_gear))
 		var/datum/donator_gear/S = new Stype
 		if(!S.unlock_path)
@@ -88,6 +78,19 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(S)
 			continue
 		donor_items += S
+	for(var/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
+		var/datum/donator_gear/P = new
+		var/obj/myplush = new Plushtype
+		P.name = myplush.name
+		P.unlock_path = myplush.type
+		P.plushie = TRUE
+		P.ckey = myplush.donor_ckey
+		qdel(myplush)
+		if(!P.unlock_path)
+			message_admins("WARNING: [P] has no unlock path, this is NOT intended. Please let a coder know. Clearing it out.")
+			qdel(P)
+			continue
+		donor_items += P
 
 /datum/donator_gear
 	var/name = "Base type donator item"
