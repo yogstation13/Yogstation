@@ -955,10 +955,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	if(B.needs_to_bleed)
 		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
-		user.adjustBruteLoss(-8)
-		user.adjustFireLoss(-8)
-		user.adjustToxLoss(-8)
-		user.blood_volume += 8
+		user.adjustBruteLoss(-10)
+		user.adjustFireLoss(-10)
+		user.adjustToxLoss(-10)
+		user.blood_volume += 10
 
 /obj/item/melee/transforming/cleaving_saw/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!active || swiping || !target.density || get_turf(target) == get_turf(user))
