@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a runtime in the 'give' keybind"
