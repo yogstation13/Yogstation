@@ -35,6 +35,7 @@
 			var/type = C.prefs.donor_plushie
 			if(type)
 				var/obj/item = new type()
+				item.desc = item.desc + " It has a tag embroidered with the name \"[span_notice(H.real_name)].\""
 				item.forceMove(BP)
 
 	switch(C.prefs.donor_pda)
