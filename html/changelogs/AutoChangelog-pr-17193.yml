@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Hydrogen is now just shittier tritium as it should be"
-  - bugfix: "hydrogen/tritium burns will now actually consume oxygen instead of fabricating it out of thin air (haha get it because it's a gas)"
