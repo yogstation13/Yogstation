@@ -38,8 +38,8 @@
 
 /obj/effect/proc_holder/spell/targeted/buster/wire_snatch
 	name = "Wire Snatch"
-	desc = "Extend a wire to your active hand for reeling in foes from a distance. Anchored targets that are hit will pull you towards them instead. It can be used 3 times before \
-	reeling back into the arm."
+	desc = "Extend a wire to your active hand for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
+	pull you towards them instead. It can be used 3 times before reeling back into the arm."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1
@@ -169,8 +169,8 @@
 
 /obj/effect/proc_holder/spell/targeted/touch/buster/grap
 	name = "Grapple"
-	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off when \
-	throwing the victim."
+	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off\
+	when throwing the victim."
 	hand_path = /obj/item/buster/graphand
 	school = "transmutation"
 	charge_max = 30
@@ -186,7 +186,7 @@
 		to_chat(user, span_notice("[dropmessage]"))
 		return
 	for(var/mob/living/carbon/C in targets)
-		C.visible_message(span_warning("The fingers on [C]'s buster arm begin to tense up."))
+		C.visible_message(span_warning("The fingers on [C]'s left buster arm begin to tense up."))
 		if(!attached_hand)
 			attached_hand = new hand_path(src)
 			attached_hand.attached_spell = src
@@ -343,10 +343,10 @@
 					return
 		for(var/mob/living/M in C.contents)
 			hit(user, M, slamdam)
-			M.Paralyze(1.5 SECONDS)
+			M.Knockdown(1.5 SECONDS)
 			for(var/mob/living/S in thrown)
 				hit(user, S, slamdam)
-				S.Paralyze(1 SECONDS)
+				S.Knockdown(1 SECONDS)
 			thrown |= M
 			for(var/obj/O in thrown)
 				O.take_damage(objdam)
@@ -359,11 +359,6 @@
 					var/atom/throw_target = get_edge_target_turf(K, direction)
 					K.throw_at(throw_target, 6, 4, user, 3)
 				animate(K, transform = null, time = 0.5 SECONDS, loop = 0)
-				for(var/mob/living/J in thrown)
-					if(J.stat == CONSCIOUS)
-						animate(J, transform = null, time = 0.5 SECONDS, loop = 0)
-					else
-						animate(J, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 
 
 
@@ -448,11 +443,11 @@
 /obj/effect/proc_holder/spell/targeted/buster/slam
 	name = "Slam"
 	desc = "Grab the target in front of you and slam them back onto the ground. \
-	 If there's a solid object behind you when the move is successfully performed then it will \ take substantial damage."
+	 If there's a solid object or wall behind you when the move is successfully performed then it will \ take substantial damage."
 	action_icon = 'icons/mob/actions/actions_arm.dmi'	
 	action_icon_state = "suplex"
 	charge_max = 7
-	var/supdam = 20
+	var/supdam = 25
 	var/crashdam = 10
 	var/walldam = 30
 
@@ -504,7 +499,7 @@
 		to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
 		user.visible_message(span_warning("[user] turns around and slams [L] against the ground!"))
 		user.setDir(turn(user.dir, 180))
-		animate(L, transform = matrix(179, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+		animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
 			if(L.stat == DEAD)
@@ -513,23 +508,22 @@
 		grab(user, L, supdam)
 		sleep(0.5 SECONDS)
 		if(L.stat == CONSCIOUS && L.resting == FALSE)
-			animate(L, transform = null, time = 0.1 SECONDS, loop = 0)
+			animate(L, transform = null, time = 0.5 SECONDS, loop = 0)
 		else
 			animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 		
 /obj/effect/proc_holder/spell/targeted/buster/megabuster
 	name = "Mega Buster"
-	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying if they're not anchored. \
-	Flying targets will have a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun \
-	its owner. Once the five seconds are up or a strong wall or person is hit, the entire arm will be unusable for 15 seconds. Punching a person, reinforced wall, or exosuit will\
-	disable the arm"
+	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying. Flying targets will have\
+	a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun	its owner. Once the five\
+	seconds are up or a strong wall or person or exosuit is hit, the entire arm will be unusable for 15 seconds."
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "ponch"
 	charge_max = 60
 
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/cast(list/targets, mob/living/user)
 	var/obj/item/buster/megabuster/B = new()
-	user.visible_message(span_userdanger("[user]'s arm begins crackling loudly!"))
+	user.visible_message(span_userdanger("[user]'s left arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
 		var/result = (user.put_in_l_hand(B))
@@ -663,6 +657,7 @@
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()
 			if(!istype(W, /turf/closed/wall/r_wall))
+				playsound(L,'sound/effects/meteorimpact.ogg', 50, 1)
 				W.dismantle_wall(1)
 			else
 				return
@@ -745,6 +740,7 @@
 		to_chat(user, span_notice("[dropmessage]"))
 		return
 	for(var/mob/living/carbon/C in targets)
+		C.visible_message(span_warning("The fingers on [C]'s left buster arm begin to tense up."))
 		if(!attached_hand)
 			attached_hand = new hand_path(src)
 			attached_hand.attached_spell = src
@@ -758,7 +754,7 @@
 
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/right/cast(list/targets, mob/living/user)
 	var/obj/item/buster/megabuster/B = new()
-	user.visible_message(span_userdanger("[user]'s arm begins crackling loudly!"))
+	user.visible_message(span_userdanger("[user]'s right arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
 		var/result = (user.put_in_r_hand(B))
