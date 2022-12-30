@@ -764,49 +764,6 @@
 	surgery = list(/datum/surgery/advanced/viral_bonding)
 	research_icon_state = "surgery_chest"
 
-/datum/design/surgery/healing
-	name = "Tend Wounds"
-	desc = "An upgraded version of the original surgery."
-	id = "surgery_healing_base" //holder because travis cries otherwise. Not used in techweb unlocks.
-	research_icon_state = "surgery_chest"
-
-/datum/design/surgery/healing/brute_upgrade
-	name = "Tend Wounds (Brute) Upgrade"
-	surgery = list(/datum/surgery/healing/brute/upgraded)
-	id = "surgery_heal_brute_upgrade"
-
-/datum/design/surgery/healing/brute_upgrade_2
-	name = "Tend Wounds (Brute) Upgrade"
-	surgery = list(/datum/surgery/healing/brute/upgraded/femto)
-	id = "surgery_heal_brute_upgrade_femto"
-
-/datum/design/surgery/healing/burn_upgrade
-	name = "Tend Wounds (Burn) Upgrade"
-	surgery = list(/datum/surgery/healing/burn/upgraded)
-	id = "surgery_heal_burn_upgrade"
-
-/datum/design/surgery/healing/burn_upgrade_2
-	name = "Tend Wounds (Burn) Upgrade"
-	surgery = list(/datum/surgery/healing/burn/upgraded/femto)
-	id = "surgery_heal_burn_upgrade_femto"
-
-/datum/design/surgery/healing/combo
-	name = "Tend Wounds (Physical)"
-	desc = "A surgical procedure that repairs both bruises and burns. Repair efficiency is not as high as the individual surgeries but it is faster."
-	surgery = list(/datum/surgery/healing/combo)
-	id = "surgery_heal_combo"
-
-/datum/design/surgery/healing/combo_upgrade
-	name = "Tend Wounds (Physical) Upgrade"
-	surgery = list(/datum/surgery/healing/combo/upgraded)
-	id = "surgery_heal_combo_upgrade"
-
-/datum/design/surgery/healing/combo_upgrade_2
-	name = "Tend Wounds (Physical) Upgrade"
-	desc = "A surgical procedure that repairs both bruises and burns faster than their individual counterparts. It is more effective than both the individual surgeries."
-	surgery = list(/datum/surgery/healing/combo/upgraded/femto)
-	id = "surgery_heal_combo_upgrade_femto"
-
 /datum/design/surgery/revival
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
