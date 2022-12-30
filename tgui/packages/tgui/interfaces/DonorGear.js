@@ -34,7 +34,7 @@ export const DonorGear = (props, context) => {
           })}
         </Section>
         <Section title="Available plushies:">
-        {Object.keys(data.items_info.plushies).map(key => {
+          {Object.keys(data.items_info.plushies).map(key => {
             let value = data.items_info.plushies[key];
             return (
               <Section title={`${value.name}`} key={key}>
