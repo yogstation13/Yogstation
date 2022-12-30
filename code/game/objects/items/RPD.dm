@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		"selected_color" = paint_color,
 		"paint_colors" = GLOB.pipe_paint_colors,
 		"mode" = mode,
-		"locked" = locked
+		"locked" = locked,
 	)
 
 	var/list/recipes
