@@ -71,7 +71,6 @@ Contains:
 	desc = "A CentCom engineering dark red space suit helmet. While old and dusty, it still gets the job done."
 	icon_state = "void"
 	item_state = "void"
-	flash_protect = 0
 
 /obj/item/clothing/suit/space/nasavoid/old
 	name = "Engineering Voidsuit"
