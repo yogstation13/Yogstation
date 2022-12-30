@@ -2974,14 +2974,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/hardsuit/riotvest
 	name = "Riot Suit"
-	desc = "A bulky suit that protects you againt melee attacks but not much else."
+	desc = "A bulky suit that protects you against melee attacks but not much else."
 	item = /obj/item/clothing/suit/armor/riot
 	cost = 1
 	required_ert_uplink = 1
 
 /datum/uplink_item/nt/hardsuit/riothelmet
 	name = "Riot Helmet"
-	desc = "A helmet that protects you againt melee attacks but not much else."
+	desc = "A helmet that protects you against melee attacks but not much else."
 	item = /obj/item/clothing/head/helmet/riot
 	cost = 1
 	required_ert_uplink = 1
