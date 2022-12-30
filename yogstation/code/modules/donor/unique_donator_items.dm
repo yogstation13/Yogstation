@@ -114,7 +114,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		return FALSE
 	if(slot == SLOT_HEAD)
 		C.prefs.donor_hat = unlock_path
-	else if (plushie == TRUE)
+	else if (plushie)
 		C.prefs.donor_plushie = unlock_path
 	else
 		C.prefs.donor_item = unlock_path
