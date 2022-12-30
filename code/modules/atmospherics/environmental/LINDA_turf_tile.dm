@@ -60,7 +60,7 @@
 	//acounts for changes in temperature
 	var/turf/parent = parent_type
 	if(temperature != initial(temperature) || temperature != initial(parent.temperature))
-		mix.temperature = temperature
+		mix.set_temperature(temperature)
 
 	return mix
 

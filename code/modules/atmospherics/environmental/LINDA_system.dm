@@ -38,7 +38,7 @@
 			continue
 		can_pass = FALSE
 		//the direction and open/closed are already checked on can_atmos_pass() so there are no arguments
-		if(checked_object.block_superconductivity())
+		if(checked_object.BlockSuperconductivity())
 			atmos_supeconductivity |= direction
 			target_turf.atmos_supeconductivity |= opposite_direction
 			return FALSE //no need to keep going, we got all we asked (Is this even faster? fuck you it's soul)
@@ -67,21 +67,11 @@
 	LAZYINITLIST(src.atmos_adjacent_turfs)
 	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
 	var/canpass = CANATMOSPASS(src, src, FALSE)
-	// I am essentially inlineing two get_dir_multizs here, because they're way too slow on their own. I'm sorry brother
-	var/list/z_traits = SSmapping.multiz_levels[z]
-	for(var/direction in GLOB.cardinals_multiz)
+	for(var/direction in GLOB.cardinals)
 		// Yes this is a reimplementation of get_step_mutliz. It's faster tho. fuck you
 		// Oh also yes UP and DOWN do just point to +1 and -1 and not z offsets
 		// Multiz is shitcode welcome home
-		var/turf/current_turf = (direction & (UP|DOWN)) ? \
-			(direction & UP) ? \
-				(z_traits["16"]) ? \
-					(get_step(locate(x, y, z + 1), NONE)) : \
-				(null) : \
-				(z_traits["32"]) ? \
-					(get_step(locate(x, y, z - 1), NONE)) : \
-				(null) : \
-			(get_step(src, direction))
+		var/turf/current_turf = get_step(src, direction)
 		if(!isopenturf(current_turf)) // not interested in you brother
 			continue
 		// The assumption is that ONLY DURING INIT if two tiles have the same cycle, there's no way canpass(a->b) will be different then canpass(b->a), so this is faster
