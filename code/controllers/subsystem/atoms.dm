@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(atoms)
 	setupGenetics() //to set the mutations' sequence
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)

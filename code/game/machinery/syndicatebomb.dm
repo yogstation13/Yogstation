@@ -268,7 +268,8 @@
 	var/range_flame = 20
 
 /obj/item/bombcore/ex_act(severity, target) // Little boom can chain a big boom.
-	detonate()
+	if(loc && istype(loc, /obj/machinery/syndicatebomb))
+		detonate()
 
 /obj/item/bombcore/microwave_act(obj/machinery/microwave/M)
 	detonate()

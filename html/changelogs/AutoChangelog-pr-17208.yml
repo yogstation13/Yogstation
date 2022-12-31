@@ -1,0 +1,4 @@
+author: "LemonInTheDark"
+delete-after: true 
+changes: 
+  - tweak: "Improved performance of mapping subsystem"

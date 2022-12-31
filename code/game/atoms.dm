@@ -94,7 +94,7 @@
   */
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
@@ -106,6 +106,7 @@
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
+	SSdemo.mark_new(src)
 
 /**
   * The primary method that objects are setup in SS13 with

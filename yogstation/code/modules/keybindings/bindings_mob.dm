@@ -61,8 +61,8 @@
 			user.body_l_leg()
 			return
 		if(ACTION_GIVE)
-			var/mob/living/carbon/O = src
-			if(O)
+			if (iscarbon(src))
+				var/mob/living/carbon/O = src
 				O.give()
 			return
 

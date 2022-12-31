@@ -43,7 +43,6 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		guardian.forceMove(get_step(get_turf(L), get_dir(L, guardian)))
 		guardian.target = L
 		guardian.AttackingTarget()
-		L.throw_at(get_edge_target_turf(L, get_dir(guardian, L)), world.maxx / 4, 4, guardian, TRUE)
 		next_rush = world.time + 3 SECONDS
 
 /datum/guardian_ability/major/frenzy/StatusTab()
@@ -83,3 +82,4 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		span_italics("You hear a fast wooosh."))
 	guardian.AttackingTarget()
 	target.throw_at(get_edge_target_turf(guardian, get_dir(guardian, target)), world.maxx / 6, 5, guardian, TRUE)
+	Finished()
