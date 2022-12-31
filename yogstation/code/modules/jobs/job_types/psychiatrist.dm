@@ -22,6 +22,12 @@
 
 	changed_maps = list("OmegaStation","GaxStation")
 
+	mail_goodies = list(
+		/obj/item/gun/ballistic/revolver/russian = 1
+	)
+
+	smells_like = "calm peace"
+
 /datum/job/psych/proc/OmegaStationChanges()
 	return TRUE
 

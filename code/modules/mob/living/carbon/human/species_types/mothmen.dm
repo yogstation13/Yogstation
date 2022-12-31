@@ -1,5 +1,5 @@
 /datum/species/moth
-	name = "Mothpeople"
+	name = "Mothperson"
 	id = "moth"
 	say_mod = "flutters"
 	default_color = "00FF00"
@@ -24,6 +24,8 @@
 	species_language_holder = /datum/language_holder/mothmen
 
 	screamsound = 'sound/voice/moth/scream_moth.ogg'
+
+	smells_like = "dusty dryness"
 
 /datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	. = ..()

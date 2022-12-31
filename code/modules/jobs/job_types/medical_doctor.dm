@@ -29,10 +29,12 @@
 		/obj/item/scalpel/advanced = 6,
 		/obj/item/retractor/advanced = 6,
 		/obj/item/cautery/advanced = 6,
-		/obj/item/reagent_containers/glass/bottle/formaldehyde = 6,
+		/obj/item/reagent_containers/autoinjector/medipen = 6,
 		/obj/effect/spawner/lootdrop/organ_spawner = 5
 		///obj/effect/spawner/random/medical/memeorgans = 1
 	)
+
+	smells_like = "a hospital"
 
 /datum/job/doctor/proc/EclipseStationChanges()
 	total_positions = 6

@@ -21,6 +21,16 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/blood_loss = 10,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
+	)
+
+	smells_like = "pre-packaged oxygen"
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1

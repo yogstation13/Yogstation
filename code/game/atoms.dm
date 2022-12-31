@@ -94,7 +94,7 @@
   */
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
@@ -646,6 +646,7 @@
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
+	return FALSE //needs this here so it won't return true if things don't wash
 
 ///Is this atom in space
 /atom/proc/isinspace()
@@ -826,7 +827,7 @@
 	dir = newdir
 
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/M)
+/atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return
 
 /**

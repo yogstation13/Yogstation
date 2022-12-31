@@ -179,10 +179,7 @@
 
 	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
 
-	aiPDA = new/obj/item/pda/ai(src)
-	aiPDA.owner = real_name
-	aiPDA.ownjob = "AI"
-	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
+	create_modularInterface()
 
 	aiMulti = new(src)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
@@ -235,7 +232,8 @@
 	malfhack = null
 	apc_override = null
 	GLOB.ai_os.remove_ai(src)
-
+	if(modularInterface)
+		QDEL_NULL(modularInterface)
 	. = ..()
 
 /mob/living/silicon/ai/IgniteMob()
@@ -991,11 +989,6 @@
 		for(var/mob/living/silicon/robot/Slave in connected_robots)
 			Slave.show_laws()
 
-/mob/living/silicon/ai/replace_identification_name(oldname,newname)
-	if(aiPDA)
-		aiPDA.owner = newname
-		aiPDA.name = newname + " (" + aiPDA.ownjob + ")"
-
 /mob/living/silicon/ai/proc/add_malf_picker()
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
@@ -1148,3 +1141,7 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/proc/send_borg_death_warning(mob/living/silicon/robot/R)
+	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))
+	playsound_local(src, 'sound/machines/engine_alert2.ogg', 30)

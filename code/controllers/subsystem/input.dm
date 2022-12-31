@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(input)
 	flags = SS_TICKER
 	priority = FIRE_PRIORITY_INPUT
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	init_stage = INITSTAGE_EARLY
 
 	var/list/macro_sets
 	var/list/movement_keys
@@ -19,7 +20,7 @@ SUBSYSTEM_DEF(input)
 
 	refresh_client_macro_sets()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 // This is for when macro sets are eventualy datumized
 /datum/controller/subsystem/input/proc/setup_default_macro_sets()

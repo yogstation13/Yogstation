@@ -92,6 +92,9 @@
 				return
 		if(MECHA_WRECK_UNWIRED)
 			if(istype(I, /obj/item/stack/cable_coil) && I.tool_start_check(user, amount=5))
+				if(AI)
+					to_chat(user, span_danger("You cannot repair a mech with an AI inside of it."))
+					return
 				user.visible_message(span_notice("[user] starts repairing the wiring on \the [src]..."),
 										span_notice("You start repairing the wiring on \the [src]..."))
 				if(I.use_tool(src, user, 120/repair_efficiency, amount = 5, volume = 50, robo_check = TRUE))
@@ -141,7 +144,7 @@
 		else //Give the AI a heads-up that it is probably going to get fixed.
 			AI.notify_ghost_cloning("You have been recovered from the wreckage!", source = card)
 		to_chat(user, "[span_boldnotice("Backup files recovered")]: [AI.name] ([rand(1000,9999)].exe) salvaged from [name] and stored within local memory.")
-
+		AI = null
 	else
 		return ..()
 

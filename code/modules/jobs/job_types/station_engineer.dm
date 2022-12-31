@@ -29,8 +29,11 @@
 		/obj/item/storage/box/lights/mixed = 20,
 		/obj/item/lightreplacer = 10,
 		/obj/item/holosign_creator/engineering = 8,
+		/obj/item/rcd_ammo = 5,
 		/obj/item/clothing/head/hardhat/red/upgraded = 1
 	)
+
+	smells_like = "welding fuel"
 
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6

@@ -143,6 +143,7 @@
 	var/chameleon_type = null
 	var/chameleon_name = "Item"
 	var/emp_timer
+	var/current_disguise = null
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
 	if(M && (owner != M))
@@ -220,10 +221,15 @@
 		var/obj/item/I = target
 		I.item_state = initial(picked_item.item_state)
 		I.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
-		if(istype(I, /obj/item/clothing) && istype(initial(picked_item), /obj/item/clothing))
+		if(istype(I, /obj/item/clothing) && istype(picked_item, /obj/item/clothing))
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
+			CL.flags_inv = initial(PCL.flags_inv)
+			if(istype(CL, /obj/item/clothing/mask/chameleon))
+				var/obj/item/clothing/mask/chameleon/CH = CL
+				if(CH.vchange)
+					CH.flags_inv |= HIDEFACE // We want the chameleon mask hiding the face to retain voice changing!
 	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
@@ -235,6 +241,7 @@
 		//YOGS END
 	target.icon = initial(picked_item.icon)
 	target.on_chameleon_change()
+	current_disguise = picked_item
 
 /datum/action/item_action/chameleon/change/Trigger()
 	if(!IsAvailable())
@@ -306,6 +313,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	body_parts_covered = CHEST
 	resistance_flags = NONE
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
@@ -340,7 +348,7 @@
 	icon_state = "meson"
 	item_state = "meson"
 	resistance_flags = NONE
-	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -492,7 +500,11 @@
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	vchange = !vchange
 	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
-
+	if(vchange)
+		flags_inv |= HIDEFACE
+	else if(chameleon_action.current_disguise && isitem(chameleon_action.current_disguise))
+		var/obj/item/I = chameleon_action.current_disguise
+		flags_inv = initial(I.flags_inv)
 
 /obj/item/clothing/mask/chameleon/drone
 	//Same as the drone chameleon hat, undroppable and no protection

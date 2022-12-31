@@ -29,6 +29,8 @@
 		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
 	)
 
+	smells_like = "kinda funny"
+
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

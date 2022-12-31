@@ -6,7 +6,7 @@
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutant_brain = /obj/item/organ/brain/positron
 	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
@@ -16,7 +16,7 @@
 	mutantstomach = /obj/item/organ/stomach/cell
 	mutantears = /obj/item/organ/ears/robot
 	mutantlungs = /obj/item/organ/lungs/ipc
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/mouth/breathing_tube)
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/chest/cooling_intake)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
@@ -46,12 +46,15 @@
 
 	var/datum/action/innate/change_screen/change_screen
 
+	smells_like = "industrial lubricant"
+
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
+	C.particles = new /particles/smoke/ipc()
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
@@ -71,6 +74,7 @@
 
 datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
+	QDEL_NULL(C.particles)
 	if(change_screen)
 		change_screen.Remove(C)
 
@@ -195,8 +199,18 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
+/particles/smoke/ipc // exact same smoke visual, but no offset
+	position = list(0, 0, 0)
+	spawning = 0
+
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(H.particles)
+		var/particles/P = H.particles
+		if(P.spawning)
+			P.spawning = H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT ? 4 : 0
+
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
@@ -205,6 +219,14 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
+
+	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
+		H.blood_in_hands = 0
+		H.wash(CLEAN_TYPE_BLOOD)
+		to_chat(H,"You absorb the blood covering you to heal.")
+		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
+		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -230,5 +252,41 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
+
+/*------------------------
+
+ipc martial arts stuff
+
+--------------------------*/
+/datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			H.reagents.del_reagent(chem.type)//only one big tick of healing
+
+
+/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.in_throw_mode)//if countering the emp
+			add_empproof(H)
+			throw_lightning(H)
+		else//if just getting hit
+			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+
+/datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
+	siemens_coeff = 0
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	siemens_coeff = initial(siemens_coeff)
+
+/datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
+	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+
+/datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
+	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
+	if(ipcmartial)
+		ipcmartial.Destroy()
 
 #undef CONCIOUSAY

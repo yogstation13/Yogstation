@@ -1,5 +1,5 @@
 /obj/item/balloon
-	name = "Balloon"
+	name = "balloon"
 	desc = "A balloon!"
 	icon = 'yogstation/icons/obj/objects.dmi'
 	icon_state = "bal_regular"
@@ -20,7 +20,7 @@
 		qdel(src)
 
 /obj/item/balloonbox
-	name = "Assorted ballons"
+	name = "assorted balloons"
 	desc = "An assorted bag of balloons"
 	icon = 'yogstation/icons/obj/objects.dmi'
 	icon_state = "bal_bag"
@@ -54,7 +54,7 @@
 		to_chat(user, span_notice("Oh no! There are no balloons left!"))
 		qdel(src)
 	else
-		to_chat(user, span_notice("There is [uses] [uses == 1 ? "ballon" : "balloons"] left!"))
+		to_chat(user, span_notice("There is [uses] [uses == 1 ? "balloon" : "balloons"] left!"))
 
 /obj/item/balloonbox/examine(mob/user)
 	. = ..()

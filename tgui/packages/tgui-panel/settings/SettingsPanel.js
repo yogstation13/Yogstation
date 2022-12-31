@@ -119,6 +119,22 @@ export const SettingsGeneral = (props, context) => {
           onChange={(e, value) => dispatch(updateSettings({
             highlightText: value,
           }))} />
+        <Button.Checkbox
+          checked={matchWord}
+          tooltipPosition="bottom-right"
+          tooltip="Not compatible with punctuation."
+          onClick={() => dispatch(updateSettings({
+            matchWord: !matchWord,
+          }))}>
+          Match word
+        </Button.Checkbox>
+        <Button.Checkbox
+          checked={matchCase}
+          onClick={() => dispatch(updateSettings({
+            matchCase: !matchCase,
+          }))}>
+          Match case
+        </Button.Checkbox>
       </Box>
       <Divider />
       <Box>

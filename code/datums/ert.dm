@@ -37,7 +37,7 @@
 	opendoors = FALSE
 	code = "Blue"
 	rename_team = "Peacekeeping Force"
-	mission = "Enforce space law. Occupy the station. Minimize crew casulties."
+	mission = "Enforce space law. Occupy the station. Minimize crew casualties."
 	polldesc = "the Peacekeeping Force"
 	teamsize = 5 // redundant but keeping this here for clarity
 	leader_role = /datum/antagonist/ert/occupying/commander
@@ -114,7 +114,7 @@
 
 /datum/ert/uplinked
 	leader_role = /datum/antagonist/ert/common/leader
-	roles = list(/datum/antagonist/ert/common)
+	roles = list(/datum/antagonist/ert/common/trooper,/datum/antagonist/ert/common/medic,/datum/antagonist/ert/common/engineer)
 	rename_team = "Uplinked Emergency Response Team"
 	polldesc = "an Uplink-Equipped ERT"
 

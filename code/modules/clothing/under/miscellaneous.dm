@@ -791,6 +791,10 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
+/obj/item/clothing/under/mech_suit/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/mech_pilot, 0.9)
+
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
 	desc = "A white mech pilot's suit. Very fetching."
@@ -845,6 +849,7 @@
 	icon_state = "weiner"
 	item_state = "weiner"
 	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
 
 // Ashwalker Clothes
 /obj/item/clothing/under/chestwrap
@@ -853,6 +858,7 @@
 	icon_state = "chestwrap"
 	has_sensor = NO_SENSORS
 	body_parts_covered = CHEST|GROIN
+	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/raider_leather
 	name = "scavenged rags"
@@ -883,7 +889,6 @@
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
-	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/ash_robe/young
 	name = "tribal rags"

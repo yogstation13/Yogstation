@@ -760,9 +760,13 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
-	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
 	required_temp = 374
+
+/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/plastic(location)
 
 /datum/chemical_reaction/plastic_solidification
 	name = "plastic solidification"
@@ -825,11 +829,11 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/stack/medical/aloe(location)
 
-/datum/chemical_reaction/sulfuric_acid
+/datum/chemical_reaction/sulphuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
 	results = list(/datum/reagent/toxin/acid = 2)
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulphur = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/sugar
 	name = /datum/reagent/consumable/sugar

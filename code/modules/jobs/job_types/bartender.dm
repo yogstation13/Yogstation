@@ -26,9 +26,12 @@
 		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
 		/obj/item/stack/sheet/mineral/plasma = 10,
 		/obj/item/stack/sheet/mineral/uranium = 10,
+		/obj/item/reagent_containers/food/drinks/shaker = 5,
 	)
 
 	changed_maps = list("OmegaStation")
+
+	smells_like = "alcohol"
 
 /datum/job/bartender/proc/OmegaStationChanges()
 	added_access = list()

@@ -25,6 +25,7 @@
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
 	var/obj/item/suppressor/suppressed	//whether or not a message is displayed when fired
+	var/obj/item/enloudener/enloudened	//whether or not an additional sound is played
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gunshot_silenced.ogg'
 	var/suppressed_volume = 10
@@ -40,7 +41,8 @@
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
-	var/spread = 5						//Spread induced by the gun itself.
+	var/spread = 5						//Spread induced by the gun itself. SEE LINE BELOW.
+	var/default_spread = 5				//MUST be equal to the value above; used to calculate adjustments for if semi-auto is used on a burst weapon.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -171,6 +173,10 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		if(user.is_holding(src))
+			A.pickup_user(user)
+		else
+			A.equip_user(user)
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
@@ -200,8 +206,9 @@
 			qdel(suppressed)
 			suppressed = null
 			update_icon()
-
 	else
+		if(enloudened && enloudened.enloudened_sound)
+			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
 		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 		if(message)
 			if(pointblank)
@@ -228,7 +235,7 @@
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
-		if(ismob(target) && user.a_intent == INTENT_GRAB)
+		if(ismob(target) && user.a_intent == INTENT_GRAB && !istype(user.mind.martial_art, /datum/martial_art/ultra_violence))//remove gunpoint from ipc martial art, it's slow
 			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
 				if(G && G.weapon == src) //spam check
 					return
@@ -629,6 +636,7 @@
 	..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		A.pickup_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Grant(user)
 	if(azoom)
@@ -638,6 +646,7 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user()
+		A.drop_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Remove(user)
 	if(azoom)

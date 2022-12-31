@@ -113,6 +113,7 @@
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)
@@ -202,6 +203,8 @@
 		add_overlay("[icon_state]_bolt")
 	if (suppressed)
 		add_overlay("[icon_state]_[suppressed.icon_state]")
+	if (enloudened)
+		add_overlay("[icon_state]_[enloudened.icon_state]")
 	if(!chambered && empty_indicator)
 		add_overlay("[icon_state]_empty")
 	if (magazine)
@@ -351,7 +354,7 @@
 			else
 				to_chat(user, span_notice("There's already a [magazine_wording] in \the [src]."))
 		return
-	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
+	if ((istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box)) && !istype(A, /obj/item/ammo_box/no_direct))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
@@ -376,12 +379,24 @@
 		if(!user.is_holding(src))
 			to_chat(user, span_notice("You need be holding [src] to fit [S] to it!"))
 			return
-		if(suppressed)
-			to_chat(user, span_warning("[src] already has a suppressor!"))
+		if(suppressed || enloudened)
+			to_chat(user, span_warning("[src] already has a barrel attachment!"))
 			return
 		if(user.transferItemToLoc(A, src))
 			to_chat(user, span_notice("You screw \the [S] onto \the [src]."))
 			install_suppressor(A)
+			return
+	if(istype(A, /obj/item/enloudener))
+		var/obj/item/enloudener/E = A
+		if(!user.is_holding(src))
+			to_chat(user, span_notice("You need be holding [src] to fit [E] to it!"))
+			return
+		if(suppressed || enloudened)
+			to_chat(user, span_warning("[src] already has a barrel attachment!"))
+			return
+		if(user.transferItemToLoc(A, src))
+			to_chat(user, span_notice("You screw \the [E] onto \the [src]."))
+			install_enloudener(A)
 			return
 	if (can_be_sawn_off)
 		if (sawoff(user, A))
@@ -399,6 +414,10 @@
 	w_class += S.w_class //so pistols do not fit in pockets when suppressed
 	update_icon()
 
+/obj/item/gun/ballistic/proc/install_enloudener(obj/item/enloudener/E)
+	enloudened = E
+	update_icon()
+
 /obj/item/gun/ballistic/AltClick(mob/user)
 	if (unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		reskin_obj(user)
@@ -407,10 +426,19 @@
 		if(suppressed && can_unsuppress)
 			if(!user.is_holding(src))
 				return ..()
-			to_chat(user, span_notice("You unscrew \the [suppressed] from \the [src]."))
+			to_chat(user, span_notice("You unscrew \the [suppressed.name] from \the [src]."))
 			user.put_in_hands(suppressed)
 			w_class -= suppressed.w_class
 			suppressed = null
+			update_icon()
+			return
+		if(enloudened && can_unsuppress)
+			if(!user.is_holding(src))
+				return ..()
+			to_chat(user, span_notice("You unscrew \the [enloudened.name] from \the [src]."))
+			user.put_in_hands(enloudened)
+			w_class -= enloudened.w_class
+			enloudened = null
 			update_icon()
 			return
 
@@ -488,9 +516,14 @@
 		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
 		if(can_unsuppress)
-			. += "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
+			. += "It has a [suppressed.name] attached that can be removed with <b>alt+click</b>."
 		else
 			. += "It has a <b>suppressor</b> built into the barrel."
+	if (enloudened)
+		if(can_unsuppress)
+			. += "It has a [enloudened.name] attached that can be removed with <b>alt+click</b>."
+		else
+			. += "It has a <b>enloudener</b> built into the barrel."
 			
 
 /obj/item/gun/ballistic/verb/set_reload()
@@ -616,9 +649,16 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	w_class = WEIGHT_CLASS_SMALL
 	break_chance = 10
 
-
 /obj/item/suppressor/specialoffer
 	name = "cheap suppressor"
 	desc = "A foreign knock-off suppressor, it feels flimsy, cheap, and brittle. Still fits most weapons."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
+
+/obj/item/enloudener
+	name = "bikehorn \"suppressor\""
+	desc = "Advanced clown research has found that guns that honk shoot harder, faster and more accurately. (They don't)"
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "bikehorn"
+	w_class = WEIGHT_CLASS_TINY
+	var/enloudened_sound = 'sound/items/bikehorn.ogg'

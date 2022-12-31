@@ -71,6 +71,46 @@
 		/obj/item/organ/tail/lizard,
 	)
 
+/obj/effect/spawner/lootdrop/plushies
+	name = "random plushie"
+	lootcount = 1
+	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+		/obj/item/toy/plush/bubbleplush,
+		/obj/item/toy/plush/carpplushie,
+		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/snakeplushie,
+		/obj/item/toy/plush/nukeplushie,
+		/obj/item/toy/plush/slimeplushie,
+		/obj/item/toy/plush/beeplushie,
+		/obj/item/toy/plush/mothplushie,
+		/obj/item/toy/plush/pkplushie,
+		/obj/item/toy/plush/foxplushie,
+		/obj/item/toy/plush/lizard/azeel,
+		/obj/item/toy/plush/blahaj,
+		/obj/item/toy/plush/cdragon,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/teddybear,
+		/obj/item/toy/plush/stuffedmonkey,
+		/obj/item/toy/plush/inorixplushie,
+		/obj/item/toy/plush/flowerbunch,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/realgoat
+	)
+
+/obj/effect/spawner/lootdrop/techshell
+	name = "random techshell spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/ammo_casing/shotgun/pulseslug,
+		/obj/item/ammo_casing/shotgun/dragonsbreath,
+		/obj/item/ammo_casing/shotgun/ion,
+		/obj/item/ammo_casing/shotgun/frag12,
+		/obj/item/ammo_casing/shotgun/laserbuckshot,
+		/obj/item/ammo_casing/shotgun/thundershot,
+		/obj/item/ammo_casing/shotgun/uraniumpenetrator,
+		/obj/item/ammo_casing/shotgun/cryoshot
+	)
+
 /obj/effect/spawner/lootdrop/armory_contraband
 	name = "armory contraband gun spawner"
 	lootdoubles = FALSE
@@ -362,7 +402,7 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = FLOOR(lootcount * 1.5, 1)
 
@@ -416,7 +456,7 @@
 		/obj/item/organ/heart/gland/egg = 7,
 		/obj/item/organ/heart/gland/chem = 5,
 		/obj/item/organ/heart/gland/mindshock = 5,
-		/obj/item/organ/heart/gland/plasma = 7,
+		/obj/item/organ/heart/gland/gas = 7, //Yogstation change: plasma -> gas
 		/obj/item/organ/heart/gland/pop = 5,
 		/obj/item/organ/heart/gland/slime = 4,
 		/obj/item/organ/heart/gland/spiderman = 5,

@@ -174,11 +174,11 @@
 	desc = "A peel from a banana. Why is it beeping?"
 	seed = null
 	var/det_time = 50
-	var/obj/item/grenade/syndieminibomb/bomb
+	var/obj/item/grenade/syndieminibomb/concussion/bomb
 
 /obj/item/grown/bananapeel/bombanana/Initialize()
 	. = ..()
-	bomb = new /obj/item/grenade/syndieminibomb(src)
+	bomb = new /obj/item/grenade/syndieminibomb/concussion(src)
 	bomb.det_time = det_time
 	if(iscarbon(loc))
 		to_chat(loc, "[src] begins to beep.")
@@ -300,6 +300,24 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache()//The mousetrap mortar was not up-to-snuff.
 	ME.attach(src)
 
+/obj/mecha/combat/honker/dark/crew
+	operation_req_access = list()
+	internals_req_access = list()
+	wreckage = /obj/structure/mecha_wreckage/honker/dark/crew
+
+/obj/mecha/combat/honker/dark/crew/loaded/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker()
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/bombanana()//Needed more offensive weapons.
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache()//The mousetrap mortar was not up-to-snuff.
+	ME.attach(src)
+
 /obj/structure/mecha_wreckage/honker/dark
 	name = "\improper Dark H.O.N.K wreckage"
 	icon_state = "darkhonker-broken"
+	orig_mecha = /obj/mecha/combat/honker/dark
+
+/obj/structure/mecha_wreckage/honker/dark/crew
+	orig_mecha = /obj/mecha/combat/honker/dark/crew

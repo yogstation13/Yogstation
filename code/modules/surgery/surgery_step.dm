@@ -94,8 +94,7 @@
 	surgery.step_in_progress = TRUE
 	var/advance = FALSE
 
-	var/tool_speed_mod = 1
-	var/user_speed_mod = 1
+	var/speed_mod = 1
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
@@ -103,14 +102,18 @@
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
 	if(tool)
-		tool_speed_mod = tool.toolspeed
+		speed_mod = tool.toolspeed
 
 	if(IS_MEDICAL(user))
-		user_speed_mod = 0.8
+		speed_mod *= 0.8
+
+	if(istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
+		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(SLOT_GLOVES)
+		speed_mod *= surgicalgloves.surgeryspeed
 
 	var/previous_loc = user.loc
 
-	if(do_after(user, time * tool_speed_mod * user_speed_mod, target))
+	if(do_after(user, time * speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.

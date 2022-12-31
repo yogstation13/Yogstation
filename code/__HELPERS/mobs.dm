@@ -97,6 +97,7 @@
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"pretcolor" = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)],
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
 		"wings" = "None",

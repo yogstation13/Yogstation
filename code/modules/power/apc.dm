@@ -38,6 +38,9 @@
 #define APC_CHARGING 1
 #define APC_FULLY_CHARGED 2
 
+//Ethereal stuff
+#define APC_POWER_GAIN 250			///amount of power transferred to an APC by an overcharging Ethereal
+
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire connection to power network through a terminal
 
@@ -875,7 +878,11 @@
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
-/obj/machinery/power/apc/attack_hand(mob/user)
+/obj/machinery/power/apc/attack_hand(mob/user)	
+	if(isethereal(user) && user.a_intent == INTENT_GRAB)
+		var/mob/living/glowbro = user
+		if(ethereal_act(glowbro))
+			return
 	. = ..()
 	if(.)
 		return
@@ -1504,6 +1511,37 @@
 			L.update(FALSE)
 		CHECK_TICK
 
+/obj/machinery/power/apc/proc/ethereal_act(mob/living/user)
+	if(!ishuman(user))
+		to_chat(user, span_warning("You aren't a human!"))	//this shouldn't ever trigger
+		return FALSE
+	var/mob/living/carbon/human/ethereal = user
+	var/obj/item/organ/stomach/maybe_stomach = ethereal.getorganslot(ORGAN_SLOT_STOMACH)
+	if(!istype(maybe_stomach, /obj/item/organ/stomach/ethereal))
+		to_chat(ethereal, span_warning("You don't have the correct stomach for this!"))
+		return FALSE
+	var/obj/item/organ/stomach/ethereal/stomach = maybe_stomach
+	if(cell.charge >= cell.maxcharge - APC_POWER_GAIN)
+		to_chat(ethereal, span_warning("The APC can't receive anymore power!"))
+		return TRUE
+	if(stomach.crystal_charge < ETHEREAL_CHARGE_FULL)
+		to_chat(ethereal, span_warning("You don't have any excess power to channel into the APC!"))
+		return TRUE
+	to_chat(ethereal, span_notice("You start channeling power through your body into the APC."))
+	if(!do_after(user, 5 SECONDS, target = src))
+		return FALSE
+	if((cell.charge >= (cell.maxcharge - APC_POWER_GAIN)) || (stomach.crystal_charge < ETHEREAL_CHARGE_FULL))
+		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
+		return FALSE
+	if(istype(stomach))
+		to_chat(ethereal, span_notice("You transfer some power to the APC."))
+		stomach.adjust_charge(-APC_POWER_GAIN)
+		cell.give(APC_POWER_GAIN)
+	else
+		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
+	
+	return TRUE
+
 #undef UPSTATE_CELL_IN
 #undef UPSTATE_OPENED1
 #undef UPSTATE_OPENED2
@@ -1542,6 +1580,7 @@
 #undef APC_UPOVERLAY_ENVIRON2
 #undef APC_UPOVERLAY_LOCKED
 #undef APC_UPOVERLAY_OPERATING
+#undef APC_POWER_GAIN
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc

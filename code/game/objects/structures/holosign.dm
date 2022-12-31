@@ -100,6 +100,7 @@
 	density = FALSE
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
+	resistance_flags = FIRE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
@@ -166,7 +167,7 @@
 
 /obj/structure/holobed
 	name = "holobed"
-	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile enviroment for surgery."
+	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile environment for surgery."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "opmat_holo"
 	anchored = TRUE
@@ -192,7 +193,7 @@
 	return ..()
 
 /obj/structure/holobed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.7)
+	AddComponent(/datum/component/surgery_bed, 0.8)
 
 /obj/structure/holobed/examine(mob/user)
 	. = ..()

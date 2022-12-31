@@ -87,7 +87,7 @@ GLOBAL_VAR(restart_counter)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer_here, cb, 10 SECONDS))
 
 
 /world/proc/SetupLogs()
@@ -175,8 +175,10 @@ GLOBAL_VAR(restart_counter)
 			break
 
 	if((!handler || initial(handler.log)) && config && CONFIG_LOADED && CONFIG_GET(flag/log_world_topic))
-		var/static/regex/key_regex = regex(@"(&?)key=[^&]+(&?)", "g")
-		log_topic("\"[key_regex.Replace(T, "$1\[COMMS KEY\]$2")]\", from:[addr], master:[master], key:[CONFIG_GET(string/comms_key) == key ? "" : "in"]correct")
+		var/list/params = params2list(T) // Different list from input so it can be sanatized without breaking the rest of the topic
+		if("key" in params)
+			params["key"] = CONFIG_GET(string/comms_key) == params["key"] ? "correct" : "incorrect"
+		log_topic("\"[list2params(params)]\", from:[addr], master:[master], ckey:[key]")
 
 	if(!handler)
 		return

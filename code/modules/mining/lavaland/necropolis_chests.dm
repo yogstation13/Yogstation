@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/clothing/under/drip(src)
 			new /obj/item/clothing/shoes/drip(src)
 		if(3)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(4)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
 		if(5)
@@ -230,6 +230,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
 	return slot == SLOT_NECK
 
+/obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
+	if(active_owner && user == active_owner)
+		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
+		if(safety != "Proceed")
+			return 
+	. = ..()
+	
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -257,11 +264,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
+		RegisterSignal(user, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
+	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
 	if(!active_owner)
 		return
+	UnregisterSignal(active_owner, COMSIG_ITEM_PRESTRIP)
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
 	to_chat(H, span_userdanger("You feel your life rapidly slipping away from you!"))
@@ -389,6 +401,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(teleporting)
 		return
+	if(!is_mining_level(current_location.z))
+		user.visible_message(span_danger("[user] starts fiddling with [src]!"))
+		if(!do_after(user, 3 SECONDS, user))
+			return
 	teleporting = TRUE
 	linked.teleporting = TRUE
 	var/turf/T = get_turf(src)
@@ -1324,7 +1340,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
+	ahead of the user with blood. They're particularly effective against lavaland fauna."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1336,12 +1353,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/next_splash = 0
 	var/next_knuckle = 0
 	var/splash_range = 9
+	var/fauna_damage_bonus = 32
+	var/fauna_damage_type = BRUTE
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
 	var/mob/living/L = target
-	if (proximity)
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+	if(proximity)
 		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
 			L.apply_status_effect(/datum/status_effect/roots)
 			return
@@ -1360,7 +1381,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	if(next_splash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	user.visible_message(span_warning("[user] splashes blood from [user.p_their()] knuckles!"))
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
@@ -1815,7 +1836,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
 		if(3)
