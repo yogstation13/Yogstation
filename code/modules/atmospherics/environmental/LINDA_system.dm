@@ -99,7 +99,7 @@
 
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
-	T.__update_extools_adjacent_turfs()
+	__update_extools_adjacent_turfs()
 
 /turf/proc/immediate_calculate_adjacent_turfs()
 	LAZYINITLIST(src.atmos_adjacent_turfs)
