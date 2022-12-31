@@ -81,13 +81,12 @@
 		if(current_turf.current_cycle <= current_cycle)
 			continue
 
-		var/opp_dir = dir_inverse_multiz(direction)
-
 		//Can you and me form a deeper relationship, or is this just a passing wind
 		// (direction & (UP | DOWN)) is just "is this vertical" by the by
 		if(canpass && CANATMOSPASS(current_turf, src, (direction & (UP|DOWN))) && !(blocks_air || current_turf.blocks_air))
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
 			atmos_adjacent_turfs[current_turf] = direction
+			var/opp_dir = dir_inverse_multiz(direction)
 			current_turf.atmos_adjacent_turfs[src] = opp_dir
 			current_turf.__update_extools_adjacent_turfs()
 		else
@@ -110,13 +109,12 @@
 		if(!isopenturf(current_turf)) // not interested in you brother
 			continue
 
-		var/opp_dir = dir_inverse_multiz(direction)
-
 		//Can you and me form a deeper relationship, or is this just a passing wind
 		// (direction & (UP | DOWN)) is just "is this vertical" by the by
 		if(canpass && CANATMOSPASS(current_turf, src, (direction & (UP|DOWN))) && !(blocks_air || current_turf.blocks_air))
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
 			atmos_adjacent_turfs[current_turf] = direction
+			var/opp_dir = dir_inverse_multiz(direction)
 			current_turf.atmos_adjacent_turfs[src] = opp_dir
 			current_turf.__update_extools_adjacent_turfs()
 		else
