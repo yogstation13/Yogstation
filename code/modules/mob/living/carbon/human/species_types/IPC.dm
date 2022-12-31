@@ -271,18 +271,29 @@ ipc martial arts stuff
 
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)//special snowflake ipc martial art emp affect
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+
+		//if they somehow lost emp protection while still having the martial art
+		var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
+		if(!ipcmartial)
+			H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+
 		if(H.in_throw_mode)//if countering the emp
 			throw_lightning(H)
+			H.visible_message(span_userdanger("As the EMP hits [H], they pulse briefly and explode into a discharge of electricity!"), \
+				span_danger("Your Ultra Violence subsystem guides you in skillfully redirecting the electro-magnetic pulse."))
+			H.throw_mode_off()//only one tesla zap if they get spammed by emps
 		else if(!empadapted)//if getting hit without being adapted, use the snowflake damage effect
-			H.adjustFireLoss(50)
+			H.adjustFireLoss(60)
 			H.Jitter(4 SECONDS)
 			H.blur_eyes(3 SECONDS)
 			H.Dizzy(1 SECONDS)
 			H.emote("scream")
-			to_chat(H, span_userdanger("Your Ultra Violence subsystem mitigates the electro-magnetic pulse!"))
-			to_chat(H, span_usernotice("Your Ultra Violence subsystem prepares for additonal pulses."))
+			to_chat(H, span_userdanger("Your Ultra Violence subsystem attempts to mitigate the electro-magnetic pulse!"))
+		if(!empadapted)//chat notice that the adaptation effect was triggered, regardless if it was deflected or not
+			to_chat(H, span_usernotice("Your Ultra Violence subsystem prepares for additonal electro-magnetic pulses."))
+
 		empadapted = TRUE
-		addtimer(CALLBACK(src, .proc/remove_adapted, H), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, .proc/remove_adapted, H), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//remove the adaptation after 5 seconds
 
 /datum/species/ipc/proc/remove_adapted(mob/living/carbon/human/H)
 	to_chat(H, span_usernotice("Your Ultra Violence subsystem stops preparing for electro-magnetic pulses."))
