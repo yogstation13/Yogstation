@@ -31,7 +31,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Prosthetic Limb (Right Leg)","Paraplegic"),
 		list("Prosthetic Limb","Paraplegic")
 	)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name

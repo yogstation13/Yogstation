@@ -105,7 +105,7 @@
 	if(stage == END_STAGE)
 		return 1
 	stage = END_STAGE
-	STOP_PROCESSING(SSweather, src)
+	STOP_PROCESSING_DUMB(SSweather, src)
 	update_areas()
 
 /datum/weather/proc/can_weather_act(mob/living/mob_to_check) // Can this weather impact a mob?

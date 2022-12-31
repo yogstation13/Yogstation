@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(demo)
 	for(var/line in pre_init_lines)
 		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "[line]\n")
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/demo/fire()
 	if(!src.marked_new.len && !src.marked_dirty.len && !src.marked_turfs.len && !src.del_list.len)

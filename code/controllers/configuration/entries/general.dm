@@ -519,3 +519,15 @@
 /datum/config_entry/flag/disable_gc_failure_hard_deletes
 
 /datum/config_entry/flag/disable_all_hard_deletes
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	default = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	default = 0
+	min_val = 0
+
+/// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+/datum/config_entry/flag/log_timers_on_bucket_reset

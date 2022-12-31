@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(mapping)
 	initialize_reserved_level()
 	// Build minimaps
 	build_minimaps()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
