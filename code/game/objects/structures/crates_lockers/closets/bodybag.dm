@@ -289,7 +289,7 @@
 	foldedbag_path = /obj/item/bodybag/environmental/prisoner/syndicate
 	weather_protection = list(WEATHER_ALL)
 	breakout_time = 8 MINUTES
-	sinch_time = 20 SECONDS
+	sinch_time = 4 SECONDS
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
 	. = ..()
@@ -297,7 +297,7 @@
 
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
-	if(sinched && !air_contents)
+	if(sinched)
 		refresh_air()
 	else if(!sinched && air_contents)
 		air_contents = null
