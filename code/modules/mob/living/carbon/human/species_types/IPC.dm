@@ -274,7 +274,10 @@ ipc martial arts stuff
 		if(H.in_throw_mode)//if countering the emp
 			throw_lightning(H)
 		else if(!empadapted)//if getting hit without being adapted, use the snowflake damage effect
-			H.take_overall_damage( 0, 50)
+			H.adjustFireLoss(50)
+			H.Jitter(4 SECONDS)
+			H.blur_eyes(3 SECONDS)
+			H.Dizzy(1 SECONDS)
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your Ultra Violence subsystem mitigates the electro-magnetic pulse!"))
 			to_chat(H, span_usernotice("Your Ultra Violence subsystem prepares for additonal pulses."))
