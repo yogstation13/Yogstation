@@ -13,6 +13,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	idle_power_usage = 1000
 	use_power = IDLE_POWER_USE
 
+	var/disableheat
+
 	critical_machine = TRUE
 
 	var/primary = FALSE
@@ -152,10 +154,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
-		if(env.heat_capacity())
-			var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
-			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
-			T.air_update_turf()
+		if(!disableheat)
+			if(env.heat_capacity())
+				var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+				env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+				T.air_update_turf()
 	
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|NOPOWER|EMPED))
