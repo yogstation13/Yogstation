@@ -132,7 +132,8 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.33
-
+	clothing_flags = THICKMATERIAL
+	
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
 	desc = "A tribal armor plate, crafted from animal bone."
@@ -188,7 +189,8 @@
 	armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
 	strip_delay = 70
 	equip_delay_other = 50
-
+	clothing_flags = THICKMATERIAL
+	
 /obj/item/clothing/suit/armor/laserproof
 	name = "reflective jacket"
 	desc = "A jacket that excels in protecting the wearer against energy projectiles, as well as occasionally reflecting them."

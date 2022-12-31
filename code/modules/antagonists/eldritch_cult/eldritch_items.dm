@@ -166,6 +166,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	flash_protect = 2
+	clothing_flags = THICKMATERIAL
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
 	name = "ominous armor"
@@ -178,6 +179,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	// slightly better than normal cult robes
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50,ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20)
+	clothing_flags = THICKMATERIAL
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"

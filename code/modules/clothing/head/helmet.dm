@@ -90,7 +90,8 @@
 	armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 	can_flashlight = TRUE
 	dog_fashion = null
-
+	clothing_flags = THICKMATERIAL
+	
 /obj/item/clothing/head/helmet/old
 	name = "degrading helmet"
 	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
@@ -120,6 +121,7 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	dog_fashion = null
+	clothing_flags = THICKMATERIAL
 
 /obj/item/clothing/head/helmet/riot/raised/Initialize()
 	. = ..()
