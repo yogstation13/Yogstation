@@ -89,12 +89,12 @@
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
 			atmos_adjacent_turfs[current_turf] = direction
 			current_turf.atmos_adjacent_turfs[src] = opp_dir
-			T.__update_extools_adjacent_turfs()
+			current_turf.__update_extools_adjacent_turfs()
 		else
 			atmos_adjacent_turfs -= current_turf
 			if (current_turf.atmos_adjacent_turfs)
 				current_turf.atmos_adjacent_turfs -= src
-				T.__update_extools_adjacent_turfs()
+				current_turf.__update_extools_adjacent_turfs()
 			UNSETEMPTY(current_turf.atmos_adjacent_turfs)
 
 	UNSETEMPTY(atmos_adjacent_turfs)
@@ -118,12 +118,12 @@
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
 			atmos_adjacent_turfs[current_turf] = direction
 			current_turf.atmos_adjacent_turfs[src] = opp_dir
-			T.__update_extools_adjacent_turfs()
+			current_turf.__update_extools_adjacent_turfs()
 		else
 			atmos_adjacent_turfs -= current_turf
 			if (current_turf.atmos_adjacent_turfs)
 				current_turf.atmos_adjacent_turfs -= src
-				T.__update_extools_adjacent_turfs()
+				current_turf.__update_extools_adjacent_turfs()
 			UNSETEMPTY(current_turf.atmos_adjacent_turfs)
 
 	UNSETEMPTY(atmos_adjacent_turfs)
