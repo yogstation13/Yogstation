@@ -297,7 +297,7 @@
 		if(res == oldres)
 			return
 		
-		if(prob(res * 7)) // Double cure
+		if(prob(82 - (res * 7))) // Double cure
 			var/list/the_cures = advance_cures[res]
 			var/list/not_used = the_cures.Copy()
 			cures = list(pick_n_take(not_used), pick_n_take(not_used))
