@@ -67,11 +67,11 @@
 	LAZYINITLIST(src.atmos_adjacent_turfs)
 	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
 	var/canpass = CANATMOSPASS(src, src, FALSE)
-	for(var/direction in GLOB.cardinals)
+	for(var/direction in GLOB.cardinals_multiz)
 		// Yes this is a reimplementation of get_step_mutliz. It's faster tho. fuck you
 		// Oh also yes UP and DOWN do just point to +1 and -1 and not z offsets
 		// Multiz is shitcode welcome home
-		var/turf/current_turf = get_step(src, direction)
+		var/turf/current_turf = get_step_multiz(src, direction)
 		if(!isopenturf(current_turf)) // not interested in you brother
 			continue
 		// The assumption is that ONLY DURING INIT if two tiles have the same cycle, there's no way canpass(a->b) will be different then canpass(b->a), so this is faster
@@ -81,20 +81,25 @@
 		if(current_turf.current_cycle <= current_cycle)
 			continue
 
+		var/opp_dir = dir_inverse_multiz(direction)
+
 		//Can you and me form a deeper relationship, or is this just a passing wind
 		// (direction & (UP | DOWN)) is just "is this vertical" by the by
 		if(canpass && CANATMOSPASS(current_turf, src, (direction & (UP|DOWN))) && !(blocks_air || current_turf.blocks_air))
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[current_turf] = TRUE
-			current_turf.atmos_adjacent_turfs[src] = TRUE
+			atmos_adjacent_turfs[current_turf] = direction
+			current_turf.atmos_adjacent_turfs[src] = opp_dir
+			T.__update_extools_adjacent_turfs()
 		else
 			atmos_adjacent_turfs -= current_turf
 			if (current_turf.atmos_adjacent_turfs)
 				current_turf.atmos_adjacent_turfs -= src
+				T.__update_extools_adjacent_turfs()
 			UNSETEMPTY(current_turf.atmos_adjacent_turfs)
 
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
+	T.__update_extools_adjacent_turfs()
 
 /turf/proc/immediate_calculate_adjacent_turfs()
 	LAZYINITLIST(src.atmos_adjacent_turfs)
@@ -105,21 +110,25 @@
 		if(!isopenturf(current_turf)) // not interested in you brother
 			continue
 
+		var/opp_dir = dir_inverse_multiz(direction)
+
 		//Can you and me form a deeper relationship, or is this just a passing wind
 		// (direction & (UP | DOWN)) is just "is this vertical" by the by
 		if(canpass && CANATMOSPASS(current_turf, src, (direction & (UP|DOWN))) && !(blocks_air || current_turf.blocks_air))
 			LAZYINITLIST(current_turf.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[current_turf] = TRUE
-			current_turf.atmos_adjacent_turfs[src] = TRUE
+			atmos_adjacent_turfs[current_turf] = direction
+			current_turf.atmos_adjacent_turfs[src] = opp_dir
+			T.__update_extools_adjacent_turfs()
 		else
 			atmos_adjacent_turfs -= current_turf
 			if (current_turf.atmos_adjacent_turfs)
 				current_turf.atmos_adjacent_turfs -= src
+				T.__update_extools_adjacent_turfs()
 			UNSETEMPTY(current_turf.atmos_adjacent_turfs)
 
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
-
+	__update_extools_adjacent_turfs()
 
 /turf/proc/__update_extools_adjacent_turfs()
 
