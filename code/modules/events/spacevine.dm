@@ -13,8 +13,8 @@
 
 	var/obj/structure/spacevine/SV = new()
 
-	for(var/area/maintenance/A in world)
-		for(var/turf/F in A)
+	for(var/area/maintenance/A in GLOB.areas)
+		for(var/turf/F as anything in A.get_contained_turfs())
 			if(F.Enter(SV))
 				turfs += F
 

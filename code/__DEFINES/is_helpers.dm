@@ -6,6 +6,8 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
+#define isdatum(thing) (istype(thing, /datum))
+
 #define isappearance(A) (!isnum(A) && copytext("\ref[A]", 4, 6) == "3a")
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )

@@ -132,8 +132,10 @@ nobliumformation = 1001
 	var/initial_trit = air.get_moles(/datum/gas/tritium)// Yogs
 	if(air.get_moles(/datum/gas/oxygen) < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
 		burned_fuel = air.get_moles(/datum/gas/oxygen)/TRITIUM_BURN_OXY_FACTOR
-		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
+		if(burned_fuel > initial_trit) 
+			burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		air.adjust_moles(/datum/gas/tritium, -burned_fuel)
+		air.adjust_moles(/datum/gas/tritium, -burned_fuel / 2)	//Yogs - no infinite tiny trit burn please
 	else
 		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
 		air.set_moles(/datum/gas/tritium, air.get_moles(/datum/gas/tritium) * (1 - 1/TRITIUM_BURN_TRIT_FACTOR)) // Yogs -- Maybe a tiny performance boost? I'unno
@@ -625,17 +627,21 @@ nobliumformation = 1001
 	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
+	var/initial_hydrogen = air.get_moles(/datum/gas/hydrogen)	//Yogs
 	if(air.get_moles(/datum/gas/oxygen) < air.get_moles(/datum/gas/hydrogen) || MINIMUM_H2_OXYBURN_ENERGY > air.thermal_energy())
 		burned_fuel = (air.get_moles(/datum/gas/oxygen)/HYDROGEN_BURN_OXY_FACTOR)
+		if(burned_fuel > initial_hydrogen)
+			burned_fuel = initial_hydrogen	//Yogs - prevents negative mols of h2
 		air.adjust_moles(/datum/gas/hydrogen, -burned_fuel)
+		air.adjust_moles(/datum/gas/oxygen, -burned_fuel / 2) 	//Yogs - only takes half a mol of O2 for a mol of H2O
 	else
-		burned_fuel = (air.get_moles(/datum/gas/hydrogen) * HYDROGEN_BURN_H2_FACTOR)
-		air.adjust_moles(/datum/gas/hydrogen, -(air.get_moles(/datum/gas/hydrogen) / HYDROGEN_BURN_H2_FACTOR))
+		burned_fuel = initial_hydrogen	//Yogs - conservation of mass fix 
+		air.set_moles(/datum/gas/hydrogen, air.get_moles(/datum/gas/hydrogen) * (1 - 1 / HYDROGEN_BURN_H2_FACTOR))	// Yogs - see trit burn
 		air.adjust_moles(/datum/gas/oxygen, -air.get_moles(/datum/gas/hydrogen))
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-		air.adjust_moles(/datum/gas/water_vapor, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
+		air.adjust_moles(/datum/gas/water_vapor, burned_fuel)
 
 		cached_results["fire"] += burned_fuel
 

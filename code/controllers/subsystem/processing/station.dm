@@ -27,7 +27,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	announcer = new announcer() //Initialize the station's announcer datum
 	default_announcer = new default_announcer()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///Rolls for the amount of traits and adds them to the traits list
 /datum/controller/subsystem/processing/station/proc/SetupTraits()

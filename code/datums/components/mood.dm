@@ -311,6 +311,7 @@
 	RegisterSignal(screen_obj, COMSIG_CLICK, .proc/hud_click)
 
 /datum/component/mood/proc/unmodify_hud(datum/source)
+	SIGNAL_HANDLER
 	if(!screen_obj)
 		return
 	var/mob/living/owner = parent

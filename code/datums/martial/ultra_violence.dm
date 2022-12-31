@@ -25,7 +25,7 @@
 	if(findtext(streak, POCKET_PISTOl))
 		streak = ""
 		pocket_pistol(A,D)
-		speed_boost(A, 2, "pocketpistol")
+		speed_boost(A, 2 SECONDS, "pocketpistol")
 		return TRUE
 
 	if(A == D) //you can pull your gun out by "grabbing" yourself
@@ -34,7 +34,7 @@
 	if(findtext(streak, BLOOD_BURST))
 		streak = ""
 		blood_burst(A,D)
-		speed_boost(A, 6, "bloodburst")
+		speed_boost(A, 6 SECONDS, "bloodburst")
 		return TRUE
 
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT) //no getting shotguns off people that aren't fighting back
@@ -43,7 +43,7 @@
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A)
-		speed_boost(A, 6, "gunhand")
+		speed_boost(A, 6 SECONDS, "gunhand")
 		return TRUE
 
 /datum/martial_art/ultra_violence/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -58,8 +58,7 @@
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
-	if(check_streak(A,D))
-		return FALSE
+	check_streak(A,D)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
@@ -72,13 +71,14 @@
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
 
 	A.add_mob_blood(D)
-	D.bleed(30)
+	D.apply_damage( 6, BRUTE, A.zone_selected, wound_bonus = 5, bare_wound_bonus = 5, sharpness = SHARP_EDGED)//between 11 and 20 brute damage, 6 of which is sharp and can wound
+	D.bleed(20)
 	D.add_splatter_floor(D.loc, TRUE)
 
 	new /obj/effect/gibspawner/generic(D.loc)
 
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT)
-		D.bleed(150)
+		D.bleed(130)
 		D.death()
 		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
 		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution

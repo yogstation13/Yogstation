@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(title)
 	name = "Title Screen"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_TITLE
+	init_stage = INITSTAGE_EARLY
 
 	var/file_path
 	var/icon/icon
@@ -10,7 +11,7 @@ SUBSYSTEM_DEF(title)
 
 /datum/controller/subsystem/title/Initialize()
 	if(file_path && icon)
-		return
+		return SS_INIT_NO_NEED
 
 	if(fexists("data/previous_title.dat"))
 		var/previous_path = file2text("data/previous_title.dat")
@@ -41,7 +42,7 @@ SUBSYSTEM_DEF(title)
 	if(splash_turf)
 		splash_turf.icon = icon
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/title/vv_edit_var(var_name, var_value)
 	. = ..()
