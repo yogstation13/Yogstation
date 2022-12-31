@@ -860,3 +860,10 @@
 	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
 	value = -1
 	mob_trait = TRAIT_BADMAIL
+
+/datum/quirk/telomeres_short 
+	name = "Short Telomeres"
+	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
+	value = -1
+	mob_trait = TRAIT_SHORT_TELOMERES
+	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
