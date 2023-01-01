@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - bugfix: "Lavaland mob spawning rate should be back to normal"
