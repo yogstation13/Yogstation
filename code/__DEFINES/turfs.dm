@@ -8,3 +8,10 @@
 
 ///Returns all currently loaded turfs
 #define ALL_TURFS(...) block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
+
+/// Turf will be passable if density is 0
+#define TURF_PATHING_PASS_DENSITY 0
+/// Turf will be passable depending on [CanAStarPass] return value
+#define TURF_PATHING_PASS_PROC 1
+/// Turf is never passable
+#define TURF_PATHING_PASS_NO 2

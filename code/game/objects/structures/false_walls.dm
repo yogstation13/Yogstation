@@ -146,7 +146,7 @@
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
 	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
-/obj/structure/falsewall/CanAStarPass(ID, dir, caller)
+/obj/structure/falsewall/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	. = ..()
 	if(!isliving(caller))
 		return FALSE

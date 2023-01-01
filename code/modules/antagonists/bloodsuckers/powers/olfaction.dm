@@ -183,9 +183,7 @@
 		to_chat(owner,span_warning("The trail leads... way down below you? Huh. They must be really, really far away."))
 		return
 
-	var/access_card = new /obj/item/card/id/captains_spare()
-	var/list/trail = get_path_to(owner, get_turf(pos), /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftest, access_card, simulated_only = FALSE, get_best_attempt = TRUE)
-	
+	var/list/trail = get_path_to(owner, pos, max_distance = /turf/proc/Distance_cardinal, simulated_only = FALSE)
 	if(!trail || trail.len <= 2)
 		to_chat(owner,span_warning("You can't get a good read on the trail, maybe you should try again from a different spot."))
 		return

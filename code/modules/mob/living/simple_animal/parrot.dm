@@ -624,7 +624,7 @@
 					item = I
 					break
 		if(item)
-			if(!AStar(src, get_turf(item), /turf/proc/Distance_cardinal))
+			if(!length(get_path_to(src, item))) // WHY DO WE DISREGARD THE PATH AHHHHHH
 				item = null
 				continue
 			return item

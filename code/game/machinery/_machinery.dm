@@ -645,7 +645,7 @@ Class Procs:
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
 	machineclimber = null
 
-/obj/machinery/CanAStarPass(ID, dir, caller)
+/obj/machinery/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	. = ..()
 	if(climbable)
 		return TRUE

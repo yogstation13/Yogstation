@@ -65,7 +65,6 @@
 	var/new_destination		// pending new destination (waiting for beacon response)
 	var/destination			// destination description tag
 	var/next_destination	// the next destination in the patrol route
-	var/shuffle = FALSE		// If we should shuffle our adjacency checking
 
 	var/blockcount = 0		//number of times retried a blocked path
 	var/awaiting_beacon	= 0	// count of pticks awaiting a beacon response
@@ -427,9 +426,6 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 	if(!T)
 		return
 	var/list/adjacent = T.GetAtmosAdjacentTurfs(1)
-	if(shuffle)	//If we were on the same tile as another bot, let's randomize our choices so we dont both go the same way
-		adjacent = shuffle(adjacent)
-		shuffle = FALSE
 	for(var/scan in adjacent)//Let's see if there's something right next to us first!
 		if(check_bot(scan))	//Is there another bot there? Then let's just skip it
 			continue
@@ -461,11 +457,13 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 		return FALSE //The current element failed assessment, move on to the next.
 
 /mob/living/simple_animal/bot/proc/check_bot(targ)
-	var/turf/T = get_turf(targ)
-	if(T)
-		for(var/C in T.contents)
-			if(istype(C,type) && (C != src))	//Is there another bot there already? If so, let's skip it so we dont all atack on top of eachother.
-				return TRUE	//Let's abort if we find a bot so we dont have to keep rechecking
+	var/turf/target_turf = get_turf(targ)
+	if(!target_turf)
+		return FALSE
+	for(var/mob/living/simple_animal/bot/buddy in target_turf.contents)
+		if(istype(buddy, type) && (buddy != src))
+			return TRUE
+	return FALSE
 
 //When the scan finds a target, run bot specific processing to select it for the next step. Empty by default.
 /mob/living/simple_animal/bot/proc/process_scan(scan_target)
@@ -534,7 +532,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/datum/job/captain/All = new/datum/job/captain
 	all_access.access = All.get_access()
 
-	set_path(get_path_to(src, waypoint, /turf/proc/Distance_cardinal, 0, 200, id=all_access))
+	set_path(get_path_to(src, waypoint, 200, id=all_access))
 	calling_ai = caller //Link the AI to the bot!
 	ai_waypoint = waypoint
 
@@ -748,15 +746,18 @@ Pass a positive integer as an argument to override a bot's default speed.
 // given an optional turf to avoid
 /mob/living/simple_animal/bot/proc/calc_path(turf/avoid)
 	check_bot_access()
-	set_path(get_path_to(src, patrol_target, /turf/proc/Distance_cardinal, 0, 120, id=access_card, exclude=avoid))
+	set_path(get_path_to(src, patrol_target, 120, id=access_card, exclude=avoid))
 
 /mob/living/simple_animal/bot/proc/calc_summon_path(turf/avoid)
 	check_bot_access()
-	spawn()
-		set_path(get_path_to(src, summon_target, /turf/proc/Distance_cardinal, 0, 150, id=access_card, exclude=avoid))
-		if(!path.len) //Cannot reach target. Give up and announce the issue.
-			speak("Summon command failed, destination unreachable.",radio_channel)
-			bot_reset()
+	var/datum/callback/path_complete = CALLBACK(src, PROC_REF(on_summon_path_finish))
+	SSpathfinder.pathfind(src, summon_target, max_distance=150, id=access_card, exclude=avoid, on_finish = path_complete)
+
+/mob/living/simple_animal/bot/proc/on_summon_path_finish(list/path)
+	set_path(path)
+	if(!length(path)) //Cannot reach target. Give up and announce the issue.
+		speak("Summon command failed, destination unreachable.",radio_channel)
+		bot_reset()
 
 /mob/living/simple_animal/bot/proc/summon_step()
 
@@ -992,7 +993,13 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 	var/list/path_images = hud_list[DIAG_PATH_HUD]
 	QDEL_LIST(path_images)
-	if(newpath)
+	if(length(newpath))
+		var/mutable_appearance/path_image = new /mutable_appearance()
+		path_image.icon = path_image_icon
+		path_image.icon_state = path_image_icon_state
+		path_image.layer = BOT_PATH_LAYER
+		path_image.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+		path_image.color = path_image_color
 		for(var/i in 1 to newpath.len)
 			var/turf/T = newpath[i]
 			if(T == loc) //don't bother putting an image if it's where we already exist.
@@ -1016,16 +1023,12 @@ Pass a positive integer as an argument to override a bot's default speed.
 							else
 								ntransform.Scale(1, -1)
 							prevI.transform = ntransform
-			var/mutable_appearance/MA = new /mutable_appearance()
-			MA.icon = path_image_icon
-			MA.icon_state = path_image_icon_state
-			MA.layer = ABOVE_OPEN_TURF_LAYER
-			MA.plane = 0
-			MA.appearance_flags = RESET_COLOR|RESET_TRANSFORM
-			MA.color = path_image_color
-			MA.dir = direction
+			
+			//SET_PLANE(path_image, GAME_PLANE, T)
+			path_image.plane = GAME_PLANE
+			path_image.dir = direction
 			var/image/I = image(loc = T)
-			I.appearance = MA
+			I.appearance = path_image
 			path[T] = I
 			path_images += I
 
