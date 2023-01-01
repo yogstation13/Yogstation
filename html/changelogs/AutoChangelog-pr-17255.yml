@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "fixed some antags showing huds, others hiding huds, some not having huds at all"
