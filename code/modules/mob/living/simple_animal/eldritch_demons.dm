@@ -82,7 +82,7 @@
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
-	RegisterSignal(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
+	RegisterSignals(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
 	return TRUE
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/unlink_mob(mob/living/mob_linked)

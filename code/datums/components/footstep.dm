@@ -8,7 +8,7 @@
 		return COMPONENT_INCOMPATIBLE
 	volume = volume_
 	e_range = e_range_
-	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_footstep)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_footstep)
 
 /datum/component/footstep/proc/play_footstep()
 	var/turf/open/T = get_turf(parent)
