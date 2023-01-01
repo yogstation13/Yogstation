@@ -130,7 +130,6 @@
 #include "code\__DEFINES\dcs\signals\signal_species.dm"
 #include "code\__DEFINES\dcs\signals\signals_action.dm"
 #include "code\__DEFINES\dcs\signals\signals_area.dm"
-#include "code\__DEFINES\dcs\signals\signals_atom_movable.dm"
 #include "code\__DEFINES\dcs\signals\signals_datum.dm"
 #include "code\__DEFINES\dcs\signals\signals_food.dm"
 #include "code\__DEFINES\dcs\signals\signals_gib.dm"
