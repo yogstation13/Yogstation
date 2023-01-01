@@ -28,8 +28,6 @@
 	var/list/comp_lookup
 	/// List of callbacks for signal procs
 	var/list/list/datum/callback/signal_procs
-	/// Is this datum capable of sending signals?
-	var/signal_enabled = FALSE
 	/// Datum level flags
 	var/datum_flags = NONE
 
@@ -98,8 +96,6 @@
 		qdel(timer)
 
 	// Handle components & signals
-	signal_enabled = FALSE
-
 	var/list/dc = datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
