@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(demo)
 		marked_dirty.Cut()
 		marked_new.Cut()
 		marked_turfs.Cut()
-		return ..()
+		return SS_INIT_SUCCESS
 
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
