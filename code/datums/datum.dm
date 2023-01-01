@@ -97,7 +97,7 @@
 			continue
 		qdel(timer)
 
-	//BEGIN: ECS SHIT
+	// Handle components & signals
 	signal_enabled = FALSE
 
 	var/list/dc = datum_components
@@ -127,7 +127,6 @@
 
 	for(var/target in signal_procs)
 		UnregisterSignal(target, signal_procs[target])
-	//END: ECS SHIT
 
 	return QDEL_HINT_QUEUE
 
