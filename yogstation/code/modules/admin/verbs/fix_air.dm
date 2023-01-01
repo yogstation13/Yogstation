@@ -14,7 +14,7 @@
 			if(F.blocks_air)
 				//skip walls
 				continue
-			var/datum/gas_mixture/GM = SSair.parse_gas_string(F.initial_gas_mix)
+			var/datum/gas_mixture/GM = SSair.parse_gas_string(F.initial_gas_mix, /datum/gas_mixture/turf)
 			F.copy_air(GM)
 			F.update_visuals()
 
@@ -47,6 +47,7 @@
 			var/turf/open/T = locate(x, y, z)
 			//Not an early return to allow check_tick to do its thing
 			//Verfied to be an open turf here
-			if(!istype(T, /turf/open/space) && T.is_openturf && !T.blocks_air)
-				T.air?.parse_gas_string(T.initial_gas_mix)
+			if(!istype(T, /turf/open/space) && !T.blocks_air)
+				var/datum/gas_mixture/GM = SSair.parse_gas_string(T.initial_gas_mix, /datum/gas_mixture/turf)
+				T.copy_air(GM)
 				T.update_visuals()
