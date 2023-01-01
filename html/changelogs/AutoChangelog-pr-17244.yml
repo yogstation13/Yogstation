@@ -1,0 +1,6 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Syndicate prisoner bag no longer kills its victims"
+  - tweak: "Syndicate prisoner bag costs 2TC"
+  - tweak: "Syndicate prisoner bag zips up much quicker"
