@@ -64,7 +64,7 @@
 #define COMSIG_ATOM_HAS_GRAVITY "atom_has_gravity"
 ///from internal loop in atom/movable/proc/CanReach(): (list/next)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"
-	#define COMPONENT_ALLOW_REACH (1<<0)
+	#define COMPONENT_BLOCK_REACH 1
 ///for when an atom has been created through processing (atom/original_atom, list/chosen_processing_option)
 #define COMSIG_ATOM_CREATEDBY_PROCESSING "atom_createdby_processing"
 ///when an atom is processed (mob/living/user, obj/item/I, list/atom/results)
@@ -95,3 +95,13 @@
 #define COMSIG_ATOM_PROPAGATE_RAD_PULSE "atom_propagate_radiation_pulse"
 /// from cosmetic items to restyle certain mobs, objects or organs: (atom/source, mob/living/trimmer, atom/movable/original_target, body_zone, restyle_type, style_speed)
 #define COMSIG_ATOM_RESTYLE "atom_restyle"
+
+///! from proc/get_rad_contents(): ()
+#define COMSIG_ATOM_RAD_PROBE "atom_rad_probe"
+	#define COMPONENT_BLOCK_RADIATION 1
+///! from base of datum/radiation_wave/radiate(): (strength)
+#define COMSIG_ATOM_RAD_CONTAMINATING "atom_rad_contam"
+	#define COMPONENT_BLOCK_CONTAMINATION 1
+///! from base of datum/radiation_wave/check_obstructions(): (datum/radiation_wave, width)
+#define COMSIG_ATOM_RAD_WAVE_PASSING "atom_rad_wave_pass"
+  #define COMPONENT_RAD_WAVE_HANDLED 1

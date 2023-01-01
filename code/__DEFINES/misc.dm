@@ -4,10 +4,6 @@
 // #define EAST 4
 // #define WEST 8
 
-// Flags
-#define ALL (~0) //For convenience.
-#define NONE 0
-
 #define TEXT_NORTH			"[NORTH]"
 #define TEXT_SOUTH			"[SOUTH]"
 #define TEXT_EAST			"[EAST]"
