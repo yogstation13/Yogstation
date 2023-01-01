@@ -1,7 +1,9 @@
 GLOBAL_LIST_EMPTY(uplinks)
 
 #define PEN_ROTATIONS 2
-
+#define NT_ERT_TROOPER 1
+#define NT_ERT_MEDIC 2
+#define NT_ERT_ENGINEER 3
 /**
  * Uplinks
  *
@@ -33,6 +35,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	///Instructions on how to access the uplink based on location
 	var/unlock_text
 	var/list/previous_attempts
+	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
 
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
@@ -177,6 +180,10 @@ GLOBAL_LIST_EMPTY(uplinks)
 							break
 					if(is_inaccessible)
 						continue
+			if(istype(I, /datum/uplink_item/nt))
+				var/datum/uplink_item/nt/M = I
+				if(nt_uplink_type != null && M.required_ert_uplink != null && nt_uplink_type != M.required_ert_uplink) //Different roles in ERT uplinks have different equipment avaliable
+					continue
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
@@ -360,3 +367,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 	name = "nanotrasen uplink"
 	js_ui = "NTUplink"
 	currency = /obj/item/stack/ore/bluespace_crystal/refined/nt
+
+/datum/component/uplink/nanotrasen/trooper
+	nt_uplink_type = NT_ERT_TROOPER
+/datum/component/uplink/nanotrasen/medic
+	nt_uplink_type = NT_ERT_MEDIC
+/datum/component/uplink/nanotrasen/engineer
+	nt_uplink_type = NT_ERT_ENGINEER
+
+#undef NT_ERT_TROOPER
+#undef NT_ERT_MEDIC
+#undef NT_ERT_ENGINEER

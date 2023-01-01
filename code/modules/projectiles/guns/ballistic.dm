@@ -354,7 +354,7 @@
 			else
 				to_chat(user, span_notice("There's already a [magazine_wording] in \the [src]."))
 		return
-	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
+	if ((istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box)) && !istype(A, /obj/item/ammo_box/no_direct))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
