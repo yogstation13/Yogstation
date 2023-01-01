@@ -600,7 +600,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Ringtone")
 				var/t = stripped_input(U, "Please enter new ringtone", name, ttone, 20)
 				if(in_range(src, U) && loc == U && t)
-					if(SEND_SIGNAL(src, COMSIG_PDA_CHANGE_RINGTONE, U, t) & COMPONENT_STOP_RINGTONE_CHANGE)
+					if(SEND_SIGNAL(src, COMSIG_TABLET_CHANGE_ID, U, t) & COMPONENT_STOP_RINGTONE_CHANGE)
 						U << browse(null, "window=pda")
 						return
 					else
@@ -1238,7 +1238,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			. += P
 
 /obj/item/pda/proc/pda_no_detonate()
-	return COMPONENT_PDA_NO_DETONATE
+	return COMPONENT_TABLET_NO_DETONATE
 
 #undef PDA_SCANNER_NONE
 #undef PDA_SCANNER_MEDICAL
