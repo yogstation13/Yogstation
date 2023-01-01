@@ -1,3 +1,2 @@
-#define ANTAG_HUD_VAMPIRE 23
-#define ANTAG_HUD_DARKSPAWN	24
-#define ANTAG_HUD_INFILTRATOR 32
+// never use this again please for the love of god
+// code\__DEFINES\atom_hud.dm
