@@ -14,7 +14,7 @@
  &mdash; <a href="code/__HELPERS/_lists.html#define">Define Details</a></header>
 <main>
 <h1>code/__HELPERS/_lists.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -25,7 +25,22 @@ INPUT: Object to be inserted
 LIST: List to insert object into
 TYPECONT: The typepath of the contents of the list
 COMPARE: The object to compare against, usualy the same as INPUT
-COMPARISON: The variable on the objects to compare</td></tr>
+COMPARISON: The variable on the objects to compare
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</td></tr>
+        <tr><th><a href="code/__HELPERS/_lists.html#define/BINARY_INSERT_PROC_COMPARE">BINARY_INSERT_PROC_COMPARE</a></th><td>Custom binary search sorted insert utilising comparison procs instead of vars.
+INPUT: Object to be inserted
+LIST: List to insert object into
+TYPECONT: The typepath of the contents of the list
+COMPARE: The object to compare against, usualy the same as INPUT
+COMPARISON: The plaintext name of a proc on INPUT that takes a single argument to accept a single element from LIST and returns a positive, negative or zero number to perform a comparison.
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</td></tr>
+        <tr><th><a href="code/__HELPERS/_lists.html#define/BINARY_INSERT_DEFINE">BINARY_INSERT_DEFINE</a></th><td>Even more custom binary search sorted insert, using defines instead of vars
+INPUT: Item to be inserted
+LIST: List to insert INPUT into
+TYPECONT: A define setting the var to the typepath of the contents of the list
+COMPARE: The item to compare against, usualy the same as INPUT
+COMPARISON: A define that takes an item to compare as input, and returns their comparable value
+COMPTYPE: How should the list be compared? Either COMPARE_KEY or COMPARE_VALUE.</td></tr>
         <tr><th>/proc/<a href="global.html#proc/english_list">english_list</a></th>
                 <td>Returns a list in plain english as a string</td></tr>
         <tr><th>/proc/<a href="global.html#proc/listgetindex">listgetindex</a></th>
@@ -49,6 +64,13 @@ COMPARISON: The variable on the objects to compare</td></tr>
                 <td>Like typesof() or subtypesof(), but returns a typecache instead of a list</td></tr>
         <tr><th>/proc/<a href="global.html#proc/clearlist">clearlist</a></th>
                 <td>Empties the list by setting the length to 0. Hopefully the elements get garbage collected</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/expand_weights">expand_weights</a></th>
+                <td>Takes a weighted list (see above) and expands it into raw entries
+This eats more memory, but saves time when actually picking from it</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/greatest_common_factor">greatest_common_factor</a></th>
+                <td>Takes a list of numbers as input, returns the highest value that is cleanly divides them all
+Note: this implementation is expensive as heck for large numbers, I only use it because most of my usecase
+Is &lt; 10 ints</td></tr>
         <tr><th>/proc/<a href="global.html#proc/pick_n_take">pick_n_take</a></th>
                 <td>Pick a random element from the list and remove it from the list.</td></tr>
         <tr><th>/proc/<a href="global.html#proc/pop">pop</a></th>
@@ -78,36 +100,59 @@ COMPARISON: The variable on the objects to compare</td></tr>
                 <td>remove all nulls from a list</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/BINARY_INSERT"><aside class="declaration">#define </aside>BINARY_INSERT
             <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm#L41">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 41"/></a>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 42"/></a>
     </h3>
     <p>Binary search sorted insert
 INPUT: Object to be inserted
 LIST: List to insert object into
 TYPECONT: The typepath of the contents of the list
 COMPARE: The object to compare against, usualy the same as INPUT
-COMPARISON: The variable on the objects to compare</p><h3 id="define/COMPARE_KEY"><aside class="declaration">#define </aside>COMPARE_KEY
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm#L29">
+COMPARISON: The variable on the objects to compare
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/BINARY_INSERT_DEFINE"><aside class="declaration">#define </aside>BINARY_INSERT_DEFINE
+            <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 115"/></a>
+    </h3>
+    <p>Even more custom binary search sorted insert, using defines instead of vars
+INPUT: Item to be inserted
+LIST: List to insert INPUT into
+TYPECONT: A define setting the var to the typepath of the contents of the list
+COMPARE: The item to compare against, usualy the same as INPUT
+COMPARISON: A define that takes an item to compare as input, and returns their comparable value
+COMPTYPE: How should the list be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/BINARY_INSERT_PROC_COMPARE"><aside class="declaration">#define </aside>BINARY_INSERT_PROC_COMPARE
+            <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 77"/></a>
+    </h3>
+    <p>Custom binary search sorted insert utilising comparison procs instead of vars.
+INPUT: Object to be inserted
+LIST: List to insert object into
+TYPECONT: The typepath of the contents of the list
+COMPARE: The object to compare against, usualy the same as INPUT
+COMPARISON: The plaintext name of a proc on INPUT that takes a single argument to accept a single element from LIST and returns a positive, negative or zero number to perform a comparison.
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/COMPARE_KEY"><aside class="declaration">#define </aside>COMPARE_KEY
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 29"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare keys</p><h3 id="define/COMPARE_VALUE"><aside class="declaration">#define </aside>COMPARE_VALUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm#L31">
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L31">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 31"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare values</p><h3 id="define/KEYBYINDEX"><aside class="declaration">#define </aside>KEYBYINDEX
             <aside>(L, index)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm#L394">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 394"/></a>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L506">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 506"/></a>
     </h3>
     <p>Returns the key based on the index</p><h3 id="define/is_type_in_typecache"><aside class="declaration">#define </aside>is_type_in_typecache
             <aside>(A, L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/3443d1b40f387d2b6d747faf39b357772dec344e/code/__HELPERS/_lists.dm#L119">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 119"/></a>
+            <a href="https://github.com/yogstation13/Yogstation/blob/1c00d076cf5684dc58b28c63d5d61cb55f6d7740/code/__HELPERS/_lists.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 193"/></a>
     </h3>
     <p>Checks for specific types in specifically structured (Assoc &quot;type&quot; = TRUE) lists ('typecaches')</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/3443d1b40f387d2b6d747faf39b357772dec344e">3443d1b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/1c00d076cf5684dc58b28c63d5d61cb55f6d7740">1c00d07</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
