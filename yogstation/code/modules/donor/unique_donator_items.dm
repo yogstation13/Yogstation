@@ -79,14 +79,12 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			continue
 		donor_items += S
 	for(var/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
-		var/datum/donator_gear/P = new
 		var/obj/item/toy/plush/myplush = Plushtype
 		if(initial(myplush.donor_blacklist)) //don't give dehydrated carp plushie to donors
-			qdel(P)
 			continue
-		if(initial(myplush.name) == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH (before a coder (he knows who he is) complains, I am aware this )
-			qdel(P)
+		if(initial(myplush.name) == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH (before a coder (he knows who he is) complains, I am aware this is bad form)
 			continue
+		var/datum/donator_gear/P = new
 		P.name = initial(myplush.name)
 		P.unlock_path = Plushtype
 		P.plushie = TRUE
