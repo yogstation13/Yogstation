@@ -900,8 +900,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/melee/transforming/cleaving_saw/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"].\n"+\
-	"Both modes will build up existing bleed effects, doing a burst of high damage if the bleed is built up high enough.\n"+\
+	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna, while getting you blood-drunk":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed, dealing passive damage"].\n"+\
+	"Both modes will build up existing bleed effects, doing a burst of high damage and healing you if the bleed is built up high enough.\n"+\
 	"Transforming it immediately after an attack causes the next attack to come out faster.</span>"
 
 /obj/item/melee/transforming/cleaving_saw/suicide_act(mob/user)
@@ -921,9 +921,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/transforming/cleaving_saw/transform_messages(mob/living/user, supress_message_text)
 	if(!supress_message_text)
 		if(active)
-			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna."))
+			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna, getting you drunk on blood."))
 		else
-			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed."))
+			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed, letting you drink their blood to heal."))
 	playsound(user, 'sound/magic/clockwork/fellowship_armory.ogg', 35, TRUE, frequency = 90000 - (active * 30000))
 
 /obj/item/melee/transforming/cleaving_saw/clumsy_transform_effect(mob/living/user)
@@ -931,10 +931,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(user, span_warning("You accidentally cut yourself with [src], like a doofus!"))
 		user.take_bodypart_damage(10)
 
-/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
 	if(!active)
 		user.changeNext_move(CLICK_CD_MELEE * 0.5) //when closed, it attacks very rapidly
+	else
+		if(iscarbon(target) && prob(25)) //RNG wound application regardless of armor.
+			var/mob/living/carbon/carbon_target = target
+			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+			var/datum/wound/slash/moderate/crit_wound = new
+			user.visible_message(span_boldwarning("[user] cleaves [target] delivering a viscious wound!"))
+			crit_wound.apply_wound(bodypart)
 
 /obj/item/melee/transforming/cleaving_saw/nemesis_effects(mob/living/user, mob/living/target)
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
@@ -942,7 +949,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!active) //This isn't in the above if-check so that the else doesn't care about active
 			target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
 	else
+		if(active && prob(33)) //This isn't in an else check above so that it doesn't care if they're not bleeding.
+			user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)
 		B.add_bleed(B.bleed_buildup)
+
+	if(B.needs_to_bleed)
+		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
+		user.adjustBruteLoss(-10)
+		user.adjustFireLoss(-10)
+		user.adjustToxLoss(-10)
+		user.blood_volume += 10
 
 /obj/item/melee/transforming/cleaving_saw/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!active || swiping || !target.density || get_turf(target) == get_turf(user))
