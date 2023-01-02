@@ -111,6 +111,7 @@
 			var/obj/item/mmi/as_mmi = AM
 			if(istype(AM, /obj/item/organ/brain) || (istype(as_head) && as_head.brain) || (istype(as_mmi) && as_mmi.brain) || istype(AM, /obj/item/dullahan_relay))
 				living_detected = TRUE
+				continue	//Lets not use an emagged recycler as a ghetto brain deleter please thanks
 			nom += AM
 		else if(isliving(AM) && !istype(AM, /mob/living/simple_animal/hostile/megafauna))
 			living_detected = TRUE
