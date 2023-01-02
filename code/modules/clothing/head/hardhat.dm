@@ -4,8 +4,6 @@
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
-	//Determines used sprites: hardhat[on]_[hat_type]
-	var/hat_type = "yellow"
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50, WOUND = 10)
 	flags_inv = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
@@ -19,6 +17,8 @@
 
 	dog_fashion = /datum/dog_fashion/head
 
+	//Determines used sprites: hardhat[on]_[hat_type]
+	var/hat_type = "yellow"
 	///Whether the headlamp is on or off.
 	var/on = FALSE
 

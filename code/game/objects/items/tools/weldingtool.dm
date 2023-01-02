@@ -140,7 +140,7 @@
 		var/turf/location = get_turf(user)
 		location.hotspot_expose(700, 50, 1)
 		if(get_fuel() <= 0)
-			set_light(0)
+			set_light_on(FALSE)
 
 		if(isliving(O))
 			var/mob/living/L = O

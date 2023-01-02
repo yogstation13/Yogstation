@@ -190,6 +190,8 @@
 	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
 	minimum_damage = 40			
 	attack_speed_modifier = 1.5 //Kinda chunky
+	light_system = MOVABLE_LIGHT
+	light_range = 5
 	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()	//Mostly copy-pasted sword cleave code with minor tweaks.
@@ -239,11 +241,11 @@
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
 	START_PROCESSING(SSobj, src)
-	set_light(5)
+	set_light_on(TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_deselect()
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)	
+	set_light_on(FALSE)	
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"

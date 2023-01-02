@@ -402,20 +402,26 @@
   * Proc used to allow a swarmer to toggle its  light on and off.  If a swarmer has any drones, change their light settings to match their master's.
   */
 /mob/living/simple_animal/hostile/swarmer/proc/toggle_light()
-	if(!light_range)
-		set_light_on(TRUE)
-		if(!mind)
-			return
-		for(var/d in dronelist)
-			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light_on(TRUE)
-	else
+	if(swarmer_flags & SWARMER_LIGHT_ON)
+		swarmer_flags = ~SWARMER_LIGHT_ON
 		set_light_on(FALSE)
 		if(!mind)
 			return
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
+			drone.swarmer_flags = ~SWARMER_LIGHT_ON
 			drone.set_light_on(FALSE)
+				return
+	swarmer_flags |= SWARMER_LIGHT_ON
+	set_light_on(TRUE)
+	if(!mind)
+		return
+
+	for(var/d in dronelist)
+		var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
+		drone.swarmer_flags |= SWARMER_LIGHT_ON
+		drone.set_light_on(TRUE)
+		
 	balloon_alert(src, "light toggled")
 
 /**

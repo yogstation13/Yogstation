@@ -6,6 +6,7 @@
 	item_state = "eng_helm"
 	max_integrity = 300
 	armor = list(MELEE = 10, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 50, ACID = 75)
+	light_system = MOVABLE_LIGHT
 	light_range = 4
 	light_power = 1
 	light_on = FALSE
@@ -428,6 +429,7 @@
 	icon_state = "carp_helm"
 	item_state = "syndicate"
 	armor = list(MELEE = -20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 75, FIRE = 60, ACID = 75)	//As whimpy as a space carp
+	light_system = NO_LIGHT_SUPPORT
 	light_range = 0 //luminosity when on
 	actions_types = list()
 

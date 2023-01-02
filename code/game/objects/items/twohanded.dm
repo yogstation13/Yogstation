@@ -310,16 +310,15 @@
 	hitsound = "swing_hit"
 	armour_penetration = 35
 	var/saber_color = "green"
-	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
 	light_system = MOVABLE_LIGHT
-	light_range = 6
-	light_power = 1
-	light_on = TRUE
+	light_range = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
+	light_color = "#00ff00" //green
+	light_on = FALSE
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	var/hacked = FALSE
@@ -354,15 +353,17 @@
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
+		var/new_color
 		switch(saber_color)
 			if("red")
-				light_color = LIGHT_COLOR_RED
+				new_color = LIGHT_COLOR_RED
 			if("green")
-				light_color = LIGHT_COLOR_GREEN
+				new_color = LIGHT_COLOR_GREEN
 			if("blue")
-				light_color = LIGHT_COLOR_LIGHT_CYAN
+				new_color = LIGHT_COLOR_LIGHT_CYAN
 			if("purple")
-				light_color = LIGHT_COLOR_LAVENDER
+				new_color = LIGHT_COLOR_LAVENDER
+		set_light_color(new_color)
 
 /obj/item/twohanded/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -423,7 +424,7 @@
 		w_class = w_class_on
 		hitsound = 'sound/weapons/blade1.ogg'
 		START_PROCESSING(SSobj, src)
-		set_light(TRUE)
+		set_light_on(TRUE)
 
 /obj/item/twohanded/dualsaber/unwield() //Specific unwield () to switch hitsounds.
 	sharpness = initial(sharpness)
@@ -431,7 +432,7 @@
 	..()
 	hitsound = "swing_hit"
 	STOP_PROCESSING(SSobj, src)
-	set_light(FALSE)
+	set_light_on(FALSE)
 
 /obj/item/twohanded/dualsaber/process()
 	if(wielded)
@@ -754,10 +755,10 @@
 	force = 19
 	throwforce = 24
 	force_wielded = 6
-
-/obj/item/twohanded/pitchfork/demonic/Initialize()
-	. = ..()
-	set_light(3,6,LIGHT_COLOR_RED)
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 6
+	light_color = LIGHT_COLOR_RED
 
 /obj/item/twohanded/pitchfork/demonic/greater
 	force = 24
@@ -994,6 +995,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
+	light_system = MOVABLE_LIGHT
+	light_color = LIGHT_COLOR_LIGHT_CYAN
+	light_range = 2
+	light_power = 2
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
@@ -1045,11 +1050,11 @@
 /obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite + damage
 	supercharged = !supercharged
 	if(supercharged)
-		set_light(2) //Glows when charged
+		set_light_on(TRUE) //Glows when charged
 		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
 		armour_penetration = 100
 	else
-		set_light(0)
+		set_light_on(TRUE)
 		force = initial(force) + (wielded ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
