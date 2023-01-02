@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Resting only allows you to avoid projectiles from adjacent shooters"
