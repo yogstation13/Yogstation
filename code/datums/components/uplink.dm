@@ -374,7 +374,3 @@ GLOBAL_LIST_EMPTY(uplinks)
 	nt_uplink_type = NT_ERT_MEDIC
 /datum/component/uplink/nanotrasen/engineer
 	nt_uplink_type = NT_ERT_ENGINEER
-
-#undef NT_ERT_TROOPER
-#undef NT_ERT_MEDIC
-#undef NT_ERT_ENGINEER

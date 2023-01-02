@@ -908,7 +908,7 @@
 	name = ".38 Bullet"
 	id = "c38"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 3000)
+	materials = list(/datum/material/iron = 1500)
 	build_path = /obj/item/ammo_casing/c38
 	category = list("hacked", "Security")
 

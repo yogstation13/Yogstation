@@ -1288,10 +1288,8 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "pj" = (
-/obj/machinery/atmospherics/components/trinary/filter/on{
-	dir = 1;
-	filter_type = "n2";
-	name = "Nitrogen Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/n2{
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 8
@@ -1977,10 +1975,8 @@
 /turf/closed/wall,
 /area/mine/living_quarters)
 "zZ" = (
-/obj/machinery/atmospherics/components/trinary/filter/on{
-	dir = 1;
-	filter_type = "o2";
-	name = "Oxygen Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 8

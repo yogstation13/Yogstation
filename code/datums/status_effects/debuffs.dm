@@ -462,6 +462,10 @@
 	if(owner.stat == DEAD)
 		qdel(src)
 	else
+		if(faction_check(owner.faction, list("mining", "boss")))
+			owner.apply_damage(10)
+		else //This is so that it doesn't murder humans drastically as there are none in either faction.
+			owner.apply_damage(2)
 		add_bleed(-1)
 
 /datum/status_effect/saw_bleed/proc/add_bleed(amount)

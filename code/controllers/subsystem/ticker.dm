@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(ticker)
 		gametime_offset = rand(0, 23) HOURS
 	else if(CONFIG_GET(flag/shift_time_realtime))
 		gametime_offset = world.timeofday
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
 	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)

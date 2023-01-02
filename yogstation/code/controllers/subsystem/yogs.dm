@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/path in subtypesof(/datum/corporation))
 		new path
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
 	//END OF SHIFT ANNOUNCER
