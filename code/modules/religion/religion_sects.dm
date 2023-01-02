@@ -342,7 +342,7 @@
 /datum/religion_sect/oldgods
 	name = "Gathering of the Old Ones"
 	desc = "A sect dedicated to the Old Gods."
-	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on your altar and then sacrifice it in the name of the Old Gods."
+	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on top of your altar and then sacrifice it in the name of the Old Gods."
 	alignment = ALIGNMENT_EVIL //kind of evil?
 	max_favor = 3000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)
