@@ -497,3 +497,25 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 		return
 	prefs.asaycolor = initial(prefs.asaycolor)
 	prefs.save_preferences()
+
+/client/proc/toggle_split_admin_tabs()
+	set name = "Toggle Split Admin Tabs"
+	set category = "Preferences.Admin"
+	set desc = "Toggle the admin tab being split into separate tabs instead of being merged into one"
+	if(!holder)
+		return
+	prefs.toggles ^= SPLIT_ADMIN_TABS
+	prefs.save_preferences()
+	to_chat(src, "Admin tabs will now [(prefs.toggles & SPLIT_ADMIN_TABS) ? "be" : "not be"] split.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Split Admin Tabs", "[prefs.toggles & SPLIT_ADMIN_TABS ? "Enabled" : "Disabled"]"))
+
+/client/proc/toggle_fast_mc_refresh()
+	set name = "Toggle Fast MC Refresh"
+	set category = "Preferences.Admin"
+	set desc = "Toggle the fast MC refresh"
+	if(!holder)
+		return
+	prefs.toggles ^= FAST_MC_REFRESH
+	prefs.save_preferences()
+	to_chat(src, "MC will now [(prefs.toggles & FAST_MC_REFRESH) ? "FAST" : "NOT FAST"] update.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Fast MC Refresh", "[prefs.toggles & FAST_MC_REFRESH ? "Enabled" : "Disabled"]"))

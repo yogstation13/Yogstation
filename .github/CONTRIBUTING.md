@@ -443,3 +443,5 @@ Regarding sprites & sounds, you must credit the artist and possibly the codebase
 
 ## A word on Git
 All .dmm .dm .md .txt .html are required to end with CRLF(DOS/WINDOWS) line endings,git will enforce said line endings automatically. Other file types have non enforced line endings.
+
+[MC Tab Guide](./guides/MC_tab.md)

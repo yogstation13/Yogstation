@@ -13,6 +13,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
+	/client/proc/toggle_split_admin_tabs,
+	/client/proc/toggle_fast_mc_refresh,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
@@ -240,6 +242,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
+	/client/proc/toggle_split_admin_tabs,
+	/client/proc/toggle_fast_mc_refresh,
 	/client/proc/reload_mentors,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/startSinglo,
@@ -249,6 +253,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/proc/possess,
 	/proc/release,
 	/client/proc/reload_admins,
+	/client/proc/toggle_split_admin_tabs,
+	/client/proc/toggle_fast_mc_refresh,
 	/client/proc/reload_mentors,
 	/client/proc/panicbunker,
 	/client/proc/admin_change_sec_level,
@@ -805,4 +811,4 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Debug Stat Panel"
 	set category = "Misc.Server Debug"
 
-	src << output("", "statbrowser:create_debug")
+	src.stat_panel.send_message("create_debug")
