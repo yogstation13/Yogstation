@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Deathless states (zombies, memento mori) will no longer save you from damage-induced death if you have a holoparasite"
