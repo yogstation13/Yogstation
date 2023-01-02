@@ -478,7 +478,7 @@
 	if(P && istype(P.loc, /turf/open) && !P.clash_target && !clashing)
 		P.clash_of_the_plushies(src)
 
-/obj/item/toy/plush/lizardplushie
+/obj/item/toy/plush/lizard
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizardperson."
 	icon_state = "plushie_lizard"
