@@ -21,8 +21,5 @@
     "resolveJsonModule": true,
     "isolatedModules": false
   },
-  "include": [
-    "./global.d.ts",
-    "./packages"
-  ]
+  "include": ["./*.d.ts", "./packages"]
 }
