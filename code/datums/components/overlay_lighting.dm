@@ -133,8 +133,7 @@
 
 ///Clears the affected_turfs lazylist, removing from its contents the effects of being near the light.
 /datum/component/overlay_lighting/proc/clean_old_turfs()
-	for(var/t in affected_turfs)
-		var/turf/lit_turf = t
+	for(var/turf/lit_turf as anything in affected_turfs)
 		lit_turf.dynamic_lumcount -= used_lum_power
 	affected_turfs = null
 
