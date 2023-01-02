@@ -27,7 +27,7 @@
 					/obj/item/toy/plush/bubbleplush = 2,
 					/obj/item/toy/plush/plushvar = 2,
 					/obj/item/toy/plush/narplush = 2,
-					/obj/item/toy/plush/lizardplushie = 2,
+					/obj/item/toy/plush/lizard = 2,
 					/obj/item/toy/plush/snakeplushie = 2,
 					/obj/item/toy/plush/nukeplushie = 2,
 					/obj/item/toy/plush/slimeplushie = 2,

@@ -438,7 +438,7 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "Ki" = (

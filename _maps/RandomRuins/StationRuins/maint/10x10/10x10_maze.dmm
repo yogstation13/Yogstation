@@ -94,7 +94,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},

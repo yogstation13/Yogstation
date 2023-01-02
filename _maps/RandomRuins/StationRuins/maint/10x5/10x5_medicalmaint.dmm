@@ -123,7 +123,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 10
 	},
-/obj/item/toy/plush/lizardplushie{
+/obj/item/toy/plush/lizard{
 	color = "#490092";
 	pixel_x = 5;
 	pixel_y = -4

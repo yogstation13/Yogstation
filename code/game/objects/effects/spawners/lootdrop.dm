@@ -77,7 +77,7 @@
 	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
 		/obj/item/toy/plush/bubbleplush,
 		/obj/item/toy/plush/carpplushie,
-		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/lizard,
 		/obj/item/toy/plush/snakeplushie,
 		/obj/item/toy/plush/nukeplushie,
 		/obj/item/toy/plush/slimeplushie,

@@ -1379,7 +1379,7 @@
 /obj/item/toy/plush/carpplushie,
 /obj/item/toy/plush/carpplushie,
 /obj/item/toy/plush/blahaj,
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},

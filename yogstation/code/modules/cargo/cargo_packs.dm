@@ -95,7 +95,7 @@
 					/obj/item/toy/plush/bubbleplush,
 					/obj/item/toy/plush/plushvar,
 					/obj/item/toy/plush/narplush,
-					/obj/item/toy/plush/lizardplushie,
+					/obj/item/toy/plush/lizard,
 					/obj/item/toy/plush/snakeplushie,
 					/obj/item/toy/plush/nukeplushie,
 					/obj/item/toy/plush/goatplushie,
