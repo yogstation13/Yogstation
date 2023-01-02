@@ -402,7 +402,7 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = FLOOR(lootcount * 1.5, 1)
 
@@ -456,7 +456,7 @@
 		/obj/item/organ/heart/gland/egg = 7,
 		/obj/item/organ/heart/gland/chem = 5,
 		/obj/item/organ/heart/gland/mindshock = 5,
-		/obj/item/organ/heart/gland/plasma = 7,
+		/obj/item/organ/heart/gland/gas = 7, //Yogstation change: plasma -> gas
 		/obj/item/organ/heart/gland/pop = 5,
 		/obj/item/organ/heart/gland/slime = 4,
 		/obj/item/organ/heart/gland/spiderman = 5,

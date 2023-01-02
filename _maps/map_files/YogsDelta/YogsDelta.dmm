@@ -19558,20 +19558,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
-"aGU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/disposal/incinerator)
 "aGV" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
@@ -125343,6 +125329,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/genetics)
+"pWH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 3;
+	mode = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/disposal/incinerator)
 "pWT" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -153507,7 +153511,7 @@ axp
 aDl
 avZ
 aHX
-aGU
+pWH
 aNc
 dmO
 auK

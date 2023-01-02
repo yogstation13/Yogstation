@@ -1,0 +1,4 @@
+author: "Ethan4303"
+delete-after: true 
+changes: 
+  - mapping: "added atmos sims to turbines on all maps in rotation and added one to asteroid toxins"

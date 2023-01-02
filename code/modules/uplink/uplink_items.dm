@@ -1861,7 +1861,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Prisoner Transport Bag"
 	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
 	item = /obj/item/bodybag/environmental/prisoner/syndicate
-	cost = 7
+	cost = 2
 
 /datum/uplink_item/device_tools/holo_sight
 	name = "Holographic Sight"
@@ -3009,14 +3009,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/hardsuit/riotvest
 	name = "Riot Suit"
-	desc = "A bulky suit that protects you againt melee attacks but not much else."
+	desc = "A bulky suit that protects you against melee attacks but not much else."
 	item = /obj/item/clothing/suit/armor/riot
 	cost = 1
 	required_ert_uplink = NT_ERT_TROOPER
 
 /datum/uplink_item/nt/hardsuit/riothelmet
 	name = "Riot Helmet"
-	desc = "A helmet that protects you againt melee attacks but not much else."
+	desc = "A helmet that protects you against melee attacks but not much else."
 	item = /obj/item/clothing/head/helmet/riot
 	cost = 1
 	required_ert_uplink = NT_ERT_TROOPER

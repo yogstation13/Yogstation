@@ -752,3 +752,7 @@
 				continue
 
 			C.energy_fail(rand(duration_min,duration_max))
+
+/// For legacy procs using addtimer in callbacks. Don't use this.
+/proc/_addtimer_here(callback, time)
+	addtimer(callback, time)

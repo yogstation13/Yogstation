@@ -21342,6 +21342,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"erS" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "erX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23162,6 +23167,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"fcI" = (
+/obj/structure/closet/secure_closet/personal/patient,
+/obj/machinery/camera{
+	c_tag = "Genetics Cloning Lab";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/corner,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "fcY" = (
 /obj/effect/landmark/start/security_officer,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -24247,6 +24265,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fCl" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/atmos_sim{
+	dir = 3;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "fCu" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -32059,14 +32085,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"iOO" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
-	name = "2maintenance loot spawner"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "iOP" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -37066,6 +37084,17 @@
 "ldW" = (
 /turf/template_noop,
 /area/maintenance/aft)
+"leh" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Genetics Maintenance";
+	req_access_txt = "5;9;68"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "leo" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -37196,6 +37225,13 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"lic" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 32
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "lip" = (
 /obj/machinery/light{
 	dir = 1
@@ -40621,11 +40657,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"mBg" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "mBi" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2_sensor"
@@ -48424,14 +48455,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
-"pSS" = (
-/obj/effect/landmark/start/geneticist,
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "pSY" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -54510,6 +54533,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"szN" = (
+/obj/effect/landmark/start/geneticist,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -30
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/effect/turf_decal/trimline/yellow/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "sAl" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Starboard Bow Solar Access";
@@ -56443,12 +56481,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"tly" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "tlN" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -60334,6 +60366,10 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"uUo" = (
+/obj/effect/turf_decal/trimline/yellow/filled/warning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "uUH" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -62074,16 +62110,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"vHw" = (
-/obj/structure/closet/secure_closet/personal/patient,
-/obj/machinery/camera{
-	c_tag = "Genetics Cloning Lab";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "vHH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -62153,14 +62179,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"vIh" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -30
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "vIj" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -108128,7 +108146,7 @@ ldW
 ldW
 ldW
 cmd
-tly
+lic
 bVC
 dfL
 tEp
@@ -108642,7 +108660,7 @@ ldW
 ldW
 ldW
 cmd
-mBg
+fCl
 owJ
 etJ
 ufo
@@ -109382,7 +109400,7 @@ hUj
 gru
 lEC
 kYK
-oOo
+wUw
 ufj
 bNd
 saZ
@@ -109637,9 +109655,9 @@ oBk
 nLu
 gVP
 ruc
-vHw
+fcI
 kYK
-wUw
+vYi
 ufj
 bNd
 irH
@@ -109894,9 +109912,9 @@ uHA
 mIj
 pEC
 ruc
-vIh
-kYK
-vYi
+uUo
+leh
+bAw
 ufj
 bNd
 pQc
@@ -110151,7 +110169,7 @@ fQz
 uvN
 gxA
 ruc
-pSS
+szN
 kYK
 wLA
 ufj
@@ -110410,7 +110428,7 @@ bnG
 edM
 oob
 kYK
-iOO
+erS
 ufj
 bNd
 bNd
