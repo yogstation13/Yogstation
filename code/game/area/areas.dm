@@ -553,11 +553,11 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(always_unpowered)
 		return 0
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			return power_equip
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			return power_light
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			return power_environ
 
 	return 0
@@ -584,19 +584,19 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used += used_light
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used += used_equip
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used += used_environ
-		if(TOTAL)
+		if(AREA_USAGE_TOTAL)
 			used += used_light + used_equip + used_environ
-		if(STATIC_EQUIP)
+		if(AREA_USAGE_STATIC_EQUIP)
 			used += static_equip
-		if(STATIC_LIGHT)
+		if(AREA_USAGE_STATIC_LIGHT)
 			used += static_light
-		if(STATIC_ENVIRON)
+		if(AREA_USAGE_STATIC_ENVIRON)
 			used += static_environ
 	return used
 
@@ -604,17 +604,17 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Add a static amount of power load to an area
   *
   * Possible channels
-  * *STATIC_EQUIP
-  * *STATIC_LIGHT
-  * *STATIC_ENVIRON
+  * *AREA_USAGE_STATIC_EQUIP
+  * *AREA_USAGE_STATIC_LIGHT
+  * *AREA_USAGE_STATIC_ENVIRON
   */
 /area/proc/addStaticPower(value, powerchannel)
 	switch(powerchannel)
-		if(STATIC_EQUIP)
+		if(AREA_USAGE_STATIC_EQUIP)
 			static_equip += value
-		if(STATIC_LIGHT)
+		if(AREA_USAGE_STATIC_LIGHT)
 			static_light += value
-		if(STATIC_ENVIRON)
+		if(AREA_USAGE_STATIC_ENVIRON)
 			static_environ += value
 
 /**
@@ -633,11 +633,11 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/use_power(amount, chan)
 	amount *= POWER_MOD
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used_equip += amount
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used_light += amount
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used_environ += amount
 
 /**
