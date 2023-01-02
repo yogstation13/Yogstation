@@ -107,7 +107,7 @@
 	max_signs = 3
 
 /obj/item/holosign_creator/clown
-	name = "Clown holobanana projector"
+	name = "HONK holobanana projector"
 	desc = "A holographic projector that creates hardlight bananas"
 	icon_state = "signmaker_firstaid" //TODO: Change
 	holosign_type = /obj/structure/holosign/holobanana

@@ -484,7 +484,7 @@
 		/obj/item/pneumatic_cannon/pie/selfcharge/cyborg,
 		/obj/item/razor,					//killbait material
 		/obj/item/lipstick/purple,
-		/obj/item/reagent_containers/spray/waterflower/cyborg,
+		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/borg/lollipop/clown,
 		/obj/item/picket_sign/cyborg,
