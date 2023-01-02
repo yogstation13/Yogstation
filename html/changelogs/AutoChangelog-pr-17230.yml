@@ -1,5 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - rscadd: "Gas filters now allow multiple gasses to be filtered at once"
-  - tweak: "Gas should move more consistently through gas filters"
