@@ -109,7 +109,7 @@
 /obj/item/holosign_creator/clown
 	name = "HONK holobanana projector"
 	desc = "A holographic projector that creates hardlight bananas"
-	icon_state = "signmaker_firstaid" //TODO: Change
+	icon_state = "signmaker_clown"
 	holosign_type = /obj/structure/holosign/holobanana
 	creation_time = 0.69 SECONDS
 	max_signs = 2
