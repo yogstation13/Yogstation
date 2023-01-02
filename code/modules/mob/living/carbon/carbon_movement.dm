@@ -23,7 +23,7 @@
 	if(wagging)
 		src.dna.species.start_wagging_tail(src)
 	return
-	
+
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(!.)
 		. = ..()
@@ -49,3 +49,12 @@
 			adjust_nutrition(-(HUNGER_FACTOR/10))
 			if(m_intent == MOVE_INTENT_RUN)
 				adjust_nutrition(-(HUNGER_FACTOR/10))
+	var/turf/T = get_turf(src)
+	if(. && src.job && !is_station_level(T.z))
+		var/datum/job/J = SSjob.GetJob(src.job)
+		if(istype(J,/datum/job/curator))
+			for(var/obj/item/bodypart/bodypart in src.bodyparts)
+				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+					if(bodypart.dismemberable)
+						bodypart.dismember()
+
