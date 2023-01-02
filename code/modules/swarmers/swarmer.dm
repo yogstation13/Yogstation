@@ -411,7 +411,7 @@
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
 			drone.swarmer_flags = ~SWARMER_LIGHT_ON
 			drone.set_light_on(FALSE)
-				return
+		return
 	swarmer_flags |= SWARMER_LIGHT_ON
 	set_light_on(TRUE)
 	if(!mind)
@@ -421,7 +421,7 @@
 		var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
 		drone.swarmer_flags |= SWARMER_LIGHT_ON
 		drone.set_light_on(TRUE)
-		
+
 	balloon_alert(src, "light toggled")
 
 /**
