@@ -80,20 +80,17 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		donor_items += S
 	for(var/Plushtype in subtypesof(/obj/item/toy/plush)) //generate our plushies
 		var/datum/donator_gear/P = new
-		var/obj/item/toy/plush/myplush = new Plushtype
-		if(myplush.donor_blacklist) //don't give dehydrated carp plushie to donors
+		var/obj/item/toy/plush/myplush = Plushtype
+		if(initial(myplush.donor_blacklist)) //don't give dehydrated carp plushie to donors
 			qdel(P)
-			qdel(myplush)
 			continue
-		if(myplush.name == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH
+		if(istype(myplush, /obj/item/toy/plush)) //DON'T GIVE THE PLAYERS THE CODER PLUSH
 			qdel(P)
-			qdel(myplush)
 			continue
-		P.name = myplush.name
-		P.unlock_path = myplush.type
+		P.name = initial(myplush.name)
+		P.unlock_path = Plushtype
 		P.plushie = TRUE
-		P.ckey = myplush.donor_ckey
-		qdel(myplush)
+		P.ckey = initial(myplush.donor_ckey)
 		donor_items += P
 
 /datum/donator_gear
