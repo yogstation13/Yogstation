@@ -535,6 +535,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	seen_messages = null
+	SSping.currentrun -= src
 	Master.UpdateTickRate()
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
 
