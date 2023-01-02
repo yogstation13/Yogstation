@@ -83,6 +83,9 @@
 	var/list/all_scars
 	var/visible_tumors = FALSE //if you are seem with some tumors, for examine
 
+	/// Only load in visual organs
+	var/visual_only_organs = FALSE
+
 	COOLDOWN_DECLARE(bleeding_message_cd)
 
 	var/list/image/infra_images

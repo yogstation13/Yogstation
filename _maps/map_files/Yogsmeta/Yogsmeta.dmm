@@ -336,10 +336,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/maintenance/starboard)
-"aaW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -53734,10 +53730,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "plasma";
-	name = "Plasma Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -57841,10 +57835,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "n2o";
-	name = "N2O Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -57910,6 +57902,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"iIL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "iJJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -60485,10 +60485,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "co2";
-	name = "CO2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -68784,10 +68782,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 8;
-	filter_type = "o2";
-	name = "O2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -79814,10 +79810,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 8;
-	filter_type = "n2";
-	name = "N2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -120715,7 +120709,7 @@ jWF
 bZE
 mKO
 qbK
-aaW
+iIL
 bxI
 byG
 bZE

@@ -151,6 +151,8 @@
 #define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
 #define NOMOUTH			27
+/// has a tail
+#define HAS_TAIL		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
