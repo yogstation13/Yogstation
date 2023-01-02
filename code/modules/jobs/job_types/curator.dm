@@ -49,3 +49,4 @@
 		return
 
 	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)
+	H.AddComponent(/datum/component/stationloving, FALSE, TRUE)
