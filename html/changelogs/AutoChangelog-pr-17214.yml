@@ -1,0 +1,8 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "Saw Bleed now kills the target passively"
+  - tweak: "Bleeding heals the user when it hits the bleed threshold"
+  - tweak: "Cleave mode now has a chance to apply Blood-Drunk to the user when used against lavaland mobs"
+  - tweak: "Cleave mode now has a chance to inflict wounds on human targets regardless of armor"
+  - spellcheck: "Description reflects added effects"
