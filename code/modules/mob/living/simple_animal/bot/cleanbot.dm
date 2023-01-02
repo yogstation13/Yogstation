@@ -23,6 +23,7 @@
 	var/pests = 0
 	var/drawn = 0
 
+	var/base_icon = "cleanbot" /// icon_state to use in update_icon_state
 	var/list/target_types
 	var/atom/target
 	var/max_targets = 50 //Maximum number of targets a cleanbot can ignore.
@@ -35,21 +36,19 @@
 /mob/living/simple_animal/bot/cleanbot/Initialize()
 	. = ..()
 	get_targets()
-	icon_state = "cleanbot[on]"
+	update_icon_state()
 
 	var/datum/job/janitor/J = new/datum/job/janitor
 	access_card.access += J.get_access()
 	prev_access = access_card.access
 
-/mob/living/simple_animal/bot/cleanbot/turn_on()
-	..()
-	icon_state = "cleanbot[on]"
-	bot_core.updateUsrDialog()
-
-/mob/living/simple_animal/bot/cleanbot/turn_off()
-	..()
-	icon_state = "cleanbot[on]"
-	bot_core.updateUsrDialog()
+/mob/living/simple_animal/bot/cleanbot/proc/update_icon_state()
+	//. = ..()
+	switch(mode)
+		if(BOT_CLEANING)
+			icon_state = "[base_icon]-c"
+		else
+			icon_state = "[base_icon][on]"
 
 /mob/living/simple_animal/bot/cleanbot/bot_reset()
 	..()
@@ -78,15 +77,24 @@
 
 /mob/living/simple_animal/bot/cleanbot/emag_act(mob/user)
 	..()
-	if(emagged == 2)
-		if(user)
-			to_chat(user, span_danger("[src] buzzes and beeps."))
+	if(emagged != 2)
+		return
+
+	if(user)
+		to_chat(user, span_danger("[src] buzzes and beeps."))
+
+	get_targets() //recalibrate target list
 
 /mob/living/simple_animal/bot/cleanbot/process_scan(atom/scan_target)
 	if(iscarbon(scan_target))
 		var/mob/living/carbon/scan_carbon = scan_target
-		if(scan_carbon.stat != DEAD && !(scan_carbon.mobility_flags & MOBILITY_STAND))
-			return scan_carbon
+		if(!(scan_carbon in view(DEFAULT_SCAN_RANGE, src)))
+			return null
+		if(scan_carbon.stat == DEAD) 
+			return null
+		if(scan_carbon.mobility_flags & MOBILITY_STAND)
+			return null
+		return scan_carbon
 	else if(is_type_in_typecache(scan_target, target_types))
 		return scan_target
 
@@ -100,47 +108,25 @@
 
 	if(emagged == 2) //Emag functions
 		var/mob/living/carbon/victim = locate(/mob/living/carbon) in loc
-		if(victim && victim != target)
+		if(victim && victim == target)
 			UnarmedAttack(victim) // Acid spray
 
-		if(isopenturf(loc))
-			if(prob(15)) // Wets floors and spawns foam randomly
-				UnarmedAttack(src)
-
+		if(isopenturf(loc) && prob(15)) // Wets floors and spawns foam randomly
+			UnarmedAttack(src)
 	else if(prob(5))
 		audible_message("[src] makes an excited beeping booping sound!")
 
-	if(ismob(target))
-		if(!(target in view(DEFAULT_SCAN_RANGE, src)))
-			target = null
-		if(!process_scan(target))
-			target = null
-
+	if(ismob(target) && isnull(process_scan(target)))
+		target = null
 	if(!target)
-		var/list/scan_targets = list()
-
-		if (emagged == 2)
-			scan_targets += list(/mob/living/carbon)
-		if(pests)
-			scan_targets += list(/mob/living/simple_animal)
-		if(trash)
-			scan_targets += list(
-				/obj/item/trash,
-				/obj/item/reagent_containers/food/snacks/deadmouse,
-			)
-		scan_targets += list(
-			/obj/effect/decal/cleanable,
-			/obj/effect/decal/remains,
-		)
-
-		target = scan(scan_targets)
+		target = scan(target_types)
 
 	if(!target && auto_patrol) //Search for cleanables it can see.
-		if(mode == BOT_IDLE || mode == BOT_START_PATROL)
-			start_patrol()
-
-		if(mode == BOT_PATROL)
-			bot_patrol()
+		switch(mode)
+			if(BOT_IDLE, BOT_START_PATROL)
+				start_patrol()
+			if(BOT_PATROL)
+				bot_patrol()
 
 	else if(target)
 		if(QDELETED(target) || !isturf(target.loc))
@@ -148,28 +134,31 @@
 			mode = BOT_IDLE
 			return
 
-		if(loc == get_turf(target))
-			if(!(check_bot(target)))
-				UnarmedAttack(target)	//Rather than check at every step of the way, let's check before we do an action, so we can rescan before the other bot.
-				if(QDELETED(target)) //We done here.
-					target = null
-					mode = BOT_IDLE
-					return
+		if(get_dist(src, target) <= 1)
+			UnarmedAttack(target)	//Rather than check at every step of the way, let's check before we do an action, so we can rescan before the other bot.
+			if(QDELETED(target)) //We done here.
+				target = null
+				mode = BOT_IDLE
+				return
 
-		if(!path || path.len == 0) //No path, need a new one
-			//Try to produce a path to the target, and ignore airlocks to which it has access.
-			path = get_path_to(src, target, 30, mintargetdist=1, id=access_card)
-			if(!bot_move(target))
+		if(target && path.len == 0 && (get_dist(src,target) > 1))
+			path = get_path_to(src, target, max_distance=30, mintargetdist=1, id=access_card)
+			mode = BOT_MOVING
+			if(length(path) == 0)
 				add_to_ignore(target)
 				target = null
-				return
-			mode = BOT_MOVING
-		else if(!bot_move(target))
-			target = null
-			mode = BOT_IDLE
+
+		if(path.len > 0 && target)
+			if(!bot_move(path[path.len]))
+				target = null
+				mode = BOT_IDLE
 			return
 
 /mob/living/simple_animal/bot/cleanbot/proc/get_targets()
+	if (emagged == 2)
+		target_types = list(/mob/living/carbon)
+		return
+
 	target_types = list(
 		/obj/effect/decal/cleanable/oil,
 		/obj/effect/decal/cleanable/vomit,
@@ -180,6 +169,11 @@
 		/obj/effect/decal/cleanable/greenglow,
 		/obj/effect/decal/cleanable/dirt,
 		/obj/effect/decal/cleanable/insectguts,
+		/obj/effect/decal/cleanable/generic,
+		/obj/effect/decal/cleanable/shreds,
+		/obj/effect/decal/cleanable/glass,
+		/obj/effect/decal/cleanable/glitter,
+		/obj/effect/decal/remains,
 		)
 
 	if(blood)
@@ -206,35 +200,37 @@
 
 	target_types = typecacheof(target_types)
 
-/mob/living/simple_animal/bot/cleanbot/UnarmedAttack(atom/A)
-	if(ismopable(A))
-		icon_state = "cleanbot-c"
+/mob/living/simple_animal/bot/cleanbot/UnarmedAttack(atom/attack_target)
+	. = ..()
+	if(ismopable(attack_target))
 		mode = BOT_CLEANING
+		update_icon_state()
 
-		var/turf/T = get_turf(A)
+		var/turf/T = get_turf(attack_target)
 		if(do_after(src, 0.1 SECONDS, T))
 			T.wash(CLEAN_WASH)
 			visible_message(span_notice("[src] cleans \the [T]."))
 			target = null
-
+		
 		mode = BOT_IDLE
-		icon_state = "cleanbot[on]"
-	else if(istype(A, /obj/item) || istype(A, /obj/effect/decal/remains))
-		visible_message(span_danger("[src] sprays hydrofluoric acid at [A]!"))
+		update_icon_state()
+	else if(isitem(attack_target) || istype(attack_target, /obj/effect/decal))
+		visible_message(span_danger("[src] sprays hydrofluoric acid at [attack_target]!"))
 		playsound(src, 'sound/effects/spray2.ogg', 50, TRUE, -6)
-		A.acid_act(75, 10)
+		attack_target.acid_act(75, 10)
 		target = null
-	else if(istype(A, /mob/living/simple_animal/cockroach) || istype(A, /mob/living/simple_animal/mouse))
-		var/mob/living/simple_animal/M = target
-		if(!M.stat)
-			visible_message(span_danger("[src] smashes [target] with its mop!"))
-			M.death()
+	else if(istype(attack_target, /mob/living/simple_animal/cockroach) || istype(attack_target, /mob/living/simple_animal/mouse))
+		var/mob/living/living_target = attack_target
+		if(!living_target.stat)
+			visible_message(span_danger("[src] smashes [living_target] with its mop!"))
+			living_target.death()
 		target = null
 
 	else if(emagged == 2) //Emag functions
-		if(istype(A, /mob/living/carbon))
-			var/mob/living/carbon/victim = A
+		if(iscarbon(attack_target))
+			var/mob/living/carbon/victim = attack_target
 			if(victim.stat == DEAD)//cleanbots always finish the job
+				target = null
 				return
 
 			victim.visible_message(span_danger("[src] sprays hydrofluoric acid at [victim]!"), span_userdanger("[src] sprays you with hydrofluoric acid!"))
@@ -254,17 +250,14 @@
 			victim.emote("scream")
 			playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 			victim.acid_act(5, 100)
-		else if(A == src) // Wets floors and spawns foam randomly
+		else if(attack_target == src) // Wets floors and spawns foam randomly
 			if(prob(75))
-				var/turf/open/T = loc
-				if(istype(T))
-					T.MakeSlippery(TURF_WET_WATER, min_wet_time = 20 SECONDS, wet_time_to_add = 15 SECONDS)
+				var/turf/open/current_floor = loc
+				if(istype(current_floor))
+					current_floor.MakeSlippery(TURF_WET_WATER, min_wet_time = 20 SECONDS, wet_time_to_add = 15 SECONDS)
 			else
 				visible_message(span_danger("[src] whirs and bubbles violently, before releasing a plume of froth!"))
 				new /obj/effect/particle_effect/foam(loc)
-
-	else
-		..()
 
 /mob/living/simple_animal/bot/cleanbot/explode()
 	on = FALSE

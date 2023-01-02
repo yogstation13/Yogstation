@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY(scan_typecaches)
 
 	for(var/turf/scanned as anything in turfs_to_walk)
 		// Check bot is inlined here to save cpu time
-		//Is there another bot there? Then let's just skip it so we dont all atack on top of eachother.
+		//Is there another bot there? Then let's just skip it so we dont all stack on top of eachother.
 		var/bot_found = FALSE
 		for(var/mob/living/simple_animal/bot/buddy in scanned.contents)
 			if(istype(buddy, type) && (buddy != src))
@@ -550,7 +550,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/datum/job/captain/All = new/datum/job/captain
 	all_access.access = All.get_access()
 
-	set_path(get_path_to(src, waypoint, 200, id=all_access))
+	set_path(get_path_to(src, waypoint, max_distance=200, id=all_access))
 	calling_ai = caller //Link the AI to the bot!
 	ai_waypoint = waypoint
 
@@ -764,7 +764,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 // given an optional turf to avoid
 /mob/living/simple_animal/bot/proc/calc_path(turf/avoid)
 	check_bot_access()
-	set_path(get_path_to(src, patrol_target, 120, id=access_card, exclude=avoid))
+	set_path(get_path_to(src, patrol_target, max_distance=120, id=access_card, exclude=avoid))
 
 /mob/living/simple_animal/bot/proc/calc_summon_path(turf/avoid)
 	check_bot_access()
