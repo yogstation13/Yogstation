@@ -16,6 +16,7 @@
 	throwforce = 6
 	var/cooldown = 0
 	var/cooldown_modifier = 20
+	donor_blacklist = TRUE
 
 /obj/item/toy/plush/goatplushie/angry/Initialize()
 	. = ..()
