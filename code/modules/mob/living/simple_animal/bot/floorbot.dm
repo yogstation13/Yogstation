@@ -213,7 +213,7 @@
 		tiles_scanned += list(/turf/open/floor)
 
 	target = scan(tiles_scanned)
-	if(!target && bot_mode_flags & BOT_MODE_AUTOPATROL)
+	if(!target && auto_patrol)
 		switch(mode)
 			if(BOT_IDLE, BOT_START_PATROL)
 				start_patrol()

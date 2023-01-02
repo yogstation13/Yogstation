@@ -126,7 +126,7 @@
 		if(trash)
 			scan_targets += list(
 				/obj/item/trash,
-				/obj/item/food/deadmouse,
+				/obj/item/reagent_containers/food/snacks/deadmouse,
 			)
 		scan_targets += list(
 			/obj/effect/decal/cleanable,
@@ -149,7 +149,7 @@
 			return
 
 		if(loc == get_turf(target))
-			if(!(check_bot(target))
+			if(!(check_bot(target)))
 				UnarmedAttack(target)	//Rather than check at every step of the way, let's check before we do an action, so we can rescan before the other bot.
 				if(QDELETED(target)) //We done here.
 					target = null
@@ -191,7 +191,7 @@
 
 	if(pests)
 		target_types += list(
-			/mob/living/basic/cockroach,
+			/mob/living/simple_animal/cockroach,
 			/mob/living/simple_animal/mouse,
 		)
 
@@ -201,7 +201,7 @@
 	if(trash)
 		target_types += list(
 			/obj/item/trash,
-			/obj/item/food/deadmouse,
+			/obj/item/reagent_containers/food/snacks/deadmouse,
 		)
 
 	target_types = typecacheof(target_types)

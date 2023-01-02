@@ -420,24 +420,48 @@ GLOBAL_LIST_EMPTY(scan_typecaches)
  * scan_range - how far away from [src] will be scanned, if nothing is found directly adjacent.
  */
 /mob/living/simple_animal/bot/proc/scan(list/scan_types, old_target, scan_range = DEFAULT_SCAN_RANGE)
-	var/turf/current_turf = get_turf(src)
-	if(!current_turf)
+	var/key = scan_types.Join(",")
+	var/list/scan_cache = GLOB.scan_typecaches[key]
+	if(!scan_cache)
+		scan_cache = typecacheof(scan_types)
+		GLOB.scan_typecaches[key] = scan_cache
+	if(!get_turf(src))
 		return
-	var/list/adjacent = T.GetAtmosAdjacentTurfs(1)
+	// Nicer behavior, ensures we don't conflict with other bots quite so often
+	var/list/adjacent = list()
+	for(var/turf/to_walk in view(1, src))
+		adjacent += to_walk
 
-	for(var/turf/scan as anything in adjacent) //Let's see if there's something right next to us first!
-		if(check_bot(scan))	//Is there another bot there? Then let's just skip it
+	adjacent = shuffle(adjacent)
+
+	var/list/turfs_to_walk = list()
+	for(var/turf/victim in view(scan_range, src))
+		turfs_to_walk += victim
+
+	turfs_to_walk = turfs_to_walk - adjacent
+	// Now we prepend adjacent since we want to run those first
+	turfs_to_walk = adjacent + turfs_to_walk
+
+	for(var/turf/scanned as anything in turfs_to_walk)
+		// Check bot is inlined here to save cpu time
+		//Is there another bot there? Then let's just skip it so we dont all atack on top of eachother.
+		var/bot_found = FALSE
+		for(var/mob/living/simple_animal/bot/buddy in scanned.contents)
+			if(istype(buddy, type) && (buddy != src))
+				bot_found = TRUE
+				break
+		if(bot_found)
 			continue
-		var/final_result = checkscan(scan, scan_types, old_target)
-		if(final_result)
-			return final_result
-		
-		for(var/turf/scanned_turfs as anything in shuffle(view(scan_range, src)) - adjacent) //Search for something in range, minus what we already checked.
-		if(check_bot(scanned_turfs)) //Is there another bot there? Then let's just skip it
-			continue
-		var/final_result = checkscan(scanned_turfs, scan_types, old_target)
-		if(final_result)
-			return final_result
+
+		for(var/atom/thing as anything in scanned)
+			if(!scan_cache[thing.type]) //Check that the thing we found is the type we want!
+				continue //If not, keep searching!
+			if(thing == old_target || (REF(thing) in ignore_list)) //Filter for blacklisted elements, usually unreachable or previously processed oness
+				continue
+
+			var/scan_result = process_scan(thing) //Some bots may require additional processing when a result is selected.
+			if(!isnull(scan_result))
+				return scan_result
 
 /mob/living/simple_animal/bot/proc/checkscan(atom/scan, list/scan_types, old_target)
 	for(var/scan_type in scan_types)
