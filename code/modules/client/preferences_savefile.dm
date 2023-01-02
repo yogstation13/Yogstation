@@ -152,8 +152,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
 	if(current_version < 39) //sanity for updating saves
-		if(!ispath(donor_hat))
-			donor_hat = null
 		if(!ispath(donor_item))
 			donor_item = null
 		donor_plushie = null
