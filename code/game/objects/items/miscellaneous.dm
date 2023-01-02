@@ -98,15 +98,6 @@
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/melee/curator_whip(src)
 
-/obj/item/storage/box/hero/astronaut
-	name = "First Man on the Moon - 1960's."
-
-/obj/item/storage/box/hero/astronaut/PopulateContents()
-	new /obj/item/clothing/suit/space/nasavoid(src)
-	new /obj/item/clothing/head/helmet/space/nasavoid(src)
-	new /obj/item/tank/internals/oxygen(src)
-	new /obj/item/gps(src)
-
 /obj/item/storage/box/hero/scottish
 	name = "Braveheart, the Scottish rebel - 1300's."
 
