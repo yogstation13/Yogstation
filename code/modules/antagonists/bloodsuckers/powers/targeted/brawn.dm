@@ -213,7 +213,7 @@
 	var/mob/living/carbon/human/H = target_atom
 	H.apply_status_effect(STATUS_EFFECT_SHADOWAFFLICTED)
 	var/turf/T = get_turf(H)
-	for(var/datum/light_source/LS in T.affecting_lights)
+	for(var/datum/light_source/LS in T.light_sources)
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			var/obj/item/I = LO

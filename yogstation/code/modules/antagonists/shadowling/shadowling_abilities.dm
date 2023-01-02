@@ -159,7 +159,7 @@
 		return
 	to_chat(user, span_shadowling("You silently disable all nearby lights."))
 	var/turf/T = get_turf(user)
-	for(var/datum/light_source/LS in T.affecting_lights)
+	for(var/datum/light_source/LS in T.light_sources)
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			extinguishItem(LO)
