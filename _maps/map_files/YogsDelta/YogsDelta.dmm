@@ -9348,7 +9348,7 @@
 	},
 /obj/machinery/atmospherics/components/trinary/filter/critical{
 	dir = 4;
-	filter_type = "n2"
+	filter_type = list(/datum/gas/nitrogen)
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16505,7 +16505,7 @@
 /area/engine/atmospherics_engine)
 "aCi" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	filter_type = "n2";
+	filter_type = list(/datum/gas/nitrogen)
 	name = "nitrogen filter"
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -19546,20 +19546,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/disposal/incinerator)
-"aGU" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -125343,6 +125329,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/genetics)
+"pWH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 3;
+	mode = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/disposal/incinerator)
 "pWT" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -153507,7 +153511,7 @@ axp
 aDl
 avZ
 aHX
-aGU
+pWH
 aNc
 dmO
 auK

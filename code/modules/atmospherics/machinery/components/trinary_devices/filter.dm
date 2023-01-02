@@ -7,7 +7,8 @@
 
 	can_unwrench = TRUE
 	var/transfer_rate = MAX_TRANSFER_RATE
-	var/filter_type = null
+	///What gases are we filtering, by typepath
+	var/list/filter_type = list()
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
@@ -77,43 +78,55 @@
 	var/datum/gas_mixture/air2 = airs[2]
 	var/datum/gas_mixture/air3 = airs[3]
 
-	var/output_starting_pressure = air3.return_pressure()
-
-	if(output_starting_pressure >= MAX_OUTPUT_PRESSURE)
-		//No need to transfer if target is already full!
-		return
-
 	var/transfer_ratio = transfer_rate/air1.return_volume()
-
-	//Actually transfer the gas
 
 	if(transfer_ratio <= 0)
 		return
 
+	// Attempt to transfer the gas.
+
+	// If the main output is full, we try to send filtered output to the side port (air2).
+	// If the side output is full, we try to send the non-filtered gases to the main output port (air3).
+	// Any gas that can't be moved due to its destination being too full is sent back to the input (air1).
+
+	var/side_output_full = air2.return_pressure() >= MAX_OUTPUT_PRESSURE
+	var/main_output_full = air3.return_pressure() >= MAX_OUTPUT_PRESSURE
+
+	// If both output ports are full, there's nothing we can do. Don't bother removing anything from the input.
+	if (side_output_full && main_output_full)
+		return
+
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
-	if(!removed)
+	if(!removed || !removed.total_moles())
 		return
 
 	var/filtering = TRUE
-	if(!ispath(filter_type))
-		if(filter_type)
-			filter_type = gas_id2path(filter_type) //support for mappers so they don't need to type out paths
-		else
-			filtering = FALSE
+	if(!filter_type.len)
+		filtering = FALSE
 
-	if(filtering && removed.get_moles(filter_type))
+	// Process if we have a filter set.
+	// If no filter is set, we just try to forward everything to air3 to avoid gas being outright lost.
+	if(filtering)
 		var/datum/gas_mixture/filtered_out = new
 
-		filtered_out.set_temperature(removed.return_temperature())
-		filtered_out.set_moles(filter_type, removed.get_moles(filter_type))
+		for(var/gas in removed.get_gases() & filter_type)
+			var/datum/gas_mixture/removing = removed.remove_specific_ratio(gas, 1)
+			if(removing)
+				filtered_out.merge(removing)
+		// Send things to the side output if we can, return them to the input if we can't.
+		// This means that other gases continue to flow to the main output if the side output is blocked.
+		if (side_output_full)
+			air1.merge(filtered_out)
+		else
+			air2.merge(filtered_out)
 
-		removed.set_moles(filter_type, 0)
-
-		var/datum/gas_mixture/target = (air2.return_pressure() < MAX_OUTPUT_PRESSURE ? air2 : air1) //if there's no room for the filtered gas; just leave it in air1
-		target.merge(filtered_out)
-
-	air3.merge(removed)
+	// Send things to the main output if we can, return them to the input if we can't.
+	// This lets filtered gases continue to flow to the side output in a manner consistent with the main output behavior.
+	if (main_output_full)
+		air1.merge(removed)
+	else
+		air3.merge(removed)
 
 	update_parents()
 
@@ -134,10 +147,9 @@
 	data["max_rate"] = round(MAX_TRANSFER_RATE)
 
 	data["filter_types"] = list()
-	data["filter_types"] += list(list("name" = "Nothing", "path" = "", "selected" = !filter_type))
 	for(var/path in GLOB.meta_gas_info)
 		var/list/gas = GLOB.meta_gas_info[path]
-		data["filter_types"] += list(list("name" = gas[META_GAS_NAME], "id" = gas[META_GAS_ID], "selected" = (path == gas_id2path(filter_type))))
+		data["filter_types"] += list(list("name" = gas[META_GAS_NAME], "gas_id" = gas[META_GAS_ID], "enabled" = (path in filter_type)))
 
 	return data
 
@@ -168,14 +180,17 @@
 				var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		if("filter")
-			filter_type = null
-			var/filter_name = "nothing"
-			var/gas = gas_id2path(params["mode"])
-			if(gas in GLOB.meta_gas_info)
-				filter_type = gas
-				filter_name	= GLOB.meta_gas_info[gas][META_GAS_NAME]
-			var/msg = "was set to filter [filter_name] by [key_name(usr)]"
+		if("toggle_filter")
+			if(!gas_id2path(params["val"]))
+				return TRUE
+			filter_type ^= gas_id2path(params["val"])
+			var/change
+			if(gas_id2path(params["val"]) in filter_type)
+				change = "added"
+			else
+				change = "removed"
+			var/gas_name = GLOB.meta_gas_info[gas_id2path(params["val"])][META_GAS_NAME]
+			var/msg = "[key_name(usr)] [change] [gas_name] from the filter type."
 			investigate_log(msg, INVESTIGATE_ATMOS)
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
@@ -233,39 +248,39 @@
 	on = TRUE
 	icon_state = "filter_on-0"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2
-	name = "nitrogen filter"
-	filter_type = "n2"
+	name = "Nitrogen filter (N2)"
+	filter_type = list(/datum/gas/nitrogen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2
-	name = "oxygen filter"
-	filter_type = "o2"
+	name = "Oxygen filter (O2)"
+	filter_type = list(/datum/gas/oxygen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2
-	name = "carbon dioxide filter"
-	filter_type = "co2"
+	name = "Carbon dioxide filter (CO2)"
+	filter_type = list(/datum/gas/carbon_dioxide)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2o
-	name = "nitrous oxide filter"
-	filter_type = "n2o"
+	name = "Nitrous oxide filter (N2O)"
+	filter_type = list(/datum/gas/nitrous_oxide)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma
-	name = "plasma filter"
-	filter_type = "plasma"
+	name = "Plasma filter"
+	filter_type = list(/datum/gas/plasma)
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped //This feels wrong, I know
 	icon_state = "filter_on-0_f"
 	flipped = TRUE
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2
-	name = "nitrogen filter"
-	filter_type = "n2"
+	name = "Nitrogen filter (N2)"
+	filter_type = list(/datum/gas/nitrogen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2
-	name = "oxygen filter"
-	filter_type = "o2"
+	name = "Oxygen filter (O2)"
+	filter_type = list(/datum/gas/oxygen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2
-	name = "carbon dioxide filter"
-	filter_type = "co2"
+	name = "Carbon dioxide filter (CO2)"
+	filter_type = list(/datum/gas/carbon_dioxide)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o
-	name = "nitrous oxide filter"
-	filter_type = "n2o"
+	name = "Nitrous oxide filter (N2O)"
+	filter_type = list(/datum/gas/nitrous_oxide)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma
-	name = "plasma filter"
-	filter_type = "plasma"
+	name = "Plasma filter"
+	filter_type = list(/datum/gas/plasma)
 
 // These two filter types have critical_machine flagged to on and thus causes the area they are in to be exempt from the Grid Check event.
 

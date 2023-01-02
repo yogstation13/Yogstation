@@ -13556,10 +13556,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "o2";
-	name = "O2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -24265,6 +24262,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fCl" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/atmos_sim{
+	dir = 3;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "fCu" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -28148,10 +28153,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "co2";
-	name = "CO2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -36694,10 +36697,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "plasma";
-	name = "Plasma Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -37217,6 +37218,13 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"lic" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 32
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "lip" = (
 /obj/machinery/light{
 	dir = 1
@@ -37560,10 +37568,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "n2o";
-	name = "N2O Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -40642,11 +40648,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"mBg" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "mBi" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2_sensor"
@@ -56471,12 +56472,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"tly" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "tlN" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -57712,10 +57707,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "n2";
-	name = "N2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
 "tOZ" = (
@@ -108142,7 +108134,7 @@ ldW
 ldW
 ldW
 cmd
-tly
+lic
 bVC
 dfL
 tEp
@@ -108656,7 +108648,7 @@ ldW
 ldW
 ldW
 cmd
-mBg
+fCl
 owJ
 etJ
 ufo

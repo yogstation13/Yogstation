@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
-	wait = 6000
-	flags = SS_NO_TICK_CHECK
+	wait = 10 MINUTES
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	init_order = INIT_ORDER_BLACKBOX
 
@@ -23,7 +22,7 @@ SUBSYSTEM_DEF(blackbox)
 	record_feedback("amount", "dm_version", DM_VERSION)
 	record_feedback("amount", "byond_version", world.byond_version)
 	record_feedback("amount", "byond_build", world.byond_build)
-	. = ..()
+	return SS_INIT_SUCCESS
 
 //poll population
 /datum/controller/subsystem/blackbox/fire()
