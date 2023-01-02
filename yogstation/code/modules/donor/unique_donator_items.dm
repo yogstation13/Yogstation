@@ -94,11 +94,6 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		P.plushie = TRUE
 		P.ckey = myplush.donor_ckey
 		qdel(myplush)
-		if(!P.unlock_path)
-			message_admins("WARNING: [P] has no unlock path, this is NOT intended. Please let a coder know. Clearing it out.")
-			qdel(myplush)
-			qdel(P)
-			continue
 		donor_items += P
 
 /datum/donator_gear
