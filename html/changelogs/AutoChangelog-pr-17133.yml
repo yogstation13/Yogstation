@@ -1,0 +1,4 @@
+author: "LemonInTheDark"
+delete-after: true 
+changes: 
+  - experiment: "Preference menu should be more speedy now"
