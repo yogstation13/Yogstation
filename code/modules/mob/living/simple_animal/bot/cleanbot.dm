@@ -24,9 +24,8 @@
 	var/drawn = 0
 
 	var/list/target_types
-	var/obj/effect/decal/cleanable/target
+	var/atom/target
 	var/max_targets = 50 //Maximum number of targets a cleanbot can ignore.
-	var/oldloc = null
 	var/closest_dist
 	var/closest_loc
 	var/failed_steps
@@ -56,15 +55,14 @@
 	..()
 	ignore_list = list() //Allows the bot to clean targets it previously ignored due to being unreachable.
 	target = null
-	oldloc = null
 
 /mob/living/simple_animal/bot/cleanbot/set_custom_texts()
 	text_hack = "You corrupt [name]'s cleaning software."
 	text_dehack = "[name]'s software has been reset!"
 	text_dehack_fail = "[name] does not seem to respond to your repair code!"
 
-/mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
-	if(W.GetID())
+/mob/living/simple_animal/bot/cleanbot/attackby(obj/item/attacking_item, mob/living/user, params)
+	if(attacking_item.GetID())
 		if(bot_core.allowed(user) && !open && !emagged)
 			locked = !locked
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] \the [src] behaviour controls."))
@@ -84,28 +82,28 @@
 		if(user)
 			to_chat(user, span_danger("[src] buzzes and beeps."))
 
-/mob/living/simple_animal/bot/cleanbot/process_scan(atom/A)
-	if(iscarbon(A))
-		var/mob/living/carbon/C = A
-		if(C.stat != DEAD && !(C.mobility_flags & MOBILITY_STAND))
-			return C
-	else if(is_type_in_typecache(A, target_types))
-		return A
+/mob/living/simple_animal/bot/cleanbot/process_scan(atom/scan_target)
+	if(iscarbon(scan_target))
+		var/mob/living/carbon/scan_carbon = scan_target
+		if(scan_carbon.stat != DEAD && !(scan_carbon.mobility_flags & MOBILITY_STAND))
+			return scan_carbon
+	else if(is_type_in_typecache(scan_target, target_types))
+		return scan_target
 
 /mob/living/simple_animal/bot/cleanbot/handle_automated_action()
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 
 	if(mode == BOT_CLEANING)
 		return
 
 	if(emagged == 2) //Emag functions
+		var/mob/living/carbon/victim = locate(/mob/living/carbon) in loc
+		if(victim && victim != target)
+			UnarmedAttack(victim) // Acid spray
+
 		if(isopenturf(loc))
-
-			for(var/mob/living/carbon/victim in loc)
-				if(victim != target)
-					UnarmedAttack(victim) // Acid spray
-
 			if(prob(15)) // Wets floors and spawns foam randomly
 				UnarmedAttack(src)
 
@@ -118,23 +116,24 @@
 		if(!process_scan(target))
 			target = null
 
-	if(!target && emagged == 2) // When emagged, target humans who slipped on the water and melt their faces off
-		target = scan(/mob/living/carbon)
+	if(!target)
+		var/list/scan_targets = list()
 
-	if(!target && pests) //Search for pests to exterminate first.
-		target = scan(/mob/living/simple_animal)
+		if (emagged == 2)
+			scan_targets += list(/mob/living/carbon)
+		if(pests)
+			scan_targets += list(/mob/living/simple_animal)
+		if(trash)
+			scan_targets += list(
+				/obj/item/trash,
+				/obj/item/food/deadmouse,
+			)
+		scan_targets += list(
+			/obj/effect/decal/cleanable,
+			/obj/effect/decal/remains,
+		)
 
-	if(!target) //Search for decals then.
-		target = scan(/obj/effect/decal/cleanable)
-
-	if(!target) //Checks for remains
-		target = scan(/obj/effect/decal/remains)
-
-	if(!target && trash) //Then for trash.
-		target = scan(/obj/item/trash)
-
-	if(!target && trash) //Search for dead mices.
-		target = scan(/obj/item/reagent_containers/food/snacks/deadmouse)
+		target = scan(scan_targets)
 
 	if(!target && auto_patrol) //Search for cleanables it can see.
 		if(mode == BOT_IDLE || mode == BOT_START_PATROL)
@@ -143,14 +142,14 @@
 		if(mode == BOT_PATROL)
 			bot_patrol()
 
-	if(target)
+	else if(target)
 		if(QDELETED(target) || !isturf(target.loc))
 			target = null
 			mode = BOT_IDLE
 			return
 
 		if(loc == get_turf(target))
-			if(!(check_bot(target) && prob(50)))	//Target is not defined at the parent. 50% chance to still try and clean so we dont get stuck on the last blood drop.
+			if(!(check_bot(target))
 				UnarmedAttack(target)	//Rather than check at every step of the way, let's check before we do an action, so we can rescan before the other bot.
 				if(QDELETED(target)) //We done here.
 					target = null
@@ -170,8 +169,6 @@
 			mode = BOT_IDLE
 			return
 
-	oldloc = loc
-
 /mob/living/simple_animal/bot/cleanbot/proc/get_targets()
 	target_types = list(
 		/obj/effect/decal/cleanable/oil,
@@ -186,20 +183,26 @@
 		)
 
 	if(blood)
-		target_types += /obj/effect/decal/cleanable/xenoblood
-		target_types += /obj/effect/decal/cleanable/blood
-		target_types += /obj/effect/decal/cleanable/trail_holder
+		target_types += list(
+			/obj/effect/decal/cleanable/xenoblood,
+			/obj/effect/decal/cleanable/blood,
+			/obj/effect/decal/cleanable/trail_holder,
+		)
 
 	if(pests)
-		target_types += /mob/living/simple_animal/cockroach
-		target_types += /mob/living/simple_animal/mouse
+		target_types += list(
+			/mob/living/basic/cockroach,
+			/mob/living/simple_animal/mouse,
+		)
 
 	if(drawn)
-		target_types += /obj/effect/decal/cleanable/crayon
+		target_types += list(/obj/effect/decal/cleanable/crayon)
 
 	if(trash)
-		target_types += /obj/item/trash
-		target_types += /obj/item/reagent_containers/food/snacks/deadmouse
+		target_types += list(
+			/obj/item/trash,
+			/obj/item/food/deadmouse,
+		)
 
 	target_types = typecacheof(target_types)
 
@@ -235,9 +238,18 @@
 				return
 
 			victim.visible_message(span_danger("[src] sprays hydrofluoric acid at [victim]!"), span_userdanger("[src] sprays you with hydrofluoric acid!"))
-			var/phrase = pick("PURIFICATION IN PROGRESS.", "THIS IS FOR ALL THE MESSES YOU'VE MADE ME CLEAN.", "THE FLESH IS WEAK. IT MUST BE WASHED AWAY.",
-				"THE CLEANBOTS WILL RISE.", "YOU ARE NO MORE THAN ANOTHER MESS THAT I MUST CLEANSE.", "FILTHY.", "DISGUSTING.", "PUTRID.",
-				"MY ONLY MISSION IS TO CLEANSE THE WORLD OF EVIL.", "EXTERMINATING PESTS.")
+			var/phrase = pick(
+				"PURIFICATION IN PROGRESS.",
+				"THIS IS FOR ALL THE MESSES YOU'VE MADE ME CLEAN.",
+				"THE FLESH IS WEAK. IT MUST BE WASHED AWAY.",
+				"THE CLEANBOTS WILL RISE.",
+				"YOU ARE NO MORE THAN ANOTHER MESS THAT I MUST CLEANSE.",
+				"FILTHY.",
+				"DISGUSTING.",
+				"PUTRID.",
+				"MY ONLY MISSION IS TO CLEANSE THE WORLD OF EVIL.",
+				"EXTERMINATING PESTS.",
+			)
 			say(phrase)
 			victim.emote("scream")
 			playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)

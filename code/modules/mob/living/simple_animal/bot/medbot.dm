@@ -40,7 +40,6 @@
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/mob/living/carbon/patient = null
 	var/mob/living/carbon/oldpatient = null
-	var/oldloc = null
 	var/last_found = 0
 	var/last_newpatient_speak = 0 //Don't spam the "HEY I'M COMING" messages
 	var/injection_amount = 15 //How much reagent do we inject at a time?
@@ -126,7 +125,6 @@
 	..()
 	patient = null
 	oldpatient = null
-	oldloc = null
 	last_found = world.time
 	declare_cooldown = 0
 	update_icon()
@@ -387,7 +385,13 @@
 	if(QDELETED(patient))
 		if(!shut_up && prob(1))
 			if((emagged || !shut_up) && prob(emagged ? 8 : 1))
-				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
+				var/list/i_need_scissors = list(
+					'sound/voice/medbot/fuck_you.ogg',
+					'sound/voice/medbot/turn_off.ogg',
+					'sound/voice/medbot/im_different.ogg',
+					'sound/voice/medbot/close.ogg',
+					'sound/voice/medbot/shindemashou.ogg',
+				)
 				playsound(src, pick(i_need_scissors), 70)
 			else
 				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
@@ -396,7 +400,7 @@
 				playsound(src, messagevoice[message], 50)
 
 		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
-		patient = scan(/mob/living/carbon/human, oldpatient, scan_range)
+		patient = scan(list(/mob/living/carbon/human), oldpatient, scan_range)
 		oldpatient = patient
 
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
