@@ -336,10 +336,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/maintenance/starboard)
-"aaW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57910,6 +57906,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"iIL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "iJJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -120715,7 +120719,7 @@ jWF
 bZE
 mKO
 qbK
-aaW
+iIL
 bxI
 byG
 bZE

@@ -18572,22 +18572,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fpC" = (
-/obj/machinery/power/apc{
-	areastring = "/area/science/mixing";
-	dir = 4;
-	name = "Toxins Lab APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "fpJ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -26657,6 +26641,26 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ibw" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/mixing";
+	dir = 4;
+	name = "Toxins Lab APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 8;
+	mode = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "ibT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -33425,13 +33429,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"ksu" = (
-/obj/machinery/light_switch{
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "ksz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=HOP";
@@ -64367,6 +64364,17 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"uLx" = (
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/computer/atmos_sim{
+	dir = 1;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "uLP" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/bluespace,
@@ -113146,7 +113154,7 @@ aOl
 dIS
 oHB
 wUw
-fpC
+ibw
 rhV
 usj
 eqh
@@ -122426,7 +122434,7 @@ afF
 uKx
 cOK
 nMs
-ksu
+uLx
 afF
 gAc
 ihY

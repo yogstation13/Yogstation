@@ -18975,6 +18975,21 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"jzv" = (
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_y = -28
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 8;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "jzY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -36556,17 +36571,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
-"suo" = (
-/obj/machinery/atmospherics/pipe/manifold/purple/visible{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "sus" = (
 /obj/machinery/door/window/westleft{
 	dir = 2;
@@ -66243,7 +66247,7 @@ fZQ
 kMQ
 myw
 fFT
-suo
+jzv
 ahZ
 xWa
 mcs
