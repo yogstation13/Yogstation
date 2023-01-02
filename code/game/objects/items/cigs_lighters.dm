@@ -542,6 +542,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = WEIGHT_CLASS_TINY
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.6
+	light_on = FALSE
 	var/lit = 0
 	var/fancy = TRUE
 	var/overlay_state
@@ -588,20 +592,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 
 /obj/item/lighter/proc/set_lit(new_lit)
+	if(lit == new_lit)
+		return
 	lit = new_lit
 	if(lit)
 		force = 5
 		damtype = BURN
 		hitsound = 'sound/items/welder.ogg'
 		attack_verb = list("burnt", "singed")
-		set_light(1)
 		START_PROCESSING(SSobj, src)
 	else
 		hitsound = "swing_hit"
 		force = 0
 		attack_verb = null //human_defense.dm takes care of it
-		set_light(0)
 		STOP_PROCESSING(SSobj, src)
+	set_light_on(lit)
 	update_icon()
 
 /obj/item/lighter/extinguish()

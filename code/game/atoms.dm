@@ -72,6 +72,13 @@
 	///Bitfield for how the atom handles materials.
 	var/material_flags = NONE
 
+	///Light systems, both shouldn't be active at the same time.
+	var/light_system = STATIC_LIGHT
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+
 	var/chat_color_name // Last name used to calculate a color for the chatmessage overlays
 
 	var/chat_color // Last color calculated for the the chatmessage overlays
@@ -152,7 +159,7 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	if (opacity && isturf(loc))

@@ -316,10 +316,13 @@
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_range = 6
+	light_power = 1
+	light_on = TRUE
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	var/hacked = FALSE
-	var/brightness_on = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
 	var/list/possible_colors = list("red", "blue", "green", "purple")
 
 /obj/item/twohanded/dualsaber/suicide_act(mob/living/carbon/user)
@@ -420,7 +423,7 @@
 		w_class = w_class_on
 		hitsound = 'sound/weapons/blade1.ogg'
 		START_PROCESSING(SSobj, src)
-		set_light(brightness_on)
+		set_light(TRUE)
 
 /obj/item/twohanded/dualsaber/unwield() //Specific unwield () to switch hitsounds.
 	sharpness = initial(sharpness)
@@ -428,7 +431,7 @@
 	..()
 	hitsound = "swing_hit"
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)
+	set_light(FALSE)
 
 /obj/item/twohanded/dualsaber/process()
 	if(wielded)

@@ -14,6 +14,9 @@
 
 	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 
+	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
+	var/dynamic_lumcount = 0
+
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	lighting_corner_NE?.vis_update()
@@ -60,6 +63,8 @@
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
 	totallums = (totallums - minlum) / (maxlum - minlum)
+
+	totallums += dynamic_lumcount
 
 	return CLAMP01(totallums)
 

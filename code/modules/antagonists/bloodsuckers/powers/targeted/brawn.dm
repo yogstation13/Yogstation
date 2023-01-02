@@ -219,17 +219,13 @@
 			var/obj/item/I = LO
 			if(istype(I, /obj/item/clothing/head/helmet/space/hardsuit))
 				var/obj/item/clothing/head/helmet/space/hardsuit/HA = I
-				if(HA.on)
-					HA.on = FALSE
+				HA.set_light_on(FALSE)
 			if(istype(I, /obj/item/clothing/head/helmet/space/plasmaman))
 				var/obj/item/clothing/head/helmet/space/plasmaman/PA = I
-				if(PA.on)
-					PA.on = FALSE
+				PA.set_light_on(FALSE)
 			if(istype(I, /obj/item/flashlight))
 				var/obj/item/flashlight/F = I
-				if(F.on)
-					F.on = FALSE
-					F.update_brightness()
+				F.set_light_on(FALSE)
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)

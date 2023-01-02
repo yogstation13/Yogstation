@@ -218,7 +218,7 @@
 		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
 	else
 		color += owner.dna.features["mcolor"]
-	glowth.set_light(range * power, glow * power, color)
+	glowth.set_light_range_power_color(range * power, glow * power, color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()

@@ -69,6 +69,10 @@
 	var/list/mob/living/simple_animal/hostile/swarmer/melee/dronelist
 	///Prevents alert spam
 	var/last_alert = 0
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	///Bitflags to store boolean conditions, such as whether the light is on or off.
+	var/swarmer_flags = NONE
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()
 	. = ..()
@@ -399,19 +403,19 @@
   */
 /mob/living/simple_animal/hostile/swarmer/proc/toggle_light()
 	if(!light_range)
-		set_light(3)
+		set_light_on(TRUE)
 		if(!mind)
 			return
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(3)
+			drone.set_light_on(TRUE)
 	else
-		set_light(0)
+		set_light_on(FALSE)
 		if(!mind)
 			return
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(0)
+			drone.set_light_on(FALSE)
 	balloon_alert(src, "light toggled")
 
 /**

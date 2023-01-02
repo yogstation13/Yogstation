@@ -67,8 +67,6 @@
 	var/obj/physical = null
 	///If the computer has a flashlight/LED light/what-have-you installed
 	var/has_light = FALSE
-	///If that light is enabled
-	var/light_on = FALSE
 	///The brightness of that light
 	var/comp_light_luminosity = 3
 	///The color of that light
