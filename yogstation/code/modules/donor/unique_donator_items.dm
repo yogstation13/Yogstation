@@ -84,7 +84,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		if(initial(myplush.donor_blacklist)) //don't give dehydrated carp plushie to donors
 			qdel(P)
 			continue
-		if(istype(myplush, /obj/item/toy/plush)) //DON'T GIVE THE PLAYERS THE CODER PLUSH
+		if(initial(myplush.name) == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH (before a coder (he knows who he is) complains, I am aware this )
 			qdel(P)
 			continue
 		P.name = initial(myplush.name)
