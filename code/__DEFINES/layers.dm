@@ -39,8 +39,12 @@
 #define BOT_PATH_LAYER 2.497
 #define LOW_OBJ_LAYER 2.5
 #define LOW_SIGIL_LAYER 2.52
-#define SIGIL_LAYER 2.54
-#define HIGH_SIGIL_LAYER 2.56
+#define SIGIL_LAYER 2.53
+#define HIGH_PIPE_LAYER 2.54
+#define HIGH_SIGIL_LAYER 2.55
+// Anything aboe this layer is not "on" a turf for the purposes of washing
+// I hate this life of ours
+#define FLOOR_CLEAN_LAYER 2.56
 #define BELOW_OPEN_DOOR_LAYER 2.6
 #define GAS_METER_LAYER 2.61
 #define BLASTDOOR_LAYER 2.65

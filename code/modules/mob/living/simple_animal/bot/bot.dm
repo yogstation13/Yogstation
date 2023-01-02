@@ -1032,7 +1032,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 					var/prevDir = get_dir(prevprevT, prevT)
 					var/mixDir = direction|prevDir
 					if(mixDir in GLOB.diagonals)
-						prevI.dir = mixDir
+						prevI?.dir = mixDir
 						if(prevDir & (NORTH|SOUTH))
 							var/matrix/ntransform = matrix()
 							ntransform.Turn(90)
@@ -1040,7 +1040,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 								ntransform.Scale(-1, 1)
 							else
 								ntransform.Scale(1, -1)
-							prevI.transform = ntransform
+							prevI?.transform = ntransform
 			
 			//SET_PLANE(path_image, GAME_PLANE, T)
 			path_image.plane = GAME_PLANE
