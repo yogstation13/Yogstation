@@ -47,6 +47,15 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
+/obj/structure/holosign/holobanana
+	name = "Holographic banana"
+	desc = "."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "holosign"
+
+/obj/structure/holobed/ComponentInitialize()
+	AddComponent(/datum/component/slippery, 140, NONE, CALLBACK(src, .proc/handle_slip, G))
+
 /obj/structure/holosign/barrier
 	name = "holobarrier"
 	desc = "A short hard light barrier which can only be passed by walking."
