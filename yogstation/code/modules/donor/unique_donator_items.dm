@@ -82,8 +82,6 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		var/obj/item/toy/plush/myplush = Plushtype
 		if(initial(myplush.donor_blacklist)) //don't give dehydrated carp plushie to donors
 			continue
-		if(initial(myplush.name) == "coder plush") //DON'T GIVE THE PLAYERS THE CODER PLUSH (before a coder (he knows who he is) complains, I am aware this is bad form)
-			continue
 		var/datum/donator_gear/P = new
 		P.name = initial(myplush.name)
 		P.unlock_path = Plushtype
