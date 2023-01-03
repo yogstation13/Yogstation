@@ -327,8 +327,8 @@
 /obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
-		return
-	. = ..()
+		P.damage = 0
+	..()
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT
