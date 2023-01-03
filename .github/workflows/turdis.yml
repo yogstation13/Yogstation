@@ -135,7 +135,6 @@ jobs:
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
-          
       - name: Compile
         run: |
           tools/build/build --ci dm -DCIBUILDING
