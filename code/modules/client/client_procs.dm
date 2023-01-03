@@ -1034,7 +1034,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		qdel(S)
 	char_render_holders = null
 
-
 /// compiles a full list of verbs and sends it to the browser
 /client/proc/init_verbs()
 	if(IsAdminAdvancedProcCall())
