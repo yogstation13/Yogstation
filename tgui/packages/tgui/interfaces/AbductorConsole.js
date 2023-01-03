@@ -10,8 +10,7 @@ export const AbductorConsole = (props, context) => {
     <Window
       theme="abductor"
       width={600}
-      height={532}
-      resizable>
+      height={532}>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
@@ -33,10 +32,10 @@ export const AbductorConsole = (props, context) => {
           <Abductsoft />
         )}
         {tab === 2 && (
-          <Fragment>
+          <>
             <EmergencyTeleporter />
             <VestSettings />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
@@ -60,7 +59,7 @@ const Abductsoft = (props, context) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Section>
         <LabeledList>
           <LabeledList.Item label="Collected Samples">
@@ -71,7 +70,7 @@ const Abductsoft = (props, context) => {
       <GenericUplink
         currencyAmount={credits}
         currencySymbol="Credits" />
-    </Fragment>
+    </>
   );
 };
 

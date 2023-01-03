@@ -3,6 +3,7 @@
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_STOMACH
@@ -85,6 +86,9 @@
 		H.clear_alert("disgust")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 	..()
+
+/obj/item/organ/stomach/get_availability(datum/species/species)
+	return !(NOSTOMACH in species.species_traits)
 
 /obj/item/organ/stomach/cybernetic
 	name = "cybernetic stomach"

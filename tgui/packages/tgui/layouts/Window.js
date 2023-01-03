@@ -7,7 +7,7 @@
 import { classes } from 'common/react';
 import { useDispatch } from 'common/redux';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Component, Fragment } from 'inferno';
+import { Component } from 'inferno';
 import { backendSuspendStart, useBackend } from '../backend';
 import { Icon } from '../components';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from '../constants';
@@ -23,22 +23,12 @@ const DEFAULT_SIZE = [400, 600];
 
 export class Window extends Component {
   componentDidMount() {
-    const { config, suspended } = useBackend(this.context);
+    const { suspended } = useBackend(this.context);
     if (suspended) {
       return;
     }
     logger.log('mounting');
-    const options = {
-      size: DEFAULT_SIZE,
-      ...config.window,
-    };
-    if (this.props.width && this.props.height) {
-      options.size = [this.props.width, this.props.height];
-    }
-    if (config.window?.key) {
-      setWindowKey(config.window.key);
-    }
-    recallWindowGeometry(options);
+    this.updateGeometry();
   }
 
   componentDidUpdate(prevProps) {
@@ -66,9 +56,9 @@ export class Window extends Component {
     recallWindowGeometry(options);
   }
 
+
   render() {
     const {
-      resizable,
       theme,
       title,
       children,
@@ -110,15 +100,15 @@ export class Window extends Component {
             <div className="Window__dimmer" />
           )}
         </div>
-        {fancy && resizable && (
-          <Fragment>
+        {fancy && (
+          <>
             <div className="Window__resizeHandle__e"
               onMousedown={resizeStartHandler(1, 0)} />
             <div className="Window__resizeHandle__s"
               onMousedown={resizeStartHandler(0, 1)} />
             <div className="Window__resizeHandle__se"
               onMousedown={resizeStartHandler(1, 1)} />
-          </Fragment>
+          </>
         )}
       </Layout>
     );

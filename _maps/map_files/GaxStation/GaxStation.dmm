@@ -13051,10 +13051,8 @@
 /area/security/prison)
 "gnF" = (
 /obj/structure/window/reinforced,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "n2o";
-	name = "N2O Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -14934,10 +14932,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "plasma";
-	name = "Plasma Fitler"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -18975,6 +18970,21 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"jzv" = (
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_y = -28
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 8;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "jzY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -19227,7 +19237,7 @@
 	},
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 1;
-	filter_type = "n2"
+	filter_type = list(/datum/gas/nitrogen)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -36556,17 +36566,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
-"suo" = (
-/obj/machinery/atmospherics/pipe/manifold/purple/visible{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "sus" = (
 /obj/machinery/door/window/westleft{
 	dir = 2;
@@ -41646,10 +41645,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "o2";
-	name = "O2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -43142,10 +43138,8 @@
 /area/crew_quarters/bar)
 "vMD" = (
 /obj/structure/window/reinforced,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "co2";
-	name = "CO2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -44069,10 +44063,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "n2";
-	name = "N2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -66243,7 +66234,7 @@ fZQ
 kMQ
 myw
 fFT
-suo
+jzv
 ahZ
 xWa
 mcs

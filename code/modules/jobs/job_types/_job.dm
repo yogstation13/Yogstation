@@ -207,6 +207,8 @@
 	box = /obj/item/storage/box/survival
 	ipc_box = /obj/item/storage/box/ipc
 
+	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
+
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
@@ -306,6 +308,16 @@
 	types += satchel
 	types += duffelbag
 	return types
+
+/datum/outfit/job/get_types_to_preload()
+	var/list/preload = ..()
+	preload += backpack
+	preload += satchel
+	preload += duffelbag
+	preload += /obj/item/storage/backpack/satchel/leather
+	var/skirtpath = "[uniform]/skirt"
+	preload += text2path(skirtpath)
+	return preload
 
 /// An overridable getter for more dynamic goodies.
 /datum/job/proc/get_mail_goodies(mob/recipient)
