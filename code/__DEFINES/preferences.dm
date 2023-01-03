@@ -32,7 +32,7 @@
 //Admin Preferences
 #define SPLIT_ADMIN_TABS 			(1<<0)
 
-#define TOGGLES_DEFAULT_EXTRA (SPLIT_ADMIN_TABS)
+#define TOGGLES_DEFAULT_EXTRA (NONE)
 
 //Chat toggles
 #define CHAT_OOC			(1<<0)
