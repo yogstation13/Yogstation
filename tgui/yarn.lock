@@ -2761,7 +2761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.2":
+"axios@npm:^0.21.1":
   version: 0.21.4
   resolution: "axios@npm:0.21.4"
   dependencies:
@@ -4222,13 +4222,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esm@npm:^3.2.25":
-  version: 3.2.25
-  resolution: "esm@npm:3.2.25"
-  checksum: 978aabe2de83541c105605a6d60a26ed8e627ef6bb0a7605fe15a95bbdea6b8348bd045255cb22219c054dd09a81a94823df00843d9e97f42419c92015ce3a64
-  languageName: node
-  linkType: hard
-
 "espree@npm:7.3.1, espree@npm:^7.3.0, espree@npm:^7.3.1":
   version: 7.3.1
   resolution: "espree@npm:7.3.1"
@@ -4781,7 +4774,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.2.0":
+"glob@npm:^7.1.7, glob@npm:^7.2.0":
   version: 7.2.3
   resolution: "glob@npm:7.2.3"
   dependencies:
@@ -8977,13 +8970,11 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "tgui-dev-server@workspace:packages/tgui-dev-server"
   dependencies:
-    axios: ^0.21.2
-    common: "workspace:*"
-    esm: ^3.2.25
-    glob: ^7.1.4
+    axios: ^0.21.1
+    glob: ^7.1.7
     source-map: ^0.7.3
     stacktrace-parser: ^0.1.10
-    ws: ^7.4.2
+    ws: ^7.5.3
   languageName: unknown
   linkType: soft
 
@@ -9969,7 +9960,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ws@npm:^7.4.2":
+"ws@npm:^7.5.3":
   version: 7.5.9
   resolution: "ws@npm:7.5.9"
   peerDependencies:
