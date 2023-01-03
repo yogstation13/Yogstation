@@ -44,6 +44,7 @@ SUBSYSTEM_DEF(statpanels)
 		if(!target.holder)
 			target << output("", "statbrowser:remove_admin_tabs")
 		else
+			target << output("[!!(target.prefs.extra_toggles & SPLIT_ADMIN_TABS)]", "statbrowser:update_split_admin_tabs")
 			if(!("MC" in target.panel_tabs))
 				target << output("[url_encode(target.holder.href_token)]", "statbrowser:add_admin_tabs")
 			if(target.stat_tab == "MC")
@@ -168,3 +169,9 @@ SUBSYSTEM_DEF(statpanels)
 	set hidden = TRUE
 
 	statbrowser_ready = TRUE
+
+/client/verb/update_verbs()
+	set name = "Update Verbs"
+	set hidden = TRUE
+
+	init_verbs()
