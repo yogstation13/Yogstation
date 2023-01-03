@@ -62,7 +62,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -220,6 +219,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #KDIFF3 files
 *.orig
 
-
-# named byond versions config
-/tools/build/dm_versions.json
