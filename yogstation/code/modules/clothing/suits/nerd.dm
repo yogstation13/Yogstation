@@ -23,7 +23,7 @@
 		COMSIG_MOB_APPLY_DAMAGE = .proc/handle_damage
 	)
 
-	var/list/wound_to_sound = list(
+	var/static/list/wound_to_sound = list(
 		/datum/wound/blunt/severe = 'sound/voice/nerdsuit/minor_fracture.ogg',
 		/datum/wound/blunt/critical = 'sound/voice/nerdsuit/major_fracture.ogg',
 		/datum/wound/loss = 'sound/voice/nerdsuit/major_lacerations.ogg',
@@ -90,7 +90,7 @@
 	sound_queue += list(list(desired_file,desired_delay)) //BYOND is fucking weird so you have to do this bullshit if you want to add a list to a list.
 
 	if(empty_sound_queue)
-		addtimer(CALLBACK(src, .proc/process_sound_queue), 10)
+		addtimer(CALLBACK(src, .proc/process_sound_queue), 1 SECONDS)
 
 	return TRUE
 
@@ -101,12 +101,12 @@
 	if(slot == SLOT_WEAR_SUIT && iscarbon(M))
 		for(var/k in funny_signals)
 			RegisterSignal(M, k, funny_signals[k])
-		add_queue('sound/voice/nerdsuit/bell.ogg',20,purge_queue=TRUE)
+		add_queue('sound/voice/nerdsuit/bell.ogg',2 SECONDS,purge_queue=TRUE)
 		owner = M
 		if(prob(1))
-			add_queue('sound/voice/nerdsuit/emag.ogg',270)
+			add_queue('sound/voice/nerdsuit/emag.ogg',27 SECONDS)
 		else
-			add_queue('sound/voice/nerdsuit/welcome.ogg',80)
+			add_queue('sound/voice/nerdsuit/welcome.ogg',8 SECONDS)
 	else
 		for(var/k in funny_signals)
 			UnregisterSignal(M, k)
@@ -118,7 +118,7 @@
 
 //Death
 /obj/item/clothing/suit/armor/nerd/proc/handle_death(gibbed)
-	add_queue('sound/voice/nerdsuit/death.ogg',50,purge_queue=TRUE)
+	add_queue('sound/voice/nerdsuit/death.ogg',5 SECONDS,purge_queue=TRUE)
 
 //Mute
 /obj/item/clothing/suit/armor/nerd/proc/handle_speech(datum/source, mob/speech_args)
@@ -137,12 +137,12 @@
 //Fire
 /obj/item/clothing/suit/armor/nerd/proc/handle_ignite(mob/living)
 	SOUND_BEEP_3
-	add_queue('sound/voice/nerdsuit/heat.ogg',30)
+	add_queue('sound/voice/nerdsuit/heat.ogg',3 SECONDS)
 
 //Shock
 /obj/item/clothing/suit/armor/nerd/proc/handle_shock(mob/living)
 	SOUND_BEEP_3
-	add_queue('sound/voice/nerdsuit/shock.ogg',30)
+	add_queue('sound/voice/nerdsuit/shock.ogg',3 SECONDS)
 
 
 //Wounds
@@ -151,11 +151,11 @@
 	var/found_sound = wound_to_sound[W.type]
 	if(found_sound)
 		SOUND_BEEP_3
-		add_queue(found_sound,40)
+		add_queue(found_sound,4 SECONDS)
 
 	if(W.severity >= WOUND_SEVERITY_MODERATE)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/seek_medical.ogg',20)
+		add_queue('sound/voice/nerdsuit/seek_medical.ogg',2 SECONDS)
 		administer_morphine()
 
 /obj/item/clothing/suit/armor/nerd/proc/administer_morphine()
@@ -169,11 +169,11 @@
 	if(emagged)
 		owner.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/stimulants.ogg',20)
+		add_queue('sound/voice/nerdsuit/stimulants.ogg',2 SECONDS)
 	else
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/morphine.ogg',20)
+		add_queue('sound/voice/nerdsuit/morphine.ogg',2 SECONDS)
 
 	morphine_next = world.time + 200
 
@@ -197,16 +197,16 @@
 
 	if(health_percent <= 0.25)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',30)
+		add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',3 SECONDS)
 		damage_notify_next = world.time + 50
 		administer_morphine()
 	else if(health_percent <= 0.50)
 		SOUND_BEEP_3
-		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',30)
+		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',3 SECONDS)
 		damage_notify_next = world.time + 50
 	else if(health_percent <= 0.75)
 		SOUND_BEEP_2
-		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',20)
+		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',2 SECONDS)
 		damage_notify_next = world.time + 50
 
 
