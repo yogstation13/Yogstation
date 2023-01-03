@@ -324,6 +324,12 @@
 		flick("ca_deactive", src)
 	update_icon()
 
+/obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
+		return
+	. = ..()
+
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT
 #undef RAD_COLLECTOR_STORED_OUT
