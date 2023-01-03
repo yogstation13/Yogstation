@@ -87,8 +87,6 @@ jobs:
           
       - name: Compile All Maps
         run: |
-          chmod +x tools/build/build
-          chmod +x tools/bootstrap/node
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   test:
     name: Compile and Run Tests
@@ -139,8 +137,6 @@ jobs:
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
       - name: Compile
         run: |
-          chmod +x tools/build/build
-          chmod +x tools/bootstrap/node
           tools/build/build --ci dm -DCIBUILDING
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
