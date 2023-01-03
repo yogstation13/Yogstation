@@ -51,7 +51,7 @@
 	name = "Holographic banana peel"
 	desc = "A peel from a projector"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "holosign"
+	icon_state = "holosign_banana"
 
 /obj/structure/holosign/holobanana/ComponentInitialize()
 	. = ..()
