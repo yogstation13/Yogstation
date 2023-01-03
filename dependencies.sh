@@ -13,7 +13,7 @@ export RUST_G_VERSION=0.7.0
 
 #node version
 export NODE_VERSION=12
-export NODE_VERSION_PRECISE=12.20.0
+export NODE_VERSION_PRECISE=12.22.4
 
 # PHP version
 export PHP_VERSION=7.2
