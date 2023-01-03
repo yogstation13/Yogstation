@@ -492,7 +492,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/robot_army/New()
 	. = ..()
-	number_of_borgs = ceil((GLOB.joined_player_list.len / 10) + 2)
+	number_of_borgs = CEILING((GLOB.joined_player_list.len / 10) + 2)
 	explanation_text = "Have at least [number_of_borgs] active cyborgs synced to you."
 
 /datum/objective/robot_army/check_completion()
