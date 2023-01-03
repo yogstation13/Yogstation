@@ -2741,6 +2741,15 @@
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/grass,
 /area/maintenance/starboard/fore)
+"avZ" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/bot_red,
+/obj/item/circuitboard/machine/techfab/department/security,
+/obj/item/reagent_containers/syringe/lethal/execution,
+/obj/item/gun/syringe,
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "awb" = (
 /turf/closed/wall,
 /area/hallway/primary/port)
@@ -18924,22 +18933,6 @@
 	},
 /turf/open/floor/wood,
 /area/hallway/secondary/service)
-"fxj" = (
-/obj/machinery/newscaster{
-	pixel_x = -3;
-	pixel_y = 32
-	},
-/obj/machinery/light_switch{
-	pixel_x = 10;
-	pixel_y = 25
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "fxq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -20161,14 +20154,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/medical/genetics)
-"fSB" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/gun/syringe,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "fSE" = (
 /obj/structure/table/wood,
 /obj/item/toy/crayon/rainbow{
@@ -40382,6 +40367,13 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"mRp" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "mRy" = (
 /obj/structure/table/wood,
 /obj/machinery/photocopier/faxmachine{
@@ -46155,13 +46147,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"oPQ" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/bot_red,
-/obj/item/circuitboard/machine/techfab/department/security,
-/obj/item/reagent_containers/syringe/lethal/execution,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "oPS" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -66850,6 +66835,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"vHI" = (
+/obj/machinery/newscaster{
+	pixel_x = -3;
+	pixel_y = 32
+	},
+/obj/machinery/light_switch{
+	pixel_x = 10;
+	pixel_y = 25
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "vHN" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/start/depsec/science,
@@ -105493,7 +105493,7 @@ hjO
 pVc
 khF
 aHC
-oPQ
+avZ
 pcZ
 mRd
 qNu
@@ -106363,7 +106363,7 @@ aqH
 uIv
 vbg
 aGK
-fSB
+mRp
 fyG
 ckf
 aPq
@@ -106620,7 +106620,7 @@ aqH
 oeG
 vbg
 aGK
-fxj
+vHI
 nVt
 klx
 kLf

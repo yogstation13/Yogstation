@@ -19879,6 +19879,20 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"dKi" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/gun/syringe,
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "dKq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/light{
@@ -49586,6 +49600,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qqd" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/light_switch{
+	pixel_x = 15;
+	pixel_y = 25
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "qrj" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -51899,18 +51924,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"rrR" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "rss" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -24
@@ -53020,17 +53033,6 @@
 "rPT" = (
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
-"rQF" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/gun/syringe,
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "rRe" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -58554,18 +58556,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"ufl" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/gun/syringe,
-/obj/machinery/light_switch{
-	pixel_x = 15;
-	pixel_y = 25
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "ufo" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 6
@@ -61154,6 +61144,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"vmd" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "vmm" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -97741,7 +97741,7 @@ aaa
 aaf
 aaa
 aaZ
-rrR
+dKi
 adl
 bbs
 bbx
@@ -105013,7 +105013,7 @@ bDR
 pny
 xQU
 bvj
-ufl
+qqd
 hOf
 nqE
 ilL
@@ -105270,7 +105270,7 @@ gaU
 pny
 hqT
 bvj
-rQF
+vmd
 peT
 alv
 cyU
