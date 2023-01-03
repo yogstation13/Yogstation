@@ -7,12 +7,49 @@
 
 	//to determine what type of implant for checking if both legs are the same
 	var/implant_type = "leg implant"
+	COOLDOWN_DECLARE(emp_notice)
 
 /obj/item/organ/cyberimp/leg/Initialize()
 	. = ..()
 	update_icon()
 	SetSlotFromZone()
 
+/obj/item/organ/cyberimp/leg/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	
+	var/obj/item/bodypart/L = owner.get_bodypart(zone)
+	if(!L)	//how did you get an implant in a limb you don't have?
+		return
+
+	L.receive_damage(5,0,10)	//always take a least a little bit of damage to the leg
+
+	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
+		if(COOLDOWN_FINISHED(src, emp_notice))
+			to_chat(owner, span_warning("The EMP causes the [src] in your [L] to twitch randomly!"))
+			COOLDOWN_START(src, emp_notice, 30 SECONDS)
+		return
+
+	L.set_disabled(TRUE)	//disable the bodypart
+	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+	if(severity & EMP_HEAVY && prob(20))	//10% chance on getting hit by a heavy emp to break your leg (technically more since you have two)
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly breaking it!"))	
+		var/datum/wound/blunt/severe/breakdown = new
+		breakdown.apply_wound(L)
+		L.receive_damage(20)
+	else if(COOLDOWN_FINISHED(src, emp_notice))
+		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your [L] from moving!"))
+		COOLDOWN_START(src, emp_notice, 30 SECONDS)
+
+/obj/item/organ/cyberimp/leg/proc/reenableleg()
+	var/obj/item/bodypart/L = owner.get_bodypart(zone)
+	if(!L)	//You got emped and then lost the leg in those 10 seconds? impressive
+		return
+
+	L.set_disabled(FALSE)
+	
 /obj/item/organ/cyberimp/leg/proc/SetSlotFromZone()
 	switch(zone)
 		if(BODY_ZONE_L_LEG)
@@ -165,6 +202,7 @@
 	desc = "Dash forward."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	COOLDOWN_DECLARE(dash_cooldown)
 	var/cooldownlength = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
@@ -218,6 +256,7 @@
 	desc = "Pops out or in your wheely-heel's wheels."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/wheelys/W
@@ -278,6 +317,7 @@
 	desc = "Switch between walking and hovering."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/airshoes/W

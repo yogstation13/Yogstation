@@ -90,8 +90,6 @@
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
-	///The reference to the built-in tablet that borgs carry.
-	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/atom/movable/screen/robot/modPC/interfaceButton
 
 	///Flash resistance
@@ -183,12 +181,6 @@
 	diag_hud_set_borgcell()
 	create_modularInterface()
 	logevent("System brought online.")
-
-/mob/living/silicon/robot/proc/create_modularInterface()
-	if(!modularInterface)
-		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
-	modularInterface.layer = ABOVE_HUD_PLANE
-	modularInterface.plane = ABOVE_HUD_PLANE
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 /mob/living/silicon/robot/Destroy()

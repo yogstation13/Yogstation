@@ -87,7 +87,7 @@ GLOBAL_VAR(restart_counter)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer_here, cb, 10 SECONDS))
 
 
 /world/proc/SetupLogs()
@@ -277,7 +277,6 @@ GLOBAL_VAR(restart_counter)
 	log_world("Deallocated [num_deleted] gas mixtures")
 	if(fexists(EXTOOLS))
 		call(EXTOOLS, "cleanup")()
-	SSdemo?.Shutdown()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

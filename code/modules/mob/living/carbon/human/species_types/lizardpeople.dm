@@ -4,7 +4,7 @@
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
@@ -29,6 +29,8 @@
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
 	var/last_heat_stunmod = 0
+
+	smells_like = "putrid scales"
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)

@@ -51,6 +51,7 @@
 
 //data HUD (medhud, sechud) defines
 //Don't forget to update human/New() if you change these!
+//These and antag HUDs (directly below) share the same list, so make sure there is no overlap
 #define DATA_HUD_SECURITY_BASIC				1
 #define DATA_HUD_SECURITY_ADVANCED			2
 #define DATA_HUD_MEDICAL_BASIC				3
@@ -60,33 +61,37 @@
 #define DATA_HUD_ABDUCTOR					7
 #define DATA_HUD_SENTIENT_DISEASE			8
 #define DATA_HUD_AI_DETECT					9
+#define DATA_HUD_SECURITY_MEDICAL			10
 
 //antag HUD defines
-#define ANTAG_HUD_CULT			10
-#define ANTAG_HUD_REV			11
-#define ANTAG_HUD_OPS			12
-#define ANTAG_HUD_WIZ			13
-#define ANTAG_HUD_SHADOW    	14
-#define ANTAG_HUD_TRAITOR 		15
-#define ANTAG_HUD_NINJA 		16
-#define ANTAG_HUD_CHANGELING 	17
-#define ANTAG_HUD_ABDUCTOR 		18
-#define ANTAG_HUD_DEVIL			19
-#define ANTAG_HUD_SINTOUCHED	20
-#define ANTAG_HUD_SOULLESS		21
-#define ANTAG_HUD_CLOCKWORK		22
-#define ANTAG_HUD_BROTHER		23
-#define ANTAG_HUD_HIVE			24
-#define ANTAG_HUD_OBSESSED		25
-#define ANTAG_HUD_FUGITIVE		26
-#define ANTAG_HUD_CAPITALIST	27
-#define ANTAG_HUD_COMMUNIST		28
-#define ANTAG_HUD_HERETIC		29
-#define ANTAG_HUD_MINDSLAVE		30
-#define ANTAG_HUD_ZOMBIE		31
-#define ANTAG_HUD_BLOODSUCKER   32
-#define ANTAG_HUD_MHUNTER       33
-#define ANTAG_HUD_BRAINWASHED	34
+#define ANTAG_HUD_CULT			11
+#define ANTAG_HUD_REV			12
+#define ANTAG_HUD_OPS			13
+#define ANTAG_HUD_WIZ			14
+#define ANTAG_HUD_SHADOW		15
+#define ANTAG_HUD_TRAITOR		16
+#define ANTAG_HUD_NINJA			17
+#define ANTAG_HUD_CHANGELING	18
+#define ANTAG_HUD_ABDUCTOR		19
+#define ANTAG_HUD_DEVIL			20
+#define ANTAG_HUD_SINTOUCHED	21
+#define ANTAG_HUD_SOULLESS		22
+#define ANTAG_HUD_CLOCKWORK		23
+#define ANTAG_HUD_BROTHER		24
+#define ANTAG_HUD_HIVE			25
+#define ANTAG_HUD_OBSESSED		26
+#define ANTAG_HUD_FUGITIVE		27
+#define ANTAG_HUD_VAMPIRE		28
+#define ANTAG_HUD_DARKSPAWN		29
+#define ANTAG_HUD_CAPITALIST	30
+#define ANTAG_HUD_COMMUNIST		31
+#define ANTAG_HUD_HERETIC		32
+#define ANTAG_HUD_MINDSLAVE		33
+#define ANTAG_HUD_ZOMBIE		34
+#define ANTAG_HUD_INFILTRATOR	35
+#define ANTAG_HUD_BLOODSUCKER	36
+#define ANTAG_HUD_MHUNTER		37
+#define ANTAG_HUD_BRAINWASHED	38
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

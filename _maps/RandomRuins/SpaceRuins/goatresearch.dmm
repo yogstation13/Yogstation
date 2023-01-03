@@ -505,10 +505,6 @@
 /mob/living/simple_animal/hostile/retaliate/goat/ras,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"bV" = (
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
-/turf/open/floor/grass,
-/area/ruin/powered)
 "bW" = (
 /obj/structure/chair/wood/normal{
 	dir = 1;
@@ -618,6 +614,10 @@
 /area/ruin/powered)
 "cm" = (
 /obj/machinery/light,
+/turf/open/floor/grass,
+/area/ruin/powered)
+"od" = (
+/mob/living/simple_animal/hostile/retaliate/goat/orange,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "sr" = (
@@ -4536,7 +4536,7 @@ bZ
 aN
 bH
 ae
-bV
+od
 cm
 ab
 aa

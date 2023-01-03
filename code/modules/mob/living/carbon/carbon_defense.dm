@@ -122,7 +122,7 @@
 		emote("scream")
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")
-		SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 	if(new_loc)
 		embedded.forceMove(new_loc)
 	embedded.on_embed_removal(src)
@@ -144,7 +144,7 @@
 	if(!istype(choice) || !(choice in choice_list))
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
-	user.visible_message(span_warning("[user] attempts to remove [choice] from [usr.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
+	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
 	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
 		return
 	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class

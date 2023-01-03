@@ -2,11 +2,15 @@
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
 
-/datum/design/c38/sec
+/datum/design/c38_sec
+	name = "Speed Loader (.38)"
+	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38
 	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"

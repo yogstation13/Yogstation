@@ -92,7 +92,9 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 	for(var/i in 1 to turfs.len)
 		var/turf/thing = turfs[i]
 		var/area/old_area = thing.loc
+		old_area.turfs_to_uncontain += thing
 		newA.contents += thing
+		newA.contained_turfs += thing
 		thing.change_area(old_area, newA)
 
 	newA.reg_in_areas_in_z()
@@ -104,5 +106,102 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
 	return TRUE
+
+/proc/require_area_resort()
+	GLOB.sortedAreas = null
+
+/// Returns a sorted version of GLOB.areas, by name
+/proc/get_sorted_areas()
+	if(!GLOB.sortedAreas)
+		GLOB.sortedAreas = sortTim(GLOB.areas.Copy(), /proc/cmp_name_asc)
+	return GLOB.sortedAreas
+
+//Takes: Area type as a text string from a variable.
+//Returns: Instance for the area in the world.
+/proc/get_area_instance_from_text(areatext)
+	if(istext(areatext))
+		areatext = text2path(areatext)
+	return GLOB.areas_by_type[areatext]
+
+//Takes: Area type as text string or as typepath OR an instance of the area.
+//Returns: A list of all areas of that type in the world.
+/proc/get_areas(areatype, subtypes=TRUE)
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
+		var/area/areatemp = areatype
+		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+
+	var/list/areas = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(cache[area_to_check.type])
+				areas += area_to_check
+	else
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(area_to_check.type == areatype)
+				areas += area_to_check
+	return areas
+
+/// Iterates over all turfs in the target area and returns the first non-dense one
+/proc/get_first_open_turf_in_area(area/target)
+	if(!target)
+		return
+	for(var/turf/turf in target)
+		if(!turf.density)
+			return turf
+
+//Takes: Area type as text string or as typepath OR an instance of the area.
+//Returns: A list of all turfs in areas of that type of that type in the world.
+/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
+		var/area/areatemp = areatype
+		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+	// Pull out the areas
+	var/list/areas_to_pull = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(!cache[area_to_check.type])
+				continue
+			areas_to_pull += area_to_check
+	else
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(area_to_check.type != areatype)
+				continue
+			areas_to_pull += area_to_check
+
+	// Now their turfs
+	var/list/turfs = list()
+	for(var/area/pull_from as anything in areas_to_pull)
+		var/list/our_turfs = pull_from.get_contained_turfs()
+		if(target_z == 0)
+			turfs += our_turfs
+		else
+			for(var/turf/turf_in_area as anything in our_turfs)
+				if(target_z == turf_in_area.z)
+					turfs += turf_in_area
+	return turfs
+
+
+///Takes: list of area types
+///Returns: all mobs that are in an area type
+/proc/mobs_in_area_type(list/area/checked_areas)
+	var/list/mobs_in_area = list()
+	for(var/mob/living/mob as anything in GLOB.mob_living_list)
+		if(QDELETED(mob))
+			continue
+		for(var/area in checked_areas)
+			if(istype(get_area(mob), area))
+				mobs_in_area += mob
+				break
+	return mobs_in_area
 
 #undef BP_MAX_ROOM_SIZE

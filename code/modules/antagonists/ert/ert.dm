@@ -112,6 +112,16 @@
 /datum/antagonist/ert/common
 	outfit = /datum/outfit/ert
 
+/datum/antagonist/ert/common/trooper
+	outfit = /datum/outfit/ert
+
+/datum/antagonist/ert/common/medic
+	outfit = /datum/outfit/ert
+	name = "Emergency Response Medic"
+
+/datum/antagonist/ert/common/engineer
+	name = "Emergency Response Engineer"
+
 /datum/antagonist/ert/common/leader
 	name = "Emergency Response Commander"
 	role = "Commander"

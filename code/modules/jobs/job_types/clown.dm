@@ -29,6 +29,8 @@
 		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
 	)
 
+	smells_like = "kinda funny"
+
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -66,6 +68,11 @@
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
 		backpack_contents[/obj/item/stack/sheet/mineral/bananium/five] = 1
+
+/datum/outfit/job/clown/get_types_to_preload()
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
+		. += /obj/item/stack/sheet/mineral/bananium/five
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

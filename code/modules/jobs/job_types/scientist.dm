@@ -29,6 +29,8 @@
 		/obj/item/camera_bug = 1
 	)
 
+	smells_like = "slime"
+
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
@@ -59,3 +61,7 @@
 	..()
 	if(prob(0.4))
 		neck = /obj/item/clothing/neck/tie/horrible
+
+/datum/outfit/job/scientist/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/neck/tie/horrible

@@ -31,6 +31,8 @@
 
 	changed_maps = list("OmegaStation")
 
+	smells_like = "alcohol"
+
 /datum/job/bartender/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)

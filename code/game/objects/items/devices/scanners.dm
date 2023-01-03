@@ -363,9 +363,9 @@ GENE SCANNER
 			mutant = TRUE
 		else if (S.mutantlungs != initial(S.mutantlungs))
 			mutant = TRUE
-		else if (S.mutant_brain != initial(S.mutant_brain))
+		else if (S.mutantbrain != initial(S.mutantbrain))
 			mutant = TRUE
-		else if (S.mutant_heart != initial(S.mutant_heart))
+		else if (S.mutantheart != initial(S.mutantheart))
 			mutant = TRUE
 		else if (S.mutanteyes != initial(S.mutanteyes))
 			mutant = TRUE
@@ -422,7 +422,7 @@ GENE SCANNER
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 				if(H.is_bleeding())
-					combined_msg += span_danger("Subject is bleeding!")
+					combined_msg += span_danger("Subject is losing blood at a rate of [H.get_total_bleed_rate() * H.physiology?.bleed_mod] cl per process!")
 			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL(C))*100)
 			var/blood_type = C.dna.blood_type
 			if(blood_id != /datum/reagent/blood)//special blood substance
@@ -581,7 +581,7 @@ GENE SCANNER
 	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	var/cooldown = FALSE
-	var/cooldown_time = 250
+	var/cooldown_time = 50
 	var/accuracy // 0 is the best accuracy.
 
 /obj/item/analyzer/examine(mob/user)
@@ -604,6 +604,28 @@ GENE SCANNER
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
+
+/obj/item/analyzer/ranged
+	desc = "A hand-held long-range environmental scanner which reports current gas levels."
+	name = "Long-range gas analyzer"
+	icon_state = "analyzerranged"
+	item_state = "analyzerranged"
+	w_class = WEIGHT_CLASS_SMALL
+	materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
+	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5, /datum/reagent/bluespace = 10, /datum/reagent/gold = 10)
+
+/obj/item/analyzer/ranged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	add_fingerprint(user)
+	if(istype(target, /turf))
+		var/turf/U = get_turf(target)
+		atmosanalyzer_scan(U.return_air(), user, target)
+	else if(istype(target, /obj/effect/anomaly))
+		var/obj/effect/anomaly/A = target
+		A.analyzer_act(user, src)
+		to_chat(user, span_notice("Analyzing... [A]'s unstable field is fluctuating along frequency [format_frequency(A.aSignal.frequency)], code [A.aSignal.code]."))
+	else
+		target.analyzer_act(user, src)
 
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()

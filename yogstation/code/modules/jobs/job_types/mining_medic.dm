@@ -8,6 +8,10 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 4
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/miningmedic
 
@@ -23,6 +27,7 @@
 
 	changed_maps = list("EclipseStation")
 
+	smells_like = "bloody soot"
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,

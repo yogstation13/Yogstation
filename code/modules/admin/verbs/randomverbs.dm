@@ -1250,9 +1250,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return //We return here because punish_log() is handled by the centcom_podlauncher datum
 
 		if(ADMIN_PUNISHMENT_MAZING)
-			if(!puzzle_imprison(target))
-				to_chat(usr,span_warning("Imprisonment failed!"), confidential=TRUE)
-				return
+			var/confirm = alert(usr, "Puzzle them?", "Puzzle", "Yes", "No")
+			if(confirm == "Yes")
+				if(!puzzle_imprison(target))
+					to_chat(usr,span_warning("Imprisonment failed!"), confidential=TRUE)
+					return
 		if(ADMIN_PUNISHMENT_PIE)
 			var/confirm = alert(usr, "Send honk message?", "Honk Message", "Yes", "No")
 			if(confirm == "Yes")

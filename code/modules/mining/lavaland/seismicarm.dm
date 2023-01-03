@@ -21,6 +21,8 @@
 	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/seismic/lariat/cast(atom/target,mob/living/user)
+	if(user.incapacitated())
+		return
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
@@ -70,6 +72,8 @@
 	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/seismic/mop/cast(atom/target,mob/living/user)
+	if(user.incapacitated())
+		return
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)

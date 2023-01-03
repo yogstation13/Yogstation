@@ -100,9 +100,9 @@
 	name = "Black Powder Kaboom"
 	id = "blackpowder_explosion"
 	required_reagents = list(/datum/reagent/blackpowder = 1)
-	required_temp = 474
-	strengthdiv = 6
-	modifier = 1
+	required_temp = 737		//Yogs change - 464 C, actual ignition temp
+	strengthdiv = 12
+	modifier = 5
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"

@@ -37,6 +37,7 @@
 	speed = 0
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/legionnaire
 	deathsound = 'sound/magic/curse.ogg'
 	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
 	loot_drop = /obj/item/crusher_trophy/legionnaire_spine
@@ -213,6 +214,16 @@
 	smoke.set_up(2, T)
 	smoke.start()
 
+/obj/item/gps/internal/legionnaire
+	icon_state = null
+	gpstag = "Wailing Signal"
+	desc = "One vs many."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
+
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
 	name = "legionnaire head"
@@ -238,6 +249,7 @@
 	faction = list()
 	ranged = FALSE
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
+	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/death()
 	. = ..()

@@ -159,7 +159,6 @@
 			return FALSE
 
 		R.ionpulse = TRUE
-		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()

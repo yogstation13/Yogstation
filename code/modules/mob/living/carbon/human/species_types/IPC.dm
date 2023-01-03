@@ -8,8 +8,8 @@
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
-	mutant_brain = /obj/item/organ/brain/positron
-	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
+	mutantbrain = /obj/item/organ/brain/positron
+	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
@@ -45,6 +45,8 @@
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
 	var/datum/action/innate/change_screen/change_screen
+
+	smells_like = "industrial lubricant"
 
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"

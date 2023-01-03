@@ -48,6 +48,26 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/hydrogen = 300, /datum/gas/bz = 50)
 	products = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 1)
 
+/datum/gas_recipe/crystallizer/supermatter_extraction_tongs
+	id = "sm_tongs"
+	name = "supermatter extraction tongs"
+	min_temp = 50000
+	max_temp = 150000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 150000
+	requirements = list(/datum/gas/hydrogen = 100, /datum/gas/hypernoblium = 5, /datum/gas/bz = 5)
+	products = list(/obj/item/hemostat/supermatter = 1)
+
+/datum/gas_recipe/crystallizer/supermatter_base_structure
+	id = "sm_structure"
+	name = "supermatter base structure"
+	min_temp = 50000
+	max_temp = 150000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 200000
+	requirements = list(/datum/gas/hydrogen = 1000, /datum/gas/bz = 100, /datum/gas/hypernoblium = 10)
+	products = list(/obj/structure/supermatter_base_structure = 1)
+
 /datum/gas_recipe/crystallizer/healium_grenade
 	id = "healium_g"
 	name = "Healium crystal"
@@ -99,6 +119,17 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/stimulum = 500, /datum/gas/freon = 500, /datum/gas/nitryl = 800)
 	products = list(/obj/machinery/the_singularitygen/tesla = 1)
 
+/datum/gas_recipe/crystallizer/supermatter_silver
+	id = "supermatter"
+	name = "Supermatter silver"
+	min_temp = 100000
+	max_temp = 200000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 250000
+	dangerous = TRUE
+	requirements = list(/datum/gas/bz = 100, /datum/gas/hypernoblium = 125, /datum/gas/tritium = 250, /datum/gas/plasma = 750)
+	products = list(/obj/item/nuke_core/supermatter_sliver = 1)
+
 /datum/gas_recipe/crystallizer/n2o_crystal
 	id = "n2o_crystal"
 	name = "Nitrous oxide crystal"
@@ -118,6 +149,16 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	energy_release = 9500000
 	requirements = list(/datum/gas/carbon_dioxide = 10000)
 	products = list(/obj/item/stack/sheet/mineral/diamond = 1)
+
+/datum/gas_recipe/crystallizer/uranium
+	id = "uranium"
+	name = "Uranium"
+	min_temp = 1000
+	max_temp = 5000
+	reaction_type = ENDOTHERMIC_REACTION
+	energy_release = 2500000
+	requirements = list(/datum/gas/tritium = 200, /datum/gas/hypernoblium = 50)
+	products = list(/obj/item/stack/sheet/mineral/uranium = 1)
 
 /datum/gas_recipe/crystallizer/plasma_sheet
 	id = "plasma_sheet"
@@ -148,3 +189,13 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	energy_release = 2900000
 	requirements = list(/datum/gas/hypernoblium = 5, /datum/gas/zauker = 10, /datum/gas/bz = 7.5)
 	products = list(/obj/item/stack/sheet/mineral/zaukerite = 2)
+
+/datum/gas_recipe/crystallizer/hypernoblium_crystal
+	id = "hyper_crystalium"
+	name = "Hypernoblium Crystal"
+	min_temp = 100000
+	max_temp = 200000
+	reaction_type = EXOTHERMIC_REACTION
+	energy_release = 2800000
+	requirements = list(/datum/gas/bz = 100, /datum/gas/hypernoblium = 100, /datum/gas/oxygen = 1000)
+	products = list(/obj/item/stack/hypernoblium_crystal = 1)

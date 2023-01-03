@@ -35,6 +35,8 @@
 		/obj/item/kitchen/knife/butcher = 2
 	)
 
+	smells_like = "delicious food"
+
 /datum/job/cook/proc/OmegaStationChanges()
 	added_access = list()
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
@@ -78,3 +80,7 @@
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
 
+/datum/outfit/job/cook/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/suit/apron/chef
+	. += /obj/item/clothing/head/soft/mime

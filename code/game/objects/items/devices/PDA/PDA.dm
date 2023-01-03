@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	//Main variables
 	var/owner = null // String name of owner
-	var/default_cartridge = 0 // Access level defined by cartridge
+	var/default_cartridge = 0 // Typepath of the default cartridge to use
 	var/obj/item/cartridge/cartridge = null //current cartridge
 	var/mode = 0 //Controls what menu the PDA will display. 0 is hub; the rest are either built in or based on cartridge.
 	var/icon_alert = "pda-r" //Icon to be overlayed for message alerts. Taken from the pda icon file.
@@ -89,7 +89,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/datum/picture/picture //Scanned photo
 
 	var/list/contained_item = list(/obj/item/pen, /obj/item/toy/crayon, /obj/item/lipstick, /obj/item/flashlight/pen, /obj/item/clothing/mask/cigarette)
-	var/obj/item/inserted_item //Used for pen, crayon, and lipstick insertion or removal. Same as above.
+	//This is the typepath to load "into" the pda
+	var/obj/item/insert_type = /obj/item/pen
+	//This is the currently inserted item
+	var/obj/item/inserted_item
 	var/overlays_x_offset = 0	//x offset to use for certain overlays
 
 	var/underline_flag = TRUE //flag for underline
@@ -121,12 +124,23 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	GLOB.PDAs += src
 	if(default_cartridge)
-		cartridge = new default_cartridge(src)
-	if(inserted_item)
-		inserted_item = new inserted_item(src)
-	else
-		inserted_item =	new /obj/item/pen(src)
+		cartridge = SSwardrobe.provide_type(default_cartridge, src)
+		cartridge.host_pda = src
+	if(insert_type)
+		inserted_item = SSwardrobe.provide_type(insert_type, src)
 	update_icon()
+
+/obj/item/pda/Destroy()
+	GLOB.PDAs -= src
+	if(istype(id))
+		QDEL_NULL(id)
+	if(istype(cartridge))
+		QDEL_NULL(cartridge)
+	if(istype(pai))
+		QDEL_NULL(pai)
+	if(istype(inserted_item))
+		QDEL_NULL(inserted_item)
+	return ..()
 
 /obj/item/pda/equipped(mob/user, slot)
 	. = ..()
@@ -150,6 +164,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 					font_index = MODE_MONO
 					font_mode = FONT_MONO
 			equipped = TRUE
+
+/obj/item/pda/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == cartridge)
+		cartridge.host_pda = null
+		cartridge = null
+	if(gone == inserted_item)
+		inserted_item = null
 
 /obj/item/pda/proc/update_label()
 	name = "PDA-[owner] ([ownjob])" //Name generalisation
@@ -795,7 +817,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 	for(var/mob/M in GLOB.player_list)
 		if(isobserver(M) && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTPDA))
 			to_chat(M, "[FOLLOW_LINK(M, user)] [ghost_message]")
-	to_chat(SSdemo, "[FOLLOW_LINK(SSdemo, user)] [ghost_message]")
 	// Log in the talk log
 	user.log_talk(message, LOG_PDA, tag="PDA: [initial(name)] to [target_text]")
 	to_chat(user, span_info("Message sent to [target_text]: \"[message]\""))
@@ -938,9 +959,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	if(inserted_item)
-		usr.put_in_hands(inserted_item)
 		to_chat(usr, span_notice("You remove [inserted_item] from [src]."))
-		inserted_item = null
+		usr.put_in_hands(inserted_item) //Don't need to manage the pen ref, handled on Exited()
 		update_icon()
 	else
 		to_chat(usr, span_warning("This PDA does not have a pen in it!"))
@@ -1104,20 +1124,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	qdel(src)
 	return
 
-/obj/item/pda/Destroy()
-	GLOB.PDAs -= src
-	if(istype(id))
-		QDEL_NULL(id)
-	if(istype(cartridge))
-		QDEL_NULL(cartridge)
-	if(istype(pai))
-		QDEL_NULL(pai)
-	if(istype(inserted_item))
-		QDEL_NULL(inserted_item)
-	return ..()
-
-//AI verb and proc for sending PDA messages.
-
+//pAI verb and proc for sending PDA messages.
 /mob/living/silicon/proc/cmd_send_pdamesg(mob/user)
 	var/list/plist = list()
 	var/list/namecounts = list()
@@ -1151,30 +1158,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	aiPDA.create_message(src, selected)
-
-
-/mob/living/silicon/ai/verb/cmd_toggle_pda_receiver()
-	set category = "AI Commands"
-	set name = "PDA - Toggle Sender/Receiver"
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	if(!isnull(aiPDA))
-		aiPDA.toff = !aiPDA.toff
-		to_chat(usr, span_notice("PDA sender/receiver toggled [(aiPDA.toff ? "Off" : "On")]!"))
-	else
-		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
-
-/mob/living/silicon/ai/verb/cmd_toggle_pda_silent()
-	set category = "AI Commands"
-	set name = "PDA - Toggle Ringer"
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	if(!isnull(aiPDA))
-		//0
-		aiPDA.silent = !aiPDA.silent
-		to_chat(usr, span_notice("PDA ringer toggled [(aiPDA.silent ? "Off" : "On")]!"))
-	else
-		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
 
 /mob/living/silicon/ai/proc/cmd_show_message_log(mob/user)
 	if(incapacitated())
@@ -1265,6 +1248,23 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
+
+/// Return a list of types you want to pregenerate and use later
+/// Do not pass in things that care about their init location, or expect extra input
+/// Also as a curtiousy to me, don't pass in any bombs
+/obj/item/pda/proc/get_types_to_preload()
+	var/list/preload = list()
+	preload += default_cartridge
+	preload += insert_type
+	return preload
+
+/// Callbacks for preloading pdas
+/obj/item/pda/proc/display_pda()
+	GLOB.PDAs += src
+
+/// See above, we don't want jerry from accounting to try and message nullspace his new bike
+/obj/item/pda/proc/cloak_pda()
+	GLOB.PDAs -= src
 
 #undef PDA_SCANNER_NONE
 #undef PDA_SCANNER_MEDICAL

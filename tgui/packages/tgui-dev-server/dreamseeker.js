@@ -52,8 +52,11 @@ DreamSeeker.getInstancesByPids = async pids => {
   }
   if (pidsToResolve.length > 0) {
     try {
-      const command = 'netstat -a -n -o';
-      const { stdout } = await promisify(exec)(command);
+      const command = 'netstat -ano | findstr TCP | findstr 0.0.0.0:0';
+      const { stdout } = await promisify(exec)(command, {
+        // Max buffer of 1MB (default is 200KB)
+        maxBuffer: 1024 * 1024,
+      });
       // Line format:
       // proto addr mask mode pid
       const entries = stdout

@@ -644,3 +644,12 @@ Class Procs:
 			else
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
 	machineclimber = null
+
+/obj/machinery/CanAStarPass(ID, dir, caller)
+	. = ..()
+	if(climbable)
+		return TRUE
+	if(can_be_occupant(caller))
+		return TRUE
+
+	

@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
 	if(user.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
 		return
-	if(user.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
+	if(!istype(user, /mob/living/silicon/ai) && user.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
 		return
 	// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
 	var/obj/item/modular_computer/comp
@@ -213,9 +213,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		comp.audible_message("[icon2html(comp, hearers(comp))] *[ringtone]*", null, 3)
 		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
 		if(istype(comp, /obj/item/modular_computer/tablet))
-			var/mob/living/carbon/C = comp.loc
-			if(istype(C))
-				msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
+			msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
 		comp.visible_message(span_notice(msg), null, null, 1)
 	
 	return TRUE
