@@ -73,7 +73,7 @@
 	var/code = input(src, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
-		var/json_codes = rustg_hash_generate_totp_tolerance(seed, 1)
+		var/json_codes = rustg_hash_generate_totp_tolerance(seed, "1")
 		if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
 			var/msg = "Error with TOTP: [json_codes]"
 			message_admins(msg)
