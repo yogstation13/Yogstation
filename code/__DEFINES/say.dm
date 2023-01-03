@@ -61,10 +61,6 @@
 #define MODE_VOCALCORDS "cords"
 #define MODE_KEY_VOCALCORDS "x"
 
-#define MODE_MONKEY "monkeyhive"
-#define MODE_KEY_MONKEY  "k"
-#define MODE_TOKEN_MONKEY  ":k"
-
 #define MODE_DARKSPAWN "mindlink"
 #define MODE_KEY_DARKSPAWN  "w"
 #define MODE_TOKEN_DARKSPAWN  ":w"

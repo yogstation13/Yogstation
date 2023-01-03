@@ -615,7 +615,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/puppy/ian
 	name = "Ian"
-	real_name = "Ian"
+	real_namee = "Ian"
 	gender = MALE
 	desc = "It's the HoP's beloved corgi puppy."
 

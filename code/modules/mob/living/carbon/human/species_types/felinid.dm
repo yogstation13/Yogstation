@@ -27,6 +27,9 @@
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
 
+/datum/species/human/felinid/MakeImmortal() //for a future PR
+	
+
 //Curiosity killed the cat's wagging tail.
 
 /datum/species/human/felinid/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)

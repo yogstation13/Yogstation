@@ -48,7 +48,7 @@
 #define span_cultsmall(str) ("<span class='cultsmall'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_dangers(str) ("<span class='dangers'>" + str + "</span>")
-#define span_dark(str) ("<span class='dark'>" + str + "</span>")
+#define span_daark(str) ("<span class='dark'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_deconversion_message(str) ("<span class='deconversion_message'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")

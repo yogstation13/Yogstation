@@ -20,14 +20,14 @@ export const PortablePump = (props, context) => {
       <Window.Content>
         <PortableBasicInfo />
         <Section
-          title="Pump"
-          buttons={(
-            <Button
-              icon={direction ? 'sign-in-alt' : 'sign-out-alt'}
-              content={direction ? 'In' : 'Out'}
-              selected={direction}
-              onClick={() => act('direction')} />
-          )}>
+            title="Pump"
+            buttons={(
+              <Button
+                icon={direction ? 'sign-in-alt' : 'sign-out-alt'}
+                content={direction ? 'In' : 'Out'}
+                selected={direction}
+                onClick={() => act('direction')} />
+            )}>
           <LabeledList>
             <LabeledList.Item label="Output">
               <NumberInput
