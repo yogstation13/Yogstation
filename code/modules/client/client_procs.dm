@@ -504,6 +504,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//if(credits)
 		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
+	if(obj_window)
+		QDEL_NULL(obj_window)
 	if(holder)
 		adminGreet(1)
 		holder.owner = null

@@ -368,15 +368,13 @@
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.stat_panel.send_message("create_listedturf", T.name)
+		user.set_listed_turf(T)
 
 // Use this instead of /mob/proc/AltClickOn(atom/A) where you only want turf content listing without additional atom alt-click interaction
 /atom/proc/AltClickNoInteract(mob/user, atom/A)
 	var/turf/T = get_turf(A)
 	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.stat_panel.send_message("create_listedturf", T.name)
+		user.set_listed_turf(T)
 
 /mob/proc/TurfAdjacent(turf/T)
 	return T.Adjacent(src)

@@ -146,3 +146,5 @@
 	var/list/active_music = list()
 	var/datum/music/playing_music = null
 	var/mentor_position = null
+	///Our object window datum. It stores info about and handles behavior for the object tab
+	var/datum/object_window_info/obj_window
