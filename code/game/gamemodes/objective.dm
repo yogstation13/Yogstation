@@ -507,7 +507,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		for(var/mob/living/silicon/robot/R in A.connected_robots)
 			if(R.stat != DEAD)
 				counter++
-	return counter >= number of borgs
+	return counter >= number_of_borgs
 
 /datum/objective/escape
 	name = "escape"
