@@ -1,7 +1,7 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
 	flag = MMEDIC
-	orbit_icon = "box-heart"
+	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
