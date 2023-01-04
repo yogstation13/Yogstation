@@ -184,3 +184,11 @@
 	item_state = "axolotl"
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
+
+/obj/item/clothing/accessory/pridebedsheet
+    name = "Pride Bedsheet"
+	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
+	lefthand_file = 'icon/mob/bedsheet_lh.dmi'
+	righthand_file = 'icon/mob/beedsheet_rh.dmi'
+	icon_state = "sheetpride"
+	item_state = "sheetpride"
