@@ -52,7 +52,7 @@ export const Panel = (props, context) => {
                   selected={audio.visible}
                   icon="music"
                   tooltip="Music player"
-                  tooltipPosition="bottom-left"
+                  tooltipPosition="bottom-start"
                   onClick={() => audio.toggle()} />
               </Flex.Item>
               <Flex.Item mx={0.5}>
@@ -62,7 +62,7 @@ export const Panel = (props, context) => {
                   tooltip={settings.visible
                     ? 'Close settings'
                     : 'Open settings'}
-                  tooltipPosition="bottom-left"
+                  tooltipPosition="bottom-start"
                   onClick={() => settings.toggle()} />
               </Flex.Item>
             </Flex>
