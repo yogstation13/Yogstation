@@ -12,7 +12,6 @@ env:
 plugins:
   - radar
   - react
-  - unused-imports
 settings:
   react:
     version: '16.10'
