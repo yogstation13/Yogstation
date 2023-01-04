@@ -30,6 +30,7 @@ export { ProgressBar } from './ProgressBar';
 export { Section } from './Section';
 export { Slider } from './Slider';
 export { Stack } from './Stack';
+export { StyleableSection } from './StyleableSection';
 export { Table } from './Table';
 export { Tabs } from './Tabs';
 export { TextArea } from './TextArea';
