@@ -35,6 +35,8 @@
 
 	var/damage_notify_next = 0
 	var/morphine_next = 0
+	var/morphine_delay = 30 SECONDS
+	var/emag_doses_left = 5
 	var/sound_next = 0
 
 	var/mob/living/carbon/owner
@@ -44,11 +46,17 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDEGLOVES
 
+	var/obj/item/geiger_counter/GC
+
 /obj/item/clothing/suit/armor/nerd/Initialize()
 	. = ..()
-	var/obj/item/geiger_counter/GC = new(src)
+	GC = new(src)
 	GC.scanning = TRUE
 	update_icon()
+
+/obj/item/clothing/suit/armor/nerd/Destroy()
+	QDEL_NULL(GC)
+	. = ..()
 
 /obj/item/clothing/suit/armor/nerd/proc/process_sound_queue()
 
@@ -72,6 +80,7 @@
 /obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
 
 	if(owner)
+		to_chat(owner, span_warning("You need to take off \the [src.name] before emagging it."))
 		return FALSE //Take it off!
 
 	if(emagged == FALSE)
@@ -118,10 +127,15 @@
 
 //Death
 /obj/item/clothing/suit/armor/nerd/proc/handle_death(gibbed)
+
+	SIGNAL_HANDLER
+
 	add_queue('sound/voice/nerdsuit/death.ogg',5 SECONDS,purge_queue=TRUE)
 
 //Mute
 /obj/item/clothing/suit/armor/nerd/proc/handle_speech(datum/source, mob/speech_args)
+
+	SIGNAL_HANDLER
 
 	if(!emagged)
 		var/list/cancel_messages = list(
@@ -136,17 +150,25 @@
 
 //Fire
 /obj/item/clothing/suit/armor/nerd/proc/handle_ignite(mob/living)
+
+	SIGNAL_HANDLER
+
 	SOUND_BEEP_3
 	add_queue('sound/voice/nerdsuit/heat.ogg',3 SECONDS)
 
 //Shock
 /obj/item/clothing/suit/armor/nerd/proc/handle_shock(mob/living)
+
+	SIGNAL_HANDLER
+
 	SOUND_BEEP_3
 	add_queue('sound/voice/nerdsuit/shock.ogg',3 SECONDS)
 
 
 //Wounds
 /obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
 
 	var/found_sound = wound_to_sound[W.type]
 	if(found_sound)
@@ -160,22 +182,28 @@
 
 /obj/item/clothing/suit/armor/nerd/proc/administer_morphine()
 
+	SIGNAL_HANDLER
+
 	if(!owner.reagents)
 		return
 
 	if(morphine_next > world.time)
 		return
 
-	if(emagged)
+	if(emagged && emag_doses_left > 0)
 		owner.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/stimulants.ogg',2 SECONDS)
+		emag_doses_left--
+		if(emag_doses_left <= 0)
+			emag_doses_left = initial(emag_doses_left)
+			to_chat(owner, span_warning("\The [src.name] seems to have run out of stimulants..."))
 	else
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/morphine.ogg',2 SECONDS)
 
-	morphine_next = world.time + 200
+	morphine_next = world.time + morphine_delay
 
 	return TRUE
 
@@ -183,6 +211,8 @@
 
 //General Damage
 /obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
+
+	SIGNAL_HANDLER
 
 	if(damage_notify_next > world.time)
 		return
@@ -198,16 +228,16 @@
 	if(health_percent <= 0.25)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',3 SECONDS)
-		damage_notify_next = world.time + 50
+		damage_notify_next = world.time + 5 SECONDS
 		administer_morphine()
 	else if(health_percent <= 0.50)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',3 SECONDS)
-		damage_notify_next = world.time + 50
+		damage_notify_next = world.time + 5 SECONDS
 	else if(health_percent <= 0.75)
 		SOUND_BEEP_2
 		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',2 SECONDS)
-		damage_notify_next = world.time + 50
+		damage_notify_next = world.time + 5 SECONDS
 
 
 
