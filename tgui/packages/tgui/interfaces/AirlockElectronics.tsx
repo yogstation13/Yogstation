@@ -77,30 +77,6 @@ export const AirLockMainSection = (props, context) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Airlock Name">
-          <Input
-            fluid
-            maxLength={30}
-            value={passedName}
-            onChange={(e, value) =>
-              act('passedName', {
-                passedName: value,
-              })
-            }
-          />
-        </LabeledList.Item>
-        <LabeledList.Item label="Cycling Id">
-          <Input
-            fluid
-            maxLength={30}
-            value={passedCycleId}
-            onChange={(e, value) =>
-              act('passedCycleId', {
-                passedCycleId: value,
-              })
-            }
-          />
-        </LabeledList.Item>
       </LabeledList>
       <AccessConfig
         accesses={regions}
