@@ -81,7 +81,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			)
 
 			if(job_availability != JOB_AVAILABLE)
-				job_data["unavailable_reason"] = "unavailable_reason TODO"//get_job_unavailable_error_message(job_availability, job_datum.title)
+				job_data["unavailable_reason"] = get_job_unavailable_error_message(job_availability, job_datum.title)
 
 			if(job_datum.total_positions < 0)
 				department_data["open_slots"] = "∞"
@@ -144,7 +144,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			if(params["job"] == "Random")
 				var/job = get_random_job(owner)
 				if(!job)
-					alert(owner, "There is no randomly assignable Job at this time. Please manually choose one of the other possible options.")
+					alert(owner, "There is no randomly assignable job at this time. Please manually choose one of the other possible options.")
 					return TRUE
 
 				params["job"] = job
@@ -179,34 +179,30 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 /// Gives the user a random job that they can join as, and prompts them if they'd actually like to keep it, rerolling if not. Cancellable by the user.
 /// WARNING: BLOCKS THREAD!
 /datum/latejoin_menu/proc/get_random_job(mob/dead/new_player/owner)
-	/*var/list/dept_data = list()
-
-	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
-		for(var/datum/job/job_datum as anything in department.department_jobs)
-			if(owner.IsJobUnavailable(job_datum.title, latejoin = TRUE) != JOB_AVAILABLE)
-				continue
-			dept_data += job_datum.title
-
-	if(dept_data.len <= 0) //Congratufuckinglations
-		alert(owner, "There are literally no random jobs available for you on this server, ahelp for assistance.", "Oh No!")
-		return
-*/
-	var/random_job
-
-	while(random_job != JOB_CHOICE_YES)
-		/*if(dept_data.len <= 0)
-			alert(owner, "It seems that there are no more random jobs available for you!", "Oh No!")
-			return*/
-
-		var/random = SSjob.GetRandomJob(owner)
-		var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
-
-		random_job = alert(owner, "[random]?", "Random Job", random_job_options)
-
-		if(random_job == JOB_CHOICE_CANCEL)
+	var/attempts = 0
+	while(TRUE)
+		if (attempts > 10)
+			// Give it a few attempts before giving up
 			return
-		if(random_job == JOB_CHOICE_YES)
-			return random
+
+		var/datum/job/random_job = SSjob.GetRandomJob(owner)
+		if (!random_job)
+			return
+
+		if (owner.IsJobUnavailable(random_job.title, latejoin = TRUE) != JOB_AVAILABLE)
+			attempts++
+			continue
+
+		attempts = 0
+
+		// TODO: tgui_alert
+		//var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
+		var/choice = alert(owner, "Do you want to play as \an [random_job.title]?", "Random Job", JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
+
+		if(choice == JOB_CHOICE_CANCEL)
+			return
+		if(choice == JOB_CHOICE_YES)
+			return random_job
 
 #undef JOB_CHOICE_YES
 #undef JOB_CHOICE_REROLL
