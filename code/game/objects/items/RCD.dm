@@ -296,6 +296,7 @@ RLD
 		"Construction" = list( //Stuff you use to make & decorate areas
 			//Walls & Windows
 			"Structures" = list(
+				list(CONSTRUCTION_MODE = RCD_DECONSTRUCT, ICON = "no", TITLE = "Deconstruct"),
 				list(CONSTRUCTION_MODE = RCD_FLOORWALL, ICON = "wallfloor", TITLE = "Wall/Floor"),
 				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window, WINDOW_GLASS = RCD_WINDOW_NORMAL, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "windowsize", TITLE = "Directional Window"),
 				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/reinforced, WINDOW_GLASS = RCD_WINDOW_REINFORCED, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "windowtype", TITLE = "Directional Reinforced Window"),
@@ -462,6 +463,7 @@ RLD
 	. = ..()
 	airlock_electronics = new(src)
 	airlock_electronics.name = "Access Control"
+	airlock_electronics.holder = src
 	GLOB.rcd_list += src
 
 /obj/item/construction/rcd/Destroy()
