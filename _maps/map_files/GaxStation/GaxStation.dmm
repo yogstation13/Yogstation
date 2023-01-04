@@ -19933,17 +19933,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/lab)
-"jYB" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)";
-	pixel_y = -27
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "jYF" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
@@ -70120,7 +70109,7 @@ lxD
 ixB
 qRD
 hbZ
-jYB
+noh
 uKb
 cdG
 pyH
