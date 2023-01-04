@@ -171,7 +171,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/process()
+/obj/machinery/atmospherics/components/unary/cryo_cell/process(delta_time)
 	..()
 
 	if(state_open)
@@ -236,8 +236,8 @@
 
 	if(air1.total_moles())
 		if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
-			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 2000)
-			mob_occupant.Unconscious((mob_occupant.bodytemperature * unconscious_factor) * 2000)
+			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 1000 * delta_time)
+			mob_occupant.Unconscious((mob_occupant.bodytemperature * unconscious_factor) * 1000 * delta_time)
 		if(beaker)
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
@@ -249,8 +249,9 @@
 				if(occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 100) //prevent cryoxadone overdose
 					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
 					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
-			if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
-				reagent_transfer = 0
+			reagent_transfer += 0.5 * delta_time
+			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).		
+					reagent_transfer = 0
 		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
 			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
 			mob_occupant.adjustToxLoss(-5)
@@ -259,7 +260,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
+/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos(delta_time)
 	..()
 
 	if(!on)
@@ -286,8 +287,8 @@
 
 			var/heat = ((1 - cold_protection) * 0.1 + conduction_coefficient) * temperature_delta * (air_heat_capacity * heat_capacity / (air_heat_capacity + heat_capacity))
 
-			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
-			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
+			air1.set_temperature(max(air1.return_temperature() - heat * delta_time / air_heat_capacity, TCMB))
+			mob_occupant.adjust_bodytemperature(heat * delta_time / heat_capacity, TCMB)
 
 		if(air1.get_moles(/datum/gas/pluoxium) > 5) //use pluoxium over oxygen
 			air1.set_moles(/datum/gas/pluoxium, max(0,air1.get_moles(/datum/gas/pluoxium) - 0.125 / efficiency))
