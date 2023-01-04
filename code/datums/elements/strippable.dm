@@ -472,7 +472,7 @@
 		if (
 			. == UI_UPDATE \
 			&& user.stat == CONSCIOUS \
-			&& living_user.body_position == LYING_DOWN \
+			&& living_user.resting \
 			&& user.Adjacent(owner)
 		)
 			return UI_INTERACTIVE

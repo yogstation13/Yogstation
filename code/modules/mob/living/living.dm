@@ -882,7 +882,15 @@
 			to_chat(src, span_warning("\The [what.name] doesn't fit in that place!"))
 			return
 
-		visible_message(span_notice("[src] tries to put [what] on [who]."))
+		if(istype(what,/obj/item/clothing))
+			var/obj/item/clothing/c = what
+			if(c.clothing_flags & DANGEROUS_OBJECT)
+				who.visible_message("<span class='danger'>[src] tries to put [what] on [who].</span>", \
+							"<span class='userdanger'>[src] tries to put [what] on you.</span>", null, null, src)
+			else 
+				who.visible_message("<span class='notice'>[src] tries to put [what] on [who].</span>", \
+							"<span class='notice'>[src] tries to put [what] on you.</span>", null, null, src)
+
 		if(do_mob(src, who, what.equip_delay_other))
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
