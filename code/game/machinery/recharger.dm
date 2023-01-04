@@ -122,7 +122,7 @@
 		charging.forceMove(drop_location())
 		setCharging(null)
 
-/obj/machinery/recharger/process()
+/obj/machinery/recharger/process(delta_time)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
@@ -130,8 +130,8 @@
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
-				C.give(C.chargerate * recharge_coeff)
-				use_power(250 * recharge_coeff)
+				C.give(C.chargerate * recharge_coeff * delta_time / 2)
+				use_power(125 * recharge_coeff * delta_time)
 			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
@@ -139,7 +139,7 @@
 			if(R.stored_ammo.len < R.max_ammo)
 				for(var/i in 1 to recharge_coeff) //So it actually gives more ammo when upgraded
 					R.stored_ammo += new R.ammo_type(R)
-				use_power(200 * recharge_coeff)
+				use_power(100 * recharge_coeff)
 			update_icon()
 			return
 		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
@@ -147,7 +147,7 @@
 			if(R.stored_ammo.len < R.max_ammo)
 				for(var/i in 1 to recharge_coeff) //See above
 					R.stored_ammo += new R.ammo_type(R)
-				use_power(200 * recharge_coeff)
+				use_power(100 * recharge_coeff)
 			update_icon()
 			return
 	else
