@@ -183,7 +183,7 @@
 /datum/action/innate/aux_base/configure_mode/Activate()
 	if(..())
 		return
-	B.RCD.ui_always_active = TRUE
+	B.RCD.owner = B
 	B.RCD.ui_interact(owner)
 
 datum/action/innate/aux_base/place_fan

@@ -197,7 +197,10 @@ RLD
 
 ///shared action for toggling silo link rcd,rld & plumbing
 /obj/item/construction/ui_act(action, list/params)
-	..()
+	. = ..()
+	if(.)
+		return
+
 	if(action == "toggle_silo")
 		if(silo_mats)
 			if(!silo_mats.mat_container && !silo_link) // Allow them to turn off an invalid link
@@ -373,8 +376,8 @@ RLD
 	var/design_category = "Structures"
 	var/root_category = "Construction"
 	var/closed = FALSE
-	///used by construction_console
-	var/ui_always_active = FALSE
+	///owner of this rcd. It can either be an construction console or an player
+	var/owner
 
 	var/construction_mode = RCD_FLOORWALL
 	var/ranged = FALSE
@@ -466,6 +469,9 @@ RLD
 	GLOB.rcd_list -= src
 	. = ..()
 
+/obj/item/construction/rcd/ui_host(mob/user)
+	return owner || ..()
+
 /obj/item/construction/rcd/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -473,13 +479,6 @@ RLD
 		assets.send(user)
 		ui = new(user, src, "RapidConstructionDevice", name)
 		ui.open()
-
-/**
- * if ui_always_active = TRUE display & update window even if nothing changed, required for construction_console else window wont show up
- * else use parent method to decide the state for normal usage
- */
-/obj/item/construction/rcd/ui_state(mob/user)
-	return ui_always_active ? GLOB.always_state : ..()
 
 /obj/item/construction/rcd/ui_static_data(mob/user)
 	return airlock_electronics.ui_static_data(user)
@@ -490,7 +489,7 @@ RLD
 	)
 
 /obj/item/construction/rcd/ui_data(mob/user)
-	var/list/data = ..(user)
+	var/list/data = ..()
 
 	//main categories
 	data["selected_root"] = root_category
@@ -552,7 +551,7 @@ RLD
 	return data
 
 /obj/item/construction/rcd/ui_act(action, params)
-	..()
+	. = ..()
 	if(.)
 		return
 
@@ -823,7 +822,7 @@ RLD
 		display_options[option] = icon(original_options[option])
 
 /obj/item/construction/rld/attack_self(mob/user)
-	..()
+	. = ..()
 
 	if((upgrade & RCD_UPGRADE_SILO_LINK) && display_options["Silo Link"] == null) //silo upgrade instaled but option was not updated then update it just one
 		display_options["Silo Link"] = icon(icon = 'icons/obj/mining.dmi', icon_state = "silo")
