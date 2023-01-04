@@ -197,12 +197,12 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 		// TODO: tgui_alert
 		//var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
-		var/choice = alert(owner, "Do you want to play as \an [random_job.title]?", "Random Job", JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
+		var/choice = alert(owner, "Do you want to play as \a [random_job.title]?", "Random Job", JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
 
 		if(choice == JOB_CHOICE_CANCEL)
 			return
 		if(choice == JOB_CHOICE_YES)
-			return random_job
+			return random_job.title
 
 #undef JOB_CHOICE_YES
 #undef JOB_CHOICE_REROLL
