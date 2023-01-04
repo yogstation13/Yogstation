@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "Adds positronic brain recalibration surgery (brain surgery for IPCs)"
-  - tweak: "The \"fix brain\" step in brain surgery is now repeatable"
