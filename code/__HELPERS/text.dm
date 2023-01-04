@@ -47,7 +47,7 @@
 
 /proc/sanitize_name(t,list/repl_chars = null)
 	if(t == "space" || t == "floor" || t == "wall" || t == "r-wall" || t == "monkey" || t == "unknown" || t == "inactive ai")
-		alert("Invalid name.")
+		tgui_alert(usr,"Invalid name.")
 		return ""
 	return sanitize(t)
 

@@ -532,7 +532,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			if(flash_range == null)
 				return
 			if(devastation_range > GLOB.MAX_EX_DEVESTATION_RANGE || heavy_impact_range > GLOB.MAX_EX_HEAVY_RANGE || light_impact_range > GLOB.MAX_EX_LIGHT_RANGE || flash_range > GLOB.MAX_EX_FLASH_RANGE)
-				if(alert("Bomb is bigger than the maxcap. Continue?",,"Yes","No") != "Yes")
+				if(tgui_alert(usr, "Bomb is bigger than the maxcap. Continue?",,list("Yes","No")) != "Yes")
 					return
 			epicenter = mob.loc //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
@@ -699,7 +699,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!holder)
 		return
 	
-	if(alert("Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", list("Yes", "No")) == "Yes")
 		mfa_reset(ckey, TRUE)
 
 /client/proc/readmin()
@@ -782,7 +782,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(GLOB.enable_memdump == 0)
 		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
 		return
-	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", list("Yes", "No")) != "Yes")
 		return
 
 	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"

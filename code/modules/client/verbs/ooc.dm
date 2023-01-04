@@ -38,12 +38,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	//yogs start -- smarter ick ock detection
-	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
-	//captures a lot of accidental in character speech in ooc chat
-	if(length(msg) > 4 && ickock.Find(msg))
-	//yogs end
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
+		if(tgui_alert(usr,"Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
@@ -181,6 +177,16 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
 	set category = "Server"
+	if(IsAdminAdvancedProcCall())
+		return
+	if(tgui_alert(usr, "Are you sure you want to reset the OOC color of all players?", "Reset Player OOC Color", list("Yes", "No")) != "Yes")
+		return
+	if(!check_rights(R_FUN))
+		message_admins("[usr.key] has attempted to use the Reset Player OOC Color verb!")
+		log_admin("[key_name(usr)] tried to reset player ooc color without authorization.")
+		return
+	message_admins("[key_name_admin(usr)] has reset the players' ooc color.")
+	log_admin("[key_name_admin(usr)] has reset player ooc color.")
 	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()

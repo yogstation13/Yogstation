@@ -71,22 +71,22 @@
 		ckey = input("Please input a ckey", "Antag Token - Ckey") as text|null
 
 	if(!ckey)
-		alert("Antag Token not applied. No valid CKEY specified")
+		tgui_alert(usr, "Antag Token not applied. No valid CKEY specified")
 		return
 
 	if(has_antag_token(ckey))
-		alert("The user '[ckey]' already has an antag token!")
+		tgui_alert(usr, "The user '[ckey]' already has an antag token!")
 		return
 
 
 	var/roundid = input("Please input the roundID where the incident happened.", "Antag Token - RoundID") as num|null
 	if(!roundid)
-		alert("Antag Token not applied. No valid roundID specified")
+		tgui_alert(usr, "Antag Token not applied. No valid roundID specified")
 		return
 
-	var/reason = input("Please input the reason for this antag token.", "Antag Token - Reason") as text|null
+	var/reason = input(usr, "Please input the reason for this antag token.", "Antag Token - Reason") as text|null
 	if(!reason)
-		alert("Antag Token not applied. No valid reason specified")
+		tgui_alert(usr, "Antag Token not applied. No valid reason specified")
 		return
 
 	var/admin_key = key_name_admin(usr)
@@ -98,7 +98,7 @@
 
 	if(!add_token.warn_execute())
 		qdel(add_token)
-		alert("Failed to give token!")
+		tgui_alert(usr, "Failed to give token!")
 		return
 
 	log_admin_private("[admin_key] has applied an antag token for [ckey] with the reason '[reason]' for round #[roundid]")
@@ -113,11 +113,11 @@
 		return
 	if(!ckey)
 		return
-	if(alert("Are you sure you want to redeem a token?",, "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to redeem a token?",, list("Yes", "No")) != "Yes")
 		return
 
 	if(!has_antag_token(ckey))
-		alert("The user '[ckey]' does not have an antag token!")
+		tgui_alert(usr, "The user '[ckey]' does not have an antag token!")
 		return
 
 	var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT id
@@ -134,7 +134,7 @@
 		SET redeemed = 1, denying_admin = :admin
 		WHERE id = :id"}, list("admin" = ckey(owner.ckey), "id" = id))
 		if(!query_antag_token_redeem.warn_execute())
-			alert("Failed to redeem token!")
+			tgui_alert(usr, "Failed to redeem token!")
 			qdel(query_antag_token_redeem)
 			return
 
@@ -145,7 +145,7 @@
 		log_admin_private("[admin_key] has redeemed an antag token for [ckey]")
 		message_admins("[admin_key] has redeemed an antag token for [ckey]")
 	else
-		alert("Failed to redeem token!")
+		tgui_alert(usr, "Failed to redeem token!")
 	qdel(query_antag_token)
 
 
@@ -170,7 +170,7 @@
 		return
 	if(!id)
 		return
-	if(alert("Are you sure you want to redeem this token?",, "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to redeem this token?",, list("Yes", "No")) != "Yes")
 		return
 
 	var/number_id = text2num(id)
@@ -179,7 +179,7 @@
 	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = :id"}, list("id" = number_id))
 	if(!query_antag_token_exists.warn_execute())
 		qdel(query_antag_token_exists)
-		alert("Token not redeemed!")
+		tgui_alert(usr, "Token not redeemed!")
 		return
 
 	if(query_antag_token_exists.NextRow())
@@ -187,7 +187,7 @@
 
 	if(!ckey)
 		qdel(query_antag_token_exists)
-		alert("Token not redeemed!")
+		tgui_alert(usr, "Token not redeemed!")
 		return
 
 	qdel(query_antag_token_exists)
@@ -196,7 +196,7 @@
 
 	if(!query_antag_token_deny.warn_execute())
 		qdel(query_antag_token_deny)
-		alert("Token not redeemed!")
+		tgui_alert(usr, "Token not redeemed!")
 		return
 
 	antag_token_panel(ckey)
@@ -216,7 +216,7 @@
 	if(!id)
 		return
 
-	if(alert("Are you sure you want to deny this token?",, "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to deny this token?",, list("Yes", "No")) != "Yes")
 		return
 
 	var/reason = input("Please input a reason", "Denial Reason") as text|null
@@ -228,14 +228,14 @@
 	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = :id"}, list("id" = number_id))
 	if(!query_antag_token_exists.warn_execute())
 		qdel(query_antag_token_exists)
-		alert("Token not redeemed!")
+		tgui_alert(usr, "Token not redeemed!")
 		return
 	if(query_antag_token_exists.NextRow())
 		ckey = query_antag_token_exists.item[1]
 
 	if(!ckey)
 		qdel(query_antag_token_exists)
-		alert("Token not redeemed!")
+		tgui_alert(usr, "Token not redeemed!")
 		return
 
 	qdel(query_antag_token_exists)
