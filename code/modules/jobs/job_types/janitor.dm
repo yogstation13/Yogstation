@@ -1,5 +1,6 @@
 /datum/job/janitor
 	title = "Janitor"
+	description = "Clean up trash and blood, replace broken lights and slip people over."
 	flag = JANITOR
 	orbit_icon = "broom"
 	department_head = list("Head of Personnel")

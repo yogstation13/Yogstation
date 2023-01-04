@@ -169,32 +169,6 @@
 	if(href_list["manifest"])
 		ViewManifest()
 
-	if(href_list["SelectedJob"])
-
-		if(!SSticker || !SSticker.IsRoundInProgress())
-			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
-			return
-
-		if(!GLOB.enter_allowed)
-			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
-			return
-
-		if(SSticker.queued_players.len && !(ckey(key) in GLOB.permissions.admin_datums))
-			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
-				to_chat(usr, span_warning("Server is full."))
-				return
-
-		// Check if random role is requested
-		if(href_list["SelectedJob"] == "Random")
-			var/datum/job/job = SSjob.GetRandomJob(src)
-			if(!job)
-				to_chat(usr, span_warning("There is no randomly assignable Job at this time. Please manually choose one of the other possible options."))
-				return
-			href_list["SelectedJob"] = job.title
-
-		AttemptLateSpawn(href_list["SelectedJob"])
-		return
-
 	else if(!href_list["late_join"])
 		new_player_panel()
 

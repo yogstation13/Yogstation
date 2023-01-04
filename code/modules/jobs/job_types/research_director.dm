@@ -1,5 +1,8 @@
 /datum/job/rd
 	title = "Research Director"
+	description = "Supervise research efforts, ensure Robotics is in working \
+		order, make sure the AI and its Cyborgs aren't rogue, replacing them if \
+		they are"
 	flag = RD_JF
 	orbit_icon = "user-graduate"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD

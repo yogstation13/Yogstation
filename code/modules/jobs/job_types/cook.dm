@@ -1,5 +1,6 @@
 /datum/job/cook
 	title = "Cook"
+	description = "Serve food, cook meat, keep the crew fed."
 	flag = COOK
 	orbit_icon = "utensils"
 	department_head = list("Head of Personnel")

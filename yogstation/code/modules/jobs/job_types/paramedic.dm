@@ -1,5 +1,6 @@
 /datum/job/paramedic
 	title = "Paramedic"
+	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
 	flag = PARAMEDIC
 	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")

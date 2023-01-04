@@ -1,5 +1,6 @@
 /datum/job/clown
 	title = "Clown"
+	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
 	flag = CLOWN
 	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")

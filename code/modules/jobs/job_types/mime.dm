@@ -1,5 +1,6 @@
 /datum/job/mime
 	title = "Mime"
+	description = "..."
 	flag = MIME
 	orbit_icon = "comment-slash"
 	department_head = list("Head of Personnel")

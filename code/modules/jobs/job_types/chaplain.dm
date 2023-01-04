@@ -1,5 +1,7 @@
 /datum/job/chaplain
 	title = "Chaplain"
+	description = "Hold services and funerals, cremate people, preach your \
+		religion, protect the crew against cults."
 	flag = CHAPLAIN
 	orbit_icon = "cross"
 	department_head = list("Head of Personnel")

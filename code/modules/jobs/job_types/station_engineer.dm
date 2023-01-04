@@ -1,5 +1,7 @@
 /datum/job/engineer
 	title = "Station Engineer"
+	description = "Start the Supermatter, wire the solars, repair station hull \
+		and wiring damage."
 	flag = ENGINEER
 	orbit_icon = "gears"
 	department_head = list("Chief Engineer")

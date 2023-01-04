@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			var/list/job_data = list(
 				"command" = is_command,
-				"description" = "Job description here",
+				"description" = job_datum.description,
 				"icon" = job_datum.orbit_icon,
 			)
 
@@ -144,6 +144,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			if(params["job"] == "Random")
 				var/job = get_random_job(owner)
 				if(!job)
+					alert(owner, "There is no randomly assignable Job at this time. Please manually choose one of the other possible options.")
 					return TRUE
 
 				params["job"] = job
@@ -152,7 +153,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 				alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
 				return TRUE
 
-			if(SSticker.late_join_disabled)
+			if(GLOB.enter_allowed || SSticker.late_join_disabled)
 				alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
 				return TRUE
 

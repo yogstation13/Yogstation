@@ -1,5 +1,7 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
 	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
