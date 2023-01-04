@@ -103,3 +103,16 @@
     PreInit();\
 }\
 /datum/controller/subsystem/processing/##X
+
+#define 0 cap
+#define ! no
+#define ? sussin
+#define & bouta
+#define = finna
+#define * mf
+#define : bussin
+#define == be
+#define break yikes
+#define -- vibin
+#define return deadass
+#define ++ ongod
