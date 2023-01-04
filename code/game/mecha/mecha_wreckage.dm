@@ -230,5 +230,5 @@
 
 /obj/structure/mecha_wreckage/sidewinder
 	name = "\improper Sidewinder wreckage"
-	icon_state = "sidewinder-broken"
+	icon_state = "gygax-broken"		//Replace this pls
 	orig_mecha = /obj/mecha/combat/sidewinder
