@@ -185,10 +185,10 @@
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
 
-/obj/item/clothing/accessory/pridebedsheet
-    name = "Pride Bedsheet"
+/obj/item/clothing/accessory/pridebedsheet 
+	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
-	lefthand_file = 'icon/mob/bedsheet_lh.dmi'
-	righthand_file = 'icon/mob/beedsheet_rh.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
