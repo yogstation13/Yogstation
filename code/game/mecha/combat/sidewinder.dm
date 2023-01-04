@@ -10,7 +10,7 @@
 	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
 	max_temperature = 25000
 	infra_luminosity = 6
-	wreckage = /obj/structure/mecha_wreckage/gygax
+	wreckage = /obj/structure/mecha_wreckage/sidewinder
 	internal_damage_threshold = 25	//Reinforced internal components
 	max_equip = 3
 	step_energy_drain = 3
