@@ -1,6 +1,7 @@
 /datum/job/ai
 	title = "AI"
 	flag = AI_JF
+	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	department_flag = ENGSEC
 	faction = "Station"

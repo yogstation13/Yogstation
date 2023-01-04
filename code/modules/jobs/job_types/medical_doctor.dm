@@ -1,6 +1,7 @@
 /datum/job/doctor
 	title = "Medical Doctor"
 	flag = DOCTOR
+	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

@@ -1,6 +1,7 @@
 /datum/job/psych
 	title = "Psychiatrist"
 	flag = PSYCH
+	orbit_icon = "brain"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

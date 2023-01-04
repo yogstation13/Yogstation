@@ -1,6 +1,7 @@
 /datum/job/chaplain
 	title = "Chaplain"
 	flag = CHAPLAIN
+	orbit_icon = "cross"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

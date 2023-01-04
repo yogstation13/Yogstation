@@ -1,6 +1,7 @@
 /datum/job/artist
 	title = "Artist"
 	flag = ARTIST
+	orbit_icon = "paintbrush"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

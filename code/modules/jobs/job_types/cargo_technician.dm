@@ -1,6 +1,7 @@
 /datum/job/cargo_tech
 	title = "Cargo Technician"
 	flag = CARGOTECH
+	orbit_icon = "box"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

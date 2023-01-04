@@ -1,6 +1,7 @@
 /datum/job/janitor
 	title = "Janitor"
 	flag = JANITOR
+	orbit_icon = "broom"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

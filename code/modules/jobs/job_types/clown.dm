@@ -1,6 +1,7 @@
 /datum/job/clown
 	title = "Clown"
 	flag = CLOWN
+	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

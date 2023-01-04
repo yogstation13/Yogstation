@@ -1,6 +1,7 @@
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
+	orbit_icon = "crown"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
 	department_flag = ENGSEC

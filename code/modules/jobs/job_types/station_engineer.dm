@@ -1,6 +1,7 @@
 /datum/job/engineer
 	title = "Station Engineer"
 	flag = ENGINEER
+	orbit_icon = "gears"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"

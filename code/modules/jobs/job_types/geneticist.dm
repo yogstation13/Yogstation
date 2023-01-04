@@ -1,6 +1,7 @@
 /datum/job/geneticist
 	title = "Geneticist"
 	flag = GENETICIST
+	orbit_icon = "dna"
 	department_head = list("Chief Medical Officer", "Research Director")
 	department_flag = MEDSCI
 	faction = "Station"

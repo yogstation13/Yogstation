@@ -1,6 +1,7 @@
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = HOP
+	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = CIVILIAN

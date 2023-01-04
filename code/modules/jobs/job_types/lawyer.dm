@@ -1,6 +1,7 @@
 /datum/job/lawyer
 	title = "Lawyer"
 	flag = LAWYER
+	orbit_icon = "gavel"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

@@ -1,6 +1,7 @@
 /datum/job/curator
 	title = "Curator"
 	flag = CURATOR
+	orbit_icon = "book"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

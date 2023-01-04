@@ -1,6 +1,7 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
 	flag = BRIGPHYS
+	orbit_icon = "suitcase-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

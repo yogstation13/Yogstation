@@ -3737,7 +3737,6 @@
 #include "yogstation\code\modules\jobs\job_types\network_admin.dm"
 #include "yogstation\code\modules\jobs\job_types\paramedic.dm"
 #include "yogstation\code\modules\jobs\job_types\psychiatrist.dm"
-#include "yogstation\code\modules\jobs\job_types\space_bartender.dm"
 #include "yogstation\code\modules\jobs\job_types\tourist.dm"
 #include "yogstation\code\modules\keybindings\bindings_admin.dm"
 #include "yogstation\code\modules\keybindings\bindings_atom.dm"

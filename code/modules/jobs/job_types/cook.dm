@@ -1,6 +1,7 @@
 /datum/job/cook
 	title = "Cook"
 	flag = COOK
+	orbit_icon = "utensils"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

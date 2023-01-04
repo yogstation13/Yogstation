@@ -1,6 +1,7 @@
 /datum/job/chemist
 	title = "Chemist"
 	flag = CHEMIST
+	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

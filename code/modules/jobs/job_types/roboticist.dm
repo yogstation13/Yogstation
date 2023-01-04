@@ -1,6 +1,7 @@
 /datum/job/roboticist
 	title = "Roboticist"
 	flag = ROBOTICIST
+	orbit_icon = "battery-half"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"

@@ -1,6 +1,7 @@
 /datum/job/virologist
 	title = "Virologist"
 	flag = VIROLOGIST
+	orbit_icon = "virus"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

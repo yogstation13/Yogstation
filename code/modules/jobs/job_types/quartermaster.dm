@@ -1,6 +1,7 @@
 /datum/job/qm
 	title = "Quartermaster"
 	flag = QUARTERMASTER
+	orbit_icon = "sack-dollar"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

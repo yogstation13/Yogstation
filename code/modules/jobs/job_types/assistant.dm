@@ -4,6 +4,7 @@ Assistant
 /datum/job/assistant
 	title = "Assistant"
 	flag = ASSISTANT
+	orbit_icon = "toolbox"
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 5

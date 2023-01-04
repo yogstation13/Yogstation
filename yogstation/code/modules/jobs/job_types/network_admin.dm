@@ -1,6 +1,7 @@
 /datum/job/network_admin
 	title = "Network Admin"
 	flag = NETWORKADMIN
+	orbit_icon = "satellite-dish"
 	department_head = list("Chief Engineer", "Research Director")
 	department_flag = ENGSEC
 	faction = "Station"

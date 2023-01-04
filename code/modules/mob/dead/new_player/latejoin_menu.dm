@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			var/list/job_data = list(
 				"command" = is_command,
 				"description" = "Job description here",
-				"icon" = "",
+				"icon" = job_datum.orbit_icon,
 			)
 
 			department_jobs[job_datum.title] = job_data

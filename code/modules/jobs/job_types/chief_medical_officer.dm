@@ -1,6 +1,7 @@
 /datum/job/cmo
 	title = "Chief Medical Officer"
 	flag = CMO_JF
+	orbit_icon = "user-md"
 	department_head = list("Captain")
 	department_flag = MEDSCI
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD

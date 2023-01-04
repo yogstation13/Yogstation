@@ -1,6 +1,7 @@
 /datum/job/paramedic
 	title = "Paramedic"
 	flag = PARAMEDIC
+	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
