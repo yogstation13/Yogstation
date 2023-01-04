@@ -164,7 +164,10 @@
 				SSticker.queued_players += usr
 				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 			return
-		GLOB.latejoin_menu.ui_interact(src)
+
+		// TODO: Fallback menu
+		GLOB.latejoin_menu.ui_interact(usr)
+
 
 	if(href_list["manifest"])
 		ViewManifest()

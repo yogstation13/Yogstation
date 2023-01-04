@@ -153,7 +153,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 				alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
 				return TRUE
 
-			if(GLOB.enter_allowed || SSticker.late_join_disabled)
+			if(!GLOB.enter_allowed || SSticker.late_join_disabled)
 				alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
 				return TRUE
 

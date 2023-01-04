@@ -68,7 +68,7 @@ export const JobEntry: SFC<{
         (job.prioritized ? (
           <>
             <p style={{ 'margin-top': '0px' }}>
-              <b>The HoP wants more people in this job!</b>
+              <b>The station is looking for more personnel to fill this position!</b>
             </p>
             {job.description}
           </>
