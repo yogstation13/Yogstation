@@ -135,7 +135,7 @@
 					message_admins("[key_name_admin(usr)] tried to create a wizard. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a wizard.")
 			if("nukeops")
-				if(alert(usr, "Create a nuke team?", "Confirm", "Yes", "No") != "Yes")
+				if(tgui_alert(usr, "Create a nuke team?", "Confirm", list("Yes", "No")) != "Yes")
 					return
 				message_admins("[key_name(usr)] is creating a nuke team...")
 				if(src.makeNukeTeam())
@@ -236,7 +236,7 @@
 			var/datum/round_event/event = E.runEvent()
 			if(event.announceWhen>0)
 				event.processing = FALSE
-				var/prompt = alert(usr, "Would you like to alert the crew?", "Alert", "Yes", "No", "Cancel")
+				var/prompt = tgui_alert(usr, "Would you like to alert the crew?", "Alert", list("Yes", "No", "Cancel"))
 				switch(prompt)
 					if("Cancel")
 						event.kill()
@@ -266,9 +266,9 @@
 		if(!check_rights(R_ADMIN))
 			return
 		if(SSticker && SSticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
+			return tgui_alert(usr, "The game has already started.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode.", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode.", null, null, null, null)
 		var/roundstart_rules = list()
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
 			var/datum/dynamic_ruleset/roundstart/newrule = new rule()
@@ -302,9 +302,9 @@
 			return
 
 		if(SSticker && SSticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
+			return tgui_alert(usr, "The game has already started.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 
 		dynamic_mode_options(usr)
 
@@ -313,7 +313,7 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 
 		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
 		log_admin("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
@@ -325,7 +325,7 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 
 		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
 		log_admin("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
@@ -337,7 +337,7 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 
 		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
 		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
@@ -349,14 +349,14 @@
 			return
 
 		if(SSticker && SSticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
+			return tgui_alert(usr, "The game has already started.", null, null, null, null)
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return tgui_alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 
 		var/new_value = input(usr, "Enter the forced threat level for dynamic mode.", "Forced threat level") as num
 		if (new_value > 100)
-			return alert(usr, "The value must be be under 100.", null, null, null, null)
+			return tgui_alert(usr, "The value must be be under 100.", null, null, null, null)
 		GLOB.dynamic_forced_threat_level = new_value
 
 		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
@@ -489,8 +489,8 @@
 			return
 
 		message_admins(span_adminnotice("[key_name_admin(usr)] is considering ending the round."))
-		if(alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", "Yes", "No") == "Yes")
-			if(alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", "Yes", "No") == "Yes")
+		if(tgui_alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", list("Yes", "No")) == "Yes")
+			if(tgui_alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", list("Yes", "No")) == "Yes")
 				message_admins(span_adminnotice("[key_name_admin(usr)] has ended the round."))
 				SSticker.force_ending = 1 //Yeah there we go APC destroyed mission accomplished
 				return
@@ -509,7 +509,7 @@
 			return
 
 		var/delmob = FALSE
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
+		switch(tgui_alert("Delete old mob?","Message",list("Yes","No","Cancel")))
 			if("Cancel")
 				return
 			if("Yes")
@@ -580,7 +580,7 @@
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, span_danger("Error: They have more rights than you do."), confidential=TRUE)
 				return
-			if(alert(usr, "Kick [key_name(M)]?", "Confirm", "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Kick [key_name(M)]?", "Confirm", list("Yes", "No")) != "Yes")
 				return
 			if(!M)
 				to_chat(usr, span_danger("Error: [M] no longer exists!"), confidential=TRUE)
@@ -634,7 +634,7 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = alert("Delete message/note?",,"Yes","No");
+		var/safety = tgui_alert(usr, "Delete message/note?",,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
