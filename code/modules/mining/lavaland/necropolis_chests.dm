@@ -1905,9 +1905,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(NOBLOOD in H.dna.species.species_traits)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage
-		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
+		to_chat(H, span_notice("Your head pounds as you produce bloodlings!"))
 	else
-		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
+		to_chat(H, span_notice("You spill your blood, and it comes to life as bloodlings!"))
 		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
