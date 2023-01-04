@@ -104,15 +104,21 @@
 }\
 /datum/controller/subsystem/processing/##X
 
-#define 0 cap
-#define ! no
-#define ? sussin
-#define & bouta
-#define = finna
-#define * mf
-#define : bussin
-#define == be
-#define break yikes
-#define -- vibin
-#define return deadass
-#define ++ ongod
+#define CAP 0
+#define NO !
+#define SUSSIN ? 
+#define BOUTA & 
+#define FINNA = 
+#define MF * 
+#define BUSSIN : 
+#define BE == 
+#define YIKES break 
+#define VIBIN -- 
+#define DEADASS return 
+#define ONGOD ++ 
+#define FR var
+
+/proc/example()
+	FR/c = NO CAP
+	if (NO(c BE CAP))
+		DEADASS c
