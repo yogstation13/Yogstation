@@ -186,11 +186,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/toy/plush/axolotlplushie
 
 /datum/donator_gear/cark
-    name = "Pride Bedsheet"
+	name = "Pride Bedsheet"
 	ckey = "cark"
 	unlock_path = /obj/item/clothing/accessory/pridebedsheet
 	
-///Generic donator hats, ckey agnostic.
+	///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
 	unlock_path = /obj/item/clothing/head/yogs/beanie
