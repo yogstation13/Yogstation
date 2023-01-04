@@ -201,7 +201,7 @@
 //Yogstation change start: Glowie now causes gradual eye damage.
 	synchronizer_coeff = 1
 	var/list/eye_damage_messages = list(
-		"Your eyes water from the light coming from your skin..."
+		"Your eyes water from the light coming from your skin...",
 		"The inside of your eyelids grow bright when you blink...",
 		"You squint as the light from your eyelids glow brightly.."
 	)
