@@ -495,7 +495,6 @@
 		"defaultReleasePressure" = round(CAN_DEFAULT_RELEASE_PRESSURE),
 		"minReleasePressure" = round(can_min_release_pressure),
 		"maxReleasePressure" = round(can_max_release_pressure),
-		"pressureLimit" = round(pressure_limit),
 		"holdingTankLeakPressure" = round(TANK_LEAK_PRESSURE),
 		"holdingTankFragPressure" = round(TANK_FRAGMENT_PRESSURE)
 	)
