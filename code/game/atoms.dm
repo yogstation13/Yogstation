@@ -363,6 +363,9 @@
 	else
 		return null
 
+/atom/proc/return_analyzable_air()
+	return null
+
 ///Return the air if we can analyze it
 ///Check if this atoms eye is still alive (probably)
 /atom/proc/check_eye(mob/user)

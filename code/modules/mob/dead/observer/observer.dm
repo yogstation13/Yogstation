@@ -65,7 +65,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	add_verb(src, list(
 		/mob/dead/observer/proc/dead_tele,
 		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/view_gas,
 		/mob/dead/observer/proc/tray_view,
 		/mob/dead/observer/proc/possess_mouse_verb))
 
@@ -424,14 +423,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	usr.forceMove(pick(L))
 	update_parallax_contents()
 
-/mob/dead/observer/proc/view_gas()
-	set category = "Ghost"
-	set name = "View Gases"
-	set desc= "View the atmospheric conditions in a location"
-
-	var/turf/loc = get_turf(src)
-	show_air_status_to(loc, usr)
-
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
 	set name = "Orbit" // "Haunt"
@@ -767,6 +758,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	scanmode ^= SCAN_WOUND
 	to_chat(src, span_notice("Wound scan [scanmode & SCAN_WOUND ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_gas_scan()
+	set name = "Toggle Gas Scan"
+	set desc = "Toggles whether you analyze gas contents on click"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_GAS
+	to_chat(src, span_notice("Gas scan [scanmode & SCAN_GAS ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
