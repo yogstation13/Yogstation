@@ -339,11 +339,12 @@
 		var/text = get_analyzer_text()
 		if(text)
 			to_chat(user, span_notice("[text]"))
+
 		return
 
-	if(istype(O, /obj/item/pen))
-		var/choice = tgui_input_list(usr, "What would you like to change?",, list("Plant Name", "Seed Description", "Product Description", "Cancel"))
-		if(!user.canUseTopic(src, BE_CLOSE))
+	if (istype(O, /obj/item/pen))
+		var/penchoice = input(user, "What would you like to edit?") as null|anything in list("Plant Name","Plant Description","Seed Description")
+		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 
 		if(penchoice == "Plant Name")

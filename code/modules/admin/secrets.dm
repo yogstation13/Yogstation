@@ -334,7 +334,7 @@
 			if(!check_rights_for(rights, R_FUN))
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_mob_user, "The game hasn't started yet!")
+				tgui_alert(mob_user, "The game hasn't started yet!")
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("IAA All"))
 			for(var/mob/living/H in GLOB.player_list)

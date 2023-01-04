@@ -57,13 +57,6 @@
 			// if there's an analogous proc for this on tg lmk
 			// empty_region(block(get_turf(cornerA),get_turf(cornerB)))
 		else
-			var/selection_size = abs(cornerA.x - cornerB.x) * abs(cornerA.y - cornerB.y)
-
-			if(selection_size > FILL_WARNING_MIN) // Confirm fill if the number of tiles in the selection is greater than FILL_WARNING_MIN
-				var/choice = tgui_alert(usr,"Your selected area is [selection_size] tiles! Continue?", "Large Fill Confirmation", list("Yes", "No"))
-				if(choice != "Yes")
-					return
-
 			for(var/turf/T in block(get_turf(cornerA),get_turf(cornerB)))
 				if(ispath(objholder,/turf))
 					T.PlaceOnTop(objholder)

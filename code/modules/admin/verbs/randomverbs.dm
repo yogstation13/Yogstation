@@ -402,8 +402,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(tgui_alert(usr,"This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
-				var/mob/living/carbon/human/species/monkey/new_monkey = new
+			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
+				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
@@ -849,13 +849,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = tgui_alert(usr, "You sure?", "Confirm", list("Yes", "Yes (No Recall)", "No"))
-	switch(confirm)
-		if(null, "No")
-			return
-		if("Yes (No Recall)")
-			SSshuttle.adminEmergencyNoRecall = TRUE
-			SSshuttle.emergency.mode = SHUTTLE_IDLE
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
+	if(confirm != "Yes")
+		return
 
 	SSshuttle.emergency.request()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -880,55 +876,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins(span_adminnotice("[key_name_admin(usr)] admin-recalled the emergency shuttle."))
 
 	return
-
-/client/proc/admin_disable_shuttle()
-	set category = "Admin.Events"
-	set name = "Disable Shuttle"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
-		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>")
-		return
-
-	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
-		return
-
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] disabled the shuttle.</span>")
-
-	SSshuttle.lastMode = SSshuttle.emergency.mode
-	SSshuttle.lastCallTime = SSshuttle.emergency.timeLeft(1)
-	SSshuttle.adminEmergencyNoRecall = TRUE
-	SSshuttle.emergency.setTimer(0)
-	SSshuttle.emergency.mode = SHUTTLE_DISABLED
-	priority_announce("Warning: Emergency Shuttle uplink failure, shuttle disabled until further notice.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
-
-/client/proc/admin_enable_shuttle()
-	set category = "Admin.Events"
-	set name = "Enable Shuttle"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
-		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>")
-		return
-
-	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
-		return
-
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] enabled the emergency shuttle.</span>")
-	SSshuttle.adminEmergencyNoRecall = FALSE
-	SSshuttle.emergencyNoRecall = FALSE
-	if(SSshuttle.lastMode == SHUTTLE_DISABLED) //If everything goes to shit, fix it.
-		SSshuttle.lastMode = SHUTTLE_IDLE
-
-	SSshuttle.emergency.mode = SSshuttle.lastMode
-	if(SSshuttle.lastCallTime < 10 SECONDS && SSshuttle.lastMode != SHUTTLE_IDLE)
-		SSshuttle.lastCallTime = 10 SECONDS //Make sure no insta departures.
-	SSshuttle.emergency.setTimer(SSshuttle.lastCallTime)
-	priority_announce("Warning: Emergency Shuttle uplink reestablished, shuttle enabled.", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
 
 /client/proc/everyone_random()
 	set category = "Admin.Round Interaction"

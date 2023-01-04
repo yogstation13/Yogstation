@@ -157,7 +157,9 @@
 				radio.attack_self(src)
 
 			if("image") // Set pAI card display face
-				var/newImage = tgui_input_list(usr, "Select your new display image.", "Display Image", sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses")))
+				var/newImage = input("Select your new display image.", "Display Image", "Happy") in list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What")
+				var/pID = 1
+
 				switch(newImage)
 					if("Happy")
 						pID = 1

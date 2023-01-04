@@ -487,36 +487,27 @@
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
-		if(tgui_alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", list("Yes", "No")) != "Yes")
-			return FALSE
-
-	var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
-	if(result)
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
-		switch(result)
-			if("Regular Restart")
-				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
-					if(tgui_alert(usr, "Are you sure you want to restart the server?","This server is live",list("Restart","Cancel")) != "Restart")
-						return FALSE
-				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
-			if("Regular Restart (with delay)")
-				var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
-				if(!delay)
-					return FALSE
-				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
-					if(tgui_alert(usr,"Are you sure you want to restart the server?","This server is live",list("Restart","Cancel")) != "Restart")
-						return FALSE
-				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
-			if("Hard Restart (No Delay, No Feeback Reason)")
-				to_chat(world, "World reboot - [init_by]")
-				world.Reboot()
-			if("Hardest Restart (No actions, just reboot)")
-				to_chat(world, "Hard world reboot - [init_by]")
-				world.Reboot(fast_track = TRUE)
-			if("Server Restart (Kill and restart DD)")
-				to_chat(world, "Server restart - [init_by]")
-				world.TgsEndProcess()
+		if(alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") == "Yes")
+			rebootconfirm = TRUE
+	else
+		rebootconfirm = TRUE
+	if(rebootconfirm)
+		var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+		if(result)
+			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
+			switch(result)
+				if("Regular Restart")
+					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10 SECONDS, check_rights(R_SERVER, FALSE)) // Force if they have +SERVER
+				if("Hard Restart (No Delay, No Feeback Reason)")
+					to_chat(world, "World reboot - [init_by]")
+					world.Reboot()
+				if("Hardest Restart (No actions, just reboot)")
+					to_chat(world, "Hard world reboot - [init_by]")
+					world.Reboot(fast_track = TRUE)
+				if("Server Restart (Kill and restart DD)")
+					to_chat(world, "Server restart - [init_by]")
+					world.TgsEndProcess()
 
 /datum/admins/proc/end_round()
 	set category = "Server"
@@ -710,7 +701,7 @@
 		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]")
 		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
-		tgui_alert(usr,"[M.name] is not prisoned.")
+		tgui_alert(usr, "[M.name] is not prisoned.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS

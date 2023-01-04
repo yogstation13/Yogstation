@@ -14,16 +14,7 @@
 		return
 
 	var/list/preview = list()
-	var/center
-	var/centeralert = tgui_alert(usr,"Center Template.","Template Centering",list("Yes","No"))
-	switch(centeralert)
-		if("Yes")
-			center = TRUE
-		if("No")
-			center = FALSE
-		else
-			return
-	for(var/S in template.get_affected_turfs(T,centered = center))
+	for(var/S in template.get_affected_turfs(T,centered = TRUE))
 		var/image/item = image('icons/turf/overlays.dmi',S,"greenOverlay")
 		item.plane = ABOVE_LIGHTING_PLANE
 		preview += item
@@ -31,15 +22,10 @@
 	if(alert(src,"Confirm location.","Template Confirm","Yes","No") == "Yes")
 		if(template.load(T, centered = TRUE))
 			message_admins(span_adminnotice("[key_name_admin(src)] has placed a map template ([template.name]) at [ADMIN_COORDJMP(T)]"))
-				for(var/obj/docking_port/mobile/P in AT)
-					if(istype(P, /obj/docking_port/mobile))
-						template.post_load(P)
-						break
-
-			message_admins("<span class='adminnotice'>[key_name_admin(src)] has placed a map template ([template.name]) at [ADMIN_COORDJMP(T)]</span>")
 		else
 			to_chat(src, "Failed to place map", confidential=TRUE)
 	images -= preview
+
 /client/proc/map_template_upload()
 	set category = "Misc.Server Debug"
 	set name = "Map Template - Upload"

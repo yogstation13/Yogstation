@@ -912,12 +912,12 @@
 	self_sustaining = !self_sustaining
 	idle_power_usage = self_sustaining ? 5000 : 0
 	to_chat(user, "<span class='notice'>You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""].")
-	update_appearance()
+	update_icon()
 
 /obj/machinery/hydroponics/AltClick(mob/user)
 	. = ..()
 	if(!anchored)
-		update_appearance()
+		update_icon()
 		return FALSE
 	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
 	if(warning == "Yes" && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))

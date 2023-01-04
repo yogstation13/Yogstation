@@ -69,11 +69,10 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 			. += "<b>Keyword:</b> [keyword]"
 
 /obj/effect/rune/attackby(obj/I, mob/user, params)
-	if(istype(I, /obj/item/melee/cultblade/dagger) && IS_CULTIST(user))
-		if(log_when_erased)
-			var/confirm = tgui_alert(user, "Erasing this [cultist_name] rune might be against your goal to summon Nar'Sie.", "Begin to erase the [cultist_name] rune?", list("Proceed", "Abort"))
-			if(confirm != "Proceed")
-				return
+	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
+		var/confirm = tgui_alert(user, "Erasing this [cultist_name] rune might be against your goal to summon Nar'Sie.", "Begin to erase the [cultist_name] rune?", list("Proceed", "Abort"))
+		if(confirm != "Proceed")
+			return
 		if(!user.is_holding_item_of_type(/obj/item/melee/cultblade/dagger) || !Adjacent(user) || user.incapacitated() || user.stat == DEAD) //Gee, good thing we made sure cultists can't input stall to grief their team and get banned anyway
 			return
 		SEND_SOUND(user,'sound/items/sheath.ogg')
