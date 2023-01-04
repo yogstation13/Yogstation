@@ -123,6 +123,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_ntsl_log = "[GLOB.log_directory]/ntsl.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.signals_log = "[GLOB.log_directory]/signals.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
