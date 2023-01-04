@@ -1,29 +1,33 @@
+import { BooleanLike } from 'common/react';
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from '../components';
+import { Button, Input, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-import { AccessList } from './common/AccessList';
+import { AccessConfig } from './common/AccessConfig';
+
+type Data = {
+  oneAccess: BooleanLike;
+  unres_direction: number;
+  passedName: string;
+  passedCycleId: number;
+  regions: string[];
+  accesses: string[];
+  shell: BooleanLike;
+};
 
 export const AirLockMainSection = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
   const {
+    accesses = [],
     oneAccess,
+    passedName,
+    passedCycleId,
+    regions = [],
     unres_direction,
   } = data;
-  const regions = data.regions || [];
-  const accesses = data.accesses || [];
+
   return (
     <Section title="Main">
       <LabeledList>
-        <LabeledList.Item label="Integrated Circuit Shell">
-          <Button.Checkbox
-            content="Shell"
-            checked={shell}
-            onClick={() => {
-              act('set_shell', { on: !shell });
-            }}
-            tooltip="Whether this airlock can have an integrated circuit placed inside of it or not."
-          />
-        </LabeledList.Item>
         <LabeledList.Item label="Access Required">
           <Button
             icon={oneAccess ? 'unlock' : 'lock'}
@@ -127,7 +131,7 @@ export const AirlockElectronics = (props, context) => {
   return (
     <Window width={420} height={485}>
       <Window.Content>
-      <AirLockMainSection />
+        <AirLockMainSection />
       </Window.Content>
     </Window>
   );

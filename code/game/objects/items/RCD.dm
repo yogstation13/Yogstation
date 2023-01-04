@@ -327,7 +327,7 @@ RLD
 			),
 
 			//Glass Airlocks[airlock_glass = TRUE is implied,do fill_closed overlay]
-			"Glass AirLocks" = list(
+			"Glass Airlocks" = list(
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock/glass, TITLE = "Standard", CATEGORY_ICON_STATE = TITLE_ICON, CATEGORY_ICON_SUFFIX = "Glass"),
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock/public/glass, TITLE = "Public"),
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock/engineering/glass, TITLE = "Engineering"),
@@ -344,7 +344,7 @@ RLD
 			),
 
 			//Solid Airlocks[airlock_glass = FALSE is implied,no fill_closed overlay]
-			"Solid AirLocks" = list(
+			"Solid Airlocks" = list(
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock, TITLE = "Standard", CATEGORY_ICON_STATE = TITLE_ICON),
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock/public, TITLE = "Public"),
 				list(AIRLOCK_TYPE = /obj/machinery/door/airlock/engineering, TITLE = "Engineering"),
@@ -376,7 +376,7 @@ RLD
 	///used by construction_console
 	var/ui_always_active = FALSE
 
-	var/mode = RCD_FLOORWALL
+	var/construction_mode = RCD_FLOORWALL
 	var/ranged = FALSE
 	var/computer_dir = 1
 	var/airlock_type = /obj/machinery/door/airlock
@@ -396,7 +396,7 @@ RLD
 	var/obj/item/electronics/airlock/airlock_electronics
 
 /obj/item/construction/rcd/suicide_act(mob/user)
-	mode = RCD_FLOORWALL
+	construction_mode = RCD_FLOORWALL
 	if(!rcd_create(get_turf(user), user))
 		return SHAME
 	if(isfloorturf(get_turf(user)))
@@ -409,7 +409,7 @@ RLD
 	if(!rcd_results)
 		return FALSE
 	var/delay = rcd_results["delay"] * delay_mod
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(rcd_results["cost"], user))
 		if(do_after(user, delay, A))
 			if(checkResource(rcd_results["cost"], user))
@@ -425,7 +425,7 @@ RLD
 /obj/item/construction/rcd/proc/rcd_switch(atom/A, mob/user)
 	var/cost = 1
 	var/delay = 1
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(cost, user))
 		if(do_after(user, delay, A))
 			if(checkResource(cost, user))
@@ -439,7 +439,7 @@ RLD
 /obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
 	var/delay = 5
 	var/cost = 5
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(cost, user))
 		if(do_after(user, delay, target = A))
 			if(checkResource(cost, user))
@@ -466,14 +466,11 @@ RLD
 	GLOB.rcd_list -= src
 	. = ..()
 
-/obj/item/construction/rcd/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/rcd),
-	)
-
 /obj/item/construction/rcd/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/rcd)
+		assets.send(user)
 		ui = new(user, src, "RapidConstructionDevice", name)
 		ui.open()
 
@@ -486,6 +483,11 @@ RLD
 
 /obj/item/construction/rcd/ui_static_data(mob/user)
 	return airlock_electronics.ui_static_data(user)
+
+/obj/item/construction/rcd/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/rcd),
+	)
 
 /obj/item/construction/rcd/ui_data(mob/user)
 	var/list/data = ..(user)
@@ -504,7 +506,7 @@ RLD
 	var/category_icon_state
 	var/category_icon_suffix
 	for(var/list/sub_category as anything in root_categories[root_category])
-		var/list/target_category =  root_categories[root_category][sub_category]
+		var/list/target_category = root_categories[root_category][sub_category]
 		if(target_category.len == 0)
 			continue
 
@@ -609,14 +611,14 @@ RLD
 	ui_interact(user)
 
 /obj/item/construction/rcd/proc/target_check(atom/A, mob/user) // only returns true for stuff the device can actually work with
-	if((isturf(A) && A.density && mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder))
+	if((isturf(A) && A.density && construction_mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && construction_mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && construction_mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder))
 		return TRUE
 	else
 		return FALSE
 
 /obj/item/construction/rcd/afterattack(atom/A, mob/user, proximity)
 	. = ..()
-	if (mode == RCD_CONVEYOR)
+	if (construction_mode == RCD_CONVEYOR)
 		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/machinery/conveyor) || !isopenturf(A) || istype(A, /area/shuttle))
 			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
 			return
@@ -629,7 +631,7 @@ RLD
 		if(!proximity)
 			return
 		rcd_conveyor(A, user)
-	if (mode == RCD_SWITCH)
+	if (construction_mode == RCD_SWITCH)
 		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/item/conveyor_switch_construct) || !isopenturf(A) || istype(A, /area/shuttle))
 			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
 			return
@@ -807,7 +809,7 @@ RLD
 
 	///reference to thr original icons
 	var/list/original_options = list(
-		"Color Pick" = icon(icon = 'icons/hud/radial.dmi', icon_state = "omni"),
+		"Color Pick" = icon(icon = 'icons/mob/radial.dmi', icon_state = "omni"),
 		"Glow Stick" = icon(icon = 'icons/obj/lighting.dmi', icon_state = "glowstick"),
 		"Deconstruct" = icon(icon = 'icons/obj/tools.dmi', icon_state = "wrench"),
 		"Light Fixture" = icon(icon = 'icons/obj/lighting.dmi', icon_state = "ltube"),

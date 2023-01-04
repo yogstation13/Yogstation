@@ -208,7 +208,7 @@
 	if(!CanBuildHere())
 		return FALSE
 
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_FLOORWALL)
 			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 			if(L)
