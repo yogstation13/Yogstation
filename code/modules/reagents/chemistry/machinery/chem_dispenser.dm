@@ -309,7 +309,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?",, list("Yes","No"))
 			if(yesno == "Yes")
 				saved_recipes = list()
 		if("add_recipe")
