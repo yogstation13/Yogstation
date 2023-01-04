@@ -208,7 +208,7 @@
 
 
 /datum/mutation/human/glow/on_life()
-	if(glow > 0 && prob(1 + 5 * GET_MUTATION_SYNCHRONIZER(src) && owner.adjustOrganLoss(ORGAN_SLOT_EYES,1 + rand(1,3) *  GET_MUTATION_POWER(src)))
+	if(glow > 0 && prob(1 + 5 * GET_MUTATION_SYNCHRONIZER(src)) && owner.adjustOrganLoss(ORGAN_SLOT_EYES,1 + rand(1,3) *  GET_MUTATION_POWER(src)))
 		to_chat(owner,span_warning(pick(eye_damage_messages)))
 //Yogstation change end: Glowie now causes gradual eye damage.
 
