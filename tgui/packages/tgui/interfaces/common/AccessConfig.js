@@ -91,7 +91,7 @@ export const AccessConfig = (props, context) => {
                 icon="check"
                 content="Grant Region"
                 color="good"
-                onClick={() => grantDep(selectedAccess.name)}
+                onClick={() => grantDep(selectedAccess.regid)}
               />
             </Grid.Column>
             <Grid.Column ml={0}>
@@ -100,7 +100,7 @@ export const AccessConfig = (props, context) => {
                 icon="times"
                 content="Deny Region"
                 color="bad"
-                onClick={() => denyDep(selectedAccess.name)}
+                onClick={() => denyDep(selectedAccess.regid)}
               />
             </Grid.Column>
           </Grid>

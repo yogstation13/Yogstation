@@ -7,11 +7,8 @@ import { AccessConfig } from './common/AccessConfig';
 type Data = {
   oneAccess: BooleanLike;
   unres_direction: number;
-  passedName: string;
-  passedCycleId: number;
   regions: string[];
   accesses: string[];
-  shell: BooleanLike;
 };
 
 export const AirLockMainSection = (props, context) => {
@@ -19,8 +16,6 @@ export const AirLockMainSection = (props, context) => {
   const {
     accesses = [],
     oneAccess,
-    passedName,
-    passedCycleId,
     regions = [],
     unres_direction,
   } = data;
