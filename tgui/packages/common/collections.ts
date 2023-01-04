@@ -271,10 +271,10 @@ export const zipWith = iterateeFn => (...arrays) => {
 };
 
 
-const isObject = (obj) => typeof obj === 'object' && obj !== null;
+const isObject = (obj: unknown) => typeof obj === 'object' && obj !== null;
 
 // Does a deep merge of two objects. DO NOT FEED CIRCULAR OBJECTS!!
-export const deepMerge = (...objects) => {
+export const deepMerge = (...objects: any[]): any => {
   const target = {};
   for (const object of objects) {
     for (const key of Object.keys(object)) {
