@@ -142,7 +142,7 @@ const RecipeListBox = (props: RecipeListProps) => {
             </Collapsible>
           );
         } else {
-          return <RecipeBox title={title} key={recipebox} recipe={recipe} />;
+          return <RecipeBox title={title} key={recipe.id} recipe={recipe} />;
         }
       })}
     </>
