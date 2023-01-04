@@ -198,6 +198,19 @@
 	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
+//Yogstation change start: Glowie now causes gradual eye damage.
+	synchronizer_coeff = 1
+	var/list/eye_damage_messages = list(
+		"Your eyes water from the light coming from your skin..."
+		"The inside of your eyelids grow bright when you blink...",
+		"You squint as the light from your eyelids glow brightly.."
+	)
+
+
+/datum/mutation/human/glow/on_life()
+	if(glow > 0 && prob(1 + 5 * GET_MUTATION_SYNCHRONIZER(src) && owner.adjustOrganLoss(ORGAN_SLOT_EYES,1 + rand(1,3) *  GET_MUTATION_POWER(src)))
+		to_chat(owner,span_warning(pick(eye_damage_messages)))
+//Yogstation change end: Glowie now causes gradual eye damage.
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
