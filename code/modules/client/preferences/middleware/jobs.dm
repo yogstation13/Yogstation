@@ -25,6 +25,36 @@
 
 	return TRUE
 
+/datum/preference_middleware/jobs/get_constant_data()
+	var/list/data = list()
+
+	var/list/departments = list()
+	var/list/jobs = list()
+
+	for (var/datum/job/job as anything in SSjob.occupations)
+		if (isnull(job.description))
+			stack_trace("[job] does not have a description set, yet is a joinable occupation!")
+			continue
+		
+		var/department_name = job.exp_type_department
+		var/is_command = (job in GLOB.command_positions)
+		if (!is_command && isnull(departments[department_name]))
+			var/list/heads = job.department_head
+			if (heads && heads.len >= 1)
+				departments[department_name] = list(
+					"head" = heads[1],
+				)
+
+		jobs[job.title] = list(
+			"description" = job.description,
+			"department" = department_name,
+		)
+
+	data["departments"] = departments
+	data["jobs"] = jobs
+
+	return data
+
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
 

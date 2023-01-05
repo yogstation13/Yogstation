@@ -1,5 +1,6 @@
 /datum/job/tourist
 	title = "Tourist"
+	description = "Enjoy the sights and scenery on board of the station."
 	flag = TOUR
 	orbit_icon = "camera-retro"
 	department_flag = CIVILIAN

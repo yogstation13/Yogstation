@@ -335,7 +335,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/spritesheet/simple/create_spritesheets()
 	for (var/key in assets)
 		Insert(key, assets[key])
-	..()
 
 //Generates assets based on iconstates of a single icon
 /datum/asset/simple/icon_states

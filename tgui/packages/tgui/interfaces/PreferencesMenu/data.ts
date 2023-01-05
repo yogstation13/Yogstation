@@ -46,6 +46,15 @@ export type ServerSpeciesData = {
   toxic_food: Food[];
 };
 
+export type Department = {
+  head?: string;
+};
+
+export type Job = {
+  description: string;
+  department: string;
+};
+
 export type Quirk = {
   description: string;
   icon: string;
@@ -143,6 +152,10 @@ export type PreferencesMenuData = {
 };
 
 export type ServerData = {
+  jobs: {
+    departments: Record<string, Department>;
+    jobs: Record<string, Job>;
+  };
   names: {
     types: Record<string, Name>;
   };
