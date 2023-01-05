@@ -1,6 +1,8 @@
 /datum/job/scientist
 	title = "Scientist"
+	description = "Do experiments, perform research, feed the slimes, make bombs."
 	flag = SCIENTIST
+	orbit_icon = "flask"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"

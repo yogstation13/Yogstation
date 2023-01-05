@@ -1,6 +1,9 @@
 /datum/job/hos
 	title = "Head of Security"
+	description = "Coordinate security personnel, ensure they are not corrupt, \
+		make sure every department is protected."
 	flag = HOS
+	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
 	department_flag = ENGSEC
