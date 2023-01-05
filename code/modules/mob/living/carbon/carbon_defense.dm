@@ -418,7 +418,7 @@
 			trauma.on_hug(M, src)
 
 		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_Stacks = averagestacks
+		fire_stacks = averagestacks
 		M.fire_stacks = averagestacks
 		if(averagestacks > 1)
 			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
