@@ -20,7 +20,7 @@
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	var/res = alert(usr, "Show the title of this song to the players?",, "Yes","No", "Cancel")
+	var/res = tgui_alert(usr, "Show the title of this song to the players?",, list("Yes","No", "Cancel"))
 	switch(res)
 		if("Yes")
 			to_chat(world, span_boldannounce("An admin played: [S]"))
@@ -111,7 +111,7 @@
 							mus_len -= (data["duration"] SECONDS - data["end_time"] SECONDS)
 						SSticker.music_available = REALTIMEOFDAY + mus_len
 
-					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "No", "Yes", "Cancel")
+					var/res = tgui_alert(usr, "Show the title of and link to this song to the players?\n[title]",, list("No", "Yes", "Cancel"))
 					switch(res)
 						if("Yes")
 							to_chat(world, span_boldannounce("An admin played: [webpage_url]"))
