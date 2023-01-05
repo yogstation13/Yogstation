@@ -104,7 +104,7 @@ const REVERSE_OPTIONS = [
   {
     title: 'Mobs',
     icon: 'user',
-    key: 'Mobs'
+    key: 'Mobs',
   },
   {
     title: 'Unanchored\nObjects',
