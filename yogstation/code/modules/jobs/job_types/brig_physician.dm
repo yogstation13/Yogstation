@@ -1,6 +1,8 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
+	description = "Watch over the Brig and Prison Wing to ensure prisoners receive medical attention when needed."
 	flag = BRIGPHYS
+	orbit_icon = "suitcase-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -26,6 +28,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "crimson guardianship"
+
 /datum/job/brigphysician/proc/OmegaStationChanges()
 	return TRUE
 
@@ -49,7 +53,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
 	r_hand = /obj/item/modular_computer/laptop/preset/brig_physician
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/phys
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

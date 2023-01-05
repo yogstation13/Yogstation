@@ -504,7 +504,7 @@
 	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
-			occupant.fire_stacks += 1
+			occupant.adjust_fire_stacks(1)
 		occupant.IgniteMob()
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -673,7 +673,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant?.client?.prefs.bindings.isheld_key("Alt")))
+	else if(dir != direction && (!strafe || occupant.client.movement_locked))
 		move_result = mechturn(direction)
 	else
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
@@ -1296,7 +1296,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(skill)
 			evaNum *= skill.piloting_speed
 
-		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_WEAR_SUIT) //if the suit directly assists the pilot
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_W_UNIFORM) //if the suit directly assists the pilot
 		if(clothes)
 			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
 			if(MP)

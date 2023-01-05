@@ -1,6 +1,8 @@
 /datum/job/janitor
 	title = "Janitor"
+	description = "Clean up trash and blood, replace broken lights and slip people over."
 	flag = JANITOR
+	orbit_icon = "broom"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -14,7 +16,7 @@
 	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	added_access = list()
-	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_RESEARCH, ACCESS_MEDICAL, ACCESS_ENGINE)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -29,6 +31,8 @@
 		/obj/item/storage/box/lights/mixed = 20,
 		/obj/item/lightreplacer = 10
 	)
+
+	smells_like = "bleach"
 
 /datum/job/janitor/proc/OmegaStationChanges()
 	added_access = list()

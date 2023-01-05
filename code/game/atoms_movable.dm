@@ -427,6 +427,7 @@
 	if (length(client_mobs_in_contents))
 		update_parallax_contents()
 
+	SSdemo.mark_dirty(src)
 	return TRUE
 
 /atom/movable/Destroy(force)
@@ -569,6 +570,9 @@
 //movement_dir == 0 when stopping or any dir when trying to move
 /atom/movable/proc/Process_Spacemove(movement_dir = 0)
 	if(has_gravity(src))
+		return TRUE
+
+	if(pulledby && (pulledby.pulledby != src || moving_from_pull))
 		return TRUE
 
 	if(throwing)

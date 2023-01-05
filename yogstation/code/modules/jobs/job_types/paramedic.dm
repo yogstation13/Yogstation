@@ -1,6 +1,8 @@
 /datum/job/paramedic
 	title = "Paramedic"
+	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
 	flag = PARAMEDIC
+	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -29,6 +31,8 @@
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
 	)
 
+	smells_like = "pre-packaged oxygen"
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1
@@ -55,12 +59,3 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-
-/datum/outfit/job/paramedic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	if(H.stat == DEAD)
-		return
-	for(var/obj/item/gps/G in H.contents)
-		G.gpstag = "[H]"

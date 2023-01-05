@@ -41,7 +41,8 @@
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
-	var/spread = 5						//Spread induced by the gun itself.
+	var/spread = 5						//Spread induced by the gun itself. SEE LINE BELOW.
+	var/default_spread = 5				//MUST be equal to the value above; used to calculate adjustments for if semi-auto is used on a burst weapon.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'

@@ -1,6 +1,9 @@
 /datum/job/officer
 	title = "Security Officer"
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
 	flag = OFFICER
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -35,6 +38,8 @@
 		///obj/item/clothing/mask/whistle = 5,
 		///obj/item/melee/baton/security/boomerang/loaded = 1
 	)
+
+	smells_like = "donuts"
 
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14

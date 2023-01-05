@@ -20,7 +20,7 @@
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	var/res = alert(usr, "Show the title of this song to the players?",, "Yes","No", "Cancel")
+	var/res = tgui_alert(usr, "Show the title of this song to the players?",, list("Yes","No", "Cancel"))
 	switch(res)
 		if("Yes")
 			to_chat(world, span_boldannounce("An admin played: [S]"))
@@ -103,8 +103,15 @@
 					music_extra_data["end"] = data["end_time"]
 					music_extra_data["link"] = data["webpage_url"]
 					music_extra_data["title"] = data["title"]
+					if(data["duration"])
+						var/mus_len = data["duration"] SECONDS
+						if(data["start_time"])
+							mus_len -= data["start_time"] SECONDS
+						if(data["end_time"])
+							mus_len -= (data["duration"] SECONDS - data["end_time"] SECONDS)
+						SSticker.music_available = REALTIMEOFDAY + mus_len
 
-					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "No", "Yes", "Cancel")
+					var/res = tgui_alert(usr, "Show the title of and link to this song to the players?\n[title]",, list("No", "Yes", "Cancel"))
 					switch(res)
 						if("Yes")
 							to_chat(world, span_boldannounce("An admin played: [webpage_url]"))
@@ -123,6 +130,7 @@
 			message_admins("[key_name(src)] stopped web sound")
 			web_sound_url = null
 			stop_web_sounds = TRUE
+			SSticker.music_available = 0
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 			to_chat(src, span_boldwarning("BLOCKED: Content URL not using http(s) protocol"), confidential=TRUE)

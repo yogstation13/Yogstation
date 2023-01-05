@@ -794,7 +794,7 @@
 		return
 
 	prompted = 1
-	if(alert("This will permanently transfer your consciousness to [SM]. Are you sure you want to do this?",,"Yes","No")=="No")
+	if(tgui_alert(usr,"This will permanently transfer your consciousness to [SM]. Are you sure you want to do this?",,list("Yes","No"))=="No")
 		prompted = 0
 		return
 
@@ -898,11 +898,11 @@
 		to_chat(user, span_warning("The potion can only be used on simple animals!"))
 		return
 	var/mob/living/simple_animal/zipzoom = target
-	if(zipzoom.speed <= -1)
+	if(zipzoom.speed < initial(zipzoom.speed))//if they're already sped up
 		to_chat(user, span_warning("[target] is already as fast as it can be!"))
 		return
 
-	zipzoom.set_varspeed(-1)
+	zipzoom.set_varspeed(zipzoom.speed - 1)
 	to_chat(user, span_notice("You slather the red gunk over [target], making it faster."))
 	zipzoom.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	zipzoom.add_atom_colour("#FF0000", FIXED_COLOUR_PRIORITY)

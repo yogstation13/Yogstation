@@ -227,7 +227,7 @@
 	if(enabled)
 		ui_interact(user)
 	else if(IsAdminGhost(user))
-		var/response = alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", "Yes", "No")
+		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
 		if(response == "Yes")
 			turn_on(user)
 
@@ -582,7 +582,7 @@
 	if(starting_components.len < 1)
 		return
 	for(var/part in starting_components)
-		var/new_part = new part
+		var/new_part = new part(src)
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)

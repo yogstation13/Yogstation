@@ -582,6 +582,13 @@
 
 				// Equip uplink
 				var/obj/item/ntuplink/upl = new ertemplate.uplinktype(ERTOperative, ERTOperative.key)
+				if(istype(ert_antag, /datum/antagonist/ert/common/trooper))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/trooper
+				else if(istype(ert_antag, /datum/antagonist/ert/common/medic))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/medic
+				else if(istype(ert_antag, /datum/antagonist/ert/common/engineer))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/engineer
+				upl.finalize()
 				if(istype(upl))
 					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
 					ert_team.uplink_type = ertemplate.uplinktype // Type path

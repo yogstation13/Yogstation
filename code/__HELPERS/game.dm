@@ -449,8 +449,9 @@
 	SEND_SOUND(M, 'sound/misc/notice3.ogg') //Alerting them to their consideration
 	if(flashwindow)
 		window_flash(M.client)
-	switch(ignore_category ? askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No","Never for this round", StealFocus=0, Timeout=poll_time) : askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No", StealFocus=0, Timeout=poll_time))
-		if(1)
+	var/list/answers = ignore_category ? list("Yes", "No", "Never for this round") : list("Yes", "No")
+	switch(tgui_alert(M, Question, "A limited-time offer!", answers, poll_time, autofocus = FALSE))
+		if("Yes")
 			to_chat(M, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
 				to_chat(M, span_danger("Sorry, you answered too late to be considered!"))
@@ -458,10 +459,10 @@
 				candidates -= M
 			else
 				candidates += M
-		if(2)
+		if("No")
 			to_chat(M, span_danger("Choice registered: No."))
 			candidates -= M
-		if(3)
+		if("Never for this round")
 			var/list/L = GLOB.poll_ignore[ignore_category]
 			if(!L)
 				GLOB.poll_ignore[ignore_category] = list()
@@ -752,3 +753,7 @@
 				continue
 
 			C.energy_fail(rand(duration_min,duration_max))
+
+/// For legacy procs using addtimer in callbacks. Don't use this.
+/proc/_addtimer_here(callback, time)
+	addtimer(callback, time)

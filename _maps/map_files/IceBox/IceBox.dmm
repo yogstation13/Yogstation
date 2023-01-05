@@ -43744,10 +43744,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bLg" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "co2";
-	name = "CO2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -44090,17 +44088,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bMa" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "n2";
-	name = "N2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bMb" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "n2o";
-	name = "N2O Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -44422,10 +44415,7 @@
 /turf/open/floor/engine/o2,
 /area/engine/atmos_distro)
 "bMR" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	filter_type = "o2";
-	name = "O2 Filter"
-	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bMS" = (
@@ -44450,10 +44440,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
 "bMT" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 1;
-	filter_type = "plasma";
-	name = "Plasma Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -49946,7 +49934,7 @@
 "bYl" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 8;
-	filter_type = "n2"
+	filter_type = list(/datum/gas/nitrogen)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)

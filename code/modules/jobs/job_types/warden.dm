@@ -1,6 +1,10 @@
 /datum/job/warden
 	title = "Warden"
+	description = "Watch over the Brig and Prison Wing, release prisoners when \
+		their time is up, issue equipment to security, be a security officer when \
+		they all eventually die."
 	flag = WARDEN
+	orbit_icon = "handcuffs"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -38,6 +42,8 @@
 		/obj/effect/spawner/lootdrop/techshell = 10,
 		/obj/item/storage/box/lethalshot = 5
 	)
+
+	smells_like = "gunpowdery justice"
 
 /datum/job/warden/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM

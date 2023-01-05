@@ -1,6 +1,9 @@
 /datum/job/virologist
 	title = "Virologist"
+	description = "Study the effects of various diseases and synthesize a \
+		vaccine for them. Engineer beneficial viruses."
 	flag = VIROLOGIST
+	orbit_icon = "virus"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -34,6 +37,8 @@
 		/obj/item/stack/sheet/mineral/plasma = 10,
 		/obj/item/stack/sheet/mineral/uranium = 5,
 	)
+
+	smells_like = "germlessness"
 
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE

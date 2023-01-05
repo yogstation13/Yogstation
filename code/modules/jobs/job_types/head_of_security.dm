@@ -1,6 +1,9 @@
 /datum/job/hos
 	title = "Head of Security"
+	description = "Coordinate security personnel, ensure they are not corrupt, \
+		make sure every department is protected."
 	flag = HOS
+	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
 	department_flag = ENGSEC
@@ -33,6 +36,8 @@
 
 	changed_maps = list("YogsPubby")
 
+	smells_like = "deadly authority"
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 
@@ -52,7 +57,7 @@
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/HoS/beret
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/hos
 	suit_store = /obj/item/gun/energy/e_gun
 
 	backpack = /obj/item/storage/backpack/security

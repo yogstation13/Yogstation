@@ -1,6 +1,9 @@
 /datum/job/hop
 	title = "Head of Personnel"
+	description = "Alter access on ID cards, manage civil and supply departments, \
+		protect Ian, run the station when the captain dies."
 	flag = HOP
+	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = CIVILIAN
@@ -39,6 +42,8 @@
 		/obj/item/card/id/silver = 10,
 		/obj/item/stack/sheet/bone = 5
 	)
+
+	smells_like = "bureaucracy"
 
 /datum/job/hop/proc/OmegaStationChanges()
 	added_access = get_all_accesses()
