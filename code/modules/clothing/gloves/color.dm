@@ -10,7 +10,7 @@
 	permeability_coefficient = 0.05
 	resistance_flags = NONE
 
-/obj/item/clothing/gloves/color/yellow/Initialize
+/obj/item/clothing/gloves/color/yellow/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "fuck you assistant mains")
 
