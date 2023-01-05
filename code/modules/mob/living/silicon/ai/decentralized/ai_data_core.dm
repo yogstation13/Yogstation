@@ -97,15 +97,15 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		if(istype(I, /obj/item/stock_parts/cell))
-			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
+		if(istype(O, /obj/item/stock_parts/cell))
+			O.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(integrated_battery))
 				integrated_battery.forceMove(get_turf(src))
 			component_parts -= integrated_battery // Remove the old cell so the new one spawns when deconstructed
-			I.moveToNullspace() // Now get out of contents
-			to_chat(user, span_notice("You replace [integrated_battery] with [I]."))
-			integrated_battery = I // Set the cell
-			component_parts += I // Add new cell
+			O.moveToNullspace() // Now get out of contents
+			to_chat(user, span_notice("You replace [integrated_battery] with [O]."))
+			integrated_battery = O // Set the cell
+			component_parts += O // Add new cell
 		return
 
 	return ..()
@@ -189,7 +189,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		var/datum/gas_mixture/env = T.return_air()
 		if(!disableheat)
 			if(env.heat_capacity())
-				var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+				var/temp_active_usage = stat & NOPOWER ? active_power_usage * : active_power_usage
+				var/temperature_increase = (temp_active_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 				env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 				T.air_update_turf()
 	
