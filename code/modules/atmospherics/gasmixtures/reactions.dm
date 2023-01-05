@@ -657,8 +657,8 @@
 	var/initial_h2 = air.get_moles(GAS_H2)
 	if(initial_o2 < initial_h2 || MINIMUM_H2_OXYBURN_ENERGY > old_thermal_energy)
 		burned_fuel = (initial_o2/HYDROGEN_BURN_OXY_FACTOR)
-		if(burned_fuel > initial_hydrogen)
-			burned_fuel = initial_hydrogen	//Yogs - prevents negative mols of h2
+		if(burned_fuel > initial_h2)
+			burned_fuel = initial_h2	//Yogs - prevents negative mols of h2
 		air.adjust_moles(GAS_H2, -burned_fuel)
 		air.adjust_moles(GAS_O2, -burned_fuel / 2) //Yogs - only takes half a mol of O2 for a mol of H2O
 	else
