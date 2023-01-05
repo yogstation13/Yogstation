@@ -27095,17 +27095,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"gQD" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/circlegame,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "gQE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -65001,6 +64990,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"wTN" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "wTT" = (
 /obj/structure/lattice/catwalk,
 /turf/closed/wall,
@@ -96816,7 +96816,7 @@ lwC
 bCs
 uzc
 ccw
-gQD
+wTN
 wbf
 moy
 tZH
