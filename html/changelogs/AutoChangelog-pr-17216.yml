@@ -1,5 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - rscadd: "Added a new keybind system, your old keybinds have been reset"
-  - rscadd: "You can now bind a key to a specific emote"
