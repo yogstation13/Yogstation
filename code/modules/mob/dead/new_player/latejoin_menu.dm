@@ -144,17 +144,17 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			if(params["job"] == "Random")
 				var/job = get_random_job(owner)
 				if(!job)
-					alert(owner, "There is no randomly assignable job at this time. Please manually choose one of the other possible options.")
+					tgui_alert(owner, "There is no randomly assignable job at this time. Please manually choose one of the other possible options.")
 					return TRUE
 
 				params["job"] = job
 
 			if(!SSticker?.IsRoundInProgress())
-				alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
+				tgui_alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
 				return TRUE
 
 			if(!GLOB.enter_allowed || SSticker.late_join_disabled)
-				alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
+				tgui_alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
 				return TRUE
 
 			//Determines Relevent Population Cap
@@ -168,7 +168,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			if(SSticker.queued_players.len)
 				if((living_player_count() >= relevant_cap) || (owner != SSticker.queued_players[1]))
-					alert(owner, "The server is full!", "Oh No!")
+					tgui_alert(owner, "The server is full!", "Oh No!")
 					return TRUE
 
 			// SAFETY: AttemptLateSpawn has it's own sanity checks. This is perfectly safe.
@@ -195,9 +195,8 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 		attempts = 0
 
-		// TODO: tgui_alert
-		//var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
-		var/choice = alert(owner, "Do you want to play as \a [random_job.title]?", "Random Job", JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
+		var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
+		var/choice = tgui_alert(owner, "Do you want to play as \a [random_job.title]?", "Random Job", random_job_options)
 
 		if(choice == JOB_CHOICE_CANCEL)
 			return
