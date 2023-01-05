@@ -191,11 +191,11 @@ obj/structure/elite_tumor/proc/return_elite()
 	activator = null
 	return ..()
 
-/obj/structure/elite_tumor/process()
+/obj/structure/elite_tumor/process(delta_time)
 	if(isturf(loc))
 		for(var/mob/living/simple_animal/hostile/asteroid/elite/elitehere in loc)
 			if(elitehere == mychild && activity == TUMOR_PASSIVE)
-				mychild.adjustHealth(-mychild.maxHealth*0.05)
+				mychild.adjustHealth(-mychild.maxHealth*0.025 * delta_time)
 				var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(mychild))
 				H.color = "#FF0000"
 
