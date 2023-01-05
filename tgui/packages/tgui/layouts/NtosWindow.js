@@ -101,7 +101,7 @@ export const NtosWindow = (props, context) => {
                 color="transparent"
                 icon="window-close-o"
                 tooltip="Close"
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 onClick={() => act('PC_exit')} />
             )}
             {!PC_showexitprogram && (
@@ -113,7 +113,7 @@ export const NtosWindow = (props, context) => {
                 color="transparent"
                 icon="power-off"
                 tooltip="Power off"
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 onClick={() => act('PC_shutdown')} />
             )}
           </div>
