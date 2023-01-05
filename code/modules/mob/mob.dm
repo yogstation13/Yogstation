@@ -883,6 +883,8 @@
 	if (!canface())
 		return FALSE
 	
+	is_shifted = TRUE
+	
 	return ..()
 
 ///This might need a rename but it should replace the can this mob use things check
