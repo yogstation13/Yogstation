@@ -117,7 +117,7 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
+		//client.prefs.ShowChoices(src)
 		return 1
 
 	if(href_list["ready"])

@@ -183,3 +183,10 @@
 	if(istype(stomach))
 		return stomach.crystal_charge
 	return ETHEREAL_CHARGE_NONE
+
+/datum/species/ethereal/get_features()
+	var/list/features = ..()
+
+	features += "feature_ethcolor"
+
+	return features

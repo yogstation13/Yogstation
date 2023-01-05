@@ -29,3 +29,8 @@
 		if(prob(1))
 			return 'sound/voice/human/wilhelm_scream.ogg'
 		return pick(male_screams)
+
+/datum/species/human/prepare_human_for_preview(mob/living/carbon/human/human)
+	human.hair_style = "Business Hair"
+	human.hair_color = "b96" // brown
+	human.update_hair()

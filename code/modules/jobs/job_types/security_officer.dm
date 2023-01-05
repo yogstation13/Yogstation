@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	// Assign department security
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_security_department
+		department = M.client?.prefs?.read_preference(/datum/preference/choiced/security_department)
 		if(!LAZYLEN(GLOB.available_depts_sec) || department == "None")
 			return
 		else if(department in GLOB.available_depts_sec)

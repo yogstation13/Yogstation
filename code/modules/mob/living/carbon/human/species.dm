@@ -3,6 +3,9 @@
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(mentor_races)
 
+/// An assoc list of species types to their features (from get_features())
+GLOBAL_LIST_EMPTY(features_by_species)
+
 /datum/species
 	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
 	var/id
@@ -201,7 +204,21 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		limbs_id = id
 	..()
 
+/// Gets a list of all species available to choose in roundstart.
+/proc/get_selectable_species()
+	RETURN_TYPE(/list)
 
+	if (!GLOB.roundstart_races.len)
+		GLOB.roundstart_races = generate_selectable_species()
+
+	return GLOB.roundstart_races
+
+/**
+ * Generates species available to choose in character setup at roundstart
+ *
+ * This proc generates which species are available to pick from in character setup.
+ * If there are no available roundstart species, defaults to human.
+ */
 /proc/generate_selectable_species()
 	for(var/I in subtypesof(/datum/species))
 		var/datum/species/S = new I
@@ -214,6 +231,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
+/**
+ * Checks if a species is eligible to be picked at roundstart.
+ *
+ * Checks the config to see if this species is allowed to be picked in the character setup menu.
+ * Used by [/proc/generate_selectable_species].
+ */
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
 		return TRUE
@@ -2324,3 +2347,35 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	to_store += mutanttail
 	//We don't cache mutant hands because it's not constrained enough, too high a potential for failure
 	return to_store
+
+/// Returns a list of strings representing features this species has.
+/// Used by the preferences UI to know what buttons to show.
+/datum/species/proc/get_features()
+	var/cached_features = GLOB.features_by_species[type]
+	if (!isnull(cached_features))
+		return cached_features
+
+	var/list/features = list()
+
+	for (var/preference_type in GLOB.preference_entries)
+		var/datum/preference/preference = GLOB.preference_entries[preference_type]
+
+		if ( \
+			(preference.relevant_mutant_bodypart in mutant_bodyparts) \
+			|| (preference.relevant_species_trait in species_traits) \
+		)
+			features += preference.savefile_key
+
+	/*for (var/obj/item/organ/external/organ_type as anything in external_organs)
+		var/preference = initial(organ_type.preference)
+		if (!isnull(preference))
+			features += preference*/
+
+	GLOB.features_by_species[type] = features
+
+	return features
+
+/// Given a human, will adjust it before taking a picture for the preferences UI.
+/// This should create a CONSISTENT result, so the icons don't randomly change.
+/datum/species/proc/prepare_human_for_preview(mob/living/carbon/human/human)
+	return

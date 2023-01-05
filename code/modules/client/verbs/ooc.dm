@@ -176,7 +176,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
 	set category = "Server"
-	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
+	GLOB.OOC_COLOR = sanitize_color(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 
 	var/new_ooccolor = input(src, "Please select your OOC color.", "OOC color", prefs.ooccolor) as color|null
 	if(new_ooccolor)
-		prefs.ooccolor = sanitize_ooccolor(new_ooccolor)
+		prefs.ooccolor = sanitize_color(new_ooccolor)
 		prefs.save_preferences()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set OOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
