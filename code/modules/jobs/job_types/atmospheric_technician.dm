@@ -55,7 +55,7 @@
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	uniform_skirt = /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	r_pocket = /obj/item/analyzer
-
+	gloves = /obj/item/clothing/gloves/color/yellow
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
