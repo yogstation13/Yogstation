@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(assets)
 
 	loading_points = 3 SECONDS // Yogs -- loading times
 
-	var/list/cache = list()
+	var/list/datum/asset_cache_item/cache = list()
 	var/list/preload = list()
 	var/datum/asset_transport/transport = new()
 
