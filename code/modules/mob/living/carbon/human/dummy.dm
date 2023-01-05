@@ -77,10 +77,10 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.initialize_dna(skip_index = TRUE)
 	target.dna.features["body_markings"] = "None"
 	target.dna.features["ears"] = "None"
-	target.dna.features["ethcolor"] = COLOR_WHITE
+	target.dna.features["ethcolor"] = "EEEEEE" // white-ish
 	target.dna.features["frills"] = "None"
 	target.dna.features["horns"] = "None"
-	target.dna.features["mcolor"] = "7FFFFF"
+	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
 	target.dna.features["moth_antennae"] = "Plain"
 	target.dna.features["moth_markings"] = "None"
 	target.dna.features["moth_wings"] = "Plain"
@@ -94,6 +94,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/dummy/consistent
 
 /mob/living/carbon/human/dummy/consistent/setup_human_dna()
+	create_dna()
 	create_consistent_human_dna(src)
 
 /// Provides a dummy for unit_tests that functions like a normal human, but with a standardized appearance
@@ -101,6 +102,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/consistent
 
 /mob/living/carbon/human/consistent/setup_human_dna()
+	create_dna()
 	create_consistent_human_dna(src)
 
 /mob/living/carbon/human/consistent/update_body(is_creating)

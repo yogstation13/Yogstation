@@ -165,26 +165,27 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 /datum/preferences/proc/check_keybindings()
 	if(!parent)
 		return
-	var/list/user_binds = list()
-	for (var/key in key_bindings)
-		for(var/kb_name in key_bindings[key])
-			user_binds[kb_name] += list(key)
+	var/list/binds_by_key = get_key_bindings_by_key(key_bindings)
 	var/list/notadded = list()
 	for (var/name in GLOB.keybindings_by_name)
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
-		if(length(user_binds[kb.name]))
+		if(kb.name in key_bindings)
 			continue // key is unbound and or bound to something
+
 		var/addedbind = FALSE
-		if(hotkeys)
+		key_bindings[kb.name] = list()
+
+		if(parent.hotkeys)
 			for(var/hotkeytobind in kb.hotkey_keys)
-				if(!length(key_bindings[hotkeytobind]) || hotkeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
-					LAZYADD(key_bindings[hotkeytobind], kb.name)
+				if(!length(binds_by_key[hotkeytobind]) && hotkeytobind != "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					key_bindings[kb.name] |= hotkeytobind
 					addedbind = TRUE
 		else
 			for(var/classickeytobind in kb.classic_keys)
-				if(!length(key_bindings[classickeytobind]) || classickeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
-					LAZYADD(key_bindings[classickeytobind], kb.name)
+				if(!length(binds_by_key[classickeytobind]) && classickeytobind != "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					key_bindings[kb.name] |= classickeytobind
 					addedbind = TRUE
+
 		if(!addedbind)
 			notadded += kb
 	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
@@ -193,7 +194,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 /datum/preferences/proc/announce_conflict(list/notadded)
 	to_chat(parent, "<span class='warningplain'><b><u>Keybinding Conflict</u></b></span>\n\
-					<span class='warningplain'><b>There are new <a href='?_src_=prefs;preference=tab;tab=4'>keybindings</a> that default to keys you've already bound. The new ones will be unbound.</b></span>")
+					<span class='warningplain'><b>There are new <a href='?src=[REF(src)];open_keybindings=1'>keybindings</a> that default to keys you've already bound. The new ones will be unbound.</b></span>")
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
 		to_chat(parent, span_danger("[conflicted.category]: [conflicted.full_name] needs updating"))
@@ -334,6 +335,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_character(needs_update, S)		//needs_update == savefile_version if we need an update (positive integer)
+
+	check_keybindings() // this apparently fails every time and overwrites any unloaded prefs with the default values, so don't load anything after this line or it won't actually save
+	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 
 	//Sanitize
 

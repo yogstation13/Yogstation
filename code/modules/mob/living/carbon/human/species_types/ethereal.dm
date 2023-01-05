@@ -50,13 +50,15 @@
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	.=..()
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		default_color = "#" + H.dna.features["ethcolor"]
-		r1 = GETREDPART(default_color)
-		g1 = GETGREENPART(default_color)
-		b1 = GETBLUEPART(default_color)
-		spec_updatehealth(H)
+	if(!ishuman(C))
+		return
+	
+	var/mob/living/carbon/human/H = C
+	default_color = "#[H.dna.features["ethcolor"]]"
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	spec_updatehealth(H)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	.=..()
