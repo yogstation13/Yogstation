@@ -69,7 +69,7 @@
 
 /obj/item/gun/magic/process(delta_time)
 	charge_timer += delta_time
-	if(charge_timerk < recharge_rate || charges >= max_charges)
+	if(charge_timer < recharge_rate || charges >= max_charges)
 		return 0
 	charge_timer = 0
 	charges++
