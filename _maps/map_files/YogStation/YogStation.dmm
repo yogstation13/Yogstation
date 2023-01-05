@@ -630,9 +630,17 @@
 "abv" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/structure/window/reinforced,
+/obj/item/gun/syringe,
+/obj/item/gun/syringe{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/gun/energy/e_gun/dragnet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "abw" = (
