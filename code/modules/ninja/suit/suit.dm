@@ -40,8 +40,8 @@ Contents:
 		//Main function variables.
 	var/s_initialized = 0//Suit starts off.
 	var/s_coold = 0//If the suit is on cooldown. Can be used to attach different cooldowns to abilities. Ticks down every second based on suit ntick().
-	var/s_cost = 5//Base energy cost each ntick.
-	var/s_acost = 25//Additional cost for additional powers active.
+	var/s_cost = 10//Base energy cost each ntick.
+	var/s_acost = 50//Additional cost for additional powers active.
 	var/s_delay = 40//How fast the suit does certain things, lower is faster. Can be overridden in specific procs. Also determines adverse probability.
 	var/a_transfer = 20//How much radium is used per adrenaline boost.
 	var/a_maxamount = 7//Maximum number of adrenaline boosts.
@@ -54,7 +54,7 @@ Contents:
 
 		//Ability function variables.
 	var/s_bombs = 10//Number of smoke bombs.
-	var/a_boost = 3//Number of adrenaline boosters.
+	var/a_boost = 5//Number of adrenaline boosters.
 
 
 /obj/item/clothing/suit/space/space_ninja/get_cell()
@@ -72,10 +72,8 @@ Contents:
 	stored_research = new()
 
 	//Cell Init
-	cell = new/obj/item/stock_parts/cell/high
-	cell.charge = 9000
-	cell.name = "black power cell"
-	cell.icon_state = "bscell"
+	//Yogs change, ninja suits get super capacity power cells.
+	cell = new/obj/item/stock_parts/cell/super
 
 //Simply deletes all the attachments and self, killing all related procs.
 /obj/item/clothing/suit/space/space_ninja/proc/terminate()
@@ -83,16 +81,6 @@ Contents:
 	qdel(n_gloves)
 	qdel(n_shoes)
 	qdel(src)
-
-
-//Randomizes suit parameters.
-/obj/item/clothing/suit/space/space_ninja/proc/randomize_param()
-	s_cost = rand(1,20)
-	s_acost = rand(20,100)
-	s_delay = rand(10,100)
-	s_bombs = rand(5,20)
-	a_boost = rand(1,7)
-
 
 //This proc prevents the suit from being taken off.
 /obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H)

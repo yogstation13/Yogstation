@@ -15,7 +15,7 @@
 	var/distance = get_dist(H,energyKatana)
 
 	if(!(energyKatana in view(H)))
-		cost = distance //Actual cost is cost x 10, so 5 turfs is 50 cost.
+		cost = distance*200 // 5 turfs is 500 cost.
 		inview = 0
 
 	if(!ninjacost(cost))
@@ -24,7 +24,7 @@
 			C.transferItemToLoc(energyKatana, get_turf(energyKatana), TRUE)
 
 			//Yogs start -- Yogs vorecode
-			//Somebody swollowed my sword, probably the clown doing a circus act.	
+			//Somebody swollowed my sword, probably the clown doing a circus act.
 			if(energyKatana in C.stomach_contents)
 				C.stomach_contents -= energyKatana
 			//Yogs end

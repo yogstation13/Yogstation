@@ -12,7 +12,10 @@
 			cell.charge -= s_cost//s_cost is the default energy cost each ntick, usually 5.
 			if(stealth)//If stealth is active.
 				cell.charge -= s_acost
-
+				var/turf/T = get_turf(U)
+				var/lums = T.get_lumcount()
+				if(lums > 0.5)
+					cancel_stealth()
 		else
 			cell.charge = 0
 			cancel_stealth()

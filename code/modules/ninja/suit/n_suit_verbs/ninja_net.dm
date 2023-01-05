@@ -31,7 +31,7 @@
 	if(istype(C, /mob/dead/observer))
 		to_chat(H, span_warning("You may not use an energy net on ghosts!"))
 		return
-	if(!ninjacost(250,N_STEALTH_CANCEL)) //25 energy, 25% of base cell.
+	if(!ninjacost(1000,N_STEALTH_CANCEL)) //25 energy, 25% of base cell.
 		H.Beam(C,"n_beam",time=15)
 		H.say("Get over here!", forced = "ninja net")
 		var/obj/structure/energy_net/E = new /obj/structure/energy_net(C.drop_location())

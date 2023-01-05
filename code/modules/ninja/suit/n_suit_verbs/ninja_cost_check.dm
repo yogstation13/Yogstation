@@ -3,13 +3,12 @@
 //Cost function for suit Procs/Verbs/Abilities
 /obj/item/clothing/suit/space/space_ninja/proc/ninjacost(cost = 0, specificCheck = 0)
 	var/mob/living/carbon/human/H = affecting
-	var/actualCost = cost*10
-	if(cost && cell.charge < actualCost)
-		to_chat(H, span_danger("Not enough energy."))
+	if(cost && cell.charge < cost)
+		to_chat(H, span_danger("Not enough energy!"))
 		return 1
 	else
 		//This shit used to be handled individually on every proc.. why even bother with a universal check proc then?
-		cell.charge-=(actualCost)
+		cell.charge -= cost
 
 	switch(specificCheck)
 		if(N_STEALTH_CANCEL)
