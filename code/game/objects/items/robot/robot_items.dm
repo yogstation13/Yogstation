@@ -689,7 +689,7 @@
 		if(iscyborg(host.loc))
 			host = host.loc
 		else
-			energy = clamp(energy + energy_recharge, * delta_time 0, maxenergy)
+			energy = clamp(energy + energy_recharge * delta_time 0, maxenergy)
 			return
 	if(host.cell && (host.cell.charge >= (host.cell.maxcharge * cyborg_cell_critical_percentage)) && (energy < maxenergy))
 		host.cell.use(energy_recharge * delta_time * energy_recharge_cyborg_drain_coefficient)
