@@ -22298,14 +22298,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"eJO" = (
-/obj/machinery/camera/motion{
-	c_tag = "Armory External";
-	dir = 1
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "eJS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -30109,6 +30101,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"hZz" = (
+/obj/structure/lattice,
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "hZB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -39930,14 +39930,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"moH" = (
-/obj/structure/lattice,
-/obj/machinery/camera/motion{
-	c_tag = "Armory External";
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "moT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
@@ -63360,6 +63352,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"wfQ" = (
+/obj/structure/lattice,
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 1
+	},
+/turf/open/space,
+/area/space/nearstation)
 "wfS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -97756,7 +97756,7 @@ aaa
 aaa
 aaa
 aaa
-eJO
+gXs
 aaZ
 aaZ
 dKi
@@ -98784,7 +98784,7 @@ aaa
 aaa
 gXs
 gXs
-gXs
+hZz
 aaZ
 aaZ
 atl
@@ -100584,7 +100584,7 @@ aaa
 aaa
 aaa
 aaa
-moH
+aJt
 adR
 fnz
 adR
@@ -102128,7 +102128,7 @@ aaa
 aaa
 aaa
 aaa
-aaf
+wfQ
 abq
 act
 tUe
