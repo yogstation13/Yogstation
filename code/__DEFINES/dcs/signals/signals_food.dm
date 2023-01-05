@@ -33,16 +33,20 @@
 // Grilling foods (griddle, grill, and bonfire)
 ///Called when an object is grilled ontop of a griddle
 #define COMSIG_ITEM_GRILLED "item_griddled"
-#define COMPONENT_HANDLED_GRILLING (1<<0)
+	/// Return to not burn the item
+	#define COMPONENT_HANDLED_GRILLING (1<<0)
 ///Called when an object is turned into another item through grilling ontop of a griddle
 #define COMSIG_GRILL_COMPLETED "item_grill_completed"
 
 // Baking foods (oven)
 //Called when an object is in an oven
 #define COMSIG_ITEM_BAKED "item_baked"
-#define COMPONENT_HANDLED_BAKING (1<<0)
-#define COMPONENT_BAKING_GOOD_RESULT (1<<1)
-#define COMPONENT_BAKING_BAD_RESULT (1<<2)
+	/// Return to not burn the item
+	#define COMPONENT_HANDLED_BAKING (1<<0)
+	/// Return if the result of the baking was a good thing
+	#define COMPONENT_BAKING_GOOD_RESULT (1<<1)
+	/// Return if the result of the baking was a bad thing / failuire
+	#define COMPONENT_BAKING_BAD_RESULT (1<<2)
 ///Called when an object is turned into another item through baking in an oven
 #define COMSIG_BAKE_COMPLETED "item_bake_completed"
 
