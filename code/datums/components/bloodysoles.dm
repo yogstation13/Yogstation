@@ -271,13 +271,13 @@
 	return ITEM_SLOT_FEET in wielder.check_obscured_slots(TRUE)
 
 /datum/component/bloodysoles/feet/on_moved(datum/source, OldLoc, Dir, Forced)
-	if(!affecting.bodypart_disabled)
+	if(wielder.num_legs < 2)
 		return
 
 	..()
 
 /datum/component/bloodysoles/feet/on_step_blood(datum/source, obj/effect/decal/cleanable/pool)
-	if(!affecting.bodypart_disabled)
+	if(wielder.num_legs < 2)
 		return
 
 	..()

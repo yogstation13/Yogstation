@@ -47,26 +47,17 @@
 
 // this applies to humans and most creatures, but is replaced again for cyborgs
 /datum/component/riding/creature/ride_check(mob/living/rider)
+	var/atom/movable/AM = parent
 	var/mob/living/living_parent = parent
+	var/mob/AMM = AM
 
-	var/kick_us_off
-	if(living_parent.body_position != STANDING_UP) // if we move while on the ground, the rider falls off
-		kick_us_off = TRUE
-	// for piggybacks and (redundant?) borg riding, check if the rider is stunned/restrained
-	else if((ride_check_flags & RIDER_NEEDS_ARMS) && (HAS_TRAIT(rider, TRAIT_RESTRAINED) || rider.incapacitated(TRUE, TRUE)))
-		kick_us_off = TRUE
-	// for fireman carries, check if the ridden is stunned/restrained
-	else if((ride_check_flags & CARRIER_NEEDS_ARM) && (HAS_TRAIT(living_parent, TRAIT_RESTRAINED) || living_parent.incapacitated(TRUE, TRUE)))
-		kick_us_off = TRUE
-
-	if(!kick_us_off)
-		return TRUE
-
-	rider.visible_message("<span class='warning'>[rider] falls off of [living_parent]!</span>", \
-					"<span class='warning'>You fall off of [living_parent]!</span>")
-	rider.Paralyze(1 SECONDS)
-	rider.Knockdown(4 SECONDS)
-	living_parent.unbuckle_mob(rider)
+	if((ride_check_rider_restrained && rider.restrained(TRUE)) || (ride_check_rider_incapacitated && rider.incapacitated(FALSE, TRUE)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(FALSE, TRUE)))
+		rider.visible_message("<span class='warning'>[rider] falls off of [living_parent]!</span>", \
+						"<span class='warning'>You fall off of [living_parent]!</span>")
+		rider.Paralyze(1 SECONDS)
+		rider.Knockdown(4 SECONDS)
+		living_parent.unbuckle_mob(rider)
+	return TRUE
 
 /datum/component/riding/creature/vehicle_mob_unbuckle(mob/living/living_parent, mob/living/former_rider, force = FALSE)
 	if(istype(living_parent) && istype(former_rider))

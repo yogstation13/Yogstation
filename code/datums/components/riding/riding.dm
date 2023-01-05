@@ -32,6 +32,10 @@
 	var/list/forbid_turf_typecache
 	/// We don't need roads where we're going if this is TRUE, allow normal movement in space tiles
 	var/override_allow_spacemove = FALSE
+	
+	var/ride_check_rider_incapacitated = FALSE
+	var/ride_check_rider_restrained = FALSE
+	var/ride_check_ridden_incapacitated = FALSE
 
 	/**
 	 * Ride check flags defined for the specific riding component types, so we know if we need arms, legs, or whatever.

@@ -228,6 +228,7 @@
 #define TRAIT_MESONS			"mesons"
 #define TRAIT_MAGBOOTS			"magboots"
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
+#define TRAIT_SPACEWALK 		"spacewalk"
 /// This person is crying
 #define TRAIT_CRYING "crying"
 

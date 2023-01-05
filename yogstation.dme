@@ -604,6 +604,7 @@
 #include "code\datums\elements\cleaning.dm"
 #include "code\datums\elements\earhealing.dm"
 #include "code\datums\elements\firestacker.dm"
+#include "code\datums\elements\ridable.dm"
 #include "code\datums\elements\squish.dm"
 #include "code\datums\elements\strippable.dm"
 #include "code\datums\helper_datums\events.dm"

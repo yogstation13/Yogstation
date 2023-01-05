@@ -45,10 +45,10 @@
 
 	footstep_type = FOOTSTEP_MOB_CLAW
 	var/armored = FALSE
+
 /mob/living/simple_animal/hostile/bear/loan
 	faction = list("hostile")
 	
-
 /mob/living/simple_animal/hostile/bear/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)

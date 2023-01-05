@@ -198,6 +198,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isgun(A) (istype(A, /obj/item/gun))
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
