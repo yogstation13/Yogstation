@@ -33,11 +33,8 @@
 
 	var/list/sound_queue = list()
 
-	var/damage_notify_next = 0
-	var/morphine_next = 0
 	var/morphine_delay = 30 SECONDS
 	var/emag_doses_left = 5
-	var/sound_next = 0
 
 	var/mob/living/carbon/owner
 
@@ -47,6 +44,10 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDEGLOVES
 
 	var/obj/item/geiger_counter/GC
+
+	COOLDOWN_DECLARE(next_damage_notify)
+	COOLDOWN_DECLARE(next_morphine)
+	COOLDOWN_DECLARE(next_sound)
 
 /obj/item/clothing/suit/armor/nerd/Initialize()
 	. = ..()
@@ -60,7 +61,7 @@
 
 /obj/item/clothing/suit/armor/nerd/proc/process_sound_queue()
 
-	if(sound_next > world.time)
+	if(!COOLDOWN_FINISHED(src,next_sound))
 		return FALSE
 
 	if(!length(sound_queue))
@@ -71,11 +72,12 @@
 	var/sound_delay = sound_data[2]
 
 	playsound(src, sound_file, 50)
-	sound_next = world.time + sound_delay
 
 	sound_queue.Cut(1,2)
 
 	addtimer(CALLBACK(src, .proc/process_sound_queue), sound_delay)
+
+	COOLDOWN_START(src,next_sound,sound_delay)
 
 /obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
 
@@ -102,7 +104,6 @@
 		addtimer(CALLBACK(src, .proc/process_sound_queue), 1 SECONDS)
 
 	return TRUE
-
 
 //Signal handling.
 /obj/item/clothing/suit/armor/nerd/equipped(mob/M, slot)
@@ -164,7 +165,6 @@
 	SOUND_BEEP_3
 	add_queue('sound/voice/nerdsuit/shock.ogg',3 SECONDS)
 
-
 //Wounds
 /obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
 
@@ -187,7 +187,7 @@
 	if(!owner.reagents)
 		return
 
-	if(morphine_next > world.time)
+	if(!COOLDOWN_FINISHED(src,next_morphine))
 		return
 
 	if(emagged && emag_doses_left > 0)
@@ -203,18 +203,16 @@
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/morphine.ogg',2 SECONDS)
 
-	morphine_next = world.time + morphine_delay
+	COOLDOWN_START(src,next_morphine,morphine_delay)
 
 	return TRUE
-
-
 
 //General Damage
 /obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
 
 	SIGNAL_HANDLER
 
-	if(damage_notify_next > world.time)
+	if(!COOLDOWN_FINISHED(src,next_damage_notify))
 		return
 
 	if(damage < 5 || owner.maxHealth <= 0)
@@ -222,25 +220,22 @@
 
 	var/health_percent = owner.health/owner.maxHealth
 
-	if(health_percent > 0.25 && !prob(damage*4))
+	if(health_percent > 0.50 && !prob(damage*4))
 		return
 
 	if(health_percent <= 0.25)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/vital_signs_death.ogg',3 SECONDS)
-		damage_notify_next = world.time + 5 SECONDS
+		COOLDOWN_START(src,next_damage_notify,5 SECONDS)
 		administer_morphine()
 	else if(health_percent <= 0.50)
 		SOUND_BEEP_3
 		add_queue('sound/voice/nerdsuit/vital_signs_critical.ogg',3 SECONDS)
-		damage_notify_next = world.time + 5 SECONDS
+		COOLDOWN_START(src,next_damage_notify,5 SECONDS)
 	else if(health_percent <= 0.75)
 		SOUND_BEEP_2
 		add_queue('sound/voice/nerdsuit/vital_signs_dropping.ogg',2 SECONDS)
-		damage_notify_next = world.time + 5 SECONDS
-
-
-
+		COOLDOWN_START(src,next_damage_notify,5 SECONDS)
 
 #undef SOUND_BEEP_1
 #undef SOUND_BEEP_2
