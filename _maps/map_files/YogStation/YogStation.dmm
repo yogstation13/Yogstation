@@ -245,9 +245,7 @@
 	c_tag = "Brig Equipment Room";
 	dir = 4
 	},
-/obj/machinery/vending/security{
-	step_y = 0
-	},
+/obj/machinery/vending/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aaH" = (
