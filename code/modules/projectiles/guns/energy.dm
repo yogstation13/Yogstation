@@ -16,7 +16,7 @@
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
 	var/selfcharge = 0
-	var/charge_timer - 0
+	var/charge_timer = 0
 	var/charge_delay = 8
 	var/charge_amount = 1
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge

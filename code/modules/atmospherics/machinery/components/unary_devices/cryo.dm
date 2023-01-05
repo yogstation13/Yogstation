@@ -250,8 +250,8 @@
 					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
 					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
 			reagent_transfer += 0.5 * delta_time
-			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).		
-					reagent_transfer = 0
+			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
+				reagent_transfer = 0
 		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
 			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
 			mob_occupant.adjustToxLoss(-5)
