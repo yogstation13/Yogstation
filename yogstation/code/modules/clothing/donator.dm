@@ -189,7 +189,7 @@
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
 	icon = 'icons/obj/bedsheets.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/neck/neck.dmi'
-	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "sheetpride"
+	item_state = "sheetpride"
+ 
