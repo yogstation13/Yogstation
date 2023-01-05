@@ -16,6 +16,9 @@
 		movement_dir &= ~(EAST|WEST)
 
 	if(user.movement_locked)
-		setDir(movement_dir)
+		if (user.keys_held["Shift"])
+			setShift(movement_dir)
+		else
+			setDir(movement_dir)
 	else
 		user.Move(get_step(src, movement_dir), movement_dir)
