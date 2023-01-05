@@ -60,7 +60,7 @@
 	spawned_mobs += L
 	if(faction != null)
 		L.faction = faction
-	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_spawned_death) // so we can remove them from the list, etc (for mobs with corpses)
+	RegisterSignal(L, COMSIG_GLOB_MOB_DEATH, .proc/on_spawned_death) // so we can remove them from the list, etc (for mobs with corpses)
 	playsound(spawn_location,spawn_sound, 50, 1)
 	spawn_location.visible_message(span_danger("[L] [spawn_text]."))
 

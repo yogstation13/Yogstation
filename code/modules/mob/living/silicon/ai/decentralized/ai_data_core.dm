@@ -1,6 +1,8 @@
 GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
 
+#define CELL_POWERUSE_MULTIPLIER 0.025
+
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
@@ -132,7 +134,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core/has_power()
 	if((stat & (NOPOWER)) && integrated_battery)
-		if(integrated_battery.charge > active_power_usage)
+		if(integrated_battery.charge > (active_power_usage * CELL_POWERUSE_MULTIPLIER))
 			return TRUE
 	else
 		return TRUE
@@ -160,7 +162,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			update_icon()
 		use_power = ACTIVE_POWER_USE
 		if((stat & NOPOWER))
-			integrated_battery.use(active_power_usage)
+			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
 		warning_sent = FALSE
 	else
 		valid_ticks--
@@ -193,8 +195,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				var/temperature_increase = (temp_active_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
 				env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 				T.air_update_turf()
-	
-	
 	
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|EMPED) || !has_power())
@@ -269,3 +269,4 @@ That prevents a few funky behaviors.
 
 */
 
+#undef CELL_POWERUSE_MULTIPLIER
