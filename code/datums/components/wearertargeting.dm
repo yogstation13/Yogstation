@@ -14,7 +14,7 @@
 
 /datum/component/wearertargeting/proc/on_equip(datum/source, mob/equipper, slot)
 	if((slot in valid_slots) && istype(equipper, mobtype))
-		RegisterSignal(equipper, signals, proctype, TRUE)
+		RegisterSignals(equipper, signals, proctype, TRUE)
 	else
 		UnregisterSignal(equipper, signals)
 
