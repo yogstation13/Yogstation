@@ -218,7 +218,7 @@
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
 	build_path = /obj/item/gun/syringe/rapidsyringe
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL		//uwu
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY		//uwu
 
 /datum/design/temp_gun
 	name = "Temperature Gun"

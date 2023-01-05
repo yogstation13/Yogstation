@@ -15,7 +15,9 @@
 	if((movement_dir & EAST) && (movement_dir & WEST))
 		movement_dir &= ~(EAST|WEST)
 
-	if(user.movement_locked)
+	if (user.pixel_shifting)
+		setShift(movement_dir)
+	else if(user.movement_locked)
 		setDir(movement_dir)
 	else
 		user.Move(get_step(src, movement_dir), movement_dir)
