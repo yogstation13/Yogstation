@@ -574,13 +574,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"acV" = (
-/obj/machinery/camera/motion{
-	c_tag = "Armory External";
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "acY" = (
 /obj/structure/closet/bombcloset/security,
 /turf/open/floor/plasteel/showroomfloor,
@@ -975,10 +968,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
-"afq" = (
-/obj/machinery/door/window,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "afr" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "hosspace";
@@ -22309,6 +22298,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"eJO" = (
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "eJS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -23525,6 +23522,13 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"fkH" = (
+/obj/machinery/door/window/brigdoor{
+	name = "Armory Desk";
+	req_access_txt = "1"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "fkK" = (
 /obj/machinery/vending/gifts,
 /obj/structure/sign/poster/official/random{
@@ -23641,6 +23645,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"fnz" = (
+/obj/structure/lattice,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/main)
 "fnG" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel,
@@ -39921,6 +39930,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"moH" = (
+/obj/structure/lattice,
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "moT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
@@ -46100,10 +46117,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"oTi" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "oTG" = (
 /obj/machinery/computer/station_alert{
 	dir = 4
@@ -65684,6 +65697,11 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"xkb" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "xkp" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -97220,12 +97238,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
 gXs
-aaf
 gXs
+gXs
+tgE
+gXs
+aaZ
 aaZ
 aew
 afd
@@ -97480,9 +97498,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaf
 gXs
+gXs
+aaZ
 aaZ
 xrS
 adl
@@ -97738,8 +97756,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
+eJO
+aaZ
 aaZ
 dKi
 adl
@@ -97992,11 +98010,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
 gXs
 gXs
-aaf
-acV
+gXs
+gXs
+aaZ
 aaZ
 aeA
 adl
@@ -98252,8 +98270,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
+gXs
+aaZ
 aaZ
 arc
 adl
@@ -98509,8 +98527,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
+gXs
+aaZ
 aaZ
 vPf
 adl
@@ -98764,10 +98782,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaf
-aaa
+gXs
+gXs
+gXs
+aaZ
 aaZ
 atl
 adl
@@ -99023,8 +99041,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
+gXs
+aaZ
 aaZ
 aKh
 aff
@@ -99277,11 +99295,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaf
-aaf
-aaf
+gXs
+gXs
+gXs
+gXs
+aaZ
 aaZ
 aaZ
 aaZ
@@ -99536,12 +99554,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaf
-abp
-aaq
-oTi
+tgE
+gXs
+aaZ
+aaZ
+aaZ
+aaZ
 cME
 acY
 aaA
@@ -99792,13 +99810,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-akt
-aEv
-afq
+gXs
+tgE
+gXs
+gXs
+adR
+aaq
+xkb
 wlG
 dAl
 dAl
@@ -100051,11 +100069,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-abp
-bNS
-oTi
+gXs
+gXs
+akt
+aEv
+fkH
 xJs
 aqH
 aqH
@@ -100307,12 +100325,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaf
-aaf
-abp
-akt
-abp
+gXs
+gXs
+gXs
+adR
+bNS
+xkb
 aEv
 aEv
 aEv
@@ -100566,10 +100584,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaf
-abp
+moH
+adR
+fnz
+adR
 abP
 cME
 cME
@@ -100821,8 +100839,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
 aaf
 aaf
 aaf
