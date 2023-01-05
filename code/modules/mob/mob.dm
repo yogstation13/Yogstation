@@ -969,11 +969,13 @@
 	return
 
 /**
- * Buckle a living mob to this mob. Also turns you to face the other mob
- *
- * You can buckle on mobs if you're next to them since most are dense
- */
-/mob/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE, buckle_mob_flags= NONE)
+  * Buckle to another mob
+  *
+  * You can buckle on mobs if you're next to them since most are dense
+  *
+  * Turns you to face the other mob too
+  */
+/mob/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(M.buckled)
 		return 0
 	var/turf/T = get_turf(src)

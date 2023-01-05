@@ -137,25 +137,6 @@
 
 	return ..()
 
-
-/mob/living/simple_animal/attackby(obj/item/O, mob/user, params)
-	if(!is_type_in_list(O, food_type))
-		return ..()
-
-	user.visible_message("<span class='notice'>[user] hand-feeds [O] to [src].</span>", "<span class='notice'>You hand-feed [O] to [src].</span>")
-	qdel(O)
-	if(tame)
-		return
-	if (prob(tame_chance)) //note: lack of feedback message is deliberate, keep them guessing!
-		tame = TRUE
-		tamed(user)
-	else
-		tame_chance += bonus_tame_chance
-
-///Extra effects to add when the mob is tamed, such as adding a riding component
-/mob/living/simple_animal/proc/tamed(whomst)
-	tame = TRUE
-
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
@@ -588,13 +569,24 @@
 //ANIMAL RIDING
 
 /mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
-	if(user.incapacitated())
-		return
-	for(var/atom/movable/A in get_turf(src))
-		if(A != src && A != M && A.density)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
+	if(riding_datum)
+		if(user.incapacitated())
 			return
+		for(var/atom/movable/A in get_turf(src))
+			if(A != src && A != M && A.density)
+				return
+		M.forceMove(get_turf(src))
+		return ..()
 
-	return ..()
+/mob/living/simple_animal/relaymove(mob/user, direction)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
+	if(tame && riding_datum)
+		riding_datum.handle_ride(user, direction)
+
+/mob/living/simple_animal/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
+	. = ..()
+	LoadComponent(/datum/component/riding)
 
 /mob/living/simple_animal/proc/toggle_ai(togglestatus)
 	if(!can_have_ai && (togglestatus != AI_OFF))
@@ -629,8 +621,3 @@
 	if (AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_z] -= src
 		toggle_ai(initial(AIStatus))
-
-/mob/living/simple_animal/relaymove(mob/living/user, direction)
-	if(user.incapacitated())
-		return
-	return relaydrive(user, direction)

@@ -2,13 +2,15 @@
 	name = "bicycle"
 	desc = "Keep away from electricity."
 	icon_state = "bicycle"
+	fall_off_if_missing_arms = TRUE
 
 /obj/vehicle/ridden/bicycle/Initialize()
 	. = ..()
-	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/bicycle)
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
+	D.vehicle_move_delay = 0
 
-/obj/vehicle/ridden/bicycle/zap_act(power, zap_flags) // :::^^^)))
-	//This didn't work for 3 years because none ever tested it I hate life
+/obj/vehicle/ridden/bicycle/tesla_act() // :::^^^)))
 	name = "fried bicycle"
 	desc = "Well spent."
 	color = rgb(63, 23, 4)

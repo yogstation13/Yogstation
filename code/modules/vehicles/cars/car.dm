@@ -1,6 +1,7 @@
 /obj/vehicle/sealed/car
 	layer = ABOVE_MOB_LAYER
-	move_resist = MOVE_FORCE_VERY_STRONG
+	anchored = TRUE
+	default_driver_move = FALSE
 	var/car_traits = NONE //Bitflag for special behavior such as kidnapping
 	var/engine_sound = 'sound/vehicles/carrev.ogg'
 	var/last_enginesound_time
@@ -9,13 +10,27 @@
 
 /obj/vehicle/sealed/car/Initialize()
 	. = ..()
-	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/car)
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = movedelay
+	D.slowvalue = 0
 
 /obj/vehicle/sealed/car/generate_actions()
 	. = ..()
 	initialize_controller_action_type(/datum/action/vehicle/sealed/remove_key, VEHICLE_CONTROL_DRIVE)
 	if(car_traits & CAN_KIDNAP)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/DumpKidnappedMobs, VEHICLE_CONTROL_DRIVE)
+
+/obj/vehicle/sealed/car/driver_move(mob/user, direction)
+	if(key_type && !is_key(inserted_key))
+		to_chat(user, span_warning("[src] has no key inserted!"))
+		return FALSE
+	var/datum/component/riding/R = GetComponent(/datum/component/riding)
+	R.handle_ride(user, direction)
+	if(world.time < last_enginesound_time + engine_sound_length)
+		return
+	last_enginesound_time = world.time
+	playsound(src, engine_sound, 100, TRUE)
+	return TRUE
 
 /obj/vehicle/sealed/car/MouseDrop_T(atom/dropping, mob/M)
 	if(M.stat || M.restrained())

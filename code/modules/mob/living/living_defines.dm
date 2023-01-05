@@ -121,7 +121,7 @@
 
 	var/list/implants = null
 
-	var/last_words	///used for database logging
+	var/last_words	//used for database logging
 
 	var/list/obj/effect/proc_holder/abilities = list()
 

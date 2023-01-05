@@ -108,8 +108,7 @@
 	)
 
 	can_buckle = TRUE
-	buckle_lying = 0
-	/// What types of mobs are allowed to ride/buckle to this mob
+	buckle_lying = FALSE
 	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 
 /mob/living/silicon/robot/get_cell()
@@ -121,8 +120,8 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
-	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
-	AddElement(/datum/element/ridable, /datum/component/riding/creature/cyborg)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
 
 	robot_modules_background = new()
@@ -1246,19 +1245,47 @@
 		buckle_mob(M, TRUE)
 	 . = ..()
 
-/mob/living/silicon/robot/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE, buckle_mob_flags= RIDER_NEEDS_ARM)
+/mob/living/silicon/robot/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!is_type_in_typecache(M, can_ride_typecache))
 		M.visible_message(span_warning("[M] really can't seem to mount [src]..."))
 		return
-
-	if(stat || incapacitated())
+	if(!force)
+		return //buckling is called twice if we don't do this which is a mess
+	var/datum/component/riding/riding_datum = LoadComponent(/datum/component/riding/cyborg)
+	if(has_buckled_mobs())
+		if(buckled_mobs.len >= max_buckled_mobs)
+			return
+		if(M in buckled_mobs)
+			return
+	if(stat)
 		return
-	if(module && !module.allow_riding)
-		M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
+	if(incapacitated())
+		return
+	if(module)
+		if(!module.allow_riding)
+			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
+			return
+	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
+	var/_target = usr == M ? src : M
+	if(!do_after(usr, 0.75 SECONDS, _target))
+		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
 
-	buckle_mob_flags= RIDER_NEEDS_ARM // just in case
-	return ..()
+	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
+		if(M.get_num_arms() <= 0)
+			M.visible_message(span_boldwarning("[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!"))
+		else
+			M.visible_message(span_boldwarning("[M] can't climb onto [src] because [M.p_their()] hands are full!"))
+		return
+	. = ..(M, force, check_loc)
+
+/mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE)
+	if(iscarbon(user))
+		var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
+		if(istype(riding_datum))
+			riding_datum.unequip_buckle_inhands(user)
+			riding_datum.restore_position(user)
+	. = ..(user)
 
 /mob/living/silicon/robot/resist() // for unbuckling people
 	. = ..()

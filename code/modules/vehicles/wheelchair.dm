@@ -6,12 +6,19 @@
 	layer = OBJ_LAYER
 	max_integrity = 100
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 20, ACID = 30)	//Wheelchairs aren't super tough yo
+	legs_required = 0	//You'll probably be using this if you don't have legs
+	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	movedelay = 4
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
-	make_ridable()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = 0
+	D.set_vehicle_dir_layer(SOUTH, OBJ_LAYER)
+	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
+	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
 /obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
 	. = ..()
@@ -27,6 +34,27 @@
 		var/mob/living/carbon/H = buckled_mobs[1]
 		unbuckle_mob(H)
 	return ..()
+
+/obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
+	if(istype(user))
+		if(canmove && (user.get_num_arms() < arms_required))
+			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
+			canmove = FALSE
+			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
+			return FALSE
+		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
+		if(user.has_quirk(/datum/quirk/paraplegic))
+			movedelay = 2
+		else
+			movedelay = 4
+		set_move_delay(user)
+	return ..()
+
+/obj/vehicle/ridden/wheelchair/proc/set_move_delay(mob/living/user)
+	var/datum/component/riding/D = GetComponent(/datum/component/riding)
+	//1.5 (movespeed as of this change) multiplied by 6.7 gets ABOUT 10 (rounded), the old constant for the wheelchair that gets divided by how many arms they have
+	//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
+	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
 
 /obj/vehicle/ridden/wheelchair/Moved()
 	. = ..()

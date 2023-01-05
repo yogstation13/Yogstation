@@ -3400,7 +3400,7 @@
 	name = "overseer's winter coat"
 	},
 /obj/item/clothing/shoes/winterboots,
-/obj/item/key/atv,
+/obj/item/key,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
@@ -6057,8 +6057,8 @@
 /area/awaymission/snowdin/post/garage)
 "mV" = (
 /obj/structure/table,
-/obj/item/key/atv,
-/obj/item/key/atv,
+/obj/item/key,
+/obj/item/key,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -9961,7 +9961,7 @@
 	},
 /area/awaymission/snowdin/cave)
 "wB" = (
-/obj/item/key/atv,
+/obj/item/key,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
 "wC" = (
@@ -11614,7 +11614,7 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/minipost)
 "AN" = (
-/obj/item/key/atv,
+/obj/item/key,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
