@@ -96,8 +96,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(panel_open && user.a_intent != INTENT_HARM)
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return // Feedback in proc
-		if(HAS_TRAIT(I, TRAIT_NODROP))
-			to_chat(user, span_notice("[I] is stuck to your hand!"))
+		if(HAS_TRAIT(O, TRAIT_NODROP))
+			to_chat(user, span_notice("[O] is stuck to your hand!"))
 			return
 		if(istype(O, /obj/item/stock_parts/cell))
 			O.forceMove(src) // Force it out of our hands so we can put the old cell in it		
