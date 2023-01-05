@@ -89,6 +89,25 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 	if(default_deconstruction_crowbar(O))
 		return TRUE
+
+	
+	if(panel_open && user.a_intent != INTENT_HARM)
+		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+			return // Feedback in proc
+		if(HAS_TRAIT(I, TRAIT_NODROP))
+			to_chat(user, span_notice("[I] is stuck to your hand!"))
+			return
+		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
+			if(!user.put_in_hands(integrated_battery))
+				integrated_battery.forceMove(get_turf(src))
+			component_parts -= integrated_battery // Remove the old cell so the new one spawns when deconstructed
+			I.moveToNullspace() // Now get out of contents
+			to_chat(user, span_notice("You replace [integrated_battery] with [I]."))
+			integrated_battery = I // Set the cell
+			component_parts += I // Add new cell
+		return
+
 	return ..()
 
 //NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
@@ -113,7 +132,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core/has_power()
 	if((stat & (NOPOWER)) && integrated_battery)
-		if(integrated_battery.charge > charge)
+		if(integrated_battery.charge > active_power_usage)
 			return TRUE
 	else
 		return TRUE
