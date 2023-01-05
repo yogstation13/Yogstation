@@ -8,7 +8,6 @@
 #define ALMOST_LIFEFORCE_TRADE_COMBO "LD" 	//Sets streak to "M"
 #define PRE_LIFEFORCE_TRADE_COMBO "DG" 		//Sets streak to "L"
 
-
 #define IMMOLATE_COMBO "JG" 
 #define ALMOST_IMMOLATE_COMBO "ID"	//Sets streak to "J"
 #define PRE_IMMOLATE_COMBO "DH"  	//Sets strak to "I"
@@ -373,3 +372,18 @@
 /datum/martial_art/explosive_fist/on_remove(mob/living/carbon/human/H)
 	..()
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, "explosive_fist")
+
+//these aren't needed elsewhere
+#undef EXPLOSIVE_DISARM_COMBO
+
+#undef DETONATE_COMBO
+#undef ALMOST_DETONATE_COMBO
+#undef PRE_DETONATE_COMBO
+
+#undef LIFEFORCE_TRADE_COMBO
+#undef ALMOST_LIFEFORCE_TRADE_COMBO
+#undef PRE_LIFEFORCE_TRADE_COMBO
+
+#undef IMMOLATE_COMBO
+#undef ALMOST_IMMOLATE_COMBO
+#undef PRE_IMMOLATE_COMBO
