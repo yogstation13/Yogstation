@@ -7,7 +7,7 @@
 	integrity_failure = 0.5
 
 	///This stores a banana that, when used on the secway, prevents the vehicle from moving until it is removed.
-	var/obj/item/reagent_containers/food/snacks/grown/banana/eddie_murphy
+	var/obj/item/food/grown/banana/eddie_murphy
 
 /obj/vehicle/ridden/secway/Initialize()
 	. = ..()
