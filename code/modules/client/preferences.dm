@@ -28,8 +28,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = TRUE
-	// Custom Keybindings
+
+	/// Custom keybindings. Map of keybind names to keyboard inputs.
+	/// For example, by default would have "swap_hands" -> list("X")
 	var/list/key_bindings = list()
+
+	/// Cached list of keybindings, mapping keys to actions.
+	/// For example, by default would have "X" -> list("swap_hands")
+	var/list/key_bindings_by_key = list()
+	
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
@@ -95,7 +102,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
-		// Want randomjob if preferences already filled - Donkie
+	// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
 	// 0 = character settings, 1 = game preferences
@@ -159,7 +166,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 	var/list/randomise = list()
-	
+
 	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
 	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
@@ -197,7 +204,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	for (var/middleware_type in subtypesof(/datum/preference_middleware))
 		middleware += new middleware_type(src)
 
-	UI_style = GLOB.available_ui_styles[1]
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
@@ -210,9 +216,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			// yogs end
 
 	// give them default keybinds and update their movement keys
-	//key_bindings = deepCopyList(GLOB.default_hotkeys)
-	//key_bindings_by_key = get_key_bindings_by_key(key_bindings)
-	//randomise = get_default_randomization()
+	key_bindings = deepCopyList(GLOB.default_hotkeys)
+	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
+	randomise = get_default_randomization()
 
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
@@ -277,7 +283,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["character_profiles"] = create_character_profiles()
 
 	data["character_preview_view"] = character_preview_view.assigned_map
-	data["overflow_role"] = SSjob.GetJobType(SSjob.overflow_role).title
+	data["overflow_role"] = SSjob.GetJob(SSjob.overflow_role).title
 	data["window"] = current_window
 
 	data["content_unlocked"] = unlock_content
@@ -550,6 +556,25 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 
 	return profiles
 
+/// Returns the default `randomise` variable ouptut
+/datum/preferences/proc/get_default_randomization()
+	var/list/default_randomization = list()
+
+	for (var/preference_key in GLOB.preference_entries_by_key)
+		var/datum/preference/preference = GLOB.preference_entries_by_key[preference_key]
+		if (preference.is_randomizable() && preference.randomize_by_default)
+			default_randomization[preference_key] = RANDOM_ENABLED
+
+	return default_randomization
+
+/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
+/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
+	var/list/output = list()
+
+	for (var/action in key_bindings)
+		for (var/key in key_bindings[action])
+			LAZYADD(output[key], action)
+
 
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
@@ -634,7 +659,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 	character.backbag = backbag
 
 	character.jumpsuit_style = jumpsuit_style
-	character.id_in_pda = id_in_pda
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type

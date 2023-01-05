@@ -49,3 +49,19 @@ Assistant
 		uniform = /obj/item/clothing/under/color/random
 		uniform_skirt = /obj/item/clothing/under/skirt/color/random
 	return ..()
+
+
+/datum/outfit/job/assistant/consistent
+	name = "Assistant - Consistent"
+
+/datum/outfit/job/assistant/consistent/pre_equip(mob/living/carbon/human/target)
+	..()
+	uniform = /obj/item/clothing/under/color/grey
+
+/datum/outfit/job/assistant/consistent/post_equip(mob/living/carbon/human/H, visualsOnly)
+	..()
+
+	// This outfit is used by the assets SS, which is ran before the atoms SS
+	//if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
+	//	H.w_uniform?.update_greyscale()
+	//	H.update_worn_undersuit()

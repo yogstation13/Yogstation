@@ -220,16 +220,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * If there are no available roundstart species, defaults to human.
  */
 /proc/generate_selectable_species()
-	for(var/I in subtypesof(/datum/species))
-		var/datum/species/S = new I
-		if(S.check_roundstart_eligible())
-			GLOB.roundstart_races += S.id
-			qdel(S)
-		else if(S.check_mentor())
-			GLOB.mentor_races += S.id
-			qdel(S)
-	if(!GLOB.roundstart_races.len)
-		GLOB.roundstart_races += "human"
+	var/list/selectable_species = list()
+
+	for(var/species_type in subtypesof(/datum/species))
+		var/datum/species/species = new species_type
+		if(species.check_roundstart_eligible())
+			selectable_species += species.id
+			qdel(species)
+
+	if(!selectable_species.len)
+		selectable_species += "human"
+
+	return selectable_species
 
 /**
  * Checks if a species is eligible to be picked at roundstart.
