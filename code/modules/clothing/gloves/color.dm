@@ -2,7 +2,6 @@
 	dying_key = DYE_REGISTRY_GLOVES
 
 /obj/item/clothing/gloves/color/yellow
-/obj/item/clothing/gloves/color/yellow
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
 	icon_state = "yellow"
@@ -10,6 +9,10 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	resistance_flags = NONE
+
+/obj/item/clothing/gloves/color/yellow/Initialize
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, "fuck you assistant mains")
 
 /obj/item/clothing/gloves/color/fyellow                             //Cheap Chinese Crap
 	desc = "These gloves are cheap knockoffs of the coveted ones - no way this can end badly."
