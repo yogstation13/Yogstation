@@ -401,10 +401,6 @@
 					span_notice("You give [src] a pat on the shoulder to make [p_them()] feel better!"))
 
 	else
-		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_Stacks = averagestacks
-		M.fire_stacks = averagestacks
-
 		M.visible_message(span_notice("[M] hugs [src] to make [p_them()] feel better!"), \
 					span_notice("You hug [src] to make [p_them()] feel better!"))
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
@@ -420,6 +416,15 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
+
+		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
+		fire_Stacks = averagestacks
+		M.fire_stacks = averagestacks
+		if(averagestacks > 1)
+			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
+		else if(averagestacks < -1)
+			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
+
 	AdjustStun(-60)
 	AdjustKnockdown(-60)
 	AdjustUnconscious(-60)
