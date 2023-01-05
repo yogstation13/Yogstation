@@ -8,13 +8,9 @@
 
 /datum/keybinding/admin/admin_say
     hotkey_keys = list("F3")
-    name = "admin_say"
+    name = ASAY_CHANNEL
     full_name = "Admin say"
     description = "Talk with other admins."
-
-/datum/keybinding/admin/admin_say/down(client/user)
-    user.get_admin_say()
-    return TRUE
 
 
 /datum/keybinding/admin/admin_ghost
@@ -74,13 +70,9 @@
 
 /datum/keybinding/admin/deadsay
 	hotkey_keys = list("F10")
-	name = "dsay"
+	name = DEADSAY_CHANNEL
 	full_name = "deadsay"
 	description = "Allows you to send a message to dead chat"
-
-/datum/keybinding/admin/deadsay/down(client/user)
-	user.get_dead_say()
-	return TRUE
 
 
 /datum/keybinding/admin/deadmin
