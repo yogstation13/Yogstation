@@ -66,8 +66,9 @@ LINEN BINS
 			qdel(src)
 			return
 		var/obj/item/stack/sheet/cloth/C = new (get_turf(src), 3)
-		transfer_fingerprints_to(C)
-		C.add_fingerprint(user)
+		if(!QDELETED(shreds)) //stacks merged
+			transfer_fingerprints_to(shreds)
+			C.add_fingerprint(user)
 		qdel(src)
 		// yogs end
 	else
