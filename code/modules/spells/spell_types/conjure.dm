@@ -112,13 +112,11 @@
 	var/list/newVars = list()
 
 /obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/living/carbon/user = usr)
-	var/list/directions = GLOB.alldirs.Copy()
 	if(GLOB.bloodmen_list.len < 1)
 		to_chat(user, span_notice("You don't have any minions to summon!"))
 		return
 	for(var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman in GLOB.bloodmen_list)
-		var/spawndir = pick_n_take(directions)
-		var/turf/T = get_step(usr, spawndir)
+		var/turf/T = get_turf(user)
 		if(NOBLOOD in user.dna.species.species_traits)
 			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 			to_chat(usr, span_notice("You can almost feel your brain writhing as you call your bloodmen to you."))
@@ -127,4 +125,4 @@
 			to_chat(usr, span_notice("You feel yourself becoming paler with every minion called."))
 		if(T)
 			bloodman.forceMove(T)
-			playsound(usr, 'sound/magic/exit_blood.ogg', 100, 1)
+			playsound(usr, 'sound/magic/exit_blood.ogg', 80, 1)

@@ -162,6 +162,7 @@
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L = new(M.loc)
 		L.stored_mob = M
+		M.apply_status_effect(/datum/status_effect/exhumed)
 		M.forceMove(L)
 		qdel(src)
 		user.blood_volume -= 25

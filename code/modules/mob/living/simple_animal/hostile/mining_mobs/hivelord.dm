@@ -437,17 +437,25 @@
 	faction = list("blooded")
 	harm_intent_damage = 2
 	melee_damage_lower = 2
-	melee_damage_upper = 2 //fodder isnt supposed to be strong
+	melee_damage_upper = 2
 	attacktext = "gnashes at"
 	stat_attack = DEAD
+	var/fauna_damage_bonus = 10
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(isturf(loc))
 		for(var/mob/living/M in view(src,1))
-			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
+			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
 				L.stored_mob = M
 				M.forceMove(L)
+				M.apply_status_effect(/datum/status_effect/exhumed)
 				qdel(src)
-	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this
+	..()
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/AttackingTarget()
+	. = ..()
+	var/mob/living/L = target
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus, BRUTE)
