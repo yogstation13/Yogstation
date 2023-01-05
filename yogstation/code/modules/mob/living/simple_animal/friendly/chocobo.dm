@@ -22,11 +22,12 @@
 	maxHealth = 60
 	mob_size = MOB_SIZE_SMALL
 	gold_core_spawnable = FRIENDLY_SPAWN
-	do_footstep = FALSE
 	tame = 1
 	can_buckle = 1
 	buckle_lying = 0
 	var/random_color = TRUE
+
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/chocobo/Initialize()
 	. = ..()

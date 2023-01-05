@@ -41,12 +41,6 @@
 	if (over != user)
 		return
 
-	// Cyborgs buckle people by dragging them onto them, unless in combat mode.
-	if (iscyborg(user))
-		var/mob/living/silicon/robot/cyborg_user = user
-		if (!cyborg_user.combat_mode)
-			return
-
 	if (!isnull(should_strip_proc_path) && !call(source, should_strip_proc_path)(user))
 		return
 
@@ -277,9 +271,6 @@
 
 	source.log_message("[key_name(source)] has been stripped of [item] by [key_name(user)]", LOG_ATTACK, color="red")
 	user.log_message("[key_name(source)] has been stripped of [item] by [key_name(user)]", LOG_ATTACK, color="red", log_globally=FALSE)
-
-	// Updates speed in case stripped speed affecting item
-	source.update_equipment_speed_mods()
 
 /// A representation of the stripping UI
 /datum/strip_menu
