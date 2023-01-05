@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
 
-#define CELL_POWERUSE_MULTIPLIER 0.5
+#define CELL_POWERUSE_MULTIPLIER 0.025
 
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
