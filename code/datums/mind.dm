@@ -124,7 +124,7 @@
 					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
@@ -158,7 +158,7 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)

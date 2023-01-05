@@ -908,7 +908,7 @@
 	name = ".38 Bullet"
 	id = "c38"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 3000)
+	materials = list(/datum/material/iron = 1500)
 	build_path = /obj/item/ammo_casing/c38
 	category = list("hacked", "Security")
 
@@ -916,7 +916,7 @@
 	name = ".357 Bullet"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
@@ -942,6 +942,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c9mm
+	category = list("hacked", "Security")
+
+/datum/design/box_a357
+	name = "Ammo Box (.357)"
+	id = "box_a357"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 40000)
+	build_path = /obj/item/ammo_box/no_direct/a357
 	category = list("hacked", "Security")
 
 /datum/design/cleaver

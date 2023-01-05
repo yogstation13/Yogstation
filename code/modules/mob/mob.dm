@@ -687,7 +687,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (CONFIG_GET(flag/norespawn))
+	if (CONFIG_GET(flag/norespawn) && (!check_rights_for(usr.client, R_ADMIN) || tgui_alert(usr, "Respawn configs disabled. Do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes"))
 		return
 	if ((stat != DEAD || !( SSticker )))
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
@@ -879,81 +879,13 @@
 		return FALSE
 	return ..()
 
-///Hidden verb to turn east
-/mob/verb/eastface()
-	set hidden = TRUE
-	if(!canface())
+/mob/setShift(dir)
+	if (!canface())
 		return FALSE
-	setDir(EAST)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-///Hidden verb to turn west
-/mob/verb/westface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(WEST)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-///Hidden verb to turn north
-/mob/verb/northface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(NORTH)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-///Hidden verb to turn south
-/mob/verb/southface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(SOUTH)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-/mob/verb/eastshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_x <= 16)
-        pixel_x++
-        is_shifted = TRUE
-
-/mob/verb/westshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_x >= -16)
-        pixel_x--
-        is_shifted = TRUE
-
-/mob/verb/northshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_y <= 16)
-        pixel_y++
-        is_shifted = TRUE
-
-/mob/verb/southshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_y >= -16)
-        pixel_y--
-        is_shifted = TRUE
+	
+	is_shifted = TRUE
+	
+	return ..()
 
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()

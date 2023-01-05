@@ -3,7 +3,9 @@ Assistant
 */
 /datum/job/assistant
 	title = "Assistant"
+	description = "Get your space legs, assist people, ask the HoP to give you a job."
 	flag = ASSISTANT
+	orbit_icon = "toolbox"
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 5

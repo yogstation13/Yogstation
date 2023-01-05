@@ -193,8 +193,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 				T.air_update_turf()
 	
-	
-	
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
 	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
