@@ -70,19 +70,19 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 
 /datum/strippable_item/mob_item_slot/suit
 	key = STRIPPABLE_ITEM_SUIT
-	item_slot = ITEM_SLOT_OCLOTHING
+	item_slot = SLOT_WEAR_SUIT
 
 /datum/strippable_item/mob_item_slot/gloves
 	key = STRIPPABLE_ITEM_GLOVES
-	item_slot = ITEM_SLOT_GLOVES
+	item_slot = SLOT_GLOVES
 
 /datum/strippable_item/mob_item_slot/feet
 	key = STRIPPABLE_ITEM_FEET
-	item_slot = ITEM_SLOT_FEET
+	item_slot = SLOT_SHOES
 
 /datum/strippable_item/mob_item_slot/suit_storage
 	key = STRIPPABLE_ITEM_SUIT_STORAGE
-	item_slot = ITEM_SLOT_SUIT
+	item_slot = SLOT_S_STORE
 
 /datum/strippable_item/mob_item_slot/suit_storage/get_alternate_action(atom/source, mob/user)
 	return get_strippable_alternate_action_internals(get_item(source), source)

@@ -310,7 +310,8 @@
   *
   * set disable_warning to disable the 'you are unable to equip that' warning.
   *
-  * unset redraw_mob to prevent the mob icons from being redrawn at the end.
+  * unset 
+  *  to prevent the mob icons from being redrawn at the end.
   */
 /mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE, initial = FALSE)
 	if(!istype(W))
@@ -746,10 +747,6 @@
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_machine()
 		src << browse(null, t1)
-
-	if(href_list["refresh"])
-		if(machine && in_range(src, usr))
-			show_inv(machine)
 
 // The src mob is trying to strip an item from someone
 // Defined in living.dm

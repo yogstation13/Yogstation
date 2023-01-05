@@ -16,7 +16,7 @@
 
 /datum/strippable_item/mob_item_slot/handcuffs
 	key = STRIPPABLE_ITEM_HANDCUFFS
-	item_slot = ITEM_SLOT_HANDCUFFED
+	item_slot = SLOT_HANDCUFFED
 
 /datum/strippable_item/mob_item_slot/handcuffs/should_show(atom/source, mob/user)
 	if (!iscarbon(source))
@@ -31,7 +31,7 @@
 
 /datum/strippable_item/mob_item_slot/legcuffs
 	key = STRIPPABLE_ITEM_LEGCUFFS
-	item_slot = ITEM_SLOT_LEGCUFFED
+	item_slot = SLOT_LEGCUFFED
 
 /datum/strippable_item/mob_item_slot/legcuffs/should_show(atom/source, mob/user)
 	if (!iscarbon(source))
