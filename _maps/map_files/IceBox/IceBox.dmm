@@ -49934,7 +49934,7 @@
 "bYl" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 8;
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list("n2")
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
