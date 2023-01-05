@@ -47,6 +47,9 @@
 	var/list/explosionSize = list(0,0,2,3)
 	var/stay_after_drop = FALSE
 	var/specialised = FALSE // It's not a general use pod for cargo/admin use
+	var/effectShrapnel = FALSE
+	//var/shrapnel_type = /obj/projectile/bullet/shrapnel
+	var/shrapnel_magnitude = 3
 	var/rubble_type //Rubble effect associated with this supplypod
 	var/decal = "default" //What kind of extra decals we add to the pod to make it look nice
 	var/door = "pod_door"
@@ -643,6 +646,9 @@
 	QDEL_NULL(helper)
 	pod.preOpen() //Begin supplypod open procedures. Here effects like explosions, damage, and other dangerous (and potentially admin-caused, if the centcom_podlauncher datum was used) memes will take place
 	drawSmoke()
+	//pod.AddComponent(/datum/component/pellet_cloud, projectile_type=pod.shrapnel_type, magnitude=pod.shrapnel_magnitude)
+	///if(pod.effectShrapnel)	
+	//	SEND_SIGNAL(pod, COMSIG_SUPPLYPOD_LANDED)
 	qdel(src) //The DPtarget's purpose is complete. It can rest easy now
 
 //------------------------------------UPGRADES-------------------------------------//
