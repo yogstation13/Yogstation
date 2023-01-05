@@ -48,7 +48,7 @@
 			G.set_temperature(max(G.return_temperature()/2,T20C))
 
 /obj/effect/particle_effect/foam/firefighting/kill_foam()
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 
 	if(absorbed_plasma)
 		var/obj/effect/decal/cleanable/plasma/P = (locate(/obj/effect/decal/cleanable/plasma) in get_turf(src))
@@ -91,7 +91,7 @@
 /obj/effect/particle_effect/foam/Initialize()
 	. = ..()
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
-	START_PROCESSING(SSfastprocess, src)
+	START_PROCESSING(SSprocessing, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
 	applied_atoms = list()
 
@@ -101,13 +101,13 @@
 		AddComponent(/datum/component/slippery, 100)
 
 /obj/effect/particle_effect/foam/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 
 /obj/effect/particle_effect/foam/proc/kill_foam()
 	set waitfor = FALSE
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 	switch(metal)
 		if(ALUMINUM_FOAM)
 			new /obj/structure/foamedmetal(get_turf(src))
@@ -119,7 +119,7 @@
 	QDEL_IN(src, 5)
 
 /obj/effect/particle_effect/foam/smart/kill_foam() //Smart foam adheres to area borders for walls
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 	if(metal)
 		var/turf/T = get_turf(src)
 		if(isspaceturf(T)) //Block up any exposed space

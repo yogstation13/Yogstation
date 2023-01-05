@@ -127,7 +127,10 @@
 	var/initial_o2 = air.get_moles(GAS_O2)
 	if(initial_o2 < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > initial_thermal_energy)
 		burned_fuel = initial_o2 / TRITIUM_BURN_OXY_FACTOR
+		if(burned_fuel > initial_trit) 
+			burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		air.adjust_moles(GAS_TRITIUM, -burned_fuel)
+		air.adjust_moles(GAS_TRITIUM, -burned_fuel / 2) //Yogs - no infinite tiny trit burn please
 	else
 		burned_fuel = initial_trit
 		air.adjust_moles(GAS_TRITIUM, -initial_trit / TRITIUM_BURN_TRIT_FACTOR) 
@@ -654,16 +657,18 @@
 	var/initial_h2 = air.get_moles(GAS_H2)
 	if(initial_o2 < initial_h2 || MINIMUM_H2_OXYBURN_ENERGY > old_thermal_energy)
 		burned_fuel = (initial_o2/HYDROGEN_BURN_OXY_FACTOR)
+		if(burned_fuel > initial_hydrogen)
+			burned_fuel = initial_hydrogen	//Yogs - prevents negative mols of h2
 		air.adjust_moles(GAS_H2, -burned_fuel)
+		air.adjust_moles(GAS_O2, -burned_fuel / 2) //Yogs - only takes half a mol of O2 for a mol of H2O
 	else
-		burned_fuel = (initial_h2 * HYDROGEN_BURN_H2_FACTOR)
-		air.adjust_moles(GAS_H2, -(initial_h2 / HYDROGEN_BURN_H2_FACTOR))
+		burned_fuel = initial_h2
+		air.set_moles(GAS_H2, initial_h2 * (1 - 1 / HYDROGEN_BURN_H2_FACTOR))
 		air.adjust_moles(GAS_O2, -initial_h2)
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-		air.adjust_moles(GAS_H2O, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
-
+		air.adjust_moles(GAS_H2O, burned_fuel)
 		cached_results["fire"] += burned_fuel
 
 	if(energy_released > 0)

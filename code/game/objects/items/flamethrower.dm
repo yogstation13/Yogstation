@@ -237,13 +237,13 @@
 	//var/oxygen_consumption = (air_transfer.get_moles(/datum/gas/plasma) * 2) + (air_transfer.get_moles(/datum/gas/tritium) / 2) + (air_transfer.get_moles(/datum/gas/hydrogen) / 2)
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
-	if(air_transfer.get_moles(/datum/gas/plasma) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/stimulum) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/pluoxium) >= STIM_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(air_transfer.get_moles(/datum/gas/stimulum), air_transfer.get_moles(/datum/gas/pluoxium), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
+	if(air_transfer.get_moles(GAS_PLASMA) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_STIMULUM) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_PLUOXIUM) >= STIM_BALL_MOLES_REQUIRED)
+		var/balls_shot = round(min(air_transfer.get_moles(GAS_STIMULUM), air_transfer.get_moles(GAS_PLUOXIUM), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		air_transfer.adjust_moles(/datum/gas/plasma, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
+		air_transfer.adjust_moles(GAS_PLASMA, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
 
 	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
 	// 16 damage at 1 mole transfer or having 20 moles in the tank
@@ -268,8 +268,8 @@
 	hit_list += src
 	new /obj/effect/hotspot(target)
 	target.hotspot_expose(FIRE_MINIMUM_TEMPERATURE_TO_EXIST+damage*25,damage*25,1)
-	if(air_transfer.get_moles(/datum/gas/tritium)) // Tritium fires cause a bit of radiation
-		radiation_pulse(target, air_transfer.get_moles(/datum/gas/tritium) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	if(air_transfer.get_moles(GAS_TRITIUM)) // Tritium fires cause a bit of radiation
+		radiation_pulse(target, air_transfer.get_moles(GAS_TRITIUM) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 	for(var/mob/living/L in target.contents)
 		if(L in hit_list)
 			continue

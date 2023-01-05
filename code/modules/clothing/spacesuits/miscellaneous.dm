@@ -57,6 +57,7 @@ Contains:
 	desc = "An old, NASA CentCom branch designed, dark red space suit helmet."
 	icon_state = "void"
 	item_state = "void"
+	flash_protect = 0 // Flimsy film on the helmet shouldnt protect you from bright lights.
 
 /obj/item/clothing/suit/space/nasavoid
 	name = "NASA Voidsuit"
@@ -70,6 +71,7 @@ Contains:
 	desc = "A CentCom engineering dark red space suit helmet. While old and dusty, it still gets the job done."
 	icon_state = "void"
 	item_state = "void"
+	flash_protect = 2
 
 /obj/item/clothing/suit/space/nasavoid/old
 	name = "Engineering Voidsuit"

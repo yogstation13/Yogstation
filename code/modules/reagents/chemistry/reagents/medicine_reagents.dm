@@ -1310,7 +1310,7 @@
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20, FALSE)
-	M.adjustStaminaLoss(-1, 0)
+	M.adjustStaminaLoss(-30, 0)
 	..()
 	return TRUE
 
@@ -1852,3 +1852,17 @@
 	clot_rate = 0.4 //slightly better than regular coagulant
 	passive_bleed_modifier = 0.5
 	overdose_threshold = 10 //but easier to overdose on
+
+/datum/reagent/medicine/resurrector_nanites
+	name = "Resurrector Nanite Serum"
+	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
+	taste_description = "a bunch of tiny robots"
+
+/datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
+	..()
+	if(M.stat != DEAD)
+		return
+	M.revive(full_heal = TRUE)
+	M.Jitter(10 SECONDS)
+	M.emote("gasp")
+	

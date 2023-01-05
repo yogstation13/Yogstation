@@ -36,7 +36,7 @@
 	return ..()
 
 /obj/structure/destructible/honkmother/attack_ghost(mob/dead/observer/O)
-	var/alertresult = alert(O, "Become a honking abomination? You can no longer be cloned!",,"Yes", "No")
+	var/alertresult = tgui_alert(O, "Become a honking abomination? You can no longer be cloned!",,list("Yes", "No"))
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
 	var/type = pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))

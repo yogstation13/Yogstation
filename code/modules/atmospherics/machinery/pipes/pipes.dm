@@ -53,10 +53,12 @@
 		T.assume_air(air_temporary)
 
 /obj/machinery/atmospherics/pipe/return_air()
-	return parent.air
+	if(parent)
+		return parent.air
 
 /obj/machinery/atmospherics/pipe/remove_air(amount)
-	return parent.air.remove(amount)
+	if(parent)
+		return parent.air.remove(amount)
 
 /obj/machinery/atmospherics/pipe/remove_air_ratio(ratio)
 	return parent.air.remove_ratio(ratio)

@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 	bluespaceify_random_locker()
 	if(external_locker)
 		external_locker.take_contents()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/bluespace_locker/proc/bluespaceify_random_locker()
 	if(external_locker)

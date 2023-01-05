@@ -76,6 +76,8 @@
 			return
 		var/atom/throw_target = get_edge_target_turf(A, dir)
 		if(crash_all)
+			if(A == src)
+				return
 			if(ismovable(A))
 				var/atom/movable/AM = A
 				AM.throw_at(throw_target, 4, 3)
