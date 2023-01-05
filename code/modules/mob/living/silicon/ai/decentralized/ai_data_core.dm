@@ -1,6 +1,8 @@
 GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
 
+#define CELL_POWERUSE_MULTIPLIER 0.5
+
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
@@ -132,7 +134,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core/has_power()
 	if((stat & (NOPOWER)) && integrated_battery)
-		if(integrated_battery.charge > active_power_usage)
+		if(integrated_battery.charge > (active_power_usage * CELL_POWERUSE_MULTIPLIER))
 			return TRUE
 	else
 		return TRUE
@@ -160,7 +162,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			update_icon()
 		use_power = ACTIVE_POWER_USE
 		if((stat & NOPOWER))
-			integrated_battery.use(active_power_usage)
+			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
 		warning_sent = FALSE
 	else
 		valid_ticks--
@@ -266,3 +268,4 @@ That prevents a few funky behaviors.
 
 */
 
+#undef CELL_POWERUSE_MULTIPLIER
