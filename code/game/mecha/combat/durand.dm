@@ -11,6 +11,8 @@
 	infra_luminosity = 8
 	force = 35
 	wreckage = /obj/structure/mecha_wreckage/durand
+	baseline_emp_damage = 80
+	baseline_equipment_disable = 6 SECONDS
 
 /obj/mecha/combat/durand/GrantActions(mob/living/user, human_occupant = 0)
 	..()

@@ -270,7 +270,7 @@
 	id = "durand_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/durand
-	materials = list(/datum/material/iron=25000)
+	materials = list(/datum/material/iron=55000,/datum/material/gold=10000,/datum/material/silver=10000,/datum/material/plasma=5000)
 	construction_time = 100
 	category = list("Durand")
 
@@ -279,7 +279,7 @@
 	id = "durand_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_torso
-	materials = list(/datum/material/iron=25000,/datum/material/glass=10000,/datum/material/silver=10000)
+	materials = list(/datum/material/iron=55000,/datum/material/glass=10000,/datum/material/silver=10000)
 	construction_time = 300
 	category = list("Durand")
 
@@ -288,7 +288,7 @@
 	id = "durand_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_head
-	materials = list(/datum/material/iron=10000,/datum/material/glass=15000,/datum/material/silver=2000)
+	materials = list(/datum/material/iron=30000,/datum/material/glass=15000,/datum/material/silver=4000,/datum/material/gold=3000)
 	construction_time = 200
 	category = list("Durand")
 
@@ -297,7 +297,7 @@
 	id = "durand_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_arm
-	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=20000,/datum/material/silver=4000,/datum/material/plasma=5000)
 	construction_time = 200
 	category = list("Durand")
 
@@ -306,7 +306,7 @@
 	id = "durand_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_arm
-	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=20000,/datum/material/silver=4000,/datum/material/plasma=5000)
 	construction_time = 200
 	category = list("Durand")
 
@@ -315,7 +315,7 @@
 	id = "durand_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_leg
-	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=15000,/datum/material/silver=4000,/datum/material/plasma=5000)
 	construction_time = 200
 	category = list("Durand")
 
@@ -324,7 +324,7 @@
 	id = "durand_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_leg
-	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=15000,/datum/material/silver=4000,/datum/material/plasma=5000)
 	construction_time = 200
 	category = list("Durand")
 
@@ -333,7 +333,7 @@
 	id = "durand_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_armor
-	materials = list(/datum/material/iron=30000,/datum/material/uranium=25000,/datum/material/titanium=20000)
+	materials = list(/datum/material/iron=30000,/datum/material/uranium=25000,/datum/material/titanium=20000,/datum/material/diamond=10000)
 	construction_time = 600
 	category = list("Durand")
 
