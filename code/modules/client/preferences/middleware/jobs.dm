@@ -26,6 +26,8 @@
 	return TRUE
 
 /datum/preference_middleware/jobs/get_constant_data()
+	log_world("jobs/get_constant_data called!")
+
 	var/list/data = list()
 
 	var/list/departments = list()
@@ -35,6 +37,8 @@
 		if (isnull(job.description))
 			stack_trace("[job] does not have a description set, yet is a joinable occupation!")
 			continue
+		
+		log_world("  - jobs/get_constant_data(): adding job [job.title]")
 		
 		var/department_name = job.exp_type_department
 		var/is_command = (job in GLOB.command_positions)
@@ -50,8 +54,15 @@
 			"department" = department_name,
 		)
 
+	log_world("done adding jobs!")
+
 	data["departments"] = departments
 	data["jobs"] = jobs
+
+	
+	log_world("added jobs: [english_list(jobs)]")
+	
+	log_world("added departments: [english_list(departments)]")
 
 	return data
 

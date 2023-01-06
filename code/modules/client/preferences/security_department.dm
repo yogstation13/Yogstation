@@ -1,4 +1,4 @@
-/// Which department to put security officers in, when the config is enabled
+/// Which department to put security officers in
 /datum/preference/choiced/security_department
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	can_randomize = FALSE
@@ -9,6 +9,7 @@
 /datum/preference/choiced/security_department/deserialize(input, datum/preferences/preferences)
 	if (!(input in GLOB.security_depts_prefs))
 		return SEC_DEPT_NONE
+
 	return ..(input, preferences)
 
 /datum/preference/choiced/security_department/init_possible_values()
@@ -24,4 +25,4 @@
 	if (!..(preferences))
 		return FALSE
 
-	return !CONFIG_GET(flag/sec_start_brig)
+	return TRUE

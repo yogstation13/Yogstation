@@ -226,7 +226,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 	//we couldn't load character data so just randomize the character appearance + name
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
-	C?.set_macros()
+	if(C)
+		apply_all_client_preferences()
+		C.set_macros()
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
@@ -450,6 +452,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	return preferences
 
+/// Applies all PREFERENCE_PLAYER preferences
+/datum/preferences/proc/apply_all_client_preferences()
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (preference.savefile_identifier != PREFERENCE_PLAYER)
+			continue
+
+		value_cache -= preference.type
+		preference.apply_to_client(parent, read_preference(preference.type))
 
 // This is necessary because you can open the set preferences menu before
 // the atoms SS is done loading.
@@ -595,11 +605,22 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 		return FALSE
 
 	if (level == JP_HIGH)
+		var/datum/job/overflow_role = SSjob.overflow_role
+		var/overflow_role_title = initial(overflow_role.title)
+
 		for(var/other_job in job_preferences)
 			if(job_preferences[other_job] == JP_HIGH)
-				job_preferences[other_job] = JP_MEDIUM
+				// Overflow role needs to go to NEVER, not medium!
+				if(other_job == overflow_role_title)
+					job_preferences[other_job] = null
+				else
+					job_preferences[other_job] = JP_MEDIUM
 
-	job_preferences[job.title] = level
+	if(level == null)
+		job_preferences -= job.title
+	else
+		job_preferences[job.title] = level
+
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
