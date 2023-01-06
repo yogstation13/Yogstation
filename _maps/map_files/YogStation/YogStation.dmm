@@ -1448,12 +1448,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"ahr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "ahv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1538,12 +1532,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"ahM" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "ahO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -3409,15 +3397,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"atX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "auc" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -3642,18 +3621,6 @@
 "avy" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"avB" = (
-/obj/effect/landmark/event_spawn,
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "avC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -21753,6 +21720,19 @@
 /obj/machinery/portable_atmospherics/canister/bz,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"ezA" = (
+/obj/effect/landmark/event_spawn,
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ezB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 8
@@ -23715,6 +23695,13 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"fph" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "fpR" = (
 /obj/machinery/computer/shuttle/labor,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -33609,6 +33596,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"jxE" = (
+/obj/machinery/door/window/southright{
+	dir = 8;
+	name = "Armory";
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jyo" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -47946,6 +47941,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"pES" = (
+/obj/machinery/door/window/southleft{
+	dir = 4;
+	name = "Armory";
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "pFb" = (
 /obj/machinery/light{
 	dir = 4
@@ -97744,7 +97747,7 @@ aaZ
 dKi
 adl
 bbs
-bbx
+pES
 bbQ
 akw
 alK
@@ -98001,7 +98004,7 @@ aaZ
 aeA
 adl
 adl
-ahr
+bbx
 adl
 aaZ
 alL
@@ -98257,8 +98260,8 @@ aaa
 aaZ
 arc
 adl
-avB
-atX
+ezA
+fph
 aEq
 asG
 aEq
@@ -98515,7 +98518,7 @@ aaZ
 vPf
 adl
 awX
-ahM
+jxE
 aBZ
 akw
 jUA
