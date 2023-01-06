@@ -236,10 +236,10 @@
 	full_name = "Pixel shift"
 	description = "Allows you to shift your characters by a few pixels"
 
-/datum/keybinding/mob/prevent_movement/down(client/user)
+/datum/keybinding/mob/pixel_shift/down(client/user)
 	user.movement_locked = TRUE // we also set this to ensure we don't move
 	user.pixel_shifting = TRUE
 
-/datum/keybinding/mob/prevent_movement/up(client/user)
+/datum/keybinding/mob/pixel_shift/up(client/user)
 	user.movement_locked = FALSE
 	user.pixel_shifting = FALSE
