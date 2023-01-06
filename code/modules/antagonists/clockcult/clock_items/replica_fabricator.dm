@@ -93,7 +93,7 @@
 		fabrication_values["power_cost"] = 0
 
 	var/turf/Y = get_turf(user)
-	if(!Y || (!is_centcom_level(Y.z) && !is_station_level(Y.z) && !is_mining_level(Y.z)))
+	if(!Y || (!is_centcom_level(Y.z) && !is_station_level(Y.z))) //Yogstation change: Added penalty for being on lavaland base.
 		fabrication_values["operation_time"] *= 2
 		if(fabrication_values["power_cost"] > 0)
 			fabrication_values["power_cost"] *= 2
