@@ -5832,27 +5832,6 @@
 "aWb" = (
 /turf/open/indestructible/sound/pool,
 /area/crew_quarters/fitness)
-"aWc" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/public/glass{
-	autoclose = 0;
-	frequency = 1449;
-	heat_proof = 1;
-	id_tag = "incinerator_airlock_exterior";
-	name = "Incinerator Exterior Airlock";
-	req_access_txt = "32"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "aWe" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -21450,6 +21429,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"gqX" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/public/glass{
+	autoclose = 0;
+	frequency = 1449;
+	heat_proof = 1;
+	id_tag = "incinerator_airlock_exterior";
+	name = "Incinerator Exterior Airlock";
+	req_access_txt = "32"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "gra" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -48725,25 +48722,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel,
 /area/janitor)
-"pHr" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/atmos/glass{
-	name = "Incinerator Access";
-	req_access_txt = "24"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "pHu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -54230,6 +54208,23 @@
 	},
 /turf/open/floor/engine,
 /area/construction)
+"rsC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/atmos/glass{
+	name = "Incinerator Access";
+	req_access_txt = "24"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "rsF" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/start/warden,
@@ -57473,6 +57468,27 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"suZ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "svm" = (
 /obj/machinery/computer/crew{
 	dir = 8
@@ -71245,27 +71261,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/brig)
-"xfP" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "xfS" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -123533,8 +123528,8 @@ vWu
 qnm
 oIx
 fUy
-pHr
-xfP
+rsC
+suZ
 lxH
 lbz
 nuX
@@ -124306,7 +124301,7 @@ gJK
 sBP
 afF
 bgy
-aWc
+gqX
 aTO
 ajR
 afF
@@ -124827,8 +124822,8 @@ uAQ
 msb
 msb
 msb
-msb
-acb
+aNg
+aNg
 aNg
 aNg
 msb
@@ -125081,12 +125076,12 @@ ndb
 srE
 cRd
 aNg
-msb
-msb
-msb
-msb
-msb
+aNg
+aNg
+aNg
+aNg
 acb
+aNg
 acb
 acb
 msb
@@ -125338,12 +125333,12 @@ aGA
 afF
 jXg
 aNg
-msb
-msb
-msb
-msb
-msb
-msb
+acb
+aNg
+acb
+aNg
+acb
+acb
 acb
 acb
 acb
@@ -125595,12 +125590,12 @@ anp
 afF
 aNg
 aNg
-msb
-msb
-msb
-msb
-msb
-msb
+acb
+aNg
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -125851,12 +125846,12 @@ kdn
 aCs
 asp
 aNg
+acb
+acb
 aNg
-msb
-msb
-msb
-msb
-msb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -126108,11 +126103,11 @@ aNg
 aNg
 aNg
 aNg
-aNg
-msb
-msb
-msb
-msb
+acb
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -126363,12 +126358,12 @@ sXl
 kZM
 aNg
 aNg
-aNg
-aNg
-aNg
-msb
-msb
-msb
+acb
+acb
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -126623,8 +126618,8 @@ acb
 acb
 acb
 acb
-msb
-msb
+acb
+acb
 acb
 acb
 acb
