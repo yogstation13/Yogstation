@@ -185,12 +185,22 @@
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
 
-/obj/item/clothing/bedsheet/pridebedsheet 
+/obj/item/clothing/bedsheets/pride
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
 	icon = 'icons/obj/bedsheets.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/neck/neck.dmi'
-	slot_flags = ITEM_SLOT_NECK
+	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi' 
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
- 
+	slot_flags = ITEM_SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK
+	layer = MOB_LAYER
+	throwforce = 0
+	throw_speed = 1
+	throw_range = 2
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FLAMMABLE
+	dying_key = DYE_REGISTRY_BEDSHEET
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // To prevent our lessers from doing very cringe things
