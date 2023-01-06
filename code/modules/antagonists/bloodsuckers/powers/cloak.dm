@@ -56,7 +56,7 @@
 		return FALSE
 	/// Must be CONSCIOUS
 	if(user.stat != CONSCIOUS)
-		to_chat(owner, span_warning("Your Cloak of Darkness fell off due to you falling unconcious!"))
+		to_chat(owner, span_warning("Your Cloak of Darkness fell off due to you falling unconscious!"))
 		return FALSE
 	return TRUE
 
