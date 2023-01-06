@@ -185,7 +185,7 @@
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
 
-/obj/item/bedsheets/pridebedsheet
+/obj/item/bedsheets/pridebedsheet/cark
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
 	icon = 'icons/obj/bedsheets.dmi'
