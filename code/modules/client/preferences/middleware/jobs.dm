@@ -38,31 +38,27 @@
 			stack_trace("[job] does not have a description set, yet is a joinable occupation!")
 			continue
 		
-		log_world("  - jobs/get_constant_data(): adding job [job.title]")
-		
 		var/department_name = job.exp_type_department
-		var/is_command = (job in GLOB.command_positions)
+		/*var/is_command = (job in GLOB.command_positions)
 		if (!is_command && isnull(departments[department_name]))
 			var/list/heads = job.department_head
 			if (heads && heads.len >= 1)
 				departments[department_name] = list(
 					"head" = heads[1],
-				)
+				)*/
+		
+		/*if (isnull(departments[department_name]))
+			departments[department_name] = list(
+				"head" = "Captain",
+			)*/
 
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
 		)
 
-	log_world("done adding jobs!")
-
 	data["departments"] = departments
 	data["jobs"] = jobs
-
-	
-	log_world("added jobs: [english_list(jobs)]")
-	
-	log_world("added departments: [english_list(departments)]")
 
 	return data
 

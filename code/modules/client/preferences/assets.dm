@@ -32,7 +32,7 @@
 				CRASH("[create_icon_of] is an invalid preference value (from [preference_key]:[preference_value]).")
 
 			to_insert[preference.get_spritesheet_key(preference_value)] = list(icon, icon_state)
-
+	
 	for (var/spritesheet_key in to_insert)
 		var/list/inserting = to_insert[spritesheet_key]
 		Insert(spritesheet_key, inserting[1], inserting[2])
@@ -40,7 +40,6 @@
 /// Returns the key that will be used in the spritesheet for a given value.
 /datum/preference/proc/get_spritesheet_key(value)
 	return "[savefile_key]___[sanitize_css_class_name(value)]"
-
 
 /// Sends information needed for shared details on individual preferences
 /datum/asset/json/preferences

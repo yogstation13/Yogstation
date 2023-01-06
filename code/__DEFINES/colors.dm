@@ -14,6 +14,7 @@
 #define COLOR_ALMOST_BLACK	   "#333333"
 #define COLOR_BLACK            "#000000"
 #define COLOR_RED              "#FF0000"
+#define COLOR_MOSTLY_PURE_RED "#FF3300"
 #define COLOR_RED_LIGHT        "#FF3333"
 #define COLOR_MAROON           "#800000"
 #define COLOR_YELLOW           "#FFFF00"
@@ -61,3 +62,6 @@
 #define COLOR_ASSEMBLY_LBLUE   "#5D99BE"
 #define COLOR_ASSEMBLY_BLUE    "#38559E"
 #define COLOR_ASSEMBLY_PURPLE  "#6F6192"
+
+/// The default color for admin say, used as a fallback when the preference is not enabled
+#define DEFAULT_ASAY_COLOR COLOR_MOSTLY_PURE_RED
