@@ -4,53 +4,47 @@
 
 /datum/keybinding/client/communication/say
 	hotkey_keys = list("T")
-	name = "Say"
+	name = SAY_CHANNEL
 	full_name = "IC Say"
 	description = ""
 
 
 /datum/keybinding/client/communication/emote
 	hotkey_keys = list("M")
-	name = "Emote"
+	name = ME_CHANNEL
 	full_name = "Emote"
 	description = ""
 
 
 /datum/keybinding/client/communication/ooc
 	hotkey_keys = list("O")
-	name = "OOC"
+	name = OOC_CHANNEL
 	full_name = "OOC"
 	description = ""
 
 
 /datum/keybinding/client/communication/looc
 	hotkey_keys = list("L")
-	name = "LOOC"
+	name = LOOC_CHANNEL
 	full_name = "LOOC"
 	description = ""
 
 
 /datum/keybinding/client/communication/donor_say
 	hotkey_keys = list("F9")
-	name = "donor_say"
+	name = DONORSAY_CHANNEL
 	full_name = "Donator Say"
 	description = ""
 
 /datum/keybinding/client/communication/donor_say/can_use(client/user)
 	return is_donator(user)
 
-/datum/keybinding/client/communication/donor_say/down(client/user)
-	user.get_donator_say()
-
 
 /datum/keybinding/client/communication/mentor_say
 	hotkey_keys = list("F4")
-	name = "mentor_say"
+	name = MSAY_CHANNEL
 	full_name = "Mentor Say"
 	description = ""
 
 /datum/keybinding/client/communication/mentor_say/can_use(client/user)
 	return is_mentor(user)
-
-/datum/keybinding/client/communication/mentor_say/down(client/user)
-	user.get_mentor_say()

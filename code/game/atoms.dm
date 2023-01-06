@@ -845,6 +845,31 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
+/**
+  * Used to change the pixel shift of an atom
+  */
+/atom/proc/setShift(dir)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_SHIFT_CHANGE, dir)
+
+	var/new_x = pixel_x
+	var/new_y = pixel_y
+	
+	if (dir & NORTH)
+		new_y++
+	
+	if (dir & EAST)
+		new_x++
+	
+	if (dir & SOUTH)
+		new_y--
+	
+	if (dir & WEST)
+		new_x--
+	
+	pixel_x = clamp(new_x, -16, 16)
+	pixel_y = clamp(new_y, -16, 16)
+
 ///Handle melee attack by a mech
 /atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return

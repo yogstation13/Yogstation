@@ -1,6 +1,9 @@
 /datum/job/chemist
 	title = "Chemist"
+	description = "Supply the doctors with chemicals, make medicine, as well as \
+		less likable substances in the comfort of a fully reinforced room."
 	flag = CHEMIST
+	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
