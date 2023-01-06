@@ -21,13 +21,8 @@ Contents:
 	var/success_spawn = 0
 	role_name = "space ninja"
 	minimum_required = 1
-
-	var/helping_station
 	var/spawn_loc
 	var/give_objectives = TRUE
-
-/datum/round_event/ghost_role/ninja/setup()
-	helping_station = rand(0,1)
 
 /datum/round_event/ghost_role/ninja/kill()
 	if(!success_spawn && control)
@@ -66,7 +61,6 @@ Contents:
 	var/mob/living/carbon/human/Ninja = create_space_ninja(spawn_loc)
 	Mind.transfer_to(Ninja)
 	var/datum/antagonist/ninja/ninjadatum = new
-	ninjadatum.helping_station = pick(TRUE,FALSE)
 	Mind.add_antag_datum(ninjadatum)
 
 	var/datum/language_holder/H = Ninja.get_language_holder() //yogs start

@@ -80,8 +80,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 			else //Failsafe.
 				break
 
-	var/datum/objective/O = pick(/datum/objective/martyr,/datum/objective/survive)
-	O = new O
+	var/datum/objective/survive/O = new
 	O.owner = owner
 	objectives += O
 
