@@ -6,7 +6,6 @@ import { createSetPreference, Food, Perk, PreferencesMenuData, ServerData, Speci
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 
 const FOOD_ICONS = {
-  [Food.Bugs]: 'bug',
   [Food.Cloth]: 'tshirt',
   [Food.Dairy]: 'cheese',
   [Food.Fried]: 'bacon',
@@ -15,16 +14,13 @@ const FOOD_ICONS = {
   [Food.Gross]: 'trash',
   [Food.Junkfood]: 'pizza-slice',
   [Food.Meat]: 'hamburger',
-  [Food.Nuts]: 'seedling',
   [Food.Raw]: 'drumstick-bite',
-  [Food.Seafood]: 'fish',
   [Food.Sugar]: 'candy-cane',
   [Food.Toxic]: 'biohazard',
   [Food.Vegetables]: 'carrot',
 };
 
 const FOOD_NAMES: Record<keyof typeof FOOD_ICONS, string> = {
-  [Food.Bugs]: 'Bugs',
   [Food.Cloth]: 'Clothing',
   [Food.Dairy]: 'Dairy',
   [Food.Fried]: 'Fried food',
@@ -33,16 +29,13 @@ const FOOD_NAMES: Record<keyof typeof FOOD_ICONS, string> = {
   [Food.Gross]: 'Gross food',
   [Food.Junkfood]: 'Junk food',
   [Food.Meat]: 'Meat',
-  [Food.Nuts]: 'Nuts',
   [Food.Raw]: 'Raw',
-  [Food.Seafood]: 'Seafood',
   [Food.Sugar]: 'Sugar',
   [Food.Toxic]: 'Toxic food',
   [Food.Vegetables]: 'Vegetables',
 };
 
 const IGNORE_UNLESS_LIKED: Set<Food> = new Set([
-  Food.Bugs,
   Food.Cloth,
   Food.Gross,
   Food.Toxic,
