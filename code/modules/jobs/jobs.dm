@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
 	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer", "Mutation Specialist",
 	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist", "Disease Control Expert",
-	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Drugist",
+	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist",
 	"EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue",
 	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue",
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener",
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian",
 	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
-	"Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist"
+	"Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
 	"Priest", "Preacher", "Cleric", "Exorcist", "Vicar",
 	"Entertainer", "Comedian", "Jester", "Improv Artist",
