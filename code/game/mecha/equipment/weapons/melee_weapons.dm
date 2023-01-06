@@ -63,7 +63,9 @@
 		return 0
 	if (targloc == curloc)
 		return 0
-	
+	if(chassis.equipment_disabled)
+		to_chat(chassis.occupant, "<span=warn>Error -- Equipment control unit is unresponsive.</span>")
+		return 0
 	
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
