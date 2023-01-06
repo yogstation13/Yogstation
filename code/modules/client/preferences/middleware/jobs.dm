@@ -47,10 +47,10 @@
 					"head" = heads[1],
 				)*/
 		
-		/*if (isnull(departments[department_name]))
+		if (isnull(departments[department_name]))
 			departments[department_name] = list(
-				"head" = "Captain",
-			)*/
+				"head" = null,
+			)
 
 		jobs[job.title] = list(
 			"description" = job.description,
