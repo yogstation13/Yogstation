@@ -282,4 +282,26 @@
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
+/datum/species/pod/get_species_description()
+	return "TODO: This is pod description"
+
+/datum/species/pod/get_species_lore()
+	return list(
+		"TODO: This is pod lore"
+	)
+
+/datum/species/pod/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/pod/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
 #undef STATUS_MESSAGE_COOLDOWN

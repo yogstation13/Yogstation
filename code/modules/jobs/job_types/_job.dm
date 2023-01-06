@@ -1,20 +1,37 @@
 /datum/job
 	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
+
 	/// The description of the job, used for preferences menu.
 	/// Keep it short and useful. Avoid in-jokes, these are for new players.
 	var/description
+
 	/// This job comes with these accesses by default
 	var/list/base_access = list()
+
 	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
 	var/list/added_access = list()
+
 	/// Who is responsible for demoting them
 	var/department_head = list()
+
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
+
 	// Used for something in preferences_savefile.dm
 	var/department_flag = NONE
+
+	/// If specified, this department will be used for the preferences menu.
+	var/datum/job_department/department_for_prefs = null
+
+	/// Lazy list with the departments this job belongs to.
+	/// Required to be set for playable jobs.
+	/// The first department will be used in the preferences menu,
+	/// unless department_for_prefs is set.
+	var/list/departments_list = null
+
 	var/flag = NONE //Deprecated
+	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
 	// Players will be allowed to spawn in as jobs that are set to "Station"
@@ -167,6 +184,13 @@
 
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
+
+/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	return
+
+/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	//dna.species.pre_equip_species_outfit(equipping, src, visual_only)
+	equipOutfit(equipping.outfit, visual_only)
 
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)

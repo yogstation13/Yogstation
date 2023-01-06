@@ -69,9 +69,46 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	cut_overlays(TRUE)
 
 /mob/living/carbon/human/dummy/setup_human_dna()
-	create_dna(src)
+	create_dna()
 	randomize_human(src)
 	dna.initialize_dna(skip_index = TRUE) //Skip stuff that requires full round init.
+
+/proc/create_consistent_human_dna(mob/living/carbon/human/target)
+	target.dna.initialize_dna(skip_index = TRUE)
+	target.dna.features["body_markings"] = "None"
+	target.dna.features["ears"] = "None"
+	target.dna.features["ethcolor"] = "EEEEEE" // white-ish
+	target.dna.features["frills"] = "None"
+	target.dna.features["horns"] = "None"
+	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
+	target.dna.features["moth_antennae"] = "Plain"
+	target.dna.features["moth_markings"] = "None"
+	target.dna.features["moth_wings"] = "Plain"
+	target.dna.features["snout"] = "Round"
+	target.dna.features["spines"] = "None"
+	target.dna.features["tail_cat"] = "None"
+	target.dna.features["tail_lizard"] = "Smooth"
+	target.dna.features["pod_hair"] = "Ivy"
+
+/// Provides a dummy that is consistently bald, white, naked, etc.
+/mob/living/carbon/human/dummy/consistent
+
+/mob/living/carbon/human/dummy/consistent/setup_human_dna()
+	create_dna()
+	create_consistent_human_dna(src)
+
+/// Provides a dummy for unit_tests that functions like a normal human, but with a standardized appearance
+/// Copies the stock dna setup from the dummy/consistent type
+/mob/living/carbon/human/consistent
+
+/mob/living/carbon/human/consistent/setup_human_dna()
+	create_dna()
+	create_consistent_human_dna(src)
+
+/mob/living/carbon/human/consistent/update_body(is_creating)
+	..()
+	if(is_creating)
+		fully_replace_character_name(real_name, "John Doe")
 
 //Inefficient pooling/caching way.
 GLOBAL_LIST_EMPTY(human_dummy_list)

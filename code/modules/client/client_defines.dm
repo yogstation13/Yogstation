@@ -167,3 +167,6 @@
 	var/next_move_dir_add
  	/// On next move, subtract this dir from the move that would otherwise be done
 	var/next_move_dir_sub
+
+	/// Whether or not this client has standard hotkeys enabled
+	var/hotkeys = TRUE

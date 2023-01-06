@@ -176,7 +176,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
 	set category = "Server"
-	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
+	GLOB.OOC_COLOR = sanitize_color(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
@@ -193,33 +193,6 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	message_admins("[key_name_admin(usr)] has reset the players' ooc color.")
 	log_admin("[key_name_admin(usr)] has reset player ooc color.")
 	GLOB.OOC_COLOR = null
-
-/client/verb/colorooc()
-	set name = "Set Your OOC Color"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-	var/new_ooccolor = input(src, "Please select your OOC color.", "OOC color", prefs.ooccolor) as color|null
-	if(new_ooccolor)
-		prefs.ooccolor = sanitize_ooccolor(new_ooccolor)
-		prefs.save_preferences()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set OOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/verb/resetcolorooc()
-	set name = "Reset Your OOC Color"
-	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-		prefs.ooccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
 
 //Checks admin notice
 /client/verb/admin_notice()

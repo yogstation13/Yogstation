@@ -7,6 +7,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Podperson"
+	plural_form = "Podpeople"
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
@@ -86,3 +87,25 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 				H.show_message(span_userdanger("The radiation beam singes you!"))
 		if(/obj/item/projectile/energy/florayield)
 			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
+
+/datum/species/pod/get_species_description()
+	return "TODO: This is pod description"
+
+/datum/species/pod/get_species_lore()
+	return list(
+		"TODO: This is pod lore"
+	)
+
+/datum/species/pod/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/pod/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add

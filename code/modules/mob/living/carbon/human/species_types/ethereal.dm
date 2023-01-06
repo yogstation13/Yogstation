@@ -34,6 +34,7 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
@@ -50,13 +51,15 @@
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	.=..()
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		default_color = "#" + H.dna.features["ethcolor"]
-		r1 = GETREDPART(default_color)
-		g1 = GETGREENPART(default_color)
-		b1 = GETBLUEPART(default_color)
-		spec_updatehealth(H)
+	if(!ishuman(C))
+		return
+	
+	var/mob/living/carbon/human/H = C
+	default_color = "#[H.dna.features["ethcolor"]]"
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	spec_updatehealth(H)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	.=..()
@@ -183,3 +186,55 @@
 	if(istype(stomach))
 		return stomach.crystal_charge
 	return ETHEREAL_CHARGE_NONE
+
+/datum/species/ethereal/get_features()
+	var/list/features = ..()
+
+	features += "feature_ethcolor"
+
+	return features
+
+/datum/species/ethereal/get_species_description()
+	return "Coming from the planet of Sprout, the theocratic ethereals are \
+		separated socially by caste, and espouse a dogma of aiding the weak and \
+		downtrodden."
+
+/datum/species/ethereal/get_species_lore()
+	return list(
+		"Ethereals are a species native to the planet Sprout. \
+		When they were originally discovered, they were at a medieval level of technological progression, \
+		but due to their natural acclimation with electricity, they felt easy among the large NanoTrasen installations.",
+	)
+
+/datum/species/ethereal/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "bolt",
+			SPECIES_PERK_NAME = "Shockingly Tasty",
+			SPECIES_PERK_DESC = "Ethereals can feed on electricity from APCs, and do not otherwise need to eat.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lightbulb",
+			SPECIES_PERK_NAME = "Disco Ball",
+			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "gem",
+			SPECIES_PERK_NAME = "Crystal Core",
+			SPECIES_PERK_DESC = "The Ethereal's heart will encase them in crystal should they die, returning them to life after a time - \
+				at the cost of a permanent brain trauma.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "biohazard",
+			SPECIES_PERK_NAME = "Starving Artist",
+			SPECIES_PERK_DESC = "Ethereals take toxin damage while starving.",
+		),
+	)
+
+	return to_add
