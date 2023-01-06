@@ -18,7 +18,7 @@
 
 	outfit = /datum/outfit/job/security
 
-	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer")
+	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer", "Peacekeeper")
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
