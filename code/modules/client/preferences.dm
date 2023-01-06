@@ -566,6 +566,16 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 
 	return profiles
 
+/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
+/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
+	var/list/output = list()
+
+	for (var/action in key_bindings)
+		for (var/key in key_bindings[action])
+			LAZYADD(output[key], action)
+
+	return output
+
 /// Returns the default `randomise` variable ouptut
 /datum/preferences/proc/get_default_randomization()
 	var/list/default_randomization = list()
@@ -577,13 +587,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 
 	return default_randomization
 
-/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
-/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
-	var/list/output = list()
 
-	for (var/action in key_bindings)
-		for (var/key in key_bindings[action])
-			LAZYADD(output[key], action)
 
 
 

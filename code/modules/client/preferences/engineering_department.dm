@@ -20,9 +20,3 @@
 
 /datum/preference/choiced/engineering_department/create_default_value()
 	return ENG_DEPT_NONE
-
-/datum/preference/choiced/engineering_department/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	return TRUE
