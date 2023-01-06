@@ -690,7 +690,7 @@ so as to remain in compliance with the most up-to-date laws."
 			else
 				. = ""
 		alert.screen_loc = .
-		mymob.client.screen |= alert
+		mymob?.client?.screen |= alert
 	return 1
 
 /mob

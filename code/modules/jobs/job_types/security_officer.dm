@@ -1,6 +1,9 @@
 /datum/job/officer
 	title = "Security Officer"
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
 	flag = OFFICER
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC

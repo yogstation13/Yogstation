@@ -1,6 +1,8 @@
 /datum/job/artist
 	title = "Artist"
+	description = "Create unique pieces of art for display by the crew around the station."
 	flag = ARTIST
+	orbit_icon = "paintbrush"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

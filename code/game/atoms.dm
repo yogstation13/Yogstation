@@ -94,7 +94,7 @@
   */
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
@@ -826,6 +826,31 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
+/**
+  * Used to change the pixel shift of an atom
+  */
+/atom/proc/setShift(dir)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_SHIFT_CHANGE, dir)
+
+	var/new_x = pixel_x
+	var/new_y = pixel_y
+	
+	if (dir & NORTH)
+		new_y++
+	
+	if (dir & EAST)
+		new_x++
+	
+	if (dir & SOUTH)
+		new_y--
+	
+	if (dir & WEST)
+		new_x--
+	
+	pixel_x = clamp(new_x, -16, 16)
+	pixel_y = clamp(new_y, -16, 16)
+
 ///Handle melee attack by a mech
 /atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return
@@ -935,7 +960,7 @@
 
 		if(reagents)
 			var/chosen_id
-			switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
+			switch(tgui_alert(usr, "Choose a method.", "Add Reagents", list("Search", "Choose from a list", "I'm feeling lucky")))
 				if("Search")
 					var/valid_id
 					while(!valid_id)
@@ -1099,7 +1124,7 @@
 
 ///Screwdriver act
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
 
 ///Wrench act
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
