@@ -154,6 +154,8 @@
 	var/list/movement_keys = list()
 	///Are we locking our movement input?
 	var/movement_locked = FALSE
+	///Are we trying to pixel-shift
+	var/pixel_shifting = FALSE
 
 	/// A buffer of currently held keys.
 	var/list/keys_held = list()
