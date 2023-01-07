@@ -9,5 +9,6 @@
 	vv_update_display(D, "marked", VV_MSG_MARKED)
 
 /datum/admins/proc/handle_marked_del(datum/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(marked_datum, COMSIG_PARENT_QDELETING)
 	marked_datum = null

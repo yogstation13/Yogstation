@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(air)
 	setup_atmos_machinery()
 	setup_pipenets()
 	gas_reactions = init_gas_reactions()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
@@ -351,7 +351,6 @@ SUBSYSTEM_DEF(air)
 	queued_for_activation.Cut()
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
-	var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
 	var/list/active_turfs = src.active_turfs
 	var/times_fired = ++src.times_fired
 
@@ -359,7 +358,7 @@ SUBSYSTEM_DEF(air)
 	// one-by-one, and Initalize_Atmos only ever adds `src` back in.
 	active_turfs.Cut()
 
-	for(var/thing in turfs_to_init)
+	for(var/thing in ALL_TURFS())
 		var/turf/T = thing
 		if (T.blocks_air)
 			continue

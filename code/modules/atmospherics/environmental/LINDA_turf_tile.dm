@@ -84,6 +84,9 @@
 	RETURN_TYPE(/datum/gas_mixture)
 	return air
 
+/turf/open/return_analyzable_air()
+	return return_air()
+
 /turf/temperature_expose()
 	if(temperature > heat_capacity)
 		to_be_destroyed = TRUE

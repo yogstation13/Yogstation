@@ -2,6 +2,7 @@
 	name = BODY_ZONE_PRECISE_EYES
 	icon_state = "eyeballs"
 	desc = "I see you!"
+	visual = TRUE
 	zone = BODY_ZONE_PRECISE_EYES
 	slot = ORGAN_SLOT_EYES
 	gender = PLURAL
@@ -37,7 +38,6 @@
 		old_eye_color = HMN.eye_color
 		if(eye_color)
 			HMN.eye_color = eye_color
-			HMN.regenerate_icons()
 		else
 			eye_color = HMN.eye_color
 		if(HAS_TRAIT(HMN, TRAIT_NIGHT_VISION) && !lighting_alpha)
@@ -52,9 +52,14 @@
 	if(ishuman(M) && eye_color)
 		var/mob/living/carbon/human/HMN = M
 		HMN.eye_color = old_eye_color
-		HMN.regenerate_icons()
+		HMN.update_body()
 	M.update_tint()
 	M.update_sight()
+
+//Gotta reset the eye color, because that persists
+/obj/item/organ/eyes/enter_wardrobe()
+	. = ..()
+	eye_color = initial(eye_color)
 
 /obj/item/organ/eyes/on_life()
 	..()

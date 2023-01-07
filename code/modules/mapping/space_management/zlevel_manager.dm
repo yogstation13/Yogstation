@@ -14,9 +14,10 @@
 	for (var/I in 1 to default_map_traits.len)
 		var/list/features = default_map_traits[I]
 		var/datum/space_level/S = new(I, features[DL_NAME], features[DL_TRAITS])
+		build_area_turfs(I, FALSE)
 		z_list += S
 
-/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level)
+/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level, filled_with_space = TRUE, contain_turfs = TRUE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_Z, args)
 	var/new_z = z_list.len + 1
 	if (world.maxz < new_z)
@@ -24,6 +25,8 @@
 		CHECK_TICK
 	// TODO: sleep here if the Z level needs to be cleared
 	var/datum/space_level/S = new z_type(new_z, name, traits)
+	if(contain_turfs)
+		build_area_turfs(new_z, filled_with_space)
 	z_list += S
 	return S
 

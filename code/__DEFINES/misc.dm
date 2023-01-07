@@ -492,6 +492,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 /// Whether we have succesfully hidden out blood level
 #define BLOODSUCKER_HIDE_BLOOD "hide_blood_volume"
+#define BLOODSUCKER_SHOW_BLOOD "show_blood_volume"
 /// 1 tile down
 #define ui_blood_display "WEST:6,CENTER-1:0"
 /// 2 tiles down
