@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Doctor/Paramedic/CMO spawn with nitrile gloves"
+  - bugfix: "Plasmamen BrigPhys and MiningMed properly get nitrile gloves"
