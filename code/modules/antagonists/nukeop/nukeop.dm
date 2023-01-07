@@ -11,6 +11,11 @@
 	var/nukeop_outfit = /datum/outfit/syndicate
 	can_hijack = HIJACK_HIJACKER //Alternative way to wipe out the station.
 
+	preview_outfit = /datum/outfit/nuclear_operative_elite
+
+	/// In the preview icon, the nukies who are behind the leader
+	var/preview_outfit_behind = /datum/outfit/nuclear_operative
+
 /datum/antagonist/nukeop/proc/update_synd_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/opshud = GLOB.huds[ANTAG_HUD_OPS]
 	opshud.join_hud(M)
@@ -157,11 +162,47 @@
 	else
 		to_chat(admin, span_danger("No valid nuke found!"))
 
+/datum/antagonist/nukeop/get_preview_icon()
+	if (!preview_outfit)
+		return null
+
+	var/icon/final_icon = render_preview_outfit(preview_outfit)
+
+	if (!isnull(preview_outfit_behind))
+		var/icon/teammate = render_preview_outfit(preview_outfit_behind)
+		teammate.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
+
+		final_icon.Blend(teammate, ICON_OVERLAY, -world.icon_size / 4, 0)
+		final_icon.Blend(teammate, ICON_OVERLAY, world.icon_size / 4, 0)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/nuclear_operative
+	name = "Nuclear Operative (Preview only)"
+
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi
+
+/datum/outfit/nuclear_operative_elite
+	name = "Nuclear Operative (Elite, Preview only)"
+
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	l_hand = /obj/item/modular_computer/tablet/nukeops
+	r_hand = /obj/item/shield/energy
+
+/datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/shield/energy/shield = locate() in H.held_items
+	shield.icon_state = "[shield.base_icon_state]1"
+	H.update_inv_hands()
+
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
 	var/title
+	preview_outfit = /datum/outfit/nuclear_operative
+	preview_outfit_behind = null
 
 /datum/antagonist/nukeop/leader/memorize_code()
 	..()

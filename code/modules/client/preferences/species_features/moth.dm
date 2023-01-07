@@ -9,7 +9,7 @@
 	var/list/icon/values = possible_values_for_sprite_accessory_list_for_body_part(
 		GLOB.moth_wings_list,
 		"moth_wings",
-		list("BEHIND", "FRONT"),
+		list("ADJ", "FRONT"),
 	)
 
 	// Moth wings are in a stupid dimension
@@ -20,3 +20,4 @@
 
 /datum/preference/choiced/moth_wings/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["moth_wings"] = value
+
