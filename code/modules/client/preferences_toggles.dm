@@ -258,7 +258,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_alt)()
 
 
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_ooc)()
-	set name = "Show/Hide OOC"
+	set name = "Show/Hide OOC Chat"
 	set category = "Preferences"
 	set desc = "Show OOC Chat"
 	usr.client.prefs.chat_toggles ^= CHAT_OOC

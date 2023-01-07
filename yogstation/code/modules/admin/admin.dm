@@ -9,7 +9,7 @@
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc = "can you even see verb descriptions anywhere?"
-	set name = "Toggle LOOC"
+	set name = "Toggle LOOC Chat"
 
 	toggle_looc()
 	log_admin("[key_name(usr)] toggled LOOC.")

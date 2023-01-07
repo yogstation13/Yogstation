@@ -19,7 +19,7 @@
 
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = "Misc.Unused"
-	set name = "Show Player Panel"
+	set name = "Show Player Panel For"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
 	if(!check_rights())
@@ -564,7 +564,7 @@
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Toggle dis bitch"
-	set name="Toggle OOC"
+	set name="Toggle OOC Chat"
 	toggle_ooc()
 	log_admin("[key_name(usr)] toggled OOC.")
 	message_admins("[key_name_admin(usr)] toggled OOC.")
@@ -573,7 +573,7 @@
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle dis bitch"
-	set name="Toggle Dead OOC"
+	set name="Toggle Dead OOC Chat"
 	toggle_dooc()
 
 	log_admin("[key_name(usr)] toggled OOC.")

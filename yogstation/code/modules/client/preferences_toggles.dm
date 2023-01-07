@@ -1,5 +1,5 @@
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
-	set name = "Show/Hide LOOC"
+	set name = "Show/Hide LOOC Chat"
 	set category = "Preferences"
 	set desc = "Show LOOC Chat"
 	usr.client.prefs.chat_toggles ^= CHAT_LOOC
