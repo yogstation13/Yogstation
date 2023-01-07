@@ -1,9 +1,10 @@
 import rimraf from "rimraf";
 import typescript from '@rollup/plugin-typescript';
-import htmlPlugin from "./lib/html";
+import htmlPlugin from "./lib/html.js";
 import nodeResolve from "@rollup/plugin-node-resolve";
+import pnpResolve from "rollup-plugin-pnp-resolve";
 import postcss from 'rollup-plugin-postcss';
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import {readFileSync} from "fs";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
@@ -39,6 +40,7 @@ const config = [
 		},
 		plugins: [
 			typescript(),
+			pnpResolve(),
 			nodeResolve(),
 			postcss(),
 			//OMT(),
@@ -72,6 +74,7 @@ const config = [
 		plugins: [
 			typescript(),
 			json(),
+			pnpResolve(),
 			nodeResolve(),
 			commonjs()
 		],

@@ -12,8 +12,8 @@ export BYOND_MINOR=1589
 export RUST_G_VERSION=1.2.0
 
 #node version
-export NODE_VERSION=14
-export NODE_VERSION_PRECISE=14.16.1
+export NODE_VERSION=16
+export NODE_VERSION_PRECISE=16.13.0
 
 # PHP version
 export PHP_VERSION=7.2

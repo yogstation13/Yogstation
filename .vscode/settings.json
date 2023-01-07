@@ -5,8 +5,6 @@
 	],
 	"typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
-	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"search.exclude": {
 		"**/.yarn": true,
 		"**/.pnp.*": true

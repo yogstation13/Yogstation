@@ -14,3 +14,16 @@ export const yarn = (...args) => {
     cwd: './tgui',
   });
 };
+
+export const yarnWebclient = (...args) => {
+  if (!yarnPath) {
+    yarnPath = Juke.glob('./webclient/.yarn/releases/*.cjs')[0]
+      .replace('/webclient/', '/');
+  }
+  return Juke.exec('node', [
+    yarnPath,
+    ...args.filter((arg) => typeof arg === 'string'),
+  ], {
+    cwd: './webclient',
+  });
+};
