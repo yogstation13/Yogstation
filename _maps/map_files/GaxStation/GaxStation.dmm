@@ -14492,17 +14492,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"heV" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "hff" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 9
@@ -23290,6 +23279,12 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/n2,
+/area/engine/atmos_distro)
+"lGx" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped/inverse{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "lGC" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -65770,7 +65765,7 @@ xWd
 orF
 iJF
 sLY
-heV
+lGx
 ydx
 ojo
 rXM
