@@ -102,7 +102,7 @@ function html_encode(str : string) {
 }
 
 function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string) {
-	if(url && (url?.startsWith(`http://${config.byond_addr}/cache`) || !url?.startsWith(`http://${config.byond_addr}`))) return undefined;
+	if(url && !url?.startsWith(`http://${config.byond_addr}`)) return undefined;
 	let [byond_host, byond_port] = config.byond_addr.split(":");
 	let address = socket.remoteAddress;
 	if(address?.toLowerCase().startsWith("::ffff:")) {
