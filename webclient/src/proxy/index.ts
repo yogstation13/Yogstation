@@ -102,6 +102,7 @@ function html_encode(str : string) {
 }
 
 function getProxyAgent(request : IncomingMessage, socket : Socket) {
+	if(request.url?.startsWith(`http://${config.byond_addr}/cache`) || !request.url?.startsWith(`http://${config.byond_addr}`)) return undefined;
 	let [byond_host, byond_port] = config.byond_addr.split(":");
 	let address = socket.remoteAddress;
 	let port = 32768 + Math.floor(Math.random() * 28232);
@@ -134,7 +135,6 @@ function getProxyAgent(request : IncomingMessage, socket : Socket) {
 			let [dstaddr, dstport] = addr.split(":");
 			let socket = connect(+dstport, dstaddr);
 			socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
-			callback(undefined, socket);
 			return socket;
 		}
 	}
@@ -143,28 +143,6 @@ function getProxyAgent(request : IncomingMessage, socket : Socket) {
 
 async function upgrade_request(request : IncomingMessage, socket : Socket, head : Buffer) {
 	try {
-		let address = socket.remoteAddress;
-		let port = socket.remotePort;
-		if(address?.toLowerCase().startsWith("::ffff:")) {
-			address = address.substring(7);
-		}
-		
-		if(config.use_cf_connected_ip) {
-			address = (""+request.headers["cf-connected-ip"]) ?? address;
-		} else {
-			let proxy_header = request.headers["x-forwarded-for"];
-			if(proxy_header instanceof Array) proxy_header = proxy_header.join(", ");
-			let proxies = proxy_header?.split(",");
-			while(proxies && proxies.length) {
-				if(address && proxy_matches(address)) {
-					address = proxies.pop();
-				} else {
-					console.log("Untrusted proxy " + address + " trying to be " + proxies.join(", "));
-					break;
-				}
-			}
-		}
-
 		let cookies = request.headers.cookie?.split("; ") ?? [];
 		if(request.headers.host != origin_host(config.webclient_origin)) {
 			console.log("Rejecting- bad host " + request.headers.host);
@@ -212,20 +190,7 @@ async function upgrade_request(request : IncomingMessage, socket : Socket, head 
 			topic: `key=${encodeURIComponent(config.comms_key??"")};webclient_login_token=${login_token};webclient_login_info=${encodeURIComponent(user_info_str)}`
 		});
 		let byond_connection = await new Promise<WebSocket>((resolve, reject) => {
-			let agent : Agent|undefined;
-			if(config.byond_proxy_addr) {
-				let addr = config.byond_proxy_addr;
-				agent = new Agent();
-				// @ts-ignore
-				agent.createConnection = (options : NetConnectOpts, callback : (err, stream) => void) => {
-					let [dstaddr, dstport] = addr.split(":");
-					let socket = connect(+dstport, dstaddr);
-					socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
-					callback(undefined, socket);
-					return socket;
-				}
-			}
-			let ws = new WebSocket('ws://' + config.byond_addr, {agent});
+			let ws = new WebSocket('ws://' + config.byond_addr, {agent: getProxyAgent(request, socket)});
 			ws.binaryType = "nodebuffer";
 			ws.on('open', () => resolve(ws));
 			ws.on('error', (err) => reject(err));
@@ -361,7 +326,7 @@ app.use("/browse/:userHash", async (req, res, next) => {
 			res.end("Not Found");
 			return;
 		}
-		let fetch_res = await retryFetch(url, undefined, url.startsWith(`http://${config.byond_addr}/html/`) ? getProxyAgent(req, req.socket) : undefined);
+		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket));
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
