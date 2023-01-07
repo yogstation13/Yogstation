@@ -63,27 +63,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
-"aU" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 8;
-	max_integrity = 600
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 8
-	},
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
 "aY" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 23
@@ -159,18 +138,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"dF" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/item/book/manual/chef_recipes,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing/kitchen)
 "dS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -539,6 +506,37 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
+"ok" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/cultivator{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/shovel/spade{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 8;
+	max_integrity = 600
+	},
+/obj/item/hatchet/wooden,
+/obj/item/storage/box/disks_plantgene,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
 "pj" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel/dark,
@@ -709,52 +707,6 @@
 /obj/effect/turf_decal/pool/corner,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"ue" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/shovel/spade{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/hatchet/wooden,
-/obj/item/cultivator{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/storage/box/disks_plantgene,
-/obj/item/seeds/nettle{
-	pixel_x = -6;
-	pixel_y = -4
-	},
-/obj/item/seeds/nettle{
-	pixel_x = -1;
-	pixel_y = -6
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"uo" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
 "uy" = (
 /obj/effect/turf_decal/pool/corner{
 	dir = 8
@@ -813,6 +765,15 @@
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing/bedroom)
+"vN" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/obj/item/book/manual/chef_recipes,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
 "vV" = (
 /obj/machinery/light{
 	dir = 4
@@ -1193,6 +1154,16 @@
 /obj/effect/turf_decal/pool/innercorner,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
+"CD" = (
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/chem_master/condimaster,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/brown/filled/end,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
 "CJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -1556,6 +1527,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
+"Kv" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"Kx" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
 "KH" = (
 /obj/effect/turf_decal/pool,
 /obj/structure/sign/departments/minsky/engineering/telecommmunications{
@@ -1654,19 +1649,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"OF" = (
-/obj/structure/window/reinforced/tinted,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/trimline/brown/filled/end,
-/obj/structure/table,
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/ruin/powered/fishing/kitchen)
 "OG" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -1791,6 +1773,21 @@
 "Sz" = (
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
+"SB" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
 "SK" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -1800,11 +1797,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"SL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/chem_master/condimaster,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
 "SM" = (
 /obj/structure/window/reinforced/spawner/east,
 /mob/living/simple_animal/hostile/carp/cayenne{
@@ -1849,23 +1841,6 @@
 "Uq" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
-"UB" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/fish/bass,
-/obj/item/reagent_containers/food/snacks/fish/bass,
-/obj/item/reagent_containers/food/snacks/fish/salmon,
-/obj/item/reagent_containers/food/snacks/fish/salmon,
-/obj/item/reagent_containers/food/snacks/fish/shrimp,
-/obj/item/reagent_containers/food/snacks/fish/squid,
-/obj/item/reagent_containers/food/snacks/fish/puffer,
-/obj/item/reagent_containers/food/snacks/fish/tuna,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/kitchen)
 "UL" = (
@@ -2403,7 +2378,7 @@ bA
 kR
 RB
 Fr
-UB
+Kv
 Uq
 Fr
 aa
@@ -2434,7 +2409,7 @@ jM
 RJ
 kr
 dc
-OF
+CD
 IM
 kB
 Fr
@@ -2494,13 +2469,13 @@ ZT
 ZT
 YV
 yD
-dF
+jM
 RJ
 GS
 dc
 aF
 IM
-SL
+vN
 Fr
 aa
 "}
@@ -2531,7 +2506,7 @@ Wr
 DV
 ZU
 Fr
-uo
+SB
 eC
 Fr
 US
@@ -2658,7 +2633,7 @@ gZ
 qQ
 av
 aG
-aU
+ok
 rh
 lD
 gZ
@@ -2722,7 +2697,7 @@ xQ
 xn
 LV
 wg
-ue
+Kx
 Ay
 OG
 gZ
