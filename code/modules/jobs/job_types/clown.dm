@@ -1,6 +1,8 @@
 /datum/job/clown
 	title = "Clown"
+	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
 	flag = CLOWN
+	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -68,6 +70,11 @@
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
 		backpack_contents[/obj/item/stack/sheet/mineral/bananium/five] = 1
+
+/datum/outfit/job/clown/get_types_to_preload()
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
+		. += /obj/item/stack/sheet/mineral/bananium/five
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(persistence)
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	LoadPaintings()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
 	for(var/mob/living/simple_animal/parrot/Poly/P in GLOB.alive_mob_list)

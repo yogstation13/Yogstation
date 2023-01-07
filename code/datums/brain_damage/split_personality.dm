@@ -148,8 +148,8 @@
 	to_chat(src, span_warning("You cannot speak, your other self is controlling your body!"))
 	return FALSE
 
-/mob/living/split_personality/emote(act, m_type = null, message = null, intentional = FALSE)
-	return
+/mob/living/split_personality/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
+	return FALSE
 
 ///////////////BRAINWASHING////////////////////
 

@@ -79,6 +79,8 @@
 	if(!forced && bite) // we got something!!!
 		playsound(fishing_component, 'sound/effects/water_emerge.ogg', 50, FALSE, -5)
 		var/power = 0
+		if(istype(bait, /obj/item/reagent_containers/food/snacks/bait/type))
+			SEND_SIGNAL(fisher, COMSIG_ADD_MOOD_EVENT, "typebait", /datum/mood_event/type_bait)
 		if(iscarbon(fisher)) //sorry, non-carbons don't get to wear cool fishing outfits
 			var/mob/living/carbon/carbonfisher = fisher
 			power = carbonfisher.fishing_power

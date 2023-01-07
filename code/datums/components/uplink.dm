@@ -50,11 +50,11 @@ GLOBAL_LIST_EMPTY(uplinks)
 		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, .proc/old_implant)
 		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
 	else if(istype(parent, /obj/item/pda))
-		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHANGE_ID, .proc/new_ringtone)
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/modular_computer))
 		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, .proc/ntos_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/radio))
 		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
 	else if(istype(parent, /obj/item/pen))
@@ -298,7 +298,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	return COMPONENT_NTOS_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
-	return COMPONENT_PDA_NO_DETONATE
+	return COMPONENT_TABLET_NO_DETONATE
 
 // Radio signal responses
 
@@ -374,7 +374,3 @@ GLOBAL_LIST_EMPTY(uplinks)
 	nt_uplink_type = NT_ERT_MEDIC
 /datum/component/uplink/nanotrasen/engineer
 	nt_uplink_type = NT_ERT_ENGINEER
-
-#undef NT_ERT_TROOPER
-#undef NT_ERT_MEDIC
-#undef NT_ERT_ENGINEER

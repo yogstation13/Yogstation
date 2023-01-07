@@ -251,9 +251,11 @@
 
 	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 
-/obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
+/obj/machinery/power/rad_collector/return_analyzable_air()
 	if(loaded_tank)
-		loaded_tank.analyzer_act(user, I)
+		return loaded_tank.return_analyzable_air()
+	else
+		return null
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()
@@ -323,6 +325,12 @@
 		icon_state = "ca"
 		flick("ca_deactive", src)
 	update_icon()
+
+/obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
+		P.damage = 0
+	..()
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT

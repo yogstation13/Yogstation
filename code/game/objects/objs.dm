@@ -257,14 +257,14 @@
 				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]"))
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
-			var/action_type = alert(usr, "Strict type ([type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+			var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(alert(usr, "Are you really sure you want to delete all objects of type [type]?",,"Yes","No") != "Yes")
+			if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
 				return
 
-			if(alert(usr, "Second confirmation required. Delete?",,"Yes","No") != "Yes")
+			if(tgui_alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
 				return
 
 			var/O_type = type
@@ -323,10 +323,8 @@
 		to_chat(M, "[src] is now skinned as '[choice].'")
 
 /obj/analyzer_act(mob/living/user, obj/item/I)
-	var/turf/T = get_turf(src)
-	if(T)
-		if(atmosanalyzer_scan(T.return_air(), user, src))
-			return TRUE
+	if(atmosanalyzer_scan(user, src))
+		return TRUE
 	return ..()
 
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)

@@ -1,6 +1,9 @@
 /datum/job/officer
 	title = "Security Officer"
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
 	flag = OFFICER
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -160,7 +163,6 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
-	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(/obj/item/melee/baton/loaded=1)
 
 	backpack = /obj/item/storage/backpack/security
