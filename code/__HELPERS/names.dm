@@ -6,36 +6,38 @@
 
 /proc/pod_name(gender)
 	var/randname
-	var/choice = rand(1,4)
-	if(choice == 1) //Human
-		if(gender == MALE)
-			randname = pick(GLOB.first_names_male)
-		else
-			randname = pick(GLOB.first_names_female)
-		randname += " [pick(GLOB.last_names)]"
-		return randname
-	if(choice == 2) //Lizard
-		return lizard_name(gender)
-	if(choice == 3) //Moth
-		return moth_name()
-	if(choice == 4) //Plant
-		randname = pick(GLOB.plant_names)
-		if(prob(25))
+	switch(rand(1,4))
+		if(1) //Human
+			if(gender == MALE)
+				randname = pick(GLOB.first_names_male)
+			else
+				randname = pick(GLOB.first_names_female)
 			randname += " [pick(GLOB.last_names)]"
-		return randname
+			return randname
+		if(2) //Lizard
+			return lizard_name(gender)
+		if(3) //Moth
+			return moth_name()
+		if(4) //Plant
+			randname = pick(GLOB.plant_names)
+			if(prob(25))
+				randname += " [pick(GLOB.last_names)]"
+			return randname
 
 /proc/preternis_name(gender)
-	var/choice = rand(1,3)
-	if(choice == 1) //Adj + Noun
-		return "[pick(GLOB.adjectives)] [pick(GLOB.forge_name)]"
-	if(choice == 2) //Vxtrin name
-		if(prob(25)) //Single Word
-			return pick(GLOB.preternis_names)
-		if(prob(50)) //Caste + Name
-			return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]"
-		return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]'[pick(GLOB.preternis_home)]" //Caste + Name + Home
-	if(choice == 3) //Robotic name
-		return ipc_name()
+	switch(rand(1,3))
+		if(1) //Adj + Noun
+			return "[pick(GLOB.adjectives)] [pick(GLOB.forge_name)]"
+		if(2) //Vxtrin name
+			switch(rand(1,3)) 
+				if(1) //Name
+					return pick(GLOB.preternis_names)
+				if(2) //Caste + Name
+					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]"
+				if(3) //Caste + Name + Home
+					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]'[pick(GLOB.preternis_home)]"
+		if(3) //Robotic name
+			return ipc_name()
 
 /proc/polysmorph_name()
 	return pick(GLOB.polysmorph_names)
