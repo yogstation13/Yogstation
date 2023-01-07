@@ -105,7 +105,6 @@ function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string
 	if(url && (url?.startsWith(`http://${config.byond_addr}/cache`) || !url?.startsWith(`http://${config.byond_addr}`))) return undefined;
 	let [byond_host, byond_port] = config.byond_addr.split(":");
 	let address = socket.remoteAddress;
-	let port = 32768 + Math.floor(Math.random() * 28232);
 	if(address?.toLowerCase().startsWith("::ffff:")) {
 		address = address.substring(7);
 	}
@@ -134,6 +133,7 @@ function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string
 		agent.createConnection = (options : NetConnectOpts, callback : (err, stream) => void) => {
 			let [dstaddr, dstport] = addr.split(":");
 			let socket = connect(+dstport, dstaddr);
+			let port = 32768 + Math.floor(Math.random() * 28232);
 			socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
 			return socket;
 		}
