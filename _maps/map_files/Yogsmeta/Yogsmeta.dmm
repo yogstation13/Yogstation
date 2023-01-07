@@ -5270,10 +5270,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anu" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anw" = (
@@ -5714,6 +5711,14 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = -8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aoH" = (
@@ -16726,6 +16731,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/folder/red,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aOm" = (
@@ -17316,9 +17323,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPD" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/folder/red,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -17328,6 +17332,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aPE" = (
