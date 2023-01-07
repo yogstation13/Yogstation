@@ -25,14 +25,25 @@ export class ByondClient {
 	time = 0;
 	eye_glide_size = 0;
 	icons = new Map<number, Icon>();
+	has_quit = false;
 	constructor() {
 		// @ts-ignore
 		window.byond_client = this;
 		this.websocket = new WebSocket('ws'+window.location.origin.substring(4));
 		this.websocket.binaryType = "arraybuffer";
 		this.websocket.addEventListener("message", this.handle_message);
+		this.websocket.addEventListener("error", () => {
+			this.ui.set_status_overlay("WebSocket error");
+			this.has_quit = true;
+		});
+		this.websocket.addEventListener("close", () => {
+			if(!this.has_quit) {
+				this.ui.set_status_overlay("Connection closed");
+				this.has_quit = true;
+			}
+		});
 		window.addEventListener("keydown", (e) => {
-			if((e.target as HTMLElement).closest("input,select,button,textarea")) return;
+			if((e.target as HTMLElement).closest("input,select,button,textarea") || this.has_quit) return;
 			if(e.code == "Tab") {
 				if(document.pointerLockElement != this.gl_holder.canvas) {
 					this.gl_holder.canvas.requestPointerLock();
@@ -48,9 +59,17 @@ export class ByondClient {
 				if(e.code == "ArrowRight") this.command(".east");
 				if(e.code == "ArrowLeft") this.command(".west");
 			}
-			if(!e.repeat) {
-				let key = this.js_keycode_to_byond(e.which);
-				if(key) this.command(`KeyDown "${key}"`);
+			let key = this.js_keycode_to_byond(e.which);
+			if(key) {
+				if(!e.repeat) {
+					for(let macro of this.macros.values()) {
+						if(macro.get("name") == key) {
+							this.command(macro.get("command") ?? "");
+						}
+					}
+					this.command(`KeyDown "${key}"`);
+				}
+				e.preventDefault();
 			}
 		});
 		window.addEventListener("keyup", (e) => {
@@ -89,6 +108,7 @@ export class ByondClient {
 		this.gl_holder = new GlHolder(this);
 		this.ui = new SvgUi(this);
 		this.sound_player = new SoundPlayer(this);
+		this.ui.set_status_overlay("Connecting...");
 		this.frameLoop();
 		this.gl_holder.canvas.addEventListener("click", (e) => {
 			if(!e.defaultPrevented && document.pointerLockElement != this.gl_holder.canvas) {
@@ -168,7 +188,7 @@ export class ByondClient {
 
 	async frameLoop() {
 		let t1 = performance.now();
-		while(true) {
+		while(!this.has_quit) {
 			let t2 = await new Promise(requestAnimationFrame);
 			this.time += (t2-t1)*0.01;
 			this.gl_holder.frame(t2 - t1);
@@ -232,6 +252,9 @@ export class ByondClient {
 		switch(msgtype) {
 		case 0: {
 			console.log("Quit " + dp.read_uint16());
+			this.ui.set_status_overlay(`Disconnected by server\n${this.last_output}`);
+			this.has_quit = true;
+			this.websocket.close();
 			break;
 		} case 1: {
 			let major = dp.read_uint32();
@@ -253,6 +276,7 @@ export class ByondClient {
 		} case 26: {
 			console.log("Key event");
 			if(dp.reached_end()) {
+				this.ui.set_status_overlay(`Logging in...`);
 				this.websocket.send(new MessageBuilder(26).write_string('-').collapse())
 			} else {
 				this.websocket.send(new MessageBuilder(183).collapse());
@@ -491,10 +515,14 @@ export class ByondClient {
 			for(let i = 0; i < winset_count; i++) {
 				let control = dp.read_utf_string();
 				let num_keyvals = dp.read_uint16();
+				let keyvals = new Map<string, string>();
 				for(let j = 0; j < num_keyvals; j++) {
 					let key = dp.read_utf_string();
 					let val = dp.read_utf_string();
+
+					keyvals.set(key, val);
 				}
+				this.winset(control, keyvals);
 			}
 			break;
 		} case 240: {
@@ -603,6 +631,7 @@ export class ByondClient {
 			}
 			break;
 		} case 251: {
+			this.ui.set_status_overlay(null);
 			console.debug("Movable change");
 			let flags = dp.read_uint8();
 			console.debug(flags.toString(2));
@@ -679,7 +708,31 @@ export class ByondClient {
 		}
 	}
 
+	winset_macro(control : string, opts : Map<string, string>) {
+		let macro = this.macros.get(control);
+		if(!macro && opts.get("parent") == "default") {
+			macro = new Map();
+			this.macros.set(control, macro);
+		}
+		if(!macro) return;
+		if(opts.get("parent") == "null") {
+			this.macros.delete(control);
+			return;
+		}
+		for(let [k,v] of opts) {
+			macro.set(k, v);
+		}
+	}
+
 	winset(control : string, opts : Map<string, string>) {
+		if(control.startsWith("default.")) {
+			this.winset_macro(control.substring(8), opts);
+			return;
+		}
+		if(this.macros.has(control) || opts.get("parent") == "default") {
+			this.winset_macro(control, opts);
+			return;
+		}
 		if(!control) {
 			let command = opts.get("command");
 			if(command) this.command(command);
@@ -729,12 +782,35 @@ export class ByondClient {
 		}
 	}
 
+	macros = new Map<string, Map<string, string>>();
+
 	winget(control : string, opts : string[]) : Map<string, string> {
 		let answer = new Map<string,string>();
 		if(control.includes(";")) {
 			for(let subcontrol of control.split(";")) {
 				for(let [key, val] of this.winget(subcontrol, opts)) {
 					answer.set(`${subcontrol}.${key}`, val);
+				}
+			}
+		} else if(control.startsWith("default.")) {
+			let macro_id = control.substring(8);
+			if(macro_id == "*") {
+				for(let macro of this.macros.keys()) {
+					for(let [key, val] of this.winget(`default.${macro}`, opts)) {
+						answer.set(`default.${macro}.${key}`, val);
+					}
+				}
+			} else {
+				let macro = this.macros.get(macro_id);
+				if(macro) {
+					for(let opt of opts) {
+						if(opt == "parent") {
+							answer.set(opt, "default");
+						} else {
+							let val = macro.get(opt);
+							answer.set(opt, ""+val);
+						}
+					}
 				}
 			}
 		} else {

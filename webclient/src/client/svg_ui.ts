@@ -10,6 +10,7 @@ export class SvgUi {
 	ui_base = document.createElement("div");
 	crosshair = document.createElement("div");
 	mouse_label = document.createElement("div");
+	status_overlay = document.createElement("div");
 	constructor(public client : ByondClient) {
 		this.ui_base.style.position = "absolute";
 		this.ui_base.style.left = "0px";
@@ -41,21 +42,20 @@ export class SvgUi {
 		this.mouse_label.style.color = "white";
 		document.body.appendChild(this.mouse_label);
 
-		this.ui_base.addEventListener("click", (e) => {
-			let atom_div = (e.target as HTMLElement).closest("[data-atom-id]") as HTMLElement;
-			if(atom_div?.dataset.atomId) {
-				let atom = this.client.atom_map.get(+atom_div.dataset.atomId);
-				if(atom) {
-					let atom_rect = atom_div.getBoundingClientRect();
-					let clickpos_vec : vec2 = [
-						(e.clientX - atom_rect.x) / atom_rect.width * 32,
-						(1 - (e.clientY - atom_rect.y) / atom_rect.height) * 32
-					];
-					//this.client.send_click(1, atom.full_id, undefined, e, undefined, undefined, clickpos_vec);
-				}
-			}
-		})
+		this.status_overlay.id = "status-overlay";
+		this.status_overlay.style.display = "none";
+		document.body.appendChild(this.status_overlay);
+
 		window.addEventListener("mousedown", this.mousedown);
+	}
+
+	set_status_overlay(str : string|null) {
+		if(str) {
+			this.status_overlay.textContent = str;
+			this.status_overlay.style.removeProperty("display");
+		} else {
+			this.status_overlay.style.display = "none";
+		}
 	}
 
 	chatpush_up_elems = new Set<Atom>();
