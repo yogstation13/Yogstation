@@ -923,7 +923,7 @@
 	category = list("IPC Components")
 
 /datum/design/ipc_lungs
-	name = "Auditory Sensors"
+	name = "Cooling Radiator"
 	id = "ipc_lungs"
 	build_type = MECHFAB
 	build_path = /obj/item/organ/lungs/ipc

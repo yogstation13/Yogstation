@@ -13,6 +13,7 @@
 # Placed first so specific files can be owned by others
 *.dmi @yogstation13/art
 *.dmm @yogstation13/map
+*.dm @yogstation13/code
 
 #HeadDev
 
@@ -37,3 +38,7 @@
 
 /code/modules/mob/living/silicon/ai/decentralized @TheGamerdk
 /code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk
+
+#alexkar598
+*.so @alexkar598
+rust_g @alexkar598

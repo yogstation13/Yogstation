@@ -291,6 +291,7 @@
 	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
 	repeatable = TRUE
+	minimum_players = 27
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
@@ -324,7 +325,7 @@
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
 	flags = HIGH_IMPACT_RULESET
-	minimum_players = 40
+	minimum_players = 32
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -367,7 +368,7 @@
 	var/list/agents_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/infiltrator/sit_team
 	flags = HIGH_IMPACT_RULESET
-	minimum_players = 35
+	minimum_players = 25
 
 /datum/dynamic_ruleset/midround/from_ghosts/infiltration/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/infiltration) in mode.executed_rules)
@@ -430,7 +431,7 @@
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
 	repeatable = FALSE
 	var/list/vents = list()
-	minimum_players = 35
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
@@ -476,6 +477,7 @@
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/nightmare/execute()
 	for(var/X in GLOB.xeno_spawn)
@@ -524,6 +526,7 @@
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/execute()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
@@ -565,7 +568,7 @@
 	weight = 5
 	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
-	minimum_players = 25
+	minimum_players = 15
 
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
