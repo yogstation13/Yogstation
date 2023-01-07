@@ -15,4 +15,4 @@
 		path = "[resource]"
 		path = copytext(path, findlasttext(path, "/")+1)
 	if(path)
-		target << output("\ref[resource]=[path]", "byond-wcp:browse_rsc")
+		target << output("\ref[fcopy_rsc(resource)]=[path]", "byond-wcp:browse_rsc")
