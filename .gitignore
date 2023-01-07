@@ -217,4 +217,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #KDIFF3 files
 *.orig
-tgui/public/

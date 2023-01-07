@@ -18,7 +18,7 @@
  * set preview_outfit to some typepath representing their character.
  */
 
- export type Antagonist = {
+export type Antagonist = {
   // the antag_flag, made lowercase, and with non-alphanumerics removed.
   key: string;
 

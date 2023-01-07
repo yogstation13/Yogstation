@@ -41,9 +41,7 @@ export const skin_tone: Feature<string, string, SkinToneServerData> = {
                 <Stack align="center" fill key={key}>
                   <Stack.Item>
                     <Box style={{
-                      background: hexColor.value.startsWith("#")
-                        ? hexColor.value
-                        : `#${hexColor.value}`,
+                      background: hexColor.value,
                       "box-sizing": "content-box",
                       "height": "11px",
                       "width": "11px",
