@@ -104,7 +104,7 @@ function html_encode(str : string) {
 function getProxyAgent(request : IncomingMessage, socket : Socket) {
 	let [byond_host, byond_port] = config.byond_addr.split(":");
 	let address = socket.remoteAddress;
-	let port = socket.remotePort;
+	let port = 32768 + Math.floor(Math.random() * 28232);
 	if(address?.toLowerCase().startsWith("::ffff:")) {
 		address = address.substring(7);
 	}
@@ -361,7 +361,7 @@ app.use("/browse/:userHash", async (req, res, next) => {
 			res.end("Not Found");
 			return;
 		}
-		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket));
+		let fetch_res = await retryFetch(url, undefined, url.startsWith(`http://${config.byond_addr}/html/`) ? getProxyAgent(req, req.socket) : undefined);
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
