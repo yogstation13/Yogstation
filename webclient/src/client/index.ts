@@ -482,6 +482,10 @@ export class ByondClient {
 		} case 223: {
 			this.sound_player.play_sound(SoundCommand.from_msg(dp));
 			break;
+		} case 225: {
+			let id = 0;
+			if(!dp.reached_end()) id = dp.read_uint8();
+			this.websocket.send(new MessageBuilder(225).write_uint8(id).collapse());
 		} case 229: {
 			let winset_count = dp.read_uint16();
 			for(let i = 0; i < winset_count; i++) {
