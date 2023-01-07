@@ -49882,17 +49882,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qwW" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "qwX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -67622,6 +67611,12 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"yda" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "ydd" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics Maintenance";
@@ -103222,7 +103217,7 @@ jut
 vjo
 eYt
 aSJ
-qwW
+yda
 wma
 sRm
 aSJ
