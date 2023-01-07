@@ -86,13 +86,19 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "core-open", "core", O))
-		return TRUE
+	if(O.tool_behaviour == TOOL_SCREWDRIVER)
+		if(!do_after(user, 5 SECONDS, src))
+			to_chat(user, span_warning("You need to stand still to open the panel!"))
+			return
+		if(default_deconstruction_screwdriver(user, "core-open", "core", O))
+			return TRUE
 
-	if(default_deconstruction_crowbar(O))
-		return TRUE
-
-	
+	if(O.tool_behaviour == TOOL_CROWBAR)
+		if(!do_after(user, 5 SECONDS, src))
+			to_chat(user, span_warning("You need to stand still to deconstruct the core!"))
+			return
+		if(default_deconstruction_crowbar(O))
+			return TRUE	
 	if(panel_open && user.a_intent != INTENT_HARM)
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return // Feedback in proc
