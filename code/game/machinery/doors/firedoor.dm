@@ -313,6 +313,7 @@
 	flags_1 = ON_BORDER_1
 	CanAtmosPass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
+	screen_loc = E3D_TYPE_EDGEFIREDOOR
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
@@ -429,6 +430,7 @@
 	icon_state = "frame1"
 	anchored = FALSE
 	density = TRUE
+	screen_loc = E3D_TYPE_BASICWALL
 	var/constructionStep = CONSTRUCTION_NOCIRCUIT
 	var/reinforced = 0
 	var/border = FALSE
@@ -436,6 +438,7 @@
 /obj/structure/firelock_frame/border
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	border = TRUE
+	screen_loc = E3D_TYPE_EDGEFIREDOOR
 
 /obj/structure/firelock_frame/border/ComponentInitialize()
 	. = ..()

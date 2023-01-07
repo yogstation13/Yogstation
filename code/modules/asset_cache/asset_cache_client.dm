@@ -33,6 +33,8 @@
 /// Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
 /// This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.
 /client/proc/browse_queue_flush(timeout = 50)
+	if(connection == "web")
+		return TRUE
 	var/job = ++last_asset_job
 	var/t = 0
 	var/timeout_time = timeout

@@ -541,7 +541,7 @@ Code:
 				menu +="-[msg.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[msg.returnAuthor(-1)]</FONT>\]</FONT><BR>"
 				menu +="<b><font size=1>[msg.comments.len] comment[msg.comments.len > 1 ? "s" : ""]</font></b><br>"
 				if(msg.img)
-					user << browse_rsc(msg.img, "tmp_photo[i].png")
+					browse_rsc_web(user, msg.img, "tmp_photo[i].png")
 					menu +="<img src='tmp_photo[i].png' width = '180'><BR>"
 				i++
 				for(var/datum/newscaster/feed_comment/comment in msg.comments)

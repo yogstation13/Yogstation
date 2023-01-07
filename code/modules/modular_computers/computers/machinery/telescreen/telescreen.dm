@@ -13,6 +13,7 @@
 	max_hardware_size = WEIGHT_CLASS_NORMAL
 	steel_sheet_cost = 10
 	interact_sounds = list('sound/machines/computers/pda_click.ogg')
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 /obj/machinery/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.tool_behaviour == TOOL_CROWBAR)

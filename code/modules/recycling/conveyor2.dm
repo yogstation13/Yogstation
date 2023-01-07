@@ -9,6 +9,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	name = "conveyor belt"
 	desc = "A conveyor belt. You can rotate it with a wrench, and reverse it with a screwdriver, or detach it with a crowbar."
 	layer = BELOW_OPEN_DOOR_LAYER
+	screen_loc = E3D_TYPE_FLOOR
 	/// The current state of the switch.
 	var/operating = 0
 	/// This is the default (forward) direction, set by the map dir.

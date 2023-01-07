@@ -104,7 +104,7 @@
 	else if(istype(src[page], /obj/item/photo))
 		var/obj/item/photo/P = W
 		var/datum/picture/picture2 = P.picture
-		user << browse_rsc(picture2.picture_image, "tmp_photo.png")
+		browse_rsc_web(user, picture2.picture_image, "tmp_photo.png")
 		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \

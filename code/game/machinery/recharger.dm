@@ -192,6 +192,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 400
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	icon_state_filled = "wrechargerweapon"
 	icon_state_open = "wrechargeropen"

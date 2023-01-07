@@ -8,6 +8,7 @@
 	armor = list(MELEE = 50, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	max_integrity = 200//yogs - increase durability to 200
 	integrity_failure = 50
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/locked = TRUE
 	var/open = FALSE
 	var/obj/item/twohanded/fireaxe/fireaxe

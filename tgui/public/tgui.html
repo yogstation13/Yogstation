@@ -46,10 +46,11 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
   })();
 
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = (tridentVersion !== null || window.cef_to_byond)
+  var isByond = ("byond" in window) || 
+    ((tridentVersion !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
     && location.pathname.indexOf('/tmp') === 0
-    && location.search !== '?external';
+    && location.search !== '?external');
 
   // Version constants
   Byond.IS_BYOND = isByond;
@@ -105,7 +106,11 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
       cef_to_byond('byond://' + url);
       return;
     }
-
+    // Webclient
+    if(window.byond) {
+      window.byond.go('byond://' + url);
+      return;
+    }
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;

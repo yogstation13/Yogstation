@@ -10,6 +10,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "request_kiosk"
 	light_color = LIGHT_COLOR_GREEN
+	screen_loc = E3D_TYPE_WALLMOUNT
 	///Reference to the currently logged in user.
 	var/datum/bank_account/current_user
 	///The station request datum being affected by UI actions.

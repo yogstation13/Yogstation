@@ -13,6 +13,7 @@
 	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	screen_loc = E3D_TYPE_FLOOR
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
 	var/flip_type						// If set, the pipe is flippable and becomes this type when flipped

@@ -11,6 +11,7 @@
 	idle_power_usage = 1
 	power_channel = EQUIP
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_HEADS, ACCESS_SECURITY) //used to control clamps
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/obj/item/defibrillator/defib //this mount's defibrillator
 	var/clamps_locked = FALSE //if true, and a defib is loaded, it can't be removed without unlocking the clamps
 

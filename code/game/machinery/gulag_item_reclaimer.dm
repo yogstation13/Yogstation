@@ -8,6 +8,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 100
 	active_power_usage = 2500
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/list/stored_items = list()
 	var/obj/item/card/id/prisoner/inserted_id = null
 	var/obj/machinery/gulag_teleporter/linked_teleporter = null

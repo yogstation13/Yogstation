@@ -841,3 +841,29 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 #define is_alpha(X) ((text2ascii(X) <= 122) && (text2ascii(X) >= 97))
 #define is_digit(X) ((length(X) == 1) && (length(text2num(X)) == 1))
+
+/proc/extract_e3d_tag(screen_loc)
+	if(!screen_loc)
+		return ""
+	var/char = length(screen_loc)+1
+
+	while(char > 1)
+		var/code = text2ascii(screen_loc, char-1)
+		if(code >= 9 && code <= 13)
+			char--
+		else
+			break
+	return copytext(screen_loc, char)
+
+/proc/modify_e3d_tag(screen_loc, new_tag)
+	if(!screen_loc)
+		return new_tag
+	var/char = length(screen_loc)+1
+
+	while(char > 1)
+		var/code = text2ascii(screen_loc, char-1)
+		if(code >= 9 && code <= 13)
+			char--
+		else
+			break
+	return "[copytext(screen_loc, 1, char)][new_tag]"

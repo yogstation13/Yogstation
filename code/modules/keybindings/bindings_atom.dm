@@ -14,6 +14,10 @@
 		movement_dir &= ~(NORTH|SOUTH)
 	if((movement_dir & EAST) && (movement_dir & WEST))
 		movement_dir &= ~(EAST|WEST)
+		
+	// Rotate the movement direction by the camera angle
+	if(movement_dir && user.e3d_angle)
+		movement_dir = turn(movement_dir, round(user.e3d_angle, 45))
 
 	if (user.pixel_shifting)
 		setShift(movement_dir)

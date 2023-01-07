@@ -25,6 +25,7 @@
 	desc = "A remote control for a door."
 	req_access = list(ACCESS_SECURITY)
 	density = FALSE
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/id = null // id of linked machinery/lockers
 	var/desired_name = null
 	var/desired_crime = null

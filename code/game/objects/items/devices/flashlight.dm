@@ -236,6 +236,7 @@
 	flags_1 = CONDUCT_1
 	materials = list()
 	on = TRUE
+	screen_loc = E3D_TYPE_BILLBOARD
 
 
 // green-shaded desk lamp

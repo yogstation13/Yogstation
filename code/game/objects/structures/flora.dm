@@ -316,6 +316,7 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
+	screen_loc = E3D_TYPE_BILLBOARD
 
 /obj/item/twohanded/required/kirbyplants/Initialize()
 	. = ..()

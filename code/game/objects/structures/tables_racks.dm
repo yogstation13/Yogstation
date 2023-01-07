@@ -22,6 +22,7 @@
 	layer = TABLE_LAYER
 	climbable = TRUE
 	pass_flags = LETPASSTHROW //You can throw objects over this, despite it's density.")
+	screen_loc = E3D_TYPE_TABLE
 	var/frame = /obj/structure/table_frame
 	var/framestack = /obj/item/stack/rods
 	var/buildstack = /obj/item/stack/sheet/metal
@@ -550,6 +551,7 @@
 	anchored = TRUE
 	pass_flags = LETPASSTHROW //You can throw objects over this, despite it's density.
 	max_integrity = 20
+	screen_loc = E3D_TYPE_TABLE
 
 /obj/structure/rack/examine(mob/user)
 	. = ..()

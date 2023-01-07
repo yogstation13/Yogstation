@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(I.pulledby)
 		I.pulledby.stop_pulling()
 
-	I.screen_loc = null // will get moved if inventory is visible
+	CLEAR_SCREEN_LOC(I) // will get moved if inventory is visible
 	I.forceMove(src)
 	I.equipped(src, slot)
 	I.layer = ABOVE_HUD_LAYER
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.layer = ABOVE_HUD_LAYER
 			r_hand.plane = ABOVE_HUD_PLANE
-			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
+			SET_SCREEN_LOC(r_hand, ui_hand_position(get_held_index_of_item(r_hand)))
 			client.screen |= r_hand
 
 	if(l_hand)
@@ -302,7 +302,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.layer = ABOVE_HUD_LAYER
 			l_hand.plane = ABOVE_HUD_PLANE
-			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
+			SET_SCREEN_LOC(l_hand, ui_hand_position(get_held_index_of_item(l_hand)))
 			client.screen |= l_hand
 
 	if(hands_overlays.len)

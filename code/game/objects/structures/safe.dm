@@ -121,7 +121,7 @@ FLOOR SAFES
 		data["contents"] = contents_names
 		for(var/obj/O in contents)
 			contents_names[++contents_names.len] = list("name" = O.name, "sprite" = O.icon_state)
-			user << browse_rsc(icon(O.icon, O.icon_state), "[O.icon_state].png")
+			browse_rsc_web(user, icon(O.icon, O.icon_state), "[O.icon_state].png")
 
 	return data
 

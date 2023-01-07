@@ -25,6 +25,7 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 	resistance_flags = FIRE_PROOF
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	light_power = 0
 	light_range = 7

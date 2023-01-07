@@ -42,6 +42,7 @@
 	icon_state = "access_button_standby"
 	name = "access button"
 	desc = "A button used for the explicit purpose of opening an airlock."
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/idDoor
 	var/obj/machinery/door/airlock/door
 	var/obj/machinery/doorButtons/airlock_controller/controller

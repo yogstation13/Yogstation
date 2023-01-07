@@ -9,6 +9,7 @@
 	desc = "It's an underfloor wiring terminal for power equipment."
 	level = 1
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
+	screen_loc = E3D_TYPE_FLOOR
 	var/obj/machinery/power/master = null
 
 

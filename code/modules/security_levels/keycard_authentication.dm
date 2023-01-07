@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	power_channel = ENVIRON
 	req_access = list(ACCESS_KEYCARD_AUTH)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/datum/callback/ev
 	var/event = ""
 	var/obj/machinery/keycard_auth/event_source

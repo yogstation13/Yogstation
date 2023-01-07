@@ -14,6 +14,7 @@
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = TRUE
 	canSmoothWith = list(/obj/structure/grille, /obj/structure/grille/broken)
+	screen_loc = E3D_TYPE_FLOOR
 	var/holes = 0 //bitflag
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2

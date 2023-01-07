@@ -119,6 +119,7 @@
 	anchored = TRUE
 	density = FALSE
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 /obj/structure/reagent_dispensers/peppertank/Initialize()
 	. = ..()

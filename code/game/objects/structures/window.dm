@@ -13,6 +13,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	CanAtmosPass = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
+	screen_loc = E3D_TYPE_EDGE
 	var/ini_dir = null
 	var/state = WINDOW_SCREWED_TO_FRAME
 	var/reinf = FALSE
@@ -636,6 +637,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
@@ -651,6 +653,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/plasma/fulltile/unanchored
 	anchored = FALSE
@@ -666,6 +669,7 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smooth = SMOOTH_TRUE
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
@@ -683,6 +687,7 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/reinforced/fulltile/unanchored
 	anchored = FALSE
@@ -698,6 +703,7 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/reinforced/fulltile/ice
 	icon = 'icons/obj/smooth_structures/rice_window.dmi'
@@ -733,6 +739,7 @@
 	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/shuttle/narsie_act()
 	add_atom_colour("#3C3434", FIXED_COLOUR_PRIORITY)
@@ -838,6 +845,7 @@
 	max_integrity = 600
 	level = 3
 	glass_amount = 2
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/structure/window/reinforced/clockwork/spawnDebris(location)
 	. = list()
@@ -875,6 +883,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	breaksound = 'sound/items/poster_ripped.ogg'
 	hitsound = 'sound/weapons/slashmiss.ogg'
+	screen_loc = E3D_TYPE_SMOOTHWALL
 	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "torn", layer = ABOVE_OBJ_LAYER - 0.1)
 	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = ABOVE_OBJ_LAYER - 0.1)
 
@@ -953,6 +962,7 @@
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
+	screen_loc = E3D_TYPE_BASICWALL
 	var/open = TRUE
 
 /obj/structure/cloth_curtain/proc/toggle()

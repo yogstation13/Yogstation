@@ -9,6 +9,7 @@
 	density = FALSE
 	layer = LOW_ITEM_LAYER //same as the built tube
 	anchored = FALSE
+	screen_loc = E3D_TYPE_FLOOR
 	var/const/time_to_unwrench = 2 SECONDS
 	var/flipped = 0
 	var/build_type = /obj/structure/transit_tube

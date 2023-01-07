@@ -11,6 +11,7 @@
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	level = 2
 	max_integrity = 200
+	screen_loc = E3D_TYPE_FLOOR
 	var/obj/pipe_type = /obj/structure/disposalpipe/segment
 	var/pipename
 
@@ -27,6 +28,7 @@
 		setDir(_dir)
 
 	pipename = initial(pipe_type.name)
+	screen_loc = initial(pipe_type.screen_loc)
 
 	if(flip)
 		var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)

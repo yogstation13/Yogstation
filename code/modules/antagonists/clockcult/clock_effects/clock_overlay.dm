@@ -32,6 +32,7 @@
 	canSmoothWith = list(/obj/effect/clockwork/overlay/wall, /obj/structure/falsewall/brass)
 	smooth = SMOOTH_TRUE
 	layer = CLOSED_TURF_LAYER
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/effect/clockwork/overlay/wall/Initialize()
 	. = ..()

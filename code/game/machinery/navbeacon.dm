@@ -11,6 +11,7 @@
 	layer = UNDER_CATWALK
 	max_integrity = 500
 	armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
+	screen_loc = E3D_TYPE_FLOOR
 
 	var/open = FALSE		// true if cover is open
 	var/locked = TRUE		// true if controls are locked

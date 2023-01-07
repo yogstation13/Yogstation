@@ -70,6 +70,7 @@
 	integrity_failure = 80
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
 	resistance_flags = FIRE_PROOF
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	FASTDMM_PROP(\
 		set_instance_vars(\

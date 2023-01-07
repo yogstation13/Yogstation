@@ -171,6 +171,7 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE
 	density = FALSE
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 /obj/item/storage/secure/safe/ComponentInitialize()
 	. = ..()

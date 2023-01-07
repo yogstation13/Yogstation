@@ -375,31 +375,31 @@
 
 	if(screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)
 		if(H.shoes)
-			H.shoes.screen_loc = ui_shoes
+			SET_SCREEN_LOC(H.shoes, ui_shoes)
 			screenmob.client.screen += H.shoes
 		if(H.gloves)
-			H.gloves.screen_loc = ui_gloves
+			SET_SCREEN_LOC(H.gloves, ui_gloves)
 			screenmob.client.screen += H.gloves
 		if(H.ears)
-			H.ears.screen_loc = ui_ears
+			SET_SCREEN_LOC(H.ears, ui_ears)
 			screenmob.client.screen += H.ears
 		if(H.glasses)
-			H.glasses.screen_loc = ui_glasses
+			SET_SCREEN_LOC(H.glasses, ui_glasses)
 			screenmob.client.screen += H.glasses
 		if(H.w_uniform)
-			H.w_uniform.screen_loc = ui_iclothing
+			SET_SCREEN_LOC(H.w_uniform, ui_iclothing)
 			screenmob.client.screen += H.w_uniform
 		if(H.wear_suit)
-			H.wear_suit.screen_loc = ui_oclothing
+			SET_SCREEN_LOC(H.wear_suit, ui_oclothing)
 			screenmob.client.screen += H.wear_suit
 		if(H.wear_mask)
-			H.wear_mask.screen_loc = ui_mask
+			SET_SCREEN_LOC(H.wear_mask, ui_mask)
 			screenmob.client.screen += H.wear_mask
 		if(H.wear_neck)
-			H.wear_neck.screen_loc = ui_neck
+			SET_SCREEN_LOC(H.wear_neck, ui_neck)
 			screenmob.client.screen += H.wear_neck
 		if(H.head)
-			H.head.screen_loc = ui_head
+			SET_SCREEN_LOC(H.head, ui_head)
 			screenmob.client.screen += H.head
 	else
 		if(H.shoes)		screenmob.client.screen -= H.shoes
@@ -425,22 +425,22 @@
 	if(screenmob.hud_used)
 		if(screenmob.hud_used.hud_shown)
 			if(H.s_store)
-				H.s_store.screen_loc = ui_sstore1
+				SET_SCREEN_LOC(H.s_store, ui_sstore1)
 				screenmob.client.screen += H.s_store
 			if(H.wear_id)
-				H.wear_id.screen_loc = ui_id
+				SET_SCREEN_LOC(H.wear_id, ui_id)
 				screenmob.client.screen += H.wear_id
 			if(H.belt)
-				H.belt.screen_loc = ui_belt
+				SET_SCREEN_LOC(H.belt, ui_belt)
 				screenmob.client.screen += H.belt
 			if(H.back)
-				H.back.screen_loc = ui_back
+				SET_SCREEN_LOC(H.back, ui_back)
 				screenmob.client.screen += H.back
 			if(H.l_store)
-				H.l_store.screen_loc = ui_storage1
+				SET_SCREEN_LOC(H.l_store, ui_storage1)
 				screenmob.client.screen += H.l_store
 			if(H.r_store)
-				H.r_store.screen_loc = ui_storage2
+				SET_SCREEN_LOC(H.r_store, ui_storage2)
 				screenmob.client.screen += H.r_store
 		else
 			if(H.s_store)
@@ -458,12 +458,12 @@
 
 	if(hud_version != HUD_STYLE_NOHUD)
 		for(var/obj/item/I in H.held_items)
-			I.screen_loc = ui_hand_position(H.get_held_index_of_item(I))
-			screenmob.client.screen += I
+			SET_SCREEN_LOC(I, ui_hand_position(H.get_held_index_of_item(I)))
+			H.client.screen += I
 	else
 		for(var/obj/item/I in H.held_items)
-			I.screen_loc = null
-			screenmob.client.screen -= I
+			CLEAR_SCREEN_LOC(I)
+			H.client.screen -= I
 
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()

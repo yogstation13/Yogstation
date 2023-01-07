@@ -7,6 +7,7 @@
 	plane = FLOOR_PLANE
 	max_integrity = 200
 	armor = list(MELEE = 50, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
+	screen_loc = E3D_TYPE_FLOOR
 
 	var/uses = 20
 	var/cooldown = 0

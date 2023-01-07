@@ -159,7 +159,7 @@
 
 /mob/living/silicon/pai/Login()
 	..()
-	usr << browse_rsc('html/paigrid.png')			// Go ahead and cache the interface resources as early as possible
+	browse_rsc_web(usr, 'html/paigrid.png')			// Go ahead and cache the interface resources as early as possible
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
 		if(holoform)

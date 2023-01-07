@@ -37,7 +37,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.layer = ABOVE_HUD_LAYER
 			r_hand.plane = ABOVE_HUD_PLANE
-			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
+			SET_SCREEN_LOC(r_hand, ui_hand_position(get_held_index_of_item(r_hand)))
 			client.screen |= r_hand
 
 	if(l_hand)
@@ -50,7 +50,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.layer = ABOVE_HUD_LAYER
 			l_hand.plane = ABOVE_HUD_PLANE
-			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
+			SET_SCREEN_LOC(l_hand, ui_hand_position(get_held_index_of_item(l_hand)))
 			client.screen |= l_hand
 
 
@@ -61,7 +61,7 @@
 
 /mob/living/simple_animal/drone/proc/update_inv_internal_storage()
 	if(internal_storage && client && hud_used && hud_used.hud_shown)
-		internal_storage.screen_loc = ui_drone_storage
+		SET_SCREEN_LOC(internal_storage, ui_drone_storage)
 		client.screen += internal_storage
 
 
@@ -70,7 +70,7 @@
 
 	if(head)
 		if(client && hud_used && hud_used.hud_shown)
-			head.screen_loc = ui_drone_head
+			SET_SCREEN_LOC(head, ui_drone_head)
 			client.screen += head
 		var/mutable_appearance/head_overlay = head.build_worn_icon(default_layer = DRONE_HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head/head.dmi')
 		head_overlay.pixel_y -= 15

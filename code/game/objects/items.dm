@@ -10,6 +10,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	screen_loc = E3D_TYPE_ITEM
 	///icon state name for inhand overlays
 	var/item_state = null
 	///Icon file for left hand inhand overlays

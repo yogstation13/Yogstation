@@ -21,7 +21,7 @@ export const SettingsPanel = (props, context) => {
   return (
     <Stack fill>
       <Stack.Item>
-        <Section fitted fill minHeight="8em">
+        <Section fitted fill minHeight="8em" className="clip-include">
           <Tabs vertical>
             {SETTINGS_TABS.map((tab) => (
               <Tabs.Tab
@@ -58,11 +58,12 @@ export const SettingsGeneral = (props, context) => {
     highlightColor,
     matchWord,
     matchCase,
+    logUiScale,
   } = useSelector(context, selectSettings);
   const dispatch = useDispatch(context);
   const [freeFont, setFreeFont] = useLocalState(context, 'freeFont', false);
   return (
-    <Section>
+    <Section className="clip-include">
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown
@@ -155,6 +156,19 @@ export const SettingsGeneral = (props, context) => {
             }
           />
         </LabeledList.Item>
+        {("byond" in window) && (<LabeledList.Item label="HUD Scale">
+          <NumberInput
+            width="4em"
+            step={0.25}
+            stepPixelSize={15}
+            minValue={-1}
+            maxValue={3}
+            value={logUiScale}
+            format={value => (Math.round(100*(2**value)).toString()+"%")}
+            onDrag={(e, value) => dispatch(updateSettings({
+              logUiScale: value
+            }))} />
+        </LabeledList.Item>)}
       </LabeledList>
       <Divider />
       <Box>

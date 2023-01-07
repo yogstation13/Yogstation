@@ -53,9 +53,9 @@
 
 	if(hud_version != HUD_STYLE_NOHUD)
 		for(var/obj/item/I in D.held_items)
-			I.screen_loc = ui_hand_position(D.get_held_index_of_item(I))
+			SET_SCREEN_LOC(I, ui_hand_position(D.get_held_index_of_item(I)))
 			D.client.screen += I
 	else
 		for(var/obj/item/I in D.held_items)
-			I.screen_loc = null
+			CLEAR_SCREEN_LOC(I)
 			D.client.screen -= I

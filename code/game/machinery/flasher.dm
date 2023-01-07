@@ -9,6 +9,7 @@
 	integrity_failure = 100
 	light_color = LIGHT_COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/obj/item/assembly/flash/handheld/bulb
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell

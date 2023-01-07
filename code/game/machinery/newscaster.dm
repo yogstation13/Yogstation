@@ -189,6 +189,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	max_integrity = 200
 	integrity_failure = 50
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/screen = 0
 	var/paper_remaining = 15
 	var/securityCaster = 0
@@ -367,7 +368,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 							i++
 							dat+="-[MESSAGE.returnBody(-1)] <BR>"
 							if(MESSAGE.img)
-								usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+								browse_rsc_web(usr, MESSAGE.img, "tmp_photo[i].png")
 								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
 								if(MESSAGE.caption)
 									dat+="[MESSAGE.caption]<BR>"
@@ -473,7 +474,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<B>Description</B>: [GLOB.news_network.wanted_issue.body]<BR>"
 					dat+="<B>Photo:</B>: "
 					if(GLOB.news_network.wanted_issue.img)
-						usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+						browse_rsc_web(usr, GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 						dat+="<BR><img src='tmp_photow.png' width = '180'>"
 					else
 						dat+="None"
@@ -922,7 +923,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 							i++
 							dat+="-[MESSAGE.returnBody(notContent(MESSAGE.bodyCensorTime))] <BR>"
 							if(MESSAGE.img)
-								user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+								browse_rsc_web(user, MESSAGE.img, "tmp_photo[i].png")
 								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
 							dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(notContent(MESSAGE.authorCensorTime))]</FONT>\]</FONT><BR><BR>"
 						dat+="</ul>"
@@ -938,7 +939,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<B>Description</B>: [wantedBody]<BR>"
 					dat+="<B>Photo:</B>: "
 					if(wantedPhoto)
-						user << browse_rsc(wantedPhoto, "tmp_photow.png")
+						browse_rsc_web(user, wantedPhoto, "tmp_photow.png")
 						dat+="<BR><img src='tmp_photow.png' width = '180'>"
 					else
 						dat+="None"

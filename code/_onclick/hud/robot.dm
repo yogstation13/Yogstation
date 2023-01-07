@@ -259,11 +259,11 @@
 				if(I)
 					switch(i)
 						if(1)
-							I.screen_loc = ui_inv1
+							SET_SCREEN_LOC(I, ui_inv1)
 						if(2)
-							I.screen_loc = ui_inv2
+							SET_SCREEN_LOC(I, ui_inv2)
 						if(3)
-							I.screen_loc = ui_inv3
+							SET_SCREEN_LOC(I, ui_inv3)
 						else
 							return
 					screenmob.client.screen += I

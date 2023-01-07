@@ -7,6 +7,10 @@
 		<script>
 			//this is used over window.location because window.location has a character limit in IE.
 			function sendbyond(text) {
+				if(window.byond) {
+					window.byond.go('?'+text);
+					return;
+				}
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET', '?'+text, true);
 				xhr.send(null);

@@ -52,6 +52,7 @@
 	normalspeed = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
+	screen_loc = E3D_TYPE_DOOR
 
 	FASTDMM_PROP(\
 		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\

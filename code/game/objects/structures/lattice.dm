@@ -9,6 +9,7 @@
 	max_integrity = 50
 	layer = LATTICE_LAYER //under pipes
 	plane = FLOOR_PLANE
+	screen_loc = E3D_TYPE_FLOOR
 	var/number_of_rods = 1
 	canSmoothWith = list(/obj/structure/lattice,
 	/turf/open/floor,

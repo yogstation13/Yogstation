@@ -9,6 +9,7 @@
 	density = FALSE
 	opacity = 0
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	screen_loc = E3D_TYPE_FLOOR
 
 /obj/effect/clockwork/Initialize()
 	. = ..()

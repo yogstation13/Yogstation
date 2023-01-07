@@ -49,6 +49,7 @@
 #endif
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
+#define WEBCLIENT_PATCHES (world.system_type == MS_WINDOWS ? "webclient_patches.dll" : "libwebclient_patches.so")
 
 #ifdef TRAVISBUILDING
 // Turdis is special :)

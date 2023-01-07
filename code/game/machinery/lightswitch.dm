@@ -8,6 +8,7 @@
 
 	light_power = 0
 	light_range = 7
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.

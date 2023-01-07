@@ -11,6 +11,7 @@
 	density = TRUE
 	opacity = 1
 	max_integrity = 100
+	screen_loc = E3D_TYPE_FALSEWALL
 
 	canSmoothWith = list(
 		/turf/closed/wall,

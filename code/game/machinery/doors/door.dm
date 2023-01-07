@@ -13,6 +13,7 @@
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
+	screen_loc = E3D_TYPE_BASICWALL
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
 

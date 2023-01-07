@@ -19,6 +19,7 @@
 	anchored = TRUE
 	max_integrity = 200
 	integrity_failure = 100
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()

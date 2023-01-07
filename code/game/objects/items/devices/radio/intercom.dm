@@ -5,6 +5,7 @@
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/number = 0
 	var/anyai = 1
 	var/mob/living/silicon/ai/ai = list()

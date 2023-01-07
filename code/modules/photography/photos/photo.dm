@@ -72,7 +72,7 @@
 	if(!istype(picture) || !picture.picture_image)
 		to_chat(user, span_warning("[src] seems to be blank..."))
 		return
-	user << browse_rsc(picture.picture_image, "tmp_photo.png")
+	browse_rsc_web(user, picture.picture_image, "tmp_photo.png")
 	user << browse("<html><head><meta charset='UTF-8'><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \

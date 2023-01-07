@@ -259,6 +259,7 @@
 	circuit = null
 	clockwork = TRUE //it'd look very weird
 	light_power = 0
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)

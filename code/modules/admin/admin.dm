@@ -315,7 +315,7 @@
 						i++
 						dat+="-[MESSAGE.returnBody(-1)] <BR>"
 						if(MESSAGE.img)
-							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							browse_rsc_web(usr, MESSAGE.img, "tmp_photo[i].png")
 							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
 						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)]</FONT>\]</FONT><BR>"
 						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]:<br>"
@@ -413,7 +413,7 @@
 			dat+="<B>Description</B>: [GLOB.news_network.wanted_issue.body]<BR>"
 			dat+="<B>Photo:</B>: "
 			if(GLOB.news_network.wanted_issue.img)
-				usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+				browse_rsc_web(usr, GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<BR><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"

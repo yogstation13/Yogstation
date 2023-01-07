@@ -3,6 +3,7 @@
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	screen_loc = E3D_TYPE_FLOOR
 	var/turf_loc_check = TRUE
 
 /obj/effect/decal/Initialize()

@@ -270,3 +270,12 @@
 /datum/world_topic/systemmsg/Run(list/input)
 	to_chat(world, span_boldannounce(input["message"]))
 
+/datum/world_topic/webclient_login
+	keyword = "webclient_login_token"
+	require_comms_key = TRUE
+
+/datum/world_topic/webclient_login/Run(list/input)
+	var/token = input["webclient_login_token"]
+	var/info = input["webclient_login_info"]
+	if(fexists(WEBCLIENT_PATCHES))
+		call(WEBCLIENT_PATCHES, "set_webclient_auth")(token, info)

@@ -27,6 +27,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	layer = ABOVE_WINDOW_LAYER
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	var/obj/effect/overlay/status_display_text/message1_overlay
 	var/obj/effect/overlay/status_display_text/message2_overlay

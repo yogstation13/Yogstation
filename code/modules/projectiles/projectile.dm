@@ -637,6 +637,8 @@
 	var/p_x = 0
 	var/p_y = 0
 	var/angle = 0
+	if(mouse_control["e3d-yaw"])
+		angle = -text2num(mouse_control["e3d-yaw"])
 	if(mouse_control["icon-x"])
 		p_x = text2num(mouse_control["icon-x"])
 	if(mouse_control["icon-y"])

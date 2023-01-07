@@ -8,6 +8,7 @@
 	layer = LOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 0
+	screen_loc = E3D_TYPE_FLOOR
 	var/obj/item/beacon/Beacon
 
 /obj/machinery/bluespace_beacon/Initialize()

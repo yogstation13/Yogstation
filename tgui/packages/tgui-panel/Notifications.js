@@ -23,7 +23,7 @@ const NotificationsItem = props => {
   return (
     <Flex
       align="center"
-      className="Notification">
+      className="Notification clip-include">
       <Flex.Item
         className="Notification__content"
         grow={1}>

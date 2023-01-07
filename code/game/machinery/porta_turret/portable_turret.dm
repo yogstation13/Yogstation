@@ -17,6 +17,7 @@
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
 	req_access = list(ACCESS_SEC_DOORS)
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
+	screen_loc = E3D_TYPE_FLOOR
 
 	var/base_icon_state = "standard"
 	var/scan_range = 7
@@ -789,6 +790,7 @@
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
 	density = FALSE
+	screen_loc = E3D_TYPE_WALLMOUNT
 	var/enabled = 1
 	var/lethal = 0
 	var/locked = TRUE

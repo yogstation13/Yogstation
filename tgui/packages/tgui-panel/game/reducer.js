@@ -17,6 +17,7 @@ const initialState = {
   rebooting: false,
   reconnectTimer: 0,
   reconnected: false,
+  pointerLockState: false,
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -37,6 +38,18 @@ export const gameReducer = (state = initialState, action) => {
       reconnected: true,
       rebooting: false,
     };
+  }
+  if (type === 'gainPointerLock') {
+    return {
+      ...state,
+      pointerLockState: true
+    }
+  }
+  if (type === 'losePointerLock') {
+    return {
+      ...state,
+      pointerLockState: false
+    }
   }
   if (state.rebooting === true && state.tryingtoreconnect === true) {
     setInterval(() => { reconnectplease(); }, 10000);

@@ -122,16 +122,16 @@
 
 	if(hud_shown)
 		if(M.back)
-			M.back.screen_loc = ui_monkey_back
+			SET_SCREEN_LOC(M.back, ui_monkey_back)
 			M.client.screen += M.back
 		if(M.wear_mask)
-			M.wear_mask.screen_loc = ui_monkey_mask
+			SET_SCREEN_LOC(M.wear_mask, ui_monkey_mask)
 			M.client.screen += M.wear_mask
 		if(M.wear_neck)
-			M.wear_neck.screen_loc = ui_monkey_neck
+			SET_SCREEN_LOC(M.wear_neck, ui_monkey_neck)
 			M.client.screen += M.wear_neck
 		if(M.head)
-			M.head.screen_loc = ui_monkey_head
+			SET_SCREEN_LOC(M.head, ui_monkey_head)
 			M.client.screen += M.head
 	else
 		if(M.back)
@@ -143,9 +143,9 @@
 
 	if(hud_version != HUD_STYLE_NOHUD)
 		for(var/obj/item/I in M.held_items)
-			I.screen_loc = ui_hand_position(M.get_held_index_of_item(I))
+			SET_SCREEN_LOC(I, ui_hand_position(M.get_held_index_of_item(I)))
 			M.client.screen += I
 	else
 		for(var/obj/item/I in M.held_items)
-			I.screen_loc = null
+			CLEAR_SCREEN_LOC(I)
 			M.client.screen -= I

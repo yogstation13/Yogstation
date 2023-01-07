@@ -36,7 +36,7 @@
 	if(I.pulledby)
 		I.pulledby.stop_pulling()
 
-	I.screen_loc = null
+	CLEAR_SCREEN_LOC(I)
 	if(client)
 		client.screen -= I
 	if(observers && observers.len)

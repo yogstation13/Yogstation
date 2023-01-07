@@ -7,6 +7,7 @@
 	icon_state = "pressureplate"
 	level = 1
 	layer = LOW_OBJ_LAYER
+	screen_loc = E3D_TYPE_FLOOR
 	var/trigger_mob = TRUE
 	var/trigger_item = FALSE
 	var/specific_item = null

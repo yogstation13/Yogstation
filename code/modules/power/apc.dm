@@ -67,6 +67,7 @@
 		),\
 		dir_amount = 4\
     )
+	screen_loc = E3D_TYPE_WALLMOUNT
 
 	var/lon_range = 1.5
 	var/area/area

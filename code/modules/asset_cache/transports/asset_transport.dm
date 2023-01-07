@@ -127,7 +127,7 @@
 			if (!keep_local_name)
 				new_asset_name = "asset.[ACI.hash][ACI.ext]"
 			log_asset("Sending asset `[asset_name]` to client `[client]` as `[new_asset_name]`")
-			client << browse_rsc(ACI.resource, new_asset_name)
+			browse_rsc_web(client, ACI.resource, new_asset_name)
 
 			client.sent_assets[new_asset_name] = ACI.hash
 

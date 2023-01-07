@@ -103,7 +103,7 @@
 				document.removeEventListener("mousemove", mousemove);
 				document.removeEventListener("mouseup", mouseup);
 				if(nodeid) {
-					location = "?src=[REF(src)];move_node=" + nodeid + ";back_screen=[screen];ui_x=" + parseInt(nodecontainer.style.left) + ";ui_y=" + parseInt(nodecontainer.style.top);
+					window.location.href = "?src=[REF(src)];move_node=" + nodeid + ";back_screen=[screen];ui_x=" + parseInt(nodecontainer.style.left) + ";ui_y=" + parseInt(nodecontainer.style.top);
 					e.preventDefault();
 				}
 			}
@@ -116,7 +116,7 @@
 				var verb = "view";
 				if(e.altKey || e.button == 1)
 					verb = "research";
-				location = "?src=[REF(src)];" + verb + "_node=" + nodeid + ";back_screen=[screen]";
+				window.location.href = "?src=[REF(src)];" + verb + "_node=" + nodeid + ";back_screen=[screen]";
 			});
 			var lines = document.querySelectorAll(".node-" + nodeid);
 			node.addEventListener("mouseover", function() {

@@ -13,6 +13,7 @@
 	layer = LOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
+	screen_loc = E3D_TYPE_FLOOR
 
 	var/freq = FREQ_MAGNETS		// radio frequency
 	var/electricity_level = 1 // intensity of the magnetic pull

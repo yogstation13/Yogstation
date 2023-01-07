@@ -8,6 +8,7 @@
 	layer = LOW_ITEM_LAYER
 	anchored = TRUE
 	climbable = 1
+	screen_loc = E3D_TYPE_FLOOR
 	var/tube_construction = /obj/structure/c_transit_tube
 	var/list/tube_dirs //list of directions this tube section can connect to.
 	var/exit_delay = 1

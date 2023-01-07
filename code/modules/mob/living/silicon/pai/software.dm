@@ -82,7 +82,7 @@
 				left_part = softwareHostScan()
 
 
-	//usr << browse_rsc('windowbak.png')		// This has been moved to the mob's Login() proc
+	//browse_rsc_web(usr, 'windowbak.png')		// This has been moved to the mob's Login() proc
 
 
 												// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
