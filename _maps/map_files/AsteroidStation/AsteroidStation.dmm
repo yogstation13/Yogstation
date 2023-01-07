@@ -54661,6 +54661,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
+"ryu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "ryv" = (
 /obj/effect/turf_decal/box,
 /obj/structure/sign/poster/official/cleanliness{
@@ -56068,19 +56077,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"rWk" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/trinary/mixer/on{
-	dir = 1;
-	name = "air mixer";
-	node1_concentration = 0.21;
-	node2_concentration = 0.79;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "rWp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -123286,7 +123282,7 @@ xDf
 cEa
 uTB
 scA
-rWk
+ryu
 jBb
 oxf
 nyh
