@@ -46,10 +46,10 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-	#ifdef ENABLE_BYOND_TRACY
-		#warn ENABLE_BYOND_TRACY is enabled
-		init_byond_tracy()
-	#endif
+#ifdef ENABLE_BYOND_TRACY
+	#warn ENABLE_BYOND_TRACY is enabled
+	init_byond_tracy()
+#endif
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
