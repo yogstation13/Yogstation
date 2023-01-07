@@ -6,7 +6,13 @@ SUBSYSTEM_DEF(asset_loading)
 	priority = FIRE_PRIORITY_ASSETS
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY|RUNLEVELS_DEFAULT
+
 	var/list/datum/asset/generate_queue = list()
+
+/datum/controller/subsystem/asset_loading/stat_entry(msg)
+	msg = "Q:[length(generate_queue)]"
+
+	return ..()
 
 /datum/controller/subsystem/asset_loading/fire(resumed)
 	while(length(generate_queue))
