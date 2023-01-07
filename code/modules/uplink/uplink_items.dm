@@ -1345,7 +1345,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
-	item = /obj/mecha/combat/mauler/loaded
+	item = /obj/mecha/combat/marauder/mauler/loaded
 	cant_discount = TRUE
 	cost = 105 //Yogs change
 
