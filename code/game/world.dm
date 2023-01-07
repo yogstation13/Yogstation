@@ -285,7 +285,6 @@ GLOBAL_VAR(restart_counter)
 		call(EXTOOLS, "cleanup")()
 
 	#ifdef ENABLE_BYOND_TRACY
-		#warn ENABLE_BYOND_TRACY is enabled
 		end_byond_tracy()
 	#endif
 
