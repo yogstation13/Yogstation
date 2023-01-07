@@ -29,7 +29,8 @@
 		/obj/item/reagent_containers/spray/cleaner = 30,
 		/obj/item/grenade/chem_grenade/cleaner = 30,
 		/obj/item/storage/box/lights/mixed = 20,
-		/obj/item/lightreplacer = 10
+		/obj/item/lightreplacer = 10,
+		/obj/item/mop/advanced = 5
 	)
 
 	smells_like = "bleach"

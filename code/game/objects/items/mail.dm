@@ -16,19 +16,16 @@
 	var/datum/weakref/recipient_ref
 	/// How many goodies this mail contains.
 	var/goodie_count = 1
-	/// Goodies which can be given to anyone. The base weight for cash is 56. For there to be a 50/50 chance of getting a department item, they need 56 weight as well.
+	/// Goodies which can be given to anyone. The base weight for cash is 52. For there to be a 50/50 chance of getting a department item, they need 52 weight as well.
 	var/list/generic_goodies = list( //yogs, add coins, sorted least valuable to most valuable
-		/obj/item/coin/iron = 2,
-		/obj/item/coin/silver = 2,
-		/obj/item/coin/gold = 2,
-		/obj/item/coin/plasma = 2,
 		/obj/item/stack/spacecash/c50 = 5,
 		/obj/item/stack/spacecash/c100 = 20,
-		/obj/item/coin/diamond = 10,
 		/obj/item/stack/spacecash/c200 = 6,
-		/obj/item/coin/bananium = 4,
 		/obj/item/stack/spacecash/c500 = 2,
 		/obj/item/stack/spacecash/c1000 = 1,
+		/obj/effect/spawner/lootdrop/coin = 10
+		/obj/effect/spawner/lootdrop/donkpockets = 8,
+		/obj/item/card/emag/improvised = 0.01 //I am an agent of chaos
 	)
 	// Overlays (pure fluff)
 	/// Does the letter have the postmark overlay?

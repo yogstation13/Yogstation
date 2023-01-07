@@ -29,6 +29,7 @@
 		/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 10,
 		/obj/item/grenade/gas_crystal/healium_crystal = 10,
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
+		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")

@@ -48,6 +48,26 @@
 		/obj/item/cautery/alien,
 	)
 
+/obj/effect/spawner/lootdrop/engineering_tool_advanced
+	name = "Advanced engineering tool spawner"
+	loot = list( // Mail loot spawner. Drop pool of advanced engineering tools typically from research. Not endgame content.
+		/obj/item/handdrill,
+		/obj/item/jawsoflife,
+		/obj/item/multitool/tricorder,
+		/obj/item/weldingtool/experimental,
+	)
+
+/obj/effect/spawner/lootdrop/engineering_tool_alien
+	name = "Rare engineering tool spawner"
+	loot = list( // Mail loot spawner. Some sort of random and rare engineering tool. Alien tech found here.
+		/obj/item/wrench/abductor,
+		/obj/item/wirecutters/abductor,
+		/obj/item/screwdriver/abductor,
+		/obj/item/crowbar/abductor,
+		/obj/item/weldingtool/abductor,
+		/obj/item/multitool/abductor,
+	)
+
 /obj/effect/spawner/lootdrop/memeorgans
 	name = "meme organ spawner"
 	lootcount = 5
@@ -74,7 +94,7 @@
 /obj/effect/spawner/lootdrop/plushies
 	name = "random plushie"
 	lootcount = 1
-	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+	loot = list(
 		/obj/item/toy/plush/bubbleplush,
 		/obj/item/toy/plush/carpplushie,
 		/obj/item/toy/plush/lizardplushie,
@@ -109,6 +129,19 @@
 		/obj/item/ammo_casing/shotgun/thundershot,
 		/obj/item/ammo_casing/shotgun/uraniumpenetrator,
 		/obj/item/ammo_casing/shotgun/cryoshot
+	)
+
+/obj/effect/spawner/lootdrop/coin
+	name = "random coin spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/coin/iron,
+		/obj/item/coin/silver,
+		/obj/item/coin/gold,
+		/obj/item/coin/plasma,
+		/obj/item/coin/uranium,
+		/obj/item/coin/diamond,
+		/obj/item/coin/bananium
 	)
 
 /obj/effect/spawner/lootdrop/armory_contraband

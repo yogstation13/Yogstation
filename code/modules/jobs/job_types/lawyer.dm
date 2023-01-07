@@ -27,6 +27,15 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/tape = 15,
+		/obj/item/taperecorder = 10,
+		/obj/item/megaphone = 10,
+		/obj/item/gavelhammer = 5,
+		/obj/item/clothing/glasses/hud/security = 5,
+		/obj/item/banhammer = 1
+	)
+
 	smells_like = "legal lies"
 
 /datum/job/lawyer/proc/OmegaStationChanges()

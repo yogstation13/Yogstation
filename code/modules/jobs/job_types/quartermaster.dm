@@ -23,7 +23,12 @@
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(
-		/obj/item/circuitboard/machine/emitter = 3
+		/obj/item/stack/sheet/mineral/gold = 10,
+		/obj/item/clothing/mask/facehugger/toy = 5,
+		/obj/item/circuitboard/machine/emitter = 3,
+		/obj/item/survivalcapsule/luxuryelite = 2,
+		/obj/item/construction/rcd = 2,
+		/obj/item/circuitboard/machine/vending/donksofttoyvendor = 1
 	)
 
 	smells_like = "capitalism"

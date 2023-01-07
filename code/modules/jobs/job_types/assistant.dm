@@ -22,7 +22,7 @@ Assistant
 	minimal_character_age = 18 //Would make it even younger if I could because this role turns men into little brat boys and likewise for the other genders
 
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
+		/obj/effect/spawner/lootdrop/donkpockets = 10, //more donkpockets
 		/obj/item/clothing/mask/gas = 10,
 		/obj/item/clothing/gloves/color/fyellow = 7,
 		/obj/item/choice_beacon/music = 5,

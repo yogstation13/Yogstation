@@ -25,7 +25,10 @@
 	minimal_character_age = 24 //Genetics would likely require more education than your average position due to the sheer number of alien physiologies and experimental nature of the field
 
 	mail_goodies = list(
-		/obj/item/storage/box/monkeycubes = 10
+		/obj/item/storage/box/monkeycubes = 10,
+		/obj/item/reagent_containers/pill/mutadone = 10,
+		/obj/item/reagent_containers/glass/bottle/mutagen = 5,
+		/obj/item/dnainjector/elvismut = 1
 	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")

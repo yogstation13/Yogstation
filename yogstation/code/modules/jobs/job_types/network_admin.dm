@@ -26,7 +26,8 @@
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(
-		/obj/effect/spawner/lootdrop/plushies = 20
+		/obj/effect/spawner/lootdrop/plushies = 20,
+		/obj/item/pizzabox = 10
 	)
 
 	smells_like = "thermal paste"
