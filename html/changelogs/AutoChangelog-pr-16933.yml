@@ -1,0 +1,7 @@
+author: " 00ze-cyclone and Papi"
+delete-after: true 
+changes: 
+  - rscadd: "Add the bouncer energy gun"
+  - bugfix: "fixed the charge overlay of the mind flayer"
+  - tweak: "reduced ammo of xray to 14 beams, xray lasers deal 10 burn and 300 rads now"
+  - imageadd: "added bouncer egun sprite made by Papi"
