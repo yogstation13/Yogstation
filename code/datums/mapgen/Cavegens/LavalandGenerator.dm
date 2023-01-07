@@ -1,17 +1,18 @@
 /datum/map_generator/cave_generator/lavaland
-	open_turf_types = list(/turf/open/floor/plating/asteroid/basalt/lava_land_surface = 1)
-	closed_turf_types = list(/turf/closed/mineral/random/volcanic = 1)
+	name = "Lavaland Base"
+	weighted_open_turf_types = list(/turf/open/floor/plating/asteroid/basalt/lava_land_surface = 1)
+	weighted_closed_turf_types = list(/turf/closed/mineral/random/volcanic = 1)
 
 
-	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
+	weighted_mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
 		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 30,
 		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10
 	)
-	flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
+	weighted_flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
 	///Note that this spawn list is also in the icemoon generator
-	feature_spawn_list = list(/obj/structure/geyser/ash = 10, /obj/structure/geyser/random = 2, /obj/structure/geyser/stable_plasma = 6, /obj/structure/geyser/oil = 8,/obj/structure/geyser/protozine = 10,/obj/structure/geyser/holywater = 2) //yogs, yes geysers
+	weighted_feature_spawn_list = list(/obj/structure/geyser/ash = 10, /obj/structure/geyser/random = 2, /obj/structure/geyser/stable_plasma = 6, /obj/structure/geyser/oil = 8,/obj/structure/geyser/protozine = 10,/obj/structure/geyser/holywater = 2) //yogs, yes geysers
 
 	initial_closed_chance = 45
 	smoothing_iterations = 50
@@ -36,7 +37,7 @@
 	var/min_offset = 0
 	var/max_offset = 5
 
-/datum/map_generator/cave_generator/lavaland/generate_terrain(list/turfs)
+/datum/map_generator/cave_generator/lavaland/generate_terrain(list/turfs, area/generate_in)
 	. = ..()
 	var/start_time = REALTIMEOFDAY
 	var/node_amount = rand(6,10)
@@ -54,35 +55,24 @@
 		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
 		var/node_gen2 = rustg_cnoise_generate("[initial_granite_chance]", "[granite_smoothing_interations]", "[granite_birth_limit]", "[granite_death_limit]", "[size_x + 1]", "[size_y + 1]")
 		var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
-		var/list/changing_turfs_harder = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
 		for(var/turf/T in changing_turfs) //shitcode
 			if(!ismineralturf(T))
 				continue
 			var/index = changing_turfs.Find(T)
-			var/hardened = text2num(node_gen[index])
+			var/hardened = text2num(node_gen[index]) + text2num(node_gen2[index]) //babe how hard are u right now? "2"
 			if(!hardened)
 				continue
-			var/hard_path = text2path("[T.type]/hard")
-			if(!ispath(hard_path)) //erm what the shit we dont have a hard type
+			var/hard_path
+			switch(hardened)
+				if(1)
+					hard_path = text2path("[T.type]/hard")
+				if(2)
+					hard_path = text2path("[T.type]/hard/harder")
+			if(!ispath(hard_path)) //erm what the shit we dont have a hard(or er) type
 				continue
 			var/turf/new_turf = hard_path
 			new_turf = T.ChangeTurf(new_turf, initial(new_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
-		for(var/turf/H in changing_turfs_harder) //shitcode 2, shit harder
-			if(!ismineralturf(H))
-				continue
-			var/index = changing_turfs_harder.Find(H)
-			var/hardeneder = text2num(node_gen2[index])
-			if(!hardeneder)
-				continue
-			var/harder_path = text2path("[H.type]/hard/harder")
-			if(!ispath(harder_path))
-				continue
-			var/turf/new_turf2 = harder_path
-			new_turf2 = H.ChangeTurf(new_turf2, initial(new_turf2.baseturfs), CHANGETURF_DEFER_CHANGE)
 
-	var/message = "Basalt generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	var/message2 = "Granite generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
+	var/message = "Lavaland Auxiliary generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, span_boldannounce("[message]"))
-	to_chat(world, span_boldannounce("[message2]"))
 	log_world(message)
-	log_world(message2)

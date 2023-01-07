@@ -1,6 +1,5 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section, Flex } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosConfiguration = (props, context) => {
@@ -15,11 +14,7 @@ export const NtosConfiguration = (props, context) => {
     hardware = [],
   } = data;
   return (
-    <NtosWindow
-      theme={PC_device_theme}
-      width={420}
-      height={630}
-      resizable>
+    <NtosWindow theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <Section
           title="Power Supply"
@@ -64,28 +59,34 @@ export const NtosConfiguration = (props, context) => {
           {hardware.map(component => (
             <Section
               key={component.name}
-              title={component.name}
-              level={2}
-              buttons={(
-                <Fragment>
-                  {!component.critical && (
-                    <Button.Checkbox
-                      content="Enabled"
-                      checked={component.enabled}
-                      mr={1}
-                      onClick={() => act('PC_toggle_component', {
-                        name: component.name,
-                      })} />
-                  )}
-                  <Box
-                    inline
-                    bold
-                    mr={1}>
+              title={component.name}>
+              <Flex
+                row-gap="10px"
+                direction="column">
+                <Flex.Item >
+                  {component.desc}
+                </Flex.Item>
+                <Flex
+                  justify="space-between"
+                  mt="10px">
+                  <Flex.Item>
+                    {!component.critical && (
+                      <Button.Checkbox
+                        content="Enabled"
+                        checked={component.enabled}
+                        mr={1}
+                        onClick={() => act('PC_toggle_component', {
+                          name: component.name,
+                        })} />
+                    )}
+                  </Flex.Item>
+                  <Flex.Item
+                    align="end"
+                    fontSize="12px">
                     Power Usage: {component.powerusage}W
-                  </Box>
-                </Fragment>
-              )}>
-              {component.desc}
+                  </Flex.Item>
+                </Flex>
+              </Flex>
             </Section>
           ))}
         </Section>

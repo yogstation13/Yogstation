@@ -133,6 +133,7 @@
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
 	color = "#0000C8"
 	taste_description = "sludge"
+	overdose_threshold = 100 //no chugging
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
 	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
@@ -142,6 +143,12 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
+		if(prob(10))
+			M.Knockdown(2 SECONDS)
+			to_chat(M, span_danger("You feel woozy."))
+		if(prob(10))
+			M.drop_all_held_items()
+			to_chat(M, span_danger("You lose concentration."))
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power)
@@ -1303,7 +1310,7 @@
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20, FALSE)
-	M.adjustStaminaLoss(-1, 0)
+	M.adjustStaminaLoss(-30, 0)
 	..()
 	return TRUE
 
@@ -1845,3 +1852,17 @@
 	clot_rate = 0.4 //slightly better than regular coagulant
 	passive_bleed_modifier = 0.5
 	overdose_threshold = 10 //but easier to overdose on
+
+/datum/reagent/medicine/resurrector_nanites
+	name = "Resurrector Nanite Serum"
+	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
+	taste_description = "a bunch of tiny robots"
+
+/datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
+	..()
+	if(M.stat != DEAD)
+		return
+	M.revive(full_heal = TRUE)
+	M.Jitter(10 SECONDS)
+	M.emote("gasp")
+	

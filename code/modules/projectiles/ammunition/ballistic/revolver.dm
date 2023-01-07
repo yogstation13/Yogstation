@@ -9,7 +9,6 @@
 /obj/item/ammo_casing/a357/ironfeather
 	name = ".357 Ironfeather shell"
 	desc = "A .357 Ironfeather shell that contains six pellets."
-	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/pellet/a357_ironfeather
 	pellets = 6
 	variance = 25 //Same spread and pellets as buckshot
@@ -17,25 +16,21 @@
 /obj/item/ammo_casing/a357/nutcracker
 	name = ".357 Nutcracker bullet casing"
 	desc = "A .357 Nutcracker bullet casing."
-	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357/nutcracker
 
 /obj/item/ammo_casing/a357/metalshock
 	name = ".357 Metalshock bullet casing"
 	desc = "A .357 Metalshock bullet casing."
-	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357/metalshock
 
 /obj/item/ammo_casing/a357/heartpiercer
 	name = ".357 Heartpiercer bullet casing"
 	desc = "A .357 Heartpiercer bullet casing."
-	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357/heartpiercer
 
 /obj/item/ammo_casing/a357/wallstake
 	name = ".357 Wallstake bullet casing"
 	desc = "A .357 Wallstake bullet casing."
-	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357/wallstake
 
 // 7.62x38mmR (Nagant Revolver)
@@ -57,19 +52,16 @@
 /obj/item/ammo_casing/c38/hotshot
 	name = ".38 Hot Shot bullet casing"
 	desc = "A .38 Hot Shot bullet casing."
-	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/hotshot
 
 /obj/item/ammo_casing/c38/iceblox
 	name = ".38 Iceblox bullet casing"
 	desc = "A .38 Iceblox bullet casing."
-	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
 
 /obj/item/ammo_casing/c38/gutterpunch
 	name = ".38 Gutterpunch bullet casing"
 	desc = "A .38 Gutterpunch bullet casing"
-	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
 
 // .32 (Caldwell Tracking Revolver)

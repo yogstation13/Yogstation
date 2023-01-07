@@ -24,11 +24,15 @@
 	var/list/attack_action_types = list()
 	var/can_talk = FALSE
 	var/obj/loot_drop = null
-
+	var/obj/item/gps/internal
+	var/internal_type
+	var/true_spawn = TRUE // If this elite fauna should have a signal, same gps system used in megafauna.
 
 //Gives player-controlled variants the ability to swap attacks
 /mob/living/simple_animal/hostile/asteroid/elite/Initialize(mapload)
 	. = ..()
+	if(internal_type && true_spawn)
+		internal = new internal_type(src)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/elite_attack/attack_action = new action_type()
 		attack_action.Grant(src)
@@ -42,8 +46,8 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = alert("Re-enter the tumor?", "Despawn yourself?", "Yes", "No")
-			if(elite_remove == "No" || !src || QDELETED(src))
+			var/elite_remove = tgui_alert(usr,"Re-enter the tumor?", "Despawn yourself?", list("Yes", "No"))
+			if(elite_remove == "No" || QDELETED(src) || !Adjacent(T))
 				return
 			T.mychild = null
 			T.activity = TUMOR_INACTIVE
@@ -111,7 +115,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				severity = 7
 		hud_used.healths.icon_state = "elite_health[severity]"
 		if(severity > 0)
-			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+			overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
 

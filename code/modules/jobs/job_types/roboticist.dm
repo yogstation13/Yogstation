@@ -1,6 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
+	description = "Build and repair the AI and cyborgs, create mechs."
 	flag = ROBOTICIST
+	orbit_icon = "battery-half"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -10,7 +12,7 @@
 	selection_color = "#ffeeff"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer")
+	alt_titles = list("Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist")
 
 	outfit = /datum/outfit/job/roboticist
 
@@ -23,6 +25,14 @@
 	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
 	changed_maps = list("OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/storage/box/flashes = 20,
+		/obj/item/stack/sheet/metal/twenty = 15,
+		/obj/item/modular_computer/tablet/preset/advanced = 5
+	)
+
+	smells_like = "burnt solder"
 
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"

@@ -38,7 +38,7 @@
 
 /datum/export/weapon/wt550
 	cost = 300
-	unit_name = "WT-550 automatic rifle"
+	unit_name = "WT-550 automatic carbine"
 	export_types = list(/obj/item/gun/ballistic/automatic/wt550)
 
 /datum/export/weapon/shotgun
@@ -69,3 +69,8 @@
 	unit_name = "pair"
 	message = "of handcuffs"
 	export_types = list(/obj/item/restraints/handcuffs)
+
+/datum/export/weapon/gibtonite
+	cost = 1000
+	unit_name = "Gibtonite Chunk"
+	export_types = list(/obj/item/twohanded/required/gibtonite)

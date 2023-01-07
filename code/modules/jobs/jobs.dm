@@ -64,45 +64,45 @@ GLOBAL_LIST_INIT(alt_command_positions, list(
 	"Station Commander", "Facility Director",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
-	"Head of Engineering", "Engineering Director",
+	"Head of Engineering", "Engineering Director", "Senior Engineer",
 	"Chief Science Officer", "Head of Research",
 	"Medical Director", "Head of Medical"))
 
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
-	"Head of Engineering", "Engineering Director",
+	"Head of Engineering", "Engineering Director", "Senior Engineer",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
-	"NTSL Programmer", "Comms Tech", "Station IT Support"
+	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist",
+	"AI Tech Support", "SysOp"
 	))
 
 GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Medical Director", "Head of Medical",
-	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
+	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
 	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer",
 	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist",
 	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
 	"EMT", "Paramedic Trainee", "Rapid Response Medic",
-	"Councilor", "Therapist", "Mentalist",
+	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer",
 	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research",
-	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician",
-	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer"))
+	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist",
+	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
 	"Stock Controller", "Cargo Coordinator", "Shipping Overseer",
-	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher",
-	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner"))
+	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher", "Courier",
+	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Surveyor"))
 
 GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Barkeep", "Tapster", "Barista", "Mixologist",
-	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
+	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener",
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
-	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker",
-	"Librarian", "Journalist", "Archivist",
+	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
+	"Librarian", "Journalist", "Archivist", "Cartographer",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
 	"Priest", "Preacher", "Cleric", "Exorcist",
 	"Entertainer", "Comedian", "Jester",

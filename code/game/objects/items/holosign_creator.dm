@@ -100,7 +100,7 @@
 
 /obj/item/holosign_creator/firstaid
 	name = "medical holobed projector"
-	desc = "A holographic projector that creates first aid holobeds that slows the metabolism of those laying on it and provides a sterile enviroment for surgery."
+	desc = "A holographic projector that creates first aid holobeds that slows the metabolism of those laying on it and provides a sterile environment for surgery."
 	icon_state = "signmaker_firstaid"
 	holosign_type = /obj/structure/holobed
 	creation_time = 1 SECONDS

@@ -845,15 +845,6 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_pinpointer
-	name = "Cyborg Upgrade (Crew pinpointer)"
-	id = "borg_upgrade_pinpointer"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/pinpointer
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
-	construction_time = 120
-	category = list("Cyborg Upgrade Modules")
-
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"
@@ -931,6 +922,15 @@
 	construction_time = 100
 	category = list("IPC Components")
 
+/datum/design/ipc_lungs
+	name = "Cooling Radiator"
+	id = "ipc_lungs"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/lungs/ipc
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components")
+
 /datum/design/power_cord
 	name = "Recharging Electronics"
 	id = "power_cord"
@@ -953,4 +953,13 @@
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = 10000 , /datum/material/glass = 5000)
 	construction_time = 150
+	category = list("IPC Components")
+
+/datum/design/ipcclone
+	name = "Blank IPC"
+	id = "blankipc"
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = 100000, /datum/material/glass = 50000, /datum/material/plasma = 1000)
+	construction_time = 900 //one and a half minutes
+	build_path = /mob/living/carbon/human/species/ipc/empty //apparently this works
 	category = list("IPC Components")

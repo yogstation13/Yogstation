@@ -1,6 +1,9 @@
 /datum/job/doctor
 	title = "Medical Doctor"
+	description = "Save lives, run around the station looking for victims, \
+		scan everyone in sight"
 	flag = DOCTOR
+	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -23,6 +26,18 @@
 	minimal_character_age = 26 //Barely acceptable considering the theoretically absurd knowledge they have, but fine
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/healthanalyzer/advanced = 15,
+		/obj/item/scalpel/advanced = 6,
+		/obj/item/retractor/advanced = 6,
+		/obj/item/cautery/advanced = 6,
+		/obj/item/reagent_containers/autoinjector/medipen = 6,
+		/obj/effect/spawner/lootdrop/organ_spawner = 5
+		///obj/effect/spawner/random/medical/memeorgans = 1
+	)
+
+	smells_like = "a hospital"
 
 /datum/job/doctor/proc/EclipseStationChanges()
 	total_positions = 6

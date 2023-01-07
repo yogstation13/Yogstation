@@ -30,6 +30,7 @@
 #define COLOR_MAGENTA          "#FF00FF"
 #define COLOR_PURPLE           "#800080"
 #define COLOR_ORANGE           "#FF9900"
+#define COLOR_PALE_ORANGE      "#FFBE9D"
 #define COLOR_BEIGE            "#CEB689"
 #define COLOR_BLUE_GRAY        "#75A2BB"
 #define COLOR_BROWN            "#BA9F6D"

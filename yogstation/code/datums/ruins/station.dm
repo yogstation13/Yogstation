@@ -260,6 +260,24 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
+/datum/map_template/ruin/station/meta
+	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
+
+/datum/map_template/ruin/station/meta/supermatter
+	id = "meta_sm"
+	suffix = "meta_sm.dmm"
+	name = "Meta SM"
+
+/datum/map_template/ruin/station/meta/tesla_singulo
+	id = "meta_singulo_tesla"
+	suffix = "meta_singulo_tesla.dmm"
+	name = "Meta Singulo And Tesla"
+
+/datum/map_template/ruin/station/meta/teg
+	id = "meta_teg"
+	suffix = "meta_teg.dmm"
+	name = "Meta TEG"
+	
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 
@@ -1306,3 +1324,8 @@
 	id = "wizard"
 	suffix = "10x10_wizard.dmm"
 	name = "Maint wizard"
+
+/datum/map_template/ruin/station/maint/tenxten/halloween
+	id = "halloween"
+	suffix = "10x10_halloween.dmm"
+	name = "Maint halloween"

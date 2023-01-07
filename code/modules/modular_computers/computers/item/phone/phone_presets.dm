@@ -39,7 +39,8 @@
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/card_slot/secondary)
+								/obj/item/computer_hardware/card_slot/secondary,
+								/obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	finish_color = "yellow"
@@ -47,7 +48,7 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 	starting_files = list(	new /datum/computer_file/program/budgetorders,

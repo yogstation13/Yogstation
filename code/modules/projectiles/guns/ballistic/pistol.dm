@@ -16,11 +16,7 @@
 	bolt_drop_sound = "sound/weapons/pistolslidedrop.ogg"
 	bolt_wording = "slide"
 	feedback_types = list(
-		"fire" = 2,
-		"slide_open" = 3,
-		"slide_close" = 3,
-		"mag_in" = 3,
-		"mag_out" = 3
+		"fire" = 2
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/no_mag
@@ -53,7 +49,7 @@
 	desc = "A robust .50 AE handgun."
 	icon_state = "deagle"
 	force = 14
-	fire_delay = 5
+	fire_delay = 8
 	mag_type = /obj/item/ammo_box/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE
@@ -110,10 +106,4 @@
 	desc = "A small, makeshift 10mm handgun. It's a miracle if it'll even fire."
 	icon_state = "makeshift"
 	spawnwithmagazine = FALSE
-
-/obj/item/gun/ballistic/automatic/pistol/makeshift/chamber_round(keep_bullet = FALSE)
-	if(prob(40))
-		playsound(src, dry_fire_sound, 30, TRUE)
-		update_icon()
-		return
-	return ..()
+	fire_delay = 6

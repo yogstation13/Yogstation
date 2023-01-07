@@ -1,6 +1,9 @@
 /datum/job/officer
 	title = "Security Officer"
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
 	flag = OFFICER
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -27,6 +30,16 @@
 	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5
+		///obj/item/clothing/mask/whistle = 5,
+		///obj/item/melee/baton/security/boomerang/loaded = 1
+	)
+
+	smells_like = "donuts"
 
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14

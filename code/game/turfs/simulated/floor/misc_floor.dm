@@ -129,6 +129,23 @@
 /turf/open/floor/noslip/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
 
+/turf/open/floor/noslip/broken
+	icon_state = "noslip-damaged1"
+	broken = TRUE
+
+/turf/open/floor/noslip/broken/two
+	icon_state = "noslip-damaged2"
+
+/turf/open/floor/noslip/broken/three
+	icon_state = "noslip-damaged3"
+
+/turf/open/floor/noslip/burnt
+	icon_state = "noslip-scorched1"
+	broken = TRUE
+
+/turf/open/floor/noslip/burnt/two
+	icon_state = "noslip-scorched2"
+
 /turf/open/floor/oldshuttle
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "floor"
@@ -139,7 +156,6 @@
 	name = "clockwork floor"
 	desc = "Tightly-pressed brass tiles. They emit minute vibration."
 	icon_state = "plating"
-	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -290,3 +306,7 @@
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	broken_states = list("eighties_damaged")
+
+/turf/open/floor/eighties/broken
+	icon_state = "eighties_damaged"
+	broken = TRUE

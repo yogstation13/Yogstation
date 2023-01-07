@@ -108,6 +108,7 @@
 		return
 	if(download_completion >= downloaded_file.size)
 		complete_file_download()
+		return
 	// Download speed according to connectivity state. NTNet server is assumed to be on unlimited speed so we're limited by our local connectivity
 	download_netspeed = 0
 	// Speed defines are found in code/__DEFINES/machines.dm

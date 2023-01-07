@@ -11,6 +11,9 @@
 //A flashy ability, good for crowd control and sowing chaos.
 /datum/action/changeling/resonant_shriek/sting_action(mob/user)
 	..()
+	if(user.movement_type & VENTCRAWLING)
+		to_chat(user, "<span class='notice'>We must exit the pipes before we can shriek!</span>")
+		return FALSE
 	for(var/mob/living/M in get_hearers_in_view(4, user))
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
@@ -40,6 +43,9 @@
 
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
+	if(user.movement_type & VENTCRAWLING)
+		to_chat(user, "<span class='notice'>We must exit the pipes before we can shriek!</span>")
+		return FALSE
 	for(var/obj/machinery/light/L in range(5, usr))
 		L.on = 1
 		L.break_light_tube()

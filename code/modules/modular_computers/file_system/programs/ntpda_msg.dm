@@ -54,13 +54,17 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		source = holder
 
 	if(source)
-		explosion(source, -1, 1, 3, 4)
+		explosion(source, -1, 0, 3, 4)
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
 	
 	qdel(src)
 
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
+	if(user.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
+		return
+	if(!istype(user, /mob/living/silicon/ai) && user.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
+		return
 	// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
 	var/obj/item/modular_computer/comp
 	if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
@@ -209,15 +213,17 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		comp.audible_message("[icon2html(comp, hearers(comp))] *[ringtone]*", null, 3)
 		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
 		if(istype(comp, /obj/item/modular_computer/tablet))
-			var/mob/living/carbon/C = comp.loc
-			if(istype(C))
-				msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
+			msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
 		comp.visible_message(span_notice(msg), null, null, 1)
 	
 	return TRUE
 
 /datum/computer_file/program/pdamessager/Topic(href, list/href_list)
 	. = ..()
+	if(usr.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
+		return
+	if(usr.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
+		return
 	var/msg = input("Send a message?") as null|text
 	msg = sanitizeinput(msg, computer)
 	if(msg)
@@ -338,10 +344,28 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			return TRUE
 		
 		if("PRG_namechange")
-			var/newname = reject_bad_text(params["name"], max_length = 35)
+
+			if(computer.GetID())
+				computer.visible_message(span_danger("Username is ID-locked!"), null, null, 1)
+				return
+
+			var/unsanitized = params["name"]
+
+			if(isnotpretty(unsanitized))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+
+			var/newname = reject_bad_text(unsanitized, max_length = 55)
 			if(!newname)
 				computer.visible_message(span_danger("Your username is too long/has bad text!"), null, null, 1)
 				return
+			
 			for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
 				if(newname == P.username)
 					computer.visible_message(span_danger("Someone already has the username \"[newname]\"!"), null, null, 1)	
@@ -361,10 +385,24 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			if(computer.uplink_check(usr, params["name"]))
 				return TRUE
 			else
-				var/newring = reject_bad_text(params["name"], max_length = 10)
+				var/unsanitized = params["name"]
+
+				if(isnotpretty(unsanitized))
+					if(usr.client.prefs.muted & MUTE_IC)
+						return
+					usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+					to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+					var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
+					message_admins(log_message)
+					log_say(log_message)
+					return
+				
+				var/newring = reject_bad_text(unsanitized, max_length = 10)
+				
 				if(!newring)
 					computer.visible_message(span_danger("Your ringtone is too long/has bad text!"), null, null, 1)
 					return
+				
 				ringtone = newring
 				computer.visible_message(span_notice("Ringtone set to [newring]."), null, null, 1)
 			return TRUE

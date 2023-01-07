@@ -473,7 +473,7 @@
 	helmet_type = /obj/item/clothing/head/helmet/space/changeling
 	suit_name_simple = "flesh shell"
 	helmet_name_simple = "space helmet"
-	recharge_slowdown = 0.5
+	recharge_slowdown = 1
 	blood_on_castoff = 1
 
 /obj/item/clothing/suit/space/changeling
@@ -521,7 +521,7 @@
 	chemical_cost = 20
 	dna_cost = 1
 	req_human = 1
-	recharge_slowdown = 0.25
+	recharge_slowdown = 0.5
 	xenoling_available = FALSE
 
 	suit_type = /obj/item/clothing/suit/armor/changeling
@@ -539,7 +539,7 @@
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
-	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman) // allows ling armor to carry the usual space suit tanks.
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant) // allows ling armor to carry the usual space suit tanks.
 
 /obj/item/clothing/suit/armor/changeling/Initialize()
 	. = ..()

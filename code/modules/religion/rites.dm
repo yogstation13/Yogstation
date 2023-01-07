@@ -441,7 +441,7 @@
 
 /datum/religion_rites/meatbless
 	name = "Meat Blessing"
-	desc = "Bless a piece of meat. Preps it for sacrifice"
+	desc = "Bless a piece of meat. Preps it for sacrifice. The meat must be on top of the altar."
 	ritual_length = 2 SECONDS
 	//no invoke message, this does a custom one down below in invoke_effect
 	///the piece of meat that will be blessed, only one per rite

@@ -22,7 +22,7 @@
 	var/obj/item/bodypart/L = null // L because "limb"
 
 
-/datum/surgery_step/replace_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/replace_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)//change this so digitigrade species can only use digitigrade limbs
 	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
 		tool = tool.contents[1]
 	var/obj/item/bodypart/aug = tool
@@ -62,6 +62,8 @@
 	if(isgolem(target) || isipc(target) || ispreternis(target))
 		to_chat(user, span_warning("You can only augment organics!"))
 		return FALSE
+	else
+		return TRUE
 
 /*
 /datum/surgery/augmentation/mechanic

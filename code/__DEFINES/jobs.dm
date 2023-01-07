@@ -51,6 +51,9 @@
 #define JOB_UNAVAILABLE_ACCOUNTAGE 4
 #define JOB_UNAVAILABLE_SLOTFULL 5
 
+/// Used when the `get_job_unavailable_error_message` proc can't make sense of a given code.
+#define GENERIC_JOB_UNAVAILABLE_ERROR "Error: Unknown job availability."
+
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
 
@@ -123,3 +126,5 @@
 #define IS_SCIENCE(target) (find_job(target) in GLOB.science_positions)
 #define IS_CARGO(target) (find_job(target) in GLOB.supply_positions)
 #define IS_SECURITY(target) (find_job(target) in GLOB.security_positions)
+
+#define DEPARTMENT_UNASSIGNED "No Department"

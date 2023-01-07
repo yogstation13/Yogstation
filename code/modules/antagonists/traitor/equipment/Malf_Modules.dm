@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!isaicore(owner.loc))
 		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
-	if(alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", "confirm = TRUE;", "confirm = FALSE;") != "confirm = TRUE;")
+	if(tgui_alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", list("confirm = TRUE;", "confirm = FALSE;")) != "confirm = TRUE;")
 		return
 	if(!isaicore(owner.loc))
 		to_chat(owner, span_warning("You must be in your core to do this!"))
@@ -344,6 +344,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		if(!T || !is_station_level(T.z))
 			continue
 		if(issilicon(L))
+			continue
+		if(isipc(L))
 			continue
 		to_chat(L, span_userdanger("The blast wave from [src] tears you atom from atom!"))
 		L.dust()
@@ -522,10 +524,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(is_type_in_typecache(target, GLOB.blacklisted_malf_machines))
 		to_chat(ranged_ability_user, span_warning("You cannot overload that device!"))
 		return
-	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 50, 0)
+	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 4 SECONDS, 0)
 	attached_action.adjust_uses(-1)
 	target.audible_message(span_userdanger("You hear a loud electrical buzzing sound coming from [target]!"))
-	addtimer(CALLBACK(attached_action, /datum/action/innate/ai/ranged/overload_machine.proc/detonate_machine, target), 50) //kaboom!
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
+	spark_system.attach(target)
+	spark_system.set_up(1, 0, target)
+	addtimer(CALLBACK(attached_action, /datum/action/innate/ai/ranged/overload_machine.proc/detonate_machine, target), 4 SECONDS) //kaboom!
 	remove_ranged_ability(span_danger("Overcharging machine..."))
 	return TRUE
 
@@ -594,7 +599,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!owner_AI.can_place_transformer(src))
 		return
 	active = TRUE
-	if(alert(owner, "Are you sure you want to place the machine here?", "Are you sure?", "Yes", "No") == "No")
+	if(tgui_alert(owner, "Are you sure you want to place the machine here?", "Are you sure?", list("Yes", "No")) == "No")
 		active = FALSE
 		return
 	if(!owner_AI.can_place_transformer(src))

@@ -2573,7 +2573,9 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper/fluff/ruins/oldstation/protosing,
+/obj/item/paper/fluff/ruins/oldstation/protosing{
+	info = "<b>*Singularity Generator*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power ratio, and is typically seen on military or high security ships and stations, however Fission reactors require the usage of expensive, and rare, materials in its construction.. Fission generators are massive and bulky, and require a large reserve of uranium to power, however they are extremely cheap to operate and oft need little maintenance once operational.<br><br>The Singularity aims to alter this, a functional Singularity is essentially a controlled Black Hole, a Black Hole that generates far more power than Fusion or Fission generators can ever hope to produce. If you keep the containment field running, that is."
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "kA" = (
@@ -4214,7 +4216,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "pK" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole/nolock/ruin{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -4650,6 +4652,14 @@
 /obj/effect/spawner/lootdrop/maintenance/eight,
 /turf/template_noop,
 /area/space/nearstation)
+"qU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/ancientstation/rnd)
 "qV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner,
@@ -4729,14 +4739,6 @@
 /obj/item/book/manual/wiki/cooking_to_serve_man,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"rs" = (
-/obj/machinery/rnd/production/circuit_imprinter/department/science,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "rD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/command,
@@ -6585,14 +6587,6 @@
 /obj/effect/spawner/structure/window/hollow/reinforced/end,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"GS" = (
-/obj/machinery/rnd/production/protolathe/department/science,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "GV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/particle_accelerator/end_cap,
@@ -6966,7 +6960,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Ku" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator/ruin,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "KA" = (
@@ -7104,6 +7098,14 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
+"Lr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/rnd/production/protolathe,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/ancientstation/rnd)
 "Lt" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -7208,12 +7210,6 @@
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Charlie Security APC";
-	pixel_x = -25;
-	start_charge = 0
-	},
 /obj/structure/closet/secure_closet/personal/prisoner{
 	req_access = null
 	},
@@ -12042,8 +12038,8 @@ eY
 gD
 hC
 oF
-rs
-GS
+qU
+Lr
 eY
 Ac
 Ia

@@ -28,17 +28,17 @@
 		set_light(0)
 	update_icon()
 	update_overlay(user)
-		
+
 /obj/item/laserlevel/update_icon()
 	cut_overlays()
 	add_overlay("[initial(icon_state)][lightlevel]")
 	return
-	
+
 
 /obj/item/laserlevel/proc/update_overlay(mob/user)
 	user.clear_fullscreen("laser",0)
 	if(lightlevel)
-		var/obj/screen/fullscreen/laser/laserscreen = user.overlay_fullscreen("laser", /obj/screen/fullscreen/laser)
+		var/atom/movable/screen/fullscreen/laser/laserscreen = user.overlay_fullscreen("laser", /atom/movable/screen/fullscreen/laser)
 		laserscreen.alpha = 42 * lightlevel
 
 /obj/item/laserlevel/dropped(mob/user, silent)

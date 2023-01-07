@@ -346,6 +346,9 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 			if (GLOB.emergency_access)
+				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+					to_chat(usr, span_alert("Maintenance airlock communications relays recharging. Please stand by."))
+					return
 				revoke_maint_all_access()
 				log_game("[key_name(usr)] disabled emergency maintenance access.")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
@@ -355,6 +358,7 @@
 				log_game("[key_name(usr)] enabled emergency maintenance access.")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
 				deadchat_broadcast(" enabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
+				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("printSpare")
 			if (authenticated_as_non_silicon_head(usr))
 				if (!COOLDOWN_FINISHED(src, important_action_cooldown))

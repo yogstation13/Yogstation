@@ -352,6 +352,14 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
+	
+/datum/quirk/poor_aim/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.dna.species.aiminginaccuracy += 25
+
+/datum/quirk/poor_aim/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.dna.species.aiminginaccuracy -= 25
 
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
@@ -384,10 +392,16 @@
 			prosthetic = new/obj/item/bodypart/r_arm/robot/surplus(quirk_holder)
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
-			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
-			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)
@@ -424,6 +438,7 @@
 	//no mob trait because it's handled uniquely
 	gain_text = null //handled by trauma
 	lose_text = null
+	var/where
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
 
 /datum/quirk/insanity/add()
@@ -431,11 +446,22 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 
+/datum/quirk/insanity/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/sanitypills = new /obj/item/storage/pill_bottle/gummies/mindbreaker(get_turf(quirk_holder))
+	var/list/slots = list(
+		"in your left pocket" = SLOT_L_STORE,
+		"in your right pocket" = SLOT_R_STORE,
+		"in your backpack" = SLOT_IN_BACKPACK
+	)
+	where = H.equip_in_one_of_slots(sanitypills, slots, FALSE) || "at your feet"
+
 /datum/quirk/insanity/post_add() //I don't /think/ we'll need this but for newbies who think "roleplay as insane" = "license to kill" it's probably a good thing to have
 	if(!quirk_holder.mind || quirk_holder.mind.special_role)
 		return
-	to_chat(quirk_holder, "<span class='big bold info'>Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
-	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers.</span>")
+	to_chat(quirk_holder, span_boldnotice("There is a bottle of mindbreaker gummy bears [where]. You're going to need it."))
+	to_chat(quirk_holder, span_boldwarning("Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
+	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers."))
 
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
@@ -630,7 +656,7 @@
 
 /datum/quirk/junkie/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/junkie/smoker
@@ -740,7 +766,7 @@
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
 	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
-		return "You dont process normal chemicals!"
+		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/kleptomaniac
@@ -771,7 +797,7 @@
 	desc = "Thinking big words makes brain go hurt."
 	value = -2
 	human_only = TRUE
-	gain_text = "You feel your vocabularly slipping away."
+	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
 
@@ -810,3 +836,27 @@
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
+
+/datum/quirk/monochromatic
+	name = "Monochromacy"
+	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
+	value = -2
+	medical_record_text = "Patient is afflicted with almost complete color blindness."
+
+/datum/quirk/monochromatic/add()
+	quirk_holder.add_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/monochromatic/post_add()
+	if(quirk_holder.mind.assigned_role == "Detective")
+		to_chat(quirk_holder, span_boldannounce("Mmm. Nothing's ever clear on this station. It's all shades of gray..."))
+		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
+
+/datum/quirk/monochromatic/remove()
+	if(quirk_holder)
+		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/nomail
+	name = "Loser"
+	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
+	value = -1
+	mob_trait = TRAIT_BADMAIL

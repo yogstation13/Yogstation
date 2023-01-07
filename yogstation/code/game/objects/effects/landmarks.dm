@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine TEG" = 20)
+	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 50, "Engine TEG" = 0)
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -136,6 +136,22 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/execution
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
+/obj/effect/landmark/stationroom/meta/engine
+	template_names = list("Meta Singulo And Tesla" = 50, "Meta SM" = 50, "Meta TEG" = 0)
+
+/obj/effect/landmark/stationroom/meta/engine/choose()
+	. = ..()
+	var/enginepicked = CONFIG_GET(number/engine_type)
+	switch(enginepicked)
+		if(1)
+			return "Meta SM"
+		if(2)
+			return "Meta Singulo And Tesla"
+		if(3)
+			return . //We let the normal choose() do the work if we want to have all of them in play
+		if(4)
+			return "Meta TEG"
+
 /obj/effect/landmark/stationroom/eclipse/bar
 	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
 
@@ -166,7 +182,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
-	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops", "Maint fishinghole", "Maint fakewalls", "Maint wizard")
+	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops", "Maint fishinghole", "Maint fakewalls", "Maint wizard", "Maint halloween")
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
 /obj/effect/landmark/stationroom/limited_spawn

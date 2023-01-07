@@ -21,6 +21,9 @@
 		return
 	if(!user.transferItemToLoc(P, src))
 		return
+	if(mob_size == MOB_SIZE_TINY)
+		to_chat(user, span_notice("The [P] is too big for [src]'s neck."))
+		return
 	pcollar = P
 	regenerate_icons()
 	to_chat(user, span_notice("You put the [P] around [src]'s neck."))
