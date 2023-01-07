@@ -53,11 +53,6 @@ export const random_body: Feature<RandomSetting> = {
   },
 };
 
-export const random_hardcore: FeatureToggle = {
-  name: "Hardcore random",
-  component: CheckboxInput,
-};
-
 export const random_name: Feature<RandomSetting> = {
   name: "Random name",
   component: (props, context) => {

@@ -1,6 +1,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from "../base";
 
-export const body_type: FeatureChoiced = {
-  name: "Body type",
+export const prefered_engineering_department: FeatureChoiced = {
+  name: "Engineering department",
   component: FeatureDropdownInput,
 };
