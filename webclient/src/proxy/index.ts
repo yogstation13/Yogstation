@@ -101,8 +101,8 @@ function html_encode(str : string) {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
 }
 
-function getProxyAgent(request : IncomingMessage, socket : Socket) {
-	if(request.url?.startsWith(`http://${config.byond_addr}/cache`) || !request.url?.startsWith(`http://${config.byond_addr}`)) return undefined;
+function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string) {
+	if(url && (url?.startsWith(`http://${config.byond_addr}/cache`) || !url?.startsWith(`http://${config.byond_addr}`))) return undefined;
 	let [byond_host, byond_port] = config.byond_addr.split(":");
 	let address = socket.remoteAddress;
 	let port = 32768 + Math.floor(Math.random() * 28232);
@@ -326,7 +326,7 @@ app.use("/browse/:userHash", async (req, res, next) => {
 			res.end("Not Found");
 			return;
 		}
-		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket));
+		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket, url));
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
