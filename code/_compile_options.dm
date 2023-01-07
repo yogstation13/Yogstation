@@ -3,6 +3,12 @@
 
 //#define DATUMVAR_DEBUGGING_MODE	//Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
 
+// Uncomment the following line to enable Tracy profiling.
+// DO NOT DO THIS UNLESS YOU UNDERSTAND THE IMPLICATIONS
+// Your data directory will grow by about a gigabyte every time you launch the server, as well as introducing potential instabilities over multiple BYOND versions. 
+// #define ENABLE_BYOND_TRACY
+
+
 // Comment this out if you are debugging problems that might be obscured by custom error handling in world/Error
 #ifdef DEBUG
 #define USE_CUSTOM_ERROR_HANDLER

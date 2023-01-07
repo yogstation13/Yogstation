@@ -46,6 +46,11 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
+	#ifdef ENABLE_BYOND_TRACY
+		#warn ENABLE_BYOND_TRACY is enabled
+		init_byond_tracy()
+	#endif
+
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
 #else
@@ -278,6 +283,12 @@ GLOBAL_VAR(restart_counter)
 	log_world("Deallocated [num_deleted] gas mixtures")
 	if(fexists(EXTOOLS))
 		call(EXTOOLS, "cleanup")()
+
+	#ifdef ENABLE_BYOND_TRACY
+		#warn ENABLE_BYOND_TRACY is enabled
+		end_byond_tracy()
+	#endif
+
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid
@@ -371,3 +382,34 @@ GLOBAL_VAR(restart_counter)
 	SStimer?.reset_buckets()
 
 /world/proc/refresh_atmos_grid()
+
+
+/world/proc/init_byond_tracy()
+	var/library
+
+	switch (system_type)
+		if (MS_WINDOWS)
+			library = "prof.dll"
+		if (UNIX)
+			library = "libprof.so"
+		else
+			CRASH("Unsupported platform: [system_type]")
+
+	var/init_result = call(library, "init")()
+	if (init_result != "0")
+		CRASH("Error initializing byond-tracy: [init_result]")
+
+/world/proc/end_byond_tracy()
+	var/library
+
+	switch (system_type)
+		if (MS_WINDOWS)
+			library = "prof.dll"
+		if (UNIX)
+			library = "libprof.so"
+		else
+			CRASH("Unsupported platform: [system_type]")
+
+	var/destroy_result = call(library, "destroy")()
+	if (destroy_result != "0")
+		CRASH("Error stopping byond-tracy: [destroy_result]")
