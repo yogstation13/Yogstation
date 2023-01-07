@@ -78,7 +78,7 @@ const config = [
 			nodeResolve(),
 			commonjs()
 		],
-		external: ["express", "openid-client", "ws","node-fetch"]
+		external: ["express", "openid-client", "ws","node-fetch", "ip-matching"]
 	}
 ];
 export default config;

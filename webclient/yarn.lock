@@ -1402,6 +1402,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ip-matching@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "ip-matching@npm:2.1.2"
+  checksum: 60356b123e6b2991d9faa57dfe56813a17c55a55fd0ab1d1e2b0df2f944bd3834a0e76530f5a7a20e098770df4ee709f43af7817843ffdef3c0fe8d37b8660a2
+  languageName: node
+  linkType: hard
+
 "ip@npm:^2.0.0":
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
@@ -2605,6 +2612,7 @@ __metadata:
     express: ^4.18.2
     gl-matrix: ^3.4.3
     http2byond: ^2.2.0
+    ip-matching: ^2.1.2
     node-fetch: ^3.3.0
     openid-client: ^5.3.1
     postcss: ^8.4.20

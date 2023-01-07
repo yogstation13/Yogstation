@@ -12,21 +12,48 @@ import { WebSocketServer } from 'ws';
 import fetch from 'node-fetch';
 import {Response as FetchResponse} from 'node-fetch';
 import { sendTopic } from 'http2byond';
+import { matches } from 'ip-matching';
 
-let config : Readonly<ByondProxyConfig> = (() => {
+let config : Readonly<ByondProxyConfig> = await (async () => {
 	let config_paths = [
 		fileURLToPath(new URL('../config.json', import.meta.url)),
 		fileURLToPath(new URL('../../config/webclient-proxy.json', import.meta.url)),
 		fileURLToPath(new URL('../config.example.json', import.meta.url)),
 	];
 
+	let config : ByondProxyConfig|undefined;
 	for(let path of config_paths) {
 		if(existsSync(path)) {
-			return JSON.parse(readFileSync(path, "utf8")) as ByondProxyConfig;
+			config = JSON.parse(readFileSync(path, "utf8")) as ByondProxyConfig;
+			break;
 		}
 	}
-	throw new Error("Couldn't find config file!");
+	if(!config) throw new Error("Couldn't find config file!");
+
+	if(config.trusted_proxies) {
+		let list = [];
+		for(let proxy of config.trusted_proxies) {
+			if(proxy.startsWith("http")) {
+				let res = await fetch(proxy);
+				if(!res.ok) throw new Error("failed to fetch " + proxy);
+				list.push(...(await res.text()).split("\n"));
+			} else {
+				list.push(proxy);
+			}
+		}
+	}
+
+	return config;
 })();
+
+function proxy_matches(host : string) {
+	host = host.trim();
+	if(!config.trusted_proxies) return false;
+	for(let proxy of config.trusted_proxies) {
+		if(matches(host, proxy)) return true;
+	}
+	return false;
+}
 
 function origin_host(origin : string) {
 	return new URL(origin).host;
@@ -81,6 +108,24 @@ async function upgrade_request(request : IncomingMessage, socket : Socket, head 
 		if(address?.startsWith("::FFFF:")) {
 			address = address.substring(7);
 		}
+		
+		if(config.use_cf_connected_ip) {
+			address = (""+request.headers["cf-connected-ip"]) ?? address;
+		} else {
+			let proxies : string[] = [];
+			let proxy_header = request.headers["x-forwarded-for"];
+			if(proxy_header instanceof Array) proxy_header = proxy_header.join(", ");
+			proxy_header?.split(",");
+			while(proxies.length) {
+				if(address && proxy_matches(address)) {
+					address = proxies.pop();
+				} else {
+					console.log("Untrusted proxy " + address + " trying to be " + proxies.join(", "));
+					break;
+				}
+			}
+		}
+
 		let cookies = request.headers.cookie?.split("; ") ?? [];
 		if(request.headers.host != origin_host(config.webclient_origin)) {
 			console.log("Rejecting- bad host " + request.headers.host);
