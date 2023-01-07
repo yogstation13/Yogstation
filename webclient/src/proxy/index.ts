@@ -101,22 +101,61 @@ function html_encode(str : string) {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
 }
 
+function getProxyAgent(request : IncomingMessage, socket : Socket) {
+	let [byond_host, byond_port] = config.byond_addr.split(":");
+	let address = socket.remoteAddress;
+	let port = socket.remotePort;
+	if(address?.toLowerCase().startsWith("::ffff:")) {
+		address = address.substring(7);
+	}
+	
+	if(config.use_cf_connected_ip) {
+		address = (""+request.headers["cf-connected-ip"]) ?? address;
+	} else {
+		let proxy_header = request.headers["x-forwarded-for"];
+		if(proxy_header instanceof Array) proxy_header = proxy_header.join(", ");
+		let proxies = proxy_header?.split(",");
+		while(proxies && proxies.length) {
+			if(address && proxy_matches(address)) {
+				address = proxies.pop();
+			} else {
+				console.log("Untrusted proxy " + address + " trying to be " + proxies.join(", "));
+				break;
+			}
+		}
+	}
+
+	let agent : Agent|undefined;
+	if(config.byond_proxy_addr) {
+		let addr = config.byond_proxy_addr;
+		agent = new Agent();
+		// @ts-ignore
+		agent.createConnection = (options : NetConnectOpts, callback : (err, stream) => void) => {
+			let [dstaddr, dstport] = addr.split(":");
+			let socket = connect(+dstport, dstaddr);
+			socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
+			callback(undefined, socket);
+			return socket;
+		}
+	}
+	return agent;
+}
+
 async function upgrade_request(request : IncomingMessage, socket : Socket, head : Buffer) {
 	try {
 		let address = socket.remoteAddress;
 		let port = socket.remotePort;
-		if(address?.startsWith("::FFFF:")) {
+		if(address?.toLowerCase().startsWith("::ffff:")) {
 			address = address.substring(7);
 		}
 		
 		if(config.use_cf_connected_ip) {
 			address = (""+request.headers["cf-connected-ip"]) ?? address;
 		} else {
-			let proxies : string[] = [];
 			let proxy_header = request.headers["x-forwarded-for"];
 			if(proxy_header instanceof Array) proxy_header = proxy_header.join(", ");
-			proxy_header?.split(",");
-			while(proxies.length) {
+			let proxies = proxy_header?.split(",");
+			while(proxies && proxies.length) {
 				if(address && proxy_matches(address)) {
 					address = proxies.pop();
 				} else {
@@ -178,10 +217,11 @@ async function upgrade_request(request : IncomingMessage, socket : Socket, head 
 				let addr = config.byond_proxy_addr;
 				agent = new Agent();
 				// @ts-ignore
-				agent.createConnection = (options : NetConnectOpts) => {
-					let socket = connect(addr);
-					let [dstaddr, dstport] = config.byond_addr.split(":");
-					socket.write(`PROXY TCP4 ${address} ${dstaddr} ${port} ${dstport}\r\n`);
+				agent.createConnection = (options : NetConnectOpts, callback : (err, stream) => void) => {
+					let [dstaddr, dstport] = addr.split(":");
+					let socket = connect(+dstport, dstaddr);
+					socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
+					callback(undefined, socket);
 					return socket;
 				}
 			}
@@ -321,7 +361,7 @@ app.use("/browse/:userHash", async (req, res, next) => {
 			res.end("Not Found");
 			return;
 		}
-		let fetch_res = await retryFetch(url);
+		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket));
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
@@ -494,15 +534,15 @@ app.get("/", async (req, res, next) => {
 	}
 });
 
-async function retryFetch(url : string, retries = 5) : Promise<FetchResponse> {
+async function retryFetch(url : string, retries = 5, agent? : Agent) : Promise<FetchResponse> {
 	try {
-		return await fetch(url);
+		return await fetch(url, {agent});
 	} catch(e) {
 		if(!retries) throw e;
 		else {
 			console.error(e);
 			await new Promise(resolve => setTimeout(resolve, 1000));
-			return await retryFetch(url, retries-1);
+			return await retryFetch(url, retries-1, agent);
 		}
 	}
 }
