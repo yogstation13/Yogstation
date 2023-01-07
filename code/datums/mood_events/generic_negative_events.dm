@@ -204,6 +204,11 @@
 	mood_change = -25
 	timeout = 4 MINUTES
 
+/datum/mood_event/type_bait
+	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
+	mood_change = -1
+	timeout = 1 MINUTES
+
 /datum/mood_event/dripless
 	description = "<span class='warning'>My confidence is in shambles. My style, ruined...</span>\n"
 	mood_change = -10
@@ -212,7 +217,9 @@
 	description = "<span class='warning'>They're gone... my fashion is ruined. I can feel my self esteem decaying... </span>\n"
 	mood_change = -10
 
-//These are unused so far but I want to remember them to use them later
+/*
+--------------These are unused so far but I want to remember them to use them later
+*/
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"
 	mood_change = -6
@@ -220,7 +227,3 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
-
-/datum/mood_event/type_bait
-	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
-	mood_change = -1
