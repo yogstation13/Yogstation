@@ -361,7 +361,8 @@ app.use("/cache/", async (req, res, next) => {
 		let path = req.url;
 		if(path.startsWith("/")) path = path.substring(1);
 		path = path.split("?")[0];
-		let fetch_res = await retryFetch(`http://${config.byond_addr}/cache/${path}`);
+		let target_url = `http://${config.byond_addr}/cache/${path}`;
+		let fetch_res = await retryFetch(target_url, undefined, getProxyAgent(req, req.socket, ));
 		for(let header of ['cache-control', 'content-disposition', 'content-length', 'content-type', 'last-modified']) {
 			let val = fetch_res.headers.get(header);
 			if(!val) continue;
