@@ -1,7 +1,0 @@
-author: " ToasterBiome, Ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the NT-USP and makes it available for Security"
-  - rscadd: "Adds a 2000 cost NT-USP Crate with 3 NT-USPs and 3 clips"
-  - imageadd: "Adds NT-USP sprite, Armament Dispenser sprite, and adds new sprites for power packs"
-  - mapping: "Adds Armament Dispensers to every in-rotation map"

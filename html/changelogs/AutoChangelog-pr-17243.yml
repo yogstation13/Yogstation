@@ -1,5 +1,0 @@
-author: "LemonInTheDark & Donkie & esainane"
-delete-after: true 
-changes: 
-  - bugfix: "Atmos pump UI limits are fixed"
-  - tweak: "Temperature pump now transfer a percent of energy instead of heat directly"
