@@ -196,7 +196,6 @@
 		add_queue('sound/voice/nerdsuit/stimulants.ogg',2 SECONDS)
 		emag_doses_left--
 		if(emag_doses_left <= 0)
-			emag_doses_left = initial(emag_doses_left)
 			to_chat(owner, span_warning("\The [src.name] seems to have run out of stimulants..."))
 	else
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
