@@ -625,3 +625,20 @@
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+/datum/antagonist/changeling/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+
+	final_icon.Shift(WEST, world.icon_size / 2)
+	final_icon.Shift(EAST, world.icon_size / 2)
+
+	split_icon.Shift(EAST, world.icon_size / 2)
+	split_icon.Shift(WEST, world.icon_size / 2)
+
+/datum/outfit/changeling
+	name = "Changeling"
+
+	head = /obj/item/clothing/head/helmet/changeling
+	suit = /obj/item/clothing/suit/armor/changeling
+	l_hand = /obj/item/melee/arm_blade

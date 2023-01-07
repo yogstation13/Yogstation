@@ -11,6 +11,7 @@
 	var/datum/action/innate/cult/comm/communion = new
 	var/datum/action/innate/cult/mastervote/vote = new
 	var/datum/action/innate/cult/blood_magic/magic = new
+	preview_outfit = /datum/outfit/cultist
 	job_rank = ROLE_CULTIST
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
@@ -83,6 +84,25 @@
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
+
+/datum/antagonist/cult/get_preview_icon()
+	var/icon/icon = render_preview_outfit(preview_outfit)
+
+	// The longsword is 64x64, but getFlatIcon crunches to 32x32.
+	// So I'm just going to add it in post, screw it.
+
+	// Center the dude, because item icon states start from the center.
+	// This makes the image 64x64.
+	icon.Crop(-15, -15, 48, 48)
+
+	var/obj/item/melee/cultblade/longsword = new
+//JAMIE:	icon.Blend(icon(longsword.lefthand_file, longsword.inhand_icon_state), ICON_OVERLAY)
+	qdel(longsword)
+
+	// Move the guy back to the bottom left, 32x32.
+	icon.Crop(17, 17, 48, 48)
+
+	return finish_preview_icon(icon)
 
 /datum/antagonist/cult/proc/equip_cultist(metal=TRUE)
 	var/mob/living/carbon/H = owner.current
@@ -522,3 +542,19 @@
 
 /datum/team/cult/is_gamemode_hero()
 	return SSticker.mode.name == "cult"
+
+/datum/outfit/cultist
+	name = "Cultist (Preview only)"
+
+	uniform = /obj/item/clothing/under/color/black
+	//suit = /obj/item/clothing/suit/hooded/cultrobes/alt JAMIE:
+	shoes = /obj/item/clothing/shoes/cult/alt
+	r_hand = /obj/item/melee/blood_magic/stun
+
+/datum/outfit/cultist/post_equip(mob/living/carbon/human/H, visualsOnly)
+	H.eye_color = BLOODCULT_EYE
+	H.update_body()
+
+	var/obj/item/clothing/suit/hooded/hooded = locate() in H
+	hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
+	hooded.ToggleHood()
