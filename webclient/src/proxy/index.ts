@@ -185,7 +185,7 @@ async function upgrade_request(request : IncomingMessage, socket : Socket, head 
 					return socket;
 				}
 			}
-			let ws = new WebSocket('ws://' + config.byond_addr);
+			let ws = new WebSocket('ws://' + config.byond_addr, {agent});
 			ws.binaryType = "nodebuffer";
 			ws.on('open', () => resolve(ws));
 			ws.on('error', (err) => reject(err));
