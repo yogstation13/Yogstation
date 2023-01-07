@@ -151,7 +151,7 @@ export const QuirksPage = (props, context) => {
           if (quirkA.value === quirkB.value) {
             return (quirkA.name > quirkB.name) ? 1 : -1;
           } else {
-            return quirkA.value - quirkB.value;
+            return quirkB.value - quirkA.value;
           }
         });
 
