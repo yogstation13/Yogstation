@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Reduces ash drake armor bullet armor by 10 (30 -> 20)"
-  - tweak: "Reduces ash drake armor laser/energy by 20 (50/40 -> 30/20)"
