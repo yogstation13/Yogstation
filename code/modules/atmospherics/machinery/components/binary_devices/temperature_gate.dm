@@ -30,7 +30,7 @@
 	if(can_interact(user))
 		target_temperature = max_temperature
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You set the target temperature on [src] to [target_temperature] K."))
+		balloon_alert(user, "target temperature set to [target_temperature] K")
 		update_icon()
 	return ..()
 
