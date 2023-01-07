@@ -278,4 +278,6 @@
 	var/token = input["webclient_login_token"]
 	var/info = input["webclient_login_info"]
 	if(fexists(WEBCLIENT_PATCHES))
-		call(WEBCLIENT_PATCHES, "set_webclient_auth")(token, info)
+		var/result = call(WEBCLIENT_PATCHES, "set_webclient_auth")(token, info)
+		if(result)
+			log_world("webclient_patches error: [result]")
