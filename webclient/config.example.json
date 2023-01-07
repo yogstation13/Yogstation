@@ -1,0 +1,8 @@
+{
+	"webclient_origin": "http://localhost:18234",
+	"browse_origin": "http://127.0.0.2:18234",
+	"listen_port": 18234,
+	"comms_key": "",
+	
+	"byond_addr": "127.0.0.1:6060"
+}

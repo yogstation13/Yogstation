@@ -1,0 +1,64 @@
+iframe:not(:hover) {
+	clip-path: var(--nohover-clip);
+}
+
+.window {
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+	position: absolute;
+	border-top: 32px solid transparent;
+	box-sizing: border-box;
+}
+
+.titlebar {
+	font-family: Verdana, Geneva, sans-serif;
+	overflow: hidden;
+	position: absolute;
+	height: 31px;
+	width: 100%;
+	top: -31px;
+	left: 0px;
+	user-select: none;
+	background-color: #363636;
+	font-size: 14px;
+	line-height: 31px;
+}
+
+.titlebar-close {
+	position: absolute;
+	top: -1px;
+	right: 0px;
+	width: 45px;
+	height: 32px;
+	font-size: 20px;
+	line-height: 31px;
+	text-align: center;
+	color: rgba(255,255,255,0.5);
+	transition: color 0.25s, background-color 0.25s;
+	background-color: transparent;
+	border: none;
+}
+.titlebar-close:hover {
+	background-color: #c00;
+	color: white;
+
+}
+.titlebar-close::before {
+	content: "×";
+}
+
+.window-unclosable .titlebar-close {
+	display: none;
+}
+.window-no-titlebar .titlebar {
+	display: none;
+}
+
+.dragging iframe {
+	pointer-events: none;
+}
+
+.prompt-form {
+	background: white;
+	margin: 0px;
+	padding: 10px;
+}
