@@ -68,7 +68,7 @@
 			aiPlayer.triggerAlarm("Motion", get_area(src), list(src), src)
 	visible_message(span_warning("A red light flashes on the [src]!"))
 	if(armoury)
-		radio.talk_into(src, "Alert: Motion tripped in Armoury!!")
+		alertradio.talk_into(src, "Alert: Motion tripped in Armoury!!")
 
 	detectTime = -1
 	return TRUE

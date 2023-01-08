@@ -45,7 +45,7 @@
 
 /obj/item/paper/guides/jobs/security/donut
 	name = "paper- 'Weapon Crate'"
-	info = "<B>Regarding the Weapons Crate:</B><BR>\nIf you are reading this, you have found me out, I was on shift once and on my watch someone came and stole the guns from this crate.. I have attempted to get away with this, so please keep this quiet. Here is a donut for your trouble! Thanks"
+	info = "<B>Regarding the Weapons Crate:</B><BR>\nIf you are reading this, you have found me out, Congratulations.<BR> I was on shift once and on my watch someone came and stole the guns from this crate.. <BR>Please keep this quiet, I have remained undetected for now. <BR>This crate has the ability to create donuts, consider this your bribe to keep quiet.<BR>Thanks."
 	infolang = /datum/language/common
 
 /obj/item/paper/fluff/jobs/jobs
