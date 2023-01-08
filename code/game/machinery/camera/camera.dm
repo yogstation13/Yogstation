@@ -23,6 +23,7 @@
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/invuln = null
 	var/obj/item/camera_bug/bug = null
+	var/obj/item/radio/radio = null
 	var/obj/structure/camera_assembly/assembly = null
 	var/area/myarea = null
 
@@ -44,6 +45,7 @@
 
 	//Reference to the obj/mob we're built into
 	var/built_in
+	var/armoury = FALSE
 
 /obj/machinery/camera/preset/toxins //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"
@@ -83,6 +85,13 @@
 		myarea = get_area(src)
 		LAZYADD(myarea.cameras, src)
 	proximity_monitor = new(src, 1)
+
+	if(armoury)
+		radio = new()
+		radio.set_frequency(FREQ_SECURITY)
+		radio.use_command = TRUE
+		radio.independent = TRUE
+		radio.name = "Armoury"
 
 	if(mapload && is_station_level(z) && prob(3) && !start_active)
 		toggle_cam()
