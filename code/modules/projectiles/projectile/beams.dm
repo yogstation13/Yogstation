@@ -69,7 +69,7 @@
 /obj/item/projectile/beam/xray
 	name = "\improper X-ray beam"
 	icon_state = "xray"
-	damage = 15
+	damage = 10
 	irradiate = 300
 	range = 15
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
@@ -93,6 +93,16 @@
 	tracer_type = /obj/effect/projectile/tracer/disabler
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
+
+/obj/item/projectile/beam/disabler/bounce
+	name = "bouncing disabler ball"
+	icon_state = "omnibouncer"
+	damage = 20
+	ricochets_max = 5
+	ricochet_chance = 100
+
+/obj/item/projectile/beam/disabler/bounce/check_ricochet_flag(atom/A)
+	return TRUE //whatever it is, we bounce on it
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"

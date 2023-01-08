@@ -111,10 +111,10 @@
 ///X-ray gun
 /obj/item/gun/energy/xray
 	name = "\improper X-ray laser gun"
-	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through multiple soft targets and heavier materials."
+	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through heavy materials."
 	icon_state = "xray"
 	item_state = null
-	ammo_type = list(/obj/item/ammo_casing/energy/xray)
+	ammo_type = list(/obj/item/ammo_casing/energy/xray/optimized)
 	pin = null
 	ammo_x_offset = 3
 

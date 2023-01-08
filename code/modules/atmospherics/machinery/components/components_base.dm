@@ -158,5 +158,5 @@
 
 // Tool acts
 
-/obj/machinery/atmospherics/components/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(airs, user, src)
+/obj/machinery/atmospherics/components/return_analyzable_air()
+	return airs
