@@ -37,12 +37,23 @@ export class SoundPlayer {
 		mat4.invert(mat, this.client.gl_holder.view_matrix);
 		
 		let l = this.ctx.listener;
-		l.forwardX.value = mat[4];
-		l.forwardY.value = mat[6];
-		l.forwardZ.value = -mat[5];
-		l.upX.value = mat[8];
-		l.upY.value = mat[10];
-		l.upZ.value = -mat[9];
+		if(l.forwardX) {
+			l.forwardX.value = mat[4];
+			l.forwardY.value = mat[6];
+			l.forwardZ.value = -mat[5];
+			l.upX.value = mat[8];
+			l.upY.value = mat[10];
+			l.upZ.value = -mat[9];
+		} else {
+			l.setOrientation(
+				mat[4],
+				mat[6],
+				-mat[5],
+				mat[8],
+				mat[10],
+				-mat[9]
+			);
+		}
 	}
 
 	channeled_sounds = new Map<number, PlayingSound>();
