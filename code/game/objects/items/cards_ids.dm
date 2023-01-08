@@ -144,7 +144,7 @@
 	. = ..()
 	playsound(src, 'sound/items/bikehorn.ogg', 50, 1)
 
-/obj/item/card/id
+//obj/item/card/id/makeshift
 	name = "identification card"
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
@@ -515,7 +515,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		var/popup_input = tgui_alert(user, "Choose Action", list("ID", "Show", "Forge/Reset"))
+		var/popup_input = tgui_alert(user, "Choose Action", "Action?", list("ID", "Show", "Forge/Reset"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")
