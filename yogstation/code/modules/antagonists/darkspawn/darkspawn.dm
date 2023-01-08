@@ -435,6 +435,16 @@
 
 	return data
 
+/datum/antagonist/darkspawn/get_preview_icon()
+	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "ai-red")
+
+	// Crop out the borders of the AI, just the face
+	malf_ai_icon.Crop(5, 27, 28, 6)
+
+	malf_ai_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return darkspawn_icon
+
 /datum/antagonist/darkspawn/ui_act(action, params)
 	if(..())
 		return

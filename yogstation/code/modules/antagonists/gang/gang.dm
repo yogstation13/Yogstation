@@ -477,9 +477,10 @@
 
 /datum/outfit/gangster
 	name = "Gangster (Preview only)"
-
-//JAMIE:	uniform = /obj/item/clothing/under/suit/henchmen
-//JAMIE:	back = /obj/item/storage/backpack/henchmen
+	mask = /obj/item/clothing/mask/cigarette/cigar/havana
+	uniform = /obj/item/clothing/under/rank/vice
+	neck = /obj/item/clothing/neck/necklace/dope
+	head = /obj/item/clothing/head/fedora
 
 /datum/team/gang/proc/count_members()
 	for(var/datum/mind/gangmind in members)

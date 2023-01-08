@@ -15,7 +15,7 @@
 /datum/antagonist/traitor/malf/can_be_owned(datum/mind/new_owner)
 	return istype(new_owner.current, /mob/living/silicon/ai)
 
-/datum/antagonist/malf/get_preview_icon()
+/datum/antagonist/traitor/malf/get_preview_icon()
 	var/icon/malf_ai_icon = icon('icons/mob/ai.dmi', "ai-red")
 
 	// Crop out the borders of the AI, just the face

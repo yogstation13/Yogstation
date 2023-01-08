@@ -9,7 +9,7 @@ export const GANGSTER_MECHANICAL_DESCRIPTION
 
 const Gangster: Antagonist = {
   key: "gangster",
-  name: "Family Leader",
+  name: "Gang Leader",
   description: [
     GANGSTER_MECHANICAL_DESCRIPTION,
   ],

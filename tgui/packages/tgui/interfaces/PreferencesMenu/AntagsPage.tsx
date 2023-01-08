@@ -197,11 +197,6 @@ export const AntagsPage = () => {
         name="Midround"
         antagonists={antagsByCategory.get(Category.Midround)!}
       />
-
-      <AntagSelection
-        name="Latejoin"
-        antagonists={antagsByCategory.get(Category.Latejoin)!}
-      />
     </Box>
   );
 };

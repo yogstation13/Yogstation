@@ -25,7 +25,7 @@
 /datum/antagonist/obsessed/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/victim_dummy = new
 	victim_dummy.hair_color = "b96" // Brown
-//JAMIE:	victim_dummy.hairstyle = "Messy"
+	victim_dummy.hair_style = "Messy"
 	victim_dummy.update_hair()
 
 	var/icon/obsessed_icon = render_preview_outfit(preview_outfit)
@@ -34,7 +34,7 @@
 	var/icon/final_icon = finish_preview_icon(obsessed_icon)
 
 	final_icon.Blend(
-//JAMIE:		icon('icons/ui_icons/antags/obsessed.dmi', "obsession"),
+	icon('icons/ui_icons/antags/obsessed.dmi', "obsession"),
 		ICON_OVERLAY,
 		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
 		20,
@@ -45,7 +45,7 @@
 /datum/outfit/obsessed
 	name = "Obsessed (Preview only)"
 
-	//uniform = /obj/item/clothing/under/misc/overalls JAMIE:
+	uniform = /obj/item/clothing/under/yogs/redoveralls
 	gloves = /obj/item/clothing/gloves/color/latex
 	mask = /obj/item/clothing/mask/surgical
 	neck = /obj/item/camera

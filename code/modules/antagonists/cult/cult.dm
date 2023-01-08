@@ -96,7 +96,7 @@
 	icon.Crop(-15, -15, 48, 48)
 
 	var/obj/item/melee/cultblade/longsword = new
-//JAMIE:	icon.Blend(icon(longsword.lefthand_file, longsword.inhand_icon_state), ICON_OVERLAY)
+	icon.Blend(icon(longsword.lefthand_file, longsword.item_state), ICON_OVERLAY)
 	qdel(longsword)
 
 	// Move the guy back to the bottom left, 32x32.
@@ -547,7 +547,7 @@
 	name = "Cultist (Preview only)"
 
 	uniform = /obj/item/clothing/under/color/black
-	//suit = /obj/item/clothing/suit/hooded/cultrobes/alt JAMIE:
+	suit = /obj/item/clothing/suit/yogs/armor/sith_suit
 	shoes = /obj/item/clothing/shoes/cult/alt
 	r_hand = /obj/item/melee/blood_magic/stun
 

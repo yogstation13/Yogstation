@@ -192,7 +192,7 @@
 
 /datum/antagonist/rev/head/proc/make_assistant_icon(hairstyle)
 	var/mob/living/carbon/human/dummy/consistent/assistant = new
-//JAMIE:	assistant.hairstyle = hairstyle
+	assistant.hair_style = hairstyle
 	assistant.update_hair()
 
 	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/job/assistant/consistent, assistant)
@@ -473,7 +473,7 @@
 /datum/outfit/revolutionary
 	name = "Revolutionary (Preview only)"
 
-//JAMIE:	uniform = /obj/item/clothing/under/costume/soviet
+	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
 	head = /obj/item/clothing/head/ushanka
 	gloves = /obj/item/clothing/gloves/color/black
 	l_hand = /obj/item/twohanded/spear
