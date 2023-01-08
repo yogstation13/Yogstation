@@ -414,15 +414,7 @@ GLOBAL_VAR(restart_counter)
 		CRASH("Error stopping byond-tracy: [destroy_result]")
 
 /proc/tracy_start()
-	var/library
-
-	switch (system_type)
-		if (MS_WINDOWS)
-			library = "prof.dll"
-		if (UNIX)
-			library = "libprof.so"
-		else
-			CRASH("Unsupported platform: [system_type]")
+	var/library = library = "libprof.so"
 
 	var/init_result = call(library, "init")()
 	return init_result
