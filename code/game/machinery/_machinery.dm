@@ -294,7 +294,7 @@ Class Procs:
 			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
 			return FALSE // hulks cant use machines
 
-		else if(!(Adjacent(user) || H.dna.check_mutation(TK)))
+		else if(!Adjacent(user) || !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
