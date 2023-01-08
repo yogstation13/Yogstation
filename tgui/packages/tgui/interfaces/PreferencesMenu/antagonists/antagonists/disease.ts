@@ -2,7 +2,7 @@ import { Antagonist, Category } from "../base";
 import { multiline } from "common/string";
 
 const SentientDisease: Antagonist = {
-  key: "sentientdisease",
+  key: "disease",
   name: "Sentient Disease",
   description: [
     multiline`

@@ -636,6 +636,10 @@
 	split_icon.Shift(EAST, world.icon_size / 2)
 	split_icon.Shift(WEST, world.icon_size / 2)
 
+	final_icon.Blend(split_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
 /datum/outfit/changeling
 	name = "Changeling"
 

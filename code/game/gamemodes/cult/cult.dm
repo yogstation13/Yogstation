@@ -8,6 +8,8 @@
 	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
+	if(istype(M, /mob/living/carbon/human/dummy))
+		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)

@@ -1,14 +1,14 @@
 import { Antagonist, Category } from "../base";
 import { multiline } from "common/string";
 
-export const HIVE_MECHANICAL_DESCRIPTION
+export const HIVEMINDHOST_MECHANICAL_DESCRIPTION
    = multiline`
       Start with an uplink to purchase your gear and take on your sinister
       objectives. Ascend through the ranks and become an infamous legend.
    `;
 
-const Hive: Antagonist = {
-  key: "hive",
+const HivemindHost: Antagonist = {
+  key: "hivemindhost",
   name: "Hivemind Host",
   description: [
     multiline`
@@ -16,10 +16,10 @@ const Hive: Antagonist = {
       place at the wrong time. Whatever the reasons, you were selected to
       infiltrate Space Station 13.
     `,
-    HIVE_MECHANICAL_DESCRIPTION,
+    HIVEMINDHOST_MECHANICAL_DESCRIPTION,
   ],
   category: Category.Roundstart,
   priority: -1,
 };
 
-export default Hive;
+export default HivemindHost;

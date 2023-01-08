@@ -180,3 +180,10 @@
 #undef SIN_PRIDE
 #undef SIN_SLOTH
 #undef SIN_WRATH
+
+/datum/antagonist/sinfuldemon/get_preview_icon()
+	var/icon/sinfuldemon_icon = icon('icons/mob/mob.dmi', "lesserdaemon")
+
+	sinfuldemon_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return sinfuldemon_icon

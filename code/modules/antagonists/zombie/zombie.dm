@@ -430,3 +430,14 @@
 	ready = FALSE
 
 #undef TIER_2_TIME
+
+/datum/antagonist/zombie/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/zombiedummy = new
+
+	zombiedummy.set_species(/datum/species/zombie)
+
+	var/icon/zombie_icon = render_preview_outfit(null, zombiedummy)
+
+	qdel(zombiedummy)
+
+	return finish_preview_icon(zombie_icon)

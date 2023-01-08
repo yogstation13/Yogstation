@@ -163,29 +163,32 @@
 		to_chat(admin, span_danger("No valid nuke found!"))
 
 /datum/antagonist/nukeop/get_preview_icon()
-	if (!preview_outfit)
-		return null
-
-	var/icon/final_icon = render_preview_outfit(preview_outfit)
-
-	if (!isnull(preview_outfit_behind))
-		var/icon/teammate = render_preview_outfit(preview_outfit_behind)
-		teammate.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
-
-		final_icon.Blend(teammate, ICON_OVERLAY, -world.icon_size / 4, 0)
-		final_icon.Blend(teammate, ICON_OVERLAY, world.icon_size / 4, 0)
+	var/mob/living/carbon/human/dummy/consistent/captain = new
+	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
 
 	return finish_preview_icon(final_icon)
 
+/datum/antagonist/nukeop/proc/make_assistant_icon()
+	var/mob/living/carbon/human/dummy/assistant = new
+	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)
+	assistant_icon.ChangeOpacity(0.5)
+
+	qdel(assistant)
+	return assistant_icon
+
 /datum/outfit/nuclear_operative
 	name = "Nuclear Operative (Preview only)"
-
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi
 	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 
 /datum/outfit/nuclear_operative_elite
 	name = "Nuclear Operative (Elite, Preview only)"
-
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate 
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
 	l_hand = /obj/item/modular_computer/tablet/nukeops

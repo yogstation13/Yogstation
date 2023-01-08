@@ -934,3 +934,10 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	vamphud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
+
+/datum/antagonist/bloodsucker/get_preview_icon()
+	var/icon/bloodsucker_icon = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+
+	bloodsucker_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return bloodsucker_icon

@@ -33,6 +33,8 @@
 
 	icon.Crop(10, 9, 54, 53)
 	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	icon.Shift(EAST, 8)
+	icon.Shift(SOUTH, 6)
 
 	return icon
 

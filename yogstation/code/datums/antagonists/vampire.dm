@@ -415,3 +415,10 @@
 	return result.Join("<br>")
 #undef BLOOD_SUCK_BASE
 #undef ALL_POWERS_UNLOCKED
+
+/datum/antagonist/vampire/get_preview_icon()
+	var/icon/vampire_icon = icon('icons/mob/animal.dmi', "bat")
+
+	vampire_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return vampire_icon

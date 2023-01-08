@@ -84,7 +84,7 @@
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
-
+/*
 /datum/antagonist/cult/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)
 
@@ -103,6 +103,37 @@
 	icon.Crop(17, 17, 48, 48)
 
 	return finish_preview_icon(icon)
+*/
+/datum/antagonist/cult/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/cult1 = new
+	var/mob/living/carbon/human/dummy/consistent/cult2 = new
+
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/cultist/leader, cult1)
+	var/icon/teammate = render_preview_outfit(/datum/outfit/cultist/follower, cult2)
+	teammate.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
+
+	final_icon.Blend(teammate, ICON_OVERLAY, -world.icon_size / 4, 0)
+	final_icon.Blend(teammate, ICON_OVERLAY, world.icon_size / 4, 0)
+
+	qdel(cult1)
+	qdel(cult2)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/cultist/leader
+	suit = /obj/item/clothing/suit/hooded/cultrobes/berserker
+	shoes = /obj/item/clothing/shoes/cult/alt
+	head = /obj/item/clothing/head/hooded/berserkerhood
+	glasses = /obj/item/clothing/glasses/hud/health/night/cultblind
+	r_hand = /obj/item/melee/cultblade
+	l_hand = /obj/item/shield/mirror
+
+/datum/outfit/cultist/follower
+	suit = /obj/item/clothing/suit/cultrobes/alt
+	shoes = /obj/item/clothing/shoes/cult/alt
+	head = /obj/item/clothing/head/culthood/alt
+	glasses = /obj/item/clothing/glasses/hud/health/night/cultblind
+	r_hand = /obj/item/melee/cultblade
 
 /datum/antagonist/cult/proc/equip_cultist(metal=TRUE)
 	var/mob/living/carbon/H = owner.current

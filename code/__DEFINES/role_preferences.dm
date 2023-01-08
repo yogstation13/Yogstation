@@ -57,6 +57,10 @@
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
 #define ROLE_GHOSTBEACON		"Ghost Beacon"
+#define ROLE_NIGHTMARE			"Nightmare"
+#define ROLE_DISEASE			"Disease"
+#define ROLE_PIRATE				"Pirate"
+
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -99,7 +103,11 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_MONSTERHUNTER = /datum/antagonist/monsterhunter,
 	ROLE_SPACE_DRAGON = /datum/antagonist/space_dragon,
 	ROLE_GOLEM = /datum/antagonist/golem,
-	ROLE_SINFULDEMON = /datum/antagonist/sinfuldemon
+	ROLE_SINFULDEMON = /datum/antagonist/sinfuldemon,
+	ROLE_NIGHTMARE = /datum/antagonist/nightmare,
+	ROLE_DISEASE = /datum/antagonist/disease,
+	ROLE_HIVE = /datum/antagonist/hivemind,
+	ROLE_PIRATE = /datum/antagonist/pirate
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
