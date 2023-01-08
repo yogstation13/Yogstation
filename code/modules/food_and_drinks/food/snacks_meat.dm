@@ -288,7 +288,7 @@
 			if(!do_after(user, 1 SECONDS, src)) {
 				return
 			}
-			new /obj/item/reagent_containers/food/snacks/sausage/american(get_turf(user))
+			new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
 			to_chat(user, span_notice("You snip [src]."))
 			qdel(src)
 		else
