@@ -139,6 +139,8 @@
 			if(R.stored_ammo.len < R.max_ammo)
 				for(var/i in 1 to recharge_coeff) //So it actually gives more ammo when upgraded
 					R.stored_ammo += new R.ammo_type(R)
+					if(R.stored_ammo.len <= R.max_ammo)
+						break
 				use_power(200 * recharge_coeff)
 			update_icon()
 			return
