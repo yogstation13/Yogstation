@@ -414,7 +414,7 @@ GLOBAL_VAR(restart_counter)
 		CRASH("Error stopping byond-tracy: [destroy_result]")
 
 /proc/tracy_start()
-	var/library = library = "libprof.so"
+	var/library = "libprof.so"
 
 	var/init_result = call(library, "init")()
 	return init_result
