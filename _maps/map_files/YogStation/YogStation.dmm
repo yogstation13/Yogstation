@@ -14088,6 +14088,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"bRn" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "bRq" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -21197,15 +21202,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"etX" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/machinery/camera/motion{
-	c_tag = "South Armory Motion Sensor";
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "eum" = (
 /obj/effect/landmark/start/assistant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -23060,6 +23056,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ffu" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/rack,
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Armory Door";
+	req_access_txt = "1"
+	},
+/obj/machinery/camera/motion/armoury{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ffA" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 1
@@ -26594,16 +26607,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gGV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/camera/motion{
-	c_tag = "North Armory Motion Sensor"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "gHl" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -32174,15 +32177,6 @@
 /obj/item/twohanded/required/pool/pool_noodle,
 /turf/open/indestructible/sound/pool,
 /area/crew_quarters/fitness)
-"iSN" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/closet/secure_closet/lethalshots,
-/obj/machinery/door/window/brigdoor/northright{
-	name = "Armory Door";
-	req_access_txt = "1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "iSP" = (
 /obj/structure/closet/crate,
 /obj/effect/decal/cleanable/dirt,
@@ -33790,6 +33784,18 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
+"jFl" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/closet/secure_closet/lethalshots,
+/obj/machinery/door/window/brigdoor/northright{
+	name = "Armory Door";
+	req_access_txt = "1"
+	},
+/obj/machinery/camera/motion/armoury{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jFt" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -62477,6 +62483,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"vLi" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/camera/motion/armoury,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "vLR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -62594,20 +62608,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"vNz" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/rack,
-/obj/item/storage/box/breacherslug,
-/obj/item/storage/box/breacherslug,
-/obj/item/gun/ballistic/shotgun/automatic/breaching,
-/obj/item/gun/ballistic/shotgun/automatic/breaching,
-/obj/machinery/door/window/brigdoor{
-	dir = 4;
-	name = "Armory Door";
-	req_access_txt = "1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "vNR" = (
 /obj/effect/landmark/blobstart,
 /obj/structure/disposalpipe/sorting/mail/flip{
@@ -96901,7 +96901,7 @@ aaZ
 aaZ
 clu
 qwJ
-vNz
+ffu
 ykL
 aaZ
 aaZ
@@ -98183,7 +98183,7 @@ aaa
 aaa
 acV
 aaZ
-gGV
+vLi
 adl
 adl
 atX
@@ -98445,7 +98445,7 @@ adl
 tTo
 umh
 adl
-etX
+bRn
 aaZ
 xpS
 nMn
@@ -98959,7 +98959,7 @@ rYf
 adl
 adl
 hUj
-iSN
+jFl
 akw
 ile
 alE
