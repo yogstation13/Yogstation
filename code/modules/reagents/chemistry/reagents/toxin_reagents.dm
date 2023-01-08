@@ -251,7 +251,7 @@
 
 /datum/reagent/toxin/relaxant/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
-	L.next_move_modifier = L.next_move_modifier / 3
+	L.next_move_modifier /= 3
 
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
