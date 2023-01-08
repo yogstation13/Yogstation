@@ -24364,17 +24364,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"fHp" = (
-/obj/machinery/recharger/wallrecharger{
-	pixel_x = 5;
-	pixel_y = -26
-	},
-/obj/machinery/recharger/wallrecharger{
-	pixel_x = 5;
-	pixel_y = -36
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "fHF" = (
 /obj/machinery/light{
 	dir = 8
@@ -47171,6 +47160,18 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"pnO" = (
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -36
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "pnR" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -48305,6 +48306,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"pON" = (
+/obj/machinery/door/airlock/external{
+	name = "Security Secure External Airlock";
+	req_access_txt = "63";
+	security_level = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/security/main)
 "pOP" = (
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating,
@@ -53456,6 +53470,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"rWT" = (
+/obj/structure/closet/crate/secure/gear/donut,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/paper/guides/jobs/security/donut,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "rXm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -58257,6 +58277,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tWY" = (
+/obj/machinery/door/airlock/external{
+	name = "Security Secure External Airlock";
+	req_access_txt = "63";
+	security_level = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plating,
+/area/security/main)
 "tXb" = (
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/secondarydatacore)
@@ -59540,11 +59570,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"uyw" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/reagent_containers/food/snacks/donut,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "uyV" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern,
@@ -97970,7 +97995,7 @@ adl
 iXw
 gvR
 adl
-fHp
+pnO
 aaZ
 alK
 abb
@@ -98484,7 +98509,7 @@ adl
 tTo
 umh
 adl
-uyw
+rWT
 aaZ
 xpS
 nMn
@@ -99251,7 +99276,7 @@ gXs
 gXs
 aaZ
 gqB
-adl
+pwN
 adl
 rSY
 pwN
@@ -100534,9 +100559,9 @@ aKN
 gXs
 gXs
 pEf
-ake
+tWY
 alh
-amt
+pON
 xRd
 vtP
 aEv
