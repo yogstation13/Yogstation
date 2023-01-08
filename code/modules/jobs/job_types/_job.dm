@@ -19,15 +19,12 @@
 	var/list/head_announce = null
 
 	// Used for something in preferences_savefile.dm
+	// NOTE: currently unused
 	var/department_flag = NONE
-
-	/// If specified, this department will be used for the preferences menu.
-	var/datum/job_department/department_for_prefs = null
 
 	/// Lazy list with the departments this job belongs to.
 	/// Required to be set for playable jobs.
-	/// The first department will be used in the preferences menu,
-	/// unless department_for_prefs is set.
+	/// TODO: Currently not used so will always be empty! Change this to department datums
 	var/list/departments_list = null
 
 	var/flag = NONE //Deprecated
@@ -62,7 +59,7 @@
 	var/exp_requirements = 0
 	/// Which type of XP is required see `EXP_TYPE_` in __DEFINES/preferences.dm
 	var/exp_type = ""
-	/// Department XP required
+	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
 	var/antag_rep = 10
