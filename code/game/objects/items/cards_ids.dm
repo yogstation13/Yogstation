@@ -144,7 +144,7 @@
 	. = ..()
 	playsound(src, 'sound/items/bikehorn.ogg', 50, 1)
 
-/obj/item/card/id/makeshift
+/obj/item/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
