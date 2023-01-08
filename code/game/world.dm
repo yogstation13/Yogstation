@@ -418,3 +418,9 @@ GLOBAL_VAR(restart_counter)
 
 	var/init_result = call(library, "init")()
 	return init_result
+
+/proc/tracy_end()
+	var/library = "libprof.so"
+
+	var/init_result = call(library, "destroy")()
+	return init_result
