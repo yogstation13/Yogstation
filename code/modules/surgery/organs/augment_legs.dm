@@ -34,7 +34,7 @@
 	L.set_disabled(TRUE)	//disable the bodypart
 	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
-	if(severity & EMP_HEAVY && prob(20))	//10% chance on getting hit by a heavy emp to break your leg (technically more since you have two)
+	if(severity & EMP_HEAVY && prob(5))	//put probabilities into a calculator before you try fucking with this
 		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly breaking it!"))	
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)

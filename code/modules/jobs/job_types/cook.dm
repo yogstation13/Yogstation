@@ -14,7 +14,7 @@
 
 	outfit = /datum/outfit/job/cook
 
-	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
+	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
 	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)

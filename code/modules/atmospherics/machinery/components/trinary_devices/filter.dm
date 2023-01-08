@@ -16,14 +16,21 @@
 	pipe_state = "filter"
 
 /obj/machinery/atmospherics/components/trinary/filter/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		on = !on
+		var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		transfer_rate = MAX_TRANSFER_RATE
+		var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+		balloon_alert(user, "volume output set to [transfer_rate] L/s")
 		update_icon()
 	return ..()
 
@@ -151,8 +158,9 @@
 	switch(action)
 		if("power")
 			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+			investigate_log(msg, INVESTIGATE_ATMOS)
+			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -168,8 +176,9 @@
 				. = TRUE
 			if(.)
 				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+				var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
+				investigate_log(msg, INVESTIGATE_ATMOS)
+				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		if("toggle_filter")
 			var/gas = params["val"]
 			if(gas in GLOB.gas_data.names)
@@ -179,8 +188,9 @@
 				change = "added"
 			else
 				change = "removed"
-			investigate_log("[key_name(usr)] [change] [gas] from the filter type.", INVESTIGATE_ATMOS)
-			investigate_log("[key_name(usr)] [change] [gas] from the filter type.", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+			var/msg = "[key_name(usr)] [change] [gas] from the filter type."
+			investigate_log(msg, INVESTIGATE_ATMOS)
+			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 	update_icon()
 

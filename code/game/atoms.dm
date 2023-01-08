@@ -377,6 +377,9 @@
 	else
 		return null
 
+/atom/proc/return_analyzable_air()
+	return null
+
 ///Return the air if we can analyze it
 /atom/proc/return_analyzable_air()
 	return null

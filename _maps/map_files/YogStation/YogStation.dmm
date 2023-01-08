@@ -602,6 +602,7 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 30
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "acV" = (
@@ -31708,6 +31709,12 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"iEH" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "iEY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -49882,17 +49889,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qwW" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "qwX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -56358,12 +56354,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "tin" = (
-/obj/item/radio/off,
-/obj/structure/table,
-/obj/structure/table,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "tit" = (
@@ -60818,6 +60812,10 @@
 /obj/item/crowbar,
 /obj/item/assembly/flash/handheld,
 /obj/effect/turf_decal/trimline/red/filled/line,
+/obj/item/radio/off{
+	pixel_x = 9;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "vdm" = (
@@ -103222,7 +103220,7 @@ jut
 vjo
 eYt
 aSJ
-qwW
+iEH
 wma
 sRm
 aSJ

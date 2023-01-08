@@ -748,11 +748,15 @@ GENE SCANNER
 			amount += inaccurate
 	return DisplayTimeText(max(1,amount))
 
-/proc/atmosanalyzer_scan(mixture, mob/living/user, atom/target = src)
+/proc/atmosanalyzer_scan(mob/user, atom/target, silent=FALSE)
+	var/mixture = target.return_analyzable_air()
+	if(!mixture)
+		return FALSE
+
 	var/list/combined_msg = list()
 	var/icon = target
-	if(!isobserver(user))
-		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", span_notice("You use the analyzer on [icon2html(icon, user)] [target]."))
+	if(!silent && isliving(user))
+		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", "<span class='notice'>You use the analyzer on [icon2html(icon, user)] [target].</span>")
 	combined_msg += span_boldnotice("Results of analysis of [icon2html(icon, user)] [target].")
 
 	var/list/airs = islist(mixture) ? mixture : list(mixture)
@@ -788,7 +792,7 @@ GENE SCANNER
 			combined_msg += span_boldnotice("Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.")
 			combined_msg += span_notice("Instability of the last fusion reaction: [instability].")
 	to_chat(user, examine_block(combined_msg.Join("\n")))
-	return
+	return TRUE
 
 //slime scanner
 

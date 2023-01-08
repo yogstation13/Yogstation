@@ -855,7 +855,7 @@
   *
   * Conditions:
   * * client.last_turn > world.time
-  * * not dead or unconcious
+  * * not dead or unconscious
   * * not anchored
   * * no transform not set
   * * we are not restrained
@@ -882,9 +882,9 @@
 /mob/setShift(dir)
 	if (!canface())
 		return FALSE
-	
+
 	is_shifted = TRUE
-	
+
 	return ..()
 
 ///This might need a rename but it should replace the can this mob use things check

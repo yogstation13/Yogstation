@@ -15,7 +15,7 @@
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
 
-	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist") // Yes Druggist is a real thing.
 
 	outfit = /datum/outfit/job/chemist
 
