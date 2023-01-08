@@ -79,6 +79,9 @@
 		if(isliving(AM))
 			newTarget(AM)
 
+/obj/machinery/camera/motion/armoury
+	armoury = TRUE
+
 /obj/machinery/camera/motion/thunderdome
 	name = "entertainment camera"
 	network = list("thunder")
