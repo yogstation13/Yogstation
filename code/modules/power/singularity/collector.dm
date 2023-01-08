@@ -45,7 +45,7 @@
 	// Higher power bonus will give more power
 	var/power_bonus = 0
 	// Balance amount of money given to crew
-	var/balancevalue = 0.01
+	var/balancevalue = 0.05
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
