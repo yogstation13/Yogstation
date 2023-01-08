@@ -117,17 +117,17 @@
 	var/static/list/non_ruleset_antagonists = list(
 		ROLE_LONE_OPERATIVE = /datum/antagonist/nukeop/lone,
 	)
+	
+	var/list/antagonists = GLOB.special_roles.Copy()
 
-	var/list/antagonists = non_ruleset_antagonists.Copy()
-
-	for (var/datum/dynamic_ruleset/ruleset as anything in subtypesof(/datum/dynamic_ruleset))
+	/*for (var/datum/dynamic_ruleset/ruleset as anything in subtypesof(/datum/dynamic_ruleset))
 		var/datum/antagonist/antagonist_type = initial(ruleset.antag_datum)
 		if (isnull(antagonist_type))
 			continue
 
 		// antag_flag is guaranteed to be unique by unit tests.
 		antagonists[initial(ruleset.antag_flag)] = antagonist_type
-
+	*/
 	var/list/generated_icons = list()
 	var/list/to_insert = list()
 

@@ -1,7 +1,7 @@
 /datum/antagonist/traitor/malf //inheriting traitor antag datum since traitor AIs use it.
 	malf = TRUE
 	roundend_category = "malfunctioning AIs"
-	name = "Malf"
+	name = "Malfunctioning AI"
 	show_to_ghosts = TRUE
 
 /datum/antagonist/traitor/malf/forge_ai_objectives()
