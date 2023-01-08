@@ -12,7 +12,7 @@
 	full_name = "Rest"
 	description = "Lay down, or get up."
 
-/datum/keybinding/carbon/lay_down/down(client/user)
+/datum/keybinding/carbon/rest/down(client/user)
 	var/mob/living/carbon/C = user.mob
 	C.lay_down()
 	return TRUE
