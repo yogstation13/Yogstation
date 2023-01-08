@@ -45,6 +45,7 @@ export class SoundPlayer {
 			l.upY.value = mat[10];
 			l.upZ.value = -mat[9];
 		} else {
+			// firefox god damn it
 			l.setOrientation(
 				mat[4],
 				mat[6],

@@ -23,6 +23,12 @@ const findNearestScrollableParent = startingNode => {
   const body = document.body;
   let node = startingNode;
   while (node && node !== body) {
+    // Some browsers have thin scrollbars, such as firefox. This solution works
+    // on those browsers but not IE
+    if(("getComputedStyle" in window) && (node instanceof HTMLElement)) {
+      if(getComputedStyle(node).overflowY == "scroll") return node;
+    }
+
     // This definitely has a vertical scrollbar, because it reduces
     // scrollWidth of the element. Might not work if element uses
     // overflow: hidden.

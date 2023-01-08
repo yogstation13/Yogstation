@@ -13,6 +13,7 @@ import fetch from 'node-fetch';
 import {Response as FetchResponse} from 'node-fetch';
 import { sendTopic } from 'http2byond';
 import { matches } from 'ip-matching';
+import { queued_invoke } from './promise_queue';
 
 let config : Readonly<ByondProxyConfig> = await (async () => {
 	let config_paths = [
@@ -101,9 +102,19 @@ function html_encode(str : string) {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
 }
 
-function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string) {
-	if(url && !url?.startsWith(`http://${config.byond_addr}`)) return undefined;
-	let [byond_host, byond_port] = config.byond_addr.split(":");
+let despam_map = new Map<string, (cb : () => Promise<any>) => Promise<any>>();
+function despammedInvoke<T>(request : IncomingMessage, socket : Socket, func : () => Promise<T>) : Promise<T> {
+	let addr = getProxyAddress(request, socket);
+	addr = config.byond_proxy_addr ? (addr ?? "?") : "self";
+	let despam = despam_map.get(addr);
+	if(!despam) {
+		despam = queued_invoke(30);
+		despam_map.set(addr, despam);
+	}
+	return despam(func);
+}
+
+function getProxyAddress(request : IncomingMessage, socket : Socket) {
 	let address = socket.remoteAddress;
 	if(address?.toLowerCase().startsWith("::ffff:")) {
 		address = address.substring(7);
@@ -124,6 +135,14 @@ function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string
 			}
 		}
 	}
+
+	return address;
+}
+
+function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string) {
+	if(url && !url?.startsWith(`http://${config.byond_addr}`)) return undefined;
+	let [byond_host, byond_port] = config.byond_addr.split(":");
+	let address = getProxyAddress(request, socket);
 
 	let agent : Agent|undefined;
 	if(config.byond_proxy_addr) {
@@ -326,7 +345,8 @@ app.use("/browse/:userHash", async (req, res, next) => {
 			res.end("Not Found");
 			return;
 		}
-		let fetch_res = await retryFetch(url, undefined, getProxyAgent(req, req.socket, url));
+		let theUrl = url;
+		let fetch_res = await despammedInvoke(req, req.socket, () => retryFetch(theUrl, undefined, getProxyAgent(req, req.socket, url)));
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
@@ -362,7 +382,7 @@ app.use("/cache/", async (req, res, next) => {
 		if(path.startsWith("/")) path = path.substring(1);
 		path = path.split("?")[0];
 		let target_url = `http://${config.byond_addr}/cache/${path}`;
-		let fetch_res = await retryFetch(target_url, undefined, getProxyAgent(req, req.socket, ));
+		let fetch_res = await despammedInvoke(req, req.socket, () => retryFetch(target_url, undefined, getProxyAgent(req, req.socket)));
 		for(let header of ['cache-control', 'content-disposition', 'content-length', 'content-type', 'last-modified']) {
 			let val = fetch_res.headers.get(header);
 			if(!val) continue;
