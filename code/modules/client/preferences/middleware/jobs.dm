@@ -26,36 +26,73 @@
 	return TRUE
 
 /datum/preference_middleware/jobs/get_constant_data()
-	log_world("jobs/get_constant_data called!")
-
 	var/list/data = list()
 
 	var/list/departments = list()
 	var/list/jobs = list()
 
-	for (var/datum/job/job as anything in SSjob.occupations)
-		if (isnull(job.description))
-			stack_trace("[job] does not have a description set, yet is a joinable occupation!")
-			continue
-		
-		var/department_name = job.exp_type_department
-		/*var/is_command = (job in GLOB.command_positions)
-		if (!is_command && isnull(departments[department_name]))
-			var/list/heads = job.department_head
-			if (heads && heads.len >= 1)
-				departments[department_name] = list(
-					"head" = heads[1],
-				)*/
-		
-		if (isnull(departments[department_name]))
-			departments[department_name] = list(
-				"head" = null,
-			)
+	var/static/list/categories = list()
+	categories += list(GLOB.original_engineering_positions)
+	categories += list(GLOB.original_supply_positions - "Head of Personnel")
+	categories += list(GLOB.original_nonhuman_positions - "pAI")
+	categories += list(GLOB.original_civilian_positions - "Assistant" + "Head of Personnel")
+	categories += list(GLOB.original_science_positions)
+	categories += list(GLOB.original_security_positions)
+	categories += list(GLOB.original_medical_positions)
 
-		jobs[job.title] = list(
-			"description" = job.description,
-			"department" = department_name,
+	// TODO: Port proper department datums and update this shitfest
+	for(var/list/category in categories)
+		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
+		var/head_name
+
+		for(var/job_name as anything in category)
+			var/datum/job/job = SSjob.name_occupations[job_name]
+			if (!job)
+				continue
+
+			if (isnull(job.description))
+				stack_trace("[job] does not have a description set, yet is a joinable occupation!")
+				continue
+
+			if (job_name in GLOB.command_positions)
+				head_name = job_name
+
+			if (isnull(jobs[job_name]))
+				jobs[job_name] = list(
+					"description" = job.description,
+					"department" = department_name,
+				)
+
+		departments[department_name] = list(
+			"head" = head_name,
 		)
+
+	// Special department data needed for the UI to work properly
+	departments["Silicon"] = list(
+		"head" = "AI",
+	)
+
+	departments["Supply"] = list(
+		"head" = "Quartermaster",
+	)
+
+	var/datum/job/captain_job = SSjob.name_occupations["Captain"]
+	jobs["Captain"] = list(
+		"description" = captain_job.description,
+		"department" = "Captain",
+	)
+	departments["Captain"] = list(
+		"head" = "Captain",
+	)
+
+	var/datum/job/assistant_job = SSjob.name_occupations["Assistant"]
+	jobs["Assistant"] = list(
+		"description" = assistant_job.description,
+		"department" = "Assistant",
+	)
+	departments["Assistant"] = list(
+		"head" = null,
+	)
 
 	data["departments"] = departments
 	data["jobs"] = jobs
