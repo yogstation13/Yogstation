@@ -10,7 +10,7 @@
 	return cached_multiplicative_slowdown
 
 /**
-  * If your mob is concious, drop the item in the active hand
+  * If your mob is conscious, drop the item in the active hand
   *
   * This is a hidden verb, likely for binding with winset for hotkeys
   */

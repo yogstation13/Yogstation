@@ -291,6 +291,12 @@
 	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 
+/datum/asset/simple/security_armaments
+	assets = list(
+		"disablerbig.png" = 'icons/vending_icons/disablerbig.png',
+		"ntuspbig.png" = 'icons/vending_icons/ntuspbig.png',
+	)
+
 // Representative icons for each research design
 /datum/asset/spritesheet/research_designs
 	name = "design"
