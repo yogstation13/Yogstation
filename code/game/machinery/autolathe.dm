@@ -365,6 +365,7 @@
 				for(var/i=1, i<=multiplier, i++)
 					var/obj/item/new_item = new D.build_path(A)
 					new_item.materials = new_item.materials.Copy()
+					new_items.autolathed = TRUE
 					for(var/mat in materials_used)
 						new_item.materials[mat] = materials_used[mat] / multiplier
 					new_item.autolathe_crafted(src)
