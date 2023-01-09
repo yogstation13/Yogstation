@@ -56,8 +56,8 @@ body:
     label: Was this done on a locally hosted or non-Yogstation hosted server?
     description: This information is important so we can better determine if it is an issue caused on our end or on your local branch.
     options:
-      - Yes
-      - No
+      - "Yes"
+      - "No"
 
 - type: textarea
   attributes:
