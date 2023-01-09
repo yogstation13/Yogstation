@@ -284,9 +284,8 @@
 /obj/item/reagent_containers/food/snacks/sausage/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
 		if(isturf(loc)) //CHECK IF ITS ON A TABLE OR OTHER SURFACE FOR THE LOVE OF GOD
-			if(!do_after(user, 1 SECONDS, src)) {
+			if(!do_after(user, 1 SECONDS, src))
 				return
-			}
 			new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
 			to_chat(user, span_notice("You snip [src]."))
 			qdel(src)
