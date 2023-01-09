@@ -117,9 +117,8 @@
 /obj/item/reagent_containers/food/snacks/raw_meatball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/rollingpin))
 		if(isturf(loc))
-			if(!do_after(user, 1 SECONDS, src)) {
+			if(!do_after(user, 1 SECONDS, src))
 				return
-			}
 			new patty_type(loc)
 			to_chat(user, span_notice("You flatten [src]."))
 			qdel(src)
