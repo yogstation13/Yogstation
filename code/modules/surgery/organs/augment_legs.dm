@@ -214,7 +214,8 @@
 	holder = user
 
 /datum/action/innate/boost/IsAvailable()
-	if(COOLDOWN_FINISHED(src, dash_cooldown) && holder.stat < UNCONSCIOUS)
+	. = ..()
+	if(COOLDOWN_FINISHED(src, dash_cooldown))
 		return TRUE
 	else
 		to_chat(holder, span_warning("The implant's internal propulsion needs to recharge still!"))
