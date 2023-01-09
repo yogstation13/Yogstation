@@ -32,7 +32,7 @@
 	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS in C.access) && !(ACCESS_HOS in C.access))
 		allowed = TRUE
 	// Hasn't claimed a weapon yet
-	if(!C?.registered_account?.sec_weapon_claimed)
+	if(C?.registered_account && !C.registered_account.sec_weapon_claimed)
 		can_claim = TRUE
 
 	if(!allowed)
@@ -111,7 +111,7 @@
 	if(istype(C) && (ACCESS_SECURITY in C.access) && (ACCESS_WEAPONS in C.access) && !(ACCESS_HOS in C.access))
 		allowed = TRUE
 	// Hasn't claimed a weapon yet
-	if(!C?.registered_account?.sec_weapon_claimed)
+	if(C?.registered_account && !C.registered_account.sec_weapon_claimed)
 		can_claim = TRUE
 
 	data["allowed"] = allowed
