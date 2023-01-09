@@ -64,7 +64,7 @@
 	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
-
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med

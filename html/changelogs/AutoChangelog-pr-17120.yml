@@ -1,0 +1,4 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a funny potential (by potential I mean literally no one in their right mind would use it) DDoS bug."

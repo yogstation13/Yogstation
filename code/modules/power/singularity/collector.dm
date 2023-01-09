@@ -44,13 +44,14 @@
 	var/machine_tier = 0
 	// Higher power bonus will give more power
 	var/power_bonus = 0
+	// Balance amount of money given to crew
+	var/balancevalue = 0.05
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
-
 	radio = new(src)
 	radio.keyslot = new /obj/item/encryptionkey/headset_eng
 	radio.subspace_transmission = TRUE
@@ -105,7 +106,8 @@
 				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(D)
 					var/payout = output/8000
-					stored_power -= min(payout*20000, stored_power)
+					stored_power -= min(payout*200, stored_power)
+					payout = payout * balancevalue
 					D.adjust_money(payout)
 					last_output = payout
 

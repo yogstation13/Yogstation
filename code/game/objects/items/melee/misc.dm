@@ -622,14 +622,18 @@
 
 /obj/item/melee/singularity_sword/afterattack(target, mob/user, proximity_flag)
 	. = ..()
-	if(proximity_flag && istype(target, /mob))
-		var/mob/M = target
-		var/turf/T = get_turf(M)
-		M.visible_message(span_danger("[target] is consumed by the singularity!"))
-		new /obj/singularity(T)
-		M.gib()
+	if(proximity_flag)
+		var/turf/T = get_turf(target)
+		var/obj/singularity/S = new(T)
+		S.consume(target)
 	else
 		return FALSE
+
+/obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	var/turf/T = get_turf(hit_atom)
+	var/obj/singularity/S = new(T)
+	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals
 /obj/item/melee/curator_whip
