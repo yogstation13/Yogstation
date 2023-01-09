@@ -6,6 +6,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 50
+	screen_loc = E3D_TYPE_FLOOR
 	var/power = 1
 	var/code = 1
 	var/id = 1

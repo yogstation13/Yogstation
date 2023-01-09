@@ -16,3 +16,11 @@
 		path = copytext(path, findlasttext(path, "/")+1)
 	if(path)
 		target << output("\ref[fcopy_rsc(resource)]=[path]", "byond-wcp:browse_rsc")
+
+/mob
+	var/e3d_eye_height = 0.82
+
+/mob/proc/e3d_update_client()
+	if(!client)
+		return
+	winset(client, null, "e3d-eye-height=[e3d_eye_height]")

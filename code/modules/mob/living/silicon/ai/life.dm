@@ -117,6 +117,7 @@
 		sight = sight&~SEE_TURFS
 		sight = sight&~SEE_MOBS
 		sight = sight&~SEE_OBJS
+		sight = sight&~E3D_SEE_ZOOM
 		see_in_dark = 0
 
 	if(see_override)

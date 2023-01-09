@@ -484,7 +484,7 @@
 		else if(is_secret_level(z))
 			sight = initial(sight)
 		else
-			sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS|E3D_SEE_ZOOM)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_OBSERVER
 		return

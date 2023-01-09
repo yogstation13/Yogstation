@@ -508,6 +508,8 @@ export class EdgeRenderPlan extends BatchRenderPlan {
 export class SmoothWallRenderPlan extends BatchRenderPlan {
 	dir_states : Array<string|undefined> = Array(16);
 	dir_state_instances : Array<IconState|null>|undefined = undefined;
+	top_states : Array<string|undefined> = Array(4);
+	top_state_instances : Array<IconState|null>|undefined = undefined;
 	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, smooth_dirs : string[]) {
 		super();
 		this.atom_id = atom_id
@@ -528,6 +530,10 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 			this.dir_states[base+2] = left_state ? "3-i" : "3-w";
 			this.dir_states[base+3] = right_state ? "4-i" : "4-e";
 		}
+		for(let i = 0; i < 4; i++) {
+			this.top_states[i] = (i+1) + "-" + smooth_dirs[i];
+			this.triangle_count += 2;
+		}
 	}
 	write(attribs : Float32Array, iattribs : Uint32Array, offset : number, icon_info : Icon, time : number, camera_pos : vec3) {
 		this.is_static = true;
@@ -540,13 +546,45 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 				return null;
 			});
 		}
+		if(this.top_state_instances === undefined) {
+			this.top_state_instances = this.top_states.map(i => {
+				if(i) {
+					return icon_info.get_icon_state(i);
+				}
+				return null;
+			});
+		}
+		const normal_scale = icon_info.width / 32;
+		const scale_offset = (icon_info.width - 32) / 2 / 32;
 		for(let i = 0; i < 4; i++) {
 			for(let j = 0; j < 4; j++) {
 				let state = this.dir_state_instances[(i<<2) + j];
 				if(!state) continue;
 				let frame = state.get_icon(2, time, ft, this);
-				offset = this.write_plane(attribs, iattribs, offset, frame, [this.x+box_xy[i][0],this.y+box_xy[i][1],0], box_normals[(i+1)&3], up_vec, box_normals[i], vec4_color(color_vec, this.appearance.color_alpha));
+				let right = box_normals[(i+1)&3];
+				let orig_right = right;
+				let up = up_vec;
+				if(normal_scale != 1) {
+					right = vec3.scale(vec3.create(), right, normal_scale);
+					up = vec3.scale(vec3.create(), up, normal_scale);
+				}
+				offset = this.write_plane(
+					attribs, iattribs, offset,
+					frame,
+					[this.x+box_xy[i][0]-scale_offset*orig_right[0],this.y+box_xy[i][1]-scale_offset*orig_right[1],-scale_offset],
+					right, up, box_normals[i],
+					vec4_color(color_vec, this.appearance.color_alpha)
+				);
 			}
+			let top_state = this.top_state_instances[i];
+			if(!top_state) continue;
+			offset = this.write_plane(
+				attribs, iattribs, offset,
+				top_state.get_icon(2, time, ft, this),
+				[this.x-scale_offset, this.y-scale_offset, 1],
+				[normal_scale,0,0], [0,normal_scale,0], up_vec,
+				vec4_color(color_vec, this.appearance.color_alpha)
+			);
 		}
 		return offset;
 	}

@@ -77,10 +77,17 @@ export class GlHolder {
 			this.camera_pos = target_pos;
 		} else if(target_pos_off > 0) {
 			target_pos = vec3.subtract(vec3.create(), target_pos, this.camera_pos);
-			let dist = vec3.length(target_pos);
-			let travelDist = dt / 50 * (this.client.eye_glide_size || 1) / 32;
-			if(travelDist < dist) {
-				vec3.scale(target_pos, target_pos, travelDist / dist);
+			if(this.client.eye_bits & 0x200000) {
+				let travelDist = dt/50 * (this.client.eye_glide_size || 1) / 32;
+				for(let i = 0; i < 3; i++) {
+					target_pos[i] = Math.max(-travelDist, Math.min(travelDist, target_pos[i]));
+				}
+			} else {
+				let dist = vec3.length(target_pos);
+				let travelDist = dt / 50 * (this.client.eye_glide_size || 1) / 32;
+				if(travelDist < dist) {
+					vec3.scale(target_pos, target_pos, travelDist / dist);
+				}
 			}
 			vec3.add(this.camera_pos, this.camera_pos, target_pos);
 		}
@@ -101,29 +108,36 @@ export class GlHolder {
 		gl.clearColor(0,0,0, 1);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		
+		const yFov = 1;
+
 		let proj = this.proj_matrix;
 		let view = this.view_matrix;
-		mat4.perspective(proj, 1, canvas_width/canvas_height, 0.2, 1000);
+		let frustumHeight = Math.tan(yFov / 2);
+		let frustumWidth = frustumHeight * canvas_width / canvas_height
+		mat4.perspective(proj, yFov, canvas_width/canvas_height, 0.2, 1000);
 		mat4.rotateX(proj, proj, -Math.PI/2);
 		mat4.identity(view);
+		mat4.translate(view, view, [0, this.camera_actual_zoom, 0]);
 		mat4.rotateZ(view, view, -this.camera_secondyaw);
 		mat4.rotateX(view, view, -this.camera_pitch);
 		mat4.rotateZ(view, view, -this.camera_yaw);
 		mat4.translate(view, view, vec3.scale(vec3.create(), this.camera_pos, -1));
 		mat4.invert(this.inv_view_matrix, this.view_matrix);
+		let act_camera_pos = this.inv_view_matrix.slice(12, 15) as vec3;
 
 		let instance_lists : Map<number, BatchRenderPlan[]> = new Map();
 		let sorted_instance_lists : BatchRenderPlan[] = [];
-		let turf_x1 = Math.floor(this.camera_pos[0]-9.4);
-		let turf_y1 = Math.floor(this.camera_pos[1]-9.4);
-		let turf_x2 = Math.ceil(this.camera_pos[0]+9.4);
-		let turf_y2 = Math.ceil(this.camera_pos[1]+9.4);
+		let extended_draw_dist = this.draw_dist + 1.9;
+		let turf_x1 = Math.floor(this.camera_pos[0]-extended_draw_dist);
+		let turf_y1 = Math.floor(this.camera_pos[1]-extended_draw_dist);
+		let turf_x2 = Math.ceil(this.camera_pos[0]+extended_draw_dist);
+		let turf_y2 = Math.ceil(this.camera_pos[1]+extended_draw_dist);
 		let handle_thing = (thing:Atom, x:number, y:number) => {
 			let plan = thing.get_render_plan(dt);
 			if(!plan) return;
 			for(let item of plan) {
 				if(item.alpha_sort_focus) {
-					item._alpha_sort_dist = vec3.squaredDistance(this.camera_pos, item.alpha_sort_focus) + item.alpha_sort_bias;
+					item._alpha_sort_dist = vec3.squaredDistance(act_camera_pos, item.alpha_sort_focus) + item.alpha_sort_bias;
 					sorted_instance_lists.push(item);
 				} else {
 					let list = instance_lists.get(item.icon);
@@ -164,12 +178,13 @@ export class GlHolder {
 		this.update_enabled_vertex_attribs([info.aPosition, info.aNormal, info.aColor, info.aUV, info.aSheetIndex, info.aBits]);
 		gl.uniformMatrix4fv(info.viewMatrix, false, this.view_matrix);
 		gl.uniformMatrix4fv(info.projMatrix, false, this.proj_matrix);
-		gl.uniform3f(info.cameraPos, this.inv_view_matrix[12], this.inv_view_matrix[13], this.inv_view_matrix[14]);
+		gl.uniform3f(info.cameraPos, this.camera_pos[0], this.camera_pos[1], this.camera_pos[2]);
 		gl.activeTexture(gl.TEXTURE1);
 		gl.bindTexture(gl.TEXTURE_2D, this.lighting_holder.get_updated_texture());
 		gl.uniform1i(info.lightTexture, 1);
 		gl.uniform1f(info.lightWidth, this.lighting_holder.last_maxx);
 		gl.uniform1f(info.lightHeight, this.lighting_holder.last_maxy);
+		gl.uniform1f(info.drawDist, this.draw_dist);
 		let lighting_pm_color = (this.client.ui.plane_masters.get(15)?.appearance?.color_alpha);
 		gl.uniform1f(info.lightInfluence, lighting_pm_color == null ? 1 : ((lighting_pm_color >>> 24) / 255));
 		gl.uniform1f(info.blind, +!!this.client.ui.blind_atom);
@@ -228,7 +243,7 @@ export class GlHolder {
 					continue;
 				}
 				let prev_offset = offset;
-				offset = item.write(attribs, iattribs, offset, icon_info, this.client.time, this.camera_pos, this.camera_yaw);
+				offset = item.write(attribs, iattribs, offset, icon_info, this.client.time, act_camera_pos, this.camera_yaw);
 				if(item.is_static) item.cached_data = attribs.slice(prev_offset, offset);
 			}
 
@@ -250,6 +265,20 @@ export class GlHolder {
 		}
 
 		if(!this.reading_mouse_hit) {
+			let mousemove = this.client.ui.last_mousemove;
+			let mouse_x = 0;
+			let mouse_y = 0;
+			if(mousemove && document.pointerLockElement != this.canvas) {
+				let canvas_rect = this.canvas.getBoundingClientRect();
+				mouse_x = ((mousemove.clientX - canvas_rect.x) / canvas_rect.width * 2 - 1) * frustumWidth;
+				mouse_y = -((mousemove.clientY - canvas_rect.y) / canvas_rect.height * 2 - 1) * frustumHeight; 
+			}
+			gl.uniformMatrix4fv(info.viewMatrix, false, mat4.multiply(this.mouse_view_matrix, [
+				1, 0, 0, 0,
+				-mouse_x, 1, -mouse_y, 0,
+				0, 0, 1, 0,
+				0, 0, 0, 1
+			], this.view_matrix));
 			gl.uniform1f(info.isIdPass, 1);
 			gl.disable(gl.BLEND);
 			gl.bindFramebuffer(gl.FRAMEBUFFER, this.mouse_framebuffer);
@@ -300,6 +329,7 @@ export class GlHolder {
 	}
 
 	proj_matrix : mat4 = mat4.create();
+	mouse_view_matrix : mat4 = mat4.create();
 	view_matrix : mat4 = mat4.create();
 	inv_view_matrix : mat4 = mat4.create();
 
@@ -308,6 +338,11 @@ export class GlHolder {
 	camera_pitch = -1;
 	camera_yaw = 0;
 	camera_secondyaw = 0;
+	camera_zoom = 1;
+	get camera_actual_zoom() {
+		return (this.client.eye_sight & 0x8000) ? this.camera_zoom : 0;
+	}
+	draw_dist = 7.5;
 
 	current_vertex_attribs : number[] = [];
 	update_enabled_vertex_attribs(attribs : number[]) {

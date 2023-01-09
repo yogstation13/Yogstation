@@ -22,8 +22,11 @@ export class ByondClient {
 	eye_x = 0;
 	eye_y = 0;
 	eye_z = 1;
+	eye_height = 0.82;
 	time = 0;
 	eye_glide_size = 0;
+	eye_bits = 0;
+	eye_sight = 0;
 	icons = new Map<number, Icon>();
 	has_quit = false;
 	constructor() {
@@ -42,6 +45,15 @@ export class ByondClient {
 				this.has_quit = true;
 			}
 		});
+		window.addEventListener("wheel", (e) => {
+			let delta_y = e.deltaY;
+			if(e.deltaMode == WheelEvent.DOM_DELTA_PIXEL) delta_y /= 100;
+			else if(e.deltaMode == WheelEvent.DOM_DELTA_LINE) delta_y /= 3;
+
+			let log = Math.log2(this.gl_holder.camera_zoom + 1);
+			log += delta_y;
+			this.gl_holder.camera_zoom = Math.max(0, Math.min(20, 2**log - 1));
+		})
 		window.addEventListener("keydown", (e) => {
 			if((e.target as HTMLElement).closest("input,select,button,textarea") || this.has_quit) return;
 			if(e.code == "Tab") {
@@ -110,7 +122,7 @@ export class ByondClient {
 		this.sound_player = new SoundPlayer(this);
 		this.ui.set_status_overlay("Connecting...");
 		this.frameLoop();
-		this.gl_holder.canvas.addEventListener("click", (e) => {
+		this.gl_holder.canvas.addEventListener("dblclick", (e) => {
 			if(!e.defaultPrevented && document.pointerLockElement != this.gl_holder.canvas) {
 				this.gl_holder.canvas.requestPointerLock();
 			}
@@ -552,11 +564,14 @@ export class ByondClient {
 		} case 248: {
 			this.resize(dp.read_uint16(), dp.read_uint16(), dp.read_uint16());
 			console.log("Map size: ", this.maxx, this.maxy, this.maxz);
-			console.log("Tile/icon sizes", dp.read_uint16(), dp.read_uint16(), dp.read_uint16(), dp.read_uint16());
+			let view_width, view_height;
+			console.log("Tile/icon sizes", view_width = dp.read_uint16(), view_height = dp.read_uint16(), dp.read_uint16(), dp.read_uint16());
 			console.log("Format", dp.read_uint8());
 			console.log("Map dir", dp.read_uint8());
 			console.log("Home", dp.read_uint16(), dp.read_uint16());
 			console.log("Draw View", dp.read_uint16(), dp.read_uint16());
+
+			this.gl_holder.draw_dist = Math.min(view_width, view_height) / 2;
 			break;
 		} case 249: {
 			console.debug("Turf block:");
@@ -637,14 +652,15 @@ export class ByondClient {
 			console.debug(flags.toString(2));
 			if(flags & 0x02) {
 				dp.read_int16(), dp.read_int16(), dp.read_int16(), dp.read_int16();
-				dp.read_uint8(), dp.read_uint32(), this.eye_glide_size = dp.read_float();
+				dp.read_uint8(), this.eye_bits = dp.read_uint32(), this.eye_glide_size = dp.read_float();
 				this.eye_x = dp.read_int16();
 				this.eye_y = dp.read_int16();
 				this.gl_holder.camera_pos = this.gl_holder.target_camera_pos;
-				this.gl_holder.target_camera_pos = [this.eye_x + 0.5, this.eye_y + 0.5, 0.82]
+				this.gl_holder.target_camera_pos = [this.eye_x + 0.5, this.eye_y + 0.5, this.eye_height]
 			}
+			let had_zoom = !!(this.eye_sight & 0x8000);
 			if(flags & 0x20) {
-				console.debug("Sight: " + dp.read_uint8());
+				this.eye_sight = dp.read_uint8();
 			}
 			if(flags & 0x40) {
 				console.debug(this.read_value(dp));
@@ -659,7 +675,8 @@ export class ByondClient {
 					console.debug("See invisible:", dp.read_uint8());
 				}
 				if(flags2 & 4) {
-					console.debug("Sight (other):", dp.read_uint32());
+					// fun fact the actual server-side var only has 16 bits
+					this.eye_sight = dp.read_uint32();
 				}
 				if(flags2 & 8) {
 					console.debug("eye pixels:", dp.read_int16(), dp.read_int16(), dp.read_int16(), dp.read_int16());
@@ -670,6 +687,9 @@ export class ByondClient {
 				if(flags2 & 0x20) {
 					console.debug("my px:", dp.read_int16(), dp.read_int16(), dp.read_int16(), dp.read_int16());
 				}
+			}
+			if((this.eye_sight & 0x8000) && !had_zoom) {
+				this.gl_holder.camera_zoom = 1;
 			}
 			this.movable_changes(dp, false);
 			break;
@@ -682,7 +702,7 @@ export class ByondClient {
 	resolve_control(control : string) : HTMLElement|null {
 		if(control.includes(".")) {
 			let [part1, part2] = control.split(".");
-			return document.querySelector(`#window-${part1} #control-${part2}`);
+			return document.querySelector(`#window-${CSS.escape(part1)} #control-${CSS.escape(part2)}`);
 		} else {
 			return document.getElementById("control-"+control) || document.getElementById("window-"+control);
 		}
@@ -739,6 +759,11 @@ export class ByondClient {
 			let ui_scale = opts.get("ui-scale");
 			if(ui_scale) {
 				this.ui.update_zoom(+ui_scale);
+			}
+			let eye_height = opts.get("e3d-eye-height");
+			if(eye_height) {
+				this.eye_height = +eye_height;
+				this.gl_holder.target_camera_pos[2] = this.eye_height;
 			}
 		}
 		let resolved = this.resolve_control(control);

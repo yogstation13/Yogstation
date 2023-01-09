@@ -80,11 +80,22 @@ export class Atom implements AtomDependent {
 			if(!appearance) this.glide_vec = null;
 			else {
 				let moveDist = dt / 50 * Math.max(1, appearance.glide_size) / 32;
-				let actDist = vec2.length(this.glide_vec);
-				if(actDist == 0) {
-					this.glide_vec = null;
+				if(appearance.bits & 0x200000) {
+					let nz = false;
+					for(let i = 0; i < 3; i++) {
+						let gv = this.glide_vec[i];
+						if((this.glide_vec[i] = Math.max(0, (Math.abs(gv) - moveDist)) * Math.sign(gv))) {
+							nz = true;
+						}
+					}	
+					if(!nz) this.glide_vec = null;
 				} else {
-					vec2.scale(this.glide_vec, this.glide_vec, Math.max(0, 1 - moveDist / actDist));
+					let actDist = vec2.length(this.glide_vec);
+					if(actDist == 0) {
+						this.glide_vec = null;
+					} else {
+						vec2.scale(this.glide_vec, this.glide_vec, Math.max(0, 1 - moveDist / actDist));
+					}
 				}
 			}
 		}

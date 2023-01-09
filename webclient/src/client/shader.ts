@@ -65,7 +65,12 @@ function build_shader_info<A extends readonly string[], U extends readonly strin
 
 const SPRITE_MARGIN = 0.003;
 
-let uniforms_3d = ["projMatrix", "viewMatrix","sheetWidth","sheetHeight","iconWidth","iconHeight","iconTexture","lightWidth","lightHeight","lightTexture","lightInfluence","blind","cameraPos","isIdPass"] as const;
+let uniforms_3d = [
+	"projMatrix", "viewMatrix",
+	"sheetWidth","sheetHeight",
+	"iconWidth","iconHeight","iconTexture",
+	"lightWidth","lightHeight","lightTexture","lightInfluence",
+	"blind","cameraPos","drawDist","isIdPass"] as const;
 let attribs_3d = ["aPosition", "aNormal", "aColor","aUV","aSheetIndex","aBits"] as const;
 function shader_code_3d() : [string, string] {
 	return [
@@ -120,13 +125,14 @@ uniform float lightHeight;
 uniform float isIdPass;
 uniform float lightInfluence;
 uniform float blind;
+uniform float drawDist;
 uniform vec3 cameraPos;
 uniform sampler2D iconTexture;
 uniform sampler2D lightTexture;
 void main() {
 	
 	float dist = max(abs(cameraPos.x - vXYPos.x), abs(cameraPos.y - vXYPos.y));
-	if(dist > 7.5) discard;
+	if(dist > drawDist) discard;
 
 	if(vUV.x < ${-SPRITE_MARGIN} || vUV.y < ${-SPRITE_MARGIN} || vUV.x > ${1+SPRITE_MARGIN} || vUV.y > ${1+SPRITE_MARGIN}) discard;
 
@@ -162,7 +168,7 @@ void main() {
 			}
 		}
 		if(blind > 0.5) color.rgb *= feelPass;
-		color.rgb *= clamp(7.5 - dist, 0.0, 1.0);
+		color.rgb *= clamp(drawDist - dist, 0.0, 1.0);
 	}
 	if(isIdPass > 0.5) gl_FragColor = vColor;
 	else gl_FragColor = color;

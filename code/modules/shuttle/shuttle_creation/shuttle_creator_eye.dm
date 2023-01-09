@@ -14,7 +14,7 @@
 	icon_state = "construction_drone"
 
 /mob/camera/aiEye/remote/shuttle_creation/update_remote_sight(mob/living/user)
-	user.sight = BLIND|SEE_TURFS
+	user.sight = BLIND|SEE_TURFS|E3D_SEE_ZOOM
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE

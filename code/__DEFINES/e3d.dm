@@ -21,5 +21,7 @@
 #define E3D_TYPE_EDGEFIREDOOR "\x0A\x0B"
 #define E3D_TYPE_EDGEWINDOOR "\x0A\x0C"
 
+#define E3D_SEE_ZOOM 0x8000
+
 #define SET_SCREEN_LOC(thing, new_screen_loc) thing.screen_loc = "[new_screen_loc][extract_e3d_tag(thing.screen_loc)]"
 #define CLEAR_SCREEN_LOC(thing) thing.screen_loc = extract_e3d_tag(thing.screen_loc)
