@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed NT-USP not having flashlight offset"
