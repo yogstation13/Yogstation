@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Can no longer use air shoes jump boost in hardcrit or death"
