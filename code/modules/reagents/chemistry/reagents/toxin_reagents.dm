@@ -417,7 +417,7 @@
 
 /datum/reagent/toxin/polonium/ebow
 	name = "Potent Polonium"
-	description = "A more potent for of Polonium. It is purged quicker from the body, but it is also significantly more deadly."
+	description = "A more potent form of Polonium. It is purged more quickly from the body, but also significantly more deadly."
 	metabolization_rate = 0.8 * REAGENTS_METABOLISM
 	radpower = 80
 
