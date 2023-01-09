@@ -63,7 +63,7 @@
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/hypo
-	name = "the Chief Medical Officer's deluxe hypospray."
+	name = "the Chief Medical Officer's hypospray deluxe."
 	targetitem = /obj/item/hypospray/deluxe/cmo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer")
