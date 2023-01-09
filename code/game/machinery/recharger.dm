@@ -176,14 +176,20 @@
 	if(charging)
 		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
+		var/num = 0
 		if(C)
-			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(C.charge/C.maxcharge, 0.01))
+			num = round(C.charge/C.maxcharge, 0.01)
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
-			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
 		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
 			var/obj/item/ammo_box/magazine/m308/laser/R = charging
-			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
+		
+		if(num >= 1)
+			scan.color = "#58d0ff"
+		else
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), num)
 		add_overlay(scan)
 
 /obj/machinery/recharger/wallrecharger
