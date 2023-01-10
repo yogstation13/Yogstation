@@ -21,6 +21,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharpness = SHARP_EDGED
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
@@ -247,7 +248,7 @@
 	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "magma_wing"
 	gender = NEUTER
-	bonus_value = 5
+	bonus_value = 8
 
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/effect_desc()
 	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
@@ -265,7 +266,44 @@
 	name = "icewing watcher wing"
 	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "ice_wing"
-	bonus_value = 8
+	bonus_value = 0
+
+/obj/item/crusher_trophy/watcher_wing/ice_wing/effect_desc()
+	return "mark detonation to freeze a creature in a block of ice for a period, preventing them from moving"
+
+/obj/item/crusher_trophy/watcher_wing/ice_wing/on_mark_detonation(mob/living/target, mob/living/user)
+	target.apply_status_effect(/datum/status_effect/ice_block_talisman)
+
+/datum/status_effect/ice_wing_talisman
+	id = "ice_wing_talisman"
+	duration = 25
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/ice_block_talisman
+	var/icon/cube
+
+/atom/movable/screen/alert/status_effect/ice_wing_talisman
+	name = "Frozen Solid"
+	desc = "You're frozen inside an ice cube, and cannot move!"
+	icon_state = "frozen"
+
+/datum/status_effect/ice_wing_talisman/on_apply()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
+	if(!owner.stat)
+		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+	cube = icon('icons/effects/freeze.dmi', "ice_cube")
+	var/icon/size_check = icon(owner.icon, owner.icon_state)
+	cube.Scale(size_check.Width(), size_check.Height())
+	owner.add_overlay(cube)
+	return ..()
+
+/datum/status_effect/ice_wing_talisman/proc/owner_moved()
+	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/datum/status_effect/ice_wing_talisman/on_remove()
+	if(!owner.stat)
+		to_chat(owner, span_notice("The cube melts!"))
+	owner.cut_overlay(cube)
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 
 //legion
 /obj/item/crusher_trophy/legion_skull
@@ -393,25 +431,14 @@
 	denied_type = /obj/item/crusher_trophy/vortex_talisman
 
 /obj/item/crusher_trophy/vortex_talisman/effect_desc()
-	return "mark detonation to create a barrier you can pass"
+	return "mark detonation to create a homing hierophant chaser" //Wall was way too cheesy and allowed miners to be nearly invincible while dumb mob AI just rubbed its face on the wall.
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
-	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
-	var/area/current_area = current_location.loc //yogs more location check stuff
-	if(current_area.noteleport) //yogs added noteleport
-		to_chat(user, "[src] fizzles uselessly.")
-		return
-	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
-	var/turf/otherT = get_step(T, turn(user.dir, 90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	otherT = get_step(T, turn(user.dir, -90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-
-/obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 75
+	if(isliving(target))
+		var/obj/effect/temp_visual/hierophant/chaser/C = new(get_turf(user), user, target, 3, TRUE)
+		C.damage = 10 // Weaker because there is no cooldown
+		C.monster_damage_boost = FALSE
+		log_combat(user, target, "fired a chaser at", src)
 
 //Legion (Megafauna)
 /obj/item/crusher_trophy/malformed_bone

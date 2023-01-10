@@ -290,6 +290,7 @@ Difficulty: Insanely Hard
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
+		new /obj/item/gem/dark(loc)
 		
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()

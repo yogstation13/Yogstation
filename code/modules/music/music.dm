@@ -267,7 +267,7 @@
 	sound_file = 'sound/lavaland/music/communism.ogg'
 	priority = 110
 /datum/music/sourced/battle/hierophant
-	sound_file = 'sound/lavaland/music/headpats.ogg'
+	sound_file = 'yogstation/sound/lavaland/music/hierophant.ogg'
 	priority = 150
 /datum/music/sourced/battle/king_goat
 	sound_file = 'sound/lavaland/music/kilogram.ogg'
@@ -278,3 +278,6 @@
 /datum/music/sourced/battle/legion
 	sound_file = 'sound/lavaland/music/pants.ogg'
 	priority = 130
+/datum/music/sourced/battle/stalwart
+	sound_file = 'yogstation/sound/lavaland/music/stalwart.ogg'
+	priority = 100

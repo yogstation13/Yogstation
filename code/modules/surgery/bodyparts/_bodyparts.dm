@@ -11,6 +11,7 @@
 	var/mob/living/carbon/owner = null
 	var/mob/living/carbon/original_owner = null
 	var/status = BODYPART_ORGANIC
+	var/sub_status = BODYPART_SUBTYPE_ORGANIC
 	var/needs_processing = FALSE
 
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
@@ -95,6 +96,8 @@
 	var/obj/item/self_grasp/grasped_by
 	///If we have a bandage on (yoggite)
 	var/bandaged = FALSE
+	/// Prevents resetting of the species_id
+	var/limb_override = FALSE
 
 /obj/item/bodypart/Initialize(mapload)
 	. = ..()
@@ -474,7 +477,7 @@
 		injury_mod += W.threshold_penalty
 
 	var/part_mod = -wound_resistance
-	if(get_damage(TRUE) >= max_damage)
+	if(get_damage(stamina=TRUE) >= max_damage)
 		part_mod += disabled_wound_penalty
 
 	injury_mod += part_mod
@@ -531,9 +534,13 @@
 		needs_processing = FALSE
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
-	var/total = brute_dam + burn_dam
-	if(include_stamina)
+/obj/item/bodypart/proc/get_damage(brute = TRUE, burn = TRUE, stamina = FALSE)
+	var/total = 0
+	if(brute)
+		total += brute_dam
+	if(burn)
+		total += burn_dam
+	if(stamina)
 		total = max(total, stamina_dam)
 	return total
 
@@ -740,8 +747,9 @@
 		should_draw_greyscale = FALSE
 
 		var/datum/species/S = H.dna.species
-		species_id = S.limbs_id
-		species_flags_list = H.dna.species.species_traits
+		if(!limb_override)
+			species_id = S.limbs_id
+		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
 			skin_tone = H.skin_tone
@@ -833,6 +841,8 @@
 			else if(use_digitigrade)
 				if("[species_id]" == "polysmorph")
 					limb.icon_state = "pdigitigrade_[use_digitigrade]_[body_zone]"
+				else if("[species_id]" == "preternis")
+					limb.icon_state = "preternis_[use_digitigrade]_[body_zone]"
 				else
 					limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
 			else
@@ -857,6 +867,8 @@
 		limb.icon = icon
 		if(should_draw_gender)
 			limb.icon_state = "[body_zone]_[icon_gender]"
+		else if(use_digitigrade)
+			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)

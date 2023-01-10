@@ -34,10 +34,9 @@
 
 /obj/structure/closet/bluespace/internal/Initialize()
 	if(SSbluespace_locker.internal_locker && SSbluespace_locker.internal_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.internal_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/internal/get_other_locker()
 	return SSbluespace_locker.external_locker
@@ -144,10 +143,9 @@
 
 /obj/structure/closet/bluespace/external/Initialize()
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.external_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/external/Destroy()
 	SSbluespace_locker.external_locker = null
@@ -268,7 +266,7 @@
 				F.pixel_y -= py
 			add_overlay(fullbrights)
 			if(add_reset_timer)
-				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
+				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE | TIMER_STOPPABLE)
 			else if(reset_timer_id)
 				deltimer(reset_timer_id)
 			pixel_x = px + dx*32

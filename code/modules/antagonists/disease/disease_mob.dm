@@ -287,7 +287,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/ClickOn(var/atom/A, params)
 	if(freemove && ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(alert(src, "Select [H.name] as your initial host?", "Select Host", "Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Select [H.name] as your initial host?", "Select Host", list("Yes", "No")) != "Yes")
 			return
 		if(!freemove)
 			return

@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
+#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.permissions.admins, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 #define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
@@ -492,6 +492,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 /// Whether we have succesfully hidden out blood level
 #define BLOODSUCKER_HIDE_BLOOD "hide_blood_volume"
+#define BLOODSUCKER_SHOW_BLOOD "show_blood_volume"
 /// 1 tile down
 #define ui_blood_display "WEST:6,CENTER-1:0"
 /// 2 tiles down

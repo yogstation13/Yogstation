@@ -119,10 +119,6 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
-/datum/spellbook_entry/disintegrate
-	name = "Disintegrate"
-	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
-
 /datum/spellbook_entry/pacify
 	name = "Pacify"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
@@ -159,11 +155,6 @@
 	spell_type = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	cost = 1
 
-/datum/spellbook_entry/mindswap
-	name = "Mindswap"
-	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
-	category = "Mobility"
-
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
 	spell_type = /obj/effect/proc_holder/spell/targeted/forcewall
@@ -199,6 +190,10 @@
 	name = "Flesh to Stone"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
 
+/datum/spellbook_entry/touchofdeath		//yogs start
+	name = "Touch of Death"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs end
+
 /datum/spellbook_entry/summonitem
 	name = "Summon Item"
 	spell_type = /obj/effect/proc_holder/spell/targeted/summonitem
@@ -232,7 +227,7 @@
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
-	cost = 2
+	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
 /datum/spellbook_entry/barnyard

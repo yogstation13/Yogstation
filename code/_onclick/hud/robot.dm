@@ -1,15 +1,15 @@
-/obj/screen/robot
+/atom/movable/screen/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
 
-/obj/screen/robot/module
+/atom/movable/screen/robot/module
 	name = "cyborg module"
 	icon_state = "nomod"
 
-/obj/screen/robot/Click()
+/atom/movable/screen/robot/Click()
 	if(isobserver(usr))
 		return 1
 
-/obj/screen/robot/module/Click()
+/atom/movable/screen/robot/module/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
@@ -18,61 +18,61 @@
 		return 1
 	R.pick_module()
 
-/obj/screen/robot/module1
+/atom/movable/screen/robot/module1
 	name = "module1"
 	icon_state = "inv1"
 
-/obj/screen/robot/module1/Click()
+/atom/movable/screen/robot/module1/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
 	R.toggle_module(1)
 
-/obj/screen/robot/module2
+/atom/movable/screen/robot/module2
 	name = "module2"
 	icon_state = "inv2"
 
-/obj/screen/robot/module2/Click()
+/atom/movable/screen/robot/module2/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
 	R.toggle_module(2)
 
-/obj/screen/robot/module3
+/atom/movable/screen/robot/module3
 	name = "module3"
 	icon_state = "inv3"
 
-/obj/screen/robot/module3/Click()
+/atom/movable/screen/robot/module3/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
 	R.toggle_module(3)
 
-/obj/screen/robot/radio
+/atom/movable/screen/robot/radio
 	name = "radio"
 	icon_state = "radio"
 
-/obj/screen/robot/radio/Click()
+/atom/movable/screen/robot/radio/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
 	R.radio.interact(R)
 
-/obj/screen/robot/store
+/atom/movable/screen/robot/store
 	name = "store"
 	icon_state = "store"
 
-/obj/screen/robot/store/Click()
+/atom/movable/screen/robot/store/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
 	R.uneq_active()
 
-/obj/screen/robot/thrusters
+/atom/movable/screen/robot/thrusters
 	name = "ion thrusters"
 	icon_state = "ionpulse0"
 
-/obj/screen/robot/thrusters/Click()
+/atom/movable/screen/robot/thrusters/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
@@ -84,97 +84,97 @@
 /datum/hud/robot/New(mob/owner)
 	..()
 	var/mob/living/silicon/robot/mymobR = mymob
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
-	using = new/obj/screen/language_menu
+	using = new/atom/movable/screen/language_menu
 	using.screen_loc = ui_borg_language_menu
 	static_inventory += using
 
 //Radio
-	using = new /obj/screen/robot/radio()
+	using = new /atom/movable/screen/robot/radio()
 	using.screen_loc = ui_borg_radio
 	static_inventory += using
 
 //Module select
-	using = new /obj/screen/robot/module1()
+	using = new /atom/movable/screen/robot/module1()
 	using.screen_loc = ui_inv1
 	static_inventory += using
 	mymobR.inv1 = using
 
-	using = new /obj/screen/robot/module2()
+	using = new /atom/movable/screen/robot/module2()
 	using.screen_loc = ui_inv2
 	static_inventory += using
 	mymobR.inv2 = using
 
-	using = new /obj/screen/robot/module3()
+	using = new /atom/movable/screen/robot/module3()
 	using.screen_loc = ui_inv3
 	static_inventory += using
 	mymobR.inv3 = using
 
 //End of module select
 
-	using = new /obj/screen/robot/lamp()
+	using = new /atom/movable/screen/robot/lamp()
 	using.screen_loc = ui_borg_lamp
 	using.hud = src
 	static_inventory += using
 	mymobR.lampButton = using
-	var/obj/screen/robot/lamp/lampscreen = using
+	var/atom/movable/screen/robot/lamp/lampscreen = using
 	lampscreen.robot = mymobR
 
 //Photography stuff
-	using = new /obj/screen/ai/image_take()
+	using = new /atom/movable/screen/ai/image_take()
 	using.screen_loc = ui_borg_camera
 	using.hud = src
 	static_inventory += using
 
 //Sec/Med HUDs
-	using = new /obj/screen/ai/sensors()
+	using = new /atom/movable/screen/ai/sensors()
 	using.screen_loc = ui_borg_sensor
 	static_inventory += using
 
 //Thrusters
-	using = new /obj/screen/robot/thrusters()
+	using = new /atom/movable/screen/robot/thrusters()
 	using.screen_loc = ui_borg_thrusters
 	static_inventory += using
 	mymobR.thruster_button = using
 
 //Borg Integrated Tablet
-	using = new /obj/screen/robot/modPC()
+	using = new /atom/movable/screen/robot/modPC()
 	using.screen_loc = ui_borg_tablet
 	using.hud = src
 	static_inventory += using
 	mymobR.interfaceButton = using
 	if(mymobR.modularInterface)
 		using.vis_contents += mymobR.modularInterface
-	var/obj/screen/robot/modPC/tabletbutton = using
+	var/atom/movable/screen/robot/modPC/tabletbutton = using
 	tabletbutton.robot = mymobR
 
 //Intent
-	action_intent = new /obj/screen/act_intent/robot()
+	action_intent = new /atom/movable/screen/act_intent/robot()
 	action_intent.icon_state = mymob.a_intent
 	static_inventory += action_intent
 
 //Health
-	healths = new /obj/screen/healths/robot()
+	healths = new /atom/movable/screen/healths/robot()
 	infodisplay += healths
 
 //Installed Module
-	mymobR.hands = new /obj/screen/robot/module()
+	mymobR.hands = new /atom/movable/screen/robot/module()
 	mymobR.hands.screen_loc = ui_borg_module
 	static_inventory += mymobR.hands
 
 //Store
-	module_store_icon = new /obj/screen/robot/store()
+	module_store_icon = new /atom/movable/screen/robot/store()
 	module_store_icon.screen_loc = ui_borg_store
 
-	pull_icon = new /obj/screen/pull()
+	pull_icon = new /atom/movable/screen/pull()
 	pull_icon.icon = 'icons/mob/screen_cyborg.dmi'
 	pull_icon.update_icon(mymob)
 	pull_icon.screen_loc = ui_borg_pull
 	hotkeybuttons += pull_icon
 
 
-	zone_select = new /obj/screen/zone_sel/robot()
+	zone_select = new /atom/movable/screen/zone_sel/robot()
 	zone_select.update_icon(mymob)
 	static_inventory += zone_select
 
@@ -271,30 +271,30 @@
 			for(var/obj/item/I in R.held_items)
 				screenmob.client.screen -= I
 
-/obj/screen/robot/lamp
+/atom/movable/screen/robot/lamp
 	name = "headlamp"
 	icon_state = "lamp_off"
 	var/mob/living/silicon/robot/robot
 
-/obj/screen/robot/lamp/Click()
+/atom/movable/screen/robot/lamp/Click()
 	. = ..()
 	if(.)
 		return
 	robot?.toggle_headlamp()
 	update_icon()
 
-/obj/screen/robot/lamp/update_icon()
+/atom/movable/screen/robot/lamp/update_icon()
 	if(robot?.lamp_enabled)
 		icon_state = "lamp_on"
 	else
 		icon_state = "lamp_off"
 
-/obj/screen/robot/modPC
+/atom/movable/screen/robot/modPC
 	name = "Modular Interface"
 	icon_state = "template"
 	var/mob/living/silicon/robot/robot
 
-/obj/screen/robot/modPC/Click()
+/atom/movable/screen/robot/modPC/Click()
 	. = ..()
 	if(.)
 		return

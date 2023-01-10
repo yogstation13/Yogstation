@@ -112,12 +112,12 @@
 				if(isliving(T))
 					var/mob/living/M = T
 					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
-						D.reagents.reaction(M, VAPOR)
+						D.reagents.reaction(M, TOUCH)
 						puff_reagent_left -= 1
 						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
 						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
 				else if(!range_left)
-					D.reagents.reaction(T, VAPOR)
+					D.reagents.reaction(T, TOUCH)
 			else
 				D.reagents.reaction(T, VAPOR)
 				if(ismob(T))
@@ -155,7 +155,7 @@
 	set src in usr
 	if(usr.incapacitated())
 		return
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
 		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
@@ -220,7 +220,7 @@
 	volume = 60
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red = 20) //red dye)
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red/pepperspray = 20) //red dye)
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -378,3 +378,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
+
+// Rad-B-Gone
+/obj/item/reagent_containers/spray/radbgone
+	name = "Rad-B-Gone"
+	desc = "Warning, do not consume."
+	volume = 100
+	list_reagents = list(/datum/reagent/medicine/radscrub = 100)
+	stream_amount = 5

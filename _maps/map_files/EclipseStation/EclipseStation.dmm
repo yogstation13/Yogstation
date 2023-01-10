@@ -35380,18 +35380,6 @@
 /obj/machinery/atmospherics/pipe/simple/brown/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"bvY" = (
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Common Channel";
-	pixel_x = 30
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	pixel_y = -27
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "bvZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -49989,16 +49977,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"bZp" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 1;
-	name = "Air Mixer";
-	node1_concentration = 0.8;
-	node2_concentration = 0.2;
-	on = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "bZq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -87498,6 +87476,19 @@
 /obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plating,
 /area/vacant_room)
+"pFY" = (
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 30
+	},
+/obj/machinery/light_switch{
+	dir = 2;
+	pixel_y = -27
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "pGz" = (
 /obj/machinery/light,
 /obj/machinery/status_display/evac{
@@ -87775,6 +87766,12 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"qsd" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "qsQ" = (
 /obj/structure/chair/stool,
 /obj/structure/light_construct/small{
@@ -100787,7 +100784,7 @@ aSM
 aTJ
 beN
 aWa
-bvY
+pFY
 aSM
 bdy
 eMp
@@ -149170,7 +149167,7 @@ bTg
 bUp
 bUY
 bWo
-bZp
+qsd
 cbE
 ceB
 cfW

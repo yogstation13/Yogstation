@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(vote)
 				SSmapping.map_voted = TRUE
 	if(restart)
 		var/active_admins = FALSE
-		for(var/client/C in GLOB.admins + GLOB.deadmins)
+		for(var/client/C in GLOB.permissions.admins + GLOB.permissions.deadmins)
 			if(!C.is_afk() && check_rights_for(C, R_SERVER))
 				active_admins = TRUE
 				break
@@ -170,7 +170,7 @@ SUBSYSTEM_DEF(vote)
 		return FALSE
 	var/lower_admin = FALSE
 	var/ckey = ckey(initiator_key)
-	if(GLOB.admin_datums[ckey])
+	if(GLOB.permissions.admin_datums[ckey])
 		lower_admin = TRUE
 
 	if(!mode)

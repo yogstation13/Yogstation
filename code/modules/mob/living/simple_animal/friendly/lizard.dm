@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/lizard
-	name = "Lizard"
+	name = "lizard"
 	desc = "A cute tiny lizard."
 	icon_state = "lizard"
 	icon_living = "lizard"

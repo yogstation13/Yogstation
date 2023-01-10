@@ -152,13 +152,18 @@
   */
 /mob/living/simple_animal/hostile/swarmer/proc/Fabricate(atom/fabrication_object,fabrication_cost = 0)
 	if(!isturf(loc))
-		to_chat(src, span_warning("This is not a suitable location for fabrication. We need more space."))
+		balloon_or_message(src, "not a suitable location", \
+			span_warning("This is not a suitable location for fabrication. We need more space."))
 		return
 	if(resources < fabrication_cost)
-		to_chat(src, span_warning("You do not have the necessary resources to fabricate this object."))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("You do not have the necessary resources to fabricate this object."))
 		return
 	resources -= fabrication_cost
-	return new fabrication_object(drop_location())
+	var/atom/fabricated_object = new fabrication_object(drop_location())
+	fabricated_object.balloon_or_message(src, "successfully fabricated", \
+			span_notice("Sucessfully fabricated [fabricated_object]."))
+	return fabricated_object
 
 /**
   * Called when a swarmer attempts to consume an object
@@ -170,10 +175,12 @@
 /mob/living/simple_animal/hostile/swarmer/proc/Integrate(obj/target)
 	var/resource_gain = target.integrate_amount()
 	if(resources + resource_gain > max_resources)
-		to_chat(src, span_warning("We cannot hold more materials!"))
+		balloon_or_message(src, "storage is full", \
+			span_warning("We cannot hold more materials!"))
 		return TRUE
 	if(!resource_gain)
-		to_chat(src, span_warning("[target] is incompatible with our internal matter recycler."))
+		target.balloon_or_message(src, "incompatible, aborting", \
+			span_warning("[target] is incompatible with our internal matter recycler."))
 		return FALSE
 	resources += resource_gain
 	do_attack_animation(target)
@@ -215,7 +222,8 @@
 		return
 
 	if(!is_station_level(z) && !is_mining_level(z))
-		to_chat(src, span_warning("Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area."))
+		balloon_or_message(src, "cannot locate a bluespace link", \
+			span_warning("Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area."))
 		return
 
 	to_chat(src, span_info("Attempting to remove this being from our presence."))
@@ -272,7 +280,8 @@
 			last_alert = world.time + 5 SECONDS
 			priority_announce("Connection encryption violation in machine: [target]! Deconstruction projected to complete in: 30 SECONDS")
 	if(do_mob(src, target, dismantle_time))
-		to_chat(src, span_info("Dismantling complete."))
+		balloon_or_message(src, "dismantling complete", \
+			span_info("Dismantling complete."))
 		var/atom/target_loc = target.drop_location()
 		new /obj/item/stack/sheet/metal(target_loc, 5)
 		for(var/p in target.component_parts)
@@ -299,10 +308,12 @@
 	set category = "Swarmer"
 	set desc = "Creates a simple trap that will non-lethally electrocute anything that steps on it. Costs 4 resources."
 	if(locate(/obj/structure/swarmer/trap) in loc)
-		to_chat(src, span_warning("There is already a trap here. Aborting."))
+		balloon_or_message(src, "already a trap here", \
+			span_warning("There is already a trap here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
 	Fabricate(/obj/structure/swarmer/trap, 4)
 
@@ -316,10 +327,12 @@
 	set category = "Swarmer"
 	set desc = "Creates a barricade that will stop anything but swarmers and disabler beams from passing through.  Costs 4 resources."
 	if(locate(/obj/structure/swarmer/blockade) in loc)
-		to_chat(src, span_warning("There is already a blockade here. Aborting."))
+		balloon_or_message(src, "already a blockade here", \
+			span_warning("There is already a blockade here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
 	if(!do_mob(src, src, 1 SECONDS))
 		return
@@ -336,10 +349,12 @@
 	set desc = "Creates a duplicate of ourselves, capable of protecting us while we complete our objectives."
 	to_chat(src, span_info("We are attempting to replicate ourselves. We will need to stand still until the process is complete."))
 	if(resources < 20)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
 	if(!isturf(loc))
-		to_chat(src, span_warning("This is not a suitable location for replicating ourselves. We need more room."))
+		balloon_or_message(src, "not a suitable location", \
+			span_warning("This is not a suitable location for replicating ourselves. We need more room."))
 		return
 	if(!do_mob(src, src, 5 SECONDS))
 		return
@@ -374,7 +389,8 @@
 	if(!do_mob(src, src, 10 SECONDS))
 		return
 	adjustHealth(-maxHealth)
-	to_chat(src, span_info("We successfully repaired ourselves."))
+	balloon_or_message(src, "successfully repaired" ,\
+		span_info("We successfully repaired ourselves."))
 
 /**
   * Called when a swarmer toggles its light
@@ -396,6 +412,7 @@
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
 			drone.set_light(0)
+	balloon_alert(src, "light toggled")
 
 /**
   * Proc which is used for swarmer comms

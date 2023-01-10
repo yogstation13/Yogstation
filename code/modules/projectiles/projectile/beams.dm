@@ -45,12 +45,12 @@
 	impact_type = /obj/effect/projectile/impact/heavy_laser
 
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.IgniteMob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
+	return ..()
 
 /obj/item/projectile/beam/weak
 	damage = 15
@@ -69,7 +69,7 @@
 /obj/item/projectile/beam/xray
 	name = "\improper X-ray beam"
 	icon_state = "xray"
-	damage = 15
+	damage = 10
 	irradiate = 300
 	range = 15
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
@@ -83,7 +83,7 @@
 /obj/item/projectile/beam/disabler
 	name = "disabler beam"
 	icon_state = "omnilaser"
-	damage = 25
+	damage = 30
 	damage_type = STAMINA
 	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
@@ -93,6 +93,16 @@
 	tracer_type = /obj/effect/projectile/tracer/disabler
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
+
+/obj/item/projectile/beam/disabler/bounce
+	name = "bouncing disabler ball"
+	icon_state = "omnibouncer"
+	damage = 20
+	ricochets_max = 5
+	ricochet_chance = 100
+
+/obj/item/projectile/beam/disabler/bounce/check_ricochet_flag(atom/A)
+	return TRUE //whatever it is, we bounce on it
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"
@@ -150,12 +160,12 @@
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/item/projectile/beam/lasertag/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(ishuman(target))
+	if((blocked != 100) && ishuman(target)) //Anyone who knows the cheaters that held up objects to block their tag position knows that adding the block check to this is valid
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit))
 			if(M.wear_suit.type in suit_types)
 				M.adjustStaminaLoss(34)
+	return ..()
 
 /obj/item/projectile/beam/lasertag/redtag
 	icon_state = "laser"

@@ -21,7 +21,7 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 
-// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
+// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /mob/living/carbon/get_traumas()
 	if(!mind)
 		return ..()
@@ -126,21 +126,17 @@
 /// Am I "pale" when examined? - Bloodsuckers on Masquerade will hide this.
 /mob/living/carbon/human/proc/ShowAsPaleExamine(mob/living/user, blood_volume)
 	if(!mind)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	// Not a Bloodsucker?
 	if(!bloodsuckerdatum)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	// Blood level too low to be hidden?
 	if(blood_volume <= BLOOD_VOLUME_BAD(user) || bloodsuckerdatum.frenzied)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	// Special check: Nosferatu will always be Pale Death
 	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
 		return BLOODSUCKER_HIDE_BLOOD
-	switch(blood_volume)
-		if(BLOOD_VOLUME_OKAY(user) to BLOOD_VOLUME_SAFE(user))
-			return "[p_they(TRUE)] [p_have()] pale skin.\n"
-		if(BLOOD_VOLUME_BAD(user) to BLOOD_VOLUME_OKAY(user))
-			return "<b>[p_they(TRUE)] look[p_s()] like pale death.</b>\n"
+	return BLOODSUCKER_SHOW_BLOOD
 	// If a Bloodsucker is malnourished, AND if his temperature matches his surroundings (aka he hasn't fed recently and looks COLD)
 //	return blood_volume < BLOOD_VOLUME_OKAY // && !(bodytemperature <= get_temperature() + 2)

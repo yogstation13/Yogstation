@@ -43,7 +43,7 @@ jobs:
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
-          tgui/bin/tgui --lint
+          tools/build/build --ci lint tgui-test
           tools/travis/check_grep.sh
 
       - name: Run Linter
@@ -52,7 +52,7 @@ jobs:
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
           
       - name: Annotate Linter
-        uses: yogstation13/DreamAnnotate@v1
+        uses: yogstation13/DreamAnnotate@v2
         if: always()
         with: 
           outputFile: output-annotations.txt
@@ -69,13 +69,12 @@ jobs:
           sudo apt-get update
           sudo apt install libstdc++6:i386
       
-      - name: Cache BYOND
+      - name: Restore Cache BYOND
         uses: actions/cache@v1
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
-          
       - name: Setup BYOND
         run: |
           tools/travis/install_byond.sh
@@ -88,9 +87,7 @@ jobs:
           
       - name: Compile All Maps
         run: |
-          tools/travis/template_dm_generator.py
-          tgui/bin/tgui --build
-          tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
+          tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-20.04
@@ -111,13 +108,19 @@ jobs:
           sudo apt-get update
           sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib zlib1g:i386 libssl1.1 libssl1.1:i386
           
-      - name: Cache BYOND
+      - name: Restore Cache BYOND
         uses: actions/cache@v1
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
           
+      - name: Restore Yarn Cache
+        uses: actions/cache@v2
+        with:
+          path: tgui/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('Dockerfile')}}
+          restore-keys: ${{ runner.os }}-yarn
       - name: Setup Environment
         run: |
           tools/travis/install_byond.sh
@@ -132,10 +135,9 @@ jobs:
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
-          
       - name: Compile
         run: |
-          tgui/bin/tgui --build
+          tools/build/build --ci dm -DCIBUILDING
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
       - name: Prepare Artifacts

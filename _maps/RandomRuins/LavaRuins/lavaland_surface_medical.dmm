@@ -1067,21 +1067,6 @@
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
-"cl" = (
-/obj/machinery/door/airlock/glass_large{
-	name = "Orion Medical Outpost V"
-	},
-/obj/structure/fans/tiny/invisible,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/powered)
 "cm" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -1127,6 +1112,21 @@
 	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
+/area/ruin/powered)
+"uk" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "SIC Medical Outpost V"
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "wO" = (
 /obj/effect/turf_decal/tile/blue,
@@ -1715,7 +1715,7 @@ by
 bT
 by
 by
-cl
+uk
 ZO
 Yg
 cn

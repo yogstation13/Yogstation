@@ -28,26 +28,30 @@
 		to_chat(user, span_warning("[src] is empty!"))
 		return 0
 
-	if(!canconsume(M, user))
-		return 0
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(!canconsume(M, user))
+			return 0
 
-	if (!is_drainable())
-		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
-		return 0
+		if (!is_drainable())
+			to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
+			return 0
 
-	if(M == user)
-		user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
-		if(HAS_TRAIT(M, TRAIT_VORACIOUS))
-			M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
+		if(M == user)
+			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
+				M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
 
-	else
-		M.visible_message(span_danger("[user] attempts to feed the contents of [src] to [M]."), span_userdanger("[user] attempts to feed the contents of [src] to [M]."))
-		if(!do_mob(user, M))
+		else
+			if(!C.force_drink_text(src, C, user))
+				return
+			if(!do_mob(user, M))
+				return
+			if(!reagents || !reagents.total_volume)
+				return // The drink might be empty after the delay, such as by spam-feeding
+			log_combat(user, M, "fed", reagents.log_list())
+
+		if(!C.drink_text(src, C, user))
 			return
-		if(!reagents || !reagents.total_volume)
-			return // The drink might be empty after the delay, such as by spam-feeding
-		M.visible_message(span_danger("[user] feeds the contents of [src] to [M]."), span_userdanger("[user] feeds the contents of [src] to [M]."))
-		log_combat(user, M, "fed", reagents.log_list())
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
@@ -252,7 +256,10 @@
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
 	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon_state = "ramen"
+	item_state = "ramen"
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/sodiumchloride = 3)
 	foodtype = GRAIN
 	isGlass = FALSE

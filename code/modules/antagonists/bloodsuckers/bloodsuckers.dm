@@ -70,11 +70,7 @@
 	var/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		/datum/antagonist/monsterhunter,
-		/datum/antagonist/changeling,
-		/datum/antagonist/cult,
-		/datum/antagonist/heretic,
 		/datum/antagonist/xeno,
-		/datum/antagonist/obsessed
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
@@ -318,7 +314,7 @@
 		report += span_greentext(span_big("The [name] was successful!"))
 	else if(objectives_complete && !optional_objectives_complete)
 		report += span_marooned("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
-	else		
+	else
 		report += span_redtext(span_big("The [name] has failed!"))
 	report += get_flavor(objectives_complete, optional_objectives_complete)
 	return report
@@ -495,10 +491,12 @@
 	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
-	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+	if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
+		return
+	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
 	bloodsucker_level_unspent--
@@ -726,7 +724,7 @@
 
 	return fullname
 
-///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed, and Malkavian Bloodsuckers get alerted.
+///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed.
 /datum/antagonist/bloodsucker/proc/break_masquerade()
 	if(broke_masquerade)
 		return
@@ -740,15 +738,16 @@
 			continue
 		if(!isliving(clan_minds.current))
 			continue
-		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade! Ensure they are eliminated at all costs!"))
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = clan_minds.has_antag_datum(/datum/antagonist/bloodsucker)
-		var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
-		masquerade_objective.target = owner.current
-		masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
-		bloodsuckerdatum.objectives += masquerade_objective
-		clan_minds.announce_objectives()
+		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade![bloodsuckerdatum.my_clan == CLAN_TOREADOR ? "Ensure they are eliminated at all costs!" : ""]"))
+		if(bloodsuckerdatum.my_clan == CLAN_TOREADOR)
+			var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
+			masquerade_objective.target = owner.current
+			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, suffers Final Death."
+			bloodsuckerdatum.objectives += masquerade_objective
+			clan_minds.announce_objectives()
 
-///This is admin-only of reverting a broken masquerade, sadly it doesn't remove the Malkavian objectives yet.
+///This is admin-only of reverting a broken masquerade.
 /datum/antagonist/bloodsucker/proc/fix_masquerade()
 	if(!broke_masquerade)
 		return
@@ -812,15 +811,15 @@
 		owner.current.hud_used.sunlight_display.update_counter(value_string, valuecolor)
 		owner.current.hud_used.sunlight_display.icon_state = sunlight_display_icon
 
-/obj/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='bottom' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[value]</font></div>"
 
@@ -845,11 +844,14 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	var/mob/living/carbon/human/user = bloodsucker.current
-	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
-		prepare_bloodsucker(bloodsucker)
-	add_antag_datum(/datum/antagonist/bloodsucker)
-	return TRUE
+	if(bloodsucker)
+		var/mob/living/carbon/human/user = bloodsucker.current
+		if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+			prepare_bloodsucker(bloodsucker)
+		add_antag_datum(/datum/antagonist/bloodsucker)
+		return TRUE
+	else
+		return
 
 /datum/mind/proc/remove_bloodsucker()
 	var/datum/antagonist/bloodsucker/removed_bloodsucker = has_antag_datum(/datum/antagonist/bloodsucker)

@@ -24,7 +24,7 @@
 
 /obj/effect/projectile/impact/plasma_cutter
 	name = "plasma impact"
-	icon_state = "impact_plasmacutter"
+	icon_state = "impact_purple"
 
 /obj/effect/projectile/impact/stun
 	name = "stun impact"

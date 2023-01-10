@@ -18,7 +18,7 @@
 	name = "radiant dance machine mark IV"
 	desc = "The first three prototypes were discontinued after mass casualty incidents."
 	icon_state = "disco"
-	req_access = list(ACCESS_BAR)
+	req_access = null
 	anchored = FALSE
 	var/list/spotlights = list()
 	var/list/sparkles = list()
@@ -29,6 +29,9 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/jukebox/disco/bar
+	req_access = list(ACCESS_BAR)
 
 /datum/track
 	var/song_name = "generic"

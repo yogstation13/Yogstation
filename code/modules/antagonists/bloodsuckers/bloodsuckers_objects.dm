@@ -163,7 +163,7 @@
 		if(target.StakeCanKillMe())
 			bloodsuckerdatum.FinalDeath()
 		else
-			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
+			to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place, and death would be permanent!"))
 			to_chat(target, span_userdanger("You have been staked!"))
 
 /// Created by welding and acid-treating a simple stake.
@@ -338,7 +338,7 @@
 			They can be best defined as 'The most humane kind of vampire', due to their kindred with an obsession with perfectionism and beauty<br> \
 			<b>Favorite Vassal</b>: Their favorite Vassal gains the Mesmerize ability \
 			<b>Strength</b>: Highly charismatic and influential.<br> \
-			<b>Weakness</b>: Physically and Morally weak."
+			<b>Weakness</b>: Morally weak."
 		if(CLAN_NOSFERATU)
 			dat += "This Clan has been the most obvious to find information about.<br> \
 			They are <i>disfigured, ghoul-like</i> vampires upon embrace by their Sire, scouts that travel through desolate paths to avoid violating the Masquerade.<br> \
@@ -388,6 +388,6 @@
 			<b>Strength</b>: They are able to slowly advance their abilities.<br> \
 			<b>Weakness</b>: Immensely weak to burn damage."
 		if(CLAN_TZIMISCE)
-			dat += "The page is covered in blood. It seems like it will need time to vanish..."
+			dat += "The page is covered in blood..."
 
 	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")

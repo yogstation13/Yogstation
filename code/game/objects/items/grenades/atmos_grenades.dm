@@ -18,6 +18,29 @@
 	playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', volume, TRUE)
 	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
 
+/obj/item/grenade/gas_crystal/proto_nitrate_crystal
+	name = "Proto Nitrate crystal"
+	desc = "A crystal made from the Proto Nitrate gas, you can see the liquid gases inside."
+	icon_state = "proto_nitrate_crystal"
+	///Range of the grenade air refilling
+	var/refill_range = 5
+	///Amount of Nitrogen gas released (close to the grenade)
+	var/n2_gas_amount = 80
+	///Amount of Oxygen gas released (close to the grenade)
+	var/o2_gas_amount = 30
+
+/obj/item/grenade/gas_crystal/proto_nitrate_crystal/prime(mob/living/lanced_by)
+	. = ..()
+	update_mob()
+	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
+	for(var/turf/turf_loc in view(refill_range, loc))
+		if(!isopenturf(turf_loc))
+			continue
+		var/distance_from_center = max(get_dist(turf_loc, loc), 1)
+		var/turf/open/floor_loc = turf_loc
+		floor_loc.atmos_spawn_air("n2=[n2_gas_amount / distance_from_center];o2=[o2_gas_amount / distance_from_center];TEMP=273")
+	qdel(src)
+
 /obj/item/grenade/gas_crystal/healium_crystal
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
@@ -93,4 +116,34 @@
 		var/distance_from_center = max(get_dist(turf_loc, loc), 1)
 		var/turf/open/floor_loc = turf_loc
 		floor_loc.atmos_spawn_air("n2o=[n2o_gas_amount / distance_from_center];TEMP=273")
+	qdel(src)
+
+/obj/item/grenade/gas_crystal/crystal_foam
+	name = "crystal foam"
+	desc = "A crystal with a foggy inside"
+	icon_state = "crystal_foam"
+	var/breach_range = 7
+
+/obj/item/grenade/gas_crystal/crystal_foam/prime(mob/living/lanced_by)
+	. = ..()
+
+	var/datum/reagents/first_batch = new
+	var/datum/reagents/second_batch = new
+	var/list/datum/reagents/reactants = list()
+
+	first_batch.add_reagent(/datum/reagent/aluminium, 75)
+	second_batch.add_reagent(/datum/reagent/smart_foaming_agent, 25)
+	second_batch.add_reagent(/datum/reagent/toxin/acid/fluacid, 25)
+	reactants += first_batch
+	reactants += second_batch
+
+	var/turf/detonation_turf = get_turf(src)
+
+	chem_splash(detonation_turf, breach_range, reactants)
+
+	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
+	log_game("A grenade detonated at [AREACOORD(detonation_turf)]")
+
+	update_mob()
+
 	qdel(src)

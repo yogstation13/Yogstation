@@ -53,6 +53,7 @@
 
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
+	mannequin.add_overlay(mutable_appearance('icons/turf/floors.dmi', background, layer = SPACE_LAYER))
 	copy_to(mannequin)
 
 	if(previewJob)

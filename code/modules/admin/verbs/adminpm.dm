@@ -260,7 +260,7 @@
 
 	if(irc)
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in GLOB.permissions.admins)
 			to_chat(X,
 				type = MESSAGE_TYPE_ADMINPM,
 				html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]"),
@@ -269,7 +269,7 @@
 		window_flash(recipient, ignorepref = TRUE)
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//we don't use message_admins here because the sender/receiver might get it too
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in GLOB.permissions.admins)
 			if(X.key!=key && X.key!=recipient.key)	//check client/X is an admin and isn't the sender or recipientD
 				to_chat(X,
 					type = MESSAGE_TYPE_ADMINPM,

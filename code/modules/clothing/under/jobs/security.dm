@@ -47,6 +47,7 @@
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = 3
+	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -120,6 +121,7 @@
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
+	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 

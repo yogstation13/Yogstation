@@ -2,16 +2,17 @@
 /obj/item/projectile/energy/nuclear_particle
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
-	pass_flags = PASSTABLE | PASSGRILLE
-	damage = 3
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	damage = 5
 	damage_type = BURN
+	irradiate = 400
 	speed = 0.4
 	hitsound = 'sound/weapons/emitter2.ogg'
 	impact_type = /obj/effect/projectile/impact/xray
 	var/static/list/particle_colors = list(
 		"red" = "#FF0000",
-		"blue" = "#00FF00",
-		"green" = "#0000FF",
+		"green" = "#00FF00",
+		"blue" = "#0000FF",
 		"yellow" = "#FFFF00",
 		"cyan" = "#00FFFF",
 		"purple" = "#FF00FF"

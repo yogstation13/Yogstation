@@ -1,6 +1,8 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
+	description = "Watch over the Brig and Prison Wing to ensure prisoners receive medical attention when needed."
 	flag = BRIGPHYS
+	orbit_icon = "suitcase-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -8,6 +10,9 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 5 //seriously stop griefing
+	exp_requirements = 100
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/brigphysician
 
@@ -23,6 +28,8 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	smells_like = "crimson guardianship"
+
 /datum/job/brigphysician/proc/OmegaStationChanges()
 	return TRUE
 
@@ -34,7 +41,7 @@
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/pda/physician
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1)
 	ears = /obj/item/radio/headset/headset_medsec
@@ -42,10 +49,11 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
+	uniform_skirt = /obj/item/clothing/under/yogs/rank/physician/white/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
 	r_hand = /obj/item/modular_computer/laptop/preset/brig_physician
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/phys
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

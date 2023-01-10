@@ -18,6 +18,7 @@
 	item_state = "recovery"
 	alt_covers_chest = TRUE
 	sensor_mode = 3
+	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -27,7 +28,8 @@
 	icon_state = "secwhite"
 	item_state = "secwhite"
 	alt_covers_chest = FALSE
-	random_sensor = TRUE
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 
 /obj/item/clothing/under/yogs/rank/physician/white/skirt
 	name = "white brig physician's jumpskirt"
@@ -37,4 +39,6 @@
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION

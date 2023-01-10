@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !issilicon(player))
+		if(player.mind && player.stat != DEAD && !(issilicon(player) || isipc(player)))
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -883,7 +883,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/capture/living/update_explanation_text()
 	. = ..()
-	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
+	explanation_text = "Capture [target_amount] sapient lifeform\s with an energy net. Only living specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"
@@ -1480,7 +1480,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/contract/proc/generate_dropoff()
 	var/found = FALSE
 	while (!found)
-		var/area/dropoff_area = pick(GLOB.sortedAreas)
+		var/area/dropoff_area = pick(GLOB.areas)
 		if(dropoff_area && is_station_level(dropoff_area.z) && !dropoff_area.outdoors)
 			dropoff = dropoff_area
 			found = TRUE

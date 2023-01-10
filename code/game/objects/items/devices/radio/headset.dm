@@ -1,19 +1,3 @@
-// Used for translating channels to tokens on examination
-GLOBAL_LIST_INIT(channel_tokens, list(
-	RADIO_CHANNEL_COMMON = RADIO_KEY_COMMON,
-	RADIO_CHANNEL_SCIENCE = RADIO_TOKEN_SCIENCE,
-	RADIO_CHANNEL_COMMAND = RADIO_TOKEN_COMMAND,
-	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
-	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
-	RADIO_CHANNEL_SECURITY = RADIO_TOKEN_SECURITY,
-	RADIO_CHANNEL_CENTCOM = RADIO_TOKEN_CENTCOM,
-	RADIO_CHANNEL_SYNDICATE = RADIO_TOKEN_SYNDICATE,
-	RADIO_CHANNEL_SUPPLY = RADIO_TOKEN_SUPPLY,
-	RADIO_CHANNEL_SERVICE = RADIO_TOKEN_SERVICE,
-	MODE_BINARY = MODE_TOKEN_BINARY,
-	RADIO_CHANNEL_AI_PRIVATE = RADIO_TOKEN_AI_PRIVATE
-))
-
 /obj/item/radio/headset
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
@@ -24,41 +8,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	canhear_range = 0 // can't hear headsets from very far away
 
 	slot_flags = ITEM_SLOT_EARS
-	var/obj/item/encryptionkey/keyslot2 = null
 	dog_fashion = null
 
 /obj/item/radio/headset/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins putting \the [src]'s antenna up [user.p_their()] nose! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer!"))
 	return TOXLOSS
 
-/obj/item/radio/headset/examine(mob/user)
-	. = ..()
-
-	if(item_flags & IN_INVENTORY && loc == user)
-		// construction of frequency description
-		var/list/avail_chans = list("Use [RADIO_KEY_COMMON] for the currently tuned frequency")
-		if(translate_binary)
-			avail_chans += "use [MODE_TOKEN_BINARY] for [MODE_BINARY]"
-		if(length(channels))
-			for(var/i in 1 to length(channels))
-				if(i == 1)
-					avail_chans += "use [MODE_TOKEN_DEPARTMENT] or [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"
-				else
-					avail_chans += "use [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"
-		. += span_notice("A small screen on the headset displays the following available frequencies:\n[english_list(avail_chans)].")
-
-		if(command)
-			. += span_info("Alt-click to toggle the high-volume mode.")
-	else
-		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
-
 /obj/item/radio/headset/Initialize()
 	. = ..()
 	recalculateChannels()
-
-/obj/item/radio/headset/Destroy()
-	QDEL_NULL(keyslot2)
-	return ..()
 
 /obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language, list/message_mods)
 	if (!listening)
@@ -260,6 +218,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/headset_cent/alt
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
+/obj/item/radio/headset/headset_cent/bowman // No captain key
+	name = "\improper CentCom bowman headset"
+	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
+	icon_state = "cent_headset_alt"
+	item_state = "cent_headset_alt"
+
+/obj/item/radio/headset/headset_cent/bowman/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+
 /obj/item/radio/headset/headset_cent/commander
 	name = "\improper CentCom bowman headset"
 	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
@@ -326,24 +294,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		recalculateChannels()
 	else
 		return ..()
-
-
-/obj/item/radio/headset/recalculateChannels()
-	..()
-	if(keyslot2)
-		for(var/ch_name in keyslot2.channels)
-			if(!(ch_name in src.channels))
-				channels[ch_name] = keyslot2.channels[ch_name]
-
-		if(keyslot2.translate_binary)
-			translate_binary = TRUE
-		if(keyslot2.syndie)
-			syndie = TRUE
-		if (keyslot2.independent)
-			independent = TRUE
-
-	for(var/ch_name in channels)
-		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
 /obj/item/radio/headset/AltClick(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())

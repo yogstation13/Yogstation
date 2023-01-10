@@ -17,6 +17,7 @@
 			dashboard.tick(seconds)
 
 		process_hijack() // yogs
+		process_integrate()
 
 
 		if(malfhack && malfhack.aidisabled)

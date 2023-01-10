@@ -24,6 +24,7 @@
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,							6000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,								1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100, VENDING_UPGRADE),
@@ -53,12 +54,15 @@
 		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000, VENDING_MINEBOT),
+		new /datum/data/mining_equipment("Pocket Fire Extinguisher",		/obj/item/extinguisher/mini,									50, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Lesser Mining Charge",		/obj/item/grenade/plastic/miningcharge/lesser,						300, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("Gem Satchel",					/obj/item/storage/bag/gem,											150, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Explorer's Webbing",			/obj/item/storage/belt/mining,										500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Conscription Kit",		/obj/item/storage/backpack/duffelbag/mining_conscript,				1000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,								500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Meson Health Scanner HUD",	/obj/item/clothing/glasses/hud/health/meson,						1000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("Jump Boots Implants",			/obj/item/multisurgeon/jumpboots,									10000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Environment Proof Bodybag", 	/obj/item/bodybag/environmental, 									1000, VENDING_EQUIPMENT),
@@ -193,8 +197,9 @@
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel")
-		)
+		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
+		"Mini Plasma Cutter Kit" = image(icon = 'icons/obj/guns/energy.dmi', icon_state="plasmacutter_mini")
+	)
 
 	items = sortList(items)
 	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -222,6 +227,8 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
+		if("Mini Plasma Cutter Kit")
+			new /obj/item/gun/energy/plasmacutter/mini(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
@@ -263,6 +270,7 @@
 		new /datum/data/mining_equipment("Extra ID",       				/obj/item/card/id/mining, 				                   		250, VENDING_MISC),
 		new /datum/data/mining_equipment("Monkey Cube",					/obj/item/reagent_containers/food/snacks/monkeycube,        	300, VENDING_MISC),
 		new /datum/data/mining_equipment("Grey Slime Extract",			/obj/item/slime_extract/grey,									1000, VENDING_MISC),
+		new /datum/data/mining_equipment("Pocket Fire Extinguisher",		/obj/item/extinguisher/mini,									50, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Science Goggles",       		/obj/item/clothing/glasses/science,								250, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Toolbelt",					/obj/item/storage/belt/utility,	    							350, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Random Poster",				/obj/item/poster/random_official,								200, VENDING_MISC),
@@ -282,6 +290,7 @@
 		new /datum/data/mining_equipment("Super Resonator",     		/obj/item/resonator/upgraded,									2000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,										750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,										1500, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,							500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter" ,				/obj/item/gun/energy/plasmacutter,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,						6000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,							1000, VENDING_WEAPON),
@@ -306,7 +315,9 @@
 		new /datum/data/mining_equipment("Mecha Plasma Generator",		/obj/item/mecha_parts/mecha_equipment/generator,				1500, VENDING_MECHA),
 		new /datum/data/mining_equipment("Diamond Mecha Drill",			/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,		2000, VENDING_MECHA),
 		new /datum/data/mining_equipment("Mecha Plasma Cutter",			/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma,		3000, VENDING_MECHA),
+		new /datum/data/mining_equipment("Pocket Fire Extinguisher",		/obj/item/extinguisher/mini,									50, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Lesser Mining Charge",		/obj/item/grenade/plastic/miningcharge/lesser,					300, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("Gem Satchel",					/obj/item/storage/bag/gem,										150, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,							500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,					2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,									2000, VENDING_EQUIPMENT),
@@ -441,6 +452,7 @@
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
 	new /obj/item/storage/bag/ore(src)
+	new /obj/item/storage/bag/gem(src)
 	new /obj/item/clothing/suit/hooded/explorer(src)
 	new /obj/item/encryptionkey/headset_mining(src)
 	new /obj/item/clothing/mask/gas/explorer(src)

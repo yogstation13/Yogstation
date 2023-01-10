@@ -82,11 +82,17 @@
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = TRUE
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
+
+/obj/effect/mine/Initialize()
+	. = ..()
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -124,7 +130,7 @@
 		return
 	visible_message(span_danger("[victim] sets off [icon2html(src, viewers(src))] [src]!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(3, 1, src)
+	s.set_up(1, 0, src)
 	s.start()
 	mineEffect(victim)
 	triggered = 1
@@ -163,6 +169,16 @@
 
 /obj/effect/mine/explosive/traitor/mineEffect(mob/victim)
 	playsound(loc, sound, 100, 1)
+	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
+
+/obj/effect/mine/explosive/ancient
+	name = "rusty mine"
+	range_heavy = 0
+	range_light = 1
+	range_flash = 2
+	disarm_product = null
+
+/obj/effect/mine/explosive/ancient/mineEffect(mob/victim)
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
 /obj/effect/mine/stun
@@ -245,6 +261,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
+	alpha = 255
 	var/duration = 0
 
 /obj/effect/mine/pickup/Initialize()
@@ -324,3 +341,20 @@
 	sleep(duration)
 	victim.remove_movespeed_modifier(MOVESPEED_ID_YELLOW_ORB)
 	to_chat(victim, span_notice("You slow down."))
+
+/obj/item/deployablemine/creampie
+	name = "deployable creampie mine"
+	desc = "An unarmed creampie mine designed to be rapidly placeable."
+	mine_type = /obj/effect/mine/creampie
+	arming_time = 1 SECONDS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/effect/mine/creampie
+	name = "creampie landmine"
+	desc = "Creampie?"
+	disarm_time = 60 SECONDS
+	disarm_product = /obj/item/deployablemine/creampie
+
+/obj/effect/mine/creampie/mineEffect(mob/victim)
+	var/obj/item/reagent_containers/food/snacks/pie/cream/P = new /obj/item/reagent_containers/food/snacks/pie/cream(src)
+	P.splat(victim)

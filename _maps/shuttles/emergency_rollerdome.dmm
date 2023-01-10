@@ -310,7 +310,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Kv" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/machinery/light{

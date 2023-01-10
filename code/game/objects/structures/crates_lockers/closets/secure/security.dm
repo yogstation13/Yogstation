@@ -93,7 +93,7 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/flashlight/seclite(src)
-	new /obj/item/clothing/gloves/krav_maga/sec(src)
+	new /obj/item/clothing/gloves/sec_maga(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clipboard/yog/paperwork/warden(src)
@@ -321,3 +321,4 @@
 	new /obj/item/tank/internals/anesthetic(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/gloves/color/latex/nitrile

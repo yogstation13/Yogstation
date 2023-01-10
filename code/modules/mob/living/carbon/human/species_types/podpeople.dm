@@ -14,16 +14,20 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	burnmod = 1.5 //Ow my plant
-	heatmod = 1.5 //Ow my plant
+	burnmod = 2
+	heatmod = 1.5
+	coldmod = 1.5
+	acidmod = 2
+	speedmod = 0.33
 	siemen_coeff = 0.75 //I wouldn't make semiconductors out of plant material
-	punchdamagehigh = 8 //I am being attacked by a dandelion
-	punchstunthreshold = 9 //TF2 no-crits special
+	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
+	punchstunthreshold = 9 
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	exotic_blood = /datum/reagent/water
-	disliked_food = MEAT | DAIRY | SEAFOOD | MICE
-	liked_food = VEGETABLES | FRUIT | GRAIN
+	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
+	toxic_food = ALCOHOL
+	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)

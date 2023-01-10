@@ -21,6 +21,8 @@
 	var/datum/gas_mixture/internal = new
 	///Var that controls how much gas gets injected in moles/S
 	var/gas_input = 0
+	///Maximum allowed gas input
+	var/max_gas_input = 250
 	///Saves the progress during the processing of the items
 	var/progress_bar = 0
 	///Stores the amount of lost quality
@@ -154,11 +156,11 @@
 
 	if(	(internal.return_temperature() >= (selected_recipe.min_temp * MIN_DEVIATION_RATE) && internal.return_temperature() <= selected_recipe.min_temp) || \
 		(internal.return_temperature() >= selected_recipe.max_temp && internal.return_temperature() <= (selected_recipe.max_temp * MAX_DEVIATION_RATE)))
-		quality_loss = min(quality_loss + 1.5, -100)
+		quality_loss = min(quality_loss + 1.5, 100)
 
-	var/median_temperature = (selected_recipe.max_temp - selected_recipe.min_temp) * 0.5
+	var/median_temperature = (selected_recipe.max_temp + selected_recipe.min_temp) * 0.5
 	if(internal.return_temperature() >= (median_temperature * MIN_DEVIATION_RATE) && internal.return_temperature() <= (median_temperature * MAX_DEVIATION_RATE))
-		quality_loss = max(quality_loss - 5.5, 100)
+		quality_loss = max(quality_loss - 5.5, -100)
 
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/apply_cooling()
 	var/datum/gas_mixture/cooling_port = airs[1]
@@ -220,25 +222,25 @@
 	var/quality_control
 	switch(total_quality)
 		if(100)
-			quality_control = "Masterwork"
+			quality_control = "masterwork"
 		if(95 to 99)
-			quality_control = "Supreme"
+			quality_control = "supreme"
 		if(75 to 94)
-			quality_control = "Good"
+			quality_control = "good"
 		if(65 to 74)
-			quality_control = "Decent"
+			quality_control = "decent"
 		if(55 to 64)
-			quality_control = "Average"
+			quality_control = "average"
 		if(35 to 54)
-			quality_control = "Ok"
+			quality_control = "okay"
 		if(15 to 34)
-			quality_control = "Poor"
+			quality_control = "poor"
 		if(5 to 14)
-			quality_control = "Ugly"
+			quality_control = "ugly"
 		if(1 to 4)
-			quality_control = "Cracked"
+			quality_control = "cracked"
 		if(0)
-			quality_control = "Oh God why"
+			quality_control = "terrible"
 
 	for(var/path in selected_recipe.products)
 		var/amount_produced = selected_recipe.products[path]
@@ -246,8 +248,8 @@
 			var/obj/creation = new path(get_step(src, SOUTH))
 			creation.name = "[quality_control] [creation.name]"
 			if(selected_recipe.dangerous)
-				investigate_log("has been created in the crystallizer.", INVESTIGATE_SUPERMATTER)
-				message_admins("[src] has been created in the crystallizer [ADMIN_JMP(src)].")
+				investigate_log("[selected_recipe.name] has been created in the crystallizer.", INVESTIGATE_SUPERMATTER)
+				message_admins("[selected_recipe.name] has been created in the crystallizer [ADMIN_JMP(src)].")
 
 
 	quality_loss = 0
@@ -314,6 +316,7 @@
 	data["internal_temperature"] = temperature
 	data["progress_bar"] = progress_bar
 	data["gas_input"] = gas_input
+	data["max_gas_input"] = max_gas_input
 	return data
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_act(action, params)
@@ -342,7 +345,8 @@
 			. = TRUE
 		if("gas_input")
 			var/_gas_input = params["gas_input"]
-			gas_input = clamp(_gas_input, 0, 250)
+			gas_input = clamp(_gas_input, 0, max_gas_input)
+			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
 #undef MIN_PROGRESS_AMOUNT

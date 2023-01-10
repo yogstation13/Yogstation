@@ -19,7 +19,11 @@
 	action_background_icon_state = "bg_mime"
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall/Click()
+	var/mob/living/carbon/C = usr
 	if(usr && usr.mind)
+		if(C.handcuffed)
+			to_chat(usr, span_notice("You cannot cast this while handcuffed!"))
+			return
 		if(!usr.mind.miming)
 			to_chat(usr, span_notice("You must dedicate yourself to silence first."))
 			return

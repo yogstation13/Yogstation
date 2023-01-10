@@ -6,10 +6,15 @@
 	icon_state = "empty"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	/// Amount of rounds in this box
 	var/rounds = 0
+	/// How the bullets are described to the user "There are 5 missiles left"
 	var/round_term = "round"
-	var/direct_load //For weapons where we re-load the weapon itself rather than adding to the ammo storage.
+	/// For weapons where we re-load the weapon itself rather than adding to the ammo storage.
+	var/direct_load
+	/// Sound when reloaded
 	var/load_audio = "sound/weapons/gun_magazine_insert_empty_1.ogg"
+	/// Type of ammo. used to make sure the ammo type is compatable with the weapon itself
 	var/ammo_type
 
 /obj/item/mecha_ammo/proc/update_name()

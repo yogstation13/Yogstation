@@ -27,7 +27,7 @@
 	qdel(internal_multitool)
 
 /obj/item/holotool/examine(mob/user)
-	..()
+	. = ..()
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 

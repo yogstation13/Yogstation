@@ -54,12 +54,12 @@
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
 		if(is_mentor())
-			to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has started answering [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
+			to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has started answering [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 		msg = input(src,"Message:", "Private message") as text|null
 
 		if(!msg)
 			if(is_mentor())
-				to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has decided not to answer [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
+				to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has decided not to answer [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 			return
 
 		// Neither party is a mentor, they shouldn't be PMing!
@@ -112,7 +112,7 @@
 	//we don't use message_Mentors here because the sender/receiver might get it too
 	var/show_char_sender = !is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	var/show_char_recip = C && !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
-	for(var/client/X in GLOB.mentors | (GLOB.admins - GLOB.deadmins))
+	for(var/client/X in GLOB.mentors | (GLOB.permissions.admins - GLOB.permissions.deadmins))
 		if(X.key != key && (!C || X.key != C.key))	//check client/X is an Mentor and isn't the sender or recipient
 			if(discord_id)
 				to_chat(X, "<B><font color='green mentor'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <span class='blueteamradio mentor'> [msg]</span>", confidential=TRUE) //inform X

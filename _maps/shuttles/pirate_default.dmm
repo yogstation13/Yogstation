@@ -629,32 +629,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/wood,
 /area/shuttle/pirate)
-"bt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/melee/transforming/energy/sword/pirate{
-	pixel_x = -1;
-	pixel_y = 6
-	},
-/obj/item/melee/transforming/energy/sword/pirate{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/melee/transforming/energy/sword/pirate{
-	pixel_x = 13;
-	pixel_y = 6
-	},
-/turf/open/floor/pod/light,
-/area/shuttle/pirate)
 "bu" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -1259,6 +1233,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
+"WJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/melee/transforming/energy/sword/pirate{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/obj/item/melee/transforming/energy/sword/pirate{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/melee/transforming/energy/sword/pirate{
+	pixel_x = 13;
+	pixel_y = 6
+	},
+/obj/item/twohanded/vxtvulhammer/pirate,
+/turf/open/floor/pod/light,
+/area/shuttle/pirate)
 "Yj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -1472,7 +1473,7 @@ ad
 ah
 an
 aj
-bt
+WJ
 gY
 bI
 aj

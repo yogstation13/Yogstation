@@ -45,6 +45,7 @@ GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)
 GLOBAL_LIST_EMPTY(ipc_chassis_list)
+GLOBAL_LIST_INIT(plasmaman_helmet_list, list("None" = "", "Slit" = "S", "Nyan" = "N", "Gassy" = "G", "Bane" = "B", "Halo" = "H", "Wizard" = "W"))
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list(
@@ -67,6 +68,13 @@ GLOBAL_LIST_INIT(color_list_ethereal, list(
 	"K Class (Orange)" = "#ffa64d",
 	"K1 Class (Burnt Orange)" = "#cc4400",	
 	"White Dwarf" = "#f2f2f2",))
+
+GLOBAL_LIST_INIT(color_list_preternis, list(
+	"Factory Default" = "FFFFFF", 
+	"Rust" = "B7410E", "Chrome" = 
+	"B0C4DE", "Overgrown" = "b2ee69", 
+	"Gunmetal Gray" = "8D918D", 
+	"Gold" = "D4AF37"))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks

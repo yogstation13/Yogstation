@@ -90,7 +90,7 @@
 	var/explosion_message = 1				//whether we show a message to mobs.
 
 /datum/effect_system/reagents_explosion/set_up(amt, loca, flash = 0, flash_fact = 0, message = 1)
-	amount = amt
+	amount = max(amt,0)
 	explosion_message = message
 	if(isturf(loca))
 		location = loca

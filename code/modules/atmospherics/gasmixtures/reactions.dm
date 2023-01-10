@@ -58,6 +58,9 @@ nobliumformation = 1001
 			maxb = R.priority
 	return maxb - maxa
 
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares the priority of two gas reactions
+	return b.priority - a.priority
+
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
@@ -75,15 +78,15 @@ nobliumformation = 1001
 /datum/gas_reaction/proc/react(datum/gas_mixture/air, atom/location)
 	return NO_REACTION
 
-/datum/gas_reaction/nobliumsupression
+/datum/gas_reaction/nobliumsuppression
 	priority = 1000 //ensure all non-HN reactions are lower than this number.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
-/datum/gas_reaction/nobliumsupression/init_reqs()
+/datum/gas_reaction/nobliumsuppression/init_reqs()
 	min_requirements = list(/datum/gas/hypernoblium = REACTION_OPPRESSION_THRESHOLD)
 
-/datum/gas_reaction/nobliumsupression/react()
+/datum/gas_reaction/nobliumsuppression/react()
 	return STOP_REACTIONS
 
 //water vapor: puts out fires?
@@ -128,13 +131,13 @@ nobliumformation = 1001
 	var/burned_fuel = 0
 	var/initial_trit = air.get_moles(/datum/gas/tritium)// Yogs
 	if(air.get_moles(/datum/gas/oxygen) < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
-		burned_fuel = air.get_moles(/datum/gas/oxygen)/TRITIUM_BURN_OXY_FACTOR
-		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
+		burned_fuel = min(air.get_moles(/datum/gas/oxygen) / TRITIUM_BURN_OXY_FACTOR, initial_trit) //Yogs -- prevents negative moles of Tritium
 		air.adjust_moles(/datum/gas/tritium, -burned_fuel)
+		air.adjust_moles(/datum/gas/oxygen, -burned_fuel / 2)	//Yogs - now consumes oxygen as intended
 	else
-		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
-		air.set_moles(/datum/gas/tritium, air.get_moles(/datum/gas/tritium) * (1 - 1/TRITIUM_BURN_TRIT_FACTOR)) // Yogs -- Maybe a tiny performance boost? I'unno
-		air.adjust_moles(/datum/gas/oxygen, -air.get_moles(/datum/gas/tritium))
+		burned_fuel = initial_trit / TRITIUM_BURN_TRIT_FACTOR // Yogs -- Conservation of Mass fix
+		air.adjust_moles(/datum/gas/tritium, -burned_fuel) // Yogs -- Maybe a tiny performance boost? I'unno
+		air.adjust_moles(/datum/gas/oxygen, -burned_fuel / 2)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel * (TRITIUM_BURN_TRIT_FACTOR - 1)) // Yogs -- Fixes low-energy tritium fires
 
 	if(burned_fuel)
@@ -464,7 +467,7 @@ nobliumformation = 1001
 		"TEMP" = 5000000)
 
 /datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
-	var/nob_formed = min(air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
+	var/nob_formed = min(max(air.get_moles(/datum/gas/bz), 1) * (log(air.return_temperature())**2), air.get_moles(/datum/gas/tritium)/10, air.get_moles(/datum/gas/nitrogen)/20)
 	var/old_heat_capacity = air.heat_capacity()
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
@@ -622,17 +625,20 @@ nobliumformation = 1001
 	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
+	var/initial_hydrogen = air.get_moles(/datum/gas/hydrogen)	//Yogs
 	if(air.get_moles(/datum/gas/oxygen) < air.get_moles(/datum/gas/hydrogen) || MINIMUM_H2_OXYBURN_ENERGY > air.thermal_energy())
-		burned_fuel = (air.get_moles(/datum/gas/oxygen)/HYDROGEN_BURN_OXY_FACTOR)
+		burned_fuel = min(air.get_moles(/datum/gas/oxygen)/HYDROGEN_BURN_OXY_FACTOR, initial_hydrogen) //Yogs - prevents negative mols of h2
 		air.adjust_moles(/datum/gas/hydrogen, -burned_fuel)
+		air.adjust_moles(/datum/gas/oxygen, -burned_fuel / 2) 	//Yogs - only takes half a mol of O2 for a mol of H2O
 	else
-		burned_fuel = (air.get_moles(/datum/gas/hydrogen) * HYDROGEN_BURN_H2_FACTOR)
-		air.adjust_moles(/datum/gas/hydrogen, -(air.get_moles(/datum/gas/hydrogen) / HYDROGEN_BURN_H2_FACTOR))
-		air.adjust_moles(/datum/gas/oxygen, -air.get_moles(/datum/gas/hydrogen))
+		burned_fuel = initial_hydrogen / HYDROGEN_BURN_H2_FACTOR	//Yogs - conservation of mass fix 
+		air.adjust_moles(/datum/gas/hydrogen, -burned_fuel)	// Yogs - see trit burn
+		air.adjust_moles(/datum/gas/oxygen, -burned_fuel / 2)
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel * (HYDROGEN_BURN_H2_FACTOR - 1)) // Yogs -- burns twice as fast with half the energy
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-		air.adjust_moles(/datum/gas/water_vapor, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
+		air.adjust_moles(/datum/gas/water_vapor, burned_fuel)
 
 		cached_results["fire"] += burned_fuel
 
@@ -691,8 +697,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 100,
-		/datum/gas/bz		= 5,
+		/datum/gas/hydrogen = 1000,
+		/datum/gas/bz		= 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -702,18 +708,18 @@ nobliumformation = 1001
 	if(!isturf(holder))
 		return NO_REACTION
 	var/turf/open/location = holder
-	///the more heat you use the higher is this factor
-	var/increase_factor = min((temperature / METAL_HYDROGEN_MINIMUM_HEAT), 5)
+	///More heat means higher chance to react but less efficiency, i.e. higher speed lower yield
+	var/increase_factor = min(log(10 , (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5)	//e7-e12 range
 	///the more moles you use and the higher the heat, the higher is the efficiency
-	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor
+	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor	//This variable name is dumb but I can't be assed to change it
 	var/pressure = air.return_pressure()
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.01))
+		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))	//0.0005-0.0025 x mols of present hydrogen as BZ consumed, something about it decomposing
 		if (prob(20 * increase_factor))
-			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 3.5))
-			if (prob(100 / increase_factor))
+			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 14))	//14-70% of present hydrogen consumed.
+			if (prob(25 / increase_factor))
 				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 
@@ -969,7 +975,7 @@ nobliumformation = 1001
 		air.adjust_moles(/datum/gas/bz, -consumed_amount)
 	else
 		for(var/mob/living/carbon/L in location)
-			L.hallucination += (air.get_moles(/datum/gas/bz * 0.7))
+			L.hallucination += (air.get_moles(/datum/gas/bz) * 0.7) // Yogs -- fixed accidental "path * number"
 	energy_released += 100
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()

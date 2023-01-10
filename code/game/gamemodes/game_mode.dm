@@ -413,13 +413,13 @@
 /datum/game_mode/proc/get_players_for_role(role) //YOGS -- MIRRORED IN THE YOGSTATION FOLDER! DO NOT EAT, SWALLOW, OR SUBMURGE IN ACID
 	var/list/players = list()
 	var/list/candidates = list()
-	var/list/drafted = list()
-	var/datum/mind/applicant = null
-
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
-			players += player
+			if(player.client.prefs.yogtoggles & QUIET_ROUND)
+				player.mind.quiet_round = TRUE
+			else
+				players += player
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
@@ -438,29 +438,6 @@
 				if(player.assigned_role == job)
 					candidates -= player
 
-	if(candidates.len < recommended_enemies)
-		for(var/mob/dead/new_player/player in players)
-			if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
-					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
-						drafted += player.mind
-
-	if(restricted_jobs)
-		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					drafted -= player
-
-	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
-
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
-			applicant = pick(drafted)
-			if(applicant)
-				candidates += applicant
-				drafted.Remove(applicant)
-
-		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 
 	return candidates		// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
@@ -610,7 +587,7 @@
 						continue //Ghosted while alive
 
 
-	for (var/C in GLOB.admins)
+	for (var/C in GLOB.permissions.admins)
 		to_chat(C, msg.Join())
 		log_admin(msg.Join())
 

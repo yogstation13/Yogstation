@@ -30,9 +30,9 @@
 	var/msg = ""
 
 	var/list/Lines = list()
-	if(length(GLOB.admins))
+	if(length(GLOB.permissions.admins))
 		Lines += "<b>Admins:</b>"
-		for(var/X in GLOB.admins)
+		for(var/X in GLOB.permissions.admins)
 			var/client/C = X
 			if(C && C.holder && !C.holder.fakekey)
 				Lines += "\t <font color='#FF0000'>[C.key]</font>[show_admin_info(C)] ([round(C.avgping, 1)]ms)"

@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(donator_verbs, list(
 GLOBAL_PROTECT(donator_verbs)
 
 /client/proc/add_donator_verbs()
-	if(is_donator(usr))
+	if(is_donator(src))
 		add_verb(src, GLOB.donator_verbs)
 
 /client/proc/remove_donator_verbs()

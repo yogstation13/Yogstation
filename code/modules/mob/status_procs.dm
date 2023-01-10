@@ -28,11 +28,11 @@
 		eye_blind = max(eye_blind, amount)
 		if(!old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
-				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
 /**
   * Adjust a mobs blindness by an amount
@@ -45,11 +45,11 @@
 		eye_blind += amount
 		if(!old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
-				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if((stat != CONSCIOUS && stat != SOFT_CRIT))
@@ -71,11 +71,11 @@
 		eye_blind = amount
 		if(client && !old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
-				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS && stat != SOFT_CRIT)
@@ -113,8 +113,8 @@
 /mob/proc/update_eye_blur()
 	if(!client)
 		return
-	var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in client.screen
-	var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in client.screen
+	var/atom/movable/screen/plane_master/floor/OT = locate(/atom/movable/screen/plane_master/floor) in client.screen
+	var/atom/movable/screen/plane_master/game_world/GW = locate(/atom/movable/screen/plane_master/game_world) in client.screen
 	GW.backdrop(src)
 	OT.backdrop(src)
 
@@ -136,5 +136,14 @@
 
 ///Adjust the body temperature of a mob, with min/max settings
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		amount *= H.dna.species.tempmod
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
+	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision
+	// 37C has 12 range (11 tiles)
+	// 20C has 7 range (6 tiles)
+	// 10C has 3 range (2 tiles)
+	// 0C has 0 range (0 tiles)
+	infra_luminosity = round(max((bodytemperature - T0C)/3, 0))

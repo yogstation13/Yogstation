@@ -214,6 +214,14 @@
 	allow_duplicates = FALSE
 	cost = 10
 
+/datum/map_template/ruin/lavaland/landmines
+	name = "Minefield"
+	id = "landmines"
+	description = "A forgotten minefield, the last remnant of a war long forgotten"
+	suffix = "lavaland_surface_landmines.dmm"
+	allow_duplicates = TRUE
+	cost = 20
+
 /datum/map_template/ruin/lavaland/swarmer_boss
 	name = "Crashed Shuttle"
 	id = "swarmerboss"
@@ -356,7 +364,7 @@
 /datum/map_template/ruin/lavaland/ntsurveyor
 	name = "Nanotrasen Surveyor"
 	id = "ntsurveyo"
-	description = "The most tragic part about it all is the ship didnt even have any donuts"
+	description = "The most tragic part about it all is the ship didn't even have any donuts"
 	suffix = "lavaland_surface_ntsurveyor.dmm"
 	cost = 5
 	allow_duplicates = FALSE
@@ -398,9 +406,9 @@
 	unpickable = TRUE //council-vote
 
 /datum/map_template/ruin/lavaland/medical
-	name = "Orion Medical Outpost"
+	name = "SIC Medical Outpost"
 	id = "medical"
-	description = "One of the Orion Medical Outposts was teleported after a bluespace anomaly"
+	description = "A Sol Interplanetary Coalition Medical Outpost was spontaneously transported to Lavaland due to bluespace instabilities."
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15
@@ -485,3 +493,19 @@
 	suffix = "lavaland_surface_meteorite.dmm"
 	allow_duplicates = FALSE
 	cost = 20
+
+/datum/map_template/ruin/lavaland/researchcapsule
+	name = "Research Capsule Ruins"
+	id = "researchcapsule"
+	description = "A strange weaver appeared one day."
+	suffix = "lavaland_surface_researchpod.dmm"
+	allow_duplicates = FALSE
+	cost = 10
+
+/datum/map_template/ruin/lavaland/forgottenkitchen
+	name = "Displaced Kitchen And Bar"
+	id = "forgottenkitchen"
+	description = "A Bar and Kitchen setup, lost to a large scale bluespace shift."
+	suffix = "lavaland_surface_forgottenkitchen.dmm"
+	allow_duplicates = FALSE
+	cost = 6

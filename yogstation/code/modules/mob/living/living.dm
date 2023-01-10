@@ -13,3 +13,9 @@
 	if(blood_volume >= BLOOD_VOLUME_SURVIVE(src))
 		return BLOOD_SURVIVE
 	return BLOOD_DEAD
+
+/mob/living/update_sight()
+	. = ..()
+	for(var/mob/living/simple_animal/hostile/guardian/holopara as anything in hasparasites())
+		holopara.lighting_alpha = lighting_alpha
+		holopara.update_sight()

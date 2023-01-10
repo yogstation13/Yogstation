@@ -1,5 +1,20 @@
 //Speech verbs.
 
+/mob/verb/say_wrapper()
+	set name = ".Say"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Say \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		say_verb(message)
+
 ///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"
@@ -49,6 +64,21 @@
 ///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
+
+/mob/verb/me_wrapper()
+	set name = ".me"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Me \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		me_verb(message)
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)

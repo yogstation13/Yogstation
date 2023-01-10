@@ -5,6 +5,8 @@
 /obj/item/modular_computer/proc/can_show_ui(mob/user)
 	if(!enabled)
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT) // Open uplink TGUI instead of our TGUI
+		return FALSE
 	if(!use_power())
 		return FALSE
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
@@ -35,11 +37,10 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		var/headername
-		switch(device_theme)
-			if("ntos")
-				headername = "NtOS Main Menu"
-			if("syndicate")
-				headername = "Syndix Main Menu"
+		if(device_theme == "syndicate")
+			headername = "Syndix Main Menu"
+		else
+			headername = "NtOS Main Menu"
 		ui = new(user, src, "NtosMain", headername, 400, 500)
 		if(ui.open())
 			ui.send_asset(get_asset_datum(/datum/asset/simple/headers))

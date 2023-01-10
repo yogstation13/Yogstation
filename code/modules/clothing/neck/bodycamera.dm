@@ -19,7 +19,7 @@
 	var/mob/listeningTo //This code is simular to the code for the RCL.
 
 /obj/item/clothing/neck/bodycam/Initialize()
-	..()
+	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_STORAGE, TRAIT_GENERIC)
 	bodcam = new(src)
 	bodcam.c_tag = "NT_BodyCam"
@@ -145,11 +145,11 @@
 	resistance_flags = FIRE_PROOF //For showing off to your friends about how you can kill an ashdrake, or some shit
 
 /obj/item/clothing/neck/bodycam/miner/Initialize()
-	..()
+	. = ..()
 	bodcam.network[1] = "mine"
 	bodcam.c_tag = "Unactivated Miner Body Camera"
 
 /obj/item/clothing/neck/bodycam/miner/attack_self(mob/user)
-	..()
+	. = ..()
 	bodcam.c_tag = "(Miner bodycam) [user.name]"
 	bodcam.network[1] = "mine"

@@ -4,15 +4,19 @@
 	name = "tail"
 	desc = "A severed tail. What did you cut this off of?"
 	icon_state = "severedtail"
+	visual = TRUE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
 	/// The sprite accessory this tail gives to the human it's attached to. If null, it will inherit its value from the human's DNA once attached.
 	var/tail_type = "None"
 
-/obj/item/organ/tail/Remove(mob/living/carbon/human/H,  special = 0)
+/obj/item/organ/tail/Remove(mob/living/carbon/human/H, special = 0)
 	..()
 	if(H && H.dna && H.dna.species)
 		H.dna.species.stop_wagging_tail(H)
+
+/obj/item/organ/tail/get_availability(datum/species/species)
+	return (HAS_TAIL in species.species_traits)
 
 /obj/item/organ/tail/cat
 	name = "cat tail"
@@ -31,7 +35,7 @@
 				H.dna.species.mutant_bodyparts["tail_human"] = H.dna.features["tail_human"]
 		H.update_body()
 
-/obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H,  special = 0)
+/obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H, special = 0)
 	..()
 	if(istype(H))
 		H.dna.species.mutant_bodyparts -= "tail_human"

@@ -1,5 +1,7 @@
 /mob/living/carbon/get_eye_protection()
 	. = ..()
+	if(HAS_TRAIT(src, TRAIT_BLIND))
+		return INFINITY //Can't get flashed if you cant see
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
 		return INFINITY //Can't get flashed without eyes
@@ -68,7 +70,7 @@
 						update_inv_hands()
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
-						I.transform = initial(I.transform)	
+						I.transform = initial(I.transform)
 						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
 						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
 						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
@@ -101,7 +103,7 @@
 	if(deal_damage)
 		body_part.receive_damage(embedding.w_class*embedding.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
 	if(!silent)
-		throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+		throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 		visible_message(span_danger("[embedding] embeds itself in [src]'s [body_part.name]!"), span_userdanger("[embedding] embeds itself in your [body_part.name]!"))
 	return TRUE
 
@@ -120,14 +122,14 @@
 		emote("scream")
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")
-		SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 	if(new_loc)
 		embedded.forceMove(new_loc)
 	embedded.on_embed_removal(src)
 	return TRUE
 
 /**
-  *	Called when a mob tries to remove an embedded object from this carbon 
+  *	Called when a mob tries to remove an embedded object from this carbon
   */
 /mob/living/carbon/proc/try_remove_embedded_object(mob/user)
 	var/list/choice_list = list()
@@ -142,11 +144,12 @@
 	if(!istype(choice) || !(choice in choice_list))
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
-	user.visible_message(span_warning("[user] attempts to remove [choice] from [usr.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
+	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
 	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
 		return
 	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class
-	body_part.receive_damage(damage_amount > 0, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+	body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+	body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
 	if(remove_embedded_object(choice, get_turf(src), damage_amount))
 		user.put_in_hands(choice)
 		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))
@@ -331,7 +334,7 @@
 
 /mob/living/carbon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & EMP_PROTECT_SELF)
 		return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
@@ -413,6 +416,15 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
+
+		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
+		fire_stacks = averagestacks
+		M.fire_stacks = averagestacks
+		if(averagestacks > 1)
+			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
+		else if(averagestacks < -1)
+			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
+
 	AdjustStun(-60)
 	AdjustKnockdown(-60)
 	AdjustUnconscious(-60)
@@ -599,7 +611,7 @@
 	grasped_part = grasping_part
 	grasped_part.grasped_by = src
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
-	RegisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
+	RegisterSignals(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
 
 	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)

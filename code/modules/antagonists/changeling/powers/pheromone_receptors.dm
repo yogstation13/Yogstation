@@ -17,11 +17,11 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!receptors_active)
 		to_chat(user, span_warning("We search for the scent of any nearby changelings."))
-		changeling.chem_recharge_slowdown += 0.5
+		changeling.chem_recharge_slowdown += 1
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
 		to_chat(user, span_notice("We stop searching for now."))
-		changeling.chem_recharge_slowdown -= 0.5
+		changeling.chem_recharge_slowdown -= 1
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 
 	receptors_active = !receptors_active
@@ -29,7 +29,7 @@
 //Modified IA pinpointer - Points to the NEAREST changeling, but will only get you within a few tiles of the target.
 //You'll still have to rely on intuition and observation to make the identification.  Lings can 'hide' in public places.
 /datum/status_effect/agent_pinpointer/changeling
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/changeling
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/changeling
 	minimum_range = CHANGELING_PHEROMONE_MIN_DISTANCE
 	tick_interval = CHANGELING_PHEROMONE_PING_TIME
 	range_fuzz_factor = 0
@@ -54,6 +54,6 @@
 		scan_target = null
 
 
-/obj/screen/alert/status_effect/agent_pinpointer/changeling
+/atom/movable/screen/alert/status_effect/agent_pinpointer/changeling
 	name = "Pheromone Scent"
 	desc = "The nose always knows."

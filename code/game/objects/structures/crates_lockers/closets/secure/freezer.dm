@@ -7,11 +7,11 @@
 
 /obj/structure/closet/secure_closet/freezer/Destroy()
 	recursive_organ_check(src)
-	..()
+	return ..()
 
 /obj/structure/closet/secure_closet/freezer/Initialize()
-	..()
 	recursive_organ_check(src)
+	return ..()
 
 /obj/structure/closet/secure_closet/freezer/open(mob/living/user)
 	if(opened || !can_open(user))	//dupe check just so we don't let the organs decay when someone fails to open the locker

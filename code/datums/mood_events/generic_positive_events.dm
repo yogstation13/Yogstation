@@ -178,6 +178,11 @@
 	description = "<span class='nicegreen'>These shoes make me feel like I could really push myself to victory!</span>\n"
 	mood_change = 5
 
+/datum/mood_event/motivation
+	description = "<span class='nicegreen'>Sitting in that chair for so long really got me motivated.</span>\n"
+	mood_change = 10
+	timeout = 4 MINUTES
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0

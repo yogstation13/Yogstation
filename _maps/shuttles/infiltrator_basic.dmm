@@ -1374,13 +1374,14 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"UF" = (
+"Qh" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/syndicate,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
+/obj/item/twohanded/vxtvulhammer,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 
@@ -1672,7 +1673,7 @@ aB
 tZ
 aX
 bc
-UF
+Qh
 bm
 bx
 bG

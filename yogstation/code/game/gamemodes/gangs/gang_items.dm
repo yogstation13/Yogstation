@@ -188,13 +188,13 @@
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/surplus
-	name = "Surplus Rifle"
+	name = "Surplus Carbine"
 	id = "surplus"
 	weapon_cost = 8
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
 /datum/gang_item/weapon/ammo/surplus_ammo
-	name = "Surplus Rifle Ammo"
+	name = "Surplus Carbine Ammo"
 	id = "surplus_ammo"
 	weapon_cost = 5
 	item_path = /obj/item/ammo_box/magazine/m10mm/rifle

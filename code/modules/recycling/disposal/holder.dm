@@ -41,21 +41,15 @@
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for(var/A in D)
-		var/atom/movable/AM = A
-		if(AM == src)
+		var/atom/movable/atom_in_transit = A
+		if(atom_in_transit == src)
 			continue
-		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
-		AM.forceMove(src)
-		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
-			var/obj/structure/bigDelivery/T = AM
-			src.destinationTag = T.sortTag
-		else if(istype(AM, /obj/item/smallDelivery) && !hasmob)
-			var/obj/item/smallDelivery/T = AM
-			src.destinationTag = T.sortTag
-		else if(istype(AM, /mob/living/silicon/robot))
-			var/obj/item/destTagger/borg/tagger = locate() in AM
-			if (tagger)
-				src.destinationTag = tagger.currTag
+		SEND_SIGNAL(atom_in_transit, COMSIG_MOVABLE_DISPOSING, src, D, hasmob)
+		atom_in_transit.forceMove(src)
+		if(iscyborg(atom_in_transit))
+			var/obj/item/destTagger/borg/tagger = locate() in atom_in_transit
+			if(tagger)
+				destinationTag = tagger.currTag
 
 
 // start the movement process
@@ -76,14 +70,17 @@
 	var/obj/structure/disposalpipe/last
 	while(active)
 		var/obj/structure/disposalpipe/curr = loc
-		last = curr
-		set_glide_size(DELAY_TO_GLIDE_SIZE(ticks * world.tick_lag))
-		curr = curr.transfer(src)
-		if(!curr && active)
-			last.expel(src, loc, dir)
+		if(istype(curr))
+			last = curr
+			set_glide_size(DELAY_TO_GLIDE_SIZE(ticks * world.tick_lag))
+			curr = curr.transfer(src)
+			if(!curr && active)
+				last.expel(src, loc, dir)
 
-		ticks = stoplag()
-		if(!(count--))
+			ticks = stoplag()
+			if(!(count--))
+				active = FALSE
+		else
 			active = FALSE
 
 // find the turf which should contain the next pipe

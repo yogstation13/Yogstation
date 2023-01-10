@@ -53,6 +53,7 @@ GLOBAL_LIST_EMPTY(corporations)
 	name = "Sentience-Enabled Life Forms"
 	paymodifier = 1
 
-/datum/corporation/mi13
-	name = "MI13"
-	paymodifier = 3
+// Syndicate, but not a standard traitor- too high-risk to make a normal agent
+/datum/corporation/gorlex
+	name = "Gorlex Marauders"
+	paymodifier = 1.5

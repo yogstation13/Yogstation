@@ -84,3 +84,8 @@
 		if(istype(T, /obj/structure/destructible/clockwork/trap/trigger)) //Triggers don't go off multiple times
 			continue
 		T.activate()
+
+/obj/structure/destructible/clockwork/trap/trigger/attack_eminence(mob/camera/eminence/user, params)
+	visible_message(span_danger("[src] clunks as it's activated remotely."))
+	to_chat(user, span_brass("You activate [src]."))
+	activate()

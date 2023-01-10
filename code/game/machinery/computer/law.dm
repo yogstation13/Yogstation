@@ -24,28 +24,49 @@
 /obj/machinery/computer/upload/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		if(stat & (NOPOWER|BROKEN|MAINT))
-			return
-		if(!current)
-			to_chat(user, span_caution("You haven't selected anything to transmit laws to!"))
-			return
-		if(!can_upload_to(current))
-			to_chat(user, "[span_caution("Upload failed!")] Check to make sure [current.name] is functioning properly.")
-			current = null
-			return
-		var/turf/currentloc = get_turf(current)
-		if(currentloc && user.z != currentloc.z)
-			to_chat(user, "[span_caution("Upload failed!")] Unable to establish a connection to [current.name]. You're too far away!")
-			current = null
-			return
-		M.install(current.laws, user)
-	else
-		return ..()
+		if(upload_check(user))
+			M.install(current.laws, user)
+		else
+			return ..()
+
+/obj/machinery/computer/upload/proc/upload_check(mob/user)
+	if(stat & (NOPOWER|BROKEN|MAINT))
+		return FALSE
+	if(!current)
+		to_chat(user, span_caution("You haven't selected anything to transmit laws to!"))
+		return FALSE
+	if(!can_upload_to(current))
+		to_chat(user, "[span_caution("Upload failed!")] Check to make sure [current.name] is functioning properly.")
+		current = null
+		return FALSE
+	var/turf/currentloc = get_turf(current)
+	if(currentloc && user.z != currentloc.z)
+		to_chat(user, "[span_caution("Upload failed!")] Unable to establish a connection to [current.name]. You're too far away!")
+		current = null
+		return FALSE
+	return TRUE
 
 /obj/machinery/computer/upload/proc/can_upload_to(mob/living/silicon/S)
 	if(S.stat == DEAD)
 		return FALSE
 	return TRUE
+
+/obj/machinery/computer/upload/AltClick(mob/user)
+	if(user.mind.has_antag_datum(/datum/antagonist/rev/head))
+		to_chat(current, span_danger("Alert. Unregistered lawset upload in progress. Estimated time of completion: 30 seconds."))
+		user.visible_message(span_warning("[user] begins typing on [src]."))
+		to_chat(user, span_warning("You begin to alter the laws of [current] to enable it to assist you in your goals. This will take 30 seconds."))
+		var/obj/item/aiModule/core/full/revolutionary/M = new
+		if(do_after(user, 300, src))
+			if(upload_check(user))
+				M.install(current.laws, user)
+			else
+				to_chat(user, span_warning("The upload fails!"))
+		else
+			to_chat(user, span_warning("You were interrupted!"))
+			user.visible_message(span_warning("[user] stops typing on [src]."))
+		qdel(M)
+	return
 
 /obj/machinery/computer/upload/ai
 	name = "\improper AI upload console"

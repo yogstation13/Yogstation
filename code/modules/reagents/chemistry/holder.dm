@@ -320,6 +320,8 @@
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
+		if(C.reagent_check(R))
+			continue
 		if(!C)
 			C = R.holder.my_atom
 		//If you got this far, that means we can process whatever reagent this iteration is for. Handle things normally from here.
@@ -558,7 +560,6 @@
 			if(my_atom && isliving(my_atom))
 				var/mob/living/M = my_atom
 				if(R.metabolizing)
-					R.metabolizing = FALSE
 					R.on_mob_end_metabolize(M)
 				R.on_mob_delete(M)
 			qdel(R)
@@ -633,7 +634,7 @@
 				if(!check)
 					continue
 				var/touch_protection = 0
-				if(method == VAPOR)
+				if(method == TOUCH || method == VAPOR)
 					var/mob/living/L = A
 					touch_protection = L.get_permeability_protection()
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)

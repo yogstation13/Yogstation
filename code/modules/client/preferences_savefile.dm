@@ -51,6 +51,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_ALT
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
+	if (current_version < 39)
+		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.set_macros()
+		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [hotkeys ? "Hotkey" : "Classic"] mode</span>")
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -155,6 +159,43 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		save_character()
 		to_chat(parent, span_userdanger(span_big("Color code has been reworked. Check all your character preferences, especially colors, before playing.")))
 
+/// checks through keybindings for outdated unbound keys and updates them
+/datum/preferences/proc/check_keybindings()
+	if(!parent)
+		return
+	var/list/user_binds = list()
+	for (var/key in key_bindings)
+		for(var/kb_name in key_bindings[key])
+			user_binds[kb_name] += list(key)
+	var/list/notadded = list()
+	for (var/name in GLOB.keybindings_by_name)
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+		if(length(user_binds[kb.name]))
+			continue // key is unbound and or bound to something
+		var/addedbind = FALSE
+		if(hotkeys)
+			for(var/hotkeytobind in kb.hotkey_keys)
+				if(!length(key_bindings[hotkeytobind]) || hotkeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					LAZYADD(key_bindings[hotkeytobind], kb.name)
+					addedbind = TRUE
+		else
+			for(var/classickeytobind in kb.classic_keys)
+				if(!length(key_bindings[classickeytobind]) || classickeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					LAZYADD(key_bindings[classickeytobind], kb.name)
+					addedbind = TRUE
+		if(!addedbind)
+			notadded += kb
+	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
+	if(length(notadded))
+		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
+
+/datum/preferences/proc/announce_conflict(list/notadded)
+	to_chat(parent, "<span class='warningplain'><b><u>Keybinding Conflict</u></b></span>\n\
+					<span class='warningplain'><b>There are new <a href='?_src_=prefs;preference=tab;tab=4'>keybindings</a> that default to keys you've already bound. The new ones will be unbound.</b></span>")
+	for(var/item in notadded)
+		var/datum/keybinding/conflicted = item
+		to_chat(parent, span_danger("[conflicted.category]: [conflicted.full_name] needs updating"))
+
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
 		return
@@ -194,6 +235,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
+	READ_FILE(S["extra_toggles"], extra_toggles)
 	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
@@ -216,6 +258,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	READ_FILE(S["pda_theme"], pda_theme)
 	READ_FILE(S["id_in_pda"], id_in_pda)
 
 	READ_FILE(S["skillcape"], skillcape)
@@ -224,7 +267,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
-	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
+	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
+	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	READ_FILE(S["key_bindings"], key_bindings)
+	
 	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
@@ -238,6 +284,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
+	check_keybindings()
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -274,6 +321,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special			= SANITIZE_LIST(be_special)
 	pda_style			= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color			= sanitize_hexcolor(pda_color, DEFAULT_HEX_COLOR_LEN, FALSE, initial(pda_color))
+	pda_theme			= sanitize_inlist(pda_theme, GLOB.pda_themes, initial(pda_theme))
 	skillcape       	= sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	skillcape_id		= sanitize_text(skillcape_id, initial(skillcape_id))
 
@@ -284,6 +332,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	flare				= sanitize_integer(flare, FALSE, TRUE, initial(flare))
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
 	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
+	disable_balloon_alerts = sanitize_integer(disable_balloon_alerts, FALSE, TRUE, initial(disable_balloon_alerts))
+	key_bindings 	= sanitize_islist(key_bindings, list())
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
@@ -302,8 +352,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
-
-	load_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 
@@ -336,6 +384,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
+	WRITE_FILE(S["extra_toggles"], extra_toggles)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_accs"], ghost_accs)
@@ -357,6 +406,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["pda_theme"], pda_theme)
 	WRITE_FILE(S["id_in_pda"], id_in_pda)
 	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["skillcape_id"], skillcape_id)
@@ -365,6 +415,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["flare"], flare)
 	WRITE_FILE(S["bar_choice"], bar_choice)
 	WRITE_FILE(S["alternative_announcers"], disable_alternative_announcers)
+	WRITE_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	WRITE_FILE(S["key_bindings"], key_bindings)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -378,8 +430,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
-
-	save_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 
@@ -418,6 +468,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000000")//|| !findtext(S["feature_ethcolor"],"#")
 		WRITE_FILE(S["feature_ethcolor"]	, "#9C3030")
 
+	if(!S["feature_pretcolor"] || S["feature_pretcolor"] == "#000")
+		WRITE_FILE(S["feature_pretcolor"]	, "9c3030")
+
 	//Character
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["name_is_always_random"], be_random_name)
@@ -440,6 +493,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_gradientstyle"], features["gradientstyle"])
 	READ_FILE(S["feature_gradientcolor"], features["gradientcolor"])
 	READ_FILE(S["feature_ethcolor"], features["ethcolor"])
+	READ_FILE(S["feature_pretcolor"], features["pretcolor"])
 	READ_FILE(S["feature_lizard_tail"], features["tail_lizard"])
 	READ_FILE(S["feature_lizard_snout"], features["snout"])
 	READ_FILE(S["feature_lizard_horns"], features["horns"])
@@ -458,6 +512,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
 	READ_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
+	READ_FILE(S["feature_plasmaman_helmet"], features["plasmaman_helmet"])
 
 	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
@@ -511,6 +566,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!features["ethcolor"] || features["ethcolor"] == "#000000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
+	if(!features["pretcolor"] || features["pretcolor"] == "#000")
+		features["pretcolor"] = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)]
+
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
@@ -544,6 +602,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
 	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], default = FALSE)
 	features["ethcolor"]	= sanitize_hexcolor(features["ethcolor"])
+	features["pretcolor"]	= copytext_char(features["pretcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
@@ -610,6 +669,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_gradientstyle"]	, features["gradientstyle"])
 	WRITE_FILE(S["feature_gradientcolor"]	, 	features["gradientcolor"])
 	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
+	WRITE_FILE(S["feature_pretcolor"]					, features["pretcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]			, features["tail_lizard"])
 	WRITE_FILE(S["feature_polysmorph_tail"]			, features["tail_polysmorph"])
 	WRITE_FILE(S["feature_human_tail"]				, features["tail_human"])
@@ -631,6 +691,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
 	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
 	WRITE_FILE(S["feature_ipc_chassis"]			, features["ipc_chassis"])
+	WRITE_FILE(S["feature_plasmaman_helmet"]	, features["plasmaman_helmet"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

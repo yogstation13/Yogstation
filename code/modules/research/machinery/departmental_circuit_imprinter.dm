@@ -4,7 +4,6 @@
 	icon_state = "circuit_imprinter"
 	circuit = /obj/item/circuitboard/machine/circuit_imprinter/department
 	requires_console = FALSE
-	consoleless_interface = TRUE
 
 /obj/machinery/rnd/production/circuit_imprinter/department/science
 	name = "department circuit imprinter (Science)"

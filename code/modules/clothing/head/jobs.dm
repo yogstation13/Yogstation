@@ -68,7 +68,7 @@
 //Detective
 /obj/item/clothing/head/fedora/det_hat
 	name = "detective's fedora"
-	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat."
+	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat. Woven with lightly protective fibers."
 	armor = list(MELEE = 25, BULLET = 5, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 5)
 	icon_state = "detective"
 	var/candy_cooldown = 0
@@ -95,15 +95,21 @@
 			else
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
 
+/obj/item/clothing/head/fedora/det_hat/grey
+	name = "detective's grey fedora"
+	desc = "A darker tone of P.I. headwear for those thick-skinned detectives. Woven with lightly protective fibers."
+	icon_state = "fedora"
+
 /obj/item/clothing/head/det_hat/evil
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
-	desc = "A suspicious black fedora with a red band."
-	w_class = 4
+	desc = "A suspicious black fedora with a red band. It can be activated in-hand to extend or retract razor blades which cause significant damage when thrown. Also heavily armored."
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("poked", "tipped")
+	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
@@ -111,18 +117,25 @@
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 	if(extended)
 		force = 15
+		armour_penetration = 15
 		throwforce = 40
+		wound_bonus = -10
+		bare_wound_bonus = 10
 		sharpness = SHARP_EDGED
+		w_class = WEIGHT_CLASS_BULKY //Kinda hard to put a razorblade hat in your bag innit
 		icon_state = "syndicate_fedora_sharp"
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
+		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
 	else
 		force = 0
 		throwforce = 0
 		sharpness = SHARP_NONE
+		w_class = WEIGHT_CLASS_NORMAL
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
+		hattable = TRUE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(loc) || !iscarbon(thrownby))
@@ -168,6 +181,16 @@
 /obj/item/clothing/head/beret/highlander/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
+
+/obj/item/clothing/head/beret/emt
+	name = "EMT beret"
+	desc = "A beret with a dark turquoise color and a reflective cross on the top."
+	icon_state = "emtberet"
+
+/obj/item/clothing/head/beret/emt/green
+	name = "green EMT beret"
+	desc = "A beret with a green color and a reflective cross on the top."
+	icon_state = "emtgrberet"
 
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"

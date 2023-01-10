@@ -571,10 +571,6 @@
 /obj/item/wrench,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
-"bP" = (
-/obj/machinery/jukebox/disco,
-/turf/open/floor/light/colour_cycle/dancefloor_a,
-/area/crew_quarters/bar)
 "bT" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -768,6 +764,10 @@
 	tag = ""
 	},
 /turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"fY" = (
+/obj/machinery/jukebox/disco/bar,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
 "hg" = (
 /obj/structure/disposalpipe/segment,
@@ -1187,7 +1187,7 @@ aE
 bc
 bc
 by
-bP
+fY
 bc
 ct
 bc

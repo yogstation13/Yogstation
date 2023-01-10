@@ -18,15 +18,16 @@
 			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 				continue
 
-			if((method == TOUCH || method == VAPOR) && (D.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS))
-				L.ContactContractDisease(D)
+			if((method == TOUCH || method == VAPOR))
+				if(D.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
+					L.ContactContractDisease(D)
 			else //ingest, patch or inject
 				L.ForceContractDisease(D)
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) && !IS_BLOODSUCKER(C))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
 				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
@@ -185,7 +186,9 @@
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
-	. = ..()
+	. = ..()	
+	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
+	M.adjust_bodytemperature(min(3,body_temperature_difference))
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
 
@@ -378,12 +381,32 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
+	process_flags = PROCESS_ORGANIC | PROCESS_SYNTHETIC
+	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
+	
 
 /datum/reagent/lube/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))
 		return
 	if(reac_volume >= 1)
 		T.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
+
+/datum/reagent/lube/on_mob_metabolize(mob/living/L)
+	..()
+	if(isipc(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.8, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/lube/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
+/datum/reagent/lube/on_mob_life(mob/living/carbon/C)
+	. = ..()
+	if(!isipc(C))
+		return
+	C.adjustFireLoss(3)
+	if(prob(10))
+		to_chat(C, span_warning("You slowly burn up as your internal mechanisms work faster than intended."))
 
 /datum/reagent/spraytan
 	name = "Spray Tan"
@@ -687,7 +710,7 @@
 			var/species_type = pick(subtypesof(/datum/species/jelly))
 			H.set_species(species_type)
 			H.reagents.del_reagent(type)
-			to_chat(H, span_warning("You've become \a jellyperson!"))
+			to_chat(H, span_warning("You have become a jellyperson!")) // Yogs -- text macro fix
 
 /datum/reagent/mulligan
 	name = "Mulligan Toxin"
@@ -828,8 +851,8 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 	..()
 
-/datum/reagent/sulfur
-	name = "Sulfur"
+/datum/reagent/sulphur
+	name = "Sulphur"
 	description = "A sickly yellow solid mostly known for its nasty smell. It's actually much more helpful than it looks in biochemisty."
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
@@ -1000,7 +1023,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
+	if((method == TOUCH || method == VAPOR) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
 	..()
 
@@ -1046,7 +1069,8 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(1, 0)
+	if(!(ispreternis(M) || isipc(M)))
+		M.adjustToxLoss(1, 0)
 	..()
 	return TRUE
 
@@ -1231,7 +1255,7 @@
 
 /datum/reagent/nitrous_oxide
 	name = "Nitrous Oxide"
-	description = "A potent oxidizer used as fuel in rockets and as an anaesthetic during surgery."
+	description = "A potent anaesthetic used during surgery."
 	reagent_state = LIQUID
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	color = "#808080"
@@ -1256,7 +1280,7 @@
 	M.drowsyness += 2
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.blood_volume = max(H.blood_volume - 10, 0)
+		H.blood_volume = max(H.blood_volume - 5, 0)
 	if(prob(20))
 		M.losebreath += 2
 		M.confused = min(M.confused + 2, 5)
@@ -1423,6 +1447,13 @@
 	colorname = "red"
 	color = "#DA0000" // red
 	random_color_list = list("#DA0000")
+
+// Pepperspray coloring, only affects mobs
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_obj(obj/O, reac_volume)
+	return
+
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_turf(turf/T, reac_volume)
+	return
 
 /datum/reagent/colorful_reagent/crayonpowder/orange
 	name = "Orange Crayon Powder"
@@ -1860,9 +1891,9 @@
 	M.update_transform()
 	..()
 
-/datum/reagent/plastic_polymers
+/datum/reagent/plastic_polymers //not harmful because it's too big as a polymer chain, where microplastics are small enough to get into your veins
 	name = "plastic polymers"
-	description = "the petroleum based components of plastic."
+	description = "the liquid components of plastic."
 	color = "#f7eded"
 	taste_description = "plastic"
 
@@ -2099,3 +2130,41 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
+	color = "#d1cd9a"
+	can_synth = FALSE
+
+/datum/reagent/adrenaline/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	
+/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+
+/datum/reagent/liquidsoap
+	name = "Liquid soap"
+	color = "#ddb772"
+	description = "Not much use in this form..."
+	taste_description = "soap"
+
+/datum/reagent/microplastics
+	name = "Microplastics"
+	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
+	color = "#ffffff"
+	metabolization_rate = 0.05 * REAGENTS_METABOLISM
+	taste_mult = 0
+	taste_description = "plastic"
+
+/datum/reagent/microplastics/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.55*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_APPENDIX, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EARS, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
+	..()

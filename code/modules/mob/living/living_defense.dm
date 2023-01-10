@@ -6,22 +6,28 @@
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
-	if(armor > 0 && armour_penetration)
-		armor = max(0, armor - armour_penetration)
-		if(penetrated_text)
-			to_chat(src, span_userdanger("[penetrated_text]"))
+	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
+		if(armour_penetration <= -100)	// < -100 AP, no penetration on anything
+			armor = 100
+		else if((-100 < armour_penetration) && (armour_penetration < 0))	// -100 to 0 AP, reduced penetration, nonlinear scaling
+			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
 		else
-			to_chat(src, span_userdanger("Your armor was penetrated!"))
-	else if(armor >= 100)
+			armor = max(0, armor - armour_penetration)						//Positive AP, actual armor penetration
+		if(armour_penetration > 0 && armor < 100)	//WE HAVE INEFFECTIVE ARMOR
+			if(penetrated_text)
+				to_chat(src, span_userdanger("[penetrated_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor was penetrated!"))
+		else if(armor > 0)	//WE HAVE EFFECTIVE ARMOR
+			if(soften_text)
+				to_chat(src, span_userdanger("[soften_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor softens the blow!"))
+	if(armor >= 100)	//WE HAVE ALL THE ARMOR
 		if(absorb_text)
 			to_chat(src, span_userdanger("[absorb_text]"))
 		else
 			to_chat(src, span_userdanger("Your armor absorbs the blow!"))
-	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, span_userdanger("[soften_text]"))
-		else
-			to_chat(src, span_userdanger("Your armor softens the blow!"))
 	return armor
 
 
@@ -49,11 +55,15 @@
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
 	if(!P.nodamage)
 		last_damage = P.name
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
+		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
+			P.damage = 0
+		else
+			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	if(istype(P, /obj/item/projectile/bullet/shotgun_uraniumslug))
-		return P.on_hit(src, armor)
+	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
+		P.penetrations -= 1
+		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
@@ -92,8 +102,10 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M)
-	if(M.occupant.a_intent == INTENT_HARM)
+/mob/living/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
+		M.selected.action(src)
+	else if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
@@ -401,7 +413,7 @@
 
 
 //called when the mob receives a bright flash
-/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
+/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /atom/movable/screen/fullscreen/flash)
 	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)

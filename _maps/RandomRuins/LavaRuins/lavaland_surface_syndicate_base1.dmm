@@ -5628,12 +5628,6 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/main)
-"DC" = (
-/obj/machinery/porta_turret/syndicate,
-/obj/machinery/porta_turret/syndicate,
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/main)
 "Ec" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -7100,7 +7094,7 @@ ab
 ab
 ab
 ab
-DC
+LH
 eh
 eh
 eh

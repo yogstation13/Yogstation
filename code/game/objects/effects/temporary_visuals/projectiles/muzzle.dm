@@ -18,7 +18,7 @@
 	icon_state = "muzzle_u_laser"
 
 /obj/effect/projectile/muzzle/plasma_cutter
-	icon_state = "muzzle_plasmacutter"
+	icon_state = "muzzle_purple"
 
 /obj/effect/projectile/muzzle/stun
 	icon_state = "muzzle_stun"

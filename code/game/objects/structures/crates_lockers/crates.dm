@@ -107,12 +107,11 @@
 
 /obj/structure/closet/crate/freezer/Destroy()
 	recursive_organ_check(src)
-	..()
+	return ..()
 
 /obj/structure/closet/crate/freezer/Initialize()
-	..()
 	recursive_organ_check(src)
-
+	return ..()
 
 
 /obj/structure/closet/crate/freezer/blood
@@ -329,7 +328,7 @@
 		if(16)
 			new /mob/living/simple_animal/hostile/retaliate/goat/pixel(loc)
 		if(17)
-			new /mob/living/simple_animal/hostile/retaliate/goat/radioactive(loc)
+			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(18)
 			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(19)

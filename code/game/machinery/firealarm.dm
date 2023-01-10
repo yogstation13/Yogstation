@@ -310,8 +310,10 @@
 		return  // do nothing if we're already active
 	if(fire)
 		set_light(l_power = 0.8)
+		update_icon()
 	else
 		set_light(l_power = 0)
+		update_icon()
 
 /*
  * Return of the Return of the Party button

@@ -45,6 +45,8 @@
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
 					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
+					MM.adjust_disgust(20+(precision/10))	//20-30 disgust, pretty nasty
+					MM.confused += (10 + precision/20)		//10-15 confusion, little wobbly
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)

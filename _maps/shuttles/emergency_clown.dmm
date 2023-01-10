@@ -93,7 +93,7 @@
 /turf/open/floor/bluespace,
 /area/shuttle/escape)
 "ar" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/mineral/bananium,
