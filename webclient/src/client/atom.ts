@@ -122,7 +122,7 @@ export class Atom implements AtomDependent {
 
 			let appearance = this.appearance;
 			if(this.animation && appearance) appearance = this.animation.apply(appearance, this.client.time);
-			if(appearance && appearance.invisibility <= 15) {
+			if(appearance && appearance.invisibility <= this.client.eye_see_invisible) {
 				let list = this.render_plan;
 				let tag = appearance.e3d_tag;
 				if(this.type == 1 && !tag?.length) {

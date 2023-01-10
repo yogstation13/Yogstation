@@ -27,6 +27,7 @@ export class ByondClient {
 	eye_glide_size = 0;
 	eye_bits = 0;
 	eye_sight = 0;
+	eye_see_invisible = 0;
 	icons = new Map<number, Icon>();
 	has_quit = false;
 	constructor() {
@@ -320,6 +321,7 @@ export class ByondClient {
 					image.mark_dirty();
 				}
 			}
+			break;
 		} case 53: {
 			this.image_changes(dp, true);
 			break;
@@ -538,6 +540,7 @@ export class ByondClient {
 			let id = 0;
 			if(!dp.reached_end()) id = dp.read_uint8();
 			this.websocket.send(new MessageBuilder(225).write_uint8(id).collapse());
+			break;
 		} case 229: {
 			let winset_count = dp.read_uint16();
 			for(let i = 0; i < winset_count; i++) {
@@ -688,7 +691,15 @@ export class ByondClient {
 					console.debug("See in dark:", dp.read_uint8());
 				}
 				if(flags2 & 2) {
-					console.debug("See invisible:", dp.read_uint8());
+					let new_see_invisible = dp.read_uint8();
+					let min = Math.min(new_see_invisible, this.eye_see_invisible);
+					let max = Math.max(new_see_invisible, this.eye_see_invisible);
+					this.eye_see_invisible = new_see_invisible;
+					for(let atom of this.atom_map.values()) {
+						if(atom.appearance && atom.appearance.invisibility > min && atom.appearance.invisibility <= max) {
+							atom.mark_dirty();
+						}
+					}
 				}
 				if(flags2 & 4) {
 					// fun fact the actual server-side var only has 16 bits
@@ -978,7 +989,7 @@ export class ByondClient {
 		let image = this.get_atom(id);
 		image.appearance = appearance ?? null;
 		image.loc = dp.read_uint32();
-		if(image.loc) this.active_images.add(image);
+		if(image.loc && image.appearance?.plane != 19) this.active_images.add(image);
 		else this.active_images.delete(image);
 		image.mark_dirty();
 	}
