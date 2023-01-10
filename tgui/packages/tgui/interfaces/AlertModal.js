@@ -71,8 +71,7 @@ export class AlertModal extends Component {
       <Window
         title={title}
         width={350}
-        height={150}
-        canClose={timeout > 0}>
+        height={150}>
         {timeout && <Loader value={timeout} />}
         <Window.Content
           onFocus={focusCurrentButton}
@@ -106,10 +105,10 @@ export class AlertModal extends Component {
                           /**
                            * Simulate a click when pressing space or enter,
                            * allow keyboard navigation, override tab behavior
-                           */
+                           /*
                           if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
                             act("choose", { choice: button });
-                          } else if (
+                          } else */if (
                             keyCode === KEY_LEFT
                             || (e.shiftKey && keyCode === KEY_TAB)
                           ) {
