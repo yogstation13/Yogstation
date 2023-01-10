@@ -515,7 +515,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		var/popup_input = tgui_alert(user, "Choose Action", list("ID", "Show", "Forge/Reset"))
+		var/popup_input = tgui_alert(user, "Choose Action", "Action?", list("ID", "Show", "Forge/Reset"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")

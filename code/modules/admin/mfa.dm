@@ -267,7 +267,7 @@
 		log_admin("[key_name(usr)][msg]")
 		return
 
-	if(tgui_alert(src, "Do you wish to remember this connection?", list("Remember Me", "Yes", "No")) == "Yes")
+	if(tgui_alert(src, "Do you wish to remember this connection?", "Remember Me", list("Yes", "No")) == "Yes")
 		var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
 			"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
 			list("ckey" = ckey, "address" = address, "cid" = computer_id)

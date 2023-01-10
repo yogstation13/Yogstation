@@ -242,29 +242,61 @@ Class Procs:
 	return !(stat & (NOPOWER|BROKEN|MAINT))
 
 /obj/machinery/can_interact(mob/user)
-	var/silicon = issiliconoradminghost(user)
-	if((stat & (NOPOWER|BROKEN)) && !(interaction_flags_machine & INTERACT_MACHINE_OFFLINE))
+	if((stat & (NOPOWER|BROKEN)) && !(interaction_flags_machine & INTERACT_MACHINE_OFFLINE)) // Check if the machine is broken, and if we can still interact with it if so
 		return FALSE
-	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
-		if(!silicon || !(interaction_flags_machine & INTERACT_MACHINE_OPEN_SILICON))
-			return FALSE
 
-	if(silicon)
+	//if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_INTERACT)
+	//	return FALSE
+
+
+	if(IsAdminGhost(user))
+		return TRUE //the Gods have unlimited power and do not care for things such as range or blindness
+
+	if(!isliving(user))
+		return FALSE //no ghosts allowed, sorry
+
+	var/is_dextrous = FALSE
+	if(isanimal(user))
+		var/mob/living/simple_animal/user_as_animal = user
+		if (user_as_animal.dextrous)
+			is_dextrous = TRUE
+
+	if(!issilicon(user) && !is_dextrous && !user.can_hold_items())
+		return FALSE //spiders gtfo
+
+	if(issilicon(user)) // If we are a silicon, make sure the machine allows silicons to interact with it
 		if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON))
 			return FALSE
-	else
-		if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON)
+
+		if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN) && !(interaction_flags_machine & INTERACT_MACHINE_OPEN_SILICON))
 			return FALSE
-		
-		if(is_species(user, /datum/species/lizard/ashwalker))
-			return FALSE
-		var/mob/living/carbon/H = user
-		if(istype(H) && H.has_dna() && H.dna.check_mutation(ACTIVE_HULK))
+
+		return user.can_interact_with(src) //AIs don't care about petty mortal concerns like needing to be next to a machine to use it, but borgs do care somewhat
+
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
+		return FALSE
+
+	if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON) //if the user was a silicon, we'd have returned out earlier, so the user must not be a silicon
+		return FALSE
+
+
+	var/mob/living/L = user
+	if(is_species(L, /datum/species/lizard/ashwalker))
+		return FALSE // ashwalkers cant use modern machines
+
+	var/mob/living/carbon/H = user
+	if(istype(H) && H.has_dna())
+		if (H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE
-		if(!Adjacent(user))
-			if(!(istype(H) && H.has_dna() && H.dna.check_mutation(TK)))
-				return FALSE
+			return FALSE // hulks cant use machines
+
+		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+			return FALSE // need to be close or have telekinesis
+
 	return TRUE
 
 /obj/machinery/proc/check_nap_violations()
