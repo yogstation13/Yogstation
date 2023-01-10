@@ -105,10 +105,10 @@ export class AlertModal extends Component {
                           /**
                            * Simulate a click when pressing space or enter,
                            * allow keyboard navigation, override tab behavior
-                           /*
-                          if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
+                           */
+                          if (keyCode === KEY_SPACE/* || keyCode === KEY_ENTER */) {
                             act("choose", { choice: button });
-                          } else */if (
+                          } else if (
                             keyCode === KEY_LEFT
                             || (e.shiftKey && keyCode === KEY_TAB)
                           ) {
