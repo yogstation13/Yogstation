@@ -207,11 +207,11 @@ export class BoxRenderPlan extends BatchRenderPlan {
 }
 
 export class BillboardRenderPlan extends BatchRenderPlan {
-	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number) {
+	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, public fixed_normal? : vec3, public double_sided = false) {
 		super();
 		this.atom_id = atom_id
 		this.icon = appearance.icon;
-		this.triangle_count = 2;
+		this.triangle_count = double_sided ? 4 : 2;
 	}
 	offset_x : number = 0;
 	offset_y : number = 0;
@@ -226,34 +226,42 @@ export class BillboardRenderPlan extends BatchRenderPlan {
 		}
 		let x = this.x, y = this.y;
 		let dir = this.appearance.dir;
-		let normal : vec3 = [x,y, 0];
-		vec3.subtract(normal, camera_pos, normal);
-		normal[2] = 0;
-		let distance = vec3.length(normal);
-		if(distance < 0.2) {
-			let dy = Math.cos(camera_yaw);
-			let dx = -Math.sin(camera_yaw);
-			normal = [dx, dy, 0];
-			x -= dx * 0.2;
-			y -= dy * 0.2;
-			dir = 2;
+		let normal : vec3;
+		if(this.fixed_normal) {
+			normal = this.fixed_normal;
 		} else {
-			vec3.scale(normal, normal, 1/distance);
-			if(this.icon_state_instance.num_dirs > 1) {
-				let angle = Math.atan2(-normal[0], -normal[1]) / Math.PI * 4;
-				if(this.icon_state_instance.num_dirs > 4) {
-					dir = IconState.turn_dir_8(dir, Math.round(angle));
-				} else {
-					dir = IconState.turn_dir_4(dir, Math.round(angle*0.5));
+			normal = [x,y, 0]
+			vec3.subtract(normal, camera_pos, normal);
+			normal[2] = 0;
+			let distance = vec3.length(normal);
+			if(distance < 0.2) {
+				let dy = Math.cos(camera_yaw);
+				let dx = -Math.sin(camera_yaw);
+				normal = [dx, dy, 0];
+				x -= dx * 0.2;
+				y -= dy * 0.2;
+				dir = 2;
+			} else {
+				vec3.scale(normal, normal, 1/distance);
+				if(this.icon_state_instance.num_dirs > 1) {
+					let angle = Math.atan2(-normal[0], -normal[1]) / Math.PI * 4;
+					if(this.icon_state_instance.num_dirs > 4) {
+						dir = IconState.turn_dir_8(dir, Math.round(angle));
+					} else {
+						dir = IconState.turn_dir_4(dir, Math.round(angle*0.5));
+					}
 				}
 			}
 		}
 		let frame = this.icon_state_instance.get_icon(dir, time);
 		let right : vec3 = [-normal[1]*icon_info.width/32, normal[0]*icon_info.width/32, 0];
 		let up : vec3 = [0, 0, icon_info.height/32];
-		let pos : vec3 = [x-right[0]*0.5, y-right[1]*0.5, 0];
+		let pos : vec3 = [x+normal[1]*0.5, y-normal[0]*0.5, 0];
 		let uv_box = BatchRenderPlan.make_uv_box([icon_info.width, icon_info.height], this.offset_x, this.offset_y, undefined, this.appearance.transform);
 		offset = this.write_plane(attribs, iattribs, offset, frame, pos, right, up, normal, vec4_color(color_vec, this.appearance.color_alpha), uv_box);
+		if(this.double_sided) {
+			offset = this.write_plane(attribs, iattribs, offset, frame, pos, right, up, [-normal[0],-normal[1],-normal[2]], vec4_color(color_vec, this.appearance.color_alpha), uv_box, true);
+		}
 		return offset;
 	}
 }

@@ -362,10 +362,13 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		}
 	},
 	[E3D_TYPE_DOOR](list, appearance, x, y) : void {
-		list.push(new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5));
+		let icon = this.client.icons.get(appearance.icon);
+		let is_wide = (icon ? icon.width > 32 : false);
+		let plan;
+		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == -32767 || overlay.plane == appearance.plane) {
-				let overlay_plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5);
+				let overlay_plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide);
 				overlay_plan.icon |= 1<<24;
 				overlay_plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 				list.push(overlay_plan);
@@ -383,7 +386,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					this.render_plan = null;
 				}
 				let plan;
-				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5));
+				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
 				plan.offset_x += thing_appearance.pixel_x+thing_appearance.pixel_w;
 				plan.offset_y += thing_appearance.pixel_y+thing_appearance.pixel_z;
 				if(thing_appearance.layer != -2) {
@@ -391,7 +394,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 				}
 				if(thing_appearance.overlays) for(let overlay of thing_appearance.overlays) {
-					list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(thing_appearance), x+0.5, y+0.5));
+					list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(thing_appearance), x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
 					plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 					plan.offset_x += thing_appearance.pixel_x+thing_appearance.pixel_w;
 					plan.offset_y += thing_appearance.pixel_y+thing_appearance.pixel_z;
