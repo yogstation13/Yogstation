@@ -12,4 +12,5 @@
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
 #include "unit_test.dm"
+#include "webclient_patches.dm"
 #endif

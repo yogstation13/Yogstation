@@ -1,0 +1,11 @@
+/datum/unit_test/webclient_patches/Run()
+	if(fexists(WEBCLIENT_PATCHES))
+		var/result = call(WEBCLIENT_PATCHES, "set_webclient_auth")("-", "Guest;gender=neuter")
+		if(result)
+			Fail("Webclient patches init failed (1st pass): [result]")
+		call(WEBCLIENT_PATCHES, "remove_webclient_patches")()
+		result = call(WEBCLIENT_PATCHES, "set_webclient_auth")("-", "Guest;gender=neuter")
+		if(result)
+			Fail("Webclient patches init failed (2nd pass): [result]")
+	else
+		Fail("Couldn't find [WEBCLIENT_PATCHES] (webclient patches)")
