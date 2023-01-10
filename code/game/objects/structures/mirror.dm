@@ -185,7 +185,7 @@
 	. = ..()
 	switch(selectiontype)
 		if(EYE_COLOR)
-			var/new_eye_color = input(H, "Choose your eye color", "Eye Color","#"+H.eye_color) as color|null
+			var/new_eye_color = input(H, "Choose your eye color", "Eye Color",H.eye_color) as color|null
 			if(!new_eye_color)
 				return TRUE
 			H.eye_color = sanitize_hexcolor(new_eye_color)
@@ -204,7 +204,7 @@
 				H.mind.name = newname
 			return TRUE
 		if(MUTANT_COLOR)
-			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
+			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change",H.dna.features["mcolor"]) as color|null
 			if(!new_mutantcolor)
 				return TRUE
 			var/temp_hsv = RGBtoHSV(new_mutantcolor)

@@ -212,9 +212,9 @@
 	if(!iscarbon(M))
 		return
 	var/mob/living/carbon/smelly = M
-	if(!smelly?.dna?.uni_identity)
+	if(!smelly?.dna?.unique_identity)
 		return
 	
-	var/smell_print = md5(smelly.dna.uni_identity)
+	var/smell_print = md5(smelly.dna.unique_identity)
 	LAZYSET(scents, smell_print, smelly)
 	return TRUE

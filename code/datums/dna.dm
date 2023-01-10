@@ -124,9 +124,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		mutation_type = HM.type
 	if(get_mutation(mutation_type))
 		return
+	SEND_SIGNAL(holder, COMSIG_CARBON_GAIN_MUTATION, mutation_type, class)
 	return force_give(new mutation_type (class, time, copymut = mutation))
 
 /datum/dna/proc/remove_mutation(mutation_type)
+	SEND_SIGNAL(holder, COMSIG_CARBON_LOSE_MUTATION, mutation_type)
 	return force_lose(get_mutation(mutation_type))
 
 /datum/dna/proc/check_mutation(mutation_type)
@@ -640,7 +642,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 //Return the active mutation of a type if there is one
 /datum/dna/proc/get_mutation(A)
 	for(var/datum/mutation/human/HM in mutations)
-		if(HM.type == A)
+		if(istype(HM, A))
 			return HM
 
 /datum/dna/proc/check_block_string(mutation)

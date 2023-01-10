@@ -357,7 +357,7 @@
 		var/mob/living/carbon/human/H = loc
 		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")
 		M.appearance_flags |= RESET_COLOR
-		M.color = "#[H.eye_color]"
+		M.color = H.eye_color
 		. += M
 
 /obj/item/clothing/glasses/sunglasses/big
