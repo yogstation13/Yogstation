@@ -566,7 +566,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!features["ethcolor"] || features["ethcolor"] == "#000000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
-	if(!features["pretcolor"] || features["pretcolor"] == "#000")
+	if(!features["pretcolor"] || features["pretcolor"] == "#000000")
 		features["pretcolor"] = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)]
 
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))

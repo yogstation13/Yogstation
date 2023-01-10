@@ -65,7 +65,7 @@
 	for(var/mob/living/carbon/C in GLOB.carbon_list)
 		if(blood_samples.Find(C.dna.unique_enzymes) && !possible.Find(C))
 			possible |= C
-		if(scents[md5(C.dna.uni_identity)] && !possible.Find(C))
+		if(scents[md5(C.dna.unique_identity)] && !possible.Find(C))
 			var/datum/job/J = SSjob.GetJob(C.job)
 			if(!J)
 				J = new()

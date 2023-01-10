@@ -67,12 +67,13 @@ GLOBAL_LIST_INIT(color_list_ethereal, list(
 	"A Class (Cyan)" = "#00ffff",
 	"K Class (Orange)" = "#ffa64d",
 	"K1 Class (Burnt Orange)" = "#cc4400",	
-	"White Dwarf" = "#f2f2f2",))
+	"White Dwarf" = "#f2f2f2"))
 
 GLOBAL_LIST_INIT(color_list_preternis, list(
 	"Factory Default" = "FFFFFF", 
-	"Rust" = "B7410E", "Chrome" = 
-	"B0C4DE", "Overgrown" = "b2ee69", 
+	"Rust" = "B7410E", 
+	"Chrome" = "B0C4DE", 
+	"Overgrown" = "b2ee69", 
 	"Gunmetal Gray" = "8D918D", 
 	"Gold" = "D4AF37"))
 
