@@ -307,6 +307,22 @@ export class ByondClient {
 			let len = dp.reached_end() ? 0 : dp.read_uint32();
 			this.output(str, ctrl);
 			break;
+		} case 51: {
+			this.image_changes(dp, false);
+			break;
+		} case 52: {
+			while(!dp.reached_end()) {
+				let id = dp.read_uint32as16() | 0xD000000;
+				let image = this.atom_map.get(id);
+				if(image) {
+					image.loc = 0;
+					this.active_images.delete(image);
+					image.mark_dirty();
+				}
+			}
+		} case 53: {
+			this.image_changes(dp, true);
+			break;
 		} case 108: {
 			let atom_id = dp.read_uint32();
 			let flags = dp.read_uint8();
@@ -953,6 +969,18 @@ export class ByondClient {
 			w.style.display = "none";
 		})
 		return w;
+	}
+
+	active_images = new Set<Atom>();
+	image_changes(dp : DataPointer, is_update : boolean) {
+		let id = dp.read_uint32as16() | 0xD000000;
+		let appearance = this.appearance_map.get(dp.read_uint32as16());
+		let image = this.get_atom(id);
+		image.appearance = appearance ?? null;
+		image.loc = dp.read_uint32();
+		if(image.loc) this.active_images.add(image);
+		else this.active_images.delete(image);
+		image.mark_dirty();
 	}
 
 	movable_changes(dp : DataPointer, is_screen : boolean) {

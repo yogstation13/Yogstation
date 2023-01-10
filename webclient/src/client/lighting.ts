@@ -52,13 +52,22 @@ export class LightingHolder {
 		let alpha_index = (y * (this.last_maxx+1) + x) * 4 + 3;
 		let appearance = turf.appearance;
 		let underlay_appearance : Appearance|undefined;
+		let is_camera_static = false;
 		if(appearance?.underlays) for(let underlay of appearance.underlays) {
 			if(underlay.plane == 15) {
 				underlay_appearance = underlay;
 				break;
 			}
 		}
-		if(underlay_appearance?.icon_state == "adark") {
+		if(turf.images) for(let image of turf.images) {
+			if(image.appearance?.plane == 19) is_camera_static = true;
+		}
+		if(is_camera_static) {
+			if(this.data[alpha_index] != 0) {
+				this.data[alpha_index] = 0;
+				this.lightmap_dirty = true;
+			}
+		} else if(underlay_appearance?.icon_state == "adark") {
 			if(this.data[alpha_index] != 255) {
 				this.data[alpha_index] = 255;
 				this.lightmap_dirty = true;

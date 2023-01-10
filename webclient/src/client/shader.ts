@@ -143,7 +143,10 @@ void main() {
 	uv *= vec2(1.0/sheetWidth, 1.0/sheetHeight);
 	uv += vSheetPos * vec2(1.0/sheetWidth, 1.0/sheetHeight);
 	if(isIdPass > 0.5) color = texture2D(iconTexture, uv);
-	else color *= texture2D(iconTexture, uv);
+	else {
+		color *= texture2D(iconTexture, uv);
+		if(color.a < 0.01) discard; // Deal with this now - lots of overlays was causing fillrate issues
+	}
 	vec2 lightPos = clamp(vXYPos, vec2(0,0), vec2(lightWidth-0.01, lightHeight-0.01));
 	vec2 lightSizeScale = vec2(1.0/(lightWidth+1.0),1.0/(lightHeight+1.0));
 	float lightAlpha = texture2D(lightTexture, (floor(lightPos) + vec2(0.5)) * lightSizeScale).a;

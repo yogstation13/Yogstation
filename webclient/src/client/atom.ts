@@ -13,6 +13,7 @@ export class Atom implements AtomDependent {
 	loc: number = 0;
 	last_loc : Atom|null = null;
 	contents : Atom[]|null = null;
+	images : Atom[]|null = null;
 	get type() {
 		return (this.full_id >>> 24);
 	}
@@ -149,14 +150,26 @@ export class Atom implements AtomDependent {
 		this.render_plan = null;
 		let loc = this.loc ? this.client.get_atom(this.loc) : null;
 		if(loc != this.last_loc) {
-			if(this.last_loc?.contents) {
-				let i = this.last_loc.contents.indexOf(this);
-				this.last_loc.contents.splice(i, 1);
-			}
-			this.last_loc = loc;
-			if(this.last_loc) {
-				if(!this.last_loc.contents) this.last_loc.contents = [];
-				this.last_loc?.contents.push(this);
+			if(this.type == 0xD) {
+				if(this.last_loc?.images) {
+					let i = this.last_loc.images.indexOf(this);
+					this.last_loc.images.splice(i, 1);
+				}
+				this.last_loc = loc;
+				if(this.last_loc) {
+					if(!this.last_loc.images) this.last_loc.images = [];
+					this.last_loc?.images.push(this);
+				}
+			} else {
+				if(this.last_loc?.contents) {
+					let i = this.last_loc.contents.indexOf(this);
+					this.last_loc.contents.splice(i, 1);
+				}
+				this.last_loc = loc;
+				if(this.last_loc) {
+					if(!this.last_loc.contents) this.last_loc.contents = [];
+					this.last_loc?.contents.push(this);
+				}
 			}
 		}
 		if(this.type == 1) this.client.gl_holder.lighting_holder.dirty_turfs.add(this);
