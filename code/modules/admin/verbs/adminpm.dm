@@ -150,7 +150,8 @@
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
-				message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(recipient, 0, 0)]'s admin help.")
+				if(holder)
+					message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(recipient, 0, 0)]'s admin help.")
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
