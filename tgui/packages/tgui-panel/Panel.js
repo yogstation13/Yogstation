@@ -82,27 +82,29 @@ export const Panel = (props, context) => {
               <Flex.Item mx={0.5}>
                 <PingIndicator />
               </Flex.Item>
-              {!game.pointerLockState && (<>
-                <Flex.Item mx={0.5}>
-                  <Button
-                    color="grey"
-                    selected={audio.visible}
-                    icon="music"
-                    tooltip="Music player"
-                    tooltipPosition="top-start"
-                    onClick={() => audio.toggle()} />
-                </Flex.Item>
-                <Flex.Item mx={0.5}>
-                  <Button
-                    icon={settings.visible ? 'times' : 'cog'}
-                    selected={settings.visible}
-                    tooltip={settings.visible
-                      ? 'Close settings'
-                      : 'Open settings'}
-                    tooltipPosition="top-start"
-                    onClick={() => settings.toggle()} />
-                </Flex.Item>
-              </>)}
+              {!game.pointerLockState && (
+                <>
+                  <Flex.Item mx={0.5}>
+                    <Button
+                      color="grey"
+                      selected={audio.visible}
+                      icon="music"
+                      tooltip="Music player"
+                      tooltipPosition="top-start"
+                      onClick={() => audio.toggle()} />
+                  </Flex.Item>
+                  <Flex.Item mx={0.5}>
+                    <Button
+                      icon={settings.visible ? 'times' : 'cog'}
+                      selected={settings.visible}
+                      tooltip={settings.visible
+                        ? 'Close settings'
+                        : 'Open settings'}
+                      tooltipPosition="top-start"
+                      onClick={() => settings.toggle()} />
+                  </Flex.Item>
+                </>
+              )}
             </Flex>
           </Section>
         </Flex.Item>

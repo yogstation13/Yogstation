@@ -26,7 +26,7 @@ const findNearestScrollableParent = startingNode => {
     // Some browsers have thin scrollbars, such as firefox. This solution works
     // on those browsers but not IE
     if(("getComputedStyle" in window) && (node instanceof HTMLElement)) {
-      if(getComputedStyle(node).overflowY == "scroll") return node;
+      if(getComputedStyle(node).overflowY === "scroll") return node;
     }
 
     // This definitely has a vertical scrollbar, because it reduces
@@ -92,9 +92,9 @@ const updateMessageBadge = (message, renderer) => {
     'Chat__badge',
     'Chat__badge--animate',
   ]);
-  requestAnimationFrame(() => {requestAnimationFrame(() => {
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
     badge.className = 'Chat__badge';
-  })});
+  }); });
   if (!foundBadge) {
     node.appendChild(badge);
   }
@@ -522,9 +522,9 @@ class ChatRenderer {
     this.updateClip();
   }
 
-  updateClip(pointerLock) {
-    if(!("byond" in window) || this.clipRaf != null) return;
-    if(pointerLock != null) {
+  updateClip(pointerLock = null) {
+    if(!("byond" in window) || this.clipRaf !== null) return;
+    if(pointerLock !== null) {
       this.pointerLock = pointerLock;
     }
     this.clipRaf = requestAnimationFrame(() => {
@@ -535,13 +535,13 @@ class ChatRenderer {
         for(let elem of document.getElementsByClassName("clip-include")) {
           let rect = elem.getBoundingClientRect();
           // Draw a box as an SVG path around every element we want to show
-          clipStr += `M${rect.x.toFixed(2)} ${rect.y}h${rect.width}v${rect.height}h${-rect.width}z`
+          clipStr += `M${rect.x.toFixed(2)} ${rect.y}h${rect.width}v${rect.height}h${-rect.width}z`;
         }
         clipStr += '")';
       }
-      if(this.currentClip != clipStr) {
+      if(this.currentClip !== clipStr) {
         Byond.winset('browseroutput', {
-          "clip-path": clipStr
+          "clip-path": clipStr,
         });
         this.currentClip = clipStr;
       }

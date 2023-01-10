@@ -42,14 +42,14 @@ export const gameReducer = (state = initialState, action) => {
   if (type === 'gainPointerLock') {
     return {
       ...state,
-      pointerLockState: true
-    }
+      pointerLockState: true,
+    };
   }
   if (type === 'losePointerLock') {
     return {
       ...state,
-      pointerLockState: false
-    }
+      pointerLockState: false,
+    };
   }
   if (state.rebooting === true && state.tryingtoreconnect === true) {
     setInterval(() => { reconnectplease(); }, 10000);

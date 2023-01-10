@@ -156,19 +156,21 @@ export const SettingsGeneral = (props, context) => {
             }
           />
         </LabeledList.Item>
-        {("byond" in window) && (<LabeledList.Item label="HUD Scale">
-          <NumberInput
-            width="4em"
-            step={0.25}
-            stepPixelSize={15}
-            minValue={-1}
-            maxValue={3}
-            value={logUiScale}
-            format={value => (Math.round(100*(2**value)).toString()+"%")}
-            onDrag={(e, value) => dispatch(updateSettings({
-              logUiScale: value
-            }))} />
-        </LabeledList.Item>)}
+        {("byond" in window) && (
+          <LabeledList.Item label="HUD Scale">
+            <NumberInput
+              width="4em"
+              step={0.25}
+              stepPixelSize={15}
+              minValue={-1}
+              maxValue={3}
+              value={logUiScale}
+              format={value => (Math.round(100*(2**value)).toString()+"%")}
+              onDrag={(e, value) => dispatch(updateSettings({
+                logUiScale: value,
+              }))} />
+          </LabeledList.Item>
+        )}
       </LabeledList>
       <Divider />
       <Box>

@@ -40,7 +40,7 @@ export const settingsMiddleware = (store) => {
       }
       const logUiScale = payload?.logUiScale;
       if (logUiScale !== undefined) {
-        Byond.winset({"ui-scale": (2**logUiScale)});
+        Byond.winset({ "ui-scale": (2**logUiScale) });
       }
       // Pass action to get an updated state
       next(action);
