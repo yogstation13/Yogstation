@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Necropolis tendrils now spawn lava instead of chasms"
