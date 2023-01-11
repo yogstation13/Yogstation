@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed admins not getting notified of other admins replying to a ticket when using the ticket panel"

@@ -1,6 +1,9 @@
 /datum/job/chemist
 	title = "Chemist"
+	description = "Supply the doctors with chemicals, make medicine, as well as \
+		less likable substances in the comfort of a fully reinforced room."
 	flag = CHEMIST
+	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -12,7 +15,7 @@
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
 
-	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist") // Yes Druggist is a real thing.
 
 	outfit = /datum/outfit/job/chemist
 

@@ -79,8 +79,8 @@
 		return
 	var/style = user.dna?.features["plasmaman_helmet"]
 	if(style && (style in GLOB.plasmaman_helmet_list) && style != "None")
-		icon_state += "-[GLOB.plasmaman_helmet_list[style]]"
-		item_state += "-[GLOB.plasmaman_helmet_list[style]]"
+		icon_state = initial(icon_state) + "-[GLOB.plasmaman_helmet_list[style]]"
+		item_state = icon_state
 		base_icon_state = icon_state
 		user.update_inv_head()
 

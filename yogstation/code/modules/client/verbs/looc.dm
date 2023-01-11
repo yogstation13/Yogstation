@@ -121,7 +121,3 @@
 			return
 	else
 		GLOB.dlooc_allowed = !GLOB.dlooc_allowed
-
-/client/proc/get_looc()
-	var/msg = input(src, null, "looc \"text\"") as text|null
-	looc(msg)

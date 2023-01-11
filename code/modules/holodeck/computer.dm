@@ -117,7 +117,7 @@
 			if(!valid)
 				return FALSE
 
-			var/area/A = locate(program_to_load) in GLOB.sortedAreas
+			var/area/A = locate(program_to_load) in GLOB.areas
 			if(A)
 				if(istype(A, /area/holodeck/rec_center/burn))
 					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.

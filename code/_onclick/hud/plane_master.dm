@@ -127,6 +127,11 @@
 	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/atom/movable/screen/plane_master/parallax/Initialize(mapload)
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
+		SpinAnimation(15 MINUTES)
+
 /atom/movable/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE

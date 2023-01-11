@@ -551,7 +551,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddComponent(/datum/component/squish, 18 SECONDS)
+				C.AddComponent(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -725,7 +725,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["department"] = C.registered_account.account_job.paycheck_department
 			else
 				.["user"]["job"] = "No Job"
-				.["user"]["department"] = "No Department"
+				.["user"]["department"] = DEPARTMENT_UNASSIGNED
 	.["stock"] = list()
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount

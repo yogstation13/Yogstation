@@ -1,6 +1,7 @@
 /client/proc/cmd_donator_say(msg as text)
 	set category = "Donator"
 	set name = "Donator Chat"
+
 	if(!is_donator(usr))
 		return
 
@@ -19,6 +20,10 @@
 			to_chat(C, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
 	return
 
-/client/proc/get_donator_say()
-	var/msg = input(src, null, "Donator Chat \"text\"") as text|null
-	cmd_donator_say(msg)
+/client/verb/get_donator_say()
+	set hidden = TRUE
+	set name = ".donorsay"
+
+	var/message = input(src, null, "Donator Chat \"text\"") as text|null
+	if (message)
+		cmd_donator_say(message)

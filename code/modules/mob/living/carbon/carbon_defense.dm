@@ -416,6 +416,15 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
+
+		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
+		fire_stacks = averagestacks
+		M.fire_stacks = averagestacks
+		if(averagestacks > 1)
+			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
+		else if(averagestacks < -1)
+			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
+
 	AdjustStun(-60)
 	AdjustKnockdown(-60)
 	AdjustUnconscious(-60)
@@ -602,7 +611,7 @@
 	grasped_part = grasping_part
 	grasped_part.grasped_by = src
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
-	RegisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
+	RegisterSignals(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
 
 	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)

@@ -69,7 +69,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	add_verb(src, list(
 		/mob/dead/observer/proc/dead_tele,
 		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/view_gas,
 		/mob/dead/observer/proc/tray_view,
 		/mob/dead/observer/proc/possess_mouse_verb))
 
@@ -301,19 +300,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD)
-		ghostize(1)
-	else
-		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")
-		if(response != "Ghost")
-			return	//didn't want to ghost after-all
-		ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
+		ghostize(TRUE)
+		return TRUE
+	var/response = tgui_alert(usr, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?",list("Ghost","Stay in body"))
+	if(response != "Ghost")
+		return FALSE//didn't want to ghost after-all
+	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
+	return TRUE
 
 /mob/camera/verb/ghost()
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
-	var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")
+	var/response = tgui_alert(usr, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?",list("Ghost","Stay in body"))
 	if(response != "Ghost")
 		return
 	ghostize(0)
@@ -371,7 +371,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_warning("You're already stuck out of your body!"))
 		return FALSE
 
-	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?","DNR","Save Me")
+	var/response = tgui_alert(usr, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?",list("DNR","Save Me"))
 	if(response != "DNR")
 		return
 
@@ -427,14 +427,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	usr.forceMove(pick(L))
 	update_parallax_contents()
-
-/mob/dead/observer/proc/view_gas()
-	set category = "Ghost"
-	set name = "View Gases"
-	set desc= "View the atmospheric conditions in a location"
-
-	var/turf/loc = get_turf(src)
-	show_air_status_to(loc, usr)
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
@@ -645,9 +637,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("This creature is too powerful for you to possess!"))
 		return 0
 
-	if(can_reenter_corpse && mind && mind.current)
-		if(alert(src, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", "Yes", "No") == "No")
-			return 0
+	if(can_reenter_corpse && mind?.current)
+		if(tgui_alert(usr, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", list("Yes", "No")) == "No")
+			return FALSE
 	if(target.key)
 		to_chat(src, span_warning("Someone has taken this body while you were choosing!"))
 		return 0
@@ -771,6 +763,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	scanmode ^= SCAN_WOUND
 	to_chat(src, span_notice("Wound scan [scanmode & SCAN_WOUND ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_gas_scan()
+	set name = "Toggle Gas Scan"
+	set desc = "Toggles whether you analyze gas contents on click"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_GAS
+	to_chat(src, span_notice("Gas scan [scanmode & SCAN_GAS ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
