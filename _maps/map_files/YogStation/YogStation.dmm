@@ -46246,7 +46246,7 @@
 	name = "Armory Door";
 	req_access_txt = "1"
 	},
-/obj/machinery/camera/motion/armoury{
+/obj/machinery/camera/motion/armory{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
