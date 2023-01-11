@@ -1,6 +1,7 @@
 /datum/job/tourist
 	title = "Tourist"
 	flag = TOUR
+	orbit_icon = "camera-retro"
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1

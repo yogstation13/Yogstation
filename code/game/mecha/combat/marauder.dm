@@ -55,8 +55,12 @@
 	force = 50
 	max_equip = 5
 
+/obj/mecha/combat/marauder/seraph/unloaded
+
 /obj/mecha/combat/marauder/seraph/Initialize()
 	. = ..()
+	if(istype(src,/obj/mecha/combat/marauder/seraph/unloaded))
+		return
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack(src)

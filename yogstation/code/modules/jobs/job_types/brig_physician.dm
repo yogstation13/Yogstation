@@ -1,6 +1,8 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
+	description = "Watch over the Brig and Prison Wing to ensure prisoners receive medical attention when needed."
 	flag = BRIGPHYS
+	orbit_icon = "suitcase-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"

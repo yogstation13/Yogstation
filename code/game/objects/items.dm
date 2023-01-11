@@ -143,6 +143,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	/// Is this item fryable without a syndicate frying pan
 	var/fryable = FALSE
 
+	var/printed = FALSE
+
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)

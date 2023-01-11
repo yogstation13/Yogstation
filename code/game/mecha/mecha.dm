@@ -673,7 +673,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.movement_locked))
+	else if(dir != direction && (!strafe || occupant?.client?.keys_held["Alt"]))
 		move_result = mechturn(direction)
 	else
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
@@ -941,6 +941,9 @@
 	if(use_internal_tank)
 		return cabin_air
 	return ..()
+
+/obj/mecha/return_analyzable_air()
+	return cabin_air
 
 /obj/mecha/proc/return_pressure()
 	var/datum/gas_mixture/t_air = return_air()

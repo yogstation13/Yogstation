@@ -83,7 +83,7 @@
 		playsound(parent, 'sound/machines/microwave/microwave-end.ogg', 50, 1)
 	else
 		used_oven.visible_message(span_warning("You smell a burnt smell coming from [used_oven]"))
-	SEND_SIGNAL(parent, COMSIG_ITEM_BAKED, baked_result)
+	SEND_SIGNAL(parent, COMSIG_BAKE_COMPLETED, baked_result)
 	qdel(parent)
 
 ///Gives info about the items baking status so you can see if its almost done

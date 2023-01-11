@@ -1,6 +1,8 @@
 /datum/job/clown
 	title = "Clown"
+	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
 	flag = CLOWN
+	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -11,7 +13,7 @@
 
 	outfit = /datum/outfit/job/clown
 
-	alt_titles = list("Entertainer", "Comedian", "Jester")
+	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
 	added_access = list()
 	base_access = list(ACCESS_THEATRE)
@@ -63,7 +65,7 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
-	
+
 /datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))

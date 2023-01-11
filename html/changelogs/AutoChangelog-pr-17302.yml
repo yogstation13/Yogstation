@@ -1,6 +1,0 @@
-author: "MenacingManatee"
-delete-after: true 
-changes: 
-  - bugfix: "fixed missing hallway APCs (port primary, central primary, starboard primary, aft primary)(Asteroid)"
-  - mapping: "Removes a section of orphaned wiring in port maint (Asteroid)"
-  - mapping: "Changes the path of piping in port maint (Asteroid)"

@@ -725,7 +725,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["department"] = C.registered_account.account_job.paycheck_department
 			else
 				.["user"]["job"] = "No Job"
-				.["user"]["department"] = "No Department"
+				.["user"]["department"] = DEPARTMENT_UNASSIGNED
 	.["stock"] = list()
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
