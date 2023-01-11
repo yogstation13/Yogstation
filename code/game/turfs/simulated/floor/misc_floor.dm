@@ -233,11 +233,6 @@
 	if(!dropped_brass)
 		new /obj/item/stack/tile/brass(src)
 		dropped_brass = TRUE
-	if(islist(baseturfs))
-		if(type in baseturfs)
-			return
-	else if(baseturfs == type)
-		return
 	return ..()
 
 /turf/open/floor/clockwork/narsie_act()
