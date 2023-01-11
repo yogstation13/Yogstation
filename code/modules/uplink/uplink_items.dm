@@ -1725,7 +1725,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This book doesn't dissaper after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear, /datum/objective/sole_survivor) //yogs: give sole_survivors the roburger
 	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -1737,7 +1737,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear, /datum/objective/sole_survivor) //yogs
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink
