@@ -52,7 +52,7 @@
 		if(owner.dna.species.id == "pod")
 			owner.adjustToxLoss(damage_caused + 0.5 * delta_time)	//So they cant passively out-heal it
 		else
-		owner.adjustToxLoss(damage_caused * delta_time)
+			owner.adjustToxLoss(damage_caused * delta_time)
 		if(DT_PROB(5, delta_time))
 			to_chat(owner, span_danger("You feel sick..."))
 	if(timer_id)

@@ -55,7 +55,7 @@
 	else
 		. += "There is no power cell installed."
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[siunit(heatingpower, "W", 1)]</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
+		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[heatingPower*0.001]kJ</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
 
 /obj/machinery/space_heater/update_icon()
 	icon_state = "sheater-[on ? "[mode]" : "off"]"
