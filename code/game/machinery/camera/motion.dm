@@ -67,8 +67,8 @@
 		if (status)
 			aiPlayer.triggerAlarm("Motion", get_area(src), list(src), src)
 	visible_message(span_warning("A red light flashes on the [src]!"))
-	if(armoury)
-		alertradio.talk_into(src, "Alert: Motion tripped in Armoury!!")
+	if(armory)
+		alertradio.talk_into(src, "ALERT: Motion detected in the Armory.")
 
 	detectTime = -1
 	return TRUE
@@ -79,8 +79,8 @@
 		if(isliving(AM))
 			newTarget(AM)
 
-/obj/machinery/camera/motion/armoury
-	armoury = TRUE
+/obj/machinery/camera/motion/armory
+	armory = TRUE
 
 /obj/machinery/camera/motion/thunderdome
 	name = "entertainment camera"

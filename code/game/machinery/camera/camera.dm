@@ -45,7 +45,7 @@
 
 	//Reference to the obj/mob we're built into
 	var/built_in
-	var/armoury = FALSE
+	var/armory = FALSE
 
 /obj/machinery/camera/preset/toxins //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"
@@ -86,12 +86,12 @@
 		LAZYADD(myarea.cameras, src)
 	proximity_monitor = new(src, 1)
 
-	if(armoury)
+	if(armory)
 		alertradio = new(src)
 		alertradio.set_frequency(FREQ_SECURITY)
 		alertradio.use_command = TRUE
 		alertradio.independent = TRUE
-		alertradio.name = "Armoury"
+		alertradio.name = "armory"
 
 	if(mapload && is_station_level(z) && prob(3) && !start_active)
 		toggle_cam()

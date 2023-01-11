@@ -9019,7 +9019,7 @@
 /area/crew_quarters/toilet/locker)
 "bcM" = (
 /obj/machinery/door/airlock/security/glass{
-	name = "Armoury";
+	name = "Armory";
 	req_access_txt = "3";
 	security_level = 1
 	},
@@ -23020,7 +23020,7 @@
 	name = "Armory Door";
 	req_access_txt = "1"
 	},
-/obj/machinery/camera/motion/armoury{
+/obj/machinery/camera/motion/armory{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -23334,11 +23334,11 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "fnL" = (
 /obj/machinery/door/window/eastleft{
-	name = "armoury desk";
+	name = "armory desk";
 	req_access_txt = "1"
 	},
 /obj/machinery/door/window/westleft{
-	name = "armoury desk";
+	name = "armory desk";
 	req_access_txt = "3"
 	},
 /obj/structure/table/reinforced,
@@ -54312,7 +54312,7 @@
 	dir = 1
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/camera/motion/armoury,
+/obj/machinery/camera/motion/armory,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ssa" = (
