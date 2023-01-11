@@ -45,7 +45,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		var/sold = FALSE
 		if(QDELETED(thing))
 			continue
-		if(istype(thingy) && thingy.item_flags & AUTOLATHED))
+		if(istype(thingy) && thingy.item_flags & AUTOLATHED)
 			qdel(thingy)
 		for(var/datum/export/E in GLOB.exports_list)
 			if(!E)
