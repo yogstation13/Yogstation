@@ -277,7 +277,4 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_preternis_name()
-
-	var/randname = preternis_name()
-
-	return randname
+	return preternis_name()

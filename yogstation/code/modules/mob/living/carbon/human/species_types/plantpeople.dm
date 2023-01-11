@@ -285,9 +285,6 @@
 /datum/species/pod/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_pod_name(gender)
-
-	var/randname = pod_name(gender)
-
-	return randname
+	return pod_name(gender)
 
 #undef STATUS_MESSAGE_COOLDOWN

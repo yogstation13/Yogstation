@@ -1,8 +1,7 @@
 /proc/lizard_name(gender)
 	if(gender == MALE)
 		return "[pick(GLOB.lizard_names_male)]-[pick(GLOB.lizard_names_clan)]"
-	else
-		return "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_clan)]"
+	return "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_clan)]"
 
 /proc/pod_name(gender)
 	var/randname
@@ -45,8 +44,7 @@
 /proc/ethereal_name()
 	if(prob(66))
 		return "[pick(GLOB.constellations)] \Roman[rand(1,99)]"
-	else
-		return "[pick(GLOB.ethereal_names)]"
+	return "[pick(GLOB.ethereal_names)]"
 
 /proc/plasmaman_name()
 	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
