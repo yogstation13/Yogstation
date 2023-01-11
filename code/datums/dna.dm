@@ -212,9 +212,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(features["ethereal_mark"])
 		L[DNA_ETHEREAL_MARK_BLOCK] = construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len)
 	if(features["pod_hair"])
-		L[DNA_PLANT_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
+		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
 	if(features["pod_flower"])
-		L[DNA_PLANT_FLOWER_BLOCK] = construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len)
+		L[DNA_POD_FLOWER_BLOCK] = construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len)
 
 	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
@@ -355,9 +355,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.dorsal_tubes_list.Find(features["dorsal_tubes"]), GLOB.dorsal_tubes_list.len))
 		if(DNA_ETHEREAL_MARK_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.ethereal_mark_list.Find(features["ethereal_mark"]), GLOB.ethereal_mark_list.len))
-		if(DNA_PLANT_HAIR_BLOCK)
+		if(DNA_POD_HAIR_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
-		if(DNA_PLANT_FLOWER_BLOCK)
+		if(DNA_POD_FLOWER_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_flower_list.Find(features["pod_flower"]), GLOB.pod_flower_list.len))
 
 //Please use add_mutation or activate_mutation instead
@@ -605,9 +605,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(dna.features["ethereal_mark"])
 		dna.features["ethereal_mark"] = GLOB.ethereal_mark_list[deconstruct_block(get_uni_feature_block(features, DNA_ETHEREAL_MARK_BLOCK), GLOB.ethereal_mark_list.len)]
 	if(dna.features["pod_hair"])
-		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_PLANT_HAIR_BLOCK), GLOB.pod_hair_list.len)]
+		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
 	if(dna.features["pod_flower"])
-		dna.features["pod_flower"] = GLOB.pod_flower_list[deconstruct_block(get_uni_feature_block(features, DNA_PLANT_FLOWER_BLOCK), GLOB.pod_flower_list.len)]
+		dna.features["pod_flower"] = GLOB.pod_flower_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_FLOWER_BLOCK), GLOB.pod_flower_list.len)]
 
 	if(icon_update)
 		dna.species.handle_body(src) // We want 'update_body_parts()' to be called only if mutcolor_update is TRUE, so no 'update_body()' here.
