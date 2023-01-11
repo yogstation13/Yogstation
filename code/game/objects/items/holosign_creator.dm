@@ -106,6 +106,17 @@
 	creation_time = 1 SECONDS
 	max_signs = 3
 
+/obj/item/holosign_creator/clown
+	name = "HONK holobanana projector"
+	desc = "A holographic projector that creates hardlight bananas"
+	icon_state = "signmaker_clown"
+	holosign_type = /obj/structure/holosign/holobanana
+	creation_time = 0.69 SECONDS
+	max_signs = 2
+
+/obj/item/holosign_creator/clown/cyborg
+	max_signs = 5
+
 /obj/item/holosign_creator/cyborg
 	name = "Energy Barrier Projector"
 	desc = "A holographic projector that creates fragile energy fields."

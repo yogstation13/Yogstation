@@ -47,6 +47,16 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
+/obj/structure/holosign/holobanana
+	name = "Holographic banana peel"
+	desc = "A peel from a projector"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "holosign_banana"
+
+/obj/structure/holosign/holobanana/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 120, GALOSHES_DONT_HELP)
+
 /obj/structure/holosign/barrier
 	name = "holobarrier"
 	desc = "A short hard light barrier which can only be passed by walking."
