@@ -1019,6 +1019,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 			var/mutable_appearance/MA = new /mutable_appearance()
 			MA.icon = path_image_icon
 			MA.icon_state = path_image_icon_state
+			MA.screen_loc = E3D_TYPE_FLOOR
 			MA.layer = ABOVE_OPEN_TURF_LAYER
 			MA.plane = 0
 			MA.appearance_flags = RESET_COLOR|RESET_TRANSFORM

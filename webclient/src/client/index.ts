@@ -9,6 +9,7 @@ import { SoundCommand, SoundPlayer } from "./sound";
 import { SvgUi } from "./svg_ui";
 import { GlHolder } from "./webgl";
 import "./index.css";
+import { get_webgl_stats } from "./stat_collection";
 
 export class ByondClient {
 	websocket : WebSocket;
@@ -293,6 +294,7 @@ export class ByondClient {
 				this.websocket.send(new MessageBuilder(26).write_string('-').collapse())
 			} else {
 				this.websocket.send(new MessageBuilder(183).collapse());
+				this.command(`.e3d_webgl_stats ${JSON.stringify(JSON.stringify(get_webgl_stats()))}`);
 			}
 			break;
 		} case 30: {

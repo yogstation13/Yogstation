@@ -120,10 +120,17 @@ export class Atom implements AtomDependent {
 				y += this.glide_vec[1];
 			}
 
-			let appearance = this.appearance;
-			if(this.animation && appearance) appearance = this.animation.apply(appearance, this.client.time);
+			let appearance_obj : Atom = this;
+			if(this.images) for(let image of this.images) {
+				if(image.appearance && image.appearance.bits & 0x40000) {
+					appearance_obj = image;
+				}
+			}
+			let appearance = appearance_obj.appearance;
+			if(appearance_obj.animation && appearance) appearance = appearance_obj.animation.apply(appearance, this.client.time);
+
+			let list = this.render_plan;
 			if(appearance && appearance.invisibility <= this.client.eye_see_invisible) {
-				let list = this.render_plan;
 				let tag = appearance.e3d_tag;
 				if(this.type == 1 && !tag?.length) {
 					tag = appearance.plane == -1 ? E3D_TYPE_SMOOTHWALL : E3D_TYPE_FLOOR;
@@ -137,8 +144,15 @@ export class Atom implements AtomDependent {
 					appearance.flick_time = this.flick.time;
 				}
 				func.call(this, list, appearance, x, y);
-				return list;
 			}
+			if(this.images) for(let image of this.images) {
+				let image_appearance = image.appearance;
+				if(!image_appearance || image_appearance.plane == 19) continue;
+
+				let func = e3d_type_handlers.get(image_appearance.e3d_tag) ?? e3d_type_handlers.get(E3D_TYPE_BILLBOARD)!;
+				func.call(this, list, image_appearance, x, y);
+			}
+			return list;
 		}
 		return this.render_plan;
 	}
@@ -220,12 +234,15 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		x += this.pixel_x/32;
 		y += this.pixel_y/32;
 		let focus : vec3 = [x+0.5, y+0.5, 0.5];
-		list.push(new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5).set_alpha_sort(focus));
+		let plan;
+		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5).set_alpha_sort(focus));
+		if(appearance.plane >= 13) plan.bits |= 1;
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == 12) continue;
 			let bias = -0.05;
 			if(overlay.layer < 0) bias = -(51 + overlay.layer) / 1000;
-			list.push(new BillboardRenderPlan(this.full_id, overlay.copy_inherit(appearance), x+0.5, y+0.5).set_alpha_sort(focus, bias));
+			list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(appearance), x+0.5, y+0.5).set_alpha_sort(focus, bias));
+			if(appearance.plane >= 13) plan.bits |= 1;
 		}
 		if(this.vis_contents) {
 			for(let thing_id of this.vis_contents) {
@@ -292,7 +309,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 				if(thing_appearance.plane == 12) continue;
 				let plan;
 				list.push(plan = new WallmountRenderPlan(this.full_id, thing_appearance, x, y, this.pixel_x, this.pixel_y, 0.011, false));
-				if(thing_appearance.plane == 13 || thing_appearance.plane == 14) {
+				if(thing_appearance.plane == 13 || thing_appearance.plane == 14 || thing_appearance.plane > 15) {
 					plan.icon |= (1 << 24);
 					plan.bits |= 1;
 				}
