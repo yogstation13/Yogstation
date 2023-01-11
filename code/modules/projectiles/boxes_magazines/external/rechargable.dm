@@ -31,6 +31,8 @@
 	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
 	can_suppress = FALSE
 	can_flashlight = TRUE
+	flight_x_offset = 16
+	flight_y_offset = 13
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = "sound/weapons/gunshot.ogg"
 	vary_fire_sound = FALSE

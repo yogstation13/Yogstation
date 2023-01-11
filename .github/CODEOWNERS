@@ -13,7 +13,6 @@
 # Placed first so specific files can be owned by others
 *.dmi @yogstation13/art
 *.dmm @yogstation13/map
-*.dm @yogstation13/code
 
 #HeadDev
 

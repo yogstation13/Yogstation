@@ -27,7 +27,7 @@ export class AlertModal extends Component {
 
   componentDidMount() {
     const { data } = useBackend(this.context);
-    const { buttons } = data;
+    const { buttons, autofocus } = data;
     const { current } = this.state;
     const button = this.buttonRefs[current].current;
 
@@ -36,7 +36,9 @@ export class AlertModal extends Component {
       this.buttonRefs.push(createRef());
     }
 
-    setTimeout(() => button.focus(), 1);
+    if (autofocus) {
+      setTimeout(() => button.focus(), 1);
+    }
   }
 
   setCurrent(current, isArrowKey) {
@@ -69,8 +71,7 @@ export class AlertModal extends Component {
       <Window
         title={title}
         width={350}
-        height={150}
-        canClose={timeout > 0}>
+        height={150}>
         {timeout && <Loader value={timeout} />}
         <Window.Content
           onFocus={focusCurrentButton}
@@ -105,7 +106,7 @@ export class AlertModal extends Component {
                            * Simulate a click when pressing space or enter,
                            * allow keyboard navigation, override tab behavior
                            */
-                          if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
+                          if (/* keyCode === KEY_SPACE || */keyCode === KEY_ENTER) {
                             act("choose", { choice: button });
                           } else if (
                             keyCode === KEY_LEFT

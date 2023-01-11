@@ -282,6 +282,11 @@
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
+/datum/species/pod/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_pod_name(gender)
+	return pod_name(gender)
+
 /datum/species/pod/get_species_description()
 	return "TODO: This is pod description"
 

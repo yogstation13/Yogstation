@@ -281,6 +281,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		return 1
 	return 0
 
+/datum/species/preternis/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_preternis_name()
+	return preternis_name()
+
 /datum/species/preternis/get_species_description()
 	return "TODO: This is preternis description"
 
