@@ -67,7 +67,7 @@
 		return
 
 
-	var/transfer_ratio = (transfer_rate * delta_time) / air1.volume
+	var/transfer_ratio = (transfer_rate * delta_time) / air1.return_volume()
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
