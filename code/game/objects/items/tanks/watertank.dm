@@ -425,7 +425,8 @@
 
 	var/inj_am = injection_amount * delta_time
 	var/used_amount = inj_am / usage_ratio
-	reagents.trans_to(user, used_amount, multiplier=usage_ratio, methods = INJECT)
+	reagents.reaction(user, INJECT, used_amount, 0)
+	reagents.trans_to(user, used_amount, multiplier=usage_ratio)
 	update_filling()
 	user.update_inv_back() //for overlays update
 
