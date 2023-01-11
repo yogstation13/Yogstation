@@ -296,6 +296,11 @@
 /datum/quirk/telomeres_long
 	name = "Long Telomeres"
 	desc = "You haven't been cloned much, if at all. Your DNA's telomeres are still largely unaffected by repeated cloning, enabling cloners to work faster."
-	value = 3
+	value = 2
 	mob_trait = TRAIT_LONG_TELOMERES
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are still naturally long."
+
+/datum/quirk/telomeres_long/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NO_DNA_COPY in prefs.pref_species.species_traits)) //Can't pick if you have no DNA bruv.
+		return "You have no DNA!"
+	return FALSE
