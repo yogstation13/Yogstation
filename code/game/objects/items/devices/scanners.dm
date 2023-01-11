@@ -619,7 +619,7 @@ GENE SCANNER
 	add_fingerprint(user)
 	if(istype(target, /turf))
 		var/turf/U = get_turf(target)
-		atmosanalyzer_scan(U.return_air(), user, target)
+		atmosanalyzer_scan(user, U)
 	else if(istype(target, /obj/effect/anomaly))
 		var/obj/effect/anomaly/A = target
 		A.analyzer_act(user, src)
