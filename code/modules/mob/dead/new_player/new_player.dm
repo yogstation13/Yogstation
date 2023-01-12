@@ -117,7 +117,7 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
-		var/datum/preferences/preferences = hud.mymob.client.prefs
+		var/datum/preferences/preferences = client.prefs
 		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 		preferences.update_static_data(usr)
 		preferences.ui_interact(usr)
