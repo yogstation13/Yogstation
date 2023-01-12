@@ -45,17 +45,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/parallax
-
-	var/ambientocclusion = TRUE
-	///Should we automatically fit the viewport?
-	var/auto_fit_viewport = TRUE
-	///Should we be in the widescreen mode set by the config?
-	var/widescreenpref = TRUE
-	///What size should pixels be displayed as? 0 is strech to fit
-	var/pixel_size = 0
-	///What scaling method should we use?
-	var/scaling_method = "normal"
 
 	var/uplink_spawn_loc = UPLINK_PDA
 

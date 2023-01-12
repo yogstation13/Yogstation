@@ -826,13 +826,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			newview = input("Enter custom view range:","FUCK YEEEEE") as num
 			if(!newview)
 				return
-		if(newview > 64)
+		if(newview >= 64)
 			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
 		view_size.setTo(newview)
 		//yogs end
 	else
-		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
+		view_size.resetToDefault(getScreenSize(prefs.read_preference(/datum/preference/toggle/widescreen)))
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI

@@ -110,7 +110,7 @@
 	owner.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
 
 	var/widescreen_layout = FALSE
-	if(owner.client?.prefs?.widescreenpref)
+	if(owner.client?.prefs?.read_preference(/datum/preference/toggle/widescreen))
 		widescreen_layout = TRUE
 
 	var/atom/movable/screen/using

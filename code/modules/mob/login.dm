@@ -73,7 +73,7 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		client.change_view(getScreenSize(client.prefs.widescreenpref))
+		client.change_view(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)
 				A.Grant(src)
