@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/keyname = key
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
-			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
+			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
 
 	//PINGS
@@ -100,7 +100,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
 		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
-			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
+			var/ooc_color = prefs.read_preference(/datum/preference/color/ooc_color)
+			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color) ? "<font color=[ooc_color]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
@@ -119,7 +120,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			mposition = src.mentor_datum?.position
 			oocmsg = "<span class='ooc'>\["
 			oocmsg += "[mposition]"
-			oocmsg += "]<font color='[prefs.ooccolor]'>"
+			oocmsg += "]<font color='[prefs.read_preference(/datum/preference/color/ooc_color)]'>"
 		else
 			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
 			oocmsg += "<font color='[bussedcolor]'>"
