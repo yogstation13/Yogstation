@@ -45,12 +45,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
-	// Want randomjob if preferences already filled - Donkie
-	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
-
-	// 0 = character settings, 1 = game preferences
-	var/current_tab = 0
-
 	var/unlock_content = 0
 
 	var/list/ignoring = list()

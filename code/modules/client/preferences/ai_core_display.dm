@@ -5,6 +5,9 @@
 	savefile_key = "preferred_ai_core_display"
 	should_generate_icons = TRUE
 
+/datum/preference/choiced/ai_core_display/create_default_value()
+	return "Random"
+
 /datum/preference/choiced/ai_core_display/init_possible_values()
 	var/list/values = list()
 
