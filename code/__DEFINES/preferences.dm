@@ -1,5 +1,7 @@
 
-//Preference toggles
+// Legacy preference toggles.
+// !!! DO NOT ADD ANY NEW ONES HERE !!!
+// Use `/datum/preference/toggle` instead.
 #define SOUND_ADMINHELP				(1<<0)
 #define SOUND_MIDI					(1<<1)
 #define SOUND_AMBIENCE				(1<<2)

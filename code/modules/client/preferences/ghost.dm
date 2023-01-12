@@ -86,7 +86,7 @@
 	if (!istype(ghost))
 		return
 
-	if (!client.is_content_unlocked())
+	if (!is_donator(client))
 		return
 
 	ghost.update_icon(ALL, value)
@@ -128,7 +128,7 @@
 	if (!istype(ghost))
 		return
 
-	if (!client.is_content_unlocked())
+	if (!is_donator(client))
 		return
 
 	ghost.ghost_orbit = value

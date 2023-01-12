@@ -96,7 +96,7 @@ export const CharacterPreferenceWindow = (props, context) => {
 
           {!data.content_unlocked && (
             <Stack.Item align="center">
-              Buy BYOND premium for more slots!
+              Support the server by donating to unlock more slots!
             </Stack.Item>
           )}
 
