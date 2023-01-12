@@ -308,7 +308,7 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.id_in_pda)
+		if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 		else // just in case you hate change

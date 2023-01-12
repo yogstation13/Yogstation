@@ -32,10 +32,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
 	var/ghost_form = "ghost"
 
-	var/pda_style = MONO
-	var/pda_color = "#808000"
-	var/pda_theme = PDA_THEME_TITLE_NTOS
-	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
