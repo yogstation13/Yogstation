@@ -70,18 +70,20 @@
 		C = H.client
 		if(!C)
 			return
-	var/SM = C.prefs.map
-	var/F = C.prefs.flare
+	
+	var/spawn_map = C.prefs.read_preference(/datum/preference/toggle/spawn_map)
+	var/spawn_flare = C.prefs.read_preference(/datum/preference/toggle/spawn_flare)
+
 	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
 	if(BP)
 		var/obj/item/storage/box/box = locate(/obj/item/storage/box) in BP
-		if(SM == 1)
+		if(spawn_map)
 			var/obj/item/map/station/map = new get_turf(H)
 			if(box)
 				map.forceMove(box)
 			else
 				map.forceMove(BP)
-		if(F == 1)
+		if(spawn_flare)
 			var/obj/item/flashlight/flare/emergency/flare = new get_turf(H)
 			if(box)
 				flare.forceMove(box)

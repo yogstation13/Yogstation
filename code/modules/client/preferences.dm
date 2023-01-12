@@ -53,9 +53,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skillcape = 1 /// Old skillcape value
 	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
 
-	var/map = 1
-	var/flare = 1
-
 	var/bar_choice = "Random"
 
 	var/list/exp = list()

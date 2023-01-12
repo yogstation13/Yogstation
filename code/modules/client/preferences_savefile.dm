@@ -119,9 +119,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 26) //The new donator hats system obsolesces the old one entirely, we need to update.
 		donor_hat = null
 		donor_item = null
-	if(current_version < 27)
-		map = TRUE
-		flare = TRUE
 	if(current_version < 28)
 		if(!job_preferences)
 			job_preferences = list()
@@ -227,8 +224,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
-	READ_FILE(S["map"], map)
-	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
 	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
