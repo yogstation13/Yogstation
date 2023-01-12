@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(529 modules,
-    1408/8125 macros, 17.3%)</aside></h3>
+<aside>(532 modules,
+    1422/8149 macros, 17.4%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -41,6 +41,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/_protect.html" title="code&#x2F;__DEFINES&#x2F;_protect">_protect</a></li>
     <li><a href="code/__DEFINES/_tick.html" title="code&#x2F;__DEFINES&#x2F;_tick">_tick</a></li>
     <li><a href="code/__DEFINES/access.html" title="code&#x2F;__DEFINES&#x2F;access">access</a></li>
+    <li><a href="code/__DEFINES/acid.html" title="code&#x2F;__DEFINES&#x2F;acid">acid</a></li>
     <li><a href="code/__DEFINES/admin.html" title="code&#x2F;__DEFINES&#x2F;admin">admin</a></li>
     <li><a href="code/__DEFINES/ai.html" title="code&#x2F;__DEFINES&#x2F;ai">ai</a></li>
     <li><a href="code/__DEFINES/antagonists.html" title="code&#x2F;__DEFINES&#x2F;antagonists">antagonists</a></li>
@@ -244,6 +245,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     </ul></li>
     <li><a href="code/game/atoms.html" title="code&#x2F;game&#x2F;atoms">atoms</a> - Tool-specific behavior procs. To be overridden in subtypes.</li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;gamemodes">gamemodes</span><ul class="index-tree">
+    <li><span class="no-substance">clown_ops&#x2F;</span><a href="code/game/gamemodes/clown_ops/clown_weapons.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;clown_ops&#x2F;clown_weapons">clown_weapons</a></li>
     <li class="has-children"><a href="code/game/gamemodes/dynamic.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic">DYNAMIC</a><ul class="index-tree">
     <li><a href="code/game/gamemodes/dynamic/dynamic_logging.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic_logging">dynamic_logging</a></li>
     <li><a href="code/game/gamemodes/dynamic/dynamic_rulesets_midround.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic_rulesets_midround">dynamic_rulesets_midround</a></li>
@@ -278,6 +280,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects">objects</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;effects">effects</span><ul class="index-tree">
+    <li><a href="code/game/objects/effects/anomalies.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;anomalies">anomalies</a></li>
     <li><span class="no-substance">decals&#x2F;turfdecal&#x2F;</span><a href="code/game/objects/effects/decals/turfdecal/tilecoloring.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;turfdecal&#x2F;tilecoloring">tilecoloring</a></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system">effect_system</span><ul class="index-tree">
     <li><a href="code/game/objects/effects/effect_system/effects_other.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;effects_other">effects_other</a></li>
@@ -802,7 +805,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(585 detailed/1246 documented/27010 total, 4.6%)</aside></h3>
+<aside>(591 detailed/1252 documented/27010 total, 4.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1738,6 +1741,7 @@ Will yield a &quot;?&quot;</li>
     <li><a href="obj/docking_port/mobile.html" title="&#x2F;obj&#x2F;docking_port&#x2F;mobile">shuttle</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect">effect</span><ul class="index-tree">
+    <li><span class="no-substance">anomaly&#x2F;</span><a href="obj/effect/anomaly/pyro.html" title="&#x2F;obj&#x2F;effect&#x2F;anomaly&#x2F;pyro">pyroclastic anomaly</a></li>
     <li><span class="no-substance">beam&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;beam&#x2F;i_beam">infrared beam</span> - IBeam</li>
     <li><a href="obj/effect/custom_portal.html" title="&#x2F;obj&#x2F;effect&#x2F;custom_portal">portal</a></li>
     <li><span class="no-substance">dummy&#x2F;</span><a href="obj/effect/dummy/phased_mob.html" title="&#x2F;obj&#x2F;effect&#x2F;dummy&#x2F;phased_mob">water</a></li>
@@ -1928,6 +1932,7 @@ See icons/obj/guns/attachment.dmi.<ul class="index-tree">
     <li><a href="obj/item/borg/upgrade/adv_analyzer.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;adv_analyzer">medical cyborg advanced health analyzer</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;ai">B.O.R.I.S. module</span> - Removes new surgery tools
 Puts in old surgery tools</li>
+    <li><a href="obj/item/borg/upgrade/selfrepair.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;selfrepair">self-repair module</a></li>
     <li><a href="obj/item/borg/upgrade/surgerykit.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;surgerykit">medical cyborg advanced surgical kit</a> - Removes new advanced analyzer
 Puts in old analyzer</li>
     </ul></li>
@@ -1968,6 +1973,7 @@ Puts in old analyzer</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask">mask</span><ul class="index-tree">
     <li><span class="no-substance">facehugger&#x2F;</span><a href="obj/item/clothing/mask/facehugger/toy.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;facehugger&#x2F;toy">toy</a> - Mining Equipment Vendor Items</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;frog">frog mask</span> - frog mask - reeee!!</li>
+    <li><a href="obj/item/clothing/mask/vape.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;vape">E-Cigarette</a></li>
     <li class="has-children"><span class="no-substance">yogs&#x2F;</span><a href="obj/item/clothing/mask/yogs/cluwne.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;yogs&#x2F;cluwne">clown wig and mask</a> - An undroppable mask that changes the user's speech to be unintelligable<ul class="index-tree">
     <li><a href="obj/item/clothing/mask/yogs/cluwne/happy_cluwne.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;yogs&#x2F;cluwne&#x2F;happy_cluwne">Happy Cluwne Mask</a> - Togglable cluwne mask that has a small chance to turn the user into a cluwne or create a floor cluwne with the user as a target</li>
     </ul></li>
@@ -2007,7 +2013,10 @@ the program that displays laws should always be usable, and the exceptions were 
     <li class="has-children"><a href="obj/item/firing_pin.html" title="&#x2F;obj&#x2F;item&#x2F;firing_pin">electronic firing pin</a><ul class="index-tree">
     <li><a href="obj/item/firing_pin/clockie.html" title="&#x2F;obj&#x2F;item&#x2F;firing_pin&#x2F;clockie">clockwork crystal shard</a></li>
     </ul></li>
-    <li><span class="no-substance">flashlight&#x2F;pen&#x2F;</span><a href="obj/item/flashlight/pen/paramedic.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;pen&#x2F;paramedic">paramedic penlight</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;flashlight">flashlight</span><ul class="index-tree">
+    <li><a href="obj/item/flashlight/emp.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;emp">emp</a></li>
+    <li><span class="no-substance">pen&#x2F;</span><a href="obj/item/flashlight/pen/paramedic.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;pen&#x2F;paramedic">paramedic penlight</a></li>
+    </ul></li>
     <li><a href="obj/item/forbidden_book.html" title="&#x2F;obj&#x2F;item&#x2F;forbidden_book">Codex Cicatrix</a></li>
     <li><a href="obj/item/gem.html" title="&#x2F;obj&#x2F;item&#x2F;gem">gem</a></li>
     <li><span class="no-substance">gps&#x2F;</span><a href="obj/item/gps/pirate.html" title="&#x2F;obj&#x2F;item&#x2F;gps&#x2F;pirate">Pirate GPS</a></li>
@@ -2188,6 +2197,7 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/item/projectile.html" title="&#x2F;obj&#x2F;item&#x2F;projectile">projectile</a></li>
     <li><span class="no-substance">radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;radio&#x2F;borg">cyborg radio</span> - Borg Radios</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;reagent_containers">reagent_containers</span><ul class="index-tree">
+    <li><a href="obj/item/reagent_containers/chemtank.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;chemtank">backpack chemical injector</a></li>
     <li class="has-children"><a href="obj/item/reagent_containers/food.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food">food</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;condiment">condiment container</span> - Condiments</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks">drink</span> - Drinks.<ul class="index-tree">
@@ -2498,7 +2508,9 @@ uranium</li>
     <li><a href="obj/structure/supermatter_base_structure.html" title="&#x2F;obj&#x2F;structure&#x2F;supermatter_base_structure">supermatter base structure</a></li>
     <li><a href="obj/structure/swarmer.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer">swarmer ui</a></li>
     <li><a href="obj/structure/swarmer_beacon.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer_beacon">Swarmer Beacon</a> - Beacon which creates sentient player swarmers.</li>
-    <li><a href="obj/structure/table.html" title="&#x2F;obj&#x2F;structure&#x2F;table">table</a></li>
+    <li class="has-children"><a href="obj/structure/table.html" title="&#x2F;obj&#x2F;structure&#x2F;table">table</a><ul class="index-tree">
+    <li><span class="no-substance">optable&#x2F;</span><a href="obj/structure/table/optable/abductor.html" title="&#x2F;obj&#x2F;structure&#x2F;table&#x2F;optable&#x2F;abductor">alien operating table</a></li>
+    </ul></li>
     </ul></li>
     <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;</span><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
     </ul></li>
@@ -2529,7 +2541,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5c31dc60602364bed6a002b990b52dc2e0cf64bc">5c31dc6</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dce60ffaa880ffd09666aad8ff656f51c6d1a3b0">dce60ff</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
