@@ -3,6 +3,7 @@
 /datum/quirk/badback
 	name = "Bad Back"
 	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evenly weighted objects are fine, though."
+	icon = "hiking"
 	value = -4
 	mood_quirk = TRUE
 	gain_text = span_danger("Your back REALLY hurts!")
@@ -19,22 +20,24 @@
 /datum/quirk/blooddeficiency
 	name = "Blood Deficiency"
 	desc = "Your body can't produce enough blood to sustain itself."
+	icon = "tint"
 	value = -4
 	gain_text = span_danger("You feel your vigor slowly fading away.")
 	lose_text = span_notice("You feel vigorous again.")
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
 
-/datum/quirk/blooddeficiency/on_process(delta_time)
+/datum/quirk/blooddeficiency/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
 		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
-			H.blood_volume -= 0.275 * delta_time
+			H.blood_volume -= 0.275
 
 /datum/quirk/blindness
 	name = "Blind"
 	desc = "You are completely blind, nothing can counteract this."
+	icon = "eye-slash"
 	value = -9
 	gain_text = span_danger("You can't see anything.")
 	lose_text = span_notice("You miraculously gain back your vision.")
@@ -53,14 +56,15 @@
 /datum/quirk/brainproblems
 	name = "Brain Tumor"
 	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
+	icon = "brain"
 	value = -6
 	gain_text = span_danger("You feel smooth.")
 	lose_text = span_notice("You feel wrinkled again.")
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
 	var/where = "at your feet"
 
-/datum/quirk/brainproblems/on_process(delta_time)
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
+/datum/quirk/brainproblems/on_process()
+	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
 
 /datum/quirk/brainproblems/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -78,6 +82,7 @@
 /datum/quirk/deafness
 	name = "Deaf"
 	desc = "You are incurably deaf."
+	icon = "deaf"
 	value = -6
 	mob_trait = TRAIT_DEAF
 	gain_text = span_danger("You can't hear anything.")
@@ -87,6 +92,7 @@
 /datum/quirk/depression
 	name = "Depression"
 	desc = "You sometimes just hate life."
+	icon = "frown"
 	mob_trait = TRAIT_DEPRESSION
 	value = -2
 	gain_text = span_danger("You start feeling depressed.")
@@ -97,6 +103,7 @@
 /datum/quirk/family_heirloom
 	name = "Family Heirloom"
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
+	icon = "toolbox"
 	value = -2
 	mood_quirk = TRUE
 	var/obj/item/heirloom
@@ -221,6 +228,7 @@
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
 	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up and cant see anything."
+	icon = "bed"
 	value = -4
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = span_danger("You feel sleepy.")
@@ -230,6 +238,7 @@
 /datum/quirk/hypersensitive
 	name = "Hypersensitive"
 	desc = "For better or worse, everything seems to affect your mood more than it should."
+	icon = "flushed"
 	value = -2
 	gain_text = span_danger("You seem to make a big deal out of everything.")
 	lose_text = span_notice("You don't seem to make a big deal out of everything anymore.")
@@ -250,6 +259,7 @@
 /datum/quirk/light_drinker
 	name = "Light Drinker"
 	desc = "You just can't handle your drinks and get drunk very quickly."
+	icon = "cocktail"
 	value = -2
 	mob_trait = TRAIT_LIGHT_DRINKER
 	gain_text = span_notice("Just the thought of drinking alcohol makes your head spin.")
@@ -257,13 +267,20 @@
 	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
 
 /datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't have the ability to drink!"
 	return FALSE
 
 /datum/quirk/nearsighted //t. errorage
 	name = "Nearsighted"
 	desc = "You are nearsighted without prescription glasses, but spawn with a pair."
+	icon = "glasses"
 	value = -2
 	gain_text = span_danger("Things far away from you start looking blurry.")
 	lose_text = span_notice("You start seeing faraway things normally again.")
@@ -282,6 +299,7 @@
 /datum/quirk/nyctophobia
 	name = "Nyctophobia"
 	desc = "As far as you can remember, you've always been afraid of the dark. While in the dark without a light source, you instinctually act careful, and constantly feel a sense of dread."
+	icon = "lightbulb"
 	value = -2
 	medical_record_text = "Patient demonstrates a fear of the dark. (Seriously?)"
 
@@ -304,6 +322,7 @@
 /datum/quirk/nonviolent
 	name = "Pacifist"
 	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
+	icon = "peace"
 	value = -4
 	mob_trait = TRAIT_PACIFISM
 	gain_text = span_danger("You feel repulsed by the thought of violence!")
@@ -314,6 +333,7 @@
 /datum/quirk/paraplegic
 	name = "Paraplegic"
 	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
+	icon = "wheelchair"
 	value = -7
 	human_only = TRUE
 	gain_text = null // Handled by trauma.
@@ -349,6 +369,7 @@
 /datum/quirk/poor_aim
 	name = "Poor Aim"
 	desc = "You're terrible with guns and can't line up a straight shot to save your life. Dual-wielding is right out."
+	icon = "bullseye"
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
@@ -364,6 +385,7 @@
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
 	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
+	icon = "user-secret"
 	value = -2
 	mob_trait = TRAIT_PROSOPAGNOSIA
 	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
@@ -371,6 +393,7 @@
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
+	icon = "tg-prosthetic-leg"
 	value = -2
 	var/slot_string = "limb"
 	var/specific = null
@@ -433,7 +456,8 @@
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
-	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. <b>This is not a license to grief.</b>"
+	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. THIS IS NOT A LICENSE TO GRIEF."
+	icon = "grin-tongue-wink"
 	value = -2
 	//no mob trait because it's handled uniquely
 	gain_text = null //handled by trauma
@@ -466,6 +490,7 @@
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
 	desc = "Talking to people is very difficult for you, and you often stutter or even lock up."
+	icon = "comment-slash"
 	value = -2
 	gain_text = span_danger("You start worrying about what you're saying.")
 	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
@@ -574,6 +599,7 @@
 /datum/quirk/junkie
 	name = "Junkie"
 	desc = "You can't get enough of hard drugs."
+	icon = "pills"
 	value = -4
 	gain_text = span_danger("You suddenly feel the craving for drugs.")
 	lose_text = span_notice("You feel like you should kick your drug habit.")
@@ -655,13 +681,20 @@
 	H.reagents.addiction_list.Add(reagent_instance)
 
 /datum/quirk/junkie/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
+	icon = "smoking"
 	value = -2
 	mood_quirk = TRUE
 	gain_text = span_danger("You could really go for a smoke right about now.")
@@ -699,6 +732,7 @@
 /datum/quirk/unstable
 	name = "Unstable"
 	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
+	icon = "angry"
 	value = -4
 	mood_quirk = TRUE
 	mob_trait = TRAIT_UNSTABLE
@@ -709,12 +743,12 @@
 /datum/quirk/sheltered
 	name = "Sheltered"
 	desc = "You never learned to speak galactic common."
+	icon = "comment-question"
 	value = -2
 	mob_trait = TRAIT_SHELTERED
 	gain_text = span_danger("You do not speak galactic common.")
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
-
 
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -725,6 +759,7 @@
 /datum/quirk/allergic
 	name = "Allergic Reaction"
 	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
+	icon = "prescription-bottle"
 	value = -2
 	mob_trait = TRAIT_ALLERGIC
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
@@ -745,8 +780,14 @@
 	var/cooldown = FALSE
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (TRAIT_MEDICALIGNORE in prefs.pref_species.inherent_traits))
-		return "You don't benefit from the use of medicine as a [prefs.pref_species]."
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (TRAIT_MEDICALIGNORE in species.inherent_traits)
+	qdel(species)
+
+	if(disallowed_trait)
+		return "You don't benefit from the use of medicine."
 	return ..()
 
 /datum/quirk/allergic/on_spawn()
@@ -765,13 +806,20 @@
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
 
 /datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't process normal chemicals!"
 	return FALSE
 
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
+	icon = "hand-holding-box"
 	value = -2
 	mob_trait = TRAIT_KLEPTOMANIAC
 	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
@@ -795,6 +843,7 @@
 /datum/quirk/ineloquent
 	name = "Ineloquent"
 	desc = "Thinking big words makes brain go hurt."
+	icon = "message-lines"
 	value = -2
 	human_only = TRUE
 	gain_text = "You feel your vocabulary slipping away."
@@ -809,6 +858,7 @@
 /datum/quirk/hemophilia //basically permanent heparin
 	name = "Hemophiliac"
 	desc = "You can't naturally clot bleeding wounds and bleed much more from them than most people, making even small cuts possibly life threatening."
+	icon = "droplet"
 	value = -6
 	mob_trait = TRAIT_BLOODY_MESS
 	gain_text = span_danger("You feel like your blood is thin.")
@@ -816,13 +866,21 @@
 	medical_record_text = "Patient appears unable to naturally form blood clots."
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (!(HAS_FLESH in prefs.pref_species.species_traits) || (NOBLOOD in prefs.pref_species.species_traits)))
-		return "You can't bleed as a [prefs.pref_species]."
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/has_flesh = (HAS_FLESH in species.species_traits)
+	var/no_blood = (NOBLOOD in species.species_traits)
+	qdel(species)
+
+	if(has_flesh || no_blood)
+		return "You can't bleed."
 	return ..()
 
 /datum/quirk/brain_damage
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
+	icon = "head-side-brain"
 	value = -7
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
@@ -840,6 +898,7 @@
 /datum/quirk/monochromatic
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
+	icon = "palette"
 	value = -2
 	medical_record_text = "Patient is afflicted with almost complete color blindness."
 
@@ -858,18 +917,25 @@
 /datum/quirk/nomail
 	name = "Loser"
 	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
+	icon = "envelopes-bulk"
 	value = -1
 	mob_trait = TRAIT_BADMAIL
 
 /datum/quirk/telomeres_short 
 	name = "Short Telomeres"
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
+	icon = "magnifying-glass-minus"
 	value = -2
 	mob_trait = TRAIT_SHORT_TELOMERES
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
 
 /datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NO_DNA_COPY in prefs.pref_species.species_traits)) //Can't pick if you have no DNA bruv.
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You have no DNA!"
 	return FALSE
-	

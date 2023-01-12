@@ -109,8 +109,8 @@
 	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
-		if(C.client?.prefs?.custom_names["human"] && !is_banned_from(C.client?.ckey, "Appearance"))
-			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.custom_names["human"])
+		if(C.client?.prefs?.read_preference(/datum/preference/name/real_name) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/real_name))
 		else
 			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 

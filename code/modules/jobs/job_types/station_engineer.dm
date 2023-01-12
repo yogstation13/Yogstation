@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	// Assign department engineering
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_engineering_department
+		department = M.client.prefs.read_preference(/datum/preference/choiced/engineering_department)
 		if(!LAZYLEN(GLOB.available_depts_eng) || department == "None")
 			return
 		else if(department in GLOB.available_depts_eng)

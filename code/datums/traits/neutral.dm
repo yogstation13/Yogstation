@@ -4,6 +4,7 @@
 /datum/quirk/vegetarian
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."
+	icon = "tomato"
 	value = 0
 	gain_text = span_notice("You feel repulsion at the idea of eating meat.")
 	lose_text = span_notice("You feel like eating meat isn't that bad.")
@@ -25,13 +26,20 @@
 			species.disliked_food &= ~MEAT
 
 /datum/quirk/vegetarian/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
 
 /datum/quirk/pineapple_liker
 	name = "Ananas Affinity"
 	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
+	icon = "thumbs-up"
 	value = 0
 	gain_text = span_notice("You feel an intense craving for pineapple.")
 	lose_text = span_notice("Your feelings towards pineapples seem to return to a lukewarm state.")
@@ -49,13 +57,20 @@
 		species.liked_food &= ~PINEAPPLE
 
 /datum/quirk/pineapple_liker/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
 
 /datum/quirk/pineapple_hater
 	name = "Ananas Aversion"
 	desc = "You find yourself greatly detesting fruits of the ananas genus. Serious, how the hell can anyone say these things are good? And what kind of madman would even dare putting it on a pizza!?"
+	icon = "thumbs-down"
 	value = 0
 	gain_text = span_notice("You find yourself pondering what kind of idiot actually enjoys pineapples...")
 	lose_text = span_notice("Your feelings towards pineapples seem to return to a lukewarm state.")
@@ -73,13 +88,20 @@
 		species.disliked_food &= ~PINEAPPLE
 
 /datum/quirk/pineapple_hater/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
 
 /datum/quirk/deviant_tastes
 	name = "Deviant Tastes"
 	desc = "You dislike food that most people enjoy, and find delicious what they don't."
+	icon = "grin-tongue-squint"
 	value = 0
 	gain_text = span_notice("You start craving something that tastes strange.")
 	lose_text = span_notice("You feel like eating normal food again.")
@@ -100,13 +122,20 @@
 		species.disliked_food = initial(species.disliked_food)
 
 /datum/quirk/deviant_tastes/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant eat
+	qdel(species)
+
+	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
 
 /datum/quirk/shifty_eyes
 	name = "Shifty Eyes"
 	desc = "Your eyes tend to wander all over the place, whether you mean to or not, causing people to sometimes think you're looking directly at them when you aren't."
+	icon = "face-spiral-eyes"
 	value = 0
 	medical_record_text = "Fucking creep kept staring at me the whole damn checkup. I'm only diagnosing this because it's less awkward than thinking it was on purpose."
 	mob_trait = TRAIT_SHIFTY_EYES
@@ -114,6 +143,7 @@
 /datum/quirk/random_accent
 	name = "Randomized Accent"
 	desc = "You have developed a random accent."
+	icon = "message-dots"
 	value = 0
 	mob_trait = TRAIT_RANDOM_ACCENT
 	gain_text = span_danger("You have developed an accent.")
@@ -129,6 +159,7 @@
 /datum/quirk/colorist
 	name = "Colorist"
 	desc = "You like carrying around a hair dye spray to quickly apply color patterns to your hair."
+	icon = "spray-can-sparkles"
 	value = 0
 	medical_record_text = "Patient enjoys dyeing their hair with pretty colors."
 	var/where
@@ -151,6 +182,12 @@
 	to_chat(quirk_holder, span_boldnotice("Your bottle of hair dye spray is [where]."))
 
 /datum/quirk/colorist/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && !(HAIR in prefs.pref_species.species_traits)) // No Hair
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = (HAIR in species.species_traits) // No Hair
+	qdel(species)
+
+	if(!disallowed_trait)
 		return "You don't have hair!"
 	return FALSE

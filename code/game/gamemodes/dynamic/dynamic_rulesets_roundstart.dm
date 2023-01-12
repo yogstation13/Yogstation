@@ -1052,7 +1052,13 @@
 /datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/player in candidates)
-		if(player?.client?.prefs.pref_species && (NOBLOOD in player.client.prefs.pref_species.species_traits))
+		var/species_type = player?.client?.prefs.read_preference(/datum/preference/choiced/species)
+		var/datum/species/species = new species_type
+
+		var/noblood = (NOBLOOD in species.species_traits)
+		qdel(species)
+
+		if(noblood)
 			candidates.Remove(player)
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
