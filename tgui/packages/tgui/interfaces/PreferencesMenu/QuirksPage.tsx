@@ -45,7 +45,7 @@ const QuirkList = (props: {
                 <Icon
                   color="#333"
                   fontSize={3}
-                  name={quirk.icon}
+                  name={typeof quirk.icon === 'string' ?  quirk.icon : "bug"}
                 />
               </Stack.Item>
 

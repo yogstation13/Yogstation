@@ -572,7 +572,7 @@ SUBSYSTEM_DEF(job)
 		var/list/player_box = list()
 		for(var/mob/H in GLOB.player_list)
 			if(H.client && H.client.prefs) // Prefs was null once and there was no bar
-				player_box += H.client.prefs.bar_choice
+				player_box += H.client.prefs.read_preference(/datum/preference/choiced/bar_choice)
 
 		var/choice
 		if(player_box.len == 0)

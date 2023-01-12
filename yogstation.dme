@@ -1900,6 +1900,7 @@
 #include "code\modules\client\preferences\ambient_occlusion.dm"
 #include "code\modules\client\preferences\assets.dm"
 #include "code\modules\client\preferences\auto_fit_viewport.dm"
+#include "code\modules\client\preferences\bar_choice.dm"
 #include "code\modules\client\preferences\buttons_locked.dm"
 #include "code\modules\client\preferences\clothing.dm"
 #include "code\modules\client\preferences\credits.dm"

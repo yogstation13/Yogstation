@@ -1,13 +1,13 @@
 import { CheckboxInputInverse, FeatureToggle } from "../base";
 
-export const spawn_flare: FeatureToggle = {
+export const flare: FeatureToggle = {
   name: "Spawn with flare",
   category: "GAMEPLAY",
   description: "If enabled, you will spawn with a flare in your backpack.",
   component: CheckboxInputInverse,
 };
 
-export const spawn_map: FeatureToggle = {
+export const map: FeatureToggle = {
   name: "Spawn with map",
   category: "GAMEPLAY",
   description: "If enabled, you will spawn with a map in your backpack.",

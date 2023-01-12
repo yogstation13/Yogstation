@@ -101,7 +101,7 @@
 				choice = "Random"
 
 		if(C)
-			choice = C.prefs.bar_choice
+			choice = C.prefs.read_preference(/datum/preference/choiced/bar_choice)
 
 		if(choice != "Random")
 			var/bar_sanitize = FALSE
