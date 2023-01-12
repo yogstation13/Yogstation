@@ -62,7 +62,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
 	helmet_on = !helmet_on
-	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
+	icon_state = "[base_icon_state][helmet_on ? "-light":""]"
 	item_state = icon_state
 	user.update_inv_head()
 	
