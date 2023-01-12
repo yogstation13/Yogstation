@@ -26086,18 +26086,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/misc_lab)
-"gvR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/item/circuitboard/machine/techfab/department/security,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/card/id/departmental_budget/sec,
-/obj/item/reagent_containers/syringe/lethal/execution,
-/obj/effect/turf_decal/bot_red,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "gvV" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -34087,6 +34075,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"jOv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/bot_red,
+/obj/item/circuitboard/machine/techfab/department/security,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jOw" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -49894,24 +49892,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"qwJ" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/rack,
-/obj/item/gun/syringe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/gun/syringe{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/machinery/door/window/brigdoor{
-	dir = 4;
-	name = "Armory Door";
-	req_access_txt = "1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "qwV" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -55196,6 +55176,18 @@
 "sKA" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"sKE" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/rack,
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Armory Door";
+	req_access_txt = "1"
+	},
+/obj/item/card/id/departmental_budget/sec,
+/obj/item/reagent_containers/syringe/lethal/execution,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "sKP" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -96972,7 +96964,7 @@ gXs
 aaZ
 aaZ
 clu
-qwJ
+sKE
 oWD
 ykL
 aaZ
@@ -98001,7 +97993,7 @@ aaZ
 adl
 adl
 iXw
-gvR
+jOv
 adl
 mAQ
 aaZ
