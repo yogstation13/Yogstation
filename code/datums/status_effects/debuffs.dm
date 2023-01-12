@@ -1218,5 +1218,6 @@
 		. = ..()
 
 /datum/status_effect/exhumed
-    id = "exhume"
-    duration = 20 SECONDS
+	id = "exhume"
+	tick_interval = -1
+	alert_type = null

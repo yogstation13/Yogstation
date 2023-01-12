@@ -125,7 +125,7 @@
 
 #define STATUS_EFFECT_BRAZIL_PENANCE /datum/status_effect/brazil_penance //controls heretic sacrifice
 
-#define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of bloodmen reviving
+#define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
 /////////////
 // NEUTRAL //
