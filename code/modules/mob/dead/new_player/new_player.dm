@@ -117,8 +117,11 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
-		//client.prefs.ShowChoices(src)
-		return 1
+		var/datum/preferences/preferences = hud.mymob.client.prefs
+		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+		preferences.update_static_data(usr)
+		preferences.ui_interact(usr)
+		return TRUE
 
 	if(href_list["ready"])
 		var/tready = text2num(href_list["ready"])
