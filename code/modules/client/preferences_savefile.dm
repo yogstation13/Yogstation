@@ -251,7 +251,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Sanitize
 	lastchangelog		= sanitize_text(lastchangelog, initial(lastchangelog))
-	UI_style			= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
 	default_slot		= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
 	toggles				= sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	be_special			= SANITIZE_LIST(be_special)

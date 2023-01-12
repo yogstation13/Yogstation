@@ -1039,7 +1039,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			QDEL_NULL(mob.hud_used)
 			mob.create_mob_hud()
 			mob.hud_used.show_hud(mob.hud_used.hud_version)
-			mob.hud_used.update_ui_style(ui_style2icon(prefs.UI_style))
+			mob.hud_used.update_ui_style(ui_style2icon(prefs.read_preference(/datum/preference/choiced/ui_style)))
 
 	if (isliving(mob))
 		var/mob/living/M = mob
