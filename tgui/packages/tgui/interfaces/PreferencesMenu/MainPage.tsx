@@ -22,6 +22,7 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 const CharacterControls = (props: {
   handleRotate: () => void,
   handleOpenSpecies: () => void,
+  handleCycleBackground: () => void,
   gender: Gender,
   setGender: (gender: Gender) => void,
   showGender: boolean,
@@ -34,6 +35,16 @@ const CharacterControls = (props: {
           fontSize="22px"
           icon="undo"
           tooltip="Rotate"
+          tooltipPosition="top"
+        />
+      </Stack.Item>
+
+      <Stack.Item>
+        <Button
+          onClick={props.handleCycleBackground}
+          fontSize="22px"
+          icon="image"
+          tooltip="Cycle background"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -498,6 +509,9 @@ export const MainPage = (props: {
                     handleOpenSpecies={props.openSpecies}
                     handleRotate={() => {
                       act("rotate");
+                    }}
+                    handleCycleBackground={() => {
+                      act("cycle");
                     }}
                     setGender={createSetPreference(act, "gender")}
                     showGender={

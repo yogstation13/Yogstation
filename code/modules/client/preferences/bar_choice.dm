@@ -9,7 +9,7 @@
 	return "Random"
 
 /datum/preference/choiced/bar_choice/init_possible_values()
-	return GLOB.potential_box_bars
+	return GLOB.potential_box_bars + "Random"
 
 /datum/preference/choiced/bar_choice/apply_to_human(mob/living/carbon/human/target, value)
 	return
