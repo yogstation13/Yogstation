@@ -51,7 +51,7 @@
 	return values
 
 /datum/preference/choiced/backpack/apply_to_human(mob/living/carbon/human/target, value)
-	target.back = value
+	target.backbag = value
 
 /// Jumpsuit preference
 /datum/preference/choiced/jumpsuit
