@@ -225,7 +225,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
 
-	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
 	READ_FILE(S["key_bindings"], key_bindings)
 
 	//try to fix any outdated data if necessary
