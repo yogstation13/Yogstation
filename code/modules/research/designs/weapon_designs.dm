@@ -218,7 +218,7 @@
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
 	build_path = /obj/item/gun/syringe/rapidsyringe
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL		//uwu
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY		//uwu
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
@@ -414,6 +414,17 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
 	build_path = /obj/item/gun/energy/mindflayer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/bouncer
+	name = "Bouncer Energy Gun"
+	desc = "An atypical energy gun shooting bouncing projectiles."
+	id = "bouncer_egun"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 10000, /datum/material/silver = 1000, /datum/material/titanium = 1200)
+	reagents_list = list(/datum/reagent/sorium = 20)
+	build_path = /obj/item/gun/energy/e_gun/bouncer
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

@@ -69,14 +69,14 @@
 /datum/quirk/proc/check_quirk(datum/preferences/prefs) // Yogs -- allows quirks to check the preferences of the user who may acquire it
 	return FALSE
 
-/datum/quirk/process()
+/datum/quirk/process(delta_time)
 	if(QDELETED(quirk_holder))
 		quirk_holder = null
 		qdel(src)
 		return
 	if(quirk_holder.stat == DEAD)
 		return
-	on_process()
+	on_process(delta_time)
 
 /mob/living/proc/get_trait_string(medical) //helper string. gets a string of all the traits the mob has
 	var/list/dat = list()

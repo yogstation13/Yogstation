@@ -44,8 +44,8 @@
 				return
 			if(tgui_alert(usr, "If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a breach of server security.", "Confirmation", list("I Understand", "Cancel")) != "I Understand")
 				return
-			message_admins("MFA for [admin_ckey] has been reset by [usr]!")
-			log_admin("MFA Reset for [admin_ckey] by [usr]!")
+			message_admins("MFA for [admin_ckey] has been reset by [ADMIN_LOOKUPFLW(usr)]!")
+			log_admin("MFA Reset for [admin_ckey] by [usr.ckey]!")
 			mfa_reset(admin_ckey)
 			return TRUE
 		if("editRank")

@@ -41,9 +41,12 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	// We go backwards, so it'll be innermost objects sold first
 	for(var/i in reverseRange(contents))
 		var/atom/movable/thing = i
+		var/obj/item/thingy = thing
 		var/sold = FALSE
 		if(QDELETED(thing))
 			continue
+		if(istype(thingy) && thingy.item_flags & AUTOLATHED)
+			qdel(thingy)
 		for(var/datum/export/E in GLOB.exports_list)
 			if(!E)
 				continue

@@ -1,6 +1,9 @@
 /datum/job/lawyer
 	title = "Lawyer"
+	description = "Advocate for prisoners, create law-binding contracts, \
+		ensure Security is following protocol and Space Law."
 	flag = LAWYER
+	orbit_icon = "gavel"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

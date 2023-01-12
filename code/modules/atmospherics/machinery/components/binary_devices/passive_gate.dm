@@ -30,12 +30,19 @@ Passive gate is similar to the regular pump except:
 /obj/machinery/atmospherics/components/binary/passive_gate/CtrlClick(mob/user)
 	if(can_interact(user))
 		on = !on
+		var/msg = "was turned [on ? "on" : "off"] by [key_name(user)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
 	if(can_interact(user))
 		target_pressure = MAX_OUTPUT_PRESSURE
+		var/msg = "was set to [target_pressure] kPa by [key_name(user)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+		balloon_alert(user, "pressure output set to [target_pressure] kPa")
 		update_icon()
 	return ..()
 
@@ -120,8 +127,9 @@ Passive gate is similar to the regular pump except:
 	switch(action)
 		if("power")
 			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+			investigate_log(msg, INVESTIGATE_ATMOS)
+			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
@@ -137,8 +145,9 @@ Passive gate is similar to the regular pump except:
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
+				investigate_log(msg, INVESTIGATE_ATMOS)
+				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/atmosinit()

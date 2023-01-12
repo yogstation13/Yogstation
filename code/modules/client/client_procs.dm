@@ -153,6 +153,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+		//YOGS START: adds "refresh_admin_ticket_list" from another file.
+		if("refresh_admin_ticket_list")
+			var/client/C = usr.client
+			var/flag = href_list["flag"]
+			if(!flag)
+				flag = TICKET_FLAG_LIST_ALL
+			C.view_tickets_main(flag)
+		//YOGS END
 	if (hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
@@ -1007,14 +1015,22 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
-				if("Say")
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=say")
-				if("Emote")
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=me")
-				if("OOC")
+				if(SAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.say")
+				if(ME_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.me")
+				if(OOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=ooc")
-				if("LOOC")
+				if(LOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=looc")
+				if(ASAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=asay")
+				if(MSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=msay")
+				if(DONORSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.donorsay")
+				if(DEADSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=dsay")
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
