@@ -685,7 +685,7 @@
 	id = "medical_weapons"
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
-	prereq_ids = list("adv_biotech", "adv_weaponry")
+	prereq_ids = list("adv_biotech", "adv_weaponry","syndicate_basic")
 	design_ids = list("rapidsyringe", "dartsyringe")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
