@@ -232,7 +232,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["map"], map)
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
-	READ_FILE(S["show_credits"], show_credits)
 	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
 	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
 	READ_FILE(S["key_bindings"], key_bindings)

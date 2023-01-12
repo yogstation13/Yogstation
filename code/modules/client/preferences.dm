@@ -32,9 +32,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
 	var/ghost_form = "ghost"
 
-	var/show_credits = TRUE
-	var/uses_glasses_colour = 0
-
 	var/list/player_alt_titles = new()
 
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.

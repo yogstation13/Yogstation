@@ -230,6 +230,8 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 /// This person is crying
 #define TRAIT_CRYING "crying"
+/// This human wants to see the color of their glasses, for some reason
+#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -296,6 +298,7 @@
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
 #define ATTACHMENT_TRAIT "attachment-trait"
+#define GLASSES_TRAIT "glasses"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
