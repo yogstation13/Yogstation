@@ -117,7 +117,7 @@
 		new /obj/item/stack/sheet/metal(loc)
 	qdel(src)
 
-/obj/machinery/iv_drip/process()
+/obj/machinery/iv_drip/process(delta_time)
 	if(!attached)
 		return PROCESS_KILL
 
@@ -138,13 +138,13 @@
 					transfer_amount = 10
 				var/fraction = min(transfer_amount/beaker.reagents.total_volume, 1) //the fraction that is transfered of the total volume
 				beaker.reagents.reaction(attached, INJECT, fraction, FALSE) //make reagents reacts, but don't spam messages
-				beaker.reagents.trans_to(attached, transfer_amount)
+				beaker.reagents.trans_to(attached, transfer_amount * delta_time * 0.5)
 				update_icon()
 
 		// Take blood
 		else
 			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-			amount = min(amount, 4)
+			amount = min(amount, 4) * delta_time * 0.5
 			// If the beaker is full, ping
 			if(!amount)
 				if(prob(5))

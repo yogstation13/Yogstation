@@ -13,7 +13,7 @@
 	light_color = LIGHT_COLOR_FIRE
 	light_on = FALSE
 	heat = 1000
-	var/wax = 1000
+	var/wax = 2000
 	var/lit = FALSE
 	var/infinite = FALSE
 	var/start_lit = FALSE
@@ -25,7 +25,7 @@
 		light()
 
 /obj/item/candle/update_icon()
-	icon_state = "candle[(wax > 400) ? ((wax > 750) ? 1 : 2) : 3][lit ? "_lit" : ""]"
+	icon_state = "candle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 /obj/item/candle/attackby(obj/item/W, mob/user, params)
 	var/msg = W.ignition_effect(src, user)
@@ -63,12 +63,12 @@
 	put_out_candle()
 	return ..()
 
-/obj/item/candle/process()
+/obj/item/candle/process(delta_time)
 	if(!lit)
 		return PROCESS_KILL
 	if(!infinite)
-		wax--
-	if(!wax)
+		wax -= delta_time
+	if(wax <= 0)
 		if(candle_type == "resin")
 			new /obj/item/trash/candle/resin(loc)
 			qdel(src)

@@ -19,7 +19,7 @@
 	var/mode = HEATER_MODE_STANDBY
 	var/setMode = "auto" // Anything other than "heat" or "cool" is considered auto.
 	var/targetTemperature = T20C
-	var/heatingPower = 40000
+	var/heatingPower = 20000
 	var/efficiency = 20000
 	var/temperatureTolerance = 1
 	var/settableTemperatureMedian = 30 + T0C
@@ -64,7 +64,7 @@
 	if(panel_open)
 		add_overlay("sheater-open")
 
-/obj/machinery/space_heater/process()
+/obj/machinery/space_heater/process(delta_time)
 	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
@@ -100,13 +100,13 @@
 		return
 
 	var/heat_capacity = env.heat_capacity()
-	var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
-	requiredPower = min(requiredPower, heatingPower)
+	var/requiredEnergy = abs(env.return_temperature() - targetTemperature) * heat_capacity
+	requiredEnergy = min(requiredEnergy, heatingPower * delta_time)
 
-	if(requiredPower < 1)
+	if(requiredEnergy < 1)
 		return
 
-	var/deltaTemperature = requiredPower / heat_capacity
+	var/deltaTemperature = requiredEnergy / heat_capacity
 	if(mode == HEATER_MODE_COOL)
 		deltaTemperature *= -1
 	if(deltaTemperature)
@@ -116,13 +116,13 @@
 	var/working = TRUE
 
 	if(stat & NOPOWER)
-		if (!cell.use(requiredPower / efficiency))
+		if (!cell.use(requiredEnergy / efficiency))
 			//automatically turn off machine when cell depletes
 			on = FALSE
 			update_icon()
 			working = FALSE		
 	else
-		active_power_usage = requiredPower / efficiency
+		active_power_usage = requiredEnergy / efficiency
 		cell.give(charge_rate)
 	
 	if(!working)
@@ -145,7 +145,7 @@
 		cap += M.rating
 		charge_rate = initial(charge_rate)*M.rating
 
-	heatingPower = laser * 40000
+	heatingPower = laser * 20000
 
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000

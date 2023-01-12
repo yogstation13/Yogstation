@@ -1,5 +1,0 @@
-author: "ReddicusDragon, ThatLing, and JamieD1"
-delete-after: true 
-changes: 
-  - bugfix: "The virology machine no longer bluescreens"
-  - experiment: "Pandemic bluescreen fix is experimental. Please report any bugs!"

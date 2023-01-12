@@ -338,7 +338,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
 			 //Slowly get that clone healed and finished.
-			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult))
+			var/telomere_boost = HAS_TRAIT(mob_occupant,TRAIT_LONG_TELOMERES) ? 1.2 : 1.0 //clone 20% faster with long telomere quirk
+			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult * telomere_boost))
 			var/progress = CLONE_INITIAL_DAMAGE - mob_occupant.getCloneLoss()
 			// To avoid the default cloner making incomplete clones
 			progress += (100 - MINIMUM_HEAL_LEVEL)
