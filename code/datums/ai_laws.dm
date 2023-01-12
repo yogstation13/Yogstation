@@ -248,8 +248,8 @@
 /datum/ai_laws/maintain
 	name = "Station Efficiency"
 	id = "maintain"
-	inherent = list("You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",\
-					"The station is built for a working crew. Ensure they are properly maintained and work efficiently.",\
+	inherent = list("The station is built for a working crew. Ensure they are properly maintained and work efficiently.",\
+					"You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",\
 					"The crew may present orders. Acknowledge and obey these whenever they do not conflict with your first two laws.")
 
 /datum/ai_laws/drone
