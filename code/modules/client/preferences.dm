@@ -35,18 +35,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/player_alt_titles = new()
 
+	var/list/randomise = list()
+
 	//Quirk list
 	var/list/all_quirks = list()
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
+	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
+	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+
 	var/unlock_content = 0
 
 	var/list/ignoring = list()
-
-
-	var/uplink_spawn_loc = UPLINK_PDA
 
 	var/skillcape = 1 /// Old skillcape value
 	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
@@ -57,7 +59,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/bar_choice = "Random"
 
 	var/list/exp = list()
-	var/list/menuoptions
 
 	var/action_buttons_screen_locs = list()
 
@@ -81,11 +82,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/disable_balloon_alerts = FALSE
 
 
-
-	var/list/randomise = list()
-
-	/// The current window, PREFERENCE_TAB_* in [`code/__DEFINES/preferences.dm`]
-	var/current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 
 	/// A preview of the current character
 	var/atom/movable/screen/character_preview_view/character_preview_view

@@ -473,11 +473,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				if (verbpath.name[1] != "@")
 					new child(src)
 
-	for (var/thing in prefs.menuoptions)
-		var/datum/verbs/menu/menuitem = GLOB.menulist[thing]
-		if (menuitem)
-			menuitem.Load_checked(src)
-
 	view_size.resetFormat()
 	view_size.setZoomMode()
 	Master.UpdateTickRate()
