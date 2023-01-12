@@ -61,8 +61,3 @@
 			break
 	holder?.key_up(_key, src)
 	mob.focus?.key_up(_key, src)
-
-// Called every game tick
-/client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)
