@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Phytosians, preterni, and ethereal all have new naming schema regarding randomized names"
-  - rscadd: "Existing lists such as polymorphs and the old ethereal list (which was based on constellations) have been expanded"
-  - tweak: "Lizard name generation has been tweaked to reflect current lore better"

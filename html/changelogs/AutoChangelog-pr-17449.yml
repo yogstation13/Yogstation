@@ -1,4 +1,0 @@
-author: "cuackles"
-delete-after: true 
-changes: 
-  - bugfix: "fixed the missing state errors in the ammo.dmi"
