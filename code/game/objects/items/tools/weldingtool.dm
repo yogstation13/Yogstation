@@ -1,4 +1,4 @@
-#define WELDER_FUEL_BURN_INTERVAL 13
+#define WELDER_FUEL_BURN_INTERVAL 26
 /obj/item/weldingtool
 	name = "welding tool"
 	desc = "A standard edition welder provided by Nanotrasen."
@@ -63,7 +63,7 @@
 	return
 
 
-/obj/item/weldingtool/process()
+/obj/item/weldingtool/process(delta_time)
 	switch(welding)
 		if(0)
 			force = 3
@@ -76,7 +76,7 @@
 		if(1)
 			force = 15
 			damtype = BURN
-			++burned_fuel_for
+			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
 			update_icon()
@@ -170,7 +170,7 @@
 	if(!isOn() || !check_fuel())
 		return FALSE
 
-	if(used)
+	if(used > 0)
 		burned_fuel_for = 0
 	if(get_fuel() >= used)
 		reagents.remove_reagent(/datum/reagent/fuel, used)
