@@ -1909,6 +1909,7 @@
 #include "code\modules\client\preferences\ghost.dm"
 #include "code\modules\client\preferences\hotkeys.dm"
 #include "code\modules\client\preferences\jobless_role.dm"
+#include "code\modules\client\preferences\mood.dm"
 #include "code\modules\client\preferences\names.dm"
 #include "code\modules\client\preferences\ooc.dm"
 #include "code\modules\client\preferences\parallax.dm"

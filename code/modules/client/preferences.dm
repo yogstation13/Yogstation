@@ -30,14 +30,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
+	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/ghost_form = "ghost"
 
 	var/list/player_alt_titles = new()
 
 	//Quirk list
 	var/list/all_quirks = list()
-
-	var/mood_tail_wagging = TRUE
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()

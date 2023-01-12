@@ -13,3 +13,10 @@ export const pda_style: Feature<string> = {
   description: "The style of your equipped PDA. Changes font.",
   component: FeatureDropdownInput,
 };
+
+export const pda_theme: Feature<string> = {
+  name: "PDA theme",
+  category: "GAMEPLAY",
+  description: "The theme of your equipped PDA.",
+  component: FeatureDropdownInput,
+};
