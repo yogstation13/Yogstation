@@ -776,19 +776,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	set_ghost_appearance()
-	if(client && client.prefs)
-		deadchat_name = client.prefs.real_name
+	if(client?.prefs)
+		var/real_name = client.prefs.read_preference(/datum/preference/name/real_name)
+		deadchat_name = real_name
 		if(mind)
-			mind.name = client.prefs.real_name
+			mind.name = real_name
+		name = real_name
 
 /mob/dead/observer/proc/set_ghost_appearance()
 	if((!client) || (!client.prefs))
 		return
 
-	if(client.prefs.be_random_name)
-		client.prefs.real_name = random_unique_name(gender)
-	if(client.prefs.be_random_body)
-		client.prefs.random_character(gender)
+	client.prefs.apply_character_randomization_prefs()
 
 	if(HAIR in client.prefs.pref_species.species_traits)
 		hair_style = client.prefs.hair_style

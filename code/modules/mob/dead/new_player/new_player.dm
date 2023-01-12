@@ -289,7 +289,7 @@
 	observer.client = client
 	observer.set_ghost_appearance()
 	if(observer.client && observer.client.prefs)
-		observer.real_name = observer.client.prefs.real_name
+		observer.real_name = observer.client.prefs.read_preference(/datum/preference/name/real_name)
 		observer.name = observer.real_name
 		observer.client.init_verbs()
 	observer.update_icon()
@@ -445,13 +445,12 @@
 		if(QDELETED(src))
 			return
 	if(frn)
-		client.prefs.random_character()
+		client.prefs.randomise_appearance_prefs()
 		client.prefs.accent = null
-		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
-	client.prefs.copy_to(H)
 
-	client.prefs.copy_to(H)
+	client.prefs.apply_prefs_to(H)
 	H.dna.update_dna_identity()
+
 	if(mind)
 		if(mind.assigned_role)
 			var/datum/job/J = SSjob.GetJob(mind.assigned_role)

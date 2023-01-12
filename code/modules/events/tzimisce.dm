@@ -84,8 +84,7 @@
 /datum/round_event/ghost_role/tzimisce/proc/spawn_event_tzimisce()
 	var/mob/living/carbon/human/new_tzimisce = new()
 	SSjob.SendToLateJoin(new_tzimisce)
-	var/datum/preferences/A = new() //Randomize appearance.
-	A.copy_to(new_tzimisce)
+	new_tzimisce.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 	new_tzimisce.dna.update_dna_identity()
 	return new_tzimisce
 

@@ -39,7 +39,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 	//character preferences
-	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we'll have a random name every round
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
@@ -198,10 +197,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_character())
 			return
 	//we couldn't load character data so just randomize the character appearance + name
-	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
+	randomise_appearance_prefs()		//let's create a random character then - rather than a fat, bald and naked man.
 	if(C)
 		apply_all_client_preferences()
 		C.set_macros()
+
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
@@ -539,44 +539,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 
 	return profiles
 
-/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
-/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
-	var/list/output = list()
-
-	for (var/action in key_bindings)
-		for (var/key in key_bindings[action])
-			LAZYADD(output[key], action)
-
-	return output
-
-/// Returns the default `randomise` variable ouptut
-/datum/preferences/proc/get_default_randomization()
-	var/list/default_randomization = list()
-
-	for (var/preference_key in GLOB.preference_entries_by_key)
-		var/datum/preference/preference = GLOB.preference_entries_by_key[preference_key]
-		if (preference.is_randomizable() && preference.randomize_by_default)
-			default_randomization[preference_key] = RANDOM_ENABLED
-
-	return default_randomization
-
-
-
-
-
-/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
-	return player_alt_titles.Find(job.title) > 0 \
-		? player_alt_titles[job.title] \
-		: job.title
-
-/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
-	// remove existing entry
-	if(player_alt_titles.Find(job.title))
-		player_alt_titles -= job.title
-	// add one if it's not default
-	if(job.title != new_title)
-		player_alt_titles[job.title] = new_title
-
 /datum/preferences/proc/set_job_preference_level(datum/job/job, level)
 	if (!job)
 		return FALSE
@@ -614,69 +576,56 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 			sum++
 	return sum
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE)
-	if(be_random_name)
-		real_name = pref_species.random_name(gender)
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+	character.dna.features = list()
 
-	if(be_random_body)
-		random_character(gender)
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
 
-	if(roundstart_checks)
-		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == "human"))
-			var/firstspace = findtext(real_name, " ")
-			var/name_length = length(real_name)
-			if(!firstspace)	//we need a surname
-				real_name += " [pick(GLOB.last_names)]"
-			else if(firstspace == name_length)
-				real_name += "[pick(GLOB.last_names)]"
-
-	character.real_name = real_name
-	character.name = character.real_name
-
-	character.gender = gender
-	character.age = age
-
-	character.eye_color = eye_color
-	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
-	if(organ_eyes)
-		if(!initial(organ_eyes.eye_color))
-			organ_eyes.eye_color = eye_color
-		organ_eyes.old_eye_color = eye_color
-	character.hair_color = hair_color
-	character.facial_hair_color = facial_hair_color
-	character.grad_color = features["gradientcolor"]
-
-	character.skin_tone = skin_tone
-	character.hair_style = hair_style
-	character.facial_hair_style = facial_hair_style
-	character.grad_style = features["gradientstyle"]
-	character.underwear = underwear
-	character.undershirt = undershirt
-	character.socks = socks
-
-	character.backbag = backbag
-
-	character.jumpsuit_style = jumpsuit_style
-
-	var/datum/species/chosen_species
-	chosen_species = pref_species.type
-	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) &&  (!(pref_species.id in GLOB.mentor_races) && !is_mentor(character))  && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
-		chosen_species = /datum/species/human
-		pref_species = new /datum/species/human
-		save_character()
-
-	character.dna.features = features.Copy()
-	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
+		preference.apply_to_human(character, read_preference(preference.type))
+	
 	character.dna.real_name = character.real_name
-
-	if("tail_lizard" in pref_species.default_features)
-		character.dna.species.mutant_bodyparts |= "tail_lizard"
-
-	if("tail_polysmorph" in pref_species.default_features)
-		character.dna.species.mutant_bodyparts |= "tail_polysmorph"
 
 	if(icon_updates)
 		character.icon_render_key = null //turns out if you don't set this to null update_body_parts does nothing, since it assumes the operation was cached
 		character.update_body()
 		character.update_hair()
 		character.update_body_parts()
+
+/// Inverts the key_bindings list such that it can be used for key_bindings_by_key
+/datum/preferences/proc/get_key_bindings_by_key(list/key_bindings)
+	var/list/output = list()
+
+	for (var/action in key_bindings)
+		for (var/key in key_bindings[action])
+			LAZYADD(output[key], action)
+
+	return output
+
+/// Returns the default `randomise` variable ouptut
+/datum/preferences/proc/get_default_randomization()
+	var/list/default_randomization = list()
+
+	for (var/preference_key in GLOB.preference_entries_by_key)
+		var/datum/preference/preference = GLOB.preference_entries_by_key[preference_key]
+		if (preference.is_randomizable() && preference.randomize_by_default)
+			default_randomization[preference_key] = RANDOM_ENABLED
+
+	return default_randomization
+
+
+// yogs procs
+
+/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+	return player_alt_titles.Find(job.title) > 0 \
+		? player_alt_titles[job.title] \
+		: job.title
+
+/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
+	// remove existing entry
+	if(player_alt_titles.Find(job.title))
+		player_alt_titles -= job.title
+	// add one if it's not default
+	if(job.title != new_title)
+		player_alt_titles[job.title] = new_title
