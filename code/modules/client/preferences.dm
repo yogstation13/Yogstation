@@ -45,8 +45,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/clientfps = 40
-
 	var/parallax
 
 	var/ambientocclusion = TRUE
