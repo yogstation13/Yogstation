@@ -34,9 +34,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/player_alt_titles = new()
 
-	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
-	var/see_rc_emotes = TRUE
-
 	//Quirk list
 	var/list/all_quirks = list()
 
@@ -78,9 +75,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/action_buttons_screen_locs = list()
 
-	var/chat_on_map = TRUE
-	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
-	var/see_chat_non_mob = TRUE
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
