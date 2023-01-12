@@ -150,10 +150,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			var/datum/skillcape/cape = new path()
 			skillcape_id = cape.id
 			qdel(cape)
-	if(current_version < 33) //Reset map preference to no choice
-		if(preferred_map)
-			to_chat(parent, span_userdanger("Your preferred map has been reset to nothing. Please set it to the map you wish to play on."))
-		preferred_map = null
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
 	

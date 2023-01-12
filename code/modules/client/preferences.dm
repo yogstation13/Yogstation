@@ -31,8 +31,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
 	var/ghost_form = "ghost"
-	var/allow_midround_antag = 1
-	var/preferred_map = null
+
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_theme = PDA_THEME_TITLE_NTOS
@@ -269,7 +268,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["overflow_role"] = SSjob.GetJob(SSjob.overflow_role).title
 	data["window"] = current_window
 
-	data["content_unlocked"] = unlock_content
+	data["content_unlocked"] = is_donator(user)
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		data += preference_middleware.get_ui_static_data(user)
