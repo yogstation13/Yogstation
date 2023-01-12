@@ -1898,6 +1898,7 @@
 #include "code\modules\client\preferences\age.dm"
 #include "code\modules\client\preferences\ai_core_display.dm"
 #include "code\modules\client\preferences\ambient_occlusion.dm"
+#include "code\modules\client\preferences\announcer.dm"
 #include "code\modules\client\preferences\assets.dm"
 #include "code\modules\client\preferences\auto_fit_viewport.dm"
 #include "code\modules\client\preferences\bar_choice.dm"

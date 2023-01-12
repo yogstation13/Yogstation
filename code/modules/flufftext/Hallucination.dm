@@ -884,7 +884,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("blob alert")
 			to_chat(target, "<h1 class='alert'>Biohazard Alert</h1>")
 			to_chat(target, "<br>[span_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.")]<br>")
-			if(target.client.prefs.disable_alternative_announcers)
+			if(target.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_OUTBREAK5])
 			else
 				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
@@ -896,21 +896,21 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("shuttle dock")
 			to_chat(target, "<h1 class='alert'>Priority Announcement</h1>")
 			to_chat(target, "<br>[span_alert("The Emergency Shuttle has docked with the station. You have 3 minutes to board the Emergency Shuttle.")]<br>")
-			if(target.client.prefs.disable_alternative_announcers)
+			if(target.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
 			else
 				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
 		if("malf ai") //AI is doomsdaying!
 			to_chat(target, "<h1 class='alert'>Anomaly Alert</h1>")
 			to_chat(target, "<br>[span_alert("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.")]<br>")
-			if(target.client.prefs.disable_alternative_announcers)
+			if(target.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_AIMALF])
 			else
 				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_AIMALF])
 		if("meteors") //Meteors inbound!
 			to_chat(target, "<h1 class='alert'>Meteor Alert</h1>")
 			to_chat(target, "<br>[span_alert("Meteors have been detected on collision course with the station.")]<br>")
-			if(target.client.prefs.disable_alternative_announcers)
+			if(target.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_OUTBREAK5])
 			else
 				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])

@@ -60,7 +60,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
-	var/disable_alternative_announcers = FALSE
 	var/icon/background = "floor"
 	var/list/background_options = list(
 		"floor" = "Default Tile",
