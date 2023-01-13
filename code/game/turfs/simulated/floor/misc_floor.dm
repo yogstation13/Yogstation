@@ -163,6 +163,7 @@
 	var/dropped_brass
 	var/uses_overlay = TRUE
 	var/obj/effect/clockwork/overlay/floor/realappearence
+	var/made_baseturf = FALSE
 
 /turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
 	return
@@ -191,6 +192,9 @@
 	START_PROCESSING(SSobj, src)
 
 /turf/open/floor/clockwork/process()
+	if(!made_baseturf)
+		made_baseturf = TRUE
+		assemble_baseturfs(/turf/open/floor/plating)
 	if(!healservants())
 		STOP_PROCESSING(SSobj, src)
 
