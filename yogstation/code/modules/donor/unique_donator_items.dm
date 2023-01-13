@@ -13,58 +13,10 @@ GLOBAL_LIST_INIT(donor_pdas, list("Normal", "Transparent", "Pip Boy", "Rainbow")
 
 GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
-/client/proc/custom_donator_item()
-	if(!is_donator(src))
-		to_chat(src, span_warning("You're not a donator! To access this feature, considering donating today!"))
-		return
-	GLOB.donator_gear.ui_interact(usr)//datum has a tgui component, here we open the window
-
 /datum/donator_gear_resources
 	var/name = "Unique Donator Items Controller"
 	var/list/donor_items = list()
 	var/list/item_names = list()
-
-/datum/donator_gear_resources/ui_state(mob/user)
-	return GLOB.always_state
-
-//We allow any state here because a dead person can set their donator hat and it won't really change a whole lot.
-/datum/donator_gear_resources/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "DonorGear", "Donator Gear Setup")
-		ui.open()
-
-/datum/donator_gear_resources/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	usr = (istype(usr, /client)) ? usr : usr.client
-	var/datum/donator_gear/DG = locate(params["target"])
-	if(!DG)
-		return
-	DG.equip(usr)
-
-/datum/donator_gear_resources/ui_data(mob/user)
-	var/list/data = list()
-	var/list/items_info = list()
-	items_info["hats"] = list()
-	items_info["items"] = list()
-	data["items_info"] = items_info
-	for(var/datum/donator_gear/S in GLOB.donator_gear.donor_items)
-		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
-			var/list/item_info = list()
-			item_info["name"] = S.name
-			//item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
-			item_info["id"] = "\ref[S]"
-			//Bit of sorting on the UI to make it nicer to look at.
-			if(S.slot == SLOT_HEAD)
-				var/list/L = items_info["hats"] //To dodge the annoying linting error. This one really irks me.
-				items_info["hats"][++L.len] = item_info
-			else
-				var/list/L = items_info["items"] //To dodge the annoying linting error. This one really irks me.
-				items_info["items"][++L.len] = item_info
-	data["items_info"] = items_info
-	return data
-
-///Constructor for the donator item controller. Ensures that the donor items list is populated.
 
 /datum/donator_gear_resources/New()
 	. = ..()
@@ -75,27 +27,18 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(S)
 			continue
 		donor_items += S
-		log_world("wtf bro: [S.name] - [S.unlock_path]")
 		item_names[S.name] = S.unlock_path
 
-/datum/donator_gear
-	var/name = "Base type donator item"
-	///A valid ckey belonging to a player with donator status.
-	var/ckey = null
-	///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
-	var/unlock_path = null
-	///Is this a hat? For categorisation in the UI.
-	var/slot = null
 
-///Method to set the desired client's "fancy item" to their custom item.
-/datum/donator_gear/proc/equip(var/client/C)
-	if(!C || !C.prefs)
-		return FALSE
-	//if(slot == SLOT_HEAD)
-		//C.prefs.donor_hat = unlock_path
-	//else
-		//C.prefs.donor_item = unlock_path
-	C.prefs.save_preferences()
+/datum/donator_gear
+	/// Name of the gear, as displayed in the preferences menu
+	var/name = "Base type donator item"
+	/// A valid ckey belonging to a player with donator status.
+	var/ckey = null
+	/// A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
+	var/unlock_path = null
+	/// Is this a hat? For categorisation in the UI.
+	var/slot = null
 
 /*
 Helper proc for lazy coders. Autogenerates donator gear datums based off of a list of types that you give it. May not work perfectly every time, but it sure beats typing things out.

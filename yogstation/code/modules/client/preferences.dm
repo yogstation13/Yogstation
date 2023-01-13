@@ -1,5 +1,4 @@
 /datum/preferences
-	var/borg_hat = FALSE
 	var/donor_pda = null
 	var/quiet_round = FALSE
 	var/purrbation = null

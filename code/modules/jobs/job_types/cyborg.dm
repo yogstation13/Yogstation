@@ -52,7 +52,7 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.borg_hat)
+	if(C.prefs.read_preference(/datum/preference/toggle/borg_hat))
 		var/type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
 		if(type)
 			var/obj/item/hat = new type()

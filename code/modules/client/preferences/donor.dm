@@ -36,3 +36,9 @@
 			values += S.name
 
 	return values
+
+
+/datum/preference/toggle/borg_hat
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "borg_hat"
+	savefile_identifier = PREFERENCE_PLAYER
