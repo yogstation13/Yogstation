@@ -223,11 +223,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
 
+	// this apparently fails every time and overwrites any unloaded prefs with the default values, so don't load anything after this line or it won't actually save
+	check_keybindings() 
+	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
+
 	//Sanitize
-	lastchangelog		= sanitize_text(lastchangelog, initial(lastchangelog))
-	default_slot		= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles				= sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
-	be_special			= SANITIZE_LIST(be_special)
+	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
+	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
+	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	be_special = sanitize_be_special(SANITIZE_LIST(be_special))
+	key_bindings = sanitize_keybindings(key_bindings)
 
 	return TRUE
 
@@ -240,6 +245,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S.cd = "/"
 
 	WRITE_FILE(S["version"] , SAVEFILE_VERSION_MAX)		//updates (or failing that the sanity checks) will ensure data is not invalid at load. Assume up-to-date
+
+	for (var/preference_type in GLOB.preference_entries)
+		var/datum/preference/preference = GLOB.preference_entries[preference_type]
+		if (preference.savefile_identifier != PREFERENCE_PLAYER)
+			continue
+
+		if (!(preference.type in recently_updated_keys))
+			continue
+
+		recently_updated_keys -= preference.type
+
+		if (preference_type in value_cache)
+			write_preference(preference, preference.serialize(value_cache[preference_type]))
 
 	//general preferences
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -294,12 +312,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		read_preference(preference_type)
 
 	//Character
-	READ_FILE(S["persistent_scars"], persistent_scars)
-	
-	READ_FILE(S["job_preferences"], job_preferences)
+	READ_FILE(S["randomise"],  randomise)
 
-	if(!job_preferences)
-		job_preferences = list()
+	//Load prefs
+	READ_FILE(S["job_preferences"], job_preferences)
 
 	//Quirks
 	READ_FILE(S["all_quirks"], all_quirks)
@@ -308,18 +324,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update >= 0)
 		update_character(needs_update, S)		//needs_update == savefile_version if we need an update (positive integer)
 
-	check_keybindings() // this apparently fails every time and overwrites any unloaded prefs with the default values, so don't load anything after this line or it won't actually save
-	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
-
 	//Sanitize
-	persistent_scars = sanitize_integer(persistent_scars)
+	randomise = SANITIZE_LIST(randomise)
 
 	//Validate job prefs
 	for(var/j in job_preferences)
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
 			job_preferences -= j
 
-	all_quirks = SANITIZE_LIST(all_quirks)
+	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
 	return TRUE
 
@@ -348,16 +361,32 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["version"], SAVEFILE_VERSION_MAX)	//load_character will sanitize any bad data, so assume up-to-date.)
 
 	//Character
-	WRITE_FILE(S["persistent_scars"], persistent_scars)
+	WRITE_FILE(S["randomise"] , randomise)
 
 	//Write prefs
-	WRITE_FILE(S["job_preferences"], job_preferences)
+	WRITE_FILE(S["job_preferences"] , job_preferences)
 
 	//Quirks
-	WRITE_FILE(S["all_quirks"], all_quirks)
+	WRITE_FILE(S["all_quirks"] , all_quirks)
 
 	return TRUE
 
+
+/datum/preferences/proc/sanitize_be_special(list/input_be_special)
+	var/list/output = list()
+
+	for (var/role in input_be_special)
+		if (role in GLOB.special_roles)
+			output += role
+
+	return output.len == input_be_special.len ? input_be_special : output
+
+/proc/sanitize_keybindings(value)
+	var/list/base_bindings = sanitize_islist(value,list())
+	for(var/keybind_name in base_bindings)
+		if (!(keybind_name in GLOB.keybindings_by_name))
+			base_bindings -= keybind_name
+	return base_bindings
 
 #undef SAVEFILE_VERSION_MAX
 #undef SAVEFILE_VERSION_MIN
