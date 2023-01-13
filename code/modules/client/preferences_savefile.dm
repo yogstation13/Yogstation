@@ -285,6 +285,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 	if(!fexists(path))
 		return FALSE
+	
+	character_savefile = null
+
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
@@ -297,7 +300,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["default_slot"] , slot)
 
 	S.cd = "/character[slot]"
-	character_savefile = S
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
 		return FALSE
