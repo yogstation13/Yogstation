@@ -43,8 +43,6 @@ SUBSYSTEM_DEF(Yogs)
 	var/regex/is_phrase = regex(@"\\b[\w \.,;'\?!]+\\b","i")
 	var/regex/is_word = regex(@"\\b[\w\.,;'\?!]+\\b","i") // Should be very similar to the above regex, except it doesn't capture on spaces and so only hits plaintext words
 	for(var/accent in accent_names)
-		GLOB.accents_names += accent
-
 		var/list/accent_lists = list(list(), list(), list())
 		var/list/accent_regex2replace = strings(GLOB.accents_name2file[accent], accent, directory = "strings/accents") // Key is regex, value is replacement
 		for(var/reg in accent_regex2replace)

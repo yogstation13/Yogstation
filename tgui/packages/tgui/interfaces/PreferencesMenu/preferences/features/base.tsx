@@ -90,10 +90,13 @@ export const FeatureColorInput = (props: FeatureValueProps<string>) => {
 export type FeatureToggle = Feature<BooleanLike, boolean>;
 
 export const CheckboxInput = (
-  props: FeatureValueProps<BooleanLike, boolean>
+  props: FeatureValueProps<BooleanLike, boolean> & {
+    disabled?: boolean,
+  }
 ) => {
   return (<Button.Checkbox
     checked={!!props.value}
+    disabled={props.disabled}
     onClick={() => {
       props.handleSetValue(!props.value);
     }}
