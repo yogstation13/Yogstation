@@ -38,30 +38,34 @@
 	install.on_install(src, user)
 
 
-// Uninstalls component.
-/obj/item/modular_computer/proc/uninstall_component(obj/item/computer_hardware/H, mob/living/user = null)
-	if(H.holder != src) // Not our component at all.
+/// Uninstalls component.
+/obj/item/modular_computer/proc/uninstall_component(obj/item/computer_hardware/yeet, mob/living/user = null)
+	if(yeet.holder != src) // Not our component at all.
 		return FALSE
-	if(H.expansion_hw)
 
-		LAZYREMOVE(expansion_bays, H.device_type)
-	all_components.Remove(H.device_type)
+	to_chat(user, span_notice("You remove \the [yeet] from \the [src]."))
 
-	to_chat(user, span_notice("You remove \the [H] from \the [src]."))
-
-	H.forceMove(get_turf(src))
-	H.holder = null
-	H.on_remove(src, user)
+	yeet.forceMove(get_turf(src))
+	forget_component(yeet)
+	yeet.on_remove(src, user)
 	if(enabled && !use_power())
 		shutdown_computer()
 	update_icon()
 	return TRUE
 
+/// This isn't the "uninstall fully" proc, it just makes the computer lose all its references to the component
+/obj/item/modular_computer/proc/forget_component(obj/item/computer_hardware/wipe_memory)
+	if(wipe_memory.holder != src)
+		return FALSE
+	if(wipe_memory.expansion_hw)
+		LAZYREMOVE(expansion_bays, wipe_memory.device_type)
+	all_components.Remove(wipe_memory.device_type)
+	wipe_memory.holder = null
 
-// Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
+/// Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
 /obj/item/modular_computer/proc/find_hardware_by_name(name)
 	for(var/i in all_components)
-		var/obj/O = all_components[i]
-		if(O.name == name)
-			return O
+		var/obj/component = all_components[i]
+		if(component.name == name)
+			return component
 	return null
