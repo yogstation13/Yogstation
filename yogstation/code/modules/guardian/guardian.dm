@@ -624,14 +624,18 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	to_chat(src, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
 	sleep(5 SECONDS)
 	var/list/datum/mind/users = list()
+	var/list/guardians = hasparasites()
 	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
 		if(all_carbons == src) //don't track ourselves!
 			continue
 		if(!all_carbons.mind)
 			continue
 		var/datum/mind/carbon_minds = all_carbons.mind
-		if(carbon_minds.has_antag_datum(/datum/antagonist/guardian))
-			users += carbon_minds
+		for(var/para in guardians)
+			var/mob/living/simple_animal/hostile/guardian/G = para
+			if(G.summoner?.current.ckey == src.ckey)
+				users += carbon_minds
+				
 
 	for(var/datum/mind/user_minds in users)
 		if(!user_minds.current || user_minds.current == src)
@@ -657,7 +661,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	/// Will yield a "?"
 	else
 		to_chat(src, span_notice("There are no users nearby."))
-
+		
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
