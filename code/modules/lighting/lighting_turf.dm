@@ -116,3 +116,25 @@
 		lighting_corner_NW = new/datum/lighting_corner(src, NORTH|WEST)
 
 	lighting_corners_initialised = TRUE
+
+/turf/proc/get_affecting_lights()
+	var/list/affecting = list()
+
+	if (!lighting_object)
+		return affecting
+
+	var/datum/lighting_corner/L
+	L = lighting_corner_NE
+	if (L)
+		affecting += L.affecting
+	L = lighting_corner_SE
+	if (L)
+		affecting += L.affecting
+	L = lighting_corner_SW
+	if (L)
+		affecting += L.affecting
+	L = lighting_corner_NW
+	if (L)
+		affecting += L.affecting
+
+	return uniqueList(affecting)
