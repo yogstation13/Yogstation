@@ -14,7 +14,7 @@ export const donor_item: Feature<string> = {
 
 export const borg_hat: FeatureToggle = {
   name: "Equip borg hat",
-  category: "GAMEPLAY",
+  category: "DONATOR",
   description: "When enabled, you will equip your selected donor hat when playing cyborg.",
   component: CheckboxInput,
 };
@@ -23,4 +23,11 @@ export const donor_pda: Feature<string> = {
   name: "Donor PDA",
   category: "DONATOR",
   component: FeatureDropdownInput,
+};
+
+export const purrbation: FeatureToggle = {
+  name: "Purrbation",
+  category: "DONATOR",
+  description: "When enabled and you are human, will turn you into a felinid.",
+  component: CheckboxInput,
 };

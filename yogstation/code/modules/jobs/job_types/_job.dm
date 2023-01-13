@@ -8,7 +8,7 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.purrbation)
+	if(C.prefs.read_preference(/datum/preference/toggle/purrbation))
 		purrbation_toggle_onlyhumans(H)
 
 	var/donor_hat_type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
