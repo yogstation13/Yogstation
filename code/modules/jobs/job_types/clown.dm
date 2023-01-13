@@ -36,7 +36,7 @@
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	H.apply_pref_name("clown", M.client)
+	H.apply_pref_name(/datum/preference/name/clown, M.client)
 
 /datum/outfit/job/clown
 	name = "Clown"

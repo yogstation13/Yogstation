@@ -836,7 +836,7 @@
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", user.client)
+		user.apply_pref_name(/datum/preference/name/real_name, user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")

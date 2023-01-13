@@ -41,7 +41,7 @@
 	GLOB.ai_os.set_cpu(AI, total_available_cpu)
 	GLOB.ai_os.add_ram(AI, total_available_ram)
 
-	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
+	AI.apply_pref_name(/datum/preference/name/ai, M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)
 
 	//we may have been created after our borg
