@@ -116,19 +116,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		all_quirks -= "Physically Obstructive"
 		all_quirks -= "Neat"
 		all_quirks -= "NEET"
-	if(current_version < 26) //The new donator hats system obsolesces the old one entirely, we need to update.
-		donor_hat = null
-		donor_item = null
 	if(current_version < 28)
 		if(!job_preferences)
 			job_preferences = list()
 	if(current_version < 29)
 		purrbation = FALSE
-	if(current_version < 30) //Someone doesn't know how to code and make savefiles get corrupted
-		if(!ispath(donor_hat))
-			donor_hat = null
-		if(!ispath(donor_item))
-			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
 		toggles &= ~DEADMIN_ALWAYS
 		toggles &= ~DEADMIN_ANTAGONIST

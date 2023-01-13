@@ -1,4 +1,4 @@
-import { FeatureToggle, CheckboxInput, CheckboxInputInverse } from "../base";
+import { FeatureToggle, CheckboxInput } from "../base";
 
 export const quiet_mode: FeatureToggle = {
   name: "Quiet mode",

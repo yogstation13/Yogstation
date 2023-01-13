@@ -26,7 +26,11 @@
 		"sound_midi" = SOUND_MIDI,
 		"sound_prayers" = SOUND_PRAYERS,
 		"sound_ship_ambience" = SOUND_SHIP_AMBIENCE,
+	)
+
+	var/static/list/legacy_extra_toggles = list(
 		"split_admin_tabs" = SPLIT_ADMIN_TABS,
+		"fast_mc_refresh" = FAST_MC_REFRESH,
 	)
 
 	var/static/list/legacy_chat_toggles = list(
@@ -62,7 +66,11 @@
 		"deadmin_position_silicon",
 		"sound_adminhelp",
 		"sound_prayers",
+	)
+
+	var/static/list/admin_only_extra_toggles = list(
 		"split_admin_tabs",
+		"fast_mc_refresh",
 	)
 
 	var/static/list/admin_only_chat_toggles = list(
@@ -96,6 +104,12 @@
 			continue
 
 		new_game_preferences[toggle_name] = (preferences.toggles & legacy_toggles[toggle_name]) != 0
+	
+	for (var/toggle_name in legacy_extra_toggles)
+		if (!is_admin && (toggle_name in admin_only_extra_toggles))
+			continue
+
+		new_game_preferences[toggle_name] = (preferences.extra_toggles & legacy_extra_toggles[toggle_name]) != 0
 
 	for (var/toggle_name in legacy_chat_toggles)
 		if (!is_admin && (toggle_name in admin_only_chat_toggles))

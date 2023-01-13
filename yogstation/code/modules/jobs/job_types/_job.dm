@@ -11,23 +11,21 @@
 	if(C.prefs.purrbation)
 		purrbation_toggle_onlyhumans(H)
 
-	if(C.prefs.donor_hat)
-		var/type = C.prefs.donor_hat
-		if(type)
-			var/obj/hat = new type()
-			if(!H.equip_to_appropriate_slot(hat))
-				var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
-				if(BP)
-					hat.forceMove(BP)
+	var/donor_hat_type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
+	if(donor_hat_type)
+		var/obj/hat = new donor_hat_type()
+		if(!H.equip_to_appropriate_slot(hat))
+			var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+			if(BP)
+				hat.forceMove(BP)
 
-	if(C.prefs.donor_item)
-		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
-		if(BP)
-			var/type = C.prefs.donor_item
-			if(type)
-				var/obj/item = new type()
-				if(!H.put_in_hands(item))
-					item.forceMove(BP)
+	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+	if(BP)
+		var/donor_item_type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_item)]
+		if (donor_item_type)
+			var/obj/item = new donor_item_type()
+			if(!H.put_in_hands(item))
+				item.forceMove(BP)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent

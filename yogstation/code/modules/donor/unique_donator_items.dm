@@ -22,6 +22,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 /datum/donator_gear_resources
 	var/name = "Unique Donator Items Controller"
 	var/list/donor_items = list()
+	var/list/item_names = list()
 
 /datum/donator_gear_resources/ui_state(mob/user)
 	return GLOB.always_state
@@ -51,7 +52,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
 			var/list/item_info = list()
 			item_info["name"] = S.name
-			item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
+			//item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
 			item_info["id"] = "\ref[S]"
 			//Bit of sorting on the UI to make it nicer to look at.
 			if(S.slot == SLOT_HEAD)
@@ -74,21 +75,26 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(S)
 			continue
 		donor_items += S
+		log_world("wtf bro: [S.name] - [S.unlock_path]")
+		item_names[S.name] = S.unlock_path
 
 /datum/donator_gear
 	var/name = "Base type donator item"
-	var/ckey = null ///A valid ckey belonging to a player with donator status.
-	var/unlock_path = null ///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
-	var/slot = null ///Is this a hat? For categorisation in the UI.
+	///A valid ckey belonging to a player with donator status.
+	var/ckey = null
+	///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
+	var/unlock_path = null
+	///Is this a hat? For categorisation in the UI.
+	var/slot = null
 
 ///Method to set the desired client's "fancy item" to their custom item.
 /datum/donator_gear/proc/equip(var/client/C)
 	if(!C || !C.prefs)
 		return FALSE
-	if(slot == SLOT_HEAD)
-		C.prefs.donor_hat = unlock_path
-	else
-		C.prefs.donor_item = unlock_path
+	//if(slot == SLOT_HEAD)
+		//C.prefs.donor_hat = unlock_path
+	//else
+		//C.prefs.donor_item = unlock_path
 	C.prefs.save_preferences()
 
 /*
