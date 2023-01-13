@@ -3,8 +3,8 @@ import { multiline } from "common/string";
 
 export const DEVIL_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Make deals with crew members to slowly accrue power, but be wary of revealing your weaknesses. 
+			As you collect more contracts, your disguise will fall away, and the mortals will grow desperate in their pursuit to banish you.
    `;
 
 const Devil: Antagonist = {
@@ -12,9 +12,9 @@ const Devil: Antagonist = {
   name: "Devil",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      The Fallen Angel, Lucifer, is a fine friend to those down on fortune, and you are one of his many agents. 
+			While you can take several forms, you don one of a corporate worker to infiltrate a pit of despondency. 
+			The poor souls have little to live for; temptation should prove simple.
     `,
     DEVIL_MECHANICAL_DESCRIPTION,
   ],

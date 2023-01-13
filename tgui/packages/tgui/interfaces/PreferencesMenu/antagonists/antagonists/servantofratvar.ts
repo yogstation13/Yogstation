@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const RATVAR_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Teleport onto the Nanotrasen station and subvert its power and its people to your own. Once the Ark is ready, defend it from the crew's assault. Purge all untruths and honor Ratvar.
    `;
 
 const ServantOfRatvar: Antagonist = {
@@ -12,9 +11,7 @@ const ServantOfRatvar: Antagonist = {
   name: "Servant of Ratvar",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      A flash of yellow light! The sound of whooshing steam and clanking cogs surrounds you, and you understand your mission. Ratvar, the Clockwork Justicar, has trusted you to secure the gateway in his Ark!
     `,
     RATVAR_MECHANICAL_DESCRIPTION,
   ],

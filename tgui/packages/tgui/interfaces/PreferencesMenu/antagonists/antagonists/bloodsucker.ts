@@ -3,8 +3,8 @@ import { multiline } from "common/string";
 
 export const BLOODSUCKER_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Develop your own power and establish Vassals to accomplish your goals.
+			Avoid Sol's harsh rays, siphon blood, and maintain the Masquerade to excel.
    `;
 
 const Bloodsucker: Antagonist = {
@@ -12,9 +12,9 @@ const Bloodsucker: Antagonist = {
   name: "Bloodsucker",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      You are descended from the cursed blood of Cain, the first Kindred. 
+			As an ambitious, upstart vampire, you seek to raise your influence through exploits on a newly-founded Nanotrasen station.
+			The Camarilla clan has their eyes on you; perform well.
     `,
     BLOODSUCKER_MECHANICAL_DESCRIPTION,
   ],

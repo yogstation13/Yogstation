@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const IAA_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Minimize damage to Nanotrasen civilians and their station, but utilize an uplink to eliminate all rogue agents. Be wary; others will be moving against you.
    `;
 
 const internalaffairsagent: Antagonist = {
@@ -12,9 +11,7 @@ const internalaffairsagent: Antagonist = {
   name: "Internal Affairs Agent",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      Someone's ratted. The trust of your agent cell is in question. Presume any and all confirmed targets dangerous, and watch your own back, operative. Clean up this mess and await further instructions.
     `,
     IAA_MECHANICAL_DESCRIPTION,
   ],

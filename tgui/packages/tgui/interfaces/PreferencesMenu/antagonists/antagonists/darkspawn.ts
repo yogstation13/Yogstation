@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const DARKSPAWN_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Finish what you and your fellow kin started eons ago. Ascend to godhood with two others by harvesting the sparks of the infirm. The sigils hunger, and you must respond.
    `;
 
 const Darkspawn: Antagonist = {
@@ -12,9 +11,7 @@ const Darkspawn: Antagonist = {
   name: "Darkspawn",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      It’s hard to recall what you once were. Star cycles passed again and again as you slumbered in the Void. Eventually, the emptiness touched something. You fabricated a shoddy disguise from your first victim, and now countless minds tug at your attention.
     `,
     DARKSPAWN_MECHANICAL_DESCRIPTION,
   ],

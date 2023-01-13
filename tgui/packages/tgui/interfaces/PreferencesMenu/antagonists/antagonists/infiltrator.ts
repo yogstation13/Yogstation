@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const INFILTRATOR_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      With the rest of your squad, gear up and covertly infiltrate the ranks of the station from your external shuttle. Work together to sabotage, kidnap, subvert, and steal.
    `;
 
 const Infiltrator: Antagonist = {
@@ -12,9 +11,7 @@ const Infiltrator: Antagonist = {
   name: "Syndicate Infiltrator",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      It's been quiet on the moon base ever since your team moved in to keep tabs on the nearby Nanotrasen station. Nothing you observe provokes the brief transmission that comes in one day. The objectives are simple, and to be done as quietly as possible.
     `,
     INFILTRATOR_MECHANICAL_DESCRIPTION,
   ],

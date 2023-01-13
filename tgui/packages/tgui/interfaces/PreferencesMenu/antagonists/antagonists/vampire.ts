@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const VAMPIRE_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Use powers of the night to complete your objectives. Suck blood from individuals to fuel your supernatural abilities and grow in power.
    `;
 
 const Vampire: Antagonist = {
@@ -12,9 +11,7 @@ const Vampire: Antagonist = {
   name: "Vampire",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      The gift of Lilith courses through you; you've never known such power before! But immortality carries a price, and the Thirst drives you to action. You've observed your colleagues for some weeks; it's time to feed.
     `,
     VAMPIRE_MECHANICAL_DESCRIPTION,
   ],

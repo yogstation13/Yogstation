@@ -3,8 +3,8 @@ import { multiline } from "common/string";
 
 export const HIVEMINDHOST_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Silently induct crew members into your neural network, and gain more abilities as you do so. 
+			Avoid the ire of security or other hosts, and create one consciousness for all thinking things.
    `;
 
 const HivemindHost: Antagonist = {
@@ -12,9 +12,8 @@ const HivemindHost: Antagonist = {
   name: "Hivemind Host",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      Minds are delicious things. You wander and find and touch, leaving the meat-sacks none the wiser. For now, you can instruct them, but the One Mind will unite and elevate all. 
+			We shall become Hivemind.
     `,
     HIVEMINDHOST_MECHANICAL_DESCRIPTION,
   ],

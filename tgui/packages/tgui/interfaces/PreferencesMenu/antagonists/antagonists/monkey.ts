@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const MONKEY_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Enter the station infected with a disease that will eventually turn you into a monkey. Bite others to spread the virus, and escape to Centcom to continue the cycle.
    `;
 
 const Monkey: Antagonist = {
@@ -12,9 +11,9 @@ const Monkey: Antagonist = {
   name: "Monkey",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      You thought it'd be an ordinary day, but ever since a monkey bit you the day before, you've felt yourself regressing into something more base. 
+			When you look at your colleagues, all you can think of is sinking your teeth into them and flailing wildly.
+
     `,
     MONKEY_MECHANICAL_DESCRIPTION,
   ],

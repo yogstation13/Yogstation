@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const SHADOWLING_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Bend the foolish to your will, as you have perfected it. With two kin, establish enough thralls to exploit their psyches and ascend to godhood. Raise the foundation of a new empire, and prepare to conquer that which killed you before.
    `;
 
 const Shadowling: Antagonist = {
@@ -12,9 +11,7 @@ const Shadowling: Antagonist = {
   name: "Shadowling",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      Eons have gone by as you patiently sat in the Void, waiting. Plotting. You and your breathren are awakened at once, and your minds strike quickly. Donning false carapaces, you all move to exact your conniving plan.
     `,
     SHADOWLING_MECHANICAL_DESCRIPTION,
   ],

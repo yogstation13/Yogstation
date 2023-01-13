@@ -3,8 +3,7 @@ import { multiline } from "common/string";
 
 export const TRAITOR_MECHANICAL_DESCRIPTION
    = multiline`
-      Start with an uplink to purchase your gear and take on your sinister
-      objectives. Ascend through the ranks and become an infamous legend.
+      Utilize a hidden uplink to acquire equipment, then set out to accomplish your objectives how you see fit. Be cunning, be fierce, be swift.
    `;
 
 const Traitor: Antagonist = {
@@ -12,9 +11,7 @@ const Traitor: Antagonist = {
   name: "Traitor",
   description: [
     multiline`
-      An unpaid debt. A score to be settled. Maybe you were just in the wrong
-      place at the wrong time. Whatever the reasons, you were selected to
-      infiltrate Space Station 13.
+      Six words. You'd been instructed to remember them, whether it was to clear a favor, to claim vengeance, to make money, or whatever else drove you to the Syndicate. Maybe they were driven to you. A beep sounds in your headset.
     `,
     TRAITOR_MECHANICAL_DESCRIPTION,
   ],

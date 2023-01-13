@@ -6,15 +6,11 @@ const Cultist: Antagonist = {
   name: "Cultist",
   description: [
     multiline`
-      The Geometer of Blood, Nar-Sie, has sent a number of her followers to
-      Space Station 13. As a cultist, you have an abundance of cult magics at
-      your disposal, something for all situations. You must work with your
-      brethren to summon an avatar of your eldritch goddess!
+      It begins as a pulsing of your veins. The blood quickens, then grows bright and then dark. You will kill in the name of the Geometer, but you will also beckon more into her crimson flock. Most of all, you will see her returned beyond the Veil. Here, it is weakened. Now, you will act.
     `,
 
     multiline`
-      Armed with blood magic, convert crew members to the Blood Cult, sacrifice
-      those who get in the way, and summon Nar-Sie.
+     Conspire with other blood cultists to convert other crew and take over the station. Track down your sacrifice target, kill them via ritual, then call upon Nar-Sie where the Veil is weak. Defend her crystals until she is ready, and witness her glory rip into our dimension.
     `,
   ],
   category: Category.Roundstart,
