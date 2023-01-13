@@ -226,7 +226,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(downloading)
 		if(!silent)
 			to_chat(downloading, span_userdanger("Download stopped."))
-		downloading.can_download = FALSE //can be downloaded again
+		downloading.can_download = TRUE //can be downloaded again
 		downloading = null
 		user_downloading = null
 		download_progress = 0
