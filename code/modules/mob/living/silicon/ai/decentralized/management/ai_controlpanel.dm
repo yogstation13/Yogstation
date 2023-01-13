@@ -226,6 +226,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(downloading)
 		if(!silent)
 			to_chat(downloading, span_userdanger("Download stopped."))
+		downloading.can_download = FALSE //can be downloaded again
 		downloading = null
 		user_downloading = null
 		download_progress = 0
@@ -360,11 +361,13 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!istype(target.loc, /obj/machinery/ai/data_core))
 				return
 			if(!target.can_download)
+				to_chat(usr, span_warning("Error! This AI can not be downloaded."))
 				return
 			if(!is_station_level(z))
 				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			downloading = target
+			target.can_download = FALSE //can only be downloaded from one place at once
 			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
 			user_downloading = usr
 			download_progress = 0
