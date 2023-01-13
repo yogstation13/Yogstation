@@ -60,25 +60,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
-	var/icon/background = "floor"
-	var/list/background_options = list(
-		"floor" = "Default Tile",
-		"white" = "Default White Tile",
-		"darkfull" = "Default Dark Tile",
-		"wood" = "Wood",
-		"rockvault" = "Rock Vault",
-		"grass4" = "Grass",
-		"black" = "Pure Black",
-		"grey" = "Pure Grey",
-		"pure_white" = "Pure White"
-	)
-
-	var/disable_balloon_alerts = FALSE
-
-
 
 	/// A preview of the current character
 	var/atom/movable/screen/character_preview_view/character_preview_view
+
+	/// Icon for the preview background
+	var/icon/background = "floor"
 
 	/// A list of instantiated middleware
 	var/list/datum/preference_middleware/middleware = list()
@@ -238,6 +225,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return TRUE
 		if ("rotate")
 			character_preview_view.dir = turn(character_preview_view.dir, -90)
+
+			return TRUE
+		if ("cycle")
+			background = next_list_item(background, GLOB.preview_backgrounds)
+			character_preview_view.update_body()
 
 			return TRUE
 		if ("set_preference")

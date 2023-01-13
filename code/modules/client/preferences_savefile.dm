@@ -215,17 +215,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//general preferences
 	READ_FILE(S["lastchangelog"], lastchangelog)
 	READ_FILE(S["be_special"] , be_special)
-
 	READ_FILE(S["default_slot"], default_slot)
+
+	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["chat_toggles"], chat_toggles)
 	READ_FILE(S["extra_toggles"], extra_toggles)
-	READ_FILE(S["toggles"], toggles)
+	READ_FILE(S["yogtoggles"], yogtoggles)
+	
 	READ_FILE(S["ignoring"], ignoring)
 
 	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["skillcape_id"], skillcape_id)
 
-	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
 	READ_FILE(S["key_bindings"], key_bindings)
 
 	//try to fix any outdated data if necessary
@@ -254,14 +255,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["be_special"], be_special)
 	WRITE_FILE(S["default_slot"], default_slot)
+
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
 	WRITE_FILE(S["extra_toggles"], extra_toggles)
-	WRITE_FILE(S["ignoring"], ignoring)
-	WRITE_FILE(S["key_bindings"], key_bindings)
-
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
 
+	WRITE_FILE(S["ignoring"], ignoring)
+
+	WRITE_FILE(S["skillcape"], skillcape)
+	WRITE_FILE(S["skillcape_id"], skillcape_id)
+
+	WRITE_FILE(S["key_bindings"], key_bindings)
 
 	return TRUE
 
@@ -350,16 +355,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if (preference.type in value_cache)
 			write_preference(preference, preference.serialize(value_cache[preference.type]))
 
-	WRITE_FILE(S["version"]			, SAVEFILE_VERSION_MAX)	//load_character will sanitize any bad data, so assume up-to-date.)
+	WRITE_FILE(S["version"], SAVEFILE_VERSION_MAX)	//load_character will sanitize any bad data, so assume up-to-date.)
 
 	//Character
-	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
+	WRITE_FILE(S["persistent_scars"], persistent_scars)
 
 	//Write prefs
-	WRITE_FILE(S["job_preferences"] , job_preferences)
+	WRITE_FILE(S["job_preferences"], job_preferences)
 
 	//Quirks
-	WRITE_FILE(S["all_quirks"]			, all_quirks)
+	WRITE_FILE(S["all_quirks"], all_quirks)
 
 	return TRUE
 

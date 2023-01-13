@@ -18,3 +18,15 @@ GLOBAL_LIST_EMPTY(powernets)
 GLOBAL_VAR_INIT(bsa_unlock, FALSE)	//BSA unlocked by head ID swipes
 
 GLOBAL_LIST_EMPTY(player_details)	// ckey -> /datum/player_details
+
+GLOBAL_LIST_INIT(preview_backgrounds, list(
+	"floor" = "Default Tile",
+	"white" = "Default White Tile",
+	"darkfull" = "Default Dark Tile",
+	"wood" = "Wood",
+	"rockvault" = "Rock Vault",
+	"grass4" = "Grass",
+	"black" = "Pure Black",
+	"grey" = "Pure Grey",
+	"pure_white" = "Pure White"
+))
