@@ -101,6 +101,19 @@
 	qdel(src)
 
 /obj/item/weldingtool/attack(mob/living/M, mob/user)
+	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
+	if(isOn() && user.a_intent == INTENT_HELP && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+		if(cig.lit)
+			to_chat(user, span_notice("The [cig.name] is already lit."))
+			return FALSE
+		if(M == user)
+			cig.attackby(src, user)
+			return TRUE
+		else
+			cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
+			return TRUE
+
 	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
