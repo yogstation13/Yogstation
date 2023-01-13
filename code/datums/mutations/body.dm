@@ -194,7 +194,6 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
-	var/color
 	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
@@ -209,16 +208,19 @@
 /datum/mutation/human/glow/modify()
 	if(!glowth)
 		return
-	var/power = GET_MUTATION_POWER(src)
+
+	var/glow_color
+
 	if(owner.dna.features["mcolor"][1] != "#")
 		//if it doesn't start with a pound, it needs that for the color
-		color += "#"
+		glow_color += "#"
 	if(length(owner.dna.features["mcolor"]) < 6)
 		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
-		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
+		glow_color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
 	else
-		color += owner.dna.features["mcolor"]
-	glowth.set_light(range * power, glow * power, color)
+		glow_color += owner.dna.features["mcolor"]
+
+	glowth.set_light_range_power_color(range * GET_MUTATION_POWER(src), glow, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()

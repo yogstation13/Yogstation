@@ -1,4 +1,0 @@
-author: " BurgerBB"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes the Dota suit not actually playing sounds properly."

@@ -24,7 +24,7 @@
 		)
 	var/mode = VEST_STEALTH
 	var/stealth_active = 0
-	var/combat_cooldown = 10
+	var/combat_cooldown = 20
 	var/datum/icon_snapshot/disguise
 	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
 	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 90, ACID = 90)
@@ -105,7 +105,7 @@
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/Adrenaline()
 	if(ishuman(loc))
-		if(combat_cooldown != initial(combat_cooldown))
+		if(combat_cooldown < initial(combat_cooldown))
 			to_chat(loc, span_warning("Combat injection is still recharging."))
 			return
 		var/mob/living/carbon/human/M = loc
@@ -118,9 +118,9 @@
 		combat_cooldown = 0
 		START_PROCESSING(SSobj, src)
 
-/obj/item/clothing/suit/armor/abductor/vest/process()
-	combat_cooldown++
-	if(combat_cooldown==initial(combat_cooldown))
+/obj/item/clothing/suit/armor/abductor/vest/process(delta_time)
+	combat_cooldown += delta_time
+	if(combat_cooldown >= initial(combat_cooldown))
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/armor/abductor/Destroy()
@@ -791,6 +791,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bed"
 	can_buckle = 1
+	/// Amount to inject per second
+	var/inject_am = 0.5
 
 	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
@@ -800,13 +802,13 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		START_PROCESSING(SSobj, src)
 		to_chat(AM, span_danger("You feel a series of tiny pricks!"))
 
-/obj/structure/table/optable/abductor/process()
+/obj/structure/table/optable/abductor/process(delta_time)
 	. = PROCESS_KILL
 	for(var/mob/living/carbon/C in get_turf(src))
 		. = TRUE
 		for(var/chemical in injected_reagents)
-			if(C.reagents.get_reagent_amount(chemical) < 1)
-				C.reagents.add_reagent(chemical, 1)
+			if(C.reagents.get_reagent_amount(chemical) < inject_am * delta_time)
+				C.reagents.add_reagent(chemical, inject_am * delta_time)
 
 /obj/structure/table/optable/abductor/Destroy()
 	STOP_PROCESSING(SSobj, src)

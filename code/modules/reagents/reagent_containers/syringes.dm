@@ -289,7 +289,7 @@
 
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"
-	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing, it's been designed to be unable to fit into a syringe gun. It can hold up to 15 units."
+	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing. It can hold up to 15 units."
 	proj_piercing = 1
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
