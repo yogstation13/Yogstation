@@ -406,15 +406,18 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(owner, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
 	sleep(5 SECONDS)
 	var/list/datum/mind/users = list()
+	var/list/guardians = hasparasites()
 	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
 		if(all_carbons == owner) //don't track ourselves!
 			continue
 		if(!all_carbons.mind)
 			continue
 		var/datum/mind/carbon_minds = all_carbons.mind
-		if(carbon_minds.has_antag_datum(/datum/antagonist/guardian))
-		users += carbon_minds
-
+		for(var/para in guardians)
+			var/mob/living/simple_animal/hostile/guardian/G = para
+			if(G.summoner?.current.ckey == owner.ckey)
+				users += carbon_minds
+	
 	for(var/datum/mind/user_minds in users)
 		if(!user_minds.current || user_minds.current == owner) // || !get_turf(M.current) || !get_turf(owner))
 			continue
