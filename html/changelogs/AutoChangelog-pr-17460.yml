@@ -1,4 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - bugfix: "T-ray scanner range check added"
