@@ -49977,16 +49977,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"bZp" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 1;
-	name = "Air Mixer";
-	node1_concentration = 0.8;
-	node2_concentration = 0.2;
-	on = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "bZq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -87776,6 +87766,12 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"qsd" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "qsQ" = (
 /obj/structure/chair/stool,
 /obj/structure/light_construct/small{
@@ -149171,7 +149167,7 @@ bTg
 bUp
 bUY
 bWo
-bZp
+qsd
 cbE
 ceB
 cfW

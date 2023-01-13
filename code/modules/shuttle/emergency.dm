@@ -128,7 +128,7 @@
 	log_game("[key_name(user)] has authorized early shuttle launch in [COORD(src)]")
 	// Now check if we're on our way
 	. = TRUE
-	process()
+	process(SSMACHINES_DT)
 
 /obj/machinery/computer/emergency_shuttle/process()
 	// Launch check is in process in case auth_need changes for some reason
@@ -180,7 +180,7 @@
 
 		authorized += ID
 
-	process()
+	process(SSMACHINES_DT)
 
 /obj/machinery/computer/emergency_shuttle/Destroy()
 	// Our fake IDs that the emag generated are just there for colour

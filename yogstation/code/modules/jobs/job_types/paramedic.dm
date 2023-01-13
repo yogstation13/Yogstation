@@ -10,7 +10,7 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
-	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic")
+	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue")
 
 	outfit = /datum/outfit/job/paramedic
 
@@ -59,3 +59,4 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile

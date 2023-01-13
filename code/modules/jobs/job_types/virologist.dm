@@ -18,7 +18,7 @@
 
 	outfit = /datum/outfit/job/virologist
 
-	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist")
+	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist", "Disease Control Expert")
 
 	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)

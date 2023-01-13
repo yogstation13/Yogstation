@@ -86,7 +86,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow
 	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
@@ -95,7 +95,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
 	obj_flags = 0
-	overheat_time = 20
+	overheat_time = 20 SECONDS
 	holds_charge = TRUE
 	unique_frequency = TRUE
 	can_flashlight = FALSE
@@ -107,21 +107,6 @@
 	icon_state = "crossbow_halloween"
 	item_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
-
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology, substantially bulkier than its illegal counterpart."
-	icon_state = "crossbowlarge"
-	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron=4000)
-	suppressed = null
-	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
-	pin = null
-	holds_charge = FALSE
-	unique_frequency = FALSE
-	weapon_weight = WEIGHT_CLASS_HUGE
-	overheat_time = 10 SECONDS
-
 
 /obj/item/gun/energy/plasmacutter
 	name = "plasma cutter"

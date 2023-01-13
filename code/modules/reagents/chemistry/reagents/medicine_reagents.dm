@@ -1304,13 +1304,13 @@
 //used for changeling's adrenaline power
 /datum/reagent/medicine/changelingadrenaline
 	name = "Changeling Adrenaline"
-	description = "Reduces the duration of unconciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
+	description = "Reduces the duration of unconsciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
 	color = "#C8A5DC"
 	overdose_threshold = 30
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20, FALSE)
-	M.adjustStaminaLoss(-30, 0)
+	M.adjustStaminaLoss(-15, 0)
 	..()
 	return TRUE
 
@@ -1811,7 +1811,7 @@
 /datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
-	
+
 /datum/reagent/medicine/radscrub/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(1*REM, 0)
 	..()
@@ -1828,7 +1828,7 @@
 		var/mob/living/carbon/C = L
 		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
 	..()
-	
+
 /datum/reagent/medicine/radscrub/reaction_obj(obj/O, reac_volume)
 	//scrubs the contamination and applies a light treatment to it to mitigate immediate recontamination
 	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
@@ -1865,4 +1865,4 @@
 	M.revive(full_heal = TRUE)
 	M.Jitter(10 SECONDS)
 	M.emote("gasp")
-	
+

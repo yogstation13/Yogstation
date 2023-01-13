@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	name = "Quirks"
 	init_order = INIT_ORDER_QUIRKS
 	flags = SS_BACKGROUND
-	wait = 10
+	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME
 
 	var/list/quirks = list()		//Assoc. list of all roundstart quirk datum types; "name" = /path/

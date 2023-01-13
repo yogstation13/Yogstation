@@ -29,14 +29,21 @@
 	pipe_state = "volumepump"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		on = !on
+		var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		transfer_rate = MAX_TRANSFER_RATE
+		var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+		balloon_alert(user, "volume output set to [transfer_rate] L/s")
 		update_icon()
 	return ..()
 
@@ -47,7 +54,7 @@
 /obj/machinery/atmospherics/components/binary/volume_pump/update_icon_nopipes()
 	icon_state = on && is_operational() ? "volpump_on-[set_overlay_offset(piping_layer)]" : "volpump_off-[set_overlay_offset(piping_layer)]"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/process_atmos()
+/obj/machinery/atmospherics/components/binary/volume_pump/process_atmos(delta_time)
 //	..()
 	if(!on || !is_operational())
 		return
@@ -67,14 +74,14 @@
 		return
 
 
-	var/transfer_ratio = transfer_rate/air1.return_volume()
+	var/transfer_ratio = (transfer_rate * delta_time) / air1.return_volume()
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
 	if(overclocked)//Some of the gas from the mixture leaks to the environment when overclocked
 		var/turf/open/T = loc
 		if(istype(T))
-			var/datum/gas_mixture/leaked = removed.remove_ratio(VOLUME_PUMP_LEAK_AMOUNT)
+			var/datum/gas_mixture/leaked = removed.remove_ratio(DT_PROB_RATE(VOLUME_PUMP_LEAK_AMOUNT, delta_time))
 			T.assume_air(leaked)
 			T.air_update_turf()
 
@@ -130,8 +137,9 @@
 	switch(action)
 		if("power")
 			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+			investigate_log(msg, INVESTIGATE_ATMOS)
+			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -147,8 +155,9 @@
 				. = TRUE
 			if(.)
 				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
+				var/msg = "was set to [transfer_rate] L/s by [key_name(usr)]"
+				investigate_log(msg, INVESTIGATE_ATMOS)
+				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/receive_signal(datum/signal/signal)
