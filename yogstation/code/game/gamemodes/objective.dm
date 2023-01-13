@@ -12,8 +12,6 @@ GLOBAL_LIST_INIT(infiltrator_objective_areas, typecacheof(list(/area/yogs/infilt
 	martyr_compatible = 0 //Technically you won't get both anyway.
 
 /datum/objective/hijack/sole_survivor/check_completion() // Requires all owners to escape.
-	if(../..()) //advanced coder techniques
-		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()
