@@ -381,3 +381,5 @@
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
+
+#define ACCENT_NONE "None"

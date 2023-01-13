@@ -1,6 +1,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from "../base";
 
-export const bar_choice: FeatureChoiced = {
-  name: "Bar choice",
+export const accent: FeatureChoiced = {
+  name: "Accent",
   component: FeatureDropdownInput,
 };

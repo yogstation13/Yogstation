@@ -449,7 +449,6 @@
 			return
 	if(frn)
 		client.prefs.randomise_appearance_prefs()
-		client.prefs.accent = null
 
 	client.prefs.apply_prefs_to(H)
 	H.dna.update_dna_identity()
@@ -464,8 +463,11 @@
 			mind.late_joiner = TRUE
 		mind.active = FALSE					//we wish to transfer the key manually
 		mind.original_character_slot_index = client.prefs.default_slot
-		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
-			mind.accent_name = client.prefs.accent
+		if(!HAS_TRAIT(H, TRAIT_RANDOM_ACCENT))
+			var/accent_name = client.prefs.read_preference(/datum/preference/choiced/accent)
+			if (accent_name == ACCENT_NONE)
+				accent_name = null
+			mind.accent_name = accent_name
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 		mind.original_character = H
 
