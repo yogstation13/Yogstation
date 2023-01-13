@@ -235,10 +235,17 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	else
 		mutation_index[RACEMUT] = create_sequence(RACEMUT, FALSE)
 	default_mutation_genes[RACEMUT] = mutation_index[RACEMUT]
-	for(var/i in 2 to DNA_MUTATION_BLOCKS)
-		var/datum/mutation/human/M = mutations_temp[i]
-		mutation_index[M.type] = create_sequence(M.type, FALSE, M.difficulty)
-		default_mutation_genes[M.type] = mutation_index[M.type]
+	while(mutation_index.len < DNA_MUTATION_BLOCKS) 
+		var/datum/mutation/human/mutation = mutations_temp[mutation_index.len]
+		var/conflict = FALSE
+		for(var/conflicting_mut in mutation.conflicts)
+			if(mutation_index.Find(conflicting_mut))
+				conflict = TRUE //no more conflicting mutations in the same mob dna 
+				mutations_temp.Cut(mutation_index.len, mutation_index.len+1)
+		if(conflict)
+			continue
+		mutation_index[mutation.type] = create_sequence(mutation.type, FALSE, mutation.difficulty)
+		default_mutation_genes[mutation.type] = mutation_index[mutation.type]
 	shuffle_inplace(mutation_index)
 
 //Used to generate original gene sequences for every mutation
