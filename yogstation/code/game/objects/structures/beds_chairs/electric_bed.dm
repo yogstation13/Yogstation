@@ -26,9 +26,9 @@
 	var/area/A = get_area(src)
 	if(!isarea(A))
 		return
-	if(!A.powered(EQUIP))
+	if(!A.powered(AREA_USAGE_EQUIP))
 		return
-	A.use_power(EQUIP, 5000)
+	A.use_power(AREA_USAGE_EQUIP, 5000)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)

@@ -9,7 +9,10 @@
 	max_integrity = 200
 	integrity_failure = 100
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 20)
-	var/brightness_on = 1
+	light_system = STATIC_LIGHT
+	light_range = 2
+	light_power = 1
+	light_on = TRUE
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
@@ -98,9 +101,9 @@
 	if(!.)
 		return // reduce unneeded light changes
 	if(stat & NOPOWER)
-		set_light(0)
+		set_light(FALSE)
 	else
-		set_light(brightness_on)
+		set_light(TRUE)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
