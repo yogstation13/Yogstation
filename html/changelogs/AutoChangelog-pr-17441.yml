@@ -1,4 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed gas scanner on non-adjacent tiles"

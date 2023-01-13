@@ -1,0 +1,5 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - bugfix: "AI laws now use proper King's English"
+  - tweak: "changed lawset \"Station Efficiency\" to better prioritize crew safety"
