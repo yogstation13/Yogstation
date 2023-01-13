@@ -320,7 +320,7 @@
 
 /obj/effect/mob_spawn/human/doctor
 	name = "Doctor"
-	outfit = /datum/outfit/job/doctor
+	outfit = /datum/outfit/job/doctor/dead
 
 
 /obj/effect/mob_spawn/human/doctor/alive

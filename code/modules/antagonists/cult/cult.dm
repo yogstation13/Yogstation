@@ -587,5 +587,6 @@
 	H.update_body()
 
 	var/obj/item/clothing/suit/hooded/hooded = locate() in H
-	hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
-	hooded.ToggleHood()
+	if(!isdummy(H))
+		hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
+		hooded.ToggleHood()

@@ -175,7 +175,6 @@
 	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)
 	assistant_icon.ChangeOpacity(0.5)
 
-	qdel(assistant)
 	return assistant_icon
 
 /datum/outfit/nuclear_operative
@@ -191,7 +190,6 @@
 	uniform = /obj/item/clothing/under/syndicate 
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
-	l_hand = /obj/item/modular_computer/tablet/nukeops
 	r_hand = /obj/item/shield/energy
 
 /datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)

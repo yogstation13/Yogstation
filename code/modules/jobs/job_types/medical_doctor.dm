@@ -54,10 +54,8 @@
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
-
-	pda_type= /obj/item/modular_computer/tablet/pda/preset/medical
-
 	ears = /obj/item/radio/headset/headset_med
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical
 	uniform = /obj/item/clothing/under/rank/medical
 	uniform_skirt = /obj/item/clothing/under/rank/medical/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
@@ -68,5 +66,15 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-
 	chameleon_extras = /obj/item/gun/syringe
+/datum/outfit/job/doctor/dead
+	name = "Medical Doctor"
+	jobtype = /datum/job/doctor
+	ears = /obj/item/radio/headset/headset_med
+	uniform = /obj/item/clothing/under/rank/medical
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	suit =  /obj/item/clothing/suit/toggle/labcoat/md
+	l_hand = /obj/item/storage/firstaid/medical
+	suit_store = /obj/item/flashlight/pen
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	pda_type = /obj/item/pda/medical

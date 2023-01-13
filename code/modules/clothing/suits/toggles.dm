@@ -133,7 +133,8 @@
 	if(helmet)
 		helmet.suit = null
 		qdel(helmet)
-	qdel(jetpack)
+	if(jetpack && istype(jetpack))
+		qdel(jetpack)
 	return ..()
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()

@@ -60,6 +60,8 @@
 		else
 			qdel(src)
 	else
+		if(isdummy(user))
+			return
 		soundloop.start(user)
 
 /obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(var/msg)
@@ -147,7 +149,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	..()
-	if(jetpack)
+	if(jetpack && istype(jetpack))
 		if(slot == SLOT_WEAR_SUIT)
 			for(var/X in jetpack.actions)
 				var/datum/action/A = X
@@ -155,7 +157,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/dropped(mob/user)
 	..()
-	if(jetpack)
+	if(jetpack && istype(jetpack))
 		for(var/X in jetpack.actions)
 			var/datum/action/A = X
 			A.Remove(user)
