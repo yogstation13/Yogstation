@@ -27,19 +27,19 @@
 			if(!H.put_in_hands(item))
 				item.forceMove(BP)
 
-	switch(C.prefs.donor_pda)
-		if(2)//transparent
+	switch(C.prefs.read_preference(/datum/preference/choiced/donor_pda))
+		if(PDA_COLOR_TRANSPARENT)
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "glass"
 				PDA.update_icon()
-		if(3)//pip-boy
+		if(PDA_COLOR_PIPBOY)
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "pipboy"
 				PDA.slot_flags |= ITEM_SLOT_GLOVES
 				PDA.update_icon()
-		if(4)//rainbow
+		if(PDA_COLOR_RAINBOW)
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "rainbow"

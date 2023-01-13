@@ -1,4 +1,4 @@
-import { Feature, FeatureColorInput, FeatureDropdownInput } from "../base";
+import { CheckboxInput, Feature, FeatureColorInput, FeatureDropdownInput, FeatureToggle } from "../base";
 
 export const pda_color: Feature<string> = {
   name: "PDA color",
@@ -19,4 +19,10 @@ export const pda_theme: Feature<string> = {
   category: "GAMEPLAY",
   description: "The theme of your equipped PDA.",
   component: FeatureDropdownInput,
+};
+
+export const id_in_pda: FeatureToggle = {
+  name: "Spawn with ID in PDA",
+  category: "GAMEPLAY",
+  component: CheckboxInput,
 };

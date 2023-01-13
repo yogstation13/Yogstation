@@ -9,8 +9,6 @@
 *
 */
 
-GLOBAL_LIST_INIT(donor_pdas, list("Normal", "Transparent", "Pip Boy", "Rainbow"))
-
 GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
 /datum/donator_gear_resources

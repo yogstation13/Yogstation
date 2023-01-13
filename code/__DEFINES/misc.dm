@@ -210,12 +210,20 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 
 //pda fonts
-#define MONO		"Monospaced"
-#define VT			"VT323"
-#define ORBITRON	"Orbitron"
-#define SHARE		"Share Tech Mono"
+#define PDA_FONT_MONO "Monospaced"
+#define PDA_FONT_VT "VT323"
+#define PDA_FONT_ORBITRON "Orbitron"
+#define PDA_FONT_SHARE "Share Tech Mono"
 
-GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
+GLOBAL_LIST_INIT(pda_styles, list(PDA_FONT_MONO, PDA_FONT_VT, PDA_FONT_ORBITRON, PDA_FONT_SHARE))
+
+//pda colours
+#define PDA_COLOR_NORMAL "Normal"
+#define PDA_COLOR_TRANSPARENT "Transparent"
+#define PDA_COLOR_PIPBOY "Pip Boy"
+#define PDA_COLOR_RAINBOW "Rainbow"
+
+GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_COLOR_PIPBOY, PDA_COLOR_RAINBOW))
 
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //

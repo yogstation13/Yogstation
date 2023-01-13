@@ -134,6 +134,6 @@ export const ghost_others: FeatureChoiced = {
 export const inquisitive_ghost: FeatureToggle = {
   name: "Ghost inquisitiveness",
   category: "GHOST",
-  description: "Clicking on something as a ghost will examine it.",
+  description: "When enabled, clicking on something as a ghost will examine it.",
   component: CheckboxInput,
 };

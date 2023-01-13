@@ -60,6 +60,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
+	/// If we have quiet mode enabled
+	var/quiet_round = FALSE
+
 
 	/// A preview of the current character
 	var/atom/movable/screen/character_preview_view/character_preview_view

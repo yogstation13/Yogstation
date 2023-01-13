@@ -18,3 +18,9 @@ export const borg_hat: FeatureToggle = {
   description: "When enabled, you will equip your selected donor hat when playing cyborg.",
   component: CheckboxInput,
 };
+
+export const donor_pda: Feature<string> = {
+  name: "Donor PDA",
+  category: "DONATOR",
+  component: FeatureDropdownInput,
+};

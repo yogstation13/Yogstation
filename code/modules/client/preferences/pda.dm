@@ -28,6 +28,6 @@
 /// Put ID into PDA when spawning
 /datum/preference/toggle/id_in_pda
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "pda_style"
+	savefile_key = "id_in_pda"
 	savefile_identifier = PREFERENCE_PLAYER
 	default_value = FALSE

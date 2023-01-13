@@ -42,3 +42,15 @@
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "borg_hat"
 	savefile_identifier = PREFERENCE_PLAYER
+
+
+/datum/preference/choiced/donor_pda
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "donor_pda"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/donor_pda/create_default_value()
+	return PDA_COLOR_NORMAL
+
+/datum/preference/choiced/donor_pda/init_possible_values()
+	return GLOB.donor_pdas
