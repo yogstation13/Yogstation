@@ -387,16 +387,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/largecrossbow
-	name = "Energy Crossbow"
-	desc = "A reverse-engineered energy crossbow favored by syndicate infiltration teams and carp hunters."
-	id = "largecrossbow"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
-	build_path = /obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
 /datum/design/hardlightbow
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
