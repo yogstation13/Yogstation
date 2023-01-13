@@ -518,7 +518,9 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 	dir_state_instances : Array<IconState|null>|undefined = undefined;
 	top_states : Array<string|undefined> = Array(4);
 	top_state_instances : Array<IconState|null>|undefined = undefined;
-	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, smooth_dirs : string[]) {
+	clip_height : number = 1;
+	inset : number = 0;
+	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, smooth_dirs : string[], public flip_bottom = false) {
 		super();
 		this.atom_id = atom_id
 		this.icon = appearance.icon;
@@ -539,7 +541,11 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 			this.dir_states[base+3] = right_state ? "4-i" : "4-e";
 		}
 		for(let i = 0; i < 4; i++) {
-			this.top_states[i] = (i+1) + "-" + smooth_dirs[i];
+			if(i >= 2 && flip_bottom) {
+				this.top_states[i] = (i-1) + "-" + smooth_dirs[i].replace("s", "n");
+			} else {
+				this.top_states[i] = (i+1) + "-" + smooth_dirs[i];
+			}
 			this.triangle_count += 2;
 		}
 	}
@@ -576,12 +582,20 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 					right = vec3.scale(vec3.create(), right, normal_scale);
 					up = vec3.scale(vec3.create(), up, normal_scale);
 				}
+				if(this.clip_height != 1) {
+					up = vec3.scale(vec3.create(), up, this.clip_height);
+				}
 				offset = this.write_plane(
 					attribs, iattribs, offset,
 					frame,
-					[this.x+box_xy[i][0]-scale_offset*orig_right[0],this.y+box_xy[i][1]-scale_offset*orig_right[1],-scale_offset],
+					[
+						this.x+box_xy[i][0]-scale_offset*orig_right[0]-box_normals[i][0]*this.inset,
+						this.y+box_xy[i][1]-scale_offset*orig_right[1]-box_normals[i][1]*this.inset,
+						-scale_offset
+					],
 					right, up, box_normals[i],
-					vec4_color(color_vec, this.appearance.color_alpha)
+					vec4_color(color_vec, this.appearance.color_alpha),
+					[0, 0, 1, this.clip_height]
 				);
 			}
 			let top_state = this.top_state_instances[i];
@@ -589,9 +603,10 @@ export class SmoothWallRenderPlan extends BatchRenderPlan {
 			offset = this.write_plane(
 				attribs, iattribs, offset,
 				top_state.get_icon(2, time, ft, this),
-				[this.x-scale_offset, this.y-scale_offset, 1],
+				[this.x-scale_offset, this.y-scale_offset, this.clip_height],
 				[normal_scale,0,0], [0,normal_scale,0], up_vec,
-				vec4_color(color_vec, this.appearance.color_alpha)
+				vec4_color(color_vec, this.appearance.color_alpha),
+				i >= 2 && this.flip_bottom ? [0,1,1,0] : undefined
 			);
 		}
 		return offset;

@@ -369,7 +369,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		x += this.pixel_x/32;
 		y += this.pixel_y/32;
 		let z = 1.5/32 + stack_height/500;
-		if(on_table) z += 5.6/32;
+		if(on_table) z += 6.6/32;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == -32767 || overlay.plane == appearance.plane) {
@@ -423,9 +423,18 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, 0.5));
 	},
 	[E3D_TYPE_TABLE](list, appearance, x, y) : void {
-		let z = 7/32;
-		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
-		if(appearance.overlays) for(let overlay of appearance.overlays) {
+		let z = 8/32;
+		let extras : Appearance[] = [];
+		let smooth = this.get_smooth(appearance, extras);
+		if(smooth instanceof Array) {
+			let plan = new SmoothWallRenderPlan(this.full_id, appearance, x, y, smooth, true);
+			plan.clip_height = z;
+			plan.inset = 3/32;
+			list.push(plan);
+		} else {
+			list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
+		}
+		if(appearance.overlays) for(let overlay of extras) {
 			if(overlay.plane == -32767 || overlay.plane == appearance.plane) {
 				list.push(new FloorRenderPlan(this.full_id, overlay, x, y, z, 1<<24));
 			}
