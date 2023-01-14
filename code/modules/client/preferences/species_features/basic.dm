@@ -49,7 +49,7 @@
 	relevant_species_trait = FACEHAIR
 
 /datum/preference/choiced/facial_hairstyle/init_possible_values()
-	return generate_possible_values_for_sprite_accessories_on_head(GLOB.hair_styles_list)
+	return generate_possible_values_for_sprite_accessories_on_head(GLOB.facial_hairstyles_list)
 
 /datum/preference/choiced/facial_hairstyle/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_style = value

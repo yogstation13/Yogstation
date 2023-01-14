@@ -80,3 +80,23 @@ export const feature_ipc_chassis: FeatureChoiced = {
   name: "Chassis",
   component: FeatureDropdownInput,
 };
+
+export const feature_polysmorph_tail: FeatureChoiced = {
+  name: "Tail",
+  component: FeatureDropdownInput,
+};
+
+export const feature_polysmorph_teeth: FeatureChoiced = {
+  name: "Teeth",
+  component: FeatureDropdownInput,
+};
+
+export const feature_polysmorph_dome: FeatureChoiced = {
+  name: "Dome",
+  component: FeatureDropdownInput,
+};
+
+export const feature_polysmorph_dorsal_tubes: FeatureChoiced = {
+  name: "Dorsal tubes",
+  component: FeatureDropdownInput,
+};
