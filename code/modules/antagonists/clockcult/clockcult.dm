@@ -253,7 +253,7 @@
 	var/servants = length(GLOB.all_clockwork_mobs)
 	for(var/I in GLOB.player_list)
 		var/mob/M = I
-		if(M.stat != DEAD)
+		if(M.stat != DEAD && !istype(M,/mob/living/simple_animal/drone/cogscarab))
 			++alive
 	var/ratio = servants/alive
 	if(ratio >= SERVANT_HARDMODE_PERCENT)
