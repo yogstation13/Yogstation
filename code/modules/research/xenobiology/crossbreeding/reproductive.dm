@@ -8,7 +8,7 @@ Reproductive extracts:
 	desc = "It pulses with a strange hunger."
 	icon_state = "reproductive"
 	effect = "reproductive"
-	effect_desc = "When fed monkey cubes it produces more extracts. Bio bag compatible as well."
+	effect_desc = "When fed monkey cubes it produces more extracts."
 	var/extract_type = /obj/item/slime_extract/
 	var/cubes_eaten = 0
 	var/last_produce = 0
@@ -18,15 +18,6 @@ Reproductive extracts:
 	if((last_produce + cooldown) > world.time)
 		to_chat(user, span_warning("[src] is still digesting!"))
 		return
-	if(istype(O, /obj/item/storage/bag/bio))
-		var/list/inserted = list()
-		SEND_SIGNAL(O, COMSIG_TRY_STORAGE_TAKE_TYPE, /obj/item/reagent_containers/food/snacks/monkeycube, src, 1, null, null, user, inserted)
-		if(inserted.len)
-			var/obj/item/reagent_containers/food/snacks/monkeycube/M = inserted[1]
-			if(istype(M))
-				eat_cube(M, user)
-		else
-			to_chat(user, span_warning("There are no monkey cubes in the bio bag!"))
 	if(istype(O,/obj/item/reagent_containers/food/snacks/monkeycube))
 		eat_cube(O, user)
 	if(cubes_eaten >= 3)
