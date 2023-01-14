@@ -82,11 +82,6 @@
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	to_chat(user, span_notice("You claw at the fabric of [src], trying to tear it open..."))
-	to_chat(loc, span_warning("Someone starts trying to break free of [src]!"))
-	if(!do_after(user, 3 SECONDS, src))
-		to_chat(loc, span_warning("The pressure subsides. It seems that they've stopped resisting..."))
-		return
 	loc.visible_message(span_warning("[user] suddenly appears in front of [loc]!"), span_userdanger("[user] breaks free of [src]!"))
 	qdel(src)
 
