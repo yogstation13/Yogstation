@@ -73,7 +73,7 @@
 	if(!QDELETED(C) && !QDELETED(target))
 		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
-/obj/item/twohanded/required/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/twohanded/required/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
 	. = ..()
 	if(!proximity_flag && charged)//Mark a target, or mine a tile.
 		var/turf/proj_turf = user.loc
@@ -120,7 +120,11 @@
 					C.total_damage += detonation_damage
 				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
 
-/obj/item/twohanded/required/kinetic_crusher/proc/Recharge()
+/obj/item/twohanded/required/kinetic_crusher/proc/Recharge(magmite = FALSE)
+	if(magmite == TRUE)
+		charged = TRUE
+		icon_state = "magmite_crusher"
+		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 	if(!charged)
 		charged = TRUE
 		icon_state = "mining_hammer1"
@@ -456,3 +460,48 @@
         for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
             if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
                 L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK,hammer_synced)
+
+//Magmite Crusher
+
+/obj/item/twohanded/required/kinetic_crusher/mega
+    icon_state = "magmite_crusher"
+    item_state = "magmite_crusher"
+    lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+    righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+    name = "mega proto-kinetic crusher"
+    desc = "An early design of the proto-kinetic accelerator, it is now a combination of various mining tools infused with magmite, forming a high-tech club, increasing its capacity as a mining tool. \
+     It does little to aid any but the most skilled and/or suicidal miners against local fauna."
+
+/obj/item/twohanded/required/kinetic_crusher/mega/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+    if(!proximity_flag && charged)
+        var/turf/proj_turf = user.loc
+        if(!isturf(proj_turf))
+            return
+        var/obj/item/projectile/destabilizer/mega/D = new /obj/item/projectile/destabilizer/mega(proj_turf)
+        D.preparePixelProjectile(target, user, clickparams)
+        D.firer = user
+        D.hammer_synced = src
+        playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
+        D.fire()
+        icon_state = "magmite_crusher_uncharged"
+        charged = FALSE
+        addtimer(CALLBACK(src, .proc/Recharge, TRUE), charge_time)
+        return
+    ..()
+
+/obj/item/projectile/destabilizer/mega
+    name = "destabilizing force"
+    icon_state = "pulse0"
+    var/mine_range = 4
+
+/obj/item/projectile/destabilizer/mega/on_hit(atom/target, blocked = FALSE)
+    var/target_turf = get_turf(target)
+    if(ismineralturf(target_turf))
+        var/turf/closed/mineral/M = target_turf
+        M.attempt_drill(firer)
+        if(mine_range)
+            mine_range--
+            range++
+        if(range > 0)
+            return BULLET_ACT_FORCE_PIERCE
+    ..()
