@@ -404,7 +404,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/mob/living/closest_user
 
 	to_chat(owner, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
-	sleep(5 SECONDS)
+	if(!do_after(owner, 5 SECONDS))
+		return FALSE
 	var/list/datum/mind/users = list()
 	var/list/guardians = hasparasites()
 	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
@@ -444,7 +445,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		to_chat(owner, span_notice("There are no users nearby."))
 
 //FORCE RECALL/RESET
-
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"

@@ -622,7 +622,8 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	var/mob/living/closest_user
 
 	to_chat(src, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
-	sleep(5 SECONDS)
+	if(!do_after(src, 5 SECONDS))
+		return FALSE
 	var/list/datum/mind/users = list()
 	var/list/guardians = hasparasites()
 	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
