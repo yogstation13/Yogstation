@@ -36,7 +36,7 @@
 	var/z = computer.z
 	if(!z)
 		var/turf/T = get_turf(computer)
-		z = T?.z
+		z = T.z
 	var/list/death_list = GLOB.crewmonitor.death_list?["[z]"]
 	if(death_list && death_list.len > 0)
 		alarm = TRUE
