@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/charge_type = "recharge" //can be recharge or charges, see charge_max and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
 
-	var/charge_max = 100 //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
+	var/charge_max = 10 SECONDS //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
 	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
 	var/still_recharging_msg = span_notice("The spell is still recharging.")
 	var/recharging = TRUE
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/centcom_cancast = TRUE //Whether or not the spell should be allowed on z2
 
-	var/obj/screen/cooldown_overlay/cooldown_overlay
+	var/atom/movable/screen/cooldown_overlay/cooldown_overlay
 
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "spell_default"
@@ -306,9 +306,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	cooldown_overlay = start_cooldown(action.button, world.time + charge_max)
 	recharging = TRUE
 
-/obj/effect/proc_holder/spell/process()
+/obj/effect/proc_holder/spell/process(delta_time)
 	if(recharging && charge_type == "recharge" && (charge_counter < charge_max))
-		charge_counter += 2	//processes 5 times per second instead of 10.
+		charge_counter += delta_time * 10
 		cooldown_overlay?.tick()
 		if(charge_counter >= charge_max)
 			action.UpdateButtonIcon()

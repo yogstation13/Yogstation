@@ -38,6 +38,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	butcher_results = list(/obj/item/ectoplasm = 1)
 	AIStatus = AI_OFF
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 	hud_type = /datum/hud/guardian
 	dextrous_hud_type = /datum/hud/dextrous/guardian //if we're set to dextrous, account for it.
 	var/list/guardian_overlays[GUARDIAN_TOTAL_LAYERS]
@@ -45,7 +48,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/cooldown = 0
 	var/mob/living/summoner
 	var/range = 10 //how far from the user the spirit can be
-	var/toggle_button_type = /obj/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
+	var/toggle_button_type = /atom/movable/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/playstyle_string = "<span class='holoparasite bold'>You are a standard Guardian. You shouldn't exist!</span>"
 	var/magic_fluff_string = span_holoparasite("You draw the Coder, symbolizing bugs and errors. This shouldn't happen! Submit a bug report!")
@@ -338,12 +341,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<span class='danger'><B>You don't have another mode!</span></B>")
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
-	if(light_range<3)
+	if(!light_on)
 		to_chat(src, span_notice("You activate your light."))
-		set_light(3)
+		set_light_on(TRUE)
 	else
 		to_chat(src, span_notice("You deactivate your light."))
-		set_light(0)
+		set_light_on(FALSE)
 
 /mob/living/simple_animal/hostile/guardian/verb/ShowType()
 	set name = "Check Guardian Type"

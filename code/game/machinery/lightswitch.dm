@@ -4,7 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light-p"
 	desc = "Make dark."
-	power_channel = LIGHT
+	power_channel = AREA_USAGE_LIGHT
 
 	light_power = 0
 	light_range = 7

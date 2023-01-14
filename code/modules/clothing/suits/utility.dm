@@ -146,8 +146,8 @@
 	permeability_coefficient = 0.5
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/geiger_counter)
-	slowdown = 1.5
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/geiger_counter)
+	slowdown = 0.5
 	armor = list(MELEE = 5, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 5, BIO = 60, RAD = 100, FIRE = 30, ACID = 30)
 	strip_delay = 60
 	equip_delay_other = 60

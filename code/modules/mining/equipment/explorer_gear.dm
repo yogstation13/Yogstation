@@ -83,11 +83,11 @@
 	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	clothing_flags = THICKMATERIAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
-	armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 75, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
@@ -99,10 +99,10 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/suit/space/hostile_environment/process()
+/obj/item/clothing/suit/space/hostile_environment/process(delta_time)
 	var/mob/living/carbon/C = loc
-	if(istype(C) && prob(2)) //cursed by bubblegum
-		if(prob(15))
+	if(istype(C) && DT_PROB(1, delta_time)) //cursed by bubblegum
+		if(DT_PROB(7.5, delta_time))
 			new /datum/hallucination/oh_yeah(C)
 			to_chat(C, span_colossus("<b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b>"))
 		else
@@ -116,7 +116,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
-	armor = list(MELEE = 75, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 75, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()

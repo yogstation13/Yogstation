@@ -59,7 +59,9 @@
 		var/datum/sprite_accessory/hair_gradient/H = new path()
 		GLOB.hair_gradients_list[H.name] = H
 
-	
+	// Keybindings
+	init_keybindings()
+
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))

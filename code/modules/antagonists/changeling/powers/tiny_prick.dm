@@ -67,12 +67,12 @@
 
 /datum/action/changeling/sting/transformation
 	name = "Transformation Sting"
-	desc = "We silently sting a human, injecting a retrovirus that forces them to transform. Costs 50 chemicals."
-	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human."
+	desc = "We silently sting a human, injecting a retrovirus that forces them to transform for a short time. Costs 20 chemicals."
+	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human. Stings on already transformed targets won't last as long."
 	button_icon_state = "sting_transform"
 	sting_icon = "sting_transform"
-	chemical_cost = 50
-	dna_cost = 3
+	chemical_cost = 20
+	dna_cost = 1
 	var/datum/changelingprofile/selected_dna = null
 
 /datum/action/changeling/sting/transformation/Trigger()
@@ -104,14 +104,31 @@
 		to_chat(user, span_notice("Our genes cry out as we sting [target.name]!"))
 
 	var/mob/living/carbon/C = target
+
 	. = TRUE
 	if(istype(C))
+
+		if(!HAS_TRAIT(C, CHANGESTING_TRAIT))
+			//block that stores the old identity for use in reverting
+			var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
+			OldDNA.real_name = C.real_name
+			C.dna.transfer_identity(OldDNA)
+			addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 10 MINUTES, TIMER_UNIQUE)
+			ADD_TRAIT(C, CHANGESTING_TRAIT, "recentsting")
+		else
+			to_chat(user, span_notice("We notice that [target.name]'s DNA is already in turmoil from the previous sting."))
+
 		C.real_name = NewDNA.real_name
 		NewDNA.transfer_identity(C)
 		if(ismonkey(C))
 			C.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG)
 		C.updateappearance(mutcolor_update=1)
 
+/datum/action/changeling/sting/transformation/proc/revert(mob/living/carbon/target, mob/living/carbon/original)
+	REMOVE_TRAIT(target, CHANGESTING_TRAIT, "recentsting")
+	target.real_name = original.real_name
+	original.dna.transfer_identity(target)
+	qdel(original)
 
 /datum/action/changeling/sting/false_armblade
 	name = "False Armblade Sting"

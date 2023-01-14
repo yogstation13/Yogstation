@@ -37,6 +37,23 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 12
 
+/obj/item/boh_shell
+	name = "bag of holding shell"
+	desc = "An inert shell, it looks like you could activate it with an anomaly core."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "brokenpack"
+	item_state = "brokenpack"
+	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
+
+/obj/item/boh_shell/attackby(obj/item/I, mob/user, params)
+	..()
+	if(istype(I, /obj/item/assembly/signaler/anomaly))
+		to_chat(user, "[src] roars to life as you insert the anomaly core!")
+		new /obj/item/storage/backpack/holding(get_turf(src))
+		qdel(src)
+		qdel(I)
+
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of bluespace."
@@ -46,6 +63,10 @@
 	item_flags = NO_MAT_REDEMPTION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
+
+/obj/item/storage/backpack/holding/rd
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/storage/backpack/holding/clown
 	name = "bag of honking"
@@ -716,7 +737,7 @@
 	new /obj/item/clothing/suit/det_suit/grey(src)
 	new /obj/item/clothing/suit/det_suit/noir(src)
 	new /obj/item/clothing/suit/det_suit/tan(src)
-	new /obj/item/clothing/head/fedora(src)
+	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
 	new /obj/item/clothing/under/yogs/bluedetective(src)

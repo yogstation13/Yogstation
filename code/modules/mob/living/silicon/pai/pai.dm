@@ -71,7 +71,7 @@
 
 	var/emitterhealth = 20
 	var/emittermaxhealth = 20
-	var/emitterregen = 0.25
+	var/emitter_regen_per_second = 1.25
 	var/emittercd = 50
 	var/emitteroverloadcd = 100
 	var/emittersemicd = FALSE
@@ -284,8 +284,8 @@
 	health = maxHealth - getBruteLoss() - getFireLoss()
 	update_stat()
 
-/mob/living/silicon/pai/process()
-	emitterhealth = clamp((emitterhealth + emitterregen), -50, emittermaxhealth)
+/mob/living/silicon/pai/process(delta_time)
+	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()

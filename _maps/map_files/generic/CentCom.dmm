@@ -10422,24 +10422,6 @@
 /obj/item/clothing/neck/stripedbluescarf,
 /turf/open/floor/grass,
 /area/centcom/testchamber)
-"awh" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large{
-	pin = /obj/item/firing_pin;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "awi" = (
 /obj/structure/statue/diamond/captain,
 /turf/open/floor/holofloor/grass,
@@ -65244,7 +65226,7 @@ aQo
 aHE
 awS
 aWI
-awh
+aVC
 aWx
 aZw
 aQz

@@ -1,6 +1,8 @@
 GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
 
+#define CELL_POWERUSE_MULTIPLIER 0.025
+
 /obj/machinery/ai/data_core
 	name = "AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
@@ -12,6 +14,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	active_power_usage = AI_DATA_CORE_POWER_USAGE
 	idle_power_usage = 1000
 	use_power = IDLE_POWER_USE
+
+	var/disableheat = FALSE
 
 	critical_machine = TRUE
 
@@ -27,6 +31,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/heat_modifier = 1
 	//Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
 	var/power_modifier = 1
+	
+	var/obj/item/stock_parts/cell/integrated_battery
 
 
 /obj/machinery/ai/data_core/Initialize()
@@ -40,6 +46,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/RefreshParts()
 	var/new_heat_mod = 1
 	var/new_power_mod = 1
+	for(var/obj/item/stock_parts/cell/CELL in component_parts)
+		integrated_battery = CELL
+	
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		new_power_mod -= (C.rating - 1) / 50 //Max -24% at tier 4 parts, min -0% at tier 1
 
@@ -52,7 +61,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core/process_atmos()
 	calculate_validity()
-
 
 /obj/machinery/ai/data_core/Destroy()
 	GLOB.data_cores -= src
@@ -78,11 +86,36 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "core-open", "core", O))
-		return TRUE
+	if(O.tool_behaviour == TOOL_SCREWDRIVER)
+		if(!do_after(user, 5 SECONDS, src))
+			to_chat(user, span_warning("You need to stand still to open the panel!"))
+			return
+		if(default_deconstruction_screwdriver(user, "core-open", "core", O))
+			return TRUE
 
-	if(default_deconstruction_crowbar(O))
-		return TRUE
+	if(O.tool_behaviour == TOOL_CROWBAR)
+		if(!do_after(user, 5 SECONDS, src))
+			to_chat(user, span_warning("You need to stand still to deconstruct the core!"))
+			return
+		if(default_deconstruction_crowbar(O))
+			return TRUE	
+	if(panel_open && user.a_intent != INTENT_HARM)
+		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+			return // Feedback in proc
+		if(HAS_TRAIT(O, TRAIT_NODROP))
+			to_chat(user, span_notice("[O] is stuck to your hand!"))
+			return
+		if(istype(O, /obj/item/stock_parts/cell))
+			O.forceMove(src) // Force it out of our hands so we can put the old cell in it		
+			if(!user.put_in_hands(integrated_battery))
+				integrated_battery.forceMove(get_turf(src))
+			component_parts -= integrated_battery // Remove the old cell so the new one spawns when deconstructed
+			O.moveToNullspace() // Now get out of contents
+			to_chat(user, span_notice("You replace [integrated_battery] with [O]."))
+			integrated_battery = O // Set the cell
+			component_parts += O // Add new cell
+		return
+
 	return ..()
 
 //NOTE: See /obj/machinery/status_display/examine in ai_core_display.dm
@@ -105,6 +138,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
+/obj/machinery/ai/data_core/has_power()
+	if((stat & (NOPOWER)) && integrated_battery)
+		if(integrated_battery.charge > (active_power_usage * CELL_POWERUSE_MULTIPLIER))
+			return TRUE
+	else
+		return TRUE
+	return FALSE
+
 /obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
@@ -126,6 +167,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		if(valid_ticks == 1)
 			update_icon()
 		use_power = ACTIVE_POWER_USE
+		if((stat & NOPOWER))
+			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
 		warning_sent = FALSE
 	else
 		valid_ticks--
@@ -149,16 +192,18 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 			
 
-	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+	if(!(stat & (BROKEN|EMPED)) && has_power())
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
-		if(env.heat_capacity())
-			var/temperature_increase = (active_power_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
-			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
-			T.air_update_turf()
+		if(!disableheat)
+			if(env.heat_capacity())
+				var/temp_active_usage = stat & NOPOWER ? active_power_usage * CELL_POWERUSE_MULTIPLIER : active_power_usage
+				var/temperature_increase = (temp_active_usage / env.heat_capacity()) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+				env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
+				T.air_update_turf()
 	
 /obj/machinery/ai/data_core/proc/can_transfer_ai()
-	if(stat & (BROKEN|NOPOWER|EMPED))
+	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
 	if(!valid_data_core())
 		return FALSE
@@ -172,7 +217,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/update_icon()
 	cut_overlays()
 	
-	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+	if(!(stat & (BROKEN|EMPED)) && has_power())
 		if(!valid_data_core())
 			return
 		icon_state = "core"
@@ -230,3 +275,4 @@ That prevents a few funky behaviors.
 
 */
 
+#undef CELL_POWERUSE_MULTIPLIER

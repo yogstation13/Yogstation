@@ -554,6 +554,13 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl
+	name = "axolotl cutlet"
+	tastes = list("meat" = 1, "fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/axolotl, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
 //Cooked cutlets
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet
@@ -603,3 +610,7 @@
 /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
 	name = "chicken cutlet"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/cutlet/axolotl
+	name = "axolotl cutlet"
+	tastes = list("meat" = 1, "fish" = 1)

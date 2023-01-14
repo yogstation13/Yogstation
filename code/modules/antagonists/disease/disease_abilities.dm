@@ -311,7 +311,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 /datum/symptom/sentient
 	name = "Sentient Resistance"
 	desc = "Due to its sentience, the virus is able to passively increase its resistance to detection and cures"
-	stealth = 2
+	stealth = 4
 	resistance = 2
 	stage_speed = 0
 	transmittable = 0

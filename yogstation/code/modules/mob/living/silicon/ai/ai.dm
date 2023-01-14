@@ -2,6 +2,8 @@
 	var/obj/item/ai_hijack_device/hijacking
 	var/mutable_appearance/hijack_overlay
 	var/hijack_start = 0
+	var/cog_start = 0
+	var/obj/item/clockwork/integration_cog/cogging
 
 /mob/living/silicon/ai/proc/set_core_display_icon_yogs(input)
 	var/datum/ai_skin/S = input

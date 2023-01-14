@@ -16,6 +16,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=500)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 	var/status = FALSE
 	var/lit = FALSE	//on or off
 	light_color = LIGHT_COLOR_FIRE
@@ -80,6 +82,7 @@
 		if(target_turf)
 			var/turflist = getline(user, target_turf)
 			log_combat(user, target, "flamethrowered", src)
+			user.changeNext_move(0.8 SECONDS)
 			flame_turf(turflist)
 
 /obj/item/flamethrower/attackby(obj/item/W, mob/user, params)
@@ -132,9 +135,11 @@
 	else
 		return ..()
 
-/obj/item/flamethrower/analyzer_act(mob/living/user, obj/item/I)
+/obj/item/flamethrower/return_analyzable_air()
 	if(ptank)
-		ptank.analyzer_act(user, I)
+		return ptank.return_analyzable_air()
+	else
+		return null
 
 
 /obj/item/flamethrower/attack_self(mob/user)
@@ -172,6 +177,7 @@
 		set_light(0)
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
+	set_light_on(lit)
 	update_icon()
 
 /obj/item/flamethrower/CheckParts(list/parts_list)
@@ -192,13 +198,33 @@
 	for(var/turf/T in turflist)
 		if(T == previousturf)
 			continue	//so we don't burn the tile we be standin on
+		for(var/obj/structure/blob/B in T)
+			// This is run before atmos checks because blob can be atmos blocking but we still want to hit them
+			// See /proc/default_ignite
+			var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.05)
+			var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+			damage += air_transfer.get_moles(/datum/gas/tritium) * 24
+			damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+			damage = min(damage, 16)
+			if(damage < 4)
+				// Turn off because we're out
+				visible_message(span_danger("\The [src] lets out a sighed hiss and automatically shuts off."))
+				lit = FALSE
+				set_light(0)
+				playsound(loc, deac_sound, 50, TRUE)
+				STOP_PROCESSING(SSobj,src)
+				break // Out of gas, stop running pointlessly
+			else
+				B.take_damage(damage, BURN, FIRE)
 		var/list/turfs_sharing_with_prev = previousturf.GetAtmosAdjacentTurfs(alldir=1)
 		if(!(T in turfs_sharing_with_prev))
-			break
+			break // Hit something that blocks atmos
 		if(igniter)
-			igniter.ignite_turf(src,T)
+			if(!igniter.ignite_turf(src,T))
+				break // Out of gas, stop running pointlessly
 		else
-			default_ignite(T)
+			if(!default_ignite(T))
+				break // Out of gas, stop running pointlessly
 		sleep(0.1 SECONDS)
 		previousturf = T
 	operating = FALSE
@@ -207,17 +233,62 @@
 			attack_self(M)
 
 
-/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
-	//Transfer 5% of current tank air contents to turf
-	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
-	target.assume_air(air_transfer)
-	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
-	//location.hotspot_expose(1000,500,1)
-	SSair.add_to_active(target, 0)
+	// /obj/structure/blob/normal
 
+// Return value tells the parent whether to continue calculating the line
+/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
+	//Fetch and remove 5% of current tank air contents
+	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
+	//var/oxygen_consumption = (air_transfer.get_moles(/datum/gas/plasma) * 2) + (air_transfer.get_moles(/datum/gas/tritium) / 2) + (air_transfer.get_moles(/datum/gas/hydrogen) / 2)
+
+	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
+	if(air_transfer.get_moles(/datum/gas/plasma) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/stimulum) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/pluoxium) >= STIM_BALL_MOLES_REQUIRED)
+		var/balls_shot = round(min(air_transfer.get_moles(/datum/gas/stimulum), air_transfer.get_moles(/datum/gas/pluoxium), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
+		var/angular_increment = 360/balls_shot
+		var/random_starting_angle = rand(0,360)
+		for(var/i in 1 to balls_shot)
+			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
+		air_transfer.adjust_moles(/datum/gas/plasma, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
+
+	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
+	// 16 damage at 1 mole transfer or having 20 moles in the tank
+	var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+	// harder to achieve than plasma
+	damage += air_transfer.get_moles(/datum/gas/tritium) * 24 // Lower damage than hydrogen, causes minor radiation
+	damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+	// Maximum damage restricted by the available oxygen, with a hard cap at 16
+	var/datum/gas_mixture/turf_air = target.return_air()
+	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + air_transfer.get_moles(/datum/gas/oxygen), 16)
+	if(damage < 4) // If there's not enough fuel and/or oxygen to do more than 4 damage, shut itself off
+		visible_message(span_danger("\The [src] lets out a sighed hiss as it dies out."))
+		lit = FALSE
+		set_light(0)
+		playsound(loc, deac_sound, 50, TRUE)
+		STOP_PROCESSING(SSobj,src)
+		update_icon()
+		return FALSE
+
+	//Burn it
+	var/list/hit_list = list()
+	hit_list += src
+	new /obj/effect/hotspot(target)
+	target.hotspot_expose(FIRE_MINIMUM_TEMPERATURE_TO_EXIST+damage*25,damage*25,1)
+	if(air_transfer.get_moles(/datum/gas/tritium)) // Tritium fires cause a bit of radiation
+		radiation_pulse(target, air_transfer.get_moles(/datum/gas/tritium) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	for(var/mob/living/L in target.contents)
+		if(L in hit_list)
+			continue
+		hit_list += L
+		L.adjustFireLoss(damage)
+		to_chat(L, "<span class='userdanger'>A waft of flames overtakes you!</span>")
+	// deals damage to mechs
+	for(var/obj/mecha/M in target.contents)
+		if(M in hit_list)
+			continue
+		hit_list += M
+		M.take_damage(damage, BURN, FIRE, 1)
+	
+	return TRUE
 
 /obj/item/flamethrower/Initialize(mapload)
 	. = ..()
@@ -241,7 +312,7 @@
 
 /obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(15))
+	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(5))
 		owner.visible_message(span_danger("\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!"))
 		var/target_turf = get_turf(owner)
 		igniter.ignite_turf(src,target_turf, release_amount = 100)
@@ -253,4 +324,4 @@
 	location.hotspot_expose(700,2)
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
-	F.default_ignite(location,release_amount)
+	return F.default_ignite(location,release_amount)

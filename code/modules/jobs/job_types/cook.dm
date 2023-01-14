@@ -1,6 +1,8 @@
 /datum/job/cook
 	title = "Cook"
+	description = "Serve food, cook meat, keep the crew fed."
 	flag = COOK
+	orbit_icon = "utensils"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -12,7 +14,7 @@
 
 	outfit = /datum/outfit/job/cook
 
-	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
+	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
 	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
@@ -23,6 +25,19 @@
 	minimal_character_age = 18 //My guy they just a cook
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	mail_goodies = list(
+		///obj/item/storage/box/ingredients/random = 80,
+		/obj/item/reagent_containers/glass/bottle/caramel = 20,
+		/obj/item/reagent_containers/food/condiment/flour = 20,
+		/obj/item/reagent_containers/food/condiment/rice = 20,
+		/obj/item/reagent_containers/food/condiment/enzyme = 15,
+		/obj/item/reagent_containers/food/condiment/soymilk = 15,
+		/obj/item/kitchen/knife = 4,
+		/obj/item/kitchen/knife/butcher = 2
+	)
+
+	smells_like = "delicious food"
 
 /datum/job/cook/proc/OmegaStationChanges()
 	added_access = list()
@@ -67,3 +82,7 @@
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
 
+/datum/outfit/job/cook/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/suit/apron/chef
+	. += /obj/item/clothing/head/soft/mime

@@ -1,6 +1,8 @@
 /datum/job/clown
 	title = "Clown"
+	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
 	flag = CLOWN
+	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -11,7 +13,7 @@
 
 	outfit = /datum/outfit/job/clown
 
-	alt_titles = list("Entertainer", "Comedian", "Jester")
+	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
 	added_access = list()
 	base_access = list(ACCESS_THEATRE)
@@ -20,6 +22,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	minimal_character_age = 18 //Honk
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
+		/obj/item/reagent_containers/food/snacks/pie/cream = 50,
+		/obj/item/clothing/shoes/clown_shoes/combat = 10,
+		/obj/item/reagent_containers/spray/waterflower/lube = 20 // lube
+		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
+	)
+
+	smells_like = "kinda funny"
 
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -53,11 +65,16 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
-	
+
 /datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
 		backpack_contents[/obj/item/stack/sheet/mineral/bananium/five] = 1
+
+/datum/outfit/job/clown/get_types_to_preload()
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
+		. += /obj/item/stack/sheet/mineral/bananium/five
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

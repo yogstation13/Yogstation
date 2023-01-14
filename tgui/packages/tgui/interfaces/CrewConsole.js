@@ -25,12 +25,16 @@ const HEALTH_ICON_BY_LEVEL = [
 
 const speciesmap = {
   "IPC": {
-    "icon": "robot",
+    "icon": "tv",
     "color": "#2e46cc",
   },
   "Robot": {
-    "icon": "cog",
+    "icon": "robot",
     "color": "#edee1b",
+  },
+  "Android": {
+    "icon": "cog",
+    "color": "#06b4cf",
   },
   "Felinid": {
     "icon": "paw",
@@ -50,7 +54,7 @@ const speciesmap = {
   },
   "Podperson": {
     "icon": "seedling",
-    "color": "#05fa46",
+    "color": "#07f58a",
   },
   "Plasmaman": {
     "icon": "skull",
@@ -144,7 +148,7 @@ export const HealthStat = props => {
   return (
     <Box
       inline
-      width={4}
+      width={2}
       color={COLORS.damageType[type]}
       textAlign="center">
       {value}
@@ -163,8 +167,8 @@ export const CrewConsole = (props, context) => {
   return (
     <Window
       title="Crew Monitor"
-      width={1000}
-      height={800}
+      width={750}
+      height={400}
       resizable>
       <Window.Content scrollable>
         <CrewConsoleContent />
@@ -197,9 +201,15 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Cell bold>
                 Name
               </Table.Cell>
-              <Table.Cell bold collapsing />
-              <Table.Cell bold collapsing />
-              <Table.Cell bold collapsing />
+              <Table.Cell bold collapsing textAlign="center">
+                Warnings
+              </Table.Cell>
+              <Table.Cell bold collapsing textAlign="center">
+                Species
+              </Table.Cell>
+              <Table.Cell bold collapsing textAlign="center">
+                Status
+              </Table.Cell>
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
@@ -213,7 +223,11 @@ export const CrewConsoleContent = (props, context) => {
               )}
             </Table.Row>
             {sensors.map(sensor => (
-              <Table.Row key={sensor.name}>
+              <Table.Row key={sensor.name} fontSize={0.85} style={{
+                'border': '1px solid',
+                'border-color': '#202020',
+                'font-family': 'Verdana, sans-serif',
+              }}>
                 <Table.Cell
                   bold={jobIsHead(sensor.ijob)}
                   color={jobToColor(sensor.ijob)}>
@@ -221,11 +235,21 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
-                  {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
-                  {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
-                  {sensor.is_wounded ? <Icon name="star-of-life" color="#d412ff" size={1} /> : ""}
-                  {sensor.is_bonecrack ? <Icon name="bone" color="#f50505" size={1} /> : ""}
+                  {sensor.oxydam !== null ? (
+                    sensor.no_warnings ? (
+                      <Box>
+                        {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
+                        {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
+                        {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
+                        {sensor.is_wounded ? <Icon name="star-of-life" color="#d412ff" size={1} /> : ""}
+                        {sensor.is_bonecrack ? <Icon name="bone" color="#f50505" size={1} /> : ""}
+                        {sensor.is_disabled ? <Icon name="crutch" color="#fafcfb" size={1} /> : ""}
+                      </Box>
+                    ) : (
+                      <Icon name="check" color="#10d820" size={1} />)
+                  ) : (
+                    <Icon name="question" color="#f70505" size={1} />
+                  )}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}

@@ -5,7 +5,7 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
 	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
@@ -21,6 +21,7 @@
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
 	punchstunthreshold = 9 
 	payday_modifier = 0.7 //Neutrally viewed by NT
+	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
 	toxic_food = ALCOHOL
@@ -34,6 +35,8 @@
 	var/last_light_level = 0
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
+
+	smells_like = "bloody grass"
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
@@ -278,5 +281,10 @@
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
+
+/datum/species/pod/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_pod_name(gender)
+	return pod_name(gender)
 
 #undef STATUS_MESSAGE_COOLDOWN

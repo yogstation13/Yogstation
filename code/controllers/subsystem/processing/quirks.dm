@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	name = "Quirks"
 	init_order = INIT_ORDER_QUIRKS
 	flags = SS_BACKGROUND
-	wait = 10
+	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME
 
 	var/list/quirks = list()		//Assoc. list of all roundstart quirk datum types; "name" = /path/
@@ -31,7 +31,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Prosthetic Limb (Right Leg)","Paraplegic"),
 		list("Prosthetic Limb","Paraplegic")
 	)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name

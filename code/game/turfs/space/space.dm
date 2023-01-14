@@ -52,6 +52,8 @@
 		if(T)
 			T.multiz_turf_new(src, UP)
 
+	if (light_system == STATIC_LIGHT && light_power && light_range)
+		update_light()
 
 	return INITIALIZE_HINT_NORMAL
 

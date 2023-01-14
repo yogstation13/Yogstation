@@ -26,7 +26,7 @@
 	damage = 40
 
 /obj/item/projectile/bullet/mime/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.silent = max(M.silent, 10)
+	return ..()

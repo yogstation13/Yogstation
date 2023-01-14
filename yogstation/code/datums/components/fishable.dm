@@ -53,13 +53,14 @@
 		/obj/item/reagent_containers/food/snacks/fish/goldfish,
 		/obj/item/reagent_containers/food/snacks/fish/salmon,
 		/obj/item/reagent_containers/food/snacks/fish/bass,
-		/obj/item/reagent_containers/food/snacks/bait/leech
+		/obj/item/reagent_containers/food/snacks/bait/worm/leech
 		)
 	uncommon_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/goldfish/giant,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp,
 		/obj/item/reagent_containers/food/snacks/fish/puffer,
-		/obj/item/reagent_containers/food/snacks/fish/tuna
+		/obj/item/reagent_containers/food/snacks/fish/tuna,
+		/mob/living/simple_animal/pet/axolotl
 	)
 	rare_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/squid,

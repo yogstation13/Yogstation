@@ -27,13 +27,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/UI_style = null
 	var/buttons_locked = FALSE
-	var/hotkeys = TRUE // yogs - Rebindable Keybindings
+	var/hotkeys = TRUE
+	// Custom Keybindings
+	var/list/key_bindings = list()
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
+	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
 	var/ghost_form = "ghost"
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_accs = GHOST_ACCS_DEFAULT_OPTION
@@ -73,7 +76,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage", "ipc_screen" = "Blue", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
+	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "pretcolor" = "FFFFFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage", "ipc_screen" = "Blue", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)","plasmaman_helmet" = "None")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -176,6 +179,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 	//we couldn't load character data so just randomize the character appearance + name
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	C?.set_macros()
 	real_name = pref_species.random_name(gender,1)
 	if(!loaded_preferences_successfully)
 		save_preferences()
@@ -350,6 +355,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
 				dat += "<a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
+
+			if(istype(pref_species, /datum/species/preternis)) //fuck, i know even less than you, i've just been copy pasting thus far.
+
+				if(!use_skintones)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Preternis Color</h3>"
+
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["pretcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<a href='?_src_=prefs;preference=pretcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=pretcolor;task=lock'>[random_locks["pretcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 			if((EYECOLOR in pref_species.species_traits) || !(NOEYESPRITES in pref_species.species_traits))
 
@@ -684,6 +699,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("plasmaman_helmet" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Helmet Style</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=plasmaman_helmet;task=input'>[features["plasmaman_helmet"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=plasmaman_helmet;task=lock'>[random_locks["plasmaman_helmet"] ? "Unlock" : "Lock"]</a><BR>"
+
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
@@ -720,7 +744,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Balloon Alerts:</b> <a href='?_src_=prefs;task=input;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
+			dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -891,6 +915,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Hide Dead Chat:</b> <a href = '?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DEAD)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Radio Messages:</b> <a href = '?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Prayers:</b> <a href = '?_src_=prefs;preference=toggle_prayers'>[(chat_toggles & CHAT_PRAYER)?"Shown":"Hidden"]</a><br>"
+				dat += "<b>Split Admin Tabs:</b> <a href = '?_src_=prefs;preference=toggle_split_admin_tabs'>[(extra_toggles & SPLIT_ADMIN_TABS)?"Enabled":"Disabled"]</a><br>"
+				dat += "<b>Fast MC Refresh:</b> <a href = '?_src_=prefs;preference=toggle_fast_mc_refresh'>[(extra_toggles & FAST_MC_REFRESH)?"Enabled":"Disabled"]</a><br>"
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += "<br>"
 					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
@@ -960,78 +986,47 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
-
-		// yogs start - Custom keybindings
 		if (4) // Keybindings
-			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a>"
-			dat += "<a href='?_src_=prefs;preference=reset_bindings'>Reset to default</a></center>"
-			if(hotkeys)
-				var/button
-				var/button_bound
+			// Create an inverted list of keybindings -> key
+			var/list/user_binds = list()
+			for (var/key in key_bindings)
+				for(var/kb_name in key_bindings[key])
+					user_binds[kb_name] += list(key)
 
-				dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-				dat += "<h2>Client</h2>"
-				BUTTON_KEY_MOVEMENT("Move North (up)", ACTION_MOVENORTH, NORTH)
-				BUTTON_KEY_MOVEMENT("Move West (left)", ACTION_MOVEWEST, WEST)
-				BUTTON_KEY_MOVEMENT("Move South (down)", ACTION_MOVESOUTH, SOUTH)
-				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
+			var/list/kb_categories = list()
+			// Group keybinds by category
+			for (var/name in GLOB.keybindings_by_name)
+				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+				kb_categories[kb.category] += list(kb)
 
-				BUTTON_KEY("OOC", ACTION_OOC)
-				BUTTON_KEY("LOOC", ACTION_LOOC)
-				BUTTON_KEY("Adminhelp", ACTION_AHELP)
-				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
-				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
+			dat += "<style>label { display: inline-block; width: 200px; }</style><body>"
 
+			for (var/category in kb_categories)
+				dat += "<h3>[category]</h3>"
+				for (var/i in kb_categories[category])
+					var/datum/keybinding/kb = i
+					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
+						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
+						if(LAZYLEN(default_keys))
+							dat += "| Default: [default_keys.Join(", ")]"
+						dat += "<br>"
+					else
+						var/bound_key = user_binds[kb.name][1]
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
+							bound_key = user_binds[kb.name][bound_key_index]
+							dat += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
+							dat += "| <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Add Secondary</a>"
+						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
+						if(LAZYLEN(default_keys))
+							dat += "| Default: [default_keys.Join(", ")]"
+						dat += "<br>"
 
-				dat += "<h2>Mob</h2>"
-				BUTTON_KEY("Say", ACTION_SAY)
-				BUTTON_KEY("Emote", ACTION_ME)
-				BUTTON_KEY("Stop pulling", ACTION_STOPPULLING)
-				BUTTON_KEY("Cycle intent clockwise", ACTION_INTENTRIGHT)
-				BUTTON_KEY("Cycle intent counter-clockwise", ACTION_INTENTLEFT)
-				BUTTON_KEY("Swap hands", ACTION_SWAPHAND)
-				BUTTON_KEY("Use item on self", ACTION_USESELF)
-				BUTTON_KEY("Drop", ACTION_DROP)
-				BUTTON_KEY("Equip", ACTION_EQUIP)
-				BUTTON_KEY("Rest", ACTION_REST)
-				BUTTON_KEY("Toggle Walk Run", ACTION_TOGGLEWALKRUN)
-
-				dat += "</td><td width='300px' height='300px' valign='top'>"
-
-				dat += "<h2>Mob</h2>"
-				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
-				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
-				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
-				BUTTON_KEY("Target left arm", ACTION_TARGETLARM)
-				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
-				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
-				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
-				BUTTON_KEY("Offer item", ACTION_GIVE)
-				BUTTON_KEY("Resist", ACTION_RESIST)
-				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
-				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
-				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
-				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
-				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
-
-				if(parent)
-					if(parent.mentor_datum)
-						dat += "<h2>Mentor</h2>"
-						BUTTON_KEY("Mentorsay", ACTION_MENTORCHAT)
-
-					if(parent.holder)
-						dat += "<h2>Admin</h2>"
-						BUTTON_KEY("Adminchat", ACTION_ASAY)
-						BUTTON_KEY("Admin ghost", ACTION_AGHOST)
-						BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
-						BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
-						BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
-						BUTTON_KEY("Deadchat", ACTION_DSAY)
-
-				dat += "</td></tr></table>"
-			else
-				dat += "<b>Default keybindings selected</b>"
-		// yogs end
+			dat += "<br><br>"
+			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
+			dat += "</body>"
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -1049,6 +1044,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
+
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+	var/HTML = {"
+	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
+	<script>
+	var deedDone = false;
+	document.onkeyup = function(e) {
+		if(deedDone){ return; }
+		var alt = e.altKey ? 1 : 0;
+		var ctrl = e.ctrlKey ? 1 : 0;
+		var shift = e.shiftKey ? 1 : 0;
+		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
+		var escPressed = e.keyCode == 27 ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';alt='+alt+';ctrl='+ctrl+';shift='+shift+';numpad='+numpad+';key_code='+e.keyCode;
+		window.location=url;
+		deedDone = true;
+	}
+	document.getElementById('focus').focus();
+	</script>
+	"}
+	winshow(user, "capturekeypress", TRUE)
+	var/datum/browser/popup = new(user, "capturekeypress", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "capturekeypress", src)
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Research Director", "Head of Personnel"), widthPerColumn = 295, height = 620)
 	if(!SSjob)
@@ -1485,6 +1505,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"gender" = gender,
 						"mcolor" = 1,
 						"ethcolor" = 1,
+						"pretcolor" = 1,
 						"tail_lizard" = 1,
 						"tail_human" = 1,
 						"wings" = 1,
@@ -1527,7 +1548,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							ghost_orbit = new_orbit
 
 				if("ghostaccs")
-					var/new_ghost_accs = alert("Do you want your ghost to show full accessories where possible, hide accessories but still use the directional sprites where possible, or also ignore the directions and stick to the default sprites?",,GHOST_ACCS_FULL_NAME, GHOST_ACCS_DIR_NAME, GHOST_ACCS_NONE_NAME)
+					var/new_ghost_accs = tgui_alert(usr,"Do you want your ghost to show full accessories where possible, hide accessories but still use the directional sprites where possible, or also ignore the directions and stick to the default sprites?",,list(GHOST_ACCS_FULL_NAME, GHOST_ACCS_DIR_NAME, GHOST_ACCS_NONE_NAME))
 					switch(new_ghost_accs)
 						if(GHOST_ACCS_FULL_NAME)
 							ghost_accs = GHOST_ACCS_FULL
@@ -1537,7 +1558,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							ghost_accs = GHOST_ACCS_NONE
 
 				if("ghostothers")
-					var/new_ghost_others = alert("Do you want the ghosts of others to show up as their own setting, as their default sprites or always as the default white ghost?",,GHOST_OTHERS_THEIR_SETTING_NAME, GHOST_OTHERS_DEFAULT_SPRITE_NAME, GHOST_OTHERS_SIMPLE_NAME)
+					var/new_ghost_others = tgui_alert(usr,"Do you want the ghosts of others to show up as their own setting, as their default sprites or always as the default white ghost?",,list(GHOST_OTHERS_THEIR_SETTING_NAME, GHOST_OTHERS_DEFAULT_SPRITE_NAME, GHOST_OTHERS_SIMPLE_NAME))
 					switch(new_ghost_others)
 						if(GHOST_OTHERS_THEIR_SETTING_NAME)
 							ghost_others = GHOST_OTHERS_THEIR_SETTING
@@ -1715,6 +1736,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_etherealcolor)
 						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]
 
+				if("pretcolor")
+					var/new_preterniscolor = input(user, "Choose your preternis color", "Character Preference") as null|anything in GLOB.color_list_preternis
+					if(new_preterniscolor)
+						features["pretcolor"] = GLOB.color_list_preternis[new_preterniscolor]
+
 				if("tail_lizard")
 					var/new_tail
 					new_tail = input(user, "Choose your character's tail:", "Character Preference") as null|anything in GLOB.tails_list_lizard
@@ -1862,6 +1888,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 					if(new_ipc_chassis)
 						features["ipc_chassis"] = new_ipc_chassis
+
+				if("plasmaman_helmet")
+					var/new_plasmaman_helmet
+
+					new_plasmaman_helmet = input(user, "Choose your character's plasmaman helmet style:", "Character Preference") as null|anything in GLOB.plasmaman_helmet_list
+					if(new_plasmaman_helmet)
+						features["plasmaman_helmet"] = new_plasmaman_helmet
+
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
 					if(new_s_tone)
@@ -1997,10 +2031,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					disable_alternative_announcers = !disable_alternative_announcers
 				if("balloon_alerts")
 					disable_balloon_alerts = !disable_balloon_alerts
-			// yogs start - Custom keybindings
-			if(href_list["keybinding"])
-				update_keybindings(user, href_list["keybinding"], href_list["dir"])
-			// yogs end
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -2019,11 +2049,78 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
-						bindings.bind_movement() // yogs - Rebindable keys
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 					else
-						bindings.unbind_movement() // yogs - Rebindable keys
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
+
+				if("keybindings_capture")
+					var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+					var/old_key = href_list["old_key"]
+					CaptureKeybinding(user, kb, old_key)
+					return
+
+				if("keybindings_set")
+					var/kb_name = href_list["keybinding"]
+					if(!kb_name)
+						user << browse(null, "window=capturekeypress")
+						ShowChoices(user)
+						return
+
+					var/clear_key = text2num(href_list["clear_key"])
+					var/old_key = href_list["old_key"]
+					if(clear_key)
+						if(key_bindings[old_key])
+							key_bindings[old_key] -= kb_name
+							LAZYADD(key_bindings["Unbound"], kb_name)
+							if(!length(key_bindings[old_key]))
+								key_bindings -= old_key
+						user << browse(null, "window=capturekeypress")
+						user.client.set_macros()
+						save_preferences()
+						ShowChoices(user)
+						return
+
+					var/new_key = uppertext(href_list["key"])
+					var/AltMod = text2num(href_list["alt"]) ? "Alt" : ""
+					var/CtrlMod = text2num(href_list["ctrl"]) ? "Ctrl" : ""
+					var/ShiftMod = text2num(href_list["shift"]) ? "Shift" : ""
+					var/numpad = text2num(href_list["numpad"]) ? "Numpad" : ""
+					// var/key_code = text2num(href_list["key_code"])
+
+					if(GLOB._kbMap[new_key])
+						new_key = GLOB._kbMap[new_key]
+
+					var/full_key
+					switch(new_key)
+						if("Alt")
+							full_key = "[new_key][CtrlMod][ShiftMod]"
+						if("Ctrl")
+							full_key = "[AltMod][new_key][ShiftMod]"
+						if("Shift")
+							full_key = "[AltMod][CtrlMod][new_key]"
+						else
+							full_key = "[AltMod][CtrlMod][ShiftMod][numpad][new_key]"
+					if(kb_name in key_bindings[full_key]) //We pressed the same key combination that was already bound here, so let's remove to re-add and re-sort.
+						key_bindings[full_key] -= kb_name
+					if(key_bindings[old_key])
+						key_bindings[old_key] -= kb_name
+						if(!length(key_bindings[old_key]))
+							key_bindings -= old_key
+					key_bindings[full_key] += list(kb_name)
+					key_bindings[full_key] = sortList(key_bindings[full_key])
+
+					user << browse(null, "window=capturekeypress")
+					user.client.set_macros()
+					save_preferences()
+
+				if("keybindings_reset")
+					var/choice = tgalert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+					if(choice == "Cancel")
+						ShowChoices(user)
+						return
+					hotkeys = (choice == "Hotkey")
+					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+					user.client.set_macros()
 				if("chat_on_map")
 					chat_on_map = !chat_on_map
 				if("see_chat_non_mob")
@@ -2052,6 +2149,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					user.client.deadchat()
 				if("toggle_radio_chatter")
 					user.client.toggle_hear_radio()
+				if("toggle_split_admin_tabs")
+					extra_toggles ^= SPLIT_ADMIN_TABS
+				if("toggle_fast_mc_refresh")
+					extra_toggles ^= FAST_MC_REFRESH
 				if("toggle_prayers")
 					user.client.toggleprayers()
 				if("toggle_deadmin_always")
@@ -2136,7 +2237,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion
 					if(parent && parent.screen && parent.screen.len)
-						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
+						var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in parent.screen
 						PM.backdrop(parent.mob)
 
 				if("auto_fit_viewport")
@@ -2190,10 +2291,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
-
-				// yogs start - Custom keybindings
-				if("reset_bindings")
-					reset_keybindings()
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD
@@ -2268,6 +2365,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.dna.species.mutant_bodyparts |= "tail_polysmorph"
 
 	if(icon_updates)
+		character.icon_render_key = null //turns out if you don't set this to null update_body_parts does nothing, since it assumes the operation was cached
 		character.update_body()
 		character.update_hair()
 		character.update_body_parts()

@@ -7,43 +7,43 @@
 	var/tier = "0"
 	var/status = 1
 	/// Steps in a surgery
-	var/list/steps = list()									
+	var/list/steps = list()
 	/// Actively performing a Surgery
-	var/step_in_progress = 0								
+	var/step_in_progress = 0
 	/// Can cancel this surgery after step 1 with cautery
-	var/can_cancel = 1										
+	var/can_cancel = 1
 	/// Acceptable Species
-	var/list/target_mobtypes = list(/mob/living/carbon/human)		
+	var/list/target_mobtypes = list(/mob/living/carbon/human)
 	/// Surgery location
-	var/location = BODY_ZONE_CHEST							
+	var/location = BODY_ZONE_CHEST
 	/// Prevents you from performing an operation on incorrect limbs. FALSE for any limb type
-	var/requires_bodypart_type = BODYPART_ORGANIC			
+	var/requires_bodypart_type = BODYPART_ORGANIC
 	/// Multiple locations
-	var/list/possible_locs = list() 						
+	var/list/possible_locs = list()
 	/// If this surgery ignores clothes
-	var/ignore_clothes = 0									
+	var/ignore_clothes = 0
 	/// Operation target mob
-	var/mob/living/carbon/target							
+	var/mob/living/carbon/target
 	/// Operable body part
-	var/obj/item/bodypart/operated_bodypart					
+	var/obj/item/bodypart/operated_bodypart
 	/// The actual wound datum instance we're targeting
-	var/datum/wound/operated_wound							
+	var/datum/wound/operated_wound
 	/// The wound type this surgery targets
-	var/datum/wound/targetable_wound						
+	var/datum/wound/targetable_wound
 	/// Surgery available only when a bodypart is present, or only when it is missing.
-	var/requires_bodypart = TRUE							
+	var/requires_bodypart = TRUE
 	/// Step success propability multiplier
-	var/success_multiplier = 0								
+	var/success_multiplier = 0
 	/// Some surgeries don't work on limbs that don't really exist
-	var/requires_real_bodypart = 0							
+	var/requires_real_bodypart = 0
 	/// Does the vicitm needs to be lying down.
-	var/lying_required = TRUE								
+	var/lying_required = TRUE
 	/// Can the surgery be performed on yourself.
-	var/self_operable = FALSE								
+	var/self_operable = FALSE
 	/// Handles techweb-oriented surgeries, previously restricted to the /advanced subtype (You still need to add designs)
-	var/requires_tech = FALSE								
+	var/requires_tech = FALSE
 	/// Type; doesn't show up if this type exists. Set to /datum/surgery if you want to hide a "base" surgery (useful for typing parents IE healing.dm just make sure to null it out again)
-	var/replaced_by											
+	var/replaced_by
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -99,14 +99,19 @@
 	if(istype(SB))
 		adv_surgeries |= SB.get_surgeries()
 
-	//Get the advanced health analyzer in the off had if available and adds available surgeries to the list
-	var/obj/item/healthanalyzer/advanced/adv = user.get_inactive_held_item()
+	//Get the advanced health analyzer in the off hand or pockets if available and adds available surgeries to the list
+	var/analyzerlocations = list(user.get_inactive_held_item(), user.get_item_by_slot(SLOT_L_STORE), user.get_item_by_slot(SLOT_R_STORE))
+	var/obj/item/healthanalyzer/advanced/adv = locate() in analyzerlocations
 	if(iscyborg(user) && !istype(adv))
 		var/mob/living/silicon/robot/R = user
 		adv = locate() in R.module.modules
 
 	if(istype(adv))
 		adv_surgeries |= adv.advanced_surgeries
+
+	var/obj/item/rod_of_asclepius/snakestick = user.get_inactive_held_item() //this would be in the inactive hand, unless we let it start surgeries
+	if(istype(snakestick))
+		adv_surgeries |= snakestick.advanced_surgeries
 
 	//Get the advanced health analyzer in the off had if available and adds available surgeries to the list
 	if(replaced_by in adv_surgeries)

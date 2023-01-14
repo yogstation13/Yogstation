@@ -97,7 +97,7 @@
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 8) 	//Set up an exchange if there are enough traitors
+	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
 		if(!SSticker.mode.exchange_red)
 			SSticker.mode.exchange_red = owner
 		else
@@ -110,12 +110,19 @@
 		forge_single_objective()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
-		if (!(locate(/datum/objective/hijack) in objectives))
-			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner
-			add_objective(hijack_objective)
+		//Start of Yogstation change: adds /datum/objective/sole_survivor
+		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
+			if(SSticker.mode.has_hijackers)
+				var/datum/objective/hijack/sole_survivor/survive_objective = new
+				survive_objective.owner = owner
+				add_objective(survive_objective)
+			else
+				var/datum/objective/hijack/hijack_objective = new
+				hijack_objective.owner = owner
+				add_objective(hijack_objective)
+			SSticker.mode.has_hijackers = TRUE
 			return
-
+		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
 	for(var/datum/objective/O in objectives)

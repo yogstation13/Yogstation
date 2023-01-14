@@ -18,6 +18,8 @@
 	new /obj/item/laser_pointer(src)
 	new /obj/item/door_remote/research_director(src)
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
+	new /obj/item/storage/backpack/holding/rd(src)
 	new /obj/item/storage/photo_album/RD(src)
 	new /obj/item/clipboard/yog/paperwork/rd(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/rd(src)
+	new /obj/item/analyzer/ranged(src)

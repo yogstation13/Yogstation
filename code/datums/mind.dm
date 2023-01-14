@@ -124,7 +124,7 @@
 					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
@@ -158,7 +158,7 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
@@ -708,6 +708,7 @@
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	spell_list += S
 	S.action.Grant(current)
+	S.on_gain(current)
 
 /datum/mind/proc/owns_soul()
 	return soulOwner == src
@@ -720,6 +721,7 @@
 		var/obj/effect/proc_holder/spell/S = X
 		if(istype(S, spell))
 			spell_list -= S
+			S.on_lose(current)
 			qdel(S)
 	current?.client << output(null, "statbrowser:check_spells")
 
@@ -755,6 +757,7 @@
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
 		S.action.Grant(new_character)
+		S.on_gain(new_character)
 
 /datum/mind/proc/disrupt_spells(delay, list/exceptions = New())
 	for(var/X in spell_list)

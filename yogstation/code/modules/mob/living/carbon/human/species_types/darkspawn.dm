@@ -6,7 +6,7 @@
 	limbs_id = "darkspawn"
 	sexes = FALSE
 	nojumpsuit = TRUE
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
 	siemens_coeff = 0
 	brutemod = 0.9
 	heatmod = 1.5

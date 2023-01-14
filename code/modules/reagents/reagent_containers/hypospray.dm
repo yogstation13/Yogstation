@@ -149,6 +149,19 @@
 	else
 		. += span_notice("It is spent.")
 
+/obj/item/reagent_containers/autoinjector/medipen/resurrector
+	name = "resurrector nanite serum"
+	desc = "A single-use superdose of nanites capable of restoring a corpse to perfect working very quickly. Does nothing on a living person."
+	icon_state = "mechserum"
+	list_reagents = list(/datum/reagent/medicine/resurrector_nanites = 12)
+
+/obj/item/reagent_containers/autoinjector/medipen/resurrector/attack(mob/living/M, mob/user)
+	if(!reagents.total_volume)
+		to_chat(user, span_warning("[src] is empty!"))
+		return
+	if(do_after(user, 3 SECONDS, M))
+		..()
+
 /obj/item/reagent_containers/autoinjector/medipen/stimpack //goliath kiting
 	name = "stimpack medipen"
 	desc = "A rapid way to stimulate your body's adrenaline, allowing for freer movement in restrictive armor."
@@ -197,6 +210,13 @@
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg/tire = 50, /datum/reagent/peaceborg/confuse = 50)
 	amount_per_transfer_from_this = 50
 
+/obj/item/reagent_containers/autoinjector/combat/healermech
+	name = "healer nanite serum"
+	desc = "Contains reverse-engineered nanites that will quickly heal most wounds on a subject. Pre-filled with fifteen doses."
+	volume = 150
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/syndicate_nanites = 150)
+
 /obj/item/reagent_containers/autoinjector/medipen/atropine
 	name = "atropine autoinjector"
 	desc = "A rapid way to save a person from a critical injury state!"
@@ -204,8 +224,8 @@
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
 /obj/item/reagent_containers/autoinjector/medipen/pumpup
-	name = "maintanance pump-up"
-	desc = "A ghetto looking autoinjector filled with a cheap adrenaline shot... Great for shrugging off the effects of stunbatons."
+	name = "maintenance pump-up"
+	desc = "A ghetto looking autoinjector filled with a cheap adrenaline shot... Great for shrugging off the effects of disablers."
 	volume = 15
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/drug/pumpup = 15)
@@ -265,6 +285,7 @@
 	//  Misc Vars  //
 	var/quickload = FALSE
 	var/penetrates = FALSE
+	var/speedup = FALSE
 	var/can_remove_container = TRUE
 
 	//	Sound Vars	//
@@ -320,6 +341,8 @@
 		. += span_notice("[src] has a quickloading mechanism, allowing tactical reloads by using a container on it.")
 	if(penetrates)
 		. += span_notice("[src] has a diamond tipped needle, allowing it to pierce thick clothing.")
+	if(speedup)
+		. += span_notice("[src] has a springloaded mechanism, allowing it to inject with reduced delay.")
 	if(container)
 		. += span_notice("[container] has [container.reagents.total_volume]u remaining.")
 	else
@@ -677,6 +700,20 @@
 		return FALSE
 	else
 		hypo.penetrates = TRUE
+		return TRUE
+
+/obj/item/hypospray_upgrade/speed
+	name = "hypospray speed upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+
+/obj/item/hypospray_upgrade/speed/install(var/obj/item/hypospray/hypo, mob/user)
+	if(hypo.speedup)
+		to_chat(user, span_notice("[hypo] already has a speed mechanism!"))
+		return FALSE
+	else
+		hypo.inject_wait = clamp(hypo.inject_wait, 0, hypo.inject_wait - 0.5 SECONDS)
+		hypo.inject_self = 0 SECONDS
+		hypo.speedup = TRUE
 		return TRUE
 
 #undef HYPO_INJECT

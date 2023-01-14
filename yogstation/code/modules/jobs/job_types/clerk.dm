@@ -1,6 +1,8 @@
 /datum/job/clerk
 	title = "Clerk"
+	description = "Set up shop on the station and unique sell trinkets to the crew for a profit."
 	flag = CLERK
+	orbit_icon = "basket-shopping"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -18,6 +20,8 @@
 	minimal_character_age = 18 //Capitalism doesn't care about age
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	smells_like = "cheap plastic"
 
 /datum/job/clerk/proc/EclipseStationChanges()
 	total_positions = 2

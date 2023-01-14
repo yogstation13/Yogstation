@@ -122,7 +122,7 @@
 					owner.dropItemToGround(I)
 
 	if(owner.hud_used)
-		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
+		var/atom/movable/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
 			L.update_icon()
 
@@ -217,7 +217,7 @@
 				if(I)
 					owner.dropItemToGround(I)
 	if(owner.hud_used)
-		var/obj/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
+		var/atom/movable/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
 		if(R)
 			R.update_icon()
 

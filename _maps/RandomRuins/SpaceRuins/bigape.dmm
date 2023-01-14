@@ -31,7 +31,7 @@
 /area/ruin/powered)
 "g" = (
 /obj/item/flashlight/lamp/bananalamp{
-	brightness_on = 10
+	light_range = 10
 	},
 /obj/structure/table/wood,
 /obj/structure/fans/tiny/invisible,

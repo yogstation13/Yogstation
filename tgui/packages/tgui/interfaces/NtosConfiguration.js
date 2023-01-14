@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section, Flex } from '../components';
 import { NtosWindow } from '../layouts';
@@ -15,11 +14,7 @@ export const NtosConfiguration = (props, context) => {
     hardware = [],
   } = data;
   return (
-    <NtosWindow
-      theme={PC_device_theme}
-      width={420}
-      height={630}
-      resizable>
+    <NtosWindow theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <Section
           title="Power Supply"

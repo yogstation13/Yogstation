@@ -127,6 +127,7 @@
 	name = "Prison Jumpsuit Crate"
 	desc = "A crate containing a five cheap looking orange jumpsuits."
 	cost = 500
+	small_item = TRUE
 	contains = list(/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,

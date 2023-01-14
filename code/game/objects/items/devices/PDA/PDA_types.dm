@@ -2,7 +2,7 @@
 /obj/item/pda/clown
 	name = "clown PDA"
 	default_cartridge = /obj/item/cartridge/virus/clown
-	inserted_item = /obj/item/toy/crayon/rainbow
+	insert_type = /obj/item/toy/crayon/rainbow
 	icon_state = "pda-clown"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
@@ -21,7 +21,6 @@
 /obj/item/pda/ai
 	icon = null
 	ttone = "data"
-	fon = FALSE
 
 /obj/item/pda/ai/attack_self(mob/user)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
@@ -34,7 +33,7 @@
 
 /obj/item/pda/ai/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/pda/medical
 	name = "medical PDA"
@@ -81,7 +80,7 @@
 /obj/item/pda/mime
 	name = "mime PDA"
 	default_cartridge = /obj/item/cartridge/virus/mime
-	inserted_item = /obj/item/toy/crayon/mime
+	insert_type = /obj/item/toy/crayon/mime
 	icon_state = "pda-mime"
 	silent = TRUE
 	ttone = "silence"
@@ -113,18 +112,18 @@
 /obj/item/pda/heads/rd
 	name = "research director PDA"
 	default_cartridge = /obj/item/cartridge/rd
-	inserted_item = /obj/item/pen/fountain
+	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-rd"
 
 /obj/item/pda/captain
 	name = "captain PDA"
 	default_cartridge = /obj/item/cartridge/captain
-	inserted_item = /obj/item/pen/fountain/captain
+	insert_type = /obj/item/pen/fountain/captain
 	icon_state = "pda-captain"
 
 /obj/item/pda/captain/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/pda/cargo
 	name = "cargo technician PDA"
@@ -134,7 +133,7 @@
 /obj/item/pda/quartermaster
 	name = "quartermaster PDA"
 	default_cartridge = /obj/item/cartridge/quartermaster
-	inserted_item = /obj/item/pen/fountain
+	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-qm"
 
 /obj/item/pda/shaftminer
@@ -156,7 +155,7 @@
 /obj/item/pda/lawyer
 	name = "lawyer PDA"
 	default_cartridge = /obj/item/cartridge/lawyer
-	inserted_item = /obj/item/pen/fountain
+	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-lawyer"
 	ttone = "objection"
 
@@ -175,7 +174,7 @@
 	icon_state = "pda-library"
 	icon_alert = "pda-r-library"
 	default_cartridge = /obj/item/cartridge/curator
-	inserted_item = /obj/item/pen/fountain
+	insert_type = /obj/item/pen/fountain
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a WGW-11 series e-reader."
 	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
 	silent = TRUE //Quiet in the library!
@@ -198,7 +197,7 @@
 /obj/item/pda/bar
 	name = "bartender PDA"
 	icon_state = "pda-bartender"
-	inserted_item = /obj/item/pen/fountain
+	insert_type = /obj/item/pen/fountain
 
 /obj/item/pda/atmos
 	name = "atmospherics PDA"

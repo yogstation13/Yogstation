@@ -61,6 +61,10 @@
 	///contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
 	///only the last container of a client eye has this list assuming no movement since SSparallax's last fire
 	var/list/client_mobs_in_contents
+	///Lazylist to keep track on the sources of illumination.
+	var/list/affected_dynamic_lights
+	///Highest-intensity light affecting us, which determines our visibility.
+	var/affecting_dynamic_lumi = 0
 
 
 /atom/movable/Initialize(mapload)
@@ -72,6 +76,9 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			vis_contents += em_block
+	
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
 
 
 
@@ -607,6 +614,9 @@
 	if(has_gravity(src))
 		return TRUE
 
+	if(pulledby && (pulledby.pulledby != src || moving_from_pull))
+		return TRUE
+
 	if(throwing)
 		return TRUE
 
@@ -886,7 +896,7 @@
 		pixel_x_diff = -8
 
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS)
-	animate(src, pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
+	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
@@ -908,8 +918,7 @@
 		return
 	if(on && !(movement_type & FLOATING))
 		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
-		sleep(1 SECONDS)
-		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
+		animate(pixel_y = pixel_y - 2, time = 1 SECONDS)
 		setMovetype(movement_type | FLOATING)
 	else if (!on && (movement_type & FLOATING))
 		animate(src, pixel_y = initial(pixel_y), time = 1 SECONDS)

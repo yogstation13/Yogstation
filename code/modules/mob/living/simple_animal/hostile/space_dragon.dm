@@ -45,7 +45,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/carpdragon = 10)
-	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
+	deathmessage = "screeches as its wings turn to dust and it collapses, its life extinguished."
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
@@ -436,7 +436,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 	/// The amount of time the rift has charged for.
 	var/time_charged = 0
 	/// The maximum charge the rift can have.  It actually goes to max_charge + 1, as to prevent constantly retriggering the effects on full charge.
-	var/max_charge = 240
+	var/max_charge = 480
 	/// How many carp spawns it has available.
 	var/carp_stored = 0
 	/// A reference to the Space Dragon that created it.
@@ -461,12 +461,12 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 100, TRUE)
 	return ..()
 
-/obj/structure/carp_rift/process()
-	time_charged = min(time_charged + 1, max_charge + 1)
+/obj/structure/carp_rift/process(delta_time)
+	time_charged = min(time_charged + delta_time, max_charge + 1)
 	update_check()
 	for(var/mob/living/simple_animal/hostile/hostilehere in loc)
 		if("carp" in hostilehere.faction)
-			hostilehere.adjustHealth(-10)
+			hostilehere.adjustHealth(-5 * delta_time)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
 			H.color = "#0000FF"
 	if(time_charged < max_charge)
@@ -478,8 +478,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 			icon_state = "carp_rift_carpspawn"
 			light_color = LIGHT_COLOR_PURPLE
 	else
-		var/spawncarp = rand(1,40)
-		if(spawncarp == 1)
+		if(DT_PROB(1.25, delta_time))
 			new /mob/living/simple_animal/hostile/carp(loc)
 
 /obj/structure/carp_rift/attack_ghost(mob/user)
@@ -529,7 +528,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 /obj/structure/carp_rift/proc/summon_carp(mob/user)
 	if(carp_stored == 0)//Not enough carp points
 		return FALSE
-	var/carp_ask = alert("Become a carp?", "Help bring forth the horde?", "Yes", "No")
+	var/carp_ask = tgui_alert(usr,"Become a carp?", "Help bring forth the horde?", list("Yes", "No"))
 	if(carp_ask == "No" || !src || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(carp_stored == 0)

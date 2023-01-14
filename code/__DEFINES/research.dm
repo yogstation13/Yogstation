@@ -87,3 +87,9 @@
 
 ///This determines how easy it is for a toxins bomb to reach the max research cap.
 #define TOXINS_RESEARCH_LAMBDA 3940
+
+///This determines how many general points that the ruin_tech techweb gets, since they don't utilize servers
+#define RUIN_GENERATION_PER_TICK 70
+
+///This determines how many nanites points that the ruin_tech techweb gets, since they lack research tools.
+#define NANITES_RESEARCH_RUIN_PER_TICK 10

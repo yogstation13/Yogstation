@@ -7,6 +7,7 @@
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
 	see_in_dark = 8
+	infra_luminosity = 0
 	bubble_icon = "machine"
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
@@ -45,6 +46,8 @@
 
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
+	///The reference to the built-in tablet that borgs carry.
+	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/item/pda/aiPDA
 
 /mob/living/silicon/Initialize()
@@ -476,3 +479,29 @@
 		else
 			mega.accent_name = aksent
 			mega.RegisterSignal(L, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech, TRUE)
+
+/mob/living/silicon/proc/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
+	modularInterface.layer = ABOVE_HUD_PLANE
+	modularInterface.plane = ABOVE_HUD_PLANE
+
+/mob/living/silicon/replace_identification_name(oldname,newname)
+	if(modularInterface)
+		var/obj/item/computer_hardware/hard_drive/hard_drive = modularInterface.all_components[MC_HDD]
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive?.find_file_by_name("pda_client")
+		if(istype(msgr))
+			var/jobname
+			if(job)
+				jobname = job
+			else if(istype(src, /mob/living/silicon/robot))
+				jobname = "[designation ? "[designation] " : ""]Cyborg"
+			else if(designation)
+				jobname = designation
+			else if(istype(src, /mob/living/silicon/ai))
+				jobname = "AI"
+			else if(istype(src, /mob/living/silicon/pai))
+				jobname = "pAI"
+			else
+				jobname = "Silicon"
+			msgr.username = "[newname] ([jobname])"
