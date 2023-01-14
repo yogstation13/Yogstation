@@ -66,7 +66,17 @@ export const feature_mcolor: Feature<string> = {
   component: FeatureColorInput,
 };
 
-export const feature_vampire_status: Feature<string> = {
-  name: "Vampire status",
+export const feature_ipc_screen: FeatureChoiced = {
+  name: "Screen",
+  component: FeatureDropdownInput,
+};
+
+export const feature_ipc_antenna: FeatureChoiced = {
+  name: "Antenna",
+  component: FeatureDropdownInput,
+};
+
+export const feature_ipc_chassis: FeatureChoiced = {
+  name: "Chassis",
   component: FeatureDropdownInput,
 };

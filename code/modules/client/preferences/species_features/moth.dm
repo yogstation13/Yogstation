@@ -1,7 +1,7 @@
 /datum/preference/choiced/moth_wings
+	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_moth_wings"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Moth wings"
 	should_generate_icons = TRUE
 
