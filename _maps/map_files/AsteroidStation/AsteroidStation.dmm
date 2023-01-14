@@ -8202,6 +8202,32 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"bId" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/security{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "Prison Gate";
+	name = "Prison Wing Lockdown";
+	pixel_x = 8;
+	pixel_y = -25;
+	req_access_txt = "2"
+	},
+/obj/machinery/button/door{
+	id = "Secure Gate";
+	name = "Cell Shutters";
+	pixel_x = 8;
+	pixel_y = -35
+	},
+/obj/machinery/light_switch{
+	pixel_x = -5;
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "bIg" = (
 /obj/structure/rack,
 /obj/item/pickaxe,
@@ -24783,15 +24809,6 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/solar/port/aft)
-"hvi" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/modular_computer/console/preset/security{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "hvl" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -54245,15 +54262,6 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"rsF" = (
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/warden,
-/obj/machinery/light_switch{
-	pixel_x = -38;
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "rsR" = (
 /obj/structure/table/wood,
 /obj/machinery/keycard_auth{
@@ -72544,22 +72552,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/eva)
-"xEN" = (
-/obj/machinery/button/door{
-	id = "Prison Gate";
-	name = "Prison Wing Lockdown";
-	pixel_x = 39;
-	pixel_y = 8;
-	req_access_txt = "2"
-	},
-/obj/machinery/button/door{
-	id = "Secure Gate";
-	name = "Cell Shutters";
-	pixel_x = 39;
-	pixel_y = -2
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/security/armory)
 "xFm" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -74021,6 +74013,11 @@
 	icon_state = "water"
 	},
 /area/crew_quarters/bar)
+"yeO" = (
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/warden,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "yeP" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 10
@@ -103948,7 +103945,7 @@ hIn
 mBD
 mBD
 mBD
-xEN
+aHC
 uzx
 gbu
 iwk
@@ -104204,7 +104201,7 @@ bJK
 vZC
 rxC
 lTC
-hvi
+bId
 aFE
 dyV
 nDf
@@ -104461,7 +104458,7 @@ hMt
 mUE
 qBL
 hBu
-rsF
+yeO
 mXJ
 dyV
 vQW
