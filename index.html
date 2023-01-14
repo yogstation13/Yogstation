@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(532 modules,
-    1422/8149 macros, 17.4%)</aside></h3>
+<aside>(534 modules,
+    1434/8167 macros, 17.6%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -109,6 +109,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/inventory.html" title="code&#x2F;__DEFINES&#x2F;inventory">inventory</a></li>
     <li><a href="code/__DEFINES/jobs.html" title="code&#x2F;__DEFINES&#x2F;jobs">jobs</a></li>
     <li><a href="code/__DEFINES/lighting.html" title="code&#x2F;__DEFINES&#x2F;lighting">lighting</a></li>
+    <li><a href="code/__DEFINES/machines.html" title="code&#x2F;__DEFINES&#x2F;machines">machines</a></li>
     <li><a href="code/__DEFINES/maps.html" title="code&#x2F;__DEFINES&#x2F;maps">maps</a></li>
     <li><a href="code/__DEFINES/materials.html" title="code&#x2F;__DEFINES&#x2F;materials">materials</a></li>
     <li><a href="code/__DEFINES/maths.html" title="code&#x2F;__DEFINES&#x2F;maths">maths</a></li>
@@ -196,6 +197,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/components/gunpoint.html" title="code&#x2F;datums&#x2F;components&#x2F;gunpoint">gunpoint</a></li>
     <li><a href="code/datums/components/material_container.html" title="code&#x2F;datums&#x2F;components&#x2F;material_container">material_container</a> - This datum should be used for handling mineral contents of machines and whatever else is supposed to hold minerals and make use of them.</li>
     <li><a href="code/datums/components/mech_pilot.html" title="code&#x2F;datums&#x2F;components&#x2F;mech_pilot">mech_pilot</a></li>
+    <li><a href="code/datums/components/overlay_lighting.html" title="code&#x2F;datums&#x2F;components&#x2F;overlay_lighting">overlay_lighting</a></li>
     <li><a href="code/datums/components/refundable.html" title="code&#x2F;datums&#x2F;components&#x2F;refundable">refundable</a></li>
     <li><a href="code/datums/components/religious_tool.html" title="code&#x2F;datums&#x2F;components&#x2F;religious_tool">religious_tool</a></li>
     <li><a href="code/datums/components/riding.html" title="code&#x2F;datums&#x2F;components&#x2F;riding">riding</a></li>
@@ -805,7 +807,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(591 detailed/1252 documented/27010 total, 4.6%)</aside></h3>
+<aside>(599 detailed/1260 documented/27018 total, 4.7%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1013,6 +1015,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
     <li><a href="datum/component/mech_pilot.html" title="&#x2F;datum&#x2F;component&#x2F;mech_pilot">mech_pilot</a> - A component for clothes that affect one's ability to pilot mechs</li>
     <li><a href="datum/component/music_player.html" title="&#x2F;datum&#x2F;component&#x2F;music_player">music_player</a></li>
+    <li><a href="datum/component/overlay_lighting.html" title="&#x2F;datum&#x2F;component&#x2F;overlay_lighting">overlay_lighting</a> - Movable atom overlay-based lighting component.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;refundable">refundable</span> - A very basic component saying that this item is TC-refundable in an uplink.
 Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
@@ -1272,6 +1275,8 @@ note of an instrument.*</li>
     <li><a href="datum/language_holder/spiderbot.html" title="&#x2F;datum&#x2F;language_holder&#x2F;spiderbot">spiderbot</a></li>
     </ul></li>
     <li><a href="datum/latejoin_menu.html" title="&#x2F;datum&#x2F;latejoin_menu">latejoin_menu</a></li>
+    <li><a href="datum/light_source.html" title="&#x2F;datum&#x2F;light_source">light_source</a></li>
+    <li><a href="datum/lighting_corner.html" title="&#x2F;datum&#x2F;lighting_corner">lighting_corner</a></li>
     <li><a href="datum/lighting_object.html" title="&#x2F;datum&#x2F;lighting_object">lighting_object</a></li>
     <li class="has-children"><a href="datum/map_generator.html" title="&#x2F;datum&#x2F;map_generator">map_generator</a> - This type is responsible for any map generation behavior that is done in areas, override this to allow for area-specific map generation. This generation is ran by areas in initialize.<ul class="index-tree">
     <li class="has-children"><a href="datum/map_generator/cave_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator">Cave Generator</a><ul class="index-tree">
@@ -1961,7 +1966,8 @@ Puts in old analyzer</li>
     <li class="has-children"><a href="obj/item/clothing.html" title="&#x2F;obj&#x2F;item&#x2F;clothing">clothing</a><ul class="index-tree">
     <li><span class="no-substance">accessory&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;dogtags">Dogtags</span> - Dog Tags</li>
     <li class="has-children"><a href="obj/item/clothing/head.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head">head</a><ul class="index-tree">
-    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;helmet">helmet</span><ul class="index-tree">
+    <li><a href="obj/item/clothing/head/hardhat.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;hardhat">hard hat</a></li>
+    <li class="has-children"><a href="obj/item/clothing/head/helmet.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;helmet">helmet</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;helmet&#x2F;plated">empty plated helmet</span> - PLATED ARMOR</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;helmet&#x2F;space">space</span><ul class="index-tree">
     <li><span class="no-substance">hardsuit&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;helmet&#x2F;space&#x2F;hardsuit&#x2F;deathsquad">MK.III SWAT Helmet</span> - Deathsquad version</li>
@@ -2015,7 +2021,9 @@ the program that displays laws should always be usable, and the exceptions were 
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;flashlight">flashlight</span><ul class="index-tree">
     <li><a href="obj/item/flashlight/emp.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;emp">emp</a></li>
+    <li><a href="obj/item/flashlight/flashdark.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;flashdark">flashdark</a></li>
     <li><span class="no-substance">pen&#x2F;</span><a href="obj/item/flashlight/pen/paramedic.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;pen&#x2F;paramedic">paramedic penlight</a></li>
+    <li><a href="obj/item/flashlight/spotlight.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;spotlight">disco light</a></li>
     </ul></li>
     <li><a href="obj/item/forbidden_book.html" title="&#x2F;obj&#x2F;item&#x2F;forbidden_book">Codex Cicatrix</a></li>
     <li><a href="obj/item/gem.html" title="&#x2F;obj&#x2F;item&#x2F;gem">gem</a></li>
@@ -2314,6 +2322,7 @@ obj/item/reagent_containers/glass/bottle/leadacetate</li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;veilrender">veil render</span> - Veil Render</li>
+    <li><a href="obj/item/weldingtool.html" title="&#x2F;obj&#x2F;item&#x2F;weldingtool">welding tool</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;wormhole_jaunter">wormhole jaunter</span> - Jaunter</li>
     </ul></li>
     <li class="has-children"><a href="obj/machinery.html" title="&#x2F;obj&#x2F;machinery">machinery</a><ul class="index-tree">
@@ -2541,7 +2550,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/7bcec370a5fe722a0e79323b225ff43816b5f367">7bcec37</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/bef468ea9a92a5316e71212030db3e825d16653f">bef468e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
