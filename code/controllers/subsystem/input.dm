@@ -39,3 +39,7 @@ SUBSYSTEM_DEF(input)
 /datum/controller/subsystem/input/fire()
 	for(var/mob/user as anything in GLOB.player_list)
 		user.focus?.keyLoop(user.client)
+
+/atom/proc/_Click(location, control, params)
+	if(usr)
+		Click(location, control, params)

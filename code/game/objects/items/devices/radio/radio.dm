@@ -274,88 +274,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	INVOKE_ASYNC(src, .proc/talk_into_impl, talking_movable, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
-/obj/item/radio/proc/talk_into_impl(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
-	if(!on)
-		return // the device has to be on
-	if(!talking_movable || !message)
-		return
-	if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
-		return
-	if(!talking_movable.IsVocal())
-		return
-
-	if(radio_sounds.len) //Sephora - Radios make small static sounds now.
-		var/sound/radio_sound = pick(radio_sounds)
-		playsound(talking_movable.loc, radio_sound, 50, 1)
-
-	if(use_command)
-		spans |= SPAN_COMMAND
-
-	/*
-	Roughly speaking, radios attempt to make a subspace transmission (which
-	is received, processed, and rebroadcast by the telecomms satellite) and
-	if that fails, they send a mundane radio transmission.
-
-	Headsets cannot send/receive mundane transmissions, only subspace.
-	Syndicate radios can hear transmissions on all well-known frequencies.
-	CentCom radios can hear the CentCom frequency no matter what.
-	*/
-
-	// From the channel, determine the frequency and get a reference to it.
-	var/freq
-	if(channel && channels && channels.len > 0)
-		if(channel == MODE_DEPARTMENT)
-			channel = channels[1]
-		freq = secure_radio_connections[channel]
-		if (!channels[channel]) // if the channel is turned off, don't broadcast
-			return
-	else
-		freq = frequency
-		channel = null
-
-	// Nearby active jammers prevent the message from transmitting
-	var/turf/position = get_turf(src)
-	for(var/obj/item/jammer/jammer as anything in GLOB.active_jammers)
-		var/turf/jammer_turf = get_turf(jammer)
-		if(position?.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
-			return
-
-	// Determine the identity information which will be attached to the signal.
-	var/atom/movable/virtualspeaker/speaker = new(null, talking_movable, src)
-
-	// Construct the signal
-	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans, message_mods)
-
-	// Independent radios, on the CentCom frequency, reach all independent radios
-	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE))
-		signal.data["compression"] = 0
-		signal.transmission_method = TRANSMISSION_SUPERSPACE
-		signal.levels = list(0)
-		signal.broadcast()
-		return
-
-	// All radios make an attempt to use the subspace system first
-	signal.send_to_receivers()
-
-	// If the radio is subspace-only, that's all it can do
-	if (subspace_transmission)
-		return
-
-	// Non-subspace radios will check in a couple of seconds, and if the signal
-	// was never received, send a mundane broadcast (no headsets).
-	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
-
-/obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
-	var/turf/T = get_turf_global(src)
-	if (signal.data["done"] && (T.z in signal.levels))
-		return
-
-	// Okay, the signal was never processed, send a mundane broadcast.
-	signal.data["compression"] = 0
-	signal.transmission_method = TRANSMISSION_RADIO
-	signal.levels = list(T.z)
-	signal.broadcast()
-
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
@@ -574,31 +492,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				return
 
 	talk_into(speaker, raw_message, , spans, language=message_language)
-
-// Checks if this radio can receive on the given frequency.
-/obj/item/radio/proc/can_receive(freq, level)
-	// deny checks
-	if (!on || !listening || wires.is_cut(WIRE_RX))
-		return FALSE
-	if (freq == FREQ_SYNDICATE && !syndie)
-		return FALSE
-	if (freq == FREQ_CENTCOM)
-		return independent  // hard-ignores the z-level check
-	if (!(0 in level))
-		var/turf/position = get_turf_global(src) // yogs - get_turf_global instead of get_turf
-		if(!position || !(position.z in level))
-			return FALSE
-
-	// allow checks: are we listening on that frequency?
-	if (freq == frequency)
-		return TRUE
-	for(var/ch_name in channels)
-		if(channels[ch_name] & FREQ_LISTENING)
-			//the GLOB.radiochannels list is located in communications.dm
-			if(GLOB.radiochannels[ch_name] == text2num(freq) || syndie)
-				return TRUE
-	return FALSE
-
 
 /obj/item/radio/examine(mob/user)
 	. = ..()

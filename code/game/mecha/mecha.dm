@@ -26,7 +26,6 @@
 	light_range = 3
 	light_power = 6
 	light_on = FALSE
-	flags_1 = HEAR_1
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/can_move = 0 //time of next allowed movement
 	var/mob/living/carbon/occupant = null
