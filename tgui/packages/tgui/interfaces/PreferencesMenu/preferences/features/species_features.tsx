@@ -100,3 +100,18 @@ export const feature_polysmorph_dorsal_tubes: FeatureChoiced = {
   name: "Dorsal tubes",
   component: FeatureDropdownInput,
 };
+
+export const feature_pod_hair: FeatureChoiced = {
+  name: "Hairstyle",
+  component: FeatureDropdownInput,
+};
+
+export const feature_pod_hair_color: Feature<string> = {
+  name: "Hair color",
+  component: FeatureColorInput,
+};
+
+export const feature_pod_flower_color: Feature<string> = {
+  name: "Flower color",
+  component: FeatureColorInput,
+};
