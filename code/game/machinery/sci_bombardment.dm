@@ -28,7 +28,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 500
 	active_power_usage = 5000
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 	density = TRUE
 	verb_say = "states coldly"
 	var/countdown = 30

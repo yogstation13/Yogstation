@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
 	desc = "A miniaturized version of a normal syringe gun. It is very quiet when fired and can fit into any \
-			space a small item can, and it features a modified reciever capable of chambering piercing syringes."
+			space a small item can."
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
@@ -668,14 +668,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Miniature Energy Crossbow"
 	desc = "A short bow mounted across a tiller in miniature. \
 	Small enough to fit into a pocket or slip into a bag unnoticed. \
-	It will synthesize and fire bolts tipped with a debilitating \
-	toxin that will damage and disorient targets, causing them to \
-	slur as if inebriated. It can produce an infinite number \
+	It will synthesize and fire bolts tipped with some debilitating \
+	toxins that will irradiate and tire, causing them to \
+	be silenced. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 10
-	surplus = 50
-	limited_stock = 1
+	cost = 8
+	surplus = 30
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/origami_kit
@@ -1725,7 +1724,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This book doesn't dissaper after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
 	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -2408,10 +2407,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/chemical_gun
-	name = "Reagent Dartgun"
-	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 100u of reagents."
-	item = /obj/item/gun/chem
-	cost = 12
+	name = "Rapid Syringe Gun"
+	desc = "A modified syringe gun with a rotating drum, capable of holding and quickly firing six syringes."
+	item = /obj/item/gun/syringe/rapidsyringe
+	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
