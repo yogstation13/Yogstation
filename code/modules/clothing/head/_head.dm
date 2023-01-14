@@ -35,7 +35,7 @@
 	. = ..()
 	if(!hattable)
 		return
-	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower.a_intent != INTENT_HELP)
+	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower?.a_intent != INTENT_HELP)
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom

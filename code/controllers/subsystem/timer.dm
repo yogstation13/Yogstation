@@ -559,7 +559,7 @@ SUBSYSTEM_DEF(timer)
 	if (callBack.object == GLOBAL_PROC)
 		. = "GLOBAL_PROC"
 	else
-		. = "[callBack.object.type]"
+		. = "[callBack?.object?.type]"
 
 /**
  * Create a new timer and insert it in the queue.
