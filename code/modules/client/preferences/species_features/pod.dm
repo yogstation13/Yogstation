@@ -32,7 +32,7 @@
 	target.dna.features["pod_hair"] = value
 	target.dna.features["pod_flower"] = value
 
-/datum/preference/choiced/hairstyle/compile_constant_data()
+/datum/preference/choiced/pod_hair/compile_constant_data()
 	var/list/data = ..()
 
 	data[SUPPLEMENTAL_FEATURE_KEY] = "feature_pod_hair_color"
@@ -49,6 +49,14 @@
 /datum/preference/color_legacy/pod_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
 
+/datum/preference/color_legacy/pod_hair_color/is_valid(value)
+	if (!..(value))
+		return FALSE
+
+	if (is_color_dark(expand_three_digit_color(value)))
+		return FALSE
+
+	return TRUE
 
 /datum/preference/color_legacy/pod_flower_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -58,3 +66,12 @@
 
 /datum/preference/color_legacy/pod_flower_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value
+
+/datum/preference/color_legacy/pod_flower_color/is_valid(value)
+	if (!..(value))
+		return FALSE
+
+	if (is_color_dark(expand_three_digit_color(value)))
+		return FALSE
+
+	return TRUE
