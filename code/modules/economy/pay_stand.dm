@@ -207,6 +207,8 @@
 	M.forceMove(src.loc)
 
 /obj/machinery/paystand/proc/purchase(buyer, price)
+	if(!my_card)
+		return
 	my_card.registered_account.adjust_money(price)
 	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [price] credits.")
 	amount_deposited = amount_deposited + price

@@ -382,4 +382,7 @@
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
 
+///Swarmer flags
+#define SWARMER_LIGHT_ON (1<<0)
+
 #define ACCENT_NONE "None"

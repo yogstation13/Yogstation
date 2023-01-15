@@ -266,6 +266,9 @@
 	if(wallcheck(printdirection))
 		say("Output blocked, please remove obstruction.")
 		return FALSE
+	if(!materials)
+		say("Error, invalid object.")
+		return FALSE
 	return materials.has_materials(required_materials)
 
 /obj/machinery/autolathe/proc/reset(wire)

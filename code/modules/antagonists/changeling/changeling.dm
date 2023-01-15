@@ -22,8 +22,8 @@
 	var/absorbedcount = 0
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
 	var/chem_charges = 50 // chems we have on spawn
-	var/chem_storage = 150 // max chems
-	var/chem_recharge_rate = 5 // how fast we restore chems
+	var/chem_storage = 125 // max chems
+	var/chem_recharge_rate = 2 // how fast we restore chems
 	var/chem_recharge_slowdown = 0 // how much is our chem restore rate hampered (keep at 0)
 	var/sting_range = 2
 	var/changelingID = "Changeling"

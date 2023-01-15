@@ -380,7 +380,7 @@
 
 /datum/quirk/poor_aim/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.dna.species.aiminginaccuracy -= 25
+	H?.dna?.species?.aiminginaccuracy -= 25
 
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
@@ -749,6 +749,12 @@
 	gain_text = span_danger("You do not speak galactic common.")
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+
+/datum/quirk/sheltered/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.get_selected_language())
+		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder

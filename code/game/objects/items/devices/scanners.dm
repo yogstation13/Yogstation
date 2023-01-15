@@ -45,6 +45,9 @@ GENE SCANNER
 	toggle_on()
 	
 /obj/item/t_scanner/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+
 	toggle_on()
 
 /obj/item/t_scanner/cyborg_unequip(mob/user)

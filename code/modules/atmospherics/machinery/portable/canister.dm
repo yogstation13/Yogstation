@@ -459,7 +459,7 @@
 		else if(valve_open && holding)
 			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 
-/obj/machinery/portable_atmospherics/canister/process_atmos(delta_time)
+/obj/machinery/portable_atmospherics/canister/process_atmos()
 	..()
 	if(stat & BROKEN)
 		return PROCESS_KILL
