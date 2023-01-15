@@ -186,7 +186,7 @@
 
 	//guaranteed spawn at least some rare ores like bluespace and dilithium in small pockets 
 
-	for(var/i in 0 to 8)
+	for(var/i in 0 to 64)
 		var/x = rand(16,239)
 		var/y = rand(16,239)
 		return_list[world.maxx * y + x] = ORE_DILITHIUM
@@ -195,7 +195,7 @@
 			var/y_o = y + rand(-j,j)
 			return_list[world.maxx * y_o + x_o] = ORE_DILITHIUM
 
-	for(var/i in 0 to 16)
+	for(var/i in 0 to 32)
 		var/x = rand(16,239)
 		var/y = rand(16,239)
 		return_list[world.maxx * y + x] = ORE_BLUESPACE

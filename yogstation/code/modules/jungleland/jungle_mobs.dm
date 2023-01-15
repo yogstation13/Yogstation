@@ -200,7 +200,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/steal_identity(mob/living/victim)
 
-	new /obj/effect/temp_visual/skin_twister_in(get_turf(src))
+	new /obj/effect/better_animated_temp_visual/skin_twister_in(get_turf(src))
 	name = victim.name
 	desc = victim.desc
 	if(!ishostile(victim))
@@ -223,12 +223,12 @@
 		if(!headphones)
 			return
 		lure_encryption_key = headphones.keyslot
-
-	fully_heal()
+	else 
+		fully_heal()
 	faction = list("mining")
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/reveal_true_form()
-	new /obj/effect/temp_visual/skin_twister_out(get_turf(src))
+	new /obj/effect/better_animated_temp_visual/skin_twister_out(get_turf(src))
 	name = initial(name)
 	desc = initial(desc)
 	appearance = initial(appearance)

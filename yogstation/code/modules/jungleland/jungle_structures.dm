@@ -7,19 +7,19 @@
 	. = ..()
 	icon_state = "nwtree_[rand(1, 6)]"
 
-/obj/effect/temp_visual/skin_twister_in
+/obj/effect/better_animated_temp_visual/skin_twister_in
 	layer = BELOW_MOB_LAYER
 	duration = 8
 	icon = 'yogstation/icons/effects/64x64.dmi'
-	icon_state = "skin_twister_in"
+	animated_icon_state = "skin_twister_in"
 	pixel_y = -16
 	pixel_x = -16
 
-/obj/effect/temp_visual/skin_twister_out
+/obj/effect/better_animated_temp_visual/skin_twister_out
 	layer = BELOW_MOB_LAYER
 	duration = 8
 	icon = 'yogstation/icons/effects/64x64.dmi'
-	icon_state = "skin_twister_out"
+	animated_icon_state = "skin_twister_out"
 	pixel_y = -16
 	pixel_x = -16
 
@@ -371,4 +371,19 @@ GLOBAL_LIST_INIT(nests, list())
 	new type(loc)
 	qdel(src)
 	
-	 
+/obj/effect/better_animated_temp_visual/tar_shield_pop
+	layer = BELOW_MOB_LAYER
+	duration = 5
+	icon = 'yogstation/icons/effects/96x96.dmi'
+	animated_icon_state = "tar_shield_pop"
+	pixel_y = -32
+	pixel_x = -32
+
+/obj/effect/better_animated_temp_visual 
+	var/animated_icon_state
+	var/duration 
+
+/obj/effect/better_animated_temp_visual/New(loc, ...)
+	. = ..()
+	flick(animated_icon_state,src) 
+	QDEL_IN(src,duration)

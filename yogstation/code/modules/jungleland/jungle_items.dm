@@ -379,3 +379,34 @@
 	desc = "It's time to repay due debts..."
 	invisibility = 100
 
+/obj/item/charged_tar_crystal
+	name = "Glowing Ominous Crystal"
+	desc = "It is glowing with pure power."
+
+/obj/item/crusher_trophy/jungleland 
+	icon = 'yogstation/icons/obj/jungle.dmi'
+
+/obj/item/crusher_trophy/jungleland/aspect_of_tar
+	name = "Aspect of tar"
+	desc = "It pulsates with a corroding, everpresent energy"
+	icon_state = "aspect_of_tar"
+	denied_type = /obj/item/crusher_trophy/jungleland/aspect_of_tar
+
+/obj/item/crusher_trophy/jungleland/aspect_of_tar/effect_desc()
+	return "Slows down enemies to crawling speed and gives a shield that blocks a single enemy attack (lasts 5 seconds)."
+
+/obj/item/crusher_trophy/jungleland/aspect_of_tar/on_mark_detonation(mob/living/target, mob/living/user)
+	. = ..()
+	user.apply_status_effect(/datum/status_effect/tar_shield)
+
+/obj/item/crusher_trophy/jungleland/aspect_of_tar/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+	. = ..()
+	if(!isanimal(target))	
+		return 
+	var/mob/living/simple_animal/S = target 
+	S.turns_per_move *= 4
+	addtimer(CALLBACK(S,/mob/living/simple_animal/proc/return_standard_turns_per_move),5 SECONDS) 
+
+	
+
+	

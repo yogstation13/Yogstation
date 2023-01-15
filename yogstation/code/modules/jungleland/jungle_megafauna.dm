@@ -35,9 +35,11 @@
 	ranged_cooldown_time = 10 SECONDS
 	dodge_prob = 0
 	loot = list(/obj/item/clothing/head/yogs/tar_king_crown)
+	crusher_loot = list(/obj/item/crusher_trophy/jungleland/aspect_of_tar)
 	var/list/attack_adjustments = list()
 	var/last_done_attack = 0
-	var/currently_attacking = FALSE
+	var/list/attack_stack = list()
+	var/stage = 0
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -55,8 +57,10 @@
 
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Goto(target, delay, minimum_distance)
-	if(!currently_attacking)
+	if(!attack_stack.len)
 		return ..()
+	else 
+		walk(src,0)
 	
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/add_mob_profile(mob/living/L)
 	attack_adjustments[L.real_name] = ATTACK_MATRIX
@@ -72,11 +76,28 @@
 	last_done_attack = 0 
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/OpenFire()
+	if (stage == 0 && health < 1500)
+		SetRecoveryTime(20 SECONDS,0)
+		stage++
+		stage_transition()
+		return
+	else if (stage == 1 && health < 1000)	
+		SetRecoveryTime(20 SECONDS,0)
+		stage++
+		stage_transition()
+		return 
+	else if (stage == 2 && health < 500)	
+		SetRecoveryTime(20 SECONDS,0)
+		stage++
+		stage_transition()
+		return
+	if(attack_stack.len)
+		return 
 	var/list/combo = forge_combo()
-	SetRecoveryTime( 3 SECONDS + ((health/maxHealth) * 0.5 SECONDS)) 
+	SetRecoveryTime( 3 SECONDS + ((health/maxHealth) * 0.5 SECONDS),0) 
 	
 	for(var/move as anything in combo)	
-		currently_attacking = TRUE
+		attack_stack += move
 		walk(src,0)
 		switch(move)
 			if(SLASH_ATTACK)
@@ -90,7 +111,7 @@
 			if(TAR_ATTACK)
 				tar_attack_chain()
 
-		currently_attacking = FALSE
+		attack_stack -= move
 		Goto(target,move_to_delay,minimum_distance)
 		SLEEP_CHECK_DEATH(1 SECONDS)
 
@@ -254,4 +275,130 @@
 		for(var/mob/living/carbon/C in T.contents)
 			var/limb_to_hit = C.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 			C.apply_damage(20, BRUTE, limb_to_hit, C.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/proc/stage_transition()
+	walk(src,0)
+	icon_state = "tar_king_chaser"
+	for(var/i in 0 to stage)
+		new /obj/effect/temp_visual/tar_king_chaser(loc, src, target, 1)
+	attack_stack += "STAGE_TRANSITION"
+	SLEEP_CHECK_DEATH(15 SECONDS)
+	icon_state = "tar_king"
+	attack_stack -= "STAGE_TRANSITION"
+
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale
+	duration = 9
+	icon = 'yogstation/icons/effects/32x48.dmi'
+	animated_icon_state = "tar_king_special"
+	name = "incoming doom"
+	desc = "Run while you still can!"
+	var/damage
+	var/mob/living/caster
+	var/bursting 
+
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/Initialize(mapload, new_caster)
+	. = ..()
+	caster = new_caster
+	INVOKE_ASYNC(src, .proc/blast)
+
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/proc/blast()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	playsound(T,pick('sound/weapons/sword3.ogg','sound/weapons/sword4.ogg','sound/weapons/sword5.ogg'), 125, 1, -5) //make a sound
+	sleep(0.45 SECONDS) 
+	bursting = TRUE
+	do_damage(T) 
+	sleep(0.1 SECONDS) 
+	bursting = FALSE 
+
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/Crossed(atom/movable/AM)
+	..()
+	if(bursting)
+		do_damage(get_turf(src))
+
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/proc/do_damage(turf/T)
+	if(!damage)
+		return
+	for(var/mob/living/L in T.contents) //find and damage mobs...
+		if((caster && caster.faction_check_mob(L)) || L.stat == DEAD || L == caster)
+			continue
+		playsound(L,pick('sound/weapons/sword1.ogg','sound/weapons/sword2.ogg'), 50, 1, -4)
+		to_chat(L, span_userdanger("You're struck by a [name]!"))
+		var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
+		var/armor = L.run_armor_check(limb_to_hit, MELEE, "Your armor absorbs [src]!", "Your armor blocks part of [src]!", 50, "Your armor was penetrated by [src]!")
+		L.apply_damage(damage, BRUTE, limb_to_hit, armor)
+		if(caster)
+			log_combat(caster, L, "struck with a [name]")
+
+	for(var/obj/mecha/M in T.contents) //also damage mechs.
+		if(M.occupant)
+			if(caster && caster != M && caster.faction_check_mob(M.occupant))
+				continue
+			to_chat(M.occupant, span_userdanger("Your [M.name] is struck by a [name]!"))
+		playsound(M,'sound/weapons/sword2.ogg', 50, 1, -4)
+		M.take_damage(damage, BRUTE, 0, 0)
+
+/obj/effect/temp_visual/tar_king_chaser
+	duration = 15 SECONDS
+	var/mob/living/target //what it's following
+	var/turf/targetturf //what turf the target is actually on
+	var/moving_dir //what dir it's moving in
+	var/previous_moving_dir //what dir it was moving in before that
+	var/more_previouser_moving_dir //what dir it was moving in before THAT
+	var/moving = 0 //how many steps to move before recalculating
+	var/standard_moving_before_recalc = 4 //how many times we step before recalculating normally
+	var/tiles_per_step = 1 //how many tiles we move each step
+	var/speed = 3 //how many deciseconds between each step
+	var/currently_seeking = FALSE
+	var/monster_damage_boost = TRUE
+	var/damage = 10
+	var/caster
+
+/obj/effect/temp_visual/tar_king_chaser/Initialize(mapload, new_caster, new_target, new_speed)
+	. = ..()
+	target = new_target
+	if(new_speed)
+		speed = new_speed
+	caster = new_caster
+	addtimer(CALLBACK(src, .proc/seek_target), 1)
+
+/obj/effect/temp_visual/tar_king_chaser/proc/get_target_dir()
+	. = get_cardinal_dir(src, targetturf)
+	if((. != previous_moving_dir && . == more_previouser_moving_dir) || . == 0) //we're alternating, recalculate
+		var/list/cardinal_copy = GLOB.cardinals.Copy()
+		cardinal_copy -= more_previouser_moving_dir
+		. = pick(cardinal_copy)
+
+/obj/effect/temp_visual/tar_king_chaser/proc/seek_target()
+	if(!currently_seeking)
+		currently_seeking = TRUE
+		targetturf = get_turf(target)
+		while(target && src && !QDELETED(src) && currently_seeking && x && y && targetturf) //can this target actually be sook out
+			if(!moving) //we're out of tiles to move, find more and where the target is!
+				more_previouser_moving_dir = previous_moving_dir
+				previous_moving_dir = moving_dir
+				moving_dir = get_target_dir()
+				var/standard_target_dir = get_cardinal_dir(src, targetturf)
+				if((standard_target_dir != previous_moving_dir && standard_target_dir == more_previouser_moving_dir) || standard_target_dir == 0)
+					moving = 1 //we would be repeating, only move a tile before checking
+				else
+					moving = standard_moving_before_recalc
+			if(moving) //move in the dir we're moving in right now
+				var/turf/T = get_turf(src)
+				for(var/i in 1 to tiles_per_step)
+					var/maybe_new_turf = get_step(T, moving_dir)
+					if(maybe_new_turf)
+						T = maybe_new_turf
+					else
+						break
+				forceMove(T)
+				make_blast() //make a blast, too
+				moving--
+				sleep(speed)
+			targetturf = get_turf(target)
+
+/obj/effect/temp_visual/tar_king_chaser/proc/make_blast()
+	var/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/T = new(loc, caster)
+	T.damage = damage
 

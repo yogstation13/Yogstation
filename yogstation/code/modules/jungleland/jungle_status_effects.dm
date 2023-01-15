@@ -167,3 +167,28 @@
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "rage"
 
+/datum/status_effect/tar_shield
+	id = "tar_shield"
+	duration = 5 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	var/image/cached_image
+
+/datum/status_effect/tar_shield/on_creation(mob/living/new_owner, ...)
+	. = ..()
+	cached_image = image(icon = 'yogstation/icons/effects/effects.dmi',icon_state = "tar_shield")
+
+/datum/status_effect/tar_shield/on_apply()
+	. = ..()
+	owner.add_overlay(cached_image)
+	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,.proc/react_to_attack)
+
+/datum/status_effect/tar_shield/on_remove()
+	owner.cut_overlay(cached_image)
+	UnregisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS)
+	. = ..()
+	
+/datum/status_effect/tar_shield/proc/react_to_attack(datum/source ,atom/AM, var/damage, attack_text, attack_type, armour_penetration)
+	new /obj/effect/better_animated_temp_visual/tar_shield_pop(get_turf(owner))
+	owner.visible_message(span_danger("[owner]'s shields absorbs [attack_text]!"))
+	qdel(src)
+
