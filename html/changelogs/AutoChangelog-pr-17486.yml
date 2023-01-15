@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed not being able to examine decal floors"
+  - bugfix: "fixed decal floors not being partially transparent"
