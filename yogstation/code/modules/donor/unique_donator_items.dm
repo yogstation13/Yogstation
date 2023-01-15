@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(S)
 			continue
 		donor_items += S
-		item_names[S.name] = S.unlock_path
+		item_names[S.name] = S
 
 
 /datum/donator_gear
