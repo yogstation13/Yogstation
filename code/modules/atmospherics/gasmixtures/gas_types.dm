@@ -223,6 +223,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	anchored = TRUE  // should only appear in vis_contents, but to be safe
 	layer = FLY_LAYER
 	appearance_flags = TILE_BOUND
+	screen_loc = E3D_TYPE_GAS_OVERLAY
 
 /obj/effect/overlay/gas/New(state, alph)
 	. = ..()

@@ -185,7 +185,7 @@ export class BoxRenderPlan extends BatchRenderPlan {
 		super();
 		this.atom_id = atom_id
 		this.icon = appearance.icon;
-		this.triangle_count = 8;
+		this.triangle_count = 10;
 	}
 	icon_state_instance? : IconState|null;
 	write(attribs : Float32Array, iattribs : Uint32Array, offset : number, icon_info : Icon, time : number, camera_pos : vec3) {
@@ -202,6 +202,7 @@ export class BoxRenderPlan extends BatchRenderPlan {
 		for(let i = 0; i < 4; i++) {
 			offset = this.write_plane(attribs, iattribs, offset, frame, [this.x+box_xy[i][0],this.y+box_xy[i][1],0], box_normals[(i+1)&3], up_vec, box_normals[i], vec4_color(color_vec, this.appearance.color_alpha));
 		}
+		offset = this.write_plane(attribs, iattribs, offset, frame, [this.x,this.y,1], right_vec, forward_vec, up_vec, vec4_color(color_vec, this.appearance.color_alpha));
 		return offset;
 	}
 }

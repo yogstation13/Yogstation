@@ -6,7 +6,7 @@ iframe:not(:hover) {
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
 	position: absolute;
 	border-top: 32px solid transparent;
-	box-sizing: border-box;
+	box-sizing: content-box;
 }
 
 .titlebar {

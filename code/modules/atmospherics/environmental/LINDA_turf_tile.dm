@@ -32,6 +32,7 @@
 	var/planetary_atmos = FALSE //air will revert to initial_gas_mix over time
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
+	var/atmos_e3d_overlay // current batch-overlay
 	is_openturf = TRUE
 
 /turf/open/Initialize()
@@ -142,6 +143,7 @@
 	src.atmos_overlay_types = new_overlay_types
 
 /turf/open/proc/set_visuals(list/new_overlay_types)
+	var/static/image/e3d_overlay_image = image(icon='icons/effects/atmospherics.dmi')
 	if (atmos_overlay_types)
 		for(var/overlay in atmos_overlay_types-new_overlay_types) //doesn't remove overlays that would only be added
 			vis_contents -= overlay
@@ -153,6 +155,22 @@
 			vis_contents += new_overlay_types
 	UNSETEMPTY(new_overlay_types)
 	src.atmos_overlay_types = new_overlay_types
+	
+	// BYOND webclient does not send vis_contents for turfs - find another way.
+	if(!LAZYLEN(new_overlay_types) && atmos_e3d_overlay)
+		cut_overlay(atmos_e3d_overlay)
+		atmos_e3d_overlay = null
+	else
+		var/list/new_overlay_refs = list()
+		for(var/overlay in new_overlay_types)
+			new_overlay_refs += "\ref[overlay]"
+		e3d_overlay_image.icon_state = "e3d_gases:[new_overlay_refs.Join(",")]"
+		var/new_e3d_overlay = e3d_overlay_image.appearance
+		if(new_e3d_overlay != atmos_e3d_overlay)
+			if(atmos_e3d_overlay)
+				cut_overlay(atmos_e3d_overlay)
+			add_overlay(new_e3d_overlay)
+			src.atmos_e3d_overlay = new_e3d_overlay
 
 /proc/typecache_of_gases_with_no_overlays()
 	. = list()

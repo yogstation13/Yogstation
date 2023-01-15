@@ -20,6 +20,7 @@
 #define E3D_TYPE_EDGE "\x0A\x0A"
 #define E3D_TYPE_EDGEFIREDOOR "\x0A\x0B"
 #define E3D_TYPE_EDGEWINDOOR "\x0A\x0C"
+#define E3D_TYPE_GAS_OVERLAY "\x0A\x0D"
 
 #define E3D_SEE_ZOOM 0x8000
 

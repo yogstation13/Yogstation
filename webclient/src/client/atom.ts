@@ -228,6 +228,7 @@ const E3D_TYPE_BASICWALL = "\x0A\x09";
 const E3D_TYPE_EDGE = "\x0A\x0A";
 const E3D_TYPE_EDGEFIREDOOR = "\x0A\x0B";
 const E3D_TYPE_EDGEWINDOOR = "\x0A\x0C";
+const E3D_TYPE_GAS_OVERLAY = "\x0A\x0D";
 
 let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], appearance:Appearance, x:number, y:number) => void>(Object.entries({
 	[E3D_TYPE_BILLBOARD](list, appearance, x, y) : void {
@@ -273,7 +274,13 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		let odz = this.type == 1 ? 0 : 0.001;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
 		let overlay_counter = 0;
+		let vis_contents = this.vis_contents;
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
+			if(overlay.icon_state.startsWith("e3d_gases:")) {
+				vis_contents = overlay.icon_state.substring(10).split(",").map(a => (
+					+a.substring(1, a.length-1)
+				));
+			}
 			if(overlay.plane == -32767 || overlay.plane == appearance.plane) {
 				overlay = overlay.copy_inherit(appearance);
 				let ox = x + (overlay.pixel_x + overlay.pixel_w)/32;
@@ -287,6 +294,13 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 				let ox = x + (overlay.pixel_x + overlay.pixel_w)/32;
 				let oy = y + (overlay.pixel_y + overlay.pixel_z)/32;
 				list.push(new FloorRenderPlan(this.full_id, overlay, ox, oy, z-odz, (-1)<<24));
+			}
+		}
+		if(vis_contents) for(let vc of vis_contents) {
+			let appearance = this.client.get_atom(vc).appearance;
+			if(!appearance) continue;
+			if(appearance.e3d_tag == E3D_TYPE_GAS_OVERLAY) {
+				list.push(new BoxRenderPlan(this.full_id, appearance, x, y).set_alpha_sort([x+0.5,y+0.5,0.5], -0.2))
 			}
 		}
 	},
