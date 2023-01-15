@@ -130,7 +130,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/underwear/init_possible_values()
-	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/underwear.dmi', GLOB.underwear_list, list("human_chest_m", "human_r_leg", "human_l_leg"), COLOR_ALMOST_BLACK)
+	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/underwear.dmi', GLOB.underwear_list, list("human_chest_m", "human_r_leg", "human_l_leg"))
 
 /datum/preference/choiced/underwear/apply_to_human(mob/living/carbon/human/target, value)
 	target.underwear = value
