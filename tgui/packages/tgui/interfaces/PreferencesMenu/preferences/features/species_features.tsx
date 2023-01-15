@@ -115,3 +115,8 @@ export const feature_pod_flower_color: Feature<string> = {
   name: "Flower color",
   component: FeatureColorInput,
 };
+
+export const feature_plasmaman_helmet: FeatureChoiced = {
+  name: "Helmet style",
+  component: FeatureDropdownInput,
+};
