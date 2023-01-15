@@ -25,6 +25,8 @@
 
 
 /mob/living/silicon/ai/proc/relocate(silent = FALSE)
+	lose_hearing_sensitivity()
+
 	if(is_dying)
 		return
 	if(!silent)
@@ -47,6 +49,7 @@
 	if(!silent)
 		to_chat(src, span_danger("Alternative data core detected. Rerouting connection..."))
 	new_data_core.transfer_AI(src)
+	become_hearing_sensitive()
 	
 
 /mob/living/silicon/ai/proc/death_prompt()
