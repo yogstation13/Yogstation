@@ -23,6 +23,7 @@
 		dummy.dna.species.prepare_human_for_preview(dummy)
 		var/icon/dummy_icon = getFlatIcon(dummy)
 		if(ismoth(dummy))
+			dummy_icon = null
 			dummy_icon = icon('icons/mob/human.dmi', "moth")
 		dummy_icon.Scale(64, 64)
 		dummy_icon.Crop(15, 64, 15 + 31, 64 - 31)
