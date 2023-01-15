@@ -3,6 +3,14 @@
 	max_integrity = 150
 	anchored = TRUE
 
+//yogs edit
+/obj/structure/flora/ex_act(severity, target)
+	. = ..()
+	if(severity == 1 || severity == 2)
+		qdel(src)
+//yogs end
+
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
@@ -35,7 +43,7 @@
 /obj/structure/flora/stump
 	name = "stump"
 	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
-	icon = 'icons/obj/flora/pinetrees.dmi'
+	icon = 'icons/obj/flora/deadtrees.dmi' //yog
 	icon_state = "tree_stump"
 	density = FALSE
 	pixel_x = -16
@@ -396,7 +404,7 @@
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
 	desc = "A pile of rocks."
-
+	density = FALSE //yogs
 //Jungle grass
 
 /obj/structure/flora/grass/jungle

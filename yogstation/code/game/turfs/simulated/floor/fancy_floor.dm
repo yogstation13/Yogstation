@@ -70,3 +70,6 @@
 
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2
 	icon_state ="darkstairs2_wide"
+
+/turf/open/floor/wood/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS

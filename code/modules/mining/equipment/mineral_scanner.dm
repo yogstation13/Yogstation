@@ -71,6 +71,18 @@
 	for(var/turf/closed/mineral/M in range(range, T))
 		if(M.scan_state)
 			minerals += M
+	//yogs edit
+	for(var/turf/open/floor/plating/dirt/jungleland/JG in range(range, T))
+		if(JG.ore_present == ORE_EMPTY || !JG.can_spawn_ore)
+			continue
+		var/datum/ore_patch/ore = GLOB.jungle_ores[JG.ore_present]
+		var/state = initial(ore.overlay_state)
+		var/obj/effect/temp_visual/mining_overlay/oldC = locate(/obj/effect/temp_visual/mining_overlay) in JG
+		if(oldC)
+			qdel(oldC)
+		var/obj/effect/temp_visual/mining_overlay/C = new /obj/effect/temp_visual/mining_overlay(JG)
+		C.icon_state = state
+	//yogs end
 	if(LAZYLEN(minerals))
 		for(var/turf/closed/mineral/M in minerals)
 			var/obj/effect/temp_visual/mining_overlay/oldC = locate(/obj/effect/temp_visual/mining_overlay) in M

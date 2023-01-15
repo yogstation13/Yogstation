@@ -21,6 +21,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	if(is_species(user, /datum/species/lizard/ashwalker))
 		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
+	if(is_species(user, /datum/species/pod/ivymen)) // yogs - ivymen
+		to_chat(user, span_warning("You don't know how to use this!"))
+		return FALSE
 	var/list/possible_beacons = list()
 	for(var/B in GLOB.total_extraction_beacons)
 		var/obj/structure/extraction_point/EP = B

@@ -163,7 +163,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
 	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/set_next_minetype
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
