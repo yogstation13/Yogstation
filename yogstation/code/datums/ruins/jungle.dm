@@ -6,31 +6,31 @@
 /datum/map_template/ruin/jungle/dying/crashed_ship
 	name = "Crashed Ship"
 	id = "jungle-crashed-ship"
-	description = "Old abandoned ship"
+	description = "The remains of a long crashed ship, weathered away into scrap."
 	suffix = "jungleland_dead_crashedship.dmm"	
 
 /datum/map_template/ruin/jungle/dying/testing_facility
 	name = "Testing-facility"
 	id = "jungle-testing-facility"
-	description = "Old testing facility"
+	description = "A testing facility, were bodily experiments were conducted on people, safely remote from scrutiny."
 	suffix = "jungleland_dead_testingfacility.dmm"
 
 /datum/map_template/ruin/jungle/proper/ivymen_nest
 	name = "Ivymen Nest"
 	id = "jungle-ivymen-next"
-	description = "Ancient ivymen next"
+	description = "A dormant nest filled with primal plant creatures, waiting to hatch."
 	suffix = "jungleland_jungle_ivymen_nest.dmm"
 
 /datum/map_template/ruin/jungle/proper/old_temple
 	name = "Ancient Temple"
 	id = "jungle-old-temple"
-	description = "Old abandoned temple"
+	description = "A temple bearing signs of the occult. It seems the spirits inside have been corrupted..."
 	suffix = "jungleland_jungle_oldtemple.dmm"	
 
 /datum/map_template/ruin/jungle/proper/xenos
 	name = "Xeno Nest"
 	id = "jungle-xenos"
-	description = "Alient nest"
+	description = "Once an expeditionary camp for soldiers, it fell to predatory alien creatures."
 	suffix = "jungleland_jungle_xenos.dmm"	
 
 /datum/map_template/ruin/jungle/proper/geode
@@ -48,20 +48,27 @@
 /datum/map_template/ruin/jungle/swamp/burial_grounds
 	name = "Drowned Burial Grounds"
 	id = "jungle-burial-grounds"
-	description = "Burial Grounds"
+	description = "Flooded burial grounds, filled with toxic water and the reanimated dead of those buried inside."
 	suffix = "jungleland_swamp_drownedburialgrounds.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/farm 
 	name = "Abandoned Farm"
 	id = "jungle-farm"
-	description = "Abandoned farm"
+	description = "A large field of rotting, tilled soil next to a small home."
 	suffix = "jungleland_swamp_farm.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/hut
 	name = "Old Hut"
 	id = "jungle-hut"
-	description = "Old hut"
+	description = "An old hut that belonged to a witch."
 	suffix = "jungleland_swamp_oldhut.dmm"	
+
+/datum/map_template/ruin/jungle/swamp/carp_pond
+	name = "Carp Pond"
+	id = "jungle-carp-pond"
+	description = "A few ponds full of rancid and toxic water, guarded by overgrown carp. \
+	 	However, it looks like it could've been pretty, at least in the past..."
+	suffix = "jungleland_swamp_carp_pond.dmm"	
 	
 /datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"

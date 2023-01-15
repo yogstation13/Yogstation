@@ -700,4 +700,11 @@
 	var/turf/loc = get_turf(targeted_atom)
 	var/attack = pick(subtypesof(/obj/effect/timed_attack/tar_priest))
 	new attack(loc)
+
+/mob/living/simple_animal/hostile/carp/jungle
+	faction = list("mining")
+
+/mob/living/simple_animal/hostile/carp/ranged/chaos/jungle
+	faction = list("mining")
+
 	
