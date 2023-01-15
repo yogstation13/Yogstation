@@ -37,7 +37,7 @@
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.subspace_transmission = TRUE
-	radio.listening = FALSE
+	radio.set_listening(FALSE)
 	radio.use_command = TRUE
 	radio.independent = TRUE
 	radio.recalculateChannels()
