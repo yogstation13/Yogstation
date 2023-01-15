@@ -1,4 +1,4 @@
-/proc/generate_values_for_underwear(list/accessory_list, list/icons, color)
+/proc/generate_values_for_underwear(icon_file, list/accessory_list, list/icons, color)
 	var/icon/lower_half = icon('icons/blanks/32x32.dmi', "nothing")
 
 	for (var/icon in icons)
@@ -12,7 +12,7 @@
 		if (accessory_name != "Nude")
 			var/datum/sprite_accessory/accessory = accessory_list[accessory_name]
 
-			var/icon/accessory_icon = icon('icons/mob/clothing/sprite_accessories/underwear.dmi', accessory.icon_state)
+			var/icon/accessory_icon = icon(icon_file, accessory.icon_state)
 			if (color/* && !accessory.use_static*/)
 				accessory_icon.Blend(color, ICON_MULTIPLY)
 			icon_with_socks.Blend(accessory_icon, ICON_OVERLAY)
@@ -81,7 +81,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/socks/init_possible_values()
-	return generate_values_for_underwear(GLOB.socks_list, list("human_r_leg", "human_l_leg"))
+	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/socks.dmi', GLOB.socks_list, list("human_r_leg", "human_l_leg"))
 
 /datum/preference/choiced/socks/apply_to_human(mob/living/carbon/human/target, value)
 	target.socks = value
@@ -110,7 +110,7 @@
 
 		if (accessory_name != "Nude")
 			var/datum/sprite_accessory/accessory = GLOB.undershirt_list[accessory_name]
-			icon_with_undershirt.Blend(icon('icons/mob/clothing/sprite_accessories/underwear.dmi', accessory.icon_state), ICON_OVERLAY)
+			icon_with_undershirt.Blend(icon('icons/mob/clothing/sprite_accessories/undershirt.dmi', accessory.icon_state), ICON_OVERLAY)
 
 		icon_with_undershirt.Crop(9, 9, 23, 23)
 		icon_with_undershirt.Scale(32, 32)
@@ -130,7 +130,7 @@
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/underwear/init_possible_values()
-	return generate_values_for_underwear(GLOB.underwear_list, list("human_chest_m", "human_r_leg", "human_l_leg"), COLOR_ALMOST_BLACK)
+	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/underwear.dmi', GLOB.underwear_list, list("human_chest_m", "human_r_leg", "human_l_leg"), COLOR_ALMOST_BLACK)
 
 /datum/preference/choiced/underwear/apply_to_human(mob/living/carbon/human/target, value)
 	target.underwear = value
