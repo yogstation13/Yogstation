@@ -40,24 +40,59 @@
 
 /datum/reagent/jungle/retrosacharide
 	name = "Retrosacharide"
-	description = "Sacharide with a twisting structure that resembles the golden spiral."
+	description = "Sacharide with a twisting structure that resembles the golden spiral. It seeks to achieve stability, but it never seems to stop."
 	taste_description = "starch"
-
-/datum/reagent/jungle/retrosacharide/on_mob_metabolize(mob/living/L)
-	. = ..()
-	
+	var/delta_healing = 5
 
 /datum/reagent/jungle/retrosacharide/on_mob_life(mob/living/L)
 	. = ..()
-	
+	var/brute = L.getBruteLoss()
+	var/fire = L.getFireLoss()
+	var/toxin = L.getToxLoss()
 
-/datum/reagent/jungle/retrosacharide/on_mob_end_metabolize(mob/living/L)
+	var/average = (brute + fire + toxin)/3 
+
+	if(brute != fire || brute != toxin)
+		var/b_offset = clamp(average - brute,-delta_healing,delta_healing)
+		var/f_offset = clamp(average - fire,-delta_healing,delta_healing)
+		var/t_offset = clamp(average - toxin,-delta_healing,delta_healing)
+		L.adjustBruteLoss(b_offset,FALSE)
+		L.adjustFireLoss(f_offset,FALSE)
+		L.adjustToxLoss(t_offset)
+		return
+	
+	switch(rand(0,2))
+		if(0)
+			L.adjustBruteLoss(-0.5)
+		if(1)
+			L.adjustFireLoss(-0.5)	
+		if(2)
+			L.adjustToxLoss(-0.5)
+
+/datum/reagent/jungle/jungle_scent
+	name = "Jungle scent"
+	description = "It reeks of the jungle pits, but I wonder if it has any effects do to that?"
+	taste_description = "jungle"
+	metabolization_rate = REAGENTS_METABOLISM / 2
+	var/has_mining = FALSE
+
+/datum/reagent/jungle/jungle_scent/on_mob_metabolize(mob/living/L)
 	. = ..()
+	if("mining" in L.faction)
+		has_mining = TRUE
+		return
+	L.faction += "mining"
+
+/datum/reagent/jungle/jungle_scent/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(has_mining)
+		return 
+	L.faction -= "mining"
 
 /datum/reagent/jungle/polybycin
 	name = "Polybycin"
 	description = "An unknown molecule with simmiliar structure to psychodelics found on terra, effects unknown."
-	taste_description = "madness"
+	taste_description = "colours"
 	metabolization_rate = REAGENTS_METABOLISM / 2
 
 	var/offset = 0;

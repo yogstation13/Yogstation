@@ -251,6 +251,28 @@
 	picked_amt = 3
 	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
 
+/obj/structure/herb/fruit
+	desc = "Fruiting plant, i wonder how the berry tastes like?"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	picked_amt = 1
+
+/obj/structure/herb/fruit/Initialize()
+	. = ..()
+	var/fruit = pick("kuku","bonji","bianco")
+	switch(fruit)
+		if("kuku")
+			name = "Kuku bush"
+			icon_state = "kuku_plant"
+			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/kuku
+		if("bonji")
+			name = "Bonji bush"
+			icon_state = "bonji_plant"
+			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/bonji
+		if("bianco")
+			name = "Bianco bush"
+			icon_state = "bianco_plant"
+			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/bianco
+
 /obj/structure/flytrap //feed it a specific mob loot to get rare materials. Can rarely drop VERY rare minerals like bananium!
 	name = "Mineral Rich Flytrap"
 	desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry."

@@ -16,7 +16,7 @@
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "ae" = (
 /obj/item/storage/box/rxglasses,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -35,7 +35,7 @@
 "ag" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "ai" = (
 /obj/item/flashlight/lantern{
 	on = 1
@@ -60,15 +60,15 @@
 "an" = (
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "ao" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "ap" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aq" = (
 /obj/structure/necropolis_gate{
 	name = "ancient gate"
@@ -87,48 +87,48 @@
 "ax" = (
 /obj/item/seeds/bamboo,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "ay" = (
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "az" = (
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aB" = (
 /turf/open/floor/plating/ashplanet/rocky/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aC" = (
 /obj/structure/sink/puddle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aD" = (
 /obj/item/cultivator/rake,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aE" = (
 /obj/structure/bonfire/dense,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aF" = (
 /obj/item/hatchet/wooden,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aG" = (
 /turf/closed/wall/mineral/wood,
 /area/ruin/unpowered/ivymen)
 "aH" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aI" = (
 /obj/structure/flora/junglebush/c,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aK" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aL" = (
 /obj/item/stack/sheet/mineral/wood,
 /obj/item/stack/sheet/mineral/wood,
@@ -140,11 +140,11 @@
 "aO" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aP" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aQ" = (
 /obj/structure/table/optable,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -152,7 +152,7 @@
 "aR" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aS" = (
 /obj/structure/sink/puddle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -160,7 +160,7 @@
 "aT" = (
 /obj/item/shovel,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "aV" = (
 /obj/item/construction/rcd/loaded,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -174,15 +174,15 @@
 "aZ" = (
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "bQ" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "hG" = (
 /obj/item/pickaxe,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "hW" = (
 /obj/item/malf_upgrade,
 /obj/item/stack/sheet/mineral/mythril{
@@ -194,18 +194,18 @@
 "kJ" = (
 /obj/item/seeds/nettle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "lS" = (
 /obj/item/seeds/ambrosia,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "mF" = (
 /obj/item/plant_analyzer,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "qA" = (
 /turf/closed/wall/mineral/wood,
-/area/template_noop)
+/area/jungleland/explored)
 "se" = (
 /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen{
 	desc = "Some strange bug that doesn't look like it comes from here. Eats dead things and produces a thick and nutritious milk."
@@ -217,18 +217,18 @@
 	on = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "yt" = (
 /obj/item/book/manual/ivymen,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
 "Ad" = (
 /turf/closed/mineral/ash_rock/jungle/deepjungle,
-/area/template_noop)
+/area/jungleland/explored)
 "Ez" = (
 /obj/item/seeds/cotton,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "LK" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/bamboospear,
@@ -261,7 +261,7 @@
 "Tb" = (
 /obj/item/twohanded/bamboospear,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/jungleland/explored)
 "Uu" = (
 /obj/structure/table/wood,
 /obj/item/storage/belt/quiver/ashwalker{

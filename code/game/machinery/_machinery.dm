@@ -288,6 +288,11 @@ Class Procs:
 	if(is_species(L, /datum/species/lizard/ashwalker))
 		return FALSE // ashwalkers cant use modern machines
 
+	//YOGS EDIT BEGIN
+	if(is_species(L, /datum/species/pod/ivymen))
+		return FALSE // same as ivymen
+	//YOGS EDIT END
+
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
 		if (H.dna.check_mutation(ACTIVE_HULK))

@@ -78,6 +78,60 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	resistance_flags = ACID_PROOF
 
+/obj/item/reagent_containers/food/snacks/grown/jungle/kuku
+	name = "Kuku berry"
+	desc = "What a pretty berry!"
+	icon_state = "kuku_fruit"
+	seed = /obj/item/seeds/jungleland/kuku
+
+/obj/item/seeds/jungleland/kuku
+	name = "pack of kuku bush seeds"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	icon_state = "seed-kuku"
+	species = "kuku"
+	plantname = "Kuku Berry"
+	product = /obj/item/reagent_containers/food/snacks/grown/jungle/kuku
+	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	growthstages = 4
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/jungle/retrosacharide = 0.2)
+
+/obj/item/reagent_containers/food/snacks/grown/jungle/bonji
+	name = "Bonji berry"
+	desc = "What a pretty berry!"
+	icon_state = "bonji_fruit"
+	seed = /obj/item/seeds/jungleland/bonji
+
+/obj/item/seeds/jungleland/bonji
+	name = "pack of bonji bush seeds"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	icon_state = "seed-bonji"
+	species = "bonji"
+	plantname = "Bonji Berry"
+	product = /obj/item/reagent_containers/food/snacks/grown/jungle/bonji
+	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	genes = list(/datum/plant_gene/trait/squash)
+	growthstages = 4
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.15, /datum/reagent/jungle/jungle_scent = 0.1)
+
+/obj/item/reagent_containers/food/snacks/grown/jungle/bianco
+	name = "Bianco berry"
+	desc = "What a pretty berry!"
+	icon_state = "bianco_fruit"
+	seed = /obj/item/seeds/jungleland/bianco
+
+/obj/item/seeds/jungleland/bianco
+	name = "pack of bianco bush seeds"
+	desc = "These seeds will grow into a beautiful twisting fruiting bush"
+	icon_state = "seed-bianco"
+	species = "bianco"
+	plantname = "Bianco Berry"
+	product = /obj/item/reagent_containers/food/snacks/grown/jungle/bianco
+	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	genes = list(/datum/plant_gene/trait/glow/white)
+	growthstages = 4
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.25,/datum/reagent/consumable/nutriment/vitamin = 0.05)
+
+
 /obj/item/reagent_containers/food/snacks/grown/jungle/liberal_hat
 	name = "Liberal Hat"
 	desc = "Hats off madlad, take me and free your mind..."

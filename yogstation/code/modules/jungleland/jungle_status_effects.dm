@@ -2,7 +2,7 @@
 	id = "toxic_buildup"
 	duration = -1 // we handle this ourselves
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/toxic_buildup
+	alert_type = /atom/movable/screen/status_effect/toxic_buildup
 	var/stack = 0
 	var/max_stack = 4
 	var/stack_decay_time = 1 MINUTES
@@ -95,13 +95,13 @@
 	update_stack(1)
 	current_stack_decay = 0
 
-/obj/screen/alert/status_effect/toxic_buildup
+/atom/movable/screen/status_effect/toxic_buildup
 	name = "Toxic buildup"
 	desc = "Toxins have built up in your system, they cause sustained toxin damage, and once they leave your system cause additional harm as your bodies adjustments to the toxicity backfire. Maybe something the dryads have could help?"
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "toxic_buildup"
 
-/obj/screen/alert/status_effect/tar_curse
+/atom/movable/screen/status_effect/tar_curse
 	name = "Curse of Tar"
 	desc = "You've been cursed by the tar priest, next attack by any tar monster will cause more damage and may have additional effects."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
@@ -111,7 +111,7 @@
 	id = "tar_curse"
 	duration = 60 SECONDS// we handle this ourselves
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/tar_curse
+	alert_type = /atom/movable/screen/status_effect/tar_curse
 
 
 /datum/status_effect/tar_curse/on_apply()
@@ -122,20 +122,20 @@
 	qdel(src)
 
 
-/obj/screen/alert/status_effect/dryad
+/atom/movable/screen/status_effect/dryad
 	name = "Blessing of the forest"
 	desc = "The heart of the dryad fuels you, it's tendrils engulfed you temporarily increasing your capabilities"
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "dryad_heart"
 
 /datum/status_effect/regenerative_core/dryad
-	alert_type = /obj/screen/alert/status_effect/dryad
+	alert_type = /atom/movable/screen/status_effect/dryad
 
 /datum/status_effect/corrupted_dryad
 	id = "corrupted_dryad"
 	duration = 80 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/corrupted_dryad
+	alert_type = /atom/movable/screen/status_effect/corrupted_dryad
 	var/health_multiplier = 1.5
 	var/initial_health = 100
 
@@ -161,7 +161,7 @@
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad_bad)
 	return ..()
 
-/obj/screen/alert/status_effect/corrupted_dryad
+/atom/movable/screen/status_effect/corrupted_dryad
 	name = "Corruption of the forest"
 	desc = "Your heart beats unnaturally strong, you feel empowered, but nothing is bound to last..."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
