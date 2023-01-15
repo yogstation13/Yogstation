@@ -45,7 +45,7 @@
 	// Higher power bonus will give more power
 	var/power_bonus = 0
 	// Balance amount of money given to crew
-	var/balancevalue = 0.05
+	var/creditpayout = 0
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
@@ -106,9 +106,9 @@
 				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(D)
 					var/payout = output/8000
-					stored_power -= min(payout*200, stored_power)
-					payout = payout * balancevalue
-					D.adjust_money(payout)
+					stored_power -= min(payout*20000, stored_power)
+					creditpayout= clamp(payout, 0, 1200)
+					D.adjust_money(creditpayout)
 					last_output = payout
 
 /obj/machinery/power/rad_collector/interact(mob/user)
@@ -267,7 +267,7 @@
 		else if(mode == SCIENCE)
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*60] research points per minute.</span>"
 		else if(mode == MONEY)
-			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [last_output*60] credits per minute.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [creditpayout] credits per minute.</span>"
 	else
 		if(mode == POWER)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
