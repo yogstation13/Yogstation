@@ -5,7 +5,7 @@
 
 /// Handle the migrations necessary from pre-tgui prefs to post-tgui prefs, for characters
 /datum/preferences/proc/migrate_character_to_tgui_prefs_menu()
-	migrate_randomization()
+	//migrate_randomization()
 
 // Key bindings used to be "key" -> list("action"),
 // such as "X" -> list("swap_hands").

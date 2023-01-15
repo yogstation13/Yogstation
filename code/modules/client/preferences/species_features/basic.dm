@@ -80,9 +80,9 @@
 	target.hair_color = value
 
 /datum/preference/choiced/hairstyle
-	savefile_key = "hairstyle_name"
-	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
+	savefile_key = "hair_style_name"
+	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_species_trait = HAIR
