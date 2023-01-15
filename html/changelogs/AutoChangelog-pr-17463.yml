@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: "Stops Supermatter Shards being spawned in the bluespace locker.."
