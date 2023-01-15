@@ -46,7 +46,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "hair_style_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	main_feature_name = "hair_style"
+	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_species_trait = HAIR
 
@@ -104,3 +104,29 @@
 
 /datum/preference/color_legacy/facial_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value
+
+
+/datum/preference/choiced/hair_gradient
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "feature_gradientstyle"
+
+/datum/preference/choiced/hair_gradient/init_possible_values()
+	return assoc_to_keys(GLOB.hair_gradients_list)
+
+/datum/preference/choiced/hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
+	target.grad_style = value
+	target.update_hair()
+
+/datum/preference/choiced/hair_gradient/create_default_value()
+	return "None"
+
+
+/datum/preference/color/hair_gradient
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "feature_gradientcolor"
+
+/datum/preference/color/hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
+	target.grad_color = value
+	target.update_hair()
