@@ -1,4 +1,4 @@
-/proc/generate_values_for_underwear(icon_file, list/accessory_list, list/icons, color)
+/proc/generate_values_for_underwear(icon_file, list/accessory_list, list/icons)
 	var/icon/lower_half = icon('icons/blanks/32x32.dmi', "nothing")
 
 	for (var/icon in icons)
@@ -13,8 +13,6 @@
 			var/datum/sprite_accessory/accessory = accessory_list[accessory_name]
 
 			var/icon/accessory_icon = icon(icon_file, accessory.icon_state)
-			if (color/* && !accessory.use_static*/)
-				accessory_icon.Blend(color, ICON_MULTIPLY)
 			icon_with_socks.Blend(accessory_icon, ICON_OVERLAY)
 
 		icon_with_socks.Crop(10, 1, 22, 13)
