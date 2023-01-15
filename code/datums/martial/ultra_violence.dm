@@ -144,7 +144,7 @@
 
 /*---------------------------------------------------------------
 
-	start of pocket pistol section
+	start of pocket pistol section 
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
