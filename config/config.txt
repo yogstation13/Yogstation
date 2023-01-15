@@ -126,7 +126,7 @@ LOG_VIRUS
 LOG_CLONING
 
 ## Enable the demo subsystem
-#DEMOS_ENABLED
+DEMOS_ENABLED
 
 ##Log camera pictures - Must have picture logging enabled
 # PICTURE_LOGGING_CAMERA
@@ -460,4 +460,4 @@ MAX_SHUTTLE_SIZE 300
 ## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
 ## This should be disabled (through `CACHE_ASSETS 0`) on development,
 ## but enabled on production (the default).
-CACHE_ASSETS 0
+CACHE_ASSETS 1
