@@ -41,9 +41,9 @@
 	return random_eye_color()
 
 /datum/preference/choiced/facial_hairstyle
+	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "facial_style_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Facial hair"
 	should_generate_icons = TRUE
 	relevant_species_trait = FACEHAIR
@@ -52,7 +52,7 @@
 	return generate_possible_values_for_sprite_accessories_on_head(GLOB.facial_hair_styles_list)
 
 /datum/preference/choiced/facial_hairstyle/apply_to_human(mob/living/carbon/human/target, value)
-	target.hair_style = value
+	target.facial_hair_style = value
 
 /datum/preference/choiced/facial_hairstyle/compile_constant_data()
 	var/list/data = ..()
@@ -62,18 +62,18 @@
 	return data
 
 /datum/preference/color_legacy/facial_hair_color
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	relevant_species_trait = FACEHAIR
 
 /datum/preference/color_legacy/facial_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value
 
 /datum/preference/color_legacy/hair_color
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	relevant_species_trait = HAIR
 
 /datum/preference/color_legacy/hair_color/apply_to_human(mob/living/carbon/human/target, value)
