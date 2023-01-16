@@ -500,11 +500,9 @@
 		user.visible_message(span_warning("[user] turns around and slams [L] against the ground!"))
 		user.setDir(turn(user.dir, 180))
 		animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
-		if(isanimal(L))
-			L.adjustBruteLoss(20)
-			if(L.stat == DEAD)
-				L.visible_message(span_warning("[L] explodes into gore on impact!"))
-				L.gib()
+		if(isanimal(L) && L.stat == DEAD)
+			L.visible_message(span_warning("[L] explodes into gore on impact!"))
+			L.gib()
 		grab(user, L, supdam)
 		sleep(0.5 SECONDS)
 		if(L.stat == CONSCIOUS && L.resting == FALSE)
@@ -537,11 +535,10 @@
 	name = "supercharged emitter"
 	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
 	icon = 'icons/obj/wizard.dmi'
-	icon_state = "disintegrate"
+	icon_state = "fist"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
-	color = "#0ef2fa"
 	var/flightdist = 8
 	var/punchdam = 30
 	var/colldam = 20
@@ -778,15 +775,18 @@
 //buster Arm
 
 /obj/item/bodypart/l_arm/robot/buster
-	name = "buster left arm"
+	name = "left buster arm"
 	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power. <b>It can be configured by hand to fit on the opposite arm.</b>"
-	icon = 'icons/mob/augmentation/augments_seismic.dmi'
-	icon_state = "seismic_r_arm"
+	icon = 'icons/mob/augmentation/augments_buster.dmi'
+	icon_state = "left_buster_arm"
 	max_damage = 60
+	aux_layer = 12
 	var/obj/item/bodypart/r_arm/robot/buster/opphand
 
 /obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/C, special)
 	. = ..()
+	var/datum/species/S = C.dna?.species
+	S.add_no_equip_slot(C, SLOT_GLOVES)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/wire_snatch)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/buster/grap)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/mop)
@@ -795,6 +795,8 @@
 
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/C = owner
+	var/datum/species/S = C.dna?.species
+	S.add_no_equip_slot(C, SLOT_GLOVES)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/wire_snatch)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/buster/grap)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/mop)
@@ -821,11 +823,12 @@
 	qdel(src)
 
 /obj/item/bodypart/r_arm/robot/buster
-	name = "buster right arm"
+	name = "right buster arm"
 	desc = "A robotic arm designed explicitly for combat and providing the user with extreme power. <b>It can be configured by hand to fit on the opposite arm.</b>"
-	icon = 'icons/mob/augmentation/augments_seismic.dmi'
-	icon_state = "seismic_r_arm"
+	icon = 'icons/mob/augmentation/augments_buster.dmi'
+	icon_state = "right_buster_arm"
 	max_damage = 60
+	aux_layer = 12
 	var/obj/item/bodypart/l_arm/robot/buster/opphand
 
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)
@@ -847,6 +850,8 @@
 
 /obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/C, special)
 	. = ..()
+	var/datum/species/S = C.dna?.species
+	S.add_no_equip_slot(C, SLOT_GLOVES)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/buster/grap/right)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/buster/mop)
@@ -855,6 +860,8 @@
 
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/C = owner
+	var/datum/species/S = C.dna?.species
+	S.add_no_equip_slot(C, SLOT_GLOVES)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/wire_snatch/right)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/buster/grap/right)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/buster/mop)
