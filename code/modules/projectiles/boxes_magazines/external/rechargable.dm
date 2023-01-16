@@ -99,8 +99,8 @@
 	damage_type = BURN
 	color = "#ff0000"
 	speed = 0.55
-	wound_bonus = -28
-	bare_wound_bonus = 36
+	wound_bonus = -15
+	bare_wound_bonus = 5
 	splatter = TRUE
 
 /obj/item/ntusp_conversion_kit
