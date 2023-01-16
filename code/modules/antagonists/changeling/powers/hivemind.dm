@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 		to_chat(user, span_warning("The airwaves already have all of our DNA!"))
 		return
 
-	var/chosen_name = tgui_input(user, "Select a DNA to channel", "Channel DNA", sortList(names))
+	var/chosen_name = tgui_input_list(user, "Select a DNA to channel", "Channel DNA", sortList(names))
 	if(!chosen_name)
 		return
 
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 		to_chat(user, span_warning("There's no new DNA to absorb from the air!"))
 		return
 
-	var/S = tgui_input(user, "Select a DNA absorb from the air", "Absorb DNA", sortList(names))
+	var/S = tgui_input_list(user, "Select a DNA absorb from the air", "Absorb DNA", sortList(names))
 	if(!S)
 		return
 	var/datum/changelingprofile/chosen_prof = names[S]
