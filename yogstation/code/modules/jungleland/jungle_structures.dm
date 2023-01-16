@@ -348,8 +348,8 @@
 
 GLOBAL_LIST_INIT(nests, list())
 /obj/structure/spawner/nest/Initialize()
-	for(var/obj/structure/flora/tree/T in orange(3,src))
-		qdel(T)
+	for(var/obj/structure/flora/F in orange(3,src))
+		qdel(F)
 	GLOB.nests += src
 	mob_types = list(pick(possible_mob_types))
 	return ..()
@@ -362,20 +362,23 @@ GLOBAL_LIST_INIT(nests, list())
 	return ..()
 
 /obj/structure/spawner/nest/proc/spawn_mother_monster()
-	var/type = pick(mob_types)
-	var/mob/living/simple_animal/hostile/yog_jungle/monster = new type(loc)
-	monster.setMaxHealth(monster.maxHealth * 1.5)
-	monster.health = monster.maxHealth * 1.5
-	monster.move_to_delay = max(monster.move_to_delay / 2, 1)
-	if(monster.alpha_damage_boost == 1) //mobs with really high damage amounts may be exempt from giant damage boosts
-		monster.melee_damage_lower *= 1.5 
-		monster.melee_damage_upper *= 1.5
-	monster.faction = list("mining")
-	var/matrix/M = matrix()
-	M.Scale(1.5,1.5)
-	monster.transform = M
-	monster.color = "#c30505"
-
+	var/mob/living/simple_animal/hostile/yog_jungle/type = pick(mob_types)
+	if(initial(type.alpha_type) == 0)
+		var/mob/living/simple_animal/hostile/yog_jungle/monster = new type(loc)
+		monster.setMaxHealth(monster.maxHealth * 1.5)
+		monster.health = monster.maxHealth * 1.5
+		monster.move_to_delay = max(monster.move_to_delay / 2, 1)
+		if(monster.alpha_damage_boost == 1) //mobs with really high damage amounts may be exempt from giant damage boosts
+			monster.melee_damage_lower *= 1.5 
+			monster.melee_damage_upper *= 1.5
+		monster.faction = list("mining")
+		var/matrix/M = matrix()
+		M.Scale(1.5,1.5)
+		monster.transform = M
+		monster.color = "#c30505"
+		return
+	type = initial(type.alpha_type)
+	new type(loc)
 /obj/structure/spawner/nest/jungle
 	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket)
 

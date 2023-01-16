@@ -13,18 +13,18 @@
 	taunt_chance = 1
 	move_to_delay = 7
 	butcher_results = list(/obj/item/stack/sheet/meduracha = 5)
+	faction = list("mining")
 	response_help  = "gently pokes"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 500
-	health = 500
+	maxHealth = 300
+	health = 300
 	spacewalk = TRUE
-
+	crusher_loot = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-
 	ranged = TRUE 
-	ranged_cooldown = 10 SECONDS
+	ranged_cooldown = 5 SECONDS
 	projectiletype = /obj/item/projectile/jungle/meduracha_spit
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)

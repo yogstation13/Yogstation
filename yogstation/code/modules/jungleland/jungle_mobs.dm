@@ -12,12 +12,22 @@
 	pressure_resistance = 100
 	mob_size = MOB_SIZE_LARGE
 	var/alpha_damage_boost = 1 //if a mob has really high damage it may be unfair to boost it further when making an alpha version.
+	var/crusher_loot
+	var/alpha_type = 0
 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
 		ADD_TRAIT(user,TRAIT_ENEMY_OF_THE_FOREST,JUNGLELAND_TRAIT)	
 	return ..()
 
+/mob/living/simple_animal/hostile/yog_jungle/death(gibbed)
+	if(health > 0)
+		return
+	else
+		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		if(C && crusher_loot && C.total_damage >= maxHealth * 0.6 && crusher_loot)
+			loot += crusher_loot
+		..()
 /mob/living/simple_animal/hostile/yog_jungle/dryad
 	name = "Jungle spirit"
 	desc = "A spirit of the jungle, protector of the forest, heals the ones in need, and butchers the ones that plauge the forest."
@@ -110,6 +120,8 @@
 	melee_damage_upper = 15
 
 	rapid_melee = 3
+	
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha
 
 	var/sulking = FALSE 
 

@@ -461,6 +461,24 @@
 	S.turns_per_move *= 4
 	addtimer(CALLBACK(S,/mob/living/simple_animal/proc/return_standard_turns_per_move),5 SECONDS) 
 
+/obj/item/crusher_trophy/jungleland/meduracha_tentacles
+	name = "Alpha Meduracha tentacles"
+	desc = "It stings, it burns, it twists, it turns."
+	icon_state = "meduracha_tentacles"
+	denied_type = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
+
+/obj/item/crusher_trophy/jungleland/meduracha_tentacles/effect_desc()
+	return "Infects the mob with toxins that cause half of backstabs damage after 5 seconds"
+
+/obj/item/crusher_trophy/jungleland/meduracha_tentacles/on_mark_detonation(mob/living/target, mob/living/user)
+	. = ..()
+	addtimer(CALLBACK(src,.proc/delayed_damage,target),5 SECONDS)
+
+/obj/item/crusher_trophy/jungleland/meduracha_tentacles/proc/delayed_damage(mob/living/target)
+	if(!target || QDELETED(target) || target.health <= 0)
+		return
+	var/def_check = target.getarmor(type = TOX)
+	target.apply_damage(40, TOX, blocked = def_check)
 	
 
 	
