@@ -3,7 +3,7 @@
 	desc = "Collosal beast of tentacles, its deep eye look directly at you"
 	icon_state = "alpha_meduracha"
 	icon_living = "alpha_meduracha"
-	icon_dead = "meduracha_dead"
+	icon_dead = "alpha_meduracha_dead"
 	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("hgrah!","blrp!","poasp!","ahkr!")
 	speak_emote = list("bubbles", "vibrates")
@@ -79,3 +79,52 @@
 	var/datum/beam/B = anchors[side]
 	anchors[side] = get_beam()
 	qdel(B)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby
+	name = "Gelatinous Giant"
+	desc = "A gelatinous creature of the swampy regions of the jungle. It's a big blob of goo, and it's not very friendly."
+	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon_state = "big_blob"
+	icon_living = "big_blob"
+	icon_dead = "big_blob_dead"
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	speak = list("brbl","bop","pop","blsp")
+	speak_emote = list("bops", "pops")
+	emote_hear = list("vibrates.","listens.","hears.")
+	emote_taunt = list("pops agressively")
+	speak_chance = 1
+	taunt_chance = 1
+	turns_per_move = 1
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "hits"
+	faction = list("mining")
+	maxHealth = 400
+	health = 400
+	spacewalk = TRUE
+	pixel_x = -16
+	pixel_y = -16
+	move_to_delay = 5
+	loot  = list(/obj/item/stack/sheet/slime = 10)
+	melee_damage_lower = 30
+	melee_damage_upper = 40
+	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
+	var/stage = 1
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if((stage == 1 && health <= 300) || (stage == 2 && health <= 200) || (stage == 3 && health <= 100))
+		increment_stage()
+		return
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby/proc/increment_stage()
+	if(!target)
+		return
+	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
+	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
+	A.PickTarget(list(target))
+	B.PickTarget(list(target))
+	stage++
+	var/matrix/M = new
+	M.Scale(1/stage)
+	transform = M

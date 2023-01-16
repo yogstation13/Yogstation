@@ -300,6 +300,9 @@
 	loot  = list(/obj/item/stack/sheet/slime)
 	melee_damage_lower = 4
 	melee_damage_upper = 6
+	
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_blobby
+
 	var/current_size = 4
 
 
