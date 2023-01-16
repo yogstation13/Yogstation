@@ -48,6 +48,7 @@
 			WARNING(debug)
 			WARNING(category)
 			WARNING("RUNTIME BELOW BROKE ME")
+		WARNING(category[1] && SSjob.name_occupations_all[category[1]])
 		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
 		var/head_name
 
