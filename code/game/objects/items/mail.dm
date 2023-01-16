@@ -23,8 +23,8 @@
 		/obj/item/stack/spacecash/c200 = 6,
 		/obj/item/stack/spacecash/c500 = 2,
 		/obj/item/stack/spacecash/c1000 = 1,
-		/obj/effect/spawner/lootdrop/coin = 10
-		/obj/effect/spawner/lootdrop/donkpockets = 8,
+		/obj/effect/spawner/lootdrop/coin = 10,
+		/obj/effect/spawner/lootdrop/donkpockets = 8
 	)
 	// Overlays (pure fluff)
 	/// Does the letter have the postmark overlay?
