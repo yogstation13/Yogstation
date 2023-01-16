@@ -101,6 +101,7 @@
 	speed = 0.55
 	wound_bonus = -28
 	bare_wound_bonus = 36
+	splatter = TRUE
 
 /obj/item/ntusp_conversion_kit
 	name = "NT-USP magazine conversion kit"
