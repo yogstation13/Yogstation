@@ -3,10 +3,19 @@ SUBSYSTEM_DEF(job)
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
 
-	var/list/occupations = list()		//List of all jobs
-	var/list/datum/job/name_occupations = list()	//Dict of jobs, keys are titles
-	var/list/datum/job/name_occupations_all = list()	//Dict of ALL JOBS, EVEN DISABLED ONES, keys are titles
+	/// List of all jobs.
+	var/list/occupations = list()
+	/// List of jobs that can be joined through the starting menu.
+	var/list/datum/job/joinable_occupations = list()
+	/// Dictionary of all jobs, keys are titles.
+	var/list/name_occupations = list()
+	/// Dictionary of all jobs EVEN DISABLED, keys are types.
+	var/list/name_occupations_all = list()
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
+	/// List of all departments with joinable jobs.
+	var/list/datum/job_department/joinable_departments = list()
+	/// List of all joinable departments indexed by their typepath, sorted by their own display order.
+	var/list/datum/job_department/joinable_departments_by_type = list()
 	var/list/unassigned = list()		//Players who need jobs
 	var/initial_players_to_assign = 0 	//used for checking against population caps
 
@@ -45,6 +54,11 @@ SUBSYSTEM_DEF(job)
 	if(!all_jobs.len)
 		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found"))
 		return 0
+	
+	var/list/new_occupations = list()
+	var/list/new_joinable_occupations = list()
+	var/list/new_joinable_departments = list()
+	var/list/new_joinable_departments_by_type = list()
 
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -60,24 +74,61 @@ SUBSYSTEM_DEF(job)
 		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
-		occupations += job
+
+		// All jobs are late joinable at the moment
+
+		new_occupations += job
+		new_joinable_occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
 
-	return 1
+		if(!LAZYLEN(job.departments_list))
+			var/datum/job_department/department = new_joinable_departments_by_type[/datum/job_department/undefined]
+			if(!department)
+				department = new /datum/job_department/undefined()
+				new_joinable_departments_by_type[/datum/job_department/undefined] = department
+			department.add_job(job)
+			continue
+		for(var/department_type in job.departments_list)
+			var/datum/job_department/department = new_joinable_departments_by_type[department_type]
+			if(!department)
+				department = new department_type()
+				new_joinable_departments_by_type[department_type] = department
+			department.add_job(job)
+
+	sortTim(new_occupations, /proc/cmp_job_display_asc)
+
+	sortTim(new_joinable_departments_by_type, /proc/cmp_department_display_asc, associative = TRUE)
+	for(var/department_type in new_joinable_departments_by_type)
+		var/datum/job_department/department = new_joinable_departments_by_type[department_type]
+		sortTim(department.department_jobs, /proc/cmp_job_display_asc)
+		new_joinable_departments += department
+
+	occupations = new_occupations
+	joinable_occupations = sortTim(new_joinable_occupations, /proc/cmp_job_display_asc)
+	joinable_departments = new_joinable_departments
+	joinable_departments_by_type = new_joinable_departments_by_type
+
+	return TRUE
 
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
 	RETURN_TYPE(/datum/job)
-	if(!occupations.len)
+	if(!length(occupations))
 		SetupOccupations()
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)
 	RETURN_TYPE(/datum/job)
-	if(!occupations.len)
+	if(!length(occupations))
 		SetupOccupations()
 	return type_occupations[jobtype]
+
+/datum/controller/subsystem/job/proc/get_department_type(department_type)
+	RETURN_TYPE(/datum/job_department)
+	if(!length(occupations))
+		SetupOccupations()
+	return joinable_departments_by_type[department_type]
 
 /datum/controller/subsystem/job/proc/GetPlayerAltTitle(mob/dead/new_player/player, rank)
 	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))

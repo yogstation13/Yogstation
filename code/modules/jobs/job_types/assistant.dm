@@ -21,6 +21,8 @@ Assistant
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 	minimal_character_age = 18 //Would make it even younger if I could because this role turns men into little brat boys and likewise for the other genders
 
+	department_for_prefs = /datum/job_department/assistant
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
 		/obj/item/clothing/mask/gas = 10,

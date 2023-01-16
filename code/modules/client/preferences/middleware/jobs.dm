@@ -31,74 +31,28 @@
 	var/list/departments = list()
 	var/list/jobs = list()
 
-	var/static/list/categories = list()
-	categories += list(GLOB.original_engineering_positions)
-	categories += list(GLOB.original_supply_positions - "Head of Personnel")
-	categories += list(GLOB.original_nonhuman_positions - ROLE_PAI)
-	categories += list(GLOB.original_civilian_positions - "Assistant" + "Head of Personnel")
-	categories += list(GLOB.original_science_positions)
-	categories += list(GLOB.original_security_positions)
-	categories += list(GLOB.original_medical_positions)
+	for (var/datum/job/job as anything in SSjob.joinable_occupations)
+		var/datum/job_department/department_type = job.department_for_prefs || job.departments_list?[1]
+		if (isnull(department_type))
+			stack_trace("[job] does not have a department set, yet is a joinable occupation!")
+			continue
 
-	// TODO: Port proper department datums and update this shitfest
-	for(var/list/category in categories)
-		for(var/debug as anything in category)
-			WARNING(debug)
-			WARNING(category)
-			WARNING("RUNTIME BELOW BROKE ME")
-		WARNING(category[1])
-		WARNING(SSjob.name_occupations_all[category[1]])
-		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
-		var/head_name
+		if (isnull(job.description))
+			stack_trace("[job] does not have a description set, yet is a joinable occupation!")
+			continue
 
-		for(var/job_name as anything in category)
-			var/datum/job/job = SSjob.name_occupations[job_name]
-			if (!job)
-				continue
+		var/department_name = initial(department_type.department_name)
+		if (isnull(departments[department_name]))
+			var/datum/job/department_head_type = initial(department_type.department_head)
 
-			if (isnull(job.description))
-				stack_trace("[job] does not have a description set, yet is a joinable occupation!")
-				continue
+			departments[department_name] = list(
+				"head" = department_head_type && initial(department_head_type.title),
+			)
 
-			if (job_name in GLOB.command_positions)
-				head_name = job_name
-
-			if (isnull(jobs[job_name]))
-				jobs[job_name] = list(
-					"description" = job.description,
-					"department" = department_name,
-				)
-
-		departments[department_name] = list(
-			"head" = head_name,
+		jobs[job.title] = list(
+			"description" = job.description,
+			"department" = department_name,
 		)
-
-	// Special department data needed for the UI to work properly
-	departments["Silicon"] = list(
-		"head" = "AI",
-	)
-
-	departments["Supply"] = list(
-		"head" = "Quartermaster",
-	)
-
-	var/datum/job/captain_job = SSjob.name_occupations["Captain"]
-	jobs["Captain"] = list(
-		"description" = captain_job.description,
-		"department" = "Captain",
-	)
-	departments["Captain"] = list(
-		"head" = "Captain",
-	)
-
-	var/datum/job/assistant_job = SSjob.name_occupations["Assistant"]
-	jobs["Assistant"] = list(
-		"description" = assistant_job.description,
-		"department" = "Assistant",
-	)
-	departments["Assistant"] = list(
-		"head" = null,
-	)
 
 	data["departments"] = departments
 	data["jobs"] = jobs

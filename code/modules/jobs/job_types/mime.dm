@@ -23,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_MIME
 	minimal_character_age = 18 //Mime?? Might increase this a LOT depending on how mime lore turns out
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
 		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,

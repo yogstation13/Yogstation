@@ -34,6 +34,11 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 	minimal_character_age = 28 //You need some experience on your belt and a little gruffiness; you're still a foot soldier, not quite a tactician commander back at base
 
+	departments_list = list(
+		/datum/job_department/security,
+		/datum/job_department/command,
+	)
+
 	changed_maps = list("YogsPubby")
 
 	smells_like = "deadly authority"

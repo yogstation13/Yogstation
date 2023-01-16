@@ -25,6 +25,10 @@
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 	minimal_character_age = 26 //Barely acceptable considering the theoretically absurd knowledge they have, but fine
 
+	departments_list = list(
+		/datum/job_department/medical,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	mail_goodies = list(

@@ -18,6 +18,10 @@
 	display_order = JOB_DISPLAY_ORDER_TOURIST
 	minimal_character_age = 18 //Gotta go explore the galaxy and see the stuff
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	smells_like = "sunscreen"
 
 /datum/outfit/job/tourist

@@ -29,6 +29,10 @@
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
+	departments_list = list(
+		/datum/job_department/security,
+	)
+
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
 	mail_goodies = list(

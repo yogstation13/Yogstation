@@ -17,6 +17,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
+	departments_list = list(
+		/datum/job_department/silicon,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	smells_like = "inorganic indifference"

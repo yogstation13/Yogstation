@@ -24,6 +24,10 @@
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	minimal_character_age = 18 //My guy you are literally just a priest
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/drinks/bottle/holywater = 30,
 		/obj/item/toy/plush/awakenedplushie = 10,

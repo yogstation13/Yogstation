@@ -22,6 +22,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	minimal_character_age = 18 //Honk
+	
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana = 100,

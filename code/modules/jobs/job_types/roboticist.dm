@@ -24,6 +24,10 @@
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
+	departments_list = list(
+		/datum/job_department/science,
+	)
+
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(
