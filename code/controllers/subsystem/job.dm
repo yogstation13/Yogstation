@@ -449,7 +449,7 @@ SUBSYSTEM_DEF(job)
 			if(QDELETED(player) || !allowed_to_be_a_loser)
 				RejectPlayer(player)
 			else
-				if(!AssignRole(player, overflow_role_datum))
+				if(!AssignRole(player, SSjob.overflow_role))
 					RejectPlayer(player)
 		if (BERANDOMJOB)
 			if(!GiveRandomJob(player))
