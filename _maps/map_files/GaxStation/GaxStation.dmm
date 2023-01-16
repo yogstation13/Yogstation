@@ -11726,21 +11726,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"fGb" = (
-/obj/structure/table,
-/obj/item/storage/box/teargas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/gun/syringe,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "fGf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -23046,6 +23031,19 @@
 "lzV" = (
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"lAk" = (
+/obj/structure/table,
+/obj/item/storage/box/teargas{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "lAn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -70345,7 +70343,7 @@ aCD
 ubS
 tkl
 dll
-fGb
+lAk
 omn
 jTz
 cLa
