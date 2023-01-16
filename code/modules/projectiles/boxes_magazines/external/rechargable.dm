@@ -99,6 +99,8 @@
 	damage_type = BURN
 	color = "#ff0000"
 	speed = 0.55
+	wound_bonus = -28
+	bare_wound_bonus = 36
 
 /obj/item/ntusp_conversion_kit
 	name = "NT-USP magazine conversion kit"
