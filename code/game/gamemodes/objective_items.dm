@@ -57,7 +57,7 @@
 	excludefromjob = list("Chief Engineer")
 
 /datum/objective_item/steal/capmedal
-	name = "the Medal of Captaincy."
+	name = "the medal of captaincy."
 	targetitem = /obj/item/clothing/accessory/medal/gold/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
@@ -84,7 +84,7 @@
 	excludefromjob = list("Head of Security", "Warden")
 
 /datum/objective_item/steal/reactive
-	name = "the Research Director's Reactive Teleport Armor."
+	name = "the Research Director's reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
 	difficulty = 5
 	excludefromjob = list("Research Director")
@@ -158,7 +158,7 @@
 	return 0
 
 /datum/objective_item/steal/blueprints
-	name = "the station blueprints."
+	name = "the Chief Engineer's station blueprints."
 	targetitem = /obj/item/areaeditor/blueprints
 	difficulty = 10
 	excludefromjob = list("Chief Engineer")
@@ -229,7 +229,7 @@
 	difficulty = 10
 
 /datum/objective_item/special/boh
-	name = "the Research Director's Bag of Holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Quiz 1/23
+	name = "the Research Director's bag of holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Quiz Jan '23
 	targetitem = /obj/item/storage/backpack/holding
 	difficulty = 10
 
