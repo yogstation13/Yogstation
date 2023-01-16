@@ -1,4 +1,5 @@
 import { CheckboxInput, Feature, FeatureChoicedServerData, FeatureToggle, FeatureDropdownInput, FeatureValueProps } from "../base";
+import { BooleanLike} from "common/react";
 import { useBackend } from "../../../../../backend";
 import { PreferencesMenuData } from "../../../data";
 
@@ -39,7 +40,7 @@ export const borg_hat: FeatureToggle = {
   category: "DONATOR",
   description: "When enabled, you will equip your selected donor hat when playing cyborg.",
   component: (
-    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+    props: FeatureValueProps<BooleanLike, boolean>,
     context,
   ) => {
     const { data } = useBackend<PreferencesMenuData>(context);
@@ -72,7 +73,7 @@ export const purrbation: FeatureToggle = {
   category: "DONATOR",
   description: "When enabled and you are human, you will turn you into a felinid.",
   component: (
-    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+    props: FeatureValueProps<BooleanLike, boolean>,
     context,
   ) => {
     const { data } = useBackend<PreferencesMenuData>(context);

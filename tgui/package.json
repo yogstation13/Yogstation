@@ -2,15 +2,16 @@
   "private": true,
   "name": "tgui-workspace",
   "version": "4.3.0",
-  "packageManager": "yarn@3.1.1",
+  "packageManager": "yarn@3.0.1",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "tgui:build": "webpack",
     "tgui:analyze": "webpack --analyze",
+    "tgui:build": "BROWSERSLIST_IGNORE_OLD_DATA=true webpack",
     "tgui:dev": "node --experimental-modules packages/tgui-dev-server/index.js",
     "tgui:lint": "eslint packages --ext .js,.cjs,.ts,.tsx",
+    "tgui:prettier": "",
     "tgui:sonar": "eslint packages --ext .js,.cjs,.ts,.tsx -c .eslintrc-sonar.yml",
     "tgui:tsc": "tsc",
     "tgui:test": "jest --watch",
@@ -40,7 +41,6 @@
     "eslint": "^7.32.0",
     "eslint-plugin-radar": "^0.2.1",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-unused-imports": "^1.1.4",
     "file-loader": "^6.2.0",
     "inferno": "^7.4.8",
     "jest": "^27.0.6",
