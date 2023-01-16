@@ -29,10 +29,17 @@
 			M.gib()
 		else
 			visible_message(span_danger("[M] bursts out of [src]!"))
-	for(var/item/O in src.GetAllContents())
-		if(isbrain(O) || istype(O, /obj/item/bodypart/head))
-			O.forceMove(Tsec)
-			O.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+	for(var/X in src.GetAllContents())
+		if(istype(X, /obj/item/organ/brain))
+			var/obj/item/organ/brain/B = X
+			if(B)
+				B.forceMove(Tsec)
+				B.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+		else if(istype(X, /obj/item/bodypart/head))
+			var/obj/item/bodypart/head/H = X
+			if(H)
+				H.forceMove(Tsec)
+				H.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 	..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)
