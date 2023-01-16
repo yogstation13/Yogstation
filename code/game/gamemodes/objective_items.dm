@@ -229,7 +229,7 @@
 	difficulty = 10
 
 /datum/objective_item/special/boh
-	name = "the Research Director's bag of holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Quiz Jan '23
+	name = "the Research Director's bag of holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Aquizit Jan '23
 	targetitem = /obj/item/storage/backpack/holding
 	difficulty = 10
 
