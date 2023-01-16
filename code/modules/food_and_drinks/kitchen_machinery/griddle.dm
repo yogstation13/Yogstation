@@ -71,14 +71,14 @@
 	griddled_objects += item_to_grill
 	//item_to_grill.flags_1 |= IS_ONTOP_1
 	RegisterSignal(item_to_grill, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
-	RegisterSignal(item_to_grill, COMSIG_ITEM_GRILLED, .proc/GrillCompleted)
+	RegisterSignal(item_to_grill, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 	update_grill_audio()
 
 /obj/machinery/griddle/proc/ItemMoved(obj/item/I, atom/OldLoc, Dir, Forced)
 	//I.flags_1 &= ~IS_ONTOP_1
 	griddled_objects -= I
 	vis_contents -= I
-	UnregisterSignal(I, COMSIG_ITEM_GRILLED)
+	UnregisterSignal(I, COMSIG_GRILL_COMPLETED)
 	update_grill_audio()
 
 /obj/machinery/griddle/proc/GrillCompleted(obj/item/source, atom/grilled_result)

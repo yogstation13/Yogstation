@@ -1,3 +1,4 @@
+import { map } from 'common/collections';
 import { useBackend } from '../backend';
 import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -33,7 +34,7 @@ export const PandemicBeakerDisplay = (props, context) => {
             disabled={!has_beaker}
             onClick={() => act('eject_beaker')} />
         </>
-      )} >
+      )}>
       {has_beaker ? (
         !beaker_empty ? (
           has_blood ? (
@@ -270,8 +271,7 @@ export const Pandemic = (props, context) => {
   return (
     <Window
       width={520}
-      height={550}
-      resizable>
+      height={550}>
       <Window.Content scrollable>
         <PandemicBeakerDisplay />
         {!!data.has_blood && (

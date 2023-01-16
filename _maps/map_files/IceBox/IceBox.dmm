@@ -41979,12 +41979,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"bGR" = (
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bGS" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -43639,17 +43633,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
-"bKV" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bKW" = (
@@ -58674,6 +58657,15 @@
 /obj/machinery/atmospherics/components/unary/tank/toxins,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"jkX" = (
+/obj/structure/rack,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/circuitboard/machine/techfab/department/security,
+/obj/item/card/id/departmental_budget/sec,
+/obj/item/reagent_containers/syringe/lethal/execution,
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jmn" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -58880,14 +58872,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
-"jQA" = (
-/obj/structure/rack,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/circuitboard/machine/techfab/department/security,
-/obj/item/card/id/departmental_budget/sec,
-/obj/item/reagent_containers/syringe/lethal/execution,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "jQW" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -59510,6 +59494,12 @@
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office)
+"lxw" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "lxT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -63345,6 +63335,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vTm" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "vUa" = (
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
@@ -94586,7 +94581,7 @@ abY
 aag
 aag
 aaZ
-jQA
+jkX
 adl
 awX
 adl
@@ -100341,7 +100336,7 @@ bHh
 aTg
 aVW
 bdw
-bKV
+lxw
 bLB
 bLL
 aSJ
@@ -102375,7 +102370,7 @@ bvj
 nOK
 bqW
 bCT
-bGR
+vTm
 bIj
 ihS
 btU

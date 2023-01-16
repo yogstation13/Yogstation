@@ -65,6 +65,10 @@ $separator-color: colors.$primary !default;
   flex-grow: 1;
 }
 
+.Section__content {
+  height: 100%;
+}
+
 .Section--fill > .Section__rest > .Section__content {
   height: 100%;
 }

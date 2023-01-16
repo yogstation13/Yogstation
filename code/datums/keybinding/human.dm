@@ -40,3 +40,15 @@
 	var/mob/living/carbon/human/H = user.mob
 	H.smart_equipbag()
 	return TRUE
+
+/datum/keybinding/human/suit_equip
+	hotkey_keys = list("ShiftQ")
+	name = "suit_equip"
+	full_name = "Suit equip"
+	description = "Put held thing in suit storage or take thing from suit storage"
+
+/datum/keybinding/human/suit_equip/down(client/user)
+	var/mob/living/carbon/human/H = user.mob
+	H.smart_equipsuit()
+	return TRUE
+

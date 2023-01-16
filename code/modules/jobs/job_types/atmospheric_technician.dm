@@ -1,6 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
+	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
 	flag = ATMOSTECH
+	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"

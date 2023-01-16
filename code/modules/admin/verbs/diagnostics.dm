@@ -1,25 +1,10 @@
-/proc/show_air_status_to(turf/target, mob/user)
-	var/datum/gas_mixture/env = target.return_air()
-	var/burning = FALSE
-	if(isopenturf(target))
-		var/turf/open/T = target
-		if(T.active_hotspot)
-			burning = TRUE
-
-	var/list/lines = list(span_adminnotice("[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]"))
-	for(var/id in env.get_gases())
-		var/moles = env.get_moles(id)
-		if (abs(moles) >= 0.00001)
-			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
-	to_chat(usr, lines.Join("\n"))
-
 /client/proc/air_status(turf/target)
 	set category = "Misc.Server Debug"
 	set name = "Display Air Status"
 
 	if(!isturf(target))
 		return
-	show_air_status_to(target, usr)
+	atmosanalyzer_scan(usr, target, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Air Status") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/fix_next_move()

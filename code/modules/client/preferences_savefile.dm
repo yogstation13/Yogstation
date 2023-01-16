@@ -268,7 +268,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
 	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
 	READ_FILE(S["key_bindings"], key_bindings)
-	check_keybindings()
+	
 	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
@@ -282,6 +282,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
+	check_keybindings()
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)

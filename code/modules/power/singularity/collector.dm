@@ -29,7 +29,7 @@
 	// Are the controls and tanks locked
 	var/locked = FALSE
 	/// use modifier for gas use
-	var/drainratio = 1
+	var/drainratio = 0.5
 	/// How much gas to drain
 	var/drain = 0.01
 	/// What is it producing
@@ -44,13 +44,14 @@
 	var/machine_tier = 0
 	// Higher power bonus will give more power
 	var/power_bonus = 0
+	// Balance amount of money given to crew
+	var/balancevalue = 0.05
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
-
 	radio = new(src)
 	radio.keyslot = new /obj/item/encryptionkey/headset_eng
 	radio.subspace_transmission = TRUE
@@ -64,10 +65,10 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/process(delta_time)
 	if(!loaded_tank || !active)
 		return
-	var/gasdrained = drain*drainratio
+	var/gasdrained = drain*drainratio*delta_time
 	for(var/gasID in using) // Preliminary check before doing it again
 		if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
@@ -105,7 +106,8 @@
 				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(D)
 					var/payout = output/8000
-					stored_power -= min(payout*20000, stored_power)
+					stored_power -= min(payout*200, stored_power)
+					payout = payout * balancevalue
 					D.adjust_money(payout)
 					last_output = payout
 
@@ -251,9 +253,11 @@
 
 	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 
-/obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
+/obj/machinery/power/rad_collector/return_analyzable_air()
 	if(loaded_tank)
-		loaded_tank.analyzer_act(user, I)
+		return loaded_tank.return_analyzable_air()
+	else
+		return null
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()

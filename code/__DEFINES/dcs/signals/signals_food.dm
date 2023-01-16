@@ -31,20 +31,16 @@
 #define COMSIG_ITEM_MICROWAVE_COOKED "microwave_cooked"
 
 // Grilling foods (griddle, grill, and bonfire)
-///Called when an object is placed onto a griddle
-#define COMSIG_ITEM_GRILL_PLACED_ON "item_placed_on_griddle"
 ///Called when an object is grilled ontop of a griddle
-#define COMSIG_ITEM_GRILL_PROCESS "item_griddled"
+#define COMSIG_ITEM_GRILLED "item_griddled"
 	/// Return to not burn the item
 	#define COMPONENT_HANDLED_GRILLING (1<<0)
 ///Called when an object is turned into another item through grilling ontop of a griddle
-#define COMSIG_ITEM_GRILLED "item_grill_completed"
+#define COMSIG_GRILL_COMPLETED "item_grill_completed"
 
 // Baking foods (oven)
-//Called when an object is inserted into an oven (atom/oven, mob/baker)
-#define COMSIG_ITEM_OVEN_PLACED_IN "item_placed_in_oven"
 //Called when an object is in an oven
-#define COMSIG_ITEM_OVEN_PROCESS "item_baked"
+#define COMSIG_ITEM_BAKED "item_baked"
 	/// Return to not burn the item
 	#define COMPONENT_HANDLED_BAKING (1<<0)
 	/// Return if the result of the baking was a good thing
@@ -52,7 +48,7 @@
 	/// Return if the result of the baking was a bad thing / failuire
 	#define COMPONENT_BAKING_BAD_RESULT (1<<2)
 ///Called when an object is turned into another item through baking in an oven
-#define COMSIG_ITEM_BAKED "item_bake_completed"
+#define COMSIG_BAKE_COMPLETED "item_bake_completed"
 
 //Drink
 

@@ -83,7 +83,7 @@
 		return TRUE
 	var/cd = cooldown
 	if (is_keybind)
-		cd = 1 SECONDS // cooldown when used as a keybind
+		cd = 2 SECONDS // cooldown when used as a keybind
 	if(user.emotes_used && user.emotes_used[src] + cd > world.time)
 		return FALSE
 	if(!update)

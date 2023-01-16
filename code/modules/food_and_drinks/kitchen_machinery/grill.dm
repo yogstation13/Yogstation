@@ -56,7 +56,7 @@
 				return
 			else if(!grilled_item && user.transferItemToLoc(food_item, src))
 				grilled_item = food_item
-				RegisterSignal(grilled_item, COMSIG_ITEM_GRILLED, .proc/GrillCompleted)
+				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 				grilled_item.foodtype |= GRILLED
 				to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 				update_icon()
@@ -71,7 +71,7 @@
 				return
 	..()
 
-/obj/machinery/grill/process()
+/obj/machinery/grill/process(delta_time)
 	..()
 	update_icon()
 	if(grill_fuel <= 0)
@@ -79,15 +79,15 @@
 	else
 		if(!grilled_item)
 			grill_fuel -= GRILL_FUELUSAGE_IDLE
-		if(prob(0.5))
+		if(DT_PROB(0.5, delta_time))
 			var/datum/effect_system/smoke_spread/bad/smoke = new
 			smoke.set_up(1, loc)
 			smoke.start()
 	if(grilled_item)
 		SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, 1)
-		grill_time++
-		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.2)
-		grill_fuel -= GRILL_FUELUSAGE_ACTIVE
+		grill_time += delta_time
+		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.1 * delta_time)
+		grill_fuel -= GRILL_FUELUSAGE_ACTIVE * delta_time
 		grilled_item.AddComponent(/datum/component/sizzle)
 
 /obj/machinery/grill/Exited(atom/movable/AM)
@@ -130,7 +130,7 @@
 
 /obj/machinery/grill/proc/finish_grill()
 	switch(grill_time)
-		if(0 to 30)
+		if(20 to 30) //no 0-20 to prevent spam
 			grilled_item.name = "lightly-grilled [grilled_item.name]"
 			grilled_item.desc = "[grilled_item.desc] It's been lightly grilled."
 		if(30 to 80)
@@ -146,7 +146,7 @@
 			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
 			grilled_item.foodtype |= GRILLED
 	grill_time = 0
-	UnregisterSignal(grilled_item, COMSIG_ITEM_GRILLED, .proc/GrillCompleted)
+	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 	grill_loop.stop()
 
 ///Called when a food is transformed by the grillable component

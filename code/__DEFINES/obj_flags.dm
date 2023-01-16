@@ -20,8 +20,8 @@
 #define FORCE_STRING_OVERRIDE	(1<<2) // used for tooltips
 #define NEEDS_PERMIT			(1<<3) //Used by security bots to determine if this item is safe for public use.
 #define SLOWS_WHILE_IN_HAND		(1<<4)
-#define NO_MAT_REDEMPTION			(1<<5) // Stops you from putting things like an RCD or other items into an ORM or protolathe for materials.
-#define DROPDEL						(1<<6) // When dropped, it calls qdel on itself
+#define NO_MAT_REDEMPTION		(1<<5) // Stops you from putting things like an RCD or other items into an ORM or protolathe for materials.
+#define DROPDEL					(1<<6) // When dropped, it calls qdel on itself
 #define NOBLUDGEON				(1<<7)		// when an item has this it produces no "X has been hit by Y with Z" message in the default attackby()
 #define ABSTRACT				(1<<9) 	// for all things that are technically items but used for various different stuff
 #define IMMUTABLE_SLOW			(1<<10) // When players should not be able to change the slowdown of the item (Speed potions, etc)
@@ -29,7 +29,8 @@
 #define SURGICAL_TOOL			(1<<12)	//Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)
 #define UNCATCHABLE				(1<<13) // Makes any item uncatchable if it is thrown at them
 #define MEDRESIST				(1<<14) // This item will block medical sprays when worn
-#define HAND_ITEM (1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
+#define HAND_ITEM 				(1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
+#define AUTOLATHED				(1<<16) // Autolathed item innit
 
 // Flags for the clothing_flags var on /obj/item/clothing
 

@@ -1,4 +1,4 @@
-## FEATURE FREEZE UNTIL 9th Janurary 2023
+## FEATURE FREEZE UNTIL 16th Janurary 2023
 
 ## Yogstation codebase
 

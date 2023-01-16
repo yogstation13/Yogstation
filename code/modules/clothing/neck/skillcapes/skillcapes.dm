@@ -74,7 +74,7 @@
 	item_state = "cap-trimmed"
 
 /obj/item/clothing/neck/skillcape/hop
-	name = "cape of the head of personel"
+	name = "cape of the head of personnel"
 	desc = "A slick, blue cape. The owner must have granted passage to many."
 	icon_state = "hop-skillcape"
 	item_state = "hop-skillcape"
