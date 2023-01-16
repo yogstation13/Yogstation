@@ -18929,7 +18929,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19943,7 +19943,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20580,7 +20580,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -22794,7 +22794,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -25862,6 +25862,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"eiz" = (
+/obj/machinery/power/apc/auto_name/south,
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -26444,7 +26448,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -46001,7 +46005,7 @@ aVa
 aVa
 aOw
 aVa
-aVa
+eiz
 aGa
 aOQ
 aOQ
