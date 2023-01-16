@@ -26,7 +26,7 @@
 	var/list/bars = user.progressbars[bar.loc]
 	bars.Add(src)
 	listindex = bars.len
-	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	bar.pixel_z = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
 
 /datum/progressbar/proc/update(progress)
 	if (!user || !user.client)
@@ -46,7 +46,7 @@
 
 /datum/progressbar/proc/shiftDown()
 	--listindex
-	bar.pixel_y -= PROGRESSBAR_HEIGHT
+	bar.pixel_z -= PROGRESSBAR_HEIGHT
 
 /datum/progressbar/Destroy()
 	for(var/I in user.progressbars[bar.loc])

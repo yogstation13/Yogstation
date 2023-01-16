@@ -50,7 +50,7 @@ Difficulty: Hard
 	rapid_melee = 8 // every 1/4 second
 	melee_queue_distance = 20 // as far as possible really, need this because of blood warp
 	ranged = TRUE
-	pixel_x = -32
+	pixel_w = -32
 	del_on_death = TRUE
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/bubblegum/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/bubblegum)

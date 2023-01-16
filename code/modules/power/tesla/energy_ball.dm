@@ -3,8 +3,8 @@
 	desc = "An energy ball."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_w = -32
+	pixel_z = -32
 	current_size = STAGE_TWO
 	move_self = 1
 	grav_pull = 0

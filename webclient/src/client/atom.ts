@@ -127,7 +127,9 @@ export class Atom implements AtomDependent {
 				}
 			}
 			let appearance = appearance_obj.appearance;
+			if(appearance && (this.pixel_w || this.pixel_x || this.pixel_y || this.pixel_z)) appearance = appearance.copy(appearance_obj);
 			if(appearance_obj.animation && appearance) appearance = appearance_obj.animation.apply(appearance, this.client.time);
+			
 
 			let list = this.render_plan;
 			if(appearance && appearance.invisibility <= this.client.eye_see_invisible) {
@@ -232,17 +234,18 @@ const E3D_TYPE_GAS_OVERLAY = "\x0A\x0D";
 
 let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], appearance:Appearance, x:number, y:number) => void>(Object.entries({
 	[E3D_TYPE_BILLBOARD](list, appearance, x, y) : void {
-		x += this.pixel_x/32;
-		y += this.pixel_y/32;
+		x += appearance.pixel_x/32;
+		y += appearance.pixel_y/32;
 		let focus : vec3 = [x+0.5, y+0.5, 0.5];
 		let plan;
-		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5).set_alpha_sort(focus));
+		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5).set_offsets(appearance.pixel_w/32, appearance.pixel_z/32).set_alpha_sort(focus));
 		if(appearance.plane >= 13) plan.bits |= 1;
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == 12) continue;
 			let bias = -0.05;
 			if(overlay.layer < 0) bias = -(51 + overlay.layer) / 1000;
-			list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(appearance), x+0.5, y+0.5).set_alpha_sort(focus, bias));
+			overlay = overlay.copy_inherit(appearance, undefined, true);
+			list.push(plan = new BillboardRenderPlan(this.full_id, overlay, x+0.5, y+0.5).set_offsets(overlay.pixel_w/32, overlay.pixel_z/32).set_alpha_sort(focus, bias));
 			if(appearance.plane >= 13) plan.bits |= 1;
 		}
 		if(this.vis_contents) {
@@ -258,7 +261,8 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 				if(thing_appearance.plane == 12) continue;
 				let plan;
 				let bias = -0.051;
-				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance.copy_inherit(appearance), x+0.5, y+0.5).set_alpha_sort(focus, bias));
+				thing_appearance = thing_appearance.copy_inherit(appearance, thing, true);
+				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5).set_alpha_sort(focus, bias).set_offsets(thing_appearance.pixel_w/32, thing_appearance.pixel_z/32));
 				if(thing_appearance.plane == 13 || thing_appearance.plane == 14) {
 					plan.icon |= (1 << 24);
 					plan.bits |= 1;
@@ -268,8 +272,8 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		}
 	},
 	[E3D_TYPE_FLOOR](list, appearance, x, y) : void {
-		x += (this.pixel_x+appearance.pixel_x)/32;
-		y += (this.pixel_y+appearance.pixel_y)/32;
+		x += (appearance.pixel_x)/32;
+		y += (appearance.pixel_y)/32;
 		let z = this.type == 1 ? 0 : (0.01 + (appearance.layer - 2.19) * 0.1);
 		let odz = this.type == 1 ? 0 : 0.001;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
@@ -305,10 +309,12 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		}
 	},
 	[E3D_TYPE_WALLMOUNT](list, appearance, x, y) : void {
-		list.push(new WallmountRenderPlan(this.full_id, appearance, x, y, this.pixel_x, this.pixel_y, 0.01, false));
+		let pixel_x = appearance.pixel_x;
+		let pixel_y = appearance.pixel_y;
+		list.push(new WallmountRenderPlan(this.full_id, appearance, x, y, pixel_x, pixel_y, 0.01, false));
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == 12) continue;
-			list.push(new WallmountRenderPlan(this.full_id, overlay, x, y, this.pixel_x, this.pixel_y, 0.011, false));
+			list.push(new WallmountRenderPlan(this.full_id, overlay, x, y, pixel_x, pixel_y, 0.011, false));
 		}
 		if(this.vis_contents) {
 			for(let thing_id of this.vis_contents) {
@@ -322,7 +328,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 				}
 				if(thing_appearance.plane == 12) continue;
 				let plan;
-				list.push(plan = new WallmountRenderPlan(this.full_id, thing_appearance, x, y, this.pixel_x, this.pixel_y, 0.011, false));
+				list.push(plan = new WallmountRenderPlan(this.full_id, thing_appearance, x, y, pixel_x, pixel_y, 0.011, false));
 				if(thing_appearance.plane == 13 || thing_appearance.plane == 14 || thing_appearance.plane > 15) {
 					plan.icon |= (1 << 24);
 					plan.bits |= 1;
@@ -331,7 +337,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		}
 	},
 	[E3D_TYPE_WALLMOUNT_SIGN](list, appearance, x, y) : void {
-		list.push(new WallmountRenderPlan(this.full_id, appearance, x, y, this.pixel_x, this.pixel_y, 0.005, true));
+		list.push(new WallmountRenderPlan(this.full_id, appearance, x, y, appearance.pixel_x, appearance.pixel_y, 0.005, true));
 	},
 	[E3D_TYPE_SMOOTHWALL](list, appearance, x, y) : void {
 		let extra_overlays : Appearance[] = [];
@@ -380,8 +386,8 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 				item.add_dependent(this);
 			}
 		}
-		x += this.pixel_x/32;
-		y += this.pixel_y/32;
+		x += appearance.pixel_x/32;
+		y += appearance.pixel_y/32;
 		let z = 1.5/32 + stack_height/500;
 		if(on_table) z += 6.6/32;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
@@ -396,10 +402,10 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		let icon = this.client.icons.get(appearance.icon);
 		let is_wide = (icon ? icon.width > 32 : false);
 		let plan;
-		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
+		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide, true));
 		if(appearance.overlays) for(let overlay of appearance.overlays) {
 			if(overlay.plane == -32767 || overlay.plane == appearance.plane) {
-				let overlay_plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide);
+				let overlay_plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide, true);
 				overlay_plan.icon |= 1<<24;
 				overlay_plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 				list.push(overlay_plan);
@@ -417,7 +423,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					this.render_plan = null;
 				}
 				let plan;
-				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
+				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide, true));
 				plan.offset_x += thing_appearance.pixel_x+thing_appearance.pixel_w;
 				plan.offset_y += thing_appearance.pixel_y+thing_appearance.pixel_z;
 				if(thing_appearance.layer != -2) {
@@ -425,7 +431,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 				}
 				if(thing_appearance.overlays) for(let overlay of thing_appearance.overlays) {
-					list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(thing_appearance), x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide));
+					list.push(plan = new BillboardRenderPlan(this.full_id, overlay.copy_inherit(thing_appearance), x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide, true));
 					plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
 					plan.offset_x += thing_appearance.pixel_x+thing_appearance.pixel_w;
 					plan.offset_y += thing_appearance.pixel_y+thing_appearance.pixel_z;

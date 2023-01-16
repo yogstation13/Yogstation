@@ -724,6 +724,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	density = FALSE
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = E3D_TYPE_FLOOR
 	pixel_x = -32
 	pixel_y = -32
 	alpha = 100

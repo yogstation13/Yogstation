@@ -812,11 +812,11 @@
 	if(throwing)
 		return
 	if(on && !(movement_type & FLOATING))
-		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
-		animate(pixel_y = pixel_y - 2, time = 1 SECONDS)
+		animate(src, pixel_z = pixel_z + 2, time = 1 SECONDS, loop = -1)
+		animate(pixel_z = pixel_z - 2, time = 1 SECONDS)
 		setMovetype(movement_type | FLOATING)
 	else if (!on && (movement_type & FLOATING))
-		animate(src, pixel_y = initial(pixel_y), time = 1 SECONDS)
+		animate(src, pixel_z = initial(pixel_z), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 /* 	Language procs

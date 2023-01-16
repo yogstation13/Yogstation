@@ -208,7 +208,7 @@ export class BoxRenderPlan extends BatchRenderPlan {
 }
 
 export class BillboardRenderPlan extends BatchRenderPlan {
-	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, public fixed_normal? : vec3, public double_sided = false) {
+	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, public fixed_normal? : vec3, public double_sided = false, public clipped = false) {
 		super();
 		this.atom_id = atom_id
 		this.icon = appearance.icon;
@@ -216,6 +216,10 @@ export class BillboardRenderPlan extends BatchRenderPlan {
 	}
 	offset_x : number = 0;
 	offset_y : number = 0;
+	set_offsets(x : number, y : number) {
+		this.offset_x = x; this.offset_y = y;
+		return this;
+	}
 	icon_state_instance? : IconState|null;
 	write(attribs : Float32Array, iattribs : Uint32Array, offset : number, icon_info : Icon, time : number, camera_pos : vec3, camera_yaw : number) {
 		if(this.icon_state_instance === undefined) {
@@ -258,7 +262,28 @@ export class BillboardRenderPlan extends BatchRenderPlan {
 		let right : vec3 = [-normal[1]*icon_info.width/32, normal[0]*icon_info.width/32, 0];
 		let up : vec3 = [0, 0, icon_info.height/32];
 		let pos : vec3 = [x+normal[1]*0.5, y-normal[0]*0.5, 0];
-		let uv_box = BatchRenderPlan.make_uv_box([icon_info.width, icon_info.height], this.offset_x, this.offset_y, undefined, this.appearance.transform);
+		let uv_box : vec4|mat3|undefined = undefined;
+		if(this.clipped) {
+			uv_box = BatchRenderPlan.make_uv_box([icon_info.width, icon_info.height], this.offset_x, this.offset_y, undefined, this.appearance.transform);
+		} else {
+			let px = this.offset_x;
+			let py = this.offset_y;
+			if(this.appearance.transform) {
+				let t = this.appearance.transform;
+				let lx = -icon_info.width/64;
+				let ly = -icon_info.height/64;
+				px += (lx * t[0] + ly * t[1] + t[2]/32) - lx;
+				py += (lx * t[3] + ly * t[4] + t[5]/32) - ly;
+				pos[0] -= normal[1]*px;
+				pos[1] += normal[0]*px;
+				pos[2] += py;
+				let r = vec3.scale(vec3.create(), right, t[0]);
+				vec3.scaleAndAdd(r, r, up, t[3]);
+				let u = vec3.scale(vec3.create(), right, t[1	]);
+				vec3.scaleAndAdd(u, u, up, t[4]);
+				right = r; up = u;
+			}
+		}
 		offset = this.write_plane(attribs, iattribs, offset, frame, pos, right, up, normal, vec4_color(color_vec, this.appearance.color_alpha), uv_box);
 		if(this.double_sided) {
 			offset = this.write_plane(attribs, iattribs, offset, frame, pos, right, up, [-normal[0],-normal[1],-normal[2]], vec4_color(color_vec, this.appearance.color_alpha), uv_box, true);

@@ -610,6 +610,7 @@ Difficulty: Hard
 /obj/effect/temp_visual/hierophant/telegraph
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "hierophant_telegraph"
+	screen_loc = E3D_TYPE_FLOOR
 	pixel_x = -32
 	pixel_y = -32
 	duration = 3

@@ -73,7 +73,7 @@
 	desc = "A towering basalt sculpture of a proud and regal drake. Its eyes are six glowing gemstones."
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
-	pixel_x = -16
+	pixel_w = -16
 	density = TRUE
 	deconstructible = FALSE
 	layer = EDGED_TURF_LAYER

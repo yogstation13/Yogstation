@@ -41,7 +41,7 @@ Difficulty: Very Hard
 	speed = 10
 	move_to_delay = 10
 	ranged = TRUE
-	pixel_x = -32
+	pixel_w = -32
 	del_on_death = TRUE
 	internal_type = /obj/item/gps/internal/colossus
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)

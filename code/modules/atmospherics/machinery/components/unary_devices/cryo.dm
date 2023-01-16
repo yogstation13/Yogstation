@@ -12,6 +12,7 @@
 	circuit = /obj/item/circuitboard/machine/cryo_tube
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
+	screen_loc = E3D_TYPE_BILLBOARD
 
 	var/autoeject = TRUE
 	var/volume = 100

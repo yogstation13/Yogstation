@@ -38,7 +38,7 @@
 	melee_damage_upper = 35
 	melee_damage_lower = 35
 	armour_penetration = 30
-	pixel_x = -16
+	pixel_w = -16
 	turns_per_move = 5
 	spacewalk = TRUE
 	ranged = TRUE

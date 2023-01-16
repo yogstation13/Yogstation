@@ -21,7 +21,7 @@
 	rapid = 1 //How many shots per volley.
 	rapid_fire_delay = 2 //Time between rapid fire shots
 	del_on_death = TRUE
-	pixel_x = -16
+	pixel_w = -16
 	internal_type = /obj/item/gps/internal/stalwart
 	attack_action_types = list(/datum/action/innate/megafauna_attack/spiralpikes,
 							   /datum/action/innate/megafauna_attack/cardinalpikes,

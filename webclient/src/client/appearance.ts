@@ -1,6 +1,7 @@
-import { mat3 } from "gl-matrix";
+import { mat3, vec4 } from "gl-matrix";
 import { Atom } from "./atom";
 import { DataPointer } from "./binary";
+import { Icon } from "./icon";
 import { matrix_interpolate } from "./matrix_interpolate";
 
 export class Appearance {
@@ -26,6 +27,12 @@ export class Appearance {
 	plane = 0;
 	color_matrix: Float32Array|null = null;
 	flick_time : number|null = null;
+	get pixel_xw() {
+		return this.pixel_x + this.pixel_w;
+	}
+	get pixel_yz() {
+		return this.pixel_y + this.pixel_z;
+	}
 
 	get e3d_tag() : string {
 		if(!this.screen_loc) return "";
@@ -48,20 +55,26 @@ export class Appearance {
 		let new_appearance = new Appearance();
 		Object.assign(new_appearance, this);
 		if(pixel_source) {
-			new_appearance.pixel_x = pixel_source.pixel_x;
-			new_appearance.pixel_y = pixel_source.pixel_y;
-			new_appearance.pixel_z = pixel_source.pixel_z;
-			new_appearance.pixel_w = pixel_source.pixel_w;
+			new_appearance.pixel_x += pixel_source.pixel_x;
+			new_appearance.pixel_y += pixel_source.pixel_y;
+			new_appearance.pixel_z += pixel_source.pixel_z;
+			new_appearance.pixel_w += pixel_source.pixel_w;
 		}
 		return new_appearance;
 	}
 
-	copy_inherit(inherit_source : Appearance, inherit_pixel_source? : Atom) {
+	copy_inherit(inherit_source : Appearance, inherit_pixel_source? : Atom, xy_to_wz = false) {
 		let copy = this.copy();
-		copy.pixel_x += inherit_pixel_source?.pixel_x ?? inherit_source.pixel_x;
-		copy.pixel_x += inherit_pixel_source?.pixel_y ?? inherit_source.pixel_y;
-		copy.pixel_x += inherit_pixel_source?.pixel_z ?? inherit_source.pixel_z;
-		copy.pixel_x += inherit_pixel_source?.pixel_w ?? inherit_source.pixel_w;
+		if(xy_to_wz) {
+			this.pixel_w += this.pixel_x;
+			this.pixel_x = 0;
+			this.pixel_z += this.pixel_y;
+			this.pixel_y = 0;
+		}
+		copy.pixel_x += (inherit_pixel_source?.pixel_x ?? 0) + inherit_source.pixel_x;
+		copy.pixel_y += (inherit_pixel_source?.pixel_y ?? 0) + inherit_source.pixel_y;
+		copy.pixel_z += (inherit_pixel_source?.pixel_z ?? 0) + inherit_source.pixel_z;
+		copy.pixel_w += (inherit_pixel_source?.pixel_w ?? 0) + inherit_source.pixel_w;
 		if(!(copy.bits & 0x1000000) && inherit_source.transform) copy.transform = inherit_source.transform;
 		if(inherit_source.color_alpha != -1) {
 			if(copy.color_alpha == -1) {
@@ -83,6 +96,41 @@ export class Appearance {
 			copy.dir = inherit_source.dir;
 		}
 		return copy;
+	}
+
+	get_canvas_box(icons : Map<number, Icon>, base? : vec4, include_xy = false) : vec4 {
+		let w = 32, h = 32;
+		let icon = icons.get(this.icon);
+		if(icon) {
+			w = icon.width;
+			h = icon.height;
+		}
+		let box : vec4 = base ?? [Infinity, Infinity, -Infinity, -Infinity];
+		let transform = this.transform;
+		let px = this.pixel_w;
+		if(include_xy) px += this.pixel_x;
+		let py = this.pixel_z;
+		if(include_xy) py += this.pixel_y;
+		if(transform) {
+			for(let i = 0; i < 4; i++) {
+				let ix = (i & 1) ? w : 0;
+				let iy = (i & 2) ? h : 0;
+				ix -= w/2; iy -= h/2;
+				let ox = ix*transform[0] + iy*transform[1] + w/2 + px + transform[2];
+				let oy = ix*transform[3] + iy*transform[4] + w/2 + px + transform[5];
+				box[0] = Math.min(box[0], ox);
+				box[1] = Math.min(box[1], oy);
+				box[2] = Math.max(box[2], ox);
+				box[3] = Math.max(box[3], oy);
+			}
+		} else {
+			box[0] = Math.min(box[0], px);
+			box[1] = Math.min(box[1], py);
+			box[2] = Math.max(box[2], px+w);
+			box[3] = Math.max(box[3], py+h);
+		}
+		if(box.includes(Infinity) || box.includes(-Infinity)) return [0,0,0,0];
+		return box;
 	}
 }
 
@@ -133,8 +181,8 @@ export function parse_appearance(dp : DataPointer, appearances : Map<number, App
 		if(exbits & 1) {
 			appearance.pixel_x = dp.read_int16();
 			appearance.pixel_y = dp.read_int16();
-			appearance.pixel_z = dp.read_int16();
 			appearance.pixel_w = dp.read_int16();
+			appearance.pixel_z = dp.read_int16();
 		}
 		if(exbits & 2) {
 			appearance.glide_size = dp.read_float();
@@ -210,7 +258,7 @@ export class Animation {
 			frame_index++;
 			if(frame_index >= this.frames.length) {
 				frame_index = 0;
-				if(this.frames[0].loop == 1) {
+				if(this.frames[0].loop == 1 || this.frames[0].loop == 0) {
 					return target;
 				} else if(this.frames[0].loop > 1) {
 					this.frames[0].loop--;

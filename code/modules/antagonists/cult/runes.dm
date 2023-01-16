@@ -24,6 +24,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = LOW_OBJ_LAYER
 	color = RUNE_COLOR_RED
+	screen_loc = E3D_TYPE_FLOOR
 
 	var/invocation = "Aiy ele-mayo!" //This is said by cultists when the rune is invoked.
 	var/req_cultists = 1 //The amount of cultists required around the rune to invoke it. If only 1, any cultist can invoke it.

@@ -18,7 +18,7 @@
 	speed = 0
 	maxHealth = 50
 	health = 50
-	pixel_x = -16
+	pixel_w = -16
 	harm_intent_damage = 5
 	obj_damage = 0
 	melee_damage_lower = 0

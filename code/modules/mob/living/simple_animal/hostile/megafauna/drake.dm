@@ -51,7 +51,7 @@ Difficulty: Medium
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
-	pixel_x = -16
+	pixel_w = -16
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/dragon/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/dragon)
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
@@ -495,6 +495,7 @@ Difficulty: Medium
 	name = "certain death"
 	desc = "Don't just stand there, move!"
 	icon = 'icons/effects/96x96.dmi'
+	screen_loc = E3D_TYPE_FLOOR
 	icon_state = "landing"
 	layer = BELOW_MOB_LAYER
 	pixel_x = -32
@@ -506,7 +507,7 @@ Difficulty: Medium
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "dragon"
 	layer = ABOVE_ALL_MOB_LAYER
-	pixel_x = -16
+	pixel_w = -16
 	duration = 1 SECONDS
 	randomdir = FALSE
 

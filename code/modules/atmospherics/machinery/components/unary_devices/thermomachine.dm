@@ -13,6 +13,8 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF
 
+	screen_loc = E3D_TYPE_BILLBOARD
+
 	var/icon_state_off = "freezer"
 	var/icon_state_on = "freezer_1"
 	var/icon_state_open = "freezer-o"

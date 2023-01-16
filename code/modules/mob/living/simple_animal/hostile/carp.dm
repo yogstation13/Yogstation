@@ -139,7 +139,7 @@
 	icon_gib = "megacarp_gib"
 	maxHealth = 20
 	health = 20
-	pixel_x = -16
+	pixel_w = -16
 	mob_size = MOB_SIZE_LARGE
 	random_color = FALSE
 

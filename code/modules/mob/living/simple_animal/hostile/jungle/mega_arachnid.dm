@@ -14,7 +14,7 @@
 	health = 300
 	speed = 1
 	ranged = 1
-	pixel_x = -16
+	pixel_w = -16
 	move_to_delay = 10
 	aggro_vision_range = 9
 	speak_emote = list("chitters")

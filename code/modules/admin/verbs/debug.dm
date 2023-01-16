@@ -887,8 +887,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'
 				S.icon_state = "singularity_s7"
-				S.pixel_x = -96
-				S.pixel_y = -96
+				S.pixel_w = -96
+				S.pixel_z = -96
 				S.grav_pull = 0
 				//S.consume_range = 3
 				S.dissipate = 0

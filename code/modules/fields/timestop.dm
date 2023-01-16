@@ -9,6 +9,7 @@
 	pixel_x = -64
 	pixel_y = -64
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = E3D_TYPE_FLOOR
 	var/list/immune = list() // the one who creates the timestop is immune, which includes wizards and the dead slime you murdered to make this chronofield
 	var/turf/target
 	var/freezerange = 2

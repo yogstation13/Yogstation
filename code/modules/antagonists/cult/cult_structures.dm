@@ -277,7 +277,7 @@
 	name = "obsidian pillar"
 	icon_state = "pillar-enter"
 	icon = 'icons/obj/cult_64x64.dmi'
-	pixel_x = -16
+	pixel_w = -16
 	obj_integrity = 200
 	max_integrity = 200
 	break_sound = 'sound/effects/meteorimpact.ogg'
@@ -336,7 +336,7 @@
 	desc = "A large, red stone filling with... something. You get a headache even being near it."
 	icon_state = "bloodstone-enter1"
 	icon = 'icons/obj/cult_64x64.dmi'
-	pixel_x = -16
+	pixel_w = -16
 	obj_integrity = 600
 	max_integrity = 600
 	break_sound = 'sound/effects/glassbr2.ogg'
@@ -513,7 +513,7 @@
 	desc = "The base of a destroyed bloodstone."
 	icon = 'icons/obj/cult_64x64.dmi'
 	icon_state = "bloodstone-base"
-	pixel_x = -16
+	pixel_w = -16
 
 /obj/effect/gateway
 	name = "gateway"

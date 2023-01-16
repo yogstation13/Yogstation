@@ -346,7 +346,6 @@ export class ByondClient {
 					}
 				}
 				atom.mark_dirty();
-				console.log(atom.flick);
 			}
 			break;
 		} case 118: {

@@ -5,16 +5,14 @@
 	var/final_dir = dir
 	var/changed = 0
 	if(lying != lying_prev && rotate_on_lying)
+		if(lying_prev)
+			ntransform.Translate(0, 6)
 		changed++
 		ntransform.TurnTo(lying_prev , lying)
-		if(!lying) //Lying to standing
-			final_pixel_y = get_standard_pixel_y_offset()
-		else //if(lying != 0)
-			if(lying_prev == 0) //Standing to lying
-				pixel_y = get_standard_pixel_y_offset()
-				final_pixel_y = get_standard_pixel_y_offset(lying)
-				if(dir & (EAST|WEST)) //Facing east or west
-					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
+		if(lying)
+			ntransform.Translate(0, -6)
+			if(lying_prev == 0 && (dir & (EAST|WEST))) //Facing east or west
+				final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
 
 	if(resize != RESIZE_DEFAULT_SIZE)
 		changed++

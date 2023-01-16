@@ -6,8 +6,8 @@
 	//Sprite made by MerchantPixels
 	icon_state = "honkmother"
 	//Centers Her
-	pixel_x = -128
-	pixel_y = -128
+	pixel_w = -128
+	pixel_z = -128
 	//She's immortal! Unkillable! Unmatched!
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	appearance_flags = 0

@@ -160,7 +160,7 @@
 	if(!LAZYLEN(new_overlay_types) && atmos_e3d_overlay)
 		cut_overlay(atmos_e3d_overlay)
 		atmos_e3d_overlay = null
-	else
+	else if(LAZYLEN(new_overlay_types))
 		var/list/new_overlay_refs = list()
 		for(var/overlay in new_overlay_types)
 			new_overlay_refs += "\ref[overlay]"

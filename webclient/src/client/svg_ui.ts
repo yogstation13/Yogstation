@@ -509,6 +509,9 @@ class ScreenLoc {
 			}
 			let result = new ScreenLoc();
 			let parts = screen_loc.split(",");
+			if(parts[1] && /EAST|WEST/.test(parts[1]) && /NORTH|SOUTH/.test(parts[0])) {
+				parts.reverse();
+			}
 			for(let i = 0; i < 2; i++) {
 				const tile_var = (["x","y"] as const)[i];
 				const frac_var = (["x_frac","y_frac"] as const)[i];

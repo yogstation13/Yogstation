@@ -69,7 +69,7 @@
 	icon_aggro = "watcher"
 	icon_dead = "watcher_dead"
 	health_doll_icon = "watcher"
-	pixel_x = -10
+	pixel_w = -10
 	throw_message = "bounces harmlessly off of"
 	melee_damage_lower = 15
 	melee_damage_upper = 15

@@ -136,7 +136,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 								/mob/living/simple_animal/hostile/asteroid/elite/herald)
 	icon = 'icons/obj/lavaland/tumor.dmi'
 	icon_state = "tumor"
-	pixel_x = -16
+	pixel_w = -16
 	light_color = LIGHT_COLOR_RED
 	light_range = 3
 	anchored = TRUE

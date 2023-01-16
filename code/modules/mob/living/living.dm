@@ -833,11 +833,11 @@
 	if(anchored || (buckled && buckled.anchored))
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
-		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
-		animate(pixel_y = pixel_y - 2, time = 1 SECONDS)
+		animate(src, pixel_z = pixel_z + 2, time = 1 SECONDS, loop = -1)
+		animate(pixel_z = pixel_z - 2, time = 1 SECONDS)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
-		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 1 SECONDS)
+		animate(src, pixel_z = initial(pixel_z), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
