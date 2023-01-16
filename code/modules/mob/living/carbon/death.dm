@@ -29,7 +29,7 @@
 			M.gib()
 		else
 			visible_message(span_danger("[M] bursts out of [src]!"))
-	for(var/item/O in src.GetAllContents)
+	for(var/item/O in src.GetAllContents())
 		if(isbrain(O) || istype(O, /obj/item/bodypart/head))
 			O.forceMove(Tsec)
 			O.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
