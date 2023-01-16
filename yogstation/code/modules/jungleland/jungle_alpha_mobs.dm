@@ -25,6 +25,7 @@
 
 	ranged = TRUE 
 	ranged_cooldown = 10 SECONDS
+	projectiletype = /obj/item/projectile/jungle/meduracha_spit
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
@@ -45,20 +46,29 @@
 	
 /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/Shoot(atom/targeted_atom)
 	. = ..()
-		var/obj/item/projectile/P = new projectiletype(startloc)
-		playsound(src, projectilesound, 100, 1)
-		P.starting = startloc
-		P.firer = src
-		P.fired_from = src
-		P.yo = targeted_atom.y - startloc.y
-		P.xo = targeted_atom.x - startloc.x
-		if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
-			newtonian_move(get_dir(targeted_atom, targets_from))
-		P.original = targeted_atom
-		P.preparePixelProjectile(targeted_atom, src)
-		P.fire()
+	var/angle = Get_Angle(src,targeted_atom)
+	var/list/to_shoot = list() 
 	
+	to_shoot += get_turf(targeted_atom)
+	to_shoot += locate(round(x + sin(angle + 20) * 7),round(y + cos(angle + 15) * 7),z)
+	to_shoot += locate(round(x + sin(angle - 20) * 7),round(y + cos(angle - 15) * 7),z)
+	for(var/turf/T as anything in to_shoot)
+		shoot_projectile(T)
 
+/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/shoot_projectile(atom/targeted_atom)
+	var/turf/startloc = get_turf(src)
+	var/obj/item/projectile/P = new projectiletype(startloc)
+	playsound(src, projectilesound, 100, 1)
+	P.starting = startloc
+	P.firer = src
+	P.fired_from = src
+	P.yo = targeted_atom.y - startloc.y
+	P.xo = targeted_atom.x - startloc.x
+	if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
+		newtonian_move(get_dir(targeted_atom, targets_from))
+	P.original = targeted_atom
+	P.preparePixelProjectile(targeted_atom, src)
+	P.fire()
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/get_beam()
 	var/list/turfs = spiral_range_turfs(4,src)
@@ -66,7 +76,6 @@
 	return Beam(T,"meduracha",'yogstation/icons/effects/beam.dmi',INFINITY,8)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/remake_beam(side)
-	message_admins("Remaking beam for [side]")
 	var/datum/beam/B = anchors[side]
 	anchors[side] = get_beam()
 	qdel(B)
