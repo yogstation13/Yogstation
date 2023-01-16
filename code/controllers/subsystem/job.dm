@@ -444,7 +444,7 @@ SUBSYSTEM_DEF(job)
 	
 	switch (jobless_role)
 		if (BEOVERFLOW)
-			var/datum/job/overflow_role_datum = GetJobType(overflow_role)
+			var/datum/job/overflow_role_datum = SSjob.GetJobType(SSjob.overflow_role)
 			var/allowed_to_be_a_loser = !is_banned_from(player.ckey, overflow_role_datum.title)
 			if(QDELETED(player) || !allowed_to_be_a_loser)
 				RejectPlayer(player)
