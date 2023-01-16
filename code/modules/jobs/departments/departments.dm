@@ -2,7 +2,7 @@
 /// NOTICE: This is NOT fully implemented everywhere. Currently only used in: Preferences menu
 /datum/job_department
 	/// Department as displayed on different menus.
-	var/department_name = "No department assigned"
+	var/department_name = DEPARTMENT_UNASSIGNED
 	/// Bitflags associated to the specific department.
 	var/department_bitflags = NONE
 	/// Typepath of the job datum leading this department.
@@ -53,7 +53,7 @@
 	department_experience_type = EXP_TYPE_SECURITY
 	display_order = 2
 	label_class = "security"
-	ui_color = "#ffdddd"
+	ui_color = "#ffeeee"
 
 
 /datum/job_department/engineering
@@ -73,7 +73,7 @@
 	department_experience_type = EXP_TYPE_MEDICAL
 	display_order = 4
 	label_class = "medical"
-	ui_color = "#ffddf0"
+	ui_color = "#c1e1ec"
 
 
 /datum/job_department/science
@@ -93,7 +93,7 @@
 	department_experience_type = EXP_TYPE_SUPPLY
 	display_order = 6
 	label_class = "supply"
-	ui_color = "#ddddff"
+	ui_color = "#d7b088"
 
 
 /datum/job_department/service
@@ -103,7 +103,7 @@
 	department_experience_type = EXP_TYPE_SERVICE
 	display_order = 7
 	label_class = "service"
-	ui_color = "#bbe291"
+	ui_color = "#ddddff"
 
 
 /datum/job_department/silicon

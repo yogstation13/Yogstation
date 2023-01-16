@@ -58,20 +58,15 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job
 
-	for(var/list/category in list(GLOB.command_positions) + list(GLOB.engineering_positions) + list(GLOB.supply_positions) + list(GLOB.nonhuman_positions - "pAI") + list(GLOB.civilian_positions) + list(GLOB.science_positions) + list(GLOB.security_positions) + list(GLOB.medical_positions) )
-		var/cat_name = SSjob.name_occupations_all[category[1]].exp_type_department
-		
+	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 		var/list/department_jobs = list()
 		var/list/department_data = list(
 			"jobs" = department_jobs,
 			"open_slots" = 0,
 		)
-		departments[cat_name] = department_data
-		for(var/job in category)
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if (!job_datum)
-				continue
+		departments[department.department_name] = department_data
 
+		for(var/datum/job/job_datum as anything in department.department_jobs)
 			var/job_availability = owner.IsJobUnavailable(job_datum.title, latejoin = TRUE)
 
 			var/list/job_data = list(
@@ -97,26 +92,17 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 /datum/latejoin_menu/ui_static_data(mob/user)
 	var/list/departments = list()
 
-	for(var/list/category in list(GLOB.command_positions) + list(GLOB.engineering_positions) + list(GLOB.supply_positions) + list(GLOB.nonhuman_positions - "pAI") + list(GLOB.civilian_positions) + list(GLOB.science_positions) + list(GLOB.security_positions) + list(GLOB.medical_positions) )
-		var/cat_color = SSjob.name_occupations_all[category[1]].selection_color
-		var/cat_name = SSjob.name_occupations_all[category[1]].exp_type_department
-
+	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 		var/list/department_jobs = list()
 		var/list/department_data = list(
 			"jobs" = department_jobs,
-			"color" = cat_color,
+			"color" = department.ui_color,
 		)
-		departments[cat_name] = department_data
+		departments[department.department_name] = department_data
 
-		for(var/job in category)
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if (!job_datum)
-				continue
-			
-			var/is_command = (job in GLOB.command_positions)
-
+		for(var/datum/job/job_datum as anything in department.department_jobs)
 			var/list/job_data = list(
-				"command" = is_command,
+				"command" = !!(job_datum.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND),
 				"description" = job_datum.description,
 				"icon" = job_datum.orbit_icon,
 			)
