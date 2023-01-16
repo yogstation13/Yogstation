@@ -88,6 +88,7 @@
 	preop_sound = 'sound/surgery/cautery1.ogg'
 	success_sound = 'sound/surgery/cautery2.ogg'
 	fuckup_damage_type = BURN
+	bloody_chance = FALSE
 
 /datum/surgery_step/close/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to mend the incision in [target]'s [parse_zone(target_zone)]..."),
@@ -129,6 +130,7 @@
 		/obj/item/kitchen/knife/butcher = 'sound/surgery/scalpel1.ogg',
 		/obj/item = 'sound/surgery/scalpel1.ogg',
 	) 
+	success_sound = 'sound/surgery/bone3.ogg'
 	fuckup_damage = 20
 
 /datum/surgery_step/saw/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -141,14 +143,16 @@
 	display_results(user, target, span_notice("You saw [target]'s [parse_zone(target_zone)] open."),
 		"[user] saws [target]'s [parse_zone(target_zone)] open!",
 		"[user] saws [target]'s [parse_zone(target_zone)] open!")
-	return 1
+	return TRUE
 
 //drill bone
 /datum/surgery_step/drill
 	name = "drill bone"
 	implements = list(TOOL_DRILL = 100, /obj/item/pickaxe/drill = 60, /obj/item/mecha_parts/mecha_equipment/drill = 60, TOOL_SCREWDRIVER = 20)
-	time = 30
+	time = 3 SECONDS
 	fuckup_damage = 15
+	preop_sound = 'sound/weapons/circsawhit.ogg'
+	success_sound = 'sound/surgery/bone3.ogg'
 
 /datum/surgery_step/drill/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to drill into the bone in [target]'s [parse_zone(target_zone)]..."),
@@ -159,4 +163,4 @@
 	display_results(user, target, span_notice("You drill into [target]'s [parse_zone(target_zone)]."),
 		"[user] drills into [target]'s [parse_zone(target_zone)]!",
 		"[user] drills into [target]'s [parse_zone(target_zone)]!")
-	return 1
+	return TRUE

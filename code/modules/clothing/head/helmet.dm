@@ -13,6 +13,7 @@
 	resistance_flags = NONE
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEHAIR
+	hattable = FALSE
 
 	dog_fashion = /datum/dog_fashion/head/helmet
 
@@ -29,6 +30,12 @@
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
 
+/obj/item/clothing/head/helmet/Destroy()
+	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
+	if(old_light)
+		qdel(old_light)
+	return ..()
+
 /obj/item/clothing/head/helmet/examine(mob/user)
 	.=..()
 	if(attached_light)
@@ -38,17 +45,30 @@
 	else if(can_flashlight)
 		. += "It has a mounting point for a <b>seclite</b>."
 
-/obj/item/clothing/head/helmet/Destroy()
-	QDEL_NULL(attached_light)
-	return ..()
-
 /obj/item/clothing/head/helmet/handle_atom_del(atom/A)
 	if(A == attached_light)
-		attached_light = null
+		set_attached_light(null)
 		update_helmlight()
 		update_icon()
 		QDEL_NULL(alight)
+		qdel(A)
 	return ..()
+
+///Called when attached_light value changes.
+/obj/item/clothing/head/helmet/proc/set_attached_light(obj/item/flashlight/seclite/new_attached_light)
+	if(attached_light == new_attached_light)
+		return
+	. = attached_light
+	attached_light = new_attached_light
+	if(attached_light)
+		attached_light.set_light_flags(attached_light.light_flags | LIGHT_ATTACHED)
+		if(attached_light.loc != src)
+			attached_light.forceMove(src)
+	else if(.)
+		var/obj/item/flashlight/seclite/old_attached_light = .
+		old_attached_light.set_light_flags(old_attached_light.light_flags & ~LIGHT_ATTACHED)
+		if(old_attached_light.loc == src)
+			old_attached_light.forceMove(get_turf(src))
 
 /obj/item/clothing/head/helmet/sec
 	can_flashlight = TRUE
@@ -376,9 +396,7 @@
 			if(!user.transferItemToLoc(S, src))
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
-			if(S.on)
-				set_light(0)
-			attached_light = S
+			set_attached_light(S)
 			update_icon()
 			update_helmlight()
 			alight = new(src)
@@ -396,8 +414,7 @@
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(attached_light)
 
-		var/obj/item/flashlight/removed_light = attached_light
-		attached_light = null
+		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
 		update_icon()
@@ -417,6 +434,7 @@
 	if(user.incapacitated())
 		return
 	attached_light.on = !attached_light.on
+	attached_light.update_brightness()
 	to_chat(user, span_notice("You toggle the helmet-light [attached_light.on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
@@ -424,14 +442,7 @@
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		if(attached_light.on)
-			set_light(attached_light.brightness_on)
-		else
-			set_light(0)
 		update_icon()
-
-	else
-		set_light(0)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -477,3 +488,63 @@
 	heat_protection = HEAD
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
+
+//////////////// PLATED ARMOR ////////////////
+// Kevlar plates are in code/modules/clothing/suits/armor.dm
+/obj/item/clothing/head/helmet/plated
+	name = "empty plated helmet"
+	desc = "A lightweight combat helmet that has slots designed to hold various types of armor plating. Won't do much without them."
+	icon_state = "plate-helmet"
+	item_state = "plate-helmet"
+	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
+	slowdown = 0
+	dog_fashion = null
+
+	var/obj/item/kevlar_plating/plating
+
+/obj/item/clothing/head/helmet/plated/attack_self(mob/user)
+	if(!plating)
+		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
+		return
+	
+	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
+
+	user.put_in_hands(plating)
+
+	name = initial(name)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)
+	slowdown = initial(slowdown)
+	w_class = initial(w_class)
+	// Does not cover additional limbs like vest does
+	plating = null
+
+/obj/item/clothing/head/helmet/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
+
+/obj/item/clothing/head/helmet/plated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/kevlar_plating))
+		return
+	if(plating)
+		to_chat(user, span_warning("[src] already has [plating] slotted!"))
+		return 
+	if(!user.transferItemToLoc(I, src))
+		return
+	
+	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
+
+	var/obj/item/kevlar_plating/K = I
+
+	name = "[K.name_set] plated helmet"
+	slowdown = K.slowdown_set
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
+	w_class = WEIGHT_CLASS_BULKY
+	// Does not cover additional limbs like vest does
+	plating = K

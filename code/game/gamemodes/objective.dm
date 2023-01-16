@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team					//An alternative to 'owner': a team. Use this when writing new code.
 	var/name = "generic objective" 		//Name for admin prompts
+	var/objective_name = "Objective"	///name used in printing this objective (Objective #1)		//Name for admin prompts
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/team_explanation_text			//For when there are multiple owners.
 	var/datum/mind/target = null		//If they are focused on a particular person.
@@ -33,6 +34,9 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/proc/admin_edit(mob/admin)
 	return
+
+/datum/objective/proc/is_valid_target(possible_target)
+	return TRUE
 
 //Shared by few objective types
 /datum/objective/proc/admin_simple_target_pick(mob/admin)
@@ -124,7 +128,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
 			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
@@ -219,7 +223,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
-			explanation_text = "Assassinate [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+			// This should just check for an uppercase flag
+			explanation_text = "Assassinate [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
 		else
 			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
@@ -458,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !issilicon(player))
+		if(player.mind && player.stat != DEAD && !(issilicon(player) || isipc(player)))
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -482,8 +487,13 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/robot_army
 	name = "robot army"
-	explanation_text = "Have at least eight active cyborgs synced to you."
 	martyr_compatible = 0
+	var/number_of_borgs = 2
+
+/datum/objective/robot_army/New()
+	. = ..()
+	number_of_borgs = ROUND_UP((length(GLOB.joined_player_list) / 10) + 2)
+	explanation_text = "Have at least [number_of_borgs] active cyborgs synced to you."
 
 /datum/objective/robot_army/check_completion()
 	if(..())
@@ -497,7 +507,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		for(var/mob/living/silicon/robot/R in A.connected_robots)
 			if(R.stat != DEAD)
 				counter++
-	return counter >= 8
+	return counter >= number_of_borgs
 
 /datum/objective/escape
 	name = "escape"
@@ -511,6 +521,18 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_escaped(M))
+			return FALSE
+	return TRUE
+
+/datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		if(!M)
+			continue
+		if(!M.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		var/datum/mind/T = possible_target
+		if(!istype(T) || isipc(T.current))
 			return FALSE
 	return TRUE
 
@@ -866,7 +888,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/capture/living/update_explanation_text()
 	. = ..()
-	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
+	explanation_text = "Capture [target_amount] sapient lifeform\s with an energy net. Only living specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"
@@ -1092,6 +1114,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/M in SSticker.minds)
 		if(M in lings)
 			continue
+		if(isipc(M.current))
+			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
 				ling_count--
@@ -1120,6 +1144,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/heads = SSjob.get_living_heads()
 	for(var/datum/mind/head in heads)
 		if(head in lings) //Looking at you HoP.
+			continue
+		if(isipc(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head
@@ -1459,7 +1485,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/contract/proc/generate_dropoff()
 	var/found = FALSE
 	while (!found)
-		var/area/dropoff_area = pick(GLOB.sortedAreas)
+		var/area/dropoff_area = pick(GLOB.areas)
 		if(dropoff_area && is_station_level(dropoff_area.z) && !dropoff_area.outdoors)
 			dropoff = dropoff_area
 			found = TRUE

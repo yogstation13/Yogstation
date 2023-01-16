@@ -12,11 +12,13 @@
 	var/checks_antimagic = TRUE
 	var/max_charges = 6
 	var/charges = 0
-	var/recharge_rate = 4
-	var/charge_tick = 0
+	var/recharge_rate = 8
+	var/charge_timer = 0
 	var/can_charge = TRUE
 	var/ammo_type
 	var/no_den_usage
+	recoil = 0
+	spread = 0
 	clumsy_check = 0
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
 	pin = /obj/item/firing_pin/magic
@@ -65,11 +67,11 @@
 	return ..()
 
 
-/obj/item/gun/magic/process()
-	charge_tick++
-	if(charge_tick < recharge_rate || charges >= max_charges)
+/obj/item/gun/magic/process(delta_time)
+	charge_timer += delta_time
+	if(charge_timer < recharge_rate || charges >= max_charges)
 		return 0
-	charge_tick = 0
+	charge_timer = 0
 	charges++
 	if(charges == 1)
 		recharge_newshot()
@@ -82,9 +84,12 @@
 	to_chat(user, span_warning("The [name] whizzles quietly."))
 
 /obj/item/gun/magic/suicide_act(mob/user)
+	if(!can_shoot())
+		user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a small shower of sparks."))
+		return SHAME
 	user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, fire_sound, 50, 1, -1)
-	return (FIRELOSS)
+	return FIRELOSS
 
 /obj/item/gun/magic/vv_edit_var(var_name, var_value)
 	. = ..()

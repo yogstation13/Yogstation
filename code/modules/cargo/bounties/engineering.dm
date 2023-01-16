@@ -72,8 +72,15 @@
 	wanted_types = list(/obj/item/clothing/head/helmet/elder_atmosian)
 
 /datum/bounty/item/h2metal/metallic_hydrogen_axe
-	name = "Metallic Hydrogen axes"
-	description = "Nanotrasen is requiring new axe to be made. Ship them some metallic hydrogen helmets."
+	name = "Metallic Hydrogen Axes"
+	description = "Nanotrasen is requiring new axes to be made. Ship them some metallic hydrogen helmets."
 	reward = 7500
 	required_count = 3
 	wanted_types = list(/obj/item/twohanded/fireaxe/metal_h2_axe)
+
+/datum/bounty/item/supermatter_silver
+	name = "Supermatter Silvers"
+	description = "Nanotrasen engineering team wants to build a new supermatter engine, shift them some supermatter silvers."
+	reward = 50000
+	required_count = 2
+	wanted_types = list(/obj/item/nuke_core/supermatter_sliver)

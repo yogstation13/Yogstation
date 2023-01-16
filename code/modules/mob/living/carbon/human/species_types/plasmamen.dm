@@ -2,12 +2,13 @@
 	name = "Plasmaman"
 	id = "plasmaman"
 	say_mod = "rattles"
-	sexes = 0
+	sexes = FALSE
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(NOBLOOD,NOTRANSSTING,HAS_BONE)
-	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into p
+	species_traits = list(NOBLOOD,NOTRANSSTING, HAS_BONE, AGENDER, NOHUSK)
+	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	default_features = list("plasmaman_helmet")
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
@@ -22,10 +23,12 @@
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
-	disliked_food = FRUIT
-	liked_food = VEGETABLES | GRILLED
+	disliked_food = NONE
+	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+
+	smells_like = "plasma-caked calcium"
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
@@ -168,6 +171,10 @@
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
+
+	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
+	plasmeme_helmet.set_design(H)
+
 	return 0
 
 /datum/species/plasmaman/random_name(gender,unique,lastname)

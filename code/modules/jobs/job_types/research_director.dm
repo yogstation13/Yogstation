@@ -1,6 +1,10 @@
 /datum/job/rd
 	title = "Research Director"
+	description = "Supervise research efforts, ensure Robotics is in working \
+		order, make sure the AI and its Cyborgs aren't rogue, replacing them if \
+		they are"
 	flag = RD_JF
+	orbit_icon = "user-graduate"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = MEDSCI
@@ -16,7 +20,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
-	alt_titles = list("Chief Science Officer", "Head of Research")
+	alt_titles = list("Chief Science Officer", "Head of Research", "Chief Technology Officer")
 
 	outfit = /datum/outfit/job/rd
 
@@ -30,9 +34,17 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
-	minimal_character_age = 26 // "A PhD takes twice as long as a bachelor's degree to complete. The average student takes 8.2 years to slog through a PhD program and is 33 years old before earning that top diploma."
+	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
 	changed_maps = list("OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/storage/box/monkeycubes = 30,
+		///obj/item/circuitboard/machine/sleeper/party = 3,
+		/obj/item/borg/upgrade/ai = 2
+	)
+
+	smells_like = "theorhetical education"
 
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
@@ -42,10 +54,10 @@
 	jobtype = /datum/job/rd
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/rd
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 
 	ears = /obj/item/radio/headset/heads/rd
-	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
 	uniform = /obj/item/clothing/under/rank/research_director
 	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
@@ -53,7 +65,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removes sci budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/analyzer/ranged=1) //yogs - removes sci budget
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

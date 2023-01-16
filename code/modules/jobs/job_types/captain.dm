@@ -1,6 +1,10 @@
 /datum/job/captain
 	title = "Captain"
+	description = "Be responsible for the station, manage your Heads of Staff, \
+		keep the crew alive, be prepared to do anything and everything or die \
+		horribly trying."
 	flag = CAPTAIN
+	orbit_icon = "crown"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
 	department_flag = ENGSEC
@@ -15,7 +19,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
-	alt_titles = list("Station Commander", "Facility Director")
+	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer")
 
 	outfit = /datum/outfit/job/captain
 
@@ -26,8 +30,16 @@
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
+	mail_goodies = list(
+		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
+		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10
+	)
+
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	minimal_character_age = 28
+	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
+
+	smells_like = "unquestionable leadership"
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
@@ -41,8 +53,8 @@
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/pda/captain
-	
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
+
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
@@ -52,7 +64,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - adds egun/removes civ budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap

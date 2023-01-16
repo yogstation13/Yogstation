@@ -135,7 +135,7 @@
 	var/did_we_charge = FALSE
 	var/obj/item/organ/stomach/ethereal/eth_stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 	if(istype(eth_stomach))
-		eth_stomach.adjust_charge(3)
+		eth_stomach.adjust_charge(15 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 		did_we_charge = TRUE
 	if(ispreternis(H))
 		var/datum/species/preternis/preternis = H.dna.species
@@ -198,6 +198,19 @@
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
 	var/obj/item/card/id/id_cardu = user.get_idcard()
+	if(!id_card)
+		to_chat(user,span_notice("[H] doesn't seem to have an id card to 'donate' from for your blessing..."))
+		return
+	if(!id_card.registered_account)
+		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
+		return
+	if(!id_cardu)
+		to_chat(user,span_notice("You have no id card to recieve your 'donation'"))
+		return
+	if(!id_cardu.registered_account)
+		to_chat(user,span_notice("You have no bank account to recieve your 'donation'"))
+		return
+
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
 	if(money_to_donate <= 0)
@@ -342,7 +355,7 @@
 /datum/religion_sect/oldgods
 	name = "Gathering of the Old Ones"
 	desc = "A sect dedicated to the Old Gods."
-	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on your altar and then sacrifice it in the name of the Old Gods."
+	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on top of your altar and then sacrifice it in the name of the Old Gods."
 	alignment = ALIGNMENT_EVIL //kind of evil?
 	max_favor = 3000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)
@@ -362,4 +375,52 @@
 	else
 		adjust_favor(75, user)
 	qdel(offering)
+	return 
+	
+/// The Honkmother sect, sacrifice bananas to feed your prank power. 
+
+/datum/religion_sect/honkmother
+	name = "The Honkmother"
+	desc = "A sect dedicated to the Honkmother"
+	convert_opener = "The Honkmother welcomes you to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
+	alignment = ALIGNMENT_NEUT
+	max_favor = 10000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
+	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
+	altar_icon_state = "convertaltar-red"
+
+//honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
+/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+	if(!ishuman(blessed))
+		return
+	var/mob/living/carbon/human/H = blessed
+	var/datum/mind/M = H.mind
+	if(M.assigned_role != "Clown")
+		return
+	var/heal_amt = 10
+	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
+
+	if(hurt_limbs.len)
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
+				H.update_damage_overlays()
+	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
+	playsound(user, "sound/miscitems/bikehorn.ogg", 25, TRUE, -1)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/honk)
 	return TRUE
+
+/datum/religion_sect/honkmother/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.get_contents())
+		da_bible.AddComponent(/datum/component/slippery, 40)
+		da_bible.desc += " It has an usually slippery texture."
+
+/datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
+	if(!istype(offering))
+		return
+	adjust_favor(10, user)			
+	to_chat(user, span_notice("HONK"))
+	qdel(offering)
+	return

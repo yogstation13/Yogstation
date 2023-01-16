@@ -1,6 +1,8 @@
 /datum/job/network_admin
 	title = "Network Admin"
+	description = "Maintain and upgrade the AI, try not to break radio communications."
 	flag = NETWORKADMIN
+	orbit_icon = "satellite-dish"
 	department_head = list("Chief Engineer", "Research Director")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -19,8 +21,15 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
+	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
 	changed_maps = list("OmegaStation")
+
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 20
+	)
+
+	smells_like = "thermal paste"
 
 /datum/job/network_admin/proc/OmegaStationChanges()
 	added_access = list()
@@ -31,7 +40,7 @@
 	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/network_admin
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network

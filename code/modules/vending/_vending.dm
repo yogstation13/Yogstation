@@ -98,6 +98,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/product_slogans = ""
 	///String of small ad messages in the vending screen - random chance
 	var/product_ads = ""
+	var/current_ad = ""
+	var/product_cd = 10 SECONDS
+	COOLDOWN_DECLARE(product_ad_cooldown)
 
 	var/list/product_records = list()
 	var/list/hidden_records = list()
@@ -122,7 +125,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	///When this is TRUE, we fire items at customers! We're broken!
 	var/shoot_inventory = 0
 	///How likely this is to happen (prob 100)
-	var/shoot_inventory_chance = 2
+	var/shoot_inventory_chance = 1
 	//Stop spouting those godawful pitches!
 	var/shut_up = 0
 	///can we access the hidden inventory?
@@ -190,6 +193,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		build_inventory(premium, coin_records)
 
 	slogan_list = splittext(product_slogans, ";")
+	small_ads = splittext(product_ads, ";")
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
@@ -491,7 +495,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	var/crit_case
 	if(crit)
-		crit_case = rand(1,5)
+		crit_case = rand(1,4)
 
 	if(forcecrit)
 		crit_case = forcecrit
@@ -547,7 +551,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddComponent(/datum/component/squish, 18 SECONDS)
+				C.AddComponent(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -697,6 +701,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
+
+	.["product_ad"] = current_ad
+
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
 
@@ -718,7 +725,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["department"] = C.registered_account.account_job.paycheck_department
 			else
 				.["user"]["job"] = "No Job"
-				.["user"]["department"] = "No Department"
+				.["user"]["department"] = DEPARTMENT_UNASSIGNED
 	.["stock"] = list()
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
@@ -821,22 +828,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
 
-/obj/machinery/vending/process()
+/obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
 		return PROCESS_KILL
 	if(!active)
 		return
 
+	if(COOLDOWN_FINISHED(src, product_ad_cooldown) && LAZYLEN(small_ads) > 0)
+		COOLDOWN_START(src, product_ad_cooldown, product_cd)
+		current_ad = pick(small_ads)
+	
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && prob(5))
+	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && DT_PROB(2.5, delta_time))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
 
-	if(shoot_inventory && prob(shoot_inventory_chance))
+	if(shoot_inventory && DT_PROB(shoot_inventory_chance, delta_time))
 		throw_item()
 /**
   * Speak the given message verbally

@@ -260,6 +260,24 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
+/datum/map_template/ruin/station/meta
+	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
+
+/datum/map_template/ruin/station/meta/supermatter
+	id = "meta_sm"
+	suffix = "meta_sm.dmm"
+	name = "Meta SM"
+
+/datum/map_template/ruin/station/meta/tesla_singulo
+	id = "meta_singulo_tesla"
+	suffix = "meta_singulo_tesla.dmm"
+	name = "Meta Singulo And Tesla"
+
+/datum/map_template/ruin/station/meta/teg
+	id = "meta_teg"
+	suffix = "meta_teg.dmm"
+	name = "Meta TEG"
+	
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 
@@ -557,6 +575,12 @@
 	suffix = "3x3_vendoraccident.dmm"
 	name = "Maint vendoraccident"
 
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/threexthree/donut
+	id = "donut" 
+	suffix = "3x3_donut.dmm"
+	name = "Maint donut"
+
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"
@@ -602,6 +626,12 @@
 	id = "kilomobden"
 	suffix = "3x5_kilomobden.dmm"
 	name = "Maint kilomobden"
+
+//Author: Vaelophis
+/datum/map_template/ruin/station/maint/threexfive/gaxbotany
+	id = "gaxbotany"
+	suffix = "3x5_gaxbotany.dmm"
+	name = "Maint gaxbotany"
 
 /datum/map_template/ruin/station/maint/threexfive/laststand
 	id = "laststand"
@@ -1112,6 +1142,24 @@
 	suffix = "10x5_ratburger.dmm"
 	name = "Maint ratburger"
 
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/tenxfive/tank_heaven
+	id = "tank_heaven"
+	suffix = "10x5_tank_heaven.dmm"
+	name = "Maint tank_heaven"
+
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/bamboo
+	id = "bamboo"
+	suffix = "10x5_bamboo.dmm"
+	name = "Maint bamboo"
+
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/medicalmaint
+	id = "medicalmaint"
+	suffix = "10x5_medicalmaint.dmm"
+	name = "Maint medicalmaint"
+
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
@@ -1266,3 +1314,18 @@
 	id= "fishinghole"
 	suffix = "10x10_fishinghole.dmm"
 	name = "Maint fishinghole"
+
+/datum/map_template/ruin/station/maint/tenxten/fakewalls
+	id= "fakewalls"
+	suffix = "10x10_fakewalls.dmm"
+	name = "Maint fakewalls"
+
+/datum/map_template/ruin/station/maint/tenxten/wizard
+	id = "wizard"
+	suffix = "10x10_wizard.dmm"
+	name = "Maint wizard"
+
+/datum/map_template/ruin/station/maint/tenxten/halloween
+	id = "halloween"
+	suffix = "10x10_halloween.dmm"
+	name = "Maint halloween"

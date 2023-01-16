@@ -651,10 +651,11 @@
 
 /obj/item/clothing/under/plasmaman
 	name = "envirosuit"
-	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
+	desc = "The latest generation of Nanotrasen-designed plasmamen envirosuits. This new version has an extinguisher built into the uniform's workings. While airtight, the suit is not EVA-rated."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	can_adjust = FALSE
 	strip_delay = 80
@@ -790,6 +791,10 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
+/obj/item/clothing/under/mech_suit/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/mech_pilot, 0.9)
+
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
 	desc = "A white mech pilot's suit. Very fetching."
@@ -811,7 +816,9 @@
 	item_state = "lampskirt_male"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
-	var/brightness_on = 1 //luminosity when the light is on
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_on = FALSE
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 
@@ -822,10 +829,10 @@
 	user.update_inv_w_uniform() //So the mob overlay updates
 
 	if(on)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 		user.visible_message(span_notice("[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on."))
 	else
-		set_light(0)
+		set_light_on(FALSE)
 
 	for(var/X in actions)
 		var/datum/action/A=X
@@ -844,6 +851,7 @@
 	icon_state = "weiner"
 	item_state = "weiner"
 	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
 
 // Ashwalker Clothes
 /obj/item/clothing/under/chestwrap
@@ -852,6 +860,7 @@
 	icon_state = "chestwrap"
 	has_sensor = NO_SENSORS
 	body_parts_covered = CHEST|GROIN
+	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/raider_leather
 	name = "scavenged rags"
@@ -882,7 +891,6 @@
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
-	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/ash_robe/young
 	name = "tribal rags"
@@ -918,3 +926,32 @@
 	desc = "A tattered dress of white fabric."
 	icon_state = "cheongsam_s"
 	item_state = "cheongsam_s"
+
+/obj/item/clothing/under/drip
+	name = "incredibly fashionable outfit"
+	desc = "Expensive-looking designer vest. It radiates an aggressively attractive aura. You feel putting this on would change you forever."
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
+	icon_state = "drippy"
+	item_state = "drippy"
+	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, RAD = 10, FIRE = 100, ACID = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF//Miners Bizzare Adventure Drip is Unbreakable
+	can_adjust = FALSE
+
+/obj/item/clothing/under/drip/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_W_UNIFORM)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drippy", /datum/mood_event/drippy)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripless", /datum/mood_event/drippy)
+		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))
+			to_chat(user, span_danger("As you put on the drip, you have an overwhelming sense of superiority shape your soul!"))
+			user.AddComponent(/datum/component/mood) //The drips curse, mood.
+
+/obj/item/clothing/under/drip/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_W_UNIFORM) == src)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)

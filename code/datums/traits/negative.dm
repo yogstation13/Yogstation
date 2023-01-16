@@ -24,13 +24,13 @@
 	lose_text = span_notice("You feel vigorous again.")
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
 
-/datum/quirk/blooddeficiency/on_process()
+/datum/quirk/blooddeficiency/on_process(delta_time)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
 		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
-			H.blood_volume -= 0.275
+			H.blood_volume -= 0.275 * delta_time
 
 /datum/quirk/blindness
 	name = "Blind"
@@ -59,8 +59,8 @@
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
 	var/where = "at your feet"
 
-/datum/quirk/brainproblems/on_process()
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
+/datum/quirk/brainproblems/on_process(delta_time)
+	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
 
 /datum/quirk/brainproblems/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -256,6 +256,11 @@
 	lose_text = span_danger("You're no longer severely affected by alcohol.")
 	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
 
+/datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+		return "You don't have the ability to drink!"
+	return FALSE
+
 /datum/quirk/nearsighted //t. errorage
 	name = "Nearsighted"
 	desc = "You are nearsighted without prescription glasses, but spawn with a pair."
@@ -347,6 +352,14 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
+	
+/datum/quirk/poor_aim/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.dna.species.aiminginaccuracy += 25
+
+/datum/quirk/poor_aim/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H?.dna?.species?.aiminginaccuracy -= 25
 
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
@@ -379,10 +392,16 @@
 			prosthetic = new/obj/item/bodypart/r_arm/robot/surplus(quirk_holder)
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
-			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
-			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			if(DIGITIGRADE in H.dna.species.species_traits)
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)
@@ -419,6 +438,7 @@
 	//no mob trait because it's handled uniquely
 	gain_text = null //handled by trauma
 	lose_text = null
+	var/where
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
 
 /datum/quirk/insanity/add()
@@ -426,11 +446,22 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 
+/datum/quirk/insanity/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/sanitypills = new /obj/item/storage/pill_bottle/gummies/mindbreaker(get_turf(quirk_holder))
+	var/list/slots = list(
+		"in your left pocket" = SLOT_L_STORE,
+		"in your right pocket" = SLOT_R_STORE,
+		"in your backpack" = SLOT_IN_BACKPACK
+	)
+	where = H.equip_in_one_of_slots(sanitypills, slots, FALSE) || "at your feet"
+
 /datum/quirk/insanity/post_add() //I don't /think/ we'll need this but for newbies who think "roleplay as insane" = "license to kill" it's probably a good thing to have
 	if(!quirk_holder.mind || quirk_holder.mind.special_role)
 		return
-	to_chat(quirk_holder, "<span class='big bold info'>Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
-	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers.</span>")
+	to_chat(quirk_holder, span_boldnotice("There is a bottle of mindbreaker gummy bears [where]. You're going to need it."))
+	to_chat(quirk_holder, span_boldwarning("Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
+	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers."))
 
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
@@ -623,6 +654,11 @@
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
 
+/datum/quirk/junkie/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+		return "You don't process normal chemicals!"
+	return FALSE
+
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
@@ -679,6 +715,11 @@
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
 
+/datum/quirk/sheltered/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.get_selected_language())
+		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -708,6 +749,11 @@
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE
 
+/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (TRAIT_MEDICALIGNORE in prefs.pref_species.inherent_traits))
+		return "You don't benefit from the use of medicine as a [prefs.pref_species]."
+	return ..()
+
 /datum/quirk/allergic/on_spawn()
 	reagent_id = pick(allergy_chem_list)
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
@@ -722,6 +768,11 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+
+/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+		return "You don't process normal chemicals!"
+	return FALSE
 
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
@@ -751,7 +802,7 @@
 	desc = "Thinking big words makes brain go hurt."
 	value = -2
 	human_only = TRUE
-	gain_text = "You feel your vocabularly slipping away."
+	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
 
@@ -769,6 +820,11 @@
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
 
+/datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (!(HAS_FLESH in prefs.pref_species.species_traits) || (NOBLOOD in prefs.pref_species.species_traits)))
+		return "You can't bleed as a [prefs.pref_species]."
+	return ..()
+
 /datum/quirk/brain_damage
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
@@ -785,3 +841,40 @@
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
+
+/datum/quirk/monochromatic
+	name = "Monochromacy"
+	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
+	value = -2
+	medical_record_text = "Patient is afflicted with almost complete color blindness."
+
+/datum/quirk/monochromatic/add()
+	quirk_holder.add_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/monochromatic/post_add()
+	if(quirk_holder.mind.assigned_role == "Detective")
+		to_chat(quirk_holder, span_boldannounce("Mmm. Nothing's ever clear on this station. It's all shades of gray..."))
+		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
+
+/datum/quirk/monochromatic/remove()
+	if(quirk_holder)
+		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/nomail
+	name = "Loser"
+	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
+	value = -1
+	mob_trait = TRAIT_BADMAIL
+
+/datum/quirk/telomeres_short 
+	name = "Short Telomeres"
+	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
+	value = -2
+	mob_trait = TRAIT_SHORT_TELOMERES
+	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
+
+/datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NO_DNA_COPY in prefs.pref_species.species_traits)) //Can't pick if you have no DNA bruv.
+		return "You have no DNA!"
+	return FALSE
+	

@@ -12,7 +12,8 @@
 					/obj/item/assembly/signaler = 3,
 					/obj/item/healthanalyzer = 3,
 					/obj/item/storage/firstaid/regular/empty = 3,
-					/obj/item/reagent_containers/glass/bucket = 3)
+					/obj/item/reagent_containers/glass/bucket = 3,
+					/obj/item/ipcrevive = 2)
 	refill_canister = /obj/item/vending_refill/robotics
 	default_price = 50
 	extra_price = 75

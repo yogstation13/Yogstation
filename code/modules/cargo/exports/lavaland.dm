@@ -25,18 +25,23 @@
 						/obj/item/kitchen/knife/envy,
 						/obj/item/gun/ballistic/revolver/russian/soul,
 						/obj/item/veilrender/vealrender,
-						/obj/item/keycard/necropolis)
+						/obj/item/keycard/necropolis,
+						/obj/item/clothing/gloves/gauntlets)
 
 /datum/export/lavaland/major //valuable chest/ruin loot and staff of storms
 	cost = 20000
 	unit_name = "lava planet artifact"
 	export_types = list(/obj/item/guardiancreator,
 						/obj/item/rod_of_asclepius,
-						/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
+						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
-						/obj/item/staff/storm)
+						/obj/item/staff/storm,
+						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
+						/obj/item/clothing/shoes/drip,
+						/obj/item/gun/energy/plasmacutter/adv/robocutter,
+						/obj/item/twohanded/bonespear/stalwartpike)
 
-//Megafauna loot, except for ash drakes and legion
+//Megafauna loot, except for stalwart, ash drakes, and legion
 
 /datum/export/lavaland/megafauna
 	cost = 40000
@@ -63,3 +68,70 @@
 	cost = 10000
 	unit_name = "H.E.C.K. helmet"
 	export_types = list(/obj/item/clothing/head/helmet/space/hostile_environment)
+
+//Gemstones, because they are unstackable
+
+/datum/export/lavaland/gems/sell_object(obj/O, datum/export_report/report, dry_run = TRUE, allowed_categories = EXPORT_CARGO , apply_limit = TRUE)
+	. = ..()
+	if(dry_run)
+		return .
+	var/obj/item/gem/sold = O
+	var/obj/item/card/id/claim = sold?.claimed_by
+	if(claim)
+		var/area/shuttle/shuttle = get_area(O)
+		shuttle.gem_payout[claim] += sold.point_value
+
+/datum/export/lavaland/gems/rupee
+	cost = 3300
+	unit_name = "Ruperium"
+	export_types = list(/obj/item/gem/rupee)
+
+/datum/export/lavaland/gems/magma
+	cost = 4500
+	unit_name = "Calcified Auric"
+	export_types = list(/obj/item/gem/magma)
+
+/datum/export/lavaland/gems/diamond
+	cost = 4500
+	unit_name = "Frost Diamond"
+	export_types = list(/obj/item/gem/fdiamond)
+
+/datum/export/lavaland/gems/plasma
+	cost = 7500
+	unit_name = "Stabilized Baroxuldium"
+	export_types = list(/obj/item/gem/phoron)
+
+/datum/export/lavaland/gems/purple
+	cost = 8400
+	unit_name = "Densified Dilithium"
+	export_types = list(/obj/item/gem/purple)
+
+/datum/export/lavaland/gems/amber
+	cost = 9600
+	unit_name = "Draconic Amber"
+	export_types = list(/obj/item/gem/amber)
+
+/datum/export/lavaland/gems/void
+	cost = 10000
+	unit_name = "Null Crystal"
+	export_types = list(/obj/item/gem/void)
+
+/datum/export/lavaland/gems/blood
+	cost = 12000
+	unit_name = "Ichorium Crystal"
+	export_types = list(/obj/item/gem/bloodstone)
+
+/datum/export/lavaland/gems/dark
+	cost = 20000
+	unit_name = "Dark Salt Lick"
+	export_types = list(/obj/item/gem/dark)
+
+/datum/export/lavaland/gems/minor
+	cost = 1000
+	unit_name = "Minor Lavaland Gem"
+	export_types = list(/obj/item/gem/ruby,/obj/item/gem/sapphire,/obj/item/gem/emerald,/obj/item/gem/topaz)
+
+/datum/export/lavaland/gems/stalwart
+	cost = 9800
+	unit_name = "Bluespace Data Crystal"
+	export_types = list(/obj/item/ai_cpu/stalwart)

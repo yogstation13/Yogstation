@@ -27,6 +27,9 @@
 	if(!(target in oview(range)))
 		to_chat(user, span_notice("They are too far away!"))
 		return
+	if(target.anti_magic_check())
+		to_chat(user, span_notice("They didn't laugh!"))
+		return
 	var/mob/living/carbon/human/H = target
 	H.cluwneify()
 

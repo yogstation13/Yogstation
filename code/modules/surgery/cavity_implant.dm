@@ -3,14 +3,21 @@
 	desc = "Implants or removes an object in the chest. Items up to normal size can be implanted, but tiny and small items won't show what they are in the implanting messages."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
+	steps = list(/datum/surgery_step/incise, 
+				/datum/surgery_step/clamp_bleeders, 
+				/datum/surgery_step/retract_skin, 
+				/datum/surgery_step/incise, 
+				/datum/surgery_step/handle_cavity, 
+				/datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/cavity_implant/mechanical
-	name = "Prosthesis cavity implant"
-	steps = list(/datum/surgery_step/mechanic_open, /datum/surgery_step/open_hatch, /datum/surgery_step/prepare_electronics, /datum/surgery_step/handle_cavity, /datum/surgery_step/mechanic_close)
-	possible_locs = list(BODY_ZONE_CHEST)
+	steps = list(/datum/surgery_step/mechanic_open, 
+				/datum/surgery_step/open_hatch, 
+				/datum/surgery_step/prepare_electronics, 
+				/datum/surgery_step/handle_cavity, 
+				/datum/surgery_step/mechanic_close)
 	requires_bodypart_type = BODYPART_ROBOTIC
 	lying_required = FALSE
 	self_operable = TRUE

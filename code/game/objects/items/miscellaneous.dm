@@ -14,7 +14,7 @@
 
 /obj/item/choice_beacon
 	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurance."
+	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurrence."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-blue"
 	item_state = "radio"
@@ -41,7 +41,9 @@
 	var/choice = input(M,"Which item would you like to order?","Select an Item") as null|anything in display_names
 	if(!choice || !M.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-
+	if(is_centcom_level(src.z))
+		visible_message(M, span_notice("You are unable to call this here."))
+		return 
 	spawn_option(display_names[choice],M)
 	uses--
 	if(!uses)
@@ -62,6 +64,16 @@
 	to_chat(M, msg)
 
 	new /obj/effect/DPtarget(get_turf(src), pod)
+
+/obj/item/choice_beacon/supermatter
+	name = "Supermatter Kit"
+	desc = "Kit containing a supermatter shard."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	item_state = "radio"
+
+/obj/item/choice_beacon/supermatter/generate_display_names()
+	return list("Supermatter Shard" = /obj/machinery/power/supermatter_crystal/shard)
 
 /obj/item/choice_beacon/hero
 	name = "heroic beacon"
@@ -153,3 +165,38 @@
 	user.gib()
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return MANUAL_SUICIDE
+
+/obj/item/ipcrevive // Doesnt do much beside be cosmetic
+	name = "IPC Revival Board"
+	desc = "Used to revive an IPC once fixed."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade1"
+
+/obj/item/ipcrevive/attack(mob/living/M, mob/living/user)
+	if(user.a_intent != INTENT_HELP)
+		return ..()
+	if(!isipc(M))
+		to_chat(user, span_warning("This is not an IPC"))
+		return TRUE
+	var/mob/living/carbon/human/H = M
+	if(H.stat != DEAD)
+		to_chat(user, span_warning("This unit is not dead!"))
+		return TRUE
+	var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
+	if(BR)
+		if(BR.suicided || BR.brainmob?.suiciding)
+			to_chat(user, span_warning("This unit's personality matrix is gone."))
+			return TRUE
+	if(H.health < 0)
+		to_chat(user, span_warning("You have to repair the IPC before using this module!"))
+		return TRUE
+	to_chat(user, span_warning("You start restarting the IPC's internal circuitry."))
+	if(!do_after(user, 5 SECONDS, H))
+		return TRUE
+	if(H.mind)
+		H.mind.grab_ghost()
+	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
+	H.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
+	H.revive()
+	qdel(src)
+	return TRUE

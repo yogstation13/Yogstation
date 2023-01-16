@@ -21,7 +21,7 @@
 
 /datum/crafting_recipe/lockermech
 	name = "Locker Mech"
-	result = /obj/mecha/makeshift
+	result = /obj/mecha/working/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 20,
 				/obj/item/stack/sheet/metal = 10,
 				/obj/item/storage/toolbox = 2, // For feet
@@ -96,7 +96,8 @@
 		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 		/obj/item/reagent_containers/syringe = 1
 	)
-	category = CAT_CLOTHING
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
 
 /datum/crafting_recipe/poppy2
 	name = "poppy pin"
@@ -106,4 +107,16 @@
 		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 		/obj/item/stack/rods = 1
 	)
-	category = CAT_CLOTHING
+	category = CAT_APPAREL
+	subcategory = CAT_CLOTHING
+
+/datum/crafting_recipe/ashtray
+	name = "Ashtray"
+	result = /obj/item/ashtray
+	time = 2 SECONDS
+	reqs = list (
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/sheet/metal = 1
+	)
+	tools = list(/obj/item/weldingtool)
+	category = CAT_STRUCTURES

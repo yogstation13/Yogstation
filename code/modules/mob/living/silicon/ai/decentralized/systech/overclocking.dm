@@ -48,8 +48,9 @@
 			inserted_cpu.power_multiplier = initial(inserted_cpu.power_multiplier)
 
 /obj/machinery/computer/ai_overclocking/Destroy()
-	inserted_cpu.speed = initial(inserted_cpu.speed)
-	inserted_cpu.power_multiplier = initial(inserted_cpu.power_multiplier)
+	if(inserted_cpu)
+		inserted_cpu.speed = initial(inserted_cpu.speed)
+		inserted_cpu.power_multiplier = initial(inserted_cpu.power_multiplier)
 	. = ..()
 
 /obj/machinery/computer/ai_overclocking/attackby(obj/item/I, mob/user, params)

@@ -14,7 +14,7 @@
 	if(dumped)
 		to_chat(user, span_warning("You already activated Protocol CRAB-17."))
 		return FALSE
-	if(alert(user, "Are you sure you want to crash this market with no survivors?", "Protocol CRAB-17", "Yes", "No") == "Yes")
+	if(tgui_alert(user, "Are you sure you want to crash this market with no survivors?", "Protocol CRAB-17", list("Yes", "No")) == "Yes")
 		if(dumped || QDELETED(src)) //Prevents fuckers from cheesing alert
 			return FALSE
 		var/turf/targetturf = get_random_station_turf()
@@ -156,9 +156,9 @@
 /obj/structure/checkoutmachine/proc/start_dumping()
 	accounts_to_rob = SSeconomy.bank_accounts.Copy()
 	if(bogdanoff)
-		accounts_to_rob -= bogdanoff.get_bank_account()
+		accounts_to_rob -= "[bogdanoff.get_bank_account().account_id]"
 	for(var/i in accounts_to_rob)
-		var/datum/bank_account/B = i
+		var/datum/bank_account/B = accounts_to_rob[i]
 		B.dumpeet()
 	dump()
 

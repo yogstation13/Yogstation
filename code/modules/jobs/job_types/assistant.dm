@@ -3,7 +3,9 @@ Assistant
 */
 /datum/job/assistant
 	title = "Assistant"
+	description = "Get your space legs, assist people, ask the HoP to give you a job."
 	flag = ASSISTANT
+	orbit_icon = "toolbox"
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 5
@@ -17,6 +19,16 @@ Assistant
 	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
+	minimal_character_age = 18 //Would make it even younger if I could because this role turns men into little brat boys and likewise for the other genders
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
+		/obj/item/clothing/mask/gas = 10,
+		/obj/item/clothing/gloves/color/fyellow = 7,
+		/obj/item/choice_beacon/music = 5,
+		/obj/item/toy/crayon/spraycan = 3,
+		/obj/item/crowbar/large = 1
+	)
 
 	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
 

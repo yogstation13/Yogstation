@@ -18,7 +18,7 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(seconds, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
@@ -27,8 +27,7 @@
 
 	if (QDELETED(src))
 		return 0
-
-	if(!IS_IN_STASIS(src))
+	if(LIFETICK_SKIP(src, times_fired))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
@@ -53,6 +52,13 @@
 	name = get_visible_name()
 
 	if(stat != DEAD)
+		var/datum/component/mood/moody = GetComponent(/datum/component/mood)
+		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
+			if(prob(50))
+				if(prob(50))
+					heal_bodypart_damage(0.2*seconds, 0, 0, TRUE, BODYPART_ORGANIC)
+				else
+					heal_bodypart_damage(0, 0.2*seconds, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
@@ -97,25 +103,29 @@
 	var/L = getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(!L)
-		if(health >= crit_threshold)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
+		if(isipc(src))
+			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
+			adjust_bodytemperature(20, max_temp = 500)
+		else
+			if(health >= crit_threshold)
+				adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
+			else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
+				adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		failed_last_breath = 1
+			failed_last_breath = 1
 
-		var/datum/species/S = dna.species
+			var/datum/species/S = dna.species
 
-		if(S.breathid == "o2")
-			throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
-		else if(S.breathid == "tox")
-			throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
-		else if(S.breathid == "co2")
-			throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
-		else if(S.breathid == "n2")
-			throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			if(S.breathid == "o2")
+				throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
+			else if(S.breathid == "tox")
+				throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
+			else if(S.breathid == "co2")
+				throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
+			else if(S.breathid == "n2")
+				throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
 
-		return FALSE
+			return FALSE
 	else
 		if(istype(L, /obj/item/organ/lungs))
 			var/obj/item/organ/lungs/lun = L

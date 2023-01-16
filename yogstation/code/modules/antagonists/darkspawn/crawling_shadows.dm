@@ -2,8 +2,8 @@
 	name = "crawling shadows"
 	desc = "A formless mass of blackness with two huge, clawed hands and piercing white eyes."
 	icon = 'icons/effects/effects.dmi' //Placeholder sprite
-	icon_state = "blank"
-	icon_living = "blank"
+	icon_state = "blank_dspawn"
+	icon_living = "blank_dspawn"
 	response_help = "backs away from"
 	response_disarm = "shoves away"
 	response_harm = "flails at"

@@ -6,16 +6,19 @@
 	item_state = "eng_helm"
 	max_integrity = 300
 	armor = list(MELEE = 10, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 50, ACID = 75)
+	light_system = MOVABLE_LIGHT
+	light_range = 4
+	light_power = 1
+	light_on = FALSE
 	var/basestate = "hardsuit"
-	var/brightness_on = 4 //luminosity when on
 	var/on = FALSE
 	var/obj/item/clothing/suit/space/hardsuit/suit
 	//Determines used sprites: hardsuit[on]-[hardsuit_type]
 	var/hardsuit_type = "engineering"
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
-	var/rad_count = 0
-	var/rad_record = 0
-	var/grace_count = 0
+	var/current_tick_amount = 0
+	var/radiation_count = 0
+	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop
 
 /obj/item/clothing/head/helmet/space/hardsuit/Initialize()
@@ -33,10 +36,8 @@
 	icon_state = "[basestate][on]-[hardsuit_type]"
 	user.update_inv_head()	//so our mob-overlays update
 
-	if(on)
-		set_light(brightness_on)
-	else
-		set_light(0)
+	set_light_on(on)
+
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -67,23 +68,25 @@
 	if(msg && ishuman(wearer))
 		wearer.show_message("[icon2html(src, wearer)]<b>[span_robot("[msg]")]</b>", MSG_VISUAL)
 
-/obj/item/clothing/head/helmet/space/hardsuit/rad_act(severity)
+/obj/item/clothing/head/helmet/space/hardsuit/rad_act(amount)
 	. = ..()
-	rad_count += severity
-
-/obj/item/clothing/head/helmet/space/hardsuit/process()
-	if(!rad_count)
-		grace_count++
-		if(grace_count == 2)
-			soundloop.last_radiation = 0
+	if(amount <= RAD_BACKGROUND_RADIATION)
 		return
+	current_tick_amount += amount
 
-	grace_count = 0
-	rad_record -= rad_record/5
-	rad_record += rad_count/5
-	rad_count = 0
+/obj/item/clothing/head/helmet/space/hardsuit/process(delta_time)
+	radiation_count = LPFILTER(radiation_count, current_tick_amount, delta_time, RAD_GEIGER_RC)
 
-	soundloop.last_radiation = rad_record
+	if(current_tick_amount)
+		grace = RAD_GEIGER_GRACE_PERIOD
+	else
+		grace -= delta_time
+		if(grace <= 0)
+			radiation_count = 0
+
+	current_tick_amount = 0
+
+	soundloop.last_radiation = radiation_count
 
 /obj/item/clothing/head/helmet/space/hardsuit/emp_act(severity)
 	. = ..()
@@ -169,7 +172,7 @@
 	icon_state = "hardsuit0-engineering"
 	item_state = "eng_helm"
 	hardsuit_type = "engineering"
-	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 100, ACID = 75, WOUND = 10)
+	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/engine
@@ -177,7 +180,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
 	icon_state = "hardsuit-engineering"
 	item_state = "eng_hardsuit"
-	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 100, ACID = 75, WOUND = 10)
+	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine
 	resistance_flags = FIRE_PROOF
 
@@ -262,7 +265,7 @@
 	resistance_flags = FIRE_PROOF
 	heat_protection = HEAD
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 75, WOUND = 15)
-	brightness_on = 7
+	light_range = 7
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator)
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining/Initialize()
@@ -293,7 +296,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
-	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 35, BIO = 100, RAD = 50, FIRE = 50, ACID = 90, WOUND = 25)
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 90, WOUND = 25)
 	on = TRUE
 	var/obj/item/clothing/suit/space/hardsuit/syndi/linkedsuit = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_mode)
@@ -317,7 +320,7 @@
 		to_chat(user, span_notice("You switch your hardsuit to EVA mode, sacrificing speed for space protection."))
 		name = initial(name)
 		desc = initial(desc)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 		clothing_flags |= visor_flags
 		flags_cover |= HEADCOVERSEYES | HEADCOVERSMOUTH
 		flags_inv |= visor_flags_inv
@@ -326,7 +329,7 @@
 		to_chat(user, span_notice("You switch your hardsuit to combat mode and can now run at full speed."))
 		name += " (combat)"
 		desc = alt_desc
-		set_light(0)
+		set_light_on(FALSE)
 		clothing_flags &= ~visor_flags
 		flags_cover &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 		flags_inv &= ~visor_flags_inv
@@ -371,7 +374,7 @@
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
 	w_class = WEIGHT_CLASS_NORMAL
-	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 35, BIO = 100, RAD = 50, FIRE = 50, ACID = 90, WOUND = 25)
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 90, WOUND = 25)
 	allowed = list(/obj/item/gun, /obj/item/ammo_box,/obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	jetpack = /obj/item/tank/jetpack/suit
@@ -383,7 +386,7 @@
 	alt_desc = "An elite version of the syndicate helmet, with improved armour and fireproofing. It is in combat mode. Property of Gorlex Marauders."
 	icon_state = "hardsuit0-syndielite"
 	hardsuit_type = "syndielite"
-	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 55, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)
+	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 35, BOMB = 90, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -395,7 +398,7 @@
 	icon_state = "hardsuit0-syndielite"
 	hardsuit_type = "syndielite"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
-	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 55, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)
+	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 90, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -428,7 +431,8 @@
 	icon_state = "carp_helm"
 	item_state = "syndicate"
 	armor = list(MELEE = -20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 75, FIRE = 60, ACID = 75)	//As whimpy as a space carp
-	brightness_on = 0 //luminosity when on
+	light_system = NO_LIGHT_SUPPORT
+	light_range = 0 //luminosity when on
 	actions_types = list()
 
 /obj/item/clothing/head/helmet/space/hardsuit/carp/Initialize()
@@ -561,7 +565,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range,
 		light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 	var/turf/T = get_turf(src)
-	if(T.z != epicenter.z)
+	if(T?.z != epicenter.z)
 		return
 	if(get_dist(epicenter, T) > explosion_detection_dist)
 		return
@@ -588,7 +592,7 @@
 	icon_state = "hardsuit0-sec"
 	item_state = "sec_helm"
 	hardsuit_type = "sec"
-	armor = list(MELEE = 35, BULLET = 25, LASER = 30,ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 75, ACID = 75, WOUND = 20)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 30,ENERGY = 10, BOMB = 40, BIO = 100, RAD = 50, FIRE = 75, ACID = 75, WOUND = 20)
 
 
 /obj/item/clothing/suit/space/hardsuit/security
@@ -596,7 +600,7 @@
 	name = "security hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
 	item_state = "sec_hardsuit"
-	armor = list(MELEE = 35, BULLET = 25, LASER = 30, ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 75, ACID = 75, WOUND = 20)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 30, ENERGY = 10, BOMB = 40, BIO = 100, RAD = 50, FIRE = 75, ACID = 75, WOUND = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security
 
 /obj/item/clothing/suit/space/hardsuit/security/Initialize()
@@ -609,14 +613,14 @@
 	desc = "A special bulky helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "hardsuit0-hos"
 	hardsuit_type = "hos"
-	armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
+	armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
 
 
 /obj/item/clothing/suit/space/hardsuit/security/hos
 	icon_state = "hardsuit-hos"
 	name = "head of security's hardsuit"
 	desc = "A special bulky suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
-	armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
+	armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	jetpack = /obj/item/tank/jetpack/suit
 
@@ -656,6 +660,7 @@
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
 	desc = "A tactical MK.II SWAT helmet boasting better protection and a horrible fashion sense."
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR	//Full helmet
 
 /obj/item/clothing/suit/space/hardsuit/swat/captain
 	name = "captain's SWAT suit"
@@ -700,7 +705,7 @@
 	hardsuit_type = "ert_commander"
 	armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 80)
 	strip_delay = 130
-	brightness_on = 7
+	light_range = 7
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
@@ -1019,7 +1024,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
-	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 35, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
 	slowdown = 0
@@ -1035,7 +1040,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
-	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 35, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 
 ///Deathsquad version
 
@@ -1113,24 +1118,31 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	name = "Salvaged T-45b helmet"
-	desc = "It's some barely-functional power armor helmet from a by-gone age."
+	desc = "It's some dusty power armor helmet from a by-gone age."
 	icon_state = "hardsuit0-t45b"
 	item_state = "t45b_helm"
 	hardsuit_type = "t45b"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 100, RAD = 50, FIRE = 50, ACID = 25)
+	strip_delay = 100
+	equip_delay_other = 100
+	armor = list(MELEE = 45, BULLET = 30, LASER = 25, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 80, FIRE = 90, ACID = 100)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b
 	name = "Salvaged T-45b power armor"
-	desc = "It's some barely-functional power armor, probably hundreds of years old."
+	desc = "It's some dusty power armor, probably hundreds of years old."
 	icon_state = "hardsuit-t45b"
 	item_state = "t45b_hardsuit"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
+	armor = list(MELEE = 45, BULLET = 30, LASER = 25, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 80, FIRE = 90, ACID = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	hardsuit_type = "t45b"
+	strip_delay = 180
+	equip_delay_other = 180
+	slowdown = 0
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
-	name = "X-01 power helmet"
-	desc = "It's an X-01 power armor helmet. It looks pretty impressive and threatening."
+	name = "X-02 power helmet"
+	desc = "It's an X-02 power armor helmet. It looks pretty impressive and threatening."
 	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
 	hardsuit_type = "advpa1"
@@ -1141,8 +1153,8 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
-	name = "X-01 power armor"
-	desc = "A suit of X-01 power armor. It looks pretty impressive and threatening. The suit storage hook looks reinforced, able to hold bulkier items."
+	name = "X-02 power armor"
+	desc = "A suit of X-02 power armor. It looks pretty impressive and threatening. The suit storage hook looks reinforced, able to hold bulkier items."
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced

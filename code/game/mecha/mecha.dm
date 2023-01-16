@@ -11,7 +11,6 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
-
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -23,6 +22,10 @@
 	layer = BELOW_MOB_LAYER//icon draw layer
 	infra_luminosity = 15 //byond implementation is bugged.
 	force = 5
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 6
+	light_on = FALSE
 	flags_1 = HEAR_1
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/can_move = 0 //time of next allowed movement
@@ -49,9 +52,9 @@
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect_system/spark_spread/spark_system = new
 	var/lights = FALSE
-	var/lights_power = 6
 	var/last_user_hud = 1 // used to show/hide the mecha hud while preserving previous preference
 	var/completely_disabled = FALSE //stops the mech from doing anything
+	var/omnidirectional_attacks = FALSE //lets mech shoot anywhere, not just in front of it
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos
@@ -100,7 +103,7 @@
 	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
 	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
 	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
-	var/datum/action/innate/mecha/mech_defence_mode/defense_action = new
+	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
 	var/datum/effect_system/smoke_spread/smoke_system = new //not an action, but trigged by one
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
@@ -112,7 +115,7 @@
 	//Action vars
 	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
-	var/defence_mode_deflect_chance = 35
+	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
 	var/leg_overload_coeff = 100
 	var/zoom_mode = FALSE
@@ -123,7 +126,7 @@
 	var/phasing_energy_drain = 200
 	var/phase_state = "" //icon_state when phasing
 	var/strafe = FALSE //If we are strafing
-
+	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
 
@@ -217,7 +220,7 @@
 	equipment_disabled = FALSE
 	if(occupant)
 		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
+		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfully.</span>")
 		occupant.update_mouse_pointer()
 
 /obj/mecha/CheckParts(list/parts_list)
@@ -235,10 +238,6 @@
 	else
 		normal_step_energy_drain = 500
 		step_energy_drain = normal_step_energy_drain
-	if(capacitor)
-		armor = armor.modifyRating(energy = (capacitor.rating * 5)) //Each level of capacitor protects the mech against emp by 5%
-	else //because we can still be hit without a cap, even if we can't move
-		armor = armor.setRating(energy = 0)
 
 
 ////////////////////////
@@ -319,6 +318,9 @@
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in visible_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
+	if(occupant && occupant == user)
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee || armor.fire || armor.acid || deflect_chance || max_temperature)
+			. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
 	if(!enclosed)
 		if(silicon_pilot)
 			. += "[src] appears to be piloting itself..."
@@ -330,6 +332,54 @@
 					if(istype(O, /obj/item/gun))
 						. += span_warning("It looks like you can hit the pilot directly if you target the center or above.")
 						break //in case user is holding two guns
+
+//Armor tag
+/obj/mecha/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["list_armor"])
+		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee)
+			readout += "\n<b>ARMOR (I-X)</b>"
+			if(armor.bio)
+				readout += "\nBIO [armor_to_protection_class(armor.bio)]"
+			if(armor.bomb)
+				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
+			if(armor.bullet)
+				readout += "\nBULLET [armor_to_protection_class(armor.bullet)]"
+			if(armor.energy)
+				readout += "\nENERGY [armor_to_protection_class(armor.energy)]"
+			if(armor.laser)
+				readout += "\nLASER [armor_to_protection_class(armor.laser)]"
+			if(armor.melee)
+				readout += "\nMELEE [armor_to_protection_class(armor.melee)]"
+		if(armor.fire || armor.acid || deflect_chance || max_temperature)
+			readout += "\n<b>DURABILITY (I-X)</b>"
+			if(armor.fire)
+				readout += "\nFIRE [armor_to_protection_class(armor.fire)]"
+			if(armor.acid)
+				readout += "\nACID [armor_to_protection_class(armor.acid)]"
+			if(deflect_chance)
+				readout += "\nDEFLECT CHANCE: [deflect_chance]%"
+			if(max_temperature)
+				readout += "\nMAX TEMPERATURE: [max_temperature] KELVIN"
+
+		readout += "</span>"
+
+		to_chat(usr, "[readout.Join()]")
+
+/**
+  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
+  *
+  * Arguments:
+  * * armor_value - Number we're converting
+  */
+/obj/mecha/proc/armor_to_protection_class(armor_value)
+	if (armor_value < 0)
+		. = "-"
+	. += "\Roman[round(abs(armor_value), 10) / 10]"
+	return .
+
 
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/mecha/process()
@@ -406,22 +456,22 @@
 				if(0.75 to INFINITY)
 					occupant.clear_alert("charge")
 				if(0.5 to 0.75)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 1)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 1)
 				if(0.25 to 0.5)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 2)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 2)
 				if(0.01 to 0.25)
-					occupant.throw_alert("charge", /obj/screen/alert/lowcell, 3)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 3)
 				else
-					occupant.throw_alert("charge", /obj/screen/alert/emptycell)
+					occupant.throw_alert("charge", /atom/movable/screen/alert/emptycell)
 
 		var/integrity = obj_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 1)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 1)
 			if(15 to 35)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 2)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 2)
 			if(-INFINITY to 15)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
 		var/atom/checking = occupant.loc
@@ -457,7 +507,7 @@
 	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
-			occupant.fire_stacks += 1
+			occupant.adjust_fire_stacks(1)
 		occupant.IgniteMob()
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -502,7 +552,7 @@
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
-	if(dir_to_target && !(dir_to_target & dir))//wrong direction
+	if(!omnidirectional_attacks && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = safepick(view(3,target))
@@ -521,6 +571,11 @@
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
+		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
+			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
+				to_chat(user, span_warning("You don't want to harm other living beings!"))
+				return
 		if(selected.action(target,params))
 			selected.start_cooldown()
 	else
@@ -530,7 +585,7 @@
 			return
 		if(equipment_disabled)
 			return
-		target.mech_melee_attack(src)
+		target.mech_melee_attack(src, TRUE)
 		melee_can_hit = FALSE
 		spawn(melee_cooldown)
 			melee_can_hit = TRUE
@@ -619,18 +674,18 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechsteprand()
-	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
+	else if(dir != direction && (!strafe || occupant?.client?.keys_held["Alt"]))
 		move_result = mechturn(direction)
 	else
-		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in * check_eva()))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
 			take_damage(2, BRUTE)
-		can_move = world.time + step_in
+		can_move = world.time + step_in * check_eva()
 		return TRUE
 	return FALSE
 
@@ -658,13 +713,14 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
-		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
 
-	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
-		return
+		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
+
+	if(istype(newloc, /turf/closed/indestructible))
+		return	//If the turf is indestructible don't bother trying
+
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
@@ -673,7 +729,7 @@
 					flick(phase_state, src)
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
-				sleep(step_in*3)
+				sleep(step_in * check_eva()*3)
 				can_move = TRUE
 	else
 		if(..()) //mech was thrown
@@ -681,7 +737,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src)
+					obstacle.mech_melee_attack(src, FALSE)	//Non-equipment melee attack
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
@@ -749,6 +805,9 @@
 	//Allows the Malf to scan a mech's status and loadout, helping it to decide if it is a worthy chariot.
 	if(user.can_dominate_mechs)
 		examine(user) //Get diagnostic information!
+		if(user.nuking)
+			to_chat(user, span_warning("Unable to assume control of mech while attempting to self-destruct the station."))
+			return
 		for(var/obj/item/mecha_parts/mecha_tracking/B in trackers)
 			to_chat(user, span_danger("Warning: Tracking Beacon detected. Enter at your own risk. Beacon Data:"))
 			to_chat(user, "[B.get_mecha_info()]")
@@ -886,6 +945,9 @@
 		return cabin_air
 	return ..()
 
+/obj/mecha/return_analyzable_air()
+	return cabin_air
+
 /obj/mecha/proc/return_pressure()
 	var/datum/gas_mixture/t_air = return_air()
 	if(t_air)
@@ -1020,7 +1082,7 @@
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	else
-		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
+		to_chat(brainmob, "<b>If you were a member of the crew, you still are! Do not use this new form as an excuse to break rules. Similarly, if you were an antagonist, you still are!</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)
@@ -1038,7 +1100,7 @@
 
 /obj/mecha/Exited(atom/movable/M, atom/newloc)
 	if(occupant && occupant == M) // The occupant exited the mech without calling go_out()
-		go_out(TRUE, newloc)
+		go_out(FALSE, newloc) // Voice of god breaks things (such as gibbing AI)
 
 	if(cell && cell == M)
 		cell = null
@@ -1086,10 +1148,10 @@
 				newloc = GLOB.primary_data_core
 			else if(LAZYLEN(GLOB.data_cores))
 				newloc = GLOB.data_cores[1]
-				
+
 			if(!istype(newloc, /obj/machinery/ai/data_core))
 				to_chat(AI, span_userdanger("No cores available. Core code corrupted."))
-				
+
 			is_ai_user = TRUE
 	else
 		return
@@ -1230,3 +1292,19 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
 	return FALSE
+
+// Checks the pilot and their clothing for mech speed buffs
+/obj/mecha/proc/check_eva()
+	var/evaNum = 1
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant //if the person is skilled
+		var/datum/component/mech_pilot/skill = H.GetComponent(/datum/component/mech_pilot)
+		if(skill)
+			evaNum *= skill.piloting_speed
+
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_W_UNIFORM) //if the suit directly assists the pilot
+		if(clothes)
+			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
+			if(MP)
+				evaNum *= MP.piloting_speed
+	return evaNum

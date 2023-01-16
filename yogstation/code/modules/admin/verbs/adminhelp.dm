@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]") 
+		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -203,10 +203,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	// There are no admins online, try deadmins
 	var/found_deadmin = FALSE
-	if(GLOB.deadmins.len > 0)
-		for(var/deadmin_ckey in GLOB.deadmins)
-			var/datum/admins/A = GLOB.deadmins[deadmin_ckey]
-			if(!A.check_for_rights(R_BAN))
+	if(GLOB.permissions.deadmins.len > 0)
+		for(var/deadmin_ckey in GLOB.permissions.deadmins)
+			var/datum/admins/A = GLOB.permissions.deadmins[deadmin_ckey]
+			if(!check_rights_for(A.owner, R_BAN))
 				continue
 			var/client/client = GLOB.directory[deadmin_ckey]
 			if(!client)
@@ -231,7 +231,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
 		var/msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font></span>")
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in GLOB.permissions.admins)
 			if(check_rights_for(X,R_BAN))
 				to_chat(X,
 					type = MESSAGE_TYPE_ADMINLOG,
@@ -245,10 +245,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						type = MESSAGE_TYPE_ADMINLOG,
 						html = msg,
 						confidential = TRUE)
-				
+
 		if(world.time > last_bwoinking)
 			last_bwoinking = world.time + 1 SECONDS
-			for(var/client/X in GLOB.admins)
+			for(var/client/X in GLOB.permissions.admins)
 				if(check_rights_for(X,R_BAN) && (X.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 					SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		return FALSE
@@ -304,7 +304,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction(msg)
 
 	//send this msg to all admins
-	for(var/client/X in GLOB.admins)
+	for(var/client/X in GLOB.permissions.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		window_flash(X, ignorepref = TRUE)
@@ -683,7 +683,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//client may of have disconnected by the time this proc gets called
 	if(!src)
 		return
-		
+
 	if(!locate(/client/verb/adminhelp) in src.verbs)
 		add_verb(src, /client/verb/adminhelp)
 
@@ -865,17 +865,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	usr << browse(null, "window=ViewTickets")
 	usr << browse(html, "window=ViewTickets")
 
-/client/Topic(href, href_list, hsrc)
-	..()
-
-	if(href_list["action"] == "refresh_admin_ticket_list")
-		var/client/C = usr.client
-		var/flag = href_list["flag"]
-		if(!flag)
-			flag = TICKET_FLAG_LIST_ALL
-
-		C.view_tickets_main(flag)
-
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()
 	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as text|null
@@ -945,7 +934,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /proc/get_admin_counts(requiredflags = R_BAN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
-	for(var/client/X in GLOB.admins)
+	for(var/client/X in GLOB.permissions.admins)
 		.["total"] += X
 		if(requiredflags != 0 && !check_rights_for(X, requiredflags))
 			.["noflags"] += X
@@ -999,7 +988,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")
 	var/list/admin_keys = list()
-	for(var/adm in GLOB.admins)
+	for(var/adm in GLOB.permissions.admins)
 		var/client/C = adm
 		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
 

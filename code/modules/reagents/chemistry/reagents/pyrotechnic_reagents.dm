@@ -5,6 +5,7 @@
 	reagent_state = SOLID
 	color = "#550000"
 	taste_description = "sweet tasting metal"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -35,6 +36,7 @@
 	color = "#FFC8C8"
 	metabolization_rate = 4
 	taste_description = "burning"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -92,7 +94,7 @@
 	description = "Explodes. Violently."
 	reagent_state = LIQUID
 	color = "#000000"
-	metabolization_rate = 0.05
+	metabolization_rate = REAGENTS_METABOLISM * 2.5	//Yogs change - faster metabolization
 	taste_description = "salt"
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
@@ -135,6 +137,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -157,6 +160,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -174,6 +178,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube

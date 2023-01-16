@@ -1,6 +1,8 @@
 /datum/job/cyborg
 	title = "Cyborg"
+	description = "Assist the crew, follow your laws, obey your AI."
 	flag = CYBORG
+	orbit_icon = "robot"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	department_flag = ENGSEC
 	faction = "Station"
@@ -16,6 +18,8 @@
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	smells_like = "inorganic indifference"
 
 /datum/job/cyborg/proc/EclipseStationChanges()
 	spawn_positions = 3

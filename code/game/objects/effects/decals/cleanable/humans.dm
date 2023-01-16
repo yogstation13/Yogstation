@@ -217,3 +217,4 @@
 	desc = "Someone really wasted their time writing this before dying."
 	icon = 'yogstation/icons/effects/station_blood.dmi'
 	icon_state = "kilo"
+	random_icon_states = null

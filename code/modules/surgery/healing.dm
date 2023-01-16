@@ -6,7 +6,6 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_bodypart_type = FALSE
 	replaced_by = /datum/surgery
 	ignore_clothes = TRUE
 	var/healing_step_type
@@ -27,6 +26,7 @@
 	success_sound = 'sound/surgery/retractor2.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 0
+	bloody_chance = 1
 	var/brutehealing = 0
 	var/burnhealing = 0
 	var/missinghpbonus = 0 //heals an extra point of damager per X missing damage of type (burn damage for burn healing, brute for brute). Smaller Number = More Healing!
@@ -110,12 +110,14 @@
 
 /datum/surgery/healing/brute/basic
 	name = "Tend Wounds (Bruises, Basic)"
+	tier = "1"
 	replaced_by = /datum/surgery/healing/brute/upgraded
 	healing_step_type = /datum/surgery_step/heal/brute/basic
 	desc = "A surgical procedure that provides basic treatment for a patient's brute traumas. Heals slightly more when the patient is severely injured."
 
 /datum/surgery/healing/brute/upgraded
 	name = "Tend Wounds (Bruises, Adv.)"
+	tier = "2"
 	replaced_by = /datum/surgery/healing/brute/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/brute/upgraded
@@ -123,6 +125,7 @@
 
 /datum/surgery/healing/brute/upgraded/femto
 	name = "Tend Wounds (Bruises, Exp.)"
+	tier = "3"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/brute/upgraded/femto
@@ -176,12 +179,14 @@
 
 /datum/surgery/healing/burn/basic
 	name = "Tend Wounds (Burn, Basic)"
+	tier = "1"
 	replaced_by = /datum/surgery/healing/burn/upgraded
 	healing_step_type = /datum/surgery_step/heal/burn/basic
 	desc = "A surgical procedure that provides basic treatment for a patient's burns. Heals slightly more when the patient is severely injured."
 
 /datum/surgery/healing/burn/upgraded
 	name = "Tend Wounds (Burn, Adv.)"
+	tier = "2"
 	replaced_by = /datum/surgery/healing/burn/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/burn/upgraded
@@ -189,6 +194,7 @@
 
 /datum/surgery/healing/burn/upgraded/femto
 	name = "Tend Wounds (Burn, Exp.)"
+	tier = "3"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/burn/upgraded/femto
@@ -240,6 +246,7 @@
 /datum/surgery/healing/combo
 	name = "Tend Wounds (Mixture, Basic)"
 	icon_state = "bandaid_both"
+	tier = "1"
 	replaced_by = /datum/surgery/healing/combo/upgraded
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/combo
@@ -247,6 +254,7 @@
 
 /datum/surgery/healing/combo/upgraded
 	name = "Tend Wounds (Mixture, Adv.)"
+	tier = "2"
 	replaced_by = /datum/surgery/healing/combo/upgraded/femto
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded
 	desc = "A surgical procedure that provides advanced treatment for a patient's burns and brute traumas. Heals more when the patient is severely injured."
@@ -254,6 +262,7 @@
 
 /datum/surgery/healing/combo/upgraded/femto //no real reason to type it like this except consistency, don't worry you're not missing anything
 	name = "Tend Wounds (Mixture, Exp.)"
+	tier = "3"
 	replaced_by = null
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded/femto
 	desc = "A surgical procedure that provides experimental treatment for a patient's burns and brute traumas. Heals considerably more when the patient is severely injured."

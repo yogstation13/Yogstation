@@ -23,6 +23,7 @@
 	throw_range = 1
 	throw_speed = 1
 	pressure_resistance = 0
+	sharpness = SHARP_EDGED //Paper cuts
 	slot_flags = ITEM_SLOT_HEAD
 	body_parts_covered = HEAD
 	resistance_flags = FLAMMABLE
@@ -54,6 +55,18 @@
 			H.reagents.add_reagent(contact_poison,contact_poison_volume)
 			contact_poison = null
 	..()
+
+
+/obj/item/paper/attack_hand(mob/living/carbon/human/user) //Basically repurposed light tube code
+	..()
+	if(prob(1))
+		var/mob/living/carbon/human/butterfingers = user
+		if(butterfingers.gloves)
+			to_chat(user, span_notice("The paper slides uncomfortably across your gloved palm."))
+		else
+			to_chat(user, span_warning("You cut yourself on the paper!"))
+			var/obj/item/bodypart/affecting = butterfingers.get_active_hand()
+			affecting?.receive_damage(1)
 
 
 /obj/item/paper/Initialize()

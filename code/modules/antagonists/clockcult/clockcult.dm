@@ -129,7 +129,7 @@
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "brass"
 	hierophant_network.Grant(current)
-	current.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
+	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
 

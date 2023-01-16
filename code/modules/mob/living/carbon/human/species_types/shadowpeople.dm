@@ -5,10 +5,10 @@
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
 	name = "???"
 	id = "shadow"
-	sexes = 0
+	sexes = FALSE
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH,)
+	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
@@ -40,7 +40,7 @@
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
-	mutant_brain = /obj/item/organ/brain/nightmare
+	mutantbrain = /obj/item/organ/brain/nightmare
 	
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
@@ -93,6 +93,7 @@
 	desc = "An alien organ that twists and writhes when exposed to light."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
+	visual = TRUE
 	color = "#1C1C1C"
 	var/respawn_progress = 0
 	var/obj/item/light_eater/blade
@@ -210,9 +211,8 @@
 /obj/item/light_eater/proc/disintegrate(obj/item/O)
 	if(istype(O, /obj/item/pda))
 		var/obj/item/pda/PDA = O
-		PDA.set_light(0)
-		PDA.fon = FALSE
-		PDA.f_lum = 0
+		PDA.set_light_on(FALSE)
+		PDA.set_light_range(0) //It won't be turning on again.
 		PDA.update_icon()
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else

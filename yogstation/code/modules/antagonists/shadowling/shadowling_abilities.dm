@@ -62,6 +62,10 @@
 	. = ..()
 	if(!target)
 		return
+	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+		to_chat(user, span_warning("You need eyes to glare!"))
+		revert_cast()
+		return
 	if(target.stat)
 		to_chat(usr, span_warning("[target] must be conscious!"))
 		revert_cast()
@@ -109,7 +113,7 @@
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		if(F.on)
+		if(F.light_on)
 			if(cold)
 				if(is_type_in_list(F, blacklisted_lights))
 					F.visible_message(span_warning("The sheer cold shatters [F]!"))
@@ -118,13 +122,13 @@
 					return
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message(span_danger("[I] dims slightly before scattering the shadows around it."))
-				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
-			F.on = FALSE
+				return F.light_power //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
+			F.set_light_on(FALSE)
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))
 		var/obj/item/pda/P = I
-		P.fon = FALSE
-	I.set_light(0)
+		P.set_light_on(FALSE)
+	I.set_light_on(FALSE)
 	return I.luminosity
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
@@ -132,6 +136,22 @@
 		if(cold)
 			extinguishItem(F, TRUE)
 		extinguishItem(F)
+	if(iscarbon(H))
+		var/mob/living/carbon/M = H
+		var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
+		if(G)
+			G.glowth.set_light(0, 0) // Set glowy to no light
+			if(G.current_nullify_timer)
+				deltimer(G.current_nullify_timer) // Stacks
+			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 40 SECONDS, TIMER_STOPPABLE)
+
+/obj/effect/proc_holder/spell/aoe_turf/proc/giveGlowyBack(mob/living/carbon/M)
+	if(!M)
+		return
+	var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
+	if(G)
+		G.modify() // Re-sets glowy
+		G.current_nullify_timer = null
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
@@ -139,7 +159,7 @@
 		return
 	to_chat(user, span_shadowling("You silently disable all nearby lights."))
 	var/turf/T = get_turf(user)
-	for(var/datum/light_source/LS in T.affecting_lights)
+	for(var/datum/light_source/LS in T.get_affecting_lights())
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			extinguishItem(LO)
@@ -317,6 +337,11 @@
 		target.visible_message(span_big("[target] looks to have experienced a revelation!"), \
 							   span_warning("False faces all d<b>ark not real not real not--</b>"))
 		target.setOxyLoss(0) //In case the shadowling was choking them out
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
+			if(G)
+				M.dna.remove_mutation(GLOWY)
 		target.mind.special_role = "thrall"
 		var/obj/item/organ/internal/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
@@ -336,7 +361,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
-/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
+/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(list/targets, mob/user = usr)
 	if(!is_shadow(user))
 		to_chat(user, span_warning("You must be a shadowling to do that!"))
 		return
@@ -888,8 +913,12 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
+		if(!user.getorganslot(ORGAN_SLOT_EYES))
+			to_chat(user, span_warning("You need eyes to glare!"))
+			revert_cast()
+			return
 		if(!ishuman(target) || !target)
-			to_chat(user, span_warning("You nay only glare at humans!"))
+			to_chat(user, span_warning("You may only glare at humans!"))
 			revert_cast()
 			return
 		if(target.stat)

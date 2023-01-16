@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - bugfix: "Moves the Warden shutter button access from the brig hallway to their office."

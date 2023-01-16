@@ -1,5 +1,5 @@
 /client/proc/spawn_floor_cluwne()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Unleash Floor Cluwne"
 	set desc = "Pick a specific target or just let it select randomly and spawn the floor cluwne mob on the station. Be warned: spawning more than one may cause issues!"
 	var/target
@@ -19,7 +19,7 @@
 	message_admins("[key_name(usr)] spawned floor cluwne.")
 
 /client/proc/nerf_or_nothing() // Thank you Groudon, very cool
-	set category = "Misc"
+	set category = "Admin.Round End"
 	set name = "Begin Nerf War"
 	set desc = "Gives all living PC humans a nerf gun, and alerts that a Nerf War has begun."
 

@@ -141,10 +141,10 @@
 			continue
 		if(isliving(M.current) && M.current.stat != DEAD)
 			if(isAI(M.current))
-				M.current.forceMove(get_step(get_step(src, NORTH),NORTH)) // AI too fat, must make sure it always ends up a 2 tiles north instead of on the ark.
+				continue //prevents any cogged AIs from getting teleported to reebe and dying from nocoreitus
 			else
 				M.current.forceMove(get_turf(src))
-		M.current.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+		M.current.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 		M.current.clear_fullscreen("flash", 5)
 	playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 50, FALSE)
 	recalls_remaining--
@@ -155,10 +155,11 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	SSshuttle.clearHostileEnvironment(src)
-	if(!purpose_fulfilled && istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+	if(!purpose_fulfilled)
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
 		sound_to_playing_players(null, channel = CHANNEL_JUSTICAR_ARK)
-		SSticker.force_ending = TRUE //rip
+		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+			SSticker.force_ending = TRUE //rip
 	if(glow)
 		qdel(glow)
 		glow = null
@@ -172,7 +173,7 @@
 			if(isobj(L.loc))
 				target = L.loc
 			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 30)
 			if(isliving(L))
 				var/mob/living/LI = L
@@ -301,7 +302,7 @@
 		var/turf/T = get_turf(M)
 		if(is_servant_of_ratvar(M) && (!T || T.z != z))
 			M.forceMove(get_step(src, SOUTH))
-			M.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+			M.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 			M.clear_fullscreen("flash", 5)
 	if(grace_period)
 		grace_period--
@@ -377,7 +378,16 @@
 				minutes. You will need to create servant players yourself.</span>")
 				final_countdown(35)
 
-
+/obj/structure/destructible/clockwork/massive/celestial_gateway/attack_eminence(mob/camera/eminence/user, params)
+	if(GLOB.ark_of_the_clockwork_justiciar == src)
+		if(recalling)
+			return
+		if(!recalls_remaining)
+			to_chat(user, span_warning("The Ark can no longer recall!"))
+			return
+		if(alert(user, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(user) || !obj_integrity)
+			return
+		initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
 
 //the actual appearance of the Ark of the Clockwork Justicar; an object so the edges of the gate can be clicked through.
 /obj/effect/clockwork/overlay/gateway_glow

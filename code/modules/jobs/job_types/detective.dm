@@ -1,6 +1,9 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -24,8 +27,22 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
+	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
+
+	mail_goodies = list(
+		///obj/item/storage/fancy/cigarettes = 25,
+		/obj/item/ammo_box/c38 = 25,
+		///obj/item/ammo_box/c38/dumdum = 5,
+		/obj/item/ammo_box/c38/hotshot = 5,
+		/obj/item/ammo_box/c38/iceblox = 5,
+		///obj/item/ammo_box/c38/match = 5,
+		/obj/item/ammo_box/tra32 = 5,
+		///obj/item/storage/belt/holster/detective/full = 1
+	)
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	smells_like = "whisky-soaked despair"
 
 /datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2
@@ -40,7 +57,7 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/pda/detective
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det
@@ -55,8 +72,7 @@
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
 		/obj/item/detective_scanner=1,\
-		/obj/item/melee/classic_baton=1,\
-		/obj/item/modular_computer/tablet/pda/preset/basic=1)
+		/obj/item/melee/classic_baton=1)
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)

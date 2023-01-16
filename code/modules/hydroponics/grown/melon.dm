@@ -56,6 +56,7 @@
 	icon_state = "holymelon"
 	filling_color = "#FFD700"
 	dried_type = null
+	w_class = WEIGHT_CLASS_NORMAL
 	wine_power = 70 //Water to wine, baby.
 	wine_flavor = "divinity"
 

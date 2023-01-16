@@ -66,10 +66,11 @@
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
-	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
+	item = /obj/item/bodypart/l_arm //doesn't actually spawn an arm, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
+	illegal_tech = FALSE // ARMS ARE NOT ILLEGAL
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
@@ -143,3 +144,39 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/race_restricted/garden_warfare
+	name = "Martial art scroll"
+	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
+	cost = 13
+	item = /obj/item/book/granter/martial/garden_warfare
+	restricted_species = list("pod")
+
+/datum/uplink_item/race_restricted/combat_modules
+	name = "Combat Modules Board"
+	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	cost = 11
+	item = /obj/item/book/granter/martial/preternis_stealth
+	restricted_species = list("preternis")
+
+/datum/uplink_item/race_restricted/explosive_fist_art
+	name = "Burned scroll"
+	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."
+	cost = 14
+	item = /obj/item/book/granter/martial/explosive_fist
+	restricted_species = list("plasmaman")
+
+/datum/uplink_item/race_restricted/ultra_violence
+	name = "Version one upgrade module"
+	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed."
+	cost = 16
+	item = /obj/item/book/granter/martial/ultra_violence
+	restricted_species = list("ipc")
+
+/datum/uplink_item/stealthy_weapons/camera_flash
+	name = "Camera Flash"
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	item = /obj/item/camera/tator
+	cost = 4
+	surplus = 15
+

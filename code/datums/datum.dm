@@ -28,10 +28,13 @@
 	var/list/comp_lookup
 	/// List of callbacks for signal procs
 	var/list/list/datum/callback/signal_procs
-	/// Is this datum capable of sending signals?
-	var/signal_enabled = FALSE
 	/// Datum level flags
 	var/datum_flags = NONE
+
+	/// A cached version of our \ref
+	/// The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
+	/// This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled
+	var/cached_ref
 
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
@@ -92,9 +95,7 @@
 			continue
 		qdel(timer)
 
-	//BEGIN: ECS SHIT
-	signal_enabled = FALSE
-
+	// Handle components & signals
 	var/list/dc = datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
@@ -122,7 +123,6 @@
 
 	for(var/target in signal_procs)
 		UnregisterSignal(target, signal_procs[target])
-	//END: ECS SHIT
 
 	return QDEL_HINT_QUEUE
 

@@ -105,9 +105,9 @@
 		owner.add_overlay(armor_overlay)
 		bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 		to_chat(user, span_notice("Shadow tentacles form and attach themselves to your body, you feel as if your muscles have merged with the shadows!"))
-	var/datum/species/user_species = user.dna.species
-	user_species.punchdamagelow += 0.5 * level_current
-	user_species.punchdamagehigh += 0.5 * level_current
+	user.physiology.punchdamagehigh_bonus += 0.5 * level_current
+	user.physiology.punchdamagelow_bonus += 0.5 * level_current
+	user.physiology.punchstunthreshold_bonus += 0.5 * level_current	//So we dont give them stun baton hands
 
 /datum/action/bloodsucker/fortitude/shadow/UsePower()
 	. = ..()
@@ -126,6 +126,6 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	owner.cut_overlay(armor_overlay)
 	bloodsuckerdatum.frenzygrab.remove(user)
-	var/datum/species/user_species = user.dna.species
-	user_species.punchdamagelow -= 0.5 / level_current
-	user_species.punchdamagehigh -= 0.5 / level_current
+	user.physiology.punchdamagehigh_bonus -= 0.5 * level_current
+	user.physiology.punchdamagelow_bonus -= 0.5 * level_current
+	user.physiology.punchstunthreshold_bonus -= 0.5 * level_current

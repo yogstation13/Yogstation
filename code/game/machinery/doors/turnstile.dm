@@ -3,7 +3,7 @@
 	desc = "A mechanical door that permits one-way access to an area."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "turnstile_map"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	density = TRUE
 	obj_integrity = 250
 	max_integrity = 250
@@ -15,6 +15,8 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
 	climbable = FALSE
+	CanAtmosPass = ATMOS_PASS_NO
+
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.

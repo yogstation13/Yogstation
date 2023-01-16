@@ -1,6 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
+	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
 	flag = ATMOSTECH
+	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -10,7 +12,7 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer")
+	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist")
 
 	outfit = /datum/outfit/job/atmos
 
@@ -19,8 +21,19 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
+	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
+
+	mail_goodies = list(
+		///obj/item/rpd_upgrade/unwrench = 30,
+		/obj/item/grenade/gas_crystal/crystal_foam = 10,
+		/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 10,
+		/obj/item/grenade/gas_crystal/healium_crystal = 10,
+		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
+	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "a gas leak"
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3
@@ -34,7 +47,7 @@
 	name = "Atmospheric Technician"
 	jobtype = /datum/job/atmos
 
-	pda_type = /obj/item/pda/atmos
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/atmos
 
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
@@ -47,7 +60,6 @@
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
-	backpack_contents = list(/obj/item/modular_computer/tablet/pda/preset/basic/atmos=1)
 
 	pda_slot = SLOT_L_STORE
 

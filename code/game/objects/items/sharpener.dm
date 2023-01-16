@@ -52,7 +52,7 @@
 
 /obj/item/sharpener/super
 	name = "super whetstone"
-	desc = "A block that will make your weapon sharper than Einstein on adderall."
+	desc = "A block that will make your weapon sharper than Einstein on Adderall."
 	increment = 200
 	max = 200
 	prefix = "super-sharpened"

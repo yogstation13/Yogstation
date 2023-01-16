@@ -1,4 +1,4 @@
-/obj/item/ammo_casing/proc/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
+/obj/item/ammo_casing/proc/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, cd_override_arg = FALSE)
 	distro += variance
 	for (var/i = max(1, pellets), i > 0, i--)
 		var/targloc = get_turf(target)
@@ -12,7 +12,9 @@
 			return 0
 		if(i > 1)
 			newshot()
-	if(click_cooldown_override)
+	if(cd_override_arg)
+		user.changeNext_move(cd_override_arg)
+	else if (click_cooldown_override)
 		user.changeNext_move(click_cooldown_override)
 	else
 		user.changeNext_move(CLICK_CD_RANGE)

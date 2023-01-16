@@ -2162,7 +2162,7 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "Don't tell anyone you put any points into dex, though.";
 	icon_state = "swordon";
 	item_state = "swordon";
@@ -3285,7 +3285,7 @@
 	pixel_x = 32
 	},
 /obj/item/stack/cable_coil,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "A staple of security force interrogations.";
 	icon_state = "baseball_bat_metal";
 	name = "kneecapper"
@@ -3310,25 +3310,6 @@
 "ahh" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
-"ahj" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/retractor,
-/obj/item/hemostat,
-/obj/machinery/vending/wallmed{
-	pixel_y = 30
-	},
-/obj/machinery/camera{
-	c_tag = "Operating Theatre";
-	name = "medical camera";
-	network = list("ss13","medical")
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/surgery)
 "ahl" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/yellow,
@@ -11435,10 +11416,10 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/delivery,
 /obj/item/folder/white,
-/obj/item/reagent_containers/hypospray/medipen{
+/obj/item/reagent_containers/autoinjector/medipen{
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/autoinjector/medipen,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
@@ -74525,7 +74506,7 @@
 "czo" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 8;
-	filter_type = "n2"
+	filter_type = list(/datum/gas/nitrogen)
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -83939,21 +83920,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
-"dCZ" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/healthanalyzer,
-/turf/open/floor/plasteel/dark,
-/area/medical/surgery)
 "dDp" = (
 /obj/machinery/light_switch{
 	pixel_y = 24
@@ -85115,6 +85081,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
+"eVw" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/dark,
+/area/medical/surgery)
 "eXl" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -85598,6 +85578,26 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"fom" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/syringe{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "fpf" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -89885,6 +89885,27 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/port/aft)
+"jpU" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/rxglasses{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/item/storage/box/gloves,
+/turf/open/floor/plasteel/dark,
+/area/medical/storage)
 "jqH" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8;
@@ -92463,30 +92484,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
-"lOR" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/rxglasses{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/beakers,
-/obj/item/gun/syringe{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/spray/cleaner,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/item/storage/box/gloves,
-/turf/open/floor/plasteel/dark,
-/area/medical/storage)
 "lRF" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -97362,23 +97359,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"qFw" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/gun/energy/e_gun/dragnet,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "qGT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -102555,6 +102535,26 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
+"wep" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/item/retractor,
+/obj/item/hemostat,
+/obj/machinery/vending/wallmed{
+	pixel_y = 30
+	},
+/obj/machinery/camera{
+	c_tag = "Operating Theatre";
+	name = "medical camera";
+	network = list("ss13","medical")
+	},
+/obj/item/healthanalyzer,
+/turf/open/floor/plasteel/dark,
+/area/medical/surgery)
 "weM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -122232,7 +122232,7 @@ aVI
 aPB
 uWi
 aOZ
-lOR
+jpU
 aOO
 aQv
 aIh
@@ -122756,7 +122756,7 @@ aPC
 aPI
 aSA
 aOZ
-dCZ
+eVw
 bdp
 aUs
 aQN
@@ -123013,7 +123013,7 @@ aQI
 aQL
 aQI
 aQI
-ahj
+wep
 bdq
 bcU
 aQN
@@ -125888,7 +125888,7 @@ cqz
 alx
 aCz
 ams
-qFw
+fom
 aka
 aeu
 aeu

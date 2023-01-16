@@ -26,7 +26,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 
 /mob/living/carbon/proc/handle_hallucinations()
-	if(!hallucination)
+	hallucination = max(0, hallucination)
+	if(hallucination <= 0)
 		return
 
 	hallucination--
@@ -170,6 +171,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/image/plasma_image = image(image_icon,center,image_state,FLY_LAYER)
 	plasma_image.alpha = 50
 	plasma_image.plane = GAME_PLANE
+	plasma_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flood_images += plasma_image
 	flood_turfs += center
 	if(target.client)
@@ -882,7 +884,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("blob alert")
 			to_chat(target, "<h1 class='alert'>Biohazard Alert</h1>")
 			to_chat(target, "<br>[span_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.")]<br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
+			if(target.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_OUTBREAK5])
+			else
+				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
 		if("ratvar")
 			target.playsound_local(target, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
 			target.playsound_local(target, 'sound/effects/clockcult_gateway_disrupted.ogg', 50, FALSE, pressure_affected = FALSE)
@@ -891,15 +896,24 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("shuttle dock")
 			to_chat(target, "<h1 class='alert'>Priority Announcement</h1>")
 			to_chat(target, "<br>[span_alert("The Emergency Shuttle has docked with the station. You have 3 minutes to board the Emergency Shuttle.")]<br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
+			if(target.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
+			else
+				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
 		if("malf ai") //AI is doomsdaying!
 			to_chat(target, "<h1 class='alert'>Anomaly Alert</h1>")
 			to_chat(target, "<br>[span_alert("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.")]<br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_AIMALF])
+			if(target.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_AIMALF])
+			else
+				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_AIMALF])
 		if("meteors") //Meteors inbound!
 			to_chat(target, "<h1 class='alert'>Meteor Alert</h1>")
 			to_chat(target, "<br>[span_alert("Meteors have been detected on collision course with the station.")]<br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_METEORS])
+			if(target.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(target, SSstation.default_announcer.event_sounds[ANNOUNCER_OUTBREAK5])
+			else
+				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
 		if("supermatter")
 			SEND_SOUND(target, 'sound/magic/charge.ogg')
 			to_chat(target, span_boldannounce("You feel reality distort for a moment..."))
@@ -930,46 +944,46 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	feedback_details += "Type: [alert_type]"
 	switch(alert_type)
 		if("not_enough_oxy")
-			target.throw_alert(alert_type, /obj/screen/alert/not_enough_oxy, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_oxy, override = TRUE)
 		if("not_enough_tox")
-			target.throw_alert(alert_type, /obj/screen/alert/not_enough_tox, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_tox, override = TRUE)
 		if("not_enough_co2")
-			target.throw_alert(alert_type, /obj/screen/alert/not_enough_co2, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_co2, override = TRUE)
 		if("too_much_oxy")
-			target.throw_alert(alert_type, /obj/screen/alert/too_much_oxy, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_oxy, override = TRUE)
 		if("too_much_co2")
-			target.throw_alert(alert_type, /obj/screen/alert/too_much_co2, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_co2, override = TRUE)
 		if("too_much_tox")
-			target.throw_alert(alert_type, /obj/screen/alert/too_much_tox, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_tox, override = TRUE)
 		if("nutrition")
 			if(prob(50))
-				target.throw_alert(alert_type, /obj/screen/alert/fat, override = TRUE)
+				target.throw_alert(alert_type, /atom/movable/screen/alert/fat, override = TRUE)
 			else
-				target.throw_alert(alert_type, /obj/screen/alert/starving, override = TRUE)
+				target.throw_alert(alert_type, /atom/movable/screen/alert/starving, override = TRUE)
 		if("gravity")
-			target.throw_alert(alert_type, /obj/screen/alert/weightless, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/weightless, override = TRUE)
 		if("fire")
-			target.throw_alert(alert_type, /obj/screen/alert/fire, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/fire, override = TRUE)
 		if("temphot")
 			alert_type = "temp"
-			target.throw_alert(alert_type, /obj/screen/alert/hot, 3, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/hot, 3, override = TRUE)
 		if("tempcold")
 			alert_type = "temp"
-			target.throw_alert(alert_type, /obj/screen/alert/cold, 3, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/cold, 3, override = TRUE)
 		if("pressure")
 			if(prob(50))
-				target.throw_alert(alert_type, /obj/screen/alert/highpressure, 2, override = TRUE)
+				target.throw_alert(alert_type, /atom/movable/screen/alert/highpressure, 2, override = TRUE)
 			else
-				target.throw_alert(alert_type, /obj/screen/alert/lowpressure, 2, override = TRUE)
+				target.throw_alert(alert_type, /atom/movable/screen/alert/lowpressure, 2, override = TRUE)
 		//BEEP BOOP I AM A ROBOT
 		if("newlaw")
-			target.throw_alert(alert_type, /obj/screen/alert/newlaw, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/newlaw, override = TRUE)
 		if("locked")
-			target.throw_alert(alert_type, /obj/screen/alert/locked, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/locked, override = TRUE)
 		if("hacked")
-			target.throw_alert(alert_type, /obj/screen/alert/hacked, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/hacked, override = TRUE)
 		if("charge")
-			target.throw_alert(alert_type, /obj/screen/alert/emptycell, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/emptycell, override = TRUE)
 	sleep(duration)
 	target.clear_alert(alert_type, clear_override = TRUE)
 	qdel(src)
@@ -1118,8 +1132,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/hallucination/danger/anomaly/process()
-	if(prob(70))
+/obj/effect/hallucination/danger/anomaly/process(delta_time)
+	if(DT_PROB(45, delta_time))
 		step(src,pick(GLOB.alldirs))
 
 /obj/effect/hallucination/danger/anomaly/Destroy()
@@ -1177,7 +1191,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images += fire_overlay
 	to_chat(target, span_userdanger("You're set on fire!"))
-	target.throw_alert("fire", /obj/screen/alert/fire, override = TRUE)
+	target.throw_alert("fire", /atom/movable/screen/alert/fire, override = TRUE)
 	sleep(2 SECONDS)
 	for(var/i in 1 to 3)
 		if(target.fire_stacks <= 0)
@@ -1199,7 +1213,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.clear_alert("temp", clear_override = TRUE)
 	else
 		target.clear_alert("temp", clear_override = TRUE)
-		target.throw_alert("temp", /obj/screen/alert/hot, stage, override = TRUE)
+		target.throw_alert("temp", /atom/movable/screen/alert/hot, stage, override = TRUE)
 
 /datum/hallucination/fire/proc/clear_fire()
 	if(!active)

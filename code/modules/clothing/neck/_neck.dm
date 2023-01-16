@@ -76,7 +76,7 @@
 					if(!(M.failed_last_breath || M.losebreath))
 						lung_strength = "healthy"
 
-			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT * 10)
+			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT)
 				heart_strength = span_boldannounce("a faint, fluttery")
 
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "You hear [heart_strength] pulse and [lung_strength] respiration." : "You faintly hear [heart_strength] pulse.")
@@ -212,7 +212,7 @@
 /obj/item/clothing/neck/neckerchief/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/realOverlay = mutable_appearance(mob_overlay_icon, icon_state)
+		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/clothing/mask/mask.dmi', icon_state)
 		realOverlay.pixel_y = -3
 		. += realOverlay
 

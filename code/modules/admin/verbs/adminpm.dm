@@ -145,9 +145,13 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
+			if(holder)
+				message_admins("[key_name_admin(src)] has started replying to [key_name_admin(recipient, 0, 0)]'s admin help.")
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
+				if(holder)
+					message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(recipient, 0, 0)]'s admin help.")
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
@@ -260,7 +264,7 @@
 
 	if(irc)
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in GLOB.permissions.admins)
 			to_chat(X,
 				type = MESSAGE_TYPE_ADMINPM,
 				html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]"),
@@ -269,7 +273,7 @@
 		window_flash(recipient, ignorepref = TRUE)
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//we don't use message_admins here because the sender/receiver might get it too
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in GLOB.permissions.admins)
 			if(X.key!=key && X.key!=recipient.key)	//check client/X is an admin and isn't the sender or recipientD
 				to_chat(X,
 					type = MESSAGE_TYPE_ADMINPM,

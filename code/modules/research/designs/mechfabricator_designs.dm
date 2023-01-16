@@ -475,6 +475,53 @@
 	construction_time = 300
 	category = list("Phazon")
 
+
+//Clarke
+/datum/design/clarke_chassis
+	name = "Exosuit Chassis (\"Clarke\")"
+	id = "clarke_chassis"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/clarke
+	materials = list(/datum/material/iron=20000)
+	construction_time = 100
+	category = list("Clarke")
+
+/datum/design/clarke_torso
+	name = "Exosuit Torso (\"Clarke\")"
+	id = "clarke_torso"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_torso
+	materials = list(/datum/material/iron=20000,/datum/material/glass = 7500)
+	construction_time = 200
+	category = list("Clarke")
+
+/datum/design/clarke_head
+	name = "Exosuit Head (\"Clarke\")"
+	id = "clarke_head"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_head
+	materials = list(/datum/material/iron=6000,/datum/material/glass = 10000)
+	construction_time = 100
+	category = list("Clarke")
+
+/datum/design/clarke_left_arm
+	name = "Exosuit Left Arm (\"Clarke\")"
+	id = "clarke_left_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_left_arm
+	materials = list(/datum/material/iron=15000)
+	construction_time = 150
+	category = list("Clarke")
+
+/datum/design/clarke_right_arm
+	name = "Exosuit Right Arm (\"Clarke\")"
+	id = "clarke_right_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_right_arm
+	materials = list(/datum/material/iron=15000)
+	construction_time = 150
+	category = list("Clarke")
+
 //Exosuit Equipment
 /datum/design/ripleyupgrade
 	name = "Ripley MK-I to MK-II conversion kit"
@@ -798,15 +845,6 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_pinpointer
-	name = "Cyborg Upgrade (Crew pinpointer)"
-	id = "borg_upgrade_pinpointer"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/pinpointer
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
-	construction_time = 120
-	category = list("Cyborg Upgrade Modules")
-
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"
@@ -830,8 +868,98 @@
 	name = "Flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	id = "sflash"
-	build_type = MECHFAB
+	build_type = MECHFAB | PROTOLATHE
 	materials = list(/datum/material/iron = 750, /datum/material/glass = 750)
 	construction_time = 100
 	build_path = /obj/item/assembly/flash/handheld
-	category = list("Misc")
+	category = list("Misc", "Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
+
+// IPC Replacement Parts
+
+/datum/design/robotic_liver
+	name = "Substance Processor"
+	id = "robotic_liver"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/liver/cybernetic/upgraded/ipc
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/robotic_eyes
+	name = "Basic Robotic Eyes"
+	id = "robotic_eyes"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/eyes/robotic
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 2000)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/robotic_tongue
+	name = "Robotic Voicebox"
+	id = "robotic_tongue"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/tongue/robot
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/robotic_stomach
+	name = "Micro-cell"
+	id = "robotic_stomach"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/stomach/cell
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2000, /datum/material/plasma = 200)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/robotic_ears
+	name = "Auditory Sensors"
+	id = "robotic_ears"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/ears/robot
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/ipc_lungs
+	name = "Cooling Radiator"
+	id = "ipc_lungs"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/lungs/ipc
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components")
+
+/datum/design/power_cord
+	name = "Recharging Electronics"
+	id = "power_cord"
+	build_type = MECHFAB
+	build_path = /obj/item/organ/cyberimp/arm/power_cord
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	construction_time = 100
+	category = list("IPC Components") 
+
+/datum/design/ipcrevive
+	name = "IPC Revival Board"
+	id = "ipcrevive"
+	build_type = MECHFAB
+	build_path = /obj/item/ipcrevive
+	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 5000)
+	construction_time = 120
+	category = list("IPC Components") 
+
+/datum/design/ipclimbs
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = 10000 , /datum/material/glass = 5000)
+	construction_time = 150
+	category = list("IPC Components")
+
+/datum/design/ipcclone
+	name = "Blank IPC"
+	id = "blankipc"
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = 100000, /datum/material/glass = 50000, /datum/material/plasma = 1000)
+	construction_time = 900 //one and a half minutes
+	build_path = /mob/living/carbon/human/species/ipc/empty //apparently this works
+	category = list("IPC Components")

@@ -65,6 +65,19 @@
 	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
 	filling_color = "#803280"
 
+/obj/item/reagent_containers/food/snacks/donut/deadly
+	desc = "Goes great with Doctor's Delight."
+	volume = 1000
+	bitesize = 1000
+	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
+	tastes = list("countless donuts" = 2, "sugar" = 2)
+	foodtype = SUGAR | FRIED | GRAIN
+
+/obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
+	. = ..()
+	to_chat(eater, span_notice("You couldn't stop yourself... It was so delicious..."))
+	eater.set_nutrition(1000)
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
@@ -257,13 +270,22 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
-/obj/item/reagent_containers/food/snacks/dankpocket
+/obj/item/reagent_containers/food/snacks/donkpocket/dank
 	name = "dankpocket"
 	desc = "The food of choice for the seasoned botanist."
 	icon_state = "dankpocket"
-	list_reagents = list(/datum/reagent/toxin/lipolicide = 3, /datum/reagent/drug/space_drugs = 3, /datum/reagent/consumable/nutriment = 4)
+	list_reagents = list(/datum/reagent/drug/space_drugs = 1, /datum/reagent/consumable/nutriment = 1)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/dank
 	filling_color = "#00FF00"
-	tastes = list("meat" = 2, "dough" = 2)
+	tastes = list("grass" = 2, "dough" = 2)
+	foodtype = GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/dank
+	name = "warm dankpocket"
+	desc = "The food of choice for the seasoned botanist. Smells danker now."
+	icon_state = "dankpocket"
+	list_reagents = list(/datum/reagent/toxin/lipolicide = 3, /datum/reagent/drug/space_drugs = 3, /datum/reagent/consumable/nutriment = 4)
+	tastes = list("grass" = 2, "dough" = 2, "drugs" = 2)
 	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/donkpocket/spicy
@@ -284,6 +306,26 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/capsaicin = 2)
 	tastes = list("meat" = 2, "dough" = 2, "weird spices" = 2)
 	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/meaty
+	name = "meatpocket"
+	desc = "Can this really be called a donkpocket? You should...probably cook this."
+	icon_state = "donkpocketmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	filling_color = "#CD853F"
+	tastes = list("raw meat" = 4)
+	foodtype = MICE
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	name = "warm meatpocket"
+	desc = "Can this really be called a donkpocket?"
+	icon_state = "donkpocketcookedmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("meat" = 4)
+	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/donkpocket/teriyaki
 	name = "teriyaki donkpocket"

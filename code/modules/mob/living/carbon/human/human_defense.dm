@@ -32,6 +32,8 @@
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & def_zone.body_part)
 				protection += C.armor.getRating(d_type)
+			else if(C.body_parts_partial_covered & def_zone.body_part)
+				protection += C.armor.getRating(d_type) * 0.5
 	protection += physiology.armor.getRating(d_type)
 	return protection
 
@@ -190,6 +192,12 @@
 			zone_hit_chance += 10
 		affecting = get_bodypart(ran_zone(user.zone_selected, zone_hit_chance))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
+	if(affecting)
+		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
+			if(I.force >= 5)
+				do_sparks(1, FALSE, loc)
+				if(prob(25))
+					new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 
@@ -370,9 +378,10 @@
 		var/armor_block = run_armor_check(affecting, MELEE)
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
-/mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
-
-	if(M.occupant.a_intent == INTENT_HARM)
+/mob/living/carbon/human/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
+		M.selected.action(src)
+	else if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
@@ -408,7 +417,7 @@
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
-	if(TRAIT_BOMBIMMUNE in dna.species.species_traits)
+	if(HAS_TRAIT(src, TRAIT_BOMBIMMUNE))
 		return
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
@@ -433,7 +442,8 @@
 				gib()
 				return
 			else
-				brute_loss = 500
+				brute_loss = 200*(2 - round(bomb_armor/60, 0.05))	//0-83% damage reduction
+				burn_loss = brute_loss/2 //don't wanna husk people	
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
 				damage_clothes(400 - bomb_armor, BRUTE, BOMB)
@@ -442,22 +452,23 @@
 			brute_loss = 60
 			burn_loss = 60
 			if(bomb_armor)
-				brute_loss = 30*(2 - round(bomb_armor*0.01, 0.05))
-				burn_loss = brute_loss					//damage gets reduced from 120 to up to 60 combined brute+burn
+				brute_loss = 30*(2 - round(bomb_armor/60, 0.05))	//0-83% damage reduction
+				burn_loss = brute_loss					//40-120 total combined brute + burn
 			damage_clothes(200 - bomb_armor, BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30, 120)
-			Unconscious(20)							//short amount of time so bombs are still op *dab
+			if(bomb_armor < 60)
+				Unconscious(20)						//Sufficient protection will stop you from being knocked out
 			Knockdown(200 - (bomb_armor * 1.6)) 	//between ~4 and ~20 seconds of knockdown depending on bomb armor
 
 		if (EXPLODE_LIGHT)
 			brute_loss = 24
 			if(bomb_armor)
-				brute_loss = 12*(2 - round(bomb_armor*0.01, 0.05))
+				brute_loss = 12*(2 - round(bomb_armor/60, 0.05))	//4-24 damage total depending on bomb armor
 			damage_clothes(max(40 - bomb_armor, 0), BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			Knockdown(120 - (bomb_armor * 1.2))	//100 bomb armor prevents knockdown entirely
+			Knockdown(max(120 - (bomb_armor * 2),0))	//60 bomb armor prevents knockdown entirely
 
 	take_overall_damage(brute_loss,burn_loss)
 
@@ -532,7 +543,7 @@
 /mob/living/carbon/human/emp_act(severity)
 	dna?.species.spec_emp_act(src, severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & EMP_PROTECT_SELF)
 		return
 	var/informed = FALSE
 	for(var/obj/item/bodypart/L in src.bodyparts)
@@ -542,11 +553,13 @@
 				informed = TRUE
 			switch(severity)
 				if(1)
-					L.receive_damage(0,10)
-					Paralyze(200)
+					L.receive_damage(0,10,200)
 				if(2)
-					L.receive_damage(0,5)
-					Paralyze(100)
+					L.receive_damage(0,5,100)
+
+			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
+				if(prob(5))
+					L.dismember(BRUTE)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
@@ -734,8 +747,9 @@
 		return
 	var/list/combined_msg = list()
 
-	visible_message("[src] examines [p_them()]self.", \
-		span_notice("You check yourself for injuries."))
+	visible_message(span_notice("[src] examines [p_them()]self."))
+
+	combined_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	for(var/X in bodyparts)
@@ -919,7 +933,7 @@
 	if(roundstart_quirks.len)
 		combined_msg += span_notice("You have these quirks: [get_trait_string()].")
 
-	to_chat(src, combined_msg.Join("\n"))
+	to_chat(src, examine_block(combined_msg.Join("\n")))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)

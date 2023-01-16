@@ -101,7 +101,7 @@
 	else
 		return ..()
 
-/obj/machinery/hydroponics/process()
+/obj/machinery/hydroponics/process(delta_time)
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
 
 	if(myseed && (myseed.loc != src))
@@ -109,9 +109,9 @@
 
 	if(self_sustaining)
 		adjustNutri(1)
-		adjustWater(rand(3,5))
-		adjustWeeds(-2)
-		adjustPests(-2)
+		adjustWater(rand(1,2) * delta_time * 0.5)
+		adjustWeeds(-0.5 * delta_time)
+		adjustPests(-0.5 * delta_time)
 		adjustToxic(-2)
 
 	if(world.time > (lastcycle + cycledelay))
@@ -563,7 +563,7 @@
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/water/holywater) * 0.1))
 
 	// A variety of nutrients are dissolved in club soda, without sugar.
-	// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulfur and sodium, all of which are needed for healthy plant growth.
+	// These nutrients include carbon, oxygen, hydrogen, phosphorous, potassium, sulphur and sodium, all of which are needed for healthy plant growth.
 	if(S.has_reagent(/datum/reagent/consumable/sodawater, 1))
 		adjustWater(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 1))
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/sodawater) * 0.1))
@@ -800,21 +800,24 @@
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
 	else if(istype(O, /obj/item/plant_analyzer))
+		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
-			to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
-			to_chat(user, "- Plant Age: [span_notice("[age]")]")
+			combined_msg += "*** <B>[myseed.plantname]</B> ***" 
+			combined_msg += "- Plant Age: [span_notice("[age]")]"
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)
-				to_chat(user, text_string)
+				combined_msg += "[text_string]"
 		else
-			to_chat(user, "<B>No plant found.</B>")
-		to_chat(user, "- Weed level: [span_notice("[weedlevel] / 10")]")
-		to_chat(user, "- Pest level: [span_notice("[pestlevel] / 10")]")
-		to_chat(user, "- Toxicity level: [span_notice("[toxic] / 100")]")
-		to_chat(user, "- Water level: [span_notice("[waterlevel] / [maxwater]")]")
-		to_chat(user, "- Nutrition level: [span_notice("[nutrilevel] / [maxnutri]")]")
-		to_chat(user, "")
+			combined_msg += "<B>No plant found.</B>"
+		combined_msg += "- Weed level: <span class='notice'>[weedlevel] / 10</span>"
+		combined_msg += "- Pest level: <span class='notice'>[pestlevel] / 10</span>"
+		combined_msg += "- Toxicity level: <span class='notice'>[toxic] / 100</span>"
+		combined_msg += "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>"
+		combined_msg += "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>"
+		combined_msg += ""
+
+		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	else if(istype(O, /obj/item/cultivator))
 		if(weedlevel > 0)
@@ -897,6 +900,37 @@
 		if(user)
 			examine(user)
 
+/obj/machinery/hydroponics/CtrlClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	if(!powered())
+		to_chat(user, "<span class='warning'>[name] has no power.</span>")
+		return
+	if(!anchored)
+		return
+	self_sustaining = !self_sustaining
+	idle_power_usage = self_sustaining ? 5000 : 0
+	to_chat(user, "<span class='notice'>You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""].")
+	update_icon()
+
+/obj/machinery/hydroponics/AltClick(mob/user)
+	. = ..()
+	if(!anchored)
+		update_icon()
+		return FALSE
+	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
+	if(warning == "Yes" && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		reagents.clear_reagents()
+		to_chat(user, "<span class='warning'>You empty [src]'s nutrient tank.</span>")
+
+/**
+ * Update Tray Proc
+ * Handles plant harvesting on the tray side, by clearing the sead, names, description, and dead stat.
+ * Shuts off autogrow if enabled.
+ * Sends messages to the cleaer about plants harvested, or if nothing was harvested at all.
+ * * User - The mob who clears the tray.
+ */
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
 	lastproduce = age

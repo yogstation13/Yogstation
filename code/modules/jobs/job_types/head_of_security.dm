@@ -1,6 +1,9 @@
 /datum/job/hos
 	title = "Head of Security"
+	description = "Coordinate security personnel, ensure they are not corrupt, \
+		make sure every department is protected."
 	flag = HOS
+	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
 	department_flag = ENGSEC
@@ -29,9 +32,11 @@
 	paycheck_department = ACCOUNT_SEC
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
-	minimal_character_age = 28
+	minimal_character_age = 28 //You need some experience on your belt and a little gruffiness; you're still a foot soldier, not quite a tactician commander back at base
 
 	changed_maps = list("YogsPubby")
+
+	smells_like = "deadly authority"
 
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
@@ -41,7 +46,7 @@
 	jobtype = /datum/job/hos
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/hos
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hos
 
 	belt = /obj/item/storage/belt/security/chief/full
 	ears = /obj/item/radio/headset/heads/hos/alt
@@ -52,9 +57,8 @@
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/HoS/beret
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/hos
 	suit_store = /obj/item/gun/energy/e_gun
-	backpack_contents = list(/obj/item/modular_computer/tablet/phone/preset/advanced/command=1) //yogs - removed departmental budget ID //come here often?
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

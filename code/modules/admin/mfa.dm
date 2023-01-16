@@ -21,7 +21,7 @@
 /client/proc/mfa_check_cache()
 	CHECK_MFA_ENABLED
 
-	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	var/datum/admins/tmp_holder = GLOB.permissions.admin_datums[ckey] || GLOB.permissions.deadmins[ckey]
 	if(tmp_holder && tmp_holder.cid_cache == computer_id && tmp_holder.ip_cache == address)
 		return TRUE
 
@@ -73,7 +73,7 @@
 	var/code = input(src, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
-		var/json_codes = rustg_hash_generate_totp_tolerance(seed, 1)
+		var/json_codes = rustg_hash_generate_totp_tolerance(seed, "1")
 		if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
 			var/msg = "Error with TOTP: [json_codes]"
 			message_admins(msg)
@@ -83,7 +83,7 @@
 		if(num2text(code) in generated_codes)
 			return TRUE
 
-	var/response = alert(src, "How would you like to proceed?", "Authentication Error", "Retry TOTP", "Backup Code", "Cancel")
+	var/response = tgui_alert(src, "How would you like to proceed?", "Authentication Error", list("Retry TOTP", "Backup Code", "Cancel"))
 
 	if(response == "Cancel")
 		return
@@ -91,7 +91,7 @@
 	if(response == "Retry TOTP")
 		return mfa_query()
 	else if(response == "Backup Code")
-		if(alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
+		if(tgui_alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", list("Confirmation", "Cancel", "Yes")) != "Yes")
 			return mfa_query()
 		return mfa_backup_query()
 	else
@@ -267,7 +267,7 @@
 		log_admin("[key_name(usr)][msg]")
 		return
 
-	if(alert(src, "Do you wish to remember this connection?", "Remember Me", "Yes", "No") == "Yes")
+	if(tgui_alert(src, "Do you wish to remember this connection?", "Remember Me", list("Yes", "No")) == "Yes")
 		var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
 			"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
 			list("ckey" = ckey, "address" = address, "cid" = computer_id)
@@ -282,7 +282,7 @@
 
 		qdel(mfa_addverify)
 
-	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	var/datum/admins/tmp_holder = GLOB.permissions.admin_datums[ckey] || GLOB.permissions.deadmins[ckey]
 	if(tmp_holder)
 		// These values are cached even if the user says not to remember the session, but are only used if the DB is down during admin loading
 		tmp_holder.cid_cache = computer_id

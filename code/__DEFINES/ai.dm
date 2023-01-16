@@ -15,7 +15,7 @@
 
 //AI Project Categories.
 #define AI_PROJECT_HUDS "Sensor HUDs"
-#define AI_PROJECT_CAMERAS "Visiblity Upgrades"
+#define AI_PROJECT_CAMERAS "Visibility Upgrades"
 #define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_SURVEILLANCE "Surveillance"
 #define AI_PROJECT_EFFICIENCY "Efficiency"
@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 ))
 
 ///How much is the AI download progress increased by per tick? Multiplied by a modifer on the AI if they have upgraded. Need to reach 100 to be downloaded
-#define AI_DOWNLOAD_PER_PROCESS 0.75
+#define AI_DOWNLOAD_PER_PROCESS 1.125
 ///Check for tracked individual coming into view every X ticks
 #define AI_CAMERA_MEMORY_TICKS 15
 
@@ -47,7 +47,17 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_MAX_RAM_PER_RACK 4
 
 ///How many AI research points does 1 THz generate?
-#define AI_RESEARCH_PER_CPU 8.5
+#define AI_RESEARCH_PER_CPU 7.5
 
 //How long between each data core being able to send a warning. Wouldn't want any spam if we had jittery temps would we?
 #define AI_DATA_CORE_WARNING_COOLDOWN (5 MINUTES)
+
+
+//Self explanatory. 1 bitcoin is equals to 1 CPU * AI_RESEARCH_PER_CPU
+//EXAMPLE (with initial values as of feature introduction)
+//20 free CPU. 10 are used for research, 10 are used for bitcoin
+//10 * AI_RESEARCH_PER_CPU = 85 bitcoin per tick. Modified for scaling 85*0.54=46
+//46 * AI_BITCOIN_PRICE = 2,3 credits per 2 seconds (2070 credits per 30 min)
+#define MAX_AI_BITCOIN_MINED_PER_TICK 350
+//Self explanatory, see MAX_AI_BITCOIN_MINED_PER_TICK * this = max money 1 AI can contribute per tick. (17,5 credits every 2 seconds, max 63k over 2 hours)
+#define AI_BITCOIN_PRICE 0.05

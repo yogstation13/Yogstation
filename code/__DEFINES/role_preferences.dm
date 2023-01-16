@@ -32,6 +32,7 @@
 #define ROLE_HIVE				"Hivemind Host"
 #define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
+#define ROLE_MOUSE				"Mouse"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
 #define ROLE_POSIBRAIN			"Posibrain"
 #define ROLE_DRONE				"Drone"
@@ -51,8 +52,10 @@
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
+#define ROLE_SPACE_DRAGON		"Space Dragon"
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
+#define ROLE_GHOSTBEACON		"Ghost Beacon"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -93,6 +96,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER,
+	ROLE_SPACE_DRAGON,
 	ROLE_SINFULDEMON
 ))
 

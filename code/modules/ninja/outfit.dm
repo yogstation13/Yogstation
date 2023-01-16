@@ -13,7 +13,7 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 	internals_slot = SLOT_R_STORE
 	belt = /obj/item/energy_katana
-	implants = list(/obj/item/implant/explosive)
+	implants = list(/obj/item/implant/explosive, /obj/item/implant/honor)
 
 
 /datum/outfit/ninja/post_equip(mob/living/carbon/human/H)

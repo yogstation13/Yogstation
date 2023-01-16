@@ -5,12 +5,50 @@
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //What no if you touch things with your bare fingies you're gonna get shocked
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
 	undyeable = TRUE
+	var/tacticalspeed = 0.9
+	var/worn
+
+/obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(slot == SLOT_GLOVES)
+		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
+			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
+			worn = TRUE
+
+/obj/item/clothing/gloves/fingerless/dropped(mob/user)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
+		boss.physiology.do_after_speed /= tacticalspeed
+		worn = FALSE
+
+/obj/item/clothing/gloves/fingerless/bigboss
+	name = "tactical fingerless gloves"
+	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
+	var/carrytrait = TRAIT_QUICKER_CARRY
+	tacticalspeed = 0.66 //Does channels 34% faster
+
+/obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
+	var/mob/living/M = loc
+	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
+	. = FALSE
+
+/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
+	..()
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
+	..()
+	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
@@ -46,6 +84,7 @@
 	icon_state = "bracers"
 	item_state = "bracers"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //They're not gloves?
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -134,6 +173,9 @@ obj/effect/proc_holder/swipe
 	fire(user)
 
 /obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+	if(user.handcuffed) 
+		to_chat(user, span_danger("You can't attack while handcuffed!"))
+		return
 	if(active)
 		remove_ranged_ability(span_notice("You relax your arms."))
 	else
@@ -164,11 +206,13 @@ obj/effect/proc_holder/swipe
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
-			L.adjustBruteLoss(60)
 			if(L.stat != DEAD)
+				L.adjustBruteLoss(60)
 				caller.adjustBruteLoss(-13)
 				caller.adjustFireLoss(-13)
 				caller.adjustToxLoss(-13)
+				if(L.stat == DEAD)
+					to_chat(caller, span_notice("You kill [L], healing yourself more!"))
 			if(L.stat == DEAD)
 				L.gib()
 				to_chat(caller, span_notice("You're able to consume the body entirely!"))
@@ -187,3 +231,45 @@ obj/effect/proc_holder/swipe
 
 /obj/effect/proc_holder/swipe/proc/cooldown_over()
 	to_chat(usr, (span_notice("You're ready to swipe again!")))
+
+/obj/item/clothing/gloves/gauntlets
+	name = "concussive gauntlets"
+	desc = "Ancient gauntlets lost to the necropolis, fabled to bestow the wearer the power to shatter stone with but a simple punch."
+	icon_state = "concussive_gauntlets"
+	item_state = "concussive_gauntlets"
+	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	toolspeed = 0.01
+	strip_delay = 40
+	equip_delay_other = 20
+	body_parts_covered = ARMS
+	cold_protection = ARMS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = ARMS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = LAVA_PROOF | FIRE_PROOF //they are from lavaland after all
+	armor = list(MELEE = 25, BULLET = 25, LASER = 15, ENERGY = 25, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+
+/obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_GLOVES)
+		tool_behaviour = TOOL_MINING
+		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/rocksmash)
+		RegisterSignal(user, COMSIG_MOVABLE_BUMP, .proc/rocksmash)
+	else
+		stopmining(user)
+
+/obj/item/clothing/gloves/gauntlets/dropped(mob/user)
+	. = ..()
+	stopmining(user)
+
+/obj/item/clothing/gloves/gauntlets/proc/stopmining(mob/user)
+	tool_behaviour = initial(tool_behaviour)
+	UnregisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
+	UnregisterSignal(user, COMSIG_MOVABLE_BUMP)
+
+/obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/user, atom/A, proximity)
+	if(!istype(A, /turf/closed/mineral))
+		return
+	A.attackby(src, user)
+	return COMPONENT_NO_ATTACK_OBJ

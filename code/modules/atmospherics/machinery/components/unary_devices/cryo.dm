@@ -171,7 +171,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/process()
+/obj/machinery/atmospherics/components/unary/cryo_cell/process(delta_time)
 	..()
 
 	if(state_open)
@@ -201,9 +201,15 @@
 		update_icon()
 		return
 
-	if(mob_occupant.health >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
-		if(iscarbon(mob_occupant))
-			var/mob/living/carbon/C = mob_occupant
+	var/robotic_limb_damage = 0 // brute and burn damage to robotic limbs
+	var/mob/living/carbon/C
+	if(iscarbon(mob_occupant))
+		C = mob_occupant
+		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
+			robotic_limb_damage += limb.get_damage(stamina=FALSE)
+
+	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
+		if(C)
 			if(C.all_wounds)
 				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 					treating_wounds = TRUE
@@ -218,6 +224,8 @@
 			update_icon()
 			playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 			var/msg = "Patient fully restored."
+			if(robotic_limb_damage)
+				msg += " Remaining damage is to mechanical limbs."
 			if(autoeject) // Eject if configured.
 				msg += " Auto ejecting patient now."
 				open_machine()
@@ -228,15 +236,27 @@
 
 	if(air1.total_moles())
 		if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
-			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 2000)
-			mob_occupant.Unconscious((mob_occupant.bodytemperature * unconscious_factor) * 2000)
+			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 1000 * delta_time)
+			mob_occupant.Unconscious((mob_occupant.bodytemperature * unconscious_factor) * 1000 * delta_time)
 		if(beaker)
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
 				beaker.reagents.reaction(occupant, VAPOR)
-				air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
-			if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
+				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
+					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
+				else
+					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				if(occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 100) //prevent cryoxadone overdose
+					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
+					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
+			reagent_transfer += 0.5 * delta_time
+			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
+		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
+			mob_occupant.adjustToxLoss(-5)
+			mob_occupant.adjustFireLoss(-7)
+			air1.adjust_moles(/datum/gas/healium, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency))
 
 	return 1
 
@@ -248,7 +268,7 @@
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || air1.get_moles(/datum/gas/oxygen) < 5) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
 		on = FALSE
 		update_icon()
 		return
@@ -270,7 +290,10 @@
 			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
 			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
 
-		air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
+		if(air1.get_moles(/datum/gas/pluoxium) > 5) //use pluoxium over oxygen
+			air1.set_moles(/datum/gas/pluoxium, max(0,air1.get_moles(/datum/gas/pluoxium) - 0.125 / efficiency))
+		else
+			air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
@@ -448,7 +471,7 @@
 	return // we don't see the pipe network while inside cryo.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/get_remote_view_fullscreens(mob/user)
-	user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 1)
+	user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.

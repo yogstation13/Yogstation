@@ -64,6 +64,14 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = json_encoded
 
 /datum/controller/subsystem/demo/Initialize()
+	if(!CONFIG_GET(flag/demos_enabled))
+		flags |= SS_NO_FIRE
+		can_fire = FALSE
+		marked_dirty.Cut()
+		marked_new.Cut()
+		marked_turfs.Cut()
+		return SS_INIT_SUCCESS
+
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
 		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "commit [GLOB.revdata.commit || GLOB.revdata.originmastercommit]\n")
@@ -147,7 +155,7 @@ SUBSYSTEM_DEF(demo)
 	for(var/line in pre_init_lines)
 		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "[line]\n")
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/demo/fire()
 	if(!src.marked_new.len && !src.marked_dirty.len && !src.marked_turfs.len && !src.del_list.len)
@@ -397,11 +405,15 @@ SUBSYSTEM_DEF(demo)
 	return ..(msg)
 
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
+	if(!can_fire)
+		return
 	if(!isturf(T))
 		return
 	marked_turfs[T] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
+	if(!can_fire)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(M.gc_destroyed)
@@ -412,6 +424,8 @@ SUBSYSTEM_DEF(demo)
 
 // I can't wait for when TG ports this and they make this a #define macro.
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
+	if(!can_fire)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(M.gc_destroyed)
@@ -420,6 +434,8 @@ SUBSYSTEM_DEF(demo)
 		marked_dirty[M] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/M)
+	if(!can_fire)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(marked_new[M])

@@ -118,6 +118,14 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"bh" = (
+/obj/structure/stone_tile/center,
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding/cracked,
+/obj/item/reagent_containers/glass/bottle/necropolis_seed,
+/obj/structure/closet/crate/necropolis,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "bi" = (
 /obj/structure/gulag_beacon,
 /turf/open/floor/plasteel,
@@ -2245,7 +2253,7 @@
 /area/mine/laborcamp)
 "Ac" = (
 /obj/effect/decal/cleanable/ash,
-/obj/item/reagent_containers/hypospray/medipen/survival{
+/obj/item/reagent_containers/autoinjector/medipen/survival{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -2366,12 +2374,6 @@
 	dir = 1
 	},
 /obj/structure/stone_tile/cracked,
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered/dragonslair)
-"BP" = (
-/obj/structure/stone_tile/center,
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding/cracked,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/dragonslair)
 "BW" = (
@@ -48167,7 +48169,7 @@ aa
 aa
 aa
 aa
-BP
+bh
 lL
 EG
 aa

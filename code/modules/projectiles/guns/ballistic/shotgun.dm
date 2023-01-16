@@ -132,9 +132,8 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 	actions_types = list()
 	mag_display = TRUE
+	mag_display_ammo = TRUE
 	empty_indicator = TRUE
-	empty_alarm = TRUE
-	special_mags = TRUE
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE

@@ -1,5 +1,5 @@
 ///An unreadied player counts for this much compared to a readied one
-#define UNREADIED_PLAYER_MULTIPLIER 0.5
+#define UNREADIED_PLAYER_MULTIPLIER 0.75
 
 #define NUKE_RESULT_FLUKE 0
 #define NUKE_RESULT_NUKE_WIN 1

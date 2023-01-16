@@ -17,7 +17,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	active_power_usage = 200
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 	max_integrity = 300
 	integrity_failure = 100
 	var/insert_anim = "photocopier1"
@@ -151,7 +151,7 @@
 			if(tempAI.aicamera.stored.len == 0)
 				to_chat(usr, span_boldannounce("No images saved"))
 				return
-			var/datum/picture/selection = tempAI.aicamera.selectpicture(usr)
+			var/datum/picture/selection = tempAI.aicamera?.selectpicture(usr)
 			var/obj/item/photo/photo = new(loc, selection)
 			photo.pixel_x = rand(-10, 10)
 			photo.pixel_y = rand(-10, 10)
@@ -318,8 +318,8 @@
 /obj/item/toner/large
 	name = "large toner cartridge"
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
-	charges = 50
-	max_charges = 50
+	charges = 75
+	max_charges = 75
 	
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/copy_as_paper = TRUE

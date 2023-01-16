@@ -153,6 +153,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+		//YOGS START: adds "refresh_admin_ticket_list" from another file.
+		if("refresh_admin_ticket_list")
+			var/client/C = usr.client
+			var/flag = href_list["flag"]
+			if(!flag)
+				flag = TICKET_FLAG_LIST_ALL
+			C.view_tickets_main(flag)
+		//YOGS END
 	if (hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
@@ -241,32 +249,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	tgui_panel.send_connected()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
-	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
-	//Admin Authorisation
-	holder = GLOB.admin_datums[ckey]
-	if(holder)
-		if(!holder.associate(src, FALSE)) // Prevent asking for MFA at this point, it likely won't work
-			holder = null
-		connecting_admin = TRUE
-	else if(GLOB.deadmins[ckey])
-		add_verb(src, /client/proc/readmin)
-		connecting_admin = TRUE
-	if(CONFIG_GET(flag/autoadmin))
-		if(!GLOB.admin_datums[ckey])
-			var/datum/admin_rank/autorank
-			for(var/datum/admin_rank/R in GLOB.admin_ranks)
-				if(R.name == CONFIG_GET(string/autoadmin_rank))
-					autorank = R
-					break
-			if(!autorank)
-				to_chat(world, "Autoadmin rank not found")
-			else
-				new /datum/admins(autorank, ckey)
-	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin)
-		var/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/localhost_rank = new("!localhost!", R_EVERYTHING, R_DBRANKS, R_EVERYTHING) //+EVERYTHING -DBRANKS *EVERYTHING
-			new /datum/admins(localhost_rank, ckey, 1, 1)
+	var/connecting_admin = GLOB.permissions.load_permissions_for(src) //because de-admined admins connecting should be treated like admins.
+	if(connecting_admin && !holder)
+		stack_trace("[ckey] is an admin but has no holder")
 
 	// yogs start - mentor stuff
 	if(ckey in GLOB.mentor_datums)
@@ -274,7 +259,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.mentor_datum = mentor
 		src.add_mentor_verbs()
 		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
-			GLOB.mentors += src
+			GLOB.mentors |= src
+
 	// yogs end
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
@@ -328,12 +314,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// yogs start - Donor stuff
 	if(ckey in GLOB.donators)
 		prefs.unlock_content |= 2
-		//add_donor_verbs()
 	else
-		prefs.unlock_content &= ~2
+		prefs.unlock_content &= ~2 // is_donator relies on prefs.unlock_content
+
+	if(is_donator(src))
+		src.add_donator_verbs()
+	else
 		if(prefs.yogtoggles & QUIET_ROUND)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
+
 	// yogs end
 	. = ..()	//calls mob.Login()
 
@@ -368,7 +358,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(alert_mob_dupe_login)
 		spawn()
-			alert(mob, "You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+			tgui_alert(mob, "You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -518,8 +508,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		adminGreet(1)
 		holder.owner = null
-		GLOB.admins -= src
-		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+		GLOB.permissions.admins -= src
+		if (!GLOB.permissions.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			var/cheesy_message = pick(
 				"I have no admins online!",\
 				"I'm all alone :(",\
@@ -536,6 +526,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
+		qdel(holder)
+	if(ckey in GLOB.permissions.deadmins)
+		qdel(GLOB.permissions.deadmins[ckey])
 
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
@@ -583,10 +576,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		related_accounts_cid += "[query_get_related_cid.item[1]], "
 	qdel(query_get_related_cid)
 	var/admin_rank = "Player"
-	if (src.holder && src.holder.rank)
-		admin_rank = src.holder.rank.name
+	if (src.holder)
+		admin_rank = src.holder.rank_name()
 	else
-		if (!GLOB.deadmins[ckey] && check_randomizer(connectiontopic))
+		if (!GLOB.permissions.deadmins[ckey] && check_randomizer(connectiontopic))
 			return
 	var/new_player
 	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
@@ -597,7 +590,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		qdel(query_client_in_db)
 		return
 	if(!query_client_in_db.NextRow())
-		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
+		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.permissions.deadmins[ckey])
 			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
 			to_chat(src, CONFIG_GET(string/panic_bunker_message))
@@ -920,6 +913,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		// so that the visual focus indicator matches reality.
 		winset(src, null, "input.background-color=[COLOR_INPUT_DISABLED]")
 
+	else
+		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+
 	..()
 
 /client/proc/add_verbs_from_config()
@@ -994,6 +990,48 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/rescale_view(change, min, max)
 	view_size.setTo(clamp(change, min, max), clamp(change, min, max))
 
+/**
+  * Updates the keybinds for special keys
+  *
+  * Handles adding macros for the keys that need it
+  * And adding movement keys to the clients movement_keys list
+  * At the time of writing this, communication(OOC, Say, IC) require macros
+  * Arguments:
+  * * direct_prefs - the preference we're going to get keybinds from
+  */
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
+				if(SAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.say")
+				if(ME_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.me")
+				if(OOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=ooc")
+				if(LOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=looc")
+				if(ASAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=asay")
+				if(MSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=msay")
+				if(DONORSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.donorsay")
+				if(DEADSAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=dsay")
+
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
 		CRASH("change_view called without argument.")
@@ -1033,7 +1071,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/pos = 0
 	for(var/D in GLOB.cardinals)
 		pos++
-		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		var/atom/movable/screen/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
 			LAZYSET(char_render_holders, "[D]", O)
@@ -1044,11 +1082,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/clear_character_previews()
 	for(var/index in char_render_holders)
-		var/obj/screen/S = char_render_holders[index]
+		var/atom/movable/screen/S = char_render_holders[index]
 		screen -= S
 		qdel(S)
 	char_render_holders = null
-
 
 /// compiles a full list of verbs and sends it to the browser
 /client/proc/init_verbs()
@@ -1058,12 +1095,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/list/verbstoprocess = verbs.Copy()
 	if(mob)
 		verbstoprocess += mob.verbs
-		for(var/AM in mob.contents)
-			var/atom/movable/thing = AM
+		for(var/atom/movable/thing as anything in mob.contents)
 			verbstoprocess += thing.verbs
 	panel_tabs.Cut() // panel_tabs get reset in init_verbs on JS side anyway
-	for(var/thing in verbstoprocess)
-		var/procpath/verb_to_init = thing
+	for(var/procpath/verb_to_init as anything in verbstoprocess)
 		if(!verb_to_init)
 			continue
 		if(verb_to_init.hidden)

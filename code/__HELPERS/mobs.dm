@@ -84,6 +84,12 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 	if(!GLOB.pod_flower_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
+	if(!GLOB.ipc_screens_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
+	if(!GLOB.ipc_antennas_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
+	if(!GLOB.ipc_chassis_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
@@ -91,6 +97,7 @@
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"pretcolor" = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)],
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
 		"wings" = "None",
@@ -108,7 +115,10 @@
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
-		"pod_hair" = pick(GLOB.pod_hair_list)
+		"pod_hair" = pick(GLOB.pod_hair_list),
+		"ipc_screen" = pick(GLOB.ipc_screens_list),
+		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
 	))
 
 /proc/random_hair_style(gender)
@@ -152,6 +162,20 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_pod_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pod_name(gender))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_preternis_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(preternis_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())
@@ -176,6 +200,13 @@
 /proc/random_unique_polysmorph_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.polysmorph_names))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_ipc_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(ipc_name())
 
 		if(!findname(.))
 			break
@@ -471,10 +502,10 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	return spawned_mobs
 
-// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Displays a message in deadchat, sent by source.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
-	message = span_deadsay("[source][span_linkify("[message]")]")
+	message = span_deadsay("[source][message]")
 	for(var/mob/M in GLOB.player_list)
 		var/datum/preferences/prefs
 		if(M.client && M.client.prefs)
@@ -518,9 +549,9 @@ GLOBAL_LIST_EMPTY(species_list)
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
-			to_chat(M, message)
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

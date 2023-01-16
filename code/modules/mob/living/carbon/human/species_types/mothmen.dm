@@ -1,5 +1,5 @@
 /datum/species/moth
-	name = "Mothpeople"
+	name = "Mothperson"
 	id = "moth"
 	say_mod = "flutters"
 	default_color = "00FF00"
@@ -12,8 +12,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
-	liked_food = VEGETABLES | DAIRY | CLOTH
-	disliked_food = FRUIT | GROSS
+	liked_food = VEGETABLES | SUGAR
+	disliked_food = DAIRY | GROSS
 	toxic_food = MEAT | RAW | SEAFOOD | MICE
 	burnmod = 1.25 //Fluffy and flammable
 	brutemod = 0.9 //Evasive buggers
@@ -25,7 +25,9 @@
 
 	screamsound = 'sound/voice/moth/scream_moth.ogg'
 
-/datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
+	smells_like = "dusty dryness"
+
+/datum/species/moth/regenerate_organs(mob/living/carbon/C, datum/species/old_species, replace_current = TRUE, visual_only = FALSE)
 	. = ..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
@@ -52,10 +54,11 @@
 		handle_mutant_bodyparts(H)
 
 /datum/species/moth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
 	if(chem.type == /datum/reagent/toxin/pestkiller)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return FALSE
+	return ..()
 
 /datum/species/moth/check_species_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/melee/flyswatter))

@@ -129,7 +129,7 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "au" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/carpet,

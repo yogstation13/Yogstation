@@ -13,7 +13,9 @@
 	energy_drain = 10
 	force = 15
 	harmful = TRUE
+	/// Time in deciseconds it takes to drill
 	var/drill_delay = 7
+	/// Affects if it can bust through reinforced walls (DRILL_HARDENED)
 	var/drill_level = DRILL_BASIC
 
 /obj/item/mecha_parts/mecha_equipment/drill/Initialize()

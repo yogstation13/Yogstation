@@ -93,4 +93,4 @@
 	description = "We are hosting a tournament in our thunderdome and need some quick acting medicine. Ship some survival medipens over for us."
 	reward = 5200
 	required_count = 3
-	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/survival)
+	wanted_types = list(/obj/item/reagent_containers/autoinjector/medipen/survival)

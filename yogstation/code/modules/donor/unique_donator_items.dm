@@ -109,6 +109,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 ///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
+/datum/donator_gear/orca
+	name = "Megumus Dress"
+	ckey = "orcacora"
+	unlock_path = /obj/item/storage/box/megumu
+
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
 	ckey = "fataleyes"
@@ -140,19 +145,45 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
 
 /datum/donator_gear/manatee
-	name = "Peacekeeper Beret"
+	name = "Peacekeeper Beret & Dogtags"
 	ckey = "Majesticmanateee"
-	unlock_path = /obj/item/clothing/head/peacekeeperberet
+	unlock_path = /obj/item/storage/box/manatee
 
 /datum/donator_gear/Hisakaki
 	name = "Transdimensional halo"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
+	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower"
 	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
+
+/datum/donator_gear/alvcyktor
+	name = "Shark Hoodie"
+	ckey = "alvcyktor"
+	unlock_path = /obj/item/clothing/accessory/sharkhoodie
+
+/datum/donator_gear/isotope
+	name = "Dark Scientist Jumpsuit and Badass Lighter"
+	ckey = "Nightmare1243"
+	unlock_path = /obj/item/storage/box/isotope
+
+/datum/donator_gear/cuackles
+	name = "punk jacket"
+	ckey = "cuackles"
+	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
+
+/datum/donator_gear/hisa
+	name = "Hunter Stash"
+	ckey = "hisakaki"
+	unlock_path = /obj/item/storage/box/hisa
+
+/datum/donator_gear/slicerv
+	name = "axolotl plush"
+	ckey = "slicerv"
+	unlock_path = /obj/item/toy/plush/axolotlplushie
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -419,6 +450,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/wizard/marisa
 	name = "Marisa Wizard Hat"
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake
+	slot = SLOT_HEAD
+
+/datum/donator_gear/skull
+	name = "Skull Helmet (Collectable)"
+	unlock_path = /obj/item/clothing/head/collectable/skull
 	slot = SLOT_HEAD
 
 //End of items

@@ -13,7 +13,7 @@
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
 	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
 	var/vassDesc = ReturnVassalExamine(user)
@@ -151,7 +151,7 @@
 		var/damage_text
 		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
 			continue // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
-		if(!(body_part.get_damage(include_stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
+		if(!(body_part.get_damage(stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
 			damage_text = "limp and lifeless"
 		else
 			damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
@@ -216,10 +216,15 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
+	switch(fire_stacks)
+		if(1 to INFINITY)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(-5 to -1)
+			msg += "[t_He] look[p_s()] a little damp.\n"
+		if(-10 to -5)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
+		if(-INFINITY to -10)
+			msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -248,18 +253,19 @@
 		apparent_blood_volume -= 150 // enough to knock you down one tier
 	// Fulp edit START - Bloodsuckers
 	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
-	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
-		msg += bloodDesc
-	else switch(get_blood_state())
-		if(BLOOD_OKAY)
-			msg += "[t_He] [t_has] pale skin.\n"
-		if(BLOOD_BAD)
-			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
-		if(BLOOD_DEAD to BLOOD_SURVIVE)
-			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	if(bloodDesc == BLOODSUCKER_SHOW_BLOOD) // BLOODSUCKER_SHOW_BLOOD: Explicitly show the correct blood amount
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
+				msg += "[t_He] [t_has] pale skin.\n"
+			if(BLOOD_BAD)
+				msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+			if(BLOOD_DEAD to BLOOD_SURVIVE)
+				msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	else if(bloodDesc != BLOODSUCKER_HIDE_BLOOD) // BLOODSUCKER_HIDE_BLOOD: Always show full blood
+		msg += bloodDesc // Else: Show custom blood message
 
 	if(bleedsuppress)
-		msg += "[t_He] [t_is] embued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
+		msg += "[t_He] [t_is] imbued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
 	else if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		var/list/obj/item/bodypart/grasped_limbs = list()
@@ -276,7 +282,19 @@
 		if(appears_dead)
 			bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
 		else
-			bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+			switch(get_total_bleed_rate() * physiology?.bleed_mod)
+				if(0 to 1)
+					bleed_text = list("<B>[t_He] [t_is] barely bleeding from [t_his]")
+				if(1 to 2)
+					bleed_text = list("<B>[t_He] [t_is] slowly bleeding from [t_his]")
+				if(2 to 4)
+					bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+				if(4 to 8)
+					bleed_text = list("<B>[t_He] [t_is] greatly bleeding from [t_his]")
+				if(8 to 12)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood from [t_his]")
+				if(12 to INFINITY)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood like a fountain from [t_his]")
 		switch(num_bleeds)
 			if(1 to 2)
 				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
@@ -307,7 +325,10 @@
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
 	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		if(getorganslot(ORGAN_SLOT_EYES))
+			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		else
+			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
 	if(!appears_dead)
 		if(drunkenness && !skipface) //Drunkenness
@@ -394,6 +415,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
+		if(H.can_see_reagents() && reagents?.total_volume > 0)
+			. += "Reagents detected: [reagents.total_volume]u of [LAZYLEN(reagents.reagent_list)] chemicals."
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
 			var/perpname = get_face_name(get_id_name(""))
 			if(perpname)
@@ -435,7 +458,7 @@
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
@@ -460,7 +483,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	
-	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
+	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
@@ -564,4 +587,4 @@
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")
 
-	. += "*---------*</span>"
+	. += "</span>"

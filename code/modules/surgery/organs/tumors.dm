@@ -1,8 +1,6 @@
-#define TUMOR_STRENGTH_WEAK 0.125
 #define TUMOR_STRENGTH_AVERAGE 0.25
 #define TUMOR_STRENGTH_STRONG 0.5
 
-#define TUMOR_SPREAD_WEAK 0.5
 #define TUMOR_SPREAD_AVERAGE 1
 #define TUMOR_SPREAD_STRONG 2
 
@@ -11,8 +9,8 @@
 	desc = "Hope there aren't more of these."
 	icon_state = "tumor"
 
-	var/strength = TUMOR_STRENGTH_WEAK
-	var/spread_chance = TUMOR_SPREAD_WEAK
+	var/strength = TUMOR_STRENGTH_AVERAGE
+	var/spread_chance = TUMOR_SPREAD_AVERAGE
 
 	var/helpful = FALSE //keeping track if they're helpful or not
 	var/regeneration = FALSE //if limbs are regenerating
@@ -58,22 +56,13 @@
 	if(prob(spread_chance))
 		owner_symptom?.spread(owner, TRUE)
 
-
-/obj/item/organ/tumor/premalignant
-	name = "premalignant tumor"
-	desc = "It doesn't look too bad... at least you're not dead, right?"
-	strength = TUMOR_STRENGTH_AVERAGE
-	spread_chance = TUMOR_SPREAD_AVERAGE
-
 /obj/item/organ/tumor/malignant
 	name = "malignant tumor"
 	desc = "Yikes. There's probably more of these in you."
 	strength = TUMOR_STRENGTH_STRONG
 	spread_chance = TUMOR_SPREAD_STRONG
 
-#undef TUMOR_STRENGTH_WEAK 
 #undef TUMOR_STRENGTH_AVERAGE 
 #undef TUMOR_STRENGTH_STRONG 
-#undef TUMOR_SPREAD_WEAK
 #undef TUMOR_SPREAD_AVERAGE
 #undef TUMOR_SPREAD_STRONG

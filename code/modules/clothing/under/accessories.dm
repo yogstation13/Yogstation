@@ -102,6 +102,14 @@
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
+/obj/item/clothing/accessory/sharkhoodie
+	name = "shark hoodie"
+	desc = "Standard apparel of shark enthusiasts everywhere."
+	icon_state = "shark_hoodie"
+	item_state = "shark_hoodie"
+	minimize_when_attached = FALSE
+	attachment_slot = null
+
 
 //////////
 //Medals//
@@ -407,3 +415,17 @@
 	light_color = "#9E1F1F" //dim red
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity
+
+//////////////
+///Dog Tags///
+//////////////
+
+/obj/item/clothing/accessory/dogtags
+	name = "Dogtags"
+	desc = "Two small metal tags, connected with a thin piece of chain that hold important health infomration. And everything needed for a tombstone..."
+	icon_state = "dogtags"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FIRE_PROOF // its metal
+	attachment_slot = null
+	above_suit = TRUE
+	above_suit_adjustable = TRUE

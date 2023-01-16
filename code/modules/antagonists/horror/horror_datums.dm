@@ -264,7 +264,7 @@
 	user.visible_message(span_suicide("[src] coils itself around [user] tightly gripping [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 //Pinpointer
-/obj/screen/alert/status_effect/agent_pinpointer/horror
+/atom/movable/screen/alert/status_effect/agent_pinpointer/horror
 	name = "Soul locator"
 	desc = "Find your target soul."
 /datum/status_effect/agent_pinpointer/horror
@@ -272,7 +272,7 @@
 	minimum_range = 0
 	range_fuzz_factor = 0
 	tick_interval = 20
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/horror
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/horror
 /datum/status_effect/agent_pinpointer/horror/scan_for_target()
 	return
 //TRAPPED MIND - when horror takes control over your body, you become a mute trapped mind
@@ -308,7 +308,7 @@
 				var/link = FOLLOW_LINK(M, H.victim)
 				to_chat(M, "[link] [rendered]")
 
-/mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	return
 
 /datum/action/innate/resist_control

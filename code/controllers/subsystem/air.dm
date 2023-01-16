@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
 	init_order = INIT_ORDER_AIR
 	priority = FIRE_PRIORITY_AIR
-	wait = 5
+	wait = 0.5 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
@@ -40,6 +40,8 @@ SUBSYSTEM_DEF(air)
 	var/map_loading = TRUE
 	var/list/queued_for_activation
 
+	var/lasttick = 0
+
 	var/log_explosive_decompression = TRUE // If things get spammy, admemes can turn this off.
 
 /datum/controller/subsystem/air/stat_entry(msg)
@@ -71,12 +73,13 @@ SUBSYSTEM_DEF(air)
 	setup_atmos_machinery()
 	setup_pipenets()
 	gas_reactions = init_gas_reactions()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer = TICK_USAGE_REAL
+
 	if(currentpart == SSAIR_REBUILD_PIPENETS)
 		var/list/pipenet_rebuilds = pipenets_needing_rebuilt
 		for(var/thing in pipenet_rebuilds)
@@ -199,8 +202,7 @@ SUBSYSTEM_DEF(air)
 	if(istype(atmos_machine, /obj/machinery/atmospherics))
 		pipenets_needing_rebuilt += atmos_machine
 
-/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = 0)
-	var/seconds = wait * 0.1
+/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = atmos_machinery.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -208,7 +210,7 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/M = currentrun[currentrun.len]
 		currentrun.len--
-		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
+		if(!M || (M.process_atmos() == PROCESS_KILL))
 			atmos_machinery.Remove(M)
 		if(MC_TICK_CHECK)
 			return
@@ -226,7 +228,7 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_hotspots(resumed = 0)
+/datum/controller/subsystem/air/proc/process_hotspots(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = hotspots.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -351,7 +353,6 @@ SUBSYSTEM_DEF(air)
 	queued_for_activation.Cut()
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
-	var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
 	var/list/active_turfs = src.active_turfs
 	var/times_fired = ++src.times_fired
 
@@ -359,7 +360,7 @@ SUBSYSTEM_DEF(air)
 	// one-by-one, and Initalize_Atmos only ever adds `src` back in.
 	active_turfs.Cut()
 
-	for(var/thing in turfs_to_init)
+	for(var/thing in ALL_TURFS())
 		var/turf/T = thing
 		if (T.blocks_air)
 			continue
@@ -395,7 +396,7 @@ SUBSYSTEM_DEF(air)
 
 		//Yogs start -- prettier atmos notices
 		var/msg = "HEY! LISTEN! [(world.timeofday - timer)/10] seconds were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
-		to_chat(GLOB.admins,
+		to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_DEBUG,
 		html = span_notice(msg),
 		confidential = FALSE) 

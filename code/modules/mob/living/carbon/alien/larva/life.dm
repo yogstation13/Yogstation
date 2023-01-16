@@ -1,10 +1,10 @@
 
 
-/mob/living/carbon/alien/larva/Life()
+/mob/living/carbon/alien/larva/Life(seconds, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
-	if(..() && !IS_IN_STASIS(src)) //not dead and not in stasis
+	if(..() && LIFETICK_SKIP(src, times_fired)) //not dead and not in stasis
 		// GROW!
 		if(amount_grown < max_grown)
 			amount_grown++

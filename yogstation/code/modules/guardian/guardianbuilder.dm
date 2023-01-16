@@ -217,6 +217,7 @@
 			if ("carp")
 				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been caught!"))
 		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		user.update_sight()
 		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
 		for (var/obj/H in all_items)
 			if (istype(H, /obj/item/clothing/neck/necklace/memento_mori))
@@ -340,7 +341,7 @@
 	name = "holoparasite injector"
 	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
 	icon = 'icons/obj/syringe.dmi'
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	theme = "tech"
 	mob_name = "Holoparasite"
 	use_message = span_holoparasite("You start to power on the injector...")

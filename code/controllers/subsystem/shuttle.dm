@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 
 	loading_points = 4.9 SECONDS // Yogs -- loading times
 
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(shuttle)
 		WARNING("No /obj/docking_port/mobile/emergency/backup placed on the map!")
 	if(!supply)
 		WARNING("No /obj/docking_port/mobile/supply placed on the map!")
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/shuttle/proc/initial_load()
 	for(var/s in stationary)
@@ -208,6 +208,13 @@ SUBSYSTEM_DEF(shuttle)
 			Good luck.")
 		emergency = backup_shuttle
 
+	var/pretty_input = replacetext(call_reason, "\n", " ")
+	if(isnotpretty(pretty_input))
+		to_chat(user, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+		var/log_message = "[key_name(user)] just tripped a pretty filter: '[call_reason]'."
+		message_admins(log_message)
+		log_say(log_message)
+		return
 
 	var/can_evac_or_fail_reason = SSshuttle.canEvac(user)
 	if(can_evac_or_fail_reason != TRUE)
@@ -509,9 +516,12 @@ SUBSYSTEM_DEF(shuttle)
 	var/turf/midpoint = locate(transit_x, transit_y, bottomleft.z)
 	if(!midpoint)
 		return FALSE
+	var/area/old_area = midpoint.loc
+	old_area.turfs_to_uncontain += proposal.reserved_turfs
 	var/area/shuttle/transit/A = new()
 	A.parallax_movedir = travel_dir
 	A.contents = proposal.reserved_turfs
+	A.contained_turfs = proposal.reserved_turfs
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal
 	new_transit_dock.name = "Transit for [M.id]/[M.name]"

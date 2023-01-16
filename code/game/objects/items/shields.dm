@@ -1,6 +1,8 @@
 /obj/item/shield
 	name = "shield"
 	icon = 'icons/obj/shields.dmi'
+	slowdown = 0.2
+	item_flags = SLOWS_WHILE_IN_HAND
 	block_chance = 50
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 	var/transparent = FALSE	// makes beam projectiles pass through the shield
@@ -25,6 +27,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	transparent = TRUE
 	max_integrity = 75
+	var/obj/item/stack/sheet/mineral/repair_material = /obj/item/stack/sheet/mineral/titanium
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
@@ -41,11 +44,11 @@
 			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
-	else if(istype(W, /obj/item/stack/sheet/mineral/titanium))
+	else if(istype(W, repair_material))
 		if (obj_integrity >= max_integrity)
 			to_chat(user, span_notice("[src] is already in perfect condition."))
 		else
-			var/obj/item/stack/sheet/mineral/titanium/T = W
+			var/obj/item/stack/sheet/mineral/T = W
 			T.use(1)
 			obj_integrity = max_integrity
 			to_chat(user, span_notice("You repair [src] with [T]."))
@@ -89,6 +92,7 @@
 	transparent = FALSE
 	materials = list(/datum/material/iron=8500)
 	max_integrity = 65
+	repair_material = /obj/item/stack/sheet/mineral/wood
 
 /obj/item/shield/riot/roman/fake
 	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
@@ -113,6 +117,7 @@
 	transparent = FALSE
 	max_integrity = 55
 	w_class = WEIGHT_CLASS_NORMAL
+	repair_material = /obj/item/stack/sheet/mineral/wood
 
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
@@ -205,6 +210,7 @@
 	desc = "A shield that reflects almost all energy projectiles, but is useless against physical attacks. It can be retracted, expanded, and stored anywhere."
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	icon_state = "eshield1" // So it can display without initializing
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("shoved", "bashed")
 	throw_range = 5

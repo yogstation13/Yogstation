@@ -76,6 +76,21 @@
 	STR.max_items = 6
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donut))
 
+/obj/item/storage/box/fancy/donut_box/deadly
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "donutbox6"
+	icon_type = "donut"
+	name = "donut box"
+	spawn_type = /obj/item/reagent_containers/food/snacks/donut/deadly
+	fancy_open = TRUE
+
+/obj/item/storage/box/fancy/donut_box/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 6
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donut))
+
+
 /*
  * Egg Box
  */

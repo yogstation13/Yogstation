@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/retractor/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/retractor/augment
@@ -49,7 +49,7 @@
 	attack_verb = list("attacked", "pinched")
 
 /obj/item/hemostat/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/hemostat/augment
@@ -86,7 +86,7 @@
 	attack_verb = list("burnt")
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/cautery/augment
@@ -135,7 +135,7 @@
 	return (MANUAL_SUICIDE)
 
 /obj/item/surgicaldrill/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgicaldrill/augment
@@ -180,7 +180,7 @@
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
 /obj/item/scalpel/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/scalpel/augment
@@ -239,7 +239,7 @@
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/circular_saw/augment
@@ -279,7 +279,7 @@
 	attack_verb = list("corrected", "properly set")
 
 /obj/item/bonesetter/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/bonesetter/bone
@@ -288,6 +288,7 @@
 	icon_state = "bone setter_bone"
 	toolspeed = 1.25
 
+// Pointless now that tools can initiate surgery
 /obj/item/surgical_drapes
 	name = "surgical drapes"
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
@@ -300,7 +301,7 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgical_drapes/goliath
@@ -393,6 +394,8 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 16
 	toolspeed = 0.7
+	light_system = MOVABLE_LIGHT
+	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
 	sharpness = SHARP_EDGED
 
@@ -402,13 +405,13 @@
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
 		to_chat(user, span_notice("You increase the power, now it can cut bones."))
-		set_light(2)
+		set_light_range(2)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
-		set_light(1)
+		set_light_range(1)
 		force -= 1
 		icon_state = "scalpel_a"
 
@@ -447,10 +450,6 @@
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED
 
-/obj/item/cautery/advanced/Initialize()
-	. = ..()
-	set_light(1)
-
 /obj/item/cautery/advanced/attack_self(mob/user)
 
 	if(tool_behaviour == TOOL_CAUTERY)
@@ -467,3 +466,82 @@
 /obj/item/cautery/advanced/examine()
 	. = ..()
 	. += " It's set to [tool_behaviour == TOOL_DRILL ? "drilling" : "mending"] mode."
+
+/obj/structure/bed/surgical_mat
+	name = "surgical mat"
+	desc = "A sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat"
+	can_buckle = FALSE
+	bolts = FALSE
+	var/obj/picked_up = /obj/item/surgical_mat
+
+/obj/structure/bed/surgical_mat/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.8
+
+/obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+			return FALSE
+		if(has_buckled_mobs())
+			return FALSE
+		usr.visible_message("[usr] rolls up \the [src.name].", span_notice("You roll up \the [src.name]."))
+		var/obj/O = new picked_up(get_turf(src))
+		usr.put_in_hands(O)
+		qdel(src)
+
+/obj/item/surgical_mat
+	name = "surgical mat"
+	desc = "A rolled up, sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "surgical_drapes"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/obj/placed = /obj/structure/bed/surgical_mat
+
+/obj/item/surgical_mat/attack_self(mob/user)
+	deploy_mat(user, user.loc)
+
+/obj/item/surgical_mat/afterattack(obj/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(isopenturf(target))
+		deploy_mat(user, target)
+
+/obj/item/surgical_mat/proc/deploy_mat(mob/user, atom/location)
+	var/obj/structure/bed/surgical_mat/M = new placed(location)
+	M.add_fingerprint(user)
+	qdel(src)
+
+/obj/structure/bed/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "opmat"
+	can_buckle = TRUE
+	picked_up = /obj/item/surgical_mat/syndicate
+
+/obj/item/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A rolled up, sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "surgical_drapes"
+	placed = /obj/structure/bed/surgical_mat/syndicate
+
+/obj/structure/bed/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "An improvised mat for preforming primative surgery on patients."
+	icon_state = "opmat_goli"
+	picked_up = /obj/item/surgical_mat/goliath
+
+/obj/structure/bed/surgical_mat/goliath/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.85
+
+/obj/item/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "A rolled up, improvised mat for preforming primative surgery on patients."
+	icon_state = "surgical_drapes_goli"
+	placed = /obj/structure/bed/surgical_mat/goliath

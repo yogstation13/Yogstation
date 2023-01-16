@@ -71,13 +71,15 @@
 	var/mob/living/carbon/user = owner
 	var/turf/my_turf = get_turf(owner)
 
+	user.uncuff()
 	user.visible_message(
 		span_warning("[user]'s form dissipates into a cloud of mist!"),
 		span_notice("You dissipate into formless mist."),
 	)
 	// Effect Origin
 	var/sound_strength = max(60, 70 - level_current * 10)
-	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1)
+	var/sound_dist = max(-6, -level_current) // world.view is 7, so 7-6 = hearing distance of 1
+	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1, sound_dist)
 	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/()
 	puff.effect_type = /obj/effect/particle_effect/smoke/vampsmoke
 	puff.set_up(3, 0, my_turf)
@@ -106,7 +108,7 @@
 	user.density = 1
 	user.invisibility = invis_was
 	// Effect Destination
-	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', 60, 1)
+	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1, sound_dist)
 	puff = new /datum/effect_system/steam_spread/()
 	puff.effect_type = /obj/effect/particle_effect/smoke/vampsmoke
 	puff.set_up(3, 0, target_turf)

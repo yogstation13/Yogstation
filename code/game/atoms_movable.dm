@@ -53,6 +53,11 @@
 	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
 	var/contents_pressure_protection = 0
 
+	///Lazylist to keep track on the sources of illumination.
+	var/list/affected_dynamic_lights
+	///Highest-intensity light affecting us, which determines our visibility.
+	var/affecting_dynamic_lumi = 0
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -63,6 +68,9 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			vis_contents += em_block
+	
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
 
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)
@@ -572,6 +580,9 @@
 	if(has_gravity(src))
 		return TRUE
 
+	if(pulledby && (pulledby.pulledby != src || moving_from_pull))
+		return TRUE
+
 	if(throwing)
 		return TRUE
 
@@ -788,47 +799,7 @@
 		pixel_x_diff = -8
 
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS)
-	animate(src, pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
-
-/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
-	var/image/I
-	if(visual_effect_icon)
-		I = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
-	else if(used_item)
-		I = image(icon = used_item, loc = A, layer = A.layer + 0.1)
-		I.plane = GAME_PLANE
-
-		// Scale the icon.
-		I.transform *= 0.75
-		// The icon should not rotate.
-		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-
-		// Set the direction of the icon animation.
-		var/direction = get_dir(src, A)
-		if(direction & NORTH)
-			I.pixel_y = -16
-		else if(direction & SOUTH)
-			I.pixel_y = 16
-
-		if(direction & EAST)
-			I.pixel_x = -16
-		else if(direction & WEST)
-			I.pixel_x = 16
-
-		if(!direction) // Attacked self?!
-			I.pixel_z = 16
-
-	if(!I)
-		return
-
-	flick_overlay(I, GLOB.clients, 5) // 5 ticks/half a second
-
-	// And animate the attack!
-	var/t_color = "#ffffff" //yogs start
-	if(ismob(src) &&  ismob(A) && (!used_item))
-		var/mob/M = src
-		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 0.3 SECONDS, color = t_color) //yogs end
+	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
@@ -850,8 +821,7 @@
 		return
 	if(on && !(movement_type & FLOATING))
 		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
-		sleep(1 SECONDS)
-		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
+		animate(pixel_y = pixel_y - 2, time = 1 SECONDS)
 		setMovetype(movement_type | FLOATING)
 	else if (!on && (movement_type & FLOATING))
 		animate(src, pixel_y = initial(pixel_y), time = 1 SECONDS)
@@ -955,35 +925,3 @@
 	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
 		return FALSE
 	return TRUE
-
-/obj/item/proc/do_pickup_animation(atom/target)
-	set waitfor = FALSE
-	if(!istype(loc, /turf))
-		return
-	var/image/I = image(icon = src, loc = loc, layer = layer + 0.1)
-	I.plane = GAME_PLANE
-	I.transform *= 0.75
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	var/turf/T = get_turf(src)
-	var/direction
-	var/to_x = 0
-	var/to_y = 0
-
-	if(!QDELETED(T) && !QDELETED(target))
-		direction = get_dir(T, target)
-	if(direction & NORTH)
-		to_y = 32
-	else if(direction & SOUTH)
-		to_y = -32
-	if(direction & EAST)
-		to_x = 32
-	else if(direction & WEST)
-		to_x = -32
-	if(!direction)
-		to_y = 16
-	flick_overlay(I, GLOB.clients, 6)
-	var/matrix/M = new
-	M.Turn(pick(-30, 30))
-	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 0.3 SECONDS, transform = M, easing = CUBIC_EASING)
-	sleep(0.1 SECONDS)
-	animate(I, alpha = 0, transform = matrix(), time = 0.1 SECONDS)

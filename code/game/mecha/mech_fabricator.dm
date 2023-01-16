@@ -7,10 +7,24 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
+	
 	req_access = list(ACCESS_ROBOTICS)
+	///Whether the access is hacked or not
+	var/hacked = FALSE
+	///World ticks the machine is electified for
+	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED
+
+
 	circuit = /obj/item/circuitboard/machine/mechfab
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
-
+	/// Controls whether or not the more dangerous designs have been unlocked by a head's id manually, rather than alert level unlocks
+	var/authorization_override = FALSE
+	/// Tracks whether the station is in full danger mode to unlock combat mechs
+	var/red_alert = FALSE
+	/// ID card of the person using the machine for the purpose of tracking access
+	var/obj/item/card/id/id_card = new()
+	/// Combined boolean value of red alert, auth override, and the users access for the sake of smaller if statements. if this is true, combat parts are available
+	var/combat_parts_allowed = FALSE
 	/// Current items in the build queue.
 	var/list/queue = list()
 	/// Whether or not the machine is building the entire queue automagically.
@@ -47,6 +61,7 @@
 								"Ripley",
 								"Odysseus",
 								"Firefighter",
+								"Clarke",
 								"Gygax",
 								"Durand",
 								"H.O.N.K",
@@ -57,15 +72,28 @@
 								"Cybernetics",
 								"Implants",
 								"Control Interfaces",
+								"IPC Components",
 								"Misc"
+								)
+	var/list/combat_parts = list(
+								"Gygax",
+								"Durand",
+								"H.O.N.K",
+								"Phazon",
+								"Exosuit Ammunition",
 								)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	stored_research = SSresearch.science_tech
 	rmat = AddComponent(/datum/component/remote_materials, "mechfab", mapload && link_on_init)
 	RefreshParts() //Recalculating local material sizes if the fab isn't linked
+	wires = new /datum/wires/mecha_part_fabricator(src)
 	return ..()
 
+/obj/machinery/mecha_part_fabricator/Destroy()
+	QDEL_NULL(wires)
+	return ..()
+	
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	var/T = 0
 
@@ -101,6 +129,81 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 
+/obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/living/user, params)
+	if(panel_open && is_wire_tool(I))
+		wires.interact(user)
+		return TRUE
+	if(I.GetID())
+		var/obj/item/card/id/C = I.GetID()
+		if(obj_flags & EMAGGED)
+			to_chat(user, span_warning("The authentication slot spits sparks at you and the display reads scrambled text!"))
+			do_sparks(1, FALSE, src)
+			authorization_override = TRUE //just in case it wasn't already for some reason. keycard reader is busted.
+			return
+		if(ACCESS_HEADS in C.access)
+			if(!authorization_override)
+				authorization_override = TRUE
+				to_chat(user, span_warning("You override the safety protocols on the [src], removing access restrictions from this terminal."))
+			else
+				authorization_override = FALSE
+				to_chat(user, span_notice("You reengage the safety protocols on the [src], restoring access restrictions to this terminal."))
+			update_static_data(user)
+		return
+	return ..()
+/**
+ * All the negative wire effects
+ * Break wire breaks one limb (Because pain is to be had)
+*/
+/obj/machinery/mecha_part_fabricator/_try_interact(mob/user)
+	if(seconds_electrified && !(stat & NOPOWER))
+		if(shock(user, 100))
+			return
+	return ..()
+
+/obj/machinery/mecha_part_fabricator/proc/wire_break(mob/user)
+	if(stat & (BROKEN|NOPOWER))
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	var/mob/living/carbon/C = user
+	var/datum/wound/blunt/severe/break_it = new
+	///Picks limb to break. People with less limbs have a chance of it grapping at air
+	var/obj/item/bodypart/bone = C.get_bodypart(pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
+	if(bone)
+		to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
+		break_it.apply_wound(bone)
+		bone.receive_damage(brute=50, updating_health=TRUE)
+	else
+		to_chat(C,span_userdanger("The manipulator arms attempt to grab one of your limbs, but grapple air instead!"))
+		qdel(break_it)
+
+/obj/machinery/mecha_part_fabricator/proc/reset(wire)
+	switch(wire)
+		if(WIRE_HACK)
+			if(!wires.is_cut(wire))
+				hacked = FALSE
+/**
+  * Shock the passed in user
+  *
+  * This checks we have power and that the passed in prob is passed, then generates some sparks
+  * and calls electrocute_mob on the user
+  *
+  * Arguments:
+  * * user - the user to shock
+  * * prb - probability the shock happens
+  */
+/obj/machinery/mecha_part_fabricator/proc/shock(mob/user, prb)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	if(!prob(prb))
+		return FALSE
+	do_sparks(5, TRUE, src)
+	var/check_range = TRUE
+	if(electrocute_mob(user, get_area(src), src, 0.7, check_range))
+		return TRUE
+	else
+		return FALSE
 /**
   * Generates an info list for a given part.
   *
@@ -118,7 +221,7 @@
 
 	var/list/category_override = null
 	var/list/sub_category = null
-
+	
 	if(categories)
 		// Handle some special cases to build up sub-categories for the fab interface.
 		// Start with checking if this design builds a cyborg module.
@@ -311,6 +414,10 @@
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/process()
+	// Deelectrifies the machine
+	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
+		seconds_electrified--
+
 	// If there's a stored part to dispense due to an obstruction, try to dispense it.
 	if(stored_part)
 		var/turf/exit = get_step(src,(dir))
@@ -337,6 +444,7 @@
 		if(process_queue)
 			build_next_in_queue(FALSE)
 		return TRUE
+	
 
 /**
   * Dispenses a part to the tile infront of the Exosuit Fab.
@@ -441,6 +549,11 @@
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
+/obj/machinery/mecha_part_fabricator/ui_status(mob/user)
+	if(stat & BROKEN || panel_open)
+		return UI_CLOSE
+	return ..()
+
 /obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -454,11 +567,16 @@
 	var/list/buildable_parts = list()
 
 	for(var/part_set in part_sets)
+		if(combat_parts.Find(part_set) && !combat_parts_allowed)
+			continue
 		final_sets += part_set
-
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		if(D.build_type & MECHFAB)
+			if(ispath(D.build_path, /obj/item/mecha_parts/mecha_equipment/weapon) && !combat_parts_allowed) // Yogs -- ID swiping for combat parts
+				var/obj/item/mecha_parts/mecha_equipment/weapon/check = D
+				if(initial(check.restricted))
+					continue
 			// This is for us.
 			var/list/part = output_part_info(D, TRUE)
 
@@ -475,7 +593,6 @@
 					continue
 
 				buildable_parts[cat] += list(part)
-
 	data["partSets"] = final_sets
 	data["buildableParts"] = buildable_parts
 
@@ -483,7 +600,7 @@
 
 /obj/machinery/mecha_part_fabricator/ui_data(mob/user)
 	var/list/data = list()
-
+	check_auth_changes(user)
 	data["materials"] = output_available_resources()
 
 	if(being_built)
@@ -504,8 +621,28 @@
 		data["storedPart"] = null
 
 	data["isProcessingQueue"] = process_queue
+	data["authorization"] = authorization_override
+	data["user_clearance"] = head_or_silicon(user)
+	data["alert_level"] = GLOB.security_level 
+	data["combat_parts_allowed"] = combat_parts_allowed
+	data["emagged"] = (obj_flags & EMAGGED)
+	data["silicon_user"] = issilicon(user)
 
 	return data
+
+/// Updates the various authorization checks used to determine if combat parts are available to the current user
+/obj/machinery/mecha_part_fabricator/proc/check_auth_changes(mob/user)
+	red_alert = (GLOB.security_level >= SEC_LEVEL_RED)
+	if(combat_parts_allowed != (authorization_override || red_alert || head_or_silicon(user)))
+		combat_parts_allowed = (authorization_override || red_alert || head_or_silicon(user))
+		update_static_data(user)
+
+/// made as a lazy check to allow silicons full access always
+/obj/machinery/mecha_part_fabricator/proc/head_or_silicon(mob/user)
+	if(issilicon(user))
+		return TRUE
+	id_card = user.get_idcard(hand_first = TRUE)
+	return ACCESS_HEADS in id_card?.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()
@@ -637,12 +774,31 @@
 
 /obj/machinery/mecha_part_fabricator/proc/is_insertion_ready(mob/user)
 	if(panel_open)
-		to_chat(user, span_warning("You can't load [src] while it's opened!"))
+		to_chat(user, span_warning("You can't load [src] while it's panel is opened!"))
 		return FALSE
 	if(being_built)
 		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
 		return FALSE
 	return TRUE
 
+/obj/machinery/mecha_part_fabricator/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("[src] has no functional safeties to emag."))
+		return
+	do_sparks(1, FALSE, src)
+	to_chat(user, span_notice("You short out [src]'s safeties."))
+	authorization_override = TRUE
+	obj_flags |= EMAGGED
+	update_static_data(user)
+
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+
+/obj/machinery/mecha_part_fabricator/ruin
+	link_on_init = FALSE
+	authorization_override = TRUE
+	hacked = TRUE
+
+/obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+	. = ..()
+	stored_research = SSresearch.ruin_tech

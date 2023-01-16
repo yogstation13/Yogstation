@@ -37,7 +37,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE //The sacred coffin!
+	always_available = FALSE //The sacred coffin!
 
 /datum/crafting_recipe/metalcoffin
 	name = "Metal Coffin"
@@ -63,7 +63,7 @@
 	)
 	time = 13 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/restingplace
 	name = "Resting Place"
@@ -76,7 +76,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/vassalrack
 	name = "Persuasion Rack"
@@ -89,7 +89,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/staketrap
 	name = "Stake Trap"
@@ -102,7 +102,7 @@
 	)
 	time = 12.5 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/candelabrum
 	name = "Candelabrum"
@@ -115,7 +115,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 /*
 /datum/crafting_recipe/bloodthrone
@@ -129,7 +129,7 @@
 	)
 	time = 5 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 */
 
 /datum/crafting_recipe/possessedarmor
@@ -142,7 +142,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_STRUCTURES
-	always_availible = FALSE
+	always_available = FALSE
 
 ////////////////////////
 ///      Stakes      ///
@@ -166,7 +166,7 @@
 	time = 6 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/hardened_stake
 	name = "Hardened Stake"
@@ -176,7 +176,7 @@
 	time = 6 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/silver_stake
 	name = "Silver Stake"
@@ -189,4 +189,4 @@
 	time = 8 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE

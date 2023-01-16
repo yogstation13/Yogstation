@@ -4,6 +4,7 @@
 	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
+	infra_luminosity = 10
 
 	hud_type = /datum/hud/living
 
@@ -54,6 +55,9 @@
 	var/cameraFollow = null
 
 	var/tod = null // Time of death
+
+	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
+	var/life_tickrate = 1 
 
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
@@ -116,8 +120,6 @@
 	var/lizardspeech = 0
 
 	var/list/implants = null
-
-	var/datum/riding/riding_datum
 
 	var/last_words	//used for database logging
 

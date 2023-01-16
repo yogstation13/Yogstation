@@ -195,7 +195,7 @@
 	if(in_range(src, user) && isliving(user)) //No running off and setting bombs from across the station
 		timer_set = clamp(new_timer, minimum_timer, maximum_timer)
 		loc.visible_message(span_notice("[icon2html(src, viewers(src))] timer set for [timer_set] seconds."))
-	if(alert(user,"Would you like to start the countdown now?",,"Yes","No") == "Yes" && in_range(src, user) && isliving(user))
+	if(tgui_alert(user,"Would you like to start the countdown now?",,list("Yes","No")) == "Yes" && in_range(src, user) && isliving(user))
 		if(!active)
 			visible_message(span_danger("[icon2html(src, viewers(loc))] [timer_set] seconds until detonation, please clear the area."))
 			activate()
@@ -268,8 +268,13 @@
 	var/range_flame = 20
 
 /obj/item/bombcore/ex_act(severity, target) // Little boom can chain a big boom.
-	detonate()
+	if(loc && istype(loc, /obj/machinery/syndicatebomb))
+		detonate()
 
+/obj/item/bombcore/microwave_act(obj/machinery/microwave/M)
+	detonate()
+	. = ..()
+	
 
 /obj/item/bombcore/burn()
 	detonate()

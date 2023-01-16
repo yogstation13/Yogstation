@@ -37,7 +37,7 @@
 
 /obj/item/clothing/under/plasmaman/curator
 	name = "prototype envirosuit"
-	desc = "Made out of a modified voidsuit, this suit was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Due to the modifications, the suit is no longer space-worthy. Despite their limitations, these suits are still in used by historian and old-styled plasmamen alike."
+	desc = "The far lighter, second-generation variant of the plasmaman uniforms designed by Nanotrasen. Unlike the first-generation variants, this uniform is made of fire-resistant fabrics, rather than clunky hardsuit plating. The latest extinguishers have also been installed."
 	icon_state = "plasmaman_OLD"
 	item_state = "plasmaman_OLD"
 
@@ -49,7 +49,7 @@
 
 /obj/item/clothing/under/plasmaman/botany
 	name = "botanical envirosuit"
-	desc = "A green envirosuit designed to protect plasmamen from minor plant-related injuries."
+	desc = "A green-blue envirosuit designed to protect plasmamen from minor plant-related injuries."
 	icon_state = "botany_envirosuit"
 	item_state = "botany_envirosuit"
 

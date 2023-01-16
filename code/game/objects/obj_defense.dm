@@ -146,7 +146,7 @@
 		return
 	attack_generic(user, rand(10, 15), BRUTE, MELEE, 1)
 
-/obj/mech_melee_attack(obj/mecha/M)
+/obj/mech_melee_attack(obj/mecha/M, equip_allowed)
 	M.do_attack_animation(src)
 	var/play_soundeffect = 0
 	var/mech_damtype = M.damtype
@@ -257,7 +257,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	obj_flags &= ~BEING_SHOCKED
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
-/obj/proc/deconstruct(disassembled = TRUE)
+/obj/proc/deconstruct(disassembled = TRUE, force = FALSE)
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 

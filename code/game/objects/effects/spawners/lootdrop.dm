@@ -10,7 +10,6 @@
 /obj/effect/spawner/lootdrop/Initialize(mapload)
 	..()
 	if(loot && loot.len)
-		var/turf/T = get_turf(src)
 		var/loot_spawned = 0
 		while((lootcount-loot_spawned) && loot.len)
 			var/lootspawn = pickweight(loot)
@@ -18,7 +17,7 @@
 				loot.Remove(lootspawn)
 
 			if(lootspawn)
-				var/atom/movable/spawned_loot = new lootspawn(T)
+				var/atom/movable/spawned_loot = new lootspawn(loc)
 				if (!fan_out_items)
 					if (pixel_x != 0)
 						spawned_loot.pixel_x = pixel_x
@@ -29,6 +28,88 @@
 						spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
 			loot_spawned++
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/spawner/lootdrop/surgery_tool_advanced
+	name = "Advanced surgery tool spawner"
+	loot = list( // Mail loot spawner. Drop pool of advanced medical tools typically from research. Not endgame content.
+		/obj/item/scalpel/advanced,
+		/obj/item/retractor/advanced,
+		/obj/item/cautery/advanced,
+	)
+
+/obj/effect/spawner/lootdrop/surgery_tool_alien
+	name = "Rare surgery tool spawner"
+	loot = list( // Mail loot spawner. Some sort of random and rare surgical tool. Alien tech found here.
+		/obj/item/scalpel/alien,
+		/obj/item/hemostat/alien,
+		/obj/item/retractor/alien,
+		/obj/item/circular_saw/alien,
+		/obj/item/surgicaldrill/alien,
+		/obj/item/cautery/alien,
+	)
+
+/obj/effect/spawner/lootdrop/memeorgans
+	name = "meme organ spawner"
+	lootcount = 5
+	loot = list(
+		/obj/item/organ/ears/penguin,
+		/obj/item/organ/ears/cat,
+		/obj/item/organ/eyes/moth,
+		/obj/item/organ/eyes/snail,
+		/obj/item/organ/tongue/bone,
+		/obj/item/organ/tongue/fly,
+		/obj/item/organ/tongue/snail,
+		/obj/item/organ/tongue/lizard,
+		/obj/item/organ/tongue/alien,
+		///obj/item/organ/tongue/ethereal,
+		/obj/item/organ/tongue/robot,
+		/obj/item/organ/tongue/zombie,
+		/obj/item/organ/appendix,
+		/obj/item/organ/liver/fly,
+		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/tail/cat,
+		/obj/item/organ/tail/lizard,
+	)
+
+/obj/effect/spawner/lootdrop/plushies
+	name = "random plushie"
+	lootcount = 1
+	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+		/obj/item/toy/plush/bubbleplush,
+		/obj/item/toy/plush/carpplushie,
+		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/snakeplushie,
+		/obj/item/toy/plush/nukeplushie,
+		/obj/item/toy/plush/slimeplushie,
+		/obj/item/toy/plush/beeplushie,
+		/obj/item/toy/plush/mothplushie,
+		/obj/item/toy/plush/pkplushie,
+		/obj/item/toy/plush/foxplushie,
+		/obj/item/toy/plush/lizard/azeel,
+		/obj/item/toy/plush/blahaj,
+		/obj/item/toy/plush/cdragon,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/teddybear,
+		/obj/item/toy/plush/stuffedmonkey,
+		/obj/item/toy/plush/inorixplushie,
+		/obj/item/toy/plush/flowerbunch,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/realgoat
+	)
+
+/obj/effect/spawner/lootdrop/techshell
+	name = "random techshell spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/ammo_casing/shotgun/pulseslug,
+		/obj/item/ammo_casing/shotgun/dragonsbreath,
+		/obj/item/ammo_casing/shotgun/ion,
+		/obj/item/ammo_casing/shotgun/frag12,
+		/obj/item/ammo_casing/shotgun/laserbuckshot,
+		/obj/item/ammo_casing/shotgun/thundershot,
+		/obj/item/ammo_casing/shotgun/uraniumpenetrator,
+		/obj/item/ammo_casing/shotgun/cryoshot
+	)
 
 /obj/effect/spawner/lootdrop/armory_contraband
 	name = "armory contraband gun spawner"
@@ -56,6 +137,26 @@
 				/obj/item/toy/cards/deck/syndicate = 2
 				)
 
+/obj/effect/spawner/lootdrop/seed_rare
+	name = "rare seed"
+	lootcount = 5
+	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+		/obj/item/seeds/random = 30,
+		/obj/item/seeds/liberty = 5,
+		/obj/item/seeds/replicapod = 5,
+		/obj/item/seeds/reishi = 5,
+		/obj/item/seeds/nettle/death = 1,
+		/obj/item/seeds/plump/walkingmushroom = 1,
+		/obj/item/seeds/cannabis/rainbow = 1,
+		/obj/item/seeds/cannabis/death = 1,
+		/obj/item/seeds/cannabis/white = 1,
+		/obj/item/seeds/cannabis/ultimate = 1,
+		/obj/item/seeds/kudzu = 1,
+		/obj/item/seeds/angel = 1,
+		/obj/item/seeds/glowshroom/glowcap = 1,
+		/obj/item/seeds/glowshroom/shadowshroom = 1,
+	)
+
 /obj/effect/spawner/lootdrop/grille_or_trash
 	name = "maint grille or trash spawner"
 	loot = list(/obj/structure/grille = 5,
@@ -70,7 +171,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/trashbin
 	name = "trash spawner"
@@ -85,7 +187,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/donkpockets
 	name = "donk pocket box spawner"
@@ -97,6 +200,171 @@
 			/obj/item/storage/box/donkpockets/donkpocketpizza = 1,
 			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
 			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks
+	name = "reagent tank spawner"
+	icon_state = "random_tanks"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/lowchance
+	name = "rare reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/midchance
+	name = "common reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highchance
+	name = "frequent reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highquality
+	name = "highcap water/foam tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/watertank/high = 5,
+			/obj/structure/reagent_dispensers/foamtank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly
+	name = "guaranteed fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/lowchance
+	name = "rare fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/midchance
+	name = "common fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/highchance
+	name = "frequent fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/
+	name = "generic effect spawner"
+	icon_state = "x4"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 100,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines
+	name = "stun or explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive = 1,
+			/obj/effect/mine/stun = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/safe
+	name = "stun landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun = 10,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/smart
+	name = "smart landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun/smart = 10,
+			/obj/effect/mine/stun/smart/adv = 5,
+			/obj/effect/mine/stun/smart/heavy = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/unsafe
+	name = "dangerous landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/explosive = 10,
+			/obj/effect/mine/gas/plasma = 5,
+			/obj/effect/mine/gas/n2o = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/funny
+	name = "harmless landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+			/obj/effect/mine/gas = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/ancient
+	name = "stun or ancient explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive/ancient = 1,
+			/obj/effect/mine/stun = 5,
 		)
 
 /obj/effect/spawner/lootdrop/three_course_meal
@@ -134,7 +402,7 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = FLOOR(lootcount * 1.5, 1)
 
@@ -188,7 +456,7 @@
 		/obj/item/organ/heart/gland/egg = 7,
 		/obj/item/organ/heart/gland/chem = 5,
 		/obj/item/organ/heart/gland/mindshock = 5,
-		/obj/item/organ/heart/gland/plasma = 7,
+		/obj/item/organ/heart/gland/gas = 7, //Yogstation change: plasma -> gas
 		/obj/item/organ/heart/gland/pop = 5,
 		/obj/item/organ/heart/gland/slime = 4,
 		/obj/item/organ/heart/gland/spiderman = 5,
@@ -397,3 +665,45 @@
 				/obj/item/circuitboard/computer/apc_control,
 				/obj/item/circuitboard/computer/robotics
 				)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_suit
+	name = "20% incredibly fashionable outfit spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/under/drip = 20,
+		"" = 80)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_shoes
+	name = "20% fashionable shoes spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/shoes/drip = 20,
+		"" = 80)
+
+//Mob spawners
+/obj/effect/spawner/lootdrop/mob
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+
+/obj/effect/spawner/lootdrop/mob/kitchen_animal
+	name = "kitchen animal"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
+			/mob/living/simple_animal/cow/betsy = 1,
+			/mob/living/simple_animal/sheep = 1,
+			/mob/living/simple_animal/sheep/shawn = 1)
+
+/obj/effect/spawner/lootdrop/mob/marrow_weaver
+	name = "40% marrow weaver spawner"
+	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "weaver"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
+			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
+			"" = 60)

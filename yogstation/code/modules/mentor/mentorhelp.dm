@@ -32,7 +32,7 @@
 	var/mentor_msg = "<span class='mentornotice purple'><b>[admininfo]</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</span>"
 	log_mentor("[admininfo] [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
-	for(var/client/X in GLOB.mentors | GLOB.admins)
+	for(var/client/X in GLOB.mentors | GLOB.permissions.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			send_mentor_sound(X)
 		to_chat(X, mentor_msg, confidential=TRUE)

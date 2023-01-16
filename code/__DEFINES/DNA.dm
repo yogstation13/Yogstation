@@ -54,13 +54,15 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
-
+#define CEREBRAL	/datum/mutation/human/cerebral
 
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
 
-#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 204
+#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
+#define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
+
 
 // String identifiers for associative list lookup
 
@@ -143,12 +145,22 @@
 #define HAS_FLESH	23
 /// if we have bones (can suffer bone wounds)
 #define HAS_BONE	24
+/// Can't be husked.
+#define NOHUSK			25
+/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
+#define ROBOTIC_LIMBS	26
+/// have no mouth to ingest/eat with
+#define NOMOUTH			27
+/// has a tail
+#define HAS_TAIL		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
 #define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
 #define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 #define ORGAN_SLOT_STOMACH "stomach"
 #define ORGAN_SLOT_STOMACH_AID "stomach_aid"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"

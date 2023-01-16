@@ -3,9 +3,9 @@
 /datum/status_effect/shadow_mend
 	id = "shadow_mend"
 	duration = 30
-	alert_type = /obj/screen/alert/status_effect/shadow_mend
+	alert_type = /atom/movable/screen/alert/status_effect/shadow_mend
 
-/obj/screen/alert/status_effect/shadow_mend
+/atom/movable/screen/alert/status_effect/shadow_mend
 	name = "Shadow Mend"
 	desc = "Shadowy energies wrap around your wounds, sealing them at a price. After healing, you will slowly lose health every three seconds for thirty seconds."
 	icon_state = "shadow_mend"
@@ -29,9 +29,9 @@
 	id = "void_price"
 	duration = 300
 	tick_interval = 30
-	alert_type = /obj/screen/alert/status_effect/void_price
+	alert_type = /atom/movable/screen/alert/status_effect/void_price
 
-/obj/screen/alert/status_effect/void_price
+/atom/movable/screen/alert/status_effect/void_price
 	name = "Void Price"
 	desc = "Black tendrils cinch tightly against you, digging wicked barbs into your flesh."
 	icon_state = "shadow_mend"
@@ -46,16 +46,16 @@
 	duration = 200
 	tick_interval = 0 //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /obj/screen/alert/status_effect/vanguard
+	alert_type = /atom/movable/screen/alert/status_effect/vanguard
 	var/datum/progressbar/progbar
 
-/obj/screen/alert/status_effect/vanguard
+/atom/movable/screen/alert/status_effect/vanguard
 	name = "Vanguard"
 	desc = "You're absorbing stuns! 25% of all stuns taken will affect you after this effect ends."
 	icon_state = "vanguard"
 	alerttooltipstyle = "clockcult"
 
-/obj/screen/alert/status_effect/vanguard/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/vanguard/MouseEntered(location,control,params)
 	var/mob/living/L = usr
 	if(istype(L)) //this is probably more safety than actually needed
 		var/vanguard = L.stun_absorption["vanguard"]
@@ -113,9 +113,9 @@
 /datum/status_effect/inathneqs_endowment
 	id = "inathneqs_endowment"
 	duration = 150
-	alert_type = /obj/screen/alert/status_effect/inathneqs_endowment
+	alert_type = /atom/movable/screen/alert/status_effect/inathneqs_endowment
 
-/obj/screen/alert/status_effect/inathneqs_endowment
+/atom/movable/screen/alert/status_effect/inathneqs_endowment
 	name = "Inath-neq's Endowment"
 	desc = "Adrenaline courses through you as the Resonant Cogwheel's energy shields you from all harm!"
 	icon_state = "inathneqs_endowment"
@@ -144,7 +144,7 @@
 /datum/status_effect/cyborg_power_regen
 	id = "power_regen"
 	duration = 100
-	alert_type = /obj/screen/alert/status_effect/power_regen
+	alert_type = /atom/movable/screen/alert/status_effect/power_regen
 	var/power_to_give = 0 //how much power is gained each tick
 
 /datum/status_effect/cyborg_power_regen/on_creation(mob/living/new_owner, new_power_per_tick)
@@ -152,7 +152,7 @@
 	if(. && isnum(new_power_per_tick))
 		power_to_give = new_power_per_tick
 
-/obj/screen/alert/status_effect/power_regen
+/atom/movable/screen/alert/status_effect/power_regen
 	name = "Power Regeneration"
 	desc = "You are quickly regenerating power!"
 	icon_state = "power_regen"
@@ -169,16 +169,16 @@
 	id = "his_grace"
 	duration = -1
 	tick_interval = 4
-	alert_type = /obj/screen/alert/status_effect/his_grace
+	alert_type = /atom/movable/screen/alert/status_effect/his_grace
 	var/bloodlust = 0
 
-/obj/screen/alert/status_effect/his_grace
+/atom/movable/screen/alert/status_effect/his_grace
 	name = "His Grace"
 	desc = "His Grace hungers, and you must feed Him."
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
-/obj/screen/alert/status_effect/his_grace/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/his_grace/MouseEntered(location,control,params)
 	desc = initial(desc)
 	var/datum/status_effect/his_grace/HG = attached_effect
 	desc += "<br><font size=3><b>Current Bloodthirst: [HG.bloodlust]</b></font>\
@@ -220,7 +220,7 @@
 /datum/status_effect/wish_granters_gift //Fully revives after ten seconds.
 	id = "wish_granters_gift"
 	duration = 50
-	alert_type = /obj/screen/alert/status_effect/wish_granters_gift
+	alert_type = /atom/movable/screen/alert/status_effect/wish_granters_gift
 
 /datum/status_effect/wish_granters_gift/on_apply()
 	to_chat(owner, span_notice("Death is not your end! The Wish Granter's energy suffuses you, and you begin to rise..."))
@@ -231,7 +231,7 @@
 	owner.visible_message(span_warning("[owner] appears to wake from the dead, having healed all wounds!"), span_notice("You have regenerated."))
 	owner.update_mobility()
 
-/obj/screen/alert/status_effect/wish_granters_gift
+/atom/movable/screen/alert/status_effect/wish_granters_gift
 	name = "Wish Granter's Immortality"
 	desc = "You are being resurrected!"
 	icon_state = "wish_granter"
@@ -269,9 +269,9 @@
 	id = "blooddrunk"
 	duration = 10
 	tick_interval = 0
-	alert_type = /obj/screen/alert/status_effect/blooddrunk
+	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
-/obj/screen/alert/status_effect/blooddrunk
+/atom/movable/screen/alert/status_effect/blooddrunk
 	name = "Blood-Drunk"
 	desc = "You are drunk on blood! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
 	icon_state = "blooddrunk"
@@ -340,7 +340,7 @@
 /datum/status_effect/fleshmend
 	id = "fleshmend"
 	duration = 100
-	alert_type = /obj/screen/alert/status_effect/fleshmend
+	alert_type = /atom/movable/screen/alert/status_effect/fleshmend
 
 /datum/status_effect/fleshmend/tick()
 	var/prot = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -362,7 +362,7 @@
 	var/mob/living/carbon/C = owner
 	QDEL_LIST(C.all_scars)
 
-/obj/screen/alert/status_effect/fleshmend
+/atom/movable/screen/alert/status_effect/fleshmend
 	name = "Fleshmend"
 	desc = "Our wounds are rapidly healing. <i>This effect is prevented if we are on fire.</i>"
 	icon_state = "fleshmend"
@@ -486,7 +486,7 @@
 	owner.confused = max(0, owner.confused - 1)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic)
 
-/obj/screen/alert/status_effect/regenerative_core
+/atom/movable/screen/alert/status_effect/regenerative_core
 	name = "Reinforcing Tendrils"
 	desc = "You can move faster than your broken body could normally handle!"
 	icon_state = "regenerative_core"
@@ -496,10 +496,14 @@
 	id = "Regenerative Core"
 	duration = 1 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /obj/screen/alert/status_effect/regenerative_core
+	alert_type = /atom/movable/screen/alert/status_effect/regenerative_core
 
 /datum/status_effect/regenerative_core/on_apply()
-	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	var/turf/T = get_turf(owner)
+	if(is_station_level(T.z))
+		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
+	else
+		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	owner.adjustBruteLoss(-25)
 	owner.adjustFireLoss(-25)
 	owner.remove_CC()
@@ -508,6 +512,7 @@
 
 /datum/status_effect/regenerative_core/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 
 /datum/status_effect/antimagic
 	id = "antimagic"
@@ -528,7 +533,7 @@
 /datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
 	id = "creep"
 	duration = -1
-	alert_type = /obj/screen/alert/status_effect/creep
+	alert_type = /atom/movable/screen/alert/status_effect/creep
 	examine_text = span_warning("SUBJECTPRONOUN is surrounded by velvety, gently-waving black shadows!")
 	var/datum/antagonist/darkspawn/darkspawn
 
@@ -548,7 +553,7 @@
 		return
 	darkspawn.use_psi(1)
 
-/obj/screen/alert/status_effect/creep
+/atom/movable/screen/alert/status_effect/creep
 	name = "Creep"
 	desc = "You are immune to lightburn. Drains 1 Psi per second."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
@@ -558,7 +563,7 @@
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"
 	duration = 600
-	alert_type = /obj/screen/alert/status_effect/time_dilation
+	alert_type = /atom/movable/screen/alert/status_effect/time_dilation
 	examine_text = span_warning("SUBJECTPRONOUN is moving jerkily and unpredictably!")
 
 /datum/status_effect/time_dilation/on_apply()
@@ -572,7 +577,7 @@
 	owner.action_speed_modifier *= 2
 	owner.unignore_slowdown(id)
 
-/obj/screen/alert/status_effect/time_dilation
+/atom/movable/screen/alert/status_effect/time_dilation
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'

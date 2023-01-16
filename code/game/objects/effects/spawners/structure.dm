@@ -394,7 +394,6 @@ again.
 
 /obj/effect/spawner/structure/solars/solar_96/Initialize()
 	if (prob(3)) // I know mathmatically it is supphosed to be 4 but when set to 4 I got inconsistent results. 3 puts you at 7-10 consistently. Weird snowflake behavior of prob() - Hopek
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	. = ..()
 	

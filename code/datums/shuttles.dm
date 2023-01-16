@@ -172,20 +172,20 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build Your Own Shuttle"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
 
 /datum/map_template/shuttle/emergency/construction/small
 	suffix = "construction_small"
 	name = "Build Your Own Shuttle, Jr."
-	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
+	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 2000
 
 /datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 12000
+	return world.time - SSticker.round_start_time < 30 MINUTES
 
 /datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
@@ -214,6 +214,12 @@
 	Has medical facilities."
 	credit_cost = 5000
 
+/datum/map_template/shuttle/emergency/triage
+	suffix = "triage"
+	name = "Emergency Triage Shuttle"
+	description = "Do you have plenty of crew who need to be wheeled or dragged to safety? This shuttle is equipped with ample medical equipment to help your medical staff recover as many people as possible."
+	credit_cost = 5000 // Yes this is pretty cheap for all the shuttle offers, but considering it's to be used in an extreme medical emergency, it cannot be too expensive.
+
 /datum/map_template/shuttle/emergency/pod
 	suffix = "pod"
 	name = "Emergency Pods"
@@ -226,7 +232,7 @@
 	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
 	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
 	credit_cost = 15000
-	
+
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -263,7 +269,7 @@
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
 	name = "The Arena"
-	description = "The crew must pass through an otherworldy arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
+	description = "The crew must pass through an otherworldly arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
 	admin_notes = "RIP AND TEAR."
 	credit_cost = 10000
 	emag_buy = TRUE
@@ -392,7 +398,7 @@
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidentally warped a building from the past into our second Disco Inferno shuttle. \
 	It resembles a 1990s era rollerdome all the way down to the carpet texture."
 	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
 	credit_cost = 2500
@@ -439,30 +445,30 @@
 	suffix = "fancy"
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
-	
+
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
 	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
 /datum/map_template/shuttle/whiteship/box
-	suffix = "box"
+	suffix = "1"
 	name = "Hospital Ship"
 
 /datum/map_template/shuttle/whiteship/meta
-	suffix = "meta"
+	suffix = "2"
 	name = "Salvage Ship"
 
 /datum/map_template/shuttle/whiteship/pubby
-	suffix = "pubby"
+	suffix = "3"
 	name = "NT White UFO"
 
 /datum/map_template/shuttle/whiteship/cere
-	suffix = "cere"
+	suffix = "4"
 	name = "NT Construction Vessel"
 
 /datum/map_template/shuttle/whiteship/delta
-	suffix = "delta"
+	suffix = "5"
 	name = "NT Frigate"
 
 /datum/map_template/shuttle/whiteship/pod
@@ -476,7 +482,7 @@
 /datum/map_template/shuttle/cargo/birdboat
 	suffix = "birdboat"
 	name = "supply shuttle (Birdboat)"
-	
+
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
@@ -512,7 +518,7 @@
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
 	name = "mining shuttle (Box)"
-	
+
 /datum/map_template/shuttle/mining/kilo
 	suffix = "kilo"
 	name = "mining shuttle (Kilo)"
@@ -520,7 +526,7 @@
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
 	name = "labour shuttle (Box)"
-	
+
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
@@ -552,7 +558,7 @@
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
-	
+
 /datum/map_template/shuttle/arrival/kilo
 	suffix = "kilo"
 	name = "arrival shuttle (Kilo)"

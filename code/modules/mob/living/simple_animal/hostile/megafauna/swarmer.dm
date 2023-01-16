@@ -55,12 +55,14 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
 	AIStatus = AI_OFF
+	loot = list(/obj/item/bodypart/r_arm/robot/seismic)
+	deathmessage = "falls to pieces, leaving an odd prosthesis behind."
 	var/swarmer_spawn_cooldown = 0
 	var/swarmer_spawn_cooldown_amt = 150 //Deciseconds between the swarmers we spawn
 	var/call_help_cooldown = 0
 	var/call_help_cooldown_amt = 150 //Deciseconds between calling swarmers to help us when attacked
 	var/static/list/swarmer_caps
-
+	
 
 /mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Initialize()
 	. = ..()
@@ -97,6 +99,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	gpstag = "Hungry Signal"
 	desc = "Transmitted over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
 	invisibility = 100
+
 
 //SWARMER AI
 //AI versions of the swarmer mini-antag

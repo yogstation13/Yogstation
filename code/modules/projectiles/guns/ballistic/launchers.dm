@@ -47,6 +47,7 @@
 	desc = "A reusable rocket propelled grenade launcher. The words \"NT this way\" and an arrow have been written near the barrel."
 	icon_state = "rocketlauncher"
 	item_state = "rocketlauncher"
+	pickup_sound = 'sound/weapons/weapon_pickup.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
 	fire_sound = 'sound/weapons/rocketlaunch.ogg'
 	w_class = WEIGHT_CLASS_BULKY
@@ -68,6 +69,12 @@
 /obj/item/gun/ballistic/rocketlauncher/afterattack()
 	. = ..()
 	magazine.get_round(FALSE) //Hack to clear the mag after it's fired
+
+/obj/item/gun/ballistic/rocketlauncher/equipped()
+	if(prob(1))
+		pickup_sound = 'sound/weapons/metalslugrocketlauncher.ogg'
+	. = ..()
+	pickup_sound = initial(pickup_sound)
 
 /obj/item/gun/ballistic/rocketlauncher/attack_self_tk(mob/user)
 	return //too difficult to remove the rocket with TK

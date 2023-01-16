@@ -74,7 +74,7 @@
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "o" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/mineral/gold,

@@ -4,7 +4,7 @@
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
@@ -20,8 +20,8 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
-	disliked_food = GRAIN | DAIRY
-	liked_food = GROSS | MEAT | GRILLED | SEAFOOD | MICE
+	disliked_food = SUGAR | VEGETABLES
+	liked_food = MEAT | GRILLED | SEAFOOD | MICE
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
@@ -29,6 +29,8 @@
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
 	var/last_heat_stunmod = 0
+
+	smells_like = "putrid scales"
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
@@ -95,7 +97,7 @@
 	name = "Ash Walker"
 	id = "ashlizard"
 	limbs_id = "lizard"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
 	mutantlungs = /obj/item/organ/lungs/ashwalker
 	breathid = "n2" // yogs end
@@ -120,7 +122,7 @@
 	id = "draconid"
 	limbs_id = "lizard"
 	fixed_mut_color = "A02720" 	//Deep red
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire
 	burnmod = 0.8
 	brutemod = 0.9 //something something dragon scales

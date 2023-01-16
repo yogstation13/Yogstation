@@ -24,6 +24,11 @@
 		if(!(initial(species.disliked_food) & MEAT))
 			species.disliked_food &= ~MEAT
 
+/datum/quirk/vegetarian/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
+
 /datum/quirk/pineapple_liker
 	name = "Ananas Affinity"
 	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
@@ -43,6 +48,11 @@
 		var/datum/species/species = H.dna.species
 		species.liked_food &= ~PINEAPPLE
 
+/datum/quirk/pineapple_liker/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
+
 /datum/quirk/pineapple_hater
 	name = "Ananas Aversion"
 	desc = "You find yourself greatly detesting fruits of the ananas genus. Serious, how the hell can anyone say these things are good? And what kind of madman would even dare putting it on a pizza!?"
@@ -61,6 +71,11 @@
 	if(H)
 		var/datum/species/species = H.dna.species
 		species.disliked_food &= ~PINEAPPLE
+
+/datum/quirk/pineapple_hater/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
 
 /datum/quirk/deviant_tastes
 	name = "Deviant Tastes"
@@ -84,23 +99,10 @@
 		species.liked_food = initial(species.liked_food)
 		species.disliked_food = initial(species.disliked_food)
 
-/datum/quirk/monochromatic
-	name = "Monochromacy"
-	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
-	value = 0
-	medical_record_text = "Patient is afflicted with almost complete color blindness."
-
-/datum/quirk/monochromatic/add()
-	quirk_holder.add_client_colour(/datum/client_colour/monochrome)
-
-/datum/quirk/monochromatic/post_add()
-	if(quirk_holder.mind.assigned_role == "Detective")
-		to_chat(quirk_holder, span_boldannounce("Mmm. Nothing's ever clear on this station. It's all shades of gray..."))
-		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
-
-/datum/quirk/monochromatic/remove()
-	if(quirk_holder)
-		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+/datum/quirk/deviant_tastes/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
 
 /datum/quirk/shifty_eyes
 	name = "Shifty Eyes"
@@ -147,3 +149,8 @@
 		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
 	to_chat(quirk_holder, span_boldnotice("Your bottle of hair dye spray is [where]."))
+
+/datum/quirk/colorist/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && !(HAIR in prefs.pref_species.species_traits)) // No Hair
+		return "You don't have hair!"
+	return FALSE

@@ -289,7 +289,7 @@
 	. = ..()
 	cheeseify(M, FALSE)
 
-/proc/cheeseify(mob/living/M, forced)
+/proc/cheeseify(mob/living/M, forced = FALSE)
 	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
 	if(istype(M, /mob/living/simple_animal/cheese))
@@ -298,6 +298,9 @@
 	var/mob/living/simple_animal/cheese/B = new(M.loc)
 	if(!B)
 		return
+	M.dropItemToGround(M.get_active_held_item())
+	M.dropItemToGround(M.get_inactive_held_item())
+	B.temporary = !forced
 	B.stored_mob = M
 	M.forceMove(B)	
 	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
@@ -315,23 +318,7 @@
 		to_chat(B, poly_msg)
 	M.transfer_observers_to(B)
 	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
-	if(!forced)
-		addtimer(CALLBACK(B, .proc/uncheeseify), 1 MINUTES)
 	return B
-
-/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
-	if(cheese.stored_mob)
-		var/mob/living/L = cheese.stored_mob
-		var/mob/living/simple_animal/cheese/C = cheese
-		L.forceMove(get_turf(C))
-		C.stored_mob = null
-		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
-		if(L.mind)
-			C.mind.transfer_to(L)
-		else
-			L.key = C.key
-		C.transfer_observers_to(L)
-		C.death()
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
@@ -394,11 +381,11 @@
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
-	damage = 20
+	damage = 40
 	damage_type = BURN
 	nodamage = FALSE
-	armour_penetration = 0
-	flag = MAGIC
+	armour_penetration = 20
+	flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/item/projectile/magic/locker
@@ -753,7 +740,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 2
+		X.adjust_fire_stacks(2)
 		X.IgniteMob()
 
 
@@ -841,13 +828,13 @@
 		target.adjustBruteLoss(40)
 
 
-/obj/item/projectile/magic/shotgun_slug
+/obj/item/projectile/magic/shotgun/slug
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
 	flag = MAGIC
 
-/obj/item/projectile/magic/shotgun_slug/on_hit(target)
+/obj/item/projectile/magic/shotgun/slug/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -864,7 +851,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 1
+		X.adjust_fire_stacks(1)
 		X.IgniteMob()
 		X.adjustBruteLoss(5)
 

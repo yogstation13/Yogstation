@@ -1,6 +1,9 @@
 /datum/job/curator
 	title = "Curator"
+	description = "Read and write books and hand them to people, stock \
+		bookshelves, report on station news."
 	flag = CURATOR
+	orbit_icon = "book"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -11,7 +14,7 @@
 
 	outfit = /datum/outfit/job/curator
 
-	alt_titles = list("Librarian", "Journalist", "Archivist")
+	alt_titles = list("Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist")
 
 	added_access = list()
 	base_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
@@ -19,12 +22,15 @@
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
+	minimal_character_age = 18 //Don't need to be some aged-ass fellow to know how to care for things, possessions could easily have come from parents and the like. Bloodsucker knowledge is another thing, though that's likely mostly consulted by the book
+
+	smells_like = "musty paper"
 
 /datum/outfit/job/curator
 	name = "Curator"
 	jobtype = /datum/job/curator
 
-	pda_type = /obj/item/pda/curator
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/curator

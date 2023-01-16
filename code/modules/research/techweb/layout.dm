@@ -23,6 +23,10 @@
 	ui_x = -448
 	ui_y = 0
 
+/datum/techweb_node/clarke
+	ui_x = -458
+	ui_y = -10
+
 /datum/techweb_node/mech_tools
 	ui_x = -448
 	ui_y = -64
@@ -118,6 +122,10 @@
 /datum/techweb_node/comptech
 	ui_x = 192
 	ui_y = -320
+
+/datum/techweb_node/ipc_organs
+        ui_x = -160
+        ui_y = 32
 
 /datum/techweb_node/cyber_implants
 	ui_x = 352
@@ -325,6 +333,10 @@
 
 /datum/techweb_node/anomaly
 	ui_x = -224
+	ui_y = -288
+
+/datum/techweb_node/nerd_suit
+	ui_x = -272
 	ui_y = -288
 
 /datum/techweb_node/NVGtech
@@ -590,3 +602,47 @@
 /datum/techweb_node/mech_xray
 	ui_x = -640
 	ui_y = -896
+
+/datum/techweb_node/mech_rocket_fist
+	ui_x = -576
+	ui_y = 32
+
+/datum/techweb_node/mech_shortsword
+	ui_x = -640
+	ui_y = 32
+
+/datum/techweb_node/bshipc
+	ui_x = -224
+	ui_y = 32
+
+/datum/techweb_node/bs2ipc
+	ui_x = -288
+	ui_y = 32
+
+/datum/techweb_node/hsiipc
+	ui_x = -224
+	ui_y = 96
+
+/datum/techweb_node/hi2ipc
+	ui_x = -288
+	ui_y = 96
+
+/datum/techweb_node/sgmipc
+	ui_x = -224
+	ui_y = 160
+
+/datum/techweb_node/wtmipc
+	ui_x = -288
+	ui_y = 160
+
+/datum/techweb_node/xmgipc
+	ui_x = -224
+	ui_y = 224
+
+/datum/techweb_node/xm2ipc
+	ui_x = -288
+	ui_y = 224
+
+/datum/techweb_node/zhpipc
+	ui_x = -224
+	ui_y = 288

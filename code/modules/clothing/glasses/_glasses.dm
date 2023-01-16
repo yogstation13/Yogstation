@@ -64,6 +64,15 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
+/obj/item/clothing/glasses/meson/equipped(mob/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == SLOT_GLASSES)
+		ADD_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
+
+/obj/item/clothing/glasses/meson/dropped(mob/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
+
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
@@ -113,6 +122,15 @@
 	if(slot == SLOT_GLASSES)
 		return 1
 
+/obj/item/clothing/glasses/science/night
+	name = "night vision science goggles"
+	desc = "A pair of snazzy goggles used to protect against chemical spills that happen in complete darkness. Fitted with an analyzer for scanning items and reagents."
+	icon_state = "sciencehudnight"
+	item_state = "sciencehudnight"
+	darkness_view = 8
+	flash_protect = -1
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
@@ -133,14 +151,18 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
+/obj/item/clothing/glasses/eyepatch/bigboss
+	name = "faded eyepatch"
+	desc = "Offers night vision and protection from flashes. Another mission, right boss?"
+	darkness_view = 8
+	flash_protect = 1
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
 	vision_correction = 1
-
-
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -207,6 +229,11 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
+
+/obj/item/clothing/glasses/sunglasses/prescription
+	name = "prescription sunglasses"
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks flashes. Has prescription lenses that correct nearsightedness."
+	vision_correction = 1
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"

@@ -214,8 +214,13 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/proc/regress_humanoid()
 	to_chat(owner.current, span_warning("Your powers weaken, have more contracts be signed to regain power."))
 	if(ishuman(owner.current))
+		var/species_to_be
 		var/mob/living/carbon/human/H = owner.current
-		H.set_species(/datum/species/human, 1)
+		if(!isnull(owner.current.client.prefs.pref_species))
+			species_to_be = owner.current.client.prefs.pref_species //fixes a really stupid bug where devils would turn into out of place looking humans after getting detransformed
+		else
+			species_to_be = /datum/species/human
+		H.set_species(species_to_be, 1)
 		H.regenerate_icons()
 	give_appropriate_spells()
 	if(istype(owner.current.loc, /obj/effect/dummy/phased_mob))
@@ -475,6 +480,8 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 				A.set_name()
 				if(SOULVALUE >= ARCH_THRESHOLD && ascendable)
 					A.convert_to_archdevil()
+		give_appropriate_spells()
+		update_hud()
 	else
 		CRASH("Unable to find a blobstart landmark for hellish resurrection")
 

@@ -1,10 +1,11 @@
-import { classes } from 'common/react';
 import { uniqBy } from 'common/collections';
-import { useBackend, useSharedState } from '../backend';
-import { formatSiUnit, formatMoney } from '../format';
-import { Flex, Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, Icon, Input } from '../components';
-import { Window } from '../layouts';
+import { classes } from 'common/react';
 import { createSearch } from 'common/string';
+import { Fragment } from 'inferno';
+import { useBackend, useSharedState } from '../backend';
+import { Box, Button, Flex, Icon, Input, NumberInput, ProgressBar, Section, Tabs } from '../components';
+import { formatMoney, formatSiUnit } from '../format';
+import { Window } from '../layouts';
 
 const MATERIAL_KEYS = {
   "iron": "sheet-metal_3",
@@ -186,18 +187,26 @@ export const ExosuitFabricator = (props, context) => {
               spacing={1}
               height="100%"
               overflowY="hide">
-              <Flex.Item position="relative" basis="content">
-                <Section
+              <Flex.Item
+                position="relative"
+                basis="content">
+                <Flex
                   height="100%"
-                  overflowY="auto"
-                  title="Categories"
-                  buttons={(
-                    <Button
-                      content="R&D Sync"
-                      onClick={() => act("sync_rnd")} />
-                  )}>
-                  <PartSets />
-                </Section>
+                  width="100%"
+                  direction="column">
+                  <Authorization />
+                  <Section
+                    height="100%"
+                    overflowY="auto"
+                    title="Categories"
+                    buttons={(
+                      <Button
+                        content="R&D Sync"
+                        onClick={() => act("sync_rnd")} />
+                    )}>
+                    <PartSets />
+                  </Section>
+                </Flex>
               </Flex.Item>
               <Flex.Item
                 position="relative"
@@ -226,6 +235,42 @@ export const ExosuitFabricator = (props, context) => {
   );
 };
 
+const Authorization = (props, context) => {
+  const { data } = useBackend(context);
+  const auth_override = data.authorization;
+  const user_clearance = data.user_clearance;
+  const alert_level = data.alert_level;
+  const combat_parts_allowed = data.combat_parts_allowed;
+  const emagged = data.emagged;
+  const hex_chars = ['!', '@', '#', '%', '&', '*'];
+  let auth_tex = "Authorized";
+
+  return (
+    <Section
+      width="250px"
+      style={{ 'white-space': 'pre-wrap' }}>
+      <Box bold>
+        {"User: "}
+        <Box color={!combat_parts_allowed ? "#ff0000" : "#00ff00"}>
+          {!combat_parts_allowed ? "Unauthorized"
+            :!emagged ? "Authorized"
+              : auth_tex.split('').map(v =>
+              { Math.round(Math.random())
+                ? v=hex_chars[Math.floor(Math.random()*hex_chars.length)]:Math.round(Math.random())
+                  ? v.toUpperCase():v.toLowerCase(); })
+                .join('')}
+        </Box>
+      </Box>
+      <font size="-2">
+        <br />
+        Combat ready designs {combat_parts_allowed ? "available" : "unavailable"}
+        <br />
+        {auth_override ? "Authorization overriden by Head Personnel\n" : ""}
+        {alert_level < 2 ? "" : "Credible threat to the station in effect\n"}
+      </font>
+    </Section>
+  );
+};
 const EjectMaterial = (props, context) => {
   const { act } = useBackend(context);
 

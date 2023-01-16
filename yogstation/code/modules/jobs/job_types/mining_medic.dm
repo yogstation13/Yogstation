@@ -1,6 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
+	description = "Watch over the Shaft Miners and they all inevitably die in Lavaland."
 	flag = MMEDIC
+	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -8,12 +10,16 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 4
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue")
 
-	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
+	minimal_character_age = 26 //Matches MD
 
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
@@ -23,6 +29,13 @@
 
 	changed_maps = list("EclipseStation")
 
+	smells_like = "bloody soot"
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
+		/obj/item/extraction_pack = 5,
+		/obj/item/fulton_core = 1
+	)
+
 /datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 1
@@ -30,8 +43,8 @@
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
-	
-	pda_type = /obj/item/pda/miningmed
+
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1)
@@ -42,11 +55,12 @@
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
-	l_hand = /obj/item/storage/firstaid/regular
-	gloves = /obj/item/clothing/gloves/color/latex
+	l_hand = /obj/item/storage/firstaid/hypospray/qmc
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
+	ipc_box = /obj/item/storage/box/ipc/miner
 	pda_slot = SLOT_L_STORE

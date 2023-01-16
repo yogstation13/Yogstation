@@ -6,7 +6,7 @@ export const HorrorMutate = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Window width={900} height={480} resizable>
-      <Window.Content>
+      <Window.Content scrollable>
         <Section title="Mutation Menu">
           <LabeledList>
             <LabeledList.Item label="Available points" right>

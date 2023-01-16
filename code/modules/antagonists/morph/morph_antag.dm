@@ -24,7 +24,7 @@
 		eat.owner = owner
 		eat.update_explanation_text()
 		objectives += eat // Consume x objects
-		var/datum/objective/morph_eat_things/eatcorpses = new
+		var/datum/objective/morph_eat_corpses/eatcorpses = new
 		eatcorpses.owner = owner
 		eatcorpses.update_explanation_text()
 		objectives += eatcorpses // Consume x corpses
@@ -35,7 +35,7 @@
 			eat.update_explanation_text()
 			objectives += eat // Consume x objects
 		else
-			var/datum/objective/morph_eat_things/eatcorpses = new
+			var/datum/objective/morph_eat_corpses/eatcorpses = new
 			eatcorpses.owner = owner
 			eatcorpses.update_explanation_text()
 			objectives += eatcorpses // Consume x corpses

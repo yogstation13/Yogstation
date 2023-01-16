@@ -142,8 +142,8 @@
 
 
 /obj/item/reagent_containers/food/snacks/customizable/Destroy()
-	for(. in ingredients)
-		qdel(.)
+	for(var/ingredient in ingredients)
+		qdel(ingredient)
 	return ..()
 
 

@@ -77,8 +77,21 @@
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
 		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
-		/obj/item/barrier_taperoll/engineering
+		/obj/item/barrier_taperoll/engineering,
+		/obj/item/storage/bag/sheetsnatcher
 		))
+
+/obj/item/storage/belt/utility/makeshift
+	name = "makeshift toolbelt"
+	desc = "A shoddy holder of tools."
+	icon_state = "makeshiftbelt"
+	item_state = "makeshiftutility"
+
+/obj/item/storage/belt/utility/makeshift/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7 //It's a very crappy belt
+	STR.max_combined_w_class = 16
 
 /obj/item/storage/belt/utility/chief
 	name = "\improper Chief Engineer's toolbelt" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
@@ -86,65 +99,135 @@
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 
+/obj/item/storage/belt/utility/chief/full
+	preload = TRUE
+
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
-	new /obj/item/handdrill(src)
-	new /obj/item/jawsoflife(src)
-	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
-	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	SSwardrobe.provide_type(/obj/item/handdrill, src)
+	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
+	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/CE, src)
 	//much roomier now that we've managed to remove two tools
 
+/obj/item/storage/belt/utility/chief/full/ert
+	name = "advanced nanotrasen toolbelt"
+	desc = "Full of top of the line tools for all of your engineering needs."
+
+/obj/item/storage/belt/utility/chief/full/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/handdrill
+	to_preload += /obj/item/jawsoflife
+	to_preload += /obj/item/analyzer/ranged
+	to_preload += /obj/item/weldingtool/experimental
+	to_preload += /obj/item/multitool/tricorder
+	to_preload += /obj/item/stack/cable_coil
+	to_preload += /obj/item/extinguisher/mini
+	to_preload += /obj/item/holosign_creator/multi/CE
+	return to_preload
+
+/obj/item/storage/belt/utility/chief/admin/full
+	preload = FALSE
+
 /obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
-	new /obj/item/construction/rcd/combat/admin(src)
-	new /obj/item/pipe_dispenser(src)
-	new /obj/item/shuttle_creator/admin(src)
-	new /obj/item/handdrill(src)
-	new /obj/item/jawsoflife(src)
-	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
-	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
-	new /obj/item/storage/bag/construction/admin/full(src)
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	SSwardrobe.provide_type(/obj/item/construction/rcd/combat/admin, src)
+	SSwardrobe.provide_type(/obj/item/pipe_dispenser, src)
+	SSwardrobe.provide_type(/obj/item/shuttle_creator/admin, src)
+	SSwardrobe.provide_type(/obj/item/handdrill, src)
+	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
+	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/CE, src)
 
 /obj/item/storage/belt/utility/full/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+
+/obj/item/storage/belt/utility/full/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	return to_preload
 
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool/largetank(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/barrier_taperoll/engineering(src)
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/largetank, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/engineering, src)
+
+/obj/item/storage/belt/utility/full/engi/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool/largetank
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	to_preload += /obj/item/barrier_taperoll/engineering
+	return to_preload
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/t_scanner(src)
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/barrier_taperoll/engineering()
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/t_scanner, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/engineering, src)
+
+/obj/item/storage/belt/utility/atmostech/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/t_scanner
+	to_preload += /obj/item/extinguisher/mini
+	to_preload += /obj/item/barrier_taperoll/engineering
+	return to_preload
 
 /obj/item/storage/belt/utility/servant/PopulateContents()
-	new /obj/item/screwdriver/brass(src)
-	new /obj/item/wirecutters/brass(src)
-	new /obj/item/wrench/brass(src)
-	new /obj/item/crowbar/brass(src)
-	new /obj/item/weldingtool/experimental/brass(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src, MAXCOIL, "yellow")
+	SSwardrobe.provide_type(/obj/item/screwdriver/brass, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters/brass, src)
+	SSwardrobe.provide_type(/obj/item/wrench/brass, src)
+	SSwardrobe.provide_type(/obj/item/crowbar/brass, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental/brass, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+
+/obj/item/storage/belt/utility/servant/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver/brass
+	to_preload += /obj/item/wirecutters/brass
+	to_preload += /obj/item/wrench/brass
+	to_preload += /obj/item/crowbar/brass
+	to_preload += /obj/item/weldingtool/experimental/brass
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	return to_preload
 
 /obj/item/storage/belt/medical
 	name = "medical belt"
@@ -174,7 +257,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -183,7 +267,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -205,7 +288,8 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/stack/medical/bone_gel,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid
 		))
 
 /obj/item/storage/belt/medical/chief
@@ -215,13 +299,12 @@
 	item_state = "medical_cmo"
 
 /obj/item/storage/belt/medical/chief/full/PopulateContents()
-	new /obj/item/surgical_drapes(src)
-	new /obj/item/scalpel/advanced(src)
-	new /obj/item/retractor/advanced(src)
-	new /obj/item/cautery/advanced(src)
-	new /obj/item/pinpointer/crew(src)
-	new /obj/item/sensor_device(src)
-	new /obj/item/healthanalyzer/advanced(src)
+	SSwardrobe.provide_type(/obj/item/scalpel/advanced, src)
+	SSwardrobe.provide_type(/obj/item/retractor/advanced, src)
+	SSwardrobe.provide_type(/obj/item/cautery/advanced, src)
+	SSwardrobe.provide_type(/obj/item/pinpointer/crew, src)
+	SSwardrobe.provide_type(/obj/item/sensor_device, src)
+	SSwardrobe.provide_type(/obj/item/healthanalyzer/advanced, src)
 
 /obj/item/storage/belt/security
 	name = "security belt"
@@ -259,18 +342,19 @@
 		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
+		/obj/item/gun/ballistic/revolver/tracking,
 		/obj/item/holosign_creator/security,
 		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
 /obj/item/storage/belt/security/full/PopulateContents()
-	new /obj/item/reagent_containers/spray/pepper(src)
-	new /obj/item/restraints/handcuffs(src)
-	new /obj/item/grenade/flashbang(src)
-	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/barrier_taperoll/police(src)
+	SSwardrobe.provide_type(/obj/item/reagent_containers/spray/pepper, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/grenade/flashbang, src)
+	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
+	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	update_icon()
 
 /obj/item/storage/belt/security/chief
@@ -286,13 +370,13 @@
 	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/security/chief/full/PopulateContents()
-	new /obj/item/reagent_containers/spray/pepper(src)
-	new /obj/item/restraints/handcuffs(src)
-	new /obj/item/grenade/flashbang(src)
-	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/barrier_taperoll/police(src)
-	new /obj/item/shield/riot/tele(src)
+	SSwardrobe.provide_type(/obj/item/reagent_containers/spray/pepper, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/grenade/flashbang, src)
+	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
+	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	SSwardrobe.provide_type(/obj/item/shield/riot/tele, src)
 	update_icon()
 
 /obj/item/storage/belt/security/webbing
@@ -346,7 +430,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
 		/obj/item/lazarus_injector,
 		/obj/item/gps,
 		/obj/item/storage/bag/ore,
@@ -364,12 +448,18 @@
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/stack/sheet/mineral,
+		/obj/item/grenade/plastic/miningcharge,
+		/obj/item/gem
 		))
 
 
 /obj/item/storage/belt/mining/vendor
-	contents = newlist(/obj/item/survivalcapsule)
+	contents = newlist(/obj/item/survivalcapsule,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,)
 
 /obj/item/storage/belt/mining/alt
 	icon_state = "explorer2"
@@ -500,7 +590,6 @@
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
 
 /obj/item/storage/belt/military/abductor/scientist/PopulateContents()
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)
@@ -529,6 +618,7 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
+	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)
@@ -538,7 +628,6 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)
@@ -700,6 +789,15 @@
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/ammo_box/c38 = 2)
 	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/holster/syndicate
+	name = "syndicate shoulder holster"
+	desc = "A modified holster that can carry more than enough firepower."
+
+/obj/item/storage/belt/holster/syndicate/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 4
 
 /obj/item/storage/belt/quiver
 	name = "leather quiver"

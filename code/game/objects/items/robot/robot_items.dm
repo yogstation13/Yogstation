@@ -25,8 +25,6 @@
 
 	user.do_attack_animation(M)
 
-	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
-
 	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
 	var/armor_block = M.run_armor_check(affecting, ENERGY)
 	M.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
@@ -35,9 +33,7 @@
 
 	if(current_stamina_damage >= 90)
 		if(!M.IsParalyzed())
-			to_chat(M, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-		if(trait_check)
-			M.Paralyze(stunforce * 0.1)
+			to_chat(M, span_warning("You muscles seize, making you collapse!"))
 		else
 			M.Paralyze(stunforce)
 		M.Jitter(20)
@@ -137,7 +133,7 @@
 			if(scooldown < world.time)
 				if(M.health >= 0)
 					if(ishuman(M)||ismonkey(M))
-						M.electrocute_act(5, "[user]", safety = 1)
+						M.electrocute_act(5, "[user]", safety = 1, tesla_shock = 1)
 						user.visible_message(span_userdanger("[user] electrocutes [M] with [user.p_their()] touch!"), \
 							span_danger("You electrocute [M] with your touch!"))
 						M.update_mobility()
@@ -576,15 +572,15 @@
 	icon_state = "shield"
 	var/maxenergy = 1500
 	var/energy = 1500
-	var/energy_recharge = 7.5
+	var/energy_recharge = 37.5
 	var/energy_recharge_cyborg_drain_coefficient = 0.4
 	var/cyborg_cell_critical_percentage = 0.05
 	var/mob/living/silicon/robot/host = null
 	var/datum/proximity_monitor/advanced/dampening_field
 	var/projectile_damage_coefficient = 0.5
-	var/projectile_damage_tick_ecost_coefficient = 2	//Lasers get half their damage chopped off, drains 50 power/tick. Note that fields are processed 5 times per second.
+	var/projectile_damage_tick_ecost_coefficient = 10	//Lasers get half their damage chopped off, drains 50 power/tick. Note that fields are processed 5 times per second.
 	var/projectile_speed_coefficient = 1.5		//Higher the coefficient slower the projectile.
-	var/projectile_tick_speed_ecost = 15
+	var/projectile_tick_speed_ecost = 75
 	var/list/obj/item/projectile/tracked
 	var/image/projectile_effect
 	var/field_radius = 3
@@ -666,38 +662,38 @@
 	deactivate_field()
 	. = ..()
 
-/obj/item/borg/projectile_dampen/process()
-	process_recharge()
-	process_usage()
+/obj/item/borg/projectile_dampen/process(delta_time)
+	process_recharge(delta_time)
+	process_usage(delta_time)
 	update_location()
 
 /obj/item/borg/projectile_dampen/proc/update_location()
 	if(dampening_field)
 		dampening_field.HandleMove()
 
-/obj/item/borg/projectile_dampen/proc/process_usage()
+/obj/item/borg/projectile_dampen/proc/process_usage(delta_time)
 	var/usage = 0
 	for(var/I in tracked)
 		var/obj/item/projectile/P = I
 		if(!P.stun && P.nodamage)	//No damage
 			continue
-		usage += projectile_tick_speed_ecost
-		usage += (tracked[I] * projectile_damage_tick_ecost_coefficient)
+		usage += projectile_tick_speed_ecost * delta_time
+		usage += tracked[I] * projectile_damage_tick_ecost_coefficient * delta_time
 	energy = clamp(energy - usage, 0, maxenergy)
 	if(energy <= 0)
 		deactivate_field()
 		visible_message(span_warning("[src] blinks \"ENERGY DEPLETED\"."))
 
-/obj/item/borg/projectile_dampen/proc/process_recharge()
+/obj/item/borg/projectile_dampen/proc/process_recharge(delta_time)
 	if(!istype(host))
 		if(iscyborg(host.loc))
 			host = host.loc
 		else
-			energy = clamp(energy + energy_recharge, 0, maxenergy)
-			return
+			energy = clamp(energy + (energy_recharge * delta_time), 0, maxenergy)
+		return
 	if(host.cell && (host.cell.charge >= (host.cell.maxcharge * cyborg_cell_critical_percentage)) && (energy < maxenergy))
-		host.cell.use(energy_recharge*energy_recharge_cyborg_drain_coefficient)
-		energy += energy_recharge
+		host.cell.use(energy_recharge * delta_time * energy_recharge_cyborg_drain_coefficient)
+		energy += energy_recharge * delta_time
 
 /obj/item/borg/projectile_dampen/proc/dampen_projectile(obj/item/projectile/P, track_projectile = TRUE)
 	if(tracked[P])

@@ -10,10 +10,11 @@
 	has_limbs = 1
 	hud_type = /datum/hud/robot
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
-	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
 	var/throwcooldown = FALSE /// Used to determine cooldown for spin.
@@ -27,14 +28,14 @@
 	var/previous_health
 
 	//Hud stuff
-	var/obj/screen/inv1 = null
-	var/obj/screen/inv2 = null
-	var/obj/screen/inv3 = null
-	var/obj/screen/thruster_button = null
-	var/obj/screen/hands = null
+	var/atom/movable/screen/inv1 = null
+	var/atom/movable/screen/inv2 = null
+	var/atom/movable/screen/inv3 = null
+	var/atom/movable/screen/thruster_button = null
+	var/atom/movable/screen/hands = null
 
 	var/shown_robot_modules = 0	///Used to determine whether they have the module menu shown or not
-	var/obj/screen/robot_modules_background
+	var/atom/movable/screen/robot_modules_background
 
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null
@@ -86,14 +87,12 @@
 	var/lamp_intensity = 3
 	///Lamp button reference
 	var/lamp_cooldown = 0 ///Flag for if the lamp is on cooldown after being forcibly disabled
-	var/obj/screen/robot/lamp/lampButton
+	var/atom/movable/screen/robot/lamp/lampButton
 
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
-	///The reference to the built-in tablet that borgs carry.
-	var/obj/item/modular_computer/tablet/integrated/modularInterface
-	var/obj/screen/robot/modPC/interfaceButton
+	var/atom/movable/screen/robot/modPC/interfaceButton
 
 	///Flash resistance
 	var/sensor_protection = FALSE
@@ -184,12 +183,6 @@
 	diag_hud_set_borgcell()
 	create_modularInterface()
 	logevent("System brought online.")
-
-/mob/living/silicon/robot/proc/create_modularInterface()
-	if(!modularInterface)
-		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
-	modularInterface.layer = ABOVE_HUD_PLANE
-	modularInterface.plane = ABOVE_HUD_PLANE
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 /mob/living/silicon/robot/Destroy()
@@ -315,7 +308,7 @@
 		length += L.len
 
 	return length
-	
+
 /mob/living/silicon/robot/verb/view_manifest()
 	set name = "View Crew Manifest"
 	set category = "Robot Commands"
@@ -433,7 +426,7 @@
 			if(!W.use_tool(src, user, 50))
 				return
 			if(health > 0)
-				return //safety check to prevent spam clciking and queing
+				return //safety check to prevent spam clicking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()
@@ -545,7 +538,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
+	else if(W.GetID())			// trying to unlock the interface with an ID card
 		if(opened)
 			to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
 		else
@@ -732,7 +725,7 @@
 	if(wires.is_cut(WIRE_LOCKDOWN))
 		state = TRUE
 	if(state)
-		throw_alert("locked", /obj/screen/alert/locked)
+		throw_alert("locked", /atom/movable/screen/alert/locked)
 	else
 		clear_alert("locked")
 	lockcharge = state
@@ -743,7 +736,7 @@
 	module.rebuild_modules()
 	update_icons()
 	if(emagged)
-		throw_alert("hacked", /obj/screen/alert/hacked)
+		throw_alert("hacked", /atom/movable/screen/alert/hacked)
 	else
 		clear_alert("hacked")
 
@@ -754,6 +747,14 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	checklaws()
+
+/mob/living/silicon/robot/verb/changeaccent()
+	set category = "Robot Commands"
+	set name = "Change Accent"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	accentchange()
 
 /mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
 	set name = "Set Auto Announce Mode"
@@ -796,17 +797,17 @@
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
 		if(lamp_functional && stat != DEAD)
-			set_light(l_power = TRUE) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
-			set_light(l_color = "#FF0000") //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
-			set_light(l_range = 1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
-		set_light(l_power = FALSE)
+			set_light_on(TRUE) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
+			set_light_color("#FF0000") //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
+			set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
+		set_light_on(FALSE)
 		lamp_enabled = FALSE
 		lampButton?.update_icon()
 		update_icons()
 		return
-	set_light(l_range = lamp_intensity)
-	set_light(l_color = lamp_color)
-	set_light(l_power = TRUE)
+	set_light_range(lamp_intensity)
+	set_light_color(lamp_color)
+	set_light_on(TRUE)
 	lamp_enabled = TRUE
 	lampButton?.update_icon()
 	update_icons()
@@ -817,42 +818,18 @@
 		new /obj/vehicle/ridden/janicart(T) // Janiborg deconstructs into a janicart. So brave.
 		new /obj/item/key/janitor(T)
 	else
-		if (robot_suit)
-			robot_suit.forceMove(T)
-			robot_suit.l_leg.forceMove(T)
-			robot_suit.l_leg = null
-			robot_suit.r_leg.forceMove(T)
-			robot_suit.r_leg = null
-			new /obj/item/stack/cable_coil(T, robot_suit.chest.wired)
-			robot_suit.chest.forceMove(T)
-			robot_suit.chest.wired = 0
-			robot_suit.chest = null
-			robot_suit.l_arm.forceMove(T)
-			robot_suit.l_arm = null
-			robot_suit.r_arm.forceMove(T)
-			robot_suit.r_arm = null
-			robot_suit.head.forceMove(T)
-			robot_suit.head.flash1.forceMove(T)
-			robot_suit.head.flash1.burn_out()
-			robot_suit.head.flash1 = null
-			robot_suit.head.flash2.forceMove(T)
-			robot_suit.head.flash2.burn_out()
-			robot_suit.head.flash2 = null
-			robot_suit.head = null
-			robot_suit.update_icon()
-		else
-			new /obj/item/robot_suit(T)
-			new /obj/item/bodypart/l_leg/robot(T)
-			new /obj/item/bodypart/r_leg/robot(T)
-			new /obj/item/stack/cable_coil(T, 1)
-			new /obj/item/bodypart/chest/robot(T)
-			new /obj/item/bodypart/l_arm/robot(T)
-			new /obj/item/bodypart/r_arm/robot(T)
-			new /obj/item/bodypart/head/robot(T)
-			var/b
-			for(b=0, b!=2, b++)
-				var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
-				F.burn_out()
+		new /obj/item/robot_suit(T)
+		new /obj/item/bodypart/l_leg/robot(T)
+		new /obj/item/bodypart/r_leg/robot(T)
+		new /obj/item/stack/cable_coil(T, 1)
+		new /obj/item/bodypart/chest/robot(T)
+		new /obj/item/bodypart/l_arm/robot(T)
+		new /obj/item/bodypart/r_arm/robot(T)
+		new /obj/item/bodypart/head/robot(T)
+		var/b
+		for(b=0, b!=2, b++)
+			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
+			F.burn_out()
 		if (cell) //Sanity check.
 			cell.forceMove(T)
 			cell = null
@@ -1152,9 +1129,9 @@
 		status_flags &= ~CANPUSH
 
 	if(module.clean_on_move)
-		AddComponent(/datum/component/cleaning)
+		AddElement(/datum/element/cleaning)
 	else
-		qdel(GetComponent(/datum/component/cleaning))
+		RemoveElement(/datum/element/cleaning)
 
 	hat_offset = module.hat_offset
 
@@ -1379,5 +1356,5 @@
 	if(program)
 		program.force_full_update()
 
-/mob/living/silicon/robot/get_eye_protection() 
+/mob/living/silicon/robot/get_eye_protection()
 	return sensor_protection

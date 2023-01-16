@@ -247,7 +247,7 @@
 		return
 
 	// Special effects
-	if(affecting.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
+	if(affecting?.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
 		desc = get_stun_description(target, user)
 		target.Knockdown(knockdown_time_carbon)
 
@@ -362,6 +362,19 @@
 			var/wait_desc = get_wait_description()
 			if (wait_desc)
 				to_chat(user, wait_desc)
+
+/obj/item/melee/classic_baton/donkbat
+	name = "toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft. Feels...heavy."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "baseballbat_donk"
+	item_state = "baseball_bat_donk"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	force = 6
+	stamina_damage = 40
+
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
@@ -609,14 +622,18 @@
 
 /obj/item/melee/singularity_sword/afterattack(target, mob/user, proximity_flag)
 	. = ..()
-	if(proximity_flag && istype(target, /mob))
-		var/mob/M = target
-		var/turf/T = get_turf(M)
-		M.visible_message(span_danger("[target] is consumed by the singularity!"))
-		new /obj/singularity(T)
-		M.gib()
+	if(proximity_flag)
+		var/turf/T = get_turf(target)
+		var/obj/singularity/S = new(T)
+		S.consume(target)
 	else
 		return FALSE
+
+/obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	var/turf/T = get_turf(hit_atom)
+	var/obj/singularity/S = new(T)
+	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals
 /obj/item/melee/curator_whip

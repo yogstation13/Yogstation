@@ -27,7 +27,7 @@
 	var/bomb_defused = TRUE // If the bomb is inert.
 	var/bomb_timer = 1 // How long before blowing the bomb.
 	var/const/BOMB_TIMER_MIN = 1
-	var/const/BOMB_TIMER_MAX = 10
+	var/const/BOMB_TIMER_MAX = 20
 
 /obj/item/pizzabox/Initialize()
 	. = ..()
@@ -129,10 +129,10 @@
 				if (isnull(bomb_timer))
 					return
 
-				bomb_timer = clamp(CEILING(bomb_timer / 2, 1), BOMB_TIMER_MIN, BOMB_TIMER_MAX)
+				bomb_timer = clamp(CEILING(bomb_timer, 1), BOMB_TIMER_MIN, BOMB_TIMER_MAX)
 				bomb_defused = FALSE
 
-				log_bomber(user, "has trapped a", src, "with [bomb] set to [bomb_timer * 2] seconds")
+				log_bomber(user, "has trapped a", src, "with [bomb] set to [bomb_timer] seconds")
 				bomb.adminlog = "The [bomb.name] in [src.name] that [key_name(user)] activated has detonated!"
 
 				to_chat(user, span_warning("You trap [src] with [bomb]."))
@@ -207,14 +207,18 @@
 	else if(is_wire_tool(I))
 		if(wires && bomb)
 			wires.interact(user)
+		else if(open && !bomb && !pizza)
+			var/obj/item/cardbd = new /obj/item/stack/sheet/cardboard
+			qdel(src)
+			user.put_in_hands(cardbd)
 	else if(istype(I, /obj/item/reagent_containers/food))
 		to_chat(user, span_warning("That's not a pizza!"))
 	..()
 
-/obj/item/pizzabox/process()
+/obj/item/pizzabox/process(delta_time)
 	if(bomb_active && !bomb_defused && (bomb_timer > 0))
 		playsound(loc, 'sound/items/timer.ogg', 50, 0)
-		bomb_timer--
+		bomb_timer -= delta_time
 	if(bomb_active && !bomb_defused && (bomb_timer <= 0))
 		if(bomb in src)
 			bomb.detonate()
@@ -299,6 +303,11 @@
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
 	boxtag = "Honolulu Chew"
 
+/obj/item/pizzabox/seafood/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/seafood(src)
+	boxtag = "Ahi King"
+
 //An anomalous pizza box that, when opened, produces the opener's favorite kind of pizza.
 /obj/item/pizzabox/infinite
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF //hard to destroy
@@ -308,6 +317,7 @@
 		/obj/item/reagent_containers/food/snacks/pizza/mushroom = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/margherita = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/sassysage = 0.8,
+		/obj/item/reagent_containers/food/snacks/pizza/seafood = 0.8,
 		/obj/item/reagent_containers/food/snacks/pizza/vegetable = 0.8,
    		/obj/item/reagent_containers/food/snacks/pizza/pineapple = 0.5,
 		/obj/item/reagent_containers/food/snacks/pizza/donkpocket = 0.3,

@@ -115,9 +115,24 @@
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 	for(var/A in H)
 		var/atom/movable/AM = A
-		AM.forceMove(get_turf(src))
+		var/turf/Tloc = get_turf(src)
+		var/decon = FALSE
+		if(AM.density)
+			for(var/atom/atm in Tloc.contents)
+				if(ismob(atm))
+					continue
+				if(!atm.CanPass(AM))
+					atm.Bumped(AM) // Used incase getting whacked does something (Mainly for SM)
+					decon = TRUE
+					break
+		AM.forceMove(Tloc)
 		AM.pipe_eject(direction)
-		if(target)
+		if(decon && isobj(AM))
+			AM.visible_message("[AM] rams into another object instantly breaking itself!")
+			var/obj/O = AM
+			O.deconstruct(FALSE, TRUE)
+
+		if(AM && target)
 			AM.throw_at(target, eject_range, 1)
 	H.vent_gas(T)
 	qdel(H)

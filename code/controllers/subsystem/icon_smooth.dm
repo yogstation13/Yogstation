@@ -41,4 +41,4 @@ SUBSYSTEM_DEF(icon_smooth)
 		smooth_icon(A)
 		CHECK_TICK
 
-	return ..()
+	return SS_INIT_SUCCESS

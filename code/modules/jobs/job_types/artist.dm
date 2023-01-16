@@ -1,6 +1,8 @@
 /datum/job/artist
 	title = "Artist"
+	description = "Create unique pieces of art for display by the crew around the station."
 	flag = ARTIST
+	orbit_icon = "paintbrush"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -17,12 +19,15 @@
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_ARTIST
+	minimal_character_age = 18 //Young folks can be crazy crazy artists, something talented that can be self-taught feasibly
+
+	smells_like = "pain-t"
 
 /datum/outfit/job/artist
 	name = "Artist"
 	jobtype = /datum/job/artist
 
-	pda_type = /obj/item/pda/artist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	
 	head = /obj/item/clothing/head/frenchberet
 	ears = /obj/item/radio/headset/headset_srv

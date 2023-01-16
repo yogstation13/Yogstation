@@ -47,6 +47,16 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
+/obj/structure/holosign/holobanana
+	name = "Holographic banana peel"
+	desc = "A peel from a projector"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "holosign_banana"
+
+/obj/structure/holosign/holobanana/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 120, GALOSHES_DONT_HELP)
+
 /obj/structure/holosign/barrier
 	name = "holobarrier"
 	desc = "A short hard light barrier which can only be passed by walking."
@@ -100,6 +110,7 @@
 	density = FALSE
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
+	resistance_flags = FIRE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
@@ -163,6 +174,74 @@
 		to_chat(user, span_warning("You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.")) //warning spans because you can make the station sick!
 	else
 		return ..()
+
+/obj/structure/holobed
+	name = "holobed"
+	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile environment for surgery."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat_holo"
+	anchored = TRUE
+	can_buckle = TRUE
+	density = FALSE
+	buckle_lying = 90
+	max_integrity = 1
+	layer = BELOW_OBJ_LAYER
+	var/obj/item/holosign_creator/projector
+	var/atom/movable/occupant = null
+	var/stasis = TRUE
+
+/obj/structure/holobed/New(loc, source_projector)
+	if(source_projector)
+		projector = source_projector
+		projector.signs += src
+	..()
+
+/obj/structure/holobed/Destroy()
+	if(projector)
+		projector.signs -= src
+		projector = null
+	return ..()
+
+/obj/structure/holobed/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 0.8)
+
+/obj/structure/holobed/examine(mob/user)
+	. = ..()
+	. += span_notice("The lifeform stasis field is <b>[stasis ? "on" : "off"]</b>.")
+
+/obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
+
+/obj/structure/holobed/update_icon()
+	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
+
+/obj/structure/holobed/AltClick(mob/living/user)
+	if(user.a_intent == INTENT_HELP)
+		stasis = !stasis
+		handle_stasis(occupant)
+		update_icon()
+		to_chat(user, span_warning("You [stasis ? "activate" : "deactivate"] the stasis field."))
+
+/obj/structure/holobed/Exited(atom/movable/AM, atom/newloc)
+	handle_stasis(AM)
+	. = ..()
+
+/obj/structure/holobed/proc/handle_stasis(mob/living/target)
+	if(target == occupant && stasis)
+		if(!target.has_status_effect(STATUS_EFFECT_STASIS))
+			target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, 1)
+	else
+		if(istype(target) && target.has_status_effect(STATUS_EFFECT_STASIS))
+			target.remove_status_effect(STATUS_EFFECT_STASIS)
+
+/obj/structure/holobed/post_buckle_mob(mob/living/L)
+	occupant = L
+	handle_stasis(L)
+
+/obj/structure/holobed/post_unbuckle_mob(mob/living/L)
+	if(L == occupant)
+		occupant = null
+	handle_stasis(L)
 
 /obj/structure/holosign/barrier/cyborg/hacked
 	name = "Charged Energy Field"

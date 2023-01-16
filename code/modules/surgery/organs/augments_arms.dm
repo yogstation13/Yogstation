@@ -71,6 +71,8 @@
 	if(!holder || (holder in src))
 		return
 
+	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
+
 	owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_notice("[holder] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_italics("You hear a short mechanical noise."))
@@ -83,13 +85,17 @@
 	holder = null
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
+/obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
+	Retract()
+
 /obj/item/organ/cyberimp/arm/proc/Extend(var/obj/item/item)
 	if(!(item in src))
 		return
 
 	holder = item
-
+	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	holder.slot_flags = null
 	holder.materials = null
@@ -191,6 +197,11 @@
 	linkedhandler = new
 	linkedhandler.linkedarm = src
 	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+
+/obj/item/organ/cyberimp/arm/toolset/Destroy()
+	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
+	. = ..()
 
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
@@ -277,7 +288,7 @@
 /obj/item/organ/cyberimp/arm/toolset/surgery
 	name = "surgical toolset implant"
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
-	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
+	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment)
 
 /obj/item/toolset_handler
 	name = "cybernetic apparatus"
@@ -378,11 +389,33 @@
 		F.I = src
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
-	name = "G.O.R.L.E.X. mantis blade implants"
+	name = "G.O.R.L.E.X. mantis blade implant"
 	desc = "Modernized mantis blades designed and coined by Tiger operatives. Energy actuators makes the blade a much deadlier weapon."
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 	syndicate_implant = TRUE
 
-/obj/item/organ/cyberimp/arm/syndie_mantis/l
+/obj/item/organ/cyberimp/arm/syndie_hammer
+	name = "Vxtvul Hammer implant"
+	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
+	contents = newlist(/obj/item/twohanded/vxtvulhammer)
+	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/nt_mantis
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade implants"
+	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
+	contents = newlist(/obj/item/mantis/blade/NT)
+
+/obj/item/organ/cyberimp/arm/nt_mantis/left
 	zone = BODY_ZONE_L_ARM
+
+/obj/item/organ/cyberimp/arm/power_cord
+	name = "power cord implant"
+	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
+	contents = newlist(/obj/item/apc_powercord)
+	zone = "l_arm"
+
+/obj/item/organ/cyberimp/arm/flash/rev
+	name = "revolutionary brainwashing implant"
+	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
+	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
 	syndicate_implant = TRUE

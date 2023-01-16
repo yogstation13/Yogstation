@@ -1,6 +1,8 @@
 /datum/job/scientist
 	title = "Scientist"
+	description = "Do experiments, perform research, feed the slimes, make bombs."
 	flag = SCIENTIST
+	orbit_icon = "flask"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -10,8 +12,7 @@
 	selection_color = "#ffeeff"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician")
-
+	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist")
 	outfit = /datum/outfit/job/scientist
 
 	added_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
@@ -20,9 +21,17 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
-	minimal_character_age = 18
+	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	mail_goodies = list(
+		///obj/item/raw_anomaly_core/random = 10,
+		///obj/item/disk/tech_disk/spaceloot = 2,
+		/obj/item/camera_bug = 1
+	)
+
+	smells_like = "slime"
 
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
@@ -39,7 +48,7 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/pda/toxins
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -54,3 +63,7 @@
 	..()
 	if(prob(0.4))
 		neck = /obj/item/clothing/neck/tie/horrible
+
+/datum/outfit/job/scientist/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/neck/tie/horrible

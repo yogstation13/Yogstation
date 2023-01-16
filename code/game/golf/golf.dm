@@ -76,6 +76,7 @@
 	name = "golfball"
 	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
 	icon_state ="golfball"
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 12
 	attack_verb = list("hit")
 

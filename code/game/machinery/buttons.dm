@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl"
 	var/skin = "doorctrl"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	var/obj/item/assembly/device
 	var/obj/item/electronics/airlock/board
 	var/device_type = null
@@ -97,9 +97,12 @@
 
 		if(W.tool_behaviour == TOOL_MULTITOOL)
 			if(istype(device, /obj/item/assembly/control)) // User Feedback
+				var/obj/item/assembly/control/controller = device
 				var/obj/item/multitool/P = W
-				if(!id) // Generate New ID if none exists
-					id = rand(1, 25565) // rare enough that ids should never conflict
+				if(controller.id)
+					id = controller.id
+				else if(!id) // Generate New ID if none exists
+					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
 				P.buffer = id

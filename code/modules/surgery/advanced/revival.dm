@@ -12,10 +12,11 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
-	requires_bodypart_type = 0
 
 /datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_NODEFIB))
 		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
@@ -28,7 +29,7 @@
 
 /datum/surgery_step/revive
 	name = "shock brain"
-	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100)
+	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100, /obj/item/rod_of_asclepius = 100)
 	time = 12 SECONDS
 	success_sound = 'sound/magic/lightningbolt.ogg'
 	failure_sound = 'sound/machines/defib_zap.ogg'
@@ -91,3 +92,14 @@
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.")
 	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 180)
 	return FALSE
+
+/datum/surgery/advanced/revival/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/revive,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC

@@ -5,13 +5,15 @@
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
-	var/brightness_on = 3
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 1
+	light_on = FALSE
 	var/saber_color = null
 
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
 	if(active)
-		set_light(brightness_on)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/melee/transforming/energy/Destroy()
@@ -40,10 +42,9 @@
 			if(saber_color)
 				icon_state = "sword[saber_color]"
 			START_PROCESSING(SSobj, src)
-			set_light(brightness_on)
 		else
 			STOP_PROCESSING(SSobj, src)
-			set_light(0)
+		set_light_on(active)
 
 /obj/item/melee/transforming/energy/is_hot()
 	return active * heat
@@ -167,7 +168,6 @@
 	if(hacked)
 		var/set_color = pick(possible_colors)
 		light_color = possible_colors[set_color]
-		update_light()
 
 /obj/item/melee/transforming/energy/sword/saber/red
 	possible_colors = list("red" = LIGHT_COLOR_RED)
@@ -203,6 +203,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	icon_state_on = "cutlass1"
+	saber_color = null
 	light_color = "#ff0000"
 
 /obj/item/melee/transforming/energy/blade

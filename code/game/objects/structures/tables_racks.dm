@@ -34,6 +34,9 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
+/obj/structure/table/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 0.8)
+
 /** Performs a complex check for toe stubbing as people would scream "IMPROVE DONT REMOVE" if I had my way.
   * Uses an early probability based return for to save cycles which is perfectly valid since the highest probability is 20 anyway.
   * Chance of getting your toe stubbed: (regular = 0.033%, running = 0.1%, blind = 20%, blurry_eyes = 2%, congenitally blind = 1%  )
@@ -518,46 +521,21 @@
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	smooth = SMOOTH_FALSE
-	can_buckle = 1
-	buckle_lying = -1
-	buckle_requires_restraints = 1
-	var/mob/living/carbon/human/patient = null
-	var/obj/machinery/computer/operating/computer = null
+	can_buckle = TRUE
+	buckle_requires_restraints = TRUE
 
-/obj/structure/table/optable/Initialize()
-	. = ..()
-	for(var/direction in GLOB.alldirs)
-		computer = locate(/obj/machinery/computer/operating) in get_step(src, direction)
-		if(computer)
-			computer.table = src
-			break
-
-/obj/structure/table/optable/Destroy()
-	. = ..()
-	if(computer && computer.table == src)
-		computer.table = null
+/obj/structure/table/optable/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
-	get_patient()
 
-/obj/structure/table/optable/proc/get_patient()
-	var/mob/living/carbon/M = locate(/mob/living/carbon) in loc
-	if(M)
-		if(M.resting)
-			patient = M
-	else
-		patient = null
-
-/obj/structure/table/optable/proc/check_eligible_patient()
-	get_patient()
-	if(!patient)
-		return FALSE
-	if(ishuman(patient) ||  ismonkey(patient))
-		return TRUE
-	return FALSE
+/obj/structure/table/optable/debug/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.extra_surgeries = subtypesof(/datum/surgery)
 
 /*
  * Racks

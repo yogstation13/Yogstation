@@ -64,7 +64,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
 	active_power_usage = 8
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	req_access = list(ACCESS_ATMOSPHERICS)
 	max_integrity = 250
 	integrity_failure = 80
@@ -742,7 +742,7 @@
 				to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
 				update_icon()
 				return
-			else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
+			else if(W.GetID())// trying to unlock the interface with an ID card
 				togglelock(user)
 				return
 			else if(panel_open && is_wire_tool(W))

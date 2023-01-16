@@ -1,7 +1,10 @@
+#define ADRENALINE_THRESHOLD 25
+
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
 	icon_state = "heart"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -19,6 +22,8 @@
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
+	var/lasthealth
+	COOLDOWN_DECLARE(adrenal_cooldown)
 
 /obj/item/organ/heart/Initialize()
 	. = ..()
@@ -29,7 +34,7 @@
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
-		icon_state = "[icon_base]-off"
+		icon_state = "[icon_base]"
 
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
@@ -70,7 +75,10 @@
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
-
+		if(COOLDOWN_FINISHED(src, adrenal_cooldown) && ((H.health+ADRENALINE_THRESHOLD) < lasthealth))
+			H.reagents.add_reagent(/datum/reagent/adrenaline, 5)
+			COOLDOWN_START(src, adrenal_cooldown, 10 MINUTES)
+		lasthealth = H.health
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
@@ -99,6 +107,9 @@
 			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
+
+/obj/item/organ/heart/get_availability(datum/species/species)
+	return !(NOBLOOD in species.species_traits)
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
@@ -250,6 +261,16 @@
 /obj/item/organ/heart/cybernetic/upgraded/emp_act()
 	. = ..()
 	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
+
+/obj/item/organ/heart/cybernetic/ipc
+	desc = "An electronic device that appears to mimic the functions of an organic heart."
+
+/obj/item/organ/heart/cybernetic/ipc/emp_act()
+	if(prob(30))
+		return
+	. = ..()
+	to_chat(owner, "<span class='warning'>Alert: Cybernetic heart failed one heartbeat</span>")
+	addtimer(CALLBACK(src, .proc/Restart), 10 SECONDS)
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

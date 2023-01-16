@@ -919,7 +919,7 @@
 /area/awaymission/academy/academyaft)
 "kB" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
 "kC" = (
@@ -1422,7 +1422,7 @@
 "oR" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
 "pd" = (
@@ -1453,7 +1453,7 @@
 "pX" = (
 /obj/item/clothing/under/syndicate,
 /obj/effect/decal/cleanable/blood/old,
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
 "pY" = (
@@ -2385,7 +2385,7 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plasteel{
 	icon_state = "white"
 	},
@@ -2980,7 +2980,7 @@
 /area/awaymission/academy/academyclassroom)
 "Oz" = (
 /obj/structure/table,
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "OO" = (
@@ -3458,7 +3458,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plasteel{
 	dir = 2;
 	icon_state = "cafeteria"

@@ -43,7 +43,7 @@
 	var/sprite_text
 	if(sprite)
 		sprite_text = "<img src='vv[hash].png'></td><td>"
-	var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
+	var/list/header = isappearance? list("<b>/image</b>") : (islist(D)? list("<b>/list</b>") : D.vv_get_header())
 
 	var/marked_line
 	if(holder && holder.marked_datum && holder.marked_datum == D)

@@ -154,6 +154,25 @@
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/suit_storage_unit
+	name = "Suit Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/suit_storage_unit
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/manipulator = 5)
+
+/obj/item/circuitboard/machine/decontamination_unit
+	name = "Decontamination Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/decontamination_unit
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/matter_bin = 5)
+
+
 #define PATH_POWERCOIL /obj/machinery/power/tesla_coil/power
 #define PATH_RPCOIL /obj/machinery/power/tesla_coil/research
 
@@ -608,6 +627,7 @@
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/wallhypo = "HypoMed",
 		/obj/machinery/vending/assist  = "Vendomat",
 		/obj/machinery/vending/engivend = "Engi-Vend",
 		/obj/machinery/vending/hydronutrients = "NutriMax",
@@ -618,7 +638,8 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
-		/obj/machinery/vending/security = "SecTech")//Yogs
+		/obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/fishing = "Tackle Box 2000")//Yogs
 		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
@@ -723,6 +744,7 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/clonepod/experimental
@@ -1017,7 +1039,8 @@
 		/obj/item/stock_parts/capacitor = 4,
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stack/sheet/glass = 2,
-		/obj/item/stack/cable_coil = 2)
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/cell/high = 1)
 
 /obj/item/circuitboard/machine/rack_creator
 	name = "Rack Creator (Machine Board)"
@@ -1027,6 +1050,13 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
 
+/obj/item/circuitboard/machine/plort
+	name = "Machine Design (Plort Redemption Machine)"
+	icon_state = "science"
+	build_path = /obj/machinery/plortrefinery
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 3,
+		/obj/item/stack/cable_coil = 2)
 
 //Security
 

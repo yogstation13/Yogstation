@@ -145,5 +145,5 @@
 	if(!easy_access_sect.rites_list)
 		return //if we dont have rites it doesnt do us much good if the object can be used to invoke them!
 	if(operation_flags & RELIGION_TOOL_INVOKE)
-		examine_list += "List of available Rites:"
+		examine_list += "List of available rites:"
 		examine_list += easy_access_sect.rites_list

@@ -17,8 +17,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
 	movement_type = GROUND | FLYING
+	light_system = MOVABLE_LIGHT
+	light_range = 1
+	light_power = 2
+	light_on = FALSE
 	var/can_reenter_corpse
-	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
@@ -31,8 +34,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 	var/ghost_hud_enabled = TRUE //did this ghost disable the on-screen HUD?
 	var/data_huds_on = FALSE //Are data HUDs currently enabled?
-	var/health_scan = FALSE //Are health scans currently enabled?
-	var/chem_scan = FALSE // Are chemical scans currently enabled
+
+	var/scanmode = 0
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -56,6 +59,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
+	var/datum/action/unobserve/UO
 
 	// Current Viewrange
 	var/view = 0
@@ -65,7 +69,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	add_verb(src, list(
 		/mob/dead/observer/proc/dead_tele,
 		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/view_gas,
 		/mob/dead/observer/proc/tray_view,
 		/mob/dead/observer/proc/possess_mouse_verb))
 
@@ -277,7 +280,8 @@ Works together with spawning an observer, noted above.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
 			ghost.key = key
-			ghost.client.init_verbs()
+			if(ghost?.client)
+				ghost.client.init_verbs()
 			if(ghost?.client?.holder?.fakekey)
 				ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
 				ghost.alpha = 0 //JUUUUST IN CASE
@@ -296,19 +300,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD)
-		ghostize(1)
-	else
-		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")
-		if(response != "Ghost")
-			return	//didn't want to ghost after-all
-		ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
+		ghostize(TRUE)
+		return TRUE
+	var/response = tgui_alert(usr, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?",list("Ghost","Stay in body"))
+	if(response != "Ghost")
+		return FALSE//didn't want to ghost after-all
+	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
+	return TRUE
 
 /mob/camera/verb/ghost()
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
-	var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")
+	var/response = tgui_alert(usr, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?",list("Ghost","Stay in body"))
 	if(response != "Ghost")
 		return
 	ghostize(0)
@@ -366,7 +371,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_warning("You're already stuck out of your body!"))
 		return FALSE
 
-	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?","DNR","Save Me")
+	var/response = tgui_alert(usr, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?",list("DNR","Save Me"))
 	if(response != "DNR")
 		return
 
@@ -380,7 +385,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(message)
 		to_chat(src, span_ghostalert("[message]"))
 		if(source)
-			var/obj/screen/alert/A = throw_alert("[REF(source)]_notify_cloning", /obj/screen/alert/notify_cloning)
+			var/atom/movable/screen/alert/A = throw_alert("[REF(source)]_notify_cloning", /atom/movable/screen/alert/notify_cloning)
 			if(A)
 				if(client && client.prefs && client.prefs.UI_style)
 					A.icon = ui_style2icon(client.prefs.UI_style)
@@ -404,8 +409,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 	var/list/filtered = list()
-	for(var/V in GLOB.sortedAreas)
-		var/area/A = V
+	for(var/area/A as anything in get_sorted_areas())
 		if(!A.hidden)
 			filtered += A
 	var/area/thearea  = input("Area to jump to", "BOOYEA") as null|anything in filtered
@@ -423,14 +427,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	usr.forceMove(pick(L))
 	update_parallax_contents()
-
-/mob/dead/observer/proc/view_gas()
-	set category = "Ghost"
-	set name = "View Gases"
-	set desc= "View the atmospheric conditions in a location"
-
-	var/turf/loc = get_turf(src)
-	show_air_status_to(loc, usr)
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
@@ -641,9 +637,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("This creature is too powerful for you to possess!"))
 		return 0
 
-	if(can_reenter_corpse && mind && mind.current)
-		if(alert(src, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", "Yes", "No") == "No")
-			return 0
+	if(can_reenter_corpse && mind?.current)
+		if(tgui_alert(usr, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", list("Yes", "No")) == "No")
+			return FALSE
 	if(target.key)
 		to_chat(src, span_warning("Someone has taken this body while you were choosing!"))
 		return 0
@@ -741,16 +737,40 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Toggles whether you health-scan living beings on click"
 	set category = "Ghost"
 
-	health_scan = !health_scan
-	to_chat(src, span_notice("Health scan [health_scan ? "enabled" : "disabled"]."))
+	scanmode ^= SCAN_HEALTH
+	to_chat(src, span_notice("Health scan [scanmode & SCAN_HEALTH ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/toggle_chemical_scan()
 	set name = "Toggle Chemical Scan"
 	set desc = "Toggles whether you chem-scan living beings on click"
 	set category = "Ghost"
 
-	chem_scan = !chem_scan
-	to_chat(src, span_notice("Chemical scan [chem_scan ? "enabled" : "disabled"]."))
+	scanmode ^= SCAN_CHEM
+	to_chat(src, span_notice("Chemical scan [scanmode & SCAN_CHEM ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_nanite_scan()
+	set name = "Toggle Nanite Scan"
+	set desc = "Toggles scanning of nanites"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_NANITE
+	to_chat(src, span_notice("Nanite scan [scanmode & SCAN_NANITE ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_wound_scan()
+	set name = "Toggle Wound Scan"
+	set desc = "Toggles scanning of wounds"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_WOUND
+	to_chat(src, span_notice("Wound scan [scanmode & SCAN_WOUND ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_gas_scan()
+	set name = "Toggle Gas Scan"
+	set desc = "Toggles whether you analyze gas contents on click"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_GAS
+	to_chat(src, span_notice("Gas scan [scanmode & SCAN_GAS ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
@@ -806,6 +826,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
+	UO?.Remove(src)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -817,13 +838,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/cleanup_observe()
 	var/mob/target = observetarget
-	observetarget = null
 	client?.perspective = initial(client.perspective)
 	sight = initial(sight)
 	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
-	if(target.observers)
+	if(target && target.observers)
 		target.observers -= src
 		UNSETEMPTY(target.observers)
+	observetarget = null
+	actions = originalactions
+	actions -= UO
+	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
@@ -849,18 +873,35 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.perspective = EYE_PERSPECTIVE
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
-		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed)
+		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
+		if(!UO)
+			UO = new // Convinent way to unobserve
+		UO.Grant(src)
 		if(mob_eye.hud_used)
-			client.screen = list()
+			actions = mob_eye.actions + originalactions
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
+			update_action_buttons()
+			mob_eye.update_action_buttons()
 			observetarget = mob_eye
 
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+/datum/action/unobserve
+	name = "Stop Observing"
+	desc = "Stops observing the person."
+	icon_icon = 'icons/mob/mob.dmi'
+	button_icon_state = "ghost_nodir"
+
+/datum/action/unobserve/Trigger()
+	owner.reset_perspective(null)
+
+/datum/action/unobserve/IsAvailable()
+	return TRUE
+
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(is_secret_level(new_turf.z) && !client?.holder)
+	if(is_secret_level(newz) && !client?.holder)
 		sight = null //we dont want ghosts to see through walls in secret areas
 	else
 		sight = initial(sight)
@@ -889,10 +930,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/set_invisibility(value)
 	invisibility = value
-	if(!value)
-		set_light(1, 2)
-	else
-		set_light(0, 0)
+	set_light_on(!value ? TRUE : FALSE)
 
 // Ghosts have no momentum, being massless ectoplasm
 /mob/dead/observer/Process_Spacemove(movement_dir)
@@ -980,8 +1018,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_warning("The round hasn't started yet!"))
 		return FALSE
 
-	if(is_banned_from(key, ROLE_SENTIENCE))
-		to_chat(src, span_warning("You are job banned!"))
+	if(is_banned_from(key, ROLE_MOUSE))
+		to_chat(src, span_warning("You are banned from being a mouse!"))
 		return FALSE
 
 	if(alert("Are you sure you want to become a mouse? (Warning, you can no longer be cloned!)",,"Yes","No") != "Yes")

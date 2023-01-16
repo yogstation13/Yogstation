@@ -235,7 +235,7 @@
 	tastes = list("raw egg" = 2, "soaked bread" = 1)
 	foodtype = GRAIN | RAW | BREAKFAST
 
-/obj/item/reagent_containers/food/snacks/frenctoast/raw/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/frenchtoast/raw/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/frenchtoast, rand(20 SECONDS, 30 SECONDS), TRUE)
 
 //DEEP FRYER
@@ -245,6 +245,7 @@
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = ""
 	bitesize = 2
+	fryable = FALSE
 
 /obj/item/reagent_containers/food/snacks/deepfryholder/Initialize(mapload, obj/item/fried)
 	. = ..()

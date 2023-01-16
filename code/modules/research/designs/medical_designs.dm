@@ -34,6 +34,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/bluespacevial
+	name = "Bluespace Vial"
+	desc = "A small vial powered by experimental bluespace technology capable of holding 60 units."
+	id = "bluespacevial"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2500, /datum/material/plasma = 1500, /datum/material/diamond = 500, /datum/material/bluespace = 500)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial/bluespace
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/noreactbeaker
 	name = "Cryostasis Beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
@@ -82,16 +92,6 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/noreactsyringe
-	name = "Cryo Syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	id = "noreactsyringe"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 1000)
-	build_path = /obj/item/reagent_containers/syringe/noreact
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/piercesyringe
 	name = "Piercing Syringe"
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
@@ -109,6 +109,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2500)
 	build_path = /obj/item/reagent_containers/syringe/dart
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/vialbox
+	name = "vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	id = "vialbox"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 1500)
+	build_path = /obj/item/storage/lockbox/vialbox/printed
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -202,14 +212,14 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/surgical_drapes
-	name = "Surgical Drapes"
-	id = "surgical_drapes"
+/datum/design/surgical_mat
+	name = "Surgical Mat"
+	id = "surgical_mat"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 2000)
-	build_path = /obj/item/surgical_drapes
+	build_path = /obj/item/surgical_mat
 	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/rollerbed
 	name = "Roller Bed"
@@ -250,6 +260,36 @@
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/titanium = 3000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/hypospray
+	name = "Hypospray"
+	desc = "A sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "hypospray"
+	build_path = /obj/item/hypospray
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/plastic = 1500, /datum/material/silver = 3000, /datum/material/titanium = 3000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/hypospraypierceupg
+	name = "Hypospray Piercing Upgrade"
+	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
+	id = "hypospraypierceupg"
+	build_path = /obj/item/hypospray_upgrade/piercing
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/hyposprayspeedupg
+	name = "Hypospray Speed Upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	id = "hyposprayspeedupg"
+	build_path = /obj/item/hypospray_upgrade/speed
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000, /datum/material/titanium = 500)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
 //////////Cybernetic Implants////////////
@@ -354,14 +394,25 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cyberimp_meson
+	name = "Meson Eyes"
+	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
+	id = "ci-meson"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 1000, /datum/material/uranium = 1000)
+	build_path = /obj/item/organ/eyes/robotic/xray
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/cyberimp_xray
-	name = "X-ray Eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	name = "X-Ray Eyes"
+	desc = "These cybernetic eyes will give you X-Ray-vision. Blinking is futile."
 	id = "ci-xray"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/uranium = 1000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
-	build_path = /obj/item/organ/eyes/robotic/xray
+	build_path = /obj/item/organ/eyes/robotic/xray/syndicate
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -442,6 +493,50 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/noslipwater
+	name = "Slip Resistance Implant"
+	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
+	id = "noslipwater"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/silver = 1000, /datum/material/diamond = 1000, /datum/material/uranium = 400)
+	build_path = /obj/item/organ/cyberimp/leg/galosh
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/jumpbootsimplant
+	name = "Jumpboots implant"
+	desc = "An implant with a specialized propulsion system for rapid foward movement."
+	id = "jumpbootsimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/uranium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/jumpboots
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/wheeliesimplant
+	name = "Wheelies implant"
+	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
+	id = "wheeliesimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 500)
+	build_path = /obj/item/organ/cyberimp/leg/wheelies
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/magbootimplant
+	name = "Magboot implant"
+	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
+	id = "magbootimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/diamond = 200)
+	build_path = /obj/item/organ/cyberimp/leg/magboot
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+		
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
 /////////////////////////////////////////
@@ -626,36 +721,47 @@
 	name = "Surgery Design"
 	desc = "what"
 	id = "surgery_parent"
-	research_icon = 'icons/obj/surgery.dmi'
+	research_icon = 'icons/misc/surgery_icons.dmi'
 	research_icon_state = "surgery_any"
-	var/surgery
+	var/list/surgery
 
 /datum/design/surgery/experimental_dissection
+	name = "Advanced Dissection"
+	desc = "A surgical procedure which analyzes the biology of a corpse, and automatically adds new findings to the research database."
+	id = "surgery_adv_dissection"
+	surgery = list(/datum/surgery/experimental_dissection/adv)
+	research_icon = 'icons/mob/actions.dmi'
+	research_icon_state = "scan_mode"
+
+/datum/design/surgery/experimental_dissection/exp
 	name = "Experimental Dissection"
-	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
 	id = "surgery_exp_dissection"
-	surgery = /datum/surgery/experimental_dissection
-	research_icon_state = "surgery_chest"
+	surgery = list(/datum/surgery/experimental_dissection/adv/exp)
+
+/datum/design/surgery/experimental_dissection/alien
+	name = "Extraterrestrial Dissection"
+	id = "surgery_ext_dissection"
+	surgery = list(/datum/surgery/experimental_dissection/adv/alien)
 
 /datum/design/surgery/lobotomy
 	name = "Lobotomy"
 	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	id = "surgery_lobotomy"
-	surgery = /datum/surgery/advanced/lobotomy
-	research_icon_state = "surgery_head"
+	surgery = list(/datum/surgery/advanced/lobotomy, /datum/surgery/advanced/lobotomy/mechanic)
+	research_icon_state = "lobotomy"
 
 /datum/design/surgery/pacify
 	name = "Pacification"
 	desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
 	id = "surgery_pacify"
-	surgery = /datum/surgery/advanced/pacify
-	research_icon_state = "surgery_head"
+	surgery = list(/datum/surgery/advanced/pacify, /datum/surgery/advanced/pacify/mechanic)
+	research_icon_state = "pacify"
 
 /datum/design/surgery/viral_bonding
 	name = "Viral Bonding"
 	desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. The patient must be dosed with spaceacillin, virus food, and formaldehyde."
 	id = "surgery_viral_bond"
-	surgery = /datum/surgery/advanced/viral_bonding
+	surgery = list(/datum/surgery/advanced/viral_bonding)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/healing
@@ -666,95 +772,88 @@
 
 /datum/design/surgery/healing/brute_upgrade
 	name = "Tend Wounds (Brute) Upgrade"
-	surgery = /datum/surgery/healing/brute/upgraded
+	surgery = list(/datum/surgery/healing/brute/upgraded)
 	id = "surgery_heal_brute_upgrade"
 
 /datum/design/surgery/healing/brute_upgrade_2
 	name = "Tend Wounds (Brute) Upgrade"
-	surgery = /datum/surgery/healing/brute/upgraded/femto
+	surgery = list(/datum/surgery/healing/brute/upgraded/femto)
 	id = "surgery_heal_brute_upgrade_femto"
 
 /datum/design/surgery/healing/burn_upgrade
 	name = "Tend Wounds (Burn) Upgrade"
-	surgery = /datum/surgery/healing/burn/upgraded
+	surgery = list(/datum/surgery/healing/burn/upgraded)
 	id = "surgery_heal_burn_upgrade"
 
 /datum/design/surgery/healing/burn_upgrade_2
 	name = "Tend Wounds (Burn) Upgrade"
-	surgery = /datum/surgery/healing/burn/upgraded/femto
+	surgery = list(/datum/surgery/healing/burn/upgraded/femto)
 	id = "surgery_heal_burn_upgrade_femto"
 
 /datum/design/surgery/healing/combo
 	name = "Tend Wounds (Physical)"
 	desc = "A surgical procedure that repairs both bruises and burns. Repair efficiency is not as high as the individual surgeries but it is faster."
-	surgery = /datum/surgery/healing/combo
+	surgery = list(/datum/surgery/healing/combo)
 	id = "surgery_heal_combo"
 
 /datum/design/surgery/healing/combo_upgrade
 	name = "Tend Wounds (Physical) Upgrade"
-	surgery = /datum/surgery/healing/combo/upgraded
+	surgery = list(/datum/surgery/healing/combo/upgraded)
 	id = "surgery_heal_combo_upgrade"
 
 /datum/design/surgery/healing/combo_upgrade_2
 	name = "Tend Wounds (Physical) Upgrade"
 	desc = "A surgical procedure that repairs both bruises and burns faster than their individual counterparts. It is more effective than both the individual surgeries."
-	surgery = /datum/surgery/healing/combo/upgraded/femto
+	surgery = list(/datum/surgery/healing/combo/upgraded/femto)
 	id = "surgery_heal_combo_upgrade_femto"
 
 /datum/design/surgery/revival
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
 	id = "surgery_revival"
-	surgery = /datum/surgery/advanced/revival
-	research_icon_state = "surgery_head"
+	surgery = list(/datum/surgery/advanced/revival, /datum/surgery/advanced/revival/mechanic)
+	research_icon_state = "revival"
 
 /datum/design/surgery/dna_recovery
 	name = "DNA Recovery"
 	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
-	surgery = /datum/surgery/advanced/dna_recovery
-	research_icon_state = "surgery_head"
-
-/datum/design/surgery/xeno_dna_recovery
-	name = "Alien DNA Recovery"
-	desc = "An experimental surgical procedure which involves the use of rezadone to fix severe burning on certain alien lifeforms."
-	id = "surgery_xeno_dna_recovery"
-	surgery = /datum/surgery/advanced/dna_recovery/alien
+	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/alien)
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
 	name = "Brainwashing"
 	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
 	id = "surgery_brainwashing"
-	surgery = /datum/surgery/advanced/brainwashing
+	surgery = list(/datum/surgery/advanced/brainwashing, /datum/surgery/advanced/brainwashing/mechanic)
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/nerve_splicing
 	name = "Nerve Splicing"
 	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
 	id = "surgery_nerve_splice"
-	surgery = /datum/surgery/advanced/bioware/nerve_splicing
+	surgery = list(/datum/surgery/advanced/bioware/nerve_splicing)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/nerve_grounding
 	name = "Nerve Grounding"
 	desc = "A surgical procedure which makes the patient's nerves act as grounding rods, protecting them from electrical shocks."
 	id = "surgery_nerve_ground"
-	surgery = /datum/surgery/advanced/bioware/nerve_grounding
+	surgery = list(/datum/surgery/advanced/bioware/nerve_grounding)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/vein_threading
 	name = "Vein Threading"
 	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
 	id = "surgery_vein_thread"
-	surgery = /datum/surgery/advanced/bioware/vein_threading
+	surgery = list(/datum/surgery/advanced/bioware/vein_threading)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/muscled_veins
 	name = "Vein Muscle Membrane"
 	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing them to pump blood without a heart."
 	id = "surgery_muscled_veins"
-	surgery = /datum/surgery/advanced/bioware/muscled_veins
+	surgery = list(/datum/surgery/advanced/bioware/muscled_veins)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_hook
@@ -762,7 +861,7 @@
 	desc = "A surgical procedure which reshapes the connections between torso and limbs, making it so limbs can be attached manually if severed. \
 	However this weakens the connection, making them easier to detach as well."
 	id = "surgery_ligament_hook"
-	surgery = /datum/surgery/advanced/bioware/ligament_hook
+	surgery = list(/datum/surgery/advanced/bioware/ligament_hook)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_reinforcement
@@ -770,12 +869,12 @@
 	desc = "A surgical procedure which adds a protective tissue and bone cage around the connections between the torso and limbs, preventing dismemberment. \
 	However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
 	id = "surgery_ligament_reinforcement"
-	surgery = /datum/surgery/advanced/bioware/ligament_reinforcement
+	surgery = list(/datum/surgery/advanced/bioware/ligament_reinforcement)
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/necrotic_revival
 	name = "Necrotic Revival"
 	desc = "An experimental surgical procedure that stimulates the growth of a Romerol tumor inside the patient's brain. Requires zombie powder or rezadone."
 	id = "surgery_zombie"
-	surgery = /datum/surgery/advanced/necrotic_revival
+	surgery = list(/datum/surgery/advanced/necrotic_revival)
 	research_icon_state = "surgery_head"

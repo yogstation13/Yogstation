@@ -12,9 +12,9 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician") //YOGS - added hop and brig physician
-	required_players = 15
-	required_enemies = 1
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS - added hop and brig physician
+	required_players = 25
+	required_enemies = 2
 	recommended_enemies = 4
 	reroll_friendly = 1
 

@@ -155,6 +155,7 @@
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
 	item_state = "winterboots"
+	clothing_flags = NOSLIP_ICE
 	permeability_coefficient = 0.15
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
@@ -185,6 +186,7 @@
 	name = "mining boots"
 	desc = "Steel-toed mining boots for mining in hazardous environments. Very good at keeping toes uncrushed."
 	icon_state = "explorer"
+	clothing_flags = NOSLIP_ICE
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
@@ -241,6 +243,7 @@
 	icon_state = "jetboots"
 	item_state = "jetboots"
 	resistance_flags = FIRE_PROOF
+	clothing_flags = NOSLIP_ICE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
 	permeability_coefficient = 0.05
@@ -333,6 +336,10 @@
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
 	actions_types = list(/datum/action/item_action/kindleKicks)
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 3
+	light_on = FALSE
 	var/lightCycle = 0
 	var/active = FALSE
 
@@ -340,18 +347,19 @@
 	if(active)
 		return
 	active = TRUE
-	set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-	addtimer(CALLBACK(src, .proc/lightUp), 5)
+	set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+	set_light_on(active)
+	addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 
 /obj/item/clothing/shoes/kindleKicks/proc/lightUp(mob/user)
 	if(lightCycle < 15)
-		set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-		lightCycle += 1
-		addtimer(CALLBACK(src, .proc/lightUp), 5)
+		set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+		lightCycle++
+		addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 	else
-		set_light(0)
 		lightCycle = 0
 		active = FALSE
+		set_light_on(active)
 
 /obj/item/clothing/shoes/russian
 	name = "russian boots"
@@ -547,7 +555,6 @@
 	xenoshoe = YES_DIGIT 
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
@@ -604,3 +611,38 @@
 /obj/item/clothing/shoes/airshoes/Destroy()
 	QDEL_NULL(A)
 	. = ..()
+
+/obj/item/clothing/shoes/drip
+	name = "fashionable shoes"
+	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
+	icon = 'icons/obj/clothing/shoes.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
+	icon_state = "dripshoes"
+	item_state = "dripshoes"
+	clothing_flags = NOSLIP_ICE | NOSLIP
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 100, ACID = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	strip_delay = 40
+	resistance_flags = NONE
+	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	slowdown = -0.2
+
+/obj/item/clothing/shoes/drip/equipped(mob/user, slot,) 
+	. = ..()
+	if(slot == SLOT_SHOES)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripjordan", /datum/mood_event/dripjordan)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "nojordans", /datum/mood_event/dripjordan)
+		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))
+			to_chat(user, span_danger("You feel the power of the jordans warm your cold, unfeeling heart...!"))
+			user.AddComponent(/datum/component/mood) //Stole this from the obsessed no you can't turn it off
+
+/obj/item/clothing/shoes/drip/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_SHOES) == src)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
+

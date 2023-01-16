@@ -133,7 +133,7 @@
 /**
   * Show a message to this mob (visual)
   */
-/mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)
 		return
@@ -161,7 +161,7 @@
 		if(type & 2) //audio
 			to_chat(src, "<I>... You can almost hear something ...</I>")
 	else
-		to_chat(src, msg)
+		to_chat(src, msg, avoid_highlighting = avoid_highlighting)
 
 /**
   * Generate a visible message from this atom
@@ -207,7 +207,7 @@
 			msg = blind_message
 		else if(T != loc && T != src) //if src is inside something and not a turf.
 			msg = blind_message
-		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit()) //if it is too dark.
+		else if(M.lighting_alpha > LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE && T.is_softly_lit() && !in_range(T,M)) //if it is too dark.
 			msg = blind_message
 		if(!msg)
 			continue
@@ -441,7 +441,7 @@
 		if(istype(src, /mob/living/silicon/ai) && istype(A, /mob/living/carbon/human)) //Override for AI's examining humans
 			var/mob/living/carbon/human/H = A
 			result = H.examine_simple(src)
-		else	
+		else
 			LAZYINITLIST(client.recent_examines)
 			if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
 				var/extra_info = A.examine_more(src)
@@ -450,11 +450,15 @@
 				client.recent_examines[A] = world.time + EXAMINE_MORE_WINDOW
 				result = A.examine(src)
 				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), RECENT_EXAMINE_MAX_WINDOW)
-				handle_eye_contact(A)		
+				handle_eye_contact(A)
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	to_chat(src, result.Join("\n"))
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] = "[result[i]]\n"
+
+	to_chat(src, examine_block("<span class='infoplain'>[result.Join()]</span>"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 
@@ -683,7 +687,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (CONFIG_GET(flag/norespawn))
+	if (CONFIG_GET(flag/norespawn) && (!check_rights_for(usr.client, R_ADMIN) || tgui_alert(usr, "Respawn configs disabled. Do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes"))
 		return
 	if ((stat != DEAD || !( SSticker )))
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
@@ -851,7 +855,7 @@
   *
   * Conditions:
   * * client.last_turn > world.time
-  * * not dead or unconcious
+  * * not dead or unconscious
   * * not anchored
   * * no transform not set
   * * we are not restrained
@@ -875,81 +879,13 @@
 		return FALSE
 	return ..()
 
-///Hidden verb to turn east
-/mob/verb/eastface()
-	set hidden = TRUE
-	if(!canface())
+/mob/setShift(dir)
+	if (!canface())
 		return FALSE
-	setDir(EAST)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
 
-///Hidden verb to turn west
-/mob/verb/westface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(WEST)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
+	is_shifted = TRUE
 
-///Hidden verb to turn north
-/mob/verb/northface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(NORTH)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-///Hidden verb to turn south
-/mob/verb/southface()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	setDir(SOUTH)
-	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
-	return TRUE
-
-/mob/verb/eastshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_x <= 16)
-        pixel_x++
-        is_shifted = TRUE
-
-/mob/verb/westshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_x >= -16)
-        pixel_x--
-        is_shifted = TRUE
-
-/mob/verb/northshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_y <= 16)
-        pixel_y++
-        is_shifted = TRUE
-
-/mob/verb/southshift()
-    set hidden = TRUE
-    if(!canface())
-        return FALSE
-    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
-        return FALSE
-    if(pixel_y >= -16)
-        pixel_y--
-        is_shifted = TRUE
+	return ..()
 
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()
@@ -1144,6 +1080,9 @@
 			if(ID.registered_name == oldname)
 				ID.registered_name = newname
 				ID.update_label()
+				if(istype(ID.loc, /obj/item/computer_hardware/card_slot))
+					var/obj/item/computer_hardware/card_slot/CS = ID.loc
+					CS.holder?.update_label()
 				if(ID.registered_account?.account_holder == oldname)
 					ID.registered_account.account_holder = newname
 				if(!search_pda)
@@ -1165,6 +1104,10 @@
 /mob/proc/update_health_hud()
 	return
 
+/// Changes the stamina HUD based on new information
+/mob/proc/update_stamina_hud()
+	return
+
 ///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
@@ -1173,7 +1116,7 @@
 ///Set the lighting plane hud alpha to the mobs lighting_alpha var
 /mob/proc/sync_lighting_plane_alpha()
 	if(hud_used)
-		var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+		var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
 		if (L)
 			L.alpha = lighting_alpha
 
@@ -1265,7 +1208,7 @@
 		if(!mind)
 			to_chat(usr, "This cannot be used on mobs without a mind")
 			return
-		
+
 		var/timer = input("Input AFK length in minutes, 0 to cancel the current timer", text("Input"))  as num|null
 		if(timer == null) // Explicit null check for cancel, rather than generic truthyness, so 0 is handled differently
 			return
@@ -1275,7 +1218,7 @@
 
 		if(!timer)
 			return
-		
+
 		mind.afk_verb_used = TRUE
 		mind.afk_verb_timer = addtimer(VARSET_CALLBACK(mind, afk_verb_used, FALSE), timer MINUTES, TIMER_STOPPABLE);
 

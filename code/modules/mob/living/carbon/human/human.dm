@@ -84,6 +84,15 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
+		
+		//WS Begin - Display Ethereal Charge
+		if(istype(src))
+			var/datum/species/ethereal/eth_species = src.dna?.species
+			if(istype(eth_species))
+				var/obj/item/organ/stomach/ethereal/stomach = src.getorganslot(ORGAN_SLOT_STOMACH)
+				if(istype(stomach))
+					. += "Crystal Charge: [round((stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER), 0.1)]%"
+
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
 			if((zombie.evolutionTime - world.time) > 0)
@@ -401,7 +410,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -555,6 +564,8 @@
 				if("*Arrest*")
 					threatcount += 5
 				if("Incarcerated")
+					threatcount += 2
+				if("Suspected")
 					threatcount += 2
 				if("Paroled")
 					threatcount += 2
@@ -801,8 +812,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - getStaminaLoss())
-			if(..(health_amount)) //not dead
+			if(..()) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
 						hud_used.healths.icon_state = "health6"
@@ -870,7 +880,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -886,6 +896,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
 	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
 	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	VV_DROPDOWN_OPTION(VV_HK_CRITTERMONEY, "Toggle Critter Money")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
 	. = ..()
@@ -935,6 +946,10 @@
 					remove_quirk(T)
 				else
 					add_quirk(T,TRUE)
+	if(href_list[VV_HK_CRITTERMONEY] && check_rights(R_SPAWN))
+		for(var/obj/item/card/id/id in src)
+			id.critter_money = !id.critter_money
+			to_chat(usr, "[id.critter_money ? "Added" : "Removed"] critter money from [src]s [id].")
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
@@ -1051,6 +1066,7 @@
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
 	. *= physiology.do_after_speed
+	. *= dna.species.action_speed_coefficient
 
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
@@ -1244,6 +1260,20 @@
 /mob/living/carbon/human/species/mush
 	race = /datum/species/mush
 
+/mob/living/carbon/human/species/ipc
+	race = /datum/species/ipc
+
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
+
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
 
@@ -1315,3 +1345,12 @@
 	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
+
+/mob/living/carbon/human/fall(forced)
+	. = ..()
+	if(resting)
+		return
+	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
+	if(istype(hat) && hat.hattable && prob(25))
+		visible_message("[src]'s [lowertext(hat.name)] falls off.")
+		dropItemToGround(hat)

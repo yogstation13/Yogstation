@@ -8,8 +8,11 @@
 	item_state = "camera"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	light_color = LIGHT_COLOR_WHITE
+	light_system = MOVABLE_LIGHT //Used as a flash here.
+	light_range = 8
+	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
+	light_on = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
@@ -200,7 +203,8 @@
 
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
 	if(flash_enabled)
-		flash_lighting_fx(8, light_power, light_color)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/flash_end), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
@@ -248,6 +252,9 @@
 	after_picture(user, P, flag)
 	blending = FALSE
 
+/obj/item/camera/proc/flash_end()
+	set_light_on(FALSE)
+
 /obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	printpicture(user, picture)
 
@@ -256,24 +263,61 @@
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(p)
 		pictures_left--
-		to_chat(user, span_notice("[pictures_left] photos left."))
-		if(can_customise && camera_mode == CAMERA_DESCRIPTION)
-			var/customise = "No"
-			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
-			if(customise == "Yes")
-				var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
-				var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
-				var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
-				if(name1)
-					picture.picture_name = name1
-				if(desc1)
-					picture.picture_desc = "[desc1] - [picture.picture_desc]"
-				if(caption)
-					picture.caption = caption
-			else
-				if(default_picture_name)
-					picture.picture_name = default_picture_name
+		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
+		var/customise = "No"
+		if(can_customise)
+			customise = tgui_alert(user, "Do you want to customize the photo?", "Customization", list("Yes", "No"))
+		if(customise == "Yes")
+			var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
+			var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
+			var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
+			if(name1)
+				picture.picture_name = name1
+			if(desc1)
+				picture.picture_desc = "[desc1] - [picture.picture_desc]"
+			if(caption)
+				picture.caption = caption
+		else
+			if(default_picture_name)
+				picture.picture_name = default_picture_name
 
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()
+
+/obj/item/camera/tator
+	var/obj/item/assembly/flash/tator/flashy
+	COOLDOWN_DECLARE(flash_cooldown)
+
+/obj/item/camera/tator/Initialize()
+	. = ..()
+	flashy = new (src)
+
+/obj/item/camera/tator/attack(mob/living/carbon/human/M, mob/user)
+	if(is_syndicate(user) && flashy && COOLDOWN_FINISHED(src, flash_cooldown))
+		update_flash()
+		if(flashy.attack(M, user))
+			COOLDOWN_START(src, flash_cooldown, 9 SECONDS)
+		return
+	. = ..()
+
+/obj/item/camera/tator/proc/update_flash()
+	flashy.name = name
+	flashy.icon_state = icon_state
+	flashy.icon_state = item_state
+
+/obj/item/camera/tator/examine(mob/user)
+	. = ..()
+	if(is_syndicate(user)) //helpful to other syndicates
+		. += "This camera has an upgraded lightbulb and is capable of flashing people."
+
+/obj/item/assembly/flash/tator
+	name = "camera"
+	desc = "This flash is morbin'. You shouldn't see it."  //Anyone wouldn't see this so it is ok
+	burnout_resistance = 999999   //No burning out
+	icon = 'icons/obj/artstuff.dmi'
+	icon_state = "camera"
+	item_state = "camera"
+
+/obj/item/assembly/flash/tator/emp_act(severity)
+	return

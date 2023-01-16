@@ -1,12 +1,10 @@
 /obj/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
-		if(0) // BACKSTAB!
+	switch(abs(relative_dir))
+		if(180) // BACKSTAB!
 			return facing_modifiers[BACK_ARMOUR]
-		if(45, 90, 270, 315)
-			return facing_modifiers[SIDE_ARMOUR]
-		if(225, 180, 135)
+		if(0, 45)
 			return facing_modifiers[FRONT_ARMOUR]
-	return 1 //always return non-0
+	return facing_modifiers[SIDE_ARMOUR] //always return non-0
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -43,7 +41,7 @@
 				break
 
 	if(attack_dir)
-		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(src))
+		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
@@ -116,7 +114,7 @@
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun_uraniumslug))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
@@ -164,7 +162,7 @@
 		return
 	if(get_charge())
 		use_power((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, ENERGY, 1)
+		take_damage(40 / severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/mecha/combat))
@@ -319,7 +317,7 @@
 			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
-/obj/mecha/mech_melee_attack(obj/mecha/M)
+/obj/mecha/mech_melee_attack(obj/mecha/M, equip_allowed)
 	if(!has_charge(melee_energy_drain))
 		return 0
 	use_power(melee_energy_drain)
@@ -374,17 +372,28 @@
 			AI = occupant
 			occupant = null
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		if(capacitor)
+			WR.repair_efficiency = capacitor.rating // Capacitor is destroyed regardless of rating
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-			if(E.salvageable && prob(30))
-				WR.crowbar_salvage += E
+			if(E.salvageable && prob(20*WR.repair_efficiency))
 				E.detach(WR) //detaches from src into WR
 				E.equip_ready = 1
+				WR.equipment += E
 			else
 				E.detach(loc)
 				qdel(E)
-		if(cell)
-			WR.crowbar_salvage += cell
+		if(scanmod && WR.repair_efficiency > 2) // Scanning module is retained if capacitor is T3+
+			WR.scanmod = scanmod
+			scanmod.forceMove(WR)
+			scanmod = null
+		if(cell && WR.repair_efficiency > 3) // Cell is retained if capacitor is T4
+			WR.cell = cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
 			cell = null
+		if(WR.repair_efficiency <= 0)
+			WR.can_be_reconstructed = FALSE
+		else
+			WR.can_be_reconstructed = TRUE
+			WR.hint = span_notice("The parts are scattered apart, but can be <b>welded</b> back together.")
 	. = ..()

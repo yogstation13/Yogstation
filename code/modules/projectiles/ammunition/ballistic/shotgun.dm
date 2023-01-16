@@ -2,22 +2,23 @@
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
-	desc = "A 12 gauge lead slug."
+	desc = "A 12-gauge lead slug."
 	icon_state = "blshell"
 	caliber = "shotgun"
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/syndie
 	name = "syndicate shotgun slug"
-	desc = "An illegal type of ammunition used by the syndicate for their bulldog shotguns. Hopefully you're not the one on the receiving end."
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+	desc = "An illegal 12-gauge slug produced by the Syndicate."
+	icon_state = "sblshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/syndie
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_beanbag
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/beanbag
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/incendiary
@@ -31,21 +32,21 @@
 	desc = "A shotgun shell which fires a spread of incendiary pellets."
 	icon_state = "ishell2"
 	projectile_type = /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
-	pellets = 4
+	pellets = 5
 	variance = 35
 
 /obj/item/ammo_casing/shotgun/stunslug
 	name = "taser slug"
 	desc = "A stunning taser slug."
 	icon_state = "stunshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_stunslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/stun
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/meteorslug
 	name = "meteorslug shell"
 	desc = "A shotgun shell rigged with CMC technology, which launches a massive slug when fired."
 	icon_state = "mshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_meteorslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/meteor
 
 /obj/item/ammo_casing/shotgun/pulseslug
 	name = "pulse slug"
@@ -57,29 +58,27 @@
 
 /obj/item/ammo_casing/shotgun/frag12
 	name = "FRAG-12 slug"
-	desc = "A high explosive breaching round for a 12 gauge shotgun."
+	desc = "A high-explosive breaching round for a 12 gauge shotgun."
 	icon_state = "heshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_frag12
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/frag12
 
 /obj/item/ammo_casing/shotgun/buckshot
 	name = "buckshot shell"
-	desc = "A 12 gauge buckshot shell."
+	desc = "A 12-gauge buckshot shell."
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
 	variance = 25
 
-/obj/item/ammo_casing/shotgun/hpbuck
-	name = "hollow-point buckshot shell"
-	desc = "A 12 gauge hollow-point buckshot shell."
-	icon_state = "hpbshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
-	pellets = 6
-	variance = 25
+/obj/item/ammo_casing/shotgun/buckshot/syndie
+	name = "syndicate buckshot shell"
+	desc = "An illegal 12-gauge buckshot shell produced by the Syndicate."
+	icon_state = "sgshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
 
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
-	desc = "A 12 gauge flechette shell."
+	desc = "A 12-gauge flechette shell."
 	icon_state = "flshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
 	pellets = 6
@@ -133,7 +132,7 @@
 	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
 	very impressive armor penetration capabilities."
 	icon_state = "dushell" 
-	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/uranium
 
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
@@ -182,13 +181,6 @@
 /obj/item/ammo_casing/shotgun/dart/attackby()
 	return
 
-/obj/item/ammo_casing/shotgun/dart/noreact
-	name = "cryostasis shotgun dart"
-	desc = "A dart for use in shotguns, using similar technology as cryostatis beakers to keep internal reagents from reacting. Can be injected with up to 10 units of any chemical."
-	icon_state = "cnrshell"
-	reagent_amount = 10
-	no_react = TRUE
-
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
 
@@ -202,9 +194,9 @@
 
 /obj/item/ammo_casing/shotgun/breacher
 	name = "breaching slug"
-	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows with minimal shots. Only fits in tactical breaching shotguns."
+	desc = "A 12-gauge anti-material slug. Great for breaching airlocks and windows with minimal shots. Only fits in tactical breaching shotguns."
 	icon_state = "breacher"
-	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
 
