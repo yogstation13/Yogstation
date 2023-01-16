@@ -89,7 +89,7 @@
 	if (!is_donator(client))
 		return
 
-	ghost.update_icon(ALL, value)
+	ghost.update_icon(value)
 
 /datum/preference/choiced/ghost_form/compile_constant_data()
 	var/list/data = ..()

@@ -88,7 +88,7 @@ const GhostFormInput = (
 };
 
 export const ghost_form: FeatureChoiced = {
-  name: "Ghosts form",
+  name: "Ghost form",
   category: "GHOST",
   description: "The appearance of your ghost. Requires donator to customize.",
   component: GhostFormInput,

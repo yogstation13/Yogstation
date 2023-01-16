@@ -53,7 +53,7 @@
 	department_experience_type = EXP_TYPE_SECURITY
 	display_order = 2
 	label_class = "security"
-	ui_color = "#ffeeee"
+	ui_color = "#ffbbbb"
 
 
 /datum/job_department/engineering
