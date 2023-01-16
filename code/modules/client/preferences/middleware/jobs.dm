@@ -42,11 +42,12 @@
 
 	// TODO: Port proper department datums and update this shitfest
 	for(var/list/category in categories)
+		for(var/debug as anything in category)
+			WARNING(debug)
 		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
 		var/head_name
 
 		for(var/job_name as anything in category)
-			WARNING(job_name)
 			var/datum/job/job = SSjob.name_occupations[job_name]
 			if (!job)
 				continue
