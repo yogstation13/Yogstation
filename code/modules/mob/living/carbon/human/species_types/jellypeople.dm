@@ -14,7 +14,7 @@
 	liked_food = MEAT
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
-	burnmod = 0.5 // = 1/2x generic burn damage
+	burnmod = 1 // = regular burn damage unlike other slimes
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
@@ -118,6 +118,7 @@
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150
+	burnmod = 0.5 // = 1/2x generic burn damage
 	ignored_by = list(/mob/living/simple_animal/slime)
 	var/datum/action/innate/split_body/slime_split
 	var/list/mob/living/carbon/bodies
