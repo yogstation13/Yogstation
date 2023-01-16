@@ -29,7 +29,10 @@ export const setClientTheme = name => {
   Byond.command(`.output statbrowser:set_theme ${name}`);
   setClientThemeTimer = setTimeout(() => {
     Byond.command(`.output statbrowser:set_theme ${name}`);
-  }, 1500);
+    setClientThemeTimer = setTimeout(() => {
+      Byond.command(`.output statbrowser:set_theme ${name}`);
+    }, 1000);
+  }, 2500);
 
   if (name === 'light') {
     return Byond.winset({
@@ -57,11 +60,17 @@ export const setClientTheme = name => {
       'github.text-color': '#000000',
       'report-issue.background-color': 'none',
       'report-issue.text-color': '#000000',
+      'demoview.background-color': 'none',
+      'demoview.text-color': '#000000',
+      'tickets.background-color': 'none',
+      'tickets.text-color': '#000000',
       // Status and verb tabs
       'output.background-color': 'none',
       'output.text-color': '#000000',
       'statwindow.background-color': 'none',
       'statwindow.text-color': '#000000',
+      'statbrowser.background-color': 'none',
+      'statbrowser.text-color': '#000000',
       'stat.background-color': '#FFFFFF',
       'stat.tab-background-color': 'none',
       'stat.text-color': '#000000',
@@ -103,8 +112,12 @@ export const setClientTheme = name => {
       'wiki.text-color': COLOR_DARK_TEXT,
       'forum.background-color': '#494949',
       'forum.text-color': COLOR_DARK_TEXT,
-      'github.background-color': '#3a3a3a',
+      'github.background-color': '#494949',
       'github.text-color': COLOR_DARK_TEXT,
+      'demoview.background-color': '#494949',
+      'demoview.text-color': COLOR_DARK_TEXT,
+      'tickets.background-color': '#494949',
+      'tickets.text-color': COLOR_DARK_TEXT,
       'report-issue.background-color': '#492020',
       'report-issue.text-color': COLOR_DARK_TEXT,
       // Status and verb tabs
@@ -112,6 +125,8 @@ export const setClientTheme = name => {
       'output.text-color': COLOR_DARK_TEXT,
       'statwindow.background-color': COLOR_DARK_BG_DARKER,
       'statwindow.text-color': COLOR_DARK_TEXT,
+      'statbrowser.background-color': COLOR_DARK_BG_DARKER,
+      'statbrowser.text-color': COLOR_DARK_TEXT,
       'stat.background-color': COLOR_DARK_BG_DARKER,
       'stat.tab-background-color': COLOR_DARK_BG,
       'stat.text-color': COLOR_DARK_TEXT,

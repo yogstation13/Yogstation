@@ -273,7 +273,8 @@ a.popt {
 
 
 .italic,
-.italics {
+.italics,
+.emote {
   font-style: italic;
 }
 
@@ -301,7 +302,12 @@ em {
 }
 
 .ooc {
-  color: #002eb8;
+  color: #0000d1;
+  font-weight: bold;
+}
+
+.looc {
+  color: #63b2f2;
   font-weight: bold;
 }
 
@@ -316,9 +322,11 @@ em {
 }
 
 .adminsay {
-  color: #ff4500;
+  color: #996600;
   font-weight: bold;
 }
+
+.mentor	{}
 
 .admin {
   color: #4473ff;
@@ -329,7 +337,7 @@ em {
   font-weight: bold;
 }
 
-.say, .emote, .infoplain, .oocplain, .warningplain {
+.say {
 }
 
 .deadsay {
@@ -355,12 +363,16 @@ em {
   color: #008000;
 }
 
+.commonradio {
+  color: #008000;
+}
+
 .sciradio {
   color: #993399;
 }
 
 .comradio {
-  color: #948f02;
+  color: #204090;
 }
 
 .secradio {
@@ -380,15 +392,11 @@ em {
 }
 
 .servradio {
-  color: #6eaa2c;
+  color: #109987;
 }
 
 .syndradio {
   color: #6d3f40;
-}
-
-.gangradio {
-  color: #ac2ea1;
 }
 
 .centcomradio {
@@ -407,14 +415,6 @@ em {
   color: #0000ff;
 }
 
-.greenteamradio {
-  color: #00ff00;
-}
-
-.yellowteamradio {
-  color: #d1ba22;
-}
-
 .yell {
   font-weight: bold;
 }
@@ -425,6 +425,10 @@ em {
 
 h1.alert, h2.alert {
   color: #000000;
+}
+
+.emote {
+  font-style: italic;
 }
 
 .userdanger {
@@ -478,11 +482,6 @@ h1.alert, h2.alert {
   font-weight: bold;
 }
 
-.minorannounce {
-  font-weight: bold;
-  font-size: 185%;
-}
-
 .greenannounce {
   color: #00ff00;
   font-weight: bold;
@@ -490,6 +489,10 @@ h1.alert, h2.alert {
 
 .rose {
   color: #ff5050;
+}
+
+.velvet {
+  color: #631f3a;
 }
 
 .info {
@@ -501,23 +504,23 @@ h1.alert, h2.alert {
 }
 
 .tinynotice {
-  color: #000099;
+  color: #6685f5;
   font-size: 85%;
 }
 
 .tinynoticeital {
-  color: #000099;
+  color: #6685f5;
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
-  color: #000099;
+  color: #6685f5;
   font-size: 90%;
 }
 
 .smallnoticeital {
-  color: #000099;
+  color: #6685f5;
   font-style: italic;
   font-size: 90%;
 }
@@ -555,10 +558,6 @@ h1.alert, h2.alert {
   color: #03ff39;
 }
 
-.grey {
-  color: #838383;
-}
-
 .red {
   color: #FF0000;
 }
@@ -569,11 +568,6 @@ h1.alert, h2.alert {
 
 .nicegreen {
   color: #14a833;
-}
-
-.boldnicegreen {
-  color: #14a833;
-  font-weight: bold;
 }
 
 .cult {
@@ -613,6 +607,33 @@ h1.alert, h2.alert {
   color: #973e3b;
   font-weight: bold;
   font-size: 370%;
+}
+.shadowling{
+  color: #3b2769;;
+}
+.brass {
+  color: #BE8700;
+}
+.heavy_brass {
+  color: #BE8700;
+  font-weight: bold;
+  font-style: italic;
+}
+.large_brass {
+  color: #BE8700;
+  font-size: 185%;
+}
+.big_brass {
+  color: #BE8700;
+  font-size: 185%;
+  font-weight: bold;
+  font-style: italic;
+}
+.ratvar	{
+  color: #BE8700;
+  font-size: 925%;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .colossus {
@@ -727,11 +748,6 @@ h1.alert, h2.alert {
   font-family: "Courier New", cursive, sans-serif;
 }
 
-.tape_recorder {
-  color: #800000;
-  font-family: "Courier New", cursive, sans-serif;
-}
-
 .command_headset {
   font-weight: bold;
   font-size: 160%;
@@ -835,10 +851,6 @@ h1.alert, h2.alert {
   width: auto;
 }
 
-.bigicon {
-  font-size: 2.5em;
-}
-
 .memo {
   color: #638500;
   text-align: center;
@@ -933,7 +945,9 @@ h1.alert, h2.alert {
   margin-left: 3em;
 }
 
-.tooltip {
-  font-style: italic;
-  border-bottom: 1px dashed #000;
+.examine_block {
+  background: #f2f7fa;
+  border: 1px solid #111a27;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
 }
