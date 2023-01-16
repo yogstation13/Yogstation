@@ -397,6 +397,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
+	light_power = = 0.2	//Barely glows on low power
 	sharpness = SHARP_EDGED
 
 
@@ -406,12 +407,14 @@
 		tool_behaviour = TOOL_SAW
 		to_chat(user, span_notice("You increase the power, now it can cut bones."))
 		set_light_range(2)
+		set_light_power(1)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
 		set_light_range(1)
+		set_light_power(0.3)
 		force -= 1
 		icon_state = "scalpel_a"
 
