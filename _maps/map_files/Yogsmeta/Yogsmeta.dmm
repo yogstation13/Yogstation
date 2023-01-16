@@ -5270,10 +5270,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anu" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anw" = (
@@ -5714,6 +5711,14 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = -8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aoH" = (
@@ -16726,6 +16731,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/folder/red,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aOm" = (
@@ -17316,9 +17323,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPD" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/folder/red,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -17328,6 +17332,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aPE" = (
@@ -54425,30 +54430,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
-"ghF" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/rack,
-/obj/item/storage/box/flashes{
-	pixel_x = 3
-	},
-/obj/item/storage/box/teargas{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "ghX" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -56269,17 +56250,6 @@
 	pixel_x = 26
 	},
 /turf/open/floor/plating,
-/area/engine/atmos_distro)
-"hzb" = (
-/obj/machinery/atmospherics/components/trinary/mixer{
-	dir = 1;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "hzt" = (
 /obj/structure/disposalpipe/segment{
@@ -61475,6 +61445,30 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"kVe" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/rack,
+/obj/item/storage/box/flashes{
+	pixel_x = 3
+	},
+/obj/item/storage/box/teargas{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "kVv" = (
 /obj/item/book/manual/wiki/infections{
 	pixel_y = 7
@@ -65916,6 +65910,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"nMw" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "nNr" = (
 /obj/machinery/light{
 	dir = 4
@@ -108807,7 +108807,7 @@ aeq
 aeq
 afZ
 acx
-ghF
+kVe
 aiA
 akD
 akD
@@ -128143,7 +128143,7 @@ uck
 lTs
 qZJ
 ugL
-hzb
+nMw
 epf
 pkQ
 qpv

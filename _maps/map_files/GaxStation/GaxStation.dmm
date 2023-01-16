@@ -13272,7 +13272,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "guX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -14477,17 +14478,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"heV" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "hff" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 9
@@ -20884,9 +20874,13 @@
 	pixel_y = 3
 	},
 /obj/item/gun/energy/disabler,
-/obj/item/gun/energy/disabler{
+/obj/item/gun/ballistic/automatic/pistol/ntusp{
 	pixel_x = 3;
 	pixel_y = -3
+	},
+/obj/item/ammo_box/magazine/recharge/ntusp{
+	pixel_x = 9;
+	pixel_y = -7
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -23031,19 +23025,6 @@
 "lzV" = (
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"lAk" = (
-/obj/structure/table,
-/obj/item/storage/box/teargas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "lAn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -23288,6 +23269,12 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/n2,
+/area/engine/atmos_distro)
+"lGx" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped/inverse{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "lGC" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -28700,9 +28687,6 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "oqA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -28710,7 +28694,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = -29
 	},
-/obj/effect/landmark/xeno_spawn,
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "oqF" = (
@@ -45244,6 +45228,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"wQJ" = (
+/obj/structure/table,
+/obj/item/storage/box/teargas{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "wQK" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
@@ -65768,7 +65765,7 @@ xWd
 orF
 iJF
 sLY
-heV
+lGx
 ydx
 ojo
 rXM
@@ -70343,7 +70340,7 @@ aCD
 ubS
 tkl
 dll
-lAk
+wQJ
 omn
 jTz
 cLa
