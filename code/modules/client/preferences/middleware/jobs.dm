@@ -34,7 +34,7 @@
 	var/static/list/categories = list()
 	categories += list(GLOB.original_engineering_positions)
 	categories += list(GLOB.original_supply_positions - "Head of Personnel")
-	categories += list(GLOB.original_nonhuman_positions)
+	categories += list(GLOB.original_nonhuman_positions - "pAI")
 	categories += list(GLOB.original_civilian_positions - "Assistant" + "Head of Personnel")
 	categories += list(GLOB.original_science_positions)
 	categories += list(GLOB.original_security_positions)
