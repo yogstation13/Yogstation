@@ -34,15 +34,13 @@
 	var/static/list/categories = list()
 	categories += list(GLOB.original_engineering_positions)
 	categories += list(GLOB.original_supply_positions - "Head of Personnel")
-	categories += list(GLOB.original_nonhuman_positions - "pAI")
+	categories += list(GLOB.original_nonhuman_positions - ROLE_PAI)
 	categories += list(GLOB.original_civilian_positions - "Assistant" + "Head of Personnel")
 	categories += list(GLOB.original_science_positions)
 	categories += list(GLOB.original_security_positions)
 	categories += list(GLOB.original_medical_positions)
 
 	// TODO: Port proper department datums and update this shitfest
-	for(var/anything as anything in SSjob.name_occupations_all)
-		WARNING(anything)
 	for(var/list/category in categories)
 		for(var/debug as anything in category)
 			WARNING(debug)
