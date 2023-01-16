@@ -41,9 +41,13 @@
 	categories += list(GLOB.original_medical_positions)
 
 	// TODO: Port proper department datums and update this shitfest
+	for(var/anything as anything in SSjob.name_occupations_all)
+		WARNING(anything)
 	for(var/list/category in categories)
 		for(var/debug as anything in category)
 			WARNING(debug)
+			WARNING(category)
+			WARNING("RUNTIME BELOW BROKE ME")
 		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
 		var/head_name
 
