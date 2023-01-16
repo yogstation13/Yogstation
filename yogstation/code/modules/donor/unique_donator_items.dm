@@ -185,6 +185,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "slicerv"
 	unlock_path = /obj/item/toy/plush/axolotlplushie
 
+/datum/donator_gear/astywyn
+	name = "galactic slime"
+	ckey = "astywyn"
+	unlock_path = /obj/item/toy/plush/gslimeplushie
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
