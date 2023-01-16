@@ -321,6 +321,19 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	return TRUE
 
+/// Return whether or not we can apply this preference
+/datum/preference/proc/can_apply(datum/preferences/preferences)
+	SHOULD_NOT_SLEEP(TRUE)
+
+	if (!isnull(relevant_mutant_bodypart) || !isnull(relevant_species_trait))
+		var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+
+		var/datum/species/species = new species_type
+		if (!(savefile_key in species.get_features()))
+			return FALSE
+
+	return TRUE
+
 /// Returns whether or not, given the PREFERENCE_TAB_*, this preference should
 /// appear.
 /datum/preference/proc/should_show_on_page(preference_tab)
