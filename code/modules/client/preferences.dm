@@ -500,6 +500,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 			sum++
 	return sum
 
+/datum/preferences/proc/validate_quirks()
+	if(GetQuirkBalance() < 0)
+		all_quirks = list()
+
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	character.dna.features = list()
 
