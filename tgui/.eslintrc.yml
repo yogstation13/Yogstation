@@ -1,4 +1,5 @@
 root: true
+extends: prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2020
@@ -12,6 +13,7 @@ env:
 plugins:
   - radar
   - react
+  - unused-imports
 settings:
   react:
     version: '16.10'
@@ -306,16 +308,13 @@ rules:
   ## Enforce or disallow capitalization of the first letter of a comment
   # capitalized-comments: error
   ## Require or disallow trailing commas
-  comma-dangle: [
-      error,
-      {
-        arrays: always-multiline,
-        objects: always-multiline,
-        imports: always-multiline,
-        exports: always-multiline,
-        functions: only-multiline, ## Optional on functions
-      },
-    ]
+  comma-dangle: [error, {
+    arrays: always-multiline,
+    objects: always-multiline,
+    imports: always-multiline,
+    exports: always-multiline,
+    functions: only-multiline, ## Optional on functions
+  }]
   ## Enforce consistent spacing before and after commas
   comma-spacing: [error, { before: false, after: true }]
   ## Enforce consistent comma style
@@ -761,3 +760,4 @@ rules:
   react/jsx-wrap-multilines: error
   ## Prevents the use of unused imports.
   ## This could be done by enabling no-unused-vars, but we're doing this for now
+  unused-imports/no-unused-imports: error
