@@ -494,6 +494,7 @@ Difficulty: Hard
 /obj/effect/temp_visual/hierophant
 	name = "vortex energy"
 	layer = BELOW_MOB_LAYER
+	screen_loc = E3D_TYPE_FLOOR
 	var/mob/living/caster //who made this, anyway
 
 /obj/effect/temp_visual/hierophant/Initialize(mapload, new_caster)
@@ -520,6 +521,7 @@ Difficulty: Hard
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	duration = 100
 	smooth = SMOOTH_TRUE
+	screen_loc = E3D_TYPE_SMOOTHWALL
 
 /obj/effect/temp_visual/hierophant/wall/Initialize(mapload, new_caster)
 	. = ..()
@@ -711,6 +713,7 @@ Difficulty: Hard
 	light_range = 2
 	layer = LOW_OBJ_LAYER
 	anchored = TRUE
+	screen_loc = E3D_TYPE_FLOOR
 
 /obj/effect/hierophant/ex_act()
 	return
