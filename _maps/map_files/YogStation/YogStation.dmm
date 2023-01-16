@@ -1404,8 +1404,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "aic" = (
-/turf/closed/wall/r_wall,
-/area/hallway/secondary/exit)
+/turf/closed/wall,
+/area/maintenance/solars/port/fore)
 "aih" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/carpet,
@@ -2157,9 +2157,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/security/main)
-"ant" = (
-/turf/closed/wall,
-/area/maintenance/solars/port/fore)
 "anv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9176,6 +9173,9 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
+"bea" = (
+/turf/closed/wall/r_wall,
+/area/hallway/secondary/exit)
 "beg" = (
 /obj/structure/table/wood,
 /obj/machinery/camera{
@@ -9227,9 +9227,6 @@
 /obj/structure/door_assembly/door_assembly_mhatch,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"beq" = (
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "beC" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/oxygen_input{
 	dir = 4
@@ -9469,10 +9466,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bgc" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
+/turf/closed/wall,
+/area/crew_quarters/heads/hos)
 "bgh" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -11331,10 +11326,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
-"bvK" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "bvL" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -12832,9 +12823,8 @@
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bHi" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/turf/closed/wall,
+/area/crew_quarters/heads/chief)
 "bHn" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Security Maintenance";
@@ -13179,9 +13169,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bLe" = (
-/turf/closed/wall,
-/area/crew_quarters/heads/chief)
 "bLf" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible,
 /obj/effect/landmark/xeno_spawn,
@@ -15000,6 +14987,9 @@
 /obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"cfw" = (
+/turf/closed/wall,
+/area/security/warden)
 "cfD" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -15112,9 +15102,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cgO" = (
-/turf/closed/wall,
-/area/security/warden)
 "cgR" = (
 /obj/structure/table,
 /obj/item/stack/rods/fifty,
@@ -28320,9 +28307,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"htI" = (
-/turf/closed/wall,
-/area/ai_monitored/secondarydatacore)
 "htO" = (
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/secondary/exit";
@@ -32662,6 +32646,10 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"jhe" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "jhp" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -39831,9 +39819,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"mof" = (
-/turf/closed/wall,
-/area/crew_quarters/heads/hos)
 "moy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -41104,10 +41089,6 @@
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"mNn" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "mNo" = (
 /obj/machinery/vending/assist,
 /obj/machinery/airalarm{
@@ -52914,11 +52895,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"rPO" = (
-/obj/structure/closet,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "rPT" = (
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
@@ -63772,10 +63748,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"wmY" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "wnz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -83800,8 +83772,8 @@ alR
 alR
 alR
 alR
-ant
-ant
+aic
+aic
 alU
 alU
 alU
@@ -84825,11 +84797,11 @@ aaa
 gXs
 aaa
 aaa
-ant
-ant
-ant
-ant
-ant
+aic
+aic
+aic
+aic
+aic
 alU
 alU
 alU
@@ -97153,9 +97125,9 @@ aaZ
 aaZ
 upk
 hSO
-cgO
+cfw
 ewO
-cgO
+cfw
 lIb
 lLO
 wYv
@@ -98531,7 +98503,7 @@ rkO
 biP
 cfb
 cdi
-bLe
+bHi
 ugK
 qMu
 oTG
@@ -99211,7 +99183,7 @@ agr
 agt
 ayd
 quK
-cgO
+cfw
 mpL
 lLO
 xIP
@@ -99468,7 +99440,7 @@ upk
 ewO
 sdW
 ewO
-cgO
+cfw
 mLd
 lLO
 nSq
@@ -100996,7 +100968,7 @@ aaa
 aaa
 aaa
 aaf
-mof
+bgc
 abq
 abq
 abq
@@ -117805,7 +117777,7 @@ atN
 atN
 atN
 atN
-bHi
+jhe
 fXS
 cOe
 gpq
@@ -118062,7 +118034,7 @@ sLZ
 ief
 tXb
 oGM
-rPO
+cOx
 fXS
 cOe
 gpq
@@ -118319,7 +118291,7 @@ kJz
 mSg
 wnI
 oGM
-rPO
+cOx
 fXS
 chH
 cNW
@@ -118576,7 +118548,7 @@ oxg
 dBH
 pDa
 oGM
-mNn
+bMB
 fXS
 cNW
 cNW
@@ -118833,7 +118805,7 @@ oxg
 twt
 wnI
 oGM
-bvK
+bNA
 fXS
 bNA
 cOe
@@ -119030,7 +119002,7 @@ osI
 hld
 nDj
 yaD
-aic
+bea
 aOb
 aPq
 aPq
@@ -119090,7 +119062,7 @@ oxg
 tQv
 iiJ
 oGM
-wmY
+axl
 fXS
 cOe
 cOe
@@ -119287,7 +119259,7 @@ nYC
 iEt
 udt
 mUs
-aic
+bea
 aMZ
 aMZ
 aMZ
@@ -119347,7 +119319,7 @@ oGM
 oGM
 oGM
 oGM
-beq
+cOe
 fXS
 cjE
 bMB
@@ -119544,7 +119516,7 @@ fxr
 uVA
 afW
 aFR
-aic
+bea
 eVK
 kAe
 rHv
@@ -119601,9 +119573,9 @@ cOe
 cOe
 cOe
 cOe
-beq
-bgc
-htI
+cOe
+cmo
+cNW
 cOe
 fXS
 lLH
@@ -119801,7 +119773,7 @@ xBH
 sHo
 sHo
 lsn
-aic
+bea
 odE
 tHk
 mZa
@@ -120058,7 +120030,7 @@ aNZ
 sHo
 sHo
 sHo
-aic
+bea
 odE
 aPq
 hrX
@@ -120315,7 +120287,7 @@ pMy
 sHo
 sHo
 sHo
-aic
+bea
 odE
 thb
 sQs
