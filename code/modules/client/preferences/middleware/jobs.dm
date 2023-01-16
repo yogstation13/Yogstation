@@ -46,7 +46,7 @@
 		var/head_name
 
 		for(var/job_name as anything in category)
-			world << anything
+			world << job_name
 			var/datum/job/job = SSjob.name_occupations[job_name]
 			if (!job)
 				continue
