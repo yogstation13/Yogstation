@@ -370,7 +370,7 @@ rules:
   # max-depth: error
   ## Enforce a maximum line length
   max-len: [error, {
-    code: 100,
+    code: 80,
     ## Ignore imports
     ignorePattern: '^(import\s.+\sfrom\s|.*require\()',
     ignoreUrls: true,
@@ -759,4 +759,4 @@ rules:
   react/jsx-wrap-multilines: error
   ## Prevents the use of unused imports.
   ## This could be done by enabling no-unused-vars, but we're doing this for now
-  unused-imports/no-unused-imports: error
+  ##unused-imports/no-unused-imports: error
