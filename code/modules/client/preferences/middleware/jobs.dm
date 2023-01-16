@@ -42,7 +42,6 @@
 
 	// TODO: Port proper department datums and update this shitfest
 	for(var/list/category in categories)
-		stack_trace(category)
 		var/department_name = SSjob.name_occupations_all[category[1]].exp_type_department
 		var/head_name
 
