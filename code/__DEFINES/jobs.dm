@@ -147,5 +147,3 @@
 #define IS_SCIENCE(target) (find_job(target) in GLOB.science_positions)
 #define IS_CARGO(target) (find_job(target) in GLOB.supply_positions)
 #define IS_SECURITY(target) (find_job(target) in GLOB.security_positions)
-
-#define DEPARTMENT_UNASSIGNED "No Department"
