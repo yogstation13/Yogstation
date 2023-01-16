@@ -21,13 +21,10 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/yog_jungle/death(gibbed)
-	if(health > 0)
-		return
-	else
-		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		if(C && crusher_loot && C.total_damage >= maxHealth * 0.6 && crusher_loot)
-			loot += crusher_loot
-		..()
+	var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	if(C && crusher_loot && C.total_damage >= maxHealth * 0.6 && crusher_loot)
+		loot += crusher_loot
+	. = ..()
 /mob/living/simple_animal/hostile/yog_jungle/dryad
 	name = "Jungle spirit"
 	desc = "A spirit of the jungle, protector of the forest, heals the ones in need, and butchers the ones that plauge the forest."

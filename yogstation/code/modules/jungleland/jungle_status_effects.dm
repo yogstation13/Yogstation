@@ -171,14 +171,12 @@
 	id = "tar_shield"
 	duration = 5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
-	var/image/cached_image
-
-/datum/status_effect/tar_shield/on_creation(mob/living/new_owner, ...)
-	. = ..()
-	cached_image = image(icon = 'yogstation/icons/effects/effects.dmi',icon_state = "tar_shield")
+	var/mutable_appearance/cached_image
+	alert_type = null
 
 /datum/status_effect/tar_shield/on_apply()
 	. = ..()
+	cached_image = mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield")
 	owner.add_overlay(cached_image)
 	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,.proc/react_to_attack)
 
