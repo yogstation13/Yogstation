@@ -184,3 +184,9 @@
 	item_state = "axolotl"
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
+/obj/item/toy/plush/gslimeplushie
+	name = "galactic slime"
+	desc = "usually it would be impossible to get something like this...But do to your current situation."
+	icon_state = "plushie_gslime"
+	attack_verb = list("splats", "goop")
+	
