@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Apply this preference onto the given client.
 /// Called when the savefile_identifier == PREFERENCE_PLAYER.
 /datum/preference/proc/apply_to_client(client/client, value)
-	SHOULD_NOT_SLEEP(TRUE)
+	//SHOULD_NOT_SLEEP(TRUE) // Broken because we have a bunch of sleeping shit
 	SHOULD_CALL_PARENT(FALSE)
 	return
 
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Must be overriden by subtypes.
 /// Called when the savefile_identifier == PREFERENCE_CHARACTER.
 /datum/preference/proc/apply_to_human(mob/living/carbon/human/target, value)
-	SHOULD_NOT_SLEEP(TRUE)
+	//SHOULD_NOT_SLEEP(TRUE) // Broken because we have a bunch of sleeping shit
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("`apply_to_human()` was not implemented for [type]!")
 
