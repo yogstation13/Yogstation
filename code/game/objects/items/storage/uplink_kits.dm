@@ -358,7 +358,7 @@
 			<ol>
 				<li>Open the Syndicate Contract Uplink program.</li>
 				<li>Here, you can accept a contract, and redeem your TC payments from completed contracts.</li>
-				<li>The payment number shown in brackets is the bonus you'll recieve when bringing your target <b>alive</b>. You recieve the
+				<li>The payment number shown in brackets is the bonus you'll receive when bringing your target <b>alive</b>. You receive the
 				other number regardless of if they were alive or dead.</li>
 				<li>Contracts are completed by bringing the target to designated dropoff, calling for extraction, and putting them
 				inside the pod.</li>
@@ -378,7 +378,7 @@
 			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
 			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
-			
+
 			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 
 	return ..()
@@ -502,7 +502,7 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
-	
+
 /obj/item/storage/box/syndie_kit/imp_mindshield
 	real_name = "mindshield implant box"
 
@@ -603,7 +603,7 @@
 	new /obj/item/hemostat/supermatter(src)
 	new /obj/item/nuke_core_container/supermatter(src)
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
-	
+
 /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	real_name = "box"
 
