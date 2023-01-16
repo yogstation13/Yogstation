@@ -1,5 +1,5 @@
 import { CheckboxInput, Feature, FeatureChoicedServerData, FeatureToggle, FeatureDropdownInput, FeatureValueProps } from "../base";
-import { BooleanLike} from "common/react";
+import { BooleanLike } from "common/react";
 import { useBackend } from "../../../../../backend";
 import { PreferencesMenuData } from "../../../data";
 
