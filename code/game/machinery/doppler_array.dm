@@ -108,10 +108,10 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 	/*****The Point Calculator*****/
 
-	if(orig_light_range < 10)
+	if(orig_light_range > -TOXINS_RESEARCH_LAMBDA && orig_light_range < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light_range >= INFINITY) // Colton-proofs the doppler array
+	else if(orig_light_range <= -INFINITY || orig_light_range >= INFINITY) // Colton-proofs the doppler array
 		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
 		point_gain = TOXINS_RESEARCH_MAX
 	else

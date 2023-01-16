@@ -60,7 +60,7 @@
 	QDEL_NULL(alert_light)
 	if(a_intent != INTENT_HELP)
 		icon_state = "[initial(icon_state)]_attack"
-		alert_light = mob_light(COLOR_RED_LIGHT, 6, 0.4)
+		alert_light = mob_light(6, 0.4, COLOR_RED_LIGHT)
 	else
 		icon_state = initial(icon_state)
 
