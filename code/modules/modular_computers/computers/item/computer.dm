@@ -55,6 +55,12 @@
 	max_integrity = 100
 	armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 0, ACID = 0)
 
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 0.6
+	light_color = "#FFFFFF"
+	light_on = FALSE
+
 	/// List of "connection ports" in this computer and the components with which they are plugged
 	var/list/all_components = list()
 	/// Lazy List of extra hardware slots that can be used modularly.
@@ -67,12 +73,10 @@
 	var/obj/physical = null
 	///If the computer has a flashlight/LED light/what-have-you installed
 	var/has_light = FALSE
-	///If that light is enabled
-	var/light_on = FALSE
 	///The brightness of that light
 	var/comp_light_luminosity = 3
 	///The color of that light
-	var/comp_light_color
+	var/comp_light_color = "#FFFFFF"
 
 	// Preset Stuff
 	var/list/starting_components = list()
@@ -88,7 +92,8 @@
 	START_PROCESSING(SSobj, src)
 	if(!physical)
 		physical = src
-	comp_light_color = "#FFFFFF"
+	set_light_color(comp_light_color)
+	set_light_range(comp_light_luminosity)
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
@@ -502,6 +507,34 @@
 	enabled = FALSE
 	update_icon()
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
+
+/**
+  * Toggles the computer's flashlight, if it has one.
+  *
+  * Called from ui_act(), does as the name implies.
+  * It is seperated from ui_act() to be overwritten as needed.
+*/
+/obj/item/modular_computer/proc/toggle_flashlight()
+	if(!has_light)
+		return FALSE
+	set_light_on(!light_on)
+	update_icon()
+	return TRUE
+
+/**
+  * Sets the computer's light color, if it has a light.
+  *
+  * Called from ui_act(), this proc takes a color string and applies it.
+  * It is seperated from ui_act() to be overwritten as needed.
+  * Arguments:
+  ** color is the string that holds the color value that we should use. Proc auto-fails if this is null.
+*/
+/obj/item/modular_computer/proc/set_flashlight_color(color)
+	if(!has_light || !color)
+		return FALSE
+	comp_light_color = color
+	set_light_color(color)
+	return TRUE
 
 /obj/item/modular_computer/screwdriver_act(mob/user, obj/item/tool)
 	if(!all_components.len)

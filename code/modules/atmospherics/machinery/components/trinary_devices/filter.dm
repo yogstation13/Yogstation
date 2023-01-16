@@ -65,7 +65,7 @@
 	var/on_state = on && nodes[1] && nodes[2] && nodes[3] && is_operational()
 	icon_state = "filter_[on_state ? "on" : "off"]-[set_overlay_offset(piping_layer)][flipped ? "_f" : ""]"
 
-/obj/machinery/atmospherics/components/trinary/filter/process_atmos(delta_time)
+/obj/machinery/atmospherics/components/trinary/filter/process_atmos()
 	..()
 	if(!on || !(nodes[1] && nodes[2] && nodes[3]) || !is_operational())
 		return
@@ -78,7 +78,7 @@
 	var/datum/gas_mixture/air2 = airs[2]
 	var/datum/gas_mixture/air3 = airs[3]
 
-	var/transfer_ratio = (transfer_rate * delta_time) / air1.return_volume()
+	var/transfer_ratio = transfer_rate / air1.return_volume()
 
 	if(transfer_ratio <= 0)
 		return

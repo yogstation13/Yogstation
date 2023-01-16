@@ -83,6 +83,8 @@ SUBSYSTEM_DEF(vis_overlays)
 	var/list/overlays_to_remove = list()
 	for(var/i in thing.managed_vis_overlays - unique_vis_overlays)
 		var/obj/effect/overlay/vis/overlay = i
+		if(!overlay)
+			continue
 		add_vis_overlay(thing, overlay.icon, overlay.icon_state, overlay.layer, overlay.plane, turn(overlay.dir, rotation), overlay.alpha, overlay.appearance_flags)
 		overlays_to_remove += overlay
 	for(var/i in thing.managed_vis_overlays & unique_vis_overlays)
