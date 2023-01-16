@@ -84,6 +84,10 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	else
 		return ..()
 
+/obj/item/stack/rods/dropped(mob/user, silent)
+	. = ..()
+	playsound(loc, 'sound/items/metalpipefalling.ogg', 50, 1, -1)
+
 /obj/item/stack/rods/cyborg
 	materials = list()
 	is_cyborg = 1
