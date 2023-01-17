@@ -41,7 +41,9 @@
 	var/choice = input(M,"Which item would you like to order?","Select an Item") as null|anything in display_names
 	if(!choice || !M.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-
+	if(is_centcom_level(src.z))
+		visible_message(M, span_notice("You are unable to call this here."))
+		return 
 	spawn_option(display_names[choice],M)
 	uses--
 	if(!uses)

@@ -5,14 +5,16 @@
 	damage = 20
 	wound_bonus = -20
 	bare_wound_bonus = 10
-	light_range = 2
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	flag = LASER
 	eyeblur = 2
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 2
 	light_color = LIGHT_COLOR_RED
+	light_flags = LIGHT_NO_LUMCOUNT
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL

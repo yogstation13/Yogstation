@@ -144,7 +144,7 @@
 
 /*---------------------------------------------------------------
 
-	start of pocket pistol section
+	start of pocket pistol section 
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
@@ -159,6 +159,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
+	item_flags = DROPDEL
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
@@ -196,10 +197,6 @@
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You stash your revolver away."))	
 	qdel(src)
-
-/obj/item/gun/ballistic/revolver/ipcmartial/dropped(mob/user)//for if your arm gets chopped off while holding it
-	. = ..()
-	qdel(src)
 /*---------------------------------------------------------------
 
 	end of pocket pistol section
@@ -225,6 +222,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
+	item_flags = DROPDEL
 
 /obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/ipcmartial
@@ -257,10 +255,6 @@
 
 /obj/item/gun/ballistic/shotgun/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You relax your gun hand."))	
-	qdel(src)
-
-/obj/item/gun/ballistic/shotgun/ipcmartial/dropped(mob/user)//for if your arm gets chopped off while holding it
-	. = ..()
 	qdel(src)
 /*---------------------------------------------------------------
 
