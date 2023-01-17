@@ -206,7 +206,7 @@
 
 /obj/machinery/stasis/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The stasis bed's safeties are already overriden!"))
+		to_chat(user, span_warning("The stasis bed's safeties are already overridden!"))
 		return
 	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED

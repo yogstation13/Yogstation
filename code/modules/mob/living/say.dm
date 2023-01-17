@@ -386,6 +386,23 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
+	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(SLOT_BELT), get_item_by_slot(SLOT_R_STORE), get_item_by_slot(SLOT_L_STORE), get_item_by_slot(SLOT_S_STORE))
+	for(var/obj/item/radio/hand in storage_item)
+		if(message_mods[MODE_HEADSET])
+			hand.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in hand.channels))
+			hand.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+
+	for (var/obj/item/radio/intercom/I in view(1, null))
+		if(message_mods[MODE_HEADSET])
+			I.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in I.channels))
+			I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+			
 	switch(message_mods[RADIO_EXTENSION])
 		if(MODE_R_HAND)
 			for(var/obj/item/r_hand in get_held_items_for_side("r", all = TRUE))

@@ -42,14 +42,17 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - default_spread //Set this way so laser sights work properly. Default value of 0
 	select = !select
 	if(!select)
 		burst_size = 1
 		fire_delay = 0
+		spread -= spread_difference //Has to be subtraction because laser sight
 		to_chat(user, span_notice("You switch to semi-automatic."))
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
+		spread += spread_difference //Has to be addition because laser sight
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
@@ -166,11 +169,13 @@
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - default_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
 	switch(select)
 		if(0)
 			select = 1
 			burst_size = initial(burst_size)
 			fire_delay = initial(fire_delay)
+			spread += spread_difference
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 		if(1)
 			select = 2
@@ -179,6 +184,7 @@
 			select = 0
 			burst_size = 1
 			fire_delay = 0
+			spread -= spread_difference
 			to_chat(user, span_notice("You switch to semi-auto."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	update_icon()

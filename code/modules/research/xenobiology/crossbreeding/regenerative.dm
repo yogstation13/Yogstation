@@ -262,7 +262,11 @@ Regenerative extracts:
 	if(target == user)
 		return
 	var/mob/living/U = user
-	U.revive(full_heal = 1)
+	U.adjustBruteLoss(-25)
+	U.adjustFireLoss(-25)
+	U.adjustOxyLoss(-25)
+	U.adjustToxLoss(-25)
+	U.adjustCloneLoss(-50)
 	to_chat(U, span_notice("Some of the milky goo sprays onto you, as well!"))
 
 /obj/item/slimecross/regenerative/adamantine

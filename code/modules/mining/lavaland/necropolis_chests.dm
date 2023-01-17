@@ -230,6 +230,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
 	return slot == SLOT_NECK
 
+/obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
+	if(active_owner && user == active_owner)
+		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
+		if(safety != "Proceed")
+			return 
+	. = ..()
+	
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -257,11 +264,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
+		RegisterSignal(user, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
+	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
 	if(!active_owner)
 		return
+	UnregisterSignal(active_owner, COMSIG_ITEM_PRESTRIP)
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
 	to_chat(H, span_userdanger("You feel your life rapidly slipping away from you!"))
@@ -328,7 +340,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "Happy to light your way."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "orb"
+	light_system = MOVABLE_LIGHT
 	light_range = 7
+	light_flags = LIGHT_ATTACHED
 	layer = ABOVE_ALL_MOB_LAYER
 	var/sight_flags = SEE_MOBS
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -654,13 +668,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -888,8 +902,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/melee/transforming/cleaving_saw/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"].\n"+\
-	"Both modes will build up existing bleed effects, doing a burst of high damage if the bleed is built up high enough.\n"+\
+	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna, while getting you blood-drunk":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed, dealing passive damage"].\n"+\
+	"Both modes will build up existing bleed effects, doing a burst of high damage and healing you if the bleed is built up high enough.\n"+\
 	"Transforming it immediately after an attack causes the next attack to come out faster.</span>"
 
 /obj/item/melee/transforming/cleaving_saw/suicide_act(mob/user)
@@ -909,9 +923,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/transforming/cleaving_saw/transform_messages(mob/living/user, supress_message_text)
 	if(!supress_message_text)
 		if(active)
-			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna."))
+			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna, getting you drunk on blood."))
 		else
-			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed."))
+			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed, letting you drink their blood to heal."))
 	playsound(user, 'sound/magic/clockwork/fellowship_armory.ogg', 35, TRUE, frequency = 90000 - (active * 30000))
 
 /obj/item/melee/transforming/cleaving_saw/clumsy_transform_effect(mob/living/user)
@@ -919,10 +933,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(user, span_warning("You accidentally cut yourself with [src], like a doofus!"))
 		user.take_bodypart_damage(10)
 
-/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
 	if(!active)
 		user.changeNext_move(CLICK_CD_MELEE * 0.5) //when closed, it attacks very rapidly
+	else
+		if(iscarbon(target) && prob(25)) //RNG wound application regardless of armor.
+			var/mob/living/carbon/carbon_target = target
+			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+			var/datum/wound/slash/moderate/crit_wound = new
+			user.visible_message(span_boldwarning("[user] cleaves [target] delivering a viscious wound!"))
+			crit_wound.apply_wound(bodypart)
 
 /obj/item/melee/transforming/cleaving_saw/nemesis_effects(mob/living/user, mob/living/target)
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
@@ -930,7 +951,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!active) //This isn't in the above if-check so that the else doesn't care about active
 			target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
 	else
+		if(active && prob(33)) //This isn't in an else check above so that it doesn't care if they're not bleeding.
+			user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)
 		B.add_bleed(B.bleed_buildup)
+
+	if(B.needs_to_bleed)
+		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
+		user.adjustBruteLoss(-10)
+		user.adjustFireLoss(-10)
+		user.adjustToxLoss(-10)
+		user.blood_volume += 10
 
 /obj/item/melee/transforming/cleaving_saw/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!active || swiping || !target.density || get_turf(target) == get_turf(user))
@@ -1161,7 +1191,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon = 'icons/obj/guns/magic.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	force = 12
 	damtype = BURN
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hitsound = 'sound/weapons/sear.ogg'
@@ -1328,7 +1358,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
+	ahead of the user with blood. They're particularly effective against lavaland fauna."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1340,12 +1371,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/next_splash = 0
 	var/next_knuckle = 0
 	var/splash_range = 9
+	var/fauna_damage_bonus = 32
+	var/fauna_damage_type = BRUTE
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
 	var/mob/living/L = target
-	if (proximity)
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+	if(proximity)
 		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
 			L.apply_status_effect(/datum/status_effect/roots)
 			return
@@ -1364,7 +1399,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	if(next_splash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	user.visible_message(span_warning("[user] splashes blood from [user.p_their()] knuckles!"))
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
@@ -1872,9 +1907,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(NOBLOOD in H.dna.species.species_traits)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage
-		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
+		to_chat(H, span_notice("Your head pounds as you produce bloodlings!"))
 	else
-		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
+		to_chat(H, span_notice("You spill your blood, and it comes to life as bloodlings!"))
 		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown

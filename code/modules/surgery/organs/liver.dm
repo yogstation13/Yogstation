@@ -4,6 +4,7 @@
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
@@ -65,6 +66,9 @@
 	S.reagents.add_reagent(/datum/reagent/iron, 5)
 	return S
 
+/obj/item/organ/liver/get_availability(datum/species/species)
+	return !(NOLIVER in species.species_traits)
+
 /obj/item/organ/liver/fly
 	name = "insectoid liver"
 	icon_state = "liver-x" //xenomorph liver? It's just a black liver so it fits.
@@ -123,7 +127,7 @@
 	name = "substance processor"
 	icon_state = "substance_processor"
 	attack_verb = list("processed")
-	desc = "A machine component, installed in the chest. This grants the Machine the ability to process chemicals that enter its systems."
+	desc = "A machine component, installed in the chest. This grants the machine the ability to process chemicals that enter its systems."
 	alcohol_tolerance = 0
 	toxTolerance = -1
 	toxLethality = 0

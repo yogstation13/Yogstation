@@ -829,11 +829,11 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/stack/medical/aloe(location)
 
-/datum/chemical_reaction/sulfuric_acid
+/datum/chemical_reaction/sulphuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
 	results = list(/datum/reagent/toxin/acid = 2)
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulphur = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/sugar
 	name = /datum/reagent/consumable/sugar

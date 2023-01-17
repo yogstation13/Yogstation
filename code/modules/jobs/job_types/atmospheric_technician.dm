@@ -1,6 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
+	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
 	flag = ATMOSTECH
+	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -10,7 +12,7 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer")
+	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist")
 
 	outfit = /datum/outfit/job/atmos
 
@@ -30,6 +32,8 @@
 	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "a gas leak"
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3

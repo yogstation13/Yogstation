@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	icon_state = "magicOrange"
 	icon_living = "magicOrange"
 	icon_dead = "magicOrange"
-	speed = 0
+	speed = -1
 	a_intent = INTENT_HARM
 	stop_automated_movement = TRUE
 	movement_type = FLYING // Immunity to chasms and landmines, etc.
@@ -44,6 +44,9 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 	hud_type = /datum/hud/guardian
 	see_in_dark = 8
 	var/list/barrier_images = list()
@@ -547,12 +550,12 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	cooldown = world.time + 10
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
-	if (light_range<3)
+	if(!light_on)
 		to_chat(src, span_notice("You activate your light."))
-		set_light(3)
+		set_light_on(TRUE)
 	else
 		to_chat(src, span_notice("You deactivate your light."))
-		set_light(0)
+		set_light_on(FALSE)
 
 /mob/living/simple_animal/hostile/guardian/verb/show_detail()
 	set name = "Show Powers"

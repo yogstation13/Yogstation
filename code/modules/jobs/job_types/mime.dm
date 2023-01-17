@@ -1,6 +1,8 @@
 /datum/job/mime
 	title = "Mime"
+	description = "..."
 	flag = MIME
+	orbit_icon = "comment-slash"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -27,6 +29,8 @@
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)
+
+	smells_like = "complete nothingness"
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	H.apply_pref_name("mime", M.client)

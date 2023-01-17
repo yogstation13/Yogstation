@@ -1440,6 +1440,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/narsour/on_mob_life(mob/living/carbon/M)
 	M.cultslurring = min(M.cultslurring + 3, 3)
 	M.stuttering = min(M.stuttering + 3, 3)
+	if(iscultist(M))
+		M.heal_overall_damage(0.5, 0.5)
 	..()
 
 /datum/reagent/consumable/ethanol/triple_sec

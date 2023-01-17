@@ -44,11 +44,17 @@
 	initialized_at = world.time
 	// Perform a clean initialization
 	window.initialize(inline_assets = list(
-		get_asset_datum(/datum/asset/simple/tgui_common),
 		get_asset_datum(/datum/asset/simple/tgui_panel),
 	))
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
+	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/tgfont))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))
+	// Preload assets for /datum/tgui
+	var/datum/asset/asset_tgui = get_asset_datum(/datum/asset/simple/tgui)
+	var/flush_queue = asset_tgui.send(src.client)
+	if(flush_queue)
+		src.client.browse_queue_flush()
+	// Other setup
 	request_telemetry()
 	if(!telemetry_connections && retries < 6)
 		addtimer(CALLBACK(src, .proc/check_telemetry), 2 SECONDS)

@@ -65,6 +65,7 @@
 			bloodsucker.physiology.brute_mod *= 0
 			bloodsucker.eye_color = "f00"
 			ADD_TRAIT(bloodsucker, CULT_EYES, BLOODSUCKER_TRAIT)
+			bloodsucker.faction |= "bloodhungry"
 			bloodsucker.update_body()
 			var/obj/item/organ/heart/nightmare/nightmarish_heart = new
 			nightmarish_heart.Insert(bloodsucker)

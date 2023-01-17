@@ -58,9 +58,11 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(stage == GRENADE_WIRED)
 			if(beakers.len)
-				stage_change(GRENADE_READY)
-				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
 				I.play_tool_sound(src, 25)
+				to_chat(user, span_notice("You begin to secure the grenade assembly."))
+				if(do_after(user, 3 SECONDS, src))
+					stage_change(GRENADE_READY)
+					to_chat(user, span_notice("You lock the [initial(name)] assembly."))
 			else
 				to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
 		else if(stage == GRENADE_READY)
@@ -551,7 +553,7 @@
 
 /obj/item/grenade/chem_grenade/bioterrorfoam
 	name = "Bio terror foam grenade"
-	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irration, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
+	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irritation, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/bioterrorfoam/Initialize()

@@ -116,8 +116,8 @@
 	list_reagents = list(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/facid
-	name = "Fluorosulfuric Acid Bottle"
-	desc = "A small bottle. Contains a small amount of fluorosulfuric acid."
+	name = "Fluorosulphuric Acid Bottle"
+	desc = "A small bottle. Contains a small amount of fluorosulphuric acid."
 	list_reagents = list(/datum/reagent/toxin/acid/fluacid = 30)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
@@ -379,9 +379,9 @@
 	name = "phosphorus bottle"
 	list_reagents = list(/datum/reagent/phosphorus = 30)
 
-/obj/item/reagent_containers/glass/bottle/sulfur
-	name = "sulfur bottle"
-	list_reagents = list(/datum/reagent/sulfur = 30)
+/obj/item/reagent_containers/glass/bottle/sulphur
+	name = "sulphur bottle"
+	list_reagents = list(/datum/reagent/sulphur = 30)
 
 /obj/item/reagent_containers/glass/bottle/chlorine
 	name = "chlorine bottle"

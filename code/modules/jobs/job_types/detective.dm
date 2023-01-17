@@ -1,6 +1,9 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -38,6 +41,8 @@
 	)
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	smells_like = "whisky-soaked despair"
 
 /datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2

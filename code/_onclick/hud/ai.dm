@@ -116,25 +116,15 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.checklaws()
 
-/atom/movable/screen/ai/pda_msg_send
-	name = "PDA - Send Message"
+/atom/movable/screen/ai/mod_pc
+	name = "Modular Interface"
 	icon_state = "pda_send"
 
-/atom/movable/screen/ai/pda_msg_send/Click()
+/atom/movable/screen/ai/mod_pc/Click()
 	if(..())
 		return
 	var/mob/living/silicon/ai/AI = usr
-	AI.cmd_send_pdamesg(usr)
-
-/atom/movable/screen/ai/pda_msg_show
-	name = "PDA - Show Message Log"
-	icon_state = "pda_receive"
-
-/atom/movable/screen/ai/pda_msg_show/Click()
-	if(..())
-		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.cmd_show_message_log(usr)
+	AI.modularInterface?.interact(usr)
 
 /atom/movable/screen/ai/image_take
 	name = "Take Image"
@@ -266,14 +256,9 @@
 	using.screen_loc = ui_ai_state_laws
 	static_inventory += using
 
-//PDA message
-	using = new /atom/movable/screen/ai/pda_msg_send()
+//Integrated Tablet
+	using = new /atom/movable/screen/ai/mod_pc()
 	using.screen_loc = ui_ai_pda_send
-	static_inventory += using
-
-//PDA log
-	using = new /atom/movable/screen/ai/pda_msg_show()
-	using.screen_loc = ui_ai_pda_log
 	static_inventory += using
 
 //Take image

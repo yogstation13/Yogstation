@@ -53,7 +53,7 @@
 	icon_state = "data_2"
 
 /obj/item/card/data/disk
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicibly looks like a floppy disk."
+	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicably looks like a floppy disk."
 	icon_state = "data_3"
 
 /*
@@ -412,7 +412,7 @@ update_label("John Doe", "Clowny")
 			else
 				return ..()
 
-		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
+		var/popup_input = tgui_alert(user, "Choose Action", "Agent ID", list("Show", "Forge/Reset", "Change Account ID"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset" && !forged)
@@ -515,7 +515,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		var/popup_input = alert(user, "Choose Action", "ID", "Show", "Forge/Reset")
+		var/popup_input = tgui_alert(user, "Choose Action", "Action?", list("ID", "Show", "Forge/Reset"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")

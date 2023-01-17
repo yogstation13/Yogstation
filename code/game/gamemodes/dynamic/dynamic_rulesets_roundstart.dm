@@ -147,7 +147,7 @@
 	scaling_cost = 9
 	requirements = list(101,101,101,40,35,20,20,15,10,10)
 	antag_cap = list("denominator" = 24)
-
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/heretics/pre_execute(population)
 	. = ..()
@@ -191,6 +191,7 @@
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/roundstart_wizards = list()
+	minimum_players = 27
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -237,6 +238,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
 	var/datum/team/cult/main_cult
+	minimum_players = 29
 
 /datum/dynamic_ruleset/roundstart/bloodcult/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -293,7 +295,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	var/datum/team/nuclear/nuke_team
-	minimum_players = 36
+	minimum_players = 30
 
 /datum/dynamic_ruleset/roundstart/nuclear/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -436,7 +438,7 @@
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
 	// I give up, just there should be enough heads with 35 players...
-	minimum_players = 35
+	minimum_players = 30
 	var/datum/team/revolution/revolution
 	var/finished = FALSE
 
@@ -582,7 +584,7 @@
 	requirements = list(100,90,80,70,60,50,30,30,30,30)
 	antag_cap = list(4,4,4,5,5,6,6,7,7,8) //this isn't used but having it probably stops a runtime
 	flags = HIGH_IMPACT_RULESET
-	minimum_players = 38
+	minimum_players = 25
 	var/ark_time
 
 //FIX(?) CLOCKCULT XOXEYOS 3/13/2021 IF IT ALL GOES TO SHIT!
@@ -672,6 +674,7 @@
 	antag_leader_datum = /datum/antagonist/nukeop/leader/clownop
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	flags = HIGH_IMPACT_RULESET
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops/pre_execute()
 	. = ..()
@@ -702,6 +705,7 @@
 	flags = LONE_RULESET
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	antag_cap = list("denominator" = 30)
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/devil/pre_execute(population)
 	. = ..()
@@ -817,6 +821,7 @@
 	flags = LONE_RULESET
 	var/nometeors = 0
 	var/rampupdelta = 5
+	minimum_players = 40
 
 /datum/dynamic_ruleset/roundstart/meteor/rule_process()
 	if(nometeors || meteordelay > world.time - SSticker.round_start_time)
@@ -854,7 +859,7 @@
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 30
 	antag_cap = 3
-	var/datum/team/shadowling/shadowling
+	minimum_players = 32
 
 /datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -901,6 +906,7 @@
 	antag_cap = list(3,3,3,3,3,3,3,3,3,4)
 	var/autovamp_cooldown = (15 MINUTES)
 	COOLDOWN_DECLARE(autovamp_cooldown_check)
+	minimum_players = 15
 
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute(population)
 	. = ..()
@@ -940,6 +946,7 @@
 	requirements = list(100,100,100,100,90,90,85,85,85,80)
 	antag_cap = list(5,5,5,5,5,5,5,5,5,5)
 	roundstart_wizards = list()
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
 	if(GLOB.wizardstart.len == 0)
@@ -975,6 +982,7 @@
 	minimum_players = 40
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	antag_cap = list(999,999,999,999,999)
+	minimum_players = 40
 	
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	. = ..()
@@ -1002,7 +1010,7 @@
 	scaling_cost = 20
 	antag_cap = 3
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
-	minimum_players = 35
+	minimum_players = 32
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
 	. = ..()

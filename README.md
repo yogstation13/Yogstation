@@ -1,3 +1,5 @@
+## FEATURE FREEZE UNTIL 16th Janurary 2023
+
 ## Yogstation codebase
 
 [![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
@@ -21,6 +23,9 @@
 [**Wiki**](https://wiki.yogstation.net)
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
+
+[**Yogstation GitHub Guidelines**](https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md#yogstation-github-guidelines)
+
 
  
 ## DOWNLOADING

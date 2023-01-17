@@ -106,7 +106,7 @@
 				/obj/item/organ/heart/gland/egg = 8,
 				/obj/item/organ/heart/gland/electric = 8,
 				/obj/item/organ/heart/gland/chem = 8,
-				/obj/item/organ/heart/gland/plasma = 8)
+				/obj/item/organ/heart/gland/gas = 8) //Yogstation change: plasma -> gas
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space // Weird typo fix override
 	flavour_text = "Monitor enemy activity as best you can. Try to keep a low profile. Use the communication equipment to provide support to any field agents. Sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands."

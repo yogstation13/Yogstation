@@ -155,6 +155,7 @@
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
 	item_state = "winterboots"
+	clothing_flags = NOSLIP_ICE
 	permeability_coefficient = 0.15
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
@@ -185,6 +186,7 @@
 	name = "mining boots"
 	desc = "Steel-toed mining boots for mining in hazardous environments. Very good at keeping toes uncrushed."
 	icon_state = "explorer"
+	clothing_flags = NOSLIP_ICE
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
@@ -241,6 +243,7 @@
 	icon_state = "jetboots"
 	item_state = "jetboots"
 	resistance_flags = FIRE_PROOF
+	clothing_flags = NOSLIP_ICE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
 	permeability_coefficient = 0.05
@@ -333,6 +336,10 @@
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
 	actions_types = list(/datum/action/item_action/kindleKicks)
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 3
+	light_on = FALSE
 	var/lightCycle = 0
 	var/active = FALSE
 
@@ -340,18 +347,19 @@
 	if(active)
 		return
 	active = TRUE
-	set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-	addtimer(CALLBACK(src, .proc/lightUp), 5)
+	set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+	set_light_on(active)
+	addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 
 /obj/item/clothing/shoes/kindleKicks/proc/lightUp(mob/user)
 	if(lightCycle < 15)
-		set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-		lightCycle += 1
-		addtimer(CALLBACK(src, .proc/lightUp), 5)
+		set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+		lightCycle++
+		addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 	else
-		set_light(0)
 		lightCycle = 0
 		active = FALSE
+		set_light_on(active)
 
 /obj/item/clothing/shoes/russian
 	name = "russian boots"

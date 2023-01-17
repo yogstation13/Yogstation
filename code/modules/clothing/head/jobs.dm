@@ -103,7 +103,7 @@
 /obj/item/clothing/head/det_hat/evil
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
-	desc = "A suspicious black fedora with a red band."
+	desc = "A suspicious black fedora with a red band. It can be activated in-hand to extend or retract razor blades which cause significant damage when thrown. Also heavily armored."
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE

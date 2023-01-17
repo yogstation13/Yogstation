@@ -5,7 +5,7 @@
 	step_in = 5
 	max_integrity = 500
 	deflect_chance = 25
-	armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 0, BOMB = 30, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 60000
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	infra_luminosity = 3
@@ -55,8 +55,12 @@
 	force = 50
 	max_equip = 5
 
+/obj/mecha/combat/marauder/seraph/unloaded
+
 /obj/mecha/combat/marauder/seraph/Initialize()
 	. = ..()
+	if(istype(src,/obj/mecha/combat/marauder/seraph/unloaded))
+		return
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack(src)

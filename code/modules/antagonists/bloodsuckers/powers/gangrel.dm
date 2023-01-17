@@ -81,7 +81,7 @@
 						bat_powers += new /datum/action/bloodsucker/targeted/bloodbolt
 					if(istype(power, /datum/action/bloodsucker/targeted/brawn))
 						bat_powers += new /datum/action/bloodsucker/gangrel/wingslam
-				for(var/datum/action/bloodsucker/power in bat_powers) 
+				for(var/datum/action/bloodsucker/power in bat_powers)
 					power.Grant(gb)
 				QDEL_IN(gb, 2 MINUTES)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
@@ -97,7 +97,7 @@
 	power_explanation = "<b>Transform</b>:\n\
 		Regress back to your humanoid form early, requires you to stand still.\n\
 		Beware you will not be able to transform again until the night passes!"
-		
+
 /datum/action/bloodsucker/gangrel/transform_back/ActivatePower()
 	var/mob/living/user = owner
 	if(!do_mob(user, user, 10 SECONDS))
@@ -235,12 +235,12 @@
 		var/turf/turf_thrown_at = get_ranged_target_turf(M, send_dir, 5)
 		M.throw_at(turf_thrown_at, 5, TRUE, user)
 
-/*  //\\                  //\\    
+/*  //\\                  //\\
 ////////////////||\\\\\\\\\\\\\\\\
 \\           Wolf Only          //
 //            Powers            \\
 \\\\\\\\\\\\\\\\||////////////////
-*/  
+*/
 
 /datum/action/bloodsucker/targeted/feast
 	name = "Feast"
@@ -255,7 +255,7 @@
 		Satiation points are essential for overcoming frenzy, after gathering 3 you'll turn back to normal.\n\
 		Feasting on someone while they are alive will bite them and make them bleed.\n\
 		Has a medium recharge time to be helpful in combat.\n\
-		There might be some consequences after coming back from frenzy though.." 
+		There might be some consequences after coming back from frenzy though.."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
@@ -278,7 +278,7 @@
 	user.do_attack_animation(target, ATTACK_EFFECT_BITE)
 	var/affecting = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	playsound(get_turf(target), 'sound/weapons/bite.ogg', 60, 1, -1)
-	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
+	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, MELEE, armour_penetration = 10), sharpness = SHARP_EDGED)
 	target.visible_message(span_danger("[user] takes a large bite out of [target]!"), \
 					  span_userdanger("[user] takes a large bite out of you!"))
 	PowerActivatedSuccessfully()
@@ -307,7 +307,6 @@
 	A.maxHealth *= 1.2
 	A.health *= 1.2
 	A.set_varspeed(initial(A.speed) + 2) // slower
-	A.harm_intent_damage += 10
 	A.melee_damage_lower += 10
 	A.melee_damage_upper += 10
 
@@ -317,13 +316,12 @@
 	A.maxHealth /= 1.2
 	A.health /= 1.2
 	A.set_varspeed(initial(A.speed))
-	A.harm_intent_damage -= 10
 	A.melee_damage_lower -= 10
 	A.melee_damage_upper -= 10
 
 /datum/action/bloodsucker/targeted/pounce
 	name = "Pounce"
-	desc = "GRAPPLE THEM TO THE GROUND AND BITE THEIR ORGANS OUT."
+	desc = "TACKLE THE LIVING TO THE GROUND. FEAST ON CORPSES."
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_pounce"
@@ -395,7 +393,7 @@
 
 /datum/action/bloodsucker/gangrel/howl
 	name = "Howl"
-	desc = "BREATHE IN AND BREATH OUT AS MUCH AS POSSIBLE. KNOCKDOWNS AND CONFUSES NEARBY WEAKLINGS."
+	desc = "LET THEM KNOW WHAT HUNTS THEM. KNOCKDOWNS AND CONFUSES NEARBY WEAKLINGS."
 	button_icon_state = "power_howl"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
@@ -417,7 +415,7 @@
 	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
 		return
 	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
-	A.visible_message(span_userdanger("[A] let's out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
+	A.visible_message(span_userdanger("[A] lets out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
 	for(var/mob/target in range(3, A))
 		if(target == (A || A.bloodsucker))
 			continue
@@ -434,7 +432,7 @@
 
 /datum/action/bloodsucker/gangrel/rabidism
 	name = "Rabidism"
-	desc = "UNLEASHES YOUR POTENTIAL OF AREA DAMAGE, BUT HURTS YOURSELF IN THE PROCESS, DEALS MORE DAMAGE TO STRUCTURES."
+	desc = "FLAIL WILLDY, INJURING ALL WHO APPROACH AND SAVAGING STRUCTURES."
 	button_icon_state = "power_rabid"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
@@ -463,7 +461,7 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = user
 	for(var/mob/living/all_targets in dview(1, get_turf(A)))
-		if(all_targets == A && all_targets == A.bloodsucker)
+		if(all_targets == A || all_targets == A.bloodsucker)
 			continue
 		A.UnarmedAttack(all_targets) //byongcontrol
 
@@ -475,7 +473,7 @@
 
 /datum/action/bloodsucker/targeted/tear
 	name = "Tear"
-	desc = "Tear in specific areas of a mortal's body and inflict great pain on them."
+	desc = "Ruthlessly tear into an enemy, dealing massive damage to them if successful."
 	button_icon_state = "power_tear"
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -500,27 +498,26 @@
 	if(iscarbon(target))
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 		playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
-		target.apply_damage(15, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = SHARP_EDGED)
+		target.apply_damage(15, BRUTE, affecting, target.run_armor_check(affecting, MELEE, armour_penetration = 10), sharpness = SHARP_EDGED)
+		user.visible_message(span_danger("[user] slashes wildly at [target]!"), span_warning("You tear into [target]!"))
 	mauled = target
 	Mawl(target)
 
 /datum/action/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
 	var/mob/living/carbon/user = owner
-	if(!do_mob(user, target, 1 SECONDS))
-		return
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
-	user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
-	playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
-	if(!B)
-		target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
-	else
-		B.add_bleed(B.bleed_buildup)
-	spawn(1 SECONDS)
-	if(!target.Adjacent(user))
-		return
-	user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
-	playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
-	B.add_bleed(B.bleed_buildup)
+	while(!target.stat)
+		if(!target.Adjacent(user) || !do_mob(user, target, 0.8 SECONDS))
+			break
+		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
+		user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
+		playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
+		target.apply_damage(5, BRUTE, affecting, target.run_armor_check(affecting, MELEE, armour_penetration = 10), sharpness = SHARP_EDGED)
+		user.visible_message(span_danger("[user] slashes wildly at [target]!"), span_warning("You continue to eviscerate [target]..."))
+		if(!B)
+			B = target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
+		else
+			B.add_bleed(B.bleed_buildup)
 
 /datum/action/bloodsucker/targeted/tear/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -544,7 +541,7 @@
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
-	body_parts_covered = NECK
+	body_parts_covered = NECK|HEAD
 
 /obj/item/radio/headset/wolfears
 	name = "Wolf Ears"
@@ -556,7 +553,8 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	flags_inv = HIDEHAIR|HIDEFACE
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
-	
+	body_parts_covered = HEAD
+
 /obj/item/clothing/gloves/wolfclaws
 	name = "Wolf Claws"
 	desc = "Tear them to shreds!"

@@ -90,9 +90,10 @@
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	if(button)
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		button.locked = FALSE
+		button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
@@ -248,6 +249,27 @@
 
 /datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
 	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()
+
+/datum/action/item_action/toggle_infrared_sight
+	name = "Toggle Infrared"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "ifr_sight"
+	var/obj/item/attachment/scope/infrared/att
+
+/datum/action/item_action/toggle_infrared_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/scope/infrared))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtonIcon()
+
+/datum/action/item_action/toggle_infrared_sight/UpdateButtonIcon(status_only = FALSE, force)
+	button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"
 	..()
 
 /datum/action/item_action/toggle_hood
@@ -564,7 +586,7 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, span_warning("You dont have any usable hands!"))
+			to_chat(owner, span_warning("You don't have any usable hands!"))
 		else
 			to_chat(owner, span_warning("Your hands are full!"))
 

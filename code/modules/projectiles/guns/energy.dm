@@ -16,8 +16,8 @@
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
 	var/selfcharge = 0
-	var/charge_tick = 0
-	var/charge_delay = 4
+	var/charge_timer = 0
+	var/charge_delay = 8
 	var/charge_amount = 1
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge
 	var/dead_cell = FALSE //set to true so the gun is given an empty cell
@@ -25,6 +25,7 @@
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)
@@ -72,12 +73,12 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/gun/energy/process()
+/obj/item/gun/energy/process(delta_time)
 	if(selfcharge && cell && cell.percent() < 100)
-		charge_tick++
-		if(charge_tick < charge_delay)
+		charge_timer += delta_time
+		if(charge_timer < charge_delay)
 			return
-		charge_tick = 0
+		charge_timer = 0
 		cell.give(100*charge_amount)
 		if(!chambered) //if empty chamber we try to charge a new shot
 			recharge_newshot(TRUE)

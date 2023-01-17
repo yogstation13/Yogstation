@@ -1,6 +1,9 @@
 /datum/job/doctor
 	title = "Medical Doctor"
+	description = "Save lives, run around the station looking for victims, \
+		scan everyone in sight"
 	flag = DOCTOR
+	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -34,6 +37,8 @@
 		///obj/effect/spawner/random/medical/memeorgans = 1
 	)
 
+	smells_like = "a hospital"
+
 /datum/job/doctor/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
@@ -59,7 +64,7 @@
 	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
-
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med

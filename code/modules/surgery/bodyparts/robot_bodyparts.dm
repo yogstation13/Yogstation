@@ -174,7 +174,7 @@
 	
 //make them swappable
 /obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
-	if(!istype(W, /obj/item/screwdriver))
+	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
 	var/obj/item/bodypart/l_leg/robot/prosthetic
 	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
@@ -193,14 +193,14 @@
 	
 	var/spot = src.loc
 	moveToNullspace()
-	if(spot == user)
+	if(spot == user && !user.get_inactive_held_item())
 		user.put_in_inactive_hand(prosthetic)
 	else
-		prosthetic.loc = spot
+		prosthetic.forceMove(get_turf(user))
 	qdel(src)
 	
 /obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
-	if(!istype(W, /obj/item/screwdriver))
+	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
 	var/obj/item/bodypart/r_leg/robot/prosthetic
 	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
@@ -219,10 +219,10 @@
 
 	var/spot = src.loc
 	moveToNullspace()
-	if(spot == user)
+	if(spot == user && !user.get_inactive_held_item())
 		user.put_in_inactive_hand(prosthetic)
 	else
-		prosthetic.loc = spot
+		prosthetic.forceMove(get_turf(user))
 	qdel(src)
 	
 

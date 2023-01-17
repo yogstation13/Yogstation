@@ -10,6 +10,8 @@
 	has_limbs = 1
 	hud_type = /datum/hud/robot
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -90,8 +92,6 @@
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
-	///The reference to the built-in tablet that borgs carry.
-	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/atom/movable/screen/robot/modPC/interfaceButton
 
 	///Flash resistance
@@ -183,12 +183,6 @@
 	diag_hud_set_borgcell()
 	create_modularInterface()
 	logevent("System brought online.")
-
-/mob/living/silicon/robot/proc/create_modularInterface()
-	if(!modularInterface)
-		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
-	modularInterface.layer = ABOVE_HUD_PLANE
-	modularInterface.plane = ABOVE_HUD_PLANE
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 /mob/living/silicon/robot/Destroy()
@@ -803,17 +797,17 @@
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
 		if(lamp_functional && stat != DEAD)
-			set_light(l_power = TRUE) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
-			set_light(l_color = "#FF0000") //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
-			set_light(l_range = 1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
-		set_light(l_power = FALSE)
+			set_light_on(TRUE) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
+			set_light_color("#FF0000") //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
+			set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
+		set_light_on(FALSE)
 		lamp_enabled = FALSE
 		lampButton?.update_icon()
 		update_icons()
 		return
-	set_light(l_range = lamp_intensity)
-	set_light(l_color = lamp_color)
-	set_light(l_power = TRUE)
+	set_light_range(lamp_intensity)
+	set_light_color(lamp_color)
+	set_light_on(TRUE)
 	lamp_enabled = TRUE
 	lampButton?.update_icon()
 	update_icons()
@@ -1135,9 +1129,9 @@
 		status_flags &= ~CANPUSH
 
 	if(module.clean_on_move)
-		AddComponent(/datum/component/cleaning)
+		AddElement(/datum/element/cleaning)
 	else
-		qdel(GetComponent(/datum/component/cleaning))
+		RemoveElement(/datum/element/cleaning)
 
 	hat_offset = module.hat_offset
 

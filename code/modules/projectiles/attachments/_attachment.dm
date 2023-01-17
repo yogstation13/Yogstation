@@ -36,7 +36,7 @@
 	var/list/actions_list = list()
 
 /obj/item/attachment/update_icon()
-	icon_state = initial(icon_state) + is_on ? "_on" : ""
+	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
 	. = ..()
 	attached_gun?.update_attachments()
 
@@ -57,6 +57,8 @@
 	
 	if(G.loc == user)
 		set_user(user)
+		if(user.is_holding(G))
+			pickup_user(user)
 	G.attachment_flags |= attachment_type
 	G.current_attachments += src
 	G.update_attachments()
@@ -78,6 +80,8 @@
 	
 	attached_gun = null
 	set_user()
+	if(user)
+		drop_user(user)
 	G.attachment_flags ^= attachment_type
 	G.current_attachments -= src
 	G.update_attachments()
@@ -95,6 +99,15 @@
 		current_user = null
 	if(istype(user))
 		current_user = user
+
+// Called when the gun is picked up
+/obj/item/attachment/proc/pickup_user(mob/user = null)
+
+// Called when the gun is stowed
+/obj/item/attachment/proc/equip_user(mob/user = null)
+
+// Called when the gun is dropped
+/obj/item/attachment/proc/drop_user(mob/user = null)
 
 /obj/item/attachment/proc/check_user()
 	if(!istype(current_user))

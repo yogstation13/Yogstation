@@ -45,6 +45,7 @@
 	icon_state = "speedwagon"
 	layer = LYING_MOB_LAYER
 	var/static/mutable_appearance/overlay // Yogs -- fixes potential game crash or something
+	var/damage = TRUE
 	max_buckled_mobs = 4
 	var/crash_all = FALSE //CHAOS
 	pixel_y = -48
@@ -71,8 +72,12 @@
 /obj/vehicle/ridden/space/speedwagon/Bump(atom/A)
 	. = ..()
 	if(A.density && has_buckled_mobs())
+		if(!damage)
+			return
 		var/atom/throw_target = get_edge_target_turf(A, dir)
 		if(crash_all)
+			if(A == src)
+				return
 			if(ismovable(A))
 				var/atom/movable/AM = A
 				AM.throw_at(throw_target, 4, 3)
@@ -94,3 +99,7 @@
 		for(var/atom/A in range(2, src))
 			if(!(A in buckled_mobs))
 				Bump(A)
+
+/obj/vehicle/ridden/space/speedwagon/nodamage
+	damage = FALSE
+	

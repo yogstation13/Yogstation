@@ -55,7 +55,20 @@
 /datum/looping_sound/microwave
 	start_sound = 'sound/machines/microwave/microwave-start.ogg'
 	start_length = 10
-	mid_sounds = list('sound/machines/microwave/microwave-mid1.ogg'=10, 'sound/machines/microwave/microwave-mid2.ogg'=1)
+	mid_sounds = list('sound/machines/microwave/microwave-mid1.ogg'=6, 'sound/machines/microwave/microwave-mid2.ogg'=1)
 	mid_length = 10
 	end_sound = 'sound/machines/microwave/microwave-end.ogg'
 	volume = 90
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/decontamination_unit
+	start_sound = 'sound/machines/decon/decon-down.ogg'
+	start_length = 10
+	mid_sounds = list('sound/machines/decon/decon-scan1.ogg'=1, 'sound/machines/decon/decon-scan2.ogg'=1)
+	mid_length = 18
+	volume = 70
+
+/datum/looping_sound/decontamination_unit/emagged
+	mid_sounds = list('sound/machines/decon/decon-emagged1.ogg'=10, 'sound/machines/decon/decon-emagged2.ogg'=1)
+	mid_length = 25

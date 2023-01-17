@@ -492,10 +492,10 @@
 		loc.visible_message(span_warning("[loc.name]\'s flesh rapidly inflates, forming a bloated mass around [loc.p_their()] body!"), span_warning("We inflate our flesh, creating a spaceproof suit!"), span_italics("You hear organic matter ripping and tearing!"))
 	START_PROCESSING(SSobj, src)
 
-/obj/item/clothing/suit/space/changeling/process()
+/obj/item/clothing/suit/space/changeling/process(delta_time)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		H.reagents.add_reagent(/datum/reagent/medicine/salbutamol, REAGENTS_METABOLISM)
+		H.reagents.add_reagent(/datum/reagent/medicine/salbutamol, REAGENTS_METABOLISM * (delta_time / SSMOBS_DT))
 
 /obj/item/clothing/head/helmet/space/changeling
 	name = "flesh mass"
@@ -539,7 +539,7 @@
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
-	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman) // allows ling armor to carry the usual space suit tanks.
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant) // allows ling armor to carry the usual space suit tanks.
 
 /obj/item/clothing/suit/armor/changeling/Initialize()
 	. = ..()

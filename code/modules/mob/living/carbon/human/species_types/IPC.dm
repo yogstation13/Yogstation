@@ -1,4 +1,4 @@
-#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+#define CONSCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
 
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
@@ -6,17 +6,17 @@
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
-	mutant_brain = /obj/item/organ/brain/positron
-	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
+	mutantbrain = /obj/item/organ/brain/positron
+	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
 	mutantstomach = /obj/item/organ/stomach/cell
 	mutantears = /obj/item/organ/ears/robot
 	mutantlungs = /obj/item/organ/lungs/ipc
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/mouth/breathing_tube)
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/chest/cooling_intake)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
@@ -46,12 +46,15 @@
 
 	var/datum/action/innate/change_screen/change_screen
 
+	smells_like = "industrial lubricant"
+
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
+	C.particles = new /particles/smoke/ipc()
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
@@ -71,6 +74,7 @@
 
 datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
+	QDEL_NULL(C.particles)
 	if(change_screen)
 		change_screen.Remove(C)
 
@@ -183,20 +187,30 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
+	CONSCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
+	CONSCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Finalizing setup..."))
+	CONSCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	CONSCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
 	if(H.stat == DEAD)
 		return
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
+/particles/smoke/ipc // exact same smoke visual, but no offset
+	position = list(0, 0, 0)
+	spawning = 0
+
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(H.particles)
+		var/particles/P = H.particles
+		if(P.spawning)
+			P.spawning = H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT ? 4 : 0
+
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
@@ -206,7 +220,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
+	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
 		H.blood_in_hands = 0
 		H.wash(CLEAN_TYPE_BLOOD)
 		to_chat(H,"You absorb the blood covering you to heal.")
@@ -247,7 +261,7 @@ ipc martial arts stuff
 /datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
-		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
@@ -275,4 +289,4 @@ ipc martial arts stuff
 	if(ipcmartial)
 		ipcmartial.Destroy()
 
-#undef CONCIOUSAY
+#undef CONSCIOUSAY

@@ -141,3 +141,9 @@
 		amount *= H.dna.species.tempmod
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
+	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision
+	// 37C has 12 range (11 tiles)
+	// 20C has 7 range (6 tiles)
+	// 10C has 3 range (2 tiles)
+	// 0C has 0 range (0 tiles)
+	infra_luminosity = round(max((bodytemperature - T0C)/3, 0))

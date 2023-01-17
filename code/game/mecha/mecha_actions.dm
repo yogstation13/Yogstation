@@ -114,11 +114,10 @@
 		return
 	chassis.lights = !chassis.lights
 	if(chassis.lights)
-		chassis.set_light(chassis.lights_power)
 		button_icon_state = "mech_lights_on"
 	else
-		chassis.set_light(-chassis.lights_power)
 		button_icon_state = "mech_lights_off"
+	chassis.set_light_on(chassis.lights)
 	chassis.occupant_message("Toggled lights [chassis.lights?"on":"off"].")
 	chassis.log_message("Toggled lights [chassis.lights?"on":"off"].", LOG_MECHA)
 	UpdateButtonIcon()
@@ -173,7 +172,7 @@
 
 /datum/action/innate/mecha/mech_defence_mode
 	name = "Toggle Defence Mode"
-	button_icon_state = "mech_defense_mode_off"
+	button_icon_state = "mech_defence_mode_off"
 
 /datum/action/innate/mecha/mech_defence_mode/Activate(forced_state = null)
 	if(!owner || !chassis || chassis.occupant != owner)
@@ -182,7 +181,7 @@
 		chassis.defence_mode = forced_state
 	else
 		chassis.defence_mode = !chassis.defence_mode
-	button_icon_state = "mech_defense_mode_[chassis.defence_mode ? "on" : "off"]"
+	button_icon_state = "mech_defence_mode_[chassis.defence_mode ? "on" : "off"]"
 	if(chassis.defence_mode)
 		chassis.deflect_chance += chassis.defence_mode_deflect_chance
 		chassis.occupant_message(span_notice("You enable [chassis] defence mode."))

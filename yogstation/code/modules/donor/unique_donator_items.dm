@@ -145,9 +145,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
 
 /datum/donator_gear/manatee
-	name = "Peacekeeper Beret"
+	name = "Peacekeeper Beret & Dogtags"
 	ckey = "Majesticmanateee"
-	unlock_path = /obj/item/clothing/head/peacekeeperberet
+	unlock_path = /obj/item/storage/box/manatee
 
 /datum/donator_gear/Hisakaki
 	name = "Transdimensional halo"
@@ -179,6 +179,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Hunter Stash"
 	ckey = "hisakaki"
 	unlock_path = /obj/item/storage/box/hisa
+
+/datum/donator_gear/slicerv
+	name = "axolotl plush"
+	ckey = "slicerv"
+	unlock_path = /obj/item/toy/plush/axolotlplushie
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie

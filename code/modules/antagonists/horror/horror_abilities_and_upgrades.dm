@@ -363,7 +363,7 @@
 /datum/horror_upgrade/paralysis
 	name = "Electrocharged tentacle"
 	id = "paralysis"
-	desc = "Empowers your tentacle knockdown ability by giving it extra charge, knocking your victim down unconcious."
+	desc = "Empowers your tentacle knockdown ability by giving it extra charge, knocking your victim down unconscious."
 	soul_price = 3
 
 /datum/horror_upgrade/paralysis/apply_effects()

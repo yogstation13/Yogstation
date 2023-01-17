@@ -105,7 +105,7 @@
 	if(!L)
 		if(isipc(src))
 			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
-			adjust_bodytemperature(65, max_temp = 500)
+			adjust_bodytemperature(20, max_temp = 500)
 		else
 			if(health >= crit_threshold)
 				adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)

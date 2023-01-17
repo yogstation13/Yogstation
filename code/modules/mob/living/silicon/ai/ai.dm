@@ -179,10 +179,7 @@
 
 	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
 
-	aiPDA = new/obj/item/pda/ai(src)
-	aiPDA.owner = real_name
-	aiPDA.ownjob = "AI"
-	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
+	create_modularInterface()
 
 	aiMulti = new(src)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
@@ -217,7 +214,7 @@
 			return
 		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
 			_key = text2num(_key)
-			if(client.keys_held["Ctrl"]) //do we assign a new hotkey?
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
 				cam_hotkeys[_key] = eyeobj.loc
 				to_chat(src, "Location saved to Camera Group [_key].")
 				return
@@ -235,7 +232,8 @@
 	malfhack = null
 	apc_override = null
 	GLOB.ai_os.remove_ai(src)
-
+	if(modularInterface)
+		QDEL_NULL(modularInterface)
 	. = ..()
 
 /mob/living/silicon/ai/IgniteMob()
@@ -765,7 +763,7 @@
 	if(incapacitated())
 		return
 	var/input
-	switch(alert("Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,"Crew Member","Unique","Animal"))
+	switch(tgui_alert(usr,"Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,list("Crew Member","Unique","Animal")))
 		if("Crew Member")
 			var/list/personnel_list = list()
 
@@ -779,7 +777,7 @@
 					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 					holo_icon = getHologramIcon(icon(character_icon))
 			else
-				alert("No suitable records found. Aborting.")
+				tgui_alert(usr,"No suitable records found. Aborting.")
 
 		if("Animal")
 			var/list/icon_list = list(
@@ -991,11 +989,6 @@
 		for(var/mob/living/silicon/robot/Slave in connected_robots)
 			Slave.show_laws()
 
-/mob/living/silicon/ai/replace_identification_name(oldname,newname)
-	if(aiPDA)
-		aiPDA.owner = newname
-		aiPDA.name = newname + " (" + aiPDA.ownjob + ")"
-
 /mob/living/silicon/ai/proc/add_malf_picker()
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
@@ -1148,3 +1141,7 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/proc/send_borg_death_warning(mob/living/silicon/robot/R)
+	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))
+	playsound_local(src, 'sound/machines/engine_alert2.ogg', 30)

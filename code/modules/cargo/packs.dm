@@ -308,6 +308,19 @@
 					/obj/item/gun/energy/disabler)
 	crate_name = "disabler crate"
 
+/datum/supply_pack/security/ntusp
+	name = "NT-USP Crate"
+	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	cost = 2000
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp)
+	crate_name = "nt-usp crate"
+
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."
@@ -861,6 +874,28 @@
 					/obj/item/stock_parts/cell/high)
 	crate_name = "power cell crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
+
+/datum/supply_pack/engineering/portable_pumps
+	name = "Portable Pumps"
+	desc = "A set of spare portable pumps. Perfect for larger atmospheric projects or restocking after a toxins problem goes wrong."
+	cost = 1500
+	contains = list(
+		/obj/machinery/portable_atmospherics/pump,
+		/obj/machinery/portable_atmospherics/pump
+	)
+	crate_name = "portable pump crate"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/engineering/portable_scrubbers
+	name = "Portable Scrubbers"
+	desc = "A set of spare portable scrubbers. Perfect for when plasma 'accidentally' gets into the air supply."
+	cost = 1500
+	contains = list(
+		/obj/machinery/portable_atmospherics/scrubber,
+		/obj/machinery/portable_atmospherics/scrubber
+	)
+	crate_name = "portable scrubber crate"
+	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/engineering/shuttle_engine
 	name = "Shuttle Engine Crate"

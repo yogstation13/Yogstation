@@ -25,6 +25,7 @@
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
 	var/obj/item/suppressor/suppressed	//whether or not a message is displayed when fired
+	var/obj/item/enloudener/enloudened	//whether or not an additional sound is played
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gunshot_silenced.ogg'
 	var/suppressed_volume = 10
@@ -40,7 +41,8 @@
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
-	var/spread = 5						//Spread induced by the gun itself.
+	var/spread = 5						//Spread induced by the gun itself. SEE LINE BELOW.
+	var/default_spread = 5				//MUST be equal to the value above; used to calculate adjustments for if semi-auto is used on a burst weapon.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -171,6 +173,10 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		if(user.is_holding(src))
+			A.pickup_user(user)
+		else
+			A.equip_user(user)
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
@@ -200,8 +206,9 @@
 			qdel(suppressed)
 			suppressed = null
 			update_icon()
-
 	else
+		if(enloudened && enloudened.enloudened_sound)
+			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
 		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 		if(message)
 			if(pointblank)
@@ -472,9 +479,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
-			if(S.on)
-				set_light(0)
-			gun_light = S
+			set_gun_light(S)
 			update_gunlight()
 			alight = new(src)
 			if(loc == user)
@@ -562,11 +567,27 @@
 	if(!gun_light)
 		return
 	var/obj/item/flashlight/seclite/removed_light = gun_light
-	gun_light = null
+	set_gun_light(null)
 	update_gunlight()
 	removed_light.update_brightness()
 	QDEL_NULL(alight)
 	return TRUE
+
+///Called when gun_light value changes.
+/obj/item/gun/proc/set_gun_light(obj/item/flashlight/seclite/new_light)
+	if(gun_light == new_light)
+		return
+	. = gun_light
+	gun_light = new_light
+	if(gun_light)
+		gun_light.set_light_flags(gun_light.light_flags | LIGHT_ATTACHED)
+		if(gun_light.loc != src)
+			gun_light.forceMove(src)
+	else if(.)
+		var/obj/item/flashlight/seclite/old_gun_light = .
+		old_gun_light.set_light_flags(old_gun_light.light_flags & ~LIGHT_ATTACHED)
+		if(old_gun_light.loc == src)
+			old_gun_light.forceMove(get_turf(src))
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, alight))
@@ -580,30 +601,14 @@
 
 	var/mob/living/carbon/human/user = usr
 	gun_light.on = !gun_light.on
+	gun_light.update_brightness()
 	to_chat(user, span_notice("You toggle the gunlight [gun_light.on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_gunlight()
 
 /obj/item/gun/proc/update_gunlight()
-	if(gun_light)
-		if(gun_light.on)
-			set_light(gun_light.brightness_on)
-		else
-			set_light(0)
-		cut_overlay(flashlight_overlay, TRUE)
-		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
-		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
-			state = gun_light.icon_state
-		flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', state)
-		flashlight_overlay.pixel_x = flight_x_offset
-		flashlight_overlay.pixel_y = flight_y_offset
-		add_overlay(flashlight_overlay, TRUE)
-	else
-		set_light(0)
-		cut_overlay(flashlight_overlay, TRUE)
-		flashlight_overlay = null
-	update_icon(TRUE)
+	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -629,6 +634,7 @@
 	..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user(user)
+		A.pickup_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Grant(user)
 	if(azoom)
@@ -638,6 +644,7 @@
 	. = ..()
 	for(var/obj/item/attachment/A in current_attachments)
 		A.set_user()
+		A.drop_user(user)
 	for(var/datum/action/att_act in attachment_actions)
 		att_act.Remove(user)
 	if(azoom)

@@ -880,7 +880,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -1262,6 +1262,17 @@
 
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
+
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman

@@ -253,15 +253,16 @@
 		apparent_blood_volume -= 150 // enough to knock you down one tier
 	// Fulp edit START - Bloodsuckers
 	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
-	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
-		msg += bloodDesc
-	else switch(get_blood_state())
-		if(BLOOD_OKAY)
-			msg += "[t_He] [t_has] pale skin.\n"
-		if(BLOOD_BAD)
-			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
-		if(BLOOD_DEAD to BLOOD_SURVIVE)
-			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	if(bloodDesc == BLOODSUCKER_SHOW_BLOOD) // BLOODSUCKER_SHOW_BLOOD: Explicitly show the correct blood amount
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
+				msg += "[t_He] [t_has] pale skin.\n"
+			if(BLOOD_BAD)
+				msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+			if(BLOOD_DEAD to BLOOD_SURVIVE)
+				msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	else if(bloodDesc != BLOODSUCKER_HIDE_BLOOD) // BLOODSUCKER_HIDE_BLOOD: Always show full blood
+		msg += bloodDesc // Else: Show custom blood message
 
 	if(bleedsuppress)
 		msg += "[t_He] [t_is] imbued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
@@ -281,7 +282,19 @@
 		if(appears_dead)
 			bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
 		else
-			bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+			switch(get_total_bleed_rate() * physiology?.bleed_mod)
+				if(0 to 1)
+					bleed_text = list("<B>[t_He] [t_is] barely bleeding from [t_his]")
+				if(1 to 2)
+					bleed_text = list("<B>[t_He] [t_is] slowly bleeding from [t_his]")
+				if(2 to 4)
+					bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+				if(4 to 8)
+					bleed_text = list("<B>[t_He] [t_is] greatly bleeding from [t_his]")
+				if(8 to 12)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood from [t_his]")
+				if(12 to INFINITY)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood like a fountain from [t_his]")
 		switch(num_bleeds)
 			if(1 to 2)
 				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
@@ -402,6 +415,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
+		if(H.can_see_reagents() && reagents?.total_volume > 0)
+			. += "Reagents detected: [reagents.total_volume]u of [LAZYLEN(reagents.reagent_list)] chemicals."
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
 			var/perpname = get_face_name(get_id_name(""))
 			if(perpname)

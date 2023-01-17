@@ -3,6 +3,7 @@
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	name = "lungs"
 	icon_state = "lungs"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
@@ -481,8 +482,11 @@
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
 	return S
 
+/obj/item/organ/lungs/get_availability(datum/species/species)
+	return !(TRAIT_NOBREATH in species.inherent_traits)
+
 /obj/item/organ/lungs/ipc
-	name = "Cooling radiator"
+	name = "cooling radiator"
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
@@ -501,37 +505,36 @@
 		if(COOLDOWN_FINISHED(src, last_message))
 			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
 			COOLDOWN_START(src, last_message, 30 SECONDS)
-		H.adjust_bodytemperature(65, max_temp = 500)
+		H.adjust_bodytemperature(40, max_temp = 500)
 		H.failed_last_breath = TRUE
 		return FALSE
 	var/temperature = breath.return_temperature()
 	for(var/id in breath.get_gases())
 		var/moles = breath.get_moles(id)
-		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles * 3.5
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
 	// Normal atmos is 0.416
 	// 20C -> 293K
 	// At about 50C overheating will begin
 	// At 70C burn damage will start happening
 	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
 	if(total_heat_capacity > 0)
-		var/heat_generation = (temperature + 35)/total_heat_capacity
-		if(heat_generation > 1000) // not dispelling enough heat
+		var/ipc_heat_capacity = 20 * ONE_ATMOSPHERE * BREATH_VOLUME / (R_IDEAL_GAS_EQUATION * T20C) // balanced to have an equilibrium of around 40C with one atmosphere of air at room temperature, not accounting for passive cooling/heating from the environment
+		var/heat_generation = 10 + ((temperature - (H.bodytemperature + 10)) * organ_efficiency * total_heat_capacity / (total_heat_capacity + ipc_heat_capacity)) // heat up by 20 kelvin while being cooled by the gas
+		H.adjust_bodytemperature(heat_generation, 73, 500)
+		if(heat_generation > 0 && H.bodytemperature > T0C+50) // not dispelling enough heat
 			H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
 			if(COOLDOWN_FINISHED(src, last_message))
-				to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+				to_chat(H, span_boldwarning("Warning: System overheating!"))
 				COOLDOWN_START(src, last_message, 30 SECONDS)
-
-			// Every 2C is an extra temperature
-			H.adjust_bodytemperature((heat_generation-1000)/2, max_temp = 500)
 			H.failed_last_breath = TRUE
 		else
 			H.failed_last_breath = FALSE
 			H.clear_alert("not_enough_oxy")
 	else // backup but should be impossible to ever run
 		if(COOLDOWN_FINISHED(src, last_message))
-			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			to_chat(H, span_boldwarning("Warning: System overheating!"))
 			COOLDOWN_START(src, last_message, 30 SECONDS)
-		H.adjust_bodytemperature(65, max_temp = 500)
+		H.adjust_bodytemperature(40, max_temp = 500)
 		H.failed_last_breath = TRUE
 
 /obj/item/organ/lungs/plasmaman

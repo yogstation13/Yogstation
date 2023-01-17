@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]") 
+		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -245,7 +245,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						type = MESSAGE_TYPE_ADMINLOG,
 						html = msg,
 						confidential = TRUE)
-				
+
 		if(world.time > last_bwoinking)
 			last_bwoinking = world.time + 1 SECONDS
 			for(var/client/X in GLOB.permissions.admins)
@@ -683,7 +683,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//client may of have disconnected by the time this proc gets called
 	if(!src)
 		return
-		
+
 	if(!locate(/client/verb/adminhelp) in src.verbs)
 		add_verb(src, /client/verb/adminhelp)
 
@@ -864,17 +864,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	usr << browse(null, "window=ViewTickets")
 	usr << browse(html, "window=ViewTickets")
-
-/client/Topic(href, href_list, hsrc)
-	..()
-
-	if(href_list["action"] == "refresh_admin_ticket_list")
-		var/client/C = usr.client
-		var/flag = href_list["flag"]
-		if(!flag)
-			flag = TICKET_FLAG_LIST_ALL
-
-		C.view_tickets_main(flag)
 
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()

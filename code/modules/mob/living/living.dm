@@ -441,7 +441,7 @@
 		to_chat(src, span_notice("You are already sleeping."))
 		return
 	else
-		if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
+		if(tgui_alert(usr, "You sure you want to sleep for a while?", "Sleep", list("Yes", "No")) == "Yes")
 			SetSleeping(400) //Short nap
 	update_mobility()
 
@@ -849,6 +849,7 @@
 	who.visible_message(span_danger("[src] tries to remove [who]'s [what.name]."), \
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
+	SEND_SIGNAL(who, COMSIG_ITEM_PRESTRIP)
 	if(do_mob(src, who, what.strip_delay))
 		if(what && Adjacent(who))
 			if(islist(where))
@@ -1158,7 +1159,10 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
+	if(fire_stacks > 0)	//don't let people on fire instantly get -20 fire_stacks, but still let them extinguish themselves. Stops preternis from hurting themselves for trying to put out fire
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -1, 20)
+	else
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 
@@ -1175,13 +1179,13 @@
 			L.fire_stacks = firesplit
 		else // If they were not
 			fire_stacks /= 2
-			L.fire_stacks += fire_stacks
+			L.adjust_fire_stacks(fire_stacks)
 			if(L.IgniteMob()) // Ignite them
 				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
 
 	else if(L.on_fire) // If they were on fire and we were not
 		L.fire_stacks /= 2
-		fire_stacks += L.fire_stacks
+		adjust_fire_stacks(L.fire_stacks)
 		IgniteMob() // Ignite us
 
 //Mobs on Fire end
