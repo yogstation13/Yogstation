@@ -62,17 +62,19 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /// be valid.
 /// If no changes need to be made, will return the same list.
 /// Expects all quirk names to be unique, but makes no other expectations.
-/datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks)
+/datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, client/C)
 	var/list/new_quirks = list()
 	var/list/positive_quirks = list()
 	var/balance = 0
+
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (C.prefs.yogtoggles & PREF_MOOD)) // If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
 
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
 		if (isnull(quirk))
 			continue
 
-		if (initial(quirk.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
+		if (initial(quirk.mood_quirk) && !ismoody)
 			continue
 
 		var/blacklisted = FALSE
