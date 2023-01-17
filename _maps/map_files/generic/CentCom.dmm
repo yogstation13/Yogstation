@@ -25863,7 +25863,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ctf)
 "eiz" = (
-/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/power/apc{
+	areastring = "/area/bluespace_locker";
+	name = "Bluespace Locker APC";
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
 "eDa" = (
