@@ -27230,6 +27230,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ims" = (
+/obj/structure/closet/secure_closet/bartender,
+/obj/item/stack/cable_coil,
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "imF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -57349,17 +57360,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"ssZ" = (
-/obj/structure/table/wood,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/cable_coil,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "stv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -67457,10 +67457,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"vSb" = (
-/obj/structure/closet/secure_closet/bartender,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "vSj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -72337,6 +72333,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"xAE" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "xAM" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/hallway/secondary/entry";
@@ -95750,7 +95752,7 @@ aqy
 aao
 rPj
 aFi
-ssZ
+xAE
 cum
 qNW
 cWI
@@ -96266,7 +96268,7 @@ rPj
 aFi
 eMm
 tFL
-vSb
+ims
 tqO
 aFi
 cMn

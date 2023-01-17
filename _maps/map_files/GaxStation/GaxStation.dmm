@@ -4813,16 +4813,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"cus" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/light/small,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cuu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -9184,6 +9174,19 @@
 "ezF" = (
 /turf/closed/mineral/random/labormineral,
 /area/science/test_area)
+"eAn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "eAL" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -39917,6 +39920,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"uhh" = (
+/obj/machinery/light/small,
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "uhi" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -42905,12 +42915,6 @@
 "vIw" = (
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"vIO" = (
-/obj/machinery/light_switch{
-	pixel_x = -24
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "vIV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -89388,7 +89392,7 @@ kPR
 kfu
 auf
 moB
-vIO
+uhh
 kfu
 fyF
 dUs
@@ -89645,7 +89649,7 @@ bqN
 srl
 cAY
 eKQ
-cus
+eAn
 kfu
 oas
 lzl
