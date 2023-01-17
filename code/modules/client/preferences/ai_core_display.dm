@@ -19,5 +19,11 @@
 
 	return values
 
+/datum/preference/choiced/ai_core_display/deserialize(input, datum/preferences/preferences)
+	if (!(input in GLOB.ai_core_display_screens))
+		return "Random"
+
+	return ..(input, preferences)
+
 /datum/preference/choiced/ai_core_display/apply_to_human(mob/living/carbon/human/target, value)
 	return

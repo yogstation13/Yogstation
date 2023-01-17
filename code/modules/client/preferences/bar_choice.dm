@@ -1,9 +1,9 @@
 /// Which bar to spawn on boxstation
 /datum/preference/choiced/bar_choice
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	can_randomize = FALSE
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "bar_choice"
+	savefile_identifier = PREFERENCE_CHARACTER
+	can_randomize = FALSE
 
 /datum/preference/choiced/bar_choice/create_default_value()
 	return "Random"
