@@ -38,6 +38,7 @@
 	// The `_` makes it first in ABC order.
 	group = "_real_name"
 	savefile_key = "real_name"
+	allow_numbers = TRUE //fucking ipcs
 
 /datum/preference/name/real_name/apply_to_human(mob/living/carbon/human/target, value)
 	target.real_name = value
