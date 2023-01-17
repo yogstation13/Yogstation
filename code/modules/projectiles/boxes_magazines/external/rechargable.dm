@@ -44,6 +44,12 @@
 		"fire" = 2
 	)
 
+/obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon()
+	icon_state = initial(icon_state)
+	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
+		icon_state = "ntusp-l"
+	..()
+
 //NT-USP Clip
 /obj/item/ammo_box/magazine/recharge/ntusp
 	name = "small power pack"
