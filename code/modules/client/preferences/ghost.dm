@@ -1,8 +1,8 @@
 /// Determines what accessories your ghost will look like they have.
 /datum/preference/choiced/ghost_accessories
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "ghost_accs"
 	savefile_identifier = PREFERENCE_PLAYER
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 
 /datum/preference/choiced/ghost_accessories/init_possible_values()
 	return list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST_ACCS_FULL)
