@@ -12,7 +12,7 @@
 	H.usesound = sound ? sound : 'sound/items/pshoom.ogg'
 	H.toolspeed = speed ? speed : 1
 	H.tool_behaviour = behavior ? behavior : null
-	H.sharpness = sharpness ? sharpness : null
+	H.sharpness = sharpness ? sharpness : SHARP_NONE
 
 /datum/holotool_mode/proc/on_unset(var/obj/item/holotool/H)
 	H.usesound = initial(H.usesound)
