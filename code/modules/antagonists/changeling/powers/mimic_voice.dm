@@ -12,7 +12,7 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(changeling.mimicing)
 		changeling.mimicing = ""
-		changeling.chem_recharge_slowdown -= 1
+		changeling.chem_recharge_slowdown -= 0.5
 		to_chat(user, span_notice("We return our vocal glands to their original position."))
 		return
 
@@ -21,7 +21,7 @@
 		return
 	..()
 	changeling.mimicing = mimic_voice
-	changeling.chem_recharge_slowdown += 1
+	changeling.chem_recharge_slowdown += 0.5
 	to_chat(user, span_notice("We shape our glands to take the voice of <b>[mimic_voice]</b>, this will slow down regenerating chemicals while active."))
 	to_chat(user, span_notice("Use this power again to return to our original voice and return chemical production to normal levels."))
 	return TRUE

@@ -210,15 +210,15 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/rapidsyringe
-	name = "Rapid Syringe Gun"
-	desc = "A gun that fires many syringes."
-	id = "rapidsyringe"
+/datum/design/syringegun
+	name = "Syringe Gun"
+	desc = "A gun that fires syringes."
+	id = "syringegun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
-	build_path = /obj/item/gun/syringe/rapidsyringe
+	build_path = /obj/item/gun/syringe
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY		//uwu
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY | DEPARTMENTAL_FLAG_MEDICAL	//uwu
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
