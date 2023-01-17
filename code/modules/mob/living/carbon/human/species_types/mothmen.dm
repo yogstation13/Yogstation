@@ -27,7 +27,7 @@
 
 	smells_like = "dusty dryness"
 
-/datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
+/datum/species/moth/regenerate_organs(mob/living/carbon/C, datum/species/old_species, replace_current = TRUE, visual_only = FALSE)
 	. = ..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

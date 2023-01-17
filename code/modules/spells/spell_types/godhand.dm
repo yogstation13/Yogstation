@@ -148,23 +148,23 @@
 	color = "#FF0000"
 	
 /obj/item/melee/touch_attack/raisehand/afterattack(atom/target, mob/living/carbon/user, proximity)
-	var/mob/living/carbon/human/M = target
-	if(!ishuman(M) || M.stat != DEAD)
-		to_chat(user, span_notice("You must be targeting a dead humanoid!"))
+	var/mob/living/M = target
+	if(M.stat != DEAD)
+		to_chat(user, span_notice("Your target must be dead!"))
 		return
 	if(GLOB.bloodmen_list.len > 2)
 		to_chat(user, span_notice("You can't control that many minions!"))
 		return
-	if(NOBLOOD in M.dna.species.species_traits)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-		to_chat(M, span_notice("Your head pounds as you raise a bloodman!"))
+	if(NOBLOOD in user.dna.species.species_traits)
+		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+		to_chat(user, span_notice("Your head pounds as you raise a bloodman!"))
 	else
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L = new(M.loc)
 		L.stored_mob = M
 		M.forceMove(L)
 		qdel(src)
-		user.blood_volume -= 25 
+		user.blood_volume -= 25
 		to_chat(user, span_notice("You curse the body with your blood, leaving you feeling a bit light-headed."))
 
 /obj/item/melee/touch_attack/pacifism

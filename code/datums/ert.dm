@@ -114,7 +114,7 @@
 
 /datum/ert/uplinked
 	leader_role = /datum/antagonist/ert/common/leader
-	roles = list(/datum/antagonist/ert/common)
+	roles = list(/datum/antagonist/ert/common/trooper,/datum/antagonist/ert/common/medic,/datum/antagonist/ert/common/engineer)
 	rename_team = "Uplinked Emergency Response Team"
 	polldesc = "an Uplink-Equipped ERT"
 

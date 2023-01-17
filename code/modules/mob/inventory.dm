@@ -300,13 +300,14 @@
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
 	if(I)//signals don't like null arguments
 		SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
-	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
-	I.do_drop_animation(src)
+		. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+		I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
-	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
-	I.do_drop_animation(src)
+	if(I)
+		. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+		I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D

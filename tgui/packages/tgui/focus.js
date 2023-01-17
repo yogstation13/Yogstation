@@ -7,7 +7,7 @@
  */
 
 /**
- * Moves focus to the BYOND map window.
+ * Moves focus to the BYOND map window. //
  */
 export const focusMap = () => {
   Byond.winset('mapwindow.map', {

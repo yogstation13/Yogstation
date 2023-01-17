@@ -245,7 +245,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.jitteriness -= 100
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
-	charge = clamp(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way
+	if(HAS_TRAIT(H, TRAIT_EAT_LESS))
+		chargemod *= 0.75 //power consumption rate reduced by about 25%
+	if(HAS_TRAIT(H, TRAIT_EAT_MORE))
+		chargemod *= 3 //hunger rate tripled
+	charge = clamp(charge - (power_drain * chargemod),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+
 	if(charge == PRETERNIS_LEVEL_NONE)
 		to_chat(H,span_danger("Warning! System power criti-$#@$"))
 		H.death()
@@ -273,3 +279,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
 		return 1
 	return 0
+
+/datum/species/preternis/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_preternis_name()
+	return preternis_name()

@@ -844,11 +844,14 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	var/mob/living/carbon/human/user = bloodsucker.current
-	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
-		prepare_bloodsucker(bloodsucker)
-	add_antag_datum(/datum/antagonist/bloodsucker)
-	return TRUE
+	if(bloodsucker)
+		var/mob/living/carbon/human/user = bloodsucker.current
+		if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+			prepare_bloodsucker(bloodsucker)
+		add_antag_datum(/datum/antagonist/bloodsucker)
+		return TRUE
+	else
+		return
 
 /datum/mind/proc/remove_bloodsucker()
 	var/datum/antagonist/bloodsucker/removed_bloodsucker = has_antag_datum(/datum/antagonist/bloodsucker)

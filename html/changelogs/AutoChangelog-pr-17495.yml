@@ -1,0 +1,4 @@
+author: " SapphicOverload, JamieD12"
+delete-after: true 
+changes: 
+  - bugfix: "Softcaps rad collectors maximum credits per minute."

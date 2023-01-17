@@ -336,10 +336,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/maintenance/starboard)
-"aaW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2986,30 +2982,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"ahE" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/rack,
-/obj/item/storage/box/flashes{
-	pixel_x = 3
-	},
-/obj/item/storage/box/teargas{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "ahF" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/ai_monitored/security/armory";
@@ -5298,10 +5270,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anu" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "anw" = (
@@ -5742,6 +5711,14 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = -8
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -22;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aoH" = (
@@ -16754,6 +16731,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/folder/red,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aOm" = (
@@ -17344,9 +17323,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPD" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/folder/red,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -17356,6 +17332,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/armaments_dispenser,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "aPE" = (
@@ -30993,14 +30970,6 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
-"bAX" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Incinerator Output Pump"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/space,
-/area/maintenance/disposal/incinerator)
 "bAZ" = (
 /obj/machinery/camera{
 	c_tag = "Head of Personnel's Office";
@@ -38315,8 +38284,8 @@
 /area/medical/medbay/central)
 "ccb" = (
 /obj/machinery/light,
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/ppflowers,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ccc" = (
@@ -47751,30 +47720,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"cVo" = (
-/obj/item/gun/syringe{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/item/gun/syringe{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/gun/syringe{
-	pixel_x = -1
-	},
-/obj/structure/rack,
-/obj/machinery/door/window/eastright{
-	dir = 1;
-	name = "Syringe Gun Storage";
-	red_alert_access = 1;
-	req_access_txt = "45"
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/storage/locker)
 "cVx" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -53742,10 +53687,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "plasma";
-	name = "Plasma Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -55865,8 +55808,8 @@
 /turf/open/floor/plating,
 /area/medical/psych)
 "hjp" = (
-/mob/living/carbon/monkey,
 /obj/structure/sink/puddle,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "hjz" = (
@@ -56307,17 +56250,6 @@
 	pixel_x = 26
 	},
 /turf/open/floor/plating,
-/area/engine/atmos_distro)
-"hzb" = (
-/obj/machinery/atmospherics/components/trinary/mixer{
-	dir = 1;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "hzt" = (
 /obj/structure/disposalpipe/segment{
@@ -57849,10 +57781,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "n2o";
-	name = "N2O Fitler"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -57918,6 +57848,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"iIL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "iJJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -60493,10 +60431,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 4;
-	filter_type = "co2";
-	name = "CO2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -64268,14 +64204,14 @@
 /obj/effect/landmark/event_spawn,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/mob/living/simple_animal/bot/cleanbot/medical{
-	on = 0
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/mob/living/simple_animal/bot/cleanbot/medical{
+	on = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -64420,13 +64356,13 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "mMP" = (
@@ -65950,6 +65886,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"nMw" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "nNr" = (
 /obj/machinery/light{
 	dir = 4
@@ -66240,11 +66182,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "nYm" = (
@@ -66563,8 +66505,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "ojx" = (
@@ -68290,6 +68232,36 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"ptq" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/rack,
+/obj/item/storage/box/flashes{
+	pixel_x = 3
+	},
+/obj/item/storage/box/teargas{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/gun/syringe{
+	pixel_x = -1
+	},
+/obj/item/gun/syringe{
+	pixel_x = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ptI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -68792,10 +68764,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 8;
-	filter_type = "o2";
-	name = "O2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -70923,8 +70893,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "rfv" = (
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "rfM" = (
@@ -74547,8 +74517,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "tAl" = (
@@ -79733,8 +79703,8 @@
 	dir = 1
 	},
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
 /obj/item/toy/cattoy,
+/mob/living/simple_animal/pet/cat/Runtime,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/cmo)
 "wXx" = (
@@ -79822,10 +79792,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
-	dir = 8;
-	filter_type = "n2";
-	name = "N2 Filter"
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -80068,13 +80036,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
 /mob/living/simple_animal/bot/medbot{
 	auto_patrol = 1;
 	desc = "A little medical robot, officially part of the Nanotrasen medical inspectorate. He looks somewhat underwhelmed.";
 	name = "Inspector Johnson"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -80261,6 +80229,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"xoS" = (
+/obj/structure/rack,
+/obj/machinery/door/window/eastright{
+	dir = 1;
+	name = "Syringe Gun Storage";
+	red_alert_access = 1;
+	req_access_txt = "45"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/circlegame,
+/turf/open/floor/plasteel/dark,
+/area/medical/storage/locker)
 "xqo" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
@@ -102492,7 +102474,7 @@ phr
 mXE
 cTH
 wGk
-cVo
+xoS
 rzy
 bXK
 jtW
@@ -108831,7 +108813,7 @@ aeq
 aeq
 afZ
 acx
-ahE
+ptq
 aiA
 akD
 akD
@@ -117922,7 +117904,7 @@ cBJ
 cAP
 cDs
 dvY
-hcK
+cmc
 hcK
 hcK
 jdB
@@ -120723,7 +120705,7 @@ jWF
 bZE
 mKO
 qbK
-aaW
+iIL
 bxI
 byG
 bZE
@@ -120984,7 +120966,7 @@ waU
 cgv
 trp
 czR
-bAX
+cmc
 cmc
 cmc
 cmc
@@ -128167,7 +128149,7 @@ uck
 lTs
 qZJ
 ugL
-hzb
+nMw
 epf
 pkQ
 qpv

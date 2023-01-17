@@ -1,6 +1,8 @@
 /datum/job/paramedic
 	title = "Paramedic"
+	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
 	flag = PARAMEDIC
+	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -8,7 +10,7 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
-	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic")
+	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue")
 
 	outfit = /datum/outfit/job/paramedic
 
@@ -57,3 +59,4 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile

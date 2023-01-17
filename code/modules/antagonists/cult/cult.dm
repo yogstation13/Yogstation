@@ -461,7 +461,7 @@
 	..()
 	var/sanity = 0
 	while(summon_spots.len < SUMMON_POSSIBILITIES && sanity < 100)
-		var/area/summon = pick(GLOB.sortedAreas - summon_spots)
+		var/area/summon = pick(GLOB.areas - summon_spots)
 		if(summon && is_station_level(summon.z) && summon.valid_territory)
 			summon_spots += summon
 		sanity++

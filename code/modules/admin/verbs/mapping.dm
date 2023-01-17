@@ -138,8 +138,8 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Camera Report"
 
 	if(!Master)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
-		return 0
+		tgui_alert(usr,"Master_controller not found.","Sec Camera Report")
+		return FALSE
 
 	var/list/obj/machinery/camera/CL = list()
 

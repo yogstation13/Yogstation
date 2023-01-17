@@ -24,13 +24,13 @@
 	lose_text = span_notice("You feel vigorous again.")
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
 
-/datum/quirk/blooddeficiency/on_process()
+/datum/quirk/blooddeficiency/on_process(delta_time)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
 		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
-			H.blood_volume -= 0.275
+			H.blood_volume -= 0.275 * delta_time
 
 /datum/quirk/blindness
 	name = "Blind"
@@ -59,8 +59,8 @@
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
 	var/where = "at your feet"
 
-/datum/quirk/brainproblems/on_process()
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
+/datum/quirk/brainproblems/on_process(delta_time)
+	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
 
 /datum/quirk/brainproblems/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -359,7 +359,7 @@
 
 /datum/quirk/poor_aim/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.dna.species.aiminginaccuracy -= 25
+	H?.dna?.species?.aiminginaccuracy -= 25
 
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
@@ -715,6 +715,11 @@
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
 
+/datum/quirk/sheltered/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.get_selected_language())
+		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -860,3 +865,16 @@
 	desc = "You are a complete nobody, no one would ever send you anything worthwhile in the mail."
 	value = -1
 	mob_trait = TRAIT_BADMAIL
+
+/datum/quirk/telomeres_short 
+	name = "Short Telomeres"
+	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
+	value = -2
+	mob_trait = TRAIT_SHORT_TELOMERES
+	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are artificially shortened from previous cloner usage."
+
+/datum/quirk/telomeres_short/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NO_DNA_COPY in prefs.pref_species.species_traits)) //Can't pick if you have no DNA bruv.
+		return "You have no DNA!"
+	return FALSE
+	

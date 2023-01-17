@@ -4,6 +4,7 @@
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
 	icon_state = "heart"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -106,6 +107,9 @@
 			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
+
+/obj/item/organ/heart/get_availability(datum/species/species)
+	return !(NOBLOOD in species.species_traits)
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"

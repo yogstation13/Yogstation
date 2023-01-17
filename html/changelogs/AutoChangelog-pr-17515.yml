@@ -1,0 +1,5 @@
+author: "zigguy"
+delete-after: true 
+changes: 
+  - rscadd: "added code for the sprites"
+  - imageadd: "added in hand sprites for bluespace trash bag"

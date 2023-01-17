@@ -313,3 +313,27 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 
 		return TRUE
 	return FALSE
+
+/datum/gas_mixture/proc/remove_specific_ratio(gas_id, ratio)
+	if(ratio <= 0)
+		return null
+	ratio = min(ratio, 1)
+
+	var/datum/gas_mixture/removed = new
+
+	removed.set_temperature(return_temperature())
+
+	var/current_moles = get_moles(gas_id)
+	var/moles_to_remove = QUANTIZE(current_moles * ratio)
+	var/moles_left = current_moles - moles_to_remove
+
+	// sanitize moles to ensure we aren't writing any invalid or tiny values
+	moles_left = clamp(moles_left, 0, current_moles)
+	if (moles_left < MINIMUM_MOLE_COUNT)
+		moles_left = 0
+		moles_to_remove = current_moles
+
+	removed.set_moles(gas_id, moles_to_remove)
+	set_moles(gas_id, moles_left)
+
+	return removed

@@ -816,7 +816,9 @@
 	item_state = "lampskirt_male"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
-	var/brightness_on = 1 //luminosity when the light is on
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_on = FALSE
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 
@@ -827,10 +829,10 @@
 	user.update_inv_w_uniform() //So the mob overlay updates
 
 	if(on)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 		user.visible_message(span_notice("[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on."))
 	else
-		set_light(0)
+		set_light_on(FALSE)
 
 	for(var/X in actions)
 		var/datum/action/A=X
