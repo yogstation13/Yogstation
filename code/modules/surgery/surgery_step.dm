@@ -51,7 +51,6 @@
 		if(!tool)
 			tool = S
 // yogs end
-	to_chat(world, "checked tryop behaviour for [tool] [tool.tool_behaviour]")
 	if(accept_any_item)
 		if(tool && tool_check(user, tool))
 			success = TRUE
@@ -60,7 +59,6 @@
 		for(var/key in implements)
 			var/match = FALSE
 
-			to_chat(world, "checked compare to [key]")
 			if(ispath(key) && istype(tool, key))
 				match = TRUE
 			else if(tool.tool_behaviour == key)
@@ -71,7 +69,7 @@
 				if(tool_check(user, tool))
 					success = TRUE
 					break
-	to_chat(world, "it was success? [success ? "yes" : "no"]")
+					
 	if(success)
 		if(target_zone == surgery.location)
 			if(get_location_accessible(target, target_zone) || surgery.ignore_clothes)
