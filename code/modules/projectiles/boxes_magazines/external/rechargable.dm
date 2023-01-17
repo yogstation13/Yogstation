@@ -113,7 +113,7 @@
 	name = "NT-USP magazine conversion kit"
 	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "modkit"
+	icon_state = "modkit_ntusp"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/magazine/recharge/ntusp/attackby(obj/item/A, mob/user)
