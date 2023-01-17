@@ -138,8 +138,8 @@ Credit where due:
 	report_type = "clockwork_cult"
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
-	required_players = 35
-	required_enemies = 4
+	required_players = 40
+	required_enemies = 5
 	recommended_enemies = 5
 	enemy_minimum_age = 14
 	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
@@ -160,7 +160,7 @@ Credit where due:
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/starter_servants = 4 //Guaranteed four servants
+	var/starter_servants = 5 //Guaranteed five servants
 	var/number_players = num_players()
 	roundstart_player_count = number_players
 	if(number_players > 50) //plus one servant for every additional 5 players above 50
