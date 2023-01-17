@@ -33,7 +33,7 @@
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
 /obj/item/holotool/attack(mob/living/M, mob/living/user)
-	if((current_tool?.behavior == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
 		return
 	. = ..()
 	
