@@ -163,9 +163,9 @@ Credit where due:
 	var/starter_servants = 4 //Guaranteed four servants
 	var/number_players = num_players()
 	roundstart_player_count = number_players
-	if(number_players > 40) //plus one servant for every additional 8 players above 40
-		number_players -= 40
-		starter_servants += round(number_players / 8)
+	if(number_players > 50) //plus one servant for every additional 5 players above 40
+		number_players -= 50
+		starter_servants += round(number_players / 5)
 	starter_servants = min(starter_servants, 7) //max 7 servants (that sould only happen with a ton of players)
 	while(starter_servants)
 		var/datum/mind/servant = antag_pick(antag_candidates)
