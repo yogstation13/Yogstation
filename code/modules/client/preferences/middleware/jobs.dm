@@ -31,6 +31,8 @@
 	var/list/departments = list()
 	var/list/jobs = list()
 
+	log_world("Middle jobs: [length(SSjob.joinable_occupations)]")
+
 	for (var/datum/job/job as anything in SSjob.joinable_occupations)
 		var/datum/job_department/department_type = job.department_for_prefs || job.departments_list?[1]
 		if (isnull(department_type))
