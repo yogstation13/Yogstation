@@ -220,7 +220,7 @@ export class ByondClient {
 		return atom;
 	}
 
-	get_turf(x:number, y:number, z:number) {
+	get_turf(x=this.eye_x|0, y:number=this.eye_y|0, z:number=this.eye_z|0) {
 		if(x < 0 || y < 0 || z < 0 || x >= this.maxx || y >= this.maxy || z >= this.maxz) return null;
 		let id = x + ((y + z * this.maxy) * this.maxx) + 0x01000000;
 		return this.get_atom(id);
@@ -559,9 +559,9 @@ export class ByondClient {
 			break;
 		} case 240: {
 			let anim = Animation.from_msg(dp, this.appearance_map);
-			anim.start_time += this.time;
 			let atom = this.atom_map.get(anim.atom_id);
 			if(atom) {
+				anim.merge_fixup(this.time, atom.animation);
 				atom.animation = anim;
 				atom.mark_dirty();
 			}

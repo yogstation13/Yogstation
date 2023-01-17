@@ -274,7 +274,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 	[E3D_TYPE_FLOOR](list, appearance, x, y) : void {
 		x += (appearance.pixel_x)/32;
 		y += (appearance.pixel_y)/32;
-		let z = this.type == 1 ? 0 : (0.01 + (appearance.layer - 2.19) * 0.1);
+		let z = this.type == 1 ? 0 : (0.01 + Math.max(0, (appearance.layer - 2.19) * 0.1));
 		let odz = this.type == 1 ? 0 : 0.001;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
 		let overlay_counter = 0;

@@ -274,15 +274,15 @@ export class BillboardRenderPlan extends BatchRenderPlan {
 				let ly = -icon_info.height/64;
 				px += (lx * t[0] + ly * t[1] + t[2]/32) - lx;
 				py += (lx * t[3] + ly * t[4] + t[5]/32) - ly;
-				pos[0] -= normal[1]*px;
-				pos[1] += normal[0]*px;
-				pos[2] += py;
 				let r = vec3.scale(vec3.create(), right, t[0]);
 				vec3.scaleAndAdd(r, r, up, t[3]);
 				let u = vec3.scale(vec3.create(), right, t[1	]);
 				vec3.scaleAndAdd(u, u, up, t[4]);
 				right = r; up = u;
 			}
+			pos[0] -= normal[1]*px;
+			pos[1] += normal[0]*px;
+			pos[2] += py;
 		}
 		offset = this.write_plane(attribs, iattribs, offset, frame, pos, right, up, normal, vec4_color(color_vec, this.appearance.color_alpha), uv_box);
 		if(this.double_sided) {

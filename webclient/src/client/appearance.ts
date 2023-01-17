@@ -242,12 +242,16 @@ export class Animation {
 		flags: number,
 		loop: number,
 		easing: number,
-		duration: number
+		duration: number,
+		parallel_start?: number
 	}[] = [];
 	total_duration = 0;
 	parallel_parent? : Animation;
+	sequence = -1;
+	pre_len = 0;
 
 	apply(target : Appearance, time : number) : Appearance {
+		let unadjusted_time = time;
 		time -= this.start_time;
 		if(time < 0) return this.frames[0]?.from_appearance ?? target;
 		if(!this.frames.length || !this.total_duration) return target;
@@ -259,10 +263,11 @@ export class Animation {
 			if(frame_index >= this.frames.length) {
 				frame_index = 0;
 				if(this.frames[0].loop == 1 || this.frames[0].loop == 0) {
-					return target;
+					return this.parallel_parent ? this.parallel_parent.apply(target, time) : target;
 				} else if(this.frames[0].loop > 1) {
 					this.frames[0].loop--;
 				}
+				this.frames[0].from_appearance = this.frames[this.frames.length-1].to_appearance;
 				this.start_time += this.total_duration;
 			}
 		}
@@ -309,6 +314,7 @@ export class Animation {
 				target.transform = matrix_interpolate(prev.transform??[1,0,0,0,1,0], next.transform??[1,0,0,0,1,0], fac, !!(frame.flags & 2));
 			}
 		}
+		if(this.parallel_parent) target = this.parallel_parent.apply(target, unadjusted_time);
 		return target;
 	}
 
@@ -317,7 +323,7 @@ export class Animation {
 		anim.atom_id = dp.read_uint32();
 		anim.start_time = dp.read_float();
 		anim.is_new = !!dp.read_uint8();
-		let sequence = dp.read_uint16();
+		anim.sequence = dp.read_uint16();
 		let num_frames = dp.read_uint16();
 		for(let i = 0; i < num_frames; i++) {
 			let from_id = dp.read_uint32as16();
@@ -329,16 +335,69 @@ export class Animation {
 			let loop = dp.read_int32();
 			let easing = dp.read_uint8();
 			let flags = dp.read_uint8();
+			let parallel_start : number|undefined = undefined;
 			if(flags & 4) {
-				dp.read_float();
+				parallel_start = dp.read_float();
 			}
 			anim.frames.push({
 				from_appearance, to_appearance,
-				duration: time, easing, flags, loop
+				duration: time, easing, flags, loop,
+				parallel_start
 			});
 			anim.total_duration += time;
 		}
+		console.log(anim);
 		return anim;
+	}
+
+	recalc_duration() {
+		this.total_duration = 0;
+		for(let frame of this.frames) this.total_duration += frame.duration;
+	}
+
+	merge_fixup(curr_time : number, prev? : Animation|null) {
+		this.start_time += curr_time;
+		if(prev && prev.sequence == this.sequence) {
+			this.pre_len = this.frames.splice(0, prev.frames.length + prev.pre_len).length;
+			this.recalc_duration();
+			this.start_time = Math.min(prev.start_time + prev.total_duration, curr_time);
+			if(this.frames[0]?.parallel_start != undefined) {
+				this.start_time = this.frames[0].parallel_start + curr_time;
+			}
+
+			if(this.frames[0] && (this.frames[0].flags & 4)) {
+				this.parallel_parent = prev;
+			} else if(this.frames.length && !(this.frames[0].flags & 1)) {
+				this.frames[0].from_appearance = prev.apply(this.frames[0].from_appearance, this.start_time);
+			}
+		}
+		for(let i = 0; i < this.frames.length; i++) {
+			if(i != 0 && ((this.frames[i].flags & (1|4)) || this.frames[i].loop != 1)) {
+				let new_prev = new Animation();
+				new_prev.sequence = this.sequence;
+				new_prev.atom_id = this.atom_id;
+				new_prev.is_new = this.is_new;
+				new_prev.start_time = this.start_time;
+				new_prev.frames = this.frames.splice(0, i);
+				new_prev.pre_len = this.pre_len;
+				new_prev.parallel_parent = this.parallel_parent;
+				this.parallel_parent = undefined;
+				this.pre_len += new_prev.frames.length
+				i = 0;
+				new_prev.recalc_duration();
+				this.recalc_duration();
+				this.start_time += new_prev.total_duration;
+				this.start_time = Math.max(this.start_time, curr_time);
+				if(this.frames[0]?.parallel_start != undefined) {
+					this.start_time = this.frames[0].parallel_start + curr_time;
+				}
+				if(this.frames[0].flags & 4) {
+					this.parallel_parent = new_prev;
+				} else if(!(this.frames[0].flags & 1)) {
+					this.frames[0].from_appearance = new_prev.apply(this.frames[0].from_appearance, this.start_time);
+				}
+			}
+		}
 	}
 }
 
