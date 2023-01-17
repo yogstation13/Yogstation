@@ -308,6 +308,16 @@
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/seafood(src)
 	boxtag = "Ahi King"
 
+/obj/item/pizzabox/sassysage/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/sassysage(src)
+	boxtag = "Meatball Supreme"
+
+/obj/item/pizzabox/donkpocket/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/donkpocket(src)
+	boxtag = "Donk Pocket Special"
+
 //An anomalous pizza box that, when opened, produces the opener's favorite kind of pizza.
 /obj/item/pizzabox/infinite
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF //hard to destroy
