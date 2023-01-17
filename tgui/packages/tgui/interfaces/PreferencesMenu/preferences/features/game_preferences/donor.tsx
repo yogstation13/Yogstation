@@ -71,7 +71,7 @@ export const donor_pda: Feature<string> = {
 export const purrbation: FeatureToggle = {
   name: "Purrbation",
   category: "DONATOR",
-  description: "When enabled and you are human, you will turn you into a felinid.",
+  description: "When enabled and you are a human, you will turn into a felinid.",
   component: (
     props: FeatureValueProps<BooleanLike, boolean>,
     context,
