@@ -304,4 +304,4 @@ ipc martial arts stuff
 	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
 	siemens_coeff = initial(siemens_coeff)
 
-#undef CONCIOUSAY
+#undef CONSCIOUSAY
