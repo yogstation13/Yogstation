@@ -32,17 +32,10 @@
 	target.dna.features["pod_hair"] = value
 	target.dna.features["pod_flower"] = value
 
-/datum/preference/choiced/pod_hair/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "feature_pod_hair_color"
-
-	return data
-
 
 /datum/preference/color_legacy/pod_hair_color
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
-	savefile_key = "feature_pod_hair_color"
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_hair"
 
@@ -60,7 +53,7 @@
 
 /datum/preference/color_legacy/pod_flower_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_key = "feature_pod_flower_color"
+	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_flower"
 

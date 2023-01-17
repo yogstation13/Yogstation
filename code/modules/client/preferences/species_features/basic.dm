@@ -24,9 +24,9 @@
 
 
 /datum/preference/color_legacy/eye_color
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_species_trait = EYECOLOR
 
 /datum/preference/color_legacy/eye_color/apply_to_human(mob/living/carbon/human/target, value)
@@ -56,16 +56,9 @@
 /datum/preference/choiced/hairstyle/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_style = value
 
-/datum/preference/choiced/hairstyle/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "hair_color"
-
-	return data
-
 
 /datum/preference/color_legacy/hair_color
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = HAIR
@@ -88,16 +81,9 @@
 /datum/preference/choiced/facial_hairstyle/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_style = value
 
-/datum/preference/choiced/facial_hairstyle/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "facial_hair_color"
-
-	return data
-
 
 /datum/preference/color_legacy/facial_hair_color
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = FACEHAIR
