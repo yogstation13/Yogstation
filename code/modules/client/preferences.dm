@@ -126,6 +126,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
 
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
+	if(!SSjob.initialized)
+		tgui_alert(user, "You cannot open the preferences menu before the job subsystem is initialized!")
+		return
+
 	// If you leave and come back, re-register the character preview
 	if (!isnull(character_preview_view) && !(character_preview_view in user.client?.screen))
 		user.client?.register_map_obj(character_preview_view)
