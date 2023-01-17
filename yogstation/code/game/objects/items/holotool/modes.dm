@@ -3,7 +3,7 @@
 	var/sound
 	var/behavior
 	var/sharpness
-	var/speed = 0.5
+	var/speed = 0.4
 
 /datum/holotool_mode/proc/can_be_used(var/obj/item/holotool/H)
 	return TRUE
