@@ -414,7 +414,7 @@
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
 		set_light_range(1)
-		set_light_power(0.3)
+		set_light_power(0.2)
 		force -= 1
 		icon_state = "scalpel_a"
 
