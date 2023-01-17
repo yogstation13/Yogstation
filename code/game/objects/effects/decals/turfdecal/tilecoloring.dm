@@ -437,7 +437,7 @@
 /obj/effect/turf_decal/trimline/white/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/white/filled/corner/lower
+/obj/effect/turf_decal/trimline/white/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/white/warning/lower
@@ -534,7 +534,7 @@
 /obj/effect/turf_decal/trimline/red/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/red/filled/corner/lower
+/obj/effect/turf_decal/trimline/red/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/red/warning/lower
@@ -631,7 +631,7 @@
 /obj/effect/turf_decal/trimline/green/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/green/filled/corner/lower
+/obj/effect/turf_decal/trimline/green/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/green/warning/lower
@@ -728,7 +728,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower
+/obj/effect/turf_decal/trimline/blue/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/blue/warning/lower
@@ -825,7 +825,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower
+/obj/effect/turf_decal/trimline/yellow/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/yellow/warning/lower
@@ -922,7 +922,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/purple/filled/corner/lower
+/obj/effect/turf_decal/trimline/purple/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/purple/warning/lower
@@ -1019,7 +1019,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower
+/obj/effect/turf_decal/trimline/brown/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/brown/warning/lower
@@ -1117,7 +1117,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/neutral/filled/corner/lower
+/obj/effect/turf_decal/trimline/neutral/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/neutral/warning/lower
@@ -1218,7 +1218,7 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower
+/obj/effect/turf_decal/trimline/darkblue/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/darkblue/warning/lower
@@ -1320,7 +1320,7 @@
 /obj/effect/turf_decal/trimline/chemorange/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower
+/obj/effect/turf_decal/trimline/chemorange/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/chemorange/warning/lower
@@ -1421,7 +1421,7 @@
 /obj/effect/turf_decal/trimline/secred/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower
+/obj/effect/turf_decal/trimline/secred/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/secred/warning/lower
@@ -1521,7 +1521,7 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower
+/obj/effect/turf_decal/trimline/engiyellow/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/engiyellow/warning/lower
@@ -1624,7 +1624,7 @@
 /obj/effect/turf_decal/trimline/atmos/filled/shrink_ccw/lower
 	icon_state = "trimline_shrink_ccw_lower"
 
-/obj/effect/turf_decal/trimline/atmos/filled/corner/lower
+/obj/effect/turf_decal/trimline/atmos/corner/lower
 	icon_state = "trimline_corner_lower"
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower
