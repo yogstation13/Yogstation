@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - mapping: "Removes unintended contents (the syringe guns) from gax and meta armories"
