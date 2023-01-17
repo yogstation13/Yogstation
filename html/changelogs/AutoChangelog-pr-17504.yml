@@ -1,5 +1,0 @@
-author: " Papi, Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Genderless species no longer turn invisible when augmented"
-  - bugfix: "Female characters no longer have too many pixels when augmented"
