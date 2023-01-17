@@ -7,20 +7,6 @@ export const asaycolor: Feature<string> = {
   component: FeatureColorInput,
 };
 
-export const brief_outfit: Feature<string> = {
-  name: "Brief outfit",
-  category: "ADMIN",
-  description: "The outfit to gain when spawning as the briefing officer.",
-  component: FeatureDropdownInput,
-};
-
-export const bypass_deadmin_in_centcom: FeatureToggle = {
-  name: "Bypass deadmin options when in CentCom",
-  category: "ADMIN",
-  description: "Whether or not to always remain an admin when spawned in CentCom.",
-  component: CheckboxInput,
-};
-
 export const fast_mc_refresh: FeatureToggle = {
   name: "Enable fast MC stat panel refreshes",
   category: "ADMIN",
