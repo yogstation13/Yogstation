@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Darkspawn: Duality tendrils when thrown now immobilize for 0.1 seconds so people can no longer move-cancel the throw"
-  - tweak: "Darkspawn: Devour will (dark bead) now hard-applies paralysis to prevent people from avoiding devours by using anti-stuns"
-  - tweak: "Darkspawn: Devour will (dark bead) now immobilizes the user for 1 second so that they no longer accidentally cancel the do_after which is commonly done by newer players especially when chasing down crawling enemies"
