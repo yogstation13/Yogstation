@@ -15,12 +15,12 @@
 	
 /obj/item/buster/proc/hit(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/effect/proc_holder/spell/targeted/buster/proc/grab(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/item/buster
@@ -131,7 +131,7 @@
 		var/turf/T = get_step(get_turf(H), H.dir)
 		var/turf/Q = get_turf(H)
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(H.zone_selected)
-		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
+		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		if(!L.anchored)
 			if(istype(H))
 				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
@@ -613,7 +613,7 @@
 			return
 	if(isliving(L))
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
-		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 50)
+		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		qdel(src, force = TRUE)
 		to_chat(user, span_warning("The huge impact takes the arm out of commission! It won't be ready for 15 seconds!"))
 		shake_camera(L, 4, 3)
