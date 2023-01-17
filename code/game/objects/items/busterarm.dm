@@ -297,7 +297,7 @@
 					if(side == LEFT_HANDS)
 						user.put_in_l_hand(T)
 					else
-						user.put_in_r_hand(limb_to_hit)
+						user.put_in_r_hand(T)
 			L.density = old_density
 		thrown |= L
 	target.visible_message(span_warning("[user] throws [target]!"))
@@ -379,7 +379,7 @@
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "mop"
 	charge_max = 40	
-	var/jumpdistance = 4
+	var/jumpdistance = 5
 	var/dragdam = 8
 	var/crashdam = 10
 
@@ -391,7 +391,7 @@
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	user.Immobilize(0.1 SECONDS) //so they dont skip through the target
-	for(var/i = 0 to jumpdistance)
+	for(var/i = 1 to jumpdistance)
 		if(T.density)
 			return
 		for(var/obj/D in T.contents)
@@ -487,6 +487,7 @@
 			to_chat(L, span_userdanger("[user] throws you into [M]"))
 			to_chat(M, span_userdanger("[user] throws [L] into you!"))
 			user.visible_message(span_warning("[L] slams into [M]!"))
+			grab(user, M, crashdam)
 		L.forceMove(Q)
 		if(istype(Q, /turf/open/space))
 			user.setDir(turn(user.dir,180))
@@ -542,8 +543,10 @@
 	var/flightdist = 8
 	var/punchdam = 30
 	var/colldam = 20
-	var/mechdam = 200
+	var/mechdam = 150
 	var/objdam = 400
+	var/objcolldam = 120
+	var/hitobjdam = 10
 
 /obj/item/buster/megabuster/ignition_effect(atom/A, mob/user)
 	playsound(user,'sound/misc/fingersnap1.ogg', 20, 1)
@@ -584,9 +587,11 @@
 			if(side == LEFT_HANDS)
 				(R?.set_disabled(TRUE))
 				addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+				return
 			if(side == RIGHT_HANDS)
 				(Q?.set_disabled(TRUE))
 				addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+				return
 		else
 			W.dismantle_wall(1)
 		user.visible_message(span_warning("[user] demolishes [W]!"))
@@ -598,9 +603,11 @@
 		if(side == LEFT_HANDS)
 			(R?.set_disabled(TRUE))
 			addtimer(CALLBACK(Q, /obj/item/bodypart/r_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+			qdel(src)
 		if(side == RIGHT_HANDS)
 			(Q?.set_disabled(TRUE))
 			addtimer(CALLBACK(R, /obj/item/bodypart/l_arm/.proc/set_disabled), 5 SECONDS, TRUE)
+			qdel(src)
 	if(isstructure(target) || ismachinery(target))
 		user.visible_message(span_warning("[user] strikes [target]!"))
 		var/obj/I = target
@@ -649,6 +656,8 @@
 		var/turf/T = get_ranged_target_turf(P, direction, i)
 		if(T.density)
 			var/turf/closed/wall/W = T
+			for(var/obj/J in knockedback)
+				J.take_damage(objcolldam)
 			for(var/mob/living/S in knockedback)
 				hit(user, S, colldam)
 				if(isanimal(S) && S.stat == DEAD)
@@ -659,17 +668,22 @@
 			else
 				return
 		for(var/obj/D in T.contents)
-			if(D.density == TRUE && D.anchored == FALSE)
-				knockedback |= D
-				D.take_damage(50)
-			if(D.density == TRUE && D.anchored == TRUE)
-				D.take_damage(objdam)
-				if(D.density == TRUE)
-					return
+			if(D.density == TRUE)
+				for(var/obj/J in knockedback)
+					J.take_damage(objcolldam)
 				for(var/mob/living/S in knockedback)
-					hit(user, S, colldam)
-					if(isanimal(S) && S.stat == DEAD)
-						S.gib()		
+					hit(user, S, hitobjdam)
+				if(D.anchored == FALSE)
+					knockedback |= D
+					D.take_damage(50)
+				if(D.anchored == TRUE)
+					D.take_damage(objdam)
+					if(D.density == TRUE)
+						return
+					for(var/mob/living/S in knockedback)
+						hit(user, S, colldam)
+						if(isanimal(S) && S.stat == DEAD)
+							S.gib()		
 		for(var/mob/living/M in T.contents)
 			hit(user, M, colldam)
 			for(var/mob/living/S in knockedback)
