@@ -144,12 +144,13 @@
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
 				span_userdanger("You're knocked off your feet!"))
-				L.Knockdown(60)
+				L.Knockdown(6 SECONDS)
 			else
+				L.Immobilize(0.15 SECONDS) // so they cant cancel the throw by moving
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
-				L.Knockdown(80) //these can't hit people who are already on the ground but they can be spammed to all shit
+				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
