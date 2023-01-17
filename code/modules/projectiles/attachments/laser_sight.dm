@@ -41,7 +41,7 @@
 
 /obj/item/attachment/laser_sight/proc/toggle_on()
 	is_on = !is_on
-	playsound(loc, is_on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
+	playsound(get_turf(loc), is_on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
 	if(attached_gun)
 		if(is_on)
 			attached_gun.spread -= 6

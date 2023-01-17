@@ -42,7 +42,7 @@
 		var/turf/T = get_turf(applicant)
 		if(!is_station_level(T.z))
 			return FALSE
-	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconcious when made, ie if they have selfhealing abilities.
+	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconscious when made, ie if they have selfhealing abilities.
 		return FALSE
 	if(!considered_alive(applicant.mind) || considered_afk(applicant.mind)) //makes sure the player isn't a zombie, brain, or just afk all together
 		return FALSE
@@ -581,9 +581,17 @@
 				ERTOperative.mind.assigned_role = ert_antag.name
 
 				// Equip uplink
-				var/obj/item/upl = new ertemplate.uplinktype
+				var/obj/item/ntuplink/upl = new ertemplate.uplinktype(ERTOperative, ERTOperative.key)
+				if(istype(ert_antag, /datum/antagonist/ert/common/trooper))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/trooper
+				else if(istype(ert_antag, /datum/antagonist/ert/common/medic))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/medic
+				else if(istype(ert_antag, /datum/antagonist/ert/common/engineer))
+					upl.nt_datum = /datum/component/uplink/nanotrasen/engineer
+				upl.finalize()
 				if(istype(upl))
 					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
+					ert_team.uplink_type = ertemplate.uplinktype // Type path
 
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant

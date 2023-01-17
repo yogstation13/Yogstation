@@ -298,13 +298,13 @@
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
-	else if(station_was_nuked && !syndies_didnt_escape)
+	else if(station_was_nuked && !nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_NUKE_WIN
-	else if (station_was_nuked && syndies_didnt_escape)
+	else if (station_was_nuked && !nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_NOSURVIVORS
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && !syndies_didnt_escape)
+	else if (nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && syndies_didnt_escape)
+	else if (nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION_DEAD
 	else if ((disk_rescued && evacuation) && operatives_dead())
 		return NUKE_RESULT_CREW_WIN_SYNDIES_DEAD

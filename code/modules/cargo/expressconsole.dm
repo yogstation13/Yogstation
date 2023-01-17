@@ -179,7 +179,7 @@
 						if (!landingzone)
 							WARNING("[src] couldnt find a Quartermaster/Storage (aka cargobay) area on the station, and as such it has set the supplypod landingzone to the area it resides in.")
 							landingzone = get_area(src)
-						for(var/turf/open/floor/T in landingzone.contents)//uses default landing zone
+						for(var/turf/open/floor/T in landingzone.get_contained_turfs())//uses default landing zone
 							if(is_blocked_turf(T))
 								continue
 							LAZYADD(empty_turfs, T)
@@ -196,7 +196,7 @@
 			else
 				if(SO.pack.get_cost() * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
 					landingzone = GLOB.areas_by_type[pick(GLOB.the_station_areas)]  //override default landing zone
-					for(var/turf/open/floor/T in landingzone.contents)
+					for(var/turf/open/floor/T in landingzone.get_contained_turfs())
 						if(is_blocked_turf(T))
 							continue
 						LAZYADD(empty_turfs, T)

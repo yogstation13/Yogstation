@@ -2,11 +2,15 @@
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
 
-/datum/design/c38/sec
+/datum/design/c38_sec
+	name = "Speed Loader (.38)"
+	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38
 	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
@@ -206,15 +210,15 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/rapidsyringe
-	name = "Rapid Syringe Gun"
-	desc = "A gun that fires many syringes."
-	id = "rapidsyringe"
+/datum/design/syringegun
+	name = "Syringe Gun"
+	desc = "A gun that fires syringes."
+	id = "syringegun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
-	build_path = /obj/item/gun/syringe/rapidsyringe
+	build_path = /obj/item/gun/syringe
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL		//uwu
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY | DEPARTMENTAL_FLAG_MEDICAL	//uwu
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
@@ -383,16 +387,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/largecrossbow
-	name = "Energy Crossbow"
-	desc = "A reverse-engineered energy crossbow favored by syndicate infiltration teams and carp hunters."
-	id = "largecrossbow"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
-	build_path = /obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
 /datum/design/hardlightbow
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
@@ -402,6 +396,27 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mindflayer
+	name = "Mind Flayer"
+	desc = "A compact weapon made to destroy the brain."
+	id = "mind_flayer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
+	build_path = /obj/item/gun/energy/mindflayer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/bouncer
+	name = "Bouncer Energy Gun"
+	desc = "An atypical energy gun shooting bouncing projectiles."
+	id = "bouncer_egun"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 10000, /datum/material/silver = 1000, /datum/material/titanium = 1200)
+	reagents_list = list(/datum/reagent/sorium = 20)
+	build_path = /obj/item/gun/energy/e_gun/bouncer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/simple_sight
 	name = "Simple Sight"
@@ -440,5 +455,15 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/gold = 1000, /datum/material/uranium = 1000, /datum/material/glass = 500)
 	build_path = /obj/item/attachment/laser_sight
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/infra_sight
+	name = "Infrared Sight"
+	desc = "A polarizing camera that picks up infrared radiation. The quality is rather poor, so it ends up making it harder to aim."
+	id = "infra_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2500, /datum/material/uranium = 1500, /datum/material/gold = 1000, /datum/material/plastic = 1000)
+	build_path = /obj/item/attachment/scope/infrared
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

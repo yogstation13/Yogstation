@@ -5,13 +5,15 @@ GLOBAL_PROTECT(admin_verbs_default)
 /world/proc/AVerbsDefault()
 	return list(
 	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
-	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
+	/client/verb/cmd_admin_say,			/*admin-only ooc chat*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
+	/client/verb/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
+	/client/proc/toggle_split_admin_tabs,
+	/client/proc/toggle_fast_mc_refresh,
 	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
@@ -502,7 +504,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap") as null|anything in choices
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap", "Drop Bomb", choices)
 	var/turf/epicenter = mob.loc
 
 	switch(choice)
@@ -530,7 +532,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			if(flash_range == null)
 				return
 			if(devastation_range > GLOB.MAX_EX_DEVESTATION_RANGE || heavy_impact_range > GLOB.MAX_EX_HEAVY_RANGE || light_impact_range > GLOB.MAX_EX_LIGHT_RANGE || flash_range > GLOB.MAX_EX_FLASH_RANGE)
-				if(alert("Bomb is bigger than the maxcap. Continue?",,"Yes","No") != "Yes")
+				if(tgui_alert(usr, "Bomb is bigger than the maxcap. Continue?",,list("Yes","No")) != "Yes")
 					return
 			epicenter = mob.loc //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
@@ -697,7 +699,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!holder)
 		return
 	
-	if(alert("Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", list("Yes", "No")) == "Yes")
 		mfa_reset(ckey, TRUE)
 
 /client/proc/readmin()
@@ -780,7 +782,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(GLOB.enable_memdump == 0)
 		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
 		return
-	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", list("Yes", "No")) != "Yes")
 		return
 
 	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"

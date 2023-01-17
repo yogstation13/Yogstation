@@ -21,6 +21,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharpness = SHARP_EDGED
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
@@ -277,10 +278,10 @@
 	id = "ice_wing_talisman"
 	duration = 25
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/ice_block_talisman
+	alert_type = /atom/movable/screen/alert/status_effect/ice_block_talisman
 	var/icon/cube
 
-/obj/screen/alert/status_effect/ice_wing_talisman
+/atom/movable/screen/alert/status_effect/ice_wing_talisman
 	name = "Frozen Solid"
 	desc = "You're frozen inside an ice cube, and cannot move!"
 	icon_state = "frozen"
@@ -430,25 +431,14 @@
 	denied_type = /obj/item/crusher_trophy/vortex_talisman
 
 /obj/item/crusher_trophy/vortex_talisman/effect_desc()
-	return "mark detonation to create a barrier you can pass"
+	return "mark detonation to create a homing hierophant chaser" //Wall was way too cheesy and allowed miners to be nearly invincible while dumb mob AI just rubbed its face on the wall.
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
-	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
-	var/area/current_area = current_location.loc //yogs more location check stuff
-	if(current_area.noteleport) //yogs added noteleport
-		to_chat(user, "[src] fizzles uselessly.")
-		return
-	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
-	var/turf/otherT = get_step(T, turn(user.dir, 90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	otherT = get_step(T, turn(user.dir, -90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-
-/obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 75
+	if(isliving(target))
+		var/obj/effect/temp_visual/hierophant/chaser/C = new(get_turf(user), user, target, 3, TRUE)
+		C.damage = 10 // Weaker because there is no cooldown
+		C.monster_damage_boost = FALSE
+		log_combat(user, target, "fired a chaser at", src)
 
 //Legion (Megafauna)
 /obj/item/crusher_trophy/malformed_bone

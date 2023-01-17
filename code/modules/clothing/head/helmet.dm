@@ -30,6 +30,12 @@
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
 
+/obj/item/clothing/head/helmet/Destroy()
+	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
+	if(old_light)
+		qdel(old_light)
+	return ..()
+
 /obj/item/clothing/head/helmet/examine(mob/user)
 	.=..()
 	if(attached_light)
@@ -39,17 +45,30 @@
 	else if(can_flashlight)
 		. += "It has a mounting point for a <b>seclite</b>."
 
-/obj/item/clothing/head/helmet/Destroy()
-	QDEL_NULL(attached_light)
-	return ..()
-
 /obj/item/clothing/head/helmet/handle_atom_del(atom/A)
 	if(A == attached_light)
-		attached_light = null
+		set_attached_light(null)
 		update_helmlight()
 		update_icon()
 		QDEL_NULL(alight)
+		qdel(A)
 	return ..()
+
+///Called when attached_light value changes.
+/obj/item/clothing/head/helmet/proc/set_attached_light(obj/item/flashlight/seclite/new_attached_light)
+	if(attached_light == new_attached_light)
+		return
+	. = attached_light
+	attached_light = new_attached_light
+	if(attached_light)
+		attached_light.set_light_flags(attached_light.light_flags | LIGHT_ATTACHED)
+		if(attached_light.loc != src)
+			attached_light.forceMove(src)
+	else if(.)
+		var/obj/item/flashlight/seclite/old_attached_light = .
+		old_attached_light.set_light_flags(old_attached_light.light_flags & ~LIGHT_ATTACHED)
+		if(old_attached_light.loc == src)
+			old_attached_light.forceMove(get_turf(src))
 
 /obj/item/clothing/head/helmet/sec
 	can_flashlight = TRUE
@@ -377,9 +396,7 @@
 			if(!user.transferItemToLoc(S, src))
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
-			if(S.on)
-				set_light(0)
-			attached_light = S
+			set_attached_light(S)
 			update_icon()
 			update_helmlight()
 			alight = new(src)
@@ -397,8 +414,7 @@
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(attached_light)
 
-		var/obj/item/flashlight/removed_light = attached_light
-		attached_light = null
+		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
 		update_icon()
@@ -418,6 +434,7 @@
 	if(user.incapacitated())
 		return
 	attached_light.on = !attached_light.on
+	attached_light.update_brightness()
 	to_chat(user, span_notice("You toggle the helmet-light [attached_light.on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
@@ -425,14 +442,7 @@
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		if(attached_light.on)
-			set_light(attached_light.brightness_on)
-		else
-			set_light(0)
 		update_icon()
-
-	else
-		set_light(0)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()

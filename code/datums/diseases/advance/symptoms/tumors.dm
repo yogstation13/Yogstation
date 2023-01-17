@@ -5,8 +5,8 @@
 	desc = "The virus causes benign growths all over your body."
 	stealth = 0
 	resistance = 4
-	stage_speed = -4
-	transmittable = -4
+	stage_speed = -2
+	transmittable = -2
 	level = 3
 	severity = 2
 	symptom_delay_min = 5
@@ -18,7 +18,7 @@
 	)
 	var/regeneration = FALSE
 	var/helpful = FALSE
-	var/tumor_chance = 0.5
+	var/tumor_chance = 1
 	var/obj/item/organ/tumor/tumortype = /obj/item/organ/tumor
 	var/datum/disease/advance/disease //what disease we are owned by
 
@@ -95,18 +95,13 @@
 			S.remove_no_equip_slot(M, SLOT_HEAD)
 			S.remove_no_equip_slot(M, SLOT_WEAR_SUIT)
 
-/datum/symptom/tumor/premalignant
-	name = "Premalignant tumors"
-	desc = "The virus causes premalignant growths all over your body."
-	level = 5
-	severity = 4
-	tumor_chance = 1
-	tumortype = /obj/item/organ/tumor/premalignant
-
 /datum/symptom/tumor/malignant
 	name = "Malignant tumors"
 	desc = "The virus causes malignant growths all over your body."
 	level = 7
+	resistance = 4
+	stage_speed = -4
+	transmittable = -4
 	severity = 6
 	tumor_chance = 2
 	tumortype = /obj/item/organ/tumor/malignant

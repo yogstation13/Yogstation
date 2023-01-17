@@ -1,6 +1,9 @@
 /datum/job/engineer
 	title = "Station Engineer"
+	description = "Start the Supermatter, wire the solars, repair station hull \
+		and wiring damage."
 	flag = ENGINEER
+	orbit_icon = "gears"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -24,6 +27,16 @@
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/storage/box/lights/mixed = 20,
+		/obj/item/lightreplacer = 10,
+		/obj/item/holosign_creator/engineering = 8,
+		/obj/item/rcd_ammo = 5,
+		/obj/item/clothing/head/hardhat/red/upgraded = 1
+	)
+
+	smells_like = "welding fuel"
 
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6

@@ -44,6 +44,11 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	GLOB.NTPDAs -= src
 	return ..()
 
+/// Proc that finds a computer because this program is expected to work without having being launched (which sets computer)
+/datum/computer_file/program/pdamessager/proc/set_computer()
+	if(istype(holder?.loc, /obj/item/modular_computer))
+		computer = holder.loc
+
 /datum/computer_file/program/pdamessager/proc/explode() // Why does NT have bombs in their modular tablets?
 	var/atom/source
 	if(computer)
@@ -54,40 +59,39 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		source = holder
 
 	if(source)
-		explosion(source, -1, 1, 3, 4)
+		explosion(source, -1, 0, 3, 4)
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
 	
 	qdel(src)
 
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
-	// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
-	var/obj/item/modular_computer/comp
-	if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
-		comp = computer
-	else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
-		comp = holder.loc
-	comp.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
-	comp.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
+	if(user.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
+		return
+	if(!istype(user, /mob/living/silicon/ai) && user.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
+		return
+	set_computer()
+	computer.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
+	computer.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
 	
 	if(src == recipient)
-		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		comp.visible_message(span_danger("You are the recipient!"), null, null, 1)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("You are the recipient!"), null, null, 1)
 		return FALSE
 
 	if(src in recipient.blocked_users)
-		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		comp.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
 		return FALSE
 	
 	if(recipient in blocked_users)
-		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		comp.visible_message(span_danger("You have recipient blocked."), null, null, 1)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("You have recipient blocked."), null, null, 1)
 		return FALSE
 	
 	if(!recipient.receiving)
-		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		comp.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
 		return FALSE
 	
 	var/fakemob = "ERROR"
@@ -110,16 +114,16 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	signal.send_to_receivers()
 
 	if (!signal.data["done"])
-		comp.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
 		return FALSE
 
 	if (!signal.data["logged"])
-		comp.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
 		return FALSE
 	
 	// Show ghosts (and admins)
 	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey)
-	comp.visible_message(span_notice("Message sent!"), null, null, 1)
+	computer.visible_message(span_notice("Message sent!"), null, null, 1)
 	message_history += list(list(username, message, REF(src), signal))
 	return TRUE
 
@@ -198,26 +202,21 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, FALSE)
 		else
 			playsound(holder, 'sound/machines/twobeep_high.ogg', 50, FALSE)
-		
-		// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
-		var/obj/item/modular_computer/comp
-		if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
-			comp = computer
-		else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
-			comp = holder.loc
-
-		comp.audible_message("[icon2html(comp, hearers(comp))] *[ringtone]*", null, 3)
+		set_computer()
+		computer.audible_message("[icon2html(computer, hearers(computer))] *[ringtone]*", null, 3)
 		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
-		if(istype(comp, /obj/item/modular_computer/tablet))
-			var/mob/living/carbon/C = comp.loc
-			if(istype(C))
-				msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
-		comp.visible_message(span_notice(msg), null, null, 1)
+		if(istype(computer, /obj/item/modular_computer/tablet))
+			msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
+		computer.visible_message(span_notice(msg), null, null, 1)
 	
 	return TRUE
 
 /datum/computer_file/program/pdamessager/Topic(href, list/href_list)
 	. = ..()
+	if(usr.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
+		return
+	if(!istype(usr, /mob/living/silicon/ai) && usr.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
+		return
 	var/msg = input("Send a message?") as null|text
 	msg = sanitizeinput(msg, computer)
 	if(msg)

@@ -135,7 +135,7 @@
 	var/did_we_charge = FALSE
 	var/obj/item/organ/stomach/ethereal/eth_stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 	if(istype(eth_stomach))
-		eth_stomach.adjust_charge(3)
+		eth_stomach.adjust_charge(15 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 		did_we_charge = TRUE
 	if(ispreternis(H))
 		var/datum/species/preternis/preternis = H.dna.species
@@ -198,6 +198,19 @@
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
 	var/obj/item/card/id/id_cardu = user.get_idcard()
+	if(!id_card)
+		to_chat(user,span_notice("[H] doesn't seem to have an id card to 'donate' from for your blessing..."))
+		return
+	if(!id_card.registered_account)
+		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
+		return
+	if(!id_cardu)
+		to_chat(user,span_notice("You have no id card to recieve your 'donation'"))
+		return
+	if(!id_cardu.registered_account)
+		to_chat(user,span_notice("You have no bank account to recieve your 'donation'"))
+		return
+
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
 	if(money_to_donate <= 0)
@@ -342,7 +355,7 @@
 /datum/religion_sect/oldgods
 	name = "Gathering of the Old Ones"
 	desc = "A sect dedicated to the Old Gods."
-	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on your altar and then sacrifice it in the name of the Old Gods."
+	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on top of your altar and then sacrifice it in the name of the Old Gods."
 	alignment = ALIGNMENT_EVIL //kind of evil?
 	max_favor = 3000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)

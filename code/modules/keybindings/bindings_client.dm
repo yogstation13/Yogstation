@@ -5,50 +5,74 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
+	if(!prefs.hotkeys && length(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
+		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
+		return
+
+	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
+
 	keys_held[_key] = world.time
-	var/movement = SSinput.movement_keys[_key]
-	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
-		next_move_dir_add |= movement
+	if(!movement_locked)
+		var/movement = movement_keys[_key]
+		if(!(next_move_dir_sub & movement))
+			next_move_dir_add |= movement
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
-
+	var/AltMod = keys_held["Alt"] ? "Alt" : ""
+	var/CtrlMod = keys_held["Ctrl"] ? "Ctrl" : ""
+	var/ShiftMod = keys_held["Shift"] ? "Shift" : ""
+	var/full_key
 	switch(_key)
-		if("F1")
-			if(keys_held["Ctrl"] && keys_held["Shift"]) // Is this command ever used?
-				winset(src, null, "command=.options")
+		if("Alt", "Ctrl", "Shift")
+			full_key = "[AltMod][CtrlMod][ShiftMod]"
+		else
+			if(AltMod || CtrlMod || ShiftMod)
+				full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
+				key_combos_held[_key] = full_key
 			else
-				get_adminhelp()
-			return
-		if("F2") // Screenshot. Hold shift to choose a name and location to save in
-			winset(src, null, "command=.screenshot [!keys_held["shift"] ? "auto" : ""]")
-			return
-		if("F12") // Toggles minimal HUD
-			mob.button_pressed_F12()
-			return
+				full_key = _key
 
-	if(holder)
-		holder.key_down(_key, src)
-	if(mob.focus)
-		mob.focus.key_down(_key, src)
+	var/keycount = 0
+	for(var/kb_name in prefs.key_bindings[full_key])
+		keycount++
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if(kb.can_use(src) && kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
+			break
+
+	holder?.key_down(_key, src)
+	mob.focus?.key_down(_key, src)
 
 /client/verb/keyUp(_key as text)
 	set instant = TRUE
 	set hidden = TRUE
 
+	var/key_combo = key_combos_held[_key]
+	if(key_combo)
+		key_combos_held -= _key
+		keyUp(key_combo)
+
+	if(!keys_held[_key])
+		return
+
 	keys_held -= _key
-	var/movement = SSinput.movement_keys[_key]
-	if(!(next_move_dir_add & movement))
-		next_move_dir_sub |= movement
 
-	if(holder)
-		holder.key_up(_key, src)
-	if(mob.focus)
-		mob.focus.key_up(_key, src)
+	if(!movement_locked)
+		var/movement = movement_keys[_key]
+		if(!(next_move_dir_add & movement))
+			next_move_dir_sub |= movement
 
-// Called every game tick
-/client/keyLoop()
-	if(holder)
-		holder.keyLoop(src)
-	if(mob.focus)
-		mob.focus.keyLoop(src)
+	// We don't do full key for release, because for mod keys you
+	// can hold different keys and releasing any should be handled by the key binding specifically
+	for (var/kb_name in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if (!kb)
+			stack_trace("Invalid keybind found in keyUp: _key=[_key]; kb_name=[kb_name]")
+			continue
+
+		if(kb.can_use(src) && kb.up(src))
+			break
+	holder?.key_up(_key, src)
+	mob.focus?.key_up(_key, src)

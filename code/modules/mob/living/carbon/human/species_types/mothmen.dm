@@ -1,5 +1,5 @@
 /datum/species/moth
-	name = "Mothpeople"
+	name = "Mothperson"
 	id = "moth"
 	say_mod = "flutters"
 	default_color = "00FF00"
@@ -25,7 +25,9 @@
 
 	screamsound = 'sound/voice/moth/scream_moth.ogg'
 
-/datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
+	smells_like = "dusty dryness"
+
+/datum/species/moth/regenerate_organs(mob/living/carbon/C, datum/species/old_species, replace_current = TRUE, visual_only = FALSE)
 	. = ..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

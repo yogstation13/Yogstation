@@ -300,6 +300,15 @@
 	category = list("hacked","Miscellaneous","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/ipc_coolant_tank
+	name = "IPC Coolant Tank"
+	id = "ipc_coolant_tank"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 800)
+	build_path = /obj/item/tank/internals/ipc_coolant/empty
+	category = list("hacked","Miscellaneous","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
+
 /datum/design/metal
 	name = "Metal"
 	id = "metal"
@@ -619,14 +628,6 @@
 	build_path = /obj/item/ammo_casing/shotgun/rubbershot
 	category = list("initial", "Security")
 
-/datum/design/c38
-	name = "Speed Loader (.38)"
-	id = "c38"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 20000)
-	build_path = /obj/item/ammo_box/c38
-	category = list("initial", "Security")
-
 /datum/design/recorder
 	name = "Universal Recorder"
 	id = "recorder"
@@ -871,14 +872,6 @@
 	build_path = /obj/item/ammo_casing/shotgun/buckshot
 	category = list("hacked", "Security")
 
-/datum/design/shotgun_dart
-	name = "Shotgun Dart"
-	id = "shotgun_dart"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/ammo_casing/shotgun/dart
-	category = list("hacked", "Security")
-
 /datum/design/incendiary_slug
 	name = "Incendiary Slug"
 	id = "incendiary_slug"
@@ -903,11 +896,19 @@
 	build_path = /obj/item/ammo_box/foambox/riot
 	category = list("hacked", "Security")
 
+/datum/design/c38
+	name = ".38 Bullet"
+	id = "c38"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 1500)
+	build_path = /obj/item/ammo_casing/c38
+	category = list("hacked", "Security")
+
 /datum/design/a357
 	name = ".357 Bullet"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
@@ -933,6 +934,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c9mm
+	category = list("hacked", "Security")
+
+/datum/design/box_a357
+	name = "Ammo Box (.357)"
+	id = "box_a357"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 40000)
+	build_path = /obj/item/ammo_box/no_direct/a357
 	category = list("hacked", "Security")
 
 /datum/design/cleaver
@@ -988,11 +997,11 @@
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
 	build_type = AUTOLATHE | MECHFAB | PROTOLATHE
-	materials = list(/datum/material/iron = 3000)
-	build_path = /obj/item/stack/conveyor
+	materials = list(/datum/material/iron = 1000)
+	build_path = /obj/item/stack/conveyor/thirty
 	category = list("initial", "Construction", "Misc", "Assemblies")
 	maxstack = 30
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 
 /datum/design/conveyor_switch
@@ -1002,7 +1011,7 @@
 	materials = list(/datum/material/iron = 450, /datum/material/glass = 190)
 	build_path = /obj/item/conveyor_switch_construct
 	category = list("initial", "Construction", "Assemblies")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/laptop
 	name = "Laptop Frame"

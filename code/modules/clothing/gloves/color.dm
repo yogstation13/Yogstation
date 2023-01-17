@@ -2,7 +2,6 @@
 	dying_key = DYE_REGISTRY_GLOVES
 
 /obj/item/clothing/gloves/color/yellow
-/obj/item/clothing/gloves/color/yellow
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
 	icon_state = "yellow"
@@ -174,6 +173,7 @@
 	transfer_prints = TRUE
 	resistance_flags = NONE
 	var/carrytrait = TRAIT_QUICK_CARRY
+	var/surgeryspeed = 0.9	//how much these gloves speed up surgery
 
 /obj/item/clothing/gloves/color/latex/nitrile
 	name = "nitrile gloves"
@@ -182,6 +182,7 @@
 	item_state = "nitrilegloves"
 	transfer_prints = FALSE
 	carrytrait = TRAIT_QUICKER_CARRY
+	surgeryspeed = 0.8
 
 /obj/item/clothing/gloves/color/latex/equipped(mob/user, slot)
 	..()

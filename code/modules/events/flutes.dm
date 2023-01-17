@@ -19,6 +19,7 @@
 //--------------------
 //OBJECT DEF
 /datum/round_event/flutes
+	fakeable = FALSE
 	var/list/mob/living/carbon/chosen_players = list()
 
 //EVENT START PROC

@@ -137,6 +137,15 @@
 	..() // we want the survival stuff too.
 	new /obj/item/radio/off(src)
 
+/obj/item/storage/box/survival/proc/wardrobe_removal()
+	if(!isplasmaman(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
+		return
+	var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
+	var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
+	new /obj/item/tank/internals/plasmaman/belt(src)
+	qdel(mask) // Get rid of the items that shouldn't be
+	qdel(internals)
+
 /obj/item/storage/box/survival_mining/PopulateContents()
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
@@ -179,6 +188,17 @@
 /obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+// IPC survival box
+/obj/item/storage/box/ipc/PopulateContents()
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
+	new /obj/item/tank/internals/ipc_coolant(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
@@ -1195,7 +1215,7 @@
 	new /obj/item/circuitboard/machine/protolathe(src)
 	new /obj/item/circuitboard/machine/destructive_analyzer(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
-	new /obj/item/circuitboard/computer/rdconsole(src)
+	new /obj/item/circuitboard/computer/rdconsole/ruin(src)
 
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"

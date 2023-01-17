@@ -44,27 +44,45 @@
 	strip_delay = 80
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	var/brightness_on = 4 //luminosity when the light is on
-	var/on = FALSE
+	light_system = MOVABLE_LIGHT
+	light_range = 4
+	light_on = FALSE
+	var/helmet_on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	flash_protect = 0
+	var/base_icon_state
+	var/pref_alteration = TRUE ///set to true if the item will be modified by player's "plasmaman helmet style pref"
+
+/obj/item/clothing/head/helmet/space/plasmaman/Initialize()
+	. = ..()
+	base_icon_state = icon_state
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	toggle_helmet_light(user)
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
-	on = !on
-	if(on)
-		set_light(brightness_on)
-	else
-		set_light(0)
-
-	icon_state = "[initial(icon_state)][on ? "-light":""]"
+	helmet_on = !helmet_on
+	icon_state = "[base_icon_state][helmet_on ? "-light":""]"
 	item_state = icon_state
 	user.update_inv_head()
+	
+	set_light_on(helmet_on)
+	
 	for(var/X in actions)
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
+
+/obj/item/clothing/head/helmet/space/plasmaman/proc/set_design(mob/living/carbon/human/user)
+	if(!pref_alteration)
+		return
+	if(!ishuman(user))
+		return
+	var/style = user.dna?.features["plasmaman_helmet"]
+	if(style && (style in GLOB.plasmaman_helmet_list) && style != "None")
+		icon_state = initial(icon_state) + "-[GLOB.plasmaman_helmet_list[style]]"
+		item_state = icon_state
+		base_icon_state = icon_state
+		user.update_inv_head()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
@@ -72,6 +90,7 @@
 	icon_state = "deathcurity_envirohelm"
 	item_state = "deathcurity_envirohelm"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 10)
+	pref_alteration = FALSE
 
 /obj/item/clothing/head/helmet/space/plasmaman/blue
 	name = "blue envirosuit helmet"
@@ -97,16 +116,19 @@
 	desc = "An ancient envirohelm from the second generation of Nanotrasen-plasmaman related equipment. Clunky, but still sees use due to its reliability."
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
+	pref_alteration = FALSE
 	
 /obj/item/clothing/head/helmet/space/plasmaman/mime
 	name = "mime envirosuit helmet"
 	desc = "The make-up is painted on. It's a miracle it doesn't chip. It's not very colourful."
 	icon_state = "mime_envirohelm"
 	item_state = "mime_envirohelm"
+	pref_alteration = FALSE
 	
 /obj/item/clothing/head/helmet/space/plasmaman/clown
 	name = "clown envirosuit helmet"
 	desc = "The make-up is painted on. It's a miracle it doesn't chip. <i>'HONK!'</i>"
 	icon_state = "clown_envirohelm"
 	item_state = "clown_envirohelm"
+	pref_alteration = FALSE
 	

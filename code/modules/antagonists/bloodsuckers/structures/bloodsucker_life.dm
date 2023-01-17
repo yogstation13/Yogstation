@@ -48,7 +48,7 @@
 		return
 	if(my_clan == CLAN_TOREADOR)
 		if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
-			to_chat(owner.current, span_warning("Your moral prevents you from becoming more ihuman."))
+			to_chat(owner.current, span_warning("Your morals prevent you from becoming more inhuman."))
 			SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
 			return
 		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)
@@ -124,8 +124,8 @@
 			to_chat(user, span_warning("You will not heal while your Masquerade ability is active."))
 			return
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
-		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
-		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
+		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
+		costMult *= 0 // No cost if we're sleeping in a coffin.
 		user.ExtinguishMob()
 		user.remove_all_embedded_objects() // Remove Embedded!
 		if(check_limbs(costMult))
@@ -454,7 +454,7 @@
 
 // Bloodsuckers moodlets //
 /datum/mood_event/drankblood
-	description = "<span class='nicegreen'>I have fed greedly from that which nourishes me.</span>\n"
+	description = "<span class='nicegreen'>I have fed greedily from that which nourishes me.</span>\n"
 	mood_change = 10
 	timeout = 8 MINUTES
 

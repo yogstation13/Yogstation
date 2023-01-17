@@ -23,11 +23,17 @@
 		return
 	if(frames == 0)
 		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
+	var/lighting_updated = FALSE
 	var/step = alpha / frames
 	for(var/i = 0, i < frames, i++)
 		alpha -= step
 		if(alpha < 160)
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
+			if(!lighting_updated) // Only update lights around me once we have sufficiently faded, and only do it once
+				lighting_updated = TRUE
+				for(var/atom/L in view(15, src)) // Floodlights reach 15 tiles max, this should be sufficient
+					L.light?.force_update()
+					CHECK_TICK
 		stoplag()
 
 /obj/effect/particle_effect/smoke/Initialize()

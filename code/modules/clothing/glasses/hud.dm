@@ -65,6 +65,11 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
+/obj/item/clothing/glasses/hud/health/sunglasses/cmo
+	name = "medical advanced HUDSunglasses"
+	desc = "Sunglasses with a medical HUD. This one is augmented with a reagent scanner."
+	clothing_flags = SCAN_REAGENTS
+
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
@@ -89,6 +94,11 @@
 	item_state = "glasses"
 	flash_protect = 1
 	tint = 1
+
+/obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
+	name = "diagnostic advanced sunglasses"
+	desc = "Sunglasses with a diagnostic HUD. This one is augmented with a reagent scanner."
+	clothing_flags = SCAN_REAGENTS
 
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
@@ -134,6 +144,11 @@
 	flash_protect = 1
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
+
+/obj/item/clothing/glasses/hud/security/sunglasses/hos
+	name = "security advanced HUDSunglasses"
+	desc = "Sunglasses with a security HUD. This one is augmented with a medical scanner."
+	hud_type = DATA_HUD_SECURITY_MEDICAL
 
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"

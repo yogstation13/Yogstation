@@ -89,12 +89,6 @@
 	difficulty = 5
 	excludefromjob = list("Research Director")
 
-/datum/objective_item/steal/holding
-	name = "the bag of holding."
-	targetitem = /obj/item/storage/backpack/holding
-	difficulty = 7
-	excludefromjob = list("Research Director")
-
 /datum/objective_item/steal/documents
 	name = "any set of secret documents of any organization."
 	targetitem = /obj/item/documents //Any set of secret documents. Doesn't have to be NT's

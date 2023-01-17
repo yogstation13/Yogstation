@@ -117,9 +117,8 @@
 /obj/item/reagent_containers/food/snacks/raw_meatball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/rollingpin))
 		if(isturf(loc))
-			if(!do_after(user, 1 SECONDS, src)) {
+			if(!do_after(user, 1 SECONDS, src))
 				return
-			}
 			new patty_type(loc)
 			to_chat(user, span_notice("You flatten [src]."))
 			qdel(src)
@@ -284,12 +283,15 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
-		if(!do_after(user, 1 SECONDS, src)) {
+		if(isturf(loc)) //CHECK IF ITS ON A TABLE OR OTHER SURFACE FOR THE LOVE OF GOD
+			if(!do_after(user, 1 SECONDS, src))
+				return
+			new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
+			to_chat(user, span_notice("You snip [src]."))
+			qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a surface to snip it!"))
 			return
-		}
-		new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
-		to_chat(user, span_notice("You snip [src]."))
-		qdel(src)
 	else
 		..()
 
@@ -484,6 +486,14 @@
 	tastes = list("the jungle" = 1, "bananas" = 1, "power" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
 	foodtype = MEAT | SUGAR | RAW
+
+/obj/item/reagent_containers/food/snacks/monkeycube/bee
+	name = "bee cube"
+	desc = "We were sure it was a good idea. Just add water."
+	bitesize = 20
+	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/strange_reagent = 1)
+	tastes = list("buzzing" = 1, "honey" = 1, "regret" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/poison/bees/toxin
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"

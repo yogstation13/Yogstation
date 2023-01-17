@@ -540,10 +540,14 @@
 
 /datum/reagent/drug/pumpup/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/HM = L
+		HM.physiology.stamina_mod *= 0.90
 
 /datum/reagent/drug/pumpup/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/HM = L
+		HM.physiology.stamina_mod /= 0.90
 	..()
 
 /datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)

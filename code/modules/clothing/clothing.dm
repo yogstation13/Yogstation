@@ -66,8 +66,8 @@
 	if(ismecha(M.loc)) // stops inventory actions in a mech
 		return
 
-	if(!M.incapacitated() && loc == M && istype(over_object, /obj/screen/inventory/hand))
-		var/obj/screen/inventory/hand/H = over_object
+	if(!M.incapacitated() && loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
 
@@ -249,7 +249,7 @@
 			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
-	
+
 	if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee || armor.fire || armor.acid|| flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
 		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
 
@@ -523,7 +523,7 @@ BLIND     // can't see anything
 		return
 	if(prob(0.2))
 		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
-		
+
 /*obj/item/clothing/proc/set_sensor_glob()
 	var/mob/living/carbon/human/H = src.loc
 
@@ -532,8 +532,8 @@ BLIND     // can't see anything
 		if (U.has_sensor && U.sensor_mode && U.has_sensor != BROKEN_SENSORS)
 			GLOB.suit_sensors_list |= H
 
-		else 
+		else
 			GLOB.suit_sensors_list -= H
 
-	else 
+	else
 		GLOB.suit_sensors_list -= H	*/

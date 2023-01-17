@@ -1,4 +1,4 @@
-#define WELDER_FUEL_BURN_INTERVAL 13
+#define WELDER_FUEL_BURN_INTERVAL 26
 /obj/item/weldingtool
 	name = "welding tool"
 	desc = "A standard edition welder provided by Nanotrasen."
@@ -17,6 +17,10 @@
 	pickup_sound =  'sound/items/handling/weldingtool_pickup.ogg'
 	var/acti_sound = 'sound/items/welderactivate.ogg'
 	var/deac_sound = 'sound/items/welderdeactivate.ogg'
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.75
+	light_on = FALSE
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -24,12 +28,12 @@
 	resistance_flags = FIRE_PROOF
 
 	materials = list(/datum/material/iron=70, /datum/material/glass=30)
-	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
+	///Whether the welding tool is on or off.
+	var/welding = FALSE
 	var/status = TRUE 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 	var/change_icons = 1
 	var/can_off_process = 0
-	var/light_intensity = 2 //how powerful the emitted light is when used.
 	var/progress_flash_divisor = 10
 	var/burned_fuel_for = 0	//when fuel was last removed
 	heat = 3800
@@ -63,7 +67,7 @@
 	return
 
 
-/obj/item/weldingtool/process()
+/obj/item/weldingtool/process(delta_time)
 	switch(welding)
 		if(0)
 			force = 3
@@ -76,7 +80,7 @@
 		if(1)
 			force = 15
 			damtype = BURN
-			++burned_fuel_for
+			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
 			update_icon()
@@ -101,6 +105,19 @@
 	qdel(src)
 
 /obj/item/weldingtool/attack(mob/living/M, mob/user)
+	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
+	if(isOn() && user.a_intent == INTENT_HELP && cig && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+		if(cig.lit)
+			to_chat(user, span_notice("The [cig.name] is already lit."))
+			return FALSE
+		if(M == user)
+			cig.attackby(src, user)
+			return TRUE
+		else
+			cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
+			return TRUE
+
 	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
@@ -136,7 +153,7 @@
 		var/turf/location = get_turf(user)
 		location.hotspot_expose(700, 50, 1)
 		if(get_fuel() <= 0)
-			set_light(0)
+			set_light_on(FALSE)
 
 		if(isliving(O))
 			var/mob/living/L = O
@@ -150,8 +167,6 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] activated a rigged welder at [AREACOORD(user)].")
 		explode()
 	switched_on(user)
-	if(welding)
-		set_light(light_intensity)
 
 	update_icon()
 
@@ -170,7 +185,7 @@
 	if(!isOn() || !check_fuel())
 		return FALSE
 
-	if(used)
+	if(used > 0)
 		burned_fuel_for = 0
 	if(get_fuel() >= used)
 		reagents.remove_reagent(/datum/reagent/fuel, used)
@@ -179,10 +194,18 @@
 	else
 		return FALSE
 
+//Toggles the welding value.
+/obj/item/weldingtool/proc/set_welding(new_value)
+	if(welding == new_value)
+		return
+	. = welding
+	welding = new_value
+	set_light_on(welding)
 
 //Turns off the welder if there is no more fuel (does this really need to be its own proc?)
 /obj/item/weldingtool/proc/check_fuel(mob/user)
 	if(get_fuel() <= 0 && welding)
+		set_light_on(FALSE)
 		switched_on(user)
 		update_icon()
 		//mob icon update
@@ -198,7 +221,7 @@
 	if(!status)
 		to_chat(user, span_warning("[src] can't be turned on while unsecured!"))
 		return
-	welding = !welding
+	set_welding(!welding)
 	if(welding)
 		if(get_fuel() >= 1)
 			to_chat(user, span_notice("You switch [src] on."))
@@ -218,8 +241,7 @@
 
 //Switches the welder off
 /obj/item/weldingtool/proc/switched_off(mob/user)
-	welding = 0
-	set_light(0)
+	set_welding(FALSE)
 
 	force = 3
 	damtype = "brute"
@@ -242,14 +264,22 @@
 /obj/item/weldingtool/tool_start_check(mob/living/user, amount=0)
 	. = tool_use_check(user, amount)
 	if(. && user)
-		user.flash_act(light_intensity)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
+				return
+		user.flash_act(light_range)
 
 // Flash the user during welding progress
 /obj/item/weldingtool/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	. = ..()
 	if(. && user)
 		if (progress_flash_divisor == 0)
-			user.flash_act(min(light_intensity,1))
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
+					return
+			user.flash_act(min(light_range,1))
 			progress_flash_divisor = initial(progress_flash_divisor)
 		else
 			progress_flash_divisor--
@@ -339,7 +369,8 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "welder_alien"
 	toolspeed = 0.1
-	light_intensity = 0
+	light_system = NO_LIGHT_SUPPORT
+	light_range = 0
 	change_icons = 0
 
 /obj/item/weldingtool/abductor/process()
@@ -365,7 +396,7 @@
 	var/last_gen = 0
 	change_icons = 0
 	can_off_process = 1
-	light_intensity = 1
+	light_range = 1
 	toolspeed = 0.5
 	var/nextrefueltick = 0
 

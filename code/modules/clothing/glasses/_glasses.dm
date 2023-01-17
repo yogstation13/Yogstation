@@ -122,6 +122,15 @@
 	if(slot == SLOT_GLASSES)
 		return 1
 
+/obj/item/clothing/glasses/science/night
+	name = "night vision science goggles"
+	desc = "A pair of snazzy goggles used to protect against chemical spills that happen in complete darkness. Fitted with an analyzer for scanning items and reagents."
+	icon_state = "sciencehudnight"
+	item_state = "sciencehudnight"
+	darkness_view = 8
+	flash_protect = -1
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
@@ -220,6 +229,11 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
+
+/obj/item/clothing/glasses/sunglasses/prescription
+	name = "prescription sunglasses"
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks flashes. Has prescription lenses that correct nearsightedness."
+	vision_correction = 1
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"

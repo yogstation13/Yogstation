@@ -9,7 +9,7 @@
 	var/obj/target = null
 	var/check_flags = NONE
 	var/processing = FALSE
-	var/obj/screen/movable/action_button/button = null
+	var/atom/movable/screen/movable/action_button/button = null
 	var/buttontooltipstyle = ""
 	var/transparent_when_unavailable = TRUE
 
@@ -20,7 +20,7 @@
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
 	var/syndicate = FALSE // are these buttons only for syndicates?
-	var/obj/screen/cooldown_overlay/cooldown_overlay
+	var/atom/movable/screen/cooldown_overlay/cooldown_overlay
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -90,9 +90,10 @@
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	if(button)
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		button.locked = FALSE
+		button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
@@ -150,7 +151,7 @@
 			button.color = rgb(255,255,255,255)
 			return 1
 
-/datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
 		current_button.cut_overlays(TRUE)
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
@@ -184,7 +185,7 @@
 		I.ui_action_click(owner, src)
 	return 1
 
-/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/item_action/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	if(button_icon && button_icon_state)
 		// If set, use the custom icon that we set instead
 		// of the item appearence
@@ -248,6 +249,27 @@
 
 /datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
 	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()
+
+/datum/action/item_action/toggle_infrared_sight
+	name = "Toggle Infrared"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "ifr_sight"
+	var/obj/item/attachment/scope/infrared/att
+
+/datum/action/item_action/toggle_infrared_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/scope/infrared))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtonIcon()
+
+/datum/action/item_action/toggle_infrared_sight/UpdateButtonIcon(status_only = FALSE, force)
+	button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"
 	..()
 
 /datum/action/item_action/toggle_hood
@@ -564,7 +586,7 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, span_warning("You dont have any usable hands!"))
+			to_chat(owner, span_warning("You don't have any usable hands!"))
 		else
 			to_chat(owner, span_warning("Your hands are full!"))
 
@@ -597,7 +619,7 @@
 	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "leghold"
-	
+
 /datum/action/item_action/reach
 	name = "Reach"
 	desc = "Mark those standing on blood for 10 seconds."
@@ -771,7 +793,7 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
 
-	
+
 /datum/action/item_action/kindleKicks
 	name = "Activate Kindle Kicks"
 	desc = "Kick you feet together, activating the lights in your Kindle Kicks."
@@ -837,7 +859,7 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "storage_gather_switch"
 
-/datum/action/item_action/storage_gather_mode/ApplyIcon(obj/screen/movable/action_button/current_button)
+/datum/action/item_action/storage_gather_mode/ApplyIcon(atom/movable/screen/movable/action_button/current_button)
 	. = ..()
 	var/old_layer = target.layer
 	var/old_plane = target.plane

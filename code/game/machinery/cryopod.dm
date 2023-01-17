@@ -214,7 +214,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			return
 		if(mob_occupant.client)//if they're logged in
 			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
-			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
+			if(tgui_alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", list("Yes", "No")) != "No")
 				deltimer(despawn_timer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
@@ -394,7 +394,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			to_chat(user, span_danger("You can't put [target] into [src]. They're conscious."))
 		return
 	else if(target.client)
-		if(alert(target,"Would you like to enter cryosleep?",,"Yes","No") == "No")
+		if(tgui_alert(target,"Would you like to enter cryosleep?",,list("Yes","No")) != "Yes")
 			return
 
 	var/generic_plsnoleave_message = " Please adminhelp before leaving the round, even if there are no administrators online!"
@@ -403,10 +403,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		var/caught = FALSE
 		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist)
 		if(target.mind.assigned_role in GLOB.command_positions)
-			alert("You're a Head of Staff![generic_plsnoleave_message]")
+			tgui_alert(target, "You're a Head of Staff![generic_plsnoleave_message]")
 			caught = TRUE
 		if(A)
-			alert("You're a [A.name]![generic_plsnoleave_message]")
+			tgui_alert(target, "You're a [A.name]![generic_plsnoleave_message]")
 			caught = TRUE
 		if(caught)
 			target.client.cryo_warned = world.time

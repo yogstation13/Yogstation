@@ -322,4 +322,4 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 
 /mob/living/simple_animal/bot/cleanbot/spacebar/Initialize()
 	. = ..()
-	bot_core.req_access = list(ACCESS_BAR)
+	bot_core.req_one_access = list(ACCESS_BAR)

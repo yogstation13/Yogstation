@@ -22,10 +22,10 @@
 
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
+	var/atom/movable/screen/background/cam_background
 
 /datum/computer_file/program/secureye/New()
 	. = ..()
@@ -43,8 +43,8 @@
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/atom/movable/screen/plane_master))
+		var/atom/movable/screen/instance = new plane()
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -151,7 +151,7 @@
 			? range(active_camera.view_range, originator) \
 			: view(active_camera.view_range, originator)))
 		visible_turfs += T
-	
+
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
@@ -170,7 +170,7 @@
 	var/list/L = list()
 	for (var/obj/machinery/camera/cam in GLOB.cameranet.cameras)
 		if(!(is_station_level(cam.z) || is_mining_level(cam.z) || !isnull(cam.built_in)))//Only show station cameras.
-			continue 
+			continue
 		L.Add(cam)
 	var/list/camlist = list()
 	for(var/obj/machinery/camera/cam in L)

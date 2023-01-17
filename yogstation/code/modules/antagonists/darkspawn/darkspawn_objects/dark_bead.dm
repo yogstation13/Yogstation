@@ -89,13 +89,13 @@
 	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 	if(full_restore)
 		darkspawn.psi = darkspawn.psi_cap
-		darkspawn.lucidity++ //no getting free lucidity from veils that wouldn't be fun. They'll still count towards winning though.
-	else
+	else //no getting free lucidity from veils that wouldn't be fun. They'll still count towards winning though.
 		darkspawn.psi += 20
 	if(linked_ability.victims[L] == FALSE)
 		to_chat(user, "<span class ='warning'> You have already drained this individual previously, and their lucidity will not contribute any more to the sacrament!</span>")
 	else
 		to_chat(user, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
+		darkspawn.lucidity++ 
 		darkspawn.lucidity_drained++
 	darkspawn.update_psi_hud()
 	linked_ability.victims[L] = TRUE

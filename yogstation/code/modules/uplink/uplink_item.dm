@@ -66,10 +66,11 @@
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
-	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
+	item = /obj/item/bodypart/l_arm //doesn't actually spawn an arm, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
+	illegal_tech = FALSE // ARMS ARE NOT ILLEGAL
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
@@ -164,6 +165,13 @@
 	cost = 14
 	item = /obj/item/book/granter/martial/explosive_fist
 	restricted_species = list("plasmaman")
+
+/datum/uplink_item/race_restricted/ultra_violence
+	name = "Version one upgrade module"
+	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed."
+	cost = 16
+	item = /obj/item/book/granter/martial/ultra_violence
+	restricted_species = list("ipc")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"

@@ -14,7 +14,7 @@
 
 /obj/item/choice_beacon
 	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurance."
+	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurrence."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-blue"
 	item_state = "radio"
@@ -41,7 +41,9 @@
 	var/choice = input(M,"Which item would you like to order?","Select an Item") as null|anything in display_names
 	if(!choice || !M.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-
+	if(is_centcom_level(src.z))
+		visible_message(M, span_notice("You are unable to call this here."))
+		return 
 	spawn_option(display_names[choice],M)
 	uses--
 	if(!uses)
@@ -183,7 +185,7 @@
 	var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
 	if(BR)
 		if(BR.suicided || BR.brainmob?.suiciding)
-			to_chat(user, span_warning("This units personality matrix is gone."))
+			to_chat(user, span_warning("This unit's personality matrix is gone."))
 			return TRUE
 	if(H.health < 0)
 		to_chat(user, span_warning("You have to repair the IPC before using this module!"))

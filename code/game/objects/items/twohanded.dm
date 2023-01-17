@@ -281,7 +281,7 @@
 /obj/item/twohanded/fireaxe/metal_h2_axe  // Blatant imitation of the fireaxe, but made out of metallic hydrogen
 	icon_state = "metalh2_axe0"
 	name = "metallic hydrogen axe"
-	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherwordly weapon."
+	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherworldly weapon."
 	force_wielded = 18
 
 /obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
@@ -310,16 +310,18 @@
 	hitsound = "swing_hit"
 	armour_penetration = 35
 	var/saber_color = "green"
-	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_range = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
+	light_color = "#00ff00" //green
+	light_on = FALSE
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	var/hacked = FALSE
-	var/brightness_on = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
 	var/list/possible_colors = list("red", "blue", "green", "purple")
 
 /obj/item/twohanded/dualsaber/suicide_act(mob/living/carbon/user)
@@ -351,15 +353,17 @@
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
+		var/new_color
 		switch(saber_color)
 			if("red")
-				light_color = LIGHT_COLOR_RED
+				new_color = LIGHT_COLOR_RED
 			if("green")
-				light_color = LIGHT_COLOR_GREEN
+				new_color = LIGHT_COLOR_GREEN
 			if("blue")
-				light_color = LIGHT_COLOR_LIGHT_CYAN
+				new_color = LIGHT_COLOR_LIGHT_CYAN
 			if("purple")
-				light_color = LIGHT_COLOR_LAVENDER
+				new_color = LIGHT_COLOR_LAVENDER
+		set_light_color(new_color)
 
 /obj/item/twohanded/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -420,7 +424,7 @@
 		w_class = w_class_on
 		hitsound = 'sound/weapons/blade1.ogg'
 		START_PROCESSING(SSobj, src)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 
 /obj/item/twohanded/dualsaber/unwield() //Specific unwield () to switch hitsounds.
 	sharpness = initial(sharpness)
@@ -428,7 +432,7 @@
 	..()
 	hitsound = "swing_hit"
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)
+	set_light_on(FALSE)
 
 /obj/item/twohanded/dualsaber/process()
 	if(wielded)
@@ -740,6 +744,7 @@
 	icon_state = "trident"
 	name = "trident"
 	desc = "A trident recovered from the ruins of atlantis"
+	slot_flags = ITEM_SLOT_BELT
 	force = 14
 	throwforce = 23
 	force_wielded = 6
@@ -750,10 +755,10 @@
 	force = 19
 	throwforce = 24
 	force_wielded = 6
-
-/obj/item/twohanded/pitchfork/demonic/Initialize()
-	. = ..()
-	set_light(3,6,LIGHT_COLOR_RED)
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 6
+	light_color = LIGHT_COLOR_RED
 
 /obj/item/twohanded/pitchfork/demonic/greater
 	force = 24
@@ -974,13 +979,14 @@
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	name = "Vxtvul Hammer"
-	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. \
+	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
 	force_wielded = 24 
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
+	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
 	sharpness = SHARP_NONE //Blunt, breaks bones
 	wound_bonus = -10
 	bare_wound_bonus = 15
@@ -989,6 +995,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
+	light_system = MOVABLE_LIGHT
+	light_color = LIGHT_COLOR_LIGHT_CYAN
+	light_range = 2
+	light_power = 2
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
@@ -998,6 +1008,11 @@
 	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+
+/obj/item/twohanded/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
+		final_block_chance = 0 //Please show me how you can block a bullet with an industrial hammer I would LOVE to see it
+	return ..()
 
 /obj/item/twohanded/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)
@@ -1032,12 +1047,16 @@
 /obj/item/twohanded/vxtvulhammer/AltClick(mob/living/carbon/user)
 	charge_hammer(user)
 
-/obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite
+/obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite + damage
 	supercharged = !supercharged
 	if(supercharged)
-		set_light(2) //Glows when charged
+		set_light_on(TRUE) //Glows when charged
+		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
+		armour_penetration = 100
 	else
-		set_light(0)
+		set_light_on(TRUE)
+		force = initial(force) + (wielded ? force_wielded : 0)
+		armour_penetration = initial(armour_penetration)
 	update_icon()
 
 /obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
@@ -1051,7 +1070,7 @@
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
 		user.visible_message(span_warning("[user] flicks the hammer on, tilting their head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
-		if(!do_mob(user, user, 6 SECONDS))
+		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
 				return
 			to_chat(user, span_notice("You flip the switch off as you lose your focus."))
@@ -1124,7 +1143,7 @@
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"
 	name = "pirate Vxtvul Hammer"
-	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
+	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
 /obj/item/twohanded/vxtvulhammer/pirate/update_icon()

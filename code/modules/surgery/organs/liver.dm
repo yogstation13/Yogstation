@@ -4,6 +4,7 @@
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
@@ -11,6 +12,7 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
+	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
@@ -63,6 +65,9 @@
 	var/obj/S = ..()
 	S.reagents.add_reagent(/datum/reagent/iron, 5)
 	return S
+
+/obj/item/organ/liver/get_availability(datum/species/species)
+	return !(NOLIVER in species.species_traits)
 
 /obj/item/organ/liver/fly
 	name = "insectoid liver"
@@ -122,7 +127,7 @@
 	name = "substance processor"
 	icon_state = "substance_processor"
 	attack_verb = list("processed")
-	desc = "A machine component, installed in the chest. This grants the Machine the ability to process chemicals that enter its systems."
+	desc = "A machine component, installed in the chest. This grants the machine the ability to process chemicals that enter its systems."
 	alcohol_tolerance = 0
 	toxTolerance = -1
 	toxLethality = 0

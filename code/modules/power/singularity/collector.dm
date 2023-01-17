@@ -3,7 +3,7 @@
 #define SCIENCE "research"
 #define MONEY "money"
 
-// stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
+// stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 #define RAD_COLLECTOR_EFFICIENCY 80 	// radiation needs to be over this amount to get power
 #define RAD_COLLECTOR_COEFFICIENT 100
 #define RAD_COLLECTOR_STORED_OUT 0.1	// (this*100)% of stored power outputted per tick. Doesn't actualy change output total, lower numbers just means collectors output for longer in absence of a source
@@ -29,7 +29,7 @@
 	// Are the controls and tanks locked
 	var/locked = FALSE
 	/// use modifier for gas use
-	var/drainratio = 1
+	var/drainratio = 0.5
 	/// How much gas to drain
 	var/drain = 0.01
 	/// What is it producing
@@ -40,13 +40,18 @@
 	var/list/giving = list(/datum/gas/tritium = 1)
 	/// Last output used to calculate per minute
 	var/last_output = 0
+	// Higher machine tier will give more power
+	var/machine_tier = 0
+	// Higher power bonus will give more power
+	var/power_bonus = 0
+	// Balance amount of money given to crew
+	var/balancevalue = 0.05
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
-
 	radio = new(src)
 	radio.keyslot = new /obj/item/encryptionkey/headset_eng
 	radio.subspace_transmission = TRUE
@@ -60,10 +65,10 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/process(delta_time)
 	if(!loaded_tank || !active)
 		return
-	var/gasdrained = drain*drainratio
+	var/gasdrained = drain*drainratio*delta_time
 	for(var/gasID in using) // Preliminary check before doing it again
 		if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
@@ -101,7 +106,8 @@
 				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(D)
 					var/payout = output/8000
-					stored_power -= min(payout*20000, stored_power)
+					stored_power -= min(payout*200, stored_power)
+					payout = payout * balancevalue
 					D.adjust_money(payout)
 					last_output = payout
 
@@ -247,9 +253,11 @@
 
 	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 
-/obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
+/obj/machinery/power/rad_collector/return_analyzable_air()
 	if(loaded_tank)
-		loaded_tank.analyzer_act(user, I)
+		return loaded_tank.return_analyzable_air()
+	else
+		return null
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()
@@ -290,7 +298,7 @@
 /obj/machinery/power/rad_collector/rad_act(pulse_strength)
 	. = ..()
 	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
-		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
+		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
 /obj/machinery/power/rad_collector/update_icon()
 	cut_overlays()
@@ -301,6 +309,14 @@
 	if(active)
 		add_overlay("on")
 
+//honestly this should be balanced
+/obj/machinery/power/rad_collector/RefreshParts()
+	for(var/obj/item/stock_parts/capacitor/c in component_parts)
+		power_bonus = initial(power_bonus) + c.rating
+	for(var/obj/item/stock_parts/manipulator/l in component_parts)
+		drainratio = initial(drainratio)/l.rating
+	for(var/obj/item/stock_parts/matter_bin/b in component_parts)
+		machine_tier = initial(machine_tier) + b.rating
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
@@ -311,6 +327,12 @@
 		icon_state = "ca"
 		flick("ca_deactive", src)
 	update_icon()
+
+/obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
+		P.damage = 0
+	..()
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT

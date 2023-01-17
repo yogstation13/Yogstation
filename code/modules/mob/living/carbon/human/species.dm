@@ -75,6 +75,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/coldmod = 1
 	/// multiplier for heat damage
 	var/heatmod = 1
+	/// multiplier for temperature adjustment
+	var/tempmod = 1
 	/// multiplier for acid damage // yogs - Old Plant People
 	var/acidmod = 1
 	/// multiplier for stun duration
@@ -101,6 +103,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/aiminginaccuracy = 0
 	///base electrocution coefficient
 	var/siemens_coeff = 1
+	///base action speed coefficient
+	var/action_speed_coefficient = 1
 	///what kind of damage overlays (if any) appear on our species when wounded?
 	var/damage_overlay_type = "human"
 	///to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
@@ -144,30 +148,35 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	/// list of mobs that will ignore this species
 	var/list/mob/living/ignored_by = list()
 	//Breathing!
-	///the mutant lungs, if different to the normal
-	var/obj/item/organ/lungs/mutantlungs = null
 	///what type of gas is breathed
 	var/breathid = "o2"
 
-	///the brain, if any
-	var/obj/item/organ/brain/mutant_brain = /obj/item/organ/brain
-	///the heart
-	var/obj/item/organ/heart/mutant_heart = /obj/item/organ/heart
-	///the eyes
-	var/obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
-	///the ears
-	var/obj/item/organ/ears/mutantears = /obj/item/organ/ears
-	///the special hands, if any, for example the zombie has those claw hands
-	var/obj/item/mutanthands
-	///the tongue, used for ssssssssssssss and other such speech impediments
-	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
-	///the tail, if any
-	var/obj/item/organ/tail/mutanttail = null
+	//Do NOT remove by setting to null. use OR make a RESPECTIVE TRAIT (removing stomach? add the NOSTOMACH trait to your species)
+	//why does it work this way? because traits also disable the downsides of not having an organ, removing organs but not having the trait will make your species die
 
-	///The special liver, if any
-	var/obj/item/organ/liver/mutantliver
-	///the special stomach, if any
-	var/obj/item/organ/stomach/mutantstomach
+	///Replaces default brain with a different organ
+	var/obj/item/organ/brain/mutantbrain = /obj/item/organ/brain
+	///Replaces default heart with a different organ
+	var/obj/item/organ/heart/mutantheart = /obj/item/organ/heart
+	///Replaces default lungs with a different organ
+	var/obj/item/organ/lungs/mutantlungs = /obj/item/organ/lungs
+	///Replaces default eyes with a different organ
+	var/obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
+	///Replaces default ears with a different organ
+	var/obj/item/organ/ears/mutantears = /obj/item/organ/ears
+	///Replaces default tongue with a different organ
+	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
+	///Replaces default liver with a different organ
+	var/obj/item/organ/liver/mutantliver = /obj/item/organ/liver
+	///Replaces default stomach with a different organ
+	var/obj/item/organ/stomach/mutantstomach = /obj/item/organ/stomach
+	///Replaces default appendix with a different organ.
+	var/obj/item/organ/appendix/mutantappendix = /obj/item/organ/appendix
+	///Forces a species tail
+	var/obj/item/organ/tail/mutanttail = /obj/item/organ/tail
+	///Forces an item into this species' hands. Only an honorary mutantthing because this is not an organ and not loaded in the same way, you've been warned to do your research.
+	var/obj/item/mutanthands
+
 	var/override_float = FALSE
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
@@ -175,6 +184,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
+
+	var/smells_like = "something alien"
+
+	//Should we preload this species's organs?
+	var/preload = TRUE
 
 ///////////
 // PROCS //
@@ -251,135 +265,90 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/has_toes()
 	return FALSE
 
-//Will regenerate missing organs
-/datum/species/proc/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
-	var/obj/item/organ/brain/brain = C.getorganslot(ORGAN_SLOT_BRAIN)
-	var/obj/item/organ/heart/heart = C.getorganslot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/lungs/lungs = C.getorganslot(ORGAN_SLOT_LUNGS)
-	var/obj/item/organ/appendix/appendix = C.getorganslot(ORGAN_SLOT_APPENDIX)
-	var/obj/item/organ/eyes/eyes = C.getorganslot(ORGAN_SLOT_EYES)
-	var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
-	var/obj/item/organ/tongue/tongue = C.getorganslot(ORGAN_SLOT_TONGUE)
-	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
-	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
+/**
+ * Corrects organs in a carbon, removing ones it doesn't need and adding ones it does.
+ *
+ * Takes all organ slots, removes organs a species should not have, adds organs a species should have.
+ * can use replace_current to refresh all organs, creating an entirely new set.
+ *
+ * Arguments:
+ * * C - carbon, the owner of the species datum AKA whoever we're regenerating organs in
+ * * old_species - datum, used when regenerate organs is called in a switching species to remove old mutant organs.
+ * * replace_current - boolean, forces all old organs to get deleted whether or not they pass the species' ability to keep that organ
+ * * visual_only - boolean, only load organs that change how the species looks. Do not use for normal gameplay stuff
+ */
+/datum/species/proc/regenerate_organs(mob/living/carbon/C, datum/species/old_species, replace_current = TRUE, visual_only = FALSE)
+	//what should be put in if there is no mutantorgan (brains handled separately)
+	var/list/slot_mutantorgans = list(ORGAN_SLOT_BRAIN = mutantbrain, ORGAN_SLOT_HEART = mutantheart, ORGAN_SLOT_LUNGS = mutantlungs, ORGAN_SLOT_APPENDIX = mutantappendix, \
+	ORGAN_SLOT_EYES = mutanteyes, ORGAN_SLOT_EARS = mutantears, ORGAN_SLOT_TONGUE = mutanttongue, ORGAN_SLOT_LIVER = mutantliver, ORGAN_SLOT_STOMACH = mutantstomach, ORGAN_SLOT_TAIL = mutanttail)
 
-	var/should_have_brain = TRUE
-	var/should_have_heart = !(NOBLOOD in species_traits)
-	var/should_have_lungs = !(TRAIT_NOBREATH in inherent_traits)
-	var/should_have_appendix = !(TRAIT_NOHUNGER in inherent_traits)
-	var/should_have_eyes = TRUE
-	var/should_have_ears = TRUE
-	var/should_have_tongue = TRUE
-	var/should_have_liver = !(NOLIVER in species_traits)
-	var/should_have_stomach = !(NOSTOMACH in species_traits)
-	var/should_have_tail = mutanttail
+	for(var/slot in list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_APPENDIX, \
+	ORGAN_SLOT_EYES, ORGAN_SLOT_EARS, ORGAN_SLOT_TONGUE, ORGAN_SLOT_LIVER, ORGAN_SLOT_STOMACH, ORGAN_SLOT_TAIL))
 
-	if(heart && (!should_have_heart || replace_current))
-		heart.Remove(C,1)
-		QDEL_NULL(heart)
-	if(should_have_heart && !heart)
-		heart = new mutant_heart()
-		heart.Insert(C)
+		var/obj/item/organ/oldorgan = C.getorganslot(slot) //used in removing
+		var/obj/item/organ/neworgan = slot_mutantorgans[slot] //used in adding
 
-	if(lungs && (!should_have_lungs || replace_current))
-		lungs.Remove(C,1)
-		QDEL_NULL(lungs)
-	if(should_have_lungs && !lungs)
-		if(mutantlungs)
-			lungs = new mutantlungs()
-		else
-			lungs = new()
-		lungs.Insert(C)
+		if(visual_only && !initial(neworgan.visual))
+			continue
 
-	if(liver && (!should_have_liver || replace_current))
-		liver.Remove(C,1)
-		QDEL_NULL(liver)
-	if(should_have_liver && !liver)
-		if(mutantliver)
-			liver = new mutantliver()
-		else
-			liver = new()
-		liver.Insert(C)
+		var/used_neworgan = FALSE
+		neworgan = SSwardrobe.provide_type(neworgan)
+		var/should_have = neworgan.get_availability(src) //organ proc that points back to a species trait (so if the species is supposed to have this organ)
 
-	if(stomach && (!should_have_stomach || replace_current))
-		stomach.Remove(C,1)
-		QDEL_NULL(stomach)
-	if(should_have_stomach && !stomach)
-		if(mutantstomach)
-			stomach = new mutantstomach()
-		else
-			stomach = new()
-		stomach.Insert(C)
+		if(oldorgan && (!should_have || replace_current))
+			if(slot == ORGAN_SLOT_BRAIN)
+				var/obj/item/organ/brain/brain = oldorgan
+				if(!brain.decoy_override)//"Just keep it if it's fake" - confucius, probably
+					brain.Remove(C,TRUE, TRUE) //brain argument used so it doesn't cause any... sudden death.
+					QDEL_NULL(brain)
+					oldorgan = null //now deleted
+			else
+				oldorgan.Remove(C,TRUE)
+				QDEL_NULL(oldorgan) //we cannot just tab this out because we need to skip the deleting if it is a decoy brain.
 
-	if(appendix && (!should_have_appendix || replace_current))
-		appendix.Remove(C,1)
-		QDEL_NULL(appendix)
-	if(should_have_appendix && !appendix)
-		appendix = new()
-		appendix.Insert(C)
+		if(oldorgan)
+			oldorgan.setOrganDamage(0)
+		else if(should_have)
+			if(slot == ORGAN_SLOT_TAIL)
+				// Special snowflake code to handle tail appearances
+				var/obj/item/organ/tail/new_tail = neworgan
+				if(iscatperson(C))
+					new_tail.tail_type = C.dna.features["tail_human"]
+				if(ispolysmorph(C))
+					new_tail.tail_type = C.dna.features["tail_polysmorph"]
+				if(islizard(C))
+					var/obj/item/organ/tail/lizard/new_lizard_tail = neworgan
+					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
+					new_lizard_tail.spines = C.dna.features["spines"]
 
-	if(tail && (!should_have_tail || replace_current))
-		tail.Remove(C,1)
-		QDEL_NULL(tail)
-	if(should_have_tail && !tail)
-		tail = new mutanttail()
-		if(iscatperson(C))
-			tail.tail_type = C.dna.features["tail_human"]
-		if(ispolysmorph(C))
-			tail.tail_type = C.dna.features["tail_polysmorph"]
-		if(islizard(C))
-			var/obj/item/organ/tail/lizard/T = tail
-			T.tail_type = C.dna.features["tail_lizard"]
-			T.spines = C.dna.features["spines"]
-		tail.Insert(C)
+			used_neworgan = TRUE
+			neworgan.Insert(C, TRUE, FALSE)
 
-	if(C.get_bodypart(BODY_ZONE_HEAD))
-		if(brain && (replace_current || !should_have_brain))
-			if(!brain.decoy_override)//Just keep it if it's fake
-				brain.Remove(C,TRUE,TRUE)
-				QDEL_NULL(brain)
-		if(should_have_brain && !brain)
-			brain = new mutant_brain()
-			brain.Insert(C, TRUE, TRUE)
-
-		if(eyes && (replace_current || !should_have_eyes))
-			eyes.Remove(C,1)
-			QDEL_NULL(eyes)
-		if(should_have_eyes && !eyes)
-			eyes = new mutanteyes
-			eyes.Insert(C)
-
-		if(ears && (replace_current || !should_have_ears))
-			ears.Remove(C,1)
-			QDEL_NULL(ears)
-		if(should_have_ears && !ears)
-			ears = new mutantears
-			ears.Insert(C)
-
-		if(tongue && (replace_current || !should_have_tongue))
-			tongue.Remove(C,1)
-			QDEL_NULL(tongue)
-		if(should_have_tongue && !tongue)
-			tongue = new mutanttongue
-			tongue.Insert(C)
+		if(!used_neworgan)
+			qdel(neworgan)
 
 	if(old_species)
 		for(var/mutantorgan in old_species.mutant_organs)
-			var/obj/item/organ/I = C.getorgan(mutantorgan)
-			if(I)
-				I.Remove(C)
-				QDEL_NULL(I)
-	else
-		for(var/mutantorgan in mutant_organs)
+			// Snowflake check. If our species share this mutant organ, let's not remove it
+			// just yet as we'll be properly replacing it later.
+			if(mutantorgan in mutant_organs)
+				continue
 			var/obj/item/organ/I = C.getorgan(mutantorgan)
 			if(I)
 				I.Remove(C)
 				QDEL_NULL(I)
 
-	for(var/path in mutant_organs)
-		var/obj/item/organ/I = new path()
-		I.Insert(C)
+	for(var/organ_path in mutant_organs)
+		var/obj/item/organ/current_organ = C.getorgan(organ_path)
+		if(!current_organ || replace_current)
+			var/obj/item/organ/replacement = SSwardrobe.provide_type(organ_path)
+			// If there's an existing mutant organ, we're technically replacing it.
+			// Let's abuse the snowflake proc that skillchips added. Basically retains
+			// feature parity with every other organ too.
+			//if(current_organ)
+			//	current_organ.before_organ_replacement(replacement)
+			// organ.Insert will qdel any current organs in that slot, so we don't need to.
+			replacement.Insert(C, TRUE, FALSE)
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	// Drop the items the new species can't wear
@@ -1320,6 +1289,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			hunger_rate *= 0.75 //hunger rate reduced by about 25%
 		if(HAS_TRAIT(H, TRAIT_EAT_MORE))
 			hunger_rate *= 3 //hunger rate tripled
+		if(HAS_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH))
+			H.nutrition = min(H.nutrition, NUTRITION_LEVEL_MOSTLY_FULL) //capped, can never be truly full
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
@@ -1364,13 +1335,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/get_hunger_alert(mob/living/carbon/human/H)
 	switch(H.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			H.throw_alert("nutrition", /obj/screen/alert/fat)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/fat)
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
 			H.clear_alert("nutrition")
 		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /obj/screen/alert/hungry)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /obj/screen/alert/starving)
+			H.throw_alert("nutrition", /atom/movable/screen/alert/starving)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
@@ -1438,7 +1409,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
-			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
+			var/health_deficiency = max(H.maxHealth - H.health, min(H.staminaloss, H.maxHealth))
 			if(HAS_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN))
 				health_deficiency -= H.maxHealth * 0.2 //20% more damage required for slowdown
 			if(health_deficiency >= H.maxHealth * 0.4)
@@ -1882,6 +1853,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				H.adjustStaminaLoss(damage * hit_percent * H.physiology.stamina_mod)
 		if(BRAIN)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent * H.physiology.brain_mod)
+	
+	if(H.stat == DEAD && (H.mobility_flags & MOBILITY_STAND))
+		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
+			var/obj/structure/sitter = H.buckled
+			sitter.take_damage(damage, damagetype)
 	return 1
 
 /datum/species/proc/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
@@ -1913,6 +1889,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
+
+	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
+		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
+			H.adjust_fire_stacks(-3)
+		else
+			H.adjust_fire_stacks(-2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
@@ -1968,11 +1950,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if (burn_damage)
 			switch(burn_damage)
 				if(0 to 2)
-					H.throw_alert("temp", /obj/screen/alert/hot, 1)
+					H.throw_alert("temp", /atom/movable/screen/alert/hot, 1)
 				if(2 to 4)
-					H.throw_alert("temp", /obj/screen/alert/hot, 2)
+					H.throw_alert("temp", /atom/movable/screen/alert/hot, 2)
 				else
-					H.throw_alert("temp", /obj/screen/alert/hot, 3)
+					H.throw_alert("temp", /atom/movable/screen/alert/hot, 3)
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
 		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
 			H.emote("scream")
@@ -1983,13 +1965,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "cold", /datum/mood_event/cold)
 		switch(H.bodytemperature)
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
-				H.throw_alert("temp", /obj/screen/alert/cold, 1)
+				H.throw_alert("temp", /atom/movable/screen/alert/cold, 1)
 				H.apply_damage(COLD_DAMAGE_LEVEL_1*coldmod*H.physiology.cold_mod, BURN)
 			if(120 to 200)
-				H.throw_alert("temp", /obj/screen/alert/cold, 2)
+				H.throw_alert("temp", /atom/movable/screen/alert/cold, 2)
 				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN)
 			else
-				H.throw_alert("temp", /obj/screen/alert/cold, 3)
+				H.throw_alert("temp", /atom/movable/screen/alert/cold, 3)
 				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN)
 
 	else
@@ -1997,27 +1979,34 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
 
+	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision
+	// 37C has 12 range (11 tiles)
+	// 20C has 7 range (6 tiles)
+	// 10C has 3 range (2 tiles)
+	// 0C has 0 range (0 tiles)
+	H.infra_luminosity = round(max((H.bodytemperature - T0C)/3, 0))
+
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = H.calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
 	switch(adjusted_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
 				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
-				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
+				H.throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 			else
 				H.clear_alert("pressure")
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
-			H.throw_alert("pressure", /obj/screen/alert/highpressure, 1)
+			H.throw_alert("pressure", /atom/movable/screen/alert/highpressure, 1)
 		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
 			H.clear_alert("pressure")
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
-			H.throw_alert("pressure", /obj/screen/alert/lowpressure, 1)
+			H.throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 1)
 		else
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
 				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
-				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
+				H.throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 2)
 
 //////////
 // FIRE //
@@ -2120,6 +2109,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(H.movement_type & FLYING)
 		return TRUE
 	return FALSE
+	
+/datum/species/proc/has_heavy_gravity(mob/living/carbon/human/H)
+	return FALSE
 
 ////////////////
 //Tail Wagging//
@@ -2128,7 +2120,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
-	return (H.getorganslot(ORGAN_SLOT_TAIL))
+	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
+	return tail.get_availability(H.dna.species)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
 	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
@@ -2315,3 +2308,19 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to feed the contents of [O] to [C]."), span_userdanger("[user] attempts to feed the contents of [O] to [C]."))
+
+/datum/species/proc/get_types_to_preload()
+	var/list/to_store = list()
+	to_store += mutant_organs
+	//Don't preload brains, cause reuse becomes a horrible headache
+	to_store += mutantheart
+	to_store += mutantlungs
+	to_store += mutanteyes
+	to_store += mutantears
+	to_store += mutanttongue
+	to_store += mutantliver
+	to_store += mutantstomach
+	to_store += mutantappendix
+	to_store += mutanttail
+	//We don't cache mutant hands because it's not constrained enough, too high a potential for failure
+	return to_store

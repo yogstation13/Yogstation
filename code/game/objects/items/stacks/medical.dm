@@ -247,6 +247,16 @@
 	max_amount = 5
 	grind_results = null
 
+/obj/item/stack/medical/suture/emergency/makeshift/tribal
+	name = "sinew suture"
+	desc = "A suture created from well processed sinew, with a bone needle"
+	icon_state = "suture_tribal"
+	heal_brute = 6
+	stop_bleeding = 0.55
+	amount = 10
+	max_amount = 10
+	grind_results = list(/datum/reagent/liquidgibs = 2)
+
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
 	icon_state = "suture_purp"
@@ -412,9 +422,11 @@
 	self_delay = 20
 	other_delay = 10
 	novariants = TRUE
+	repeating = TRUE
 	amount = 20
 	max_amount = 20
-	var/heal = 3
+	var/heal = 5 //aloe is good for the burns but does not sterilize much at all
+	sanitization = 0.1
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
 /obj/item/stack/medical/aloe/heal(mob/living/M, mob/user)
@@ -423,7 +435,8 @@
 		to_chat(user, span_warning("[M] is dead! You can not help [M.p_them()]."))
 		return FALSE
 	if(iscarbon(M))
-		return heal_carbon(M, user, heal, heal)
+		M.adjustFireLoss(-heal, TRUE) //there's other, infinitely better ways to heal brute damage.
+		return
 	if(isanimal(M))
 		var/mob/living/simple_animal/critter = M
 		if (!(critter.healable))

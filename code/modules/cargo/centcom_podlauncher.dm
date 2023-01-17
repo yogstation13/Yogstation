@@ -53,11 +53,10 @@
 	var/obj/structure/closet/supplypod/centcompod/temp_pod //The temporary pod that is modified by this datum, then cloned. The buildObject() clone of this pod is what is launched
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
+	var/atom/movable/screen/background/cam_background
 	var/tabIndex = 1
-	var/list/timers = list("landingDelay", "fallDuration", "openingDelay", "departureDelay")
 	var/renderLighting = FALSE
 
 /datum/centcom_podlauncher/New(user) //user can either be a client or a mob
@@ -71,9 +70,9 @@
 	else
 		var/mob/user_mob = user
 		holder = user_mob.client //if its a mob, assign the mob's client to holder
-	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sortedAreas //Locate the default bay (one) from the centcom map
+	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.areas //Locate the default bay (one) from the centcom map
 	bayNumber = bay.loading_id //Used as quick reference to what bay we're taking items from
-	var/area/pod_storage_area = locate(/area/centcom/supplypod/pod_storage) in GLOB.sortedAreas
+	var/area/pod_storage_area = locate(/area/centcom/supplypod/podStorage) in GLOB.areas
 	temp_pod = new(pick(get_area_turfs(pod_storage_area))) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 	selector = new(null, holder.mob)
@@ -95,8 +94,8 @@
 	cam_screen.del_on_map_removal = TRUE
 	cam_screen.screen_loc = "[map_name]:1,1"
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/atom/movable/screen/plane_master))
+		var/atom/movable/screen/instance = new plane()
 		if (!renderLighting && instance.plane == LIGHTING_PLANE)
 			instance.alpha = 100
 		instance.assigned_map = map_name
@@ -149,11 +148,13 @@
 	data["launchChoice"] = launchChoice //Launch turfs all at once (0), ordered (1), or randomly(1)
 	data["explosionChoice"] = explosionChoice //An explosion that occurs when landing. Can be no explosion (0), custom explosion (1), or maxcap (2)
 	data["damageChoice"] = damageChoice //Damage that occurs to any mob under the pod when it lands. Can be no damage (0), custom damage (1), or gib+5000dmg (2)
-	data["delay_1"] = temp_pod.landingDelay //How long the pod takes to land after launching
-	data["delay_2"] = temp_pod.fallDuration //How long the pod's falling animation lasts
-	data["delay_3"] = temp_pod.openingDelay //How long the pod takes to open after landing
-	data["delay_4"] = temp_pod.departureDelay //How long the pod takes to leave after opening (if bluespace=true, it deletes. if reversing=true, it flies back to centcom)
+	data["delays"] = temp_pod.delays
+	data["rev_delays"] = temp_pod.reverse_delays
+	data["custom_rev_delay"] = temp_pod.custom_rev_delay
 	data["styleChoice"] = temp_pod.style //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
+	//data["effectShrapnel"] = temp_pod.effectShrapnel //If true, creates a cloud of shrapnel of a decided type and magnitude on landing
+	//data["shrapnelType"] = "[temp_pod.shrapnel_type]" //Path2String
+	//data["shrapnelMagnitude"] = temp_pod.shrapnel_magnitude
 	data["effectStun"] = temp_pod.effectStun //If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
 	data["effectLimb"] = temp_pod.effectLimb //If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
 	data["effectOrgans"] = temp_pod.effectOrgans //If true, yeets the organs out of any bodies caught under the pod when it lands
@@ -164,7 +165,7 @@
 	data["effectCircle"] = temp_pod.effectCircle //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
 	data["effectBurst"] = effectBurst //IOf true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
 	data["effectReverse"] = temp_pod.reversing //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
-	data["reverseOptionList"] = temp_pod.reverseOptionList
+	data["reverse_option_list"] = temp_pod.reverse_option_list
 	data["effectTarget"] = specificTarget //Launches the pod at the turf of a specific mob target, rather than wherever the user clicked. Useful for smites
 	data["effectName"] = temp_pod.adminNamed //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
 	data["podName"] = temp_pod.name
@@ -182,11 +183,9 @@
 /datum/centcom_podlauncher/ui_act(action, params)
 	if(..())
 		return
-	
 	var/mob/exploit_victim = holder.mob
 	if(exploit_victim != usr)
 		return
-	
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("gamePanel")
@@ -293,7 +292,7 @@
 				if (isnull(boomInput[i]))
 					return
 				if (!isnum(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
-					alert(usr, "That wasn't a number! Value set to default (zero) instead.")
+					tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
 					boomInput = 0
 			explosionChoice = 1
 			temp_pod.explosionSize = boomInput
@@ -315,7 +314,7 @@
 			if (isnull(damageInput))
 				return
 			if (!isnum(damageInput)) //Sanitize the input for damage to deal.s
-				alert(usr, "That wasn't a number! Value set to default (zero) instead.")
+				tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
 				damageInput = 0
 			damageChoice = 1
 			temp_pod.damage = damageInput
@@ -345,6 +344,23 @@
 			temp_pod.desc = descInput
 			temp_pod.adminNamed = TRUE //This variable is checked in the supplypod/setStyle() proc
 			. = TRUE
+		/*if("effectShrapnel") //Creates a cloud of shrapnel on landing
+			if (temp_pod.effectShrapnel == TRUE) //If already doing custom damage, set back to default (no shrapnel)
+				temp_pod.effectShrapnel = FALSE
+				return
+			var/shrapnelInput = input("Please enter the type of pellet cloud you'd like to create on landing (Can be any projectile!)", "Projectile Typepath",  0) in sortList(subtypesof(/obj/projectile), /proc/cmp_typepaths_asc)
+			if (isnull(shrapnelInput))
+				return
+			var/shrapnelMagnitude = input("Enter the magnitude of the pellet cloud. This is usually a value around 1-5. Please note that Ryll-Ryll has asked me to tell you that if you go too crazy with the projectiles you might crash the server. So uh, be gentle!", "Shrapnel Magnitude", 0) as null|num
+			if (isnull(shrapnelMagnitude))
+				return
+			if (!isnum(shrapnelMagnitude))
+				alert(usr, "That wasn't a number! Value set to 3 instead.")
+				shrapnelMagnitude = 3
+			temp_pod.shrapnel_type = shrapnelInput
+			temp_pod.shrapnel_magnitude = shrapnelMagnitude
+			temp_pod.effectShrapnel = TRUE
+			. = TRUE*/
 		if("effectStun") //Toggle: Any mob under the pod is stunned (cant move) until the pod lands, hitting them!
 			temp_pod.effectStun = !temp_pod.effectStun
 			. = TRUE
@@ -384,7 +400,7 @@
 			. = TRUE
 		if("reverseOption")
 			var/reverseOption = params["reverseOption"]
-			temp_pod.reverseOptionList[reverseOption] = !temp_pod.reverseOptionList[reverseOption]
+			temp_pod.reverse_option_list[reverseOption] = !temp_pod.reverse_option_list[reverseOption]
 			. = TRUE
 		if("effectTarget") //Toggle: Launch at a specific mob (instead of at whatever turf you click on). Used for the supplypod smite
 			if (specificTarget)
@@ -401,13 +417,19 @@
 		////////////////////////////TIMER DELAYS//////////////////
 		if("editTiming") //Change the different timers relating to the pod
 			var/delay = params["timer"]
-			var/timer = timers[delay]
 			var/value = params["value"]
-			temp_pod.vars[timer] = value * 10
+			var/reverse = params["reverse"]
+			if (reverse)
+				temp_pod.reverse_delays[delay] = value * 10
+			else
+				temp_pod.delays[delay] = value * 10
 			. = TRUE
 		if("resetTiming")
-			for (var/timer in timers)
-				temp_pod.vars[timer] = initial(temp_pod.vars[timer])
+			temp_pod.delays = list(POD_TRANSIT = 20, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
+			temp_pod.reverse_delays = list(POD_TRANSIT = 20, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
+			. = TRUE
+		if("toggleRevDelays")
+			temp_pod.custom_rev_delay = !temp_pod.custom_rev_delay
 			. = TRUE
 		////////////////////////////ADMIN SOUNDS//////////////////
 		if("fallingSound") //Admin sound from a local file that plays when the pod lands
@@ -434,7 +456,7 @@
 				if (isnull(soundLen))
 					return
 				if (!isnum(soundLen))
-					alert(usr, "That wasn't a number! Value set to default ([initial(temp_pod.fallingSoundLength)*0.1]) instead.")
+					tgui_alert(usr, "That wasn't a number! Value set to default ([initial(temp_pod.fallingSoundLength)*0.1]) instead.")
 			temp_pod.fallingSound = soundInput
 			temp_pod.fallingSoundLength = 10 * soundLen
 			. = TRUE
@@ -503,7 +525,7 @@
 			updateSelector()
 			. = TRUE
 		if("clearBay") //Delete all mobs and objs in the selected bay
-			if(alert(usr, "This will delete all objs and mobs in [bay]. Are you sure?", "Confirmation", "Delete that shit", "No") == "Delete that shit")
+			if(tgui_alert(usr, "This will delete all objs and mobs in [bay]. Are you sure?", "Confirmation", "Delete that shit", "No") == "Delete that shit")
 				clearBay()
 				refreshBay()
 			. = TRUE
@@ -539,7 +561,7 @@
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, size_x, size_y)
 
-/datum/centcom_podlauncher/proc/updateCursor(var/forceClear = FALSE) //Update the mouse of the user
+/datum/centcom_podlauncher/proc/updateCursor(forceClear = FALSE) //Update the mouse of the user
 	if (!holder) //Can't update the mouse icon if the client doesnt exist!
 		return
 	if (!forceClear && (launcherActivated || picking_dropoff_turf)) //If the launching param is true, we give the user new mouse icons.
@@ -550,6 +572,7 @@
 			holder.mouse_up_icon = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi' //Icon for when mouse is released
 			holder.mouse_down_icon = 'icons/effects/mouse_pointers/supplypod_pickturf_down.dmi' //Icon for when mouse is pressed
 		holder.mouse_pointer_icon = holder.mouse_up_icon //Icon for idle mouse (same as icon for when released)
+
 		holder.click_intercept = src //Create a click_intercept so we know where the user is clicking
 	else
 		var/mob/holder_mob = holder.mob
@@ -559,11 +582,13 @@
 		holder_mob?.update_mouse_pointer() //set the moues icons to null, then call update_moues_pointer() which resets them to the correct values based on what the mob is doing (in a mech, holding a spell, etc)()
 
 /datum/centcom_podlauncher/proc/InterceptClickOn(user,params,atom/target) //Click Intercept so we know where to send pods where the user clicks
+	
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
+
 	if (launcherActivated)
 		//Clicking on UI elements shouldn't launch a pod
-		if(istype(target,/obj/screen))
+		if(istype(target,/atom/movable/screen))
 			return FALSE
 
 		. = TRUE
@@ -598,7 +623,7 @@
 					sleep(rand()*2) //looks cooler than them all appearing at once. Gives the impression of burst fire.
 	else if (picking_dropoff_turf)
 		//Clicking on UI elements shouldn't pick a dropoff turf
-		if(istype(target,/obj/screen))
+		if(istype(target,/atom/movable/screen))
 			return FALSE
 
 		. = TRUE
@@ -620,11 +645,11 @@
 /datum/centcom_podlauncher/proc/refreshBay() //Called whenever the bay is switched, as well as wheneber a pod is launched
 	bay = GLOB.supplypod_loading_bays[bayNumber]
 	orderedArea = createOrderedArea(bay) //Create an ordered list full of turfs form the bay
-	preLaunch()	//Fill acceptable turfs from orderedArea, then fill launchList from acceptableTurfs (see proc for more info)
+	preLaunch() //Fill acceptable turfs from orderedArea, then fill launchList from acceptableTurfs (see proc for more info)
 	refreshView()
 
 /area/centcom/supplypod/pod_storage/Initialize(mapload) //temp_pod holding area
-	. = ..() 
+	. = ..()
 	var/obj/imgbound = locate() in locate(200,SUPPLYPOD_X_OFFSET*-4.5, 1)
 	call(GLOB.podlauncher, "RegisterSignal")(imgbound, "ct[GLOB.podstyles[14][9]]", "[GLOB.podstyles[14][10]]dlauncher")
 
@@ -786,11 +811,13 @@
 	launchChoice = dataToLoad["launchChoice"] //Launch turfs all at once (0), ordered (1), or randomly(1)
 	explosionChoice = dataToLoad["explosionChoice"] //An explosion that occurs when landing. Can be no explosion (0), custom explosion (1), or maxcap (2)
 	damageChoice = dataToLoad["damageChoice"] //Damage that occurs to any mob under the pod when it lands. Can be no damage (0), custom damage (1), or gib+5000dmg (2)
-	temp_pod.landingDelay = dataToLoad["delay_1"] //How long the pod takes to land after launching
-	temp_pod.fallDuration = dataToLoad["delay_2"] //How long the pod's falling animation lasts
-	temp_pod.openingDelay = dataToLoad["delay_3"] //How long the pod takes to open after landing
-	temp_pod.departureDelay = dataToLoad["delay_4"] //How long the pod takes to leave after opening (if bluespace=true, it deletes. if reversing=true, it flies back to centcom)
+	temp_pod.delays = dataToLoad["delays"]
+	temp_pod.reverse_delays = dataToLoad["rev_delays"]
+	temp_pod.custom_rev_delay = dataToLoad["custom_rev_delay"]
 	temp_pod.setStyle(dataToLoad["styleChoice"])  //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
+	//temp_pod.effectShrapnel = dataToLoad["effectShrapnel"] //If true, creates a cloud of shrapnel of a decided type and magnitude on landing
+	//temp_pod.shrapnel_type = text2path(dataToLoad["shrapnelType"])
+	//temp_pod.shrapnel_magnitude = dataToLoad["shrapnelMagnitude"]
 	temp_pod.effectStun  = dataToLoad["effectStun"]//If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
 	temp_pod.effectLimb  = dataToLoad["effectLimb"]//If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
 	temp_pod.effectOrgans = dataToLoad["effectOrgans"]//If true, yeets the organs out of any bodies caught under the pod when it lands
@@ -801,7 +828,7 @@
 	temp_pod.effectCircle = dataToLoad["effectCircle"] //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
 	effectBurst = dataToLoad["effectBurst"] //IOf true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
 	temp_pod.reversing = dataToLoad["effectReverse"] //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
-	temp_pod.reverseOptionList = dataToLoad["reverseOptionList"]
+	temp_pod.reverse_option_list = dataToLoad["reverse_option_list"]
 	specificTarget = dataToLoad["effectTarget"] //Launches the pod at the turf of a specific mob target, rather than wherever the user clicked. Useful for smites
 	temp_pod.adminNamed = dataToLoad["effectName"] //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
 	temp_pod.name = dataToLoad["podName"]

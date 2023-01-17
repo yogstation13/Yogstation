@@ -94,19 +94,15 @@
 	name = "Black Powder"
 	id = /datum/reagent/blackpowder
 	results = list(/datum/reagent/blackpowder = 3)
-	required_reagents = list(/datum/reagent/saltpetre = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/sulfur = 1)
+	required_reagents = list(/datum/reagent/saltpetre = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/sulphur = 1)
 
 /datum/chemical_reaction/reagent_explosion/blackpowder_explosion
 	name = "Black Powder Kaboom"
 	id = "blackpowder_explosion"
 	required_reagents = list(/datum/reagent/blackpowder = 1)
-	required_temp = 474
-	strengthdiv = 6
-	modifier = 1
-	mix_message = span_boldannounce("Sparks start flying around the black powder!")
-
-/datum/chemical_reaction/reagent_explosion/blackpowder_explosion/on_reaction(datum/reagents/holder, created_volume)
-	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), rand(5,10) SECONDS)
+	required_temp = 737		//Yogs change - 464 C, actual ignition temp
+	strengthdiv = 12
+	modifier = 5
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
@@ -245,7 +241,7 @@
 	name = "Flash powder"
 	id = /datum/reagent/flash_powder
 	results = list(/datum/reagent/flash_powder = 3)
-	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
+	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulphur = 1 )
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -255,7 +251,7 @@
 	var/range = created_volume/3
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
@@ -276,7 +272,7 @@
 	var/range = created_volume/10
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)

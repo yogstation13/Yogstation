@@ -17,6 +17,7 @@
 	poddoor = TRUE
 	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
 	var/constructionstate = INTACT // Decounstruction Stuff
+	rad_insulation = RAD_FULL_INSULATION
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"

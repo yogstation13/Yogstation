@@ -121,3 +121,42 @@
 
 /obj/item/ammo_box/magazine/m308/laser/attack_self() //No popping out the "bullets"
 	return
+
+/obj/item/ammo_box/magazine/ks762
+	name = "rifle magazine (7.62mm)"
+	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62mm rounds."
+	icon_state = "ks762"
+	ammo_type = /obj/item/ammo_casing/a762
+	caliber = "a762"
+	max_ammo = 11
+
+/obj/item/ammo_box/magazine/ks762/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "ks762[sprite_designation]"
+	else
+		icon_state = "ks762[sprite_designation]_empty"
+
+/obj/item/ammo_box/magazine/ks762/raze
+	name = "rifle magazine (Raze 7.62mm)"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Raze 7.62mm rounds. \
+			These rounds do notably less damage, but release radium dust in targets that severely damages their DNA structure."
+	icon_state = "ks762R"
+	ammo_type = /obj/item/ammo_casing/a762/raze
+	sprite_designation = "R"
+
+/obj/item/ammo_box/magazine/ks762/pen
+	name = "rifle magazine (Anti-Material 7.62mm)"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with anti-material 7.62mm rounds. \
+			These rounds offer less stopping power, but pierce through a couple of objects before stopping."
+	icon_state = "ks762P"
+	ammo_type = /obj/item/ammo_casing/a762/pen
+	sprite_designation = "P"
+
+/obj/item/ammo_box/magazine/ks762/vulcan
+	name = "rifle magazine (Vulcan 7.62mm)"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Vulcan 7.62mm rounds. \
+			These rounds are loaded with an incendiary payload that causes fire to erupt out upon impact."
+	icon_state = "ks762I"
+	ammo_type = /obj/item/ammo_casing/a762/vulcan
+	sprite_designation = "I"

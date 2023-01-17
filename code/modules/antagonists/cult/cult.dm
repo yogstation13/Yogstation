@@ -1,4 +1,7 @@
 #define SUMMON_POSSIBILITIES 3
+#define CULT_VICTORY 1
+#define CULT_LOSS 0
+#define CULT_NARSIE_KILLED -1
 
 /datum/antagonist/cult
 	name = "Cultist"
@@ -125,7 +128,7 @@
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
-	current.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
+	current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
 	if(cult_team.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
@@ -451,13 +454,14 @@
 
 /datum/objective/eldergod
 	var/summoned = FALSE
+	var/killed = FALSE
 	var/list/summon_spots = list()
 
 /datum/objective/eldergod/New()
 	..()
 	var/sanity = 0
 	while(summon_spots.len < SUMMON_POSSIBILITIES && sanity < 100)
-		var/area/summon = pick(GLOB.sortedAreas - summon_spots)
+		var/area/summon = pick(GLOB.areas - summon_spots)
 		if(summon && is_station_level(summon.z) && summon.valid_territory)
 			summon_spots += summon
 		sanity++
@@ -467,18 +471,26 @@
 	explanation_text = "Summon Nar-Sie by invoking the rune 'Summon Nar-Sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
 
 /datum/objective/eldergod/check_completion()
+	if(killed)
+		return CULT_NARSIE_KILLED // You failed so hard that even the code went backwards.
 	return summoned || completed
 
 /datum/team/cult/proc/check_cult_victory()
 	for(var/datum/objective/O in objectives)
-		if(!O.check_completion())
-			return FALSE
-	return TRUE
+		if(O.check_completion() == CULT_NARSIE_KILLED)
+			return CULT_NARSIE_KILLED
+		else if(!O.check_completion())
+			return CULT_LOSS
+	return CULT_VICTORY
 
 /datum/team/cult/roundend_report()
 	var/list/parts = list()
 
-	if(check_cult_victory())
+	var/victory = check_cult_victory()
+
+	if(victory == CULT_NARSIE_KILLED) // Epic failure, you summoned your god and then someone killed it.
+		parts += "<span class='redtext big'>Nar'sie has been killed! The cult will haunt the universe no longer!</span>"
+	else if(victory)
 		parts += "<span class='greentext big'>The cult has succeeded! Nar-sie has snuffed out another torch in the void!</span>"
 		for(var/mind in members)
 			var/datum/mind/M = mind

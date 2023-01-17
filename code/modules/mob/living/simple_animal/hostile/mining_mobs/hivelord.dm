@@ -444,7 +444,7 @@
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
 	if(isturf(loc))
-		for(var/mob/living/carbon/human/M in view(src,1))
+		for(var/mob/living/M in view(src,1))
 			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
 				L.stored_mob = M

@@ -1,23 +1,17 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui_common
-	keep_local_name = TRUE
-	assets = list(
-		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
-	)
-
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
 /datum/asset/simple/tgui_panel
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
-		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
 	)
 
 /datum/asset/simple/headers
@@ -164,13 +158,21 @@
 /datum/asset/simple/namespaced/fontawesome
 	legacy = TRUE
 	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
+		"fa-regular-400.ttf" = 'html/font-awesome/webfonts/fa-regular-400.ttf',
+		"fa-solid-900.ttf" = 'html/font-awesome/webfonts/fa-solid-900.ttf',
+		"fa-v4compatibility.ttf" = 'html/font-awesome/webfonts/fa-v4compatibility.ttf',
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
+
+/datum/asset/simple/namespaced/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
+	)
+	parents = list(
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
+	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
@@ -291,6 +293,12 @@
 		InsertAll("", each, GLOB.alldirs)
 	..()
 
+/datum/asset/simple/security_armaments
+	assets = list(
+		"disablerbig.png" = 'icons/vending_icons/disablerbig.png',
+		"ntuspbig.png" = 'icons/vending_icons/ntuspbig.png',
+	)
+
 // Representative icons for each research design
 /datum/asset/spritesheet/research_designs
 	name = "design"
@@ -361,6 +369,10 @@
 
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
+		if(ispath(item, /obj/item/ammo_box))
+			var/obj/item/ammo_box/ammoitem = item
+			if(initial(ammoitem.multiple_sprites))
+				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
 		var/icon/I
 
 		var/icon_states_list = icon_states(icon_file)
@@ -382,6 +394,49 @@
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
+	return ..()
+
+/datum/asset/spritesheet/uplink
+	name = "uplink"
+
+/datum/asset/spritesheet/uplink/register()
+	for(var/path in GLOB.uplink_items)
+		var/datum/uplink_item/U = path
+		if (!ispath(U, /datum/uplink_item))
+			continue
+
+		var/atom/item = initial(U.item)
+		if (!ispath(item, /atom))
+			continue
+
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+		if(ispath(item, /obj/item/ammo_box))
+			var/obj/item/ammo_box/ammoitem = item
+			if(initial(ammoitem.multiple_sprites))
+				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
+		var/icon/I
+
+		var/icon_states_list = icon_states(icon_file)
+		if(icon_state in icon_states_list)
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(c, ICON_MULTIPLY)
+		else
+			var/icon_states_string
+			for (var/an_icon_state in icon_states_list)
+				if (!icon_states_string)
+					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
+				else
+					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
+			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
+			I = icon('icons/turf/floors.dmi', "", SOUTH)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		if(!sprites[imgid])
+			Insert(imgid, I)
 	return ..()
 
 /datum/asset/simple/genetics

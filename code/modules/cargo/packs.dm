@@ -308,6 +308,19 @@
 					/obj/item/gun/energy/disabler)
 	crate_name = "disabler crate"
 
+/datum/supply_pack/security/ntusp
+	name = "NT-USP Crate"
+	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	cost = 2000
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp)
+	crate_name = "nt-usp crate"
+
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."
@@ -861,6 +874,28 @@
 					/obj/item/stock_parts/cell/high)
 	crate_name = "power cell crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
+
+/datum/supply_pack/engineering/portable_pumps
+	name = "Portable Pumps"
+	desc = "A set of spare portable pumps. Perfect for larger atmospheric projects or restocking after a toxins problem goes wrong."
+	cost = 1500
+	contains = list(
+		/obj/machinery/portable_atmospherics/pump,
+		/obj/machinery/portable_atmospherics/pump
+	)
+	crate_name = "portable pump crate"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/engineering/portable_scrubbers
+	name = "Portable Scrubbers"
+	desc = "A set of spare portable scrubbers. Perfect for when plasma 'accidentally' gets into the air supply."
+	cost = 1500
+	contains = list(
+		/obj/machinery/portable_atmospherics/scrubber,
+		/obj/machinery/portable_atmospherics/scrubber
+	)
+	crate_name = "portable scrubber crate"
+	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/engineering/shuttle_engine
 	name = "Shuttle Engine Crate"
@@ -1453,6 +1488,40 @@
 
 /datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
 	for(var/i in 1 to 10)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/gummies
+	name = "Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of gummy bears."
+	cost = 4000
+	contains = list(/obj/item/storage/pill_bottle/gummies/vitamin,
+					/obj/item/storage/pill_bottle/gummies/melatonin,
+					/obj/item/storage/pill_bottle/gummies/nitro,
+					/obj/item/storage/pill_bottle/gummies/mime)
+	crate_name = "gummy bear crate"
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/gummies/illegal
+	name = "Illegal Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of less-than-legal gummy bears."
+	cost = 5000
+	contains = list(/obj/item/storage/pill_bottle/gummies/meth,
+					/obj/item/storage/pill_bottle/gummies/drugs,
+					/obj/item/storage/pill_bottle/gummies/floorbear,
+					/obj/item/storage/pill_bottle/gummies/mindbreaker,
+					/obj/item/storage/pill_bottle/gummies/omnizine)
+	crate_name = "illegal gummy bear crate"
+	contraband = TRUE
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/illegal/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
 		var/item = pick(contains)
 		new item(C)
 
@@ -2391,6 +2460,7 @@
 					/obj/item/storage/pill_bottle/lsd,
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
+					/obj/item/storage/pill_bottle/gummies/omnizine,
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,

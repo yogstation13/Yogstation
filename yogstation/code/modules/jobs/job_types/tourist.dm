@@ -1,6 +1,7 @@
 /datum/job/tourist
 	title = "Tourist"
 	flag = TOUR
+	orbit_icon = "camera-retro"
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1
@@ -15,6 +16,8 @@
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_TOURIST
 	minimal_character_age = 18 //Gotta go explore the galaxy and see the stuff
+
+	smells_like = "sunscreen"
 
 /datum/outfit/job/tourist
 	name = "Tourist"

@@ -120,7 +120,7 @@
 		log_combat(user, R, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component
 		if(prob(effectchance * diode.rating))
-			R.overlay_fullscreen("laserpointer", /obj/screen/fullscreen/flash/static)
+			R.overlay_fullscreen("laserpointer", /atom/movable/screen/fullscreen/flash/static)
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
@@ -195,8 +195,8 @@
 	flick_overlay_view(I, targloc, 10)
 	icon_state = "pointer"
 
-/obj/item/laser_pointer/process()
-	if(prob(20 - recharge_locked*5))
+/obj/item/laser_pointer/process(delta_time)
+	if(DT_PROB(10 - recharge_locked*5, delta_time))
 		energy += 1
 		if(energy >= max_energy)
 			energy = max_energy

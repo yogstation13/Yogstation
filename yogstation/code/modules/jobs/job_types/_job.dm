@@ -12,12 +12,13 @@
 		purrbation_toggle_onlyhumans(H)
 
 	if(C.prefs.donor_hat)
-		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
-		if(BP)
-			var/type = C.prefs.donor_hat
-			if(type)
-				var/obj/hat = new type()
-				hat.forceMove(BP)
+		var/type = C.prefs.donor_hat
+		if(type)
+			var/obj/hat = new type()
+			if(!H.equip_to_appropriate_slot(hat))
+				var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+				if(BP)
+					hat.forceMove(BP)
 
 	if(C.prefs.donor_item)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()

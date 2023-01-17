@@ -33,4 +33,4 @@ SUBSYSTEM_DEF(assets)
 
 	transport.Initialize(cache)
 
-	..()
+	return SS_INIT_SUCCESS

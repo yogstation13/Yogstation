@@ -175,6 +175,10 @@
 		update_icon()
 
 	else if(istype(W, /obj/item/bodypart/r_leg/robot))
+		var/obj/item/bodypart/r_leg/robot/L = W
+		if(L.use_digitigrade != NOT_DIGITIGRADE)
+			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
+			return
 		if(src.r_leg)
 			return
 		if(!user.transferItemToLoc(W, src))
@@ -185,6 +189,10 @@
 		update_icon()
 
 	else if(istype(W, /obj/item/bodypart/l_arm/robot))
+		var/obj/item/bodypart/l_leg/robot/L = W
+		if(L.use_digitigrade != NOT_DIGITIGRADE)
+			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
+			return
 		if(l_arm)
 			return
 		if(!user.transferItemToLoc(W, src))
@@ -309,7 +317,7 @@
 				O.lawupdate = 0
 				if(M.laws.id == DEFAULT_AI_LAWID)
 					O.make_laws()
-					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transfered!"))
+					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))

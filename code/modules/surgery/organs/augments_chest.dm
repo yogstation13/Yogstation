@@ -218,3 +218,147 @@
 			owner.adjustFireLoss(10)
 			to_chat(owner, span_danger("Your thruster implant malfunctions and mildly burns you!"))
 
+/obj/item/organ/cyberimp/chest/spinalspeed
+	name = "neural overclocker implant"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	slot = ORGAN_SLOT_THRUSTERS
+	icon_state = "imp_spinal"
+	implant_overlay = null
+	implant_color = null
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
+	w_class = WEIGHT_CLASS_NORMAL
+	syndicate_implant = TRUE
+	var/on = FALSE
+	var/time_on = 0
+	var/hasexerted = FALSE
+	COOLDOWN_DECLARE(alertcooldown)
+	COOLDOWN_DECLARE(startsoundcooldown)
+	COOLDOWN_DECLARE(endsoundcooldown)
+
+/obj/item/organ/cyberimp/chest/spinalspeed/Insert(mob/living/carbon/M, special = 0)
+	. = ..()
+
+/obj/item/organ/cyberimp/chest/spinalspeed/Remove(mob/living/carbon/M, special = 0)
+	if(on)
+		toggle(silent = TRUE)
+	..()
+
+/obj/item/organ/cyberimp/chest/spinalspeed/ui_action_click()
+	toggle()
+
+/obj/item/organ/cyberimp/chest/spinalspeed/proc/toggle(silent = FALSE)
+	if(!on)
+		if(COOLDOWN_FINISHED(src, startsoundcooldown))
+			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
+			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
+		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
+		owner.next_move_modifier *= 0.7
+		owner?.dna?.species?.action_speed_coefficient *= 0.7
+		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+	else
+		if(COOLDOWN_FINISHED(src, endsoundcooldown))
+			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
+			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
+		owner.next_move_modifier /= 0.7
+		owner?.dna?.species?.action_speed_coefficient /= 0.7
+		owner.remove_movespeed_modifier("spinalimplant")
+		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	on = !on
+	if(!silent)
+		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
+	update_icon()
+
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon()
+	if(on)
+		icon_state = "imp_spinal-on"
+	else
+		icon_state = "imp_spinal"
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
+
+/obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
+	var/turf/currentloc = get_turf(owner)
+	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
+	var/rvalue = 0
+	var/gvalue = 0
+	var/bvalue = 0
+	var/numcolors = (world.time * 32) % 1280
+	var/segment = numcolors / 256
+	var/specific_color = numcolors % 256 //works like any non-sine wave rainbow generator thing, google it
+	switch(segment)//transition isn't as precise as if i used sin() but this is far more efficient for runtime
+		if(0 to 1)
+			rvalue = 255
+			gvalue = specific_color
+		if(1 to 2)
+			rvalue = 255 - specific_color
+			gvalue = 255
+		if(2 to 3)
+			gvalue = 255
+			bvalue = specific_color
+		if(3 to 4)
+			gvalue = 255 - specific_color
+			bvalue = 255
+		if(4 to 5)
+			rvalue = specific_color
+			bvalue = 255 - specific_color
+	var/usedcolor = rgb(rvalue, gvalue, bvalue)
+	F.color = usedcolor	//gotta add the flair
+
+/obj/item/organ/cyberimp/chest/spinalspeed/on_life()
+	if(on)
+		if(owner.stat == UNCONSCIOUS || owner.stat == DEAD)
+			toggle(silent = TRUE)
+		time_on += 1
+		switch(time_on)
+			if(20 to 50)
+				if(COOLDOWN_FINISHED(src, alertcooldown))
+					to_chat(owner, span_alert("You feel your spine tingle."))
+					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
+				owner.hallucination += 5
+				owner.adjustFireLoss(1)
+			if(50 to 100)
+				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
+					to_chat(owner, span_userdanger("Your spine and brain feel like they're burning!"))
+					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
+				hasexerted = TRUE
+				owner.set_drugginess(10)
+				owner.hallucination += 100
+				owner.adjustFireLoss(5)
+			if(100 to INFINITY)//no infinite abuse
+				to_chat(owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
+				owner.gib()
+	else
+		time_on -= 2
+
+	time_on = max(time_on, 0)
+	if(hasexerted && time_on == 0)
+		to_chat(owner, "Your brains feels normal again.")
+		hasexerted = FALSE
+
+/obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
+	. = ..()
+	switch(severity)//i don't want emps to just be damage again, that's boring
+		if(EMP_HEAVY)
+			owner.set_drugginess(40)
+			owner.hallucination += 500
+			owner.blur_eyes(20)
+			owner.dizziness += 10
+			time_on += 10
+			owner.adjustFireLoss(10)
+			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
+		if(EMP_LIGHT)
+			owner.set_drugginess(20)
+			owner.hallucination += 200
+			owner.blur_eyes(10)
+			owner.dizziness += 5
+			time_on += 5
+			owner.adjustFireLoss(5)
+			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
+
+/obj/item/organ/cyberimp/chest/cooling_intake
+	name = "cooling intake"
+	desc = "An external port that can intake air from the environment or coolant from a tank."
+	icon_state = "implant_mask"
+	slot = ORGAN_SLOT_BREATHING_TUBE
+	w_class = WEIGHT_CLASS_TINY

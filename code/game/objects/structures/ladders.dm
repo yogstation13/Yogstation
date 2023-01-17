@@ -92,7 +92,7 @@
 		return
 
 	if (up && down)
-		var/result = alert("Go up or down [src]?", "Ladder", "Up", "Down", "Cancel")
+		var/result = tgui_alert(user, "Go up or down [src]?", "Ladder", list("Up", "Down", "Cancel"))
 		if (!is_ghost && !in_range(src, user))
 			return  // nice try
 		switch(result)

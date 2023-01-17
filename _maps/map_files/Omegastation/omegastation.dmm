@@ -11032,30 +11032,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"ars" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_y = 26
-	},
-/obj/machinery/light_switch{
-	pixel_x = 24;
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/storage/box/beakers{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/syringes,
-/obj/item/gun/syringe,
-/obj/item/storage/firstaid/hypospray/deluxe/cmo,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/clothing/neck/stethoscope,
-/turf/open/floor/plasteel,
-/area/medical)
 "art" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -18635,23 +18611,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"aSf" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical)
 "aSj" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -29111,6 +29070,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"hCT" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel,
+/area/medical)
 "hEz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33573,7 +33550,7 @@
 	},
 /obj/machinery/atmospherics/components/trinary/filter/critical{
 	dir = 1;
-	filter_type = "n2"
+	filter_type = list(/datum/gas/nitrogen)
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -37065,6 +37042,22 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/mineral/random/labormineral,
 /area/asteroid/nearstation)
+"pyJ" = (
+/obj/structure/rack,
+/obj/item/gun/energy/ionrifle,
+/obj/item/clothing/suit/armor/laserproof,
+/obj/item/gun/energy/temperature/security,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/item/card/id/departmental_budget/sec,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "pyL" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -37097,21 +37090,6 @@
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"pzB" = (
-/obj/structure/rack,
-/obj/item/gun/energy/ionrifle,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/gun/energy/temperature/security,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/item/card/id/departmental_budget/sec,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/brig)
 "pAu" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -38267,6 +38245,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
+"qGH" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	pixel_x = 24;
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/storage/box/beakers{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/syringes,
+/obj/item/storage/firstaid/hypospray/deluxe/cmo,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel,
+/area/medical)
 "qGR" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/detective,
@@ -81004,7 +81005,7 @@ afM
 aaV
 agF
 aio
-pzB
+pyJ
 ajX
 akT
 lHG
@@ -84901,14 +84902,14 @@ alj
 psS
 ePo
 aph
-ars
+qGH
 aup
 alU
 axV
 aph
 awG
 axU
-aSf
+hCT
 aqw
 gPR
 tTx
