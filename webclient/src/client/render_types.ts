@@ -539,6 +539,53 @@ export class EdgeRenderPlan extends BatchRenderPlan {
 	}
 }
 
+export class DiagonalWallRenderPlan extends BatchRenderPlan {
+	constructor(atom_id : number, public appearance : Appearance, public x : number, public y : number, public dir = appearance.dir, public face_states = ["1-w","2-e","3-w","4-e"]) {
+		super();
+		this.atom_id = atom_id;
+		this.icon = appearance.icon;
+		this.triangle_count = face_states.length * 2;
+	}
+	face_state_instances : Array<IconState|null>|undefined;
+	write(attribs : Float32Array, iattribs : Uint32Array, offset : number, icon_info : Icon, time : number, camera_pos : vec3) {
+		this.is_static = true;
+		const ft = this.appearance.flick_time;
+		if(this.face_state_instances === undefined) {
+			this.face_state_instances = this.face_states.map(i => {
+				if(i) {
+					return icon_info.get_icon_state(i);
+				}
+				return null;
+			});
+		}
+		let index = dir_to_box_index(this.dir);
+		for(let state of this.face_state_instances) {
+			if(!state) continue;
+			let b1 = box_normals[index];
+			let b2 = box_normals[(index+1)&3];
+			let b3 = box_normals[(index+2)&3];
+			let normal:vec3 = [
+				(b1[0] + b2[0]) * Math.SQRT1_2,
+				(b1[1] + b2[1]) * Math.SQRT1_2,
+				0
+			];
+			let right:vec3 = [
+				b2[0] + b3[0],
+				b2[1] + b3[1],
+				0
+			];
+			offset = this.write_plane(
+				attribs, iattribs, offset,
+				state.get_icon(2, time, ft, this),
+				[box_xy[index][0]+this.x, box_xy[index][1]+this.y, 0],
+				right, up_vec, normal,
+				vec4_color(color_vec, this.appearance.color_alpha)
+			);
+		}
+		return offset;
+	}
+}
+
 export class SmoothWallRenderPlan extends BatchRenderPlan {
 	dir_states : Array<string|undefined> = Array(16);
 	dir_state_instances : Array<IconState|null>|undefined = undefined;

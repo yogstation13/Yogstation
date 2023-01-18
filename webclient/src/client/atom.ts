@@ -1,7 +1,7 @@
 import { vec2, vec3 } from "gl-matrix";
 import { ByondClient } from ".";
 import { Appearance, Animation } from "./appearance";
-import { BatchRenderPlan, BillboardRenderPlan, BoxRenderPlan, EdgeRenderPlan, FloorRenderPlan, SmoothWallRenderPlan, WallmountRenderPlan, WindoorRenderPlan } from "./render_types";
+import { BatchRenderPlan, BillboardRenderPlan, BoxRenderPlan, DiagonalWallRenderPlan, EdgeRenderPlan, FloorRenderPlan, SmoothWallRenderPlan, WallmountRenderPlan, WindoorRenderPlan } from "./render_types";
 
 type AtomDependent = {mark_dirty(atom : Atom) : void};
 export class Atom implements AtomDependent {
@@ -342,21 +342,36 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 	[E3D_TYPE_SMOOTHWALL](list, appearance, x, y) : void {
 		let extra_overlays : Appearance[] = [];
 		let smooths = this.get_smooth(appearance, extra_overlays);
-		let plan : BatchRenderPlan;
-		if(smooths instanceof Array) {
-			list.push(plan = new SmoothWallRenderPlan(this.full_id, appearance, x, y, smooths));
+		if(typeof smooths == "string") {
+			let dir = 2;
+			if(smooths == "ne") dir = 4;
+			else if(smooths == "nw") dir = 1;
+			else if(smooths == "sw") dir = 8;
+			list.push(new DiagonalWallRenderPlan(this.full_id, appearance, x, y, dir));
+			if(appearance.overlays) for(let overlay of appearance.overlays) {
+				list.push(new FloorRenderPlan(this.full_id, overlay, x, y, 1));
+			}
+			if(appearance.underlays) for(let underlay of appearance.underlays) {
+				if(underlay.plane == 15) continue;
+				e3d_type_handlers.get(E3D_TYPE_FLOOR)!.call(this, list, underlay, x, y);
+			}
 		} else {
-			list.push(plan = new BoxRenderPlan(this.full_id, appearance, x, y));
-		}
-		if(this.type != 1) {
-			plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
-			plan.alpha_sort_bias = -0.1;
-		}
-		for(let overlay of extra_overlays) {
-			list.push(plan = new BoxRenderPlan(this.full_id, overlay, x, y));
+			let plan : BatchRenderPlan;
+			if(smooths instanceof Array) {
+				list.push(plan = new SmoothWallRenderPlan(this.full_id, appearance, x, y, smooths));
+			} else {
+				list.push(plan = new BoxRenderPlan(this.full_id, appearance, x, y));
+			}
 			if(this.type != 1) {
 				plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
-				plan.alpha_sort_bias = -0.11
+				plan.alpha_sort_bias = -0.1;
+			}
+			for(let overlay of extra_overlays) {
+				list.push(plan = new BoxRenderPlan(this.full_id, overlay, x, y));
+				if(this.type != 1) {
+					plan.alpha_sort_focus = [x+0.5,y+0.5,0.5];
+					plan.alpha_sort_bias = -0.11
+				}
 			}
 		}
 	},

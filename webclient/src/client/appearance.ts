@@ -405,11 +405,11 @@ function lerp_apply(a:number, b:number, final:number, target:number, fac:number)
 	return (a*(1-fac) + b*fac) + target-final;
 }
 
+let identity = [1,0,0,0,1,0];
 function matrix_equals(a : number[]|null, b : number[]|null) {
-	if(!a || !b) {
-		if(a || b) return false;
-		return true;
-	}
+	if(!a && !b) return true;
+	if(!a) a = identity;
+	if(!b) b = identity;
 	for(let i = 0; i < 6; i++) {
 		if(a[i] != b[i]) return false;
 	}
