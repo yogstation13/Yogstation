@@ -10,11 +10,6 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/give_objectives = TRUE
 	var/give_equipment = TRUE
 
-/datum/antagonist/ninja/New()
-	if(helping_station)
-		can_hijack = HIJACK_PREVENT
-	. = ..()
-
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
@@ -101,9 +96,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	to_chat(owner.current, "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by right clicking on it, to use abilities like stealth)!")
 	to_chat(owner.current, "I am not allied to the Syndicate nor NanoTrasen. I am not complete my objectives without drawing too much attention.")
 	to_chat(owner.current, "<b>If you are new to playing the Space Ninja, please review the <a href='https://wiki.yogstation.net/wiki/Space_Ninja'>Space Ninja</a> wiki entry for explanations and abilities.</b>") //Yogs
-	if(helping_station) {
-		to_chat(owner.current, "<b>As a Ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
-	}
+	to_chat(owner.current, "<b>As a Ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
 	owner.announce_objectives()
 	return
 
@@ -144,8 +137,6 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 			adj = "objectiveless"
 		else
 			return
-	if(helping_station)
-		can_hijack = HIJACK_PREVENT
 	new_owner.assigned_role = ROLE_NINJA
 	new_owner.special_role = ROLE_NINJA
 	new_owner.add_antag_datum(src)
