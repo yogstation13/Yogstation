@@ -1389,7 +1389,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Cloaker Belt"
 	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
 	item = /obj/item/shadowcloak
-	cost = 60
+	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/syndireverse
