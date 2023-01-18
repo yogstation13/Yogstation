@@ -44,6 +44,12 @@
 	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	supervisors = "the head of personnel"
 
+//YOGSTATION CHANGE START: UNION RULES.
+/datum/job/mining/available_in_days(client/C)
+	. = ..()
+	if(time2text(world.timeofday, "DDD") == SUNDAY) //Union rules: Can't work sunday.
+		return max(.,1) //Get the largest
+//YOGSTATION CHANGE END.
 
 /datum/job/mining/proc/EclipseStationChanges()
 	total_positions = 6
@@ -104,4 +110,6 @@
 	name = "Shaft Miner (Equipment + Hardsuit)"
 	suit = /obj/item/clothing/suit/space/hardsuit/mining
 	mask = /obj/item/clothing/mask/breath
+
+
 
