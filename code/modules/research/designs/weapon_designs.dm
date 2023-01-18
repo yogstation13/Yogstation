@@ -160,53 +160,53 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/stunrevolver
-	name = "Tesla Revolver"
+	name = "Tesla Revolver Kit"
 	desc = "A high-tech revolver that fires internal, reusable shock cartridges in a revolving cylinder. The cartridges can be recharged using conventional rechargers."
 	id = "stunrevolver"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 10000, /datum/material/silver = 10000)
-	build_path = /obj/item/gun/energy/tesla_revolver
+	build_path = /obj/item/weaponcrafting/gunkit/teslagun
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/nuclear_gun
-	name = "Advanced Energy Gun"
+	name = "Advanced Energy Gun Kit"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	id = "nuclear_gun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000, /datum/material/uranium = 3000, /datum/material/titanium = 1000)
-	build_path = /obj/item/gun/energy/e_gun/nuclear
+	build_path = /obj/item/weaponcrafting/gunkit/aeg
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/tele_shield
-	name = "Telescopic Riot Shield"
+	name = "Telescopic Riot Shield Kit"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
 	id = "tele_shield"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 4000, /datum/material/silver = 300, /datum/material/titanium = 200)
-	build_path = /obj/item/shield/riot/tele
+	build_path = /obj/item/weaponcrafting/gunkit/teleshield
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/beamrifle
-	name = "Beam Marksman Rifle"
+	name = "Beam Marksman Rifle Kit"
 	desc = "A powerful long ranged anti-material rifle that fires charged particle beams to obliterate targets."
 	id = "beamrifle"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/diamond = 5000, /datum/material/uranium = 8000, /datum/material/silver = 4500, /datum/material/gold = 5000)
-	build_path = /obj/item/gun/energy/beam_rifle
+	build_path = /obj/item/weaponcrafting/gunkit/beamrifle
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/decloner
-	name = "Decloner"
+	name = "Decloner Kit"
 	desc = "Your opponent will bubble into a messy pile of goop."
 	id = "decloner"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/gold = 5000,/datum/material/uranium = 10000)
 	reagents_list = list(/datum/reagent/toxin/mutagen = 40)
-	build_path = /obj/item/gun/energy/decloner
+	build_path = /obj/item/weaponcrafting/gunkit/decloner
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -221,12 +221,12 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY | DEPARTMENTAL_FLAG_MEDICAL	//uwu
 
 /datum/design/temp_gun
-	name = "Temperature Gun"
+	name = "Temperature Gun Kit"
 	desc = "A gun that shoots temperature energy beams to change temperature."
 	id = "temp_gun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 500, /datum/material/silver = 3000)
-	build_path = /obj/item/gun/energy/temperature
+	build_path = /obj/item/weaponcrafting/gunkit/tempgun
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
@@ -282,22 +282,22 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/xray
-	name = "X-ray Laser Gun"
+	name = "X-ray Laser Gun Kit"
 	desc = "Not quite as menacing as it sounds."
 	id = "xray_laser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/gold = 5000, /datum/material/uranium = 4000, /datum/material/iron = 5000, /datum/material/titanium = 2000, /datum/material/bluespace = 2000)
-	build_path = /obj/item/gun/energy/xray
+	build_path = /obj/item/weaponcrafting/gunkit/xray
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/ioncarbine
-	name = "Ion Carbine"
+	name = "Ion Carbine Kit"
 	desc = "How to dismantle a cyborg: The gun."
 	id = "ioncarbine"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 6000, /datum/material/iron = 8000, /datum/material/uranium = 2000)
-	build_path = /obj/item/gun/energy/ionrifle/carbine
+	build_path = /obj/item/weaponcrafting/gunkit/ioncarbine
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -388,22 +388,22 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/hardlightbow
-	name = "Hardlight Bow"
+	name = "Hardlight Bow Kit"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	id = "hardlightbow"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
-	build_path = /obj/item/gun/ballistic/bow/energy
+	build_path = /obj/item/weaponcrafting/gunkit/bow
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mindflayer
-	name = "Mind Flayer"
+	name = "Mind Flayer Kit"
 	desc = "A compact weapon made to destroy the brain."
 	id = "mind_flayer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
-	build_path = /obj/item/gun/energy/mindflayer
+	build_path = /obj/item/weaponcrafting/gunkit/mindflayer
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
