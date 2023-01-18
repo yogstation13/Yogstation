@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Spreads HoochMaster 2000 (chem machine) to all bar templates from just Citadel bar"
+  - mapping: "Also gives a HoochMaster 2000 to Asteroid, Yogsmeta, and Gax stations"
