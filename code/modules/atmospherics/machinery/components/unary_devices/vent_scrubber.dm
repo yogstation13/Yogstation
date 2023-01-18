@@ -153,7 +153,7 @@
 	if(!environment)
 		return FALSE
 
-	if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE || !islist(filter_types))
+	if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE)
 		return FALSE
 
 	if(scrubbing & SCRUBBING)

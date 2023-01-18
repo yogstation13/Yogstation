@@ -78,7 +78,7 @@
 	var/datum/gas_mixture/air2 = airs[2]
 	var/datum/gas_mixture/air3 = airs[3]
 
-	var/transfer_ratio = transfer_rate/air1.return_volume()
+	var/transfer_ratio = transfer_rate / air1.return_volume()
 
 	if(transfer_ratio <= 0)
 		return

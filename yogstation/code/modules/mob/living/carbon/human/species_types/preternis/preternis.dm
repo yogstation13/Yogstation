@@ -279,3 +279,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
 		return 1
 	return 0
+
+/datum/species/preternis/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_preternis_name()
+	return preternis_name()

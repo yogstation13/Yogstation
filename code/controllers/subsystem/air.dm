@@ -47,6 +47,8 @@ SUBSYSTEM_DEF(air)
 
 	var/map_loading = TRUE
 
+	var/lasttick = 0
+
 	var/log_explosive_decompression = TRUE // If things get spammy, admemes can turn this off.
 
 	// Max number of turfs equalization will grab.
@@ -298,7 +300,7 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = 0)
+/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = atmos_machinery.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -308,7 +310,7 @@ SUBSYSTEM_DEF(air)
 		currentrun.len--
 		if(M == null)
 			atmos_machinery.Remove(M)
-		if(!M || (M.process_atmos(wait) == PROCESS_KILL))
+		if(!M || (M.process_atmos() == PROCESS_KILL))
 			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return

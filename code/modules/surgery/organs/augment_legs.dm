@@ -215,7 +215,7 @@
 
 /datum/action/innate/boost/IsAvailable()
 	if(COOLDOWN_FINISHED(src, dash_cooldown))
-		return TRUE
+		return ..()
 	else
 		to_chat(holder, span_warning("The implant's internal propulsion needs to recharge still!"))
 		return FALSE

@@ -327,11 +327,9 @@
 		return air_contents // The internals for this bag are bottomless. Syndicate bluespace trickery.
 	return ..(amount)
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/analyzer_act(mob/living/user, obj/item/I)
-	if(sinched)
-		update_airtightness()
-		atmosanalyzer_scan(air_contents, user, src)
-	return ..()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/return_analyzable_air()
+	update_airtightness()
+	return air_contents
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/togglelock(mob/living/user, silent)
 	. = ..()
