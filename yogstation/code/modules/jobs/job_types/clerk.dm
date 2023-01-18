@@ -33,7 +33,7 @@
 		/obj/item/storage/box/fancy/heart_box = 5,
 		/obj/item/lipstick/random = 5,
 		/obj/item/skub = 2, //pro skub have taken over the mail
-		/obj/item/stack/telecrystal = 1
+		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
 	)
 
 	smells_like = "cheap plastic"

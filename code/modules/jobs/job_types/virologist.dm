@@ -39,10 +39,7 @@
 		/obj/item/reagent_containers/glass/bottle/fake_gbs = 4,
 		/obj/item/reagent_containers/glass/bottle/magnitis = 3,
 		/obj/item/reagent_containers/glass/bottle/pierrot_throat = 3,
-		/obj/item/reagent_containers/glass/bottle/anxiety = 3,
-		/obj/item/reagent_containers/glass/bottle/brainrot = 2,
-		/obj/item/reagent_containers/glass/bottle/sleepy = 2,
-		/obj/item/reagent_containers/glass/bottle/wizarditis = 1 //Will this end badly? Maybe. Will it be funny? Y E S
+		/obj/item/reagent_containers/glass/bottle/anxiety = 3
 	)
 
 	smells_like = "germlessness"
