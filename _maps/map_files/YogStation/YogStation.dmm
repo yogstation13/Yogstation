@@ -22857,6 +22857,22 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
+"fbo" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Brig - Infirmary";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "fbF" = (
 /obj/structure/table,
 /obj/item/radio/off,
@@ -53830,23 +53846,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/aft)
-"sig" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Brig Interrogation";
-	dir = 4;
-	network = list("interrogation")
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "siG" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -95423,7 +95422,7 @@ fsi
 lnA
 agj
 soz
-sig
+fbo
 sax
 tvs
 agj
