@@ -33,7 +33,7 @@
 		/obj/item/stack/sheet/plasteel/twenty = 5,
 		/obj/item/modular_computer/tablet/preset/advanced = 5,
 		/obj/item/stock_parts/cell/bluespace = 5,
-		/obj/item/stack/sheet/dilithium_crystal/refined = 5
+		/obj/item/stack/ore/dilithium_crystal/refined = 5
 	)
 
 	smells_like = "burnt solder"
