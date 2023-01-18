@@ -1,8 +1,0 @@
-author: "Skrem, ynot01, baiomu"
-delete-after: true 
-changes: 
-  - tweak: "NT-USP mag now has 12 bullets"
-  - tweak: "NT-USP bullets changed to be slower (0.4 -> 0.55)"
-  - tweak: "NT-USP magazines and bullets reflavored"
-  - rscadd: "Armory lathe now contains NT-USP conversion kits which can be used on NT-USP mags to make them print .22LS laser rounds instead of .22HL disabler rounds, but has less ammo capacity"
-  - imageadd: "New sprites for NT-USP magazine and NT-USP when a lethal mag is loaded"
