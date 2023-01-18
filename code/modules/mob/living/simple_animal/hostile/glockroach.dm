@@ -34,6 +34,8 @@
 	projectiletype = /obj/item/projectile/glockroachbullet
 	casingtype = /obj/item/ammo_casing/glockroach
 	ranged = 1
+	retreat_distance = 3
+	minimum_distance = 3
 	var/squish_chance = 50
 	del_on_death = 1
 
