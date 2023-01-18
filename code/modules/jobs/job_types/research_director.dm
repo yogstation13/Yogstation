@@ -48,7 +48,6 @@
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 2,
 		/obj/effect/spawner/lootdrop/engineering_tool_alien = 2,
 		/obj/effect/spawner/lootdrop/organ_spawner = 2,
-		/obj/effect/spawner/lootdrop/aimodule_harmful = 1,
 		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
 	)
 
