@@ -125,12 +125,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
 		toggles &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
-	if(current_version < 32) // Changed skillcape storage
-		if(skillcape != 1)
-			var/path = subtypesof(/datum/skillcape)[skillcape]
-			var/datum/skillcape/cape = new path()
-			skillcape_id = cape.id
-			qdel(cape)
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
 	
@@ -214,9 +208,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	
 	READ_FILE(S["ignoring"], ignoring)
 
-	READ_FILE(S["skillcape"], skillcape)
-	READ_FILE(S["skillcape_id"], skillcape_id)
-
 	READ_FILE(S["key_bindings"], key_bindings)
 
 	//try to fix any outdated data if necessary
@@ -270,9 +261,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
 
 	WRITE_FILE(S["ignoring"], ignoring)
-
-	WRITE_FILE(S["skillcape"], skillcape)
-	WRITE_FILE(S["skillcape_id"], skillcape_id)
 
 	WRITE_FILE(S["key_bindings"], key_bindings)
 
