@@ -59,16 +59,34 @@
 		C = H.client
 		if(!C)
 			return
+
 	if(issilicon(H) || issilicon(M))
 		return
 
-	var/S = C.prefs.skillcape_id
-	if(S != "None")
-		var/datum/skillcape/A = GLOB.skillcapes[S]
-		var/type = A.path
-		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
-		if(!H.equip_to_appropriate_slot(B))
-			H.put_in_hands(B)
+	var/cape_id = C.prefs.read_preference(/datum/preference/choiced/skillcape)
+	if(cape_id == "None")
+		return
+
+	var/datum/skillcape/cape_datum = GLOB.skillcapes[cape_id]
+	if (cape_id == "max")
+		for(var/id in GLOB.skillcapes)
+			var/datum/skillcape/cape_check = GLOB.skillcapes[id]
+			if(!cape_check.job)
+				continue
+
+			if(C.prefs.exp[cape_check.job] < cape_check.minutes)
+				to_chat(M, span_warning("You do not meet the requirement for your selected skillcape"))
+				return
+
+	else
+		if(cape_datum.job && C.prefs.exp[cape_datum.job] < cape_datum.minutes)
+			to_chat(M, span_warning("You do not meet the requirement for your selected skillcape"))
+			return
+
+	var/type = cape_datum.path
+	var/obj/item/clothing/neck/skillcape/cape = new type(get_turf(H))
+	if(!H.equip_to_appropriate_slot(cape))
+		H.put_in_hands(cape)
 
 /datum/job/proc/give_map_flare(mob/living/H, mob/M)
 	var/client/C = M.client

@@ -1,5 +1,5 @@
 /datum/verbs/menu/Preferences/verb/open_character_preferences()
-	set category = "OOC"
+	set category = "Preferences"
 	set name = "Open Character Preferences"
 	set desc = "Open Character Preferences"
 
@@ -12,7 +12,7 @@
 	preferences.ui_interact(usr)
 
 /datum/verbs/menu/Preferences/verb/open_game_preferences()
-	set category = "OOC"
+	set category = "Preferences"
 	set name = "Open Game Preferences"
 	set desc = "Open Game Preferences"
 

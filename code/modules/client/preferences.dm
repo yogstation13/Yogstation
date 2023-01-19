@@ -50,9 +50,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/skillcape = 1 /// Old skillcape value
-	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
-
 	var/list/exp = list()
 
 	var/action_buttons_screen_locs = list()
