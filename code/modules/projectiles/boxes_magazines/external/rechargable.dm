@@ -47,8 +47,7 @@
 /obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon()
 	icon_state = initial(icon_state)
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
-		icon_state = "ntusp-l"
-		// Tricks the parent proc into thinking we have a skin so it doesn't rewrite the icon_state
+		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
 		// I sure hope no one tries to add skins to NT-USP in the future
 		current_skin = "ntusp-l"
 		unique_reskin[current_skin] = current_skin
