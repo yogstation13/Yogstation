@@ -71,6 +71,8 @@
 	else 
 		var/turf/open/floor/plating/dirt/jungleland/J = location 
 		J.spawn_rock()
+//YOGS EDIT END
+
 //MINING CHARGE HACKER
 /obj/item/t_scanner/adv_mining_scanner/syndicate
 	var/charges = 6
