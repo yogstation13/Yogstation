@@ -364,7 +364,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			M.rad_act(rads)
 
 	var/turf/T = get_turf(src)
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * max(0.2, gasmix_power_ratio), explosion_power * max(0.2, gasmix_power_ratio) * 3, TRUE, FALSE, FALSE, TRUE)
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
 		var/turf/T2 = get_turf(M)
@@ -390,11 +389,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 			message_admins("[src] has exploded in empty space.")
 			investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
-			explosion(T, explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
+			gasmix_power_ratio = 0.5
 		else
 			message_admins("[src] has exploded")
-			explosion(T, explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
 			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * max(0.2, gasmix_power_ratio), explosion_power * max(0.2, gasmix_power_ratio) * 3, TRUE, FALSE, FALSE, TRUE)
+		explosion(T, explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
 		if(power > POWER_PENALTY_THRESHOLD)
 			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
 			var/obj/singularity/energy_ball/E = new(T)
