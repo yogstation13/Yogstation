@@ -37,8 +37,9 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isindestructiblewall(A) (istype(A, /turf/closed/indestructible))
 
 #define iswallturf(A) (istype(A, /turf/closed/wall))
-
-#define ismineralturf(A) (istype(A, /turf/closed/mineral))
+//YOGS EDIT
+//#define ismineralturf(A) (istype(A, /turf/closed/mineral))
+#define ismineralturf(A) (istype(A, /turf/closed/mineral) || istype(A,/turf/open/floor/plating/dirt/jungleland))
 
 #define islava(A) (istype(A, /turf/open/lava))
 

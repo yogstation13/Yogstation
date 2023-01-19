@@ -502,7 +502,7 @@
 		var/target_health = L.health
 		for(var/t in hammer_synced.trophies)
 			var/obj/item/crusher_trophy/T = t
-			INVOKE_ASYNC(T,on_mark_detonation,L,user,hammer_synced)
+			INVOKE_ASYNC(T,/obj/item/crusher_trophy/proc/on_mark_detonation,L,user,hammer_synced)
 		if(!QDELETED(L))
 			if(!QDELETED(C))
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
