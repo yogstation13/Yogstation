@@ -48,7 +48,13 @@
 	icon_state = initial(icon_state)
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		icon_state = "ntusp-l"
+		// Tricks the parent proc into thinking we have a skin so it doesn't rewrite the icon_state
+		// I sure hope no one tries to add skins to NT-USP in the future
+		current_skin = "ntusp-l"
+		unique_reskin[current_skin] = current_skin
 	..()
+	current_skin = null
+	unique_reskin = null
 
 //NT-USP Clip
 /obj/item/ammo_box/magazine/recharge/ntusp
@@ -89,6 +95,16 @@
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls
 	icon_state = "powerpack_small-l"
 	max_ammo = 8
+
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_icon()
+	..()
+	cut_overlays()
+	var/cur_ammo = ammo_count()
+	if(cur_ammo)
+		if(cur_ammo >= max_ammo)
+			add_overlay("powerpack_small_o_full")
+		else
+			add_overlay("powerpack_small_o_mid")
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE
