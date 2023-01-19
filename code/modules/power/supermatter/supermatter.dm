@@ -72,7 +72,7 @@
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
 #define DETONATION_HALLUCINATION 600
-#define SUPERMATTER_EXPLOSION_LAMBDA 1500
+#define SUPERMATTER_EXPLOSION_LAMBDA 20
 
 #define WARNING_DELAY 60
 
@@ -383,7 +383,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				S.energy = 800
 			S.consume(src)
 	else
-		var/explosion_mod = clamp(power / (power + SUPERMATTER_EXPLOSION_LAMBDA), 0.205, 1)
+		if(power < 0) // in case of negative energy, make it positive
+			power = -power
+		var/explosion_mod = clamp((1.001**power) / ((1.001**power) + SUPERMATTER_EXPLOSION_LAMBDA), 0.1, 1)
 		//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
 		if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 			message_admins("[src] has exploded in empty space.")
