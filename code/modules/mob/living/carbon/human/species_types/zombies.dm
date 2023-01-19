@@ -114,6 +114,9 @@
 	id = "goofzombies"
 	limbs_id = "zombie" //They look like zombies
 	sexes = FALSE
+	species_traits = list(HAS_FLESH, HAS_BONE, AGENDER)
+	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin
+	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID) //pretty much just rotting flesh, somehow still "technically" alive
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN

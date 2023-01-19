@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "fixes a bunch of runtime errors (players don't care about this)"

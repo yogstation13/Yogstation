@@ -179,6 +179,16 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/ntusp_conversion
+	name = "NT-USP Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	id = "ntusp_conversion"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 200, /datum/material/silver = 200)
+	build_path = /obj/item/ntusp_conversion_kit
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/tele_shield
 	name = "Telescopic Riot Shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."

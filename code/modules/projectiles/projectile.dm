@@ -116,6 +116,8 @@
 	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
 	var/wound_falloff_tile
 
+	var/splatter = FALSE // Make a cool splatter effect even if it doesn't do brute damage
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()
@@ -186,7 +188,7 @@
 	var/mob/living/L = target
 
 	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && damage_type == BRUTE)
+		if(damage && L.blood_volume && (damage_type == BRUTE || splatter))
 			var/mob/living/carbon/C = L
 			var/splatter_dir = dir
 			if(starting)
