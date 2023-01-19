@@ -72,7 +72,7 @@
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
 #define DETONATION_HALLUCINATION 600
-#define SUPERMATTER_EXPLOSION_LAMBDA 3000
+#define SUPERMATTER_EXPLOSION_LAMBDA 1500
 
 #define WARNING_DELAY 60
 
