@@ -182,12 +182,12 @@ const JobRow = (props: {
   job: Job,
   name: string,
 }, context) => {
-  const { data } = useBackend<PreferencesMenuData>(context);
+  const { act, data } = useBackend<PreferencesMenuData>(context);
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
   const priority = data.job_preferences[name];
-
+  const selected = data.job_alt_titles[name] || name;
   const createSetPriority = createCreateSetPriorityFromName(context, name);
 
   const experienceNeeded = data.job_required_experience
@@ -235,19 +235,30 @@ const JobRow = (props: {
     <Stack.Item className={className} height="100%" style={{
       "margin-top": 0,
     }}>
-      <Stack fill align="center">
+      <Stack fill>
         <Tooltip
           content={job.description}
           position="bottom-start"
         >
-          <Stack.Item className="job-name" width="50%" style={{
-            "padding-left": "0.3em",
-          }}>
-
-            {name}
+          <Stack.Item className="job-name" align="center" width="65%">
+          <Box align="left" className="job-name">
+          <Dropdown
+          color=""
+          text-color=""
+          width="100%"
+          noscroll
+          selected={selected}
+          options={[name].concat(job.alt_titles)}
+          onSelected={
+            (selected: string) => (act("set_alt_title", {
+              job: name,
+              alt_title: selected,
+            }))
+          }
+          />
+          </Box>
           </Stack.Item>
         </Tooltip>
-
         <Stack.Item grow className="options">
           {rightSide}
         </Stack.Item>

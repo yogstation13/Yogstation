@@ -1,6 +1,7 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = .proc/set_job_preference,
+		"set_alt_title" = .proc/set_alt_title,
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -22,6 +23,19 @@
 		return FALSE
 
 	preferences.character_preview_view?.update_body()
+
+	return TRUE
+
+/datum/preference_middleware/jobs/proc/set_alt_title(list/params, mob/user)
+	var/job_title = params["job"]
+	var/alt_title = params["alt_title"]
+
+	var/datum/job/job = SSjob.GetJob(job_title)
+
+	if (isnull(job))
+		return FALSE
+
+	preferences.SetPlayerAltTitle(job, alt_title)
 
 	return TRUE
 
@@ -52,6 +66,7 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
+			"alt_titles" = job.alt_titles
 		)
 
 	data["departments"] = departments
@@ -63,6 +78,7 @@
 	var/list/data = list()
 
 	data["job_preferences"] = preferences.job_preferences
+	data["job_alt_titles"] = preferences.player_alt_titles
 
 	return data
 

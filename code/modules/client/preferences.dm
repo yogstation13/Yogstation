@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/ghost_form = "ghost"
 
-	var/list/player_alt_titles = new()
+	var/list/player_alt_titles = list()
 
 	var/list/randomise = list()
 
