@@ -152,7 +152,7 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	if (opacity && isturf(loc))
@@ -362,6 +362,9 @@
 		return loc.return_air()
 	else
 		return null
+
+/atom/proc/return_analyzable_air()
+	return null
 
 ///Return the air if we can analyze it
 ///Check if this atoms eye is still alive (probably)

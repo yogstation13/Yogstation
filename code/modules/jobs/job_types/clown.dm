@@ -13,7 +13,7 @@
 
 	outfit = /datum/outfit/job/clown
 
-	alt_titles = list("Entertainer", "Comedian", "Jester")
+	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
 	added_access = list()
 	base_access = list(ACCESS_THEATRE)
@@ -65,7 +65,7 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
-	
+
 /datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))

@@ -293,6 +293,12 @@
 		InsertAll("", each, GLOB.alldirs)
 	..()
 
+/datum/asset/simple/security_armaments
+	assets = list(
+		"disablerbig.png" = 'icons/vending_icons/disablerbig.png',
+		"ntuspbig.png" = 'icons/vending_icons/ntuspbig.png',
+	)
+
 // Representative icons for each research design
 /datum/asset/spritesheet/research_designs
 	name = "design"

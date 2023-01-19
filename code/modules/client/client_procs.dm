@@ -153,6 +153,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+		//YOGS START: adds "refresh_admin_ticket_list" from another file.
+		if("refresh_admin_ticket_list")
+			var/client/C = usr.client
+			var/flag = href_list["flag"]
+			if(!flag)
+				flag = TICKET_FLAG_LIST_ALL
+			C.view_tickets_main(flag)
+		//YOGS END
 	if (hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))

@@ -1,7 +1,8 @@
-#define SCAN_CHEM 	(1<<0)
+#define SCAN_CHEM (1<<0)
 #define SCAN_HEALTH (1<<1)
-#define SCAN_NANITE	(1<<2)
-#define SCAN_WOUND	(1<<3)
+#define SCAN_NANITE (1<<2)
+#define SCAN_WOUND (1<<3)
+#define SCAN_GAS (1<<4)
 
 /mob/dead/observer/DblClickOn(atom/A, params)
 	if(check_click_intercept(params, A))
@@ -56,7 +57,9 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	if(user.client)
-		if(IsAdminGhost(user))
+		if(user.scanmode & SCAN_GAS && atmosanalyzer_scan(user, src))
+			return TRUE
+		else if(IsAdminGhost(user))
 			attack_ai(user)
 		else if(user.client.prefs.inquisitive_ghost)
 			user.examinate(src)

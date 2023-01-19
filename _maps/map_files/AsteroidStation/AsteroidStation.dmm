@@ -8202,6 +8202,32 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"bId" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/security{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "Prison Gate";
+	name = "Prison Wing Lockdown";
+	pixel_x = 8;
+	pixel_y = -25;
+	req_access_txt = "2"
+	},
+/obj/machinery/button/door{
+	id = "Secure Gate";
+	name = "Cell Shutters";
+	pixel_x = 8;
+	pixel_y = -35
+	},
+/obj/machinery/light_switch{
+	pixel_x = -5;
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "bIg" = (
 /obj/structure/rack,
 /obj/item/pickaxe,
@@ -9307,6 +9333,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"cdC" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/machinery/armaments_dispenser,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "cdG" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Gravity Generator and SMES";
@@ -24775,15 +24809,6 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/solar/port/aft)
-"hvi" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/modular_computer/console/preset/security{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "hvl" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -27222,6 +27247,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ims" = (
+/obj/structure/closet/secure_closet/bartender,
+/obj/item/stack/cable_coil,
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "imF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -30965,6 +31001,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jBf" = (
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jBm" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -45686,9 +45730,13 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/gun/energy/disabler{
+/obj/item/gun/ballistic/automatic/pistol/ntusp{
 	pixel_x = 3;
 	pixel_y = -3
+	},
+/obj/item/ammo_box/magazine/recharge/ntusp{
+	pixel_x = 9;
+	pixel_y = -7
 	},
 /obj/item/gun/energy/disabler,
 /obj/item/gun/energy/disabler{
@@ -54225,15 +54273,6 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"rsF" = (
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/warden,
-/obj/machinery/light_switch{
-	pixel_x = -38;
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "rsR" = (
 /obj/structure/table/wood,
 /obj/machinery/keycard_auth{
@@ -54641,6 +54680,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
+"ryu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "ryv" = (
 /obj/effect/turf_decal/box,
 /obj/structure/sign/poster/official/cleanliness{
@@ -56048,19 +56096,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"rWk" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/trinary/mixer/on{
-	dir = 1;
-	name = "air mixer";
-	node1_concentration = 0.21;
-	node2_concentration = 0.79;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "rWp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57333,17 +57368,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"ssZ" = (
-/obj/structure/table/wood,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/cable_coil,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "stv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -59786,6 +59810,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"tgz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "tgD" = (
 /obj/effect/landmark/start/atmospheric_technician,
 /obj/structure/chair/office/dark{
@@ -67434,10 +67465,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"vSb" = (
-/obj/structure/closet/secure_closet/bartender,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "vSj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -72314,6 +72341,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"xAE" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "xAM" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/hallway/secondary/entry";
@@ -72521,22 +72554,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/eva)
-"xEN" = (
-/obj/machinery/button/door{
-	id = "Prison Gate";
-	name = "Prison Wing Lockdown";
-	pixel_x = 39;
-	pixel_y = 8;
-	req_access_txt = "2"
-	},
-/obj/machinery/button/door{
-	id = "Secure Gate";
-	name = "Cell Shutters";
-	pixel_x = 39;
-	pixel_y = -2
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/security/armory)
 "xFm" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -73998,6 +74015,11 @@
 	icon_state = "water"
 	},
 /area/crew_quarters/bar)
+"yeO" = (
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/warden,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "yeP" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 10
@@ -95727,7 +95749,7 @@ aqy
 aao
 rPj
 aFi
-ssZ
+xAE
 cum
 qNW
 cWI
@@ -96243,7 +96265,7 @@ rPj
 aFi
 eMm
 tFL
-vSb
+ims
 tqO
 aFi
 cMn
@@ -103925,7 +103947,7 @@ hIn
 mBD
 mBD
 mBD
-xEN
+aHC
 uzx
 gbu
 iwk
@@ -104181,7 +104203,7 @@ bJK
 vZC
 rxC
 lTC
-hvi
+bId
 aFE
 dyV
 nDf
@@ -104438,7 +104460,7 @@ hMt
 mUE
 qBL
 hBu
-rsF
+yeO
 mXJ
 dyV
 vQW
@@ -104939,7 +104961,7 @@ msb
 aHC
 cQp
 dSW
-aJG
+jBf
 oIh
 aJG
 uaZ
@@ -106735,10 +106757,10 @@ adj
 fdg
 hFT
 hFT
-hFT
+tgz
 wIf
 tPH
-tPH
+cdC
 xnl
 lkG
 qya
@@ -123259,7 +123281,7 @@ xDf
 cEa
 uTB
 scA
-rWk
+ryu
 jBb
 oxf
 nyh

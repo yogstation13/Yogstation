@@ -456,7 +456,7 @@
 
 	if(result.len)
 		for(var/i in 1 to (length(result) - 1))
-			result[i] += "\n"
+			result[i] = "[result[i]]\n"
 
 	to_chat(src, examine_block("<span class='infoplain'>[result.Join()]</span>"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
@@ -855,7 +855,7 @@
   *
   * Conditions:
   * * client.last_turn > world.time
-  * * not dead or unconcious
+  * * not dead or unconscious
   * * not anchored
   * * no transform not set
   * * we are not restrained
@@ -882,9 +882,9 @@
 /mob/setShift(dir)
 	if (!canface())
 		return FALSE
-	
+
 	is_shifted = TRUE
-	
+
 	return ..()
 
 ///This might need a rename but it should replace the can this mob use things check

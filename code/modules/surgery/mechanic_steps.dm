@@ -114,7 +114,7 @@
 //open hatch
 /datum/surgery_step/open_hatch
 	name = "open the hatch"
-	accept_hand = 1
+	accept_hand = TRUE
 	time = 1 SECONDS
 	bloody_chance = FALSE
 	preop_sound = 'sound/items/ratchet.ogg'

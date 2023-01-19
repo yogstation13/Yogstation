@@ -57,6 +57,10 @@
 	if(parent)
 		return parent.air
 
+/obj/machinery/atmospherics/pipe/return_analyzable_air()
+	if(parent)
+		return parent.air
+
 /obj/machinery/atmospherics/pipe/remove_air(amount)
 	if(parent)
 		return parent.air.remove(amount)
@@ -68,9 +72,6 @@
 		meter.setAttachLayer(piping_layer)
 	else
 		return ..()
-
-/obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(parent.air, user, src)
 
 /obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
 	if(istype(user))

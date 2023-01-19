@@ -228,6 +228,7 @@
 
 /datum/keybinding/mob/prevent_movement/up(client/user)
 	user.movement_locked = FALSE
+	user.pixel_shifting = FALSE // needed to prevent conflicting keybind from fucking us up
 
 
 /datum/keybinding/mob/pixel_shift
@@ -236,10 +237,9 @@
 	full_name = "Pixel shift"
 	description = "Allows you to shift your characters by a few pixels"
 
-/datum/keybinding/mob/prevent_movement/down(client/user)
-	user.movement_locked = TRUE // we also set this to ensure we don't move
+/datum/keybinding/mob/pixel_shift/down(client/user)
 	user.pixel_shifting = TRUE
 
-/datum/keybinding/mob/prevent_movement/up(client/user)
-	user.movement_locked = FALSE
+/datum/keybinding/mob/pixel_shift/up(client/user)
+	user.movement_locked = FALSE  // needed to prevent conflicting keybind from fucking us up
 	user.pixel_shifting = FALSE

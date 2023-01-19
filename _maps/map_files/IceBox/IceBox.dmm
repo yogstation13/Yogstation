@@ -43635,17 +43635,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bKV" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 4;
-	name = "Air Mixer";
-	node1_concentration = 0.2;
-	node2_concentration = 0.8;
-	on = 1;
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "bKW" = (
 /obj/item/wrench,
 /obj/structure/cable{
@@ -59505,6 +59494,12 @@
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office)
+"lxw" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "lxT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -100341,7 +100336,7 @@ bHh
 aTg
 aVW
 bdw
-bKV
+lxw
 bLB
 bLL
 aSJ
