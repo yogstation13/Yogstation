@@ -72,6 +72,7 @@
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
 #define DETONATION_HALLUCINATION 600
+#define SUPERMATTER_EXPLOSION_LAMBDA 3000
 
 #define WARNING_DELAY 60
 
@@ -382,19 +383,20 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				S.energy = 800
 			S.consume(src)
 	else
-		if(antinoblium_attached)
-			explosion_power = explosion_power * 2
-			gasmix_power_ratio = max(gasmix_power_ratio, 0.5)
+		var/explosion_mod = clamp(power / (power + SUPERMATTER_EXPLOSION_LAMBDA), 0.205, 1)
 		//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
 		if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 			message_admins("[src] has exploded in empty space.")
 			investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
-			gasmix_power_ratio = 0.5
+			explosion_mod = max(explosion_mod, 0.5)
 		else
 			message_admins("[src] has exploded")
 			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * max(0.2, gasmix_power_ratio), explosion_power * max(0.2, gasmix_power_ratio) * 3, TRUE, FALSE, FALSE, TRUE)
-		explosion(T, explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
+		if(antinoblium_attached)
+			explosion_mod += 1
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * max(0.2, gasmix_power_ratio), explosion_power * explosion_mod * 3, TRUE, FALSE, FALSE, TRUE)
+		explosion(T, explosion_power * explosion_mod * 0.5 , explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4 , explosion_power * explosion_mod + 6, 1, 1)
+		radiation_pulse(src, last_rads * explosion_power)
 		if(power > POWER_PENALTY_THRESHOLD)
 			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
 			var/obj/singularity/energy_ball/E = new(T)
