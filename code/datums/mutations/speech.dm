@@ -14,7 +14,7 @@
 
 /datum/mutation/human/wacky
 	name = "Wacky"
-	desc = "Unknown."
+	desc = "Causes the user to talk in an odd manner."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_sans("You feel an off sensation in your voicebox.")
 	text_lose_indication = span_notice("The off sensation passes.")
