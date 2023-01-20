@@ -496,3 +496,10 @@
 	id = "sensor_race_nanites"
 	program_type = /datum/nanite_program/sensor/race
 	category = list("Sensor Nanites")
+
+/datum/design/nanites/preserving
+	name = "Organ Preservation"
+	desc = "The nanites preserve the host's organs in case of death, preventing their decay."
+	id = "preserving_nanites"
+	program_type = /datum/nanite_program/preserving
+	category = list("Medical Nanites")
