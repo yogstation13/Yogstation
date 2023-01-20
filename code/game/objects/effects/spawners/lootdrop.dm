@@ -400,16 +400,39 @@
 	name = "maintenance loot spawner"
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table
 
+//Start of Yogstation change: Refactors maintenance loot.
+
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
-	loot = GLOB.maintenance_loot
+
+	loot = maintenance_loot_makeshift
+
+	switch(rand(1,10000))
+		if(1)
+			loot = maintenance_loot_serious
+			lootcount = 1
+		if(2 to 10)
+			loot = maintenance_loot_major
+			lootcount = 1
+		if(11 to 100)
+			loot = maintenance_loot_moderate
+			lootcount = 1
+		if(101 to 1000)
+			loot = maintenance_loot_minor
+			lootcount = rand(lootcount,lootcount*2)
+		if(1001 to 5000)
+			loot = maintenance_loot_traditional
+			lootcount = rand(lootcount,lootcount*2)
+		if(5001 to 7500)
+			loot = maintenance_loot_makeshift
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
-		lootcount = FLOOR(lootcount * 1.5, 1)
+		lootcount = CEILING(lootcount * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		lootcount = FLOOR(lootcount * 0.5, 1)
+		lootcount = CEILING(lootcount * 0.5, 1)
 
 	. = ..()
+//End of Yogstation change: Refactors maintenance loot.
 
 /obj/effect/spawner/lootdrop/maintenance/two
 	name = "2 x maintenance loot spawner"
