@@ -709,11 +709,11 @@
 	cost = 3500
 	contains = list(/obj/item/gun/ballistic/automatic/wt550,
 					/obj/item/gun/ballistic/automatic/wt550)
-	crate_name = "auto rifle crate"
+	crate_name = "autocarbine crate"
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains four 20-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -721,8 +721,8 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
-	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Less-Lethal Ammo Crate"
+	desc = "Contains four 20-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
 					/obj/item/ammo_box/magazine/wt550m9/wtr,
@@ -731,7 +731,7 @@
 
 /datum/supply_pack/security/armory/wt550ammo_single
 	name = "Surplus Security Autocarbine Ammo Crate Single-Pack"
-	desc = "Contains a 22-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains a 20-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
