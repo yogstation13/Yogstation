@@ -30,6 +30,7 @@ new /datum/disease_ability/symptom/medium/nano_destroy,
 new /datum/disease_ability/symptom/medium/viraladaptation,
 new /datum/disease_ability/symptom/medium/viralevolution,
 new /datum/disease_ability/symptom/medium/vitiligo,
+new /datum/disease_ability/symptom/medium/disfiguration,
 new /datum/disease_ability/symptom/medium/revitiligo,
 new /datum/disease_ability/symptom/medium/itching,
 new /datum/disease_ability/symptom/medium/heal/weight_loss,
@@ -379,6 +380,8 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 	short_desc = "Change the voice of victims."
 	long_desc = "Change the voice of victims, causing confusion in communications."
 
+/datum/disease_ability/symptom/medium/disfiguration
+	symptoms = list(/datum/symptom/disfiguration)
 
 /datum/disease_ability/symptom/medium/visionloss
 	symptoms = list(/datum/symptom/visionloss)
