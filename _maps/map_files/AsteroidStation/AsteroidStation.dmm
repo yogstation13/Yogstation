@@ -20370,6 +20370,28 @@
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"fVZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Construction Area";
+	req_one_access_txt = "11;24"
+	},
+/turf/open/floor/plasteel,
+/area/construction)
 "fWq" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -60963,28 +60985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"tCj" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Construction Area";
-	req_access_txt = "11"
-	},
-/turf/open/floor/plasteel,
-/area/construction)
 "tCy" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -122301,7 +122301,7 @@ nAg
 nAg
 nAg
 nAg
-tCj
+fVZ
 nAg
 nAg
 nAg
