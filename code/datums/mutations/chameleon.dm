@@ -8,6 +8,7 @@
 	text_lose_indication = span_notice("You feel oddly exposed.")
 	time_coeff = 5
 	instability = 20
+	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/glow/anti)
 
 /datum/mutation/human/chameleon/on_acquiring(mob/living/carbon/human/owner)
@@ -20,7 +21,8 @@
 	if(owner.InCritical())
 		owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 	else
-		owner.alpha = clamp(max(0, owner.alpha - 25), CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY,CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY)
+		owner.alpha = max(owner.alpha - (12.5 * (GET_MUTATION_POWER(src)) * delta_time), 0)
+
 
 /datum/mutation/human/chameleon/proc/on_move()
 	owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
