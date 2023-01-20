@@ -195,6 +195,7 @@
 #define TRAIT_SURGEON           "surgeon"
 #define	TRAIT_STRONG_GRABBER	"strong_grabber"
 #define	TRAIT_CALCIUM_HEALER	"calcium_healer"
+#define TRAIT_SPECIAL_TRAUMA_BOOST	"special_trauma_boost" ///Increases chance of getting special traumas, makes them harder to cure
 #define	TRAIT_MAGIC_CHOKE		"magic_choke"
 #define TRAIT_SOOTHED_THROAT    "soothed-throat"
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
