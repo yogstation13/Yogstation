@@ -1678,6 +1678,7 @@
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
 			H.hair_style = picked_hair
+			to_chat(H, "<span class='notice'>Hair starts sprouting from your scalp.</span>")
 			H.facial_hair_style = picked_beard
 			H.update_hair()
 
@@ -1692,6 +1693,7 @@
 	if(method == TOUCH || method == VAPOR)
 		if(M && ishuman(M))
 			var/mob/living/carbon/human/H = M
+			to_chat(H, "<span class='notice'>Your hair starts growing at an incredible speed!</span>")
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
 			H.update_hair()
