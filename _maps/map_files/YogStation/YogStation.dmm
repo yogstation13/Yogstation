@@ -11247,6 +11247,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"buO" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "innerbrig";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "buU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -16559,6 +16576,16 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"cyg" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/effect/landmark/start/geneticist,
+/obj/effect/turf_decal/trimline/purple/warning/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "cyh" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -30421,6 +30448,28 @@
 /obj/effect/landmark/stationroom/box/hydroponics,
 /turf/template_noop,
 /area/hydroponics)
+"iaJ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor/eastleft{
+	dir = 8;
+	req_access_txt = "9"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "genedesk";
+	name = "genetics lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/item/deskbell/preset/genetics{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/medical/genetics)
 "ibh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -31722,12 +31771,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"izT" = (
-/obj/effect/turf_decal/trimline/purple/warning/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft_starboard)
 "izV" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -32221,16 +32264,6 @@
 "iKq" = (
 /turf/template_noop,
 /area/maintenance/starboard/aft)
-"iKG" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/obj/effect/landmark/start/geneticist,
-/obj/effect/turf_decal/trimline/purple/warning/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "iKU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -34751,34 +34784,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"jQU" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft{
-	dir = 8;
-	req_access_txt = "9"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "genedesk";
-	name = "genetics lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner/lower{
-	dir = 1
-	},
-/obj/item/deskbell/preset/genetics{
-	pixel_x = 8;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel,
-/area/medical/genetics)
 "jQY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -52792,23 +52797,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"rtU" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "innerbrig";
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "rtY" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
@@ -61535,6 +61523,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"uYe" = (
+/obj/effect/turf_decal/trimline/purple/warning/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft_starboard)
 "uYk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -100535,7 +100529,7 @@ upk
 mpL
 lLO
 xIP
-rtU
+buO
 xvm
 xvm
 nUx
@@ -112158,7 +112152,7 @@ kYK
 kYK
 kYK
 qKr
-iKG
+cyg
 oIJ
 enr
 qTG
@@ -112415,7 +112409,7 @@ uWP
 qUc
 wmY
 lXW
-jQU
+iaJ
 vGx
 eur
 vGx
@@ -112672,7 +112666,7 @@ rXM
 vxp
 nRw
 cof
-izT
+uYe
 cof
 kIO
 gjC
