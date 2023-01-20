@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - mapping: "[Asteroid] Perma cells now have blast doors."
-  - mapping: "[Asteroid] Genetics lab from hallway matches access requirements from other maps."
-  - mapping: "[Asteroid] Fixes access to the construction area for atmos techs"
