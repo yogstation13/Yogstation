@@ -2702,12 +2702,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
 	dir = 4
 	},
-/obj/machinery/advanced_airlock_controller/lavaland{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller/jungleland{
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)

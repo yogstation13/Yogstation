@@ -412,3 +412,9 @@ GLOBAL_LIST_INIT(nests, list())
 	. = ..()
 	flick(animated_icon_state,src) 
 	QDEL_IN(src,duration)
+
+/obj/machinery/advanced_airlock_controller/jungleland
+	exterior_pressure = 276.56 
+	depressurization_margin = 36.896
+	depressurization_target = 20
+

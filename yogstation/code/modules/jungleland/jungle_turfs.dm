@@ -1,3 +1,13 @@
+/* JUNGLELAND ATMOS REFERENCE FROM IN GAME
+Moles: 208 mol
+Volume: 2500 L
+Pressure: 276.56 kPa
+Oxygen: 21.15 % (44 mol)
+Nitrogen: 78.85 % (164 mol)
+Temperature: 126.85 °C (400 K)
+*/
+
+
 
 /area/pregen
 	name = "Pregenerated Space"
