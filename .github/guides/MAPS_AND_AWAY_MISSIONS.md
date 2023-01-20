@@ -1,6 +1,6 @@
 ## MAPS
 
-Yogstation currently comes equipped with the following maps. Our currenly active map rotation can be found [here](https://wiki.yogstation.net/wiki/Maps).
+Yogstation currently comes equipped with the following maps. Our currenly active map rotation can be found [here](https://wiki.yogstation.net/wiki/Maps). All maps not in active rotation should be considered **unmaintained**.
 
 * [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
 * [AsteroidStation](https://wiki.yogstation.net/wiki/AsteroidStation)
