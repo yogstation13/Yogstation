@@ -31914,12 +31914,6 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iEH" = (
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "iEY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -68328,6 +68322,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"xPY" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4;
+	node1_concentration = 0.21;
+	node2_concentration = 0.79
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "xQd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -104725,7 +104727,7 @@ jut
 rwb
 eYt
 aSJ
-iEH
+xPY
 wma
 sRm
 aSJ
