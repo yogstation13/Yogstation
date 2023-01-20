@@ -18,6 +18,7 @@
 	var/list/mode_names
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
+
 /obj/item/holotool/Initialize()
 	. = ..()
 	internal_multitool = new /obj/item/multitool(src)
@@ -31,6 +32,11 @@
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
+/obj/item/holotool/attack(mob/living/M, mob/living/user)
+	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
+	. = ..()
+	
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
 		update_listing()

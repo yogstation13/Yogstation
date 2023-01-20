@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed laser NT-USP mags not showing ammo"
+  - bugfix: "Fixed NT-USP not being red when having a lethal mag"

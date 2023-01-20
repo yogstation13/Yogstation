@@ -1,6 +1,6 @@
 /obj/structure/table_frame/bananium
 	name = "bananium table frame"
-	desc = "A table frame made out of bananium very squeaky. You could easily pass through this."
+	desc = "A table frame made out of bananium. Very squeaky. You could easily pass through this."
 	icon_state = "bananium_frame"
 	framestack = /obj/item/stack/sheet/mineral/bananium
 	framestackamount = 2
