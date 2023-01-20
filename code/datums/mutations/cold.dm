@@ -6,6 +6,7 @@
 	instability = 10
 	difficulty = 10
 	synchronizer_coeff = 1
+	energy_coeff = 1
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/snow
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/snow
