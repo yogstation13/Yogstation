@@ -150,7 +150,7 @@ This file contains the cult dagger and rune list code
 		to_chat(user, span_cult("There is already a rune here."))
 		return FALSE
 	var/area/A = get_area(T)
-	if((!is_station_level(T.z) && !is_mining_level(T.z)) || (A && !A.blob_allowed))
+	if((!is_station_level(T.z)) || (A && !A.blob_allowed)) //Yogstation change: Can't make runes on lavaland anymore.
 		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return TRUE
