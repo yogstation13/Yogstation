@@ -138,6 +138,7 @@ obj/item/gun/energy/e_gun/nuclear
 	pin = null
 	can_charge = FALSE
 	ammo_x_offset = 1
+	old_ratio = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/xray, /obj/item/ammo_casing/energy/anoxia) //a lot of firemodes so it's really an ADVANCED egun
 	dead_cell = TRUE //Fuel not included, you will have to get irradiated to shoot this gun
 
