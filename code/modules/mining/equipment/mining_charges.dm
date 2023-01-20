@@ -22,7 +22,7 @@
 		nadeassembly.attack_self(user)
 
 /obj/item/grenade/plastic/miningcharge/afterattack(atom/movable/AM, mob/user, flag, notify_ghosts = FALSE)
-	if(ismineralturf(AM) || hacked)
+	if(ismineralturf_inclusive(AM) || hacked)
 		..()
 	else
 		to_chat(user,span_warning("The charge only works on rocks!"))

@@ -18,3 +18,5 @@
 #define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M) || is_infiltrator(M))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
+
+#define ismineralturf_inclusive(A) (istype(A, /turf/closed/mineral) || istype(A,/turf/open/floor/plating/dirt/jungleland))

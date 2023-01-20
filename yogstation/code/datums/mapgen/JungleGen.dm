@@ -256,7 +256,9 @@
 		var/area/jungleland/jungle_area = selected_biome.this_area 
 		var/area/old_area = GT.loc
 		old_area.contents -= GT 
+		old_area.contained_turfs -= GT
 		jungle_area.contents += GT
+		jungle_area.contained_turfs += GT
 		GT.change_area(old_area,jungle_area)
 		CHECK_TICK
 
