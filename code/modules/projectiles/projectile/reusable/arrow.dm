@@ -183,4 +183,5 @@
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
 	damage = 18
+	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt
