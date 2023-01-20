@@ -497,21 +497,6 @@ If you are using `.` in this case (or for another case that might be acceptable,
 	// Due to how common it is, most uses of `. = ..()` do not need a trailing `return .`
 ```
 
-### The BYOND walk procs
-
-BYOND has a few procs that move one atom towards/away from another, `walk()`, `walk_to()`, `walk_towards`, `walk_away()` and `walk_rand()`.
-
-The way they pull this off, while fine for the language itself, makes a mess of our master-controller, and can cause the whole game to slow down. Do not use them.
-
-The following is a list of procs, and their safe replacements.
-
-* Removing something from the loop `walk(0)` -> `SSmove_manager.stop_looping()`
-* Move in a direction `walk()` -> `SSmove_manager.move()`
-* Move towards a thing, taking turf density into account`walk_to()` -> `SSmove_manager.move_to()`
-* Move in a thing's direction, ignoring turf density `walk_towards()` -> `SSmove_manager.home_onto()` and `SSmove_manager.move_towards_legacy()`, check the documentation to see which you like better
-* Move away from something, taking turf density into account `walk_away()` -> `SSmove_manager.move_away()`
-* Move to a random place nearby. NOT random walk `walk_rand()` -> `SSmove_manager.move_rand()` is random walk, `SSmove_manager.move_to_rand()` is walk to a random place
-
 ### BYOND hellspawn
 
 What follows is documentation of inconsistent or strange behavior found in our engine, BYOND.
