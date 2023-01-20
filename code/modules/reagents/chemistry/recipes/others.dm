@@ -880,3 +880,10 @@
 	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/microplastics = 10)
 	required_temp = 600
+
+/datum/chemical_reaction/baldium
+	name = /datum/reagent/baldium
+	id = /datum/reagent/baldium
+	results = list(/datum/reagent/baldium = 1)
+	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/lye = 1)
+	required_temp = 395
