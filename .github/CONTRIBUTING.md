@@ -9,7 +9,8 @@
 5. [Yogstation GitHub Guidelines](#yogstation-github-guidelines)
 6. [Development Guides](#development-guides)
 7. [Pull Request Process](#pull-request-process)
-8. [A word on Git](#a-word-on-git)
+8. [Porting features/sprites/sounds/tools from other codebases](#porting-featuresspritessoundstools-from-other-codebases)
+9. [A word on Git](#a-word-on-git)
 
 ## Reporting Issues
 
