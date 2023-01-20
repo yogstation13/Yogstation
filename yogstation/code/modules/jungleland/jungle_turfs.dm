@@ -257,7 +257,7 @@ Temperature: 126.85 °C (400 K)
 	smooth = SMOOTH_TRUE
 	var/list/explosion_threshold = list(EXPLODE_DEVASTATE, EXPLODE_HEAVY, EXPLODE_LIGHT)
 	var/list/droppable_gems = list(
-		null = 25
+		null = 25,
 		/obj/item/gem/topaz = 5,
 		/obj/item/gem/emerald = 5,
 		/obj/item/gem/sapphire = 5,
@@ -279,7 +279,7 @@ Temperature: 126.85 °C (400 K)
 
 /turf/closed/obsidian/hard 
 	name = "tough obsidian wall"
-	icon = 'yogstation/icons/turf/walls/obsidian-hard.dmi'
+	icon = 'yogstation/icons/turf/walls/obsidian_hard.dmi'
 	explosion_threshold = list(EXPLODE_DEVASTATE, EXPLODE_HEAVY)
 	droppable_gems = list (
 		/obj/item/gem/topaz = 1,
