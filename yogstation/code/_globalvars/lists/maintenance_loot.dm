@@ -1,7 +1,7 @@
 //Value guidelines.
 
-#define W_ESSENTIAL 200
-#define W_COMMON 100
+#define W_ESSENTIAL 400
+#define W_COMMON 200
 #define W_UNCOMMON 25
 #define W_RARE 10
 #define W_MYTHICAL 5
@@ -614,7 +614,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/bodybag = W_UNCOMMON,
 	/obj/item/card/emagfake = W_RARE,
 	/obj/item/caution = W_UNCOMMON,
-	/obj/item/clothing/glasses/sunglasses/cheap = W_UNCOMMON,
+	/obj/item/clothing/glasses/sunglasses/cheap = W_ESSENTIAL,
 	/obj/item/cultivator = W_RARE,
 	/obj/item/cultivator/rake = W_RARE,
 	/obj/item/flashlight/lamp/bananalamp = W_UNCOMMON,
@@ -792,7 +792,7 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/card/mining_point_card/fivethousand = W_LEGENDARY,
 	/obj/item/cardboard_cutout/adaptive = W_RARE,
 	/obj/item/clothing/glasses/chameleon/broken = W_RARE,
-	/obj/item/clothing/glasses/sunglasses = W_RARE,
+	/obj/item/clothing/glasses/sunglasses = W_ESSENTIAL,
 	/obj/item/coin/antagtoken = W_UNCOMMON,
 	/obj/item/discoballdeployer = W_RARE,
 	/obj/item/disk/nuclear/fake/obvious = W_RARE,
