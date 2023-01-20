@@ -242,3 +242,50 @@ Temperature: 126.85 °C (400 K)
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/water/tar_basin
 
+
+/turf/open/floor/plating/dirt/jungleland/obsidian 
+	name =	"obsidian ground"
+	desc = "Dark crystaline flooring"
+	icon_state = "obsidian"
+
+/turf/closed/obsidian
+	name = "obsidian wall"
+	desc = "Obsidian wal tearing out of the earth, it reflects light in all the colours you could ever imagine, and you can see something shining brightly within it. You can't quite seem to destroy it with a pickaxe, but maybe an explosion mau suffice?"
+	icon = 'yogstation/icons/turf/walls/obsidian.dmi'	
+	icon_state = "wall"
+	canSmoothWith = list(/turf/closed/obsidian, /turf/closed/obsidian/hard )
+	smooth = SMOOTH_TRUE
+	var/list/explosion_threshold = list(EXPLODE_DEVASTATE, EXPLODE_HEAVY, EXPLODE_LIGHT)
+	var/list/droppable_gems = list(
+		null = 25
+		/obj/item/gem/topaz = 5,
+		/obj/item/gem/emerald = 5,
+		/obj/item/gem/sapphire = 5,
+		/obj/item/gem/ruby = 5,
+		/obj/item/gem/purple = 2,
+		/obj/item/gem/phoron = 1
+	)
+
+/turf/closed/obsidian/ex_act(severity, target)
+	. = ..()
+	if(severity in explosion_threshold)
+		drop_gems()
+		ChangeTurf(/turf/open/floor/plating/dirt/jungleland/obsidian)
+
+/turf/closed/obsidian/proc/drop_gems()
+	var/type = pickweight(droppable_gems)
+	if(type)
+		new type(src)
+
+/turf/closed/obsidian/hard 
+	name = "tough obsidian wall"
+	icon = 'yogstation/icons/turf/walls/obsidian-hard.dmi'
+	explosion_threshold = list(EXPLODE_DEVASTATE, EXPLODE_HEAVY)
+	droppable_gems = list (
+		/obj/item/gem/topaz = 1,
+		/obj/item/gem/emerald = 2,
+		/obj/item/gem/sapphire = 3,
+		/obj/item/gem/ruby = 4,
+		/obj/item/gem/purple = 5,
+		/obj/item/gem/phoron = 5
+	)

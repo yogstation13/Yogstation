@@ -719,4 +719,15 @@
 /mob/living/simple_animal/hostile/carp/ranged/chaos/jungle
 	faction = list("mining")
 
-	
+/mob/living/simple_animal/hostile/obsidian_demon 
+	name = "True Abomination"
+	desc = "Ancient evil unsealed from it's obsidian prison"
+	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	health = 500
+	maxHealth = 500
+	pixel_x = -16
+	pixel_y = -16
+
+/mob/living/simple_animal/hostile/obsidian_demon/Initialize()
+	. = ..()
+	icon_state = "demon-[rand(0,2)]" 
