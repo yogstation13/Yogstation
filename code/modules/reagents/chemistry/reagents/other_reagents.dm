@@ -1678,7 +1678,7 @@
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
 			H.hair_style = picked_hair
-			to_chat(H, "<span class='notice'>Hair starts sprouting from your scalp.</span>")
+			to_chat(H, span_notice("Hair starts sprouting from your scalp."))
 			H.facial_hair_style = picked_beard
 			H.update_hair()
 
