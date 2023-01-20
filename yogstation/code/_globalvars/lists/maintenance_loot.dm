@@ -8,7 +8,7 @@
 #define W_LEGENDARY 1
 
 //The very definition of maintenance loot. Stuff that engineers and others left around.
-GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
+GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/assembly/health = W_UNCOMMON,
 	/obj/item/assembly/igniter = W_UNCOMMON,
 	/obj/item/assembly/infra = W_UNCOMMON,
@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/reagent_containers/glass/bucket = W_COMMON,
 	/obj/item/reagent_containers/glass/rag = W_UNCOMMON,
 	/obj/item/reagent_containers/spray/cleaner = W_UNCOMMON,
-	/obj/item/sign_backing = W_UNCOMMON
+	/obj/item/sign_backing = W_UNCOMMON,
 	/obj/item/soap = W_UNCOMMON,
 	/obj/item/soap/deluxe = W_UNCOMMON,
 	/obj/item/soap/nanotrasen = W_UNCOMMON,
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/tank/internals/emergency_oxygen/double = W_MYTHICAL,
 	/obj/item/tank/internals/emergency_oxygen/double/empty = W_MYTHICAL,
 	/obj/item/tank/internals/ipc_coolant = W_RARE,
-	/obj/item/tank/internals/ipc_coolant/empty = 2W_RARE5,
+	/obj/item/tank/internals/ipc_coolant/empty = W_RARE,
 	/obj/item/tank/internals/plasma = W_LEGENDARY,
 	/obj/item/tank/internals/plasma/empty = W_LEGENDARY,
 	/obj/item/tank/internals/plasma/full = W_LEGENDARY,
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/storage/toolbox/emergency = W_ESSENTIAL,
 	/obj/item/storage/toolbox/mechanical = W_ESSENTIAL,
 	/obj/item/storage/toolbox/mechanical/insulateds = W_MYTHICAL,
-	/obj/item/storage/toolbox/mechanical/old/clean = W_LEGENDARY
+	/obj/item/storage/toolbox/mechanical/old/clean = W_LEGENDARY,
 	/obj/item/storage/toolbox/syndicate = W_LEGENDARY,
 	/obj/item/storage/backpack = W_ESSENTIAL,
 	/obj/item/storage/backpack/botany = W_RARE,
@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/instrument/bikehorn = W_RARE,
 	/obj/item/instrument/eguitar = W_RARE,
 	/obj/item/instrument/glockenspiel = W_RARE,
-	/obj/item/instrument/guita = W_RARE,
+	/obj/item/instrument/guitar = W_RARE,
 	/obj/item/instrument/harmonica = W_RARE,
 	/obj/item/instrument/musicalmoth = W_RARE,
 	/obj/item/instrument/piano_synth = W_RARE,
@@ -349,9 +349,9 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/reagent_containers/spray/waterflower = W_RARE,
 	/obj/item/restraints/handcuffs/fake = W_RARE,
 	/obj/item/shovel = W_UNCOMMON,
-	/obj/item/shovel/spade =  = W_UNCOMMON,
+	/obj/item/shovel/spade = W_UNCOMMON,
 	/obj/item/slime_scanner = W_RARE,
-	/obj/item/stack/packageWrap W_ESSENTIAL,
+	/obj/item/stack/packageWrap = W_ESSENTIAL,
 	/obj/item/stack/sheet/animalhide/cat = W_RARE,
 	/obj/item/stack/sheet/animalhide/corgi = W_RARE,
 	/obj/item/stack/sheet/animalhide/gondola = W_RARE,
@@ -372,7 +372,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/storage/box/official_posters = W_RARE,
 	/obj/item/storage/box/papersack = W_UNCOMMON,
 	/obj/item/storage/box/snappops = W_UNCOMMON,
-	/obj/item/storage/crayons W_ESSENTIAL,
+	/obj/item/storage/crayons = W_ESSENTIAL,
 	/obj/item/storage/photo_album = W_UNCOMMON,
 	/obj/item/storage/pill_bottle/dice = W_UNCOMMON,
 	/obj/item/tape/random = W_UNCOMMON,
@@ -413,7 +413,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/toy/heartballoon = W_RARE,
 	/obj/item/toy/katana = W_RARE,
 	/obj/item/toy/mballoon = W_RARE,
-	/obj/item/toy/minimeteor = = W_UNCOMMON,
+	/obj/item/toy/minimeteor = W_UNCOMMON,
 	/obj/item/toy/nuke = W_RARE,
 	/obj/item/toy/reality_pierce = W_RARE,
 	/obj/item/toy/redbutton = W_RARE,
@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 	/obj/item/clothing/head/yogs/goatpelt = W_RARE,
 	/obj/item/clothing/mask/cigarette/pipe = W_UNCOMMON,
 	/obj/item/clothing/mask/cigarette/pipe/cobpipe = W_COMMON,
-	/obj/item/clothing/under/color/random = W_ESSENTIAL,
+	/obj/item/clothing/under/color/random = W_ESSENTIAL
 ))
 
 
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional, list(
 
 
 //Makeshift/shitty/suspicious assistant-tier stuff goes here. Some makeshift equipment is in other places (like weapons).
-GLOBAL_LIST_INIT(maintenance_loot_makeshift, list(
+GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/reagent_containers/food/snacks/egg/gland = W_RARE,
 	/obj/item/reagent_containers/gummy/floorbear = W_UNCOMMON,
 	/obj/item/reagent_containers/pill/floorpill = W_ESSENTIAL,
@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift, list(
 	/obj/item/stack/medical/gauze/improvised = W_UNCOMMON,
 	/obj/item/stack/medical/poultice = W_RARE,
 	/obj/item/stack/medical/suture/emergency/makeshift = W_UNCOMMON,
-	/obj/item/stamp/syndi = W_MYTHICAL, //FAKE STAMP.
+	/obj/item/stamp/syndi = W_MYTHICAL,
 	/obj/item/storage/bag/trash = W_COMMON,
 	/obj/item/storage/bag/tray = W_UNCOMMON,
 	/obj/item/storage/belt/military/snack = W_RARE,
@@ -610,7 +610,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift, list(
 ))
 
 //Has minor mechanical usage; stuff you'd usually only find in a lathe, through crafting, or through a vendor.
-GLOBAL_LIST_INIT(maintenance_loot_minor, list(
+GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/bodybag = W_UNCOMMON,
 	/obj/item/card/emagfake = W_RARE,
 	/obj/item/caution = W_UNCOMMON,
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor, list(
 	/obj/item/reagent_containers/autoinjector/medipen/blood_loss = W_RARE,
 	/obj/item/reagent_containers/autoinjector/medipen/ekit = W_RARE,
 	/obj/item/reagent_containers/autoinjector/medipen/morphine = W_MYTHICAL,
-	/obj/item/reagent_containers/autoinjector/medipen/stimpack = W_RARE, //coffee and ephendrinedneriedine,
+	/obj/item/reagent_containers/autoinjector/medipen/stimpack = W_RARE,
 	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = W_RARE,
 	/obj/item/storage/box/clown = W_RARE,
 	/obj/item/storage/box/condimentbottles = W_RARE,
@@ -689,7 +689,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor, list(
 	/obj/item/flashlight/pen/paramedic = W_RARE,
 	/obj/item/flashlight/seclite = W_RARE,
 	/obj/item/grenade/chem_grenade/colorful = W_RARE,
-	/obj/item/grenade/chem_grenade/metalfoam = W_UNCOMMOM,
+	/obj/item/grenade/chem_grenade/metalfoam = W_UNCOMMON,
 	/obj/item/grenade/chem_grenade/smart_metal_foam = W_RARE,
 	/obj/item/healthanalyzer = W_RARE,
 	/obj/item/hemostat = W_RARE,
@@ -703,7 +703,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor, list(
 	/obj/item/inducer = W_MYTHICAL,
 	/obj/item/lightreplacer = W_MYTHICAL,
 	/obj/item/megaphone = W_RARE,
-	/obj/item/megaphone/clown, = W_RARE
+	/obj/item/megaphone/clown = W_RARE,
 	/obj/item/melee/baton/cattleprod = W_UNCOMMON,
 	/obj/item/melee/flyswatter = W_UNCOMMON,
 	/obj/item/melee/roastingstick = W_RARE,
@@ -771,12 +771,12 @@ GLOBAL_LIST_INIT(maintenance_loot_minor, list(
 	/obj/item/clothing/head/helmet/justice = W_MYTHICAL,
 	/obj/item/clothing/head/helmet/justice/escape = W_MYTHICAL,
 	/obj/item/clothing/suit/hooded/bloated_human = W_MYTHICAL,
-	/obj/item/assembly/radio = W_UNCOMMON,
+	/obj/item/assembly/radio = W_UNCOMMON
 ))
 
 
 //Has moderate mechanical usage; stuff that would actually benefit the player with the right situation and the right access.
-GLOBAL_LIST_INIT(maintenance_loot_moderate, list(
+GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/aiModule/toyAI = W_MYTHICAL,
 	/obj/item/a_gift/anything = W_UNCOMMON,
 	/obj/item/aicard/aitater = W_RARE,
@@ -843,7 +843,7 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate, list(
 	/obj/item/reagent_containers/glass/bottle/killer/pestkiller = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/killer/weedkiller = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/mercury = W_UNCOMMON,
-	/obj/item/reagent_containers/glass/bottle/morphinem = W_MYTHICAL,
+	/obj/item/reagent_containers/glass/bottle/morphine = W_MYTHICAL,
 	/obj/item/reagent_containers/glass/bottle/mutagen = W_MYTHICAL,
 	/obj/item/reagent_containers/glass/bottle/plasma = W_MYTHICAL,
 	/obj/item/reagent_containers/glass/bottle/toxin = W_MYTHICAL,
@@ -895,11 +895,11 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate, list(
 	/obj/item/clothing/head/foilhat = W_RARE,
 	/obj/item/clothing/mask/chameleon/broken = W_RARE,
 	/obj/item/clothing/under/chameleon/broken = W_RARE,
-	/obj/item/etherealballdeployer = W_RARE,
+	/obj/item/etherealballdeployer = W_RARE
 ))
 
 //Has serious mechanical usage or uplink stuff that antags would get for flavor.
-GLOBAL_LIST_INIT(maintenance_loot_major, list(
+GLOBAL_LIST_INIT(maintenance_loot_major,list(
 	/obj/item/clothing/glasses/chameleon = W_RARE,
 	/obj/item/clothing/glasses/eyepatch/bigboss = W_LEGENDARY,
 	/obj/item/deployablemine/creampie = W_RARE,
@@ -915,7 +915,7 @@ GLOBAL_LIST_INIT(maintenance_loot_major, list(
 	/obj/item/grenade/plastic/glitterbomb/white = W_RARE,
 	/obj/item/gun/energy/e_gun/mini/practice_phaser = W_MYTHICAL,
 	/obj/item/gun/energy/laser/makeshiftlasrifle = W_RARE,
-	/obj/item/implanter/uplink = W_LEGENDARY, //This is empty.
+	/obj/item/implanter/uplink = W_LEGENDARY,
 	/obj/item/instrument/saxophone/spectral = W_LEGENDARY,
 	/obj/item/instrument/trombone/spectral = W_LEGENDARY,
 	/obj/item/instrument/trumpet/spectral = W_LEGENDARY,
@@ -927,7 +927,6 @@ GLOBAL_LIST_INIT(maintenance_loot_major, list(
 	/obj/item/radio/headset/chameleon = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/monkeycube/gorilla = W_RARE,
 	/obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate = W_RARE,
-	/obj/item/reagent_containers/food/snacks/monkeycube/syndicat = W_MYTHICAL,
 	/obj/item/reagent_containers/glass/bottle/fake_gbs = W_MYTHICAL,
 	/obj/item/stack/ore/bananium = W_MYTHICAL,
 	/obj/item/stack/ore/bluespace_crystal = W_RARE,
@@ -956,13 +955,13 @@ GLOBAL_LIST_INIT(maintenance_loot_major, list(
 	/obj/item/clothing/mask/gas/syndicate = W_RARE,
 	/obj/item/clothing/shoes/chameleon = W_RARE,
 	/obj/item/clothing/under/chameleon = W_RARE,
-	/obj/item/lazarus_injector = W_MYTHICAL,
+	/obj/item/lazarus_injector = W_MYTHICAL
 ))
 
 
 
 //Has significant round-defining mechanical usage; stuff you'd rarely find and would seriously benefit the player and alter the round significantly right off the bat. Major contraband goes here.
-GLOBAL_LIST_INIT(maintenance_loot_serious, list(
+GLOBAL_LIST_INIT(maintenance_loot_serious,list(
 	/obj/item/antag_spawner/slaughter_demon/laughter = W_MYTHICAL,
 	/obj/item/batterer = W_RARE,
 	/obj/item/bodybag/environmental/nanotrasen = W_MYTHICAL,
@@ -1046,8 +1045,10 @@ GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when s
 			/obj/item/trash/popcorn,
 			/obj/item/trash/raisins,
 			/obj/item/trash/sosjerky,
-			/obj/item/trash/syndi_cakes))
+			/obj/item/trash/syndi_cakes
+))
 
 GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spawning coins.
 			/obj/item/coin/iron,
-			/obj/item/coin/silver,))
+			/obj/item/coin/silver
+))
