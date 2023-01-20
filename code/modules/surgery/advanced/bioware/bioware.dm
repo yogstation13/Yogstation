@@ -7,6 +7,8 @@
 	var/desc = "If you see this something's wrong, warn a coder."
 	var/active = FALSE
 	var/mod_type = BIOWARE_GENERIC
+	var/can_process = FALSE
+
 
 /datum/bioware/New(mob/living/carbon/human/_owner)
 	owner = _owner
@@ -26,6 +28,10 @@
 
 /datum/bioware/proc/on_gain()
 	active = TRUE
+	if(can_process)
+		START_PROCESSING(SSobj, src)
+
 
 /datum/bioware/proc/on_lose()
+	STOP_PROCESSING(SSobj, src)
 	return
