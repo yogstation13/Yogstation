@@ -41,8 +41,8 @@ You can avoid hacky code by using object-oriented methodologies, such as overrid
 * All critical user interfaces must be usable with HTML or the interface.dmf, with tgui being *optional* for this UI.
 	* Examples of critical user interfaces are the chat box, the observe button, the stat panel, and the chat input.
 * Documentation for TGUI can be found at:
-	* [tgui/README.md](../tgui/README.md)
-	* [tgui/tutorial-and-examples.md](../tgui/docs/tutorial-and-examples.md)
+	* [tgui/README.md](../../tgui/README.md)
+	* [tgui/tutorial-and-examples.md](../../tgui/docs/tutorial-and-examples.md)
 
 ### Dont override type safety checks
 
@@ -86,7 +86,7 @@ Instead you can use object orientation, or simply placing repeated code in a fun
 
 ### Prefer `Initialize()` over `New()` for atoms
 
-Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/tgstation/tgstation/blob/34775d42a2db4e0f6734560baadcfcf5f5540910/code/game/atoms.dm#L166
+Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/yogstation13/Yogstation/blob/df044da8608d94cbe1fe242264f749a92ca8283b/code/game/atoms.dm#L111
 While we normally encourage (and in some cases, even require) bringing out of date code up to date when you make unrelated changes near the out of date code, that is not the case for `New` -> `Initialize` conversions. These systems are generally more dependent on parent and children procs so unrelated random conversions of existing things can cause bugs that take months to figure out.
 
 ### Files
