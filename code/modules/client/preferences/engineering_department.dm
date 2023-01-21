@@ -17,6 +17,13 @@
 
 	return ..(input, preferences)
 
+/datum/preference/choiced/engineering_department/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+	
+	// Job needs to be medium or high for the preference to show up
+	return preferences.job_preferences["Station Engineer"] >= JP_MEDIUM
+
 /datum/preference/choiced/engineering_department/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
