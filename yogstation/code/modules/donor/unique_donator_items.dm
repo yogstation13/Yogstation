@@ -58,6 +58,85 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 		qdel(Y)
 */
 
+
+///Ckey locked (special) items. These should come last to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
+
+/datum/donator_gear/orca
+	name = "Megumus Dress (orcacora)"
+	ckey = "orcacora"
+	unlock_path = /obj/item/storage/box/megumu
+
+/datum/donator_gear/fatal_eyes
+	name = "Green Cosmic Bedsheet (FatalEyes)"
+	ckey = "fataleyes"
+	unlock_path = /obj/item/bedsheet/cosmos/fatal_eyes
+
+/obj/item/bedsheet/cosmos/fatal_eyes
+	name = "green cosmic bedsheet"
+	icon_state = "sheetcosmos_green"
+	item_state = "sheetcosmos_green"
+
+/datum/donator_gear/azeelium
+	name = "Utatul-Azeel plushie (Anvilman6)"
+	ckey = "Anvilman6"
+	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
+
+/datum/donator_gear/mqiib
+	name = "Singularity Necklace (Mqiib)"
+	ckey = "Mqiib"
+	unlock_path = /obj/item/clothing/accessory/sing_necklace
+
+/datum/donator_gear/cowbot
+	name = "Singularity Wakizashi (Cowbot93)"
+	ckey = "Cowbot93"
+	unlock_path = /obj/item/toy/katana/singulo_wakizashi
+
+/datum/donator_gear/marmio64
+	name = "Eldritch Cowl (Marmio64)"
+	ckey = "Marmio64"
+	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
+
+/datum/donator_gear/manatee
+	name = "Peacekeeper Beret & Dogtags (Majesticmanateee)"
+	ckey = "Majesticmanateee"
+	unlock_path = /obj/item/storage/box/manatee
+
+/datum/donator_gear/Hisakaki
+	name = "Transdimensional halo (Hisakaki)"
+	ckey = "Hisakaki"
+	unlock_path = /obj/item/clothing/head/halo
+	slot = SLOT_HEAD
+
+/datum/donator_gear/skrem
+	name = "Rainbow flower (Skrem7)"
+	ckey = "Skrem7"
+	unlock_path = /obj/item/clothing/head/rainbow_flower
+
+/datum/donator_gear/alvcyktor
+	name = "Shark Hoodie (alvcyktor)"
+	ckey = "alvcyktor"
+	unlock_path = /obj/item/clothing/accessory/sharkhoodie
+
+/datum/donator_gear/isotope
+	name = "Dark Scientist Jumpsuit and Badass Lighter (Nightmare1243)"
+	ckey = "Nightmare1243"
+	unlock_path = /obj/item/storage/box/isotope
+
+/datum/donator_gear/cuackles
+	name = "punk jacket (cuackles)"
+	ckey = "cuackles"
+	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
+
+/datum/donator_gear/hisa
+	name = "Hunter Stash (hisakaki)"
+	ckey = "hisakaki"
+	unlock_path = /obj/item/storage/box/hisa
+
+/datum/donator_gear/slicerv
+	name = "axolotl plush (slicerv)"
+	ckey = "slicerv"
+	unlock_path = /obj/item/toy/plush/axolotlplushie
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
@@ -497,81 +576,3 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
-
-///Ckey locked (special) items. These should come last to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
-
-/datum/donator_gear/orca
-	name = "Megumus Dress (orcacora)"
-	ckey = "orcacora"
-	unlock_path = /obj/item/storage/box/megumu
-
-/datum/donator_gear/fatal_eyes
-	name = "Green Cosmic Bedsheet (FatalEyes)"
-	ckey = "fataleyes"
-	unlock_path = /obj/item/bedsheet/cosmos/fatal_eyes
-
-/obj/item/bedsheet/cosmos/fatal_eyes
-	name = "green cosmic bedsheet"
-	icon_state = "sheetcosmos_green"
-	item_state = "sheetcosmos_green"
-
-/datum/donator_gear/azeelium
-	name = "Utatul-Azeel plushie (Anvilman6)"
-	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
-
-/datum/donator_gear/mqiib
-	name = "Singularity Necklace (Mqiib)"
-	ckey = "Mqiib"
-	unlock_path = /obj/item/clothing/accessory/sing_necklace
-
-/datum/donator_gear/cowbot
-	name = "Singularity Wakizashi (Cowbot93)"
-	ckey = "Cowbot93"
-	unlock_path = /obj/item/toy/katana/singulo_wakizashi
-
-/datum/donator_gear/marmio64
-	name = "Eldritch Cowl (Marmio64)"
-	ckey = "Marmio64"
-	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
-
-/datum/donator_gear/manatee
-	name = "Peacekeeper Beret & Dogtags (Majesticmanateee)"
-	ckey = "Majesticmanateee"
-	unlock_path = /obj/item/storage/box/manatee
-
-/datum/donator_gear/Hisakaki
-	name = "Transdimensional halo (Hisakaki)"
-	ckey = "Hisakaki"
-	unlock_path = /obj/item/clothing/head/halo
-	slot = SLOT_HEAD
-
-/datum/donator_gear/skrem
-	name = "Rainbow flower (Skrem7)"
-	ckey = "Skrem7"
-	unlock_path = /obj/item/clothing/head/rainbow_flower
-
-/datum/donator_gear/alvcyktor
-	name = "Shark Hoodie (alvcyktor)"
-	ckey = "alvcyktor"
-	unlock_path = /obj/item/clothing/accessory/sharkhoodie
-
-/datum/donator_gear/isotope
-	name = "Dark Scientist Jumpsuit and Badass Lighter (Nightmare1243)"
-	ckey = "Nightmare1243"
-	unlock_path = /obj/item/storage/box/isotope
-
-/datum/donator_gear/cuackles
-	name = "punk jacket (cuackles)"
-	ckey = "cuackles"
-	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
-
-/datum/donator_gear/hisa
-	name = "Hunter Stash (hisakaki)"
-	ckey = "hisakaki"
-	unlock_path = /obj/item/storage/box/hisa
-
-/datum/donator_gear/slicerv
-	name = "axolotl plush (slicerv)"
-	ckey = "slicerv"
-	unlock_path = /obj/item/toy/plush/axolotlplushie
