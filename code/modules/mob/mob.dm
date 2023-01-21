@@ -821,7 +821,12 @@
 /// Adds this list to the output to the stat browser
 /mob/proc/get_status_tab_items()
 	. = list()
-
+	var/list/objectives = mind?.get_all_objectives()
+	if(LAZYLEN(objectives) > 0)
+		var/obj_count = 1
+		for(var/datum/objective/objective in mind?.get_all_objectives())
+			. += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "red"]>[objective.explanation_text][objective.check_completion() ? " (COMPLETED)" : ""]</font>"
+			obj_count++
 
 /mob/proc/get_proc_holders()
 	. = list()
