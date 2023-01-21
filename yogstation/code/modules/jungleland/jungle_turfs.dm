@@ -85,6 +85,8 @@ Temperature: 126.85 °C (400 K)
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
+		for(var/i in 0 to 2)
+			new /obj/item/stack/ore/glass(src)
 
 /turf/open/floor/plating/dirt/jungleland/tool_act(mob/living/user, obj/item/I, tool_type)
 	if(tool_type != TOOL_MINING && tool_type != TOOL_SHOVEL)

@@ -644,6 +644,7 @@
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
+	mob_size = MOB_SIZE_LARGE
 	faction = list("tar")
 
 /mob/living/simple_animal/hostile/tar/amalgamation
