@@ -824,6 +824,7 @@
 	var/list/objectives = mind?.get_all_objectives()
 	if(LAZYLEN(objectives) > 0)
 		var/obj_count = 1
+		. += "<B>Objectives:</B>"
 		for(var/datum/objective/objective in mind?.get_all_objectives())
 			. += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "red"]>[objective.explanation_text][objective.check_completion() ? " (COMPLETED)" : ""]</font>"
 			obj_count++
