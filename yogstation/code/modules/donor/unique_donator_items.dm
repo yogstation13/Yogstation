@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 	var/name = "Unique Donator Items Controller"
 	var/list/donor_items = list()
 	var/list/item_names = list()
+	var/list/donor_plush = list()
 
 /datum/donator_gear_resources/New()
 	. = ..()
@@ -27,6 +28,8 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		donor_items += S
 		item_names[S.name] = S
 
+	for(var/plushes in subtypesof(/obj/item/toy/plush))
+		donor_plush += plushes
 
 /datum/donator_gear
 	/// Name of the gear, as displayed in the preferences menu

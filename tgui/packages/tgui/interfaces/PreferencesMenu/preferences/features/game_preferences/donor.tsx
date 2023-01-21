@@ -35,6 +35,22 @@ export const donor_item: Feature<string> = {
   },
 };
 
+export const donor_plush: Feature<string> = {
+  name: "Donor plush",
+  category: "DONATOR",
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+    context,
+  ) => {
+    const { data } = useBackend<PreferencesMenuData>(context);
+
+    return (<FeatureDropdownInput
+      {...props}
+      disabled={!data.content_unlocked}
+    />);
+  },
+};
+
 export const borg_hat: FeatureToggle = {
   name: "Equip borg hat",
   category: "DONATOR",

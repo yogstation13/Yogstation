@@ -37,6 +37,25 @@
 
 	return values
 
+/datum/preference/choiced/donor_plush
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "donor_plush"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/donor_plush/create_default_value()
+	return "None"
+
+/datum/preference/choiced/donor_plush/init_possible_values()
+	var/list/values = list()
+
+	values += "None"
+
+	for(var/obj/item/toy/plush/plushes as anything in subtypesof(/obj/item/toy/plush))
+		if(!plushes.name)
+			continue
+		values += plushes.name
+
+	return values
 
 /datum/preference/toggle/borg_hat
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

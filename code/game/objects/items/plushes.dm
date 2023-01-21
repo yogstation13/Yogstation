@@ -30,6 +30,8 @@
 	var/list/parent_message
 	var/normal_desc
 	//--end of love :'(--
+	var/donor_ckey = null //yogs: donor plushies
+	var/donor_blacklist = FALSE
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
@@ -580,6 +582,7 @@
 
 /obj/item/toy/plush/lizard/azeel/snowflake
 	desc = "An adorable plushie resembling an adorable lizard. He seems to be held together by stitches and pure stress. This one seems to have \"U-A\" embroidered on it."
+	donor_ckey = "Anvilman6"
 
 /obj/item/toy/plush/blahaj
 	name = "shark plushie"
