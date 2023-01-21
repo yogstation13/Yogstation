@@ -28,8 +28,10 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 		donor_items += S
 		item_names[S.name] = S
 
-	for(var/plushes in subtypesof(/obj/item/toy/plush))
-		donor_plush += plushes
+	for(var/Ptype in subtypesof(/obj/item/toy/plush))
+		var/obj/item/toy/plush/P = new Ptype
+		donor_plush += P
+		item_names[P.name] = P
 
 /datum/donator_gear
 	/// Name of the gear, as displayed in the preferences menu

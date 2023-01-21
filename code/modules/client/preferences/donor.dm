@@ -90,13 +90,25 @@
 	var/list/values = list()
 
 	values += "None"
-
-	for(var/obj/item/toy/plush/plushes as anything in subtypesof(/obj/item/toy/plush))
-		if(!plushes.name)
-			continue
-		values += plushes.name
+	values += GLOB.donator_gear.donor_plush
 
 	return values
+
+/datum/preference/choiced/donor_plush/compile_constant_data()
+	var/list/data = ..()
+
+	var/list/key_locked = list()
+
+	for(var/obj/item/toy/plush/P as anything in GLOB.donator_gear.donor_plush)
+		if (!P.donor_ckey)
+			continue
+
+		key_locked[P.name] = lowertext(P.donor_ckey)
+
+	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
+
+	return data
+
 
 /datum/preference/toggle/borg_hat
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

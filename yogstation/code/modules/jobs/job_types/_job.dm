@@ -35,7 +35,7 @@
 				if(!H.put_in_hands(item))
 					item.forceMove(BP)
 		
-		var/obj/item/toy/plush/plush = GLOB.donator_gear.donor_plush[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
+		var/obj/item/toy/plush/plush = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
 		if (!!plush.donor_ckey && (lowertext(C.ckey) != lowertext(plush.donor_ckey)))
 			to_chat(C, span_warning("Your selected plush is restricted to [plush.donor_ckey]."))
 		else
