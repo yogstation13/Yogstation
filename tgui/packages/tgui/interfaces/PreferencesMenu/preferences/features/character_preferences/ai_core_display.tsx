@@ -1,6 +1,6 @@
-import { FeatureIconnedDropdownInput, FeatureWithIcons } from "../base";
+import { FeatureDropdownInput, FeatureChoiced } from "../base";
 
-export const preferred_ai_core_display: FeatureWithIcons<string> = {
+export const preferred_ai_core_display: FeatureChoiced = {
   name: "AI core display",
-  component: FeatureIconnedDropdownInput,
+  component: FeatureDropdownInput,
 };
