@@ -386,7 +386,7 @@ GLOBAL_LIST_INIT(nests, list())
 	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/blobby)
 
 /obj/structure/spawner/nest/dying
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/skin_twister)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/mosquito)
 
 /obj/effect/spawner/tendril_spawner
 

@@ -445,13 +445,17 @@
 	desc = "It pulsates with a corroding, everpresent energy"
 	icon_state = "aspect_of_tar"
 	denied_type = /obj/item/crusher_trophy/jungleland/aspect_of_tar
+	var/last_applied
+	var/cooldown = 6 SECONDS
 
 /obj/item/crusher_trophy/jungleland/aspect_of_tar/effect_desc()
 	return "Slows down enemies to crawling speed and gives a shield that blocks a single enemy attack (lasts 5 seconds)."
 
 /obj/item/crusher_trophy/jungleland/aspect_of_tar/on_mark_detonation(mob/living/target, mob/living/user)
 	. = ..()
-	user.apply_status_effect(/datum/status_effect/tar_shield)
+	if(!last_applied || world.time >= last_applied + cooldown)
+		user.apply_status_effect(/datum/status_effect/tar_shield)
+		last_applied = world.time
 
 /obj/item/crusher_trophy/jungleland/aspect_of_tar/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	. = ..()

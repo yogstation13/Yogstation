@@ -14,7 +14,7 @@
 	var/alpha_damage_boost = 1 //if a mob has really high damage it may be unfair to boost it further when making an alpha version.
 	var/crusher_loot
 	var/alpha_type = 0
-
+ 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
 		ADD_TRAIT(user,TRAIT_ENEMY_OF_THE_FOREST,JUNGLELAND_TRAIT)	
@@ -185,6 +185,9 @@
 	rapid_melee = 2
 	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2)
 	alpha_damage_boost = 0 // 30-55 damage is too much to be boosts by 50%
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_VERY_STRONG
+	pull_force = MOVE_FORCE_VERY_STRONG
 	var/human_lure = FALSE
 	var/obj/item/encryptionkey/lure_encryption_key
 	var/victim_ref
@@ -285,6 +288,7 @@
 	speak_emote = list("bops", "pops")
 	emote_hear = list("vibrates.","listens.","hears.")
 	emote_taunt = list("pops agressively")
+	move_to_delay = 5
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
