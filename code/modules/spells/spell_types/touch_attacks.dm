@@ -117,8 +117,8 @@
 	hand_path = /obj/item/melee/touch_attack/touchofdeath
 
 	school = "evocation"
-	charge_max = 600
+	charge_max = 400
 	clothes_req = TRUE
-	cooldown_min = 200 //100 deciseconds reduction per rank
+	cooldown_min = 200 //50 deciseconds reduction per rank
 
 	action_icon_state = "touchofdeath"	//yogs end

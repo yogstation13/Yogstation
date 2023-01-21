@@ -226,5 +226,6 @@
 		qdel(suit)
 		new /obj/effect/decal/cleanable/molten_object(M.loc)
 		return ..()
+	M.adjustBruteLoss(max(200-(M.getOxyLoss() + M.getToxLoss() + M.getBruteLoss() + M.getFireLoss()),0))		
 	M.death(FALSE)
 	return ..()	//yogs end
