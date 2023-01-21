@@ -822,7 +822,7 @@
 /mob/proc/get_status_tab_items()
 	. = list()
 	var/list/objectives = mind?.get_all_objectives()
-	if(LAZYLEN(objectives) > 0)
+	if(LAZYLEN(objectives))
 		var/obj_count = 1
 		. += "<B>Objectives:</B>"
 		for(var/datum/objective/objective in mind?.get_all_objectives())
