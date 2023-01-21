@@ -94,6 +94,9 @@ export class SvgUi {
 			elem.style.left = sl.css_left(this);
 			elem.style.bottom = sl.css_bottom(this);
 		}
+		for(let atom of [...this.anim_atoms]) {
+			this.update_atom(atom);	
+		}
 		for(let [elem, cb] of this.dynamic_icons) {
 			if(elem.isConnected) {
 				cb();
@@ -109,13 +112,23 @@ export class SvgUi {
 
 	dynamic_screen_locs = new Map<Atom, [ScreenLocLike, HTMLElement]>();
 	dynamic_icons = new Map<HTMLElement, ()=>void>();
+	anim_atoms = new Set<Atom>();
 
 	atoms = new Map<Atom, HTMLElement>();
 	update_atom(atom : Atom) {
 		this.chatpush_dirty();
 		this.dynamic_screen_locs.delete(atom);
+		this.anim_atoms.delete(atom);
 		let elem = this.atoms.get(atom);
-		const appearance = atom.appearance;
+		let appearance = atom.appearance;
+		if(appearance && atom.animation) {
+			appearance = atom.animation.apply(appearance, this.client.time);
+			appearance.pixel_x = 0;
+			appearance.pixel_y = 0;
+			appearance.pixel_w = 0;
+			appearance.pixel_z = 0;
+			this.anim_atoms.add(atom);
+		}
 		const screen_loc = appearance ? ScreenLoc.from_string(appearance.screen_loc) : null;
 
 		this.plane_masters.delete(this.curr_plane_masters.get(atom)!);
@@ -197,6 +210,10 @@ export class SvgUi {
 				vc_atom.add_dependent(atom)
 				if(!vc_atom.appearance) continue;
 				let vc_appearance = vc_atom.appearance.copy_inherit(appearance, vc_atom);
+				if(vc_atom.animation) {
+					this.anim_atoms.add(atom);
+					vc_appearance = vc_atom.animation.apply(vc_appearance, this.client.time);
+				}
 				let vc_elem = document.createElement("elem");
 				vc_elem.style.left = "0px";
 				vc_elem.style.bottom = "0px";
@@ -292,7 +309,7 @@ export class SvgUi {
 					let frame_x = (frame % icon.sheet_width) * icon.width;
 					let frame_y = ((frame / icon.sheet_width)|0) * icon.height;
 					icon_elem_cb.style.background = `url("${image.src}") ${-frame_x}px ${-frame_y}px`;
-					if(force || icon_elem_cb.style.clipPath) {
+					if(force || icon_elem_cb.style.clipPath != "none") {
 						let path = icon.frame_paths.get(frame);
 						if(!path) {
 							if(clip_ctx.canvas.width < icon.width) clip_ctx.canvas.width = icon.width;

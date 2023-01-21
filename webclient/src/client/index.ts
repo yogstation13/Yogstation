@@ -562,8 +562,12 @@ export class ByondClient {
 			let anim = Animation.from_msg(dp, this.appearance_map);
 			let atom = this.atom_map.get(anim.atom_id);
 			if(atom) {
-				anim.merge_fixup(this.time, atom.animation);
-				atom.animation = anim;
+				if(anim) {
+					anim.merge_fixup(this.time, atom.animation);
+					atom.animation = anim;
+				} else {
+					atom.animation = null;
+				}
 				atom.mark_dirty();
 			}
 			break;
