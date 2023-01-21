@@ -17,5 +17,12 @@
 
 	return ..(input, preferences)
 
+/datum/preference/choiced/security_department/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+	
+	// Job needs to be medium or high for the preference to show up
+	return preferences.job_preferences["Security Officer"] >= JP_MEDIUM
+
 /datum/preference/choiced/security_department/apply_to_human(mob/living/carbon/human/target, value)
 	return

@@ -31914,12 +31914,6 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iEH" = (
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "iEY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -54724,23 +54718,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/aft)
-"sig" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Brig Interrogation";
-	dir = 4;
-	network = list("interrogation")
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "siG" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -56893,6 +56870,22 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
+"tbS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Brig Infirmary";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "tcf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/arcade,
@@ -68329,6 +68322,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"xPY" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4;
+	node1_concentration = 0.21;
+	node2_concentration = 0.79
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "xQd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -96670,7 +96671,7 @@ fsi
 lnA
 agj
 soz
-sig
+tbS
 sax
 tvs
 agj
@@ -104726,7 +104727,7 @@ jut
 rwb
 eYt
 aSJ
-iEH
+xPY
 wma
 sRm
 aSJ
