@@ -75,7 +75,16 @@ export class Appearance {
 		copy.pixel_y += (inherit_pixel_source?.pixel_y ?? 0) + inherit_source.pixel_y;
 		copy.pixel_z += (inherit_pixel_source?.pixel_z ?? 0) + inherit_source.pixel_z;
 		copy.pixel_w += (inherit_pixel_source?.pixel_w ?? 0) + inherit_source.pixel_w;
-		if(!(copy.bits & 0x1000000) && inherit_source.transform) copy.transform = inherit_source.transform;
+		if(!(copy.bits & 0x1000000) && inherit_source.transform) {
+			if(copy.transform) {
+				let t1 = [...inherit_source.transform, 0, 0, 1] as mat3;
+				let t2 = [...copy.transform, 0, 0, 1] as mat3;
+				mat3.multiply(t1, t2, t1);
+				copy.transform = t1.slice(0, 6) as number[];
+			} else {
+				copy.transform = inherit_source.transform;
+			}
+		}
 		if(inherit_source.color_alpha != -1) {
 			if(copy.color_alpha == -1) {
 				copy.color_alpha = inherit_source.color_alpha;

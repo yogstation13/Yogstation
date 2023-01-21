@@ -1,4 +1,4 @@
-import { vec2 } from "gl-matrix";
+import { vec2, vec4 } from "gl-matrix";
 import { ByondClient } from ".";
 import { Appearance } from "./appearance";
 import { Atom } from "./atom";
@@ -89,15 +89,23 @@ export class SvgUi {
 			}
 			elem.style.transform = `scale(${this.ui_base.clientWidth / 480}, ${this.ui_base.clientHeight / 480})`;
 		}
+
+		for(let [sl, elem] of this.dynamic_screen_locs.values()){
+			elem.style.left = sl.css_left(this);
+			elem.style.bottom = sl.css_bottom(this);
+		}
 	}
 
 	plane_masters = new Map<number, Atom>();
 	curr_plane_masters = new WeakMap<Atom, number>();
 	blind_atom? : Atom;
 
+	dynamic_screen_locs = new Map<Atom, [ScreenLocLike, HTMLElement]>();
+
 	atoms = new Map<Atom, HTMLElement>();
 	update_atom(atom : Atom) {
 		this.chatpush_dirty();
+		this.dynamic_screen_locs.delete(atom);
 		let elem = this.atoms.get(atom);
 		const appearance = atom.appearance;
 		const screen_loc = appearance ? ScreenLoc.from_string(appearance.screen_loc) : null;
@@ -142,17 +150,41 @@ export class SvgUi {
 			elem.style.height = "32px";
 			this.ui_base.appendChild(elem);
 		}
-		if(screen_loc.x_frac < 0.75 && screen_loc.y_frac < 0.25) {
-			this.chatpush_up_elems.add(atom);
-			this.chatpush_right_elems.delete(atom);
-		} else if(screen_loc.x_frac < 0.25 && screen_loc.y_frac < 0.75) {
-			this.chatpush_right_elems.add(atom);
-			this.chatpush_up_elems.delete(atom);
+		if(screen_loc instanceof ScreenLoc) {
+			if(screen_loc.x_frac < 0.75 && screen_loc.y_frac < 0.25) {
+				this.chatpush_up_elems.add(atom);
+				this.chatpush_right_elems.delete(atom);
+			} else if(screen_loc.x_frac < 0.25 && screen_loc.y_frac < 0.75) {
+				this.chatpush_right_elems.add(atom);
+				this.chatpush_up_elems.delete(atom);
+			}
 		}
+		if(screen_loc.dynamic) this.dynamic_screen_locs.set(atom, [screen_loc, elem]);
 		elem.style.zIndex = ""+Math.round(appearance.layer * 10000);
-		elem.style.left = screen_loc.css_left();
-		elem.style.bottom = screen_loc.css_bottom();
+		elem.style.left = screen_loc.css_left(this);
+		elem.style.bottom = screen_loc.css_bottom(this);
 		this.appearance_to_elem(appearance, elem, 0, 0);
+		if(appearance.icon_state.startsWith("e3d_vis_contents:")) {
+			let parts = appearance.icon_state.substring("e3d_vis_contents:".length).split(",");
+			for(let part of parts) {
+				let ref = +part.substring(1, part.length-1);
+				if(!ref) continue;
+				let vc_atom = this.client.get_atom(ref);
+				if(!vc_atom) continue;
+				vc_atom.add_dependent(atom)
+				if(!vc_atom.appearance) continue;
+				let vc_appearance = vc_atom.appearance.copy_inherit(appearance, vc_atom);
+				let vc_elem = document.createElement("elem");
+				vc_elem.style.left = "0px";
+				vc_elem.style.bottom = "0px";
+				vc_elem.style.position = "absolute";
+				vc_elem.style.width = "32px";
+				vc_elem.style.height = "32px";
+				vc_elem.dataset.atomId = ""+vc_atom.full_id;
+				this.appearance_to_elem(vc_appearance, vc_elem, vc_appearance.pixel_xw, vc_appearance.pixel_yz);
+				elem.appendChild(vc_elem);
+			}
+		}
 		atom.add_dependent(this);
 	}
 
@@ -193,9 +225,8 @@ export class SvgUi {
 		this.update_atom(atom);
 	}
 
-	appearance_to_elem(appearance : Appearance, elem : HTMLElement, pixel_xw : number, pixel_yz : number, dir_inherit = appearance.dir) : boolean {
+	appearance_to_elem(appearance : Appearance, elem : HTMLElement, pixel_xw : number, pixel_yz : number) : boolean {
 		let icon_elem = elem.querySelector(":scope > .icon") as HTMLElement|null;
-		const dir = (appearance.bits & 0x200) ? appearance.dir : dir_inherit;
 		const icon = this.client.icons.get(appearance.icon);
 		if(icon) {
 			if(!icon_elem) icon_elem = document.createElement("div");
@@ -207,9 +238,10 @@ export class SvgUi {
 			icon_elem.style.background = "none";
 			icon_elem.style.pointerEvents = appearance.mouse_opacity ? "auto" : "none";
 			icon_elem.style.clipPath = "none";
+			icon_elem.style.filter = appearance.color_alpha == -1 ? "none" : this.color_filter_css(appearance.color_alpha);
 			icon_elem.dataset.icon = ""+appearance.icon;
 			icon_elem.dataset.icon_state = appearance.icon_state;
-			icon_elem.dataset.dir = ""+dir;
+			icon_elem.dataset.dir = ""+appearance.dir;
 			if(appearance.transform) {
 				let t = appearance.transform;
 				icon_elem.style.transform = `matrix(${t[0]},${t[3]},${t[1]},${t[4]},${t[2]},${t[5]})`;
@@ -222,10 +254,10 @@ export class SvgUi {
 				if(!image) image = await icon.make_image(await this.client.get_resource_blob(icon.resource));
 				if(icon_elem.dataset.icon_state != appearance.icon_state) return;
 				if(icon_elem.dataset.icon != ""+appearance.icon) return;
-				if(icon_elem.dataset.dir != ""+dir) return;
+				if(icon_elem.dataset.dir != ""+appearance.dir) return;
 				let icon_state = icon.get_icon_state(appearance.icon_state);
 				if(!icon_state) return;
-				let frame = icon_state.icons[icon_state.get_dir_index(dir)][0];
+				let frame = icon_state.icons[icon_state.get_dir_index(appearance.dir)][0];
 				let frame_x = (frame % icon.sheet_width) * icon.width;
 				let frame_y = ((frame / icon.sheet_width)|0) * icon.height;
 				icon_elem.style.width = icon.width+"px";
@@ -254,7 +286,8 @@ export class SvgUi {
 			overlayElem.style.position = "absolute";
 			overlayElem.style.left = "0px"; overlayElem.style.bottom = "0px";
 			overlayElem.style.width = "32px"; overlayElem.style.height = "32px";
-			this.appearance_to_elem(overlay, overlayElem, overlay.pixel_w+overlay.pixel_x, overlay.pixel_y+overlay.pixel_z, dir);
+			overlay = overlay.copy_inherit(appearance);
+			this.appearance_to_elem(overlay, overlayElem, overlay.pixel_xw, overlay.pixel_yz);
 			elem.appendChild(overlayElem);
 		}
 		return true;
@@ -468,6 +501,21 @@ export class SvgUi {
 		}
 		return undefined;
 	}
+
+	color_filter_css(color_alpha : number) {
+		let r = ((color_alpha) & 0xFF) / 0xFF;
+		let g = ((color_alpha>>8) & 0xFF) / 0xFF;
+		let b = ((color_alpha>>16) & 0xFF) / 0xFF;
+		let a = ((color_alpha>>24) & 0xFF) / 0xFF;
+		let data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg">`
+		+ `<filter id="f">`
+		+ `<feColorMatrix in="SourceGraphic" type="matrix" values="`
+		+ `${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 ${a} 0`
+		+ `" />`
+		+ `</filter>`
+		+ `</svg>#f`
+		return `url(${JSON.stringify(data)})`
+	}
 }
 
 interface MouseInfo {
@@ -477,7 +525,59 @@ interface MouseInfo {
 	params? : string;
 }
 
-class ScreenLoc {
+interface ScreenLocLike {
+	css_left(ui : SvgUi) : string;
+	css_bottom(ui : SvgUi) : string;
+	dynamic : boolean;
+}
+
+class ScreenLocFollow implements ScreenLocLike {
+	target : number = 0;
+	margin = 0;
+	dynamic = true;
+
+	find_xy(ui : SvgUi) : vec2 {
+		let atom = ui.client.atom_map.get(this.target);
+		if(!atom || !atom.last_draw_pos) return [0,0];
+		let vec = [
+			...atom.last_draw_pos, 1
+		] as vec4;
+		vec4.transformMat4(vec, vec, ui.client.gl_holder.view_matrix);
+		vec4.transformMat4(vec, vec, ui.client.gl_holder.proj_matrix);
+		if(isNaN(vec[0]) || isNaN(vec[1]) || isNaN(vec[3])) return [0,0];
+		vec[3] = Math.max(vec[3], 0.1);
+		return [
+			vec[0] / vec[3],
+			vec[1] / vec[3]
+		];
+	}
+
+	css_left(ui : SvgUi) {
+		let m32 = (this.margin*32);
+		return `min(calc(100% - ${m32}px), max(${m32}px, ${(this.find_xy(ui)[0] + 1) * 50}%))`;
+	}
+	css_bottom(ui : SvgUi) {
+		let m32 = (this.margin*32);
+		return `min(calc(100% - ${m32}px), max(${m32}px, ${(this.find_xy(ui)[1] + 1) * 50}%))`;
+	}
+
+	static from_string(screen_loc : string) : ScreenLocFollow {
+		let flw = new ScreenLocFollow();
+		let parts = screen_loc.split(";");
+		for(let part of parts) {
+			let [k,v] = part.split("=");
+			if(!v) continue;
+			if(k == "ref") {
+				flw.target = +v.substring(1, v.length-1);
+			} else if(k == "margin") {
+				flw.margin = +v;
+			}
+		}
+		return flw;
+	}
+}
+
+class ScreenLoc implements ScreenLocLike {
 	x = 0;
 	y = 0;
 	x_frac = 0;
@@ -486,6 +586,7 @@ class ScreenLoc {
 	py = 0;
 	repeat_width = 1;
 	repeat_height = 1;
+	dynamic = false;
 	
 	css_left() {
 		if(this.x_frac == 0) return `${this.x*32+this.px}px`;
@@ -495,21 +596,24 @@ class ScreenLoc {
 		if(this.y_frac == 0) return `${this.y*32+this.py}px`;
 		return `calc(${this.y_frac*100}% + ${this.y*32 + this.py - (32*this.y_frac)}px)`;
 	}
-	static from_string(screen_loc: string | null) : ScreenLoc|null {
+	static from_string(screen_loc: string | null) : ScreenLocLike|null {
 		try {
 			if(!screen_loc) return null;
+			if(screen_loc.startsWith("e3d_follow:")) {
+				return ScreenLocFollow.from_string(screen_loc.substring("e3d_follow:".length));
+			}
 			let to_split = screen_loc.split(" to ");
 			if(to_split.length >= 2) {
 				let loc1 = ScreenLoc.from_string(to_split[0]);
 				let loc2 = ScreenLoc.from_string(to_split[1]);
-				if(!loc1 || !loc2) return null;
+				if(!(loc1 instanceof ScreenLoc) || !(loc2 instanceof ScreenLoc)) return null;
 				loc1.repeat_width = loc2.x-loc1.x;
 				loc1.repeat_height = loc2.y-loc1.y;
 				return loc1;;
 			}
 			let result = new ScreenLoc();
 			let parts = screen_loc.split(",");
-			if(parts[1] && /EAST|WEST/.test(parts[1]) && /NORTH|SOUTH/.test(parts[0])) {
+			if(parts[1] && (/EAST|WEST/.test(parts[1]) || /NORTH|SOUTH/.test(parts[0]))) {
 				parts.reverse();
 			}
 			for(let i = 0; i < 2; i++) {

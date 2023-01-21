@@ -1,4 +1,4 @@
-import { glMatrix, mat4, vec3 } from "gl-matrix";
+import { glMatrix, mat4, vec2, vec3, vec4 } from "gl-matrix";
 import { ByondClient } from ".";
 import { Atom } from "./atom";
 import { Icon } from "./icon";
@@ -61,6 +61,7 @@ export class GlHolder {
 	frame_counter : number = 0;
 	frame_accum : number = 0;
 	fps : number = 0;
+	num_icon_sends : number = 0;
 
 	frame(dt : number) {
 		this.frame_counter++;
@@ -320,7 +321,7 @@ export class GlHolder {
 
 		gl.bindTexture(gl.TEXTURE_2D, null);
 
-		this.stats_elem.textContent = `${+this.fps.toFixed(1)} fps\n${num_drawcalls} draw calls`;
+		this.stats_elem.textContent = `${+this.fps.toFixed(1)} fps\n${num_drawcalls} draw calls\n${this.num_icon_sends} icon sends (${this.client.icons.size} unique)`;
 	}
 	reading_mouse_hit = false;
 	mouse_hit_out = new Uint32Array(1);

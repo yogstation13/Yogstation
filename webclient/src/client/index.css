@@ -8,6 +8,9 @@ iframe:not(:hover) {
 	border-top: 32px solid transparent;
 	box-sizing: content-box;
 }
+.window-no-titlebar {
+	border-top: none;
+}
 
 .titlebar {
 	font-family: Verdana, Geneva, sans-serif;

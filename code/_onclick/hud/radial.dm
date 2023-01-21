@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/py_shift = 0
 	var/entry_animation = TRUE
 
-//If we swap to vis_contens inventory these will need a redo
+//If we swap to vis_contents inventory these will need a redo
 /datum/radial_menu/proc/check_screen_border(mob/user)
 	var/atom/movable/AM = anchor
 	if(!istype(AM) || !AM.screen_loc)
@@ -279,15 +279,36 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		return
 	current_user = M.client
 	//Blank
-	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = ABOVE_HUD_LAYER)
+	if(current_user.connection == "web")
+		// BYOND doesn't network the vis_contents list on screen objects or images
+		// so I'll have to encode it in the icon_state string
+		menu_holder = new /atom/movable
+		menu_holder.icon = 'icons/effects/effects.dmi'
+		menu_holder.screen_loc = "e3d_follow:margin=2;ref=\ref[anchor]"
+		menu_holder.layer = ABOVE_HUD_LAYER
+	else
+		menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = ABOVE_HUD_LAYER)
+	
 	menu_holder.plane = ABOVE_HUD_PLANE
 	menu_holder.appearance_flags |= KEEP_APART
 	menu_holder.vis_contents += elements + close_button
-	current_user.images += menu_holder
+	
+	if(current_user.connection == "web")
+		var/list/ref_list = list()
+		for(var/thing in menu_holder.vis_contents)
+			ref_list += "\ref[thing]"
+		menu_holder.icon_state = "e3d_vis_contents:[ref_list.Join(",")]"
+		current_user.screen += menu_holder
+	else
+		current_user.images += menu_holder
 
 /datum/radial_menu/proc/hide()
 	if(current_user)
-		current_user.images -= menu_holder
+		if(current_user.connection == "web")
+			current_user.screen -= menu_holder
+		else
+			current_user.images -= menu_holder
+	QDEL_NULL(menu_holder)
 
 /datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
 	while (current_user && !finished && !selected_choice)

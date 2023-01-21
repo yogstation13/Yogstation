@@ -5,7 +5,7 @@
 	desc = "A Nanotrasen supply drop pod."
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "pod" //This is a common base sprite shared by a number of pods
-	pixel_x = SUPPLYPOD_X_OFFSET //2x2 sprite
+	pixel_w = SUPPLYPOD_X_OFFSET //2x2 sprite
 	layer = TABLE_LAYER //So that the crate inside doesn't appear underneath
 	allow_objects = TRUE
 	allow_dense = TRUE
@@ -542,6 +542,7 @@
 	icon = 'icons/obj/supplypods_32x32.dmi'
 	icon_state = "LZ_Slider"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	screen_loc = E3D_TYPE_FLOOR
 
 /obj/effect/DPtarget_effect/Initialize(mapload, obj/structure/closet/supplypod/pod)
 	transform = matrix() * 1.5

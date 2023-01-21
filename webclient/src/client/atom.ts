@@ -26,6 +26,7 @@ export class Atom implements AtomDependent {
 	vis_contents : number[]|null = null;
 	dependents : Set<AtomDependent>|null = null;
 	animation : Animation|null = null;
+	last_draw_pos : vec3|null = null;
 	reset() {
 		this.appearance = null;
 		this.loc = 0;
@@ -119,6 +120,8 @@ export class Atom implements AtomDependent {
 				x += this.glide_vec[0];
 				y += this.glide_vec[1];
 			}
+			
+			this.last_draw_pos = [x+0.5,y+0.5,0.5];
 
 			let appearance_obj : Atom = this;
 			if(this.images) for(let image of this.images) {
@@ -237,6 +240,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		x += appearance.pixel_x/32;
 		y += appearance.pixel_y/32;
 		let focus : vec3 = [x+0.5, y+0.5, 0.5];
+		this.last_draw_pos = focus;
 		let plan;
 		list.push(plan = new BillboardRenderPlan(this.full_id, appearance, x+0.5, y+0.5).set_offsets(appearance.pixel_w/32, appearance.pixel_z/32).set_alpha_sort(focus));
 		if(appearance.plane >= 13) plan.bits |= 1;
@@ -275,6 +279,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		x += (appearance.pixel_x)/32;
 		y += (appearance.pixel_y)/32;
 		let z = this.type == 1 ? 0 : (0.01 + Math.max(0, (appearance.layer - 2.19) * 0.1));
+		this.last_draw_pos = [x+0.5,y+0.5,z];
 		let odz = this.type == 1 ? 0 : 0.001;
 		list.push(new FloorRenderPlan(this.full_id, appearance, x, y, z));
 		let overlay_counter = 0;

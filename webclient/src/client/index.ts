@@ -360,6 +360,7 @@ export class ByondClient {
 			}
 			break;
 		} case 207: {
+			this.gl_holder.num_icon_sends++;
 			let icon = Icon.from_message(dp);
 			if(!this.icons.has(icon.id))
 				this.icons.set(icon.id, icon);
@@ -896,11 +897,13 @@ export class ByondClient {
 		}
 		if(resolved && !(resolved instanceof HTMLIFrameElement)) return;
 		let browser : HTMLIFrameElement|null = resolved;
+		let isnew = false;
 		if(!browser) {
 			browser = document.createElement("iframe");
 			if(!browserwindow) {
 				browserwindow = this.create_window(control);
 				document.body.appendChild(browserwindow);
+				isnew = true;
 			}
 			browser.id = `control-browser`;
 			browser.style.width = "100%"; browser.style.height = "100%"; browser.style.top = "0px"; browser.style.left = "0px";
@@ -921,6 +924,10 @@ export class ByondClient {
 				let parts = size.split("x");
 				browserwindow.style.width = parts[0] + "px";
 				browserwindow.style.height = parts[1] + "px";
+			}
+			if(isnew) {
+				browserwindow.style.left = Math.max(window.innerWidth / 2 - browserwindow.clientWidth / 2 + Math.random()*100-50, 0) + "px";
+				browserwindow.style.top = Math.max(window.innerHeight / 2 - browserwindow.clientHeight / 2 + Math.random()*100-50, 0) + "px";
 			}
 			let can_close = opts.get("can_close");
 			if(can_close) {
@@ -1001,29 +1008,46 @@ export class ByondClient {
 		for(let i = 0; i < count; i++) {
 			let flags = is_screen ? dp.read_uint8() : dp.read_uint16();
 			let id = dp.read_uint32();
-			let atom = this.get_atom(id);
+			let atom : Atom|undefined = this.get_atom(id);
+			if(atom.type == 1) {
+				// vis_contents with turfs causes BYOND to send the ID of the turf
+				// when sending the movables within its contents list
+				atom = undefined;
+			}
 			if(!flags) {
-				if(is_screen) atom.enabled_screen = false;
-				else atom.enabled = false;
-				atom.mark_dirty();
+				if(atom) {
+					if(is_screen) atom.enabled_screen = false;
+					else atom.enabled = false;
+					atom.mark_dirty();
+				}
 				continue;
 			}
-			if(is_screen) atom.enabled_screen = true;
-			else atom.enabled = true;
-			if((flags & 3) == 1) {
-				atom.reset();
+			if(atom) {
+				if(is_screen) atom.enabled_screen = true;
+				else atom.enabled = true;
+				if((flags & 3) == 1) {
+					atom.reset();
+				}
 			}
 			if(flags & 4) {
-				atom.glide_to_loc(dp.read_uint32());
+				let loc = dp.read_uint32();
+				if(atom) atom.glide_to_loc(loc);
 			}
 			if(flags & 8) {
-				atom.appearance = this.appearance_map.get(dp.read_uint32as16()) ?? null;
+				let appearance = dp.read_uint32as16();
+				if(atom) atom.appearance = this.appearance_map.get(appearance) ?? null;
 			}
 			if(flags & 16) {
-				atom.pixel_x = dp.read_int16();
-				atom.pixel_y = dp.read_int16();
-				atom.pixel_w = dp.read_int16();
-				atom.pixel_z = dp.read_int16();
+				let px = dp.read_int16();
+				let py = dp.read_int16();
+				let pw = dp.read_int16();
+				let pz = dp.read_int16();
+				if(atom) {
+					atom.pixel_x = px;
+					atom.pixel_y = py;
+					atom.pixel_w = pw;
+					atom.pixel_z = pz;
+				}
 			}
 			if(flags & 32) {
 				dp.read_int16();
@@ -1046,11 +1070,13 @@ export class ByondClient {
 					let id = dp.read_uint32();
 					vis_contents.push(id);
 				}
-				atom.vis_contents = vis_contents.length ? vis_contents : null;
+				if(atom) atom.vis_contents = vis_contents.length ? vis_contents : null;
 			}
-			atom.mark_dirty();
-			if(atom.enabled_screen) {
-				this.ui.update_atom(atom);
+			if(atom) {
+				atom.mark_dirty();
+				if(atom.enabled_screen) {
+					this.ui.update_atom(atom);
+				}
 			}
 		}
 		if(!dp.reached_end()) console.warn("Movable changes - did not reach end", dp, start_i);
