@@ -19,7 +19,7 @@
 	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
-	payday_modifier = 0.8 //Useful to NT for plasma research
+	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practice concerns. AI hate them on basis of laws.
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
