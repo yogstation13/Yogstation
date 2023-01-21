@@ -15,6 +15,10 @@
 
 	data["selected_quirks"] = get_selected_quirks()
 
+	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
+	data["mood_enabled"] = ismoody
+
 	return data
 
 /datum/preference_middleware/quirks/get_ui_data(mob/user)
@@ -23,6 +27,10 @@
 	if (tainted)
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
+	
+	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
+	data["mood_enabled"] = ismoody
 
 	return data
 
@@ -36,6 +44,7 @@
 			"icon" = initial(quirk.icon),
 			"name" = quirk_name,
 			"value" = initial(quirk.value),
+			"mood" = initial(quirk.mood_quirk),
 		)
 
 	return list(

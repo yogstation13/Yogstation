@@ -80,6 +80,7 @@ export type Quirk = {
   icon: string;
   name: string;
   value: number;
+  mood: BooleanLike;
 };
 
 export type QuirkInfo = {
@@ -161,6 +162,7 @@ export type PreferencesMenuData = {
   keybindings: Record<string, string[]>;
   overflow_role: string;
   selected_quirks: string[];
+  mood_enabled: BooleanLike;
 
   antag_bans?: string[];
   antag_days_left?: Record<string, number>;

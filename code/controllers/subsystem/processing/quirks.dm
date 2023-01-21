@@ -67,7 +67,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/positive_quirks = list()
 	var/balance = 0
 
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (C.prefs.yogtoggles & PREF_MOOD)) // If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
+	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (C.prefs.yogtoggles & PREF_MOOD))
 
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
