@@ -41,10 +41,10 @@
 	// In a perfect world, these would be your department's backpack.
 	// However, this doesn't factor in assistants, or no high slot, and would
 	// also increase the spritesheet size a lot.
-	// I play medical doctor, and so medical doctor you get.
-	values[DBACKPACK] = /obj/item/storage/backpack/medic
-	values[DSATCHEL] = /obj/item/storage/backpack/satchel/med
-	values[DDUFFELBAG] = /obj/item/storage/backpack/duffelbag/med
+	// I play atmos, and so engi backpacks you get.
+	values[DBACKPACK] = /obj/item/storage/backpack/industrial
+	values[DSATCHEL] = /obj/item/storage/backpack/satchel/eng
+	values[DDUFFELBAG] = /obj/item/storage/backpack/duffelbag/engineering
 
 	return values
 
