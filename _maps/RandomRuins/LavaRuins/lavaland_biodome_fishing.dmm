@@ -144,21 +144,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ruin/powered/fishing/shop)
-"dT" = (
-/obj/effect/decal/cleanable/oil,
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
 "dV" = (
 /obj/structure/rack,
 /obj/item/twohanded/fishingrod,
@@ -320,6 +305,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
+"iQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
 "iX" = (
 /obj/machinery/light{
 	dir = 1
@@ -678,6 +677,17 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
+"rA" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
 "rQ" = (
 /obj/effect/turf_decal/pool{
 	dir = 8
@@ -930,6 +940,18 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ruin/powered/fishing/tcom)
+"xB" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
 "xQ" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/border_only{
@@ -945,18 +967,6 @@
 /obj/structure/chair/americandiner/black,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"yH" = (
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
 "yZ" = (
 /obj/effect/turf_decal/pool{
 	dir = 1
@@ -1062,6 +1072,20 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
+"Bb" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/hall)
 "Bj" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced/tinted,
@@ -1323,21 +1347,6 @@
 "Fr" = (
 /turf/closed/wall/r_wall,
 /area/ruin/powered/fishing/kitchen)
-"Fs" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/hall)
 "FC" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/brute{
@@ -1468,23 +1477,6 @@
 "HJ" = (
 /obj/structure/flora/rock/pile,
 /turf/open/water/safe,
-/area/ruin/powered/fishing)
-"HR" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing)
 "It" = (
 /obj/machinery/microwave{
@@ -2596,9 +2588,9 @@ US
 "}
 (16,1,1) = {"
 US
-yH
+rA
 FM
-HR
+iQ
 eT
 eT
 eT
@@ -2621,9 +2613,9 @@ ly
 zI
 LV
 LV
-Fs
+Bb
 QF
-dT
+xB
 US
 "}
 (17,1,1) = {"
