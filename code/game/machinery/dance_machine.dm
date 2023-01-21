@@ -183,8 +183,8 @@
 			continue
 		// it doesn't send at 0 volume so you get 0.001 volume on init
 		L.playsound_local(get_turf(L), null, 0.001, channel = CHANNEL_JUKEBOX, S = song_played)
-		if(L in close && M.client.prefs.toggles & SOUND_JUKEBOX)
-			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
+		if(L in close && L.client.prefs.toggles & SOUND_JUKEBOX)
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
 		else
 			L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	stop = world.time + selection.song_length
