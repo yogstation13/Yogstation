@@ -94,6 +94,13 @@ export class SvgUi {
 			elem.style.left = sl.css_left(this);
 			elem.style.bottom = sl.css_bottom(this);
 		}
+		for(let [elem, cb] of this.dynamic_icons) {
+			if(elem.isConnected) {
+				cb();
+			} else {
+				this.dynamic_icons.delete(elem);
+			}
+		}
 	}
 
 	plane_masters = new Map<number, Atom>();
@@ -101,6 +108,7 @@ export class SvgUi {
 	blind_atom? : Atom;
 
 	dynamic_screen_locs = new Map<Atom, [ScreenLocLike, HTMLElement]>();
+	dynamic_icons = new Map<HTMLElement, ()=>void>();
 
 	atoms = new Map<Atom, HTMLElement>();
 	update_atom(atom : Atom) {
@@ -164,6 +172,21 @@ export class SvgUi {
 		elem.style.left = screen_loc.css_left(this);
 		elem.style.bottom = screen_loc.css_bottom(this);
 		this.appearance_to_elem(appearance, elem, 0, 0);
+		if(screen_loc instanceof ScreenLoc && (screen_loc.repeat_height > 1 || screen_loc.repeat_width > 1)) {
+			for(let y = 0; y < screen_loc.repeat_height; y++) {
+				for(let x = 0; x < screen_loc.repeat_width; x++) {
+					if(x == 0 && y == 0) continue;
+					let repeat_elem = document.createElement("div");
+					repeat_elem.style.width = "32px";
+					repeat_elem.style.height = "32px";
+					repeat_elem.style.position = "absolute";
+					repeat_elem.style.left = `${x*32}px`;
+					repeat_elem.style.bottom = `${y*32}px`;
+					elem.appendChild(repeat_elem);
+					this.appearance_to_elem(appearance, repeat_elem, 0, 0);
+				}
+			}
+		}
 		if(appearance.icon_state.startsWith("e3d_vis_contents:")) {
 			let parts = appearance.icon_state.substring("e3d_vis_contents:".length).split(",");
 			for(let part of parts) {
@@ -250,31 +273,39 @@ export class SvgUi {
 				this.fullscreen_elems.add(icon_elem);
 			}
 			(async () => {
-				let image = icon.image;
-				if(!image) image = await icon.make_image(await this.client.get_resource_blob(icon.resource));
+				let image = icon.image ?? await icon.make_image(await this.client.get_resource_blob(icon.resource));
 				if(icon_elem.dataset.icon_state != appearance.icon_state) return;
 				if(icon_elem.dataset.icon != ""+appearance.icon) return;
 				if(icon_elem.dataset.dir != ""+appearance.dir) return;
 				let icon_state = icon.get_icon_state(appearance.icon_state);
 				if(!icon_state) return;
-				let frame = icon_state.icons[icon_state.get_dir_index(appearance.dir)][0];
-				let frame_x = (frame % icon.sheet_width) * icon.width;
-				let frame_y = ((frame / icon.sheet_width)|0) * icon.height;
+				let icon_state_cb = icon_state;
 				icon_elem.style.width = icon.width+"px";
 				icon_elem.style.height = icon.height+"px";
-				icon_elem.style.background = `url("${image.src}") ${-frame_x}px ${-frame_y}px`;
-				if(appearance.mouse_opacity == 1) {
-					let path = icon.frame_paths.get(frame);
-					if(!path) {
-						if(clip_ctx.canvas.width < icon.width) clip_ctx.canvas.width = icon.width;
-						if(clip_ctx.canvas.height < icon.height) clip_ctx.canvas.height = icon.height;
-						clip_ctx.globalCompositeOperation = "copy";
-						clip_ctx.drawImage(image, -frame_x, -frame_y);
-						path = this.image_data_to_path(clip_ctx.getImageData(0, 0, icon.width, icon.height));
-						icon.frame_paths.set(frame, path);
+				let icon_elem_cb = icon_elem;
+				let cb = (force = false) => {
+					let static_obj = {is_static: true};
+					let frame = icon_state_cb.get_icon(appearance.dir, this.client.time, null, static_obj);
+					if(!static_obj.is_static) {
+						this.dynamic_icons.set(icon_elem_cb, cb);
 					}
-					icon_elem.style.clipPath = `path("M0.2,0.2${path}")`;
+					let frame_x = (frame % icon.sheet_width) * icon.width;
+					let frame_y = ((frame / icon.sheet_width)|0) * icon.height;
+					icon_elem_cb.style.background = `url("${image.src}") ${-frame_x}px ${-frame_y}px`;
+					if(force || icon_elem_cb.style.clipPath) {
+						let path = icon.frame_paths.get(frame);
+						if(!path) {
+							if(clip_ctx.canvas.width < icon.width) clip_ctx.canvas.width = icon.width;
+							if(clip_ctx.canvas.height < icon.height) clip_ctx.canvas.height = icon.height;
+							clip_ctx.globalCompositeOperation = "copy";
+							clip_ctx.drawImage(image, -frame_x, -frame_y);
+							path = this.image_data_to_path(clip_ctx.getImageData(0, 0, icon.width, icon.height));
+							icon.frame_paths.set(frame, path);
+						}
+						icon_elem_cb.style.clipPath = `path("M0.2,0.2${path}")`;
+					}
 				}
+				cb(appearance.mouse_opacity == 1);
 			})();
 		} else {
 			icon_elem = null;
@@ -607,8 +638,8 @@ class ScreenLoc implements ScreenLocLike {
 				let loc1 = ScreenLoc.from_string(to_split[0]);
 				let loc2 = ScreenLoc.from_string(to_split[1]);
 				if(!(loc1 instanceof ScreenLoc) || !(loc2 instanceof ScreenLoc)) return null;
-				loc1.repeat_width = loc2.x-loc1.x;
-				loc1.repeat_height = loc2.y-loc1.y;
+				loc1.repeat_width = loc2.x-loc1.x+1;
+				loc1.repeat_height = loc2.y-loc1.y+1;
 				return loc1;;
 			}
 			let result = new ScreenLoc();
