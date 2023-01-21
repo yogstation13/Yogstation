@@ -111,9 +111,9 @@
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
-		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/sole_survivor) in objectives))
+		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
 			if(SSticker.mode.has_hijackers)
-				var/datum/objective/sole_survivor/survive_objective = new
+				var/datum/objective/hijack/sole_survivor/survive_objective = new
 				survive_objective.owner = owner
 				add_objective(survive_objective)
 			else

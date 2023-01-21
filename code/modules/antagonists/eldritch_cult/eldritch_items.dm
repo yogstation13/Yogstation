@@ -12,7 +12,7 @@
 	if(!IS_HERETIC(user))
 		return
 	if(!target)
-		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
+		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to receive a target."))
 		return
 	var/turf/userturf = get_turf(user)
 	var/turf/targetturf = get_turf(target)
