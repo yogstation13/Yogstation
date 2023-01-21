@@ -178,7 +178,7 @@
 	START_PROCESSING(SSobj, src)
 	var/sound/song_played = sound(selection.song_path)
 	var/list/close = range(10,src)
-	for(var/mob/L in GLOB.mob_list)
+	for(var/mob/L in GLOB.player_list)
 		if(!L || !L.client)
 			continue
 		// it doesn't send at 0 volume so you get 0.001 volume on init
@@ -434,7 +434,7 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/L in GLOB.mob_list)
+	for(var/mob/L in GLOB.player_list)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
