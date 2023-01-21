@@ -176,6 +176,17 @@
 	active = TRUE
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	var/sound/song_played = sound(selection.song_path)
+	var/list/close = range(10,src)
+	for(var/mob/L in GLOB.mob_list)
+		if(!L || !L.client)
+			continue
+		// it doesn't send at 0 volume so you get 0.001 volume on init
+		L.playsound_local(get_turf(L), null, 0.001, channel = CHANNEL_JUKEBOX, S = song_played)
+		if(L in close && M.client.prefs.toggles & SOUND_JUKEBOX)
+			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
+		else
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	stop = world.time + selection.song_length
 
 /obj/machinery/jukebox/disco/activate_music()
@@ -423,7 +434,7 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
+	for(var/mob/L in GLOB.mob_list)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
@@ -436,20 +447,18 @@
 
 /obj/machinery/jukebox/process()
 	if(world.time < stop && active)
-		var/sound/song_played = sound(selection.song_path)
-
 		for(var/mob/M in range(10,src))
 			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 				continue
 			if(!(M in rangers))
 				rangers[M] = TRUE
-				M.playsound_local(get_turf(M), null, volume, channel = CHANNEL_JUKEBOX, S = song_played)
+			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // We want volume updated without having to walk away!!
 		for(var/mob/L in rangers)
 			if(get_dist(src,L) > 10)
 				rangers -= L
 				if(!L || !L.client)
 					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
+				L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	else if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
