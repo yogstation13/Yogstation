@@ -141,6 +141,7 @@ export type FeatureChoicedServerData = {
   choices: string[];
   display_names?: Record<string, string>;
   icons?: Record<string, string>;
+  key_locked?: Record<string, string>;
 };
 
 export type FeatureChoiced = Feature<string, string, FeatureChoicedServerData>;
@@ -185,20 +186,38 @@ export const StandardizedDropdown = (props: {
 export const FeatureDropdownInput = (
   props: FeatureValueProps<string, string, FeatureChoicedServerData> & {
     disabled?: boolean,
-  },
-) => {
+}, context) => {
   const serverData = props.serverData;
   if (!serverData) {
     return null;
   }
+
+  const { data } = useBackend<PreferencesMenuData>(context);
+  const client_ckey = data.ckey
 
   const displayNames = serverData.display_names
     || Object.fromEntries(
       serverData.choices.map(choice => [choice, capitalizeFirstLetter(choice)])
     );
 
+  let choices = sortStrings(serverData.choices)
+  if (serverData.key_locked)
+  {
+    const key_locked = serverData.key_locked
+
+    choices = choices.filter(choice => {
+      const choice_ckey = key_locked[choice]
+      if (choice_ckey)
+      {
+        return choice_ckey == client_ckey
+      }
+
+      return true
+    })
+  }
+
   return (<StandardizedDropdown
-    choices={sortStrings(serverData.choices)}
+    choices={choices}
     disabled={props.disabled}
     displayNames={displayNames}
     onSetValue={props.handleSetValue}

@@ -182,6 +182,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["window"] = current_window
 
 	data["content_unlocked"] = is_donator(user)
+	data["ckey"] = lowertext(user.client.ckey)
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		data += preference_middleware.get_ui_static_data(user)

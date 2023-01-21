@@ -17,6 +17,9 @@
 /// For choiced preferences, this key will be used to set display names in constant data.
 #define CHOICED_PREFERENCE_DISPLAY_NAMES "display_names"
 
+/// For choiced preferences, this key will be used to lock choices to a specific ckey.
+#define CHOICED_PREFERENCE_KEY_LOCKED "key_locked"
+
 /// For main feature preferences, this key refers to a feature considered supplemental.
 /// For instance, hair color being supplemental to hair.
 #define SUPPLEMENTAL_FEATURE_KEY "supplemental_feature"

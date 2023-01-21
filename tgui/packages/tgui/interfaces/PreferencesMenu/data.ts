@@ -149,6 +149,7 @@ export type PreferencesMenuData = {
   };
 
   content_unlocked: BooleanLike,
+  ckey: string,
 
   job_bans?: string[];
   job_days_left?: Record<string, number>;
