@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "WT autocarbine has 20-round magazines again and is bulky"
+  - tweak: "WT bullets no longer have innate AP, AP of the AP bullet reduced slightly"
