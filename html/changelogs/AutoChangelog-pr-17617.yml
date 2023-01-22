@@ -1,0 +1,4 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - bugfix: "moves the icons to the correct folder"
