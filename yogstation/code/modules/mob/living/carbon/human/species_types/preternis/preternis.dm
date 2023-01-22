@@ -294,11 +294,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	return features
 
 /datum/species/preternis/get_species_description()
-	return "TODO: This is preternis description"
+	return ""//"TODO: This is preternis description"
 
 /datum/species/preternis/get_species_lore()
 	return list(
-		"TODO: This is preternis lore"
+		""//"TODO: This is preternis lore"
 	)
 
 /datum/species/preternis/create_pref_unique_perks()

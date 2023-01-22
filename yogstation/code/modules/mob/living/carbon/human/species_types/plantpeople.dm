@@ -288,11 +288,11 @@
 	return pod_name(gender)
 
 /datum/species/pod/get_species_description()
-	return "TODO: This is plant description"
+	return ""//"TODO: This is plant description"
 
 /datum/species/pod/get_species_lore()
 	return list(
-		"TODO: This is plant lore"
+		""//"TODO: This is plant lore"
 	)
 
 /datum/species/pod/create_pref_unique_perks()

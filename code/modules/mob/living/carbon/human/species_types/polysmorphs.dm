@@ -54,11 +54,11 @@
 		C.physiology.armor.wound -= 10
 
 /datum/species/polysmorph/get_species_description()
-	return "TODO: This is polysmorph description"
+	return ""//"TODO: This is polysmorph description"
 
 /datum/species/polysmorph/get_species_lore()
 	return list(
-		"TODO: This is polysmorph lore"
+		""//"TODO: This is polysmorph lore"
 	)
 
 /datum/species/polysmorph/create_pref_unique_perks()
