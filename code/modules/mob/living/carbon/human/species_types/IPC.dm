@@ -97,14 +97,14 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.update_body()
 
 /datum/species/ipc/get_species_description()
-	return "IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
-		IPCs were made by several human corporations after the second generation of cyborg units was created."
+	return /*"IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created."*/
 
 /datum/species/ipc/get_species_lore()
-	return list(
+	return list("TBD",/*
 		"The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
 		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind."
-	)
+	*/)
 
 /datum/species/ipc/create_pref_unique_perks()
 	var/list/to_add = list()

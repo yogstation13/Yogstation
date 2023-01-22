@@ -193,12 +193,13 @@
 	return randname
 
 /datum/species/plasmaman/get_species_description()
-	return "Found on the Icemoon of Freyja, plasmamen consist of colonial \
+	return /*"Found on the Icemoon of Freyja, plasmamen consist of colonial \
 		fungal organisms which together form a sentient being. In human space, \
-		they're usually attached to skeletons to afford a human touch."
+		they're usually attached to skeletons to afford a human touch."*/
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
+		"TBD",/*
 		"A confusing species, plasmamen are truly \"a fungus among us\". \
 		What appears to be a singular being is actually a colony of millions of organisms \
 		surrounding a found (or provided) skeletal structure.",
@@ -214,7 +215,7 @@
 
 		"The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. \
 		Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.",
-	)
+	*/)
 
 /datum/species/plasmaman/create_pref_unique_perks()
 	var/list/to_add = list()

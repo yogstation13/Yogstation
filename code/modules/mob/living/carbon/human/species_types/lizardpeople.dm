@@ -91,13 +91,14 @@
 					stop_wagging_tail(H)
 	
 /datum/species/lizard/get_species_description()
-	return "The militaristic Lizardpeople hail originally from Tizira, but have grown \
+	return /*"The militaristic Lizardpeople hail originally from Tizira, but have grown \
 		throughout their centuries in the stars to possess a large spacefaring \
 		empire: though now they must contend with their younger, more \
-		technologically advanced Human neighbours."
+		technologically advanced Human neighbours."*/
 
 /datum/species/lizard/get_species_lore()
 	return list(
+		"TBD",/*
 		"The face of conspiracy theory was changed forever the day mankind met the lizards.",
 
 		"Hailing from the arid world of Tizira, lizards were travelling the stars back when mankind was first discovering how neat trains could be. \
@@ -113,7 +114,7 @@
 
 		"On their homeworld, lizards celebrate their 16th birthday by enrolling in a mandatory 5 year military tour of duty. \
 		Roles range from combat to civil service and everything in between. As the old slogan goes: \"Your place will be found!\"",
-	)
+	*/)
 
 // Override for the default temperature perks, so we can give our specific "cold blooded" perk.
 /datum/species/lizard/create_pref_temperature_perks()

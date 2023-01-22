@@ -36,11 +36,11 @@
 	human.update_hair()
 
 /datum/species/human/get_species_description()
-	return "Humans are the dominant species in the known galaxy. \
-		Their kind extend from old Earth to the edges of known space."
+	return /*"Humans are the dominant species in the known galaxy. \
+		Their kind extend from old Earth to the edges of known space."*/
 
 /datum/species/human/get_species_lore()
-	return list(
+	return list("TBD",/*
 		"These primate-descended creatures, originating from the mostly harmless Earth, \
 		have long-since outgrown their home and semi-benign designation. \
 		The space age has taken humans out of their solar system and into the galaxy-at-large.",
@@ -57,7 +57,7 @@
 		the hypercorporation. Acting outside of TerraGov's influence, literally and figuratively, \
 		hypercorporations buy the senate votes they need and establish territory far past the Earth Government's reach. \
 		In hypercorporation territory company policy is law, giving new meaning to \"employee termination\".",
-	)
+	*/)
 
 /datum/species/human/create_pref_unique_perks()
 	var/list/to_add = list()

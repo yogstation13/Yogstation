@@ -74,11 +74,11 @@
 			return TRUE
 
 /datum/species/moth/get_species_description()
-	return "Hailing from a planet that was lost long ago, the moths travel \
-		the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland."
+	return /*"Hailing from a planet that was lost long ago, the moths travel \
+		the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland."*/
 
 /datum/species/moth/get_species_lore()
-	return list(
+	return list(/*
 		"Their homeworld lost to the ages, the moths live aboard the Grand Nomad Fleet. \
 		Made up of what could be found, bartered, repaired, or stolen the armada is a colossal patchwork \
 		built on a history of politely flagging travelers down and taking their things. Occasionally a moth \
@@ -91,7 +91,7 @@
 
 		"Surprisingly, living together in a giant fleet hasn't flattened variance in dialect and culture. \
 		These differences are welcomed and encouraged within the fleet for the variety that they bring.",
-	)
+	*/)
 
 /datum/species/moth/create_pref_unique_perks()
 	var/list/to_add = list()
