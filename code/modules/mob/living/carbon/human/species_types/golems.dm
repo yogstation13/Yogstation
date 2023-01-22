@@ -1585,7 +1585,7 @@
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "recycle",
 		SPECIES_PERK_NAME = "Reformation",
-		SPECIES_PERK_DESC = "A boon quite similar to Ethereals, Mummies collapse into \
+		SPECIES_PERK_DESC = "Mummies collapse into \
 			a pile of bandages after they die. If left alone, they will reform back \
 			into themselves. The bandages themselves are very vulnerable to fire.",
 	))

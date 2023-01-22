@@ -72,12 +72,6 @@
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Radial Eyesight",
-			SPECIES_PERK_DESC = "Flypeople can be flashed from all angles.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "briefcase-medical",
 			SPECIES_PERK_NAME = "Weird Organs",
 			SPECIES_PERK_DESC = "Flypeople take specialized medical knowledge to be \
