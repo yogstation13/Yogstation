@@ -58,7 +58,8 @@
 		"https://www.youtube.com/watch?v=rkas-NHQnsI",						// Clint Eastwood - Magnum Force Theme 
 		"https://www.youtube.com/watch?v=e3t_dbLaw-M",						// DM Dokuro - Treasures Within The Abomination
 		"https://www.youtube.com/watch?v=2O4C8J4bcXw",						// Blinch - Loop Hero OST - Loop Blues
-		"https://www.youtube.com/watch?v=4q-La8uR0HU"						// Blinch - Loop Hero OST - Dark Matter Moon
+		"https://www.youtube.com/watch?v=4q-La8uR0HU",						// Blinch - Loop Hero OST - Dark Matter Moon
+		"https://www.youtube.com/watch?v=pP6nEgo9UTs"						// Banda Municipal de Manizales - El Pilon
 		)						
 	selected_lobby_music = pick(songs)
 
