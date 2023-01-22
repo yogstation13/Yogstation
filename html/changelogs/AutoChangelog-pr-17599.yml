@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Jukebox audio is now synced across all clients"
-  - tweak: "Jukebox volume will now be updated on process instead of having to restart the audio by walking away and re-entering"
