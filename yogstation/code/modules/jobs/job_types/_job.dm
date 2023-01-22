@@ -28,7 +28,7 @@
 		var/datum/donator_gear/donor_item_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_item)]
 		if (donor_item_datum)
 			var/donor_item_type = donor_item_datum.unlock_path
-			if (lowertext(C.ckey) != lowertext(donor_item_datum.ckey))
+			if (!!donor_item_datum.ckey && (lowertext(C.ckey) != lowertext(donor_item_datum.ckey)))
 				to_chat(C, span_warning("Your selected donor item is restricted to [donor_item_datum.ckey]."))
 			else if (donor_item_type)
 				var/obj/item = new donor_item_type()
@@ -36,10 +36,10 @@
 					item.forceMove(BP)
 		
 		var/obj/item/toy/plush/plush = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
-		if (!!plush.donor_ckey && (lowertext(C.ckey) != lowertext(plush.donor_ckey)))
+		if (plush.donor_ckey && (lowertext(C.ckey) != lowertext(plush.donor_ckey)))
 			to_chat(C, span_warning("Your selected plush is restricted to [plush.donor_ckey]."))
 		else
-			var/obj/item = new plush
+			var/obj/item = new plush.type()
 			if(!H.put_in_hands(item))
 				item.forceMove(BP)
 
