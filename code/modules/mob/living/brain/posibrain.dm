@@ -140,6 +140,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.stat = CONSCIOUS
 	brainmob.remove_from_dead_mob_list()
 	brainmob.add_to_alive_mob_list()
+	ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 
 	visible_message(new_mob_message)
 	check_success()
