@@ -1,0 +1,6 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a bug where every drawn graffiti would show up as a letter instead of rune, graffiti, number, symbol, etc"
+  - tweak: "Cult runes are no longer obvious about being made of blood"
+  - tweak: "Gang sprays are no longer named gang graffiti"
