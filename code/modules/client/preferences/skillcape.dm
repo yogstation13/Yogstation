@@ -5,7 +5,7 @@
 	can_randomize = FALSE
 
 /datum/preference/choiced/skillcape/init_possible_values()
-	return GLOB.skillcapes
+	return list("None") + GLOB.skillcapes
 
 /datum/preference/choiced/skillcape/compile_constant_data()
 	var/list/data = ..()
