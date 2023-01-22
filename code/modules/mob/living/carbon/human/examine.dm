@@ -116,7 +116,7 @@
 	if("wings" in dna.species.mutant_bodyparts)
 		var/badwings = ""
 		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
-			badwings = "Weaponised "
+			badwings = "Weaponized "
 		. += "[t_He] [t_has] also have a pair of [span_warning(badwings)][(dna.features["wings"])] wings on their back"
 
 	var/appears_dead = 0
