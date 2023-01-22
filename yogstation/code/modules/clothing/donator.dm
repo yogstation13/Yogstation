@@ -184,4 +184,3 @@
 	item_state = "axolotl"
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
-	donor_ckey = "slicerv"

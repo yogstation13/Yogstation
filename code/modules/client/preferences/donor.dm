@@ -25,7 +25,7 @@
 	var/list/key_locked = list()
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot != SLOT_HEAD)
+		if(S.slot != SLOT_HEAD && !S.plush)
 			continue
 
 		if (!S.ckey)
@@ -52,7 +52,7 @@
 	values += "None"
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
+		if(S.slot == SLOT_HEAD && !S.plush)
 			continue
 
 		values += S.name
@@ -90,7 +90,10 @@
 	var/list/values = list()
 
 	values += "None"
-	values += GLOB.donator_gear.donor_plush
+
+	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
+		if(S.plush)
+			values += S.name
 
 	return values
 
@@ -99,15 +102,22 @@
 
 	var/list/key_locked = list()
 
-	for(var/obj/item/toy/plush/P as anything in GLOB.donator_gear.donor_plush)
-		if (!P.donor_ckey)
+	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
+		if(S.slot == SLOT_HEAD)
 			continue
 
-		key_locked[P.name] = lowertext(P.donor_ckey)
+		if(!S.plush)
+			continue
+
+		if (!S.ckey)
+			continue
+
+		key_locked[S.name] = lowertext(S.ckey)
 
 	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
 
 	return data
+
 
 
 /datum/preference/toggle/borg_hat

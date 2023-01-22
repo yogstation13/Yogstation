@@ -42,6 +42,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 	var/unlock_path = null
 	/// Is this a hat? For categorisation in the UI.
 	var/slot = null
+	var/plush = FALSE
 
 /*
 Helper proc for lazy coders. Autogenerates donator gear datums based off of a list of types that you give it. May not work perfectly every time, but it sure beats typing things out.
@@ -75,11 +76,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "green cosmic bedsheet"
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
-
-/datum/donator_gear/azeelium
-	name = "Utatul-Azeel plushie (Anvilman6)"
-	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
 
 /datum/donator_gear/mqiib
 	name = "Singularity Necklace (Mqiib)"
@@ -131,11 +127,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Hunter Stash (hisakaki)"
 	ckey = "hisakaki"
 	unlock_path = /obj/item/storage/box/hisa
-
-/datum/donator_gear/slicerv
-	name = "axolotl plush (slicerv)"
-	ckey = "slicerv"
-	unlock_path = /obj/item/toy/plush/axolotlplushie
 
 /datum/donator_gear/dukeofsoleil
 	name = "Druid hat"
@@ -569,15 +560,138 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/revolver
 	name = "cap gun"
 	unlock_path = /obj/item/toy/gun
-/datum/donator_gear/plushvar
-	name = "Ratvar plushie"
-	unlock_path = /obj/item/toy/plush/plushvar
-/datum/donator_gear/narplush
-	name = "Nar'Sie plushie"
-	unlock_path = /obj/item/toy/plush/narplush
-/datum/donator_gear/blahajplush
-	name = "Shark plushie"
-	unlock_path = /obj/item/toy/plush/blahaj
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
+
+//plushies - kill me, for fuck sake
+/datum/donator_gear/plushvar
+	name = "Ratvar"
+	unlock_path = /obj/item/toy/plush/plushvar
+	plush = TRUE
+/datum/donator_gear/narplush
+	name = "Nar'Sie"
+	unlock_path = /obj/item/toy/plush/narplush
+	plush = TRUE
+
+/datum/donator_gear/blahajplush
+	name = "Shark"
+	unlock_path = /obj/item/toy/plush/blahaj
+	plush = TRUE
+
+/datum/donator_gear/slicerv
+	name = "axolotl (slicerv)"
+	ckey = "slicerv"
+	unlock_path = /obj/item/toy/plush/axolotlplushie
+	plush = TRUE
+
+/datum/donator_gear/azeelium
+	name = "Utatul-Azeel (Anvilman6)"
+	ckey = "Anvilman6"
+	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
+	plush = TRUE
+
+/datum/donator_gear/carpplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/carpplushie
+	name = "Space Carp"
+
+/datum/donator_gear/bubbleplush
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/bubbleplush
+	name = "Bubblegum"
+
+/datum/donator_gear/lizardplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizardplushie
+	name = "Lizard"
+
+/datum/donator_gear/snakeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/snakeplushie
+	name = "Snake"
+
+/datum/donator_gear/nukeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/nukeplushie
+	name = "Operative"
+
+/datum/donator_gear/slimeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/slimeplushie
+	name = "Slime"
+
+/datum/donator_gear/awakenedplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/awakenedplushie
+	name = "Awakened"
+
+/datum/donator_gear/beeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/beeplushie
+	name = "Bee"
+
+/datum/donator_gear/mothplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/mothplushie
+	name = "Moth"
+
+/datum/donator_gear/pkplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/pkplushie
+	name = "Peacekeeper"
+
+/datum/donator_gear/foxplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/foxplushie
+	name = "Fox"
+
+/datum/donator_gear/lizard
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizard
+	name = "Coder"
+
+/datum/donator_gear/azeel
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizard/azeel
+	name = "Medical Lizard"
+
+/datum/donator_gear/blahaj
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/blahaj
+	name = "Shark"
+
+/datum/donator_gear/cdragon
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/cdragon
+	name = "Crystal Dragon"
+
+/datum/donator_gear/goatplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/goatplushie
+	name = "Strange Goat"
+
+/datum/donator_gear/teddybear
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/teddybear
+	name = "Teddy Bear"
+
+/datum/donator_gear/stuffedmonkey
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/stuffedmonkey
+	name = "Stuffed Monkey"
+
+/datum/donator_gear/inorixplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/inorixplushie
+	name = "Inorix"
+
+/datum/donator_gear/flowerbunch
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/flowerbunch
+	name = "Bunch of Flowers"
+
+/datum/donator_gear/realgoat
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/realgoat
+	name = "Goat"

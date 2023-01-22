@@ -34,14 +34,15 @@
 				var/obj/item = new donor_item_type()
 				if(!H.put_in_hands(item))
 					item.forceMove(BP)
-		
-		var/obj/item/toy/plush/plush = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
-		if (plush.donor_ckey && (lowertext(C.ckey) != lowertext(plush.donor_ckey)))
-			to_chat(C, span_warning("Your selected plush is restricted to [plush.donor_ckey]."))
-		else
-			var/obj/item = new plush.type()
-			if(!H.put_in_hands(item))
-				item.forceMove(BP)
+		var/datum/donator_gear/donor_plush_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
+		if (donor_plush_datum)
+			var/donor_plush_type = donor_plush_datum.unlock_path
+			if (!!donor_plush_datum.ckey && (lowertext(C.ckey) != lowertext(donor_plush_datum.ckey)))
+				to_chat(C, span_warning("Your selected donor item is restricted to [donor_plush_datum.ckey]."))
+			else if (donor_plush_type)
+				var/obj/item = new donor_plush_type()
+				if(!H.put_in_hands(item))
+					item.forceMove(BP)
 
 	switch(C.prefs.read_preference(/datum/preference/choiced/donor_pda))
 		if(PDA_COLOR_TRANSPARENT)
