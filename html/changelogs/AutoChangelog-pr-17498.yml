@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixes negative bombs giving near-infinite research and causing runtime errors"
