@@ -1,9 +1,7 @@
-import { toArray } from 'common/collections';
 import { useBackend, useSharedState } from '../backend';
 import { AnimatedNumber, Box, Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
-import { logger } from '../logging';
 
 export const Cargo = (props, context) => {
   return (
