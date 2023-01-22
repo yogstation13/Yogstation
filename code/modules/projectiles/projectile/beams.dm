@@ -37,6 +37,9 @@
 	. = ..()
 	transform *= 2
 
+/obj/item/projectile/beam/laser/buckshot
+	damage = 10
+
 /obj/item/projectile/beam/laser/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
