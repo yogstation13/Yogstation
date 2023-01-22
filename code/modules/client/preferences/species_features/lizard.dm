@@ -27,6 +27,7 @@
 
 	return values
 
+
 /datum/preference/choiced/lizard_body_markings
 	savefile_key = "feature_lizard_body_markings"
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -65,10 +66,11 @@
 /datum/preference/choiced/lizard_body_markings/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["body_markings"] = value
 
+
 /datum/preference/choiced/lizard_frills
+	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_lizard_frills"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Frills"
 	should_generate_icons = TRUE
 
@@ -78,10 +80,11 @@
 /datum/preference/choiced/lizard_frills/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["frills"] = value
 
+
 /datum/preference/choiced/lizard_horns
+	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_lizard_horns"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Horns"
 	should_generate_icons = TRUE
 
@@ -91,10 +94,11 @@
 /datum/preference/choiced/lizard_horns/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["horns"] = value
 
+
 /datum/preference/choiced/lizard_legs
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_lizard_legs"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "legs"
 
 /datum/preference/choiced/lizard_legs/init_possible_values()
@@ -103,23 +107,55 @@
 /datum/preference/choiced/lizard_legs/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["legs"] = value
 
+
 /datum/preference/choiced/lizard_snout
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_lizard_snout"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
-	main_feature_name = "Snout"
-	should_generate_icons = TRUE
+	relevant_mutant_bodypart = "snout"
 
 /datum/preference/choiced/lizard_snout/init_possible_values()
-	return generate_lizard_side_shots(GLOB.snouts_list, "snout", include_snout = FALSE)
+	return assoc_to_keys(GLOB.snouts_list)
 
 /datum/preference/choiced/lizard_snout/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["snout"] = value
 
+
+/datum/preference/choiced/lizard_horns
+	category = PREFERENCE_CATEGORY_FEATURES
+	savefile_key = "feature_lizard_horns"
+	savefile_identifier = PREFERENCE_CHARACTER
+	relevant_mutant_bodypart = "horns"
+	main_feature_name = "Horns"
+	should_generate_icons = TRUE
+	
+
+/datum/preference/choiced/lizard_horns/init_possible_values()
+	return generate_lizard_side_shots(GLOB.horns_list, "horns", include_snout = FALSE)
+
+/datum/preference/choiced/lizard_horns/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features["horns"] = value
+
+
+/datum/preference/choiced/lizard_frills
+	category = PREFERENCE_CATEGORY_FEATURES
+	savefile_key = "feature_lizard_frills"
+	savefile_identifier = PREFERENCE_CHARACTER
+	relevant_mutant_bodypart = "frills"
+	main_feature_name = "Frills"
+	should_generate_icons = TRUE
+	
+/datum/preference/choiced/lizard_frills/init_possible_values()
+	return generate_lizard_side_shots(GLOB.frills_list, "frills", include_snout = FALSE)
+
+/datum/preference/choiced/lizard_frills/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features["frills"] = value
+
+
 /datum/preference/choiced/lizard_spines
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_lizard_spines"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "spines"
 
 /datum/preference/choiced/lizard_spines/init_possible_values()
@@ -128,10 +164,11 @@
 /datum/preference/choiced/lizard_spines/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["spines"] = value
 
+
 /datum/preference/choiced/lizard_tail
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_lizard_tail"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "tail_lizard"
 
 /datum/preference/choiced/lizard_tail/init_possible_values()

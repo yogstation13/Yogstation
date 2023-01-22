@@ -30,6 +30,11 @@ export const feature_lizard_legs: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
+export const feature_lizard_snout: FeatureChoiced = {
+  name: "Snout",
+  component: FeatureDropdownInput,
+};
+
 export const feature_lizard_spines: FeatureChoiced = {
   name: "Spines",
   component: FeatureDropdownInput,
@@ -90,3 +95,7 @@ export const feature_plasmaman_helmet: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
+export const feature_ethereal_mark: FeatureChoiced = {
+  name: "Mark",
+  component: FeatureDropdownInput,
+};
