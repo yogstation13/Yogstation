@@ -24,7 +24,7 @@
 
 /// Backpack preference
 /datum/preference/choiced/backpack
-	savefile_key = "backpack"
+	savefile_key = "backbag"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Backpack"
 	category = PREFERENCE_CATEGORY_CLOTHING
