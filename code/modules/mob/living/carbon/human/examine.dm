@@ -114,10 +114,10 @@
 			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
 	if("wings" in dna.species.mutant_bodyparts)
-		var/hacked = ""
+		var/badwings = ""
 		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
-			hacked = ionnum() + ionnum() + " "
-		. += "[t_He] [t_has] also have a pair of [span_warning(hacked)][(dna.features["wings"])] wings on their back"
+			badwings = "Blood Soaked"
+		. += "[t_He] [t_has] also have a pair of [span_warning(badwings)][(dna.features["wings"])] wings on their back"
 
 	var/appears_dead = 0
 	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
