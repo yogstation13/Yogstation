@@ -513,9 +513,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		// Dont apply it if we can't customize it
+		// Dont apply if it's unique and we can't customize it
 		// This fixes pod hair color overwriting human hair color
-		if (!preference.can_apply(src))
+		if (preference.unique && !preference.can_apply(src))
 			continue
 
 		preference.apply_to_human(character, read_preference(preference.type))

@@ -38,6 +38,7 @@
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_hair"
+	unique = TRUE
 
 /datum/preference/color_legacy/pod_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
@@ -56,6 +57,7 @@
 	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_flower"
+	unique = TRUE
 
 /datum/preference/color_legacy/pod_flower_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value

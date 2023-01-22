@@ -28,6 +28,7 @@
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = EYECOLOR
+	unique = TRUE
 
 /datum/preference/color_legacy/eye_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.eye_color = value
@@ -62,6 +63,7 @@
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = HAIR
+	unique = TRUE
 
 /datum/preference/color_legacy/hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
@@ -87,6 +89,7 @@
 	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = FACEHAIR
+	unique = TRUE
 
 /datum/preference/color_legacy/facial_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value

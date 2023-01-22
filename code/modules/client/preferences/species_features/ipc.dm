@@ -17,6 +17,7 @@
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_screen"
+	unique = TRUE
 
 /datum/preference/color_legacy/ipc_screen_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.eye_color = value
@@ -47,6 +48,7 @@
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_antenna"
+	unique = TRUE
 
 /datum/preference/color_legacy/ipc_antenna_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
