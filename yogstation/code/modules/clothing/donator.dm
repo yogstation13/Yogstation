@@ -196,10 +196,3 @@
 	item_state = "sheetpride"
 	slot_flags = ITEM_SLOT_NECK
 	layer = MOB_LAYER
-	throwforce = 0
-	throw_speed = 1
-	throw_range = 2
-	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = FLAMMABLE
-	dying_key = DYE_REGISTRY_BEDSHEET
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // To prevent our lessers from doing very cringe things
