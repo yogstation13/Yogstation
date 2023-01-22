@@ -187,7 +187,7 @@ export const QuirksPage = (props, context) => {
           const { data } = useBackend<PreferencesMenuData>(context);
           if (quirk.mood && !data.mood_enabled)
           {
-            return "This quirk requires mood to be enabled in your game options."
+            return "This quirk requires mood to be enabled in your game options.";
           }
 
           const selectedQuirkNames = selectedQuirks.map(quirkKey => {

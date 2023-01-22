@@ -193,27 +193,27 @@ export const FeatureDropdownInput = (
   }
 
   const { data } = useBackend<PreferencesMenuData>(context);
-  const client_ckey = data.ckey
+  const client_ckey = data.ckey;
 
   const displayNames = serverData.display_names
     || Object.fromEntries(
       serverData.choices.map(choice => [choice, capitalizeFirstLetter(choice)])
     );
 
-  let choices = sortStrings(serverData.choices)
+  let choices = sortStrings(serverData.choices);
   if (serverData.key_locked)
   {
-    const key_locked = serverData.key_locked
+    const key_locked = serverData.key_locked;
 
     choices = choices.filter(choice => {
-      const choice_ckey = key_locked[choice]
+      const choice_ckey = key_locked[choice];
       if (choice_ckey)
       {
-        return choice_ckey == client_ckey
+        return choice_ckey === client_ckey;
       }
 
-      return true
-    })
+      return true;
+    });
   }
 
   return (<StandardizedDropdown
