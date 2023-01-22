@@ -3,6 +3,7 @@
 	savefile_key = "feature_moth_wings"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Moth wings"
+	relevant_mutant_bodypart = "moth_wings"
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/moth_wings/init_possible_values()

@@ -29,12 +29,12 @@
 
 
 /datum/preference/choiced/lizard_body_markings
+	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_lizard_body_markings"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Body markings"
-	should_generate_icons = TRUE
 	relevant_mutant_bodypart = "body_markings"
+	should_generate_icons = TRUE
 
 /datum/preference/choiced/lizard_body_markings/init_possible_values()
 	var/list/values = list()
@@ -72,6 +72,7 @@
 	savefile_key = "feature_lizard_frills"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Frills"
+	relevant_mutant_bodypart = "frills"
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/lizard_frills/init_possible_values()
@@ -86,6 +87,7 @@
 	savefile_key = "feature_lizard_horns"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Horns"
+	relevant_mutant_bodypart = "horns"
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/lizard_horns/init_possible_values()
@@ -125,8 +127,8 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_lizard_horns"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_mutant_bodypart = "horns"
 	main_feature_name = "Horns"
+	relevant_mutant_bodypart = "horns"
 	should_generate_icons = TRUE
 	
 
@@ -141,8 +143,8 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	savefile_key = "feature_lizard_frills"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_mutant_bodypart = "frills"
 	main_feature_name = "Frills"
+	relevant_mutant_bodypart = "frills"
 	should_generate_icons = TRUE
 	
 /datum/preference/choiced/lizard_frills/init_possible_values()
