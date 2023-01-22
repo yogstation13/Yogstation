@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	38
+#define SAVEFILE_VERSION_MAX	39
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -51,6 +51,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_ALT
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
+	if (current_version < 39)
+		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.set_macros()
+		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [hotkeys ? "Hotkey" : "Classic"] mode</span>")
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -153,6 +157,43 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_VOX
 		
 
+/// checks through keybindings for outdated unbound keys and updates them
+/datum/preferences/proc/check_keybindings()
+	if(!parent)
+		return
+	var/list/user_binds = list()
+	for (var/key in key_bindings)
+		for(var/kb_name in key_bindings[key])
+			user_binds[kb_name] += list(key)
+	var/list/notadded = list()
+	for (var/name in GLOB.keybindings_by_name)
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+		if(length(user_binds[kb.name]))
+			continue // key is unbound and or bound to something
+		var/addedbind = FALSE
+		if(hotkeys)
+			for(var/hotkeytobind in kb.hotkey_keys)
+				if(!length(key_bindings[hotkeytobind]) || hotkeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					LAZYADD(key_bindings[hotkeytobind], kb.name)
+					addedbind = TRUE
+		else
+			for(var/classickeytobind in kb.classic_keys)
+				if(!length(key_bindings[classickeytobind]) || classickeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
+					LAZYADD(key_bindings[classickeytobind], kb.name)
+					addedbind = TRUE
+		if(!addedbind)
+			notadded += kb
+	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
+	if(length(notadded))
+		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
+
+/datum/preferences/proc/announce_conflict(list/notadded)
+	to_chat(parent, "<span class='warningplain'><b><u>Keybinding Conflict</u></b></span>\n\
+					<span class='warningplain'><b>There are new <a href='?_src_=prefs;preference=tab;tab=4'>keybindings</a> that default to keys you've already bound. The new ones will be unbound.</b></span>")
+	for(var/item in notadded)
+		var/datum/keybinding/conflicted = item
+		to_chat(parent, span_danger("[conflicted.category]: [conflicted.full_name] needs updating"))
+
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
 		return
@@ -224,8 +265,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
-	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
-	READ_FILE(S["balloon_alerts"] , disable_balloon_alerts)
+	READ_FILE(S["alternative_announcers"], disable_alternative_announcers)
+	READ_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	READ_FILE(S["key_bindings"], key_bindings)
+	
 	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
@@ -239,6 +282,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
+	check_keybindings()
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -287,6 +331,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
 	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
 	disable_balloon_alerts = sanitize_integer(disable_balloon_alerts, FALSE, TRUE, initial(disable_balloon_alerts))
+	key_bindings 	= sanitize_islist(key_bindings, list())
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
@@ -305,8 +350,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
-
-	load_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 
@@ -371,6 +414,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["bar_choice"], bar_choice)
 	WRITE_FILE(S["alternative_announcers"], disable_alternative_announcers)
 	WRITE_FILE(S["balloon_alerts"], disable_balloon_alerts)
+	WRITE_FILE(S["key_bindings"], key_bindings)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -384,8 +428,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
-
-	save_keybindings(S) // yogs - Custom keybindings
 
 	return TRUE
 

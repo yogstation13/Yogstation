@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
 	desc = "A miniaturized version of a normal syringe gun. It is very quiet when fired and can fit into any \
-			space a small item can, and it features a modified reciever capable of chambering piercing syringes."
+			space a small item can."
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
@@ -668,14 +668,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Miniature Energy Crossbow"
 	desc = "A short bow mounted across a tiller in miniature. \
 	Small enough to fit into a pocket or slip into a bag unnoticed. \
-	It will synthesize and fire bolts tipped with a debilitating \
-	toxin that will damage and disorient targets, causing them to \
-	slur as if inebriated. It can produce an infinite number \
+	It will synthesize and fire bolts tipped with some debilitating \
+	toxins that will irradiate and tire, causing them to \
+	be silenced. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 10
-	surplus = 50
-	limited_stock = 1
+	cost = 8
+	surplus = 30
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/origami_kit
@@ -1725,7 +1724,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This book doesn't dissaper after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
 	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -2408,10 +2407,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/chemical_gun
-	name = "Reagent Dartgun"
-	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 100u of reagents."
-	item = /obj/item/gun/chem
-	cost = 12
+	name = "Rapid Syringe Gun"
+	desc = "A modified syringe gun with a rotating drum, capable of holding and quickly firing six syringes."
+	item = /obj/item/gun/syringe/rapidsyringe
+	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
@@ -2808,6 +2807,94 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "4.6x30mm Rubber Shot Magazine"
 	desc = "An additional 22-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtr
+	cost = 1
+
+/datum/uplink_item/nt/mech
+	category = "Exosuits"
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/mech/marauder
+	name = "Marauder exosuit"
+	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting three pieces of equipment."
+	item = /obj/mecha/combat/marauder
+	cost = 12
+
+/datum/uplink_item/nt/mech/seraph
+	name = "Seraph exosuit"
+	desc = "An ultra-heavy exosuit designed for destroying armies. Faster, tougher, and stronger than it's Marauder cousin."
+	item = /obj/mecha/combat/marauder/seraph/unloaded
+	cost = 30
+
+/datum/uplink_item/nt/mech/laser
+	name = "CH-PS Laser"
+	desc = "A mounted laser cannon. Fires standard lasers."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+	cost = 2
+
+/datum/uplink_item/nt/mech/hades
+	name = "FNX-99 Carbine"
+	desc = "A mounted incendiary cannon. Fires bullets that do little damage, but light targets on fire."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
+	cost = 4
+
+/datum/uplink_item/nt/mech/scattershot
+	name = "LBX AC 10"
+	desc = "A mounted shotgun. Fires a larger variant of buckshot, making it devastating at close range."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	cost = 4
+
+/datum/uplink_item/nt/mech/lmg
+	name = "Ultra AC 2"
+	desc = "A mounted machine gun, fires in three round bursts."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
+	cost = 4
+
+/datum/uplink_item/nt/mech/missile_launcher
+	name = "SRM-8"
+	desc = "A mounted missile rack."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+	cost = 4
+
+/datum/uplink_item/nt/mech/pulse
+	name = "eZ-13"
+	desc = "A mounted heavy pulse cannon capable of firing heavy pulses, which can destroy multiple walls at once as well as decimating soft targets."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
+	cost = 10
+
+/datum/uplink_item/nt/mech/droid
+	name = "Repair droid"
+	desc = "A repair droid that will patch up most damage to a mech. Consumes a lot of power in the process."
+	item = /obj/item/mecha_parts/mecha_equipment/repair_droid
+	cost = 2
+
+/datum/uplink_item/nt/mech/tesla
+	name = "Tesla relay"
+	desc = "A remote, passive recharger for mechs. Very, very slow."
+	item = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	cost = 1
+
+/datum/uplink_item/nt/mech/hadesammo
+	name = "FNX-99 Ammunition"
+	desc = "An ammo box for the FNX-99 carbine."
+	item = /obj/item/mecha_ammo/incendiary
+	cost = 1
+
+/datum/uplink_item/nt/mech/scattershotammo
+	name = "LBX AC 10 Ammunition"
+	desc = "An ammo box for the LBX AC 10."
+	item = /obj/item/mecha_ammo/scattershot
+	cost = 1
+
+/datum/uplink_item/nt/mech/ultrammo
+	name = "Ultra AC 2 Ammunition"
+	desc = "An ammo box for the Ultra AC 2"
+	item = /obj/item/mecha_ammo/lmg
+	cost = 1
+
+/datum/uplink_item/nt/mech/missiles
+	name = "SRM-8 Missiles"
+	desc = "Additional missiles for the SRM-8 missile launcher."
+	item = /obj/item/mecha_ammo/missiles_he
 	cost = 1
 
 /datum/uplink_item/nt/cqc

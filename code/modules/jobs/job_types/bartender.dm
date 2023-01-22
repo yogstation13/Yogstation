@@ -1,6 +1,8 @@
 /datum/job/bartender
 	title = "Bartender"
+	description = "Serve booze, mix drinks, keep the crew drunk."
 	flag = BARTENDER
+	orbit_icon = "cocktail"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

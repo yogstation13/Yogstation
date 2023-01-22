@@ -340,7 +340,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "Happy to light your way."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "orb"
+	light_system = MOVABLE_LIGHT
 	light_range = 7
+	light_flags = LIGHT_ATTACHED
 	layer = ABOVE_ALL_MOB_LAYER
 	var/sight_flags = SEE_MOBS
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -666,13 +668,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -1189,7 +1191,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon = 'icons/obj/guns/magic.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	force = 12
 	damtype = BURN
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hitsound = 'sound/weapons/sear.ogg'

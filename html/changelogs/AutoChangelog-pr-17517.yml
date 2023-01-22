@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - tweak: "Bluespace locker no longer has infinite power, it's powered by an APC now and requires an external power source."

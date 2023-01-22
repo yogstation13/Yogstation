@@ -77,5 +77,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 			continue
 		if(istype(M, /obj/machinery/light))
 			continue
+		if(istype(M, /obj/machinery/power))
+			continue
 		M.forceMove(find_safe_turf())
 	bluespaceify_random_locker()

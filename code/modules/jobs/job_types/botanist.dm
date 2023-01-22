@@ -1,6 +1,8 @@
 /datum/job/hydro
 	title = "Botanist"
+	description = "Grow plants for the cook, for medicine, and for recreation."
 	flag = BOTANIST
+	orbit_icon = "seedling"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

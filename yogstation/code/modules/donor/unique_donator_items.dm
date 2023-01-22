@@ -191,6 +191,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/bedsheets/pridebedsheet/cark
 
 	///Generic donator hats, ckey agnostic.
+/datum/donator_gear/dukeofsoleil
+	name = "Druid hat"
+	ckey = "dukeofsoleil"
+	unlock_path = /obj/item/clothing/head/Floralwizhat
+
 /datum/donator_gear/beanie
 	name = "Beanie"
 	unlock_path = /obj/item/clothing/head/yogs/beanie

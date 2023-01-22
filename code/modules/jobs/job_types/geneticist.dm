@@ -1,6 +1,8 @@
 /datum/job/geneticist
 	title = "Geneticist"
+	description = "Alter genomes, turn monkeys into humans (and vice-versa), and make DNA backups."
 	flag = GENETICIST
+	orbit_icon = "dna"
 	department_head = list("Chief Medical Officer", "Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -10,7 +12,7 @@
 	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
-	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer")
+	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer", "Mutation Specialist")
 
 	outfit = /datum/outfit/job/geneticist
 

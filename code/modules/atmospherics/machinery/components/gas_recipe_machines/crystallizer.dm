@@ -21,6 +21,8 @@
 	var/datum/gas_mixture/internal = new
 	///Var that controls how much gas gets injected in moles/S
 	var/gas_input = 0
+	///Maximum allowed gas input
+	var/max_gas_input = 250
 	///Saves the progress during the processing of the items
 	var/progress_bar = 0
 	///Stores the amount of lost quality
@@ -314,6 +316,7 @@
 	data["internal_temperature"] = temperature
 	data["progress_bar"] = progress_bar
 	data["gas_input"] = gas_input
+	data["max_gas_input"] = max_gas_input
 	return data
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_act(action, params)
@@ -342,7 +345,8 @@
 			. = TRUE
 		if("gas_input")
 			var/_gas_input = params["gas_input"]
-			gas_input = clamp(_gas_input, 0, 250)
+			gas_input = clamp(_gas_input, 0, max_gas_input)
+			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
 #undef MIN_PROGRESS_AMOUNT

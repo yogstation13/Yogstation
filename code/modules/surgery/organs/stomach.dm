@@ -169,7 +169,14 @@
 
 /obj/item/organ/stomach/ethereal/on_life()
 	..()
-	adjust_charge(-ETHEREAL_CHARGE_FACTOR)
+	var/chargemod = 1
+	if(HAS_TRAIT(owner, TRAIT_EAT_LESS))
+		chargemod *= 0.75 //power consumption rate reduced by about 25%
+	if(HAS_TRAIT(owner, TRAIT_EAT_MORE))
+		chargemod *= 3 //hunger rate tripled
+	if(HAS_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH))
+		crystal_charge = min(crystal_charge, ETHEREAL_CHARGE_ALMOSTFULL) //capped, can never be truly full
+	adjust_charge(-(ETHEREAL_CHARGE_FACTOR * chargemod))
 
 /obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()

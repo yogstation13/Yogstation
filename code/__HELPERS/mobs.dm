@@ -162,6 +162,20 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_pod_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pod_name(gender))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_preternis_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(preternis_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())

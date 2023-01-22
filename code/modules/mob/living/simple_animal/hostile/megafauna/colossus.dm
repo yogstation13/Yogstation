@@ -234,6 +234,7 @@ Difficulty: Very Hard
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -634,7 +635,7 @@ Difficulty: Very Hard
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+		var/be_helper = tgui_alert(usr,"Become a Lightgeist? (Warning, You can no longer be revived!)",,list("Yes","No"))
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key

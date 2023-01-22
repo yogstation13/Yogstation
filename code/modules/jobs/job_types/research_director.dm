@@ -1,6 +1,10 @@
 /datum/job/rd
 	title = "Research Director"
+	description = "Supervise research efforts, ensure Robotics is in working \
+		order, make sure the AI and its Cyborgs aren't rogue, replacing them if \
+		they are"
 	flag = RD_JF
+	orbit_icon = "user-graduate"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = MEDSCI
@@ -16,7 +20,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
-	alt_titles = list("Chief Science Officer", "Head of Research")
+	alt_titles = list("Chief Science Officer", "Head of Research", "Chief Technology Officer")
 
 	outfit = /datum/outfit/job/rd
 

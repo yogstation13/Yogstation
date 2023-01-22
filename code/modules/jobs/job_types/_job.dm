@@ -1,6 +1,9 @@
 /datum/job
 	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
+	/// The description of the job, used for preferences menu.
+	/// Keep it short and useful. Avoid in-jokes, these are for new players.
+	var/description
 	/// This job comes with these accesses by default
 	var/list/base_access = list()
 	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
@@ -67,6 +70,9 @@
 
 	///The text a person using olfaction will see for the job of the target's scent
 	var/smells_like = "a freeloader"
+
+	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
+	var/orbit_icon
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum

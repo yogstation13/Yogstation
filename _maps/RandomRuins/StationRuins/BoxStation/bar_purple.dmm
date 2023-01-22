@@ -39,17 +39,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"ai" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aj" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -155,20 +144,6 @@
 /area/crew_quarters/bar)
 "aw" = (
 /turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/bar)
-"ax" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "az" = (
 /obj/structure/disposalpipe/segment,
@@ -1241,6 +1216,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
+"sx" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1485,6 +1471,23 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"Sm" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1821,7 +1824,7 @@ bI
 ab
 "}
 (15,1,1) = {"
-ai
+sx
 aw
 aM
 cg
@@ -1838,7 +1841,7 @@ ab
 "}
 (16,1,1) = {"
 ab
-ax
+Sm
 ap
 ab
 ab

@@ -308,7 +308,7 @@
 				var/link = FOLLOW_LINK(M, H.victim)
 				to_chat(M, "[link] [rendered]")
 
-/mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	return
 
 /datum/action/innate/resist_control

@@ -62,13 +62,11 @@ export const NtosWindow = (props, context) => {
                   src={resolveAsset(PC_ntneticon)} />
               )}
             </Box>
-            {!!PC_showbatteryicon && PC_batteryicon && (
+            {!!(PC_showbatteryicon && PC_batteryicon) && (
               <Box inline mr={1}>
-                {PC_batteryicon && (
-                  <img
-                    className="NtosHeader__icon"
-                    src={resolveAsset(PC_batteryicon)} />
-                )}
+                <img
+                  className="NtosHeader__icon"
+                  src={resolveAsset(PC_batteryicon)} />
                 {PC_batterypercent && (
                   PC_batterypercent
                 )}
@@ -101,7 +99,7 @@ export const NtosWindow = (props, context) => {
                 color="transparent"
                 icon="window-close-o"
                 tooltip="Close"
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 onClick={() => act('PC_exit')} />
             )}
             {!PC_showexitprogram && (
@@ -113,7 +111,7 @@ export const NtosWindow = (props, context) => {
                 color="transparent"
                 icon="power-off"
                 tooltip="Power off"
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 onClick={() => act('PC_shutdown')} />
             )}
           </div>

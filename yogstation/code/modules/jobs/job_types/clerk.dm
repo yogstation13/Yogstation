@@ -1,6 +1,8 @@
 /datum/job/clerk
 	title = "Clerk"
+	description = "Set up shop on the station and unique sell trinkets to the crew for a profit."
 	flag = CLERK
+	orbit_icon = "basket-shopping"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"

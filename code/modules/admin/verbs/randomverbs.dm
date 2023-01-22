@@ -4,7 +4,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Make [M] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -367,7 +367,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
 		//Check if they were an alien
 		if(G_found.mind.assigned_role == ROLE_ALIEN)
-			if(alert("This character appears to have been an alien. Would you like to respawn them as such?",,"Yes","No")=="Yes")
+			if(tgui_alert(usr,"This character appears to have been an alien. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/turf/T
 				if(GLOB.xeno_spawn.len)
 					T = pick(GLOB.xeno_spawn)
@@ -402,7 +402,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(alert("This character appears to have been a monkey. Would you like to respawn them as such?",,"Yes","No")=="Yes")
+			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -496,10 +496,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
 		if(!record_found&&new_character.mind.assigned_role!=new_character.mind.special_role)//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
 			//Power to the user!
-			if(alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,"No","Yes")=="Yes")
+			if(tgui_alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,list("No","Yes"))=="Yes")
 				GLOB.data_core.manifest_inject(new_character)
 
-			if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
+			if(tgui_alert(new_character,"Would you like an active AI to announce this character?",,list("No","Yes"))=="Yes")
 				AnnounceArrival(new_character, new_character.mind.assigned_role)
 
 	var/msg = "[admin] has respawned [player_key] as [new_character.real_name]." // yogs - Yog Tickets
@@ -525,8 +525,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]")
 
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
+	var/show_log = tgui_alert(usr, "Show ion message?", "Message", list("Yes", "No"))
+	var/announce_ion_laws = (show_log == "Yes" ? 100 : 0)
 
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = announce_ion_laws
@@ -544,7 +544,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!mob)
 		return
 	if(!istype(M))
-		alert("Cannot revive a ghost")
+		tgui_alert(usr,"Cannot revive a ghost")
 		return
 	M.revive(full_heal = 1, admin_revive = 1)
 
@@ -732,7 +732,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20) || (flames > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
+			if (tgui_alert(usr, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
 				return
 
 		explosion(O, devastation, heavy, light, flash, null, null,flames)
@@ -775,7 +775,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Drop a brain?", "Confirm", "Yes", "No","Cancel")
+	var/confirm = tgui_alert(usr, "Drop a brain?", "Confirm", list("Yes", "No","Cancel"))
 	if(confirm == "Cancel")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
@@ -798,7 +798,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Admin.Player Interaction"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm == "Yes")
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins(span_adminnotice("[key_name_admin(usr)] used gibself."))
@@ -849,7 +849,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -864,7 +864,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Cancel Shuttle"
 	if(!check_rights(0))
 		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
@@ -894,7 +894,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
+	var/notifyplayers = tgui_alert(usr, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
 	if(notifyplayers == "Cancel")
 		return
 
@@ -1036,7 +1036,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -1054,7 +1054,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -1073,7 +1073,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 

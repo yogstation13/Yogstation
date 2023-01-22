@@ -23,8 +23,8 @@ Important documentation information includes, but is not limited to: any numeric
 
 # Changelog
 
-<!-- Edit the changelog below to reflect the changes made by this PR, even if the changes are minor - required for every PR.
-If you add a name after the ':cl', that name will be used in the changelog. Leave it empty to use your GitHub name. -->
+<!-- Edit the changelog below to reflect the changes made by this PR, even if the changes are minor - required for every PR that has player-facing changes.
+If you add a name after the ':cl:', that name will be used in the changelog. Leave it empty to use your GitHub name. -->
 
 :cl:  
 rscadd: Added new things  

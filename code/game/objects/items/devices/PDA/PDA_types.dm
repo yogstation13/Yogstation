@@ -21,7 +21,6 @@
 /obj/item/pda/ai
 	icon = null
 	ttone = "data"
-	fon = FALSE
 
 /obj/item/pda/ai/attack_self(mob/user)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
@@ -34,7 +33,7 @@
 
 /obj/item/pda/ai/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/pda/medical
 	name = "medical PDA"
@@ -124,7 +123,7 @@
 
 /obj/item/pda/captain/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/pda/cargo
 	name = "cargo technician PDA"
