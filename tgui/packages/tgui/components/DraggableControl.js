@@ -5,20 +5,25 @@
  */
 
 import { clamp } from 'common/math';
-import { classes, pureComponentHooks } from 'common/react';
+import { pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
 import { AnimatedNumber } from './AnimatedNumber';
-import { Box } from './Box';
 
 const DEFAULT_UPDATE_RATE = 400;
 
-export class NumberInput extends Component {
+/**
+ * Reduces screen offset to a single number based on the matrix provided.
+ */
+const getScalarScreenOffset = (e, matrix) => {
+  return e.screenX * matrix[0] + e.screenY * matrix[1];
+};
+
+export class DraggableControl extends Component {
   constructor(props) {
     super(props);
-    const { value } = props;
     this.inputRef = createRef();
     this.state = {
-      value,
+      value: props.value,
       dragging: false,
       editing: false,
       internalValue: null,
@@ -35,18 +40,16 @@ export class NumberInput extends Component {
           suppressingFlicker: true,
         });
         clearTimeout(this.flickerTimer);
-        this.flickerTimer = setTimeout(
-          () =>
-            this.setState({
-              suppressingFlicker: false,
-            }),
-          suppressFlicker
-        );
+        this.flickerTimer = setTimeout(() => {
+          this.setState({
+            suppressingFlicker: false,
+          });
+        }, suppressFlicker);
       }
     };
 
     this.handleDragStart = (e) => {
-      const { value } = this.props;
+      const { value, dragMatrix } = this.props;
       const { editing } = this.state;
       if (editing) {
         return;
@@ -55,7 +58,7 @@ export class NumberInput extends Component {
       this.ref = e.target;
       this.setState({
         dragging: false,
-        origin: e.screenY,
+        origin: getScalarScreenOffset(e, dragMatrix),
         value,
         internalValue: value,
       });
@@ -76,10 +79,17 @@ export class NumberInput extends Component {
     };
 
     this.handleDragMove = (e) => {
-      const { minValue, maxValue, step, stepPixelSize } = this.props;
+      // prettier-ignore
+      const {
+        minValue,
+        maxValue,
+        step,
+        stepPixelSize,
+        dragMatrix,
+      } = this.props;
       this.setState((prevState) => {
         const state = { ...prevState };
-        const offset = state.origin - e.screenY;
+        const offset = getScalarScreenOffset(e, dragMatrix) - state.origin;
         if (prevState.dragging) {
           const stepOffset = Number.isFinite(minValue) ? minValue % step : 0;
           // Translate mouse movement to value
@@ -95,7 +105,7 @@ export class NumberInput extends Component {
             minValue,
             maxValue
           );
-          state.origin = e.screenY;
+          state.origin = getScalarScreenOffset(e, dragMatrix);
         } else if (Math.abs(offset) > 4) {
           state.dragging = true;
         }
@@ -145,77 +155,86 @@ export class NumberInput extends Component {
       suppressingFlicker,
     } = this.state;
     const {
-      className,
-      fluid,
       animated,
       value,
       unit,
       minValue,
       maxValue,
-      height,
-      width,
-      lineHeight,
-      fontSize,
+      unclamped,
       format,
       onChange,
       onDrag,
+      children,
+      // Input props
+      height,
+      lineHeight,
+      fontSize,
     } = this.props;
     let displayValue = value;
     if (dragging || suppressingFlicker) {
       displayValue = intermediateValue;
     }
-
     // prettier-ignore
-    const contentElement = (
-      <div className="NumberInput__content" unselectable={Byond.IS_LTE_IE8}>
+    const displayElement = (
+      <>
         {
           (animated && !dragging && !suppressingFlicker) ?
             (<AnimatedNumber value={displayValue} format={format} />) :
             (format ? format(displayValue) : displayValue)
         }
 
-        {unit ? ' ' + unit : ''}
-      </div>
+        { (unit ? ' ' + unit : '') }
+      </>
     );
 
-    return (
-      <Box
-        className={classes([
-          'NumberInput',
-          fluid && 'NumberInput--fluid',
-          className,
-        ])}
-        minWidth={width}
-        minHeight={height}
-        lineHeight={lineHeight}
-        fontSize={fontSize}
-        onMouseDown={this.handleDragStart}>
-        <div className="NumberInput__barContainer">
-          <div
-            className="NumberInput__bar"
-            style={{
-              // prettier-ignore
-              height: clamp(
-                (displayValue - minValue) / (maxValue - minValue) * 100,
-                0, 100) + '%',
-            }}
-          />
-        </div>
-        {contentElement}
-        <input
-          ref={this.inputRef}
-          className="NumberInput__input"
-          style={{
-            display: !editing ? 'none' : undefined,
-            height: height,
-            'line-height': lineHeight,
-            'font-size': fontSize,
-          }}
-          onBlur={(e) => {
-            if (!editing) {
-              return;
+    // Setup an input element
+    // Handles direct input via the keyboard
+    const inputElement = (
+      <input
+        ref={this.inputRef}
+        className="NumberInput__input"
+        style={{
+          display: !editing ? 'none' : undefined,
+          height: height,
+          'line-height': lineHeight,
+          'font-size': fontSize,
+        }}
+        onBlur={(e) => {
+          if (!editing) {
+            return;
+          }
+          let value;
+          if (unclamped) {
+            value = parseFloat(e.target.value);
+          } else {
+            value = clamp(parseFloat(e.target.value), minValue, maxValue);
+          }
+          if (Number.isNaN(value)) {
+            this.setState({
+              editing: false,
+            });
+            return;
+          }
+          this.setState({
+            editing: false,
+            value,
+          });
+          this.suppressFlicker();
+          if (onChange) {
+            onChange(e, value);
+          }
+          if (onDrag) {
+            onDrag(e, value);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (e.keyCode === 13) {
+            let value;
+            if (unclamped) {
+              value = parseFloat(e.target.value);
+            } else {
+              value = clamp(parseFloat(e.target.value), minValue, maxValue);
             }
-            const value = clamp(parseFloat(e.target.value), minValue, maxValue);
             if (Number.isNaN(value)) {
               this.setState({
                 editing: false,
@@ -233,52 +252,36 @@ export class NumberInput extends Component {
             if (onDrag) {
               onDrag(e, value);
             }
-          }}
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              // prettier-ignore
-              const value = clamp(
-                parseFloat(e.target.value),
-                minValue,
-                maxValue
-              );
-              if (Number.isNaN(value)) {
-                this.setState({
-                  editing: false,
-                });
-                return;
-              }
-              this.setState({
-                editing: false,
-                value,
-              });
-              this.suppressFlicker();
-              if (onChange) {
-                onChange(e, value);
-              }
-              if (onDrag) {
-                onDrag(e, value);
-              }
-              return;
-            }
-            if (e.keyCode === 27) {
-              this.setState({
-                editing: false,
-              });
-              return;
-            }
-          }}
-        />
-      </Box>
+            return;
+          }
+          if (e.keyCode === 27) {
+            this.setState({
+              editing: false,
+            });
+            return;
+          }
+        }}
+      />
     );
+    // Return a part of the state for higher-level components to use.
+    return children({
+      dragging,
+      editing,
+      value,
+      displayValue,
+      displayElement,
+      inputElement,
+      handleDragStart: this.handleDragStart,
+    });
   }
 }
 
-NumberInput.defaultHooks = pureComponentHooks;
-NumberInput.defaultProps = {
+DraggableControl.defaultHooks = pureComponentHooks;
+DraggableControl.defaultProps = {
   minValue: -Infinity,
   maxValue: +Infinity,
   step: 1,
   stepPixelSize: 1,
   suppressFlicker: 50,
+  dragMatrix: [1, 0],
 };
