@@ -148,7 +148,7 @@ export type PreferencesMenuData = {
     randomization: Record<string, RandomSetting>;
   };
 
-  content_unlocked: BooleanLike,
+  content_unlocked: number,
   ckey: string,
 
   job_bans?: string[];

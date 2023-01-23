@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["overflow_role"] = SSjob.GetJob(SSjob.overflow_role).title
 	data["window"] = current_window
 
-	data["content_unlocked"] = is_donator(user)
+	data["content_unlocked"] = unlock_content
 	data["ckey"] = lowertext(user.client.ckey)
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)

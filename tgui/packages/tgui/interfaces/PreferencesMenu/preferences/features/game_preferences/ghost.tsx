@@ -78,7 +78,7 @@ const GhostFormInput = (
   }
 
   return (<Dropdown
-    disabled={!data.content_unlocked}
+    disabled={data.content_unlocked === 0}
     selected={props.value}
     displayText={displayTexts[props.value]}
     onSelected={props.handleSetValue}
@@ -116,7 +116,7 @@ export const ghost_orbit: FeatureChoiced = {
 
     return (<FeatureDropdownInput
       {...props}
-      disabled={!data.content_unlocked}
+      disabled={data.content_unlocked === 0}
     />);
   },
 };
