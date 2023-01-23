@@ -14,7 +14,7 @@ export const donor_hat: Feature<string> = {
 
     return (<FeatureDropdownInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
@@ -30,7 +30,7 @@ export const donor_item: Feature<string> = {
 
     return (<FeatureDropdownInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
@@ -46,7 +46,7 @@ export const donor_plush: Feature<string> = {
 
     return (<FeatureDropdownInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
@@ -63,7 +63,7 @@ export const borg_hat: FeatureToggle = {
 
     return (<CheckboxInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
@@ -79,7 +79,7 @@ export const donor_pda: Feature<string> = {
 
     return (<FeatureDropdownInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
@@ -96,7 +96,7 @@ export const purrbation: FeatureToggle = {
 
     return (<CheckboxInput
       {...props}
-      disabled={data.content_unlocked % 2 === 1}
+      disabled={data.content_unlocked % 2 === 0}
     />);
   },
 };
