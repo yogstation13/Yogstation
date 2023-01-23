@@ -67,7 +67,7 @@
 					span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
 					span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
 				)
-				if(prob(50))
+				if(prob(75))
 					flippy_mcgee.adjustBruteLoss(1)
 			else
 				flippy_mcgee.visible_message(
