@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "plasmaman paycheck coefficient increased to 1 from 0.8"
