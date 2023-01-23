@@ -56,9 +56,9 @@
 		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
 			if(prob(50))
 				if(prob(50))
-					heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
 				else
-					heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
