@@ -48,6 +48,9 @@
 
 	return values
 
+/datum/preference/choiced/backpack/create_default_value()
+	return GBACKPACK
+
 /datum/preference/choiced/backpack/apply_to_human(mob/living/carbon/human/target, value)
 	target.backbag = value
 
