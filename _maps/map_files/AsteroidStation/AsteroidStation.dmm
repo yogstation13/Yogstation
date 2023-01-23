@@ -10760,17 +10760,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cBS" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
-	},
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "cCg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -25756,6 +25745,28 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"hIJ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "25;26;35;28;46;37;38;36"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "hJg" = (
 /obj/machinery/porta_turret/ai,
 /obj/machinery/light{
@@ -30816,28 +30827,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"jwL" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38;36"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
 "jwX" = (
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
@@ -31380,6 +31369,18 @@
 "jGe" = (
 /turf/template_noop,
 /area/maintenance/starboard)
+"jGw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "35";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "jGN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -98859,7 +98860,7 @@ aao
 rPj
 aRI
 aRI
-jwL
+hIJ
 aRI
 aRI
 kod
@@ -99632,7 +99633,7 @@ aRI
 kxL
 ecy
 bnn
-cBS
+jGw
 aSl
 aJf
 aJf
