@@ -10760,17 +10760,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cBS" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
-	},
-/turf/open/floor/wood,
-/area/hallway/secondary/service)
 "cCg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -25253,6 +25242,18 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
+"hAZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "35";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/wood,
+/area/hallway/secondary/service)
 "hBu" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -99632,7 +99633,7 @@ aRI
 kxL
 ecy
 bnn
-cBS
+hAZ
 aSl
 aJf
 aJf
