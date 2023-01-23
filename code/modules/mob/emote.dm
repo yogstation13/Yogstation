@@ -54,27 +54,27 @@
 
 /datum/emote/flip/check_cooldown(mob/user, intentional, update=TRUE, is_keybind = FALSE)
 	. = ..()
-	if(!.)
-		return
 	if (!is_keybind)
 		return
 	if(!can_run_emote(user, intentional=intentional))
 		return
-	if(isliving(user))
-		var/mob/living/flippy_mcgee = user
-		if(prob(20))
-			flippy_mcgee.Knockdown(1 SECONDS)
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
-				span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
-			)
-			if(prob(50))
-				flippy_mcgee.adjustBruteLoss(1)
-		else
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] stumbles a bit after their flip."),
-				span_notice("You stumble a bit from still being off balance from your last flip.")
-			)
+	if(!.)
+		if(isliving(user)) // Spammers get punished!
+			var/mob/living/flippy_mcgee = user
+			if(prob(40))
+				flippy_mcgee.Knockdown(1 SECONDS)
+				flippy_mcgee.visible_message(
+					span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
+					span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
+				)
+				if(prob(50))
+					flippy_mcgee.adjustBruteLoss(1)
+			else
+				flippy_mcgee.visible_message(
+					span_notice("[flippy_mcgee] stumbles a bit after their flip."),
+					span_notice("You stumble a bit from still being off balance from your last flip.")
+				)
+		return
 
 /datum/emote/spin
 	key = "spin"
