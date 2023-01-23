@@ -10,7 +10,7 @@
 /datum/preference/choiced/skillcape/compile_constant_data()
 	var/list/data = ..()
 
-	var/list/cape_names = list()
+	var/list/cape_names = list("None" = "None")
 
 	for(var/cape_id in GLOB.skillcapes)
 		var/datum/skillcape/cape = GLOB.skillcapes[cape_id]

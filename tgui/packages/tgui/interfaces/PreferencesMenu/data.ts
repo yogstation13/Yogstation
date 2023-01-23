@@ -172,6 +172,8 @@ export type PreferencesMenuData = {
   active_slot: number;
   name_to_use: string;
 
+  earned_skillcapes: string[];
+
   window: Window;
 };
 

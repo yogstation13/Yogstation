@@ -1947,6 +1947,7 @@
 #include "code\modules\client\preferences\middleware\names.dm"
 #include "code\modules\client\preferences\middleware\quirks.dm"
 #include "code\modules\client\preferences\middleware\random.dm"
+#include "code\modules\client\preferences\middleware\skillcapes.dm"
 #include "code\modules\client\preferences\middleware\species.dm"
 #include "code\modules\client\preferences\species_features\basic.dm"
 #include "code\modules\client\preferences\species_features\ethereal.dm"
