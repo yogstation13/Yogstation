@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 				to_chat(M.current, "<BR>[span_userdanger("Your target is no longer within reach. Objective removed!")]")
 				M.announce_objectives()
 		else if(O.target == mob_occupant.mind)
-			if((O.type in typesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
+			if((O.type in subtypesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
 				continue
 			O.target = null
 			O.find_target()
