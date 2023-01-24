@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - rscadd: "Bluespace Locker can now also be a crate"
