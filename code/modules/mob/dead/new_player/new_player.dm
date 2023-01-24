@@ -153,10 +153,6 @@
 			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
 			return
 
-		if(href_list["late_join"] == "override")
-			GLOB.latejoin_menu.ui_interact(src)
-			return
-
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.permissions.admin_datums)))
 			//yogs start -- donors bypassing the queue
 			if(ckey(key) in get_donators())
@@ -176,9 +172,8 @@
 				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 			return
 
-		// TODO: Fallback menu
 		GLOB.latejoin_menu.ui_interact(usr)
-
+		add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
 	if(href_list["manifest"])
 		ViewManifest()
