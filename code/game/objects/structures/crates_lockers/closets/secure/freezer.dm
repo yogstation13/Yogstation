@@ -42,7 +42,7 @@
 		new /obj/item/reagent_containers/food/condiment/flour(src)
 	for(var/i = 0, i < 3, i++)
 		new /obj/item/reagent_containers/food/condiment/sugar(src)
-	new /obj/item/reagent_containers/food/condiment/rice(src)
+		new /obj/item/reagent_containers/food/condiment/rice(src)
 	new /obj/item/storage/box/cheese(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
