@@ -78,13 +78,10 @@
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE)
 
 /// For handling emote cooldown, return true to allow the emote to happen
-/datum/emote/proc/check_cooldown(mob/user, intentional, update=TRUE, is_keybind = FALSE)
+/datum/emote/proc/check_cooldown(mob/user, intentional, update=TRUE)
 	if(!intentional)
 		return TRUE
-	var/cd = cooldown
-	if (is_keybind)
-		cd = 2 SECONDS // cooldown when used as a keybind
-	if(user.emotes_used && user.emotes_used[src] + cd > world.time)
+	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		return FALSE
 	if(!update)
 		return TRUE

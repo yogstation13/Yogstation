@@ -321,7 +321,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
+/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
 	if(victim)
 		to_chat(src, span_warning("You cannot emote while inside a host!"))
 		return
