@@ -38,10 +38,11 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
 	..()
-	for(var/i = 0, i < 3, i++)
+	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/flour(src)
+	for(var/i = 0, i < 3, i++)
+		new /obj/item/reagent_containers/food/condiment/sugar(src)
 	new /obj/item/reagent_containers/food/condiment/rice(src)
-	new /obj/item/reagent_containers/food/condiment/sugar(src)
 	new /obj/item/storage/box/cheese(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
@@ -86,7 +87,7 @@
 		new /obj/item/reagent_containers/food/condiment/milk(src)
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
-	for(var/i = 0, i < 2, i++)
+	for(var/i = 0, i < 3, i++)
 		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/open
