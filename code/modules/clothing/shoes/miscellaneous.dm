@@ -54,7 +54,7 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.75
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -528,7 +528,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/science
@@ -536,7 +536,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/medical
@@ -552,7 +552,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/airshoes
@@ -564,16 +564,16 @@
 	var/airToggle = FALSE
 	var/obj/vehicle/ridden/scooter/airshoes/A
 	permeability_coefficient = 0.05
-	var/recharging_time = 0 
+	var/recharging_time = 0
 	var/jumpdistance = 7 //Increased distance so it might see some offensive use
 	var/jumpspeed = 5 //fast
-	var/recharging_rate = 60 
+	var/recharging_rate = 60
 	syndicate = TRUE
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
 	A = new/obj/vehicle/ridden/scooter/airshoes(null)
-	
+
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
@@ -594,7 +594,7 @@
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
-		
+
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
@@ -628,7 +628,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	slowdown = -0.2
 
-/obj/item/clothing/shoes/drip/equipped(mob/user, slot,) 
+/obj/item/clothing/shoes/drip/equipped(mob/user, slot,)
 	. = ..()
 	if(slot == SLOT_SHOES)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripjordan", /datum/mood_event/dripjordan)
