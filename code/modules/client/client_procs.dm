@@ -161,13 +161,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	..()	//redirect to hsrc.Topic()
 
-/client/proc/is_content_unlocked()
-	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
-		//to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
-		return FALSE
-	
-	return TRUE
-
 /client/proc/handle_spam_prevention(message, mute_type)
 	//Increment message count
 	total_message_count += 1
