@@ -14,6 +14,7 @@
 	var/list/data = list()
 
 	data["selected_quirks"] = get_selected_quirks()
+	data["locked_quirks"] = get_locked_quirks()
 
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
 	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
@@ -27,6 +28,7 @@
 	if (tainted)
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
+		data["locked_quirks"] = get_locked_quirks()
 	
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
 	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
@@ -96,3 +98,16 @@
 		selected_quirks += sanitize_css_class_name(quirk)
 
 	return selected_quirks
+
+/datum/preference_middleware/quirks/proc/get_locked_quirks()
+	var/list/locked_quirks = list()
+
+	for (var/quirk_name in SSquirks.quirks)
+		var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk = new quirk_type(no_init = TRUE)
+		var/lock_reason = quirk?.check_quirk(preferences)
+		if (lock_reason)
+			locked_quirks[sanitize_css_class_name(quirk_name)] = lock_reason
+		qdel(quirk)
+
+	return locked_quirks

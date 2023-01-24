@@ -151,7 +151,7 @@ export const QuirksPage = (props, context) => {
           if (quirkA.value === quirkB.value) {
             return (quirkA.name > quirkB.name) ? 1 : -1;
           } else {
-            return quirkB.value - quirkA.value;
+            return quirkA.value - quirkB.value;
           }
         });
 
@@ -174,6 +174,18 @@ export const QuirksPage = (props, context) => {
         const getReasonToNotAdd = (quirkName: string) => {
           const quirk = quirkInfo[quirkName];
 
+          const { data } = useBackend<PreferencesMenuData>(context);
+          const lock_reason = data.locked_quirks[quirkName];
+          if (lock_reason)
+          {
+            return lock_reason;
+          }
+
+          if (quirk.mood && !data.mood_enabled)
+          {
+            return "This quirk requires mood to be enabled in your game options.";
+          }
+
           if (
             quirk.value > 0
           ) {
@@ -182,12 +194,6 @@ export const QuirksPage = (props, context) => {
             } else if (balance + quirk.value > 0) {
               return "You need a negative quirk to balance this out!";
             }
-          }
-
-          const { data } = useBackend<PreferencesMenuData>(context);
-          if (quirk.mood && !data.mood_enabled)
-          {
-            return "This quirk requires mood to be enabled in your game options.";
           }
 
           const selectedQuirkNames = selectedQuirks.map(quirkKey => {

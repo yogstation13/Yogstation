@@ -3560,7 +3560,6 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\status_effects\buffs.dm"
 #include "yogstation\code\datums\status_effects\neutral.dm"
-#include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
 #include "yogstation\code\datums\wires\smartfridge.dm"
 #include "yogstation\code\game\communications.dm"

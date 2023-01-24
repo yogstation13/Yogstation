@@ -78,6 +78,12 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		if (initial(quirk.mood_quirk) && !ismoody)
 			continue
 
+		// Returns error string, FALSE if quirk is okay to have
+		var/datum/quirk/quirk_obj = new quirk(no_init = TRUE)
+		if (quirk_obj?.check_quirk(C.prefs))
+			continue
+		qdel(quirk_obj)
+
 		var/blacklisted = FALSE
 
 		for (var/list/blacklist as anything in quirk_blacklist)
