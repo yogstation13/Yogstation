@@ -1,5 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - bugfix: "fixed mindflayer having a firing pin when printed"
-  - bugfix: "fixed mindflayer sprite having holes"
