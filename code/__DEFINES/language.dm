@@ -22,3 +22,4 @@
 #define LANGUAGE_STONER			"stoner"
 #define LANGUAGE_VOICECHANGE	"voicechange"
 #define LANGUAGE_CATEARS		"cat"
+#define LANGUAGE_MULTILINGUAL	"multilingual"
