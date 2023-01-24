@@ -292,7 +292,7 @@
 /datum/quirk/efficient_metabolism //about 25% slower hunger
 	name = "Efficient Metabolism"
 	desc = "Your metabolism is unusually efficient, allowing you to better process your food and go longer periods without eating."
-	icon = "stomach"
+	icon = "utensils"
 	value = 1
 	mob_trait = TRAIT_EAT_LESS
 	gain_text = span_notice("You don't feel very hungry.")

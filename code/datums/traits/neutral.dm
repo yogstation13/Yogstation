@@ -4,7 +4,7 @@
 /datum/quirk/vegetarian
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."
-	icon = "tomato"
+	icon = "carrot"
 	value = 0
 	gain_text = span_notice("You feel repulsion at the idea of eating meat.")
 	lose_text = span_notice("You feel like eating meat isn't that bad.")
@@ -135,7 +135,7 @@
 /datum/quirk/shifty_eyes
 	name = "Shifty Eyes"
 	desc = "Your eyes tend to wander all over the place, whether you mean to or not, causing people to sometimes think you're looking directly at them when you aren't."
-	icon = "face-spiral-eyes"
+	icon = "face-dizzy"
 	value = 0
 	medical_record_text = "Fucking creep kept staring at me the whole damn checkup. I'm only diagnosing this because it's less awkward than thinking it was on purpose."
 	mob_trait = TRAIT_SHIFTY_EYES
@@ -143,7 +143,7 @@
 /datum/quirk/random_accent
 	name = "Randomized Accent"
 	desc = "You have developed a random accent."
-	icon = "message-dots"
+	icon = "comment-dollar"
 	value = 0
 	mob_trait = TRAIT_RANDOM_ACCENT
 	gain_text = span_danger("You have developed an accent.")

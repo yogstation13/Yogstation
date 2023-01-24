@@ -67,7 +67,7 @@
 /datum/quirk/brainproblems
 	name = "Brain Tumor"
 	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
-	icon = "brain"
+	icon = "head-side-virus"
 	value = -6
 	gain_text = span_danger("You feel smooth.")
 	lose_text = span_notice("You feel wrinkled again.")
@@ -629,7 +629,7 @@
 /datum/quirk/sheltered
 	name = "Sheltered"
 	desc = "You never learned to speak galactic common."
-	icon = "comment-question"
+	icon = "comment-dots"
 	value = -2
 	mob_trait = TRAIT_SHELTERED
 	gain_text = span_danger("You do not speak galactic common.")
@@ -711,7 +711,7 @@
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
-	icon = "hand-holding-box"
+	icon = "hands-holding-circle"
 	value = -2
 	mob_trait = TRAIT_KLEPTOMANIAC
 	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
@@ -735,7 +735,7 @@
 /datum/quirk/ineloquent
 	name = "Ineloquent"
 	desc = "Thinking big words makes brain go hurt."
-	icon = "message-lines"
+	icon = "comments"
 	value = -2
 	human_only = TRUE
 	gain_text = "You feel your vocabulary slipping away."
@@ -772,7 +772,7 @@
 /datum/quirk/brain_damage
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
-	icon = "head-side-brain"
+	icon = "brain"
 	value = -7
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
