@@ -420,7 +420,7 @@
 /datum/supply_pack/security/secfiringpins
 	name = "Mindshield Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 mindshield firing pins. Requires Security access to open."
-	cost = 2000
+	cost = 3000
 	contains = list(/obj/item/storage/box/secfiringpins,
 					/obj/item/storage/box/secfiringpins)
 	crate_name = "firing pins crate"
