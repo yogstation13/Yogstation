@@ -307,9 +307,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// yogs start - Donor stuff
 	if(ckey in GLOB.donators)
-		prefs.unlock_content |= 2
+		prefs.unlock_content |= DONOR_YOGS
 	else
-		prefs.unlock_content &= ~2 // is_donator relies on prefs.unlock_content
+		prefs.unlock_content &= ~DONOR_YOGS // is_donator relies on prefs.unlock_content
 
 	if(is_donator(src))
 		src.add_donator_verbs()
