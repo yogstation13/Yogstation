@@ -38,9 +38,9 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
 	..()
-	for(var/i = 0, i < 5, i++)
+	for(var/i = 0, i < 4, i++)
 		new /obj/item/reagent_containers/food/condiment/flour(src)
-	for(var/i = 0, i < 3, i++)
+	for(var/i = 0, i < 2, i++)
 		new /obj/item/reagent_containers/food/condiment/sugar(src)
 		new /obj/item/reagent_containers/food/condiment/rice(src)
 	new /obj/item/storage/box/cheese(src)
