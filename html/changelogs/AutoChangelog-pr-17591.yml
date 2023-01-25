@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "All energy bows have had their recharge_time reduced to 1 from 1.5. For the syndicate bow it is going from TWO to ONE (HALF the time) because it had a TWO SECOND RECHARGE"
-  - tweak: "All arrows (except ratvar!!) do even MORE damage (x-ray has MORE irradiate)"
-  - tweak: "Burn and x-ray arrows now have negative wound chance, ratvar arrow had a very slight wound chance increase"

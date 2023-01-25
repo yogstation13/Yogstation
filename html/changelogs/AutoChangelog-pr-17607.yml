@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Reduces mech knockdown threshold on punches to 20 (from 21)"
-  - bugfix: "Low damage mech punches no longer stun and throw silicons and other non-human mobs"
