@@ -37,7 +37,7 @@
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	M.remove_language(/datum/language/french, source = LANGUAGE_REVOLUTIONARY)
+	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
 	update_rev_icons_removed(M)
 
 /datum/antagonist/rev/proc/equip_rev()
