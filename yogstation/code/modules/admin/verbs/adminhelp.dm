@@ -934,6 +934,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /proc/get_admin_counts(requiredflags = R_BAN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
+	if(!GLOB.permissions)
+		CRASH("Tried to fetch admin counts when permissions were not initialized")
 	for(var/client/X in GLOB.permissions.admins)
 		.["total"] += X
 		if(requiredflags != 0 && !check_rights_for(X, requiredflags))
