@@ -69,7 +69,7 @@
 			if(I.light_range && I.light_power)
 				disintegrate(I)
 		// Double hit structures if duality
-		else if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() != src)
+		else if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
 			target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
