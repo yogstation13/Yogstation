@@ -53,6 +53,19 @@
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
+
+	// "Projectiles now ignore the holopara's master or any of their other holoparas."
+	var/guardian_pass = FALSE
+	if(istype(P, /obj/item/projectile/guardian))
+		var/obj/item/projectile/guardian/G = P
+		var/datum/mind/guardian_master = G.guardian_master
+		if(guardian_master?.current)
+			var/list/safe = list(guardian_master.current)
+			safe += guardian_master.current.hasparasites()
+			guardian_pass = (src in safe)
+	if(guardian_pass)
+		return BULLET_ACT_FORCE_PIERCE
+	
 	if(!P.nodamage)
 		last_damage = P.name
 		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
