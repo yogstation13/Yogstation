@@ -333,6 +333,8 @@
 				qdel(O.mmi)
 			O.mmi = W //and give the real mmi to the borg.
 
+			REMOVE_TRAIT(O, TRAIT_PACIFISM, POSIBRAIN_TRAIT) // remove the posibrain's pacifism
+
 			O.updatename(BM.client)
 
 			BM.mind.transfer_to(O)

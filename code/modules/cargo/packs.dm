@@ -709,11 +709,11 @@
 	cost = 3500
 	contains = list(/obj/item/gun/ballistic/automatic/wt550,
 					/obj/item/gun/ballistic/automatic/wt550)
-	crate_name = "auto rifle crate"
+	crate_name = "autocarbine crate"
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains four 20-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -721,8 +721,8 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
-	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Less-Lethal Ammo Crate"
+	desc = "Contains four 20-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
 					/obj/item/ammo_box/magazine/wt550m9/wtr,
@@ -731,7 +731,7 @@
 
 /datum/supply_pack/security/armory/wt550ammo_single
 	name = "Surplus Security Autocarbine Ammo Crate Single-Pack"
-	desc = "Contains a 22-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains a 20-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
@@ -1341,7 +1341,7 @@
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
 	crate_type = /obj/structure/closet/crate/secure/cheap
-  
+
 /datum/supply_pack/medical/firstaidadvanced_single
 	name = "Advanced Treatment Kit Single-Pack"
 	desc = "Contains one advanced first aid kit able to heal many advanced ailments."
@@ -1349,7 +1349,7 @@
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/advanced)
 	crate_type = /obj/structure/closet/crate/secure/cheap
-  
+
 /datum/supply_pack/medical/hypospraykitvial_single
 	name = "Hypospray Kit Single-Pack"
 	desc = "Contains a hypospray kit containing a hypospray and empty vials for applying reagents to patients."
@@ -1569,7 +1569,7 @@
 /datum/supply_pack/medical/vending
 	name = "Medical Vending Crate"
 	desc = "Contains one NanoMed Plus refill, one wall-mounted NanoMed refill, and one wall-mounted HypoMed refill."
-	cost = 2500 
+	cost = 2500
 	contains = list(/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/wallmed,
 					/obj/item/vending_refill/wallhypo)
@@ -2112,9 +2112,16 @@
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable,
 					/obj/item/pizzabox/pineapple,
-					/obj/item/pizzabox/seafood)
+					/obj/item/pizzabox/seafood,
+					/obj/item/pizzabox/sassysage,
+					/obj/item/pizzabox/donkpocket)
 	crate_name = "pizza crate"
 	var/static/anomalous_box_provided = FALSE
+
+/datum/supply_pack/organic/pizza/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
 
 /datum/supply_pack/organic/pizza/fill(obj/structure/closet/crate/C)
 	. = ..()
