@@ -10,7 +10,8 @@
 	default_priority = 80
 	syllables = list(
 	"bonjour","baguette","guillotine","vive la revolution","merde","sacre bleu",
-	"mon dieu","merci","Je me rends","hon hon hon","oui"
+	"mon dieu","merci","Je me rends","hon hon hon","oui","zut alors","bourgeoisie",
+	"proletariat","les travailleurs du galaxie unissez-vous"
 	)
 	icon_state = "french"
 	sing_verb = "sings"
