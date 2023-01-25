@@ -1,4 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - bugfix: "[Asteroid] Corrects the door to the Service Hall from Hydroponics to only be accessible to botanists."
