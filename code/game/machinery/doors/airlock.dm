@@ -1135,6 +1135,9 @@
 			return ..()
 		else if(user.a_intent == INTENT_DISARM && density)
 			if(!locked && !welded)
+				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
+					open(2)
+					return
 				if(!T.darkspawn.has_psi(15))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
 					return
