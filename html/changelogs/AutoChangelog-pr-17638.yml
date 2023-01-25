@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Purrbation no longer deletes lizard tails because it's annoying to deal with and not fun"
