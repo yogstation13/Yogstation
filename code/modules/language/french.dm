@@ -10,7 +10,7 @@
 	default_priority = 80
 	syllables = list(
 	"bonjour","baguette","guillotine","vive la revolution","merde","sacre bleu",
-	"mon dieu","merci","Je me rends"
+	"mon dieu","merci","Je me rends","hon hon hon"
 	)
 	icon_state = "french"
 	sing_verb = "sings"
