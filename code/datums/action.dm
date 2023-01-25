@@ -626,6 +626,18 @@
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rshield"
 
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
 //Preset for spells
 /datum/action/spell_action
 	check_flags = NONE
