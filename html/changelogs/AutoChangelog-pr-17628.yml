@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Keybind flipping is now only punished if you try to spam it"
