@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed venus human traps only being able to fire 4 ranged vines in a lifetime"
+  - tweak: "venus human trap's ranged vines have been severely nerfed against carbons"
