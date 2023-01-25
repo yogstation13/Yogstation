@@ -14,7 +14,7 @@ export const PsiWeb = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Abilities">
+        <Section title="Abilities" scrollable>
           <LabeledList>
             {data.abilities.map(ability => (
 
