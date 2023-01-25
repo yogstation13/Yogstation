@@ -1,0 +1,6 @@
+author: "@Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Adds cursed cane"
+  - rscdel: "Removed grand core"
+  - imageadd: "added cane sprites"
