@@ -215,7 +215,7 @@ SUBSYSTEM_DEF(job)
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)
 				continue
-			while(game_mode.name == "revolution" && candidates.len >= 1 && job.current_positions <= 2)
+			while(gamemode.name == "revolution" && candidates.len >= 1 && job.current_positions <= 2)
 				AssignRole(candidate, command_position)
 			var/mob/dead/new_player/candidate = PickCommander(candidates,command_position) // Yogs -- makes command jobs weighted towards players of greater experience
 			if(AssignRole(candidate, command_position))
