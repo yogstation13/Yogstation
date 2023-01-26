@@ -68,11 +68,6 @@
 	var/list/sec = SSjob.get_living_sec()
 	var/weighted_score = min(max(round(heads.len - ((8 - sec.len) / 3)),1),max_headrevs)
 
-	if(heads.len <= 2)
-		message_admins("Not enough heads of staff for Revs. Converting to new round type.")
-		convert_roundtype()
-		return
-
 	for(var/datum/mind/rev_mind in headrev_candidates)	//People with return to lobby may still be in the lobby. Let's pick someone else in that case.
 		if(isnewplayer(rev_mind.current))
 			headrev_candidates -= rev_mind
