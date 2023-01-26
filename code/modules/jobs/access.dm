@@ -291,9 +291,9 @@
 		if(ACCESS_LAWYER)
 			return "Law Office"
 		if(ACCESS_ROBO_CONTROL)
-			return "Robotics"
+			return "Robotics Control"
 		if(ACCESS_ROBOTICS)
-			return "Robotics Doors"
+			return "Robotics"
 		if(ACCESS_VIROLOGY)
 			return "Virology"
 		if(ACCESS_CMO)
