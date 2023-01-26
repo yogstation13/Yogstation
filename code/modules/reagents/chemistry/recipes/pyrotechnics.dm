@@ -100,9 +100,9 @@
 	name = "Black Powder Kaboom"
 	id = "blackpowder_explosion"
 	required_reagents = list(/datum/reagent/blackpowder = 1)
-	required_temp = 474
-	strengthdiv = 6
-	modifier = 1
+	required_temp = 737		//Yogs change - 464 C, actual ignition temp
+	strengthdiv = 12
+	modifier = 5
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
@@ -251,7 +251,7 @@
 	var/range = created_volume/3
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
@@ -272,7 +272,7 @@
 	var/range = created_volume/10
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)

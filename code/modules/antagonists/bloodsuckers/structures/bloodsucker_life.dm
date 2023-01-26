@@ -48,7 +48,7 @@
 		return
 	if(my_clan == CLAN_TOREADOR)
 		if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
-			to_chat(owner.current, span_warning("Your moral prevents you from becoming more ihuman."))
+			to_chat(owner.current, span_warning("Your morals prevent you from becoming more inhuman."))
 			SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
 			return
 		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)

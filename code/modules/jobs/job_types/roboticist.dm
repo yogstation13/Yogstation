@@ -1,6 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
+	description = "Build and repair the AI and cyborgs, create mechs."
 	flag = ROBOTICIST
+	orbit_icon = "battery-half"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -29,6 +31,8 @@
 		/obj/item/stack/sheet/metal/twenty = 15,
 		/obj/item/modular_computer/tablet/preset/advanced = 5
 	)
+
+	smells_like = "burnt solder"
 
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"

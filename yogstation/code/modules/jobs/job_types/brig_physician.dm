@@ -1,6 +1,8 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
+	description = "Watch over the Brig and Prison Wing to ensure prisoners receive medical attention when needed."
 	flag = BRIGPHYS
+	orbit_icon = "suitcase-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -25,6 +27,8 @@
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYSICIAN
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "crimson guardianship"
 
 /datum/job/brigphysician/proc/OmegaStationChanges()
 	return TRUE

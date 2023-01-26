@@ -228,6 +228,9 @@
 #define TRAIT_MESONS			"mesons"
 #define TRAIT_MAGBOOTS			"magboots"
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
+#define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
+#define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+
 /// This person is crying
 #define TRAIT_CRYING "crying"
 
@@ -345,6 +348,7 @@
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -354,3 +358,4 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
+#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"

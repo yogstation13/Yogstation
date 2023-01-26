@@ -1,6 +1,9 @@
 /datum/job/chief_engineer
 	title = "Chief Engineer"
+	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
+		make sure the Supermatter doesn't blow up, maintain telecommunications."
 	flag = CHIEF
+	orbit_icon = "user-astronaut"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = ENGSEC
@@ -38,6 +41,8 @@
 		/obj/item/stack/sheet/mineral/gold = 15
 		///obj/effect/spawner/random/engineering/tool_advanced = 3
 	)
+
+	smells_like = "industry leadership"
 
 /datum/outfit/job/ce
 	name = "Chief Engineer"

@@ -112,12 +112,12 @@
 				if(isliving(T))
 					var/mob/living/M = T
 					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
-						D.reagents.reaction(M, VAPOR)
+						D.reagents.reaction(M, TOUCH)
 						puff_reagent_left -= 1
 						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
 						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
 				else if(!range_left)
-					D.reagents.reaction(T, VAPOR)
+					D.reagents.reaction(T, TOUCH)
 			else
 				D.reagents.reaction(T, VAPOR)
 				if(ismob(T))
@@ -155,7 +155,7 @@
 	set src in usr
 	if(usr.incapacitated())
 		return
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
 		to_chat(usr, span_notice("You empty \the [src] onto the floor."))

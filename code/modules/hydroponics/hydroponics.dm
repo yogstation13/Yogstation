@@ -101,7 +101,7 @@
 	else
 		return ..()
 
-/obj/machinery/hydroponics/process()
+/obj/machinery/hydroponics/process(delta_time)
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
 
 	if(myseed && (myseed.loc != src))
@@ -109,9 +109,9 @@
 
 	if(self_sustaining)
 		adjustNutri(1)
-		adjustWater(rand(3,5))
-		adjustWeeds(-2)
-		adjustPests(-2)
+		adjustWater(rand(1,2) * delta_time * 0.5)
+		adjustWeeds(-0.5 * delta_time)
+		adjustPests(-0.5 * delta_time)
 		adjustToxic(-2)
 
 	if(world.time > (lastcycle + cycledelay))
@@ -900,6 +900,37 @@
 		if(user)
 			examine(user)
 
+/obj/machinery/hydroponics/CtrlClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	if(!powered())
+		to_chat(user, "<span class='warning'>[name] has no power.</span>")
+		return
+	if(!anchored)
+		return
+	self_sustaining = !self_sustaining
+	idle_power_usage = self_sustaining ? 5000 : 0
+	to_chat(user, "<span class='notice'>You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""].")
+	update_icon()
+
+/obj/machinery/hydroponics/AltClick(mob/user)
+	. = ..()
+	if(!anchored)
+		update_icon()
+		return FALSE
+	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
+	if(warning == "Yes" && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		reagents.clear_reagents()
+		to_chat(user, "<span class='warning'>You empty [src]'s nutrient tank.</span>")
+
+/**
+ * Update Tray Proc
+ * Handles plant harvesting on the tray side, by clearing the sead, names, description, and dead stat.
+ * Shuts off autogrow if enabled.
+ * Sends messages to the cleaer about plants harvested, or if nothing was harvested at all.
+ * * User - The mob who clears the tray.
+ */
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
 	lastproduce = age

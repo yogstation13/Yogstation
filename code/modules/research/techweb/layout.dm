@@ -335,6 +335,10 @@
 	ui_x = -224
 	ui_y = -288
 
+/datum/techweb_node/nerd_suit
+	ui_x = -272
+	ui_y = -288
+
 /datum/techweb_node/NVGtech
 	ui_x = -160
 	ui_y = -64

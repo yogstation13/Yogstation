@@ -81,7 +81,7 @@
 	icon_state = "lungs-c"
 	safe_oxygen_min = 12
 	safe_toxins_max = 10
-	gas_stimulation_min = 0.1 //fucking filters removing my stimulants
+	gas_stimulation_min = 0.01 //fucking filters removing my stimulants
 
 	cold_level_1_threshold = 280 //almost room temperature
 	cold_level_1_damage = 2

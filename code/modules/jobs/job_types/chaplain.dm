@@ -1,6 +1,9 @@
 /datum/job/chaplain
 	title = "Chaplain"
+	description = "Hold services and funerals, cremate people, preach your \
+		religion, protect the crew against cults."
 	flag = CHAPLAIN
+	orbit_icon = "cross"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -11,7 +14,7 @@
 
 	outfit = /datum/outfit/job/chaplain
 
-	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist")
+	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist", "Vicar")
 
 	added_access = list()
 	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
@@ -30,6 +33,8 @@
 		/obj/item/toy/plush/plushvar = 1,
 		/obj/item/grenade/chem_grenade/holy = 1 //holy hand grenade
 	)
+
+	smells_like = "zealous fervor"
 
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)

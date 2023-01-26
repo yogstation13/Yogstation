@@ -1,6 +1,8 @@
 /datum/job/scientist
 	title = "Scientist"
+	description = "Do experiments, perform research, feed the slimes, make bombs."
 	flag = SCIENTIST
+	orbit_icon = "flask"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -28,6 +30,8 @@
 		///obj/item/disk/tech_disk/spaceloot = 2,
 		/obj/item/camera_bug = 1
 	)
+
+	smells_like = "slime"
 
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
@@ -59,3 +63,7 @@
 	..()
 	if(prob(0.4))
 		neck = /obj/item/clothing/neck/tie/horrible
+
+/datum/outfit/job/scientist/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/neck/tie/horrible

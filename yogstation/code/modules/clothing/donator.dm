@@ -174,3 +174,13 @@
 	. = ..()
 	new /obj/item/clothing/accessory/dogtags(src)
 	new /obj/item/clothing/head/peacekeeperberet(src)
+
+/obj/item/toy/plush/axolotlplushie
+	name = "axolotl plushie"
+	desc = "An adorable stuffed toy that resembles an axolotl. Not to be mistaken for the real thing."
+	icon_state = "plushie_axolotl"
+	lefthand_file = 'icons/mob/pets_held_lh.dmi'
+	righthand_file = 'icons/mob/pets_held_rh.dmi'
+	item_state = "axolotl"
+	attack_verb = list("nibbles", "splats")
+	squeak_override = list('sound/effects/axolotl.ogg' = 1)

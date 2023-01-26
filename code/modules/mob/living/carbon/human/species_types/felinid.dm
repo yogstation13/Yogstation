@@ -7,6 +7,7 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
 	rare_say_mod = list("meows"= 10)
@@ -20,6 +21,8 @@
 	species_language_holder = /datum/language_holder/felinid
 
 	screamsound = list('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
+
+	smells_like = "hairballs and litter"
 
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
@@ -44,7 +47,7 @@
 			var/obj/item/organ/tail/cat/tail = new
 			tail.Insert(H, drop_if_replaced = FALSE)
 		else
-			mutanttail = null
+			mutanttail = initial(old_species.mutanttail)
 
 /datum/species/human/felinid/on_species_loss(mob/living/carbon/H, datum/species/new_species, pref_load)
 	var/obj/item/organ/ears/cat/ears = H.getorgan(/obj/item/organ/ears/cat)
@@ -127,7 +130,8 @@
 		var/obj/item/organ/cattification = new /obj/item/organ/tail/cat()
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 		cattification.Insert(H)
-		qdel(old_part)
+		if(istype(old_part, /obj/item/organ/tail/cat))	//Won't delete non-cat tails
+			qdel(old_part)								//No duplicate tails allowed, but different tails can share because it's funny
 		cattification = new /obj/item/organ/ears/cat()
 		old_part = H.getorganslot(ORGAN_SLOT_EARS)
 		cattification.Insert(H)

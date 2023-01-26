@@ -25,6 +25,8 @@
 	var/datum/looping_sound/decontamination_unit/decon
 	var/datum/looping_sound/decontamination_unit/emagged/decon_emagged
 
+	var/flick_waitTime = 9.5 //Waits for flick animation to complete before opening the door or it will be weird..
+
 /obj/machinery/decontamination_unit/open
 	state_open = TRUE
 	density = FALSE
@@ -118,12 +120,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject_emagged), flick_waitTime)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), 12)
+			addtimer(CALLBACK(src, .proc/decon_eject), flick_waitTime)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
@@ -151,16 +153,16 @@
 	else
 		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
 	var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
-	for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
-		var/atom/movable/dirty_movable = am
-		dirty_movable.wash(CLEAN_ALL)
-	open_machine(0)
 	if(occupant)
 		things_to_clear += occupant
 		things_to_clear += occupant.GetAllContents()
 		dump_mob()
 	if(contents.len)
 		things_to_clear += contents
+	for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
+		var/atom/movable/dirty_movable = am
+		dirty_movable.wash(CLEAN_ALL)
+	open_machine(0)
 
 /obj/machinery/decontamination_unit/proc/shock(mob/user)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

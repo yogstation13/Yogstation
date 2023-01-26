@@ -5,7 +5,7 @@
 /obj/machinery/space_heater
 	anchored = FALSE
 	density = TRUE
-	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
+	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater-off"
 	name = "space heater"
@@ -13,17 +13,18 @@
 	max_integrity = 250
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 100, FIRE = 80, ACID = 10)
 	circuit = /obj/item/circuitboard/machine/space_heater
-	use_power = NO_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	var/obj/item/stock_parts/cell/cell
 	var/on = FALSE
 	var/mode = HEATER_MODE_STANDBY
 	var/setMode = "auto" // Anything other than "heat" or "cool" is considered auto.
 	var/targetTemperature = T20C
-	var/heatingPower = 40000
+	var/heatingPower = 20000
 	var/efficiency = 20000
 	var/temperatureTolerance = 1
 	var/settableTemperatureMedian = 30 + T0C
 	var/settableTemperatureRange = 30
+	var/charge_rate = 10
 
 /obj/machinery/space_heater/get_cell()
 	return cell
@@ -57,22 +58,21 @@
 		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[heatingPower*0.001]kJ</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
 
 /obj/machinery/space_heater/update_icon()
-	if(on)
-		icon_state = "sheater-[on ? "[mode]" : "off"]"
-	else
-		icon_state = "sheater-off"
+	icon_state = "sheater-[on ? "[mode]" : "off"]"
 
 	cut_overlays()
 	if(panel_open)
 		add_overlay("sheater-open")
 
-/obj/machinery/space_heater/process()
-	if(!on || !is_operational())
+/obj/machinery/space_heater/process(delta_time)
+	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
+		active_power_usage = 0
+		update_icon()
 		return PROCESS_KILL
 
-	if(!cell || cell.charge <= 0)
+	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
 		on = FALSE
 		update_icon()
 		return PROCESS_KILL
@@ -100,24 +100,41 @@
 		return
 
 	var/heat_capacity = env.heat_capacity()
-	var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
-	requiredPower = min(requiredPower, heatingPower)
+	var/requiredEnergy = abs(env.return_temperature() - targetTemperature) * heat_capacity
+	requiredEnergy = min(requiredEnergy, heatingPower * delta_time)
 
-	if(requiredPower < 1)
+	if(requiredEnergy < 1)
 		return
 
-	if (cell.use(requiredPower / efficiency))
-		var/deltaTemperature = requiredPower / heat_capacity
-		if(mode == HEATER_MODE_COOL)
-			deltaTemperature *= -1
-		if(deltaTemperature)
-			env.set_temperature(env.return_temperature() + deltaTemperature)
-			air_update_turf()
+	var/deltaTemperature = requiredEnergy / heat_capacity
+	if(mode == HEATER_MODE_COOL)
+		deltaTemperature *= -1
+	if(deltaTemperature)
+		env.set_temperature(env.return_temperature() + deltaTemperature)
+		air_update_turf()
+
+	var/working = TRUE
+
+	if(stat & NOPOWER)
+		if (!cell.use(requiredEnergy / efficiency))
+			//automatically turn off machine when cell depletes
+			on = FALSE
+			update_icon()
+			working = FALSE		
 	else
-		//automatically turn off machine when cell depletes
-		on = FALSE
-		update_icon()
+		active_power_usage = requiredEnergy / efficiency
+		cell.give(charge_rate)
+	
+	if(!working)
 		return PROCESS_KILL
+
+/obj/machinery/space_heater/power_change()
+	. = ..()
+	if(stat & NOPOWER)
+		use_power = NO_POWER_USE
+	else
+		use_power = ACTIVE_POWER_USE
+
 
 /obj/machinery/space_heater/RefreshParts()
 	var/laser = 2
@@ -126,8 +143,9 @@
 		laser += M.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
+		charge_rate = initial(charge_rate)*M.rating
 
-	heatingPower = laser * 40000
+	heatingPower = laser * 20000
 
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000

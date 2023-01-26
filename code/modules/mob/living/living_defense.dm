@@ -108,12 +108,12 @@
 	else if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
-		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		switch(M.damtype)
 			if(BRUTE)
-				Unconscious(20)
+				if(M.force >= 20)
+					Unconscious(20)
+					var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+					src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 				take_overall_damage(rand(M.force/2, M.force))
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)

@@ -1,6 +1,9 @@
 /datum/job/mining
 	title = "Shaft Miner"
+	description = "Travel to strange lands. Mine ores. \
+		Meet strange creatures. Kill them for their gold."
 	flag = MINER
+	orbit_icon = "digging"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -31,6 +34,8 @@
 		/obj/item/grenade/plastic/miningcharge/mega = 1,
 		/obj/item/card/mining_point_card/fivethousand = 1
 	)
+	
+	smells_like = "ash and dust"
 
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2

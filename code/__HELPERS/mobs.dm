@@ -162,6 +162,20 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_pod_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pod_name(gender))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_preternis_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(preternis_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())
@@ -538,21 +552,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
 			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
-	
-	var/demo_message = message
-
-	if(follow_target)
-		var/F
-		if(turf_target)
-			F = FOLLOW_OR_TURF_LINK(SSdemo, follow_target, turf_target)
-		else
-			F = FOLLOW_LINK(SSdemo, follow_target)
-		demo_message = "[F] [message]"
-	else if(turf_target)
-		var/turf_link = TURF_LINK(SSdemo, turf_target)
-		demo_message = "[turf_link] [message]"
-
-	to_chat(SSdemo, demo_message)
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

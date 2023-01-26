@@ -5,18 +5,36 @@
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //What no if you touch things with your bare fingies you're gonna get shocked
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
 	undyeable = TRUE
+	var/tacticalspeed = 0.9
+	var/worn
+
+/obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(slot == SLOT_GLOVES)
+		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
+			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
+			worn = TRUE
+
+/obj/item/clothing/gloves/fingerless/dropped(mob/user)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
+		boss.physiology.do_after_speed /= tacticalspeed
+		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
 	name = "tactical fingerless gloves"
 	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
 	var/carrytrait = TRAIT_QUICKER_CARRY
-	var/worn
+	tacticalspeed = 0.66 //Does channels 34% faster
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
@@ -25,20 +43,12 @@
 
 /obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
 	..()
-	var/mob/living/carbon/human/boss = user
 	if(slot == SLOT_GLOVES)
 		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
-			boss.physiology.do_after_speed *= 0.8 //Does stuff 20% faster
-			worn = TRUE
 
 /obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
 	..()
-	var/mob/living/carbon/human/boss = user
 	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
-		boss.physiology.do_after_speed /= 0.8
-		worn = FALSE
 
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
@@ -74,6 +84,7 @@
 	icon_state = "bracers"
 	item_state = "bracers"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //They're not gloves?
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS

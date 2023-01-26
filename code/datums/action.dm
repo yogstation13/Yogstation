@@ -90,9 +90,10 @@
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	if(button)
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		button.locked = FALSE
+		button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
@@ -624,6 +625,18 @@
 	desc = "Mark those standing on blood for 10 seconds."
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rshield"
+
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
 
 //Preset for spells
 /datum/action/spell_action

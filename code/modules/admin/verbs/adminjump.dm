@@ -1,4 +1,4 @@
-/client/proc/jumptoarea(area/A in GLOB.sortedAreas)
+/client/proc/jumptoarea(area/A in get_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
@@ -138,21 +138,28 @@
 		usr.forceMove(M.loc)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Key") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/sendmob(mob/M in sortmobs())
+/client/proc/sendmob(mob/jumper in sortmobs())
 	set category = "Admin.Player Interaction"
 	set name = "Send Mob"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
-	var/area/A = input(usr, "Pick an area.", "Pick an area") in GLOB.sortedAreas|null
-	if(A && istype(A))
-		if(M.forceMove(safepick(get_area_turfs(A))))
+	var/list/sorted_areas = get_sorted_areas()
+	if(!length(sorted_areas))
+		to_chat(src, "No areas found.", confidential = TRUE)
+		return
+	var/area/target_area = input(src, "Pick an area", "Send Mob", sorted_areas)
+	if(isnull(target_area))
+		return
+	if(!istype(target_area))
+		return
+	var/list/turfs = get_area_turfs(target_area)
+	if(length(turfs) && jumper.forceMove(pick(turfs)))
+		message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(jumper)] to [AREACOORD(jumper)]")
 
-			message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [AREACOORD(A)]")
-
-			var/log_msg = "[key_name(usr)] teleported [key_name(M)] to [AREACOORD(A)]"
-			log_admin(log_msg)
-			admin_ticket_log(M, log_msg, TRUE)
-		else
-			to_chat(src, "Failed to move mob to a valid location.", confidential=TRUE)
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Send Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		var/log_msg = "[key_name(usr)] teleported [key_name(jumper)] to [AREACOORD(jumper)]"
+		log_admin(log_msg)
+		admin_ticket_log(jumper, log_msg, TRUE)
+	else
+		to_chat(src, "Failed to move mob to a valid location.", confidential = TRUE)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Send Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

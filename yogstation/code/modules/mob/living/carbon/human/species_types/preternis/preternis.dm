@@ -11,6 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -55,6 +56,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	var/soggy = FALSE
+
+	smells_like = "lemony steel"
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -243,7 +246,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.jitteriness -= 100
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
-	charge = clamp(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way
+	if(HAS_TRAIT(H, TRAIT_EAT_LESS))
+		chargemod *= 0.75 //power consumption rate reduced by about 25%
+	if(HAS_TRAIT(H, TRAIT_EAT_MORE))
+		chargemod *= 3 //hunger rate tripled
+	charge = clamp(charge - (power_drain * chargemod),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+
 	if(charge == PRETERNIS_LEVEL_NONE)
 		to_chat(H,span_danger("Warning! System power criti-$#@$"))
 		H.death()
@@ -267,7 +276,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
-		H.fire_nuclear_particle_wimpy()
+		H.fire_nuclear_particle()
 		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
 		return 1
 	return 0
+
+/datum/species/preternis/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_preternis_name()
+	return preternis_name()

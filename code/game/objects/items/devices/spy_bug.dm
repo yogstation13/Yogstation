@@ -4,7 +4,7 @@
 	signal.send_to_receivers()
 
 /datum/component/bugged/Initialize()
-	RegisterSignal(parent, list(COMSIG_MOVABLE_HEAR), .proc/Hear)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_HEAR), .proc/Hear)
 
 /obj/item/spy_bug
 	name = "\improper spy bug" 

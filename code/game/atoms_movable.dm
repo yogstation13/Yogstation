@@ -53,6 +53,11 @@
 	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
 	var/contents_pressure_protection = 0
 
+	///Lazylist to keep track on the sources of illumination.
+	var/list/affected_dynamic_lights
+	///Highest-intensity light affecting us, which determines our visibility.
+	var/affecting_dynamic_lumi = 0
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -63,6 +68,9 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			vis_contents += em_block
+	
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
 
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)
@@ -427,6 +435,7 @@
 	if (length(client_mobs_in_contents))
 		update_parallax_contents()
 
+	SSdemo.mark_dirty(src)
 	return TRUE
 
 /atom/movable/Destroy(force)

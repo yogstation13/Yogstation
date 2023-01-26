@@ -3,12 +3,16 @@
 /obj/item/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
 	damage = 20
+	wound_bonus = -5
+	wound_falloff_tile = -2.5
 
 // .50AE (Desert Eagle)
 
 /obj/item/projectile/bullet/a50AE
 	name = ".50AE bullet"
 	damage = 40
+	wound_bonus = -35
+	wound_falloff_tile = -2.5
 
 // .38 (Detective's Gun)
 
@@ -16,8 +20,9 @@
 	name = ".38 bullet"
 	damage = 25 //High damaging but...
 	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
-	wound_bonus = -10
-	bare_wound_bonus = 10
+	wound_bonus = -30
+	wound_falloff_tile = -2.5
+	bare_wound_bonus = 15
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
@@ -74,20 +79,22 @@
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
 	damage = 40
-	wound_bonus = -70
+	armour_penetration = 15
+	wound_bonus = -45
+	wound_falloff_tile = -2.5
 
 /obj/item/projectile/bullet/pellet/a357_ironfeather
 	name = ".357 Ironfeather pellet"
 	damage = 8 //Total of 48 damage assuming PBS; so no, it's not a two-shot anymore
 	wound_bonus = 7 //So it might be able to actually wound things
 	bare_wound_bonus = 7
-	tile_dropoff = 0.4 //Loses 0.05 damage less per tile than standard damaging pellets
+	tile_dropoff = 0.35 //Loses 0.05 damage less per tile than standard damaging pellets
 	wound_falloff_tile = -1.5 //Still probably won't cause wounds at range
 
 /obj/item/projectile/bullet/a357/nutcracker
 	name = ".357 Nutcracker bullet"
 	damage = 20 //Twice the damage of a breaching slug
-	wound_bonus = -60
+	wound_bonus = -10
 
 /obj/item/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
@@ -97,6 +104,7 @@
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
 	damage = 10
+	wound_bonus = -5
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -106,14 +114,14 @@
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"
 	damage = 35
-	armour_penetration = 30 //Not as good AP-wise relative to the stechy - both are a 5-hit against bulletproof armor, whereas this 3-hits normal armor versus 4 hits. Revolver has much lower RoF, too
+	armour_penetration = 45
 	penetrating = TRUE //Goes through a single mob before ending on the next target
 	penetrations = 1
 
 /obj/item/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
 	damage = 36 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
-	wound_bonus = -60 //Minor chance of dislocation from the bullet itself
+	wound_bonus = -40
 	sharpness = SHARP_NONE //Blunt
 
 /obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)

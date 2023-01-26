@@ -59,7 +59,7 @@
 			var/mob/living/L = target
 			if(isethereal(target))
 				target.emp_act(EMP_LIGHT)
-			for(var/obj/item/O in target)
+			for(var/obj/item/O in target.GetAllContents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 				if(L.pulling && L.pulling.light_range && isitem(L.pulling))
@@ -78,9 +78,7 @@
 /obj/item/umbral_tendrils/proc/disintegrate(obj/item/O)
 	if(istype(O, /obj/item/pda))
 		var/obj/item/pda/PDA = O
-		PDA.set_light(0)
-		PDA.fon = FALSE
-		PDA.f_lum = 0
+		PDA.set_light_on(FALSE)
 		PDA.update_icon()
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
@@ -146,14 +144,13 @@
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
 				span_userdanger("You're knocked off your feet!"))
-				L.Paralyze(20)
-				L.Knockdown(60)
+				L.Knockdown(6 SECONDS)
 			else
+				L.Immobilize(0.15 SECONDS) // so they cant cancel the throw by moving
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
-				L.Paralyze(30) //these can't hit people who are already on the ground but they can be spammed to all shit
-				L.Knockdown(80)
+				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target

@@ -30,6 +30,7 @@
 #define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
 #define PLUONIUM_TRANSMIT_MODIFIER 15
+#define STIMULUM_TRANSMIT_MODIFIER 75 //absurd amount of power, but quickly decays into nuclear particles
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
@@ -79,7 +80,6 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
-#define RADIATION_ANOMALY "radiation_anomaly"
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -496,6 +496,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/zaukcomp = max(removed.get_moles(/datum/gas/zauker)/combined_gas, 0)
 		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
 		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
+		var/stimcomp = max(removed.get_moles(/datum/gas/stimulum)/combined_gas, 0)
 
 		if (healcomp >= 0.1)
 			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1 //Increases healing and healing cap
@@ -509,16 +510,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		// Mole releated calculations
 		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
+		var/stimmol = max(removed.get_moles(/datum/gas/stimulum), 0)
 
 		// Power of the gas. Scale of 0 to 1
-		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp - pluoxiumcomp - n2comp, 0), 1)
+		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + stimcomp - pluoxiumcomp - n2comp, 0, 1)
 
 		// How much heat to emit/resist
 		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY), 0.5)
 		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) + (h2comp * HYDROGEN_HEAT_RESISTANCE) + (pluoniumcomp * PLUONIUM_HEAT_RESISTANCE) + (nobliumcomp * NOBLIUM_HEAT_RESISTANCE), 1)
 
 		// Used to determine radiation output as it concerns things like collecters
-		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER)
+		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (stimcomp * STIMULUM_TRANSMIT_MODIFIER)
 		// More moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
@@ -551,6 +553,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
 			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumcomp) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
 			radiation_pulse(src, max(last_rads))
+
+		if(stimmol > STIM_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
+			var/balls_shot = min(round(stimmol / STIM_BALL_MOLES_REQUIRED), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED)
+			var/starting_angle = rand(0, 360)
+			for(var/i = 0 to balls_shot) //  fires particles in a ring, with some random variation in the angle
+				src.fire_nuclear_particle(starting_angle + rand(-180/balls_shot, 180/balls_shot) + (i * 360 / balls_shot))
+			removed.set_moles(/datum/gas/stimulum, max(stimmol - (balls_shot * STIM_BALL_MOLES_REQUIRED), 0)) //converts stimulum into radballs
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
@@ -618,8 +627,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
-			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -1055,6 +1062,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	name = "supermatter crystal"
 	icon_state = "darkmatter"
 
+// Base stucture if you want to build a supermatter shard engine
+// Will require one supermatter shard
+/obj/structure/supermatter_base_structure
+	name = "supermatter base structure"
+	desc = "A tremendously strong, robust, and environment-resistant structure formed of condensed metallic hydrogen. A supermatter shard can fit inside the condensed hyper-noblium container on top of this structure."
+	icon = 'icons/obj/supermatter.dmi'
+	icon_state = "darkmatter_base"
+	density = TRUE
+	max_integrity = 500
+	armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 70, RAD = 70, FIRE = 10, ACID = 10)
+	var/stage = 1
+
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 	for(var/atom/movable/P in orange(pull_range,center))
@@ -1085,8 +1104,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				new /obj/effect/anomaly/grav(L, 250)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 400)
-			if(RADIATION_ANOMALY)
-				new /obj/effect/anomaly/radiation(L, 400)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1156,8 +1173,52 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			supermatter_zap(target_structure, 5, power / 1.5)
 
+//////////////////////////////////////////////
+///////////FOR SUPERMATTER BUILDING///////////
+//////////////////////////////////////////////
+
+
+/obj/structure/supermatter_base_structure/proc/load(obj/item/hemostat/supermatter/T, mob/user)
+	if(!istype(T) || !T.sliver)
+		return FALSE
+	if(stage < 2)
+		T.sliver.forceMove(src)
+		T.sliver = null
+		T.icon_state = "supermatter_tongs"
+		stage++
+		icon_state = "[initial(icon_state)]_1"
+		playsound(src, 'sound/items/deconstruct.ogg', 75)
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src]."), span_notice("You carefully place down the supermatter shard on the \the [src]."))
+	else if(stage >= 2)
+		T.sliver.forceMove(src)
+		T.sliver = null
+		T.icon_state = "supermatter_tongs"
+		var/obj/machinery/power/supermatter_crystal/shard/shard = new(loc)
+		user.visible_message(span_notice("You see \the [user] carefully place down the supermatter shard on the [src] and you can see \the [shard] engine is charging up."), span_notice("You carefully place down the supermatter shard on the \the [src] and you can see \the [shard] engine is charging up."))
+		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
+		shard.say(span_danger("Supermatter is being charged up, please stand back."))
+		qdel(src)
+		addtimer(CALLBACK(shard, /obj/machinery/power/supermatter_crystal/shard.proc/trigger), 60)
+	return TRUE
+	
+/obj/machinery/power/supermatter_crystal/shard/proc/trigger()
+	var/area/A = get_area(loc)
+	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
+	radio.talk_into(src, "Alert, new crystalline hyperstructure has been established in [A.map_name]", engineering_channel)
+	for(var/i=1 to 10)
+		addtimer(CALLBACK(src, .proc/chargedUp_zap), 30)
+
+/obj/machinery/power/supermatter_crystal/shard/proc/chargedUp_zap()
+	supermatter_zap(src, 7, 3000)
+	playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
+
+/obj/structure/supermatter_base_structure/attackby(obj/item/hemostat/supermatter/tongs, mob/user)
+	if(istype(tongs))
+		load(tongs, user)
+	else
+		return ..()
+
 #undef HALLUCINATION_RANGE
 #undef GRAVITATIONAL_ANOMALY
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
-#undef RADIATION_ANOMALY

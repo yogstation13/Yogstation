@@ -180,7 +180,9 @@
 
 /datum/team/brother_team/proc/forge_brother_objectives()
 	objectives = list()
-	var/is_hijacker = prob(10)
+	var/is_hijacker = FALSE
+	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
+		is_hijacker = prob(10)
 	for(var/i = 1 to max(1, CONFIG_GET(number/brother_objectives_amount) + (members.len > 2) - is_hijacker))
 		forge_single_objective()
 	if(is_hijacker)
