@@ -127,19 +127,13 @@
 				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
-			heal_robo_limb(src, H, user, 15, 0)
+			heal_robo_limb(src, H, user, 15, 0, 1, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
 
-/obj/item/weldingtool/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
-	if(I.use_tool(H, user, 2 SECONDS, volume=50, amount=1))
-		if(item_heal_robotic(H, user, brute_heal, burn_heal))
-			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
-		return TRUE
-	
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
