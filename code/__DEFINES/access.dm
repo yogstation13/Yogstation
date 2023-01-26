@@ -88,7 +88,7 @@
 #define ACCESS_FREEMINER_ENGINEER 73
 //Yogs: Brig Physician access, used for their locker and offices if one is added
 #define ACCESS_BRIG_PHYS 74
-#define ACCESS_ROBOTICS 75 // Access to robotics airlocks & buttons only
+#define ACCESS_ROBOTICS 75 // Access to robotics airlocks & buttons only, old ACCESS_ROBOTICS renamed to ACCESS_ROBO_CONTROL
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
