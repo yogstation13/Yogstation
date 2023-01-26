@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-GLOBAL_LIST_EMPTY(aide_list)
+GLOBAL_LIST_EMPTY(bloodmen_list)
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -1861,136 +1861,55 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/prisoncube(src)
 
 //Legion
-#define COOLDOWN_TAP 60
-#define COOLDOWN_BAND 200
-/obj/item/cane/cursed
-	name = "cursed cane"
-	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
-	have the capacity for it. Throwing the cane teleports you to it if it hits something and can be done to finish off targets from afar. Additionally, one would only need to\
-	hold the cane once to avoid the hostility of the aides."
+/obj/item/organ/grandcore
+	name = "grand core"
+	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "cursedcane"
-	item_state = "cursedcane"
-	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 0
-	throwforce = 0
+	icon_state = "grandcore"
+	slot = "hivecore"
 	w_class = WEIGHT_CLASS_SMALL
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	actions_types = list(/datum/action/item_action/band)
-	var/limit = 3
-	var/telerange = 10
-	var/next_tap = 0
-	var/next_band = 0
+	decay_factor = 0
+	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
 
-/obj/item/cane/cursed/pickup(mob/user)
+/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		playsound(user,'sound/effects/singlebeat.ogg',40,1)
+		user.temporarilyRemoveItemFromInventory(src, TRUE)
+		Insert(user)
+
+/obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
+	..()
+	H.faction |= "blooded"
+	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	if(NOBLOOD in H.dna.species.species_traits)
+		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
+	else
+		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
+
+/obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
+	H.faction -= "blooded"
+	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/aoe_turf/horde)
+	..()
+
+/datum/action/item_action/organ_action/threebloodlings
+	name = "Summon bloodlings"
+	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
+	var/next_expulsion = 0
+	var/cooldown = 10
+
+/datum/action/item_action/organ_action/threebloodlings/Trigger()
+	var/mob/living/carbon/H = owner
 	. = ..()
-	user.faction |= "cane"
-
-/obj/item/cane/cursed/attack_self(mob/user)
-	if(next_tap > world.time)
-		to_chat(user, span_warning("You can't do that yet!"))
+	if(next_expulsion > world.time)
+		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
 		return
-	for(var/i=1 to limit)
-		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/B = new(user.loc)
-		B.faction = user.faction
-	to_chat(user, span_notice("You tap the cane against a nearby surface and call upon your aides!"))
-	playsound(loc, 'sound/weapons/ricochet.ogg', 20, 1)
-	next_tap = world.time + COOLDOWN_TAP
-
-/obj/item/cane/cursed/proc/bigfinish(mob/living/user, mob/living/target)
-	var/mob/living/M = target
-	if(M.stat != DEAD)
-		var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/L = new(M.loc)
-		M.adjustBruteLoss(M.health)
-		GLOB.aide_list += L
-		L.faction = user.faction
-		playsound(user, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 30)
-		user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
-		to_chat(user, span_notice("You finish off your victim with an infusion of your cursed energy, raising a stronger minion!"))
-
-/obj/item/cane/cursed/proc/littlefinish(mob/living/user, mob/living/target)
-	var/mob/living/M = target
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L = new(M.loc)
-	M.adjustBruteLoss(M.health)
-	L.stored_mob = M
-	M.forceMove(L)
-	playsound(user, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 30)
-	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
-	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
-
-/obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
-	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead))
-		return FALSE
-	if(isbot(M))//because they just walk out of the aide lol
-		return FALSE
-	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
-		to_chat(user, span_notice("[target] cannot be raised again!"))
-		return FALSE
-	if(M.stat == DEAD)
-		littlefinish(user, M)
-		M.apply_status_effect(/datum/status_effect/exhumed)
-		return TRUE
-	if(ismegafauna(M))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			limit ++
-			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
-			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			return TRUE
-	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
-	if(iscarbon(M) && M.health < M.maxHealth/8)
-		littlefinish(user, M)
-		return TRUE
-	if(M.health < M.maxHealth/5)
-		littlefinish(user, M)
-		return TRUE
-
-/obj/item/cane/cursed/ui_action_click(mob/living/user, action)
-	if(istype(action, /datum/action/item_action/band))
-		if(next_band > world.time)
-			to_chat(user, span_warning("You can't do that yet!"))
-			return
-		if(GLOB.aide_list.len < 1)
-			to_chat(user, span_notice("You don't have any minions to summon!"))
-			return
-		user.visible_message(span_warning("With the snap of [user.p_their()] fingers, [user] calls upon [user.p_their()] aides!"))
-		playsound(usr, 'sound/misc/fingersnap1.ogg', 100, 1)
-		for(var/mob/living/simple_animal/aide in GLOB.aide_list)
-			var/turf/T = get_turf(user)
-			if(T)
-				aide.forceMove(T)
-				playsound(user, 'sound/magic/teleport_app.ogg', 20, 1)
-		next_band = world.time + COOLDOWN_BAND
-				
-
-/obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
-	.=..()
-	curse(user, target)
-
-/obj/item/cane/cursed/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	. = ..()
-	var/turf/D = get_turf(src)
-	var/turf/Z = get_turf(thrownby)
-	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
-		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
-		F.forceMove(Z)
-		thrownby.forceMove(D)
-		thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
-		if(isliving(hit_atom))
-			var/mob/living/M = hit_atom
-			if(curse(thrownby, M) == TRUE)
-				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
-				thrownby.put_in_hands(src)
+	if(NOBLOOD in H.dna.species.species_traits)
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage
+		to_chat(H, span_notice("Your head pounds as you produce bloodlings!"))
+	else
+		to_chat(H, span_notice("You spill your blood, and it comes to life as bloodlings!"))
+		H.blood_volume -= 35
+	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
+	next_expulsion = world.time + cooldown
