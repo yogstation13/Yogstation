@@ -1134,6 +1134,9 @@
 		if(!T.darkspawn)
 			return ..()
 		else if(user.a_intent == INTENT_DISARM && density)
+			// we dont want Duality double-hitting the airlock when we're trying to pry it open
+			if(user.get_active_held_item() != C)
+				return
 			if(!locked && !welded)
 				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
 					open(2)
