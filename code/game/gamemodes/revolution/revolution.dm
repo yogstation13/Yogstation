@@ -42,7 +42,6 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/pre_setup()
-	var/list/heads = SSjob.get_living_heads()
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -62,16 +61,17 @@
 		setup_error = "Not enough headrev candidates"
 		return FALSE
 
-	if(heads.len <= 2)
-		setup_error = "Not enough heads of staff"
-		return FALSE
-
 	return TRUE
 
 /datum/game_mode/revolution/post_setup()
 	var/list/heads = SSjob.get_living_heads()
 	var/list/sec = SSjob.get_living_sec()
 	var/weighted_score = min(max(round(heads.len - ((8 - sec.len) / 3)),1),max_headrevs)
+
+	if(heads.len <= 2)
+		message_admins("Not enough heads of staff for Revs. Converting to new round type.")
+		convert_roundtype()
+		return
 
 	for(var/datum/mind/rev_mind in headrev_candidates)	//People with return to lobby may still be in the lobby. Let's pick someone else in that case.
 		if(isnewplayer(rev_mind.current))
