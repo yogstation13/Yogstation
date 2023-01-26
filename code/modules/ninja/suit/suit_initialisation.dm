@@ -48,7 +48,7 @@
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize_seven(delay, mob/living/carbon/human/U)
 	to_chat(U, span_notice("All systems operational. Welcome to <B>SpiderOS</B>, [U.real_name]."))
 	s_initialized = TRUE
-	ntick()
+	START_PROCESSING(SSfastprocess, src)
 	s_busy = FALSE
 
 
@@ -91,4 +91,5 @@
 	unlock_suit()
 	U.regenerate_icons()
 	s_initialized = FALSE
+	STOP_PROCESSING(SSfastprocess, src)
 	s_busy = FALSE
