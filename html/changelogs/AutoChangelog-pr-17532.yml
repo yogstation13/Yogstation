@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "cryopods will no longer reroll objectives on the person cryoing if that objective has already been completed"
