@@ -130,7 +130,7 @@
 	trigger_guard = TRIGGER_GUARD_NONE
 	ammo_x_offset = 2
 
-obj/item/gun/energy/e_gun/nuclear
+/obj/item/gun/energy/e_gun/nuclear
 	name = "advanced energy gun"
 	desc = "An experimental energy gun with many settings and a miniaturized nuclear reactor that can be refueled with uranium."
 	icon_state = "nucgun"
