@@ -44,7 +44,6 @@
 	include_user = TRUE
 	range = -1
 	charge_max = 50
-	clothes_req = FALSE
 	cooldown_min = 10
 	action_icon = 'icons/obj/guns/magic.dmi'
 	action_icon_state = "hook"
@@ -114,6 +113,8 @@
 
 /obj/item/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
+	if(!H)
+		return
 	if(isobj(target))
 		var/obj/item/I = target
 		if(!I?.anchored)
@@ -177,8 +178,6 @@
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "lariat"
 	sound = 'sound/magic/fleshtostone.ogg'
-	clothes_req = FALSE
-	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/touch/buster/grap/cast(list/targets, mob/user = usr)
 	if(!QDELETED(attached_hand))
@@ -555,10 +554,9 @@
 	user.visible_message(span_userdanger("[user]'s left arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
-		var/result = (user.put_in_l_hand(B))
-		if(!result)
+		if(!user.put_in_l_hand(B))
 			to_chat(user, span_warning("You can't do this with your left hand full!"))
-		if(result)
+		else
 			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
 			B.fizzle(user)
 
@@ -797,10 +795,9 @@
 	user.visible_message(span_userdanger("[user]'s right arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE))
-		var/result = (user.put_in_r_hand(B))
-		if(!result)
+		if(!user.put_in_r_hand(B))
 			to_chat(user, span_warning("You can't do this with your right hand full!"))
-		if(result)
+		else
 			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
 			B.fizzle(user, right = TRUE)
 
