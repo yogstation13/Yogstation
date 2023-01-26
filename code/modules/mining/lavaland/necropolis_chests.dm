@@ -1925,6 +1925,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
+	if(GLOB.aide_list.len >= limit)
+		to_chat(user, span_notice("You can't control that many minions!"))
+		return FALSE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1948,9 +1951,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 		else
 			bigfinish(user, M)
 			return TRUE
-	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
