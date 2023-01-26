@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - tweak: "Reduces slowdown coefficient of galoshes from 1 to 0.75"
+  - tweak: "Reduces slowdown coefficient of duffel bag and clown shoes from 1 to 0.5"
