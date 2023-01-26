@@ -298,20 +298,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_details.byond_version = full_version
 		GLOB.player_details[ckey] = player_details
 
-	// yogs start - Donor stuff
-	if(ckey in GLOB.donators)
-		prefs.unlock_content |= DONOR_YOGS
-	else
-		prefs.unlock_content &= ~DONOR_YOGS // is_donator relies on prefs.unlock_content
-
-	if(is_donator(src))
+	if (prefs.unlock_content & DONOR_YOGS)
 		src.add_donator_verbs()
 	else
 		if(prefs.yogtoggles & QUIET_ROUND)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
-
-	// yogs end
+		
 	. = ..()	//calls mob.Login()
 
 	if (byond_version >= 512)

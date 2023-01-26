@@ -95,12 +95,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
+
 			if (C.IsByondMember())
 				unlock_content |= DONOR_BYOND
-				max_save_slots += DONOR_BYOND_SLOTS
-			if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
+
+			// the latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
+			if(is_donator(C) || (C.ckey in get_donators())) 
 				unlock_content |= DONOR_YOGS
-				max_save_slots += DONOR_YOGS_SLOTS
+
+	// give save slots to donors
+	if (unlock_content & DONOR_YOGS)
+		max_save_slots += DONOR_YOGS_SLOTS + DONOR_BYOND_SLOTS
+	else if (unlock_content & DONOR_BYOND)
+		max_save_slots += DONOR_BYOND_SLOTS
 
 	// give them default keybinds and update their movement keys
 	key_bindings = deepCopyList(GLOB.default_hotkeys)

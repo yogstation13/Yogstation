@@ -61,7 +61,7 @@
 
 	if(ismob(user))
 		var/mob/temp = user
-		if(temp && temp.client)
+		if(temp?.client)
 			if(temp.client.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.client.prefs)
