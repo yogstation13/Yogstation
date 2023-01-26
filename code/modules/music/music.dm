@@ -56,14 +56,14 @@
 	target.playing_music = src
 	if(sound_datum || !target || !sound_file)
 		return
-	sound_datum = sound(sound_file, does_loop, 0, CHANNEL_JUKEBOX, base_volume * fade_volume)
+	sound_datum = sound(sound_file, does_loop, 0, CHANNEL_MEGAFAUNA, base_volume * fade_volume)
 	SEND_SOUND(target, sound_datum)
 
 /datum/music/proc/mask()
 	if(target)
 		target.playing_music = null
 		if(sound_datum)
-			SEND_SOUND(target, sound(null, repeat = 0, wait = 0, channel = CHANNEL_JUKEBOX))
+			SEND_SOUND(target, sound(null, repeat = 0, wait = 0, channel = CHANNEL_MEGAFAUNA))
 			sound_datum = null
 	if(!does_loop)
 		qdel(src)

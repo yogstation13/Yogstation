@@ -130,7 +130,8 @@
 		var/obj/item/organ/cattification = new /obj/item/organ/tail/cat()
 		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
 		cattification.Insert(H)
-		qdel(old_part)
+		if(istype(old_part, /obj/item/organ/tail/cat))	//Won't delete non-cat tails
+			qdel(old_part)								//No duplicate tails allowed, but different tails can share because it's funny
 		cattification = new /obj/item/organ/ears/cat()
 		old_part = H.getorganslot(ORGAN_SLOT_EARS)
 		cattification.Insert(H)

@@ -351,6 +351,7 @@
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

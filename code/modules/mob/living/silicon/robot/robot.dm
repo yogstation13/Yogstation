@@ -197,6 +197,8 @@
 				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
 			mmi.update_icon()
+			if(istype(mmi, /obj/item/mmi/posibrain))
+				ADD_TRAIT(mmi.brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 		else
 			to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
 			ghostize()
