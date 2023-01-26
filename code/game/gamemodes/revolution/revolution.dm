@@ -18,7 +18,7 @@
 	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician") //Yogs: Added Brig Physician
 	required_jobs = list(list("Captain"=1),list("Head of Personnel"=1),list("Head of Security"=1),list("Chief Engineer"=1),list("Research Director"=1),list("Chief Medical Officer"=1)) //Any head present
 	required_players = 30
-	required_enemies = 3
+	required_enemies = 2
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 
@@ -42,6 +42,7 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/pre_setup()
+	var/list/heads = SSjob.get_living_heads()
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -59,6 +60,10 @@
 
 	if(headrev_candidates.len < required_enemies)
 		setup_error = "Not enough headrev candidates"
+		return FALSE
+
+	if(heads.len <= 2)
+		setup_error = "Not enough heads of staff"
 		return FALSE
 
 	return TRUE
