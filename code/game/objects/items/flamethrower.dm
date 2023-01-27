@@ -239,7 +239,6 @@
 /obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
 	//Fetch and remove 5% of current tank air contents
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	//var/oxygen_consumption = (air_transfer.get_moles(/datum/gas/plasma) * 2) + (air_transfer.get_moles(/datum/gas/tritium) / 2) + (air_transfer.get_moles(/datum/gas/hydrogen) / 2)
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
 	if(air_transfer.get_moles(GAS_PLASMA) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_STIMULUM) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_PLUOXIUM) >= STIM_BALL_MOLES_REQUIRED)
