@@ -53,6 +53,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
+	
+	if (current_version < 39)
+		write_preference(/datum/preference/toggle/hotkeys, TRUE)
+		key_bindings = deepCopyList(GLOB.default_hotkeys)
+		parent.set_macros()
+		to_chat(parent, span_userdanger("Empty keybindings, setting default to Hotkey mode"))
 
 	if (current_version < 40)
 		migrate_preferences_to_tgui_prefs_menu()

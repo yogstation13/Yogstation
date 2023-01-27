@@ -123,7 +123,7 @@
 		GHOST_ORBIT_PENTAGON,
 	)
 
-/datum/preference/choiced/ghost_form/create_default_value()
+/datum/preference/choiced/ghost_orbit/create_default_value()
 	return GHOST_ORBIT_DEFAULT_OPTION
 
 /datum/preference/choiced/ghost_orbit/apply_to_client(client/client, value)
