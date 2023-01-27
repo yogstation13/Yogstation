@@ -198,7 +198,7 @@
 			if(borg.lamp_enabled)
 				borg.smash_headlamp()
 		else if(ishuman(AM))
-			for(var/obj/item/O in AM)
+			for(var/obj/item/O in AM.GetAllContents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 		if(L.pulling && L.pulling.light_range && isitem(L.pulling))

@@ -1481,6 +1481,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()
+	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
+		return FALSE
 	if(M)
 		M.handle_counter(target, user)
 		return FALSE
@@ -1580,6 +1582,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(user == target)
 		return FALSE
 	if(user.loc == target.loc)
+		return FALSE
+	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)

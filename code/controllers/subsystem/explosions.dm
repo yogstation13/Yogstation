@@ -210,6 +210,12 @@ SUBSYSTEM_DEF(explosions)
 		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
 		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
 		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
+	else // If they don't respect the bomb cap, still make them affected by the z-level bomb multiplier
+		devastation_range *= cap_multiplier
+		heavy_impact_range *= cap_multiplier
+		light_impact_range *= cap_multiplier
+		flash_range *= cap_multiplier
+		flame_range *= cap_multiplier
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/started_at = REALTIMEOFDAY

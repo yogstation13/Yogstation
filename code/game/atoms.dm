@@ -1047,6 +1047,8 @@
 		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
 		if(newname)
+			log_admin("[key_name(usr)] renamed [src] to [newname].")
+			message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_FLW(src)] to [newname].")
 			vv_auto_rename(newname)
 
 /atom/proc/vv_auto_rename(newname)
