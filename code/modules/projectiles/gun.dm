@@ -19,6 +19,7 @@
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
 	cryo_preserve = TRUE
+	fryable = TRUE
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
