@@ -111,6 +111,7 @@
 		var/mob/living/carbon/C = target
 		for(var/obj/item/shield/riot/R in C.get_all_gear())
 			R.shatter() // Shield :b:roke
+			qdel(R)
 
 /obj/item/gun/magic/hook/sickly_blade/Initialize()
 	. = ..()
