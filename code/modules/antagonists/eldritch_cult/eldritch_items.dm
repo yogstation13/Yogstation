@@ -103,6 +103,7 @@
 	damage = 0
 	knockdown = 0
 	immobilize = 2 // there's no escape
+	range = 5 // hey now cowboy
 
 /obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
 	. = ..()
