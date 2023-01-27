@@ -78,7 +78,7 @@
 	if(do_after(user, 8 SECONDS, A))
 		if(last_rune)
 			qdel(last_rune)
-		new /obj/effect/eldritch/big(A)
+		last_rune = new /obj/effect/eldritch/big(A)
 
 ///Removes runes from the selected turf
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
