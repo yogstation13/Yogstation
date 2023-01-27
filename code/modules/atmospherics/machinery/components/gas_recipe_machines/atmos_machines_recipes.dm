@@ -22,7 +22,6 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	var/min_temp = TCMB
 	///Maximum temperature for the recipe
 	var/max_temp = INFINITY
-	///Type of reaction (either endothermic or exothermic)
 	/**
 	 * Amount of thermal energy released/consumed by the reaction.
 	 * Positive numbers make the reaction release energy (exothermic) while negative numbers make the reaction consume energy (endothermic).
