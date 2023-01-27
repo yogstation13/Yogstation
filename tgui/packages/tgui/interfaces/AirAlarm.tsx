@@ -196,13 +196,18 @@ const AirAlarmControlVents = (props, context) => {
   const { data } = useBackend(context);
   const { vents } = data;
   if (!vents || vents.length === 0) {
-    return 'Nothing to show';
+    return <span>Nothing to show</span>;
   }
-  return vents.map(vent => (
-    <Vent
-      key={vent.id_tag}
-      vent={vent} />
-  ));
+  return (
+    <>
+      {vents.map((vent) => (
+        <Vent
+          key={vent.id_tag}
+          vent={vent}
+        />
+      ))}
+    </>
+  );
 };
 
 //  Scrubbers
@@ -212,13 +217,15 @@ const AirAlarmControlScrubbers = (props, context) => {
   const { data } = useBackend(context);
   const { scrubbers } = data;
   if (!scrubbers || scrubbers.length === 0) {
-    return 'Nothing to show';
+    return <span>Nothing to show</span>;
   }
-  return scrubbers.map(scrubber => (
-    <Scrubber
-      key={scrubber.id_tag}
-      scrubber={scrubber} />
-  ));
+  return (
+    <>
+      {scrubbers.map((scrubber) => (
+        <Scrubber key={scrubber.id_tag} scrubber={scrubber} />
+      ))}
+    </>
+  );
 };
 
 //  Modes
@@ -228,19 +235,24 @@ const AirAlarmControlModes = (props, context) => {
   const { act, data } = useBackend(context);
   const { modes } = data;
   if (!modes || modes.length === 0) {
-    return 'Nothing to show';
+    return <span>Nothing to show</span>;
   }
-  return modes.map(mode => (
-    <Button key={mode.mode}>
-      <Button
-        icon={mode.selected ? 'check-square-o' : 'square-o'}
-        selected={mode.selected}
-        color={mode.selected && mode.danger && 'danger'}
-        content={mode.name}
-        onClick={() => act('mode', { mode: mode.mode })} />
-      <Box mt={1} />
-    </Button>
-  ));
+  return (
+    <>
+      {modes.map((mode) => (
+        <Fragment key={mode.mode}>
+          <Button
+            icon={mode.selected ? 'check-square-o' : 'square-o'}
+            color={mode.selected && mode.danger && 'danger'}
+            selected={mode.selected}
+            content={mode.name}
+            onClick={() => act('mode', { mode: mode.mode })}
+          />
+          <Box mt={1} />
+        </Fragment>
+      ))}
+    </>
+  );
 };
 
 
