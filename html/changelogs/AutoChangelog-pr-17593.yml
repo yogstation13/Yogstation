@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "fixes runtime when firing a gun that is suppressed, but doesn't have a suppressor attached. Probably no visible changes"
