@@ -1222,5 +1222,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 #undef HALLUCINATION_RANGE
 #undef GRAVITATIONAL_ANOMALY
+#undef SUPERMATTER_EXPLOSION_LAMBDA
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
