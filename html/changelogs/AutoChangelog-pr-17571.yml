@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "supermatter explosion and EMP radius now based on the energy of crystal instead of the gases in the chamber"
+  - tweak: "supermatter explodes harder in a vacuum"
+  - tweak: "supermatter will now irradiate what's left of engineering when it explodes"
