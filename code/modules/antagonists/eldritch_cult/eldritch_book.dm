@@ -9,6 +9,7 @@
 	var/mob/living/last_user
 	///Where we cannot create the rune?
 	var/static/list/blacklisted_turfs = typecacheof(list(/turf/closed,/turf/open/space,/turf/open/lava))
+	var/obj/effect/eldritch/big/last_rune
 
 /obj/item/forbidden_book/Destroy()
 	last_user = null
@@ -58,7 +59,7 @@
 		to_chat(user, span_danger("You have already studied this influence!"))
 		return
 	to_chat(user, span_danger("You start to study [RS]..."))
-	if(do_after(user, 10 SECONDS, RS))
+	if(do_after(user, 4 SECONDS, RS))
 		var/datum/antagonist/heretic/H = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 		H?.charge += 1
 		to_chat(user, span_notice("You finish your study of [RS]!"))
@@ -74,8 +75,9 @@
 	var/A = get_turf(target)
 	to_chat(user, span_danger("You start drawing a rune..."))
 
-	if(do_after(user, 30 SECONDS, A))
-
+	if(do_after(user, 8 SECONDS, A))
+		if(last_rune)
+			qdel(last_rune)
 		new /obj/effect/eldritch/big(A)
 
 ///Removes runes from the selected turf

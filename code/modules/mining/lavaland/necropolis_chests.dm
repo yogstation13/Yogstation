@@ -493,9 +493,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target)
+/obj/item/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
-	if(ismovable(target))
+	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		if(A.anchored)
 			return

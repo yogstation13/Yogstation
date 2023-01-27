@@ -10,7 +10,7 @@
 
 /datum/eldritch_knowledge/base_ash/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
+	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
 	user.put_in_hands(realknife)
 
 /datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
@@ -59,7 +59,7 @@
 /datum/eldritch_knowledge/ash_mark
 	name = "Mark of Ash"
 	gain_text = "Spread the famine."
-	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. The Mark of Ash causes stamina damage, and fire loss, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
+	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. The Mark of Ash causes fire loss, attempts to ignite them, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_ASH
@@ -110,7 +110,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.adjust_fire_stacks(1)
+		C.adjust_fire_stacks(2)
 		C.IgniteMob()
 
 /datum/eldritch_knowledge/flame_birth
