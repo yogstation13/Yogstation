@@ -196,18 +196,13 @@ const AirAlarmControlVents = (props, context) => {
   const { data } = useBackend(context);
   const { vents } = data;
   if (!vents || vents.length === 0) {
-    return <span>Nothing to show</span>;
+    return 'Nothing to show';
   }
-  return (
-    <>
-      {vents.map((vent) => (
-        <Vent
-          key={vent.id_tag}
-          vent={vent}
-        />
-      ))}
-    </>
-  );
+  return vents.map(vent => (
+    <Vent
+      key={vent.id_tag}
+      vent={vent} />
+  ));
 };
 
 //  Scrubbers
@@ -217,15 +212,13 @@ const AirAlarmControlScrubbers = (props, context) => {
   const { data } = useBackend(context);
   const { scrubbers } = data;
   if (!scrubbers || scrubbers.length === 0) {
-    return <span>Nothing to show</span>;
+    return 'Nothing to show';
   }
-  return (
-    <>
-      {scrubbers.map((scrubber) => (
-        <Scrubber key={scrubber.id_tag} scrubber={scrubber} />
-      ))}
-    </>
-  );
+  return scrubbers.map(scrubber => (
+    <Scrubber
+      key={scrubber.id_tag}
+      scrubber={scrubber} />
+  ));
 };
 
 //  Modes
@@ -235,7 +228,7 @@ const AirAlarmControlModes = (props, context) => {
   const { act, data } = useBackend(context);
   const { modes } = data;
   if (!modes || modes.length === 0) {
-    return <span>Nothing to show</span>;
+    return 'Nothing to show';
   }
   return (
     <>
