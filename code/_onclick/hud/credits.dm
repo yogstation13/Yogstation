@@ -52,7 +52,7 @@ GLOBAL_LIST(end_titles)
 
 /atom/movable/screen/credit/proc/add_to_clients()
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.read_preference(/datum/preference/toggle/show_credits))
+		if(C.prefs?.read_preference(/datum/preference/toggle/show_credits))
 			C.screen += src
 
 /atom/movable/screen/credit/Destroy()
