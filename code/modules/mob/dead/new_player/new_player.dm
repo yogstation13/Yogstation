@@ -31,6 +31,8 @@
 
 	ComponentInitialize()
 
+	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
+
 	. = ..()
 
 	GLOB.new_player_list += src
@@ -173,7 +175,6 @@
 			return
 
 		GLOB.latejoin_menu.ui_interact(usr)
-		add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
 	if(href_list["manifest"])
 		ViewManifest()
