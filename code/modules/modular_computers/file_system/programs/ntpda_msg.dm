@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		computer = holder.loc
 
 /datum/computer_file/program/pdamessager/proc/explode() // Why does NT have bombs in their modular tablets?
-	var/atom/source
+	var/obj/source
 	if(computer)
 		source = computer
 	else if(istype(holder.loc, /obj/item/modular_computer))
@@ -60,6 +60,8 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 	if(source)
 		explosion(source, -1, 0, 3, 4)
+		if(!QDELETED(source) && source.obj_integrity > source.integrity_failure) // Ensure the screen breaks
+			source.take_damage(source.obj_integrity - source.integrity_failure, armour_penetration = 100)
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
 	
