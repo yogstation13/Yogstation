@@ -567,6 +567,21 @@
 		/obj/item/healthanalyzer = 1
 		)
 	generate_items_inside(items_inside,src)
+	
+/obj/item/storage/firstaid/hypospray/syndicate/juggernog
+	desc = "An advanced kit containing a combat hypospray and a newly discovered chemical that significantly increases your endurance, the vials also contain a small amount of our ™Amphetamine pills"
+	icon_state = "hypobezerk"
+	item_state = "firstaid-bezerk"
+
+/obj/item/storage/firstaid/hypospray/syndicate/PopulateContents()
+	if(empty)
+		return
+	var/static/items_inside = list(
+		/obj/item/hypospray/combat/juggernog = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/large/combat/juggernog = 2,
+		/obj/item/reagent_containers/glass/bottle/juggernog = 2
+		)
+	generate_items_inside(items_inside,src)
 
 /*
  * Pill Bottles
