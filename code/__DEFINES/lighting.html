@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/lighting.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/lighting.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -66,198 +66,198 @@ Set to zero to disable soft lighting. Luminosity changes then work if it's lit a
         <tr><th><a href="code/__DEFINES/lighting.html#define/GETBLUEPART">GETBLUEPART</a></th><td>Returns the blue part of a #RRGGBB hex sequence as number</td></tr>
         <tr><th><a href="code/__DEFINES/lighting.html#define/PARSE_LIGHT_COLOR">PARSE_LIGHT_COLOR</a></th><td>Parse the hexadecimal color into lumcounts of each perspective.</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/DYNAMIC_LIGHTING_DISABLED"><aside class="declaration">#define </aside>DYNAMIC_LIGHTING_DISABLED
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L110">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L110">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 110"/></a>
     </h3>
     <p>dynamic lighting disabled (area stays at full brightness)</p><h3 id="define/DYNAMIC_LIGHTING_ENABLED"><aside class="declaration">#define </aside>DYNAMIC_LIGHTING_ENABLED
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L112">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L112">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 112"/></a>
     </h3>
     <p>dynamic lighting enabled</p><h3 id="define/DYNAMIC_LIGHTING_FORCED"><aside class="declaration">#define </aside>DYNAMIC_LIGHTING_FORCED
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L114">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L114">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 114"/></a>
     </h3>
     <p>dynamic lighting enabled even if the area doesn't require power</p><h3 id="define/DYNAMIC_LIGHTING_IFSTARLIGHT"><aside class="declaration">#define </aside>DYNAMIC_LIGHTING_IFSTARLIGHT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L116">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L116">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 116"/></a>
     </h3>
     <p>dynamic lighting enabled only if starlight is.</p><h3 id="define/EMISSIVE_BLOCK_GENERIC"><aside class="declaration">#define </aside>EMISSIVE_BLOCK_GENERIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L131">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L131">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 131"/></a>
     </h3>
     <p>Uses vis_overlays to leverage caching so that very few new items need to be made for the overlay. For anything that doesn't change outline or opaque area much or at all.</p><h3 id="define/EMISSIVE_BLOCK_UNIQUE"><aside class="declaration">#define </aside>EMISSIVE_BLOCK_UNIQUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L133">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L133">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 133"/></a>
     </h3>
     <p>Uses a dedicated render_target object to copy the entire appearance in real time to the blocking layer. For things that can change in appearance a lot from the base state, like humans.</p><h3 id="define/GETBLUEPART"><aside class="declaration">#define </aside>GETBLUEPART
             <aside>(hexa)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L142">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L142">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 142"/></a>
     </h3>
     <p>Returns the blue part of a #RRGGBB hex sequence as number</p><h3 id="define/GETGREENPART"><aside class="declaration">#define </aside>GETGREENPART
             <aside>(hexa)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L139">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L139">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 139"/></a>
     </h3>
     <p>Returns the green part of a #RRGGBB hex sequence as number</p><h3 id="define/GETREDPART"><aside class="declaration">#define </aside>GETREDPART
             <aside>(hexa)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L136">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L136">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 136"/></a>
     </h3>
     <p>Returns the red part of a #RRGGBB hex sequence as number</p><h3 id="define/LIGHTING_BASE_MATRIX"><aside class="declaration">#define </aside>LIGHTING_BASE_MATRIX
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 37"/></a>
     </h3>
     <p>If I were you I'd leave this alone.</p><h3 id="define/LIGHTING_FALLOFF"><aside class="declaration">#define </aside>LIGHTING_FALLOFF
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L21">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L21">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 21"/></a>
     </h3>
     <p>type of falloff to use for lighting; 1 for circular, 2 for square</p><h3 id="define/LIGHTING_HEIGHT"><aside class="declaration">#define </aside>LIGHTING_HEIGHT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 25"/></a>
     </h3>
     <p>height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone</p><h3 id="define/LIGHTING_ICON"><aside class="declaration">#define </aside>LIGHTING_ICON
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 30"/></a>
     </h3>
     <p>icon used for lighting shading effects</p><h3 id="define/LIGHTING_INTERVAL"><aside class="declaration">#define </aside>LIGHTING_INTERVAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L16">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L16">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 16"/></a>
     </h3>
     <p>frequency, in 1/10ths of a second, of the lighting process</p><h3 id="define/LIGHTING_LAMBERTIAN"><aside class="declaration">#define </aside>LIGHTING_LAMBERTIAN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L23">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L23">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 23"/></a>
     </h3>
     <p>use lambertian shading for light sources</p><h3 id="define/LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE"><aside class="declaration">#define </aside>LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L105">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L105">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 105"/></a>
     </h3>
     <p>For lighting alpha, small amounts lead to big changes. even at 128 its hard to figure out what is dark and what is light, at 64 you almost can't even tell.</p><h3 id="define/LIGHTING_ROUND_VALUE"><aside class="declaration">#define </aside>LIGHTING_ROUND_VALUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 27"/></a>
     </h3>
     <p>Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.</p><h3 id="define/LIGHTING_SOFT_THRESHOLD"><aside class="declaration">#define </aside>LIGHTING_SOFT_THRESHOLD
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L34">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L34">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 34"/></a>
     </h3>
     <p>If the max of the lighting lumcounts of each spectrum drops below this, disable luminosity on the lighting objects.
 Set to zero to disable soft lighting. Luminosity changes then work if it's lit at all.</p><h3 id="define/LIGHT_ATTACHED"><aside class="declaration">#define </aside>LIGHT_ATTACHED
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 9"/></a>
     </h3>
     <p>Is a movable light source attached to another movable (its loc), meaning that the lighting component should go one level deeper.</p><h3 id="define/LIGHT_COLOR_BLOOD_MAGIC"><aside class="declaration">#define </aside>LIGHT_COLOR_BLOOD_MAGIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L81">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L81">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 81"/></a>
     </h3>
     <p>deep crimson</p><h3 id="define/LIGHT_COLOR_BLUE"><aside class="declaration">#define </aside>LIGHT_COLOR_BLUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L56">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L56">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 56"/></a>
     </h3>
     <p>Cold, diluted blue. rgb(100, 150, 250)</p><h3 id="define/LIGHT_COLOR_BLUEGREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_BLUEGREEN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L58">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L58">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 58"/></a>
     </h3>
     <p>Light blueish green. rgb(125, 225, 175)</p><h3 id="define/LIGHT_COLOR_BROWN"><aside class="declaration">#define </aside>LIGHT_COLOR_BROWN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L70">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L70">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 70"/></a>
     </h3>
     <p>Clear brown, mostly dim. rgb(150, 100, 50)</p><h3 id="define/LIGHT_COLOR_CYAN"><aside class="declaration">#define </aside>LIGHT_COLOR_CYAN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L60">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L60">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 60"/></a>
     </h3>
     <p>Diluted cyan. rgb(125, 225, 225)</p><h3 id="define/LIGHT_COLOR_DARK_BLUE"><aside class="declaration">#define </aside>LIGHT_COLOR_DARK_BLUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L64">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L64">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 64"/></a>
     </h3>
     <p>Saturated blue. rgb(51, 117, 248)</p><h3 id="define/LIGHT_COLOR_FIRE"><aside class="declaration">#define </aside>LIGHT_COLOR_FIRE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L86">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L86">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 86"/></a>
     </h3>
     <p>Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)</p><h3 id="define/LIGHT_COLOR_FLARE"><aside class="declaration">#define </aside>LIGHT_COLOR_FLARE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L90">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L90">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 90"/></a>
     </h3>
     <p>Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)</p><h3 id="define/LIGHT_COLOR_GREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_GREEN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L54">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L54">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 54"/></a>
     </h3>
     <p>Bright but quickly dissipating neon green. rgb(100, 200, 100)</p><h3 id="define/LIGHT_COLOR_HALOGEN"><aside class="declaration">#define </aside>LIGHT_COLOR_HALOGEN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L96">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L96">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 96"/></a>
     </h3>
     <p>Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)</p><h3 id="define/LIGHT_COLOR_HOLY_MAGIC"><aside class="declaration">#define </aside>LIGHT_COLOR_HOLY_MAGIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L79">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L79">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 79"/></a>
     </h3>
     <p>slightly desaturated bright yellow.</p><h3 id="define/LIGHT_COLOR_LAVA"><aside class="declaration">#define </aside>LIGHT_COLOR_LAVA
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L88">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L88">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 88"/></a>
     </h3>
     <p>Very warm yellow, leaning slightly towards orange. rgb(196, 138, 24)</p><h3 id="define/LIGHT_COLOR_LAVENDER"><aside class="declaration">#define </aside>LIGHT_COLOR_LAVENDER
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L76">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L76">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 76"/></a>
     </h3>
     <p>Less-saturated light purple. rgb(155, 81, 255)</p><h3 id="define/LIGHT_COLOR_LIGHT_CYAN"><aside class="declaration">#define </aside>LIGHT_COLOR_LIGHT_CYAN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L62">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L62">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 62"/></a>
     </h3>
     <p>More-saturated cyan. rgb(64, 206, 255)</p><h3 id="define/LIGHT_COLOR_ORANGE"><aside class="declaration">#define </aside>LIGHT_COLOR_ORANGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L72">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L72">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 72"/></a>
     </h3>
     <p>Mostly pure orange. rgb(250, 150, 50)</p><h3 id="define/LIGHT_COLOR_PINK"><aside class="declaration">#define </aside>LIGHT_COLOR_PINK
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L66">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L66">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 66"/></a>
     </h3>
     <p>Diluted, mid-warmth pink. rgb(225, 125, 225)</p><h3 id="define/LIGHT_COLOR_PURPLE"><aside class="declaration">#define </aside>LIGHT_COLOR_PURPLE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L74">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L74">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 74"/></a>
     </h3>
     <p>Light Purple. rgb(149, 44, 244)</p><h3 id="define/LIGHT_COLOR_RED"><aside class="declaration">#define </aside>LIGHT_COLOR_RED
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 52"/></a>
     </h3>
     <p>Warm but extremely diluted red. rgb(250, 130, 130)</p><h3 id="define/LIGHT_COLOR_SLIME_LAMP"><aside class="declaration">#define </aside>LIGHT_COLOR_SLIME_LAMP
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L92">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L92">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 92"/></a>
     </h3>
     <p>Weird color, between yellow and green, very slimy. rgb(175, 200, 75)</p><h3 id="define/LIGHT_COLOR_TUNGSTEN"><aside class="declaration">#define </aside>LIGHT_COLOR_TUNGSTEN
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L94">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L94">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 94"/></a>
     </h3>
     <p>Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)</p><h3 id="define/LIGHT_COLOR_YELLOW"><aside class="declaration">#define </aside>LIGHT_COLOR_YELLOW
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L68">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L68">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 68"/></a>
     </h3>
     <p>Dimmed yellow, leaning kaki. rgb(225, 225, 125)</p><h3 id="define/LIGHT_NO_LUMCOUNT"><aside class="declaration">#define </aside>LIGHT_NO_LUMCOUNT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L12">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L12">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 12"/></a>
     </h3>
     <p>This light doesn't affect turf's lumcount calculations. Set to 1&lt;&lt;15 to ignore conflicts</p><h3 id="define/LIGHT_RANGE_FIRE"><aside class="declaration">#define </aside>LIGHT_RANGE_FIRE
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L99">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L99">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 99"/></a>
     </h3>
     <p>How many tiles standard fires glow.</p><h3 id="define/MOVABLE_LIGHT"><aside class="declaration">#define </aside>MOVABLE_LIGHT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L6">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L6">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 6"/></a>
     </h3>
     <p>Light made by masking the lighting darkness plane.</p><h3 id="define/NO_LIGHT_SUPPORT"><aside class="declaration">#define </aside>NO_LIGHT_SUPPORT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L2">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L2">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 2"/></a>
     </h3>
     <p>Object doesn't use any of the light systems. Should be changed to add a light source to the object.</p><h3 id="define/PARSE_LIGHT_COLOR"><aside class="declaration">#define </aside>PARSE_LIGHT_COLOR
             <aside>(source)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L145">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L145">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 145"/></a>
     </h3>
     <p>Parse the hexadecimal color into lumcounts of each perspective.</p><h3 id="define/STATIC_LIGHT"><aside class="declaration">#define </aside>STATIC_LIGHT
-            <a href="https://github.com/yogstation13/Yogstation/blob/1e683aca9645c7c6c03f34ff1832914746887176/code/__DEFINES/lighting.dm#L4">
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/__DEFINES/lighting.dm#L4">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 4"/></a>
     </h3>
     <p>Light made with the lighting datums, applying a matrix.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/1e683aca9645c7c6c03f34ff1832914746887176">1e683ac</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/3ec01c797defc133b6a759bdec5e6a7f6e2a495a">3ec01c7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
