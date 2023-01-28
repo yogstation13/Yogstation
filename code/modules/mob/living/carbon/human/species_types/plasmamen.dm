@@ -179,8 +179,6 @@
 	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
 	plasmeme_helmet.set_design(H)
 
-	return 0
-
 /datum/species/plasmaman/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_plasmaman_name()

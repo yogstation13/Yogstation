@@ -194,7 +194,7 @@
 	return
 
 /mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
-	//dna.species.pre_equip_species_outfit(equipping, src, visual_only)
+	dna.species.before_equip_job(equipping, src, visual_only)
 	equipOutfit(equipping.outfit, visual_only)
 
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
