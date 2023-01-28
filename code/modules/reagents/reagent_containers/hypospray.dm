@@ -625,7 +625,7 @@
 	quickload = TRUE
 	penetrates = TRUE
 
-/obj/item/hypospray/combat
+/obj/item/hypospray/combat/juggernog
 	name = "Juggernog hypospray"
 	desc = "A combat-ready deluxe hypospray that acts almost instantly. it injects you with a potent reinforcing agent that allows you to resist signficantly more damage then the average human."
 	icon_state = "hypo_syndie"
