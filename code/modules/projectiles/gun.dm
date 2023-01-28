@@ -19,6 +19,7 @@
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
 	cryo_preserve = TRUE
+	fryable = TRUE
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
@@ -200,7 +201,7 @@
 
 	if(suppressed)
 		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound)
-		if(suppressed.break_chance && prob(suppressed.break_chance))
+		if(istype(suppressed) && suppressed.break_chance && prob(suppressed.break_chance))
 			to_chat(user, span_warning("\the [suppressed] falls apart!"))
 			w_class -= suppressed.w_class
 			qdel(suppressed)

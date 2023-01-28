@@ -2343,6 +2343,7 @@
 #include "code\modules\language\english.dm"
 #include "code\modules\language\etherean.dm"
 #include "code\modules\language\felinid.dm"
+#include "code\modules\language\french.dm"
 #include "code\modules\language\language.dm"
 #include "code\modules\language\language_holder.dm"
 #include "code\modules\language\language_menu.dm"
