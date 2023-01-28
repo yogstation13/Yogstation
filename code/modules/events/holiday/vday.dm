@@ -23,17 +23,17 @@
 
 	var/list/valentines = list()
 	for(var/mob/living/M in GLOB.player_list)
-	if(!M.client || !M.mind)
-		continue
+		if(!M.client || !M.mind)
+			continue
 
-	if (M.stat != CONSCIOUS)
-		continue
+		if (M.stat != CONSCIOUS)
+			continue
 
-	var/valentines_disabled = M.client.prefs.read_preference(/datum/preference/toggle/event/valentines)
-	if(valentines_disabled)
-		continue
+		var/valentines_disabled = M.client.prefs.read_preference(/datum/preference/toggle/event/valentines)
+		if(valentines_disabled)
+			continue
 
-	valentines |= M
+		valentines |= M
 
 	while(valentines.len)
 		var/mob/living/L = pick_n_take(valentines)
