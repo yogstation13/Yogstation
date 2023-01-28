@@ -34,7 +34,7 @@
 
 /datum/portrait_picker/ui_data(mob/user)
 	var/list/data = list()
-	data["public_paintings"] = SSpersistence.paintings["public"] ? SSpersistence.paintings["public"] : 0
+	data["public_paintings"] = SSpersistent_paintings.paintings["public"] ? SSpersistent_paintings.paintings["public"] : 0
 	return data
 
 /datum/portrait_picker/ui_act(action, params)
@@ -45,7 +45,7 @@
 		if("select")
 			var/list/tab2key = list(TAB_PUBLIC = "public")
 			var/folder = tab2key[params["tab"]]
-			var/list/current_list = SSpersistence.paintings[folder]
+			var/list/current_list = SSpersistent_paintings.paintings[folder]
 			var/list/chosen_portrait = current_list[params["selected"]]
 			var/png = "data/paintings/[folder]/[chosen_portrait["md5"]].png"
 			var/icon/portrait_icon = new(png)

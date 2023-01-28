@@ -19,6 +19,10 @@
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	minimal_character_age = 18 //Capitalism doesn't care about age
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	smells_like = "cheap plastic"
