@@ -107,8 +107,9 @@
 	cleave = TRUE
 	precise_attacks = TRUE
 	attack_sharpness = SHARP_EDGED
-	attack_sound = 'sound/weapons/mechasword.ogg'	//Recorded from Respawn/EA's Titanfall 2 (Ronin broadsword swing). Apparently they don't care so we're probably good
-	harmful = TRUE									//DO NOT give to children. Or do, I'm not the police.
+	attack_sound = 'sound/weapons/mechasword.ogg'			//Recorded from Respawn/EA's Titanfall 2 (Ronin broadsword swing). Apparently they don't care so we're probably good
+	var/mob_strike_sound = 'sound/weapons/bladeslice.ogg'	//The sound it makes when the cleave hits a mob, different from the attack
+	harmful = TRUE											//DO NOT give to children. Or do, I'm not the police.
 	minimum_damage = 0							
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/special_hit(atom/target)	
@@ -150,7 +151,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
-				playsound(L, 'sound/weapons/bladeslice.ogg', 50)
+				playsound(L, mob_strike_sound, 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
@@ -207,6 +208,7 @@
 	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
 	minimum_damage = 40			
 	attack_speed_modifier = 1.5 //Kinda chunky
+	mob_strike_sound = 'sound/weapons/blade1.ogg'
 	light_system = MOVABLE_LIGHT
 	light_range = 5
 	light_color = LIGHT_COLOR_RED
@@ -235,7 +237,7 @@
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
-				playsound(L, 'sound/weapons/blade1.ogg', 50)
+				playsound(L, mob_strike_sound, 50)
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
@@ -289,6 +291,7 @@
 	minimum_damage = 10			
 	hit_effect = ATTACK_EFFECT_BOOP		//Boop :)
 	attack_sharpness = SHARP_NONE
+	mob_strike_sound = 'sound/weapons/egloves.ogg'
 	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
 	var/stunforce = 10 SECONDS
 
@@ -316,8 +319,6 @@
 		else if(current_stamina_damage >= 20)
 			H.Jitter(5)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
-
-		playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	else
 		return
