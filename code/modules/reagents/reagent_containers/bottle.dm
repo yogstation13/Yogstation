@@ -104,6 +104,11 @@
 	name = "formaldehyde bottle"
 	desc = "A small bottle of formaldehyde."
 	list_reagents = list(/datum/reagent/toxin/formaldehyde = 30)
+	
+/obj/item/reagent_containers/glass/bottle/juggernog
+	name = "bottle of juggernog"
+	desc = "A small bottle of juggernog, perfect to take during a battle to reinforce yourself."
+	list_reagents = list(/datum/reagent/consumable/ethanol/brave_bull/juggernog = 30)
 
 /obj/item/reagent_containers/glass/bottle/ammonia
 	name = "ammonia bottle"
