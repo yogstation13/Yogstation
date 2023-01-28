@@ -16,8 +16,6 @@
 			helmet_icon += "-[helmet_icon_suffix]"
 
 		var/icon/icon = icon('icons/obj/clothing/hats.dmi', helmet_icon)
-		icon.Scale(64, 64)
-
 		values[helmet_name] = icon
 
 	return values
