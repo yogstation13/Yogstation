@@ -625,6 +625,21 @@
 	quickload = TRUE
 	penetrates = TRUE
 
+/obj/item/hypospray/combat
+	name = "Juggernog hypospray"
+	desc = "A combat-ready deluxe hypospray that acts almost instantly. it injects you with a potent reinforcing agent that allows you to resist signficantly more damage then the average human."
+	icon_state = "hypo_syndie"
+	allowed_containers = list(/obj/item/reagent_containers/glass/bottle)
+	container = /obj/item/reagent_containers/glass/bottle/vial/large/combat/juggernog
+	max_container_size = WEIGHT_CLASS_SMALL
+	inject_wait = 0 SECONDS
+	inject_self = 0 SECONDS
+	spray_wait = 0 SECONDS
+	spray_self = 0 SECONDS
+	quickload = TRUE
+	penetrates = TRUE
+
+
 /obj/item/hypospray/qmc
 	name = "QMC hypospray"
 	desc = "A modified, well used quick-mix capital combat hypospray designed to treat those on the field with hardsuits."
