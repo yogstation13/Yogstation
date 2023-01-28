@@ -1216,15 +1216,15 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/lavaland/surface/outdoors/explored)
-"gX" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/chasm/lavaland,
-/area/lavaland/surface/outdoors/explored)
 "hY" = (
 /obj/machinery/light,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered/clownplanet)
+"nH" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/ballpit,
+/area/lavaland/surface/outdoors/explored)
 "pv" = (
 /obj/machinery/light{
 	dir = 4
@@ -1378,10 +1378,10 @@ cc
 cc
 pv
 XO
-gX
+nH
 XO
 XO
-gX
+nH
 pv
 cc
 cc
@@ -1411,11 +1411,11 @@ ye
 ye
 cc
 cc
-gX
-gX
+nH
+nH
 KX
-gX
-gX
+nH
+nH
 cc
 cc
 ye
@@ -1446,9 +1446,9 @@ aJ
 ye
 cc
 cc
-gX
-gX
-gX
+nH
+nH
+nH
 cc
 cc
 ye
@@ -2262,9 +2262,9 @@ cc
 ye
 cc
 cc
-gX
-gX
-gX
+nH
+nH
+nH
 cc
 cc
 ye
@@ -2295,11 +2295,11 @@ ye
 ye
 cc
 cc
-gX
-gX
+nH
+nH
 KX
-gX
-gX
+nH
+nH
 cc
 cc
 ye
@@ -2330,10 +2330,10 @@ cc
 cc
 MR
 XO
+nH
 XO
 XO
-XO
-gX
+nH
 MR
 cc
 cc
@@ -2364,7 +2364,7 @@ aa
 aa
 aa
 XO
-gX
+XO
 XO
 XO
 XO

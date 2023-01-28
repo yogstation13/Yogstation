@@ -144,9 +144,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/asteroid/basalt/lava,
 /area/ruin/unpowered)
-"D" = (
-/turf/open/chasm,
-/area/ruin/unpowered)
 "E" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/asteroid/basalt/lava,
@@ -168,6 +165,9 @@
 "I" = (
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"T" = (
+/turf/open/lava/smooth,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -280,9 +280,9 @@ i
 c
 q
 y
-D
-D
-D
+T
+T
+T
 y
 q
 a
@@ -297,9 +297,9 @@ p
 d
 q
 y
-D
+T
 F
-D
+T
 y
 q
 a
@@ -314,9 +314,9 @@ d
 b
 q
 y
-D
-D
-D
+T
+T
+T
 y
 q
 u
