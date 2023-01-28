@@ -108,7 +108,7 @@
 	harmful = TRUE									//DO NOT give to children. Or do, I'm not the police.
 	minimum_damage = 0							//Baby mechs with a secret combat module get a little boost
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/proc/special_hit(atom/target)	
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/special_hit(atom/target)	
 	return 0
 
 
@@ -281,19 +281,11 @@
 	energy_drain = 300
 	attack_speed_modifier = 1.4	//needs to recharge
 	structure_damage_mult = 1
-	precise_weapon_damage = -20
+	precise_weapon_damage = -20	//Mostly nonlethal
 	weapon_damage = -20
 	minimum_damage = 10			
 	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
 	var/stunforce = 10 SECONDS
-
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/on_select()
-	chassis.force /= 3	//Nonlethal weapon, don't want to outright kill people with it if we're swinging with a combat mech
-	. = ..()
-
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/on_deselect()
-	chassis.force *= 3	
-	. = ..()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)
 	if(ishuman(target))
@@ -324,6 +316,12 @@
 
 	else
 		return
+
+
+	//		//=========================================================\\
+	//======||			SNOWFLAKE WEAPONS THAT ARENT SWORDS		 	   ||
+	//		\\=========================================================//
+
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
@@ -391,10 +389,10 @@
 	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/special_hit(/obj/mecha/target)
-	if(ishuman(T.occupant))
-		var/mob/living/carbon/human/H = T.occupant
+	if(ishuman(target.occupant))
+		var/mob/living/carbon/human/H = target.occupant
 		precise_attack(H, TRUE)
 		H.visible_message(span_danger("[chassis.name] stabs [H] with [src]!"), \
 			span_userdanger("[chassis.name] penetrates your suits armor with [src]!"))
-		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
+		chassis.log_message("Hit [H] with [src.name] (precise attack).", LOG_MECHA)
 
