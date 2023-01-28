@@ -671,6 +671,11 @@
 	name = "large vial (Combat Hypospray Mix)"
 	icon_state = "viallarge_black"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
+	
+/obj/item/reagent_containers/glass/bottle/vial/large/combat/juggernog
+	name = "large vial (Combat Hypospray Mix)"
+	icon_state = "viallarge_black"
+	list_reagents = list(/datum/reagent/consumable/ethanol/brave_bull/juggernog = 30, /datum/reagent/medicine/stimulants = 5 )
 
 /obj/item/reagent_containers/glass/bottle/vial/large/stimulants
 	name = "large vial (Stimulants)"
