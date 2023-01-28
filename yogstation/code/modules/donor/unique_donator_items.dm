@@ -9,61 +9,13 @@
 *
 */
 
-GLOBAL_LIST_INIT(donor_pdas, list("Normal", "Transparent", "Pip Boy", "Rainbow"))
-
 GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
-
-/client/proc/custom_donator_item()
-	if(!is_donator(src))
-		to_chat(src, span_warning("You're not a donator! To access this feature, considering donating today!"))
-		return
-	GLOB.donator_gear.ui_interact(usr)//datum has a tgui component, here we open the window
 
 /datum/donator_gear_resources
 	var/name = "Unique Donator Items Controller"
 	var/list/donor_items = list()
-
-/datum/donator_gear_resources/ui_state(mob/user)
-	return GLOB.always_state
-
-//We allow any state here because a dead person can set their donator hat and it won't really change a whole lot.
-/datum/donator_gear_resources/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "DonorGear", "Donator Gear Setup")
-		ui.open()
-
-/datum/donator_gear_resources/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	usr = (istype(usr, /client)) ? usr : usr.client
-	var/datum/donator_gear/DG = locate(params["target"])
-	if(!DG)
-		return
-	DG.equip(usr)
-
-/datum/donator_gear_resources/ui_data(mob/user)
-	var/list/data = list()
-	var/list/items_info = list()
-	items_info["hats"] = list()
-	items_info["items"] = list()
-	data["items_info"] = items_info
-	for(var/datum/donator_gear/S in GLOB.donator_gear.donor_items)
-		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
-			var/list/item_info = list()
-			item_info["name"] = S.name
-			item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
-			item_info["id"] = "\ref[S]"
-			//Bit of sorting on the UI to make it nicer to look at.
-			if(S.slot == SLOT_HEAD)
-				var/list/L = items_info["hats"] //To dodge the annoying linting error. This one really irks me.
-				items_info["hats"][++L.len] = item_info
-			else
-				var/list/L = items_info["items"] //To dodge the annoying linting error. This one really irks me.
-				items_info["items"][++L.len] = item_info
-	data["items_info"] = items_info
-	return data
-
-///Constructor for the donator item controller. Ensures that the donor items list is populated.
+	var/list/item_names = list()
+	var/list/donor_plush = list()
 
 /datum/donator_gear_resources/New()
 	. = ..()
@@ -74,22 +26,23 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 			qdel(S)
 			continue
 		donor_items += S
+		item_names[S.name] = S
+
+	for(var/Ptype in subtypesof(/obj/item/toy/plush))
+		var/obj/item/toy/plush/P = new Ptype
+		donor_plush += P
+		item_names[P.name] = P
 
 /datum/donator_gear
+	/// Name of the gear, as displayed in the preferences menu
 	var/name = "Base type donator item"
-	var/ckey = null ///A valid ckey belonging to a player with donator status.
-	var/unlock_path = null ///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
-	var/slot = null ///Is this a hat? For categorisation in the UI.
-
-///Method to set the desired client's "fancy item" to their custom item.
-/datum/donator_gear/proc/equip(var/client/C)
-	if(!C || !C.prefs)
-		return FALSE
-	if(slot == SLOT_HEAD)
-		C.prefs.donor_hat = unlock_path
-	else
-		C.prefs.donor_item = unlock_path
-	C.prefs.save_preferences()
+	/// A valid ckey belonging to a player with donator status.
+	var/ckey = null
+	/// A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
+	var/unlock_path = null
+	/// Is this a hat? For categorisation in the UI.
+	var/slot = null
+	var/plush = FALSE
 
 /*
 Helper proc for lazy coders. Autogenerates donator gear datums based off of a list of types that you give it. May not work perfectly every time, but it sure beats typing things out.
@@ -107,10 +60,10 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 */
 
 
-///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
+///Ckey locked (special) items. These should come last to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
 /datum/donator_gear/orca
-	name = "Megumus Dress"
+	name = "Megumus Dress (orcacora)"
 	ckey = "orcacora"
 	unlock_path = /obj/item/storage/box/megumu
 
@@ -124,59 +77,54 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
 
-/datum/donator_gear/azeelium
-	name = "Utatul-Azeel plushie"
-	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
-
 /datum/donator_gear/mqiib
-	name = "Singularity Necklace"
+	name = "Singularity Necklace (Mqiib)"
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
 /datum/donator_gear/cowbot
-	name = "Singularity Wakizashi"
+	name = "Singularity Wakizashi (Cowbot93)"
 	ckey = "Cowbot93"
 	unlock_path = /obj/item/toy/katana/singulo_wakizashi
 
 /datum/donator_gear/marmio64
-	name = "Eldritch Cowl"
+	name = "Eldritch Cowl (Marmio64)"
 	ckey = "Marmio64"
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
 
 /datum/donator_gear/manatee
-	name = "Peacekeeper Beret & Dogtags"
+	name = "Peacekeeper Beret & Dogtags (Majesticmanateee)"
 	ckey = "Majesticmanateee"
 	unlock_path = /obj/item/storage/box/manatee
 
 /datum/donator_gear/Hisakaki
-	name = "Transdimensional halo"
+	name = "Transdimensional halo (Hisakaki)"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
 	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
-	name = "Rainbow flower"
+	name = "Rainbow flower (Skrem7)"
 	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
 
 /datum/donator_gear/alvcyktor
-	name = "Shark Hoodie"
+	name = "Shark Hoodie (alvcyktor)"
 	ckey = "alvcyktor"
 	unlock_path = /obj/item/clothing/accessory/sharkhoodie
 
 /datum/donator_gear/isotope
-	name = "Dark Scientist Jumpsuit and Badass Lighter"
+	name = "Dark Scientist Jumpsuit and Badass Lighter (Nightmare1243)"
 	ckey = "Nightmare1243"
 	unlock_path = /obj/item/storage/box/isotope
 
 /datum/donator_gear/cuackles
-	name = "punk jacket"
+	name = "punk jacket (cuackles)"
 	ckey = "cuackles"
 	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
 
 /datum/donator_gear/hisa
-	name = "Hunter Stash"
+	name = "Hunter Stash (hisakaki)"
 	ckey = "hisakaki"
 	unlock_path = /obj/item/storage/box/hisa
 
@@ -498,6 +446,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sheetsyndie
 	name = "syndicate bedsheet"
 	unlock_path = /obj/item/bedsheet/syndie
+
 /datum/donator_gear/air_horn
 	name = "air horn"
 	unlock_path = /obj/item/bikehorn/airhorn
@@ -621,15 +570,138 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/revolver
 	name = "cap gun"
 	unlock_path = /obj/item/toy/gun
-/datum/donator_gear/plushvar
-	name = "Ratvar plushie"
-	unlock_path = /obj/item/toy/plush/plushvar
-/datum/donator_gear/narplush
-	name = "Nar'Sie plushie"
-	unlock_path = /obj/item/toy/plush/narplush
-/datum/donator_gear/blahajplush
-	name = "Shark plushie"
-	unlock_path = /obj/item/toy/plush/blahaj
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
+
+//plushies - kill me, for fuck sake
+/datum/donator_gear/plushvar
+	name = "Ratvar"
+	unlock_path = /obj/item/toy/plush/plushvar
+	plush = TRUE
+/datum/donator_gear/narplush
+	name = "Nar'Sie"
+	unlock_path = /obj/item/toy/plush/narplush
+	plush = TRUE
+
+/datum/donator_gear/blahajplush
+	name = "Shark"
+	unlock_path = /obj/item/toy/plush/blahaj
+	plush = TRUE
+
+/datum/donator_gear/slicerv
+	name = "axolotl (slicerv)"
+	ckey = "slicerv"
+	unlock_path = /obj/item/toy/plush/axolotlplushie
+	plush = TRUE
+
+/datum/donator_gear/azeelium
+	name = "Utatul-Azeel (Anvilman6)"
+	ckey = "Anvilman6"
+	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
+	plush = TRUE
+
+/datum/donator_gear/carpplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/carpplushie
+	name = "Space Carp"
+
+/datum/donator_gear/bubbleplush
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/bubbleplush
+	name = "Bubblegum"
+
+/datum/donator_gear/lizardplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizardplushie
+	name = "Lizard"
+
+/datum/donator_gear/snakeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/snakeplushie
+	name = "Snake"
+
+/datum/donator_gear/nukeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/nukeplushie
+	name = "Operative"
+
+/datum/donator_gear/slimeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/slimeplushie
+	name = "Slime"
+
+/datum/donator_gear/awakenedplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/awakenedplushie
+	name = "Awakened"
+
+/datum/donator_gear/beeplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/beeplushie
+	name = "Bee"
+
+/datum/donator_gear/mothplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/mothplushie
+	name = "Moth"
+
+/datum/donator_gear/pkplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/pkplushie
+	name = "Peacekeeper"
+
+/datum/donator_gear/foxplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/foxplushie
+	name = "Fox"
+
+/datum/donator_gear/lizard
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizard
+	name = "Coder"
+
+/datum/donator_gear/azeel
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/lizard/azeel
+	name = "Medical Lizard"
+
+/datum/donator_gear/blahaj
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/blahaj
+	name = "Shark"
+
+/datum/donator_gear/cdragon
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/cdragon
+	name = "Crystal Dragon"
+
+/datum/donator_gear/goatplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/goatplushie
+	name = "Strange Goat"
+
+/datum/donator_gear/teddybear
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/teddybear
+	name = "Teddy Bear"
+
+/datum/donator_gear/stuffedmonkey
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/stuffedmonkey
+	name = "Stuffed Monkey"
+
+/datum/donator_gear/inorixplushie
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/inorixplushie
+	name = "Inorix"
+
+/datum/donator_gear/flowerbunch
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/flowerbunch
+	name = "Bunch of Flowers"
+
+/datum/donator_gear/realgoat
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/realgoat
+	name = "Goat"

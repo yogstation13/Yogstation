@@ -5,6 +5,7 @@
 	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
 	can_hijack = HIJACK_HIJACKER
+	preview_outfit = /datum/outfit/heretic
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
 	var/list/transmutations = list()
@@ -40,6 +41,27 @@
 	You gain charges by either collecting influences or sacrificing people tracked by the living heart<br> \
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
 	If you need to quickly check your unlocked transmutation recipes, alt+click your Codex Cicatrix.")
+
+/datum/antagonist/heretic/get_preview_icon()
+	var/icon/icon = render_preview_outfit(preview_outfit)
+
+	// MOTHBLOCKS TOOD: Copied and pasted from cult, make this its own proc
+
+	// The sickly blade is 64x64, but getFlatIcon crunches to 32x32.
+	// So I'm just going to add it in post, screw it.
+
+	// Center the dude, because item icon states start from the center.
+	// This makes the image 64x64.
+	icon.Crop(-15, -15, 48, 48)
+
+	var/obj/item/melee/sickly_blade/blade = new
+	icon.Blend(icon(blade.lefthand_file, blade.item_state), ICON_OVERLAY)
+	qdel(blade)
+
+	// Move the guy back to the bottom left, 32x32.
+	icon.Crop(17, 17, 48, 48)
+
+	return finish_preview_icon(icon)
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
@@ -277,3 +299,14 @@
 	if(!cultie)
 		return FALSE
 	return cultie.total_sacrifices >= target_amount
+
+/datum/outfit/heretic
+	name = "Heretic (Preview only)"
+
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	r_hand = /obj/item/melee/touch_attack/mansus_fist
+
+/datum/outfit/heretic/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/clothing/suit/hooded/hooded = locate() in H
+	hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
+	hooded.ToggleHood()

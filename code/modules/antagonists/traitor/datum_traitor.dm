@@ -7,6 +7,7 @@
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
 	antag_moodlet = /datum/mood_event/focused
+	preview_outfit = /datum/outfit/traitor
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
@@ -452,6 +453,19 @@
 
 	return message
 
-
 /datum/antagonist/traitor/is_gamemode_hero()
 	return SSticker.mode.name == "traitor"
+
+/datum/outfit/traitor
+	name = "Traitor (Preview only)"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/armor/laserproof
+	gloves = /obj/item/clothing/gloves/color/yellow
+	mask = /obj/item/clothing/mask/gas
+	l_hand = /obj/item/melee/transforming/energy/sword
+	r_hand = /obj/item/gun/energy/kinetic_accelerator/crossbow
+	head = /obj/item/clothing/head/helmet
+
+/datum/outfit/traitor/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/melee/transforming/energy/sword/sword = locate() in H.held_items
+	sword.transform_weapon(H)
