@@ -27,7 +27,7 @@
 	var/weapon_damage = 0
 	//If we have both cleave and precise attacks, the precise may have more damage
 	var/precise_weapon_damage = 0
-	//Minimum damage dealt with a weapon. Applies only to non-combat mechs to make them suck a little less
+	//Minimum damage dealt with a weapon. Applies to non-combat mechs with the secret compartment module to make them suck a little less
 	var/minimum_damage = 0
 	//Bonus deflection chance for using a melee weapon capable of blocking attacks
 	var/deflect_bonus = 0
@@ -38,6 +38,9 @@
 	//Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
 
+	//Effect on hitting something
+	var/hit_effect = ATTACK_EFFECT_SLASH
+	//Effect of the cleave attack
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
@@ -106,7 +109,7 @@
 	attack_sharpness = SHARP_EDGED
 	attack_sound = 'sound/weapons/mechasword.ogg'	//Recorded from Respawn/EA's Titanfall 2 (Ronin broadsword swing). Apparently they don't care so we're probably good
 	harmful = TRUE									//DO NOT give to children. Or do, I'm not the police.
-	minimum_damage = 0							//Baby mechs with a secret combat module get a little boost
+	minimum_damage = 0							
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/special_hit(atom/target)	
 	return 0
@@ -141,7 +144,7 @@
 					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
-					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
+					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
@@ -189,7 +192,7 @@
 		O.take_damage(object_damage, dam_type, "melee", 0)
 	else
 		return
-	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
+	chassis.do_attack_animation(target, hit_effect)
 	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe
@@ -226,7 +229,7 @@
 					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
-					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
+					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
 				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
@@ -276,18 +279,20 @@
 	minimum_damage = 20			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
-	name = "\improper I Asked Mord For A Name And He Didnt Give Me One Yet" //FIND NAME <===========================================================!!!!!!
+	name = "\improper AV-98 \"Ingram\" heavy stun baton" 
 	desc = "A stun baton, but bigger. The tide of toolbox-armed assistants don't stand a chance."
 	energy_drain = 300
-	attack_speed_modifier = 1.4	//needs to recharge
+	attack_speed_modifier = 1.5	//needs to recharge
 	structure_damage_mult = 1
 	precise_weapon_damage = -20	//Mostly nonlethal
 	weapon_damage = -20
 	minimum_damage = 10			
+	hit_effect = ATTACK_EFFECT_BOOP		//Boop :)
+	attack_sharpness = SHARP_NONE
 	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
 	var/stunforce = 10 SECONDS
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)	//It's a stun baton. It stuns.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/affecting = H.get_bodypart(BODY_ZONE_CHEST)	//We're smacking them square in the chest with a giant stun stick
@@ -349,17 +354,19 @@
 	energy_drain = 30
 	force = 10						//I want someone to stab someone else with this by hand
 	extended_range = 1				//Hits from a tile away
-	precise_weapon_damage = 15
-	minimum_damage = 20				//No bonus for weak mechs
+	precise_weapon_damage = 10
+	minimum_damage = 20				
 	attack_speed_modifier = 1.2		//Slightly slower
 	attack_sharpness = SHARP_POINTY
 	sharpness = SHARP_POINTY		//You can't use it well but it IS still a giant sharp metal stick
 	base_armor_piercing = 40
 	structure_damage_mult = 1.5		//Not great at destroying stuff
+	hit_effect = ATTACK_EFFECT_KICK	//Don't question it
+
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/precise_attack(atom/target, penetrated = FALSE)
-	if(!penetrated)
-		//Find some way to get all the stuff in a line between attacker and target and hit them all
+	//if(!penetrated)
+		//Find some way to get all the stuff in a line between attacker and target and hit them all, but this can wait
 	if(isliving(target))						
 		var/mob/living/L = target
 
@@ -370,7 +377,7 @@
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 		else
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
-			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
 
 		L.visible_message(span_danger("[chassis.name] stabs [L] with [src]!"), \
@@ -385,14 +392,16 @@
 			special_hit(target)	
 	else
 		return
-	chassis.do_attack_animation(target, ATTACK_EFFECT_KICK)
+	chassis.do_attack_animation(target, hit_effect)
 	playsound(chassis, attack_sound, 50, 1)
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/special_hit(/obj/mecha/target)
-	if(ishuman(target.occupant))
-		var/mob/living/carbon/human/H = target.occupant
-		precise_attack(H, TRUE)
-		H.visible_message(span_danger("[chassis.name] stabs [H] with [src]!"), \
-			span_userdanger("[chassis.name] penetrates your suits armor with [src]!"))
-		chassis.log_message("Hit [H] with [src.name] (precise attack).", LOG_MECHA)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/special_hit(atom/target)	//Pierces mechs and hits the pilot
+	if(ismecha(target))
+		var/obj/mecha/M = target
+		if(ishuman(M.occupant))
+			var/mob/living/carbon/human/H = M.occupant
+			precise_attack(H, TRUE)
+			H.visible_message(span_danger("[chassis.name] stabs [H] with [src]!"), \
+				span_userdanger("[chassis.name] penetrates your suits armor with [src]!"))
+			chassis.log_message("Hit [H] with [src.name] (precise attack).", LOG_MECHA)
 
