@@ -8,7 +8,7 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
-		if(ROLE_SHADOWLING in applicant.client.prefs.be_special)
+		if(ROLE_DARKSPAWN in applicant.client.prefs.be_special)
 			if(!applicant.stat || !applicant.mind)
 				continue
 			if(applicant.mind.special_role)
