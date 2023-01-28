@@ -33,7 +33,7 @@
 		/obj/item/stack/sheet/runed_metal/five = 2,
 		/obj/item/book/mimery = 1,
 		/obj/item/greentext = 1 //the one true book
-	)
+  )
 
 	smells_like = "musty paper"
 

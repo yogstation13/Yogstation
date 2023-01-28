@@ -28,6 +28,11 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 
+	department_for_prefs = /datum/job_department/captain
+	departments_list = list(
+		/datum/job_department/command,
+	)
+
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	mail_goodies = list(

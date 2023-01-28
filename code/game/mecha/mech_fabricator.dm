@@ -8,7 +8,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 	
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	///Whether the access is hacked or not
 	var/hacked = FALSE
 	///World ticks the machine is electified for

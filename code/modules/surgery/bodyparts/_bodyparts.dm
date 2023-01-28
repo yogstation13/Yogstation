@@ -869,6 +869,8 @@
 			limb.icon_state = "[body_zone]_[icon_gender]"
 		else if(use_digitigrade)
 			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+		else if(body_zone == BODY_ZONE_HEAD || body_zone == BODY_ZONE_CHEST)//default to male for the torso and head if the species is agendered
+			limb.icon_state = "[body_zone]_m"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)

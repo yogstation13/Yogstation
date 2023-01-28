@@ -14,7 +14,7 @@
 
 /datum/mutation/human/wacky
 	name = "Wacky"
-	desc = "Unknown."
+	desc = "Causes the user to talk in an odd manner."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_sans("You feel an off sensation in your voicebox.")
 	text_lose_indication = span_notice("The off sensation passes.")
@@ -168,7 +168,7 @@
 
 /datum/mutation/human/chav
 	name = "Chav"
-	desc = "Unknown"
+	desc = "Causes the user to construct sentences in a more rudimentary manner."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_notice("Ye feel like a reet prat like, innit?")
 	text_lose_indication = span_notice("You no longer feel like being rude and sassy.")

@@ -23,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 	minimal_character_age = 18 //Young and fresh bodies for a high mortality job, what more could you ask for
 
+	departments_list = list(
+		/datum/job_department/cargo,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	mail_goodies = list(

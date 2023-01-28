@@ -90,8 +90,6 @@
 	uniform = /obj/item/clothing/under/pirate/space
 	suit = /obj/item/clothing/suit/space/pirate
 	head = /obj/item/clothing/head/helmet/space/pirate/bandana
-	mask = /obj/item/clothing/mask/breath
-	suit_store = /obj/item/tank/internals/oxygen
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id
 

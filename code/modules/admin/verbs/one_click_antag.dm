@@ -352,7 +352,6 @@
 
 	equipAntagOnDummy(mannequin, ert)
 
-	COMPILE_OVERLAYS(mannequin)
 	CHECK_TICK
 	var/icon/preview_icon = icon('icons/effects/effects.dmi', "nothing")
 	preview_icon.Scale(48+32, 16+32)
@@ -451,7 +450,7 @@
 
 				//Spawn the body
 				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
-				chosen_candidate.client.prefs.copy_to(ERTOperative)
+				chosen_candidate.client.prefs.apply_prefs_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
 				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
@@ -562,7 +561,7 @@
 
 				//Spawn the body
 				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
-				chosen_candidate.client.prefs.copy_to(ERTOperative)
+				chosen_candidate.client.prefs.apply_prefs_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
 				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes

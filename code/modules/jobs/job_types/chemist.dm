@@ -27,6 +27,10 @@
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
 
+	departments_list = list(
+		/datum/job_department/medical,
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 	mail_goodies = list(

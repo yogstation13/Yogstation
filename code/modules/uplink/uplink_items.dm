@@ -1378,6 +1378,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/stealthy_tools/shadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 10
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/stealthy_tools/nuclearshadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 20
+	include_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/stealthy_tools/syndireverse
 	name = "Bluespace Projectile Weapon Disrupter"
 	desc = "Hidden in an ordinary-looking playing card, this device will teleport an opponent's gun to your hand when they fire at you. Just make sure to hold this in your hand!"
@@ -2786,26 +2800,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ammo/wt
 	name = "4.6x30mm Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9
 	cost = 2
 	required_ert_uplink = null
 
 /datum/uplink_item/nt/ammo/wt/ap
 	name = "4.6x30mm AP Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtap
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/ic
 	name = "4.6x30mm Incendiary Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtic
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/r
 	name = "4.6x30mm Rubber Shot Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtr
 	cost = 1
 

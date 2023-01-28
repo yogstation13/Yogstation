@@ -11,12 +11,6 @@
 	var/dispatch_cooldown = 250
 	var/last_dispatch = 0
 
-/obj/item/clothing/mask/gas/sechailer/Destroy()
-	qdel(radio)
-	qdel(radio_key)
-	GLOB.sechailers -= src
-	. = ..()
-
 /obj/item/clothing/mask/gas/sechailer/Initialize()
 	. = ..()
 	GLOB.sechailers += src
@@ -24,6 +18,11 @@
 	radio.keyslot = new radio_key
 	radio.listening = FALSE
 	radio.recalculateChannels()
+
+/obj/item/clothing/mask/gas/sechailer/Destroy()
+	QDEL_NULL(radio)
+	GLOB.sechailers -= src
+	. = ..()
 
 /obj/item/clothing/mask/gas/sechailer/proc/dispatch(mob/user)
 	var/area/A = get_area(src)

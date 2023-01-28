@@ -14,6 +14,7 @@
 	light_range = FLASH_LIGHT_RANGE
 	light_power = FLASH_LIGHT_POWER
 	light_on = FALSE
+	fryable = TRUE
 	///flicked when we flash
 	var/flashing_overlay = "flash-f"
 	///Number of times the flash has been used.

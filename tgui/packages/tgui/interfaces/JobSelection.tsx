@@ -63,7 +63,7 @@ export const JobEntry: SFC<{
         'font-size': '1.1rem',
         'cursor': job.unavailable_reason ? 'initial' : 'pointer',
       }}
-      tooltip={
+      /* tooltip={
         job.unavailable_reason ||
         (job.prioritized ? (
           <>
@@ -75,7 +75,7 @@ export const JobEntry: SFC<{
         ) : (
           job.description
         ))
-      }
+      } */
       onClick={() => {
         !job.unavailable_reason && data.onClick();
       }}>
@@ -127,7 +127,7 @@ export const JobSelection = (props, context) => {
                 style={{ 'position': 'absolute', 'right': '1em' }}
                 onClick={() => act('select_job', { 'job': 'Random' })}
                 content="Random Job!"
-                tooltip="Roll target random job. You can re-roll or cancel your random job if you don't like it."
+                // tooltip="Roll target random job. You can re-roll or cancel your random job if you don't like it."
               />
             </>
           }

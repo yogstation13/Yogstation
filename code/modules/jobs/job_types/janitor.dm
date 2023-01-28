@@ -23,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 	minimal_character_age = 20 //Theoretically janitors do actually need training and certifications in handling of certain hazardous materials as well as cleaning substances, but nothing absurd, I'd assume
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 	mail_goodies = list(
