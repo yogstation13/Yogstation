@@ -104,6 +104,7 @@
 	knockdown = 0
 	immobilize = 2 // there's no escape
 	range = 5 // hey now cowboy
+	armour_penetration = 0 // no piercing shields
 
 /obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
 	. = ..()
