@@ -1,0 +1,5 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - bugfix: "fixed cane crashing the server probably"
+  - tweak: "aides no longer spawn right on you when summoned"
