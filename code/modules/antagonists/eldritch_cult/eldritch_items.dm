@@ -92,7 +92,7 @@
 	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
 	recharge_rate = 3 // seconds
 	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
-	fire_sound = 'sound/weapons/snap.ogg'
+	fire_sound = 'sound/effects/snap.ogg'
 
 /obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
