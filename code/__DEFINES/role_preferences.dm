@@ -32,7 +32,7 @@
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
 #define ROLE_HIVE				"Hivemind Host"
 #define ROLE_OBSESSED			"Obsessed"
-#define ROLE_SENTIENCE			"Sentience Potion Spawn"
+#define ROLE_SENTIENCE			"Sentient Creature"
 #define ROLE_MOUSE				"Mouse"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
 #define ROLE_POSIBRAIN			"Posibrain"
@@ -107,7 +107,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_NIGHTMARE = /datum/antagonist/nightmare,
 	ROLE_DISEASE = /datum/antagonist/disease,
 	ROLE_HIVE = /datum/antagonist/hivemind,
-	ROLE_PIRATE = /datum/antagonist/pirate
+	ROLE_PIRATE = /datum/antagonist/pirate,
+	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
