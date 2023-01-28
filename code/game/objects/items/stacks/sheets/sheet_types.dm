@@ -548,6 +548,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	merge_type = /obj/item/stack/sheet/cardboard
 	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 10)
+	fryable = TRUE
 
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cardboard_recipes

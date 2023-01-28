@@ -54,7 +54,7 @@
 
 /datum/holotool_mode/welder
 	name = "holo-welder"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')//so it actually gives the expected feedback from welding
 	behavior = TOOL_WELDER
 
 ////////////////////////////////////////////////
