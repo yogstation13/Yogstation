@@ -597,9 +597,10 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
-		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
-
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
+		
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
