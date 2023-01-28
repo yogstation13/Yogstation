@@ -601,6 +601,27 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	to_chat(M, span_notice("You no longer feel [tough_text]."))
 	M.maxHealth -= 10
 	M.health = min(M.health - 10, M.maxHealth) //This can indeed crit you if you're alive solely based on alchol ingestion
+	
+/datum/reagent/consumable/ethanol/brave_bull/juggernog
+	boozepwr = 0
+	description = "A new brew to save you! in our labs we have found that Juggernog™ significantly increases your total endurance to all forms of damage, but be warned when it ends all the damage you endured will come back at you if your only alive from the brew."
+	taste_description = "A enduring aftertaste of licorice"
+	glass_name = "Juggernog"
+	glass_icon_state = "nuka_colaglass"
+	glass_desc = "A glass of Juggernog a powerful drink developed by the Syndicate to keep their soldiers alive longer on the battlefield"
+	
+/datum/reagent/consumable/ethanol/brave_bull/juggernog/on_mob_metabolize(mob/living/M)
+	tough_text = pick("brawny", "tenacious", "tough", "hardy", "sturdy") //Tuff stuff
+	to_chat(M, span_notice("You feel [tough_text]!"))
+	M.maxHealth += 50 //Brave Bull makes you sturdier, and thus capable of withstanding a tiny bit more punishment.
+	M.health += 50
+
+/datum/reagent/consumable/ethanol/brave_bull/juggernog/on_mob_end_metabolize(mob/living/M)
+	to_chat(M, span_notice("You no longer feel [tough_text]."))
+	M.maxHealth -= 50
+	M.health = min(M.health - 50, M.maxHealth) //This can indeed crit you if you're alive solely based on alchol ingestion
+
+
 
 /datum/reagent/consumable/ethanol/tequila_sunrise
 	name = "Tequila Sunrise"
