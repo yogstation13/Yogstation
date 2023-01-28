@@ -1512,6 +1512,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()
+	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
+		return FALSE
 	if(M)
 		M.handle_counter(target, user)
 		return FALSE
@@ -1611,6 +1613,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(user == target)
 		return FALSE
 	if(user.loc == target.loc)
+		return FALSE
+	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
@@ -2152,7 +2156,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
 	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return tail.get_availability(H.dna.species)
+	return tail?.get_availability(H.dna.species)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
 	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)

@@ -69,6 +69,7 @@
 	if(visualsOnly)
 		return
 
+	H.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_MIME)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
 		H.mind.miming = 1

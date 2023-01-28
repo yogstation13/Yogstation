@@ -2420,7 +2420,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -3385,7 +3385,7 @@
 	dir = 2;
 	icon_state = "left";
 	name = "Robotics Desk";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 8
@@ -4811,7 +4811,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -10806,7 +10806,7 @@
 	name = "Shutters Control Button";
 	pixel_x = 24;
 	pixel_y = -24;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -13187,7 +13187,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -14745,7 +14745,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = 26;
 	pixel_y = 26;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/item/book/manual/wiki/robotics_cyborgs{
 	pixel_x = 2;
@@ -14756,7 +14756,7 @@
 	name = "Shutters Control Button";
 	pixel_x = 26;
 	pixel_y = 38;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1
@@ -20608,7 +20608,7 @@
 	dir = 8;
 	icon_state = "left";
 	name = "Robotics Desk";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics2";
@@ -21272,7 +21272,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -6;
 	pixel_y = 25;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
@@ -21716,7 +21716,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -24930,7 +24930,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -30978,7 +30978,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -32558,7 +32558,7 @@
 "iQL" = (
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = -1;
@@ -43299,7 +43299,7 @@
 "nsx" = (
 /obj/machinery/door/airlock/research{
 	name = "Robotics Lab";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -47241,7 +47241,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -55876,7 +55876,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -56391,7 +56391,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -59230,7 +59230,7 @@
 	dir = 2;
 	icon_state = "left";
 	name = "Robotics Desk";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/item/paper_bin{
 	pixel_x = -3;
@@ -60027,7 +60027,7 @@
 "usD" = (
 /obj/machinery/door/airlock/research{
 	name = "Robotics Lab";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -63096,7 +63096,7 @@
 /obj/machinery/door/airlock/research{
 	id_tag = "RoboticsFoyer";
 	name = "Robotics Surgery Access";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -68427,7 +68427,7 @@
 "xSl" = (
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = 1;
