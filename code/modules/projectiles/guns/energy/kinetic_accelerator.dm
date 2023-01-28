@@ -19,7 +19,8 @@
 	can_bayonet = TRUE
 	knife_x_offset = 20
 	knife_y_offset = 12
-
+	recoil = 0
+	spread = 0 //Gitban ynot01
 	var/max_mod_capacity = 100
 	var/list/modkits = list()
 

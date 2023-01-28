@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - bugfix: "The crystallizer should work more consistently."

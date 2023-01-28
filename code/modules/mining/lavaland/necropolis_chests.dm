@@ -1925,6 +1925,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
+	if(GLOB.aide_list.len >= limit)
+		to_chat(user, span_notice("You can't control that many minions!"))
+		return FALSE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1948,9 +1951,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 		else
 			bigfinish(user, M)
 			return TRUE
-	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
@@ -1968,16 +1968,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 			return
 		user.visible_message(span_warning("With the snap of [user.p_their()] fingers, [user] calls upon [user.p_their()] aides!"))
 		playsound(usr, 'sound/misc/fingersnap1.ogg', 100, 1)
-		for(var/mob/living/simple_animal/aide in GLOB.aide_list)
-			var/turf/T = get_turf(user)
-			if(T)
-				aide.forceMove(T)
-				playsound(user, 'sound/magic/teleport_app.ogg', 20, 1)
+		for(var/turf/open/O in view(2, user))
+			if(!istype(O, /turf/open/chasm) && O)
+				for(var/mob/living/simple_animal/aide in GLOB.aide_list)
+					if(prob(30))
+						aide.forceMove(O)
+						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
 		next_band = world.time + COOLDOWN_BAND
 				
 
 /obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
 	.=..()
+	if(!proximity)
+		return
 	curse(user, target)
 
 /obj/item/cane/cursed/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
