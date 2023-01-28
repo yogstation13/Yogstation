@@ -35,6 +35,10 @@
 		/obj/item/greentext = 1 //the one true book
   )
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	smells_like = "musty paper"
 
 /datum/outfit/job/curator

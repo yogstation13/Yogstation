@@ -26,6 +26,10 @@
 		/obj/item/clothing/glasses/sunglasses = 1
   )
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	smells_like = "sunscreen"
 
 /datum/outfit/job/tourist

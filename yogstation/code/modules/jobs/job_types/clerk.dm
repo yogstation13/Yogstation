@@ -40,6 +40,10 @@
 		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
 	)
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	smells_like = "cheap plastic"
 
 /datum/job/clerk/proc/EclipseStationChanges()
