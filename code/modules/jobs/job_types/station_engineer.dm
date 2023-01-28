@@ -26,6 +26,10 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	mail_goodies = list(
@@ -58,7 +62,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	// Assign department engineering
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_engineering_department
+		department = M.client.prefs.read_preference(/datum/preference/choiced/engineering_department)
 		if(!LAZYLEN(GLOB.available_depts_eng) || department == "None")
 			return
 		else if(department in GLOB.available_depts_eng)

@@ -733,6 +733,7 @@
 		SM.key = C.key
 		SM.sentience_act()
 		SM.mind.enslave_mind_to_creator(user)
+		SM.mind.add_antag_datum(/datum/antagonist/sentient_creature)
 		to_chat(SM, span_warning("All at once it makes sense: you know what you are and who you are! Self awareness is yours!"))
 		to_chat(SM, span_userdanger("You are grateful to be self aware and owe [user.real_name] a great debt. Serve [user.real_name], and assist [user.p_them()] in completing [user.p_their()] goals at any cost."))
 		if(SM.flags_1 & HOLOGRAM_1) //Check to see if it's a holodeck creature

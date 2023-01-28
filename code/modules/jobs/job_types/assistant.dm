@@ -21,6 +21,8 @@ Assistant
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 	minimal_character_age = 18 //Would make it even younger if I could because this role turns men into little brat boys and likewise for the other genders
 
+	department_for_prefs = /datum/job_department/assistant
+
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/donkpockets = 10, //more donkpockets
 		/obj/item/clothing/mask/gas = 10,
@@ -49,3 +51,19 @@ Assistant
 		uniform = /obj/item/clothing/under/color/random
 		uniform_skirt = /obj/item/clothing/under/skirt/color/random
 	return ..()
+
+
+/datum/outfit/job/assistant/consistent
+	name = "Assistant - Consistent"
+
+/datum/outfit/job/assistant/consistent/pre_equip(mob/living/carbon/human/target)
+	..()
+	uniform = /obj/item/clothing/under/color/grey
+
+/datum/outfit/job/assistant/consistent/post_equip(mob/living/carbon/human/H, visualsOnly)
+	..()
+
+	// This outfit is used by the assets SS, which is ran before the atoms SS
+	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
+	//	H.w_uniform?.update_greyscale()
+		H.update_inv_w_uniform()

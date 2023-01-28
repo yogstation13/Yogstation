@@ -22,6 +22,10 @@
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 	minimal_character_age = 24 //Psychology, therapy, and the like; all branches that would probably need to be certified as properly educated
 
+	departments_list = list(
+		/datum/job_department/medical,
+	)
+
 	changed_maps = list("OmegaStation","GaxStation")
 
 	mail_goodies = list(

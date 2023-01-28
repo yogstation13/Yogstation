@@ -1,5 +1,6 @@
 /datum/job/tourist
 	title = "Tourist"
+	description = "Enjoy the sights and scenery on board of the station."
 	flag = TOUR
 	orbit_icon = "camera-retro"
 	department_flag = CIVILIAN
@@ -23,7 +24,7 @@
 		/obj/item/twohanded/binoculars = 5,
 		/obj/item/storage/photo_album = 4,
 		/obj/item/clothing/glasses/sunglasses = 1
-	)
+  )
 
 	smells_like = "sunscreen"
 

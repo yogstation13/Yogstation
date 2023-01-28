@@ -23,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
+
 	mail_goodies = list(
 		///obj/item/rpd_upgrade/unwrench = 30,
 		/obj/item/grenade/gas_crystal/crystal_foam = 10,

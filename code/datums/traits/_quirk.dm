@@ -13,6 +13,9 @@
 	var/mob/living/quirk_holder
 	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 	var/list/species_blacklist = list()
+	/// The icon to show in the preferences menu.
+	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
+	var/icon
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()

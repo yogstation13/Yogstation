@@ -65,7 +65,7 @@
 			else
 				to_chat(M, announcement)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				if(M.client.prefs.disable_alternative_announcers)
+				if(M.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 					SEND_SOUND(M, default_s)
 				else
 					SEND_SOUND(M, s)

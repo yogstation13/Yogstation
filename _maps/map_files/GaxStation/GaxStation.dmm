@@ -1291,7 +1291,7 @@
 /obj/machinery/door/airlock/research{
 	id_tag = "RoboticsFoyer";
 	name = "Robotics Surgery Access";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -2182,7 +2182,7 @@
 /obj/machinery/door/airlock/research{
 	id_tag = "RoboticsFoyer";
 	name = "Mech Bay";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -3180,7 +3180,7 @@
 	dir = 2;
 	icon_state = "left";
 	name = "Robotics Desk";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -4813,16 +4813,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"cus" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/light/small,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cuu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -9184,6 +9174,19 @@
 "ezF" = (
 /turf/closed/mineral/random/labormineral,
 /area/science/test_area)
+"eAn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "eAL" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -11128,7 +11131,7 @@
 "fwr" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -11377,7 +11380,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -26;
 	pixel_y = 8;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -11726,21 +11729,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"fGb" = (
-/obj/structure/table,
-/obj/item/storage/box/teargas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/gun/syringe,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "fGf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -12400,7 +12388,7 @@
 	name = "Shutters Control Button";
 	pixel_x = -6;
 	pixel_y = 25;
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/camera{
 	c_tag = "Robotics Lab";
@@ -13250,7 +13238,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 4;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -16201,7 +16189,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -16447,7 +16435,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -16972,7 +16960,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -19116,7 +19104,7 @@
 	},
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = -5;
@@ -22826,7 +22814,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -29819,7 +29807,7 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Mech Bay Maintenance";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -34503,7 +34491,7 @@
 	dir = 2;
 	icon_state = "left";
 	name = "Robotics Desk";
-	req_access_txt = "29"
+	req_one_access_txt = "29;75"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -39917,6 +39905,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"uhh" = (
+/obj/machinery/light/small,
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "uhi" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -40508,7 +40503,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -42905,12 +42900,6 @@
 "vIw" = (
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"vIO" = (
-/obj/machinery/light_switch{
-	pixel_x = -24
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "vIV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -44960,7 +44949,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -45243,6 +45232,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"wQJ" = (
+/obj/structure/table,
+/obj/item/storage/box/teargas{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "wQK" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
@@ -70342,7 +70344,7 @@ aCD
 ubS
 tkl
 dll
-fGb
+wQJ
 omn
 jTz
 cLa
@@ -89388,7 +89390,7 @@ kPR
 kfu
 auf
 moB
-vIO
+uhh
 kfu
 fyF
 dUs
@@ -89645,7 +89647,7 @@ bqN
 srl
 cAY
 eKQ
-cus
+eAn
 kfu
 oas
 lzl
