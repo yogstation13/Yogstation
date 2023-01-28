@@ -27,9 +27,11 @@
 	var/weapon_damage = 0
 	//If we have both cleave and precise attacks, the precise may have more damage
 	var/precise_weapon_damage = 0
+	//Minimum damage dealt with a weapon. Applies only to non-combat mechs to make them suck a little less
+	var/minimum_damage = 0
 	//Bonus deflection chance for using a melee weapon capable of blocking attacks
 	var/deflect_bonus = 0
-	//Base armor piercing value of the weapon
+	//Base armor piercing value of the weapon. This value is doubled for precise attacks
 	var/base_armor_piercing = 0
 	//Fauna bonus damage, if any
 	var/fauna_damage_bonus = 0
@@ -80,6 +82,9 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/cleave_attack()
 	return 0
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/special_hit()	//For special effects, slightly simplifies cleave/precise attack procs
+	return 0
+
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/on_select()
 	if(deflect_bonus)
 		chassis.deflect_chance += deflect_bonus
@@ -88,6 +93,11 @@
 	if(deflect_bonus)
 		chassis.deflect_chance -= deflect_bonus
 
+	//		//=========================================================\\
+	//======||				SWORDS AND SWORD-ADJACENTS			 	   ||
+	//		\\=========================================================//
+
+//Standard melee weapon, easily modifiable to suit your needs
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword
 	name = "generic mech sword"
 	desc = "Generic mech sword! It's a bit too big to use yourself."
@@ -96,7 +106,11 @@
 	attack_sharpness = SHARP_EDGED
 	attack_sound = 'sound/weapons/mechasword.ogg'	//Recorded from Respawn/EA's Titanfall 2 (Ronin broadsword swing). Apparently they don't care so we're probably good
 	harmful = TRUE									//DO NOT give to children. Or do, I'm not the police.
-	var/minimum_damage = 0							//Baby mechs with a secret combat module get a little boost
+	minimum_damage = 0							//Baby mechs with a secret combat module get a little boost
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/proc/special_hit(atom/target)	
+	return 0
+
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/shortsword	//Our bread-and-butter mech shortsword for both slicing and stabbing baddies
 	name = "\improper GD6 \"Jaeger\" shortsword"
@@ -157,7 +171,7 @@
 
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
-			var/obj/item/bodypart/body_part = chassis.occupant.zone_selected
+			var/obj/item/bodypart/body_part = L.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
 			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//and get more AP
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 		else
@@ -201,6 +215,7 @@
 		var/it_turn = 45*(1-i)
 		var/turf/T = get_step(M,turn(chassis.dir, it_turn))	//+45, +0, and -45 will get the three front tiles
 		for(var/atom/A in T.contents)
+			special_hit(A)
 			if(isliving(A))						
 				var/mob/living/L = A
 				
@@ -247,6 +262,69 @@
 	STOP_PROCESSING(SSobj, src)
 	set_light_on(FALSE)	
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana	//Anime mech sword
+	name = "\improper OWM-5 \"Ronin\" katana"
+	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
+	energy_drain = 20
+	precise_weapon_damage = 10	//noticeably less damage than its larger cousin
+	cleave = FALSE				//small fast blade
+	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
+	fauna_damage_bonus = 20		//because why not
+	deflect_bonus = 15
+	base_armor_piercing = 20
+	structure_damage_mult = 2	//katana is less smashy than other swords
+	minimum_damage = 20			
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
+	name = "\improper I Asked Mord For A Name And He Didnt Give Me One Yet" //FIND NAME <===========================================================!!!!!!
+	desc = "A stun baton, but bigger. The tide of toolbox-armed assistants don't stand a chance."
+	energy_drain = 300
+	attack_speed_modifier = 1.4	//needs to recharge
+	structure_damage_mult = 1
+	precise_weapon_damage = -20
+	weapon_damage = -20
+	minimum_damage = 10			
+	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
+	var/stunforce = 10 SECONDS
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/on_select()
+	chassis.force /= 3	//Nonlethal weapon, don't want to outright kill people with it if we're swinging with a combat mech
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/on_deselect()
+	chassis.force *= 3	
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/obj/item/bodypart/affecting = H.get_bodypart(BODY_ZONE_CHEST)	//We're smacking them square in the chest with a giant stun stick
+		var/armor_block = H.run_armor_check(affecting, ENERGY)
+		H.apply_damage(special_hit_stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block)
+		SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
+
+		var/current_stamina_damage = H.getStaminaLoss()
+		if(current_stamina_damage >= 90)
+			if(!H.IsParalyzed())	
+				to_chat(H, span_warning("You muscles seize, making you collapse!"))
+			else
+				H.Paralyze(stunforce)
+			H.Jitter(20)
+			H.confused = max(8, H.confused)
+			H.apply_effect(EFFECT_STUTTER, stunforce)
+		else if(current_stamina_damage > 70)
+			H.Jitter(10)
+			H.confused = max(8, H.confused)
+			H.apply_effect(EFFECT_STUTTER, stunforce)
+		else if(current_stamina_damage >= 20)
+			H.Jitter(5)
+			H.apply_effect(EFFECT_STUTTER, stunforce)
+
+		playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
+
+	else
+		return
+
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
 	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punch. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
@@ -264,3 +342,59 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_deselect()
 	chassis.force -= weapon_damage	//Return to babby fist
 	chassis.melee_cooldown /= 0.8	
+
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/spear
+	name = "\improper S5-C \"White Witch\" shortspear"
+	desc = "A hardened, telescoping metal rod with a wicked-sharp tip. Perfect for punching holes in things normally out of reach."
+	icon_state = "mecha_spear"
+	energy_drain = 30
+	force = 10						//I want someone to stab someone else with this by hand
+	extended_range = 1				//Hits from a tile away
+	precise_weapon_damage = 15
+	minimum_damage = 20				//No bonus for weak mechs
+	attack_speed_modifier = 1.2		//Slightly slower
+	attack_sharpness = SHARP_POINTY
+	sharpness = SHARP_POINTY		//You can't use it well but it IS still a giant sharp metal stick
+	base_armor_piercing = 40
+	structure_damage_mult = 1.5		//Not great at destroying stuff
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/precise_attack(atom/target, penetrated = FALSE)
+	if(!penetrated)
+		//Find some way to get all the stuff in a line between attacker and target and hit them all
+	if(isliving(target))						
+		var/mob/living/L = target
+
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			var/obj/item/bodypart/body_part = L.get_bodypart(penetrated ? BODY_ZONE_CHEST : chassis.occupant ? chassis.occupant.zone_selected : BODY_ZONE_CHEST)	
+			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)	
+			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
+		else
+			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
+				L.apply_damage(fauna_damage_bonus, dam_type)
+
+		L.visible_message(span_danger("[chassis.name] stabs [L] with [src]!"), \
+				  span_userdanger("[chassis.name] stabs you with [src]!"))
+		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
+
+	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
+		var/obj/O = target
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+		O.take_damage(object_damage, dam_type, "melee", 0)
+		if(istype(target, /obj/mecha))
+			special_hit(target)	
+	else
+		return
+	chassis.do_attack_animation(target, ATTACK_EFFECT_KICK)
+	playsound(chassis, attack_sound, 50, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/spear/special_hit(/obj/mecha/target)
+	if(ishuman(T.occupant))
+		var/mob/living/carbon/human/H = T.occupant
+		precise_attack(H, TRUE)
+		H.visible_message(span_danger("[chassis.name] stabs [H] with [src]!"), \
+			span_userdanger("[chassis.name] penetrates your suits armor with [src]!"))
+		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
+
