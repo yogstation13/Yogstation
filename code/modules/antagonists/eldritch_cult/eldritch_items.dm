@@ -92,6 +92,7 @@
 	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
 	recharge_rate = 3 // seconds
 	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
+	fire_sound = 'sound/weapons/snap.ogg'
 
 /obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
@@ -105,6 +106,7 @@
 	immobilize = 2 // there's no escape
 	range = 5 // hey now cowboy
 	armour_penetration = 0 // no piercing shields
+	hitsound = 'sound/effects/gravhit.ogg'
 
 /obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
 	. = ..()
