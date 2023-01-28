@@ -1,0 +1,6 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - bugfix: "you can no longer spidermonkey people to escape grabs"
+  - tweak: "you can't grab while aggro grabbed"
+  - tweak: "you can't shove while aggro grabbed"
