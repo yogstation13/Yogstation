@@ -57,6 +57,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 39)
 		write_preference(/datum/preference/toggle/hotkeys, TRUE)
 		key_bindings = deepCopyList(GLOB.default_hotkeys)
+		key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 		parent.set_macros()
 		to_chat(parent, span_userdanger("Empty keybindings, setting default to Hotkey mode"))
 
