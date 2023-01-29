@@ -25,6 +25,10 @@
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 	minimal_character_age = 18 //We love manual labor and exploiting the young for our corporate purposes
 
+	departments_list = list(
+		/datum/job_department/cargo,
+	)
+
 	mail_goodies = list(
 		/obj/item/pizzabox = 10,
 		/obj/item/stack/sheet/mineral/gold = 5,

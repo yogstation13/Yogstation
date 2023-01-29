@@ -432,9 +432,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.age = record_found.fields["age"]
 		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
-		var/datum/preferences/A = new()
-		A.copy_to(new_character)
-		A.real_name = G_found.real_name
+		new_character.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
+		new_character.name = G_found.real_name
+		new_character.real_name = G_found.real_name
 		new_character.dna.update_dna_identity()
 
 	new_character.name = new_character.real_name
@@ -826,13 +826,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			newview = input("Enter custom view range:","FUCK YEEEEE") as num
 			if(!newview)
 				return
-		if(newview > 64)
+		if(newview >= 64)
 			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
 		view_size.setTo(newview)
 		//yogs end
 	else
-		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
+		view_size.resetToDefault(getScreenSize(prefs.read_preference(/datum/preference/toggle/widescreen)))
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI
@@ -1509,8 +1509,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
 
@@ -1577,8 +1576,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.

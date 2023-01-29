@@ -33,6 +33,11 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
 
+	departments_list = list(
+		/datum/job_department/engineering,
+		/datum/job_department/command,
+	)
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,

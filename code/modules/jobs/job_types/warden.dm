@@ -31,6 +31,10 @@
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
+	departments_list = list(
+		/datum/job_department/security,
+	)
+
 	changed_maps = list("YogsPubby", "OmegaStation")
 
 	mail_goodies = list(

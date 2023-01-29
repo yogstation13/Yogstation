@@ -7,6 +7,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis
 	name = "Preternis"
+	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
@@ -285,3 +286,32 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(unique)
 		return random_unique_preternis_name()
 	return preternis_name()
+
+/datum/species/preternis/get_features()
+	var/list/features = ..()
+
+	features += "feature_pretcolor"
+
+	return features
+
+/datum/species/preternis/get_species_description()
+	return ""//"TODO: This is preternis description"
+
+/datum/species/preternis/get_species_lore()
+	return list(
+		""//"TODO: This is preternis lore"
+	)
+
+/datum/species/preternis/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/preternis/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
