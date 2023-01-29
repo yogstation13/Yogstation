@@ -320,10 +320,6 @@
 			stored_color = selected_color
 		if("pick custom color")
 			if(supports_custom_color)
-				var/chosen_color = input(usr, "Pick new color", "[src]", "yellow") as color|null
-				if(!chosen_color || QDELETED(src) || usr.incapacitated() || !usr.is_holding(src))
-					return
-				stored_custom_color = chosen_color
-				stored_color = chosen_color
+				pick_painting_tool_color(usr, stored_custom_color)
 	update_decal_path()
 	. = TRUE

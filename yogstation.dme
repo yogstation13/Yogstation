@@ -143,6 +143,7 @@
 #include "code\__DEFINES\dcs\signals\signals_nanite.dm"
 #include "code\__DEFINES\dcs\signals\signals_ntnet.dm"
 #include "code\__DEFINES\dcs\signals\signals_object.dm"
+#include "code\__DEFINES\dcs\signals\signals_painting.dm"
 #include "code\__DEFINES\dcs\signals\signals_song.dm"
 #include "code\__DEFINES\dcs\signals\signals_spell.dm"
 #include "code\__DEFINES\dcs\signals\signals_storage.dm"
