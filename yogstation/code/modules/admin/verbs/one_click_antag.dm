@@ -52,7 +52,7 @@
 		H = pick(candidates)
 		if(H.add_darkspawn())
 			message_admins("[key_name(usr)] made [ADMIN_LOOKUPFLW(H)] a darkspawn!")
-			log_admins("[key_name(usr)] made [ADMIN_LOOKUPFLW(H)] a darkspawn!")
+			log_admin("[key_name(usr)] made [ADMIN_LOOKUPFLW(H)] a darkspawn!")
 			return TRUE
 	return FALSE
 
