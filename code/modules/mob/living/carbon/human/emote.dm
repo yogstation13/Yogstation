@@ -73,8 +73,10 @@
 		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	if(!..())
+		return FALSE
 	if(!ishuman(user))
-		return
+		return FALSE
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
 	return is_type_in_list(T, viable_tongues)
@@ -118,6 +120,8 @@
 	cooldown = 10 SECONDS
 
 /datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	if(!..())
+		return FALSE
 	return iscatperson(user)
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
@@ -132,6 +136,8 @@
 	sound = 'sound/voice/rattled.ogg'
 
 /datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	if(!..())
+		return FALSE
 	return isskeleton(user)
 
 /datum/emote/living/carbon/human/pale
