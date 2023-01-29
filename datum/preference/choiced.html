@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;preference&#x2F;choiced - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/preference/choiced.html#var">Var Details</a> - <a href="datum/preference/choiced.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/<a href="datum/preference/choiced.html">choiced</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 353"/></a></h1>
+
+<p>A preference that is a choice of one option among a fixed set.
+Used for preferences such as clothing.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/preference/choiced.html#var/main_feature_name">main_feature_name</a></th><td>If the preference is a main feature (PREFERENCE_CATEGORY_FEATURES or PREFERENCE_CATEGORY_CLOTHING)
+this is the name of the feature that will be presented.</td></tr>
+            <tr><th><a href="datum/preference/choiced.html#var/should_generate_icons">should_generate_icons</a></th><td>If this is TRUE, icons will be generated.
+This is necessary for if your <code>init_possible_values()</code> override
+returns an assoc list of names to atoms/icons.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preference/choiced.html#proc/get_choices">get_choices</a></th><td>Returns a list of every possible value.
+The first time this is called, will run <code>init_values()</code>.
+Return value can be in the form of:</td></tr>
+            <tr><th><a href="datum/preference/choiced.html#proc/get_choices_serialized">get_choices_serialized</a></th><td>Returns a list of every possible value, serialized.
+Return value can be in the form of:</td></tr>
+            <tr><th><a href="datum/preference/choiced.html#proc/init_possible_values">init_possible_values</a></th><td>Returns a list of every possible value.
+This must be overriden by <code>/datum/preference/choiced</code> subtypes.
+Return value can be in the form of:</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/main_feature_name"><aside class="declaration">var </aside>main_feature_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 363"/></a></h3>
+        <p>If the preference is a main feature (PREFERENCE_CATEGORY_FEATURES or PREFERENCE_CATEGORY_CLOTHING)
+this is the name of the feature that will be presented.</p><h3 id="var/should_generate_icons"><aside class="declaration">var </aside>should_generate_icons
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L357">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 357"/></a></h3>
+        <p>If this is TRUE, icons will be generated.
+This is necessary for if your <code>init_possible_values()</code> override
+returns an assoc list of names to atoms/icons.</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_choices"><aside class="declaration">proc </aside>get_choices<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L372">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 372"/></a></aside>
+        </h3>
+        <p>Returns a list of every possible value.
+The first time this is called, will run <code>init_values()</code>.
+Return value can be in the form of:</p>
+<ul>
+<li>A flat list of raw values, such as list(MALE, FEMALE, PLURAL).</li>
+<li>An assoc list of raw values to atoms/icons.</li>
+</ul><h3 id="proc/get_choices_serialized"><aside class="declaration">proc </aside>get_choices_serialized<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 386"/></a></aside>
+        </h3>
+        <p>Returns a list of every possible value, serialized.
+Return value can be in the form of:</p>
+<ul>
+<li>A flat list of serialized values, such as list(MALE, FEMALE, PLURAL).</li>
+<li>An assoc list of serialized values to atoms/icons.</li>
+</ul><h3 id="proc/init_possible_values"><aside class="declaration">proc </aside>init_possible_values<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L408">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 408"/></a></aside>
+        </h3>
+        <p>Returns a list of every possible value.
+This must be overriden by <code>/datum/preference/choiced</code> subtypes.
+Return value can be in the form of:</p>
+<ul>
+<li>A flat list of raw values, such as list(MALE, FEMALE, PLURAL).</li>
+<li>An assoc list of raw values to atoms/icons, in which case
+icons will be generated.</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/6f03bedc20cb22c23353bf975dd7065550da053e">6f03bed</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/client/preferences/_preference.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/client/preferences/_preference.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/PREFERENCE_PRIORITY_DEFAULT">PREFERENCE_PRIORITY_DEFAULT</a></th><td>The default priority level</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/PREFERENCE_PRIORITY_SPECIES">PREFERENCE_PRIORITY_SPECIES</a></th><td>The priority at which species runs, needed for external organs to apply properly.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/PREFERENCE_PRIORITY_GENDER">PREFERENCE_PRIORITY_GENDER</a></th><td>The priority at which gender is determined, needed for proper randomization.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/PREFERENCE_PRIORITY_NAMES">PREFERENCE_PRIORITY_NAMES</a></th><td>The priority at which names are decided, needed for proper randomization.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/MAX_PREFERENCE_PRIORITY">MAX_PREFERENCE_PRIORITY</a></th><td>The maximum preference priority, keep this updated, but don't use it for <code>priority</code>.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/CHOICED_PREFERENCE_DISPLAY_NAMES">CHOICED_PREFERENCE_DISPLAY_NAMES</a></th><td>For choiced preferences, this key will be used to set display names in constant data.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/CHOICED_PREFERENCE_KEY_LOCKED">CHOICED_PREFERENCE_KEY_LOCKED</a></th><td>For choiced preferences, this key will be used to lock choices to a specific ckey.</td></tr>
+        <tr><th><a href="code/modules/client/preferences/_preference.html#define/SUPPLEMENTAL_FEATURE_KEY">SUPPLEMENTAL_FEATURE_KEY</a></th><td>For main feature preferences, this key refers to a feature considered supplemental.
+For instance, hair color being supplemental to hair.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_preferences_in_priority_order">get_preferences_in_priority_order</a></th>
+                <td>Returns a flat list of preferences in order of their priority</td></tr>
+        <tr><th><a href="datum&#x2F;preference.html">&#x2F;datum&#x2F;preference</a></th><td>Represents an individual preference.</td></tr>
+        <tr><th><a href="datum&#x2F;preference&#x2F;choiced.html">&#x2F;datum&#x2F;preference&#x2F;choiced</a></th><td>A preference that is a choice of one option among a fixed set.
+Used for preferences such as clothing.</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/color_legacy</th><td>A preference that represents an RGB color of something, crunched down to 3 hex numbers.
+Was used heavily in the past, but doesn't provide as much range and only barely conserves space.</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/color</th><td>A preference that represents an RGB color of something.
+Will give the value as 6 hex digits, without a hash.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/possible_values_for_sprite_accessory_list">possible_values_for_sprite_accessory_list</a></th>
+                <td>Takes an assoc list of names to /datum/sprite_accessory and returns a value
+fit for <code>/datum/preference/init_possible_values()</code></td></tr>
+        <tr><th>/proc/<a href="global.html#proc/possible_values_for_sprite_accessory_list_for_body_part">possible_values_for_sprite_accessory_list_for_body_part</a></th>
+                <td>Takes an assoc list of names to /datum/sprite_accessory and returns a value
+fit for <code>/datum/preference/init_possible_values()</code>
+Different from <code>possible_values_for_sprite_accessory_list</code> in that it takes a list of layers
+such as BEHIND, FRONT, and ADJ.
+It also takes a &quot;body part name&quot;, such as body_markings, moth_wings, etc
+They are expected to be in order from lowest to top.</td></tr>
+        <tr><th><a href="datum&#x2F;preference&#x2F;numeric.html">&#x2F;datum&#x2F;preference&#x2F;numeric</a></th><td>A numeric preference with a minimum and maximum value</td></tr>
+        <tr><th><a href="datum&#x2F;preference&#x2F;toggle.html">&#x2F;datum&#x2F;preference&#x2F;toggle</a></th><td>A prefernece whose value is always TRUE or FALSE</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CHOICED_PREFERENCE_DISPLAY_NAMES"><aside class="declaration">#define </aside>CHOICED_PREFERENCE_DISPLAY_NAMES
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 18"/></a>
+    </h3>
+    <p>For choiced preferences, this key will be used to set display names in constant data.</p><h3 id="define/CHOICED_PREFERENCE_KEY_LOCKED"><aside class="declaration">#define </aside>CHOICED_PREFERENCE_KEY_LOCKED
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 21"/></a>
+    </h3>
+    <p>For choiced preferences, this key will be used to lock choices to a specific ckey.</p><h3 id="define/MAX_PREFERENCE_PRIORITY"><aside class="declaration">#define </aside>MAX_PREFERENCE_PRIORITY
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 15"/></a>
+    </h3>
+    <p>The maximum preference priority, keep this updated, but don't use it for <code>priority</code>.</p><h3 id="define/PREFERENCE_PRIORITY_DEFAULT"><aside class="declaration">#define </aside>PREFERENCE_PRIORITY_DEFAULT
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 3"/></a>
+    </h3>
+    <p>The default priority level</p><h3 id="define/PREFERENCE_PRIORITY_GENDER"><aside class="declaration">#define </aside>PREFERENCE_PRIORITY_GENDER
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 9"/></a>
+    </h3>
+    <p>The priority at which gender is determined, needed for proper randomization.</p><h3 id="define/PREFERENCE_PRIORITY_NAMES"><aside class="declaration">#define </aside>PREFERENCE_PRIORITY_NAMES
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 12"/></a>
+    </h3>
+    <p>The priority at which names are decided, needed for proper randomization.</p><h3 id="define/PREFERENCE_PRIORITY_SPECIES"><aside class="declaration">#define </aside>PREFERENCE_PRIORITY_SPECIES
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 6"/></a>
+    </h3>
+    <p>The priority at which species runs, needed for external organs to apply properly.</p><h3 id="define/SUPPLEMENTAL_FEATURE_KEY"><aside class="declaration">#define </aside>SUPPLEMENTAL_FEATURE_KEY
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 25"/></a>
+    </h3>
+    <p>For main feature preferences, this key refers to a feature considered supplemental.
+For instance, hair color being supplemental to hair.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/6f03bedc20cb22c23353bf975dd7065550da053e">6f03bed</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

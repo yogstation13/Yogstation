@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;job_department - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/job_department.html#var">Var Details</a> - <a href="datum/job_department.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/job_department.html">job_department</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 3"/></a></h1>
+
+<p>Singleton representing a category of jobs forming a department.
+NOTICE: This is NOT fully implemented everywhere. Currently only used in: Preferences menu</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/job_department.html#var/department_bitflags">department_bitflags</a></th><td>Bitflags associated to the specific department.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/department_experience_type">department_experience_type</a></th><td>Experience granted by playing in a job of this department.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/department_head">department_head</a></th><td>Typepath of the job datum leading this department.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/department_jobs">department_jobs</a></th><td>Job singleton datums associated to this department. Populated on job initialization.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/department_name">department_name</a></th><td>Department as displayed on different menus.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/display_order">display_order</a></th><td>The order in which this department appears on menus, in relation to other departments.</td></tr>
+            <tr><th><a href="datum/job_department.html#var/label_class">label_class</a></th><td>The header color to be displayed in the ban panel, classes defined in banpanel.css</td></tr>
+            <tr><th><a href="datum/job_department.html#var/ui_color">ui_color</a></th><td>The color used in TGUI or similar menus.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/job_department.html#proc/add_job">add_job</a></th><td>Handles adding jobs to the department and setting up the job bitflags.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/department_bitflags"><aside class="declaration">var </aside>department_bitflags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 7"/></a></h3>
+        <p>Bitflags associated to the specific department.</p><h3 id="var/department_experience_type"><aside class="declaration">var </aside>department_experience_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 11"/></a></h3>
+        <p>Experience granted by playing in a job of this department.</p><h3 id="var/department_head"><aside class="declaration">var </aside>department_head
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/job.html">job</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 9"/></a></h3>
+        <p>Typepath of the job datum leading this department.</p><h3 id="var/department_jobs"><aside class="declaration">var </aside>department_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 19"/></a></h3>
+        <p>Job singleton datums associated to this department. Populated on job initialization.</p><h3 id="var/department_name"><aside class="declaration">var </aside>department_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 5"/></a></h3>
+        <p>Department as displayed on different menus.</p><h3 id="var/display_order"><aside class="declaration">var </aside>display_order
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 13"/></a></h3>
+        <p>The order in which this department appears on menus, in relation to other departments.</p><h3 id="var/label_class"><aside class="declaration">var </aside>label_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 15"/></a></h3>
+        <p>The header color to be displayed in the ban panel, classes defined in banpanel.css</p><h3 id="var/ui_color"><aside class="declaration">var </aside>ui_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 17"/></a></h3>
+        <p>The color used in TGUI or similar menus.</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_job"><aside class="declaration">proc </aside>add_job<aside>(/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/job) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/jobs/departments/departments.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;departments&#x2F;departments.dm 23"/></a></aside>
+        </h3>
+        <p>Handles adding jobs to the department and setting up the job bitflags.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/6f03bedc20cb22c23353bf975dd7065550da053e">6f03bed</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -16,86 +16,205 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L3">
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L3">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 3"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="datum/preferences.html#var/auto_fit_viewport">auto_fit_viewport</a></th><td>Should we automatically fit the viewport?</td></tr>
-            <tr><th><a href="datum/preferences.html#var/map">map</a></th><td>Typepath of selected skillcape, null for none</td></tr>
-            <tr><th><a href="datum/preferences.html#var/persistent_scars">persistent_scars</a></th><td>If we have persistent scars enabled</td></tr>
-            <tr><th><a href="datum/preferences.html#var/pixel_size">pixel_size</a></th><td>What size should pixels be displayed as? 0 is strech to fit</td></tr>
-            <tr><th><a href="datum/preferences.html#var/scaling_method">scaling_method</a></th><td>What scaling method should we use?</td></tr>
-            <tr><th><a href="datum/preferences.html#var/see_rc_emotes">see_rc_emotes</a></th><td>Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.</td></tr>
-            <tr><th><a href="datum/preferences.html#var/skillcape_id">skillcape_id</a></th><td>Old skillcape value</td></tr>
-            <tr><th><a href="datum/preferences.html#var/widescreenpref">widescreenpref</a></th><td>Should we be in the widescreen mode set by the config?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
-            <tr><th><a href="datum/preferences.html#proc/CaptureKeybinding">CaptureKeybinding</a></th><td>This is the typepath of the donor's hat that they may choose to spawn with.
-Whatever item the donator has chosen to apply.</td></tr>
-            <tr><th><a href="datum/preferences.html#proc/check_keybindings">check_keybindings</a></th><td>checks through keybindings for outdated unbound keys and updates them</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/auto_fit_viewport"><aside class="declaration">var </aside>auto_fit_viewport
+            <tr><th><a href="datum/preferences.html#var/background">background</a></th><td>Icon for the preview background</td></tr>
+            <tr><th><a href="datum/preferences.html#var/character_preview_view">character_preview_view</a></th><td>A preview of the current character</td></tr>
+            <tr><th><a href="datum/preferences.html#var/character_savefile">character_savefile</a></th><td>The savefile relating to character preferences, PREFERENCE_CHARACTER</td></tr>
+            <tr><th><a href="datum/preferences.html#var/current_window">current_window</a></th><td>The current window, PREFERENCE_TAB_* in [<code>code/__DEFINES/preferences.dm</code>]</td></tr>
+            <tr><th><a href="datum/preferences.html#var/game_savefile">game_savefile</a></th><td>The savefile relating to core preferences, PREFERENCE_PLAYER</td></tr>
+            <tr><th><a href="datum/preferences.html#var/key_bindings">key_bindings</a></th><td>Custom keybindings. Map of keybind names to keyboard inputs.
+For example, by default would have &quot;swap_hands&quot; -&gt; list(&quot;X&quot;)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/key_bindings_by_key">key_bindings_by_key</a></th><td>Cached list of keybindings, mapping keys to actions.
+For example, by default would have &quot;X&quot; -&gt; list(&quot;swap_hands&quot;)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/middleware">middleware</a></th><td>A list of instantiated middleware</td></tr>
+            <tr><th><a href="datum/preferences.html#var/recently_updated_keys">recently_updated_keys</a></th><td>A list of keys that have been updated since the last save.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tainted_character_profiles">tainted_character_profiles</a></th><td>If set to TRUE, will update character_profiles on the next ui_data tick.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/value_cache">value_cache</a></th><td>A cache of preference entries to values.
+Used to avoid expensive READ_FILE every time a preference is retrieved.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#proc/apply_all_client_preferences">apply_all_client_preferences</a></th><td>Applies all PREFERENCE_PLAYER preferences</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/apply_character_randomization_prefs">apply_character_randomization_prefs</a></th><td>Randomizes the character according to preferences.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/check_keybindings">check_keybindings</a></th><td>checks through keybindings for outdated unbound keys and updates them</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_default_randomization">get_default_randomization</a></th><td>Returns the default <code>randomise</code> variable ouptut</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_highest_priority_job">get_highest_priority_job</a></th><td>Returns what job is marked as highest</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_key_bindings_by_key">get_key_bindings_by_key</a></th><td>Inverts the key_bindings list such that it can be used for key_bindings_by_key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_savefile_for_savefile_identifier">get_savefile_for_savefile_identifier</a></th><td>Returns which savefile to use for a given savefile identifier</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/migrate_character_to_tgui_prefs_menu">migrate_character_to_tgui_prefs_menu</a></th><td>Handle the migrations necessary from pre-tgui prefs to post-tgui prefs, for characters</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/migrate_preferences_to_tgui_prefs_menu">migrate_preferences_to_tgui_prefs_menu</a></th><td>Handle the migrations necessary from pre-tgui prefs to post-tgui prefs</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/randomise_appearance_prefs">randomise_appearance_prefs</a></th><td>Fully randomizes everything in the character.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/read_preference">read_preference</a></th><td>Read a /datum/preference type and return its value.
+This will write to the savefile if a value was not found with the new value.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/should_randomize">should_randomize</a></th><td>Returns if a preference should be randomized.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/update_preference">update_preference</a></th><td>Will perform an update on the preference, but not write to the savefile.
+This will, for instance, update the character preference view.
+Performs sanity checks.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/write_preference">write_preference</a></th><td>Set a /datum/preference entry.
+Returns TRUE for a successful preference application.
+Returns FALSE if it is invalid.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/background"><aside class="declaration">var </aside>background
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 62"/></a></h3>
+        <p>Icon for the preview background</p><h3 id="var/character_preview_view"><aside class="declaration">var </aside>character_preview_view
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/character_preview_view.html">character_preview_view</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 59"/></a></h3>
+        <p>A preview of the current character</p><h3 id="var/character_savefile"><aside class="declaration">var </aside>character_savefile
+            <aside>&ndash; /savefile</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 71"/></a></h3>
+        <p>The savefile relating to character preferences, PREFERENCE_CHARACTER</p><h3 id="var/current_window"><aside class="declaration">var </aside>current_window
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L114">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 114"/></a></h3>
-        <p>Should we automatically fit the viewport?</p><h3 id="var/map"><aside class="declaration">var </aside>map
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 47"/></a></h3>
+        <p>The current window, PREFERENCE_TAB_* in [<code>code/__DEFINES/preferences.dm</code>]</p><h3 id="var/game_savefile"><aside class="declaration">var </aside>game_savefile
+            <aside>&ndash; /savefile</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 68"/></a></h3>
+        <p>The savefile relating to core preferences, PREFERENCE_PLAYER</p><h3 id="var/key_bindings"><aside class="declaration">var </aside>key_bindings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 23"/></a></h3>
+        <p>Custom keybindings. Map of keybind names to keyboard inputs.
+For example, by default would have &quot;swap_hands&quot; -&gt; list(&quot;X&quot;)</p><h3 id="var/key_bindings_by_key"><aside class="declaration">var </aside>key_bindings_by_key
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 27"/></a></h3>
+        <p>Cached list of keybindings, mapping keys to actions.
+For example, by default would have &quot;X&quot; -&gt; list(&quot;swap_hands&quot;)</p><h3 id="var/middleware"><aside class="declaration">var </aside>middleware
+            <aside>&ndash; /list/datum/preference_middleware</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 65"/></a></h3>
+        <p>A list of instantiated middleware</p><h3 id="var/recently_updated_keys"><aside class="declaration">var </aside>recently_updated_keys
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 74"/></a></h3>
+        <p>A list of keys that have been updated since the last save.</p><h3 id="var/tainted_character_profiles"><aside class="declaration">var </aside>tainted_character_profiles
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L127">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 127"/></a></h3>
-        <p>Typepath of selected skillcape, null for none</p><h3 id="var/persistent_scars"><aside class="declaration">var </aside>persistent_scars
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 81"/></a></h3>
+        <p>If set to TRUE, will update character_profiles on the next ui_data tick.</p><h3 id="var/value_cache"><aside class="declaration">var </aside>value_cache
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L141">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 141"/></a></h3>
-        <p>If we have persistent scars enabled</p><h3 id="var/pixel_size"><aside class="declaration">var </aside>pixel_size
-            <aside>&ndash; </aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 78"/></a></h3>
+        <p>A cache of preference entries to values.
+Used to avoid expensive READ_FILE every time a preference is retrieved.</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_all_client_preferences"><aside class="declaration">proc </aside>apply_all_client_preferences<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L118">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 118"/></a></h3>
-        <p>What size should pixels be displayed as? 0 is strech to fit</p><h3 id="var/scaling_method"><aside class="declaration">var </aside>scaling_method
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L120">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 120"/></a></h3>
-        <p>What scaling method should we use?</p><h3 id="var/see_rc_emotes"><aside class="declaration">var </aside>see_rc_emotes
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L58">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 58"/></a></h3>
-        <p>Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.</p><h3 id="var/skillcape_id"><aside class="declaration">var </aside>skillcape_id
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L125">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 125"/></a></h3>
-        <p>Old skillcape value</p><h3 id="var/widescreenpref"><aside class="declaration">var </aside>widescreenpref
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L116">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 116"/></a></h3>
-        <p>Should we be in the widescreen mode set by the config?</p><h2 id="proc">Proc Details</h2><h3 id="proc/CaptureKeybinding"><aside class="declaration">proc </aside>CaptureKeybinding<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/keybinding/kb, old_key) 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences.dm#L1048">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 1048"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 361"/></a></aside>
         </h3>
-        <p>This is the typepath of the donor's hat that they may choose to spawn with.
-Whatever item the donator has chosen to apply.</p><h3 id="proc/check_keybindings"><aside class="declaration">proc </aside>check_keybindings<aside>() 
+        <p>Applies all PREFERENCE_PLAYER preferences</p><h3 id="proc/apply_character_randomization_prefs"><aside class="declaration">proc </aside>apply_character_randomization_prefs<aside>(antag_override) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/3ec01c797defc133b6a759bdec5e6a7f6e2a495a/code/modules/client/preferences_savefile.dm#L161">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 161"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/mob/dead/new_player/preferences_setup.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;preferences_setup.dm 12"/></a></aside>
         </h3>
-        <p>checks through keybindings for outdated unbound keys and updates them</p></main>
+        <p>Randomizes the character according to preferences.</p><h3 id="proc/check_keybindings"><aside class="declaration">proc </aside>check_keybindings<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences_savefile.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 143"/></a></aside>
+        </h3>
+        <p>checks through keybindings for outdated unbound keys and updates them</p><h3 id="proc/get_default_randomization"><aside class="declaration">proc </aside>get_default_randomization<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L548">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 548"/></a></aside>
+        </h3>
+        <p>Returns the default <code>randomise</code> variable ouptut</p><h3 id="proc/get_highest_priority_job"><aside class="declaration">proc </aside>get_highest_priority_job<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/mob/dead/new_player/preferences_setup.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;preferences_setup.dm 26"/></a></aside>
+        </h3>
+        <p>Returns what job is marked as highest</p><h3 id="proc/get_key_bindings_by_key"><aside class="declaration">proc </aside>get_key_bindings_by_key<aside>(/list/key_bindings) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences.dm#L538">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 538"/></a></aside>
+        </h3>
+        <p>Inverts the key_bindings list such that it can be used for key_bindings_by_key</p><h3 id="proc/get_savefile_for_savefile_identifier"><aside class="declaration">proc </aside>get_savefile_for_savefile_identifier<aside>(savefile_identifier) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 204"/></a></aside>
+        </h3>
+        <p>Returns which savefile to use for a given savefile identifier</p><h3 id="proc/migrate_character_to_tgui_prefs_menu"><aside class="declaration">proc </aside>migrate_character_to_tgui_prefs_menu<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/tgui_prefs_migration.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;tgui_prefs_migration.dm 6"/></a></aside>
+        </h3>
+        <p>Handle the migrations necessary from pre-tgui prefs to post-tgui prefs, for characters</p><h3 id="proc/migrate_preferences_to_tgui_prefs_menu"><aside class="declaration">proc </aside>migrate_preferences_to_tgui_prefs_menu<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/tgui_prefs_migration.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;tgui_prefs_migration.dm 2"/></a></aside>
+        </h3>
+        <p>Handle the migrations necessary from pre-tgui prefs to post-tgui prefs</p><h3 id="proc/randomise_appearance_prefs"><aside class="declaration">proc </aside>randomise_appearance_prefs<aside>(randomize_flags) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/mob/dead/new_player/preferences_setup.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;preferences_setup.dm 3"/></a></aside>
+        </h3>
+        <p>Fully randomizes everything in the character.</p><h3 id="proc/read_preference"><aside class="declaration">proc </aside>read_preference<aside>(preference_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 234"/></a></aside>
+        </h3>
+        <p>Read a /datum/preference type and return its value.
+This will write to the savefile if a value was not found with the new value.</p><h3 id="proc/should_randomize"><aside class="declaration">proc </aside>should_randomize<aside>(/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/preference, is_antag) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/middleware/random.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;middleware&#x2F;random.dm 59"/></a></aside>
+        </h3>
+        <p>Returns if a preference should be randomized.</p><h3 id="proc/update_preference"><aside class="declaration">proc </aside>update_preference<aside>(/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/preference, preference_value) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 273"/></a></aside>
+        </h3>
+        <p>Will perform an update on the preference, but not write to the savefile.
+This will, for instance, update the character preference view.
+Performs sanity checks.</p><h3 id="proc/write_preference"><aside class="declaration">proc </aside>write_preference<aside>(/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/preference, preference_value) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/6f03bedc20cb22c23353bf975dd7065550da053e/code/modules/client/preferences/_preference.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 262"/></a></aside>
+        </h3>
+        <p>Set a /datum/preference entry.
+Returns TRUE for a successful preference application.
+Returns FALSE if it is invalid.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/3ec01c797defc133b6a759bdec5e6a7f6e2a495a">3ec01c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/6f03bedc20cb22c23353bf975dd7065550da053e">6f03bed</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
