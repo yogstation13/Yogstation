@@ -223,13 +223,10 @@
 
 /obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	var/turf/open/floor/F = target
 	if(!proximity)
 		to_chat(user, span_notice("You need to get closer!"))
 		return
-	if(!istype(F, /turf/open/floor))
-		to_chat(user, span_notice("[target] is not a tile!"))
-		return
+
 	if(isfloorturf(target) && use_paint(user))
 		paint_floor(target)
 
@@ -258,14 +255,6 @@
 		color = ""
 
 	return "[decal][color ? "_" : ""][color]"
-
-/obj/item/airlock_painter/decal/attack_self(mob/user)
-	. = ..()
-	ui_interact(user)
-
-/obj/item/airlock_painter/decal/Initialize(mapload)
-	. = ..()
-	ink = new /obj/item/toner/large(src)
 
 /obj/item/airlock_painter/decal/proc/update_decal_path()
 	stored_decal_total = get_decal_path(stored_decal, stored_color, stored_dir)
