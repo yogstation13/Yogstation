@@ -334,6 +334,8 @@
 	. += text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]") //Count of total AI shells
 
 /mob/living/silicon/ai/proc/ai_alerts()
+	if(!isAI(usr))
+		return
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += "<A HREF='?src=[REF(src)];mach_close=aialerts'>Close</A><BR><BR>"
 	for (var/cat in alarms)

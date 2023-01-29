@@ -48,6 +48,8 @@
 	robot_alerts()
 
 /mob/living/simple_animal/drone/proc/robot_alerts()
+	if(!isdrone(usr))
+		return
 	var/dat = ""
 	for (var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")

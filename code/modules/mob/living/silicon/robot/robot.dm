@@ -284,6 +284,8 @@
 	robot_alerts()
 
 /mob/living/silicon/robot/proc/robot_alerts()
+	if(!iscyborg(usr))
+		return
 	var/dat = ""
 	for (var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")
