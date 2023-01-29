@@ -31,6 +31,10 @@
 		/obj/item/toy/crayon/rainbow = 2
   )
 
+departments_list = list(
+		/datum/job_department/service,
+	)
+
 	smells_like = "pain-t"
 
 /datum/outfit/job/artist
