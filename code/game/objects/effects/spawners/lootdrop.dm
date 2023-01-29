@@ -418,12 +418,13 @@
 			lootcount = 1
 		if(101 to 1000)
 			loot = GLOB.maintenance_loot_minor
-			lootcount = rand(lootcount,lootcount*2)
+			lootcount = rand(lootcount,lootcount*6)
 		if(1001 to 5000)
 			loot = GLOB.maintenance_loot_makeshift
-			lootcount = rand(lootcount,lootcount*2)
+			lootcount = rand(lootcount,lootcount*6)
 		if(5001 to 10000)
 			loot = GLOB.maintenance_loot_traditional
+			lootcount = rand(lootcount,lootcount*3)
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = CEILING(lootcount * 1.5, 1)
