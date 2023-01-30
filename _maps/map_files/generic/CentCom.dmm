@@ -21677,7 +21677,7 @@
 	light_color = "#c1caff"
 	},
 /mob/living/simple_animal/hostile/zombie{
-	infection_chance = 100
+	allow_infection = 1
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)

@@ -74,7 +74,7 @@
 	if(!try_to_zombie_infect(M, user, inserted_organ))
 		src.feast(M, user) //Feast on them if we can't infect them.
 
-/obj/item/zombie_hand/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/user, organ)
+/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/user, organ) //Global proc because a simplemob uses this.
 
 	if(target.hellbound || target.suiciding || (!target.key && !target.get_ghost())) //Can't infect people who aren't valid.
 		return FALSE
@@ -104,7 +104,7 @@
 		QDEL_NULL(B) //Bye bye brain.
 	return (BRUTELOSS)
 
-/obj/item/zombie_hand/proc/feast(/mob/living/target, mob/living/user) //Eat their brains.
+/obj/item/zombie_hand/proc/feast(mob/living/target, mob/living/user) //Eat their brains.
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE

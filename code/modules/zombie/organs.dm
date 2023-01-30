@@ -83,7 +83,7 @@
 	if(!iszombie(owner))
 		old_species = owner.dna.species.type
 		owner.set_species(/datum/species/zombie/infectious)
-		to_chat(owner, span_alertalien("You are now a zombie!"))
+		to_chat(owner, span_alertalien("You are now a zombie! Infect others by attacking them while they're grabbed or laying the floor!"))
 	else
 		to_chat(owner, span_alertalien("You rise again!"))
 

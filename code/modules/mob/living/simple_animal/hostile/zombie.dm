@@ -22,8 +22,9 @@
 	status_flags = CANPUSH
 	del_on_death = 1
 	var/zombiejob = "Medical Doctor"
-	var/infection_chance = 0
+	var/allow_infection = FALSE
 	var/obj/effect/mob_spawn/human/corpse/delayed/corpse
+	var/inserted_organ = /obj/item/organ/zombie_infection
 
 /mob/living/simple_animal/hostile/zombie/Initialize(mapload)
 	. = ..()
@@ -49,13 +50,22 @@
 
 /mob/living/simple_animal/hostile/zombie/AttackingTarget()
 	. = ..()
-	if(. && ishuman(target) && prob(infection_chance))
-		try_to_zombie_infect(target)
+	if(. && allow_infection && isliving(target))
+
+		var/mob/living/L = target
+
+		if(L.density && (L.stat != DEAD) && !L.grabbedby(src, 1)) //Can only infect those who are horizontal (no density) or dead (this is a fallback in case you try to cheese) or grabbed by you.
+			return
+
+		if(iszombie(L)) //Don't try to eat other zombies or infect them because that would be dumb.
+			return
+
+		try_to_zombie_infect(L,src,inserted_organ)
 
 /mob/living/simple_animal/hostile/zombie/drop_loot()
 	. = ..()
 	corpse.forceMove(drop_location())
 	corpse.create()
 
-/mob/living/simple_animal/hostile/zombie/mostlyinfection //yogs 25% infection zombie
-	infection_chance = 25
+/mob/living/simple_animal/hostile/zombie/mostlyinfection
+	allow_infection = TRUE
