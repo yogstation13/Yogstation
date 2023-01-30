@@ -68,8 +68,43 @@
 	qdel(consumed_limb)
 	H.blood_volume += 20
 
+/datum/species/jelly/random_name(gender,unique,lastname)//they have no lore, just use human names for now i guess
+	if(unique)
+		return random_unique_name()
+	return random_unique_name()
+
+/datum/species/jelly/get_features()//they currently have no special features
+	var/list/features = ..()
+	return features
+
+/datum/species/jelly/get_species_description()
+	return ""//"TODO: RIP in peace Skrem"
+
+/datum/species/jelly/get_species_lore()
+	return list(
+		""//"TODO: RIP in peace Skrem"
+	)
+
+/datum/species/jelly/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_NAME = "Unstable Form",
+		SPECIES_PERK_DESC = "[plural_form] are made entirely of jelly, losing enough will result in them cannibalizing their own limbs to survive.",
+	),
+	list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_NAME = "Regenerate Limbs",
+		SPECIES_PERK_DESC = "Being made entirely of jelly means [plural_form] can reform lost limbs from nothing assuming they have enough extra to spare.",
+	))
+
+	return to_add
+
 // Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
-// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
+// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open. <- yeah, i'm trying to add them as roundstart
 /datum/species/jelly/create_pref_blood_perks()
 	var/list/to_add = list()
 
@@ -77,8 +112,8 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
 		SPECIES_PERK_NAME = "Jelly Blood",
-		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage. \
-			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage but get hurt by toxin healing. \
+			Jelly is extremely important, and having low jelly will make medical treatment very difficult.",
 	))
 
 	return to_add
