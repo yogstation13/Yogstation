@@ -1,0 +1,5 @@
+author: "00ze-cyclone"
+delete-after: true 
+changes: 
+  - rscadd: "Added hardlight weaponry tech node unlocking the sec hardlight bow and nt usp conversion kit"
+  - tweak: "syndicate hardlight bow cost 6 TC from 8 previously"
