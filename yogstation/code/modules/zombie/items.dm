@@ -72,11 +72,11 @@
 		return
 
 	if(!try_to_zombie_infect(M, user, inserted_organ))
-		check_feast(M, user) //Feast on them if we can't infect them.
+		src.feast(M, user) //Feast on them if we can't infect them.
 
-/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/user, organ)
+/obj/item/zombie_hand/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/user, organ)
 
-	if(hellbound || suiciding || (!key && !get_ghost())) //Can't infect people who aren't valid.
+	if(target.hellbound || target.suiciding || (!target.key && !target.get_ghost())) //Can't infect people who aren't valid.
 		return FALSE
 
 	CHECK_DNA_AND_SPECIES(target)
@@ -95,14 +95,13 @@
 
 	return TRUE
 
-
 /obj/item/zombie_hand/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(isliving(user))
 		var/mob/living/L = user
-		var/obj/item/bodypart/O = L.get_bodypart(BODY_ZONE_HEAD)
-			B.Remove(target)
-			QDEL_NULL(B) //Bye bye brain.
+		var/obj/item/organ/brain/B = L.getorganslot(ORGAN_SLOT_BRAIN)
+		B.Remove(L)
+		QDEL_NULL(B) //Bye bye brain.
 	return (BRUTELOSS)
 
 /obj/item/zombie_hand/proc/feast(/mob/living/target, mob/living/user) //Eat their brains.
