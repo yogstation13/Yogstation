@@ -73,10 +73,6 @@
 		return random_unique_name()
 	return random_unique_name()
 
-/datum/species/jelly/get_features()//they currently have no special features
-	var/list/features = ..()
-	return features
-
 /datum/species/jelly/get_species_description()
 	return ""//"TODO: RIP in peace Skrem"
 
@@ -104,7 +100,6 @@
 	return to_add
 
 // Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
-// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open. <- yeah, i'm trying to add them as roundstart
 /datum/species/jelly/create_pref_blood_perks()
 	var/list/to_add = list()
 
