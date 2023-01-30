@@ -34,7 +34,7 @@
 		if(1 to 2)
 			crowd_text = " They are not alone..."
 		if(3 to INFINITY)
-			crowd_text = "</span> <span class='boldwarning'>They are surrounded by many."
+			crowd_text = "</span> <span class='boldwarning'>They are surrounded by people."
 
 	if(userturf.z != targetturf.z)
 		to_chat(user,span_warning("[target.real_name] is ... vertical to you?"))
