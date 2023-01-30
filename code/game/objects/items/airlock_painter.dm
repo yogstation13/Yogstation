@@ -1,9 +1,14 @@
+/// below these levels trigger the special sprites
+#define PAINTER_MOST 0.76
+#define PAINTER_MID 0.5
+#define PAINTER_LOW 0.2
+
 /obj/item/airlock_painter
 	name = "airlock painter"
 	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "paint sprayer"
-	item_state = "paint sprayer"
+	icon_state = "airlock_sprayer"
+	item_state = "airlock_sprayer"
 	
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -36,12 +41,31 @@
 		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
 		"Virology" = /obj/machinery/door/airlock/virology,
 		"Standard" = /obj/machinery/door/airlock,
-	    "Centcom"  = /obj/machinery/door/airlock/centcom
+	    "Centcom"  = /obj/machinery/door/airlock/centcom,
+		"Shuttle" = /obj/machinery/door/airlock/shuttle,
+		"Alien" = /obj/machinery/door/airlock/abductor
 	)
 
 /obj/item/airlock_painter/Initialize()
 	. = ..()
 	ink = new initial_ink_type(src)
+
+/obj/item/airlock_painter/update_icon()
+	var/base = initial(icon_state)
+	if(!istype(ink))
+		icon_state = "[base]_none"
+		return
+	switch(ink.charges/ink.max_charges)
+		if(0.001 to PAINTER_LOW)
+			icon_state = "[base]_low"
+		if(PAINTER_LOW to PAINTER_MID)
+			icon_state = "[base]_mid"
+		if(PAINTER_MID to PAINTER_MOST)
+			icon_state = "[base]_most"
+		if(PAINTER_MOST to INFINITY)
+			icon_state = base
+		else
+			icon_state = "[base]_crit"
 
 /obj/item/airlock_painter/proc/get_mode()
 	return painter_mode
@@ -51,6 +75,7 @@
 /obj/item/airlock_painter/proc/use_paint(mob/user)
 	if(can_use(user))
 		ink.charges--
+		update_icon()
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 		return TRUE
 	else
@@ -61,15 +86,15 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		to_chat(user, span_warning("There is no toner cartridge installed in [src]!"))
+		balloon_alert(user, "no cartridge!")
 		return FALSE
 	else if(ink.charges < 1)
-		to_chat(user, span_warning("[src] is out of ink!"))
+		balloon_alert(user, "out of ink!")
 		return FALSE
 	else
 		return TRUE
 
-/obj/item/airlock_painter/suicide_act(mob/user)
+/obj/item/airlock_painter/suicide_act(mob/living/user)
 	var/obj/item/organ/lungs/L = user.getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
@@ -119,15 +144,20 @@
 /obj/item/airlock_painter/examine(mob/user)
 	. = ..()
 	if(!ink)
-		. += span_notice("It doesn't have a toner cartridge installed.")
+		. += span_notice("The ink compartment hangs open.")
 		return
 	var/ink_level = "high"
-	if(ink.charges < 1)
+	switch(ink.charges/ink.max_charges)
+		if(0.001 to PAINTER_LOW)
+			ink_level = "extremely low"
+		if(PAINTER_LOW to PAINTER_MID)
+			ink_level = "low"
+		if(PAINTER_MID to 1)
+			ink_level = "high"
+		if(1 to INFINITY) //Over 100% (admin var edit)
+			ink_level = "dangerously high"
+	if(ink.charges <= 0)
 		ink_level = "empty"
-	else if((ink.charges/ink.max_charges) <= 0.25) //25%
-		ink_level = "low"
-	else if((ink.charges/ink.max_charges) > 1) //Over 100% (admin var edit)
-		ink_level = "dangerously high"
 	. += span_notice("Its ink levels look [ink_level].")
 
 
@@ -140,6 +170,7 @@
 			return
 		to_chat(user, span_notice("You install [W] into [src]."))
 		ink = W
+		update_icon()
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	else
 		return ..()
@@ -150,6 +181,7 @@
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
 		user.put_in_hands(ink)
+		update_icon()
 		to_chat(user, span_notice("You remove [ink] from [src]."))
 		ink = null
 
@@ -323,3 +355,65 @@
 				pick_painting_tool_color(usr, stored_custom_color)
 	update_decal_path()
 	. = TRUE
+
+/obj/item/airlock_painter/decal/tile
+	name = "tile sprayer"
+	desc = "An airlock painter, reprogramed to use a different style of paint in order to spray colors on floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed."
+//	desc_controls = "Alt-Click to remove the ink cartridge."
+	icon_state = "tile_sprayer"
+	stored_dir = 2
+	stored_color = "#D4D4D432"
+	stored_decal = "tile_corner"
+	spritesheet_type = /datum/asset/spritesheet/decals/tiles
+	supports_custom_color = TRUE
+	// Colors can have a an alpha component as RGBA, or just be RGB and use default alpha
+	color_list = list(
+		list("Neutral", "#D4D4D432"),
+		list("Dark", "#0e0f0f"),
+		list("Bar Burgundy", "#79150082"),
+		list("Sec Red", "#DE3A3A"),
+		list("Cargo Brown", "#A46106"),
+		list("Engi Yellow", "#EFB341"),
+		list("Service Green", "#9FED58"),
+		list("Med Blue", "#52B4E9"),
+		list("R&D Purple", "#D381C9"),
+	)
+	decal_list = list(
+		list("Corner", "tile_corner"),
+		list("Half", "tile_half_contrasted"),
+		list("Opposing Corners", "tile_opposing_corners"),
+		list("3 Corners", "tile_anticorner_contrasted"),
+		list("4 Corners", "tile_fourcorners"),
+		list("Trimline Corner", "trimline_corner_fill"),
+		list("Trimline Fill", "trimline_fill"),
+		list("Trimline Fill L", "trimline_fill__8"), // This is a hack that lives in the spritesheet builder and paint_floor
+		list("Trimline End", "trimline_end_fill"),
+		list("Trimline Box", "trimline_box_fill"),
+	)
+	nondirectional_decals = list(
+		"tile_fourcorners",
+		"trimline_box_fill",
+	)
+
+	/// Regex to split alpha out.
+	var/static/regex/rgba_regex = new(@"(#[0-9a-fA-F]{6})([0-9a-fA-F]{2})")
+
+	/// Default alpha for /obj/effect/turf_decal/tile
+	var/default_alpha = 110
+
+/obj/item/airlock_painter/decal/tile/paint_floor(turf/open/floor/target)
+	// Account for 8-sided decals.
+	var/source_decal = stored_decal
+	var/source_dir = stored_dir
+	if(copytext(stored_decal, -3) == "__8")
+		source_decal = splicetext(stored_decal, -3, 0, "")
+		source_dir = turn(stored_dir, 45)
+
+	var/decal_color = stored_color
+	var/decal_alpha = default_alpha
+	// Handle the RGBA case.
+	if(rgba_regex.Find(decal_color))
+		decal_color = rgba_regex.group[1]
+		decal_alpha = text2num(rgba_regex.group[2], 16)
+
+	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', source_decal, stored_dir, FALSE, decal_color, null, null, decal_alpha)

@@ -491,6 +491,37 @@
 
 	qdel(painter)
 
+/datum/asset/spritesheet/decals/tiles
+	name = "floor_tile_decals"
+	painter_type = /obj/item/airlock_painter/decal/tile
+
+/datum/asset/spritesheet/decals/tiles/insert_state(decal, dir, color)
+	// Account for 8-sided decals.
+	var/source_decal = decal
+	var/source_dir = dir
+	if(copytext(decal, -3) == "__8")
+		source_decal = splicetext(decal, -3, 0, "")
+		source_dir = turn(dir, 45)
+
+	// Handle the RGBA case.
+	var/obj/item/airlock_painter/decal/tile/tile_type = painter_type
+	var/render_color = color
+	var/render_alpha = initial(tile_type.default_alpha)
+	if(tile_type.rgba_regex.Find(color))
+		render_color = tile_type.rgba_regex.group[1]
+		render_alpha = text2num(tile_type.rgba_regex.group[2], 16)
+
+	var/icon/colored_icon = icon('icons/turf/decals.dmi', source_decal, dir=source_dir)
+	colored_icon.ChangeOpacity(render_alpha * 0.008)
+	if(color == "custom")
+		// Do a fun rainbow pattern to stand out while still being static.
+		colored_icon.Blend(icon('icons/effects/random_spawners.dmi', "rainbow"), ICON_MULTIPLY)
+	else
+		colored_icon.Blend(render_color, ICON_MULTIPLY)
+
+	colored_icon = blend_preview_floor(colored_icon)
+	Insert("[decal]_[dir]_[replacetext(color, "#", "")]", colored_icon)
+
 /datum/asset/simple/genetics
 	assets = list(
 		"dna_discovered.gif" = 'html/dna_discovered.gif',
