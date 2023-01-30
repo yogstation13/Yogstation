@@ -1,0 +1,4 @@
+author: " @ynot01, @ThatLing, Tawaporah Koko @monster860"
+delete-after: true 
+changes: 
+  - bugfix: "Dead Lizards now stay quiet like they should"
