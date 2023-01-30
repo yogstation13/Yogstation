@@ -642,7 +642,7 @@
 	var/mob/living/carbon/human/new_character = new//The mob being spawned.
 	SSjob.SendToLateJoin(new_character)
 
-	G_found.client.prefs.copy_to(new_character)
+	G_found.client.prefs.apply_prefs_to(new_character)
 	new_character.dna.update_dna_identity()
 	new_character.key = G_found.key
 
@@ -658,7 +658,7 @@
 		var/mob/M = C
 		if(M.client)
 			C = M.client
-	if(!C || (!C.prefs.windowflashing && !ignorepref))
+	if(!C || (!C.prefs.read_preference(/datum/preference/toggle/window_flashing) && !ignorepref))
 		return
 	winset(C, "mainwindow", "flash=5")
 

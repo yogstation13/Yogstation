@@ -61,6 +61,8 @@
 		else
 			qdel(src)
 	else
+		if(isdummy(user))
+			return
 		soundloop.start(user)
 
 /obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(var/msg)
@@ -148,7 +150,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	..()
-	if(jetpack)
+	if(jetpack && istype(jetpack))
 		if(slot == SLOT_WEAR_SUIT)
 			for(var/X in jetpack.actions)
 				var/datum/action/A = X
@@ -156,7 +158,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/dropped(mob/user)
 	..()
-	if(jetpack)
+	if(jetpack && istype(jetpack))
 		for(var/X in jetpack.actions)
 			var/datum/action/A = X
 			A.Remove(user)
@@ -384,7 +386,7 @@
 	name = "elite syndicate hardsuit helmet"
 	desc = "An elite version of the syndicate helmet, with improved armour and fireproofing. It is in EVA mode. Property of Gorlex Marauders."
 	alt_desc = "An elite version of the syndicate helmet, with improved armour and fireproofing. It is in combat mode. Property of Gorlex Marauders."
-	icon_state = "hardsuit0-syndielite"
+	icon_state = "hardsuit1-syndielite"
 	hardsuit_type = "syndielite"
 	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 35, BOMB = 90, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)
 	heat_protection = HEAD
@@ -395,7 +397,7 @@
 	name = "elite syndicate hardsuit"
 	desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing. It is in travel mode."
 	alt_desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing. It is in combat mode."
-	icon_state = "hardsuit0-syndielite"
+	icon_state = "hardsuit1-syndielite"
 	hardsuit_type = "syndielite"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
 	armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 90, BIO = 100, RAD = 70, FIRE = 100, ACID = 100, WOUND = 25)

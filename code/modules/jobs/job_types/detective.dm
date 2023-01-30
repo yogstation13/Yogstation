@@ -29,6 +29,10 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
+	departments_list = list(
+		/datum/job_department/security,
+	)
+
 	mail_goodies = list(
 		///obj/item/storage/fancy/cigarettes = 25,
 		/obj/item/ammo_box/c38 = 25,

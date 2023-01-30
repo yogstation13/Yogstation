@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
 GLOBAL_LIST_EMPTY(servant_spawns) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(servant_spawns_scarabs) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(city_of_cogs_spawns) //Anyone entering the City of Cogs spawns here
-GLOBAL_LIST_EMPTY(brazil_reception) //teleport recieve spots for heretic sacrifices
+GLOBAL_LIST_EMPTY(brazil_reception) //teleport receive spots for heretic sacrifices
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
 // IF YOU ARE MAKING A NEW BAR TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!

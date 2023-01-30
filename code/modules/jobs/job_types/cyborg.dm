@@ -17,6 +17,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
+	departments_list = list(
+		/datum/job_department/silicon,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	smells_like = "inorganic indifference"
@@ -52,8 +56,8 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.donor_hat && C.prefs.borg_hat)
-		var/type = C.prefs.donor_hat
+	if(C.prefs.read_preference(/datum/preference/toggle/borg_hat))
+		var/type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
 		if(type)
 			var/obj/item/hat = new type()
 			if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))

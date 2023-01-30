@@ -1,20 +1,42 @@
 /datum/job
 	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
+
 	/// The description of the job, used for preferences menu.
 	/// Keep it short and useful. Avoid in-jokes, these are for new players.
 	var/description
+
 	/// This job comes with these accesses by default
 	var/list/base_access = list()
+
 	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
 	var/list/added_access = list()
+
 	/// Who is responsible for demoting them
 	var/department_head = list()
+
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
+
 	// Used for something in preferences_savefile.dm
+	// NOTE: currently unused
 	var/department_flag = NONE
+
+	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
+	var/departments_bitflags = NONE
+
+	/// If specified, this department will be used for the preferences menu.
+	var/datum/job_department/department_for_prefs = null
+
+	/// Lazy list with the departments this job belongs to.
+	/// Required to be set for playable jobs.
+	/// The first department will be used in the preferences menu,
+	/// unless department_for_prefs is set.
+	/// TODO: Currently not used so will always be empty! Change this to department datums
+	var/list/departments_list = null
+
 	var/flag = NONE //Deprecated
+	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
 	// Players will be allowed to spawn in as jobs that are set to "Station"
@@ -45,7 +67,7 @@
 	var/exp_requirements = 0
 	/// Which type of XP is required see `EXP_TYPE_` in __DEFINES/preferences.dm
 	var/exp_type = ""
-	/// Department XP required
+	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
 	var/antag_rep = 10
@@ -137,7 +159,7 @@
 	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
-			H.apply_pref_name("human", preference_source)
+			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
@@ -167,6 +189,13 @@
 
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
+
+/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	return
+
+/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	dna.species.before_equip_job(equipping, src, visual_only)
+	equipOutfit(equipping.outfit, visual_only)
 
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
@@ -287,7 +316,7 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.id_in_pda)
+		if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 		else // just in case you hate change

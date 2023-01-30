@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -169,7 +170,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (mind)
 		mind.name = "[real_name]"
 	if (client?.prefs)
-		gender = client.prefs.gender
+		gender = client.prefs.read_preference(/datum/preference/choiced/gender)
 	if (berserk)
 		return
 	if (!summoner?.current)
@@ -219,7 +220,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		UnregisterSignal(summoner.current, COMSIG_MOVABLE_MOVED)
 	cut_barriers()
 	var/mob/living/carbon/H = summoner.current
-	remove_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+	remove_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -615,6 +616,56 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
+/mob/living/proc/finduser()
+	set name = "Find another user"
+	set category = "Guardian"
+	set desc = "Search for the rough location of another person with a Guardian."
+	var/turf/my_loc = get_turf(src)
+	var/closest_dist = 9999
+	var/mob/living/closest_user
+
+	to_chat(src, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
+	if(!do_after(src, 5 SECONDS))
+		return FALSE
+	var/list/datum/mind/users = list()
+	var/list/guardians = hasparasites()
+	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
+		if(all_carbons == src) //don't track ourselves!
+			continue
+		if(!all_carbons.mind)
+			continue
+		var/datum/mind/carbon_minds = all_carbons.mind
+		for(var/para in guardians)
+			var/mob/living/simple_animal/hostile/guardian/G = para
+			if(G.summoner?.current.ckey == src.ckey)
+				users += carbon_minds
+				
+
+	for(var/datum/mind/user_minds in users)
+		if(!user_minds.current || user_minds.current == src)
+			continue
+		for(var/antag_datums in user_minds.antag_datums)
+			var/datum/antagonist/antag_datum = antag_datums
+			if(!istype(antag_datum))
+				continue
+			var/their_loc = get_turf(user_minds.current)
+			var/distance = get_dist_euclidian(my_loc, their_loc)
+			/// Found One: Closer than previous/max distance
+			if(distance < closest_dist && distance <= GUARDIAN_SCAN_DISTANCE)
+				closest_dist = distance
+				closest_user = user_minds.current
+				/// Stop searching through my antag datums and go to the next guy
+				break
+
+	/// Found one!
+	if(closest_user)
+		var/distString = closest_dist <= GUARDIAN_SCAN_DISTANCE / 4 ? "<b>somewhere nearby!</b>" : "somewhere in the distance."
+		to_chat(src, span_warning("You detect signs of a user [distString]"))
+
+	/// Will yield a "?"
+	else
+		to_chat(src, span_notice("There are no users nearby."))
+		
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
@@ -683,7 +734,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 /mob/living/proc/revive_guardian()
 	var/list/guardians = hasparasites()
 	if (LAZYLEN(guardians))
-		add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(src)
 			jojo.RegisterSignal(src, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
@@ -722,7 +773,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 /datum/mind/proc/transfer_parasites()
 	var/list/guardians = hasparasites()
 	if (LAZYLEN(guardians))
-		add_verb(current, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		add_verb(current, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(current)
 			jojo.RegisterSignal(current, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
@@ -743,11 +794,3 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	damage_type = BRUTE
 	armour_penetration = 100 // no one can just deflect the emerald splash!
 	var/datum/mind/guardian_master
-
-/obj/item/projectile/guardian/on_hit(atom/target, blocked)
-	if (guardian_master?.current)
-		var/list/safe = list(guardian_master.current)
-		safe += guardian_master.current.hasparasites()
-		if (target in safe)
-			return BULLET_ACT_FORCE_PIERCE
-	return ..()

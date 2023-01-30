@@ -92,6 +92,7 @@
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	burst_size = 2
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	can_suppress = FALSE
 	can_bayonet = TRUE
@@ -368,6 +369,8 @@
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
 	fire_delay = 40
 	burst_size = 1
+	spread = 0
+	default_spread = 0	//It's a sniper rifle, it doesn't miss.
 	w_class = WEIGHT_CLASS_NORMAL
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
