@@ -559,6 +559,11 @@
 		if(!target)
 			return
 
+	// No shotgun swapping
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
+		if(!W.equip_ready)
+			return
+
 	var/mob/living/L = user
 	if(!Adjacent(target))
 		if(selected && selected.is_ranged())
