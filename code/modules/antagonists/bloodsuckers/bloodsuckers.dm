@@ -836,7 +836,7 @@
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", user.client)
+		user.apply_pref_name(/datum/preference/name/real_name, user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
@@ -934,3 +934,10 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	vamphud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
+
+/datum/antagonist/bloodsucker/get_preview_icon()
+	var/icon/bloodsucker_icon = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+
+	bloodsucker_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return bloodsucker_icon

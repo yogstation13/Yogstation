@@ -1216,3 +1216,8 @@
 		M.faction = tamer.faction
 		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
 		. = ..()
+
+/datum/status_effect/exhumed
+	id = "exhume"
+	tick_interval = -1
+	alert_type = null

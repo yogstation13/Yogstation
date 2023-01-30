@@ -296,3 +296,10 @@
 
 /datum/antagonist/hivemind/is_gamemode_hero()
 	return SSticker.mode.name == "Assimilation"
+
+/datum/antagonist/hivemind/get_preview_icon()
+	var/icon/hivemind_icon = icon('icons/mob/hivebot.dmi', "basic")
+
+	hivemind_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return hivemind_icon

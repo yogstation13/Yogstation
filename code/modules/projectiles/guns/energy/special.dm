@@ -82,6 +82,7 @@
 	item_state = "mindflayer"
 	w_class = WEIGHT_CLASS_SMALL
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
+	pin = null
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow

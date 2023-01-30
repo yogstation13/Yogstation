@@ -16,13 +16,17 @@
 
 	outfit = /datum/outfit/job/geneticist
 
-	added_access = list(ACCESS_CHEMISTRY, ACCESS_XENOBIOLOGY, ACCESS_ROBOTICS, ACCESS_TECH_STORAGE)
+	added_access = list(ACCESS_CHEMISTRY, ACCESS_XENOBIOLOGY, ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 	minimal_character_age = 24 //Genetics would likely require more education than your average position due to the sheer number of alien physiologies and experimental nature of the field
+
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	mail_goodies = list(
 		/obj/item/storage/box/monkeycubes = 10
