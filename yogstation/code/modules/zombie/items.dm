@@ -65,7 +65,7 @@
 	if(!successful_attack)
 		return
 
-	if(M.density && (M.stat != DEAD)) //Can only infect those who are horizontal (no density) or dead (this is a fallback in case you try to cheese).
+	if(M.density && (M.stat != DEAD) && !M.grabbedby(user, 1)) //Can only infect those who are horizontal (no density) or dead (this is a fallback in case you try to cheese) or grabbed by you.
 		return
 
 	if(iszombie(M)) //Don't try to eat other zombies or infect them because that would be dumb.
