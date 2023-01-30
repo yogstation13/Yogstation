@@ -1590,7 +1590,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "punched")
 
 		if((target.stat != DEAD) && damage >= user.get_punchstunthreshold())
-			target.visible_message(span_danger("[user] has knocked  [target] down!"), \
+			target.visible_message(span_danger("[user] has knocked [target] down!"), \
 							span_userdanger("[user] has knocked [target] down!"), null, COMBAT_MESSAGE_RANGE)
 			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration
 			target.apply_effect(knockdown_duration, EFFECT_KNOCKDOWN, armor_block)
