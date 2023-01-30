@@ -3,208 +3,37 @@
 /turf/open/space/basic,
 /area/space)
 "amK" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/newscaster{
-	dir = 8;
-	pixel_x = -30
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/camera{
-	c_tag = "Bridge North";
-	dir = 4;
-	network = list("ss13","command")
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/turf/open/floor/plasteel,
+/area/space)
 "aoV" = (
 /turf/open/space,
 /area/space)
-"aZM" = (
-/turf/closed/wall/r_wall,
-/area/bridge/meeting_room)
-"aZV" = (
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/captain)
-"bHF" = (
-/obj/structure/sign/directions/supply{
-	dir = 4;
-	pixel_y = 6
-	},
-/obj/structure/sign/directions/evac{
-	dir = 4;
-	pixel_y = -6
-	},
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
 "bJL" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/obj/structure/shuttle/engine/huge,
+/turf/open/floor/plasteel,
+/area/space)
 "bMy" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"bYp" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Engineering Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"cdt" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/item/phone{
-	pixel_x = -4
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plasteel,
+/area/space)
 "cCp" = (
 /obj/effect/landmark/start/warden,
 /turf/open/floor/plating,
 /area/space)
-"cRe" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"dcN" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"dky" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"dwN" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"dAE" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "dFj" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
 	},
 /turf/open/space/basic,
 /area/space)
-"dMd" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
-"enb" = (
-/obj/machinery/computer/shuttle/mining{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "erk" = (
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plating,
 /area/space)
-"eHi" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "fez" = (
 /obj/effect/landmark/start/shaft_miner,
 /turf/open/floor/plating,
 /area/space)
-"fis" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "fpi" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -216,141 +45,8 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/bridge)
-"fuq" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Crew Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"fFt" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 "fJQ" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/computer/monitor{
-	dir = 8;
-	name = "bridge power monitoring console"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"fLu" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/teleporter/hub/bridge)
-"fOR" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Central Access"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"fSc" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"fUZ" = (
-/obj/machinery/computer/security{
-	dir = 1;
-	name = "Labor Camp Monitoring";
-	network = list("Labor")
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"gci" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"gcu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
-"gdx" = (
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -361,111 +57,8 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/bridge)
-"gGc" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"gWH" = (
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/window,
-/obj/structure/window{
-	dir = 1
-	},
-/obj/structure/flora/grass/jungle/b,
-/obj/structure/flora/junglebush/b,
-/turf/open/floor/grass,
-/area/teleporter/hub/bridge)
-"hkp" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/modular_computer/console/preset/engineering{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"hyF" = (
-/obj/machinery/computer/station_alert{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"hIz" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
-"hRj" = (
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"hYn" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/modular_computer/console/preset/mining{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"iaI" = (
-/obj/effect/landmark/start/medical_doctor,
-/turf/open/floor/plating,
 /area/space)
-"ilW" = (
-/obj/machinery/computer/card{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"imq" = (
+"fOR" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
 	},
@@ -476,217 +69,50 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"iwp" = (
+/area/space)
+"gdx" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "0-4"
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
+/obj/machinery/door/poddoor/preopen{
+	id = "Bridge Lock";
+	name = "Bridge Lockdown"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"iAV" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/emergency,
-/obj/item/wrench,
-/obj/item/assembly/timer,
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"iHO" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"iPe" = (
-/obj/machinery/status_display/evac,
-/obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall,
-/area/bridge/meeting_room)
-"iPr" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/camera{
-	c_tag = "Bridge South";
-	dir = 4;
-	network = list("ss13","command")
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/space)
+"iaI" = (
+/obj/effect/landmark/start/medical_doctor,
+/turf/open/floor/plating,
+/area/space)
 "jax" = (
 /turf/open/floor/plasteel/dark,
 /area/space)
-"jlQ" = (
-/obj/machinery/door/airlock/command{
-	name = "Conference Room";
-	req_access_txt = "19"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/door/airlock/command{
-	name = "Captain's Office";
-	req_access_txt = "20"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "jzV" = (
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plating,
 /area/space)
-"jPP" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Captain's Desk";
-	departmentType = 5;
-	name = "Captain RC";
-	pixel_x = -30
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "jTC" = (
-/obj/machinery/computer/shuttle/labor{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/button/door{
+	id = "Bridge Lock";
+	name = "Bridge Lockdown";
+	pixel_x = -4;
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel/dark,
-/area/bridge)
-"jTD" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 "jWo" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plating,
 /area/space)
-"jXK" = (
-/turf/closed/wall,
-/area/maintenance/central/secondary)
-"ksl" = (
-/obj/item/banner,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
 "kuc" = (
 /obj/effect/landmark/start/chaplain,
 /turf/open/floor/plating,
 /area/space)
-"kwz" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"kId" = (
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"kIJ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"kOI" = (
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
 "llQ" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"lpQ" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	layer = 4.1
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plasteel,
+/area/space)
 "lLk" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -700,169 +126,21 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/bridge)
-"lLR" = (
-/obj/machinery/computer/med_data{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"lNp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"mlr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 "mFn" = (
 /obj/structure/shuttle/engine/huge{
 	dir = 8
 	},
 /turf/open/space/basic,
 /area/space)
-"mLH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"mPz" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"mXN" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/modular_computer/console/preset/command{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"nkk" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge Hub East";
-	dir = 1;
-	network = list("ss13")
-	},
-/obj/structure/sign/departments/minsky/research/research{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"nJt" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "odL" = (
 /obj/effect/landmark/start/janitor,
 /turf/open/floor/plating,
 /area/space)
-"ohH" = (
-/obj/structure/window,
-/obj/structure/window{
-	dir = 1
-	},
-/obj/structure/flora/grass/jungle,
-/obj/structure/flora/junglebush/c,
-/turf/open/floor/grass,
-/area/teleporter/hub/bridge)
-"osz" = (
-/obj/effect/landmark/start/captain,
-/turf/open/floor/plating,
-/area/space)
-"ouI" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "oUm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"oZc" = (
-/turf/closed/wall,
-/area/maintenance/department/cargo)
-"pgd" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/secure/briefcase,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"pgp" = (
-/obj/machinery/button/door{
-	id = "Bridge Lock";
-	name = "Bridge Lockdown";
-	pixel_x = -4;
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"pEf" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/landmark/start/clown,
+/turf/open/floor/plasteel,
+/area/space)
 "qlz" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -876,48 +154,11 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/bridge)
-"qqk" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 "qzx" = (
 /obj/effect/landmark/start/quartermaster,
 /turf/open/floor/plating,
 /area/space)
-"raS" = (
-/obj/item/banner,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/item/banner,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "rjD" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -929,343 +170,49 @@
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/bridge)
+/area/space)
 "rpN" = (
 /obj/effect/landmark/start/security_officer,
 /turf/open/floor/plating,
 /area/space)
 "rvT" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
+/obj/effect/landmark/start/captain,
 /turf/open/floor/plasteel/dark,
-/area/bridge)
-"ryE" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/hallway/secondary/command)
-"rEd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"sbn" = (
-/obj/machinery/light,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"smd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 "smZ" = (
 /obj/effect/landmark/start/clown,
 /turf/open/floor/plating,
 /area/space)
 "sqn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"szU" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Command Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/obj/structure/shuttle/engine/large,
+/turf/open/floor/plasteel,
+/area/space)
 "sCn" = (
 /obj/effect/landmark/start/mime,
 /turf/open/floor/plating,
 /area/space)
-"sCO" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"sJo" = (
-/obj/structure/cable{
-	icon_state = "2-8";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"sKn" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"sOk" = (
-/obj/structure/chair/comfy/black{
-	dir = 4;
-	name = "Captain"
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/landmark/start/captain,
-/obj/machinery/keycard_auth{
-	pixel_x = 2;
-	pixel_y = -36
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"sUU" = (
-/obj/machinery/computer/cargo,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "sXv" = (
 /turf/closed/wall/r_wall,
 /area/space)
-"tAD" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
 "tEJ" = (
 /turf/closed/wall,
 /area/space)
-"tTg" = (
-/obj/machinery/status_display/evac,
-/obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/captain)
-"upx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light_switch{
-	dir = 2;
-	pixel_x = -27
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"utZ" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
 "uWx" = (
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/command)
-"uYM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter/hub/bridge)
-"vrn" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/door/airlock/command{
-	name = "Captain's Office";
-	req_access_txt = "20"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/command{
-	name = "Conference Room";
-	req_access_txt = "19"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
-"vyt" = (
-/obj/machinery/computer/communications{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/turf/open/floor/ballpit,
+/area/space)
 "vMJ" = (
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/plating,
 /area/space)
-"vVv" = (
-/obj/machinery/computer/security{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"wbv" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Security Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "wqz" = (
 /turf/open/floor/plating,
 /area/space)
-"wwX" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "xbF" = (
 /obj/structure/shuttle/engine/huge{
 	dir = 8
 	},
 /turf/closed/wall,
 /area/space)
-"xhx" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Logistics Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"xNq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
-"xRR" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "xXa" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1279,35 +226,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/bridge)
-"xYZ" = (
-/turf/closed/wall/r_wall,
-/area/teleporter/hub/bridge)
-"xZE" = (
-/obj/item/banner,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 8
-	},
-/obj/item/banner,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/darkblue,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
+/area/space)
 
 (1,1,1) = {"
 aaa
@@ -16630,10 +15549,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -16887,10 +15806,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17143,6 +16062,11 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17152,15 +16076,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17399,6 +16318,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17417,41 +16357,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -17656,6 +16575,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17674,41 +16614,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -17913,6 +16832,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -17931,41 +16871,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -18170,6 +17089,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -18188,41 +17128,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -18427,6 +17346,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -18445,41 +17385,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -18684,6 +17603,27 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -18702,41 +17642,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -18941,6 +17860,26 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
 aaa
 aaa
 aaa
@@ -18960,40 +17899,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -19198,6 +18117,33 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -19210,47 +18156,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+bMy
+llQ
+amK
+oUm
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -19457,6 +18376,31 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -19469,45 +18413,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -19717,6 +18636,28 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+aaa
+aaa
+aaa
+aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -19729,42 +18670,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+bMy
+amK
+sqn
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -19987,6 +18906,8 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -20006,22 +18927,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+bMy
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -20243,6 +19162,8 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -20263,22 +19184,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -20500,6 +19419,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -20521,21 +19441,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+bMy
+amK
+amK
+bJL
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -20757,6 +19676,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -20778,21 +19698,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+bMy
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -21036,20 +19955,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+bMy
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -21293,20 +20212,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -21550,20 +20469,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -21807,20 +20726,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -22064,20 +20983,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -22321,20 +21240,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -22578,20 +21497,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aaa
 aaa
 aaa
@@ -23819,15 +22738,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24072,6 +22991,11 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24079,18 +23003,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24327,6 +23246,9 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24344,11 +23266,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24582,6 +23501,9 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24602,11 +23524,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24773,6 +23692,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -24837,6 +23757,8 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -24860,11 +23782,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -25030,6 +23949,16 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -25085,6 +24014,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -25110,19 +24040,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -25294,6 +24213,8 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -25350,6 +24271,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -25376,10 +24298,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -25609,6 +24528,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -25635,8 +24555,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -25866,6 +24785,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -25892,8 +24812,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -26041,6 +24960,13 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -26116,6 +25042,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -26142,15 +25069,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -26293,6 +25212,11 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -26375,6 +25299,7 @@ aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -26401,13 +25326,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -26571,7 +25490,16 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -26621,11 +25549,14 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -26652,19 +25583,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -26829,9 +25748,16 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -26881,8 +25807,13 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
+sXv
 aaa
 aaa
 aaa
@@ -26909,19 +25840,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -27148,10 +26067,10 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
-aaa
-aaa
-aaa
+sXv
 aaa
 aaa
 aaa
@@ -27399,16 +26318,16 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -27657,39 +26576,39 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+sXv
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 aaa
 aaa
 aaa
@@ -27916,6 +26835,8 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -27924,29 +26845,27 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 aaa
 aaa
 aaa
@@ -28174,36 +27093,36 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 aaa
 aaa
 aaa
@@ -28433,34 +27352,34 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 aaa
 aaa
 aaa
@@ -28693,31 +27612,31 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 aaa
 aaa
 aaa
@@ -28952,30 +27871,30 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -29210,29 +28129,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -29467,29 +28386,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -29724,29 +28643,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -29981,29 +28900,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -30238,29 +29157,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -30495,29 +29414,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -30752,29 +29671,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -31009,29 +29928,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -31198,9 +30117,14 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -31261,34 +30185,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -31456,7 +30375,18 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -31512,40 +30442,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -31691,6 +30610,15 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -31771,38 +30699,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -31951,9 +30870,14 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -32032,34 +30956,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -32294,29 +31213,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -32551,29 +31470,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -32751,6 +31670,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -32807,30 +31727,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -33008,6 +31927,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -33064,30 +31984,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -33238,6 +32157,15 @@ aaa
 aaa
 aaa
 aaa
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
+uWx
 aaa
 aaa
 aaa
@@ -33256,6 +32184,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -33312,34 +32241,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -33523,6 +32442,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -33578,25 +32498,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -33780,6 +32699,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -33835,25 +32755,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -34037,6 +32956,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -34092,25 +33012,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -34294,6 +33213,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -34349,25 +33269,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -34551,6 +33470,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -34606,25 +33526,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -34808,6 +33727,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -34863,25 +33783,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -35065,6 +33984,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -35120,25 +34040,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -35322,6 +34241,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -35377,25 +34297,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -35579,6 +34498,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -35634,25 +34554,24 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -35836,6 +34755,7 @@ aaa
 aaa
 aaa
 aaa
+uWx
 aaa
 aaa
 aaa
@@ -35891,30 +34811,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -36149,29 +35068,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -36406,29 +35325,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -36663,6 +35582,29 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -36674,29 +35616,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
-wqz
-wqz
-wqz
-wqz
-wqz
 aaa
 aaa
 aaa
@@ -36920,40 +35839,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 fez
 fez
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -37177,40 +36096,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 iaI
 iaI
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -37434,40 +36353,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 erk
 erk
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -37691,40 +36610,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 qzx
 wqz
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -37948,40 +36867,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 jWo
 vMJ
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -38205,40 +37124,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 smZ
 sCn
 kuc
 odL
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -38462,40 +37381,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 jzV
 wqz
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -38719,40 +37638,40 @@ aaa
 aaa
 aaa
 aaa
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
 cCp
 rpN
 wqz
 wqz
-wqz
+aaa
 aaa
 aaa
 aaa
@@ -38976,6 +37895,29 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+sXv
+jax
+jax
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+jax
+jax
+sXv
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -38987,29 +37929,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
-osz
-wqz
-wqz
-wqz
-wqz
 aaa
 aaa
 aaa
@@ -39236,6 +38155,23 @@ aaa
 aaa
 aaa
 aaa
+sXv
+sXv
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -39250,23 +38186,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-wqz
-wqz
-wqz
-wqz
-wqz
-wqz
 aaa
 aaa
 aaa
@@ -39495,19 +38414,19 @@ aaa
 aaa
 aaa
 aaa
-jXK
-xYZ
-xYZ
-kId
-kOI
-uYM
-bHF
-kOI
-uYM
-nkk
-xYZ
-xYZ
-oZc
+sXv
+sXv
+jax
+jax
+sXv
+jax
+jax
+jax
+sXv
+jax
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -39753,16 +38672,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-xYZ
-xYZ
-kOI
-uYM
-gWH
-kOI
-sbn
-xYZ
-xYZ
+sXv
+sXv
+sXv
+sXv
+jax
+jax
+jax
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -40012,13 +38931,13 @@ aaa
 aaa
 aaa
 aaa
-fLu
-dky
-uYM
-ohH
-kOI
-uYM
-fLu
+sXv
+jax
+jax
+jax
+jax
+jax
+sXv
 aaa
 aaa
 aaa
@@ -40269,13 +39188,13 @@ aaa
 aaa
 aaa
 aaa
-fLu
-imq
+sXv
 fOR
-xYZ
-imq
 fOR
-fLu
+sXv
+fOR
+fOR
+sXv
 aaa
 aaa
 aaa
@@ -40525,15 +39444,15 @@ aaa
 aaa
 aaa
 aaa
-ryE
-ryE
-uWx
-gcu
-uWx
-uWx
-gcu
-ryE
-ryE
+sXv
+sXv
+jax
+jax
+jax
+jax
+jax
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -40780,19 +39699,19 @@ aaa
 aaa
 aaa
 aaa
-ryE
-ryE
-ryE
-ksl
-uWx
-hIz
-utZ
-tAD
-gcu
-ksl
-ryE
-ryE
-ryE
+sXv
+sXv
+sXv
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+sXv
+sXv
+sXv
 aaa
 aaa
 aaa
@@ -44372,31 +43291,31 @@ aaa
 aaa
 aaa
 aaa
-dMd
-aZM
-aZM
-aZM
-aZM
-aZM
-aZM
-aZM
-vrn
-iPe
-aZM
-xZE
-fFt
-raS
-aZV
-tTg
-jlQ
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-dMd
+aaa
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+sXv
+aaa
 aaa
 aaa
 aaa
@@ -44629,31 +43548,31 @@ aaa
 aaa
 aaa
 aaa
-pEf
+aaa
 xXa
-xRR
-iwp
-dwN
-cRe
-dwN
-amK
-mPz
-iHO
-jPP
-iHO
-dAE
-fis
-upx
-fis
-wwX
-iPr
-dwN
-cRe
-dwN
-dcN
-sqn
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 gdx
-pEf
+aaa
 aaa
 aaa
 aaa
@@ -44886,31 +43805,31 @@ aaa
 aaa
 aaa
 aaa
-pEf
+aaa
 lLk
-gdx
-sUU
-xhx
-gGc
-rEd
-rEd
-sJo
-nJt
-kIJ
-gci
+fJQ
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 rvT
-mlr
-fSc
-oUm
-eHi
-smd
-smd
-xNq
-wbv
-fUZ
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 qlz
 fpi
-pEf
+aaa
 aaa
 aaa
 aaa
@@ -45143,31 +44062,31 @@ aaa
 aaa
 aaa
 aaa
-pEf
-pEf
+aaa
+aaa
 lLk
-gdx
-hYn
-enb
-hRj
-fuq
-hRj
-hRj
-lNp
-cdt
-sOk
-lpQ
-qqk
-hRj
-hRj
-bYp
-hRj
-bMy
-vVv
+fJQ
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 qlz
 fpi
-pEf
-pEf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -45401,29 +44320,29 @@ aaa
 aaa
 aaa
 aoV
-pEf
-pEf
+aaa
+aaa
 lLk
 rjD
-gdx
-sCO
-lLR
-mXN
-hRj
-mLH
-kwz
-llQ
-kwz
-bJL
-jTD
-hyF
-hkp
 fJQ
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 qlz
 rjD
 fpi
-pEf
-pEf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -45659,27 +44578,27 @@ aaa
 aaa
 aaa
 aaa
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
 lLk
 rjD
 rjD
-gdx
-sKn
-pgd
-hRj
-szU
-pgp
-ouI
-iAV
+fJQ
+jax
+jax
+jax
+jax
+jax
+jax
+jax
 qlz
 rjD
 rjD
 fpi
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -45918,23 +44837,23 @@ aaa
 aaa
 aaa
 aaa
-pEf
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
+aaa
 lLk
 rjD
-gdx
+fJQ
 jTC
-vyt
-ilW
+jax
+jax
 qlz
 rjD
 fpi
-pEf
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -46177,19 +45096,19 @@ aaa
 aaa
 aaa
 aaa
-pEf
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
+aaa
 lLk
 rjD
 rjD
 rjD
 fpi
-pEf
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -46437,13 +45356,13 @@ aaa
 aaa
 aaa
 aaa
-pEf
-pEf
-pEf
-pEf
-pEf
-pEf
-pEf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
