@@ -4,7 +4,8 @@
 	fire_sound = 'sound/weapons/ionrifle.ogg'
 
 /obj/item/ammo_casing/energy/ion/hos
-	e_cost = 250
+	projectile_type = /obj/item/projectile/ion/light
+	e_cost = 200
 
 /obj/item/ammo_casing/energy/ion/weak
 	projectile_type = /obj/item/projectile/ion/weak
