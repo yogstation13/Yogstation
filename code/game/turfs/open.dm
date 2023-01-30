@@ -563,11 +563,11 @@
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Knockdown(knockdown_amount)
-			C.Stun(stun_amount)
+			C.Knockdown(knockdown_amount, ignore_canstun = TRUE))
+			C.Stun(stun_amount, ignore_canstun = TRUE))
 			C.stop_pulling()
 		else
-			C.Knockdown(20)
+			C.Knockdown(20, ignore_canstun = TRUE)
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
