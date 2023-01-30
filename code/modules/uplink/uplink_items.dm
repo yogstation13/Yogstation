@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "The Juggernog Endurance Kit"
 	desc = "A new brew to save you! in our labs we have found that Juggernog™ significantly increases your total endurance to all forms of damage, \
 		but be warned when it ends all the damage you endured will come back at you, \
-		The box contains a hypospray with our juggernog and stimulant mix ™, 2 more vials of the mix, and two bottles of it.
+		The box contains a hypospray with our juggernog and stimulant mix ™, 2 more vials of the mix, and two bottles of it."
 	item = /obj/item/storage/firstaid/hypospray/syndicate/juggernog
 	cost = 8
 	surplus = 0
