@@ -368,6 +368,7 @@
 /datum/quirk/multilingual
 	name = "Multilingual"
 	desc = "You spent a portion of your life learning to understand an additional language. You may or may not be able to speak it based on your anatomy."
+	icon = "book"
 	value = 3
 	var/datum/language/specific
 	gain_text = span_notice("You have learned to understand an additional language.")
@@ -388,9 +389,11 @@
 			H.grant_language(random_language, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
 
 /datum/quirk/multilingual/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && specific)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(species && specific)
 		var/mob/M = new /mob // can't instantiate a language holder without an owner
-		var/datum/language_holder/lang = new prefs.pref_species.species_language_holder(M)
+		var/datum/language_holder/lang = new species.species_language_holder(M)
 		if(length(lang.understood_languages) && (specific in lang.understood_languages))
 			var/datum/language/L = new specific()
 			return "You already know [L.name]!"
