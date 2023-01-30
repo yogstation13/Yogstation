@@ -70,7 +70,7 @@
 	if(!notBlocked)
 		return
 	else if(isliving(M))
-		if(ishuman(M))				
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/bodypart/L = H.get_bodypart(check_zone(user.zone_selected))
 			if(H.health <= HEALTH_THRESHOLD_FULLCRIT || (L && L.status != BODYPART_ROBOTIC))//no more infecting via metal limbs unless they're in hard crit and probably going to die

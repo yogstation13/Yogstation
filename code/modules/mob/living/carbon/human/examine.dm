@@ -212,7 +212,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				
+
 	if(surgeries.len)
 		var/surgery_text
 		for(var/datum/surgery/S in surgeries)
@@ -488,7 +488,7 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-	
+
 	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
