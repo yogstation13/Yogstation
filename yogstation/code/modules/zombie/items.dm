@@ -90,7 +90,7 @@
 
 	infection = new organ()
 	infection.Insert(target)
-	log_combat(user, target, "infected", src)
+	log_combat(user, target, "infected", "zombie bite")
 	user.visible_message(span_danger("[user] bites [target]!"))
 
 	return TRUE
