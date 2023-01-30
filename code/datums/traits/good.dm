@@ -405,7 +405,6 @@
 /datum/quirk/multilingual/english
 	name = "Multilingual (English)"
 	desc = "You spent a portion of your life learning to understand English. You may or may not be able to speak it based on your anatomy."
-	value = 3
 	specific = /datum/language/english
 	gain_text = span_notice("You have learned to understand English.")
 	lose_text = span_notice("You have forgotten how to understand English.")
@@ -413,7 +412,6 @@
 /datum/quirk/multilingual/etherean
 	name = "Multilingual (Etherean)"
 	desc = "You spent a portion of your life learning to understand Etherean. You may or may not be able to speak it based on your anatomy."
-	value = 3
 	specific = /datum/language/etherean
 	gain_text = span_notice("You have learned to understand Etherean.")
 	lose_text = span_notice("You have forgotten how to understand Etherean.")
@@ -421,7 +419,6 @@
 /datum/quirk/multilingual/mothian
 	name = "Multilingual (Mothian)"
 	desc = "You spent a portion of your life learning to understand Mothian. You may or may not be able to speak it based on your anatomy."
-	value = 3
 	specific = /datum/language/mothian
 	gain_text = span_notice("You have learned to understand Mothian.")
 	lose_text = span_notice("You have forgotten how to understand Mothian.")
@@ -429,7 +426,6 @@
 /datum/quirk/multilingual/draconic
 	name = "Multilingual (Draconic)"
 	desc = "You spent a portion of your life learning to understand Draconic. You may or may not be able to speak it based on your anatomy."
-	value = 3
 	specific = /datum/language/draconic
 	gain_text = span_notice("You have learned to understand Draconic.")
 	lose_text = span_notice("You have forgotten how to understand Draconic.")
