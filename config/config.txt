@@ -460,4 +460,4 @@ MAX_SHUTTLE_SIZE 300
 ## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
 ## This should be disabled (through `CACHE_ASSETS 0`) on development,
 ## but enabled on production (the default).
-CACHE_ASSETS 1
+CACHE_ASSETS 0

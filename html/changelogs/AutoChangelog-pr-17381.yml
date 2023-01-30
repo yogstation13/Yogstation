@@ -1,6 +1,0 @@
-author: "Mothblocks & various contributors to /tg/ Ported by ThatLing and JamieD12"
-delete-after: true 
-changes: 
-  - rscadd: "The preferences menu has been completely rewritten in tgui."
-  - tweak: "The \"Stop Sounds\" verb has been moved to OOC."
-  - rscadd: "Donators can now select a plushie."
