@@ -20,6 +20,11 @@
 
 	minimal_character_age = 26 //Matches MD
 
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/security,
+	)
+
 	added_access = list(ACCESS_SURGERY)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_BRIG, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_MEDICAL, ACCESS_BRIG_PHYS)
 	paycheck = PAYCHECK_MEDIUM

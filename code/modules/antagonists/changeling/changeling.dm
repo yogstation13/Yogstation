@@ -109,8 +109,8 @@
 	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
-		if(C.client?.prefs?.custom_names["human"] && !is_banned_from(C.client?.ckey, "Appearance"))
-			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.custom_names["human"])
+		if(C.client?.prefs?.read_preference(/datum/preference/name/real_name) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/real_name))
 		else
 			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 
@@ -625,3 +625,24 @@
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+/datum/antagonist/changeling/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+
+	final_icon.Shift(WEST, world.icon_size / 2)
+	final_icon.Shift(EAST, world.icon_size / 2)
+
+	split_icon.Shift(EAST, world.icon_size / 2)
+	split_icon.Shift(WEST, world.icon_size / 2)
+
+	final_icon.Blend(split_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/changeling
+	name = "Changeling"
+
+	head = /obj/item/clothing/head/helmet/changeling
+	suit = /obj/item/clothing/suit/armor/changeling
+	l_hand = /obj/item/melee/arm_blade

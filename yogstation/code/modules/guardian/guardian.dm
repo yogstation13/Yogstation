@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (mind)
 		mind.name = "[real_name]"
 	if (client?.prefs)
-		gender = client.prefs.gender
+		gender = client.prefs.read_preference(/datum/preference/choiced/gender)
 	if (berserk)
 		return
 	if (!summoner?.current)
@@ -794,11 +794,3 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	damage_type = BRUTE
 	armour_penetration = 100 // no one can just deflect the emerald splash!
 	var/datum/mind/guardian_master
-
-/obj/item/projectile/guardian/on_hit(atom/target, blocked)
-	if (guardian_master?.current)
-		var/list/safe = list(guardian_master.current)
-		safe += guardian_master.current.hasparasites()
-		if (target in safe)
-			return BULLET_ACT_FORCE_PIERCE
-	return ..()
