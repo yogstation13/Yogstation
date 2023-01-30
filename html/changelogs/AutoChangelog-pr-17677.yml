@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Preternis take more water damage at small amounts, but less at high amounts"

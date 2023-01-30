@@ -184,7 +184,7 @@
 /// When we're joining the game in [/mob/dead/new_player/proc/create_character], we increment our scar slot then store the slot in our mind datum.
 /mob/living/carbon/human/proc/increment_scar_slot()
 	var/check_ckey = ckey || client?.ckey
-	if(!check_ckey || !mind || !client?.prefs.persistent_scars)
+	if(!check_ckey || !mind || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[check_ckey[1]]/[check_ckey]/scars.sav"
@@ -229,7 +229,7 @@
 
 /// Read all the scars we have for the designated character/scar slots, verify they're good/dump them if they're old/wrong format, create them on the user, and write the scars that passed muster back to the file
 /mob/living/carbon/human/proc/load_persistent_scars()
-	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.persistent_scars)
+	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[ckey[1]]/[ckey]/scars.sav"
@@ -255,7 +255,7 @@
 
 /// Save any scars we have to our designated slot, then write our current slot so that the next time we call [/mob/living/carbon/human/proc/increment_scar_slot] (the next round we join), we'll be there
 /mob/living/carbon/human/proc/save_persistent_scars(nuke=FALSE)
-	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.persistent_scars)
+	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[ckey[1]]/[ckey]/scars.sav"
@@ -286,3 +286,14 @@
 
 /mob/living/carbon/human/proc/get_punchstunthreshold()	//Gets the total punch damage needed to knock down someone
 	return dna.species.punchstunthreshold + physiology.punchstunthreshold_bonus
+
+/// Fully randomizes everything according to the given flags.
+/mob/living/carbon/human/proc/randomize_human_appearance(randomize_flags = ALL)
+	var/datum/preferences/preferences = new
+
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (!preference.included_in_randomization_flags(randomize_flags))
+			continue
+
+		if (preference.is_randomizable())
+			preferences.write_preference(preference, preference.create_random_value(preferences))

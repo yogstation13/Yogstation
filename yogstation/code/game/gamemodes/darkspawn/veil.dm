@@ -10,6 +10,7 @@
 	SSticker.mode.update_darkspawn_icons_added(owner)
 	SSticker.mode.veils += owner
 	owner.special_role = "veil"
+	owner.current?.maxHealth = min(owner.current.maxHealth, 35)
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 
@@ -26,6 +27,8 @@
 	else
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
+		to_chat(owner, span_notice("As your mind is released from their grasp, you feel much stronger, though you will never again be whole."))
+	M.maxHealth = max(M.maxHealth, 70)
 	M.update_sight()
 	return ..()
 
@@ -49,6 +52,7 @@
 		Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
 	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
+	to_chat(owner, span_danger("Your drained will has left you feeble and weak! You will go down with many fewer hits!"))
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = "#21007F", flash_time = 100)
 

@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -398,7 +399,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
 //FORCE RECALL/RESET
-
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
@@ -575,7 +575,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	add_verb(user, list(/mob/living/proc/guardian_comm, \
 						/mob/living/proc/guardian_recall, \
-						/mob/living/proc/guardian_reset))
+						/mob/living/proc/guardian_reset, \
+						/mob/living/proc/finduser))
 	G?.client.init_verbs()
 
 /obj/item/guardiancreator/choose

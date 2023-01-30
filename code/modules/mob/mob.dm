@@ -255,16 +255,18 @@
 
 ///Returns the client runechat visible messages preference according to the message type.
 /atom/proc/runechat_prefs_check(mob/target, visible_message_flags = NONE)
-	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
+	if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if (!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs))
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		return FALSE
 	return TRUE
 
 /mob/runechat_prefs_check(mob/target, visible_message_flags = NONE)
-	if(!target.client?.prefs.chat_on_map)
+	if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		return FALSE
 	return TRUE
 
@@ -821,7 +823,13 @@
 /// Adds this list to the output to the stat browser
 /mob/proc/get_status_tab_items()
 	. = list()
-
+	var/list/objectives = mind?.get_all_objectives()
+	if(LAZYLEN(objectives))
+		var/obj_count = 1
+		. += "<B>Objectives:</B>"
+		for(var/datum/objective/objective in mind?.get_all_objectives())
+			. += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "red"]>[objective.explanation_text][objective.check_completion() ? " (COMPLETED)" : ""]</font>"
+			obj_count++
 
 /mob/proc/get_proc_holders()
 	. = list()

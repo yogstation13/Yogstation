@@ -1,6 +1,7 @@
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "Jellyperson"
+	plural_form = "Jellypeople"
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
@@ -67,6 +68,21 @@
 	qdel(consumed_limb)
 	H.blood_volume += 20
 
+// Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
+// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
+/datum/species/jelly/create_pref_blood_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_NAME = "Jelly Blood",
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage. \
+			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+	))
+
+	return to_add
+
 /datum/action/innate/regenerate_limbs
 	name = "Regenerate Limbs"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -112,6 +128,7 @@
 
 /datum/species/jelly/slime
 	name = "Slimeperson"
+	plural_form = "Slimepeople"
 	id = "slime"
 	default_color = "00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
@@ -385,6 +402,7 @@
 
 /datum/species/jelly/luminescent
 	name = "Luminescent"
+	plural_form = null
 	id = "lum"
 	say_mod = "says"
 	burnmod = 0.5 // = 1/2x generic burn damage
@@ -555,6 +573,7 @@
 
 /datum/species/jelly/stargazer
 	name = "Stargazer"
+	plural_form = null
 	id = "stargazer"
 	burnmod = 0.5 // = 1/2x generic burn damage
 	var/datum/action/innate/project_thought/project_thought

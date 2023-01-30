@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Nanite heart no longer makes it's owner lose additional nanites from an emp"
