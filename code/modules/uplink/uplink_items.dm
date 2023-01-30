@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	
 
  
-/datum/uplink_item/dangerous/Juggernog kit
+/datum/uplink_item/dangerous/Juggernogkit
 	name = "The Juggernog Endurance Kit"
 	desc = "A new brew to save you! in our labs we have found that Juggernog™ significantly increases your total endurance to all forms of damage, \
 		but be warned when it ends all the damage you endured will come back at you, \
