@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fix decal floors cleanable, misdirection and being transparent for some reason"

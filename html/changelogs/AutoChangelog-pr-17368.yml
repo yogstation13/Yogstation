@@ -1,6 +1,0 @@
-author: "Mothblocks & a lot of people from /tg/"
-delete-after: true 
-changes: 
-  - rscadd: "The preferences menu has been completely rewritten in tgui."
-  - tweak: "The \"Preferences\" tab has been removed, the menu verbs have been moved to the OOC tab"
-  - tweak: "The \"Stop Sounds\" verb has been moved to OOC."
