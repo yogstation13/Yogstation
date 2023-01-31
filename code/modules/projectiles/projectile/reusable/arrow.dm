@@ -167,7 +167,6 @@
 	light_color = LIGHT_COLOR_BLUE
 	damage = 50
 	damage_type = STAMINA
-	embed_chance = 0
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 
 /obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Massive irradiation on hit.
