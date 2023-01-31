@@ -76,7 +76,7 @@
 	to_chat(user, span_danger("You start drawing a rune..."))
 
 	if(do_after(user, 8 SECONDS, A))
-		if(last_rune)
+		if(!QDELETED(last_rune))
 			qdel(last_rune)
 		last_rune = new /obj/effect/eldritch/big(A)
 
