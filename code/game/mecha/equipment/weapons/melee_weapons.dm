@@ -247,11 +247,11 @@
 	name = "\improper AV-98 \"Ingram\" heavy stun baton" 
 	desc = "A stun baton, but bigger. The tide of toolbox-armed assistants don't stand a chance."
 	energy_drain = 300
-	attack_speed_modifier = 1.5	//needs to recharge
+	attack_speed_modifier = 2	//needs to recharge
 	structure_damage_mult = 1
 	precise_weapon_damage = -20	//Mostly nonlethal
 	weapon_damage = -20
-	minimum_damage = 10			
+	minimum_damage = 10
 	hit_effect = ATTACK_EFFECT_BOOP		//Boop :)
 	attack_sharpness = SHARP_NONE
 	mob_strike_sound = 'sound/weapons/egloves.ogg'
