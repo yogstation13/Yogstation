@@ -13052,9 +13052,6 @@
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
 "dsb" = (
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen/fountain,
