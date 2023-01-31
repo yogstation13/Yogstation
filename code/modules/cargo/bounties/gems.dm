@@ -16,14 +16,14 @@
 /datum/bounty/item/gems/magma
 	name = "Calcified Auric"
 	description = "Nanotransen needs three of these for a secret project. Meet their demands and get paid for your endeavors."
-	reward = 10000
-	required_count = 3
+	reward = 12000
+	required_count = 2
 	wanted_types = list(/obj/item/gem/magma)
 
 /datum/bounty/item/gems/diamonds
 	name = "Frost Diamonds"
 	description = "A CentCom official is being married in the coming months. Get them those wedding rings!"
-	reward = 10000
+	reward = 12000
 	required_count = 2
 	wanted_types = list(/obj/item/gem/fdiamond)
 

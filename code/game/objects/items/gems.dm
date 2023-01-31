@@ -13,8 +13,6 @@
 	var/point_value = 100
 	///what's our real name that will show upon discovery? null to do nothing
 	var/true_name
-	///the message given when you discover this gem.
-	var/analysed_message = null
 	///the thing that spawns in the item.
 	var/sheet_type = null
 
@@ -41,8 +39,6 @@
 
 	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
 	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
-	if(analysed_message)
-		to_chat(user, analysed_message)
 
 	claimed_by = item
 	if(true_name)
@@ -68,7 +64,7 @@
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium{amount = 10}
-	point_value = 300
+	point_value = 600
 
 /obj/item/gem/magma
 	name = "calcified auric"
@@ -76,7 +72,7 @@
 	icon_state = "magma"
 	materials = list(/datum/material/gold=50000)
 	sheet_type = /obj/item/stack/sheet/mineral/gold{amount = 25}
-	point_value = 450
+	point_value = 900
 	light_range = 2
 	light_power = 1
 	light_color = "#ff7b00"
@@ -87,14 +83,14 @@
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond{amount = 15}
-	point_value = 750
+	point_value = 1500
 
 /obj/item/gem/phoron
 	name = "stabilized baroxuldium"
 	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
-	point_value = 1200
+	point_value = 2400
 	light_range = 2
 	light_power = 2
 	light_color = "#62326a"
@@ -104,7 +100,7 @@
 	desc = "A strange mass of dilithium which pulses to a steady rhythm. Its strange surface exudes a unique radio signal detectable by GPS. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
-	point_value = 1600
+	point_value = 3200
 	light_range = 2
 	light_power = 1
 	light_color = "#b714cc"
@@ -125,7 +121,7 @@
 	name = "draconic amber"
 	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
 	icon_state = "amber"
-	point_value = 1600
+	point_value = 3200
 	light_range = 2
 	light_power = 2
 	light_color = "#FFBF00"
@@ -134,7 +130,7 @@
 	name = "null crystal"
 	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
 	icon_state ="void"
-	point_value = 1800
+	point_value = 3600
 	light_range = 2
 	light_power = 1
 	light_color = "#4785a4"
@@ -144,7 +140,7 @@
 	name = "ichorium"
 	desc = "A weird, sticky substance, known to coalesce in the presence of otherworldly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
 	icon_state = "red"
-	point_value = 2000
+	point_value = 4000
 	light_range = 2
 	light_power = 3
 	light_color = "#800000"
@@ -153,7 +149,7 @@
 	name = "dark salt lick"
 	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the lick are uneven patches of rough texture. Its only known property is that of anti-magic."
 	icon_state = "dark"
-	point_value = 3000
+	point_value = 6000
 	light_range = 3
 	light_power = 3
 	light_color = "#380a41"
@@ -179,22 +175,22 @@
 /obj/item/gem/ruby
 	name = "ruby"
 	icon_state = "ruby"
-	point_value = 200
+	point_value = 500
 
 /obj/item/gem/sapphire
 	name = "sapphire"
 	icon_state = "sapphire"
-	point_value = 200
+	point_value = 500
 
 /obj/item/gem/emerald
 	name = "emerald"
 	icon_state = "emerald"
-	point_value = 200
+	point_value = 500
 
 /obj/item/gem/topaz
 	name = "topaz"
 	icon_state = "topaz"
-	point_value = 200
+	point_value = 500
 
 /obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
 	name = "bluespace data crystal"
@@ -211,27 +207,37 @@
 	light_range = 2
 	light_power = 6
 	light_color = "#0004ff"
-	///Have we been analysed with a mining scanner?
-	var/analysed = FALSE
+	///owning ID, used to give points when sold
+	var/obj/item/card/id/claimed_by = null
+	///what's our real name that will show upon discovery? null to do nothing
+	var/true_name
 	///How many points we grant to whoever discovers us
-	var/point_value = 2000
+	var/point_value = 4000
+
+	var/image/shine_overlay //shows this overlay when not claimed
+
+/obj/item/ai_cpu/stalwart/Initialize()
+	. = ..()
+	shine_overlay = image(icon = 'icons/obj/gems.dmi',icon_state = "shine")
+	add_overlay(shine_overlay)
+	pixel_x = rand(-8,8)
+	pixel_y = rand(-8,8)
 
 /obj/item/ai_cpu/stalwart/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
-	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
+	if(!istype(item, /obj/item/card/id))
 		return ..()
 
-	if(analysed)
-		to_chat(user, span_warning("This gem has already been analysed!"))
+	if(claimed_by)
+		to_chat(user, span_warning("This gem has already been claimed!"))
 		return
-	else
-		to_chat(user, span_notice("You analyse the precious gemstone!"))
-		analysed = TRUE
 
-	if(isliving(user))
-		var/mob/living/living = user
+	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
+	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
-		var/obj/item/card/id/card = living.get_idcard()
-		if(card)
-			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
-			card.mining_points += point_value
-			playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
+	claimed_by = item
+	if(true_name)
+		name = true_name
+
+	if(shine_overlay)
+		cut_overlay(shine_overlay)
+		qdel(shine_overlay)

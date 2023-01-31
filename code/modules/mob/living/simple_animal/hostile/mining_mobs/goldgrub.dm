@@ -86,6 +86,6 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/death(gibbed)
-	if(prob(10))
+	if(prob(75))
 		new /obj/item/gem/rupee(loc)
 	. = ..()
