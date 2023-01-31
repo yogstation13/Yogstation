@@ -80,6 +80,10 @@
 		cure_chance *= 3.5
 	if(HAS_TRAIT(hugger, TRAIT_FRIENDLY))
 		cure_chance *= 1.25
+	if(iscarbon(hugged))
+		var/mob/living/carbon/C = hugged
+		if(C.hypnosis_vulnerable())
+			cure_chance *= 1.5
 	if(prob(cure_chance))
 		qdel(src) // Sometimes, all you need is a good hug..
 
@@ -90,6 +94,10 @@
 	var/cure_chance = random_cure_chance / 10
 	if(HAS_TRAIT(flasher.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
 		cure_chance *= 10
+	if(iscarbon(flashed))
+		var/mob/living/carbon/C = flashed
+		if(C.hypnosis_vulnerable())
+			cure_chance *= 1.5
 	if(prob(cure_chance))
 		qdel(src)
 
@@ -100,6 +108,10 @@
 	var/cure_chance = random_cure_chance / 11
 	if(HAS_TRAIT(laserer.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
 		cure_chance *= 10
+	if(iscarbon(lasered))
+		var/mob/living/carbon/C = lasered
+		if(C.hypnosis_vulnerable())
+			cure_chance *= 1.5
 	if(prob(cure_chance))
 		qdel(src)
 
@@ -112,5 +124,9 @@
 		cure_chance *= 1.5
 	if(HAS_TRAIT(shiner.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
 		cure_chance *= 10
+	if(iscarbon(shined))
+		var/mob/living/carbon/C = shined
+		if(C.hypnosis_vulnerable())
+			cure_chance *= 1.5
 	if(prob(cure_chance))
 		qdel(src)
