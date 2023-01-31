@@ -49,7 +49,7 @@
 		T.air_update_turf()
 
 /obj/effect/particle_effect/foam/firefighting/kill_foam()
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSfastprocess, src)
 
 	if(absorbed_plasma)
 		var/obj/effect/decal/cleanable/plasma/P = (locate(/obj/effect/decal/cleanable/plasma) in get_turf(src))
@@ -92,7 +92,7 @@
 /obj/effect/particle_effect/foam/Initialize()
 	. = ..()
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
 	applied_atoms = list()
 
