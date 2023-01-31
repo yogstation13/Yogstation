@@ -144,6 +144,7 @@
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers or plantpeople get it."
+	new /obj/item/twohanded/fishingrod/collapsable/miningmedic(src)
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"

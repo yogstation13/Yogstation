@@ -26,6 +26,7 @@
 
 /datum/component/chasm/Initialize(turf/target)
 	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY,.proc/fish)
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
@@ -133,11 +134,48 @@
 			qdel(S.mmi)
 
 		falling_atoms -= AM
-		qdel(AM)
-		if(AM && !QDELETED(AM))	//It's indestructible
+		if (isliving(AM)) //living mobs get added to the contents of the chasm
 			var/atom/parent = src.parent
-			parent.visible_message(span_boldwarning("[parent] spits out [AM]!"))
+			AM.forceMove(parent)
 			AM.alpha = oldalpha
 			AM.color = oldcolor
 			AM.transform = oldtransform
-			AM.throw_at(get_edge_target_turf(parent,pick(GLOB.alldirs)),rand(1, 10),rand(1, 10))
+			var/mob/living/L = AM
+			L.Paralyze(100)
+			L.adjustBruteLoss(400)
+		else
+			qdel(AM) //everything else DIES
+			if(AM && !QDELETED(AM))	//It's indestructible
+				var/atom/parent = src.parent
+				parent.visible_message(span_boldwarning("[parent] spits out [AM]!"))
+				AM.alpha = oldalpha
+				AM.color = oldcolor
+				AM.transform = oldtransform
+				AM.throw_at(get_edge_target_turf(parent,pick(GLOB.alldirs)),rand(1, 10),rand(1, 10))
+
+/datum/component/chasm/proc/fish(datum/source, obj/item/I, mob/user, params)
+	if(!istype(I,/obj/item/twohanded/fishingrod))
+		return
+	var/obj/item/twohanded/fishingrod/rod = I
+	if(!rod.wielded)
+		to_chat(user, span_warning("You need to wield the rod in both hands before you can fish in the chasm!"))
+		return
+	if(do_after(user, 3 SECONDS, src.parent))
+		if(!rod.wielded)
+			return
+		var/atom/parent = src.parent
+		var/list/fishing_contents = parent.GetAllContents()
+		if(!length(fishing_contents))
+			to_chat(user, span_warning("There's nothing here!"))
+			return
+		var/found = FALSE
+		for(var/mob/M in fishing_contents) //since only mobs can fall in here this really isnt needed but on the off chance something naughty happens..
+			M.forceMove(get_turf(parent))
+			found = TRUE
+		if(found)
+			to_chat(user, span_warning("You reel in something!"))
+		else
+			to_chat(user, span_warning("There's nothing here!"))
+	return
+		
+
