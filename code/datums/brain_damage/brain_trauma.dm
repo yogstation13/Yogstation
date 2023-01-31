@@ -121,7 +121,7 @@
 	COOLDOWN_START(src, pen_therapy_cd, pen_therapy_cd_time)
 	var/cure_chance = random_cure_chance / 15
 	if(istype(the_light, /obj/item/flashlight/pen)) // Use a proper penlight!
-		cure_chance *= 1.5
+		cure_chance *= 1.25
 	if(HAS_TRAIT(shiner.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
 		cure_chance *= 10
 	if(iscarbon(shined))
