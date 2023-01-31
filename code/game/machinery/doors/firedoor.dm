@@ -70,9 +70,7 @@
 	remove_from_areas()
 	affecting_areas.Cut()
 	var/turf/T = get_turf(src)
-	spawn(0)
-		if(T)
-			T.ImmediateCalculateAdjacentTurfs()
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
@@ -225,6 +223,7 @@
 		if(welded)
 			add_overlay("welded_open")
 	SSdemo.mark_dirty(src)
+	air_update_turf()
 
 /obj/machinery/door/firedoor/open()
 	. = ..()
@@ -286,6 +285,7 @@
 /obj/machinery/door/firedoor/proc/emergency_pressure_close()
 	density = TRUE
 	air_update_turf()
+	layer = closingLayer
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)
