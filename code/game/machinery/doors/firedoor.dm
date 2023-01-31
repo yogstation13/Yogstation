@@ -69,7 +69,6 @@
 /obj/machinery/door/firedoor/Destroy()
 	remove_from_areas()
 	affecting_areas.Cut()
-	var/turf/T = get_turf(src)
 	air_update_turf()
 	return ..()
 
