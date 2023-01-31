@@ -2156,7 +2156,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
 	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return tail?.get_availability(H.dna.species)
+	return "tail_human" in mutant_bodyparts || "waggingtail_human" in mutant_bodyparts || "tail_lizard" in mutant_bodyparts || "waggingtail_lizard" in mutant_bodyparts
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
 	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
