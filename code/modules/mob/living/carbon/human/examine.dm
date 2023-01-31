@@ -122,9 +122,11 @@
 	if(HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
 		var/highest_trauma = 0
 		for(var/datum/brain_trauma/B in get_traumas())
-			if(istype(B, /datum/brain_trauma/special))
-				highest_trauma = 3
+			if(istype(B, /datum/brain_trauma/magic))
+				highest_trauma = 4
 				break
+			else if(istype(B, /datum/brain_trauma/special) && highest_trauma < 3)
+				highest_trauma = 3
 			else if(istype(B, /datum/brain_trauma/severe) && highest_trauma < 2)
 				highest_trauma = 2
 			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
@@ -136,6 +138,8 @@
 			if(2)
 				. += span_warning("[t_His] behavior is very clearly abnormal.")
 			if(3)
+				. += span_warning("[t_His] behavior is strange but intriguing.")
+			if(4)
 				. += span_warning("[t_His] behavior seems otherworldly.")
 
 	var/appears_dead = 0
