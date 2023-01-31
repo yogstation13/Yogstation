@@ -19,6 +19,7 @@
 	base_access = list(ACCESS_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
+	mind_traits = list(TRAIT_PSYCH)
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 	minimal_character_age = 24 //Psychology, therapy, and the like; all branches that would probably need to be certified as properly educated
 

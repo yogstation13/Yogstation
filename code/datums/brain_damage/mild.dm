@@ -3,6 +3,7 @@
 //Most of the old brain damage effects have been transferred to the dumbness trauma.
 
 /datum/brain_trauma/mild
+	random_cure_chance = 12
 
 /datum/brain_trauma/mild/hallucinations
 	name = "Hallucinations"

@@ -416,6 +416,8 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
+		for(var/datum/brain_trauma/trauma in get_traumas())
+			trauma.on_hug(M, src)
 
 		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
 		fire_stacks = averagestacks
