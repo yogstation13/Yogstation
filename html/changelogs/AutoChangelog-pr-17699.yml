@@ -1,4 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - bugfix: "Sets machinery outside ai sat maint to a powered area"
