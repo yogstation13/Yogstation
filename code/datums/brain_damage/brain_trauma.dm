@@ -115,7 +115,7 @@
 	if(prob(cure_chance))
 		qdel(src)
 
-/datum/brain_trauma/proc/on_shine_light(mob/living/shiner, mob/living/shined, /obj/item/flashlight/the_light)
+/datum/brain_trauma/proc/on_shine_light(mob/living/shiner, mob/living/shined, obj/item/flashlight/the_light)
 	if(!COOLDOWN_FINISHED(src, pen_therapy_cd))
 		return
 	COOLDOWN_START(src, pen_therapy_cd, pen_therapy_cd_time)
