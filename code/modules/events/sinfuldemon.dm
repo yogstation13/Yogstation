@@ -58,8 +58,7 @@
 	var/mob/living/carbon/human/new_sinfuldemon = new(spawn_loc)
 	if(!spawn_loc)
 		SSjob.SendToLateJoin(new_sinfuldemon)
-	var/datum/preferences/A = new() //Randomize appearance for the demon.
-	A.copy_to(new_sinfuldemon)
+	new_sinfuldemon.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 	new_sinfuldemon.dna.update_dna_identity()
 	return new_sinfuldemon
 

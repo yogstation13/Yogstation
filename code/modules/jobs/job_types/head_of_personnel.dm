@@ -36,6 +36,11 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 	minimal_character_age = 26 //Baseline age requirement and competency, as well as ability to assume leadership in shite situations
 
+	departments_list = list(
+		/datum/job_department/service,
+		/datum/job_department/command,
+	)
+
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(

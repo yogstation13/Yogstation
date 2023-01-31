@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(Yogs)
 			portal.linked_targets = exits_by_id[portal.id]
 
 	//ACCENT GENERATOR
-	var/list/accent_names = assoc_list_strip_value(GLOB.accents_name2file)
+	var/list/accent_names = assoc_to_keys(GLOB.accents_name2file)
 	var/regex/is_phrase = regex(@"\\b[\w \.,;'\?!]+\\b","i")
 	var/regex/is_word = regex(@"\\b[\w\.,;'\?!]+\\b","i") // Should be very similar to the above regex, except it doesn't capture on spaces and so only hits plaintext words
 	for(var/accent in accent_names)

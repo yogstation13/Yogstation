@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (mind)
 		mind.name = "[real_name]"
 	if (client?.prefs)
-		gender = client.prefs.gender
+		gender = client.prefs.read_preference(/datum/preference/choiced/gender)
 	if (berserk)
 		return
 	if (!summoner?.current)

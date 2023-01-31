@@ -24,6 +24,10 @@
 	display_order = JOB_DISPLAY_ORDER_COOK
 	minimal_character_age = 18 //My guy they just a cook
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 	mail_goodies = list(

@@ -23,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 	minimal_character_age = 21 //I shouldn't have to explain this one
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	mail_goodies = list(
 		/obj/item/storage/box/rubbershot = 30,
 		/obj/item/reagent_containers/glass/bottle/clownstears = 10,

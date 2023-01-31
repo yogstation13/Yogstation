@@ -36,6 +36,11 @@
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
+	departments_list = list(
+		/datum/job_department/science,
+		/datum/job_department/command,
+	)
+
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(
