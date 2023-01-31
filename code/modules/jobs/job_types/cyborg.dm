@@ -63,6 +63,6 @@
 			if (!!donor_hat_datum.ckey && (lowertext(C.ckey) != lowertext(donor_hat_datum.ckey)))
 				to_chat(C, span_warning("Your selected donor hat is restricted to [donor_hat_datum.ckey]."))
 			else if (donor_hat_type)
-				var/obj/hat = new donor_hat_type()
+				var/obj/item/hat = new donor_hat_type()
 				if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
 					H.place_on_head(hat)
