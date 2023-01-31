@@ -86,13 +86,13 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_ICON = "splotch",
 		SPECIES_PERK_NAME = "Unstable Form",
 		SPECIES_PERK_DESC = "[plural_form] are made entirely of jelly, losing enough will result in them cannibalizing their own limbs to survive.",
 	),
 	list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_ICON = "hand-sparkles",
 		SPECIES_PERK_NAME = "Regenerate Limbs",
 		SPECIES_PERK_DESC = "Being made entirely of jelly means [plural_form] can reform lost limbs from nothing assuming they have enough extra to spare.",
 	))
