@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Security can no longer print mindshield firing pins"
-  - tweak: "Firing pins crate now require security access instead of armory access to open"
-  - tweak: "Mindshield firing pins are now available at cargo for 3000 credits"
