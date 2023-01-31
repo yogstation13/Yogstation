@@ -72,6 +72,8 @@
 
 //Called when hugging. expand into generally interacting, where future coders could switch the intent?
 /datum/brain_trauma/proc/on_hug(mob/living/hugger, mob/living/hugged)
+	if(resilience >= TRAUMA_RESILIENCE_WOUND)
+		return
 	if(!COOLDOWN_FINISHED(src, hug_therapy_cd))
 		return
 	COOLDOWN_START(src, hug_therapy_cd, hug_therapy_cd_time)
@@ -88,6 +90,8 @@
 		qdel(src) // Sometimes, all you need is a good hug..
 
 /datum/brain_trauma/proc/on_flash(mob/living/flasher, mob/living/flashed)
+	if(resilience >= TRAUMA_RESILIENCE_WOUND)
+		return
 	if(!COOLDOWN_FINISHED(src, flash_therapy_cd))
 		return
 	COOLDOWN_START(src, flash_therapy_cd, flash_therapy_cd_time)
@@ -102,6 +106,8 @@
 		qdel(src)
 
 /datum/brain_trauma/proc/on_shine_laser(mob/living/laserer, mob/living/lasered)
+	if(resilience >= TRAUMA_RESILIENCE_WOUND)
+		return
 	if(!COOLDOWN_FINISHED(src, laser_therapy_cd))
 		return
 	COOLDOWN_START(src, laser_therapy_cd, laser_therapy_cd_time)
@@ -116,6 +122,8 @@
 		qdel(src)
 
 /datum/brain_trauma/proc/on_shine_light(mob/living/shiner, mob/living/shined, obj/item/flashlight/the_light)
+	if(resilience >= TRAUMA_RESILIENCE_WOUND)
+		return
 	if(!COOLDOWN_FINISHED(src, pen_therapy_cd))
 		return
 	COOLDOWN_START(src, pen_therapy_cd, pen_therapy_cd_time)
