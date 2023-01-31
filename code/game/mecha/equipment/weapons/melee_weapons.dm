@@ -86,7 +86,7 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/special_hit()	//For special effects, slightly simplifies cleave/precise attack procs
-	return 0
+	return 1
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/on_select()
 	if(deflect_bonus)
@@ -110,7 +110,8 @@
 	attack_sound = 'sound/weapons/mechasword.ogg'			//Recorded from Respawn/EA's Titanfall 2 (Ronin broadsword swing). Apparently they don't care so we're probably good
 	var/mob_strike_sound = 'sound/weapons/bladeslice.ogg'	//The sound it makes when the cleave hits a mob, different from the attack
 	harmful = TRUE											//DO NOT give to children. Or do, I'm not the police.
-	minimum_damage = 0							
+	minimum_damage = 0
+	var/sword_wound_bonus = 0								//Wound bonus if it's supposed to be ouchy beyond just doing damage
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/special_hit(atom/target)	
 	return 0
@@ -138,11 +139,11 @@
 			if(isliving(A))						
 				var/mob/living/L = A
 				
-				if(iscarbon(L))					//If we're a carbon we can get armor and jazz
+				if(iscarbon(L))	//If we're a carbon we can get armor and jazz
 					var/mob/living/carbon/C = L
 					var/obj/item/bodypart/body_part = pick(C.bodyparts)	//Cleave attack isn't very precise
 					var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)
-					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
+					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 				else							//Regular mobs just take damage
 					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
@@ -155,7 +156,7 @@
 
 			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
 				var/obj/O = A
-				if(!O.density)							//Make sure it's not an open door or something
+				if(!O.density)	//Make sure it's not an open door or something
 					continue
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
 				O.take_damage(object_damage, dam_type, "melee", 0)
@@ -164,20 +165,21 @@
 				else
 					if(istype(A, /obj/mecha))					
 						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of [src]!"))	//Don't really need to make a message for EVERY object, just important ones
-					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
+					playsound(O,'sound/weapons/smash.ogg', 50)	//metallic bonk noise
 
 	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
 	new cleave_effect(cleave_effect_loc, chassis.dir)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
+	special_hit(target)
 	if(isliving(target))						
 		var/mob/living/L = target
 
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			var/obj/item/bodypart/body_part = L.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
-			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//and get more AP
-			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
+			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//more AP for precision attacks
+			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 		else
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
@@ -213,51 +215,11 @@
 	light_range = 5
 	light_color = LIGHT_COLOR_RED
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()	//Mostly copy-pasted sword cleave code with minor tweaks.
-	playsound(chassis, attack_sound, 50, 1)											//Not hard to change some of this to be based on vars if you REALLY wanted to
-	var/turf/M = get_turf(src)
-	for(var/i = 0 to 2)
-		var/it_turn = 45*(1-i)
-		var/turf/T = get_step(M,turn(chassis.dir, it_turn))	//+45, +0, and -45 will get the three front tiles
-		for(var/atom/A in T.contents)
-			special_hit(A)
-			if(isliving(A))						
-				var/mob/living/L = A
-				
-				if(iscarbon(L))					//If we're a carbon we can get armor and jazz
-					var/mob/living/carbon/C = L
-					var/obj/item/bodypart/body_part = pick(C.bodyparts)	//Cleave attack isn't very precise
-					var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)
-					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
-				else							//Regular mobs just take damage
-					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
-					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) && fauna_damage_bonus)	//If we're hitting fauna, because heck those guys
-						L.apply_damage(fauna_damage_bonus, dam_type)
-
-				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of [src]!"), \
-				  span_userdanger("[chassis.name] strikes you with [src]!"))
-				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
-				playsound(L, mob_strike_sound, 50)
-
-			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
-				var/obj/O = A
-				if(!O.density)							//Make sure it's not an open door or something
-					continue
-				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
-				O.take_damage(object_damage, dam_type, "melee", 0)
-				if(istype(O, /obj/structure/window))
-					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
-				else
-					if(istype(A, /obj/mecha))					
-						O.visible_message(span_danger("[chassis.name] strikes [O] with a wide swing of [src]!"))
-					playsound(O,'sound/weapons/smash.ogg', 50)		//metallic bonk noise
-
-		if(istype(T, /turf/closed/wall))		//IT BREAKS WALLS TOO
-			var/turf/closed/wall/W = T
-			W.dismantle_wall()
-
-	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)	//Big sprite needs to be centered properly
-	new cleave_effect(cleave_effect_loc, chassis.dir)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack(A)
+	if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
+		var/turf/closed/wall/W = A
+		playsound(W, 'sound/weapons/blade1.ogg', 50)
+		W.dismantle_wall()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
 	START_PROCESSING(SSobj, src)
@@ -270,15 +232,16 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana	//Anime mech sword
 	name = "\improper OWM-5 \"Ronin\" katana"
 	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
-	energy_drain = 20
+	energy_drain = 15
 	precise_weapon_damage = 10	//noticeably less damage than its larger cousin
 	cleave = FALSE				//small fast blade
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
 	fauna_damage_bonus = 20		//because why not
 	deflect_bonus = 15
 	base_armor_piercing = 20
-	structure_damage_mult = 2	//katana is less smashy than other swords
-	minimum_damage = 20			
+	structure_damage_mult = 1.5	//katana is less smashy than other swords
+	minimum_damage = 20
+	sword_wound_bonus = 15		//More bleeding
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
 	name = "\improper AV-98 \"Ingram\" heavy stun baton" 
@@ -319,9 +282,58 @@
 		else if(current_stamina_damage >= 20)
 			H.Jitter(5)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
+		
+	if(isliving(target))
+		step_away(src, target)	//We push all mobs back a tad
 
-	else
-		return
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor	//TROGDOR!!!!! (But he's not a robot so I can't make the visible name that)
+	name = "\improper TO-4 \"Tahu\" flaming chainsword"	//ITS ALSO A CHAINSWORD FUCK YEAH
+	desc = "It's as ridiculous as it is badass. You feel like use of this this might be considered a war crime somewhere."
+	energy_drain = 30
+	precise_weapon_damage = 5	//Gotta make space for the burninating
+	attack_speed_modifier = 1.2	//Little unwieldy
+	fauna_damage_bonus = 20
+	base_armor_piercing = 15
+	structure_damage_mult = 3.5	//It melts AND cuts!
+	sword_wound_bonus = -30		//We're here for the fire damage thank you
+	var/burninating = 15		//BURNINATING THE COUNTRYSIDE
+	mob_strike_sound = 'sound/weapons/chainsawhit.ogg'
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor/special_hit(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		var/armor_block = L.run_armor_check(BODY_ZONE_CHEST, MELEE)	//it's a sword so we check melee armor
+		var/burn_damage = (100-armor_block)/100 * burninating
+		if(iscarbon(A))
+			var/mob/living/carbon/C = L
+			C.adjustFireLoss(burn_damage)
+		else
+			L.apply_damage(burn_damage, BURN)
+		L.adjust_fire_stacks(5)
+		L.IgniteMob()
+		playsound(L, 'sound/items/welder.ogg', 50, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
+	name = "\improper CX-22 \"Barbados\" heavy maul"
+	desc = "A massive, unwieldy, mace-like weapon, this thing really looks like something you don't want to be hit by if you're not a fan of being concave."
+	energy_drain = 40
+	weapon_damage = 25			//Very smashy
+	precise_weapon_damage = 30
+	attack_speed_modifier = 2	//Very slow
+	fauna_damage_bonus = 40
+	structure_damage_mult = 4	//Good for stationary objects
+	attack_sharpness = SHARP_NONE
+	sword_wound_bonus = 20		//Makes bones sad :(
+	mob_strike_sound = 'sound/effects/meteorimpact.ogg'	//WHAM
+	hit_effect = ATTACK_EFFECT_SMASH					//POW
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul/special_hit(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		var/throwtarget = get_edge_target_turf(L, get_dir(L, get_step_away(src, L)))
+		L.throw_at(throwtarget, 8, 2, src)	//Get outta here!
+		do_item_attack_animation(L, hit_effect)
 
 
 	//		//=========================================================\\
