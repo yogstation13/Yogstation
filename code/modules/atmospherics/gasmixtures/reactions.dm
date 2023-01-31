@@ -41,9 +41,6 @@
 		reaction = new r
 		. += reaction
 
-/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares the priority of two gas reactions
-	return b.priority - a.priority
-
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
