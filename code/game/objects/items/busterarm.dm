@@ -178,6 +178,7 @@
 	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	action_icon_state = "lariat"
 	sound = 'sound/magic/fleshtostone.ogg'
+	clothes_req = FALSE
 
 /obj/effect/proc_holder/spell/targeted/touch/buster/grap/cast(list/targets, mob/user = usr)
 	if(!QDELETED(attached_hand))
