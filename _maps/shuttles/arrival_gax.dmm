@@ -130,6 +130,16 @@
 /obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
+"N" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "O" = (
 /obj/machinery/light{
 	dir = 4
@@ -226,8 +236,8 @@ K
 K
 K
 K
-w
-s
+K
+N
 "}
 (6,1,1) = {"
 o
@@ -244,8 +254,8 @@ K
 K
 K
 K
-w
-s
+K
+N
 "}
 (8,1,1) = {"
 o
