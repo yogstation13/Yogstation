@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "metal hydrogen armor no longer covers feet"
+  - imageadd: "adds alternate sprite for metal hydrogen armor"
