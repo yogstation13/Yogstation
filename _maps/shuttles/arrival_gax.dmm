@@ -87,6 +87,16 @@
 "w" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
+"x" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "y" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
@@ -129,16 +139,6 @@
 "M" = (
 /obj/machinery/holopad,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/arrival)
-"N" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Arrivals Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/shuttle/arrival)
 "O" = (
 /obj/machinery/light{
@@ -237,7 +237,7 @@ K
 K
 K
 K
-N
+x
 "}
 (6,1,1) = {"
 o
@@ -255,7 +255,7 @@ K
 K
 K
 K
-N
+x
 "}
 (8,1,1) = {"
 o
