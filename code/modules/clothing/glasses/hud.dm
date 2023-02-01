@@ -145,6 +145,13 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
 
+/obj/item/clothing/glasses/hud/security/sunglasses/captain
+	name = "captain HUDSunglasses"
+	desc = "Sunglasses with a security HUD, but with a special Captain-like flair."
+	icon_state = "sunhudmed"
+	darkness_view = 2 // Just to give the cap something a slight step up
+	glass_colour_type = /datum/client_colour/glass_colour/blue
+
 /obj/item/clothing/glasses/hud/security/sunglasses/hos
 	name = "security advanced HUDSunglasses"
 	desc = "Sunglasses with a security HUD. This one is augmented with a medical scanner."

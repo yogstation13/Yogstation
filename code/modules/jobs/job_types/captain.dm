@@ -60,7 +60,7 @@
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/captain
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
 	uniform =  /obj/item/clothing/under/rank/captain
