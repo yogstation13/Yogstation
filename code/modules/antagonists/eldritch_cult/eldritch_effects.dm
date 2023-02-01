@@ -337,8 +337,8 @@
 	..()
 
 /datum/status_effect/brazil_penance/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
+	var/datum/effect_system/fluid_spread/smoke/S = new
+	S.set_up(1, location = get_turf(owner))
 	S.start()
 	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
 	owner.regenerate_organs()
