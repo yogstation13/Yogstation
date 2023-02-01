@@ -6,57 +6,14 @@
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL
-
-	///owning ID, used to give points when sold
-	var/obj/item/card/id/claimed_by = null
 	///How many points we grant to whoever discovers us
 	var/point_value = 100
-	///what's our real name that will show upon discovery? null to do nothing
-	var/true_name
 	///the thing that spawns in the item.
 	var/sheet_type = null
 
-	var/image/shine_overlay //shows this overlay when not claimed
-
 /obj/item/gem/Initialize()
 	. = ..()
-	shine_overlay = image(icon = 'icons/obj/gems.dmi',icon_state = "shine")
-	add_overlay(shine_overlay)
-	pixel_x = rand(-8,8)
-	pixel_y = rand(-8,8)
-
-/obj/item/gem/examine(mob/user)
-	. = ..()
-	. += span_notice("Its value of [point_value] mining points can be registered by hitting it with an ID, to be claimed when sold.")
-
-/obj/item/gem/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
-	if(!istype(item, /obj/item/card/id))
-		return ..()
-
-	if(claimed_by)
-		to_chat(user, span_warning("This gem has already been claimed!"))
-		return
-
-	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
-	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
-
-	claimed_by = item
-	if(true_name)
-		name = true_name
-
-	if(shine_overlay)
-		cut_overlay(shine_overlay)
-		qdel(shine_overlay)
-
-/obj/item/gem/welder_act(mob/living/user, obj/item/I) //Jank code that detects if the gem in question has a sheet_type and spawns the items specifed in it
-	if(I.use_tool(src, user, 0, volume=50))
-		if(src.sheet_type)
-			new src.sheet_type(user.loc)
-			to_chat(user, span_notice("You carefully cut [src]."))
-			qdel(src)
-		else
-			to_chat(user, span_notice("You can't seem to cut [src]."))
-	return TRUE
+	AddComponent(/datum/component/gems)
 
 /obj/item/gem/rupee
 	name = "ruperium crystal"
@@ -207,37 +164,8 @@
 	light_range = 2
 	light_power = 6
 	light_color = "#0004ff"
-	///owning ID, used to give points when sold
-	var/obj/item/card/id/claimed_by = null
-	///what's our real name that will show upon discovery? null to do nothing
-	var/true_name
-	///How many points we grant to whoever discovers us
-	var/point_value = 4000
-
-	var/image/shine_overlay //shows this overlay when not claimed
+	var/point_value = 2000
 
 /obj/item/ai_cpu/stalwart/Initialize()
 	. = ..()
-	shine_overlay = image(icon = 'icons/obj/gems.dmi',icon_state = "shine")
-	add_overlay(shine_overlay)
-	pixel_x = rand(-8,8)
-	pixel_y = rand(-8,8)
-
-/obj/item/ai_cpu/stalwart/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
-	if(!istype(item, /obj/item/card/id))
-		return ..()
-
-	if(claimed_by)
-		to_chat(user, span_warning("This gem has already been claimed!"))
-		return
-
-	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
-	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
-
-	claimed_by = item
-	if(true_name)
-		name = true_name
-
-	if(shine_overlay)
-		cut_overlay(shine_overlay)
-		qdel(shine_overlay)
+	AddComponent(/datum/component/gems)

@@ -75,7 +75,7 @@
 	. = ..()
 	if(dry_run)
 		return .
-	var/obj/item/gem/sold = O
+	var/datum/component/gems/sold = O
 	var/obj/item/card/id/claim = sold?.claimed_by
 	if(claim)
 		var/area/shuttle/shuttle = get_area(O)

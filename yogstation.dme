@@ -473,6 +473,7 @@
 #include "code\datums\components\footstep.dm"
 #include "code\datums\components\forced_gravity.dm"
 #include "code\datums\components\forensics.dm"
+#include "code\datums\components\gems.dm"
 #include "code\datums\components\grillable.dm"
 #include "code\datums\components\gunpoint.dm"
 #include "code\datums\components\heirloom.dm"
