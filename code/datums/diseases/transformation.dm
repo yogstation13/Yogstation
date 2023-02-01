@@ -343,3 +343,20 @@
 				to_chat(affected_mob, span_danger("You let go of what you were holding."))
 				var/obj/item/I = affected_mob.get_active_held_item()
 				affected_mob.dropItemToGround(I)
+
+/datum/disease/transformation/pacman
+	name = "Pac Man's Curse"
+	cure_text = /datum/reagent/consumable/nothing
+	cures = list(/datum/reagent/medicine/adminordrazine)
+	agent = "Pac Man's Curse"
+	desc = "A 'gift' from somewhere amazing"
+	stage_prob = 20
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = 0
+	stage1	= list("Your stomach hungers for pills.")
+	stage2	= list("Your skin feels yellow.")
+	stage3	= list("<span class='danger'>Your appendages are turning circular.</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
+	stage4	= list("<span class='danger'>You're ravenous.</span>")
+	stage5	= list("<span class='danger'>You have become Pac man.</span>")
+	new_form = /mob/living/simple_animal/pacman
+	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
