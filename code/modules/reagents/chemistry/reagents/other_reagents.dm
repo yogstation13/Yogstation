@@ -2167,3 +2167,13 @@
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
+
+/datum/reagent/pacman
+	name = "Pac Man's Curse"
+	description = "An advanced corruptive toxin produced by something from humanitys past"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE
+	taste_description = "decay"
+
+/datum/reagent/pacman/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.ForceContractDisease(new /datum/disease/transformation/pacman(), FALSE, TRUE)
