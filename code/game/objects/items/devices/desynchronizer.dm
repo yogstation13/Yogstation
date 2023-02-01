@@ -21,8 +21,6 @@
 		return
 	if(!sync_holder)
 		desync(user)
-	else
-		resync()
 
 /obj/item/desynchronizer/examine(mob/user)
 	. = ..()
