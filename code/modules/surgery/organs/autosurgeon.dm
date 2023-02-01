@@ -164,7 +164,11 @@
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis
-
+	
+/obj/item/autosurgeon/nanomachine
+	uses = 1
+	starting_organ = /obj/item/organ/heart/freedom/nanomachine
+	
 /obj/item/autosurgeon/nt_mantis/left
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/left
