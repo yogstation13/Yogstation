@@ -291,6 +291,5 @@
 	name = "Nanomachine heart"
 	desc = "An EMP proof heart that provides an additional boost to nanites and emergency healing"
 	organ_flags = ORGAN_SYNTHETIC //the power of freedom prevents heart attacks
-	var/min_next_adrenaline = 0
 	var/nanite_boost = 2
 	
