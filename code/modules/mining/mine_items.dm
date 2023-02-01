@@ -63,6 +63,7 @@
 	new /obj/item/survivalcapsule(src)
 	new /obj/item/assault_pod/mining(src)
 	new /obj/item/clothing/neck/bodycam/miner(src)
+	new /obj/item/wormhole_jaunter(src)
 
 
 GLOBAL_LIST_EMPTY(dumb_rev_heads)

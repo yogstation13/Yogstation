@@ -364,7 +364,7 @@
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	var/datum/browser/alerts = new(usr, "aitalerts", "Current Station Alerts", 400, 410)
+	var/datum/browser/alerts = new(src, "aitalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
 
@@ -659,7 +659,6 @@
 			queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
 	else
 		queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
-	if (viewalerts) ai_alerts()
 	return 1
 
 /mob/living/silicon/ai/cancelAlarm(class, area/A, obj/origin)
@@ -676,7 +675,6 @@
 				L -= I
 	if (cleared)
 		queueAlarm("--- [class] alarm in [A.name] has been cleared.", class, 0)
-		if (viewalerts) ai_alerts()
 	return !cleared
 
 //Replaces /mob/living/silicon/ai/verb/change_network() in ai.dm & camera.dm

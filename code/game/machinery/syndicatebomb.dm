@@ -38,6 +38,10 @@
 	if(.)
 		payload.detonate()
 
+/obj/machinery/syndicatebomb/ex_act(severity, target) // Little boom can chain a big boom.
+	if(!try_detonate())
+		..()
+
 /obj/machinery/syndicatebomb/obj_break()
 	if(!try_detonate())
 		..()

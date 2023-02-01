@@ -1590,7 +1590,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "punched")
 
 		if((target.stat != DEAD) && damage >= user.get_punchstunthreshold())
-			target.visible_message(span_danger("[user] has knocked  [target] down!"), \
+			target.visible_message(span_danger("[user] has knocked [target] down!"), \
 							span_userdanger("[user] has knocked [target] down!"), null, COMBAT_MESSAGE_RANGE)
 			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration
 			target.apply_effect(knockdown_duration, EFFECT_KNOCKDOWN, armor_block)
@@ -2155,8 +2155,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
-	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return tail?.get_availability(H.dna.species)
+	// var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
+	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
 	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
