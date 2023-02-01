@@ -68,6 +68,13 @@
 			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
 			. += "Distribution Pressure: [internal.distribute_pressure]"
 
+	// CLOAKER BELT
+	if(istype(belt, /obj/item/shadowcloak))
+		var/obj/item/shadowcloak/SC = belt
+		. += "Cloaker Status: [SC.on ? "ON" : "OFF"]"
+		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
+		. += "Lumens Count: [round(get_turf(src).get_lumcount(), 0.01)]"
+
 	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hivemind)
 		. += ""
