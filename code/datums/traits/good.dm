@@ -369,14 +369,15 @@
 	name = "Multilingual"
 	desc = "You spent a portion of your life learning to understand an additional language. You may or may not be able to speak it based on your anatomy."
 	icon = "book"
-	value = 3
+	value = 2
 	var/datum/language/specific
 	gain_text = span_notice("You have learned to understand an additional language.")
 	lose_text = span_notice("You have forgotten how to understand a language.")
-	var/list/blacklisted_languages = list(	/datum/language/codespeak,
-											/datum/language/narsie,
-											/datum/language/ratvar,
-											/datum/language/encrypted) // guh
+	var/list/blacklisted_languages = list(
+		/datum/language/codespeak,
+		/datum/language/narsie,
+		/datum/language/ratvar,
+		/datum/language/encrypted) // guh
 
 /datum/quirk/multilingual/add()
 	var/mob/living/carbon/human/H = quirk_holder
