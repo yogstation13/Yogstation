@@ -1942,7 +1942,7 @@
 	name = "KA Special Mods"
 	desc = "Modifiers for a kinetic accelerator that significantly change its properties. Comes in four different forms."
 	cost = 750
-	contains = list(/obj/item/disk/design_disk/modkit_disc/resonator_blast, /obj/item/disk/design_disk/modkit_disc/rapid_repeater, /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe, /obj/item/disk/design_disk/modkit_disc/bounty)
+	contains = list(/obj/item/borg/upgrade/modkit/aoe/turfs/andmobs, /obj/item/borg/upgrade/modkit/cooldown/repeater, /obj/item/borg/upgrade/modkit/resonator_blasts, /obj/item/borg/upgrade/modkit/bounty)
 
 /datum/supply_pack/clearance/kacrate
 	name = "Kinetic Accelerator Crate"
