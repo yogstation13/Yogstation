@@ -161,7 +161,7 @@
 
 /obj/item/gun/magic/wire/process_chamber()
 	. = ..()
-	if(charges == 0)
+	if(!charges)
 		qdel(src)
 
 /obj/item/projectile/wire/Destroy()
