@@ -313,6 +313,8 @@
 	mag_type = /obj/item/ammo_box/magazine/m308
 	fire_delay = 6
 	burst_size = 1
+	spread = 2 //Marksman rifle == accurate??
+	default_spread = 2
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 27
@@ -340,6 +342,8 @@
 	mag_type = /obj/item/ammo_box/magazine/ks762
 	fire_delay = 5 //Can fire slightly faster than the LWT-650
 	burst_size = 1
+	spread = 2 //DMR gets to be special
+	default_spread = 2
 	can_suppress = FALSE
 	zoomable = TRUE
 	zoom_amt = 5 //Not as significant a scope as the sniper
