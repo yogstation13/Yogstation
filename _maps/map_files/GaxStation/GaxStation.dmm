@@ -102,6 +102,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"abZ" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "acG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5778,6 +5786,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"cQn" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/uno,
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "cQK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11779,6 +11792,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fFd" = (
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "fFq" = (
 /obj/structure/grille,
 /obj/structure/cable{
@@ -13394,6 +13411,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"gus" = (
+/obj/structure/table/wood,
+/obj/item/toy/plush/mothplushie,
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "guu" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
@@ -16083,6 +16105,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"hPK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/chair/comfy/black,
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "hPZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -17650,6 +17682,12 @@
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
+"iJl" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "iJE" = (
 /obj/structure/chair/comfy/brown,
 /turf/open/floor/carpet,
@@ -20047,15 +20085,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jWD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/hallway/secondary/entry)
 "jWH" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -47244,6 +47273,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"xDK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/chair/comfy/black,
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "xDX" = (
 /obj/machinery/light{
 	dir = 8
@@ -92045,9 +92084,9 @@ jrO
 jrO
 tDz
 vvd
-tcv
-neg
-neg
+xDK
+cQn
+iJl
 vvd
 hdm
 dUa
@@ -92302,9 +92341,9 @@ wph
 faQ
 uhZ
 vvd
-tcv
-neg
-neg
+xDK
+fFd
+iJl
 vvd
 dxL
 pww
@@ -92559,9 +92598,9 @@ bwD
 vDA
 uhZ
 vvd
-jWD
-neg
-neg
+hPK
+abZ
+iJl
 lcF
 jeM
 esj
@@ -92816,9 +92855,9 @@ mYp
 ein
 uhZ
 vvd
-tcv
-neg
-neg
+xDK
+gus
+iJl
 lcF
 lyp
 lyp
@@ -94362,7 +94401,7 @@ cjI
 sCX
 sqz
 aCD
-sqz
+aCD
 aCD
 vRP
 vRP
