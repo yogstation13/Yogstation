@@ -2310,6 +2310,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs // >Increase price to reduce grief > limit it to hijack only :think:
 
+/datum/uplink_item/role_restricted/nanomachinesson
+	name = "Nanomachine Heart"
+	desc = "We saw that our rival nanotrasen had been making advances in nanites technlology so we one oneupped	them in the labs \
+			Our souped up heart does double the nanite regen of nanotrasens heart all while also being emp proof, and ontop of that\
+			comes with it having emergency healing routines to help you in the most dire of circumstances \
+			and in	the case you dont have any nanites in you to begin with you will be completely fine."
+	item = /obj/item/autosurgeon/nanomachine
+	cost = 8 
+	manufacturer = /datum/corporation/traitor/waffleco
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
 	desc = "The Clown Car is the ultimate transportation method for any worthy clown! \
