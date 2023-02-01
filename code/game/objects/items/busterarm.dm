@@ -788,7 +788,6 @@
 				C.swap_hand(0)
 			return
 
-/obj/effect/proc_holder/spell/targeted/buster/megabuster/right
 
 /obj/effect/proc_holder/spell/targeted/buster/megabuster/right/cast(list/targets, mob/living/user)
 	var/obj/item/buster/megabuster/B = new()
