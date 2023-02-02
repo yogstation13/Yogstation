@@ -1,6 +1,6 @@
 /datum/job/ai
 	title = "AI"
-	description = "Assist the crew, follow your laws, coordinate your cyborgs."
+	description = "Assist the crew, follow your laws, coordinate your cyborgs and synthetics."
 	flag = AI_JF
 	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL

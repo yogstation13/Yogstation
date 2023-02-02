@@ -1,6 +1,6 @@
 /datum/job/synthetic
 	title = "Synthetic"
-	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
+	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm. NOTE: Currently not playable"
 	flag = SYNTHETIC_JF
 	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
