@@ -14192,6 +14192,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"bWh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/papershredder,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "bWr" = (
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
@@ -18209,16 +18216,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bridge)
-"dbJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = 32
-	},
-/obj/machinery/papershredder,
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "ddb" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=HOP";
@@ -23230,17 +23227,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"fdU" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/sign/plaques/cave{
-	pixel_y = 32
-	},
-/obj/item/circuitboard/computer/ai_upload_download,
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/hor)
 "fen" = (
 /obj/machinery/computer/upload/ai{
 	dir = 1
@@ -50221,6 +50207,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qlF" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hor)
 "qlI" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/circuit,
@@ -119586,7 +119582,7 @@ xrJ
 gTh
 oaO
 bvK
-fdU
+qlF
 bys
 bzM
 aDa
@@ -120102,7 +120098,7 @@ ekZ
 bvK
 bxm
 byu
-dbJ
+bWh
 bCf
 aGs
 bvK
