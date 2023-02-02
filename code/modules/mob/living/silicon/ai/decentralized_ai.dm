@@ -126,7 +126,14 @@
 /mob/living/silicon/ai/proc/has_subcontroller_connection(area/area_location)
 	if(!ai_network)
 		return FALSE
-	var/obj/machinery/ai/master_subcontroller/MS = ai_network.cached_subcontroller
+	var/obj/machinery/ai/master_subcontroller/MS
+	if(ai_network.cached_subcontroller)
+		MS = ai_network.cached_subcontroller
+		if(!(src in MS.network.ai_list))
+			MS = null
+	else
+		MS = ai_network.find_subcontroller()
+		ai_network.cached_subcontroller = MS
 	if(!MS)
 		return FALSE
 	if(!area_location)

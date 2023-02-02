@@ -86,14 +86,8 @@
 		on = FALSE
 	else
 		on = TRUE
-
-
-/obj/machinery/ai/master_subcontroller/connect_to_network()
-	. = ..()
-	network.cached_subcontroller = src
 	
 /obj/machinery/ai/master_subcontroller/disconnect_from_network()
 	if(network.cached_subcontroller == src)
 		network.cached_subcontroller = null
 	. = ..()
-	network.cached_subcontroller = src

@@ -18,9 +18,11 @@
 	. = ..()
 	update_icon()
 	if(mapload)
-		var/mob/living/carbon/human/S = new(loc)
+		var/mob/living/carbon/human/S = new(src)
 		S.set_species(/datum/species/wy_synth)
 		stored = S
+		var/datum/outfit/job/synthetic/SO = new()
+		SO.equip(S)
 
 /obj/machinery/synth_pod/update_icon()
 	cut_overlays()
@@ -94,6 +96,6 @@
 	if(AI.deploy_to_synth_pod(src))
 		open_machine()
 		var/datum/species/wy_synth/S = stored.dna.species
-		S.assume_control(AI)
+		S.assume_control(AI, stored)
 		stored = null
 

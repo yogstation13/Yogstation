@@ -161,6 +161,11 @@
 		if(!QDELETED(core) && core.can_transfer_ai())
 			return core
 
+/datum/ai_network/proc/find_subcontroller()
+	for(var/obj/machinery/ai/master_subcontroller/controller in get_all_nodes())
+		if(!QDELETED(controller) && controller.on)
+			return controller
+
 /datum/ai_network/proc/get_all_nodes(checked_nets = list())
 	. = nodes.Copy()
 	for(var/datum/ai_network/net in resources.networks)

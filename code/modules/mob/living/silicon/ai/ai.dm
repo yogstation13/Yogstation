@@ -1129,6 +1129,7 @@
 	else if(mind)
 		soullink(/datum/soullink/sharedbody, src, target)
 		mind.transfer_to(target)
+		to_chat(target, span_danger("You must still follow your laws!"))
 	diag_hud_set_deployed()
 	return TRUE
 
