@@ -429,3 +429,31 @@
 	specific = /datum/language/draconic
 	gain_text = span_notice("You have learned to understand Draconic.")
 	lose_text = span_notice("You have forgotten how to understand Draconic.")
+
+/datum/quirk/multilingual/felinid
+	name = "Multilingual (Felinid)"
+	desc = "You spent a portion of your life learning to understand Felinid. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/draconic
+	gain_text = span_notice("You have learned to understand Felinid.")
+	lose_text = span_notice("You have forgotten how to understand Felinid.")
+
+/datum/quirk/multilingual/sylvan
+	name = "Multilingual (Sylvan)"
+	desc = "You spent a portion of your life learning to understand Sylvan. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/sylvan
+	gain_text = span_notice("You have learned to understand Sylvan.")
+	lose_text = span_notice("You have forgotten how to understand Sylvan.")
+
+/datum/quirk/multilingual/polysmorph
+	name = "Multilingual (Polysmorph)"
+	desc = "You spent a portion of your life learning to understand Polysmorph. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/polysmorph
+	gain_text = span_notice("You have learned to understand Polysmorph.")
+	lose_text = span_notice("You have forgotten how to understand Polysmorph.")
+
+/datum/quirk/multilingual/bonespeak
+	name = "Multilingual (Bonespeak)"
+	desc = "You spent a portion of your life learning to understand Bonespeak. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/bonespeak
+	gain_text = span_notice("You have learned to understand Bonespeak.")
+	lose_text = span_notice("You have forgotten how to understand Bonespeak.")
