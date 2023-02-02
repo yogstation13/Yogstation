@@ -129,6 +129,8 @@
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return
+	if(!do_after(user, 1 SECONDS, target))
+		return
 	log_combat(user, A, "attempted to emag")
 	A.emag_act(user)
 
