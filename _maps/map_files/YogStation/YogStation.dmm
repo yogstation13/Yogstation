@@ -12925,15 +12925,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"bJj" = (
-/obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'SERVER ROOM'.";
-	name = "SERVER ROOM";
-	pixel_y = -32
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
-/area/science/server)
 "bJq" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -14520,6 +14511,15 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/aft)
+"cas" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'SERVER ROOM'.";
+	name = "SERVER ROOM";
+	pixel_y = -32
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/server)
 "caH" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre";
@@ -21017,17 +21017,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"emS" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/obj/machinery/synth_pod,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "enf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -24574,16 +24563,6 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"fGo" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/synth_pod,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "fGz" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics East";
@@ -34952,22 +34931,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"jUd" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/twohanded/rcl/pre_loaded,
-/obj/item/twohanded/rcl/pre_loaded,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "jUt" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/plasteel/dark,
@@ -40181,6 +40144,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"meo" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/synth_pod,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "mey" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -44758,6 +44728,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"nVF" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/obj/machinery/synth_pod,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "nWd" = (
 /obj/machinery/computer/rdconsole/experiment{
 	dir = 1
@@ -44814,6 +44795,16 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"nWM" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/synth_pod,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "nWP" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -52871,6 +52862,22 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"rtp" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/twohanded/rcl/pre_loaded,
+/obj/item/twohanded/rcl/pre_loaded,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "rtY" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
@@ -69438,13 +69445,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ybl" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/synth_pod,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "ybF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -91304,7 +91304,7 @@ gjl
 gjl
 gjl
 aZE
-fGo
+nWM
 bjr
 pNc
 fPU
@@ -98287,7 +98287,7 @@ lql
 bCs
 uzc
 ccw
-emS
+nVF
 rXP
 nKM
 gIx
@@ -98801,7 +98801,7 @@ lwC
 bCs
 uzc
 ccw
-jUd
+rtp
 wbf
 moy
 tZH
@@ -105965,7 +105965,7 @@ jWk
 jfb
 bZg
 sTj
-ybl
+meo
 tYp
 fDg
 liA
@@ -114962,7 +114962,7 @@ byf
 bzw
 bAB
 vsH
-bJj
+cas
 bDb
 aBe
 bEm
