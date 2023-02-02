@@ -35931,10 +35931,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/carpet,
 /area/medical/psych)
 "bSd" = (
@@ -35942,13 +35944,10 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bSe" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "bSf" = (
 /obj/item/crowbar,
@@ -35966,9 +35965,6 @@
 /turf/open/floor/wood,
 /area/library)
 "bSm" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -35988,9 +35984,6 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bSn" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -35998,12 +35991,12 @@
 	pixel_y = 32
 	},
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bSo" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -36014,43 +36007,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bSq" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/maintenance/aft)
 "bSr" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
-"bSs" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;5;39;6"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -36280,13 +36244,16 @@
 /area/hallway/secondary/service)
 "bSV" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "bSY" = (
 /obj/machinery/camera{
@@ -36450,11 +36417,12 @@
 /area/crew_quarters/bar)
 "bTF" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
@@ -38049,22 +38017,16 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "caS" = (
-/obj/machinery/button/door{
-	id = "Psychiatristshutters";
-	name = "psychiatrist shutters control";
-	pixel_y = 26;
-	req_access_txt = "5"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "caV" = (
 /obj/machinery/power/apc{
@@ -38488,6 +38450,8 @@
 	},
 /area/crew_quarters/kitchen)
 "cdG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/holopad,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "cdI" = (
@@ -42497,17 +42461,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"cuA" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft)
 "cuD" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/storage/box/lights/mixed,
@@ -42903,6 +42856,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -49084,11 +49040,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "dfW" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/chem_dispenser,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "dgi" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -50122,6 +50075,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -51393,6 +51349,9 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "efn" = (
@@ -52683,10 +52642,14 @@
 /area/hallway/primary/central)
 "eUQ" = (
 /obj/machinery/camera{
-	c_tag = "Departure Lounge - Security Post";
-	dir = 1
+	c_tag = "Psychiatrist Office";
+	dir = 1;
+	network = list("ss13")
 	},
-/turf/open/floor/carpet,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "eWm" = (
 /obj/structure/window/reinforced/tinted{
@@ -52696,16 +52659,10 @@
 	name = "Filing Room";
 	req_access_txt = "5"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 6
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "eWC" = (
 /obj/structure/disposalpipe/segment,
@@ -53047,16 +53004,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "fnS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "fnY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -53880,8 +53834,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "fQD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
@@ -54308,13 +54265,16 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
 "gdq" = (
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
 /obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen/fountain,
-/turf/open/floor/carpet,
+/obj/item/paper_bin{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/pen/fountain{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "gdD" = (
 /obj/structure/lattice/catwalk,
@@ -55119,7 +55079,18 @@
 /obj/structure/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor/carpet,
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Psych Office Shutters Control";
+	pixel_x = -5;
+	pixel_y = -25;
+	req_access_txt = "5"
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = -25
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "gIP" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -55221,16 +55192,13 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/carpet,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "gLv" = (
 /obj/structure/cable/yellow{
@@ -55837,15 +55805,15 @@
 /area/security/brig)
 "hiu" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "Psychiatristshutters";
-	name = "psychiatrist shutters"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
 	},
 /turf/open/floor/plating,
 /area/medical/psych)
@@ -56630,9 +56598,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "hMq" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
@@ -56945,7 +56910,7 @@
 "hYx" = (
 /obj/machinery/chem_master,
 /obj/item/book/manual/wiki/chemistry,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "hYG" = (
 /obj/structure/chair,
@@ -58599,9 +58564,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "jhM" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = -30
-	},
 /obj/structure/table/glass,
 /obj/item/paper_bin{
 	pixel_x = -4;
@@ -61393,7 +61355,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61448,7 +61410,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61470,6 +61432,16 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Psychiatrists office Maintenance";
 	req_access_txt = "5"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -62440,7 +62412,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 1;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -64571,7 +64543,10 @@
 /area/engine/foyer)
 "mTn" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/carpet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "mTr" = (
 /obj/machinery/airalarm{
@@ -65514,25 +65489,31 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "nzQ" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
 /obj/structure/closet/emcloset,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/hallway/secondary/exit/departure_lounge";
 	dir = 1;
 	name = "Departure Lounge APC";
 	pixel_y = 23
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
@@ -65677,7 +65658,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 1;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -66004,8 +65985,13 @@
 /area/medical/paramedic)
 "nOu" = (
 /obj/structure/table/wood,
-/obj/item/clipboard,
-/obj/item/storage/briefcase,
+/obj/item/clipboard{
+	pixel_x = 7
+	},
+/obj/item/storage/briefcase{
+	pixel_x = -7;
+	pixel_y = 1
+	},
 /turf/open/floor/carpet,
 /area/medical/psych)
 "nOA" = (
@@ -66662,8 +66648,8 @@
 	pixel_y = 8
 	},
 /obj/item/laser_pointer{
-	pixel_y = -10;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -10
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
@@ -69518,6 +69504,27 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"qkN" = (
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "12;5;39;6"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "qkV" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/atmospherics/miner/toxins,
@@ -75220,7 +75227,13 @@
 /area/maintenance/port/aft)
 "tVx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
@@ -75275,7 +75288,10 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/turf/open/floor/carpet,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "tXU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -76960,19 +76976,13 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/reagent_dispensers/water_cooler{
 	pixel_x = 6
 	},
-/turf/open/floor/carpet,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "uXQ" = (
 /obj/structure/disposalpipe/segment{
@@ -77328,6 +77338,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/medical/psych)
 "vmx" = (
@@ -77479,17 +77492,20 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "vrg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -78428,11 +78444,14 @@
 "vYl" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/med_data/laptop{
+	dir = 4;
 	pixel_x = 3;
-	pixel_y = 2;
-	dir = 4
+	pixel_y = 2
 	},
-/turf/open/floor/carpet,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "vYq" = (
 /obj/machinery/light{
@@ -78518,7 +78537,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -78608,15 +78627,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/power/apc{
-	areastring = "/area/medical/psych";
-	name = "Psychiatrists Office APC";
-	pixel_y = -23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "wel" = (
 /obj/item/cigbutt,
@@ -78663,6 +78674,15 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -79482,7 +79502,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -79642,6 +79662,9 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -80204,7 +80227,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -81462,7 +81485,10 @@
 	dir = 5
 	},
 /obj/structure/chair/comfy/brown,
-/turf/open/floor/carpet,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/wood,
 /area/medical/psych)
 "yaP" = (
 /obj/machinery/computer/operating,
@@ -81589,13 +81615,19 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ydF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/machinery/power/apc{
+	areastring = "/area/medical/psych";
+	dir = 1;
+	name = "Psychiatrists Office APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/psych)
 "ydZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -106969,7 +107001,7 @@ bSe
 dfW
 hYx
 auQ
-cLk
+qkN
 cZr
 qbF
 cxe
@@ -108250,7 +108282,7 @@ gJv
 wiX
 sbo
 cCe
-bSq
+bTL
 cPb
 sPb
 cLm
@@ -108764,7 +108796,7 @@ bOT
 cEZ
 cFY
 bOT
-bSs
+cLk
 ctH
 cPb
 wtH
@@ -109278,7 +109310,7 @@ cpy
 cpy
 cpy
 cul
-cuA
+cpy
 cvq
 cvD
 icg
