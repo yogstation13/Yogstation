@@ -810,6 +810,16 @@
 
 	return ..()
 
+/obj/machinery/airalarm/attack_ai(mob/user)
+	if(isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		if(!AI.has_subcontroller_connection())
+			to_chat(AI, span_warning("No connection to subcontroller detected. Updating air alarm connection..."))
+			if(!do_after(AI, 1 SECOND, src, FALSE, stayStill = FALSE))
+				return ..()
+	else
+		return ..()
+
 /obj/machinery/airalarm/AltClick(mob/user)
 	..()
 	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))

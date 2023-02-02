@@ -25,6 +25,9 @@
 
 	var/label
 
+	///Allows AI to instantly open doors, access APCs and use air alarms
+	var/obj/machinery/ai/master_subcontroller/cached_subcontroller 
+
 
 	
 

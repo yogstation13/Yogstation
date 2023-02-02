@@ -122,3 +122,19 @@
 	. = ..()
 	if(stored_ai)
 		QDEL_NULL(stored_ai)
+
+/mob/living/silicon/ai/proc/has_subcontroller_connection(area/area_location)
+	if(!ai_network)
+		return FALSE
+	var/obj/machinery/ai/master_subcontroller/MS = ai_network.cached_subcontroller
+	if(!MS)
+		return FALSE
+	if(!area_location)
+		return MS.on
+	if(!area_location.airlock_wires)
+		return MS.on
+	for(var/disabled_areas in MS.disabled_areas)
+		if(area_location.airlock_wires == MS.disabled_areas[disabled_areas])
+			return FALSE
+	return MS.on
+

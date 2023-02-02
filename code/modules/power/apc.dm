@@ -1088,6 +1088,16 @@
 		return FALSE
 	_try_interact(user)
 
+/obj/machinery/power/apc/attack_ai(mob/user)
+	if(isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		if(!AI.has_subcontroller_connection())
+			to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
+			if(do_after(AI, 1 SECOND, src, FALSE, stayStill = FALSE))
+				return ..()
+	else
+		return ..()
+
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational() || failure_timer)
 		return
