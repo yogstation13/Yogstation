@@ -1,7 +1,7 @@
 {
-	"map_name": "Yogsmeta",
-	"map_path": "map_files/Yogsmeta",
-	"map_file": "Yogsmeta.dmm",
+	"map_name": "YogsMeta",
+	"map_path": "map_files/YogsMeta",
+	"map_file": "YogsMeta.dmm",
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
