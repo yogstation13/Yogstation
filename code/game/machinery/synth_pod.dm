@@ -31,7 +31,15 @@
 		add_overlay("uvhuman")
 	else 
 		add_overlay("open")
-			
+
+/obj/machinery/synth_pod/process()
+	if(!stored)
+		return
+	if(!is_synth(stored))
+		return
+	var/datum/species/wy_synth/S = stored.dna.species
+	S.charge = clamp(S.charge + 10, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+
 
 /obj/machinery/synth_pod/MouseDrop_T(atom/A, mob/living/user)
 	if(!istype(user) || user.stat || !Adjacent(user) || !Adjacent(A) || !isliving(A))
