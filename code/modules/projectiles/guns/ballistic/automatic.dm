@@ -42,7 +42,7 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
-	var/spread_difference = initial(spread) - default_spread //Set this way so laser sights work properly. Default value of 0
+	var/spread_difference = initial(spread) - semi_auto_spread //Set this way so laser sights work properly. Default value of 0
 	select = !select
 	if(!select)
 		burst_size = 1
@@ -170,7 +170,7 @@
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
-	var/spread_difference = initial(spread) - default_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
+	var/spread_difference = initial(spread) - semi_auto_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
 	switch(select)
 		if(0)
 			select = 1
@@ -313,8 +313,7 @@
 	mag_type = /obj/item/ammo_box/magazine/m308
 	fire_delay = 6
 	burst_size = 1
-	spread = 2 //Marksman rifle == accurate??
-	default_spread = 2
+	spread = 2 //Marksman rifle == accurate?
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 27
@@ -343,7 +342,6 @@
 	fire_delay = 5 //Can fire slightly faster than the LWT-650
 	burst_size = 1
 	spread = 2 //DMR gets to be special
-	default_spread = 2
 	can_suppress = FALSE
 	zoomable = TRUE
 	zoom_amt = 5 //Not as significant a scope as the sniper
@@ -375,7 +373,6 @@
 	fire_delay = 40
 	burst_size = 1
 	spread = 0
-	default_spread = 0	//It's a sniper rifle, it doesn't miss.
 	w_class = WEIGHT_CLASS_NORMAL
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
