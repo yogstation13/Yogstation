@@ -386,7 +386,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/synthetic
 	name = "synthetic identification card"
 	desc = "An integrated card that allows synthetic units access across the station."
-	icon_state = "silver"
+	icon_state = "id_silver"
 	item_state = "silver_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'

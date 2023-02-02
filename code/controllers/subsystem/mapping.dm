@@ -89,7 +89,6 @@ SUBSYSTEM_DEF(mapping)
 		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
 		to_chat(world, span_boldannounce("Virtual reality loaded."))
 
-	load_new_z_level("_maps/RandomZLevels/VR/netmin_hub.dmm", "Automated Exploration Hub", TRUE)
 
 	// Generate mining ruins
 	loading_ruins = TRUE
@@ -328,6 +327,8 @@ SUBSYSTEM_DEF(mapping)
 		LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
+
+	LoadGroup(FailedZs, "Automated Exploration Hub", "_maps/RandomZLevels/VR", "netmin_hub.dmm", default_traits = ZTRAITS_AWAY_SECRET)
 #endif
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
