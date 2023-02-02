@@ -14,6 +14,8 @@
 	. = ..()
 	if(.)
 		return
+	if(name != "rune")
+		return
 	if(!iscultist(user))
 		to_chat(user, span_warning("You aren't able to understand the words of [src]."))
 		return
