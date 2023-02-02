@@ -407,22 +407,22 @@
 	loot = GLOB.maintenance_loot_makeshift
 
 	switch(rand(1,10000))
-		if(1)
+		if(1 to 5)
 			loot = GLOB.maintenance_loot_serious
 			lootcount = 1
-		if(2 to 10)
+		if(6 to 30)
 			loot = GLOB.maintenance_loot_major
 			lootcount = 1
-		if(11 to 100)
+		if(31 to 400)
 			loot = GLOB.maintenance_loot_moderate
 			lootcount = 1
-		if(101 to 1000)
+		if(401 to 2000)
 			loot = GLOB.maintenance_loot_minor
 			lootcount = rand(lootcount,lootcount*6)
-		if(1001 to 5000)
+		if(2001 to 4000)
 			loot = GLOB.maintenance_loot_makeshift
 			lootcount = rand(lootcount,lootcount*6)
-		if(5001 to 10000)
+		if(4001 to 10000)
 			loot = GLOB.maintenance_loot_traditional
 			lootcount = rand(lootcount,lootcount*3)
 
