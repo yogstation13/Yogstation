@@ -204,6 +204,16 @@
 	icon_state = "srv_headset"
 	keyslot = new /obj/item/encryptionkey/headset_service
 
+/obj/item/radio/headset/headset_synthetic
+	name = "synthetic radio headset"
+	desc = "Headset used by the onboard synthetic units. This one is integrated directly into the unit and is not possible to remove."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/headset_synthetic
+
+/obj/item/radio/headset/headset_synthetic/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
 /obj/item/radio/headset/headset_cent
 	name = "\improper CentCom headset"
 	desc = "A headset used by the upper echelons of NanoTrasen."

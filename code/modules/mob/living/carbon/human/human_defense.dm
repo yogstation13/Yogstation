@@ -197,7 +197,10 @@
 			if(I.force >= 5)
 				do_sparks(1, FALSE, loc)
 				if(prob(25))
-					new /obj/effect/decal/cleanable/oil(loc)
+					if(is_synth(src))
+						new /obj/effect/decal/cleanable/oil/synth(loc)
+					else
+						new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 

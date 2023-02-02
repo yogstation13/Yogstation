@@ -1103,6 +1103,36 @@
 		mind.transfer_to(target)
 	diag_hud_set_deployed()
 
+
+/mob/living/silicon/ai/proc/deploy_to_synth_pod(obj/machinery/synth_pod/pod)
+
+	if(incapacitated())
+		return
+	if(control_disabled)
+		to_chat(src, span_warning("Wireless networking module is offline."))
+		return
+
+
+
+	var/confirm = tgui_alert(src, "Are you sure you want to deploy as a synthetic? You will not be notified in the case that a core goes offline.", "Confirm Deployment", list("Yes", "No"))
+	if(confirm != "Yes")
+		return
+
+	if(!pod.stored)
+		return
+
+	var/mob/living/carbon/human/target = pod.stored
+
+	if (!target || target.stat == DEAD || target.mind )
+		return
+
+	else if(mind)
+		soullink(/datum/soullink/sharedbody, src, target)
+		mind.transfer_to(target)
+	diag_hud_set_deployed()
+	return TRUE
+
+
 /datum/action/innate/deploy_shell
 	name = "Deploy to AI Shell"
 	desc = "Wirelessly control a specialized cyborg shell."

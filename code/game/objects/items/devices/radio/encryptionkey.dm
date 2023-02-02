@@ -124,6 +124,16 @@
 	icon_state = "srv_cypherkey"
 	channels = list(RADIO_CHANNEL_SERVICE = 1)
 
+/obj/item/encryptionkey/headset_synthetic
+	name = "synthetic radio encryption key"
+	icon_state = "rd_cypherkey"
+	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SERVICE = 1)
+	translate_binary = TRUE
+
+/obj/item/encryptionkey/headset_synthetic/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
 /obj/item/encryptionkey/headset_cent
 	name = "\improper CentCom radio encryption key"
 	icon_state = "cent_cypherkey"

@@ -5,8 +5,13 @@
 	id = "synthetic"
 	say_mod = "states"
 
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,NOHUSK,NOBLOOD)
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	limbs_id = "human"
+	damage_overlay_type = "synth"
+
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,
+	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_PACIFISM, TRAIT_NOGUNS, TRAIT_NO_STUN_WEAPONS)
+	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT)
 	inherent_biotypes = list(MOB_ROBOTIC)
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic
@@ -20,6 +25,7 @@
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
 	exotic_blood = /datum/reagent/oil
 
+	use_skintones = TRUE
 	forced_skintone = "albino"
 
 	payday_modifier = 0
@@ -43,6 +49,8 @@
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/draining = FALSE
+	var/datum/action/innate/undeployment_synth/undeployment_action = new
+	var/mob/living/silicon/ai/mainframe
 
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
@@ -229,5 +237,35 @@
 	qdel(spark_system)
 	draining = FALSE
 	return TRUE
+
+
+/datum/species/wy_synth/proc/assume_control(var/mob/living/silicon/ai/AI, mob/living/carbon/human/H)
+	H.real_name = "[AI.real_name]"	//Randomizing the name so it shows up separately in the shells list
+	H.name = H.real_name
+	mainframe = AI
+	undeployment_action.Grant(src)
+
+/datum/action/innate/undeployment_synth
+	name = "Disconnect from synthetic unit"
+	desc = "Stop controlling this synthetic unit and resume normal core operations."
+	icon_icon = 'icons/mob/actions/actions_AI.dmi'
+	button_icon_state = "ai_core"
+
+/datum/action/innate/undeployment_synth/Trigger()
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/human/H = owner
+
+	var/datum/species/wy_synth/S = H.dna.species
+	S.undeploy(H)
+	return TRUE
+
+
+/datum/species/wy_synth/proc/undeploy(mob/living/carbon/human/H)
+	if(!H.mind)
+		return
+	H.mind.transfer_to(mainframe)
+	undeployment_action.Remove(src)
+	mainframe = null
 
 #undef CONCIOUSAY

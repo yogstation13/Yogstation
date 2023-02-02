@@ -1356,12 +1356,3 @@
 	if(istype(hat) && hat.hattable && prob(25))
 		visible_message("[src]'s [lowertext(hat.name)] falls off.")
 		dropItemToGround(hat)
-
-/mob/living/carbon/human/attack_ai(mob/user)
-	if(!is_synth(src))
-		return
-	if(!isAI(user))
-		return
-	var/mob/living/silicon/ai/AI = user
-	if(AI.dashboard.has_completed_project(/datum/ai_project/synth_control))
-		return

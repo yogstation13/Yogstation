@@ -347,11 +347,6 @@
 			B = new(T)
 			B.transfer_mob_blood_dna(src)
 		return
-	if(is_synth(src))
-		var/obj/effect/decal/cleanable/oil/synth/B = locate() in T.contents
-		if(!B)
-			B = new(T)
-		return
 	
 	if(get_blood_id() != /datum/reagent/blood)
 		return
