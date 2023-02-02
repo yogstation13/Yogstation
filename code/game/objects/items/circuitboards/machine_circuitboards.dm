@@ -163,6 +163,15 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/manipulator = 5)
 
+/obj/item/circuitboard/machine/synth_pod
+	name = "Synthetic Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/synth_pod
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/manipulator = 2)
+
 /obj/item/circuitboard/machine/decontamination_unit
 	name = "Decontamination Storage Unit (Machine Board)"
 	icon_state = "engineering"
