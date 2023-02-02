@@ -244,6 +244,9 @@
 /datum/species/wy_synth/proc/assume_control(var/mob/living/silicon/ai/AI, mob/living/carbon/human/H)
 	H.real_name = "[AI.real_name]"	//Randomizing the name so it shows up separately in the shells list
 	H.name = H.real_name
+	var/obj/item/id/ID = H.wear_id
+	if(ID)
+		ID.update_label(AI.real_name, "Synthetic")
 	mainframe = AI
 	undeployment_action.Grant(H)
 
