@@ -442,12 +442,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	else
 		return ..()
 
-/obj/item/stack/ethernet_coil/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
-	if(I.use_tool(H, user, 2 SECONDS, amount=1))
-		if(item_heal_robotic(H, user, brute_heal, burn_heal))
-			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
-		return TRUE
-
 /obj/item/stack/ethernet_coil/update_icon()
 	icon_state = "[initial(icon_state)][amount < 3 ? amount : ""]"
 	name = "ethernet cable [amount < 3 ? "piece" : "coil"]"

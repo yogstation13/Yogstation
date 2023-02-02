@@ -8,8 +8,8 @@
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,NOHUSK,NOBLOOD)
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC)
-	mutant_brain = /obj/item/organ/brain/positron
-	mutant_heart = /obj/item/organ/heart/cybernetic
+	mutantbrain = /obj/item/organ/brain/positron
+	mutantheart = /obj/item/organ/heart/cybernetic
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded
