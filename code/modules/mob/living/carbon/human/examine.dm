@@ -113,7 +113,7 @@
 		if(100 to 200)
 			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
-	if("wings" in dna.species.mutant_bodyparts)
+	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
 		var/badwings = ""
 		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
 			badwings = "Weaponized "
