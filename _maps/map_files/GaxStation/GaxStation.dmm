@@ -21114,10 +21114,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/hallway/primary/central)
-"kBW" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space)
 "kCl" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -32777,10 +32773,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"qnz" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "qnE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -94153,8 +94145,8 @@ bpR
 tSW
 sqz
 sqz
-qnz
-kBW
+aCD
+tkl
 vRP
 vRP
 vRP
@@ -94408,10 +94400,10 @@ aCD
 cjI
 sCX
 sqz
-qnz
-qnz
-qnz
-kBW
+aCD
+aCD
+aCD
+tkl
 vRP
 vRP
 vRP
@@ -94666,16 +94658,16 @@ vRP
 nQs
 vRP
 vRP
-qnz
-qnz
-kBW
-qnz
+aCD
+aCD
+tkl
+aCD
 vRP
 vRP
 vRP
 vRP
 vRP
-qnz
+aCD
 sqz
 nuV
 vvd
@@ -94924,15 +94916,15 @@ vRP
 vRP
 vRP
 vRP
-qnz
-kBW
-qnz
+aCD
+tkl
+aCD
 vRP
 vRP
 vRP
 vRP
 vRP
-qnz
+aCD
 sqz
 nuV
 vvd
@@ -95181,15 +95173,15 @@ vRP
 vRP
 vRP
 vRP
-qnz
-kBW
-qnz
+aCD
+tkl
+aCD
 vRP
 vRP
 vRP
 vRP
 vRP
-qnz
+aCD
 lMA
 fcq
 dVT
@@ -95439,14 +95431,14 @@ vRP
 vRP
 vRP
 vRP
-kBW
-kBW
-kBW
-kBW
-kBW
-kBW
-kBW
-kBW
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
 lMA
 jLK
 vvd
