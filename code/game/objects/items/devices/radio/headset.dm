@@ -209,6 +209,7 @@
 	desc = "Headset used by the onboard synthetic units. This one is integrated directly into the unit and is not possible to remove."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_synthetic
+	item_flags = DROPDEL
 
 /obj/item/radio/headset/headset_synthetic/Initialize()
 	. = ..()

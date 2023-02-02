@@ -390,6 +390,7 @@ update_label("John Doe", "Clowny")
 	item_state = "silver_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = DROPDEL
 
 /obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
