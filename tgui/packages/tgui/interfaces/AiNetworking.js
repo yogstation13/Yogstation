@@ -39,9 +39,9 @@ export const AiNetworking = (props, context) => {
           </Fragment>
         )}>
           <LabeledList>
-            {data.possible_targets.map(target => (
+            {data.possible_targets.map((target, index) => (
               data.is_connected === target ? (
-                <Fragment>
+                <Fragment key={index}>
                   <LabeledListItem label={target} buttons={(
                     <Button icon="eject" onClick={() => act('disconnect')}
                       disabled={!data.is_connected} color="bad">Disconnect
@@ -51,7 +51,7 @@ export const AiNetworking = (props, context) => {
                   <LabeledListDivider />
                 </Fragment>
               ) : (
-                <Fragment>
+                <Fragment key={index}>
                   <LabeledListItem label={target} buttons={(
                     <Button icon="wifi" onClick={() => act('connect', { target_label: target })}
                       disabled={data.is_connected} tooltip={data.is_connected ? "Already connected. Please disconnect" : ""} tooltipPosition="left">Connect
