@@ -1,7 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, NoticeBox, RoundGauge } from '../components';
-import { LabeledListDivider, LabeledListItem } from '../components/LabeledList';
 import { Window } from '../layouts';
 
 export const AiNetworking = (props, context) => {
@@ -42,22 +41,21 @@ export const AiNetworking = (props, context) => {
             {data.possible_targets.map((target, index) => (
               data.is_connected === target ? (
                 <Fragment key={index}>
-                  <LabeledListItem label={target} buttons={(
+                  <LabeledList.Item label={target} buttons={(
                     <Button icon="eject" onClick={() => act('disconnect')}
                       disabled={!data.is_connected} color="bad">Disconnect
                     </Button>
                   )} />
-
-                  <LabeledListDivider />
+                  <LabeledList.Divider />
                 </Fragment>
               ) : (
                 <Fragment key={index}>
-                  <LabeledListItem label={target} buttons={(
+                  <LabeledList.Item label={target} buttons={(
                     <Button icon="wifi" onClick={() => act('connect', { target_label: target })}
                       disabled={data.is_connected} tooltip={data.is_connected ? "Already connected. Please disconnect" : ""} tooltipPosition="left">Connect
                     </Button>
                   )} />
-                  <LabeledListDivider />
+                  <LabeledList.Divider />
                 </Fragment>
               )
             ))}
