@@ -244,7 +244,7 @@
 /datum/species/wy_synth/proc/assume_control(var/mob/living/silicon/ai/AI, mob/living/carbon/human/H)
 	H.real_name = "[AI.real_name]"	//Randomizing the name so it shows up separately in the shells list
 	H.name = H.real_name
-	var/obj/item/id/ID = H.wear_id
+	var/obj/item/card/id/ID = H.wear_id
 	if(ID)
 		ID.update_label(AI.real_name, "Synthetic")
 	mainframe = AI
@@ -260,6 +260,10 @@
 	if(!..())
 		return FALSE
 	var/mob/living/carbon/human/H = owner
+
+	var/confirm = tgui_alert(H, "Are you sure you want to undeploy? You will not be able to redeploy unless the synthetic unit is in a storage unit!", "Confirm Undeployment", list("Yes", "No"))
+	if(confirm != "Yes")
+		return
 
 	var/datum/species/wy_synth/S = H.dna.species
 	S.undeploy(H)
