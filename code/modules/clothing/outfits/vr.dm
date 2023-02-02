@@ -11,7 +11,7 @@
 	var/obj/item/card/id/id = H.wear_id
 	if (istype(id))
 		id.access |= get_all_accesses()
-	if(isplasmaman(H))
+	if(isplasmaman(H)) //sorry plasma people
 		H.set_species(/datum/species/human)
 
 /datum/outfit/vr/syndicate

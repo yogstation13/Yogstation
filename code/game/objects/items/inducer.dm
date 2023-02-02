@@ -139,6 +139,36 @@
 				user.visible_message("[user] recharged [A]!",span_notice("You recharged [A]!"))
 			recharging = FALSE
 			return TRUE
+		if(is_synth(H)) //let's charge some dumb robot players
+			if(user.zone_selected != BODY_ZONE_CHEST)
+				to_chat(user, span_warning("You need to target [A]'s chest with [src] to recharge [H.p_them()]!"))
+				recharging = FALSE
+				return TRUE
+			coefficient = 0.1
+			var/totransfer = min(cell.charge,(powertransfer * coefficient))
+			var/datum/species/wy_synth/synth = H.dna.species
+			var/done_any = FALSE
+			if(synth.charge >= PRETERNIS_LEVEL_FULL - 25)
+				to_chat(user, span_notice("[A] is fully charged!"))
+				recharging = FALSE
+				return TRUE
+			user.visible_message("[user] starts recharging [A] with [src].",span_notice("You start recharging [A] with [src]."))
+			while(synth.charge < PRETERNIS_LEVEL_FULL - 25)
+				if(do_after(user, 1 SECONDS, user) && cell.charge)
+					done_any = TRUE
+					cell.use(totransfer*coefficient)
+					synth.charge = clamp(synth.charge + (powertransfer*coefficient), PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+					H.apply_damage(totransfer*coefficient, BURN, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+					user.visible_message("Smoke rises off of [A]'s body!",span_notice("You smell something burning as [A] is charged by the [src]!"))
+					do_sparks(1, FALSE, A)
+					if(O)
+						O.update_icon()
+				else
+					break
+			if(done_any) // Only show a message if we succeeded at least once
+				user.visible_message("[user] recharged [A]!",span_notice("You recharged [A]!"))
+			recharging = FALSE
+			return TRUE
 	if(istype(A, /obj))
 		O = A
 	if(C)

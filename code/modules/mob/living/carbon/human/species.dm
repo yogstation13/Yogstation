@@ -30,6 +30,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
 
+	var/forced_skintone
+
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_blood = ""
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)

@@ -9,7 +9,7 @@
 	active_power_usage = 500
 	max_integrity = 1000
 
-	circuit = /obj/item/circuitboard/machine/networking_machine
+	circuit = /obj/item/circuitboard/machine/subcontroller
 	var/on = TRUE
 
 
@@ -74,10 +74,7 @@
 	cut_overlays()
 	if(on)
 		var/mutable_appearance/on_overlay
-		if(on_icon)
-			on_overlay = mutable_appearance(icon, on_icon)
-		else
-			on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
 		add_overlay(on_overlay)
 	if(panel_open)
 		icon_state = "[initial(icon_state)]_o"

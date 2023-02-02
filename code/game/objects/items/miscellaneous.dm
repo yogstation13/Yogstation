@@ -165,16 +165,16 @@
 	return MANUAL_SUICIDE
 
 /obj/item/ipcrevive // Doesnt do much beside be cosmetic
-	name = "IPC Revival Board"
-	desc = "Used to revive an IPC once fixed."
+	name = "IPC and Synthetic Revival Board"
+	desc = "Used to revive an IPC or Synthetic once fixed."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade1"
 
 /obj/item/ipcrevive/attack(mob/living/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP)
 		return ..()
-	if(!isipc(M))
-		to_chat(user, span_warning("This is not an IPC"))
+	if(!isipc(M) || is_synth(M))
+		to_chat(user, span_warning("This is not an IPC or a synthetic."))
 		return TRUE
 	var/mob/living/carbon/human/H = M
 	if(H.stat != DEAD)

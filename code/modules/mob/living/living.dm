@@ -701,6 +701,8 @@
 	return bleed_amount
 
 /mob/living/proc/getTrail()
+	if(is_synth(src))
+		return
 	if(getBruteLoss() < 300)
 		if(ispolysmorph(src))
 			return pick("xltrails_1", "xltrails_2")

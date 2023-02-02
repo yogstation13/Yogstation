@@ -825,7 +825,7 @@
 	var/mob/living/silicon/ai/AI = user
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
-		if(!do_after(AI, 1 SECOND, src, FALSE, stayStill = FALSE))
+		if(!do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
 			return
 
 	ui_interact(user)

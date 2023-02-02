@@ -731,6 +731,14 @@
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/subcontroller
+	name = "Machine Design (Subcontroller)"
+	desc = "The circuit board for a subcontroller mainframe."
+	id = "subcontroller"
+	build_path = /obj/item/circuitboard/machine/subcontroller
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/ai_data_core
 	name = "Machine Design (AI Data Core Board)"
 	desc = "The circuit board for an AI data core."
