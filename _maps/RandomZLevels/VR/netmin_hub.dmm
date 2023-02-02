@@ -189,10 +189,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"bR" = (
-/mob/living/simple_animal/hostile/robot/range,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "bU" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -277,10 +273,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"dg" = (
-/mob/living/simple_animal/hostile/robot/advanced,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "dh" = (
 /obj/machinery/door/airlock/medical{
 	name = "Experimental Development"
@@ -350,6 +342,17 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
+/area/awaymission/vr/combat_robot_factory)
+"en" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/obj/machinery/scanner_gate{
+	desc = "A gate that installs proprietary firmware onto any machines passing through. This one seems to have been modified.";
+	name = "corrupted programming gate"
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "er" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -481,22 +484,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"fD" = (
-/mob/living/simple_animal/hostile/boss/robot_leader{
-	del_on_death = 1;
-	loot = list(/obj/effect/decal/cleanable/robot_debris,/obj/item/paper/fluff/awaymissions/robot_factory/diagnostic,/obj/item/ai_cpu/self_aware)
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
-"fE" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "fG" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate,
@@ -537,6 +524,13 @@
 /obj/effect/turf_decal/delivery,
 /mob/living/simple_animal/hostile/robot/burst,
 /turf/open/floor/plasteel,
+/area/awaymission/vr/combat_robot_factory)
+"gl" = (
+/mob/living/simple_animal/hostile/boss/robot_leader{
+	del_on_death = 1;
+	loot = list(/obj/effect/decal/cleanable/robot_debris,/obj/item/paper/fluff/awaymissions/robot_factory/diagnostic,/obj/item/ai_cpu/self_aware)
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "gn" = (
 /obj/machinery/door/window/southright,
@@ -583,6 +577,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"gF" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "gH" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/decal/cleanable/dirt,
@@ -599,6 +600,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"gP" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "gQ" = (
 /obj/machinery/papershredder,
 /obj/item/shreddedpaper,
@@ -649,17 +659,6 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"ho" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/obj/machinery/scanner_gate{
-	desc = "A gate that installs proprietary firmware onto any machines passing through. This one seems to have been modified.";
-	name = "corrupted programming gate"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "hq" = (
 /obj/effect/decal/cleanable/blood,
@@ -819,6 +818,10 @@
 /obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/awaymission/vr/scientist_raid)
+"ja" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "ji" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -912,15 +915,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"jV" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "kl" = (
 /obj/effect/landmark/vr_spawn/vr_mission/scientist_raid,
 /turf/open/floor/mineral/titanium/blue,
@@ -959,6 +953,14 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/vr/combat_robot_factory)
+"ku" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "kv" = (
 /obj/machinery/autolathe{
@@ -1030,12 +1032,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"kY" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/gibs/core,
-/obj/item/paper/crumpled/bloody/fluff/awaymissions/robot_factory/control_man,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "lg" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/cognac,
@@ -1069,11 +1065,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"lt" = (
-/obj/item/gun/ballistic/automatic/pistol/m1911,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "lL" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 2;
@@ -1132,20 +1123,6 @@
 "my" = (
 /turf/closed/indestructible/riveted,
 /area/awaymission/vr/hub)
-"mA" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/pen{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "mC" = (
 /obj/machinery/door/airlock{
 	name = "Personal Quarters"
@@ -1324,10 +1301,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"oO" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "oR" = (
 /obj/structure/table,
 /obj/item/ai_cpu,
@@ -1461,14 +1434,6 @@
 	name = "Personal Quarters"
 	},
 /turf/open/floor/wood,
-/area/awaymission/vr/combat_robot_factory)
-"qi" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "qj" = (
 /turf/closed/wall,
@@ -1667,6 +1632,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"sQ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "sU" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel/dark,
@@ -1792,22 +1764,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"up" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "ut" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/fluff/awaymissions/robot_factory/benny,
 /turf/open/floor/carpet,
-/area/awaymission/vr/combat_robot_factory)
-"ux" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "uz" = (
 /obj/machinery/conveyor{
@@ -1958,6 +1919,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"vZ" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "wa" = (
 /obj/machinery/door/airlock/mining{
 	name = "Cargo"
@@ -1990,17 +1955,6 @@
 "wL" = (
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"wN" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/paper/fluff/awaymissions/robot_factory/control_message,
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "wO" = (
 /obj/structure/window/reinforced,
@@ -2039,6 +1993,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/vr/combat_robot_factory)
+"xk" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "xm" = (
 /mob/living/simple_animal/hostile/robot,
@@ -2095,6 +2055,16 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"xS" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "????";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "xY" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
@@ -2108,10 +2078,6 @@
 	name = "Restroom"
 	},
 /turf/open/floor/plasteel/freezer,
-/area/awaymission/vr/combat_robot_factory)
-"yi" = (
-/mob/living/simple_animal/hostile/robot,
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "yA" = (
 /obj/machinery/conveyor{
@@ -2180,6 +2146,11 @@
 /obj/item/storage/box/lethalshot,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"yY" = (
+/obj/item/gun/ballistic/automatic/pistol/m1911,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "za" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
@@ -2217,10 +2188,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"zv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "zx" = (
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"zB" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "zC" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/structure/sign/poster/official/random{
@@ -2255,16 +2236,14 @@
 "zT" = (
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/scientist_raid)
+"zU" = (
+/mob/living/simple_animal/hostile/robot/advanced,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "zX" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"zZ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "Aa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -2424,18 +2403,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Br" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
+"Bv" = (
+/obj/machinery/conveyor{
+	id = "QMLoad"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
-"Bu" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "Bx" = (
 /obj/structure/bed,
@@ -2679,11 +2651,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"EE" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
+"EL" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "EM" = (
 /obj/machinery/computer{
@@ -2733,6 +2703,12 @@
 /obj/structure/shuttle/engine/heater,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/scientist_raid)
+"Fe" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Command Room"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Ff" = (
 /mob/living/simple_animal/hostile/robot,
 /obj/machinery/conveyor{
@@ -2756,12 +2732,6 @@
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"Fl" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Command Room"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "Fq" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -2844,6 +2814,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"FY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Ga" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood,
@@ -2863,6 +2839,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Gm" = (
+/mob/living/simple_animal/hostile/robot,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Gw" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -2904,13 +2884,6 @@
 /obj/structure/table,
 /obj/machinery/compsci_reciever,
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"GR" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "Ha" = (
 /turf/open/floor/carpet,
@@ -2995,6 +2968,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"HV" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Ia" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/dark,
@@ -3064,12 +3042,6 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"IH" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "IW" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -3116,16 +3088,6 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"Js" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/machinery/door/airlock/highsecurity{
-	name = "????";
-	req_access_txt = "0"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "Jt" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -3144,9 +3106,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"JA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/telecomms,
+"JC" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "JN" = (
 /obj/structure/chair/office/dark,
@@ -3175,12 +3141,6 @@
 	name = "Benny"
 	},
 /turf/open/floor/carpet,
-/area/awaymission/vr/combat_robot_factory)
-"Kn" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "Kp" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -3260,12 +3220,6 @@
 /area/awaymission/vr/scientist_raid)
 "Le" = (
 /turf/open/floor/carpet/royalblue,
-/area/awaymission/vr/combat_robot_factory)
-"Lm" = (
-/obj/machinery/conveyor{
-	id = "QMLoad"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "Lq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -3347,6 +3301,15 @@
 /obj/machinery/ai/server_cabinet,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"LY" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/fancy/donut_box,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Md" = (
 /obj/machinery/door/airlock{
 	name = "Worker's Quarters"
@@ -3381,12 +3344,6 @@
 /obj/item/bedsheet/medical,
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
-/area/awaymission/vr/combat_robot_factory)
-"Mz" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "MC" = (
 /obj/machinery/light{
@@ -3520,6 +3477,20 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/vr/combat_robot_factory)
+"NL" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/item/pen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "NN" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/item/ammo_casing/n762{
@@ -3553,6 +3524,10 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
+"Of" = (
+/mob/living/simple_animal/hostile/robot/advanced/ranged,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Oi" = (
 /mob/living/simple_animal/hostile/robot{
 	health = 25;
@@ -3712,14 +3687,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
-"PJ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "PN" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Armory";
@@ -3733,10 +3700,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"PQ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "PS" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -3899,6 +3862,12 @@
 "Rr" = (
 /turf/open/space/basic,
 /area/space)
+"Rs" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/item/paper/crumpled/bloody/fluff/awaymissions/robot_factory/control_man,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Ru" = (
 /obj/structure/sign/poster/official/random{
 	pixel_y = -32
@@ -4014,10 +3983,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"Sy" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "SM" = (
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/scientist_raid)
@@ -4093,6 +4058,12 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"Tz" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "TA" = (
 /obj/effect/landmark/vr_spawn,
 /obj/effect/vr_clean_master,
@@ -4206,16 +4177,23 @@
 "UH" = (
 /turf/closed/wall/mineral/titanium/interior,
 /area/awaymission/vr/scientist_raid)
+"UI" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/computer{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/fluff/awaymissions/robot_factory/control_message,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "UN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"UO" = (
-/mob/living/simple_animal/hostile/robot/advanced/ranged,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "UP" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -4305,9 +4283,6 @@
 /obj/item/clothing/head/soft,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"VD" = (
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "VE" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
@@ -4340,6 +4315,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"VS" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "VZ" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -4579,6 +4561,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Yk" = (
+/mob/living/simple_animal/hostile/robot/range,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/combat_robot_factory)
 "Ym" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -4588,6 +4574,12 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/cafeteria,
+/area/awaymission/vr/combat_robot_factory)
+"Yn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "Yo" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -4650,11 +4642,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
-"YV" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "YW" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -15187,7 +15174,7 @@ qj
 qj
 qj
 qj
-Js
+xS
 qj
 pk
 qj
@@ -15439,17 +15426,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-VD
-JA
-Kn
-VD
-ux
-VD
-VD
-VD
+pL
+pL
+pL
+pL
+zB
+Tz
+pL
+VS
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -15696,17 +15683,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-VD
-VD
-Kn
-VD
-Lm
-Lm
-ux
-JA
+pL
+pL
+pL
+pL
+pL
+Tz
+pL
+Bv
+Bv
+VS
+zB
 qj
 Ee
 Ee
@@ -15953,17 +15940,17 @@ Ee
 Ee
 Ee
 qj
-EE
-VD
-VD
-yi
-VD
-Kn
-VD
-yi
-VD
-ho
-up
+zv
+pL
+pL
+Gm
+pL
+Tz
+pL
+Gm
+pL
+en
+vZ
 qj
 Ee
 Ee
@@ -16210,17 +16197,17 @@ Ee
 Ee
 Ee
 qj
-VD
-JA
-VD
-VD
-VD
-PQ
-JA
-VD
-VD
-VD
-VD
+pL
+zB
+pL
+pL
+pL
+ja
+zB
+pL
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -16467,17 +16454,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-VD
-yi
-JA
-yi
-VD
-VD
-VD
-VD
+pL
+pL
+pL
+pL
+Gm
+zB
+Gm
+pL
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -16724,17 +16711,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-Sy
-Sy
-Sy
-VD
-Sy
-Sy
-Sy
-VD
-VD
+pL
+pL
+EL
+EL
+EL
+pL
+EL
+EL
+EL
+pL
+pL
 qj
 Ee
 Ee
@@ -16981,17 +16968,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-Sy
-bR
-JA
-VD
-VD
-bR
-Sy
-VD
-VD
+pL
+pL
+EL
+Yk
+zB
+pL
+pL
+Yk
+EL
+pL
+pL
 qj
 Ee
 Ee
@@ -17238,17 +17225,17 @@ Ee
 Ee
 Ee
 qj
-EE
-VD
-VD
-VD
-VD
-VD
-VD
-JA
-VD
-VD
-up
+zv
+pL
+pL
+pL
+pL
+pL
+pL
+zB
+pL
+pL
+vZ
 qj
 Ee
 Ee
@@ -17495,17 +17482,17 @@ Ee
 Ee
 Ee
 qj
-VD
-JA
-VD
-VD
-dg
-VD
-dg
-VD
-VD
-VD
-VD
+pL
+zB
+pL
+pL
+zU
+pL
+zU
+pL
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -17752,17 +17739,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-JA
-VD
-VD
-VD
-VD
-VD
-VD
-VD
+pL
+pL
+pL
+zB
+pL
+pL
+pL
+pL
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -18009,17 +17996,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-IH
-VD
-dg
-VD
-IH
-VD
-JA
-VD
+pL
+pL
+pL
+FY
+pL
+zU
+pL
+FY
+pL
+zB
+pL
 qj
 Ee
 Ee
@@ -18266,17 +18253,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-dg
+pL
+pL
+zU
 qj
-VD
-VD
-VD
+pL
+pL
+pL
 qj
-dg
-VD
-VD
+zU
+pL
+pL
 qj
 Ee
 Ee
@@ -18523,17 +18510,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-JA
-Mz
-VD
-VD
-VD
-Mz
-VD
-VD
-VD
+pL
+pL
+zB
+Yn
+pL
+pL
+pL
+Yn
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -18780,17 +18767,17 @@ Ee
 Ee
 Ee
 qj
-EE
-VD
-VD
-VD
-UO
-VD
-UO
-VD
-VD
-VD
-up
+zv
+pL
+pL
+pL
+Of
+pL
+Of
+pL
+pL
+pL
+vZ
 qj
 Ee
 Ee
@@ -19037,17 +19024,17 @@ Ee
 Ee
 Ee
 qj
-VD
-JA
-VD
-VD
-VD
-fD
-VD
-JA
-VD
-VD
-VD
+pL
+zB
+pL
+pL
+pL
+gl
+pL
+zB
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -19294,17 +19281,17 @@ Ee
 Ee
 Ee
 qj
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-VD
+pL
+pL
+pL
+pL
+pL
+pL
+pL
+pL
+pL
+pL
+pL
 qj
 Ee
 Ee
@@ -19556,7 +19543,7 @@ qj
 qj
 qj
 qj
-Fl
+Fe
 qj
 qj
 qj
@@ -19811,11 +19798,11 @@ Ee
 Ee
 Ee
 qj
-PJ
-zZ
-zZ
-zZ
-Br
+ku
+xk
+xk
+xk
+gF
 qj
 Ee
 Ee
@@ -20068,11 +20055,11 @@ Ee
 Ee
 Ee
 qj
-fE
-VD
-lt
-VD
-YV
+gP
+pL
+yY
+pL
+HV
 qj
 Ee
 Ee
@@ -20325,11 +20312,11 @@ Ee
 Ee
 Ee
 qj
-Bu
-PQ
-kY
-JA
-oO
+ei
+ja
+Rs
+zB
+Ia
 qj
 Ee
 Ee
@@ -20582,11 +20569,11 @@ Ee
 Ee
 Ee
 qj
-jV
-mA
-wN
-qi
-GR
+LY
+NL
+UI
+JC
+sQ
 qj
 Ee
 Ee
