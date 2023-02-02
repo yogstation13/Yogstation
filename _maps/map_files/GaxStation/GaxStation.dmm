@@ -40434,6 +40434,14 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos_distro)
+"uxk" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/lab)
 "uxw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -41033,10 +41041,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"uLl" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "uLY" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -87369,7 +87373,7 @@ frh
 bPR
 eiF
 eiF
-uLl
+uxk
 sOU
 tqI
 kYl
