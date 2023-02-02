@@ -102,3 +102,19 @@
 	DELAY 45
 	SAY Don't forget that the door is voice activated.
 	DELAY 45"}
+
+/obj/item/ai_cpu/self_aware
+	name = "semi self-aware neural processing unit"
+	desc = "The remains of the neuron interfacing chip found onboard a redacted robot production facility. The remaining organic material still seems alive."
+
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "brain-x"
+
+	speed = 20
+	base_power_usage = 2 * AI_CPU_BASE_POWER_USAGE
+
+	minimum_max_power = 1.1
+	maximum_max_power = 2.8
+
+	minimum_growth = 1 
+	maximum_growth = 4.5
