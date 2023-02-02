@@ -429,11 +429,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"fe" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "ff" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -485,6 +480,13 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/combat_robot_factory)
+"fD" = (
+/mob/living/simple_animal/hostile/boss/robot_leader{
+	del_on_death = 1;
+	loot = list(/obj/effect/decal/cleanable/robot_debris,/obj/item/paper/fluff/awaymissions/robot_factory/diagnostic,/obj/item/ai_cpu/self_aware)
+	},
+/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "fE" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -1028,6 +1030,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"kY" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/item/paper/crumpled/bloody/fluff/awaymissions/robot_factory/control_man,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/awaymission/vr/combat_robot_factory)
 "lg" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/cognac,
@@ -1291,10 +1299,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
-"oE" = (
-/mob/living/simple_animal/hostile/boss/robot_leader,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "oH" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -1607,16 +1611,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
-"rX" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/machinery/computer{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/awaymission/vr/combat_robot_factory)
 "sg" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/table/reinforced,
@@ -1996,6 +1990,17 @@
 "wL" = (
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plasteel,
+/area/awaymission/vr/combat_robot_factory)
+"wN" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/computer{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/fluff/awaymissions/robot_factory/control_message,
+/turf/open/floor/plasteel/dark/telecomms,
 /area/awaymission/vr/combat_robot_factory)
 "wO" = (
 /obj/structure/window/reinforced,
@@ -19037,7 +19042,7 @@ JA
 VD
 VD
 VD
-oE
+fD
 VD
 JA
 VD
@@ -20322,7 +20327,7 @@ Ee
 qj
 Bu
 PQ
-fe
+kY
 JA
 oO
 qj
@@ -20579,7 +20584,7 @@ Ee
 qj
 jV
 mA
-rX
+wN
 qi
 GR
 qj
