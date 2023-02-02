@@ -2622,6 +2622,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\examine.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\firewall.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\induction.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\language.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\memory_compressor.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\research_booster.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\rgb.dm"
