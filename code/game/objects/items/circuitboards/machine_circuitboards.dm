@@ -1060,7 +1060,8 @@
 		/obj/item/stock_parts/capacitor = 4,
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stack/sheet/glass = 2,
-		/obj/item/stack/cable_coil = 2)
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/cell/high = 1)
 
 /obj/item/circuitboard/machine/rack_creator
 	name = "Rack Creator (Machine Board)"

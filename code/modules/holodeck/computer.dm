@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 			if(!valid)
 				return FALSE
 
-			var/area/A = locate(program_to_load) in GLOB.sortedAreas
+			var/area/A = locate(program_to_load) in GLOB.areas
 			if(A)
 				if(istype(A, /area/holodeck/rec_center/burn))
 					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.
@@ -135,10 +135,10 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 				emergency_shutdown()
 			nerf(obj_flags & EMAGGED)
 
-/obj/machinery/computer/holodeck/process()
-	if(damaged && prob(10))
+/obj/machinery/computer/holodeck/process(delta_time)
+	if(damaged && DT_PROB(5, delta_time))
 		for(var/turf/T in linked)
-			if(prob(5))
+			if(DT_PROB(2.5, delta_time))
 				do_sparks(2, 1, T)
 				return
 

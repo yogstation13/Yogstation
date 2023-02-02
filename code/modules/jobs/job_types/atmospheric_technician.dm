@@ -1,6 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
+	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
 	flag = ATMOSTECH
+	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -21,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
+
 	mail_goodies = list(
 		///obj/item/rpd_upgrade/unwrench = 30,
 		/obj/item/grenade/gas_crystal/crystal_foam = 10,
@@ -30,6 +36,8 @@
 	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
+
+	smells_like = "a gas leak"
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3

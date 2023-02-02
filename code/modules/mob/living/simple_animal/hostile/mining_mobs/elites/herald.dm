@@ -36,6 +36,7 @@
 	speed = 4
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/herald
 	deathsound = 'sound/magic/demon_dies.ogg'
 	deathmessage = "begins to shudder as it becomes transparent..."
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
@@ -189,6 +190,16 @@
 	my_mirror.my_master = src
 	my_mirror.faction = faction.Copy()
 
+/obj/item/gps/internal/herald
+	icon_state = null
+	gpstag = "Reverent Signal"
+	desc = "Mirrors inside mirrors inside mirrors inside mirrors."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/herald/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
+
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
 	name = "herald's mirror"
 	desc = "This fiendish work of magic copies the herald's attacks.  Seems logical to smash it."
@@ -201,6 +212,7 @@
 	del_on_death = TRUE
 	is_mirror = TRUE
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/my_master = null
+	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/Initialize()
 	..()

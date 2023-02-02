@@ -3,7 +3,7 @@
 	desc = "A mechanical door that permits one-way access to an area."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ministile_map"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	density = TRUE
 	obj_integrity = 150
 	max_integrity = 150

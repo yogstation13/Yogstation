@@ -94,7 +94,7 @@
 	description = "Explodes. Violently."
 	reagent_state = LIQUID
 	color = "#000000"
-	metabolization_rate = 0.05
+	metabolization_rate = REAGENTS_METABOLISM * 2.5	//Yogs change - faster metabolization
 	taste_description = "salt"
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)

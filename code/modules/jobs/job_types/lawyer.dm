@@ -1,6 +1,9 @@
 /datum/job/lawyer
 	title = "Lawyer"
+	description = "Advocate for prisoners, create law-binding contracts, \
+		ensure Security is following protocol and Space Law."
 	flag = LAWYER
+	orbit_icon = "gavel"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -22,7 +25,13 @@
 	display_order = JOB_DISPLAY_ORDER_LAWYER
 	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	changed_maps = list("OmegaStation")
+
+	smells_like = "legal lies"
 
 /datum/job/lawyer/proc/OmegaStationChanges()
 	return TRUE
@@ -55,3 +64,8 @@
 	if(J.lawyers>1)
 		uniform = /obj/item/clothing/under/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
+
+/datum/outfit/job/lawyer/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/under/lawyer/purpsuit
+	. += /obj/item/clothing/suit/toggle/lawyer/purple

@@ -14,9 +14,8 @@ GLOBAL_LIST(end_titles)
 
 		GLOB.end_titles += "<center><h1>Thanks for playing!</h1>"
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.show_credits)
+		if(C.prefs.read_preference(/datum/preference/toggle/show_credits))
 			C.screen += new /atom/movable/screen/credit/title_card(null, null, SSticker.mode.title_icon)
-	SSdemo.flush()
 	sleep(CREDIT_SPAWN_SPEED * 3)
 	for(var/i in 1 to GLOB.end_titles.len)
 		var/C = GLOB.end_titles[i]
@@ -24,7 +23,6 @@ GLOBAL_LIST(end_titles)
 			continue
 
 		create_credit(C)
-		SSdemo.flush()
 		sleep(CREDIT_SPAWN_SPEED)
 
 
@@ -54,7 +52,7 @@ GLOBAL_LIST(end_titles)
 
 /atom/movable/screen/credit/proc/add_to_clients()
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.show_credits)
+		if(C.prefs?.read_preference(/datum/preference/toggle/show_credits))
 			C.screen += src
 
 /atom/movable/screen/credit/Destroy()

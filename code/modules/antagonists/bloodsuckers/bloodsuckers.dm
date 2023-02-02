@@ -70,11 +70,7 @@
 	var/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		/datum/antagonist/monsterhunter,
-		/datum/antagonist/changeling,
-		/datum/antagonist/cult,
-		/datum/antagonist/heretic,
 		/datum/antagonist/xeno,
-		/datum/antagonist/obsessed
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
@@ -840,7 +836,7 @@
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", user.client)
+		user.apply_pref_name(/datum/preference/name/real_name, user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
@@ -848,11 +844,14 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	var/mob/living/carbon/human/user = bloodsucker.current
-	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
-		prepare_bloodsucker(bloodsucker)
-	add_antag_datum(/datum/antagonist/bloodsucker)
-	return TRUE
+	if(bloodsucker)
+		var/mob/living/carbon/human/user = bloodsucker.current
+		if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+			prepare_bloodsucker(bloodsucker)
+		add_antag_datum(/datum/antagonist/bloodsucker)
+		return TRUE
+	else
+		return
 
 /datum/mind/proc/remove_bloodsucker()
 	var/datum/antagonist/bloodsucker/removed_bloodsucker = has_antag_datum(/datum/antagonist/bloodsucker)
@@ -935,3 +934,10 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	vamphud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
+
+/datum/antagonist/bloodsucker/get_preview_icon()
+	var/icon/bloodsucker_icon = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+
+	bloodsucker_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return bloodsucker_icon

@@ -11,6 +11,11 @@
 	var/nukeop_outfit = /datum/outfit/syndicate
 	can_hijack = HIJACK_HIJACKER //Alternative way to wipe out the station.
 
+	preview_outfit = /datum/outfit/nuclear_operative_elite
+
+	/// In the preview icon, the nukies who are behind the leader
+	var/preview_outfit_behind = /datum/outfit/nuclear_operative
+
 /datum/antagonist/nukeop/proc/update_synd_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/opshud = GLOB.huds[ANTAG_HUD_OPS]
 	opshud.join_hud(M)
@@ -157,11 +162,48 @@
 	else
 		to_chat(admin, span_danger("No valid nuke found!"))
 
+/datum/antagonist/nukeop/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/captain = new
+	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
+
+	return finish_preview_icon(final_icon)
+
+/datum/antagonist/nukeop/proc/make_assistant_icon()
+	var/mob/living/carbon/human/dummy/assistant = new
+	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)
+	assistant_icon.ChangeOpacity(0.5)
+
+	return assistant_icon
+
+/datum/outfit/nuclear_operative
+	name = "Nuclear Operative (Preview only)"
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi
+
+/datum/outfit/nuclear_operative_elite
+	name = "Nuclear Operative (Elite, Preview only)"
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate 
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	r_hand = /obj/item/shield/energy
+
+/datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/shield/energy/shield = locate() in H.held_items
+	shield.icon_state = "[shield.base_icon_state]1"
+	H.update_inv_hands()
+
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
 	var/title
+	preview_outfit = /datum/outfit/nuclear_operative
+	preview_outfit_behind = null
 
 /datum/antagonist/nukeop/leader/memorize_code()
 	..()
@@ -298,13 +340,13 @@
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
-	else if(station_was_nuked && !syndies_didnt_escape)
+	else if(station_was_nuked && !nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_NUKE_WIN
-	else if (station_was_nuked && syndies_didnt_escape)
+	else if (station_was_nuked && !nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_NOSURVIVORS
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && !syndies_didnt_escape)
+	else if (nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && syndies_didnt_escape)
+	else if (nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION_DEAD
 	else if ((disk_rescued && evacuation) && operatives_dead())
 		return NUKE_RESULT_CREW_WIN_SYNDIES_DEAD

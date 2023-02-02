@@ -3,6 +3,7 @@
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	name = "lungs"
 	icon_state = "lungs"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
@@ -480,6 +481,9 @@
 	var/obj/S = ..()
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
 	return S
+
+/obj/item/organ/lungs/get_availability(datum/species/species)
+	return !(TRAIT_NOBREATH in species.inherent_traits)
 
 /obj/item/organ/lungs/ipc
 	name = "cooling radiator"

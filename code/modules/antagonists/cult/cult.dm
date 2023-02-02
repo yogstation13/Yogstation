@@ -1,4 +1,7 @@
 #define SUMMON_POSSIBILITIES 3
+#define CULT_VICTORY 1
+#define CULT_LOSS 0
+#define CULT_NARSIE_KILLED -1
 
 /datum/antagonist/cult
 	name = "Cultist"
@@ -8,6 +11,7 @@
 	var/datum/action/innate/cult/comm/communion = new
 	var/datum/action/innate/cult/mastervote/vote = new
 	var/datum/action/innate/cult/blood_magic/magic = new
+	preview_outfit = /datum/outfit/cultist
 	job_rank = ROLE_CULTIST
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
@@ -80,6 +84,56 @@
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
+/*
+/datum/antagonist/cult/get_preview_icon()
+	var/icon/icon = render_preview_outfit(preview_outfit)
+
+	// The longsword is 64x64, but getFlatIcon crunches to 32x32.
+	// So I'm just going to add it in post, screw it.
+
+	// Center the dude, because item icon states start from the center.
+	// This makes the image 64x64.
+	icon.Crop(-15, -15, 48, 48)
+
+	var/obj/item/melee/cultblade/longsword = new
+	icon.Blend(icon(longsword.lefthand_file, longsword.item_state), ICON_OVERLAY)
+	qdel(longsword)
+
+	// Move the guy back to the bottom left, 32x32.
+	icon.Crop(17, 17, 48, 48)
+
+	return finish_preview_icon(icon)
+*/
+/datum/antagonist/cult/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/cult1 = new
+	var/mob/living/carbon/human/dummy/consistent/cult2 = new
+
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/cultist/leader, cult1)
+	var/icon/teammate = render_preview_outfit(/datum/outfit/cultist/follower, cult2)
+	teammate.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
+
+	final_icon.Blend(teammate, ICON_OVERLAY, -world.icon_size / 4, 0)
+	final_icon.Blend(teammate, ICON_OVERLAY, world.icon_size / 4, 0)
+
+	qdel(cult1)
+	qdel(cult2)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/cultist/leader
+	suit = /obj/item/clothing/suit/hooded/cultrobes/berserker
+	shoes = /obj/item/clothing/shoes/cult/alt
+	head = /obj/item/clothing/head/hooded/berserkerhood
+	glasses = /obj/item/clothing/glasses/hud/health/night/cultblind
+	r_hand = /obj/item/melee/cultblade
+	l_hand = /obj/item/shield/mirror
+
+/datum/outfit/cultist/follower
+	suit = /obj/item/clothing/suit/cultrobes/alt
+	shoes = /obj/item/clothing/shoes/cult/alt
+	head = /obj/item/clothing/head/culthood/alt
+	glasses = /obj/item/clothing/glasses/hud/health/night/cultblind
+	r_hand = /obj/item/melee/cultblade
 
 /datum/antagonist/cult/proc/equip_cultist(metal=TRUE)
 	var/mob/living/carbon/H = owner.current
@@ -451,13 +505,14 @@
 
 /datum/objective/eldergod
 	var/summoned = FALSE
+	var/killed = FALSE
 	var/list/summon_spots = list()
 
 /datum/objective/eldergod/New()
 	..()
 	var/sanity = 0
 	while(summon_spots.len < SUMMON_POSSIBILITIES && sanity < 100)
-		var/area/summon = pick(GLOB.sortedAreas - summon_spots)
+		var/area/summon = pick(GLOB.areas - summon_spots)
 		if(summon && is_station_level(summon.z) && summon.valid_territory)
 			summon_spots += summon
 		sanity++
@@ -467,18 +522,26 @@
 	explanation_text = "Summon Nar-Sie by invoking the rune 'Summon Nar-Sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
 
 /datum/objective/eldergod/check_completion()
+	if(killed)
+		return CULT_NARSIE_KILLED // You failed so hard that even the code went backwards.
 	return summoned || completed
 
 /datum/team/cult/proc/check_cult_victory()
 	for(var/datum/objective/O in objectives)
-		if(!O.check_completion())
-			return FALSE
-	return TRUE
+		if(O.check_completion() == CULT_NARSIE_KILLED)
+			return CULT_NARSIE_KILLED
+		else if(!O.check_completion())
+			return CULT_LOSS
+	return CULT_VICTORY
 
 /datum/team/cult/roundend_report()
 	var/list/parts = list()
 
-	if(check_cult_victory())
+	var/victory = check_cult_victory()
+
+	if(victory == CULT_NARSIE_KILLED) // Epic failure, you summoned your god and then someone killed it.
+		parts += "<span class='redtext big'>Nar'sie has been killed! The cult will haunt the universe no longer!</span>"
+	else if(victory)
 		parts += "<span class='greentext big'>The cult has succeeded! Nar-sie has snuffed out another torch in the void!</span>"
 		for(var/mind in members)
 			var/datum/mind/M = mind
@@ -510,3 +573,20 @@
 
 /datum/team/cult/is_gamemode_hero()
 	return SSticker.mode.name == "cult"
+
+/datum/outfit/cultist
+	name = "Cultist (Preview only)"
+
+	uniform = /obj/item/clothing/under/color/black
+	suit = /obj/item/clothing/suit/yogs/armor/sith_suit
+	shoes = /obj/item/clothing/shoes/cult/alt
+	r_hand = /obj/item/melee/blood_magic/stun
+
+/datum/outfit/cultist/post_equip(mob/living/carbon/human/H, visualsOnly)
+	H.eye_color = BLOODCULT_EYE
+	H.update_body()
+
+	var/obj/item/clothing/suit/hooded/hooded = locate() in H
+	if(!isdummy(H))
+		hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
+		hooded.ToggleHood()

@@ -239,6 +239,20 @@
 		M.hallucination += 5
 	return ..()
 
+/datum/reagent/toxin/relaxant
+	name = "Muscle Relaxant"
+	description = "A potent paralytic chemical that causes the patient to move and act slower."
+	toxpwr = 0
+
+/datum/reagent/toxin/relaxant/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.next_move_modifier *= 3
+
+/datum/reagent/toxin/relaxant/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	L.next_move_modifier /= 3
+
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
@@ -395,10 +409,17 @@
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
 	process_flags = ORGANIC | SYNTHETIC
+	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += 40
+	M.radiation += radpower
 	..()
+
+/datum/reagent/toxin/polonium/ebow
+	name = "Potent Polonium"
+	description = "A more potent form of Polonium. It is purged more quickly from the body, but also significantly more deadly."
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	radpower = 80
 
 /datum/reagent/toxin/histamine
 	name = "Histamine"
@@ -747,7 +768,8 @@
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
-	if(M.hud_used)
+	return ..() //dont forget to reenable this
+	/*if(M.hud_used)
 		if(prob(80))
 			var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"])
 			var/rotation = rand(0, 360)*rand(1, 4) // By this point the player is probably puking and quitting anyway
@@ -756,15 +778,16 @@
 				animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 0.5 SECONDS, easing = QUAD_EASING)
 			animate(M, transform = matrix(-rotation, MATRIX_ROTATE), time = 0.5 SECONDS, easing = QUAD_EASING)
 			animate(transform = matrix(rotation, MATRIX_ROTATE), time = 0.5 SECONDS, easing = QUAD_EASING)
-	return ..()
+	return ..()*/
 
 /datum/reagent/toxin/rotatium/on_mob_end_metabolize(mob/living/M)
-	if(M && M.hud_used)
+	..()
+	/*if(M && M.hud_used)
 		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"])
 		for(var/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 0.5 SECONDS, easing = QUAD_EASING)
 		animate(M, transform = matrix(), time = 0.5 SECONDS, easing = QUAD_EASING)
-	..()
+	..()*/
 
 /datum/reagent/toxin/anacea
 	name = "Anacea"

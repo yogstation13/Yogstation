@@ -1,6 +1,9 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -26,6 +29,10 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
+	departments_list = list(
+		/datum/job_department/security,
+	)
+
 	mail_goodies = list(
 		///obj/item/storage/fancy/cigarettes = 25,
 		/obj/item/ammo_box/c38 = 25,
@@ -38,6 +45,8 @@
 	)
 
 	changed_maps = list("EclipseStation", "OmegaStation")
+
+	smells_like = "whisky-soaked despair"
 
 /datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2

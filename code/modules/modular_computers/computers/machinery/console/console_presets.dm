@@ -209,7 +209,7 @@
 			return
 		var/obj/item/canvas/P = I
 		var/obj/structure/sign/painting/frame = new(src)
-		frame.persistence_id = "public_paintings"
+		frame.persistence_id = "public"
 		frame.C = P
 		frame.C.finalize(user)
 		frame.save_persistent()

@@ -12,23 +12,40 @@
 	if(!IS_HERETIC(user))
 		return
 	if(!target)
-		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
+		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to receive a target."))
 		return
 	var/turf/userturf = get_turf(user)
 	var/turf/targetturf = get_turf(target)
 	var/dist = get_dist(userturf,targetturf)
 	var/dir = get_dir(userturf,targetturf)
+	var/crowd = 0
+	var/crowd_text = ""
+	for(var/mob/living/L in view(7, target))
+		if(L == user)
+			continue
+		if(L == target)
+			continue
+		if(!L.client)
+			continue
+		crowd++
+	switch(crowd)
+		if(0)
+			crowd_text = "</span> <span class='boldnotice'>They are alone!"
+		if(1 to 2)
+			crowd_text = " They are not alone..."
+		if(3 to INFINITY)
+			crowd_text = "</span> <span class='boldwarning'>They are surrounded by people."
 
 	if(userturf.z != targetturf.z)
 		to_chat(user,span_warning("[target.real_name] is ... vertical to you?"))
 	else
 		switch(dist)
 			if(0 to 15)
-				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[target.real_name] is near you. They are to the [dir2text(dir)] of you![crowd_text]"))
 			if(16 to 31)
-				to_chat(user,span_warning("[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you![crowd_text]"))
 			if(32 to 127)
-				to_chat(user,span_warning("[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!"))
+				to_chat(user,span_warning("[target.real_name] is far away from you. They are to the [dir2text(dir)] of you![crowd_text]"))
 			else
 				to_chat(user,span_warning("[target.real_name] is beyond our reach."))
 

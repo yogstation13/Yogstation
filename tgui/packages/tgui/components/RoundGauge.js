@@ -65,7 +65,7 @@ export const RoundGauge = props => {
   };
 
   const alertColor = shouldShowAlert()
-     && keyOfMatchingRange(clampedValue, scaledRanges);
+    && keyOfMatchingRange(clampedValue, scaledRanges);
 
   return (
     <Box inline>
@@ -109,7 +109,7 @@ export const RoundGauge = props => {
                   style={{
                     'stroke-dashoffset': (
                       Math.max((2.0 - (col_ranges[1] - col_ranges[0]))
-                         * Math.PI * 50, 0)
+                        * Math.PI * 50, 0)
                     ),
                   }}
                   transform={`rotate(${180 + 180 * col_ranges[0]} 50 50)`}

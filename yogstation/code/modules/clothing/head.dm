@@ -173,7 +173,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_atmospherics"
-	armor = list(rad = 10, fire = 10)
+	armor = list(rad = 10, fire = 80)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/ce
@@ -182,7 +182,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_ce"
-	armor = list(rad = 20, fire = 30)
+	armor = list(rad = 20, fire = 80)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sci
@@ -273,7 +273,7 @@
 
 /obj/item/clothing/head/milliondollarhat
 	name = "millionaires hat"
-	desc = "On a small label at the bottom of the hat it reads.'My name is Doug Dimmadome, owner of the Dimmsdale Dimmadome and thank you for buying one of my top quality dimmahats!' On a even smaller label hidden in the small label it reads 'No refunds'."
+	desc = "On a small label at the bottom of the hat it reads.'My name is Doug Dimmadome, owner of the Dimmsdale Dimmadome and thank you for buying one of my top quality dimmahats!' On an even smaller label hidden in the small label it reads 'No refunds'."
 	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/1024x1024/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/1024x1024/hats.dmi'
 	icon_state = "milliondollarhat"

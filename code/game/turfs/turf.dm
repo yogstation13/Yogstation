@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	var/turf/T = SSmapping.get_turf_above(src)

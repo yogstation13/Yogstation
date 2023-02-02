@@ -174,3 +174,25 @@
 	. = ..()
 	new /obj/item/clothing/accessory/dogtags(src)
 	new /obj/item/clothing/head/peacekeeperberet(src)
+
+/obj/item/toy/plush/axolotlplushie
+	name = "axolotl plushie"
+	desc = "An adorable stuffed toy that resembles an axolotl. Not to be mistaken for the real thing."
+	icon_state = "plushie_axolotl"
+	lefthand_file = 'icons/mob/pets_held_lh.dmi'
+	righthand_file = 'icons/mob/pets_held_rh.dmi'
+	item_state = "axolotl"
+	attack_verb = list("nibbles", "splats")
+	squeak_override = list('sound/effects/axolotl.ogg' = 1)
+
+/obj/item/bedsheets/pridebedsheet/cark
+	name = "Pride Bedsheet"
+	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
+	icon = 'icons/obj/bedsheets.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi' 
+	icon_state = "sheetpride"
+	item_state = "sheetpride"
+	slot_flags = ITEM_SLOT_NECK
+	layer = MOB_LAYER

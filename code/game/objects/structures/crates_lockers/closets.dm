@@ -123,7 +123,6 @@ GLOBAL_LIST_EMPTY(lockers)
 	is_animating_door = FALSE
 	vis_contents -= door_obj
 	update_icon()
-	COMPILE_OVERLAYS(src)
 
 /obj/structure/closet/proc/get_door_transform(angle)
 	var/matrix/M = matrix()
@@ -631,3 +630,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(air_contents)
 		return air_contents.return_temperature()
 	return ..()
+
+/obj/structure/closet/CanAStarPass(ID, dir, caller)
+	if(can_open(caller) || allowed(caller))
+		return TRUE
+	. = ..()
+	

@@ -602,6 +602,7 @@
 		if(AIRLOCK_DENY, AIRLOCK_OPENING, AIRLOCK_CLOSING, AIRLOCK_EMAG)
 			icon_state = "nonexistenticonstate" //MADNESS
 	set_airlock_overlays(state)
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/airlock/proc/set_side_overlays(obj/effect/overlay/airlock_part/base, show_lights = FALSE)
 	var/side = base.side_id
@@ -1139,7 +1140,13 @@
 		if(!T.darkspawn)
 			return ..()
 		else if(user.a_intent == INTENT_DISARM && density)
+			// we dont want Duality double-hitting the airlock when we're trying to pry it open
+			if(user.get_active_held_item() != C)
+				return
 			if(!locked && !welded)
+				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
+					open(2)
+					return
 				if(!T.darkspawn.has_psi(15))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
 					return

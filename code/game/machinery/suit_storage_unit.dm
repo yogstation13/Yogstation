@@ -431,10 +431,10 @@
 		if("door")
 			if(state_open)
 				close_machine()
-				playsound(src, 'sound/machines/decon/decon-close.ogg', 75, TRUE)
+				playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 			else
 				open_machine(0)
-				playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
+				playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
 				if(occupant)
 					dump_contents() // Dump out contents if someone is in there.
 			. = TRUE
@@ -485,10 +485,10 @@
 		return
 	if(state_open)
 		close_machine()
-		playsound(src, 'sound/machines/decon/decon-close.ogg', 75, TRUE)
+		playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 	else
 		open_machine(0)
-		playsound(src, 'sound/machines/decon/decon-open.ogg', 75, TRUE)
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 

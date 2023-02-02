@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			visible_message("[src] whirs as it prints and binds a new book.")
 			var/obj/item/book/B = new(src.loc)
 			for(var/datum/langtext/L in P.written)
-				B.dat = L.text
+				B.dat += L.text
 			var/title = "Print Job #" + "[rand(100, 999)]"
 			B.name = title
 			B.title = title

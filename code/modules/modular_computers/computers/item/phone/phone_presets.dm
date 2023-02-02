@@ -48,7 +48,7 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 	starting_files = list(	new /datum/computer_file/program/budgetorders,

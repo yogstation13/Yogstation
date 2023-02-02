@@ -1,6 +1,8 @@
 /datum/job/scientist
 	title = "Scientist"
+	description = "Do experiments, perform research, feed the slimes, make bombs."
 	flag = SCIENTIST
+	orbit_icon = "flask"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -13,13 +15,17 @@
 	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist")
 	outfit = /datum/outfit/job/scientist
 
-	added_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
+	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
 	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins
+
+	departments_list = list(
+		/datum/job_department/science,
+	)
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -29,6 +35,8 @@
 		/obj/item/camera_bug = 1
 	)
 
+	smells_like = "slime"
+
 /datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
@@ -37,7 +45,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	added_access = list()
-	base_access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
+	base_access = list(ACCESS_ROBO_CONTROL, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/scientist
@@ -59,3 +67,7 @@
 	..()
 	if(prob(0.4))
 		neck = /obj/item/clothing/neck/tie/horrible
+
+/datum/outfit/job/scientist/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/neck/tie/horrible

@@ -218,7 +218,7 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = FALSE
 	var/forced_off = FALSE
@@ -415,9 +415,9 @@
 		on_gs = on
 		if(on)
 			static_power_used = brightness * 20 //20W per unit luminosity
-			addStaticPower(static_power_used, STATIC_LIGHT)
+			addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 		else
-			removeStaticPower(static_power_used, STATIC_LIGHT)
+			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
 
@@ -689,7 +689,7 @@
 					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						stomach.adjust_charge(5)
+						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return

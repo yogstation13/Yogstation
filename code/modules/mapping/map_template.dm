@@ -55,7 +55,9 @@
 		T.air_update_turf(TRUE) //calculate adjacent turfs along the border to prevent runtimes
 
 	SSmapping.reg_in_areas_in_z(areas)
-	SSatoms.InitializeAtoms(atoms)
+	SSatoms.InitializeAtoms(areas + turfs + atoms)
+	// NOTE, now that Initialize and LateInitialize run correctly, do we really
+	// need these two below?
 	SSmachines.setup_template_powernets(cables)
 	SSmachines.setup_template_ainets(ethernet_cables)
 	SSair.setup_template_machinery(atmos_machines)
@@ -64,14 +66,13 @@
 	var/x = round((world.maxx - width)/2)
 	var/y = round((world.maxy - height)/2)
 
-	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY)
-	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE)
+	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY, contain_turfs = FALSE)
+	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE, new_z = TRUE)
 	var/list/bounds = parsed.bounds
 	if(!bounds)
 		return FALSE
 
-	repopulate_sorted_areas()
-
+	require_area_resort()
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
 	smooth_zlevel(world.maxz)
@@ -84,9 +85,9 @@
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
 		return
-	if(T.x+width > world.maxx)
+	if((T.x+width) - 1 > world.maxx)
 		return
-	if(T.y+height > world.maxy)
+	if((T.y+height) - 1 > world.maxy)
 		return
 
 	// Accept cached maps, but don't save them automatically - we don't want
@@ -99,8 +100,7 @@
 	if(!bounds)
 		return
 
-	if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
-		repopulate_sorted_areas()
+	require_area_resort()
 
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()

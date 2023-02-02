@@ -221,3 +221,6 @@
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
 
+/datum/mood_event/type_bait
+	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
+	mood_change = -1

@@ -880,7 +880,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -965,7 +965,9 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))

@@ -1,6 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
+	description = "Watch over the Shaft Miners and they all inevitably die in Lavaland."
 	flag = MMEDIC
+	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -8,12 +10,21 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
 	selection_color = "#d4ebf2"
+	minimal_player_age = 4
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue")
 
 	minimal_character_age = 26 //Matches MD
+
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/cargo,
+	)
 
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
@@ -23,6 +34,7 @@
 
 	changed_maps = list("EclipseStation")
 
+	smells_like = "bloody soot"
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,
@@ -36,7 +48,7 @@
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
-	
+
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\

@@ -260,6 +260,7 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 
 /datum/outfit/job/plasmaman/virologist
 	name = "Plasmaman Virologist"
@@ -483,7 +484,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/mining
 	l_hand = /obj/item/storage/firstaid/regular
 	l_pocket =  /obj/item/pda/medical
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
@@ -512,6 +513,7 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 
 
 /datum/outfit/job/plasmaman/psych
@@ -547,7 +549,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
@@ -650,7 +652,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/research_director
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/rd
-	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

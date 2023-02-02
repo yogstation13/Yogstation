@@ -134,7 +134,8 @@
 		panel_height = 240
 	var/datum/browser/panel = new(usr, "banpanel", "Banning Panel", 910, panel_height)
 	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
-	if(usr.client.prefs.tgui_fancy) //some browsers (IE8) have trouble with unsupported css3 elements and DOM methods that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
+	var/tgui_fancy = usr.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy)
+	if(tgui_fancy) //some browsers (IE8) have trouble with unsupported css3 elements and DOM methods that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
 		panel.add_stylesheet("banpanelcss3", 'html/admin/banpanel_css3.css')
 		panel.add_script("banpaneljs", 'html/admin/banpanel.js')
 	var/list/output = list("<form method='get' action='?src=[REF(src)]'>[HrefTokenFormField()]")
@@ -240,14 +241,14 @@
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
 		var/break_counter = 0
-		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
+		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
 		for(var/job in GLOB.original_command_positions)
 			if(break_counter > 0 && (break_counter % 3 == 0))
 				output += "<br>"
 			output += {"<label class='inputlabel checkbox'>[job]
-						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'[usr.client.prefs.tgui_fancy ? " onClick='toggle_head(this, \"_dep\")'" : ""]>
+						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'[tgui_fancy ? " onClick='toggle_head(this, \"_dep\")'" : ""]>
 						<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 			"}
 			break_counter++
@@ -260,9 +261,9 @@
 							"Supply" = GLOB.original_supply_positions)
 		for(var/department in job_lists)
 			//the first element is the department head so they need the same javascript call as above
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			output += {"<label class='inputlabel checkbox'>[job_lists[department][1]]
-						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'[usr.client.prefs.tgui_fancy ? " onClick='toggle_head(this, \"_com\")'" : ""]>
+						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'[tgui_fancy ? " onClick='toggle_head(this, \"_com\")'" : ""]>
 						<div class='inputbox[(job_lists[department][1] in banned_from) ? " banned" : ""]'></div></label>
 			"}
 			break_counter = 1
@@ -279,7 +280,7 @@
 		var/list/headless_job_lists = list("Silicon" = GLOB.original_nonhuman_positions,
 										"Abstract" = list("Appearance", "Emote", "OOC", "Voice Announcements", "DEAD"))
 		for(var/department in headless_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in headless_job_lists[department])
 				if(break_counter > 0 && (break_counter % 3 == 0))
@@ -301,7 +302,7 @@
 									ROLE_TRAITOR, ROLE_WIZARD, ROLE_GANG, ROLE_VAMPIRE,
 									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_ZOMBIE, ROLE_HERETIC)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
 		for(var/department in long_job_lists)
-			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
@@ -462,11 +463,11 @@
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -722,7 +723,7 @@
 		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	if(alert(usr, "Please confirm unban of [target] from [role].", "Unban confirmation", "Yes", "No") == "No")
+	if(tgui_alert(usr, "Please confirm unban of [target] from [role].", "Unban confirmation", list("Yes", "No")) == "No")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
@@ -782,11 +783,11 @@
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)

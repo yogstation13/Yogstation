@@ -31,6 +31,18 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_ai_record_dsc(a, b)
 	return b["score"] - a["score"]
+// Datum cmp with vars is always slower than a specialist cmp proc, use your judgement.
+/proc/cmp_datum_numeric_asc(datum/a, datum/b, variable)
+	return cmp_numeric_asc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_numeric_dsc(datum/a, datum/b, variable)
+	return cmp_numeric_dsc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_text_asc(datum/a, datum/b, variable)
+	return sorttext(b.vars[variable], a.vars[variable])
+
+/proc/cmp_datum_text_dsc(datum/a, datum/b, variable)
+	return sorttext(a.vars[variable], b.vars[variable])
 
 /proc/cmp_ckey_asc(client/a, client/b)
 	return sorttext(b.ckey, a.ckey)
@@ -110,6 +122,9 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 		return sorttext(b_name, a_name)
 
 /proc/cmp_job_display_asc(datum/job/A, datum/job/B)
+	return A.display_order - B.display_order
+
+/proc/cmp_department_display_asc(datum/job_department/A, datum/job_department/B)
 	return A.display_order - B.display_order
 
 /proc/cmp_reagents_asc(datum/reagent/a, datum/reagent/b)

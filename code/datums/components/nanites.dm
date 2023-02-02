@@ -24,7 +24,7 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
 			return COMPONENT_INCOMPATIBLE
 
 		host_mob.hud_set_nanite_indicator()
@@ -52,7 +52,7 @@
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
-		RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/on_death)
+		RegisterSignal(parent, COMSIG_GLOB_MOB_DEATH, .proc/on_death)
 		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
 		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
 		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
@@ -74,7 +74,7 @@
 								COMSIG_NANITE_SCAN,
 								COMSIG_NANITE_SYNC,
 								COMSIG_ATOM_EMP_ACT,
-								COMSIG_MOB_DEATH,
+								COMSIG_GLOB_MOB_DEATH,
 								COMSIG_MOB_ALLOWED,
 								COMSIG_LIVING_ELECTROCUTE_ACT,
 								COMSIG_LIVING_MINOR_SHOCK,
@@ -93,14 +93,14 @@
 	host_mob = null
 	return ..()
 
-/datum/component/nanites/InheritComponent(datum/component/nanites/new_nanites, i_am_original, list/arguments)
+/datum/component/nanites/InheritComponent(datum/component/nanites/new_nanites, i_am_original, _amount, _cloud)
 	if(new_nanites)
 		adjust_nanites(null, new_nanites.nanite_volume)
 	else
-		adjust_nanites(null, arguments[1]) //just add to the nanite volume
+		adjust_nanites(null, _amount) //just add to the nanite volume
 
-/datum/component/nanites/process()
-	adjust_nanites(null, regen_rate)
+/datum/component/nanites/process(delta_time)
+	adjust_nanites(null, regen_rate * delta_time)
 	add_research()
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
@@ -213,7 +213,7 @@
 			NP.receive_comm_signal(comm_code, comm_message, comm_source)
 
 /datum/component/nanites/proc/check_viable_biotype()
-	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes))
+	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob))
 		qdel(src) //bodytype no longer sustains nanites
 
 /datum/component/nanites/proc/check_access(datum/source, obj/O)

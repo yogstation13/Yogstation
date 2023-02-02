@@ -293,7 +293,7 @@ obj/machinery/holopad/secure/Initialize()
 					if(pad.padname)
 						LAZYADD(callnames[pad.padname], pad)
 				callnames -= padname
-				var/result = input(usr, "Choose an area to call", "Holocall") as null|anything in sortList(callnames)
+				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortNames(callnames))
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
@@ -440,7 +440,6 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 		Hologram.setAnchored(TRUE)//So space wind cannot drag it.
 		Hologram.name = "[user.name] (Hologram)"//If someone decides to right click.
-		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
 
 		if(AI)
@@ -478,9 +477,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
 	if(total_users || replay_mode)
-		set_light(2)
+		set_light_on(TRUE)
 	else
-		set_light(0)
+		set_light_on(FALSE)
 	update_icon()
 
 /obj/machinery/holopad/update_icon()
@@ -612,7 +611,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	Hologram.setAnchored(TRUE)//So space wind cannot drag it.
 	Hologram.name = "[record.caller_name] (Hologram)"//If someone decides to right click.
-	Hologram.set_light(2)	//hologram lighting
 	visible_message(span_notice("A holographic image of [record.caller_name] flickers to life before your eyes!"))
 	return Hologram
 
@@ -713,6 +711,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	initial_language_holder = /datum/language_holder/universal
 	var/mob/living/Impersonation
 	var/datum/holocall/HC
+
+	light_system = MOVABLE_LIGHT
+	light_range = 4
+	light_color = COLOR_CYAN
 
 /obj/effect/overlay/holo_pad_hologram/Destroy()
 	Impersonation = null

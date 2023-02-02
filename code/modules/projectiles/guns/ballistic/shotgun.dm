@@ -40,6 +40,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
 	can_be_sawn_off  = TRUE
+	weapon_weight = WEAPON_HEAVY
 
 // Breaching Shotgun //
 
