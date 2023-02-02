@@ -198,6 +198,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
+	var/inherent_slowdown = 0
+
 ///////////
 // PROCS //
 ///////////
@@ -1466,6 +1468,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
+		. += inherent_slowdown
+
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
 			. += 1 + grav_force
