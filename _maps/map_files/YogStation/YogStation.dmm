@@ -1540,6 +1540,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ajh" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "aji" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -13000,22 +13015,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bKB" = (
-/obj/structure/closet/emcloset,
-/obj/structure/sign/warning/electricshock{
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "bKG" = (
 /obj/machinery/requests_console{
 	department = "EVA";
@@ -18235,6 +18234,18 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"ddX" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "dea" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -26229,6 +26240,10 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"gtd" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "gtg" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
@@ -34585,6 +34600,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"jKE" = (
+/obj/structure/sign/warning/electricshock{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "jKG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
@@ -41465,6 +41495,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"mBh" = (
+/turf/closed/wall,
+/area/space)
 "mBi" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2_sensor"
@@ -44265,15 +44298,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"nMV" = (
-/obj/effect/landmark/blobstart,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "nNg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -52275,6 +52299,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
+"rfO" = (
+/turf/template_noop,
+/area/space)
 "rgh" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -61582,24 +61609,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"uSq" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "uSG" = (
 /obj/machinery/power/apc{
 	areastring = "/area/engine/foyer";
@@ -121930,7 +121939,7 @@ bce
 oUY
 oGM
 bNA
-uSq
+ajh
 kQW
 iwk
 mNK
@@ -122187,7 +122196,7 @@ ncw
 brW
 oGM
 cou
-bKB
+jKE
 cjD
 shT
 clz
@@ -122434,7 +122443,7 @@ cOe
 cNW
 xhE
 cNW
-cOe
+woo
 oGM
 oGM
 oGM
@@ -122443,8 +122452,8 @@ oGM
 oGM
 oGM
 oGM
-cOe
-cNW
+cdR
+sLr
 cjD
 cjD
 cjD
@@ -122694,14 +122703,14 @@ bqL
 bqL
 bqL
 bqL
-bqL
+ddX
 bqL
 bqL
 uGx
 bqL
 kHX
-nMV
-hNs
+bqL
+giq
 cNW
 gXs
 aaf
@@ -122957,8 +122966,8 @@ cOe
 pRG
 tpH
 eCG
+gtd
 cOe
-iKq
 cNW
 aaa
 aaa
@@ -123215,7 +123224,7 @@ umE
 cNW
 cNW
 arG
-iKq
+cNW
 cNW
 gXs
 gXs
@@ -123472,7 +123481,7 @@ jjr
 cNW
 iKq
 iKq
-iKq
+hNs
 cNW
 aoV
 aaa
@@ -123986,7 +123995,7 @@ tPY
 cNW
 iKq
 iKq
-cNW
+iKq
 cNW
 gXs
 gXs
@@ -124243,8 +124252,8 @@ kRp
 cNW
 iKq
 iKq
-aaa
-aoV
+rfO
+mBh
 aaa
 aaa
 aaa
@@ -124500,8 +124509,8 @@ szB
 cNW
 iKq
 iKq
-aaa
-aaa
+rfO
+mBh
 aaa
 aaa
 aaa
@@ -124757,8 +124766,8 @@ jSR
 cNW
 cNW
 cNW
-aaa
-aaa
+mBh
+mBh
 aaa
 aaa
 aaa
