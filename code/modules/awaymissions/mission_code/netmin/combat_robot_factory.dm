@@ -26,6 +26,19 @@
 	If possible they should make a formidable addition as a commander type robot.\
 	We'd have to wipe their memories or I'm sure they wouldn't be happy..."}
 
+/obj/item/paper/crumpled/bloody/fluff/awaymissions/robot_factory/control_man
+	name = "paper"
+	info = {"Something went horribly wrong with the latest experiment... I'm not sure how to explain, but it's *alive* and it's *angry*. The higher ups will have my head for this if I don't get killed in action... 
+	I'll send them a message to halt the latest shipment incase it was contaminated, and after that..."}
+
+/obj/item/paper/fluff/awaymissions/robot_factory/control_message
+	name = "message log"
+	info = {"Sending message with title 'SHIPMENT CONTAMINATION' failed. Please validate that communication dishes are working and try again."}
+
+/obj/item/paper/fluff/awaymissions/robot_factory/diagnostic
+	name = "diagnostic report"
+	info = {"Main servos offline. Main processor failing. Sending diagnostic data to master controller at location \[REDACTED\]."}
+
 
 /obj/item/disk/holodisk/combat_robot/introduction
 	preset_image_type = /datum/preset_holoimage/cc_official
