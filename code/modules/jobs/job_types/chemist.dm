@@ -31,8 +31,6 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
 		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
@@ -41,13 +39,6 @@
 	)
 
 	smells_like = "chemicals"
-
-/datum/job/chemist/proc/OmegaStationChanges()
-	return TRUE
-
-/datum/job/chemist/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
 
 /datum/outfit/job/chemist
 	name = "Chemist"

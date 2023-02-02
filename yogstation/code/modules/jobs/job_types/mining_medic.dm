@@ -32,18 +32,12 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
 
-	changed_maps = list("EclipseStation")
-
 	smells_like = "bloody soot"
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,
 		/obj/item/fulton_core = 1
 	)
-
-/datum/job/miningmedic/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
 
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
