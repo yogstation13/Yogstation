@@ -245,7 +245,7 @@
 	H.real_name = "[AI.real_name]"	//Randomizing the name so it shows up separately in the shells list
 	H.name = H.real_name
 	mainframe = AI
-	undeployment_action.Grant(src)
+	undeployment_action.Grant(H)
 
 /datum/action/innate/undeployment_synth
 	name = "Disconnect from synthetic unit"
@@ -267,7 +267,7 @@
 	if(!H.mind)
 		return
 	H.mind.transfer_to(mainframe)
-	undeployment_action.Remove(src)
+	undeployment_action.Remove(H)
 	mainframe = null
 
 #undef CONCIOUSAY

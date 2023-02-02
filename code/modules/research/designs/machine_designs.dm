@@ -699,6 +699,15 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/synth_pod
+	name = "Machine Design (Synthetic Storage Unit)"
+	desc = "The circuit board for a synthetic storage unit."
+	id = "synth_pod"
+	build_path = /obj/item/circuitboard/machine/synth_pod
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+
 /datum/design/board/decontamination_unit
 	name = "Machine Design (Decontamination Unit)"
 	desc = "The circuit board for a decontamination unit."

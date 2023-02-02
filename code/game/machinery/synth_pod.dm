@@ -6,7 +6,7 @@
 	icon_state = "close"
 	density = TRUE
 	max_integrity = 500
-	circuit = /obj/item/circuitboard/machine/suit_storage_unit
+	circuit = /obj/item/circuitboard/machine/synth_pod
 
 	var/mob/living/carbon/human/stored
 								// if you add more storage slots, update cook() to clear their radiation too.
@@ -61,6 +61,8 @@
 		else
 			target.visible_message("<span class='warning'>[user] pushes [target] into [src] and shuts its door!<span>", span_userdanger("[user] shoves you into [src] and shuts the door!"))
 		close_machine(target)
+		stored = target
+		update_icon()
 
 
 /obj/machinery/synth_pod/attackby(obj/item/W, mob/user)
@@ -98,4 +100,5 @@
 		var/datum/species/wy_synth/S = stored.dna.species
 		S.assume_control(AI, stored)
 		stored = null
+		update_icon()
 
