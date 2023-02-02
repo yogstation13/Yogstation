@@ -1,6 +1,6 @@
 /datum/ai_project/language_upgrade
 	name = "Language Processing Upgrade"
-	description = "Through brute force neural processing through several audio recordings and books written in other languages, you can learn common languages."
+	description = "Via brute force neural processing through several audio recordings and books written in other languages, you can learn common languages."
 	research_cost = 4000
 	ram_required = 1
 	category = AI_PROJECT_SURVEILLANCE
