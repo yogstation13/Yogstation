@@ -2,4 +2,4 @@
 
 /obj/item/projectile/bullet/a546
 	name = "5.46mm bullet"
-	damage = 34
+	damage = 38

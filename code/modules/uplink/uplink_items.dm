@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Slaughter your enemies through sheer force, prone to overheating with extended use. We made this gun so advanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
-	cost = 36
+	cost = 30
 	surplus = 0
 	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
