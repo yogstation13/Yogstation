@@ -619,7 +619,6 @@
 		flashlight_overlay.pixel_y = flight_y_offset
 		add_overlay(flashlight_overlay, TRUE)
 	else
-		set_light_on(FALSE)
 		cut_overlay(flashlight_overlay, TRUE)
 		flashlight_overlay = null
 	update_icon()
