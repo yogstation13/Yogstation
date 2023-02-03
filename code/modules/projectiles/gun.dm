@@ -610,10 +610,6 @@
 
 /obj/item/gun/proc/update_gunlight()
 	if(gun_light)
-		set_light_on(gun_light.on)
-			set_light(gun_light.light_range)
-		else
-			set_light(0)
 		cut_overlay(flashlight_overlay, TRUE)
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
 		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
