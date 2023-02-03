@@ -24,10 +24,12 @@ Sprites:
 Javascript: 
   - '**/*.js'
 
-# Changes to a .dmm or anything in the _maps folder
+# Changes to a .dmm or anything in the _maps folder or any of the map definitions
 Mapping: 
   - '**/*.dmm'
   - '_maps/**'
+  - 'code/datums/ruins/**'
+  - 'code/datums/shuttles.dm'
 
 # Changes to a .ogg or anything in the sound folder
 Sound: 
