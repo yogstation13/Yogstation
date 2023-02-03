@@ -2822,7 +2822,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/mech/seraph
 	name = "Seraph exosuit"
-	desc = "An ultra-heavy exosuit designed for ending even the most persistent protests - while keeping its occupant clean and comfortable. Faster, tougher, and stronger than it's Marauder cousin."
+	desc = "An ultra-heavy exosuit designed for destroying armies. Faster, tougher, and stronger than it's Marauder cousin."
 	item = /obj/mecha/combat/marauder/seraph/unloaded
 	cost = 30
 
