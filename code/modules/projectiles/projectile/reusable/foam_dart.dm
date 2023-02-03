@@ -21,6 +21,7 @@
 	if(!iscarbon(target))
 		return
 	
+	var/nerfed = FALSE
 	var/mob/living/carbon/C = target
 	for(var/obj/item/gun/ballistic/automatic/toy/T in C.held_items)
 		nerfed = TRUE
