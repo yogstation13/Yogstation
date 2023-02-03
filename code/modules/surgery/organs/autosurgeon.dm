@@ -176,6 +176,10 @@
 /obj/item/autosurgeon/syndicate/spinalspeed
 	starting_organ = /obj/item/organ/cyberimp/chest/spinalspeed
 
+/obj/item/autosurgeon/suspicious
+	name = "syndicate autosurgeon"
+	icon_state = "autoimplanter_red"
+
 //Limb autosurgeons
 
 /obj/item/autosurgeon/limb
