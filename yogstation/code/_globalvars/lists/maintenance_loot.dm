@@ -1,10 +1,10 @@
 //Value guidelines.
 
 #define W_ESSENTIAL 400
-#define W_COMMON 200
-#define W_UNCOMMON 25
-#define W_RARE 10
-#define W_MYTHICAL 5
+#define W_COMMON 140
+#define W_UNCOMMON 40
+#define W_RARE 20
+#define W_MYTHICAL 10
 #define W_LEGENDARY 1
 
 //The very definition of maintenance loot. Stuff that engineers and others left around.
@@ -614,7 +614,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/bodybag = W_UNCOMMON,
 	/obj/item/card/emagfake = W_RARE,
 	/obj/item/caution = W_UNCOMMON,
-	/obj/item/clothing/glasses/sunglasses/cheap = W_ESSENTIAL,
+	/obj/item/clothing/glasses/sunglasses/cheap = W_UNCOMMON,
 	/obj/item/cultivator = W_RARE,
 	/obj/item/cultivator/rake = W_RARE,
 	/obj/item/flashlight/lamp/bananalamp = W_UNCOMMON,
@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/grenade/chem_grenade/glitter/pink = W_RARE,
 	/obj/item/grenade/chem_grenade/glitter/blue = W_RARE,
 	/obj/item/grenade/chem_grenade/glitter/white = W_RARE,
-	/obj/item/grenade/smokebomb = W_COMMON,
+	/obj/item/grenade/smokebomb = W_UNCOMMON,
 	/obj/item/hatchet = W_RARE,
 	/obj/item/healthanalyzer/wound = W_UNCOMMON,
 	/obj/item/kitchen/knife = W_RARE,
@@ -771,7 +771,23 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/clothing/head/helmet/justice = W_MYTHICAL,
 	/obj/item/clothing/head/helmet/justice/escape = W_MYTHICAL,
 	/obj/item/clothing/suit/hooded/bloated_human = W_MYTHICAL,
-	/obj/item/assembly/radio = W_UNCOMMON
+	/obj/item/assembly/radio = W_UNCOMMON,
+	/obj/item/reagent_containers/glass/bottle/killer/pestkiller = W_UNCOMMON,
+	/obj/item/reagent_containers/glass/bottle/killer/weedkiller = W_UNCOMMON,
+	/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted = W_RARE,
+	/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted = W_MYTHICAL,
+	/obj/item/gun/ballistic/automatic/toy/unrestricted = W_RARE,
+	/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = W_RARE,
+	/obj/item/coin/antagtoken = W_UNCOMMON,
+	/obj/item/dnainjector/chavmut = W_RARE,
+	/obj/item/dnainjector/elvismut = W_RARE,
+	/obj/item/dnainjector/stuttmut = W_RARE,
+	/obj/item/dnainjector/swedishmut = W_RARE,
+	/obj/item/dnainjector/tourmut = W_RARE,
+	/obj/item/dnainjector/wackymut = W_RARE,
+	/obj/item/pizzabox/pineapple = W_RARE,
+	/obj/item/survivalcapsule = W_MYTHICAL,
+	/obj/item/taster = W_MYTHICAL,
 ))
 
 
@@ -793,25 +809,14 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/cardboard_cutout/adaptive = W_RARE,
 	/obj/item/clothing/glasses/chameleon/broken = W_RARE,
 	/obj/item/clothing/glasses/sunglasses = W_ESSENTIAL,
-	/obj/item/coin/antagtoken = W_UNCOMMON,
 	/obj/item/discoballdeployer = W_RARE,
 	/obj/item/disk/nuclear/fake/obvious = W_RARE,
-	/obj/item/dnainjector/chavmut = W_RARE,
-	/obj/item/dnainjector/elvismut = W_RARE,
-	/obj/item/dnainjector/stuttmut = W_RARE,
-	/obj/item/dnainjector/swedishmut = W_RARE,
 	/obj/item/dnainjector/timed/h2m = W_MYTHICAL,
-	/obj/item/dnainjector/tourmut = W_RARE,
-	/obj/item/dnainjector/wackymut = W_RARE,
 	/obj/item/extinguisher/advanced = W_MYTHICAL,
 	/obj/item/fakeartefact = W_UNCOMMON,
 	/obj/item/firing_pin/clown = W_MYTHICAL,
 	/obj/item/forcefield_projector = W_MYTHICAL,
 	/obj/item/grenade/barrier = W_MYTHICAL,
-	/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted = W_UNCOMMON,
-	/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted = W_RARE,
-	/obj/item/gun/ballistic/automatic/toy/unrestricted = W_UNCOMMON,
-	/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = W_UNCOMMON,
 	/obj/item/gun/energy/floragun = W_RARE,
 	/obj/item/gun/energy/gravity_gun = W_MYTHICAL,
 	/obj/item/gun/energy/laser/practice = W_RARE,
@@ -830,7 +835,6 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/pda/chameleon/broken = W_RARE,
 	/obj/item/pet_carrier = W_RARE,
 	/obj/item/pipe_dispenser = W_MYTHICAL,
-	/obj/item/pizzabox/pineapple = W_RARE,
 	/obj/item/pneumatic_cannon/pie = W_RARE,
 	/obj/item/radio/headset/chameleon/broken = W_UNCOMMON,
 	/obj/item/reagent_containers/food/drinks/bottle/holywater = W_RARE,
@@ -840,8 +844,6 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/reagent_containers/glass/bottle/drugs = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/ethanol = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/formaldehyde = W_UNCOMMON,
-	/obj/item/reagent_containers/glass/bottle/killer/pestkiller = W_UNCOMMON,
-	/obj/item/reagent_containers/glass/bottle/killer/weedkiller = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/mercury = W_UNCOMMON,
 	/obj/item/reagent_containers/glass/bottle/morphine = W_MYTHICAL,
 	/obj/item/reagent_containers/glass/bottle/mutagen = W_MYTHICAL,
@@ -884,8 +886,6 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/storage/firstaid/o2 = W_MYTHICAL,
 	/obj/item/storage/firstaid/toxin = W_MYTHICAL,
 	/obj/item/storage/lockbox/dueling = W_MYTHICAL,
-	/obj/item/survivalcapsule = W_MYTHICAL,
-	/obj/item/taster = W_MYTHICAL,
 	/obj/item/toy/cards/deck/syndicate = W_RARE,
 	/obj/item/toy/crayon/spraycan/hellcan = W_MYTHICAL,
 	/obj/item/toy/eightball/haunted = W_RARE,
