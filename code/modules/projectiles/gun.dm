@@ -610,7 +610,7 @@
 
 /obj/item/gun/proc/update_gunlight()
 	if(gun_light)
-		if(gun_light.on)
+		set_light_on(gun_light.on)
 			set_light(gun_light.light_range)
 		else
 			set_light(0)
