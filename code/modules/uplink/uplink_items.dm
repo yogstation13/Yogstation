@@ -487,7 +487,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun. \
 			This deadly weapon has a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/gun/ballistic/automatic/l6_saw
-	cost = 20
+	cost = 18
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -973,7 +973,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 
 /datum/uplink_item/ammo/machinegun
-	cost = 6
+	cost = 5
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -988,7 +988,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with special properties \
 			to puncture even the most durable armor."
 	item = /obj/item/ammo_box/magazine/mm712x82/ap
-	cost = 9
+	cost = 8
 
 /datum/uplink_item/ammo/machinegun/hollow
 	name = "7.12x82mm (Hollow-Point) Box Magazine"
