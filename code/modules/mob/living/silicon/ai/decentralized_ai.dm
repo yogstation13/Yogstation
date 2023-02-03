@@ -129,9 +129,11 @@
 	var/obj/machinery/ai/master_subcontroller/MS
 	if(ai_network.cached_subcontroller)
 		MS = ai_network.cached_subcontroller
-		if(!(src in MS.network.ai_list))
+		if(ai_network.resources != MS.network.resources)
+			ai_network.cached_subcontroller = null
 			MS = null
-	else
+
+	if(!MS)
 		MS = ai_network.find_subcontroller()
 		ai_network.cached_subcontroller = MS
 	if(!MS)
