@@ -52,7 +52,7 @@
 	var/datum/action/innate/undeployment_synth/undeployment_action = new
 	var/mob/living/silicon/ai/mainframe
 
-	inherent_slowdown = 0.5
+	inherent_slowdown = 0.65
 
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
