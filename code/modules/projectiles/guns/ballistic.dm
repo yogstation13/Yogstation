@@ -257,9 +257,9 @@
 /obj/item/gun/ballistic/proc/rack(mob/user = null)
 	if (bolt_type == BOLT_TYPE_NO_BOLT) //If there's no bolt, nothing to rack
 		return
-	if (weapon_weight != WEAPON_LIGHT) //Can't rack it if the weapon doesn't permit dual-wielding and your off-hand is full
-		if (user.get_inactive_held_item())
-			to_chat(user, span_notice("You cannot rack the [bolt_wording] of \the [src] while your off-hand is full!"))
+	if (weapon_weight != WEAPON_LIGHT)
+		if (user.get_inactive_held_item()) //Can't rack it if the weapon doesn't permit dual-wielding and your off-hand is full
+			to_chat(user, span_warning("You cannot rack the [bolt_wording] of \the [src] while your off-hand is full!"))
 			return
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked)	//If it's an open bolt, racking again would do nothing
