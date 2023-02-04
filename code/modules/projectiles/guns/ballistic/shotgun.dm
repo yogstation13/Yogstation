@@ -24,7 +24,7 @@
 /obj/item/gun/ballistic/shotgun/automatic
 	name = "semi-auto shotgun"
 	desc = "A shotgun that automatically chambers a new round after firing."
-	rack_sound = "gun_slide_lock_5"
+	rack_sound = "sound/weapons/gun_slide_lock_5.ogg"
 	rack_sound_vary = FALSE
 	bolt_type = BOLT_TYPE_LOCKING
 	semi_auto = TRUE
