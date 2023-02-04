@@ -111,7 +111,7 @@
 		sensor_mode = SENSOR_OFF
 
 /obj/item/clothing/under/dropped(mob/user)
-	if(attached_accessory)-
+	if(attached_accessory)
 		attached_accessory.on_clothing_dropped(src, user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
