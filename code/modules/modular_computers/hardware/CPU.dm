@@ -13,8 +13,8 @@
 	var/single_purpose = FALSE // If you can switch to other programs or only use the initial program
 	device_type = MC_CPU
 
-/obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/MC, mob/user)
-	MC.shutdown_computer()
+/obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/remove_from, mob/user)
+	remove_from.shutdown_computer()
 
 /obj/item/computer_hardware/processor_unit/small
 	name = "microprocessor"

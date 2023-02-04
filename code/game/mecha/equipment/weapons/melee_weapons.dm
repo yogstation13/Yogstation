@@ -35,15 +35,15 @@
 	var/fauna_damage_bonus = 0
 	//Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
-
+	//Standard cleave visual effect. Change this if you've got a weird weapon with non-standard cleave attacks.
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
 	if(!..())
 		return FALSE
-	if(istype(M, /obj/mecha/combat))
-		return TRUE
 	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
+		return TRUE
+	if(M.melee_allowed)
 		return TRUE
 	return FALSE
 

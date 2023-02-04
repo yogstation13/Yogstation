@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added objective view in status panel"
-  - experiment: "The syndicate now notifies its agents whether their objectives have been completed to satisfaction"

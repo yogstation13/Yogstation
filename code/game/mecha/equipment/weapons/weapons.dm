@@ -19,14 +19,13 @@
 	/// Will this push the mech back when used in no gravity
 	var/kickback = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT
-	var/restricted = TRUE //for our special hugbox exofabs
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(!..())
 		return FALSE
-	if(istype(M, /obj/mecha/combat))
-		return TRUE
 	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
+		return TRUE
+	if(M.guns_allowed)
 		return TRUE
 	return FALSE
 
@@ -162,7 +161,6 @@
 	projectile = /obj/item/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	harmful = TRUE
-	restricted = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
 	if(..()) //combat mech
@@ -180,7 +178,6 @@
 	projectile = /obj/item/projectile/kinetic/mech
 	fire_sound = 'sound/weapons/kenetic_accel.ogg'
 	harmful = TRUE
-	restricted = FALSE
 
 //attachable to all mechas, like the plasma cutter
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun/can_attach(obj/mecha/M)

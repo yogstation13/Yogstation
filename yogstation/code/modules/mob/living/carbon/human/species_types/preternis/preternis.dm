@@ -7,6 +7,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis
 	name = "Preternis"
+	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
@@ -229,8 +230,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(2 * -H.fire_stacks)
-		H.adjustFireLoss(1 * -H.fire_stacks)
+		//damage has a flat amount with an additional amount based on how wet they are
+		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
+		H.adjustFireLoss(5 - (H.fire_stacks / 2))
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
@@ -285,3 +287,32 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(unique)
 		return random_unique_preternis_name()
 	return preternis_name()
+
+/datum/species/preternis/get_features()
+	var/list/features = ..()
+
+	features += "feature_pretcolor"
+
+	return features
+
+/datum/species/preternis/get_species_description()
+	return ""//"TODO: This is preternis description"
+
+/datum/species/preternis/get_species_lore()
+	return list(
+		""//"TODO: This is preternis lore"
+	)
+
+/datum/species/preternis/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/preternis/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add

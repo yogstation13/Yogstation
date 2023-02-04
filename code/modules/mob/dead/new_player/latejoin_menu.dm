@@ -17,6 +17,20 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 	user.AttemptLateSpawn(input_contents)
 
+/datum/latejoin_menu/verb/open_fallback_ui()
+	set category = "Preferences"
+	set name = "Open fallback latejoin menu"
+	set desc = "Open fallback latejoin menu"
+
+	if (!istype(usr, /mob/dead/new_player))
+		to_chat(usr, span_notice("You cannot do this at this time!"))
+		return
+
+	if (!GLOB.latejoin_menu.check_latejoin_eligibility(usr, use_chat = TRUE))
+		return
+
+	GLOB.latejoin_menu.fallback_ui(usr)
+
 /datum/latejoin_menu/ui_close(mob/dead/new_player/user)
 	. = ..()
 	if(istype(user))
@@ -36,7 +50,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 /datum/latejoin_menu/proc/scream_at_player(mob/dead/new_player/player)
 	if(!player.jobs_menu_mounted)
-		to_chat(player, span_notice("If the late join menu isn't showing, hold CTRL while clicking the join button!"))
+		to_chat(player, span_notice("If the late join menu isn't showing, you can open the fallback menu using the verb in the Preferences tab!"))
 
 /datum/latejoin_menu/ui_data(mob/user)
 	var/mob/dead/new_player/owner = user
@@ -58,20 +72,15 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job
 
-	for(var/list/category in list(GLOB.command_positions) + list(GLOB.engineering_positions) + list(GLOB.supply_positions) + list(GLOB.nonhuman_positions - "pAI") + list(GLOB.civilian_positions) + list(GLOB.science_positions) + list(GLOB.security_positions) + list(GLOB.medical_positions) )
-		var/cat_name = SSjob.name_occupations_all[category[1]].exp_type_department
-		
+	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 		var/list/department_jobs = list()
 		var/list/department_data = list(
 			"jobs" = department_jobs,
 			"open_slots" = 0,
 		)
-		departments[cat_name] = department_data
-		for(var/job in category)
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if (!job_datum)
-				continue
+		departments[department.department_name] = department_data
 
+		for(var/datum/job/job_datum as anything in department.department_jobs)
 			var/job_availability = owner.IsJobUnavailable(job_datum.title, latejoin = TRUE)
 
 			var/list/job_data = list(
@@ -97,26 +106,17 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 /datum/latejoin_menu/ui_static_data(mob/user)
 	var/list/departments = list()
 
-	for(var/list/category in list(GLOB.command_positions) + list(GLOB.engineering_positions) + list(GLOB.supply_positions) + list(GLOB.nonhuman_positions - "pAI") + list(GLOB.civilian_positions) + list(GLOB.science_positions) + list(GLOB.security_positions) + list(GLOB.medical_positions) )
-		var/cat_color = SSjob.name_occupations_all[category[1]].selection_color
-		var/cat_name = SSjob.name_occupations_all[category[1]].exp_type_department
-
+	for(var/datum/job_department/department as anything in SSjob.joinable_departments)
 		var/list/department_jobs = list()
 		var/list/department_data = list(
 			"jobs" = department_jobs,
-			"color" = cat_color,
+			"color" = department.ui_color,
 		)
-		departments[cat_name] = department_data
+		departments[department.department_name] = department_data
 
-		for(var/job in category)
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if (!job_datum)
-				continue
-			
-			var/is_command = (job in GLOB.command_positions)
-
+		for(var/datum/job/job_datum as anything in department.department_jobs)
 			var/list/job_data = list(
-				"command" = is_command,
+				"command" = !!(job_datum.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND),
 				"description" = job_datum.description,
 				"icon" = job_datum.orbit_icon,
 			)
@@ -149,32 +149,49 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 				params["job"] = job
 
-			if(!SSticker?.IsRoundInProgress())
-				tgui_alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
+			if (!check_latejoin_eligibility(owner))
 				return TRUE
 
-			if(!GLOB.enter_allowed || SSticker.late_join_disabled)
-				tgui_alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
-				return TRUE
-
-			//Determines Relevent Population Cap
-			var/relevant_cap
-			var/hard_popcap = CONFIG_GET(number/hard_popcap)
-			var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-			if(hard_popcap && extreme_popcap)
-				relevant_cap = min(hard_popcap, extreme_popcap)
-			else
-				relevant_cap = max(hard_popcap, extreme_popcap)
-
-			if(SSticker.queued_players.len)
-				if((living_player_count() >= relevant_cap) || (owner != SSticker.queued_players[1]))
-					tgui_alert(owner, "The server is full!", "Oh No!")
-					return TRUE
-
+			remove_verb(owner, /datum/latejoin_menu/verb/open_fallback_ui)
 			// SAFETY: AttemptLateSpawn has it's own sanity checks. This is perfectly safe.
 			owner.AttemptLateSpawn(params["job"])
 
 			return TRUE
+
+
+/datum/latejoin_menu/proc/check_latejoin_eligibility(mob/dead/new_player/owner, var/use_chat = FALSE)
+	if(!SSticker?.IsRoundInProgress())
+		if (use_chat)
+			to_chat(owner, span_notice("The round is either not ready, or has already finished..."))
+		else
+			tgui_alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
+		return FALSE
+
+	if(!GLOB.enter_allowed || SSticker.late_join_disabled)
+		if (use_chat)
+			to_chat(owner, span_notice("There is an administrative lock on entering the game for non-observers!"))
+		else
+			tgui_alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
+		return FALSE
+
+	//Determines Relevent Population Cap
+	var/relevant_cap
+	var/hard_popcap = CONFIG_GET(number/hard_popcap)
+	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
+	if(hard_popcap && extreme_popcap)
+		relevant_cap = min(hard_popcap, extreme_popcap)
+	else
+		relevant_cap = max(hard_popcap, extreme_popcap)
+
+	if(SSticker.queued_players.len)
+		if((living_player_count() >= relevant_cap) || (owner != SSticker.queued_players[1]))
+			if (use_chat)
+				to_chat(owner, span_notice("The server is full!"))
+			else
+				tgui_alert(owner, "The server is full!", "Oh No!")
+			return FALSE
+	
+	return TRUE
 
 /// Gives the user a random job that they can join as, and prompts them if they'd actually like to keep it, rerolling if not. Cancellable by the user.
 /// WARNING: BLOCKS THREAD!

@@ -21,6 +21,10 @@
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
 	minimal_character_age = 20 //As a paramedic you just need to know basic first aid and handling of patients in shock. Ideally you're also strong and able to stay cool. You don't know surgery
 
+	departments_list = list(
+		/datum/job_department/medical,
+	)
+
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 	mail_goodies = list(
