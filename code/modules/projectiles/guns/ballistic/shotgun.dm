@@ -66,7 +66,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A semi-automatic shotgun with tactical furniture and a six-shell capacity underneath."
 	fire_delay = 5
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
@@ -74,7 +74,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "compact combat shotgun"
-	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
+	desc = "A compact version of the semi-automatic combat shotgun. For close encounters."
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
