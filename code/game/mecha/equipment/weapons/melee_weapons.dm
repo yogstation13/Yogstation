@@ -135,7 +135,9 @@
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
 		var/turf/T = get_step(M,turn(chassis.dir, it_turn))	//+45, +0, and -45 will get the three front tiles
+		special_hit(T)
 		for(var/atom/A in T.contents)
+			special_hit(A)
 			if(isliving(A))						
 				var/mob/living/L = A
 				
@@ -215,7 +217,7 @@
 	light_range = 5
 	light_color = LIGHT_COLOR_RED
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack(A)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/special_hit(A)
 	if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
 		var/turf/closed/wall/W = A
 		playsound(W, 'sound/weapons/blade1.ogg', 50)
