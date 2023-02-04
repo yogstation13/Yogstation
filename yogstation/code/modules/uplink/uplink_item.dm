@@ -31,10 +31,6 @@
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
 
-/datum/uplink_item/device_tools/hypnotic_flash
-	restricted_roles = list("Psychiatrist")
-	category = "Role-Restricted"
-
 
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
