@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Heretic runes will no longer eat more items than is required to transmutate"
