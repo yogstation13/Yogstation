@@ -1,0 +1,8 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Pellet damage nerfed across the board, mostly"
+  - tweak: "Pellets are more tightly clumped in every pellet-based shell"
+  - tweak: "Improv pellets now don't have a random range because why printing buckshot is so easy"
+  - tweak: "Slugs have more damage falloff but they don't delete themselves if they don't have damage"
+  - tweak: "DU slug damage from 25 to 35"
