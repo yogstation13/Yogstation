@@ -286,7 +286,7 @@
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		
 	if(isliving(target))
-		step_away(src, target)	//We push all mobs back a tad
+		step_away(target, src)	//We push all mobs back a tad
 
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor	//TROGDOR!!!!! (But he's not a robot so I can't make the visible name that)
@@ -312,7 +312,7 @@
 			C.adjustFireLoss(burn_damage)
 		else
 			L.apply_damage(burn_damage, BURN)
-		L.adjust_fire_stacks(5)
+		L.adjust_fire_stacks(2)
 		L.IgniteMob()
 		playsound(L, 'sound/items/welder.ogg', 50, 1)
 
@@ -333,7 +333,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul/special_hit(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		var/throwtarget = get_edge_target_turf(L, get_dir(L, get_step_away(src, L)))
+		var/throwtarget = get_edge_target_turf(src.chassis, get_dir(src, get_step_away(L, src)))
 		L.throw_at(throwtarget, 8, 2, src)	//Get outta here!
 		do_item_attack_animation(L, hit_effect)
 
@@ -345,14 +345,19 @@
 	base_armor_piercing = 25	//50 on precise attack
 	structure_damage_mult = 2	//Ever try to shank an engine block?
 	attack_sharpness = SHARP_POINTY
+	extended_range = 1			//so we can jump at people
 	attack_sound = 'sound/weapons/rapierhit.ogg'
 	sword_wound_bonus = 10		//Stabby
 	var/stab_number = 2			//Stabby stabby
-	var/last_lunge = 0
-	var/lunge_cd = 20			//1 second cooldown on the lunge attack
+	var/next_lunge = 0
+	var/lunge_cd = 2 SECONDS	//2 second cooldown on the lunge attack
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/precise_attack(atom/target)
+	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)
+		return
 	for(var/i in 1 to stab_number)
+		if(i == 1)
+			start_cooldown()	//To avoid shenanigans because sleep is wonky
 		special_hit(target)
 		if(isliving(target))						
 			var/mob/living/L = target
@@ -384,8 +389,14 @@
 		sleep(0.2 SECONDS)	//For a slight delay between attacks
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/special_hit(atom/target)
-	if((world.time + lunge_cd) > last_lunge)
-		step_towards(src.chassis, target)
+	if(world.time < next_lunge)	//On cooldown
+		return
+	if(get_dist(get_turf(src.chassis), get_turf(target)) <= 1)	//Already in melee range
+		return
+	if(isturf(target))	//No free moving, you gotta stab something
+		return
+	step_towards(src.chassis, target)
+	next_lunge = world.time + lunge_cd
 
 
 	//		//=========================================================\\
@@ -415,13 +426,13 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/spear
 	name = "\improper S5-C \"White Witch\" shortspear"
 	desc = "A hardened, telescoping metal rod with a wicked-sharp tip. Perfect for punching holes in things normally out of reach."
-	icon_state = "mecha_spear"
+	//icon_state = "mecha_spear"   get sprites!!
 	energy_drain = 30
 	force = 10						//I want someone to stab someone else with this by hand
 	extended_range = 1				//Hits from a tile away
 	precise_weapon_damage = 10
 	minimum_damage = 20				
-	attack_speed_modifier = 1.2		//Slightly slower
+	attack_speed_modifier = 1.6		//Range comes with a cost
 	attack_sharpness = SHARP_POINTY
 	sharpness = SHARP_POINTY		//You can't use it well but it IS still a giant sharp metal stick
 	base_armor_piercing = 40
