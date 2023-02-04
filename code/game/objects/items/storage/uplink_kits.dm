@@ -152,12 +152,13 @@
 			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
-		if("oddjob") //Total TC value of 27ish TC
+		if("oddjob") //Total TC value of 26ish TC
 			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
 			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
 			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
 			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
-			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun); you only get 7 shots. Realistically only like 7 TC just because you can't reload it; still highballing it
+			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
+			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
 			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
