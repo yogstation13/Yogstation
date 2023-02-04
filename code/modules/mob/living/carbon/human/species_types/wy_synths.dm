@@ -62,6 +62,8 @@
 		A.Remove(C)
 		QDEL_NULL(A)
 	C.grant_language(/datum/language/machine, source = LANGUAGE_SYNTH)
+	C.real_name = "Synthetic Unit #[rand(1, 999)]"
+	C.name = C.real_name
 
 
 /datum/species/wy_synth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)

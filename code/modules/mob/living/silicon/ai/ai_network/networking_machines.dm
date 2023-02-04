@@ -25,6 +25,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	var/obj/machinery/ai/networking/remote_connection_attempt
 	var/mob/remote_control
 
+	var/datum/ai_network/cached_old_network
+
 
 
 
@@ -146,6 +148,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 		partner = null
 		AN.rebuild_remote()
 		network.rebuild_remote()
+		AN.network_machine_disconnected(network)
+		network.network_machine_disconnected(AN)
 		rotation_to_partner = 0
 		update_icon()
 
@@ -258,9 +262,13 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	. = ..()
 	if(partner)
 		network.rebuild_remote()
+		if(cached_old_network)
+			cached_old_network.network_machine_disconnected(network)
+			cached_old_network = null
 	
 /obj/machinery/ai/networking/disconnect_from_network()
 	var/datum/ai_network/temp = network
+	cached_old_network = temp
 	. = ..()
 	if(partner)
 		temp.rebuild_remote()

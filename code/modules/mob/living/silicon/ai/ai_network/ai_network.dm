@@ -283,6 +283,31 @@
 		AN.rebuild_remote(TRUE, found_networks + src, originator)
 
 
+/datum/ai_network/proc/network_machine_disconnected(datum/ai_network/new_network)
+	var/obj/machinery/ai/data_core/core = new_network.find_data_core()
+	if(!core) //No core in disconnected network? no need to ask them to switch
+		return
+
+	for(var/mob/living/silicon/ai/AI in get_all_ais())
+		addtimer(CALLBACK(src, .proc/disconnection_switch, AI, new_network), 0)
+		
+			
+
+/datum/ai_network/proc/disconnection_switch(mob/living/silicon/ai/AI, datum/ai_network/new_network)
+	var/obj/machinery/ai/data_core/core = new_network.find_data_core()
+	if(!core)
+		return
+	var/area/core_area = get_area(core)
+		
+	var/choice = tgui_input_list(AI, "Two networks you're connected to have been disconnected, where do you want to transfer your main consciousness?", "Network Disconnection", list("Current network", "New network in [core_area]"))
+	if(choice == "Current network")
+		return
+
+	if(!core || QDELETED(core) || !core.can_transfer_ai())
+		to_chat(AI, span_warning("Something went wrong while transferring you! You're still bound to your original network."))
+		return
+	core.transfer_AI(AI)
+
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
 	if(!net1 || !net2) //if one of the network doesn't exist, return
@@ -348,6 +373,8 @@
 			PM.disconnect_from_network() //... so disconnect if already on a network
 
 	//AN.rebuild_remote()
+
+
 
 
 /proc/ai_list(turf/T, source, d, unmarked = FALSE, cable_only = FALSE)

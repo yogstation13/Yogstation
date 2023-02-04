@@ -34,6 +34,9 @@
 	mail_goodies = list()
 
 	smells_like = "calculated machinery"
+	alt_titles = list()
+
+	forced_species = /datum/species/wy_synth
 
 /datum/job/synthetic/get_access()
 	return get_all_accesses()
@@ -47,3 +50,7 @@
 
 	pda_type = null
 	id_type = /obj/item/card/id/synthetic
+
+/datum/outfit/job/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	uniform.has_sensors = FALSE

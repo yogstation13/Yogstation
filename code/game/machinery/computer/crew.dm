@@ -133,6 +133,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/life_status
 
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+		if(is_synth(H)) //Synths are unsupported (they're not organic)
+			continue
 		var/nanite_sensors = FALSE
 		if(H in SSnanites.nanite_monitored_mobs)
 			nanite_sensors = TRUE

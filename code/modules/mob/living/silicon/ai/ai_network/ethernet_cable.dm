@@ -322,7 +322,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(AN.is_empty()) //can happen with machines made nodeless when smoothing cables
 			qdel(AN)
 
-/obj/structure/ethernet_cable/proc/auto_propogate_cut_cable(obj/O, )
+/obj/structure/ethernet_cable/proc/auto_propogate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
 		var/datum/ai_network/newAN = new()// creates a new ai network...
 

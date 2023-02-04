@@ -360,6 +360,9 @@ BLIND     // can't see anything
 		return
 	if (!can_use(M))
 		return
+	if(is_synth(M))
+		to_chat(usr, "You're unable to use suit sensors as a synthetic!")
+		return
 	if(src.has_sensor == LOCKED_SENSORS)
 		to_chat(usr, "The controls are locked.")
 		return 0
