@@ -196,7 +196,7 @@
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
-		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer0"),
 		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
 		"Mini Plasma Cutter Kit" = image(icon = 'icons/obj/guns/energy.dmi', icon_state="plasmacutter_mini")
 	)
@@ -345,7 +345,7 @@
 		"Kinetic Accelerator" = image(icon = 'icons/obj/guns/energy.dmi', icon_state = "kineticgun"),
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
-		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer0"),
 		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
 		)
 

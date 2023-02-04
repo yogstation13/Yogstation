@@ -1,8 +1,7 @@
 /*********************Mining Hammer****************/
 /obj/item/twohanded/kinetic_crusher
 	icon = 'icons/obj/mining.dmi'
-	icon_state = "mining_hammer1"
-	item_state = "mining_hammer1"
+	icon_state = "mining_hammer0"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	name = "proto-kinetic crusher"
@@ -28,6 +27,10 @@
 	var/charge_time = 15
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
+
+/obj/item/twohanded/kinetic_crusher/update_icon()  //Updates the sprite for in-hand and on-mob.
+	icon_state = "mining_hammer[wielded]"
+	return
 
 /obj/item/twohanded/kinetic_crusher/Initialize()
 	. = ..()
@@ -98,7 +101,7 @@
 		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
 		D.fire()
 		charged = FALSE
-		icon_state = "mining_hammer1_uncharged"
+		icon_state = "mining_hammer0_uncharged"
 		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
 		return
 	if(proximity_flag && isliving(target))
@@ -132,7 +135,7 @@
 /obj/item/twohanded/kinetic_crusher/proc/Recharge()
 	if(!charged)
 		charged = TRUE
-		icon_state = "mining_hammer1"
+		icon_state = "mining_hammer0"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
 //destablizing force
