@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "TGUI bluescreens no longer point to a place where help is not given"
