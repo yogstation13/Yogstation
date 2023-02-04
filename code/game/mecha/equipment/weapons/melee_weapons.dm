@@ -135,7 +135,7 @@
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
 		var/turf/T = get_step(M,turn(chassis.dir, it_turn))	//+45, +0, and -45 will get the three front tiles
-		special_hit(T)
+		special_hit(T)	//So we can hit turfs too
 		for(var/atom/A in T.contents)
 			special_hit(A)
 			if(isliving(A))						
