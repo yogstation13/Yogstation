@@ -54,4 +54,4 @@
 /datum/outfit/job/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	var/obj/item/clothing/under/wearing = H.w_uniform
-	wearing.has_sensors = FALSE
+	wearing.has_sensor = FALSE
