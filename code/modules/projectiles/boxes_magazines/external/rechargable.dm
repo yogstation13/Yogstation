@@ -50,6 +50,7 @@
 		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
 		// I sure hope no one tries to add skins to NT-USP in the future
 		current_skin = "ntusp-l"
+		unique_reskin = list()
 		unique_reskin[current_skin] = current_skin
 	..()
 	current_skin = null
