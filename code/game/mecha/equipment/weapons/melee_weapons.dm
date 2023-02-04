@@ -337,6 +337,56 @@
 		L.throw_at(throwtarget, 8, 2, src)	//Get outta here!
 		do_item_attack_animation(L, hit_effect)
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier
+	name = "\improper E9-V \"Sigrun\" rapier"
+	desc = "A remarkably thin blade for a weapon wielded by an exosuit, this rapier is the favorite of syndicate pilots that perfer finesse over brute force."
+	energy_drain = 40
+	cleave = FALSE
+	base_armor_piercing = 25	//50 on precise attack
+	structure_damage_mult = 2	//Ever try to shank an engine block?
+	attack_sharpness = SHARP_POINTY
+	attack_sound = 'sound/weapons/rapierhit.ogg'
+	sword_wound_bonus = 10		//Stabby
+	var/stab_number = 2			//Stabby stabby
+	var/last_lunge = 0
+	var/lunge_cd = 20			//1 second cooldown on the lunge attack
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/precise_attack(atom/target)
+	for(var/i in 1 to stab_number)
+		special_hit(target)
+		if(isliving(target))						
+			var/mob/living/L = target
+
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				var/obj/item/bodypart/body_part = C.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
+				if(i > 1)
+					body_part = pick(C.bodyparts)	//If it's not the first hit we pick a random one
+				var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//more AP for precision attacks
+				C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
+			else
+				L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
+				if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
+					L.apply_damage(fauna_damage_bonus, dam_type)
+
+			L.visible_message(span_danger("[chassis.name] strikes [L] with [src]!"), \
+					span_userdanger("[chassis.name] strikes you with [src]!"))
+			chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
+
+		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
+			var/obj/O = target
+			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+			O.take_damage(object_damage, dam_type, "melee", 0)
+		else
+			return
+		chassis.do_attack_animation(target, hit_effect)
+		playsound(chassis, attack_sound, 50, 1)
+		sleep(0.2 SECONDS)	//For a slight delay between attacks
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/special_hit(atom/target)
+	if((world.time + lunge_cd) > last_lunge)
+		step_towards(src.chassis, target)
+
 
 	//		//=========================================================\\
 	//======||			SNOWFLAKE WEAPONS THAT ARENT SWORDS		 	   ||
