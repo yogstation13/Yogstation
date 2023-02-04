@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed NT-USP not updating its icon when using lethal rounds"
