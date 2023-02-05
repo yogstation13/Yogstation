@@ -7,23 +7,92 @@
 	. = ..()
 	if(!isliving(owner))
 		return FALSE
-	var/mob/living/L = owner
-	var/obj/item/bodypart/r_arm/R = L.get_bodypart(BODY_ZONE_R_ARM)
-	var/obj/item/bodypart/r_arm/Q = L.get_bodypart(BODY_ZONE_L_ARM)
-	if(R?.bodypart_disabled || Q?.bodypart_disabled)
+
+//Separate isavailables so if someone is using two arms they won't care about the other
+
+/datum/action/cooldown/buster/mop/l/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
+	if(L?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
 
-/datum/action/cooldown/buster/r/IsAvailable()
+/datum/action/cooldown/buster/slam/l/IsAvailable()
 	. = ..()
-	if(!isliving(owner))
+	var/mob/living/O = owner
+	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
+	if(L?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
-	var/mob/living/L = owner
-	var/obj/item/bodypart/r_arm/R = L.get_bodypart(BODY_ZONE_R_ARM)
+
+/datum/action/cooldown/buster/megabuster/l/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
+	if(L?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+/datum/action/cooldown/buster/wire_snatch/l/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
+	if(L?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+	
+/datum/action/cooldown/buster/grap/l/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
+	if(L?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+
+/datum/action/cooldown/buster/mop/r/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+/datum/action/cooldown/buster/slam/r/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+/datum/action/cooldown/buster/megabuster/r/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+/datum/action/cooldown/buster/wire_snatch/r/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
 	if(R?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
 	
+/datum/action/cooldown/buster/grap/r/IsAvailable()
+	. = ..()
+	var/mob/living/O = owner
+	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+
+
+
 /obj/item/buster/proc/hit(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
 		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
@@ -50,13 +119,13 @@
 
 /datum/action/cooldown/buster/wire_snatch
 	name = "Wire Snatch"
-	desc = "Extend a wire to your active hand for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
+	desc = "Extend a wire for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
 	pull you towards them instead. It can be used 3 times before reeling back into the arm."
 	icon_icon = 'icons/obj/guns/magic.dmi'
 	button_icon_state = "hook"
 	cooldown_time = 5 SECONDS
 
-/datum/action/cooldown/buster/wire_snatch/Trigger()
+/datum/action/cooldown/buster/wire_snatch/l/Trigger()
 	if(!..())
 		return FALSE
 	StartCooldown()
@@ -182,14 +251,14 @@
 	return ..()
 
 
-/datum/action/cooldown/buster/grap
+/datum/action/cooldown/buster/grap/l
 	name = "Grapple"
 	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off\
 	when throwing the victim."
 	button_icon_state = "lariat"
 	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/buster/grap/Trigger()
+/datum/action/cooldown/buster/grap/l/Trigger()
 	if(!..())
 		return FALSE
 	var/obj/item/buster/graphand/G = new()
@@ -548,7 +617,7 @@
 	button_icon_state = "ponch"
 	cooldown_time = 20 SECONDS
 
-/datum/action/cooldown/buster/megabuster/Trigger()
+/datum/action/cooldown/buster/megabuster/l/Trigger()
 	if(!..())
 		return FALSE
 	var/obj/item/buster/megabuster/B = new()
@@ -732,34 +801,16 @@
 			unbuckle_mob(M)
 			add_fingerprint(user)
 
-/datum/action/cooldown/buster/grap
-
-
-/datum/action/cooldown/buster/grap/Trigger()
-	if(!..())
-		return FALSE
-	var/obj/item/buster/graphand/G = new()
-	if(!owner.put_in_l_hand(G))
-		to_chat(owner, span_warning("You can't do this with your right hand full!"))
-	else
-		owner.visible_message(span_warning("The fingers on [owner]'s right buster arm begin to tense up."))
-		playsound(owner,'sound/effects/servostep.ogg', 60, 1)
-		owner.put_in_l_hand(G)
-		StartCooldown()
-		if(owner.active_hand_index % 2 == 0)
-			owner.swap_hand(0)
-
-/datum/action/cooldown/buster/r/grap
+/datum/action/cooldown/buster/grap/r
 	name = "Grapple"
-	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off\
+	desc = "Prepare your right hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off\
 	when throwing the victim."
 	button_icon_state = "lariat"
 	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/buster/r/grap/Trigger()
+/datum/action/cooldown/buster/grap/r/Trigger()
 	if(!..())
 		return FALSE
-	StartCooldown()
 	var/obj/item/buster/graphand/G = new()
 	if(!owner.put_in_r_hand(G))
 		to_chat(owner, span_warning("You can't do this with your right hand full!"))
@@ -767,18 +818,13 @@
 		owner.visible_message(span_warning("The fingers on [owner]'s right buster arm begin to tense up."))
 		playsound(owner,'sound/effects/servostep.ogg', 60, 1)
 		owner.put_in_r_hand(G)
+		StartCooldown()
 		if(owner.active_hand_index % 2 == 1)
 			owner.swap_hand(0)
 
-/datum/action/cooldown/buster/r/megabuster
-	name = "Mega Buster"
-	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying. Flying targets will have\
-	a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun	its owner. Once the five\
-	seconds are up or a strong wall or person or exosuit is hit, the arm won't be able to do that again for 20 seconds."
-	button_icon_state = "ponch"
-	cooldown_time = 20 SECONDS
+/datum/action/cooldown/buster/megabuster/r
 
-/datum/action/cooldown/buster/r/megabuster/Trigger()
+/datum/action/cooldown/buster/megabuster/r/Trigger()
 	if(!..())
 		return FALSE
 	var/obj/item/buster/megabuster/B = new()
@@ -788,21 +834,13 @@
 		if(!owner.put_in_r_hand(B))
 			to_chat(owner, span_warning("You can't do this with your right hand full!"))
 		else
-			StartCooldown()
 			owner.visible_message(span_danger("[owner]'s arm begins shaking violently!"))
 			if(owner.active_hand_index % 2 == 1)
 				owner.swap_hand(0)
+			StartCooldown()
 
 
-/datum/action/cooldown/buster/r/wire_snatch
-	name = "Wire Snatch"
-	desc = "Extend a wire to your active hand for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
-	pull you towards them instead. It can be used 3 times before reeling back into the arm."
-	icon_icon = 'icons/obj/guns/magic.dmi'
-	button_icon_state = "hook"
-	cooldown_time = 5 SECONDS
-
-/datum/action/cooldown/buster/r/wire_snatch/Trigger()
+/datum/action/cooldown/buster/wire_snatch/r/Trigger()
 	if(!..())
 		return FALSE
 	StartCooldown()
@@ -812,10 +850,10 @@
 		to_chat(owner, span_notice("The wire returns into your wrist."))
 		return
 	if(!owner.put_in_l_hand(T))
-		to_chat(owner, span_warning("You can't do this with your left hand full!"))
+		to_chat(owner, span_warning("You can't do this with your right hand full!"))
 	else
 		if(owner.active_hand_index % 2 == 0)
-			owner.swap_hand(0)
+			owner.swap_hand(0) //making the grappling hook hand (right) the active one so using it is streamlined
 
 //buster Arm
 
@@ -827,11 +865,11 @@
 	max_damage = 60
 	aux_layer = 12
 	var/obj/item/bodypart/r_arm/robot/buster/opphand
-	var/datum/action/cooldown/buster/mop/C = new/datum/action/cooldown/buster/mop()
-	var/datum/action/cooldown/buster/slam/V = new/datum/action/cooldown/buster/slam()
-	var/datum/action/cooldown/buster/megabuster/I = new/datum/action/cooldown/buster/megabuster()
-	var/datum/action/cooldown/buster/wire_snatch/D =new/datum/action/cooldown/buster/wire_snatch()
-	var/datum/action/cooldown/buster/grap/M = new/datum/action/cooldown/buster/grap()
+	var/datum/action/cooldown/buster/mop/l/C = new/datum/action/cooldown/buster/mop/l()
+	var/datum/action/cooldown/buster/slam/l/V = new/datum/action/cooldown/buster/slam/l()
+	var/datum/action/cooldown/buster/megabuster/l/I = new/datum/action/cooldown/buster/megabuster/l()
+	var/datum/action/cooldown/buster/wire_snatch/l/D =new/datum/action/cooldown/buster/wire_snatch/l()
+	var/datum/action/cooldown/buster/grap/l/M = new/datum/action/cooldown/buster/grap/l()
 
 /obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
 	. = ..()
@@ -880,11 +918,11 @@
 	max_damage = 60
 	aux_layer = 12
 	var/obj/item/bodypart/l_arm/robot/buster/opphand
-	var/datum/action/cooldown/buster/mop/C = new/datum/action/cooldown/buster/mop()
-	var/datum/action/cooldown/buster/slam/V = new/datum/action/cooldown/buster/slam()
-	var/datum/action/cooldown/buster/megabuster/I = new/datum/action/cooldown/buster/r/megabuster()
-	var/datum/action/cooldown/buster/r/wire_snatch/D = new/datum/action/cooldown/buster/r/wire_snatch()
-	var/datum/action/cooldown/buster/r/grap/M = new/datum/action/cooldown/buster/r/grap()
+	var/datum/action/cooldown/buster/mop/r/C = new/datum/action/cooldown/buster/mop/r()
+	var/datum/action/cooldown/buster/slam/r/V = new/datum/action/cooldown/buster/slam/r()
+	var/datum/action/cooldown/buster/megabuster/r/I = new/datum/action/cooldown/buster/megabuster/r()
+	var/datum/action/cooldown/buster/wire_snatch/r/D = new/datum/action/cooldown/buster/wire_snatch/r()
+	var/datum/action/cooldown/buster/grap/r/M = new/datum/action/cooldown/buster/grap/r()
 
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)
 	if(!proximity)
