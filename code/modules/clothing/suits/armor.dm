@@ -136,7 +136,7 @@
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
-	desc = "A tribal armor plate, crafted from animal bone."
+	desc = "A mass of bones wrapped together into a protective shell. Not as effective as modern protection, but it still offers notable protection."
 	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "bonearmor"
 	item_state = "bonearmor"
@@ -146,15 +146,15 @@
 
 /obj/item/clothing/suit/armor/bone/heavy
 	name = "heavy bone armor"
-	desc = "A heavy tribal armor plate, crafted from a lot animal bone."
+	desc = "A hefty set of bones that covers most of the body. Slowing, but able to repel considerable blows."
 	icon_state = "hbonearmor"
 	item_state = "hbonearmor"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 15, BOMB = 20, BIO = 0, RAD = 0, FIRE = 60, ACID = 30, WOUND = 20)
-	slowdown = 0.20
+	slowdown = 0.2
 
 /obj/item/clothing/suit/armor/tribalcoat
 	name = "tribal coat"
-	desc = "A light yet tough leather coat reinforced with bone pauldrons."
+	desc = "A light, yet tough leather coat, reinforced with bone pauldrons. Often worn by tribe leaders."
 	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "tribalcoat"
 	item_state = "tribalcoat"
@@ -165,7 +165,7 @@
 
 /obj/item/clothing/suit/armor/pathfinder
 	name = "pathfinder cloak"
-	desc = "A thick cloak woven from sinew and hides meant to protect its wearer from hazardous weather."
+	desc = "A thick cloak woven from sinew and hides, designed to protect its wearer from hazardous weather."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
@@ -362,7 +362,7 @@
 /obj/item/clothing/head/hooded/cloakhood/goliath/desert
 	name = "goliath cloak hood"
 	icon_state = "desertcloak"
-	desc = "An ash coated cloak hood."
+	desc = "The hood of an ashy cloak."
 	armor = list()
 	resistance_flags = 0
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR

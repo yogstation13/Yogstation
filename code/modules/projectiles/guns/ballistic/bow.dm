@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/bow
 	name = "wooden bow"
-	desc = "some sort of primitive projectile weapon. used to fire arrows."
+	desc = "A well-made weapon capable of firing arrows. Mostly outdated, but still dependable."
 	icon_state = "bow"
 	item_state = "bow"
 	w_class = WEIGHT_CLASS_BULKY
@@ -99,7 +99,7 @@
 
 /obj/item/gun/ballistic/bow/ashen
 	name = "bone bow"
-	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
+	desc = "A primitive bow with a sinew bowstring. Typically used by tribal hunters and warriors."
 	icon_state = "ashenbow"
 	item_state = "ashenbow"
 	force = 10
@@ -107,7 +107,7 @@
 
 /obj/item/gun/ballistic/bow/pipe
 	name = "pipe bow"
-	desc = "A crude projectile weapon made from silk string, pipe, and lots of bending."
+	desc = "A variety of pipes and plastic bent together with a silk bowstring. Cumbersome and inaccurate."
 	icon_state = "pipebow"
 	item_state = "pipebow"
 	force = 12
@@ -116,7 +116,7 @@
 
 /obj/item/gun/ballistic/bow/maint
 	name = "makeshift bow"
-	desc = "A crude projectile weapon made from cables, pipe, tape, and lots of bending."
+	desc = "A crude contraption of rods, tape, and cable; this bow is servicable, but of poor quality."
 	icon_state = "makeshift_bow"
 	item_state = "makeshift_bow"
 	force = 8
@@ -125,7 +125,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
-	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
+	desc = "A handcrafted version of a typical medieval crossbow. The stock is heavy and loading it takes time, but it can be quickly fired once ready."
 	icon_state = "crossbow"
 	force = 15 //Beating someone with a goddamned stock are we
 	spread = 0
