@@ -250,6 +250,14 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = GetAllContents() - src - connected
 
+	for(var/mob/i in conts)
+		if(i.stat != DEAD)
+			say("Living creature detected. Aborting.")
+			return
+		if(i.key && i.get_ghost())
+			say("Revival is possible. Aborting.")
+			return
+
 	if(!conts.len)
 		audible_message(span_italics("You hear a hollow crackle."))
 		return
