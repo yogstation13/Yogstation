@@ -175,7 +175,7 @@
 		return FALSE
 	return !held_items[hand_index]
 
-/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE)
+/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE, make_sound = TRUE)
 	if(forced || can_put_in_hand(I, hand_index))
 		if(isturf(I.loc) && !ignore_anim)
 			I.do_pickup_animation(src)
