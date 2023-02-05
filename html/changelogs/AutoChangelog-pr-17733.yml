@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Desynchronizer is now capped to 60 seconds instead of 5 minutes"
+  - rscadd: "Added downsides to prematurely cancelling desynchronizer"
