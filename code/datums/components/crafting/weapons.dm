@@ -145,7 +145,7 @@
 	reqs = list(/obj/item/pipe = 5,
 				/obj/item/stack/sheet/plastic = 5,
 				/obj/item/weaponcrafting/silkstring = 1)
-	time = 45 SECONDS
+	time = 9 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -155,7 +155,7 @@
 	reqs = list(/obj/item/pipe = 5,
            		/obj/item/stack/tape = 3, 
 				/obj/item/stack/cable_coil = 10)
-	time = 45 SECONDS
+	time = 10 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -165,7 +165,7 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 8,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/weaponcrafting/silkstring = 1)
-	time = 12 SECONDS
+	time = 7 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -178,7 +178,7 @@
 				/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/weaponcrafting/stock = 1)
 	tools = list(TOOL_SCREWDRIVER)
-	time = 16 SECONDS
+	time = 10 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -284,7 +284,7 @@
 /datum/crafting_recipe/bone_bow
 	name = "Bone Bow"
 	result = /obj/item/gun/ballistic/bow/ashen
-	time = 20 SECONDS
+	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 8,
 				/obj/item/stack/sheet/sinew = 4)
 	category = CAT_WEAPONRY
@@ -463,34 +463,34 @@
 	result = /obj/item/ammo_casing/caseless/arrow/wood
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
-				/obj/item/stack/sheet/silk = 1,
-				/obj/item/stack/rods = 1) //1 metal sheet = 2 rods= 2 arrows
+				/obj/item/stack/sheet/cloth = 1,
+				/obj/item/stack/rods = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/ashen_arrow
-	name = "Fire hardened arrow"
+	name = "Ashen Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/ash
 	tools = list(TOOL_WELDER)
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/bone_tipped_arrow
-	name = "Bone Tipped Arrow"
+	name = "Bone-Tipped Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bone_tipped
-	time = 3 SECONDS
-	reqs = list(/obj/item/stack/sheet/bone = 1,
-				/obj/item/stack/sheet/sinew = 1,
-				/obj/item/ammo_casing/caseless/arrow/ash = 1)
+	time = 1.5 SECONDS
+	reqs = list(/obj/item/ammo_casing/caseless/arrow/ash = 1,
+				/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/sinew = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bone
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				/obj/item/stack/sheet/sinew = 1)
 	category = CAT_WEAPONRY
@@ -499,36 +499,36 @@
 /datum/crafting_recipe/chitin_arrow
 	name = "Chitin Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/chitin
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/bone = 1,
 				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/ashresin = 1,
-				/obj/item/stack/sheet/animalhide/weaver_chitin = 2)
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/bamboo_arrow
 	name = "Bamboo Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bamboo
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/bamboo = 2)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/bronze_arrow
-	name = "Bronze arrow"
+	name = "Bronze Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bronze
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
-				/obj/item/stack/tile/bronze = 1,
-				/obj/item/stack/sheet/silk = 1)
+				/obj/item/stack/sheet/cloth = 1,
+				/obj/item/stack/tile/bronze = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/glass_arrow
-	name = "Glass arrow"
+	name = "Glass Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/glass
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/shard = 1, 
 				/obj/item/stack/rods = 1, 
 				/obj/item/stack/cable_coil = 3)
@@ -536,9 +536,9 @@
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/plasma_glass_arrow
-	name = "Plasma glass arrow"
+	name = "Plasmaglass Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/glass/plasma
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/shard/plasma = 1,
 				/obj/item/stack/rods = 1, 
 				/obj/item/stack/cable_coil = 3)

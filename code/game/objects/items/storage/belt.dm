@@ -809,7 +809,8 @@
 /obj/item/storage/belt/quiver/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 15
+	STR.max_items = 20
+	STR.max_combined_w_class = 20
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/caseless/arrow,

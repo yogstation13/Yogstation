@@ -104,35 +104,33 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/bola_arrow
-	name = "Bola arrow"
+	name = "Bola Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bola
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/silk = 1,
+				/obj/item/stack/sheet/cloth = 1,
 				/obj/item/restraints/legcuffs/bola = 1)
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/restraints/legcuffs/bola = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_available = FALSE
 
-/*
 /datum/crafting_recipe/explosive_arrow
-	name = "Explosive arrow"
+	name = "Explosive Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/explosive
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/silk = 1,
+				/obj/item/stack/sheet/cloth = 1,
 				/obj/item/grenade = 1)
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/grenade = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_available = FALSE
-*/
 
 /datum/crafting_recipe/flaming_arrow
-	name = "Flaming arrow"
+	name = "Fire Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/flaming
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
 				/obj/item/stack/sheet/cloth = 1,
 				/datum/reagent/fuel = 10)

@@ -573,11 +573,10 @@
 	subcategory = CAT_EQUIPMENT
 
 /datum/crafting_recipe/quiver
-	name = "Quiver"
+	name = "Leather Quiver"
 	result = /obj/item/storage/belt/quiver
 	time = 8 SECONDS
-	reqs = list(/obj/item/stack/sheet/leather = 3,
-				/obj/item/stack/sheet/sinew = 4)
+	reqs = list(/obj/item/stack/sheet/leather = 4)
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
 

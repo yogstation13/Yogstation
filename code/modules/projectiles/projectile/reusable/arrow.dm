@@ -1,14 +1,15 @@
 /obj/item/projectile/bullet/reusable/arrow //Base arrow. Good against fauna, not perfect, but well-rounded.
-	name = "Arrow"
+	name = "arrow"
 	desc = "Woosh!"
-	damage = 20
+	damage = 35
+	armour_penetration = -25 //Melee armor tends to be much higher, so this hurts
 	speed = 0.6
 	flag = MELEE
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
 	var/embed_chance = 0.4
-	var/break_chance = 10
-	var/fauna_damage_bonus = 20
+	var/break_chance = 0
+	var/fauna_damage_bonus = 10
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
     . = ..()
@@ -33,83 +34,74 @@
 		dropped = TRUE
 
 /obj/item/projectile/bullet/reusable/arrow/wood
-	name = "Wooden arrow"
-	desc = "Wooden arrow."
+	name = "wooden arrow"
+	desc = "A wooden arrow, quickly made."
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/wood
 
-/obj/item/projectile/bullet/reusable/arrow/ash //Fire-tempered head makes it tougher; more damage, but less likely to shatter and embed
-	name = "Ashen arrow"
-	desc = "Fire Hardened arrow."
-	damage = 25
-	embed_chance = 0.25
-	break_chance = 0
+/obj/item/projectile/bullet/reusable/arrow/ash //Fire-tempered head makes it tougher; more damage, but less likely to embed
+	name = "ashen arrow"
+	desc = "A wooden arrow tempered by fire. It's tougher, but less likely to embed."
+	damage = 40
+	embed_chance = 0.3
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
-/obj/item/projectile/bullet/reusable/arrow/bone_tipped //Highest damage; fully upgraded normal arrow, simply well-crafted
-	name = "Bone tipped arrow"
-	desc = "An arrow made from bone, wood, and sinew."
-	damage = 30
-	armour_penetration = 20
-	embed_chance = 0.33
-	break_chance = 0
+/obj/item/projectile/bullet/reusable/arrow/bone_tipped //A fully upgraded normal arrow; it's got the stats to show. Still less damage than a slug, resolving against melee, fired less often, slower, and with negative AP
+	name = "bone-tipped arrow"
+	desc = "An arrow made from bone, wood, and sinew. Sturdy and sharp."
+	damage = 45
+	armour_penetration = -10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
-/obj/item/projectile/bullet/reusable/arrow/bone //Cheap, easy to make in bulk but mostly capable of being used to hunt fauna
-	name = "Bone arrow"
-	desc = "An arrow made from bone and sinew."
-	damage = 15
-	fauna_damage_bonus = 35
+/obj/item/projectile/bullet/reusable/arrow/bone //Cheap, easy to make in bulk but mostly used for hunting fauna
+	name = "bone arrow"
+	desc = "An arrow made from bone and sinew. Better at hunting fauna."
+	damage = 25
+	armour_penetration = -10 //So it's not as terrible against miners; still bad
+	fauna_damage_bonus = 35 //Significantly better for hunting fauna, but you don't get to instantly recharge your shots
 	embed_chance = 0.33
-	break_chance = 10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone
 
-/obj/item/projectile/bullet/reusable/arrow/chitin //Most expensive arrow, but powerful for those who put in the time. Greater AP alternative to bone-tipped. Very robust against fauna.
-	name = "Chitin tipped arrow"
-	desc = "An arrow made from chitin, bone, and sinew."
-	damage = 25
-	fauna_damage_bonus = 40
-	armour_penetration = 35
-	embed_chance = 0.4
-	break_chance = 0
+/obj/item/projectile/bullet/reusable/arrow/chitin //Most expensive arrow time and resource-wise, simply because of ash resin. Should be good
+	name = "chitin-tipped arrow"
+	desc = "An arrow made from chitin, bone, and sinew. Incredibly potent at puncturing armor and hunting fauna."
+	damage = 35
+	armour_penetration = 30 //Basically an AP arrow
+	fauna_damage_bonus = 40 //Even better, since they're that much harder to make
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
 
 /obj/item/projectile/bullet/reusable/arrow/bamboo //Very brittle, very fragile, but very potent at splintering into targets assuming it isn't broken on impact
-	name = "Bamboo arrow"
-	desc = "An arrow made from bamboo."
-	damage = 10
-	embed_chance = 0.5
-	break_chance = 50
+	name = "bamboo arrow"
+	desc = "An arrow made from bamboo. Incredibly fragile and weak, but prone to shattering in unarmored targets."
+	damage = 20
+	armour_penetration = -40
+	embed_chance = 0.6 //Reminder that this resolves against melee armor
+	break_chance = 33 //Doesn't embed if it breaks
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
-/obj/item/projectile/bullet/reusable/arrow/bronze //Inferior metal. Slightly better than ashen
-	name = "Bronze arrow"
-	desc = "Bronze tipped arrow"
-	damage = 25
-	armour_penetration = 10
-	embed_chance = 0.3
-	break_chance = 10
+/obj/item/projectile/bullet/reusable/arrow/bronze //Bronze > iron, that's why they called it the bronze age
+	name = "bronze arrow"
+	desc = "An arrow tipped with bronze. Better against armor than iron."
+	armour_penetration = -10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bronze
 
-/obj/item/projectile/bullet/reusable/arrow/glass //Fragile, but sharp and light. Not as effective as metal but cheaper.
-	name = "Glass arrow"
-	desc = "Glass tipped arrow"
-	damage = 15
+/obj/item/projectile/bullet/reusable/arrow/glass //Basically just a downgrade for people who can't their hands on wood/cloth
+	name = "glass arrow"
+	desc = "A shoddy arrow with a broken glass shard as its tip. Can break upon impact."
+	damage = 25
 	embed_chance = 0.3
-	break_chance = 25
+	break_chance = 10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
 
-/obj/item/projectile/bullet/reusable/arrow/glass/plasma //Immensely capable of puncturing through materials; plasma is a robust material, more capable of slicing through protection
-	name = "Plasma Glass arrow"
-	desc = "Plasma Glass tipped arrow"
-	damage = 18
-	armour_penetration = 60
-	embed_chance = 0.4
-	break_chance = 0
+/obj/item/projectile/bullet/reusable/arrow/glass/plasma //It's HARD to get plasmaglass shards without an axe, so this should be GOOD
+	name = "plasmaglass arrow"
+	desc = "An arrow with a plasmaglass shard affixed to its head. Incredibly capable of puncturing armor."
+	damage = 25
+	armour_penetration = 45 //18.75 damage against elite hardsuit assuming chest shot (and that's a long reload, draw, projectile speed, etc.)
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
 /obj/item/projectile/bullet/reusable/arrow/bola //More of a blunt impact of the bola, still an arrow. Only able to be crafted with makeshift weaponry
-	name = "Bola arrow"
-	desc = "An arrow with a bola wrapped around it"
+	name = "bola arrow"
+	desc = "An arrow with a bola wrapped around it. Will automatically wrap around any target hit."
 	var/obj/item/restraints/legcuffs/bola/bola
 
 /obj/item/projectile/bullet/reusable/arrow/bola/on_hit(atom/target, blocked = FALSE)
@@ -118,12 +110,10 @@
 		return bola.impactCarbon(target)
 	if(isanimal(target))
 		return bola.impactAnimal(target)
-/*
-/obj/item/projectile/bullet/reusable/arrow/explosive
-	name = "Explosive arrow"
-	desc = "An arrow with an explosive attached to it"
-	damage = 20
-	armour_penetration = 10
+
+/obj/item/projectile/bullet/reusable/arrow/explosive //Ka-BOOM baby. Only makeshift weaponry
+	name = "explosive arrow"
+	desc = "An arrow with an explosive attached to it, ready to prime upon impact."
 	var/obj/item/grenade/explosive = null
 
 /obj/item/projectile/bullet/reusable/arrow/explosive/prehit(atom/target)
@@ -131,10 +121,10 @@
 	explosive.forceMove(target)
 	explosive.prime()
 	visible_message("[explosive]")
-*/
-/obj/item/projectile/bullet/reusable/arrow/flaming //Normal arrow, but it also sets people on fire. Simple
-	name = "Flaming arrow"
-	desc = "A burning arrow"
+
+/obj/item/projectile/bullet/reusable/arrow/flaming //Normal arrow, but it also sets people on fire. Simple. Only makeshift weaponry
+	name = "fire arrow"
+	desc = "An arrow set ablaze, ready to ignite a target."
 
 /obj/item/projectile/bullet/reusable/arrow/flaming/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))

@@ -98,35 +98,36 @@
 	return chambered
 
 /obj/item/gun/ballistic/bow/ashen
-	name = "Bone Bow"
+	name = "bone bow"
 	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
 	icon_state = "ashenbow"
 	item_state = "ashenbow"
+	force = 10
 	spread = 3
-	force = 8
 
 /obj/item/gun/ballistic/bow/pipe
-	name = "Pipe Bow"
-	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
+	name = "pipe bow"
+	desc = "A crude projectile weapon made from silk string, pipe, and lots of bending."
 	icon_state = "pipebow"
 	item_state = "pipebow"
-	force = 7
+	force = 12
 	spread = 5
 	draw_time = 1 SECONDS
 
 /obj/item/gun/ballistic/bow/maint
-	name = "Makeshift Bow"
-	desc = "A crude projectile weapon made from cables, pipe, tape and lots of bending."
+	name = "makeshift bow"
+	desc = "A crude projectile weapon made from cables, pipe, tape, and lots of bending."
 	icon_state = "makeshift_bow"
 	item_state = "makeshift_bow"
-	force = 7
-	spread = 10
-	draw_time = 2 SECONDS
+	force = 8
+	spread = 7
+	draw_time = 1 SECONDS
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
 	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
 	icon_state = "crossbow"
+	force = 15 //Beating someone with a goddamned stock are we
 	spread = 0
 	draw_time = 2 SECONDS
 	draw_slowdown = FALSE
@@ -153,7 +154,7 @@
 	..()
 
 /obj/item/gun/ballistic/bow/energy
-	name = "Hardlight Bow"
+	name = "hardlight bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	icon_state = "bow_hardlight"
 	item_state = "bow_hardlight"
@@ -254,13 +255,13 @@
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/advanced
-	name = "Advanced Hardlight Bow"
+	name = "advanced hardlight bow"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/advanced
 	recharge_time = 0
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/bow/energy/syndicate
-	name = "Syndicate Hardlight Bow"
+	name = "syndicate hardlight bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed by the Syndicate for silent takedowns of targets."
 	icon_state = "bow_syndicate"
 	item_state = "bow_syndicate"
@@ -321,7 +322,7 @@
 		update_icon()
 
 /obj/item/gun/ballistic/bow/energy/clockwork
-	name = "Brass Bow"
+	name = "brass bow"
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and fabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	item_state = "bow_clockwork"
