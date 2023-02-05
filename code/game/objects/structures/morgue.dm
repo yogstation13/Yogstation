@@ -210,6 +210,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	desc = "A human incinerator. Works well on barbecue nights."
 	icon_state = "crema1"
 	dir = SOUTH
+	breakout_time = 3 SECONDS
+	var/cremate_timer
 	var/id = 1
 
 /obj/structure/bodycontainer/crematorium/attack_robot(mob/user) //Borgs can't use crematoriums without help
@@ -255,42 +257,55 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		return
 
 	else
-		audible_message(span_italics("You hear a roar as the crematorium activates."))
-
+		audible_message(span_italics("You hear a roar as the crematorium fires up."))
 		locked = TRUE
 		update_icon()
+		cremate_timer = addtimer(CALLBACK(src, .proc/finish_cremate, user), (breakout_time + 3 SECONDS), TIMER_STOPPABLE)
+		
 
-		for(var/mob/living/M in conts)
+/obj/structure/bodycontainer/crematorium/open()
+	. = ..()
+	if(cremate_timer)
+		locked = FALSE
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
+		deltimer(cremate_timer)
+		cremate_timer = null
+		update_icon()
+
+/obj/structure/bodycontainer/crematorium/proc/finish_cremate(mob/user)
+	var/list/conts = GetAllContents() - src - connected
+	audible_message(span_italics("You hear a roar as the crematorium reaches its maximum temperature."))
+	for(var/mob/living/M in conts)
+		if(M.stat != DEAD)
+			M.emote("scream")
+		if(M.client)
 			if(M.stat != DEAD)
-				M.emote("scream")
-			if(M.client)
-				if(M.stat != DEAD)
-					SSachievements.unlock_achievement(/datum/achievement/cremated_alive, M.client) //they are in body and alive, give achievement
-				SSachievements.unlock_achievement(/datum/achievement/cremated, M.client) //they are in body, but dead, they can have one achievement
-			else if(M.oobe_client) //they might be ghosted if they are dead, we'll allow it.
-				SSachievements.unlock_achievement(/datum/achievement/cremated, M.oobe_client) //no burning alive achievement if you are ghosted though
-			if(user)
-				log_combat(user, M, "cremated")
-			else
-				M.log_message("was cremated", LOG_ATTACK)
+				SSachievements.unlock_achievement(/datum/achievement/cremated_alive, M.client) //they are in body and alive, give achievement
+			SSachievements.unlock_achievement(/datum/achievement/cremated, M.client) //they are in body, but dead, they can have one achievement
+		else if(M.oobe_client) //they might be ghosted if they are dead, we'll allow it.
+			SSachievements.unlock_achievement(/datum/achievement/cremated, M.oobe_client) //no burning alive achievement if you are ghosted though
+		if(user)
+			log_combat(user, M, "cremated")
+		else
+			M.log_message("was cremated", LOG_ATTACK)
 
-			M.death(1)
-			if(M) //some animals get automatically deleted on death.
-				M.ghostize()
-				qdel(M)
+		M.death(1)
+		if(M) //some animals get automatically deleted on death.
+			M.ghostize()
+			qdel(M)
 
-		for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
-			qdel(O)
+	for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
+		qdel(O)
 
-		if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up
-			new/obj/effect/decal/cleanable/ash/crematorium(src)
+	if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up
+		new/obj/effect/decal/cleanable/ash/crematorium(src)
 
-		sleep(3 SECONDS)
+	sleep(3 SECONDS)
 
-		if(!QDELETED(src))
-			locked = FALSE
-			update_icon()
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
+	if(!QDELETED(src))
+		locked = FALSE
+		update_icon()
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
 	name = "crematorium"
