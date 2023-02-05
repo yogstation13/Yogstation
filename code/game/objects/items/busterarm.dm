@@ -7,6 +7,8 @@
 	. = ..()
 	if(!isliving(owner))
 		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PACIFISM))
+		return FALSE
 
 //Separate isavailables so if someone is using two arms they won't care about the other
 
@@ -821,8 +823,6 @@
 		StartCooldown()
 		if(owner.active_hand_index % 2 == 1)
 			owner.swap_hand(0)
-
-/datum/action/cooldown/buster/megabuster/r
 
 /datum/action/cooldown/buster/megabuster/r/Trigger()
 	if(!..())
