@@ -36,7 +36,7 @@
 	var/dynamic_should_hijack = FALSE
 
 /datum/round_event_control/vv_edit_var(var_name, var_value)
-	if(var_name == NAMEOF(src, random)) // CAN'T LET YOU DO THAT, STAR FOX
+	if(var_name == NAMEOF(src, random) && var_value) // CAN'T LET YOU DO THAT, STAR FOX
 		message_admins("No, [key_name_admin(usr)], you cannot fake force a random event.")
 		return FALSE
 	. = ..()
