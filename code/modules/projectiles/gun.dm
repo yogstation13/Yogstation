@@ -609,6 +609,18 @@
 	update_gunlight()
 
 /obj/item/gun/proc/update_gunlight()
+	if(gun_light)
+		cut_overlay(flashlight_overlay, TRUE)
+		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
+		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
+			state = gun_light.icon_state
+		flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', state)
+		flashlight_overlay.pixel_x = flight_x_offset
+		flashlight_overlay.pixel_y = flight_y_offset
+		add_overlay(flashlight_overlay, TRUE)
+	else
+		cut_overlay(flashlight_overlay, TRUE)
+		flashlight_overlay = null
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
