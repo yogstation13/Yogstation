@@ -13,6 +13,16 @@
 	if(R?.bodypart_disabled || Q?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
+
+/datum/action/cooldown/buster/r/IsAvailable()
+	. = ..()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/L = owner
+	var/obj/item/bodypart/r_arm/R = L.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
 	
 /obj/item/buster/proc/hit(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
@@ -47,6 +57,9 @@
 	cooldown_time = 5 SECONDS
 
 /datum/action/cooldown/buster/wire_snatch/Trigger()
+	if(!..())
+		return FALSE
+	StartCooldown()
 	var/obj/item/gun/magic/wire/T = new()
 	for(var/obj/item/gun/magic/wire/J in owner)
 		qdel(J)
@@ -57,7 +70,7 @@
 	else
 		if(owner.active_hand_index % 2 == 1)
 			owner.swap_hand(0) //making the grappling hook hand (right) the active one so using it is streamlined
-		StartCooldown()
+
 
 
 /obj/item/gun/magic/wire/Initialize()
@@ -531,9 +544,9 @@
 	name = "Mega Buster"
 	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying. Flying targets will have\
 	a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun	its owner. Once the five\
-	seconds are up or a strong wall or person or exosuit is hit, the arm won't be able to do that again for 15 seconds."
+	seconds are up or a strong wall or person or exosuit is hit, the arm won't be able to do that again for 20 seconds."
 	button_icon_state = "ponch"
-	cooldown_time = 15 SECONDS
+	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/buster/megabuster/Trigger()
 	if(!..())
@@ -736,9 +749,17 @@
 		if(owner.active_hand_index % 2 == 0)
 			owner.swap_hand(0)
 
-/datum/action/cooldown/buster/grap/right
+/datum/action/cooldown/buster/r/grap
+	name = "Grapple"
+	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage if they hit a solid object. If the targeted limb is horribly bruised, you'll tear it off\
+	when throwing the victim."
+	button_icon_state = "lariat"
+	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/buster/grap/right/Trigger()
+/datum/action/cooldown/buster/r/grap/Trigger()
+	if(!..())
+		return FALSE
+	StartCooldown()
 	var/obj/item/buster/graphand/G = new()
 	if(!owner.put_in_r_hand(G))
 		to_chat(owner, span_warning("You can't do this with your right hand full!"))
@@ -746,13 +767,20 @@
 		owner.visible_message(span_warning("The fingers on [owner]'s right buster arm begin to tense up."))
 		playsound(owner,'sound/effects/servostep.ogg', 60, 1)
 		owner.put_in_r_hand(G)
-		StartCooldown()
 		if(owner.active_hand_index % 2 == 1)
 			owner.swap_hand(0)
 
-/datum/action/cooldown/buster/megabuster/right
+/datum/action/cooldown/buster/r/megabuster
+	name = "Mega Buster"
+	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying. Flying targets will have\
+	a snowball effect on hitting other unanchored people or objects collided with. Punching a mangled limb will instead send it flying and momentarily stun	its owner. Once the five\
+	seconds are up or a strong wall or person or exosuit is hit, the arm won't be able to do that again for 20 seconds."
+	button_icon_state = "ponch"
+	cooldown_time = 20 SECONDS
 
-/datum/action/cooldown/buster/megabuster/right/Trigger()
+/datum/action/cooldown/buster/r/megabuster/Trigger()
+	if(!..())
+		return FALSE
 	var/obj/item/buster/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s right arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
@@ -760,14 +788,24 @@
 		if(!owner.put_in_r_hand(B))
 			to_chat(owner, span_warning("You can't do this with your right hand full!"))
 		else
+			StartCooldown()
 			owner.visible_message(span_danger("[owner]'s arm begins shaking violently!"))
 			if(owner.active_hand_index % 2 == 1)
 				owner.swap_hand(0)
-			StartCooldown()
 
-/datum/action/cooldown/buster/wire_snatch/right
 
-/datum/action/cooldown/buster/wire_snatch/right/Trigger()
+/datum/action/cooldown/buster/r/wire_snatch
+	name = "Wire Snatch"
+	desc = "Extend a wire to your active hand for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
+	pull you towards them instead. It can be used 3 times before reeling back into the arm."
+	icon_icon = 'icons/obj/guns/magic.dmi'
+	button_icon_state = "hook"
+	cooldown_time = 5 SECONDS
+
+/datum/action/cooldown/buster/r/wire_snatch/Trigger()
+	if(!..())
+		return FALSE
+	StartCooldown()
 	var/obj/item/gun/magic/wire/T = new()
 	for(var/obj/item/gun/magic/wire/J in owner)
 		qdel(J)
@@ -778,7 +816,6 @@
 	else
 		if(owner.active_hand_index % 2 == 0)
 			owner.swap_hand(0)
-		StartCooldown()
 
 //buster Arm
 
@@ -845,9 +882,9 @@
 	var/obj/item/bodypart/l_arm/robot/buster/opphand
 	var/datum/action/cooldown/buster/mop/C = new/datum/action/cooldown/buster/mop()
 	var/datum/action/cooldown/buster/slam/V = new/datum/action/cooldown/buster/slam()
-	var/datum/action/cooldown/buster/megabuster/I = new/datum/action/cooldown/buster/megabuster/right()
-	var/datum/action/cooldown/buster/wire_snatch/right/D = new/datum/action/cooldown/buster/wire_snatch/right()
-	var/datum/action/cooldown/buster/grap/right/M = new/datum/action/cooldown/buster/grap/right()
+	var/datum/action/cooldown/buster/megabuster/I = new/datum/action/cooldown/buster/r/megabuster()
+	var/datum/action/cooldown/buster/r/wire_snatch/D = new/datum/action/cooldown/buster/r/wire_snatch()
+	var/datum/action/cooldown/buster/r/grap/M = new/datum/action/cooldown/buster/r/grap()
 
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)
 	if(!proximity)
