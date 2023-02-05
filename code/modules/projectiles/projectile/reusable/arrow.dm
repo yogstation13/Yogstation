@@ -84,7 +84,7 @@
 	armour_penetration = -10
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bronze
 
-/obj/item/projectile/bullet/reusable/arrow/glass //Basically just a downgrade for people who can't their hands on wood/cloth
+/obj/item/projectile/bullet/reusable/arrow/glass //Basically just a downgrade for people who can't get their hands on wood/cloth
 	name = "glass arrow"
 	desc = "A shoddy arrow with a broken glass shard as its tip. Can break upon impact."
 	damage = 25

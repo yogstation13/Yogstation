@@ -124,8 +124,8 @@
 	if(istype(A))
 		icon = A.icon
 		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/BBB = BB
+		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
+		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
 		if(istype(AA) && istype(BBB))
 			BBB.damage = AA.damage * 0.5
 			BBB.armour_penetration = AA.armour_penetration * 0.5
