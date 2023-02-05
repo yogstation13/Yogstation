@@ -281,6 +281,51 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/ghosttoxin = 1)
 
+/obj/item/reagent_containers/syringe/big
+	name = "large syringe"
+	desc = "A large syringe that can hold 30 units of chemicals"
+	amount_per_transfer_from_this = 10
+	volume = 30
+
+/obj/item/reagent_containers/syringe/big/polonium
+	name = "syringe (polonium)"
+	desc = "Contains 3O units of polonium. Will irradiate victims, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/polonium = 30)
+
+/obj/item/reagent_containers/syringe/big/venom
+	name = "syringe (venom)"
+	desc = "Contains 3O units of venom. Deadliness increase with the dosage, can decay into histamine."
+	list_reagents = list(/datum/reagent/toxin/venom = 30)
+
+/obj/item/reagent_containers/syringe/big/spewium
+	name = "syringe (spewium)"
+	desc = "Contains 3O units of spewium. Cause victims to vomit, more than 29 units cause to victims puking out their own organs."
+	list_reagents = list(/datum/reagent/toxin/spewium = 30)
+
+/obj/item/reagent_containers/syringe/big/histamine
+	name = "syringe (histamine)"
+	desc = "Contains 3O units of histamine. Provoke itching, sneezing, coughing and blurry vision, more than 30 units cause victims to take large amounts of brute, toxin and oxygen damage."
+	list_reagents = list(/datum/reagent/toxin/histamine = 30)
+
+/obj/item/reagent_containers/syringe/big/initropidril
+	name = "syringe (initropidril)"
+	desc = "Contains 3O units of initropidril. A paralytic agent that will cause failures of respiratory systems and cardiac arrest."
+	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
+
+/obj/item/reagent_containers/syringe/big/pancuronium
+	name = "syringe (pancuronium)"
+	desc = "Contains 3O units of pancuronium. Stun and suffocate victims."
+	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
+
+/obj/item/reagent_containers/syringe/big/sodium_thiopental
+	name = "syringe (sodium thiopental)"
+	desc = "Contains 3O units of sodium thiopental. Will tire victims and knock them out non lethally."
+	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
+
+/obj/item/reagent_containers/syringe/big/curare
+	name = "syringe (curare)"
+	desc = "Contains 3O units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly.
+
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals."
@@ -291,6 +336,7 @@
 	name = "piercing syringe"
 	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing. It can hold up to 15 units."
 	proj_piercing = 1
+
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
@@ -311,4 +357,3 @@
 
 /obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
 	qdel(src)
-	

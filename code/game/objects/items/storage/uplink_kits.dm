@@ -542,23 +542,18 @@
 /obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 14
+	STR.max_items = 9
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/polonium(src)
-	new /obj/item/reagent_containers/glass/bottle/venom(src)
-	new /obj/item/reagent_containers/glass/bottle/fentanyl(src)
-	new /obj/item/reagent_containers/glass/bottle/formaldehyde(src)
-	new /obj/item/reagent_containers/glass/bottle/spewium(src)
-	new /obj/item/reagent_containers/glass/bottle/cyanide(src)
-	new /obj/item/reagent_containers/glass/bottle/histamine(src)
-	new /obj/item/reagent_containers/glass/bottle/initropidril(src)
-	new /obj/item/reagent_containers/glass/bottle/pancuronium(src)
-	new /obj/item/reagent_containers/glass/bottle/sodium_thiopental(src)
-	new /obj/item/reagent_containers/glass/bottle/coniine(src)
-	new /obj/item/reagent_containers/glass/bottle/curare(src)
-	new /obj/item/reagent_containers/glass/bottle/amanitin(src)
-	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/syringe/big/polonium(src)
+	new /obj/item/reagent_containers/syringe/big/venom(src)
+	new /obj/item/reagent_containers/syringe/big/spewium(src)
+	new /obj/item/reagent_containers/syringe/big/histamine(src)
+	new /obj/item/reagent_containers/syringe/big/initropidril(src)
+	new /obj/item/reagent_containers/syringe/big/pancuronium(src)
+	new /obj/item/reagent_containers/syringe/big/sodium_thiopental(src)
+	new /obj/item/reagent_containers/syringe/big/curare(src)
+	new /obj/item/reagent_containers/syringe/big(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo
 	real_name = "10mm magazine box"
