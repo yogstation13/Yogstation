@@ -215,7 +215,7 @@
 
 //Puts the item into our active hand if possible. returns TRUE on success.
 /mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE, no_sound = FALSE)
-	return put_in_hand(I, active_hand_index, forced, ignore_animation)
+	return put_in_hand(I, active_hand_index, forced, ignore_animation, no_sound)
 
 
 //Puts the item into our inactive hand if possible, returns TRUE on success
@@ -250,14 +250,14 @@
 						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
 						return TRUE
 
-	if(put_in_active_hand(I, forced))
+	if(put_in_active_hand(I, forced, no_sound = no_sound))
 		return TRUE
 
 	var/hand = get_empty_held_index_for_side("l")
 	if(!hand)
 		hand =  get_empty_held_index_for_side("r")
 	if(hand)
-		if(put_in_hand(I, hand, forced))
+		if(put_in_hand(I, hand, forced, no_sound = no_sound))
 			return TRUE
 	if(del_on_fail)
 		qdel(I)
