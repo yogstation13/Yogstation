@@ -175,7 +175,7 @@
 		return FALSE
 	return !held_items[hand_index]
 
-/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE, make_sound = TRUE)
+/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE, no_sound = FALSE)
 	if(forced || can_put_in_hand(I, hand_index))
 		if(isturf(I.loc) && !ignore_anim)
 			I.do_pickup_animation(src)
@@ -187,7 +187,7 @@
 		held_items[hand_index] = I
 		I.layer = ABOVE_HUD_LAYER
 		I.plane = ABOVE_HUD_PLANE
-		I.equipped(src, SLOT_HANDS)
+		I.equipped(src, SLOT_HANDS, no_sound)
 		if(I.pulledby)
 			I.pulledby.stop_pulling()
 		update_inv_hands()
@@ -214,7 +214,7 @@
 	return FALSE
 
 //Puts the item into our active hand if possible. returns TRUE on success.
-/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE, make_sound = TRUE)
+/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE, no_sound = FALSE)
 	return put_in_hand(I, active_hand_index, forced, ignore_animation)
 
 
@@ -226,7 +226,7 @@
 //Puts the item our active hand if possible. Failing that it tries other hands. Returns TRUE on success.
 //If both fail it drops it on the floor and returns FALSE.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, make_sound = TRUE)
+/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, no_sound = FALSE)
 	if(!I)
 		return FALSE
 
