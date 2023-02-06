@@ -3,6 +3,7 @@
 	desc = "A well-made weapon capable of firing arrows. Mostly outdated, but still dependable."
 	icon_state = "bow"
 	item_state = "bow"
+	icon = 'icons/obj/guns/bows.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY //need both hands to fire
 	force = 5
@@ -73,6 +74,23 @@
 		chamber_round()
 	update_slowdown()
 	update_icon()
+
+/obj/item/gun/ballistic/bow/AltClick(mob/user)
+	if(chambered || get_ammo())
+		var/obj/item/ammo_casing/AC = chambered ? chambered : magazine.get_round(TRUE)
+		AC.attack_self(user)
+		return
+	..()
+
+/obj/item/gun/ballistic/bow/attack_hand(mob/user)
+	if(internal_magazine && loc == user && user.is_holding(src) && (chambered || get_ammo()))
+		var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
+		user.put_in_hands(AC)
+		chambered = null
+		update_slowdown()
+		update_icon()
+		return
+	return ..()
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
 	if (magazine.attackby(I, user, params, 1))
@@ -152,6 +170,74 @@
 				to_chat(user, span_notice("There's already a [magazine_wording] in \the [src]."))
 		return
 	..()
+
+
+// Toy //
+
+/obj/item/gun/ballistic/bow/toy
+	name = "toy bow"
+	desc = "A plastic bow that can fire arrows. Features real voice action!"
+	force = 0
+	spread = 10
+	draw_time = 2 SECONDS
+
+	var/obj/item/assembly/assembly = /obj/item/assembly/voice_box/bow
+
+/obj/item/gun/ballistic/bow/toy/Initialize()
+	. = ..()
+	if(ispath(assembly))
+		assembly = new assembly(src)
+
+/obj/item/gun/ballistic/bow/toy/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!assembly)
+		to_chat(user, span_warning("[src] doesn't have a device inside!"))
+		return TRUE
+	I.play_tool_sound(src)
+	to_chat(user, span_notice("You remove [assembly] from [src]."))
+	user.put_in_hands(assembly)
+	assembly = null
+	return TRUE
+
+/obj/item/gun/ballistic/bow/toy/process_chamber()
+	..()
+	if(assembly)
+		assembly.pulsed()
+
+/obj/item/gun/ballistic/bow/toy/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/assembly))
+		if(assembly)
+			to_chat(user, span_warning("[src] already has a device inside!"))
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+		assembly = I
+		return
+	return ..()
+
+/obj/item/gun/ballistic/bow/toy/blue
+	name = "blue toy bow"
+	desc = "A Nanotrasen themed plastic bow that can fire arrows. Features real voice action!"
+	icon_state = "bow_toy_blue"
+	item_state = "bow_hardlight"
+	assembly = /obj/item/assembly/voice_box/bow/nanotrasen
+
+/obj/item/gun/ballistic/bow/toy/red
+	name = "blue toy bow"
+	desc = "A Syndicate themed plastic bow that can fire arrows. Features real voice action!"
+	icon_state = "bow_toy_red"
+	item_state = "bow_syndicate"
+	assembly = /obj/item/assembly/voice_box/bow/syndie
+
+/obj/item/gun/ballistic/bow/toy/clockwork
+	name = "clockwork toy bow"
+	desc = "A Ratvarian themed plastic bow that can fire arrows. Features real voice action!"
+	icon_state = "bow_toy_clockwork"
+	item_state = "bow_clockwork"
+	assembly = /obj/item/assembly/voice_box/bow/clockwork
+
+
+// Hardlight //
 
 /obj/item/gun/ballistic/bow/energy
 	name = "hardlight bow"

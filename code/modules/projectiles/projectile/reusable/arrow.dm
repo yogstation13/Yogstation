@@ -11,17 +11,40 @@
 	var/break_chance = 0
 	var/fauna_damage_bonus = 10
 
+	var/list/attached_parts
+	var/obj/item/grenade/explosive
+	var/obj/item/restraints/legcuffs/bola/bola
+	var/flaming = FALSE
+
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
-    . = ..()
-    if(isliving(target))
-        var/mob/living/L = target
-        if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
-            L.apply_damage(fauna_damage_bonus)
+	..()
+	if(!isliving(target) || (blocked == 100))
+		return
+
+	if(iscarbon(target))
+		if(flaming)
+			var/mob/living/carbon/M = target
+			M.apply_damage(8, BURN)
+			M.adjust_fire_stacks(1)
+			M.IgniteMob()
+		if(istype(bola))
+			return bola.impactCarbon(target)
+
+	if(istype(bola) && isanimal(target))
+		return bola.impactAnimal(target)
+			
+	var/mob/living/L = target
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(prob(break_chance))
+		for(var/obj/item/part in attached_parts)
+			if(!part.forceMove(part.drop_location()))
+				qdel(part)
 		return
 	var/obj/item/dropping = new ammo_type()
+	dropping.CheckParts(attached_parts)
 	if(iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
@@ -32,6 +55,9 @@
 	if(!dropped)
 		dropping.forceMove(get_turf(src))
 		dropped = TRUE
+
+
+// Arrow Subtypes //
 
 /obj/item/projectile/bullet/reusable/arrow/wood
 	name = "wooden arrow"
@@ -99,40 +125,27 @@
 	armour_penetration = 45 //18.75 damage against elite hardsuit assuming chest shot (and that's a long reload, draw, projectile speed, etc.)
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
-/obj/item/projectile/bullet/reusable/arrow/bola //More of a blunt impact of the bola, still an arrow. Only able to be crafted with makeshift weaponry
-	name = "bola arrow"
-	desc = "An arrow with a bola wrapped around it. Will automatically wrap around any target hit."
-	var/obj/item/restraints/legcuffs/bola/bola
 
-/obj/item/projectile/bullet/reusable/arrow/bola/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
-		return bola.impactCarbon(target)
-	if(isanimal(target))
-		return bola.impactAnimal(target)
+// Toy //
 
-/obj/item/projectile/bullet/reusable/arrow/explosive //Ka-BOOM baby. Only makeshift weaponry
-	name = "explosive arrow"
-	desc = "An arrow with an explosive attached to it, ready to prime upon impact."
-	var/obj/item/grenade/explosive = null
+/obj/item/projectile/bullet/reusable/arrow/toy //Toy arrow with velcro tip that safely embeds into target
+	damage = 0
+	embed_chance = 0.9
+	break_chance = 0
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy
 
-/obj/item/projectile/bullet/reusable/arrow/explosive/prehit(atom/target)
-	. = ..()
-	explosive.forceMove(target)
-	explosive.prime()
-	visible_message("[explosive]")
+/obj/item/projectile/bullet/reusable/arrow/toy/blue
+	name = "disabler bolt"
+	icon_state = "arrow_disable"
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy/blue
 
-/obj/item/projectile/bullet/reusable/arrow/flaming //Normal arrow, but it also sets people on fire. Simple. Only makeshift weaponry
-	name = "fire arrow"
-	desc = "An arrow set ablaze, ready to ignite a target."
+/obj/item/projectile/bullet/reusable/arrow/toy/red
+	name = "energy bolt"
+	icon_state = "arrow_energy"
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy/red
 
-/obj/item/projectile/bullet/reusable/arrow/flaming/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.apply_damage(8, BURN)
-		M.adjust_fire_stacks(1)
-		M.IgniteMob()
-	return ..()
+
+// Hardlight //
 
 /obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh
 	name = "energy bolt"

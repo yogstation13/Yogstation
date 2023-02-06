@@ -560,6 +560,7 @@
 	desc = "A book filled with directions on how to make various tribal clothes and weapons."
 	icon_state = "stone_tablet"
 	crafting_recipe_types = list(/datum/crafting_recipe/bola_arrow,
+								/datum/crafting_recipe/explosive_arrow,
 								/datum/crafting_recipe/flaming_arrow,
 								/datum/crafting_recipe/raider_leather,
 								/datum/crafting_recipe/tribal_wraps,

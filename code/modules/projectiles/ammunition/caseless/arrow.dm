@@ -10,6 +10,141 @@
 	sharpness = SHARP_POINTY
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 
+	/// List of all attached parts to move to the projectile when fired
+	var/list/attached_parts
+	/// Attached explosive
+	var/obj/item/grenade/explosive
+	/// Attached bola
+	var/obj/item/restraints/legcuffs/bola/bola
+	/// Attached syringe
+	var/obj/item/reagent_containers/syringe/syringe
+	/// If the arrow is on fire
+	var/flaming = FALSE
+
+/obj/item/ammo_casing/caseless/arrow/Initialize()
+	var/list/new_parts
+	if(ispath(explosive))
+		LAZYADD(new_parts, new explosive())
+	if(ispath(bola))
+		LAZYADD(new_parts, new bola())
+	..()
+	if(LAZYLEN(new_parts))
+		CheckParts(new_parts)
+
+/obj/item/ammo_casing/caseless/arrow/update_icon(force_update)
+	..()
+	cut_overlays()
+	if(istype(explosive))
+		add_overlay(mutable_appearance(icon, "arrow_explosive[explosive.active ? "_active" : ""]"), TRUE)
+	if(istype(bola))
+		add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
+	if(istype(syringe))
+		add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
+	if(flaming)
+		add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)
+
+/obj/item/ammo_casing/caseless/arrow/examine(mob/user)
+	. = ..()
+	if(explosive)
+		. += "It has [explosive.active ? "an armed " : ""][explosive] attached."
+	if(bola)
+		. += "It has [bola] attached."
+	if(LAZYLEN(attached_parts))
+		. += "The added parts can be removed with a wirecutter."
+	if(flaming)
+		. += "It is on fire."
+
+/obj/item/ammo_casing/caseless/arrow/attack_self(mob/user)
+	if(istype(explosive))
+		explosive.attack_self(user)
+		add_fingerprint(user)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.throw_mode_off()
+		update_icon()
+	return ..()
+
+/obj/item/ammo_casing/caseless/arrow/wirecutter_act(mob/living/user, obj/item/I)
+	var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+	if(!istype(arrow))
+		return
+	if(!LAZYLEN(attached_parts))
+		to_chat(user, span_warning("There is nothing to remove!"))
+		return
+	if(explosive)
+		explosive = null
+		arrow.explosive = null
+	if(bola)
+		bola = null
+		arrow.bola = null
+	attached_parts = null
+	for(var/obj/item/part in attached_parts)
+		if(!part.forceMove(part.drop_location()))
+			qdel(part)
+	to_chat(user, span_notice("You remove the attached parts."))
+
+			
+/obj/item/ammo_casing/caseless/arrow/CheckParts(list/parts_list)
+	var/obj/item/ammo_casing/caseless/arrow/A = locate(/obj/item/ammo_casing/caseless/arrow) in parts_list
+	if(A)
+		LAZYREMOVE(parts_list, A)
+		if(flaming)
+			add_flame()
+		A.CheckParts(parts_list)
+		qdel(src)
+	for(var/obj/item/grenade/G in parts_list)
+		if(G)
+			if(istype(explosive))
+				G.forceMove(G.drop_location())
+			else
+				add_explosive(G)
+	for(var/obj/item/restraints/legcuffs/bola/B in parts_list)
+		if(B)
+			if(istype(bola))
+				B.forceMove(B.drop_location())
+			else
+				add_bola(B)
+	for(var/obj/item/restraints/handcuffs/cable/C in parts_list)
+		LAZYADD(attached_parts, C)
+	if(LAZYLEN(attached_parts))
+		var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+		arrow.attached_parts = attached_parts
+	..()
+
+/obj/item/ammo_casing/caseless/arrow/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
+	if (..())
+		var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+		if(istype(arrow))
+			arrow.CheckParts(attached_parts)
+		return TRUE
+	return FALSE
+
+/obj/item/ammo_casing/caseless/arrow/proc/add_explosive(obj/item/grenade/new_explosive)
+	var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+	if(istype(new_explosive) && istype(arrow))
+		explosive = new_explosive
+		arrow.explosive = new_explosive
+		LAZYADD(attached_parts, new_explosive)
+	update_icon()
+
+/obj/item/ammo_casing/caseless/arrow/proc/add_bola(obj/item/restraints/legcuffs/bola/new_bola)
+	var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+	if(istype(new_bola) && istype(arrow))
+		bola = new_bola
+		arrow.bola = new_bola
+		LAZYADD(attached_parts, new_bola)
+	update_icon()
+
+/obj/item/ammo_casing/caseless/arrow/proc/add_flame()
+	var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+	if(istype(arrow))
+		flaming = TRUE
+		arrow.flaming = TRUE
+	update_icon()
+
+
+// Arrow Subtypes //
+
 /obj/item/ammo_casing/caseless/arrow/wood
 	name = "wooden arrow"
 	desc = "A wooden arrow, quickly made."
@@ -85,84 +220,46 @@
 	variance = 5
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass/plasma
 
+
+// Toy //
+
+/obj/item/ammo_casing/caseless/arrow/toy
+	name = "toy arrow"
+	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits."
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy
+	force = 0
+	throwforce = 0
+	sharpness = SHARP_NONE
+	embedding = list(100, 0, 0, 0, 0, 0, 0, 0.5, TRUE)
+	taped = TRUE
+
+/obj/item/ammo_casing/caseless/arrow/toy/blue
+	name = "blue toy arrow"
+	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a blue hardlight arrow."
+	icon_state = "arrow_toy_blue"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/blue
+
+/obj/item/ammo_casing/caseless/arrow/toy/red
+	name = "red toy arrow"
+	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a red hardlight arrow."
+	icon_state = "arrow_toy_red"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/red
+
+
+// Utility //
+
 /obj/item/ammo_casing/caseless/arrow/bola
-	name = "bola arrow"
-	desc = "An arrow with a bola wrapped around it. Will automatically wrap around any target hit."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bola
-
-/obj/item/ammo_casing/caseless/arrow/bola/Initialize()
-	..()
-	var/obj/item/ammo_casing/caseless/arrow/A = locate(/obj/item/ammo_casing/caseless/arrow) in contents
-	if(istype(A))
-		icon = A.icon
-		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
-		if(istype(AA) && istype(BBB))
-			BBB.damage = AA.damage * 0.5
-			BBB.armour_penetration = AA.armour_penetration * 0.5
-			BBB.embed_chance = AA.embed_chance * 0.5
-			BBB.ammo_type = AA.ammo_type
-
-	var/obj/item/restraints/legcuffs/bola/bola = locate(/obj/item/restraints/legcuffs/bola) in contents
-	var/obj/item/projectile/bullet/reusable/arrow/bola/bola_arrow = BB
-	if(!istype(bola))
-		bola = new(src)
-	if(istype(bola) && istype(bola_arrow))
-		bola_arrow.bola = bola
-	
-	add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
+	bola = /obj/item/restraints/legcuffs/bola
 
 /obj/item/ammo_casing/caseless/arrow/explosive
-	name = "explosive arrow"
-	desc = "An arrow with an explosive attached to it, ready to prime upon impact."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/explosive
-
-/obj/item/ammo_casing/caseless/arrow/explosive/Initialize()
-	..()
-	var/obj/item/ammo_casing/caseless/arrow/A = locate(/obj/item/ammo_casing/caseless/arrow) in contents
-	if(istype(A))
-		icon = A.icon
-		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
-		if(istype(AA) && istype(BBB))
-			BBB.damage = AA.damage * 0.5
-			BBB.armour_penetration = AA.armour_penetration * 0.5
-			BBB.embed_chance = AA.embed_chance * 0.5
-			BBB.ammo_type = AA.ammo_type
-
-	var/obj/item/grenade/explosive = locate(/obj/item/grenade) in contents
-	var/obj/item/projectile/bullet/reusable/arrow/explosive/explosive_arrow = BB
-	if(!istype(explosive))
-		explosive = new /obj/item/grenade/plastic/c4(src)
-	if(istype(explosive) && istype(explosive_arrow))
-		explosive_arrow.explosive = explosive
-	
-	add_overlay(mutable_appearance(icon, "arrow_explosive"), TRUE)
-
-/obj/item/ammo_casing/caseless/arrow/flaming
-	name = "fire arrow"
-	desc = "An arrow set ablaze, ready to ignite a target."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/flaming
+	explosive = /obj/item/grenade/iedcasing
 
 /obj/item/ammo_casing/caseless/arrow/flaming/Initialize()
 	..()
-	var/obj/item/ammo_casing/caseless/arrow/A = locate(/obj/item/ammo_casing/caseless/arrow) in contents
-	if(istype(A))
-		icon = A.icon
-		icon_state = A.icon_state
-		var/obj/item/projectile/bullet/reusable/arrow/AA = A.BB
-		var/obj/item/projectile/bullet/reusable/arrow/BBB = BB
-		if(istype(AA) && istype(BBB))
-			BBB.damage = AA.damage * 0.5
-			BBB.armour_penetration = AA.armour_penetration * 0.5
-			BBB.embed_chance = AA.embed_chance * 0.5
-			BBB.ammo_type = AA.ammo_type
-	
-	add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)
+	add_flame()
 
-// Energy Arrows //
+
+// Hardlight //
 
 /obj/item/ammo_casing/caseless/arrow/energy
 	name = "energy bolt"
@@ -171,7 +268,6 @@
 	item_flags = DROPDEL
 	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_pain_chance" = 0, "embedded_fall_chance" = 0)
 	projectile_type = /obj/item/projectile/energy/arrow
-	var/overlay_state = "redlight"
 
 	var/ticks = 0
 	var/tick_max = 10
@@ -194,7 +290,6 @@
 	name = "disabler bolt"
 	desc = "An arrow made from hardlight. This one stuns the victim in a non-lethal way."
 	icon_state = "arrow_disable"
-	overlay_state = "disable"
 	projectile_type = /obj/item/projectile/energy/arrow/disabler
 	harmful = FALSE
 	tick_damage_type = STAMINA
@@ -203,7 +298,6 @@
 	name = "X-ray bolt"
 	desc = "An arrow made from hardlight. This one can pass through obstructions."
 	icon_state = "arrow_xray"
-	overlay_state = "xray"
 	projectile_type = /obj/item/projectile/energy/arrow/xray
 	tick_damage_type = TOX
 

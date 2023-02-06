@@ -606,7 +606,7 @@
 	item_state = "security"
 	content_overlays = TRUE // This won't end well
 
-/obj/item/storage/belt/military/snack/ComponentInitialize()
+/obj/item/storage/belt/admin/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1000
@@ -805,6 +805,13 @@
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
 	icon_state = "quiver"
 	item_state = "quiver"
+	content_overlays = TRUE
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+
+/obj/item/storage/belt/quiver/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null)
+	if(!override_state && !isinhands && (locate(/obj/item/ammo_casing/caseless/arrow) in contents))
+		override_state = "[icon_state]_empty"
+	..()
 
 /obj/item/storage/belt/quiver/ComponentInitialize()
 	. = ..()
@@ -818,11 +825,20 @@
 		/obj/item/throwing_star/magspear
 		))
 
+/obj/item/storage/belt/quiver/weaver
+	name = "weaver chitin quiver"
+	desc = "A quiver made from the chitin of a weaver. Used to hold arrows."
+	icon_state = "quiver_weaver"
+	item_state = "quiver_weaver"
+	resistance_flags = FIRE_PROOF
+
 /obj/item/storage/belt/quiver/ashwalker/PopulateContents()
 	for(var/i in 1 to 10)
 		new /obj/item/ammo_casing/caseless/arrow/bone(src)
 
 /obj/item/storage/belt/quiver/admin
+	name = "admin quiver"
+	content_overlays = FALSE
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/storage/belt/quiver/admin/ComponentInitialize()
@@ -837,6 +853,22 @@
 			continue
 		for(var/i in 1 to 10)
 			new arrow(src)
+
+/obj/item/storage/belt/quiver/blue
+	icon_state = "quiver_blue"
+	item_state = "quiver_blue"
+
+/obj/item/storage/belt/quiver/blue/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/toy/blue(src)
+
+/obj/item/storage/belt/quiver/red
+	icon_state = "quiver_red"
+	item_state = "quiver_red"
+
+/obj/item/storage/belt/quiver/red/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/toy/red(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
