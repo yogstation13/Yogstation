@@ -115,7 +115,7 @@
 	. = ..()
 	. += span_notice("Insert the device into a functioning data core to proceed.")
 	. += span_notice("Then allocate CPU cycles to revive the AI using a local network interface.")
-	. += span_notice("The integrated battery reports [span_bold(round((living_ticks / AI_BLACKBOX_LIFETIME) * 100) + "%")] battery remaining.")
+	. += span_notice("The integrated battery reports " + "[span_bold(round((living_ticks / AI_BLACKBOX_LIFETIME) * 100) + "%")]" +  "battery remaining.")
 	. += span_notice("A total of [span_bold(processing_progress)]  CPU cycles have been allocated out of the required [span_bold(AI_BLACKBOX_PROCESSING_REQUIREMENT)].")
 
 /obj/item/dead_ai/Destroy()
