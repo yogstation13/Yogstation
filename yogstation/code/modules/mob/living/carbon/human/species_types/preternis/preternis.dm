@@ -232,7 +232,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
-		H.adjustFireLoss(6 - (H.fire_stacks / 2))
+		H.adjustFireLoss(5 - (H.fire_stacks / 2))
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
