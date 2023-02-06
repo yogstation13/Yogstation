@@ -143,6 +143,12 @@
 			var/mob/living/L = AM
 			L.Paralyze(100)
 			L.adjustBruteLoss(400)
+			var/obj/item/bodypart/l_leg = L.get_bodypart(BODY_ZONE_L_LEG)
+			var/datum/wound/blunt/critical/l_fracture = new
+			l_fracture.apply_wound(l_leg)
+			var/obj/item/bodypart/r_leg = L.get_bodypart(BODY_ZONE_R_LEG)
+			var/datum/wound/blunt/critical/r_fracture = new
+			r_fracture.apply_wound(r_leg)
 		else
 			qdel(AM) //everything else DIES
 			if(AM && !QDELETED(AM))	//It's indestructible
