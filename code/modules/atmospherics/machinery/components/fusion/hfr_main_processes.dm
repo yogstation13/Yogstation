@@ -318,11 +318,7 @@
 			if(moderator_list[/datum/gas/bz] > 100)
 				internal_output.adjust_moles(/datum/gas/pluonium, scaled_production * 1.5)
 				internal_output.adjust_moles(/datum/gas/healium, scaled_production * 1.5)
-				for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_HFR(heat_output))) // If they can see it without mesons on.  Bad on them.
-					if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
-						var/D = sqrt(1 / max(1, get_dist(l, src)))
-						l.hallucination += power_level * 50 * D * delta_time
-						l.hallucination = clamp(l.hallucination, 0, 200)
+				induce_hallucination(50 * power_level, delta_time)
 
 		if(5)
 			if(moderator_list[/datum/gas/plasma] > 15)
@@ -339,11 +335,7 @@
 				heat_output *= 1.25
 			if(moderator_list[/datum/gas/bz] > 100)
 				internal_output.adjust_moles(/datum/gas/healium, scaled_production)
-				for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_HFR(heat_output))) // If they can see it without mesons on.  Bad on them.
-					if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
-						var/D = sqrt(1 / max(1, get_dist(l, src)))
-						l.hallucination += power_level * 100 * D
-						l.hallucination = clamp(l.hallucination, 0, 200)
+				induce_hallucination(500, delta_time)
 				internal_output.adjust_moles(/datum/gas/freon, scaled_production * 1.15)
 			if(moderator_list[/datum/gas/healium] > 100)
 				if(critical_threshold_proximity > 400)
@@ -363,10 +355,7 @@
 				radiation *= 2
 				heat_output *= 2.25
 			if(moderator_list[/datum/gas/bz])
-				for(var/mob/living/carbon/human/human in view(src, HALLUCINATION_HFR(heat_output)))
-					var/distance_root = sqrt(1 / max(1, get_dist(human, src)))
-					human.hallucination += power_level * 150 * distance_root
-					human.hallucination = clamp(human.hallucination, 0, 200)
+				induce_hallucination(900, delta_time, force=TRUE)
 				internal_output.adjust_moles(/datum/gas/antinoblium, clamp(dirty_production_rate / 0.045, 0, 10) * delta_time)
 			if(moderator_list[/datum/gas/healium] > 100)
 				if(critical_threshold_proximity > 400)
@@ -405,7 +394,7 @@
 
 	check_gravity_pulse(delta_time)
 
-	radiation_pulse(src, max_range = 6, threshold = 0.3)
+	emit_rads(radiation)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/evaporate_moderator(delta_time)
 	// Don't evaporate if the reaction is dead
@@ -463,8 +452,10 @@
 	// New nuclear particle emission sytem.
 	if(power_level < 4)
 		return
+
 	if(moderator_list[/datum/gas/bz] < (150 / power_level))
 		return
+
 	var/obj/machinery/hypertorus/corner/picked_corner = pick(corners)
 	picked_corner.loc.fire_nuclear_particle(turn(picked_corner.dir, 180))
 
@@ -483,8 +474,12 @@
 		supermatter_zap(src, 5, power_level * 300)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/check_gravity_pulse(delta_time)
+	if (critical_threshold_proximity == 0)
+		return
+	
 	if(DT_PROB(100 - critical_threshold_proximity / 15, delta_time))
 		return
+
 	var/grav_range = round(log(2.5, critical_threshold_proximity))
 	for(var/mob/alive_mob in GLOB.alive_mob_list)
 		if(alive_mob.z != z || get_dist(alive_mob, src) > grav_range || alive_mob.mob_negates_gravity())
@@ -551,7 +546,7 @@
 
 	var/datum/gas_mixture/fuel_port = linked_input.airs[1]
 	for(var/gas_type in selected_fuel.requirements)
-		var/fuel_injected = min(linked_input.airs[1].get_moles(/datum/gas/hydrogen), fuel_injection_rate * delta_time / length(selected_fuel.requirements))
+		var/fuel_injected = min(linked_input.airs[1].get_moles(gas_type), fuel_injection_rate * delta_time / length(selected_fuel.requirements))
 		fuel_port.adjust_moles(gas_type, -fuel_injected)
 		internal_fusion.adjust_moles(gas_type, fuel_injected)
 		linked_input.update_parents()

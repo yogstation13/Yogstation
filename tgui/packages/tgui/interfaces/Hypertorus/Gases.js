@@ -16,7 +16,7 @@ const moderator_gases_help = {
   plasma:
     'Produces basic gases. Has a modest heat bonus to help kick start the early fusion process. When added in large quantities, its high heat capacity can help to slow down temperature changes to manageable speeds.',
   bz: 'Produces intermediate gases at Fusion Level 3 or higher. Massively increases radiation, and induces hallucinations in bystanders.',
-  proto_nitrate:
+  pluonium:
     'Produces advanced gases. Massively increases radiation, and accelerates the rate of temperature change. Make sure you have enough cooling.',
   o2: 'When added in high quantities, rapidly purges iron content. Does not purge iron content fast enough to keep up with damage at high Fusion Levels.',
   healium:
@@ -27,7 +27,7 @@ const moderator_gases_help = {
     'Saps most forms of energy expression. Slows the rate of temperature change.',
 };
 
-const moderator_gases_sticky_order = ['plasma', 'bz', 'proto_nitrate'];
+const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium'];
 
 const ensure_gases = (gas_array, gasids) => {
   const gases_by_id = {};

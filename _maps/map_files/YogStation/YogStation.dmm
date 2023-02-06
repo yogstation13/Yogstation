@@ -2420,7 +2420,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -4811,7 +4811,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -13089,6 +13089,10 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 4;
+	pixel_x = -15
+	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "bJA" = (
@@ -13178,7 +13182,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -21755,7 +21759,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -22769,6 +22773,10 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"eRL" = (
+/obj/effect/turf_decal/bot/right,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "eSM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -23464,6 +23472,10 @@
 "fgV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/box/white,
+/obj/effect/turf_decal/box/white{
+	color = "#9FED58"
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -25019,7 +25031,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -25940,6 +25952,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"ggx" = (
+/obj/item/stack/sheet/plasteel{
+	amount = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
 "ggz" = (
 /obj/machinery/light_switch{
 	pixel_x = -6;
@@ -31078,7 +31096,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -31480,6 +31498,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"iqK" = (
+/obj/structure/table/reinforced,
+/obj/item/pipe_dispenser,
+/obj/item/multitool,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "iqN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/reinforced{
@@ -37241,6 +37265,9 @@
 	dir = 4;
 	pixel_x = -26
 	},
+/obj/item/stack/sheet/glass{
+	amount = 5
+	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "kRb" = (
@@ -39736,6 +39763,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"lVJ" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/body/fuel_input,
+/obj/item/hfr_box/body/interface,
+/obj/item/hfr_box/body/moderator_input,
+/obj/item/hfr_box/body/waste_output,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "lWl" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -41400,6 +41435,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"mAo" = (
+/obj/item/stack/sheet/rglass{
+	amount = 5
+	},
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "mAs" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -43052,8 +43093,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "nka" = (
-/obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "nkd" = (
@@ -43814,6 +43855,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/arrows/white,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "nBq" = (
@@ -47386,7 +47428,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -47714,7 +47756,9 @@
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "piz" = (
-/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/box/white{
+	color = "#52B4E9"
+	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "piL" = (
@@ -55803,6 +55847,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"sFm" = (
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "sFr" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -56014,7 +56062,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -56533,7 +56581,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -57390,6 +57438,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tkm" = (
+/obj/effect/turf_decal/arrows/white{
+	color = "#00AAFF";
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "tks" = (
 /obj/machinery/vending/assist,
 /obj/effect/turf_decal/stripes/corner{
@@ -58604,6 +58659,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/core,
+/obj/item/paper/guides/jobs/atmos/hypertorus,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "tMG" = (
@@ -60012,8 +60070,10 @@
 /turf/open/floor/plasteel,
 /area/medical/storage)
 "upb" = (
-/obj/effect/turf_decal/box,
 /obj/structure/frame/machine,
+/obj/effect/turf_decal/box/white{
+	color = "#EFB341"
+	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "upk" = (
@@ -61409,6 +61469,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"uSX" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "uTh" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
@@ -61690,6 +61758,9 @@
 "uYk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
+	},
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -62580,6 +62651,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"vrS" = (
+/obj/effect/turf_decal/bot/left,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "vrT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -107672,7 +107747,7 @@ kNz
 bvA
 aoV
 cmd
-fKW
+uSX
 fKW
 ctE
 iGK
@@ -107933,7 +108008,7 @@ tLS
 fKW
 ctE
 fKW
-ssx
+ggx
 mxv
 cmd
 cmd
@@ -108186,7 +108261,7 @@ aaf
 aaf
 aaf
 cmd
-fKW
+lVJ
 vsW
 ctE
 fKW
@@ -108443,7 +108518,7 @@ wAc
 cmd
 cmd
 cmd
-fKW
+iqK
 mSL
 ctE
 ssx
@@ -108705,10 +108780,10 @@ csz
 xqu
 ssx
 xBp
-pPW
+eRL
 piz
-pPW
-pPW
+vrS
+mAo
 ufD
 aaa
 aaa
@@ -108964,8 +109039,8 @@ ltj
 nBp
 fgV
 nka
-pPW
-pPW
+sFm
+tkm
 ufD
 aaa
 aaa
@@ -109219,9 +109294,9 @@ svh
 dzz
 fKW
 xBp
-pPW
+vrS
 upb
-pPW
+eRL
 pPW
 ufD
 aaa

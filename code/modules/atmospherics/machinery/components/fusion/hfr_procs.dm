@@ -216,6 +216,7 @@
 	var/ambient_hum = 1
 	if (check_fuel())
 		ambient_hum = power_level + 1
+
 	soundloop.volume = clamp(ambient_hum * 8, 0, 50)
 
 /**
@@ -225,11 +226,14 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/check_fuel()
 	if(!selected_fuel)
 		return FALSE
+
 	if(!internal_fusion.total_moles())
 		return FALSE
+
 	for(var/gas_type in selected_fuel.requirements)
 		if(internal_fusion.get_moles(gas_type) < FUSION_MOLE_THRESHOLD)
 			return FALSE
+
 	return TRUE
 
 /**
@@ -249,7 +253,7 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/check_gas_requirements()
 	var/datum/gas_mixture/contents = linked_input.airs[1]
 	for(var/gas_type in selected_fuel.requirements)
-		if(contents.get_moles(gas_type) <= 0)
+		if(!contents.get_moles(gas_type))
 			return FALSE
 	return TRUE
 
@@ -438,6 +442,7 @@
 	var/emp_light_size = 0
 	var/emp_heavy_size = 0
 	var/rad_pulse_size = 0
+	var/rad_pulse_strength = 0
 	var/gas_spread = 0
 	var/gas_pockets = 0
 	var/critical = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
@@ -462,7 +467,8 @@
 			emp_light_size = power_level * 3
 			emp_heavy_size = power_level * 1
 		if(rad_pulse)
-			rad_pulse_size = 2 * power_level + 8
+			rad_pulse_size = (1 / (power_level + 1))
+			rad_pulse_strength = power_level * 3000
 		gas_pockets = 5
 		gas_spread = power_level * 2
 
@@ -471,7 +477,8 @@
 			emp_light_size = power_level * 5
 			emp_heavy_size = power_level * 3
 		if(rad_pulse)
-			rad_pulse_size = power_level + 24
+			rad_pulse_size = (1 / (power_level + 3))
+			rad_pulse_strength = power_level * 5000
 		gas_pockets = 7
 		gas_spread = power_level * 4
 
@@ -480,7 +487,8 @@
 			emp_light_size = power_level * 7
 			emp_heavy_size = power_level * 5
 		if(rad_pulse)
-			rad_pulse_size = power_level + 34
+			rad_pulse_size = (1 / (power_level + 5))
+			rad_pulse_strength = power_level * 7000
 		gas_pockets = 10
 		gas_spread = power_level * 6
 
@@ -489,7 +497,8 @@
 			emp_light_size = power_level * 9
 			emp_heavy_size = power_level * 7
 		if(rad_pulse)
-			rad_pulse_size = power_level + 44
+			rad_pulse_size = (1 / (power_level + 7))
+			rad_pulse_strength = power_level * 9000
 		gas_pockets = 15
 		gas_spread = power_level * 8
 
@@ -498,6 +507,7 @@
 		if(isclosedturf(turf) || isspaceturf(turf))
 			around_turfs -= turf
 			continue
+
 	var/datum/gas_mixture/remove_fusion
 	if(internal_fusion.total_moles() > 0)
 		remove_fusion = internal_fusion.remove_ratio(0.2)
@@ -507,6 +517,7 @@
 			var/turf/local = pick(around_turfs)
 			local.assume_air(remove)
 		loc.assume_air(internal_fusion)
+
 	var/datum/gas_mixture/remove_moderator
 	if(moderator_internal.total_moles() > 0)
 		remove_moderator = moderator_internal.remove_ratio(0.2)
@@ -519,7 +530,7 @@
 
 	//Max explosion ranges: devastation = 12, heavy = 24, light = 42
 	explosion(
-		origin = src,
+		epicenter = src,
 		devastation_range = critical ? devastating_explosion * 2 : devastating_explosion,
 		heavy_impact_range = critical ?  heavy_impact_explosion * 2 : heavy_impact_explosion,
 		light_impact_range = light_impact_explosion,
@@ -531,8 +542,9 @@
 	if(rad_pulse)
 		radiation_pulse(
 			source = loc,
-			max_range = rad_pulse_size,
-			threshold = 0.05,
+			intensity = rad_pulse_strength,
+			range_modifier = rad_pulse_size,
+			log = TRUE
 		)
 
 	if(em_pulse)
@@ -544,6 +556,27 @@
 			)
 
 	qdel(src)
+
+/**
+ * Induce hallucinations in nearby humans.
+ *
+ * force will make hallucinations ignore meson protection.
+ */
+/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/induce_hallucination(strength, delta_time, force=FALSE)
+	for(var/mob/living/carbon/human/human in view(src, HALLUCINATION_HFR(heat_output)))
+		if(!force && istype(human.glasses, /obj/item/clothing/glasses/meson))
+			continue
+
+		var/distance_root = sqrt(1 / max(1, get_dist(human, src)))
+		human.hallucination += strength * distance_root * delta_time
+		human.hallucination = clamp(human.hallucination, 0, 200)
+
+/**
+ * Emit radiation
+ */
+/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/emit_rads(radiation)
+	rad_power = clamp(radiation / 1e5, 0, FUSION_RAD_MAX)
+	radiation_pulse(loc, rad_power)
 
 /*
  * HFR cracking related procs
