@@ -2910,6 +2910,14 @@
 /obj/effect/spawner/lootdrop/tanks,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"btB" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/trimline/red/line,
+/obj/effect/turf_decal/trimline/red/arrow_ccw{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "btL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -4992,14 +5000,6 @@
 /obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"czu" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/arrow_ccw{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/entry)
 "czG" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -5909,6 +5909,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"cVQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "cWe" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -11830,6 +11842,15 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
+"fKf" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/arrow_ccw{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "fKD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -24698,6 +24719,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"mmw" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/trimline/red/arrow_ccw{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "mmN" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -28044,12 +28072,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"nVI" = (
-/obj/structure/railing,
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
-	dir = 4
-	},
-/area/hallway/secondary/entry)
 "nWu" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32704,15 +32726,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"qto" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "qtt" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -44049,16 +44062,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"wdp" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/arrow_ccw{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/entry)
 "wdr" = (
 /obj/structure/displaycase/captain,
 /turf/open/floor/wood,
@@ -44629,6 +44632,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wtt" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/trimline/red/arrow_ccw{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
+	dir = 4
+	},
+/area/hallway/secondary/entry)
 "wtF" = (
 /obj/structure/closet/secure_closet/contraband/armory,
 /obj/machinery/airalarm{
@@ -48155,14 +48167,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"ycX" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/trimline/red/arrow_ccw{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/entry)
 "ydf" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -92595,7 +92599,7 @@ vgB
 mYp
 ein
 pKx
-qto
+cVQ
 hjp
 ryX
 lMA
@@ -92852,7 +92856,7 @@ vrX
 eUd
 iJg
 faQ
-nVI
+wtt
 lVK
 gsE
 lMA
@@ -93109,7 +93113,7 @@ wod
 dvp
 nXs
 rvb
-ycX
+mmw
 lVK
 unc
 xpQ
@@ -93366,7 +93370,7 @@ ybr
 rjN
 rrI
 faQ
-czu
+btB
 wYh
 aAR
 aAR
@@ -93623,7 +93627,7 @@ gBR
 uhZ
 uhZ
 uhZ
-wdp
+fKf
 gRR
 beM
 sfo
