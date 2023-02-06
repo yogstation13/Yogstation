@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/spritesheet/proc/send_from_cache(client/client)
 	if (isnull(cached_spritesheets_needed))
-		stack_trace("cached_spritesheets_needed was null when sending assets from [type] from cache")
+		stack_trace("cached_spritesheets_needed was null when sending assets from [type] from cache. When developing, make sure CACHE_ASSETS is set to 0 in the config.")
 		cached_spritesheets_needed = list()
 
 	return SSassets.transport.send_assets(client, cached_spritesheets_needed + "spritesheet_[name].css")

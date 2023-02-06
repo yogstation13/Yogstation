@@ -174,6 +174,7 @@
 	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End
 
 /obj/item/autosurgeon/syndicate/spinalspeed
+	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/chest/spinalspeed
 
 //Limb autosurgeons
