@@ -162,6 +162,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_scattershot_ammo
 	name = "LBX AC 10 Scattershot Ammunition"
@@ -173,6 +174,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
 
 /datum/design/mech_carbine
 	name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
@@ -183,6 +185,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_carbine_ammo
 	name = "FNX-99 Carbine Ammunition"
@@ -194,6 +197,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
 
 /datum/design/mech_ion
 	name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
@@ -204,6 +208,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/silver=6000,/datum/material/uranium=2000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_tesla
 	name = "Exosuit Weapon (MKI Tesla Cannon)"
@@ -214,6 +219,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/silver=8000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_laser
 	name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
@@ -224,6 +230,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_laser_heavy
 	name = "Exosuit Weapon (CH-LC \"Solaris\" Laser Cannon)"
@@ -234,6 +241,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_xray
 	name = "Exosuit Weapon (CH-XC \"Transitum\" X-Ray Laser)"
@@ -244,6 +252,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/gold = 6000,/datum/material/uranium = 5000,/datum/material/titanium = 3000,/datum/material/bluespace = 3000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_disabler
 	name = "Exosuit Weapon (CH-DS \"Peacemaker\" Disabler)"
@@ -254,6 +263,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_grenade_launcher
 	name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
@@ -264,6 +274,7 @@
 	materials = list(/datum/material/iron=22000,/datum/material/gold=6000,/datum/material/silver=8000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_grenade_launcher_ammo
 	name = "SGL-6 Grenade Launcher Ammunition"
@@ -275,6 +286,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
 
 /datum/design/mech_missile_rack
 	name = "Exosuit Weapon (BRM-6 Missile Rack)"
@@ -285,6 +297,7 @@
 	materials = list(/datum/material/iron=22000,/datum/material/gold=6000,/datum/material/silver=8000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_missile_rack_ammo
 	name = "BRM-8 Missile Rack Ammunition"
@@ -296,6 +309,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
 
 /datum/design/clusterbang_launcher
 	name = "Exosuit Weapon (SOB-3 Clusterbang Launcher)"
@@ -306,6 +320,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/gold=10000,/datum/material/uranium=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/clusterbang_launcher_ammo
 	name = "SOB-3 Clusterbang Launcher Ammunition"
@@ -317,6 +332,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	combat_design = TRUE
 
 /datum/design/mech_wormhole_gen
 	name = "Exosuit Module (Localized Wormhole Generator)"
@@ -447,6 +463,7 @@
 	materials = list(/datum/material/iron=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_lmg_ammo
 	name = "Ultra AC 2 Ammunition"
@@ -458,6 +475,7 @@
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
 
 /datum/design/mech_sleeper
 	name = "Exosuit Medical (Mounted Sleeper)"

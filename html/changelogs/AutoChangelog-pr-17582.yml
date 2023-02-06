@@ -1,0 +1,5 @@
+author: "00ze-cyclone"
+delete-after: true 
+changes: 
+  - rscadd: "Aegun can now shoot xray lasers and anoxia rays"
+  - tweak: "Aegun now use uranium to recharge, doesn't self charge anymore and still do not fit in rechargers"

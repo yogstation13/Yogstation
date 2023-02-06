@@ -19,12 +19,8 @@
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 	/// Controls whether or not the more dangerous designs have been unlocked by a head's id manually, rather than alert level unlocks
 	var/authorization_override = FALSE
-	/// Tracks whether the station is in full danger mode to unlock combat mechs
-	var/red_alert = FALSE
 	/// ID card of the person using the machine for the purpose of tracking access
 	var/obj/item/card/id/id_card = new()
-	/// Combined boolean value of red alert, auth override, and the users access for the sake of smaller if statements. if this is true, combat parts are available
-	var/combat_parts_allowed = FALSE
 	/// Current items in the build queue.
 	var/list/queue = list()
 	/// Whether or not the machine is building the entire queue automagically.
@@ -74,13 +70,6 @@
 								"Control Interfaces",
 								"IPC Components",
 								"Misc"
-								)
-	var/list/combat_parts = list(
-								"Gygax",
-								"Durand",
-								"H.O.N.K",
-								"Phazon",
-								"Exosuit Ammunition",
 								)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
@@ -476,11 +465,11 @@
   * Does final checks for datum IDs and makes sure this machine can build the designs.
   * * part_list - List of datum design ids for designs to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(list/part_list)
+/obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(list/part_list, mob/user)
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
-		if((D.build_type & MECHFAB) && (D.id in part_list))
-			add_to_queue(D)
+		if((D.build_type & MECHFAB) && (D.id in part_list) && (!D.combat_design || combat_parts_allowed(user)))
+			add_to_queue(D, user)
 
 /**
   * Adds a datum design to the build queue.
@@ -488,7 +477,9 @@
   * Returns TRUE if successful and FALSE if the design was not added to the queue.
   * * D - Datum design to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D)
+/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D, mob/user)
+	if(D.combat_design && !combat_parts_allowed(user))
+		return FALSE
 	if(!istype(queue))
 		queue = list()
 	if(D)
@@ -563,20 +554,14 @@
 /obj/machinery/mecha_part_fabricator/ui_static_data(mob/user)
 	var/list/data = list()
 
-	var/list/final_sets = list()
+	var/list/final_sets = part_sets.Copy()
 	var/list/buildable_parts = list()
 
-	for(var/part_set in part_sets)
-		if(combat_parts.Find(part_set) && !combat_parts_allowed)
-			continue
-		final_sets += part_set
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		if(D.build_type & MECHFAB)
-			if(ispath(D.build_path, /obj/item/mecha_parts/mecha_equipment/weapon) && !combat_parts_allowed) // Yogs -- ID swiping for combat parts
-				var/obj/item/mecha_parts/mecha_equipment/weapon/check = D
-				if(initial(check.restricted))
-					continue
+			if(D.combat_design && !combat_parts_allowed(user)) // Yogs -- ID swiping for combat parts
+				continue
 			// This is for us.
 			var/list/part = output_part_info(D, TRUE)
 
@@ -600,7 +585,6 @@
 
 /obj/machinery/mecha_part_fabricator/ui_data(mob/user)
 	var/list/data = list()
-	check_auth_changes(user)
 	data["materials"] = output_available_resources()
 
 	if(being_built)
@@ -624,18 +608,15 @@
 	data["authorization"] = authorization_override
 	data["user_clearance"] = head_or_silicon(user)
 	data["alert_level"] = GLOB.security_level 
-	data["combat_parts_allowed"] = combat_parts_allowed
+	data["combat_parts_allowed"] = combat_parts_allowed(user)
 	data["emagged"] = (obj_flags & EMAGGED)
 	data["silicon_user"] = issilicon(user)
 
 	return data
 
 /// Updates the various authorization checks used to determine if combat parts are available to the current user
-/obj/machinery/mecha_part_fabricator/proc/check_auth_changes(mob/user)
-	red_alert = (GLOB.security_level >= SEC_LEVEL_RED)
-	if(combat_parts_allowed != (authorization_override || red_alert || head_or_silicon(user)))
-		combat_parts_allowed = (authorization_override || red_alert || head_or_silicon(user))
-		update_static_data(user)
+/obj/machinery/mecha_part_fabricator/proc/combat_parts_allowed(mob/user)
+	return authorization_override || GLOB.security_level >= SEC_LEVEL_RED || head_or_silicon(user)
 
 /// made as a lazy check to allow silicons full access always
 /obj/machinery/mecha_part_fabricator/proc/head_or_silicon(mob/user)
@@ -663,7 +644,7 @@
 		if("add_queue_set")
 			// Add all parts of a set to queue
 			var/part_list = params["part_list"]
-			add_part_set_to_queue(part_list)
+			add_part_set_to_queue(part_list, usr)
 			return
 		if("add_queue_part")
 			// Add a specific part to queue
@@ -671,7 +652,7 @@
 			for(var/v in stored_research.researched_designs)
 				var/datum/design/D = SSresearch.techweb_design_by_id(v)
 				if((D.build_type & MECHFAB) && (D.id == T))
-					add_to_queue(D)
+					add_to_queue(D, usr)
 					break
 			return
 		if("del_queue_part")

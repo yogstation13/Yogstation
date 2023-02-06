@@ -849,7 +849,7 @@
 	who.visible_message(span_danger("[src] tries to remove [who]'s [what.name]."), \
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
-	SEND_SIGNAL(who, COMSIG_ITEM_PRESTRIP)
+	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
 	if(do_mob(src, who, what.strip_delay))
 		if(what && Adjacent(who))
 			if(islist(where))
