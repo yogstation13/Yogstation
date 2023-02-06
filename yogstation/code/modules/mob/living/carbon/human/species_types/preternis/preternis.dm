@@ -26,7 +26,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
-	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
@@ -232,7 +232,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
-		H.adjustFireLoss(5 - (H.fire_stacks / 2))
+		H.adjustFireLoss(6 - (H.fire_stacks / 2))
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
@@ -270,7 +270,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
 	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart())
-		user.next_move += 2 //adds 0.2 second delay to combat
+		user.next_move += 3 //adds 0.3 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
