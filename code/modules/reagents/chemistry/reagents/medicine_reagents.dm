@@ -1866,3 +1866,18 @@
 	M.Jitter(10 SECONDS)
 	M.emote("gasp")
 
+/datum/reagent/medicine/naniteremover
+	name = "Nanite Destabilizer"
+	description = "Creates an environment that in unsuitable for nanites, causing them to rapidly break down."
+	reagent_state = LIQUID
+	color = "#ff00d4"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	taste_description = "acidic oil"
+	process_flags = ORGANIC | SYNTHETIC
+	var/nanite_reduction = -50
+
+/datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)
+	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
+		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
+	..()
+	
