@@ -82,8 +82,6 @@
 		icon_state = icon_state_off
 
 /obj/machinery/atmospherics/components/unary/hypertorus/proc/update_overlays()
-	. = ..()
-
 	if(!cracked)
 		return
 

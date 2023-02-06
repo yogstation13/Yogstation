@@ -630,7 +630,7 @@
 	if (moderator_internal.return_pressure() < HYPERTORUS_STRONG_SPILL_PRESSURE)
 		// Medium explosion on initial rupture
 		explosion(
-			origin = cracked_part,
+			epicenter = cracked_part,
 			devastation_range = 0,
 			heavy_impact_range = 0,
 			light_impact_range = 1,
@@ -641,7 +641,7 @@
 		return
 	// Enough pressure for a strong explosion. Oh dear, oh dear.
 	explosion(
-		origin = cracked_part,
+		epicenter = cracked_part,
 		devastation_range = 0,
 		heavy_impact_range = 1,
 		light_impact_range = 3,
