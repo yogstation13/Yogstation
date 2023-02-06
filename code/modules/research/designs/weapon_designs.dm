@@ -467,3 +467,23 @@
 	build_path = /obj/item/attachment/scope/infrared
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/hardlight_buckshot
+	name = "Hardlight Buckshot Shell"
+	desc = "Basically a battery with a lens on it. When struck with a firing pin, it overloads the cell inside and causes the discharge of all power instantly. This one has a splitter lens, for a wide fan of shots."
+	id = "hardlight_buckshot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	build_path = /obj/item/ammo_casing/shotgun/hardlight/buckshot
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	
+/datum/design/hardlight_slug
+	name = "Hardlight Buckshot Shell"
+	desc = "Basically a battery with a lens on it. When struck with a firing pin, it overloads the cell inside and causes the discharge of all power instantly. This one has a focusing lens, generating two powerful shots."
+	id = "hardlight_slug"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1200, /datum/material/glass = 600)
+	build_path = /obj/item/ammo_casing/shotgun/hardlight/slug
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY

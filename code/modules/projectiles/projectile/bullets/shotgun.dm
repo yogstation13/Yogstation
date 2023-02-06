@@ -184,3 +184,16 @@
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
 	
+/obj/item/projectile/bullet/pellet/hardlight
+	name = "hardlight pellet"
+	icon_state = "disabler_bullet"
+	flag = ENERGY
+	damage = 2 // we keep the burn baby
+	damage_type = BURN
+	stamina = 12 // Total of 72 stamina dmg, rubber shot does 78 but its less cool.
+
+/obj/item/projectile/bullet/shotgun/slug/hardlight
+	name = "hardlight slug"
+	damage = 2
+	damage_type = BURN
+	stamina = 30 // because it fires 2 slugs in a tight formation. 5 more stam than a beanbag.

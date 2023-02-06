@@ -200,7 +200,6 @@
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
 
-
 /obj/item/ammo_casing/shotgun/thundershot
 	name = "thunder slug"
 	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
@@ -208,3 +207,19 @@
 	pellets = 3
 	variance = 25
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+
+/obj/item/ammo_casing/shotgun/hardlight/buckshot
+	name = "hardlight buckshot shell"
+	desc = "A 12-gauge shell that, when fired, quickly discharges all its stored power to synthesize five hardlight pellets."
+	icon_state = "hl-bshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	pellets = 6
+	variance = 20
+
+/obj/item/ammo_casing/shotgun/hardlight/slug
+	name = "hardlight slug"
+	desc = "A 12-gauge shell that, when fired, quickly discharges all its stored power to synthesize two supercharged slugs in a tight formation."
+	icon_state = "hl-sshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
+	pellets = 2
+	variance = 2 // wacky TWO slugs??!?!?!
