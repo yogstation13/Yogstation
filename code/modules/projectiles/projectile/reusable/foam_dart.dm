@@ -11,6 +11,27 @@
 	var/modified = FALSE
 	var/obj/item/pen/pen = null
 
+/// Apply stamina damage to other toy gun users
+/obj/item/projectile/bullet/reusable/foam_dart/on_hit(atom/target, blocked)
+	. = ..()
+
+	if(stamina > 0) // NO RIOT DARTS!!!
+		return
+
+	if(!iscarbon(target))
+		return
+	
+	var/nerfed = FALSE
+	var/mob/living/carbon/C = target
+	for(var/obj/item/gun/ballistic/automatic/toy/T in C.held_items)
+		nerfed = TRUE
+		break
+	
+	if(!nerfed)
+		return
+	
+	C.adjustStaminaLoss(25) // ARMOR IS CHEATING!!!
+
 /obj/item/projectile/bullet/reusable/foam_dart/handle_drop()
 	if(dropped)
 		return
