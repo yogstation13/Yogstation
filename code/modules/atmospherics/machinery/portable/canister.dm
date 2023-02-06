@@ -6,6 +6,9 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "hazard"
 	density = TRUE
+	light_system = MOVABLE_LIGHT
+	light_range = 1.4
+	light_on = FALSE
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""
@@ -359,45 +362,56 @@
 
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	set_light(FALSE)
+	set_light_on(FALSE)
+
 	if(update & CANISTER_UPDATE_OPEN)
 		add_overlay("can-open")
 	if(update & CANISTER_UPDATE_HOLDING)
 		add_overlay("can-tank")
 	if(update & CANISTER_UPDATE_CONNECTED)
 		add_overlay("can-connector")
+
 	if(update & CANISTER_UPDATE_PRESSURE_0)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_RED_LIGHT)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_1)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_RED_LIGHT)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_2)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_ORANGE)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_3)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_ORANGE)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_4)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_YELLOW)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_YELLOW)
 	else if(update & CANISTER_UPDATE_PRESSURE_5)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_LIME)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_LIME)
 	else if(update & CANISTER_UPDATE_FULL)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_GREEN)
+		set_light_on(TRUE)
+		set_light_range_power_color(1.4, 1, COLOR_GREEN)
 	else if(update & CANISTER_UPDATE_FUSION)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, EMISSIVE_PLANE, dir)
-		set_light(2, 2, COLOR_WHITE)
+		set_light_on(TRUE)
+		set_light_range_power_color(2, 2, COLOR_WHITE)
+
 #undef CANISTER_UPDATE_HOLDING
 #undef CANISTER_UPDATE_CONNECTED
 #undef CANISTER_UPDATE_OPEN
