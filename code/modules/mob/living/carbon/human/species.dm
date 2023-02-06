@@ -2106,7 +2106,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 			H.adjust_bodytemperature(11)
 		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 3))
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
