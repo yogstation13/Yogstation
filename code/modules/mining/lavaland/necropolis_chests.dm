@@ -395,6 +395,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/obj/item/warp_cube/linked
 	var/teleporting = FALSE
 
+/obj/item/warp_cube/Destroy()
+	if(!QDELETED(linked))
+		qdel(linked)
+	linked = null
+	return ..()
+
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
 	var/area/current_area = current_location.loc //yogs more location check stuff

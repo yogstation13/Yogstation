@@ -263,6 +263,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
 		GLOB.areas_by_type[type] = null
+	GLOB.sortedAreas -= src
 	GLOB.areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()

@@ -83,6 +83,7 @@
   */ 
 /datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	tag = null
 	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null	//ensure prompt GCing of weakref.
@@ -100,21 +101,26 @@
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))
-			for(var/I in all_components)
-				var/datum/component/C = I
-				qdel(C, FALSE, TRUE)
+			for(var/datum/component/component as anything in all_components)
+				qdel(component, FALSE, TRUE)
 		else
 			var/datum/component/C = all_components
 			qdel(C, FALSE, TRUE)
 		dc.Cut()
 
+	clear_signal_refs()
+
+	return QDEL_HINT_QUEUE
+
+///Only override this if you know what you're doing. You do not know what you're doing
+///This is a threat
+/datum/proc/clear_signal_refs()
 	var/list/lookup = comp_lookup
 	if(lookup)
 		for(var/sig in lookup)
 			var/list/comps = lookup[sig]
 			if(length(comps))
-				for(var/i in comps)
-					var/datum/component/comp = i
+				for(var/datum/component/comp as anything in comps)
 					comp.UnregisterSignal(src, sig)
 			else
 				var/datum/component/comp = comps
@@ -123,8 +129,6 @@
 
 	for(var/target in signal_procs)
 		UnregisterSignal(target, signal_procs[target])
-
-	return QDEL_HINT_QUEUE
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()
