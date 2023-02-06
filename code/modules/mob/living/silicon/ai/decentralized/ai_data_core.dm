@@ -70,28 +70,28 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	calculate_validity()
 
 /obj/machinery/ai/data_core/Destroy()
-	disconnect_from_network()
 	GLOB.data_cores -= src
 	if(GLOB.primary_data_core == src)
 		GLOB.primary_data_core = null
 
+	if(network && networ,.resources)
+		var/list/all_ais = network.resources.get_all_ais()
 
-	var/list/all_ais = network.resources.get_all_ais()
+		for(var/mob/living/silicon/ai/AI in contents)
+			all_ais -= AI
+			if(!AI.is_dying)
+				AI.relocate()
 
-	for(var/mob/living/silicon/ai/AI in contents)
-		all_ais -= AI
-		if(!AI.is_dying)
-			AI.relocate()
-
-    
-	for(var/mob/living/silicon/ai/AI in all_ais)
-		if(AI.is_dying)
-			continue
-		if(!AI.mind && AI.deployed_shell && AI.deployed_shell.mind)
-			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
-		else
-			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+		for(var/mob/living/silicon/ai/AI in all_ais)
+			if(AI.is_dying)
+				continue
+			if(!AI.mind && AI.deployed_shell && AI.deployed_shell.mind)
+				to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+			else
+				to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
+
+	disconnect_from_network()
 	vis_contents -= smoke
 	QDEL_NULL(smoke)
 	..()
@@ -148,17 +148,18 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(!isobserver(user))
 		return
 	. += "<b>Networked AI Laws:</b>"
-	var/list/connected_ais = network.resources.get_all_ais()
-	for(var/mob/living/silicon/ai/AI in connected_ais)
-		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
-		if(!AI.mind && AI.deployed_shell)
-			active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
-		else if(!AI.mind)
-			active_status = "([span_warning("OFFLINE")])"
-			
-		. += "<b>[AI] [active_status] has the following laws: </b>"
-		for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
-			. += law
+	if(network && network.resources)
+		var/list/connected_ais = network.resources.get_all_ais()
+		for(var/mob/living/silicon/ai/AI in connected_ais)
+			var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
+			if(!AI.mind && AI.deployed_shell)
+				active_status = "(Controlling [FOLLOW_LINK(user, AI.deployed_shell)][AI.deployed_shell.name])"
+			else if(!AI.mind)
+				active_status = "([span_warning("OFFLINE")])"
+				
+			. += "<b>[AI] [active_status] has the following laws: </b>"
+			for(var/law in AI.laws.get_law_list(include_zeroth = TRUE))
+				. += law
 
 /obj/machinery/ai/data_core/has_power()
 	if((stat & (NOPOWER)) && integrated_battery)
@@ -207,18 +208,19 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
-		if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
-			warning_sent = TRUE
-			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
-			var/list/send_to = network.resources.get_all_ais()
-			for(var/mob/living/silicon/ai/AI in send_to)
-				if(AI.is_dying)
-					continue
-				if(!AI.mind && AI.deployed_shell.mind)
-					to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
-				else
-					to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
-				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
+		if(network && network.resources)
+			if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
+				warning_sent = TRUE
+				COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
+				var/list/send_to = network.resources.get_all_ais()
+				for(var/mob/living/silicon/ai/AI in send_to)
+					if(AI.is_dying)
+						continue
+					if(!AI.mind && AI.deployed_shell.mind)
+						to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+					else
+						to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+					AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 			
 
 	if(!(stat & (BROKEN|EMPED)) && has_power())
