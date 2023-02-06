@@ -235,13 +235,13 @@
 
 /obj/item/ammo_casing/caseless/arrow/toy/blue
 	name = "blue toy arrow"
-	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a blue hardlight arrow."
+	desc = "A toy arrow that looks like a disabler bolt fabricated from a hardlight bow. Tipped with velcro to allow it to stick to targets."
 	icon_state = "arrow_toy_blue"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/blue
 
 /obj/item/ammo_casing/caseless/arrow/toy/red
 	name = "red toy arrow"
-	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a red hardlight arrow."
+	desc = "A deceiving arrow that looks to be lethal, but is a velcro-tipped toy. For use with toy bows."
 	icon_state = "arrow_toy_red"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/red
 

@@ -140,9 +140,9 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/syringe_arrow
-	name = "Syringe arrow"
+	name = "Syringe Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow
-	time = 3 SECONDS
+	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
 				/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/reagent_containers/syringe = 1)

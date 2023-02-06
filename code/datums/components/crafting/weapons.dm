@@ -264,7 +264,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/goliathshield
-	name = "Goliath shield"
+	name = "Goliath Shield"
 	result = /obj/item/shield/riot/goliath
 	time = 6 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4,

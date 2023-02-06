@@ -24,7 +24,6 @@
 	if(iscarbon(target))
 		if(flaming)
 			var/mob/living/carbon/M = target
-			M.apply_damage(8, BURN)
 			M.adjust_fire_stacks(1)
 			M.IgniteMob()
 		if(istype(bola))
@@ -129,18 +128,19 @@
 // Toy //
 
 /obj/item/projectile/bullet/reusable/arrow/toy //Toy arrow with velcro tip that safely embeds into target
+	name = "toy arrow"
 	damage = 0
 	embed_chance = 0.9
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy
 
 /obj/item/projectile/bullet/reusable/arrow/toy/blue
-	name = "disabler bolt"
+	name = "toy disabler bolt"
 	icon_state = "arrow_disable"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy/blue
 
 /obj/item/projectile/bullet/reusable/arrow/toy/red
-	name = "energy bolt"
+	name = "toy energy bolt"
 	icon_state = "arrow_energy"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/toy/red
 

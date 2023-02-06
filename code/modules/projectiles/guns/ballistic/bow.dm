@@ -217,21 +217,21 @@
 
 /obj/item/gun/ballistic/bow/toy/blue
 	name = "blue toy bow"
-	desc = "A Nanotrasen themed plastic bow that can fire arrows. Features real voice action!"
+	desc = "A toy bow equipped with a screeching voice box, themed after Nanotrasen."
 	icon_state = "bow_toy_blue"
 	item_state = "bow_hardlight"
 	assembly = /obj/item/assembly/voice_box/bow/nanotrasen
 
 /obj/item/gun/ballistic/bow/toy/red
-	name = "blue toy bow"
-	desc = "A Syndicate themed plastic bow that can fire arrows. Features real voice action!"
+	name = "red toy bow"
+	desc = "A red toy boy meant to replicate the hardlight bow used by Syndicate operatives. Comes equipped with a loud voice box."
 	icon_state = "bow_toy_red"
 	item_state = "bow_syndicate"
 	assembly = /obj/item/assembly/voice_box/bow/syndie
 
 /obj/item/gun/ballistic/bow/toy/clockwork
 	name = "clockwork toy bow"
-	desc = "A Ratvarian themed plastic bow that can fire arrows. Features real voice action!"
+	desc = "A plastic, Ratvarian-based toy bow. Sounds a gnarly, obnoxious voice box when fired."
 	icon_state = "bow_toy_clockwork"
 	item_state = "bow_clockwork"
 	assembly = /obj/item/assembly/voice_box/bow/clockwork
