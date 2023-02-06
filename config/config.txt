@@ -126,7 +126,7 @@ LOG_VIRUS
 LOG_CLONING
 
 ## Enable the demo subsystem
-#DEMOS_ENABLED
+DEMOS_ENABLED
 
 ##Log camera pictures - Must have picture logging enabled
 # PICTURE_LOGGING_CAMERA
