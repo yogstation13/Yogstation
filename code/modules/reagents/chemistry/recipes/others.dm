@@ -12,7 +12,7 @@
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/naniteremover
-	name = "Nanite Remover"
+	name = "Nanolytic Agent"
 	id = /datum/reagent/medicine/naniteremover
 	results = list(/datum/reagent/medicine/naniteremover = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)

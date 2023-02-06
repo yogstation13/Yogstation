@@ -1867,7 +1867,7 @@
 	M.emote("gasp")
 
 /datum/reagent/medicine/naniteremover
-	name = "Nanite Destabilizer"
+	name = "Nanolytic Agent"
 	description = "Creates an environment that in unsuitable for nanites, causing them to rapidly break down."
 	reagent_state = LIQUID
 	color = "#ff00d4"
