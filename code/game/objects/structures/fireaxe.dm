@@ -167,13 +167,16 @@
 	if(.)
 		return
 	if(open || broken)
-		if(fireaxe || spareid)
+		if(fireaxe || spareid || olreliable)
 			if(spareid)
 				fireaxe = spareid
+			if(olreliable)
+				fireaxe = olreliable
 			user.put_in_hands(fireaxe)
 			to_chat(user, span_caution("You take the [fireaxe.name] from the [name]."))
 			fireaxe = null
 			spareid = null
+			olreliable = null
 			src.add_fingerprint(user)
 			update_icon()
 			return

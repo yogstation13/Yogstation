@@ -176,7 +176,7 @@
 			return
 		var/found = FALSE
 		for(var/mob/M in fishing_contents) //since only mobs can fall in here this really isnt needed but on the off chance something naughty happens..
-			M.forceMove(get_turf(parent))
+			M.forceMove(get_turf(user))
 			found = TRUE
 		if(found)
 			to_chat(user, span_warning("You reel in something!"))
