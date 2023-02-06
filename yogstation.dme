@@ -1774,6 +1774,7 @@
 #include "code\modules\atmospherics\machinery\components\binary_devices\temperature_pump.dm"
 #include "code\modules\atmospherics\machinery\components\binary_devices\valve.dm"
 #include "code\modules\atmospherics\machinery\components\binary_devices\volume_pump.dm"
+#include "code\modules\atmospherics\machinery\components\fusion\hypertorus.dm"
 #include "code\modules\atmospherics\machinery\components\gas_recipe_machines\atmos_machines_recipes.dm"
 #include "code\modules\atmospherics\machinery\components\gas_recipe_machines\crystallizer.dm"
 #include "code\modules\atmospherics\machinery\components\trinary_devices\filter.dm"
