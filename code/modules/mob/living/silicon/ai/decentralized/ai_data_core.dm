@@ -74,7 +74,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(GLOB.primary_data_core == src)
 		GLOB.primary_data_core = null
 
-	if(network && networ,.resources)
+	if(network && network.resources)
 		var/list/all_ais = network.resources.get_all_ais()
 
 		for(var/mob/living/silicon/ai/AI in contents)
