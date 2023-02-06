@@ -23,7 +23,6 @@
 	timerid = null
 
 /obj/item/implant/tracking/tra32/Destroy()
-	deltimer(timerid)
 	return ..()
 
 /obj/item/implant/tracking/tra32/emp_act(severity) //Demands to call the severity and I do not care to oppose it
