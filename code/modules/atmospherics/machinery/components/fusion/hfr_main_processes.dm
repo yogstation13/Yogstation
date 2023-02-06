@@ -82,7 +82,7 @@
 		for(var/gas_id in selected_fuel.requirements | selected_fuel.primary_products)
 			var/amount = internal_fusion.get_moles(gas_id)
 			fuel_list[gas_id] = amount
-			scaled_fuel_list[gas_id] = max((amount - FUSION_MOLE_THRESHOLD) / scale_factor, 0)
+			scaled_fuel_list[gas_id] = max((amount - FUSION_MOLE_THRESHOLD_HFR) / scale_factor, 0)
 
 	/// Store the moderators gases quantities
 	var/list/moderator_list = list()
@@ -91,14 +91,14 @@
 	for(var/gas_id in moderator_internal.get_gases())
 		var/amount = moderator_internal.get_moles(gas_id)
 		moderator_list[gas_id] = amount
-		scaled_moderator_list[gas_id] = max((amount - FUSION_MOLE_THRESHOLD) / scale_factor, 0)
+		scaled_moderator_list[gas_id] = max((amount - FUSION_MOLE_THRESHOLD_HFR) / scale_factor, 0)
 
 	/*
 	 *FUSION MAIN PROCESS
 	 */
 	//This section is used for the instability calculation for the fusion reaction
 	//The size of the phase space hypertorus
-	var/toroidal_size = (2 * PI) + TORADIANS(arctan((volume - TOROID_VOLUME_BREAKEVEN) / TOROID_VOLUME_BREAKEVEN))
+	var/toroidal_size = (2 * PI) + TORADIANS(arctan((volume - TOROID_VOLUME_BREAKEVEN_HFR) / TOROID_VOLUME_BREAKEVEN_HFR))
 	//Calculation of the gas power, only for theoretical instability calculations
 	var/gas_power = 0
 	for (var/gas_id in internal_fusion.get_gases())
@@ -106,10 +106,10 @@
 	for (var/gas_id in moderator_internal.get_gases())
 		gas_power += (GLOB.meta_gas_info[gas_id][META_GAS_FUSION_POWER] * moderator_internal.get_moles(gas_id) * 0.75)
 
-	instability = MODULUS((gas_power * INSTABILITY_GAS_POWER_FACTOR)**2, toroidal_size) + (current_damper * 0.01) - iron_content * 0.05
+	instability = MODULUS((gas_power * INSTABILITY_GAS_POWER_FACTOR_HFR)**2, toroidal_size) + (current_damper * 0.01) - iron_content * 0.05
 	//Effective reaction instability (determines if the energy is used/released)
 	var/internal_instability = 0
-	if(instability * 0.5 < FUSION_INSTABILITY_ENDOTHERMALITY)
+	if(instability * 0.5 < FUSION_INSTABILITY_ENDOTHERMALITY_HFR)
 		internal_instability = 1
 	else
 		internal_instability = -1

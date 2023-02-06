@@ -119,7 +119,7 @@
 
 //Fusion
 ///Maximum instability before the reaction goes endothermic
-#define FUSION_INSTABILITY_ENDOTHERMALITY 4
+#define FUSION_INSTABILITY_ENDOTHERMALITY_HFR 4
 ///Maximum reachable fusion temperature
 #define FUSION_MAXIMUM_TEMPERATURE 1e8
 

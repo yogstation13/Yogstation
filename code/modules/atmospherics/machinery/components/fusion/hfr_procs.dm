@@ -231,7 +231,7 @@
 		return FALSE
 
 	for(var/gas_type in selected_fuel.requirements)
-		if(internal_fusion.get_moles(gas_type) < FUSION_MOLE_THRESHOLD)
+		if(internal_fusion.get_moles(gas_type) < FUSION_MOLE_THRESHOLD_HFR)
 			return FALSE
 
 	return TRUE
