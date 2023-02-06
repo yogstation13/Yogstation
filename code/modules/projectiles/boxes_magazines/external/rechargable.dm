@@ -147,3 +147,65 @@
 		qdel(src)
 	else
 		return ..()
+
+// NT-M870 Shotgun
+
+/obj/item/gun/ballistic/shotgun/ntm870
+	name = "NT-M870 Shotgun"
+	desc = "A high-tech shotgun that uses hardlight technology to synthesize slugs and pellets. Due to its low power, it doesn't have much use besides tiring out criminals."
+	icon_state = "ntm870"
+	mag_type = /obj/item/ammo_box/magazine/recharge/ntm870
+	can_flashlight = TRUE
+	flight_x_offset = 16
+	flight_y_offset = 13
+	mag_display = TRUE
+	mag_display_ammo = TRUE
+	empty_indicator = TRUE
+	internal_magazine = FALSE
+	tac_reloads = TRUE
+	available_attachments = list(
+		/obj/item/attachment/scope/simple,
+		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
+		/obj/item/attachment/laser_sight,
+		/obj/item/attachment/grip/vertical,
+	)
+
+//NT-M870 mag(?)
+/obj/item/ammo_box/magazine/recharge/ntm870
+	name = "medium power pack"
+	desc = "A medium sized, rechargeable power pack for the NT-M870. Capable of synthesizing up to 8 shots in either slug or buckshot form."
+	icon_state = "powerpack_medium"
+	ammo_type = list (/obj/item/ammo_casing/caseless/hlmag/slug, /obj/item/ammo_casing/caseless/hlmag/buck) // idk if this works i need to test a lot.
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/recharge/ntm870/empty
+	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/recharge/ntm870/emp_act(severity)
+	. = ..()
+	if(!(. & EMP_PROTECT_CONTENTS)) 
+		var/bullet_count = ammo_count()
+		var/bullets_to_remove = round(bullet_count / severity)
+		for(var/i = 0; i < bullets_to_remove, i++)
+			qdel(get_round())
+		update_icon()
+
+/obj/item/ammo_casing/caseless/hlmag/slug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
+	caliber = ENERGY
+
+/obj/item/ammo_casing/caseless/hlmag/buck
+	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	caliber = ENERGY
+
+/obj/item/gun/ballistic/shotgun/ntm870/proc/select_fire(mob/living/user)
+	select++
+	if (select > ammo_type.len)
+		select = 1
+	var/obj/item/ammo_casing/caseless/hlmag/shot = ammo_type[select]
+	fire_sound = shot.fire_sound
+	fire_delay = shot.delay
+	if (shot.select_name)
+		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
+	return
