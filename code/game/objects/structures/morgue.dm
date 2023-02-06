@@ -211,6 +211,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	icon_state = "crema1"
 	dir = SOUTH
 	breakout_time = 3 SECONDS
+	var/cremate_time = 3 SECONDS
 	var/cremate_timer
 	var/id = 1
 
