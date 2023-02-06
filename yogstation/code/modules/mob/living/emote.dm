@@ -93,7 +93,6 @@
 	key = "purr"
 	key_third_person = "purrs"
 	message = "purrs."
-	message_param = "purrs at %t."
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/felinid/purr/get_sound(mob/living/user)
