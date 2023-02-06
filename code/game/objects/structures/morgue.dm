@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		audible_message(span_italics("You hear a roar as the crematorium fires up."))
 		locked = TRUE
 		update_icon()
-		cremate_timer = addtimer(CALLBACK(src, .proc/finish_cremate, user), (breakout_time + 3 SECONDS), TIMER_STOPPABLE)
+		cremate_timer = addtimer(CALLBACK(src, .proc/finish_cremate, user), (breakout_time + cremate_time ), TIMER_STOPPABLE)
 		
 
 /obj/structure/bodycontainer/crematorium/open()
