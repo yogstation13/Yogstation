@@ -23,9 +23,10 @@
 	
 	var/nerfed = FALSE
 	var/mob/living/carbon/C = target
-	for(var/obj/item/gun/ballistic/automatic/toy/T in C.held_items)
-		nerfed = TRUE
-		break
+	for(var/obj/item/gun/ballistic/T in C.held_items)
+		if(istype(T.mag_type, /obj/item/ammo_box/magazine/toy))
+			nerfed = TRUE
+			break
 	
 	if(!nerfed)
 		return
