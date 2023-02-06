@@ -235,14 +235,13 @@
 	name = "\improper OWM-5 \"Ronin\" katana"
 	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
 	energy_drain = 15
-	precise_weapon_damage = 10	//noticeably less damage than its larger cousin
 	cleave = FALSE				//small fast blade
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
 	fauna_damage_bonus = 20		//because why not
-	deflect_bonus = 15
-	base_armor_piercing = 20
+	deflect_bonus = 20			//anime reasons
+	base_armor_piercing = 15	//30 on the precise attacks
 	structure_damage_mult = 1.5	//katana is less smashy than other swords
-	minimum_damage = 20
+	minimum_damage = 15
 	sword_wound_bonus = 15		//More bleeding
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
