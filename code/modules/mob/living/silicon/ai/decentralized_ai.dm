@@ -106,7 +106,7 @@
 	if(stored_ai)
 		living_ticks--
 		if(living_ticks <= AI_BLACKBOX_LIFETIME * 0.5)
-			visible_message(span_danger("The integrated battery on [src] beeps and warns that it's [span_bold("50%")] empty."))
+			visible_message(span_danger("The integrated battery on [src] beeps and warns that it's <b>50%</b> empty."))
 		if(living_ticks <= 0)
 			visible_message(span_danger("The integrated battery on [src] expires and the stored AI is subsequently wiped."))
 			qdel(src)
@@ -115,8 +115,8 @@
 	. = ..()
 	. += span_notice("Insert the device into a functioning data core to proceed.")
 	. += span_notice("Then allocate CPU cycles to revive the AI using a local network interface.")
-	. += span_notice("The integrated battery reports " + "[span_bold(round((living_ticks / AI_BLACKBOX_LIFETIME) * 100) + "%")]" +  "battery remaining.")
-	. += span_notice("A total of [span_bold(processing_progress)]  CPU cycles have been allocated out of the required [span_bold(AI_BLACKBOX_PROCESSING_REQUIREMENT)].")
+	. += span_notice("The integrated battery reports <b>[round((living_ticks / AI_BLACKBOX_LIFETIME) * 100)]%</b> battery remaining.")
+	. += span_notice("A total of <b>[processing_progress]</b>  CPU cycles have been allocated out of the required <b>[AI_BLACKBOX_PROCESSING_REQUIREMENT]</b>.")
 
 /obj/item/dead_ai/Destroy()
 	. = ..()
