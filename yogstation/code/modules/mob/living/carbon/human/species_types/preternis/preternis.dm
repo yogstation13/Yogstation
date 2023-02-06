@@ -26,7 +26,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
-	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
