@@ -1107,8 +1107,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 400)
 
-/obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 3, power)
+/obj/machinery/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
+
 	if(power < 1000)
 		return
 
@@ -1123,24 +1124,25 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(prob(20)) //let's not hit all the engineers with every beam and/or segment of the arc
 		for(var/mob/living/Z in oview(zapstart, range+2))
 			arctargetsmob += Z
+
 	if(arctargetsmob.len)
 		var/mob/living/H = pick(arctargetsmob)
 		var/atom/A = H
 		target_mob = H
 		target_atom = A
-
 	else
 		for(var/obj/machinery/X in oview(zapstart, range+2))
 			arctargetsmachine += X
+
 		if(arctargetsmachine.len)
 			var/obj/machinery/M = pick(arctargetsmachine)
 			var/atom/A = M
 			target_machine = M
 			target_atom = A
-
 		else
 			for(var/obj/structure/Y in oview(zapstart, range+2))
 				arctargetsstructure += Y
+
 			if(arctargetsstructure.len)
 				var/obj/structure/O = pick(arctargetsstructure)
 				var/atom/A = O

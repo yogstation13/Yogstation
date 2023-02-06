@@ -46,7 +46,7 @@
 
 //moves and turns things into BANANIUM
 /obj/structure/destructible/honkmother/process()
-	for(var/I in circlerangeturfs(src, convert_range))
+	for(var/I in circle_range_turfs(src, convert_range))
 		var/turf/T = I
 		if(prob(20))
 			T.honk_act()

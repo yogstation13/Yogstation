@@ -183,7 +183,7 @@
 
 /obj/effect/temp_visual/goliath_tentacle/original/Initialize(mapload, new_spawner)
 	. = ..()
-	var/list/turf/turfs = circlerangeturfs(get_turf(src), 2)
+	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
 	for(var/i in 1 to rand(4, 10))
 		var/turf/T = pick_n_take(turfs)
 		new /obj/effect/temp_visual/goliath_tentacle(T, spawner)

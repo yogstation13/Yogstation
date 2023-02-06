@@ -110,9 +110,18 @@
 
 //REACTIONS
 //return values for reactions (bitflags)
-#define NO_REACTION		0
-#define REACTING		1
-#define STOP_REACTIONS 	2
+///The gas mixture is not reacting
+#define NO_REACTION 0
+///The gas mixture is reacting
+#define REACTING 1
+///The gas mixture is able to stop all reactions
+#define STOP_REACTIONS 2
+
+//Fusion
+///Maximum instability before the reaction goes endothermic
+#define FUSION_INSTABILITY_ENDOTHERMALITY 4
+///Maximum reachable fusion temperature
+#define FUSION_MAXIMUM_TEMPERATURE 1e8
 
 // Pressure limits.
 /// This determins at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)
@@ -264,7 +273,7 @@
 #define ATMOS_TANK_MIASMA			"miasma=100000;TEMP=293.15"
 #define ATMOS_TANK_NO2				"no2=100000;TEMP=293.15"
 #define ATMOS_TANK_PLUOXIUM			"pluox=100000;TEMP=293.15"
-#define ATMOS_TANK_pluonium	"pluonium=100000;TEMP=293.15"
+#define ATMOS_TANK_PLUONIUM	"pluonium=100000;TEMP=293.15"
 #define ATMOS_TANK_STIMULUM			"stim=100000;TEMP=293.15"
 #define ATMOS_TANK_TRITIUM			"tritium=100000;TEMP=293.15"
 #define ATMOS_TANK_H2O				"water_vapor=100000;TEMP=293.15"

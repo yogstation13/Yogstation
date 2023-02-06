@@ -195,7 +195,7 @@
 
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
-	desc = "Pluonium, react differently with various gases"
+	desc = "Pluonium, reacts differently with various gases"
 	icon_state = "pluonium"
 	gas_type = /datum/gas/pluonium
 	filled = 1
@@ -219,6 +219,20 @@
 	desc = "Zauker, highly toxic"
 	icon_state = "zauker"
 	gas_type = /datum/gas/zauker
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/helium
+	name = "Helium canister"
+	desc = "Helium, inert gas"
+	icon_state = "halon"
+	gas_type = /datum/gas/helium
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/antinoblium
+	name = "Antinoblium canister"
+	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
+	icon_state = "halon"
+	gas_type = /datum/gas/antinoblium
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()

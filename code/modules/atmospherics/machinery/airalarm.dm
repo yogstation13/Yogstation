@@ -114,6 +114,8 @@
 		/datum/gas/pluonium	= new/datum/tlv/dangerous,
 		/datum/gas/zauker			= new/datum/tlv/dangerous,	
 		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/helium			= new/datum/tlv/dangerous,
+		/datum/gas/antinoblium		= new/datum/tlv/dangerous,
 		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
@@ -140,6 +142,8 @@
 		/datum/gas/healium			= new/datum/tlv/dangerous,
 		/datum/gas/pluonium	= new/datum/tlv/dangerous,
 		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/helium			= new/datum/tlv/dangerous,
+		/datum/gas/antinoblium		= new/datum/tlv/dangerous,
 		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
@@ -167,6 +171,8 @@
 		/datum/gas/pluonium	= new/datum/tlv/dangerous,
 		/datum/gas/zauker			= new/datum/tlv/dangerous,
 		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/helium			= new/datum/tlv/dangerous,
+		/datum/gas/antinoblium		= new/datum/tlv/dangerous,
 		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
@@ -561,6 +567,8 @@
 						/datum/gas/pluonium,
 						/datum/gas/zauker,
 						/datum/gas/halon,
+						/datum/gas/helium,
+						/datum/gas/antinoblium,
 						/datum/gas/hexane
 					),
 					"scrubbing" = 1,
