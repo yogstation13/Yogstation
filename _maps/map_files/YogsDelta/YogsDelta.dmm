@@ -16505,7 +16505,7 @@
 /area/engine/atmospherics_engine)
 "aCi" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(/datum/gas/nitrogen);
 	name = "nitrogen filter"
 	},
 /obj/effect/turf_decal/tile/yellow{
