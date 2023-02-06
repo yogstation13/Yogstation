@@ -3271,11 +3271,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"avp" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "avr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -21307,13 +21302,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"epm" = (
-/obj/effect/turf_decal/arrows/white{
-	color = "#00AAFF";
-	pixel_y = 15
-	},
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "era" = (
 /obj/machinery/computer/operating,
 /obj/machinery/camera{
@@ -23286,7 +23274,7 @@
 /area/construction)
 "fca" = (
 /obj/effect/turf_decal/box/white{
-	color = "#EFB341"
+	color = "#52B4E9"
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -23897,8 +23885,9 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "frg" = (
-/obj/effect/turf_decal/box/white{
-	color = "#52B4E9"
+/obj/effect/turf_decal/arrows/red{
+	dir = 4;
+	pixel_x = -15
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -26218,12 +26207,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
 "goZ" = (
-/obj/structure/table/reinforced,
-/obj/item/hfr_box/body/fuel_input,
-/obj/item/hfr_box/body/interface,
-/obj/item/hfr_box/body/moderator_input,
-/obj/item/hfr_box/body/waste_output,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/arrows/white{
+	color = "#00AAFF";
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "gpb" = (
 /obj/effect/turf_decal/stripes/line{
@@ -31343,14 +31331,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"ipa" = (
-/obj/structure/table/reinforced,
-/obj/item/hfr_box/corner,
-/obj/item/hfr_box/corner,
-/obj/item/hfr_box/corner,
-/obj/item/hfr_box/corner,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "iph" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/decal/cleanable/dirt,
@@ -33517,7 +33497,12 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "jjC" = (
-/obj/effect/turf_decal/box/white,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "jjR" = (
@@ -35401,6 +35386,11 @@
 /obj/item/stamp/cmo,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
+"kbb" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "kbw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -39218,6 +39208,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"lIC" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "lIL" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -43269,6 +43267,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"noc" = (
+/obj/effect/turf_decal/box/white{
+	color = "#EFB341"
+	},
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "nos" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -46557,10 +46561,6 @@
 	},
 /turf/open/space,
 /area/space)
-"oIQ" = (
-/obj/structure/frame/machine,
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "oIU" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -50162,6 +50162,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"qjm" = (
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "qjx" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
@@ -50811,6 +50815,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"qyb" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/body/fuel_input,
+/obj/item/hfr_box/body/interface,
+/obj/item/hfr_box/body/moderator_input,
+/obj/item/hfr_box/body/waste_output,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "qyo" = (
 /obj/machinery/camera{
 	c_tag = "Central Primary Hallway South";
@@ -53376,6 +53388,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"rDT" = (
+/obj/structure/frame/machine,
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "rEb" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -59702,13 +59718,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
-"ugJ" = (
-/obj/effect/turf_decal/arrows/red{
-	dir = 4;
-	pixel_x = -15
-	},
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "ugK" = (
 /obj/machinery/computer/apc_control{
 	dir = 4
@@ -65104,15 +65113,15 @@
 /area/science/xenobiology)
 "wnV" = (
 /obj/structure/table/reinforced,
-/obj/item/pipe_dispenser,
-/obj/item/multitool,
-/obj/item/wrench,
 /obj/item/stack/sheet/rglass{
 	amount = 5
 	},
 /obj/item/stack/sheet/plasteel{
 	amount = 5
 	},
+/obj/item/pipe_dispenser,
+/obj/item/wrench,
+/obj/item/multitool,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "wnZ" = (
@@ -67472,15 +67481,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
-"xrt" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "xrG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -107732,7 +107732,7 @@ kNz
 bvA
 aoV
 cmd
-ipa
+lIC
 fKW
 ctE
 iGK
@@ -108246,7 +108246,7 @@ aaf
 aaf
 aaf
 cmd
-goZ
+qyb
 vsW
 ctE
 fKW
@@ -108509,7 +108509,7 @@ ctE
 ssx
 xiL
 uYk
-oIQ
+rDT
 eiw
 pPW
 pPW
@@ -108767,7 +108767,7 @@ ssx
 xBp
 pPW
 piz
-frg
+fca
 upb
 pPW
 ufD
@@ -109024,9 +109024,9 @@ ltj
 nBp
 fgV
 nka
-avp
-jjC
-epm
+kbb
+qjm
+goZ
 ufD
 aaa
 aaa
@@ -109281,7 +109281,7 @@ fKW
 xBp
 pPW
 upb
-fca
+noc
 piz
 pPW
 ufD
@@ -109538,7 +109538,7 @@ ssx
 eDN
 bJy
 pPW
-ugJ
+frg
 pPW
 pPW
 ufD
@@ -109796,7 +109796,7 @@ jzg
 tfH
 vCE
 pIA
-xrt
+jjC
 pIA
 sSk
 vUc
