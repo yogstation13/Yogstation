@@ -217,7 +217,7 @@
 	..()
 
 /obj/item/twohanded/fishingrod/collapsable/miningmedic
-	name = "mining medic fishing rod"
+	name = "ol' reliable"
 	desc = "Hey! I caught a miner!"
 	icon_state = "fishing_rod_miningmedic_c"
 	rod_icon_state = "fishing_rod_miningmedic"
