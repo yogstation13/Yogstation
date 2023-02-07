@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed bloodsucker blood altar tasks randomly generating themselves at will"

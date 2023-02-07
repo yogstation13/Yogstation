@@ -77,6 +77,7 @@
 				if(is_type_in_list(local_atom_in_range,local_required_atom_list))
 					selected_atoms |= local_atom_in_range
 					local_required_atoms -= list(local_required_atom_list)
+					break // We found the atom we want, so we can move on to the next required item
 
 		if(length(local_required_atoms) > 0)
 			continue
