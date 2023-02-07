@@ -395,6 +395,39 @@
 	var/view_range = 4.5
 	var/datum/action/innate/protoemitter/firing/auto
 
+/obj/machinery/power/emitter/particle
+	name = "particle emitter"
+	desc = "A machine that generates nuclear particles, often used in particle colliders for physics research. Requires tritium to run."
+	projectile_type = /obj/item/projectile/energy/nuclear_particle
+	var/obj/item/tank/tank
+
+/obj/machinery/power/emitter/particle/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tank))
+		if(!user.transferItemToLoc(I, src))
+			return ..()
+		tank = I
+		return
+	return ..()
+
+/obj/machinery/power/emitter/particle/crowbar_act(mob/living/user, obj/item/I)
+	if(panel_open && tank)
+		user.put_in_hands(tank)
+		tank = null
+		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		return TRUE
+	return ..()
+
+/obj/machinery/power/emitter/particle/fire_beam(mob/user)
+	if(projectile_type == /obj/item/projectile/energy/nuclear_particle)
+		if(!tank || !tank.air_contents)
+			return
+		var/datum/gas_mixture/fuel = tank.air_contents
+		if(fuel.get_moles(/datum/gas/tritium) < FUSION_TRITIUM_MOLES_USED)
+			return
+		fuel.adjust_moles(/datum/gas/tritium, -FUSION_TRITIUM_MOLES_USED)
+		fuel.adjust_moles(/datum/gas/hydrogen, FUSION_TRITIUM_MOLES_USED)
+	..()
+
 //BUCKLE HOOKS
 
 /obj/machinery/power/emitter/prototype/unbuckle_mob(mob/living/buckled_mob,force = 0)

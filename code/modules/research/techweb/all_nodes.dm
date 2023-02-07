@@ -163,7 +163,7 @@
 	display_name = "Advanced Engineering"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
-	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "rangedanalyzer")
+	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "rangedanalyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/anomaly

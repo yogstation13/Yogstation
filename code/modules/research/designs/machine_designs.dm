@@ -114,6 +114,14 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/particle_emitter
+	name = "Machine Design (Particle Emitter Board)"
+	desc = "The circuit board for an particle emitter."
+	id = "particle_emitter"
+	build_path = /obj/item/circuitboard/machine/emitter/particle
+	category = list("Research Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/power_compressor
 	name = "Machine Design (Power Compressor Board)"
 	desc = "The circuit board for a power compressor."
