@@ -194,6 +194,8 @@
 
 /obj/item/projectile/bullet/shotgun/slug/hardlight
 	name = "hardlight slug"
+	icon_state = "disabler_bullet"
+	flag = ENERGY
 	damage = 2
 	damage_type = BURN
 	stamina = 30 // because it fires 2 slugs in a tight formation. 5 more stam than a beanbag.

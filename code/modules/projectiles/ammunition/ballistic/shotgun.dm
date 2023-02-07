@@ -211,7 +211,7 @@
 /obj/item/ammo_casing/shotgun/hardlight/buckshot
 	name = "hardlight buckshot shell"
 	desc = "A 12-gauge shell that, when fired, quickly discharges all its stored power to synthesize five hardlight pellets."
-	icon_state = "hl-bshell"
+//	icon_state = "hl-bshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
 	pellets = 6
 	variance = 20
@@ -219,7 +219,7 @@
 /obj/item/ammo_casing/shotgun/hardlight/slug
 	name = "hardlight slug"
 	desc = "A 12-gauge shell that, when fired, quickly discharges all its stored power to synthesize two supercharged slugs in a tight formation."
-	icon_state = "hl-sshell"
+//	icon_state = "hl-sshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
 	pellets = 2
 	variance = 2 // wacky TWO slugs??!?!?!
