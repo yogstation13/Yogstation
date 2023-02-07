@@ -32,6 +32,8 @@
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
 	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
 	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
+	//Whether helium speech effects are currently active
+	var/helium_speech = FALSE
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
@@ -343,6 +345,17 @@
 		gas_breathed = breath.get_moles(/datum/gas/halon)
 		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
 
+	// Helium
+		gas_breathed = breath.get_moles(/datum/gas/helium)
+		if(gas_breathed > gas_stimulation_min && !helium_speech)
+			helium_speech = TRUE
+			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
+		else if (gas_breathed <= gas_stimulation_min && helium_speech)
+			helium_speech = FALSE
+			UnregisterSignal(owner, COMSIG_MOB_SAY)
+		gas_breathed = breath.get_moles(/datum/gas/helium)
+		breath.adjust_moles(/datum/gas/helium, -gas_breathed)
+
 	// Hexane
 		gas_breathed = breath.get_moles(/datum/gas/hexane)
 		if(gas_breathed > gas_stimulation_min)
@@ -454,6 +467,10 @@
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(20))
 				to_chat(H, span_warning("You feel [hot_message] in your [name]!"))
+
+/obj/item/organ/lungs/proc/handle_helium_speech(owner, list/speech_args)
+	SIGNAL_HANDLER
+	speech_args[SPEECH_SPANS] |= SPAN_HELIUM
 
 /obj/item/organ/lungs/on_life()
 	..()
