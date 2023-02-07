@@ -415,7 +415,7 @@
 	-Connect the fuel mix into the fuel injector port, allow only 1000 moles into the machine to ease the kickstart of the reaction<BR>\
 	-Set the Heat conductor to 500 when starting the reaction, reset it to 100 when power level is higher than 1<BR>\
 	-In the event of a meltdown, set the heat conductor to max and set the current damper to max. Set the fuel injection to min. \
-	If the heat output doesn�t go negative, try changing the magnetic costrictors untill heat output goes negative. \
+	If the heat output does not go negative, try changing the magnetic costrictors untill heat output goes negative. \
 	Make the cooling stronger, put high heat capacity gases inside the moderator (hypernoblium will help dealing with the problem)<BR><BR>\
 	<B>Warnings:</B><BR>\
 	-You cannot dismantle the machine if the power level is over 0<BR>\
