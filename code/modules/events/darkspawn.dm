@@ -15,14 +15,6 @@
 	var/list/candidates = get_candidates(ROLE_DARKSPAWN, null, ROLE_DARKSPAWN)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
-
-	var/darkspawn_to_spawn = 1
-	var/datum/job/hos = SSjob.GetJob("Head of Security")
-	var/datum/job/warden = SSjob.GetJob("Warden")
-	var/datum/job/officers = SSjob.GetJob("Security Officer")
-	var/sec_amount = hos.current_positions + warden.current_positions + officers.current_positions
-	if(sec_amount >= 5 && candidates.len >= 2)
-		darkspawn_to_spawn = 2
 	
 	var/list/spawn_locs = list()
 	for(var/X in GLOB.xeno_spawn)
@@ -34,6 +26,14 @@
 	if(!spawn_locs.len)
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
+	
+	var/darkspawn_to_spawn = 1
+	var/datum/job/hos = SSjob.GetJob("Head of Security")
+	var/datum/job/warden = SSjob.GetJob("Warden")
+	var/datum/job/officers = SSjob.GetJob("Security Officer")
+	var/sec_amount = hos.current_positions + warden.current_positions + officers.current_positions
+	if(sec_amount >= 5 && candidates.len >= 2)
+		darkspawn_to_spawn = 2
 
 	for(var/i=0,i<darkspawn_to_spawn,i++)
 		var/mob/dead/selected = pick(candidates)
