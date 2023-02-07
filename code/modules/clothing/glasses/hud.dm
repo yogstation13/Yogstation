@@ -179,6 +179,15 @@
 	force = 12
 	throwforce = 12
 
+/obj/item/clothing/glasses/hud/personnel
+	name = "personnel HUD sunglasses"
+	desc = "Sunglasses with a personnel HUD."
+	icon_state = "sun"
+	item_state = "glasses"
+	hud_type = DATA_HUD_SECURITY_BASIC // Apparently the basic sec HUD is just IDs and the basic ones we use (mindshield detection etc. are "advanced" sec HUDs.
+	flash_protect = 1
+	tint = 1
+
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"
 	desc = "A HUD with multiple functions."
