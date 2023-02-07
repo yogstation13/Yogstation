@@ -23,6 +23,17 @@
 	var/sec_amount = hos.current_positions + warden.current_positions + officers.current_positions
 	if(sec_amount >= 5 && candidates.len >= 2)
 		darkspawn_to_spawn = 2
+	
+	var/list/spawn_locs = list()
+	for(var/X in GLOB.xeno_spawn)
+		var/turf/T = X
+		var/light_amount = T.get_lumcount()
+		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+			spawn_locs += T
+
+	if(!spawn_locs.len)
+		message_admins("No valid spawn locations found, aborting...")
+		return MAP_ERROR
 
 	for(var/i=0,i<darkspawn_to_spawn,i++)
 		var/mob/dead/selected = pick(candidates)
@@ -30,18 +41,9 @@
 		var/datum/mind/player_mind = new /datum/mind(selected.key)
 		player_mind.active = TRUE
 
-		var/list/spawn_locs = list()
-		for(var/X in GLOB.xeno_spawn)
-			var/turf/T = X
-			var/light_amount = T.get_lumcount()
-			if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
-				spawn_locs += T
-
-		if(!spawn_locs.len)
-			message_admins("No valid spawn locations found, aborting...")
-			return MAP_ERROR
-
-		var/mob/living/carbon/human/S = new ((pick(spawn_locs)))
+		var/turf/chosen_spawn = pick(spawn_locs)
+		spawn_locs -= chosen_spawn // No spawning in the same place
+		var/mob/living/carbon/human/S = new (chosen_spawn)
 		player_mind.transfer_to(S)
 		player_mind.assigned_role = "Darkspawn"
 		player_mind.special_role = "Darkspawn"
