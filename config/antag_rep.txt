@@ -52,7 +52,7 @@ ANTAG_REP Mime 4
 ANTAG_REP Quartermaster 6
 ANTAG_REP Roboticist 5
 ANTAG_REP Scientist 5
-ANTAG_REP Shaft_Miner 5
+ANTAG_REP Shaft_Miner 6
 ANTAG_REP Station_Engineer 6
 ANTAG_REP Virologist 5
 ANTAG_REP Brig_Physician 6
