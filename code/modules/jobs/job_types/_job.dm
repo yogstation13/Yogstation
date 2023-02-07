@@ -70,7 +70,7 @@
 	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
-	var/antag_rep = 10
+	var/antag_rep = 3
 	/// Base pay of the job
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
@@ -146,7 +146,7 @@
 	return TRUE
 
 /datum/job/proc/GetAntagRep()
-	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
+	. = CONFIG_GET(keyed_list/antag_rep)[replacetext(lowertext(title)," ", "_")]
 	if(. == null)
 		return antag_rep
 
