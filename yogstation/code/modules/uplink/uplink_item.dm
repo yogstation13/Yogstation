@@ -168,7 +168,7 @@
 
 /datum/uplink_item/race_restricted/ultra_violence
 	name = "Version one upgrade module"
-	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed."
+	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. This will remove your ability to grab and shove."
 	cost = 16
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
