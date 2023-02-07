@@ -222,7 +222,7 @@
 //Call brass bow: Creates or calls a brass bow, which is capable of firing redlight arrows.
 /datum/action/innate/call_weapon/brass_bow
 	name = "Call Brass Bow"
-	desc = "Calls a brass bowcapable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1.5 seconds.."
+	desc = "Calls a brass bow capable of firing redlight arrows that do moderate damage and recharge after use. The bow will recharge after 1.5 seconds."
 	weapon_type = /obj/item/gun/ballistic/bow/energy/clockwork
 
 
