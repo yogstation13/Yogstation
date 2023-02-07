@@ -4295,6 +4295,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"chD" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/obj/item/lighter{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "chO" = (
 /obj/structure/easel,
 /obj/item/canvas/twentythreeXnineteen,
@@ -16473,6 +16489,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/department/science/central)
+"idp" = (
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/paper_bin{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/security/detectives_office)
 "idr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -26178,10 +26209,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
-"mYt" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "mYX" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
@@ -41313,10 +41340,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"uLl" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "uLY" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -42379,6 +42402,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"vny" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/lab)
 "vnT" = (
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -43918,14 +43949,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"vZt" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/wood,
-/area/security/detectives_office)
 "vZM" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 4
@@ -74561,7 +74584,7 @@ acG
 agN
 aTR
 dEG
-mYt
+chD
 wqy
 xXn
 xXn
@@ -74817,7 +74840,7 @@ qHI
 acG
 agN
 tih
-vZt
+idp
 hjv
 mUZ
 iBH
@@ -87701,7 +87724,7 @@ frh
 bPR
 eiF
 eiF
-uLl
+vny
 sOU
 tqI
 kYl
