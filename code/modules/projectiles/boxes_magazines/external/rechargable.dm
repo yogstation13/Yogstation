@@ -163,6 +163,8 @@
 	empty_indicator = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
+	var/select = 1
+	var/list/ammo_type = list(/obj/item/ammo_casing/caseless/hlmag)
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
@@ -170,7 +172,6 @@
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)
-
 //NT-M870 mag(?)
 /obj/item/ammo_box/magazine/recharge/ntm870
 	name = "medium power pack"
