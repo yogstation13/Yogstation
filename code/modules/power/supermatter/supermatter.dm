@@ -18,6 +18,7 @@
 #define BZ_HEAT_PENALTY 5
 #define NITROGEN_HEAT_PENALTY -1.5
 #define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
+#define ANTINOB_HEAT_PENALTY 15
 
 /// Higher == Bigger bonus to power generation. 
 /// All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
@@ -31,6 +32,7 @@
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
 #define PLUONIUM_TRANSMIT_MODIFIER 15
 #define STIMULUM_TRANSMIT_MODIFIER 75 //absurd amount of power, but quickly decays into nuclear particles
+#define ANTINOB_TRANSMIT_MODIFIER -0.5
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
@@ -498,6 +500,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/zaukcomp = max(removed.get_moles(/datum/gas/zauker)/combined_gas, 0)
 		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
 		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
+		var/antinobliumcomp = max(removed.get_moles(/datum/gas/antinoblium)/combined_gas, 0)
 		var/stimcomp = max(removed.get_moles(/datum/gas/stimulum)/combined_gas, 0)
 
 		if (healcomp >= 0.1)
@@ -518,11 +521,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + stimcomp - pluoxiumcomp - n2comp, 0, 1)
 
 		// How much heat to emit/resist
-		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY), 0.5)
+		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY) + (antinobliumcomp * ANTINOB_HEAT_PENALTY), 0.5)
 		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) + (h2comp * HYDROGEN_HEAT_RESISTANCE) + (pluoniumcomp * PLUONIUM_HEAT_RESISTANCE) + (nobliumcomp * NOBLIUM_HEAT_RESISTANCE), 1)
 
 		// Used to determine radiation output as it concerns things like collecters
-		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (stimcomp * STIMULUM_TRANSMIT_MODIFIER)
+		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (stimcomp * STIMULUM_TRANSMIT_MODIFIER) + (antinobliumcomp * ANTINOB_TRANSMIT_MODIFIER)
 		// More moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
@@ -608,7 +611,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	power -= ((power/500)**3) * powerloss_inhibitor
 
 	if(power > POWER_PENALTY_THRESHOLD || damage > damage_penalty_point)
-
 		if(power > POWER_PENALTY_THRESHOLD)
 			playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
 			supermatter_zap(src, 5, min(power*2, 20000))
