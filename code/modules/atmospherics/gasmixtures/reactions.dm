@@ -89,23 +89,40 @@ nobliumformation = 1001
 /datum/gas_reaction/nobliumsuppression/react()
 	return STOP_REACTIONS
 
-//water vapor: puts out fires?
+/**
+ * Steam Condensation/Deposition:
+ *
+ * Makes turfs slippery.
+ * Can frost things if the gas is cold enough.
+ */
 /datum/gas_reaction/water_vapor
 	priority = 1
 	name = "Water Vapor"
 	id = "vapor"
 
 /datum/gas_reaction/water_vapor/init_reqs()
-	min_requirements = list(/datum/gas/water_vapor = MOLES_GAS_VISIBLE)
+	min_requirements = list(
+		/datum/gas/water_vapor = MOLES_GAS_VISIBLE,
+		"MAX_TEMP" = WATER_VAPOR_CONDENSATION_POINT,
+	)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
-	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
-		if(location && location.freon_gas_act())
-			. = REACTING
-	else if(location && location.water_vapor_gas_act())
-		air.adjust_moles(/datum/gas/water_vapor, -MOLES_GAS_VISIBLE)
+	if(!isturf(holder))
+		return
+
+	var/turf/open/location = holder
+	var/consumed = 0
+	switch(air.return_temperature())
+		if(-INFINITY to WATER_VAPOR_DEPOSITION_POINT)
+			if(location?.freeze_turf())
+				consumed = MOLES_GAS_VISIBLE
+		if(WATER_VAPOR_DEPOSITION_POINT to WATER_VAPOR_CONDENSATION_POINT)
+			if (location?.water_vapor_gas_act())
+				consumed = MOLES_GAS_VISIBLE
+
+	if(consumed)
+		air.adjust_moles(/datum/gas/water_vapor, -consumed)
 		. = REACTING
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic

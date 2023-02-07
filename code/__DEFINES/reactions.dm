@@ -9,8 +9,13 @@
 #define FIRE_CARBON_ENERGY_RELEASED			100000	//Amount of heat released per mole of burnt carbon into the tile
 #define FIRE_HYDROGEN_ENERGY_RELEASED		2800000  //Yogs -- Amount of heat released per mole of burnt hydrogen and/or tritium(hydrogen isotope). Increased significantly due to a bugfix leading to much lower burn temperatures.
 #define FIRE_PLASMA_ENERGY_RELEASED			3000000	//Amount of heat released per mole of burnt plasma into the tile
-//General assmos defines.
-#define WATER_VAPOR_FREEZE					200
+
+// Water Vapor:
+/// The temperature required for water vapor to condense.
+#define WATER_VAPOR_CONDENSATION_POINT (T20C + 10)
+/// The temperature required for water vapor to condense as ice instead of water.
+#define WATER_VAPOR_DEPOSITION_POINT 200
+
 //freon reaction
 #define FREON_BURN_RATE_DELTA				4
 #define FIRE_FREON_ENERGY_RELEASED			-300000 //amount of heat absorbed per mole of burnt freon in the tile
