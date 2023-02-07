@@ -226,7 +226,7 @@
 
 	// Reward people who stayed alive and escaped
 	if(CONFIG_GET(flag/use_antag_rep))
-		var/list/sorted_mobs = sortmobs()
+		var/list/sorted_mobs = GLOB.player_list.Copy()
 		for(var/p_ckey in SSpersistence.antag_rep_change)
 			for(var/mob/M in sorted_mobs) // This looks unperformant but it's better than get_mob_by_ckey()
 				if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
