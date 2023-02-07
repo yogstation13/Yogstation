@@ -61,4 +61,5 @@ ANTAG_REP Clerk 5
 ANTAG_REP Mining_Medic 6
 ANTAG_REP Network_Admin 6
 ANTAG_REP Paramedic 6
+ANTAG_REP Psychiatrist 5
 ANTAG_REP Tourist 3
