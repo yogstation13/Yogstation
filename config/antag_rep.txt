@@ -7,8 +7,8 @@
 ## ANTAG_REP Assistant 0
 
 ## Short explanation of antag rep rewards:
-##	- When a player joins as a station job, they are set to earn that job's antag reputation
 ##	- Players that are antagonist are set to lose antag reputation
+##	- When a player joins as a station job, they are set to earn that job's antag reputation
 ##	- At a certain time into the round, all players are checked
 ##	- Players that are dead, dying, or AFK are set to earn no antag reputation for that round
 ##	- When the round ends, all players are checked again
