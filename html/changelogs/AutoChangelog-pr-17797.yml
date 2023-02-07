@@ -1,0 +1,4 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - bugfix: "NukeOps no longer make noise when preparing off-screen (read: nukeops paper with the nuke code no longer spawns with sound enabled)"
