@@ -1202,6 +1202,22 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"mk" = (
+/obj/structure/table,
+/obj/item/storage/lockbox/vialbox/blood{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/book/random{
+	pixel_x = -4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
+/obj/item/reagent_containers/syringe,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "mr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -1590,20 +1606,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"tM" = (
-/obj/structure/table,
-/obj/item/storage/lockbox/vialbox/blood{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/book/random{
-	pixel_x = -4
-	},
-/obj/machinery/light_switch{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "tQ" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -5108,7 +5110,7 @@ YH
 wu
 UI
 kD
-tM
+mk
 Er
 Ch
 kD
