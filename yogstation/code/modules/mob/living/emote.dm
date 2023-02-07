@@ -82,18 +82,3 @@
 		var/light_dab_speed = rand(3,7)
 		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
 		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)
-
-// FELINID EMOTES
-/datum/emote/living/carbon/felinid/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	if(!iscatperson(user))
-		return FALSE
-	return TRUE
-
-/datum/emote/living/carbon/felinid/purr
-	key = "purr"
-	key_third_person = "purrs"
-	message = "purrs."
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/living/carbon/felinid/purr/get_sound(mob/living/user)
-	return pick('sound/voice/feline/purr1.ogg','sound/voice/feline/purr2.ogg','sound/voice/feline/purr3.ogg')
