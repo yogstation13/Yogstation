@@ -192,21 +192,24 @@
 			qdel(get_round())
 		update_icon()
 
+/obj/item/ammo_casing/caseless/hlmag
+	var/select_name = "hardlight ammo"
+
 /obj/item/ammo_casing/caseless/hlmag/slug
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
 	caliber = ENERGY
+	select_name = "slug"
 
 /obj/item/ammo_casing/caseless/hlmag/buck
 	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
 	caliber = ENERGY
+	select_name = "buckshot"
 
 /obj/item/gun/ballistic/shotgun/ntm870/proc/select_fire(mob/living/user)
 	select++
 	if (select > ammo_type.len)
 		select = 1
 	var/obj/item/ammo_casing/caseless/hlmag/shot = ammo_type[select]
-	fire_sound = shot.fire_sound
-	fire_delay = shot.delay
 	if (shot.select_name)
 		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
 	return
