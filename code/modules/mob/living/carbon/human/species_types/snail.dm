@@ -24,14 +24,6 @@
 
 	smells_like = "organic lubricant" // like IPCs
 
-/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(istype(chem,/datum/reagent/consumable/sodiumchloride))
-		H.adjustFireLoss(2)
-		playsound(H, 'sound/weapons/sear.ogg', 30, 1)
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
-		return TRUE
-	return ..()
-
 /datum/species/snail/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(SLOT_BACK)
@@ -66,10 +58,10 @@
 	return src
 
 /datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
-
-	if(H.reagents.has_reagent(/datum/reagent/consumable/sodiumchloride))
+	var/ouch = istype(chem, /datum/reagent/consumable/sodiumchloride) || istype(chem, /datum/reagent/medicine/salglu_solution)
+	if(ouch)
 		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
-	if(H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
-		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		playsound(H, 'sound/weapons/sear.ogg', 30, 1)
+		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
+		return TRUE
+	return ..()
