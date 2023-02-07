@@ -42,6 +42,7 @@ ANTAG_REP Cargo_Technician 5
 ANTAG_REP Chaplain 6
 ANTAG_REP Chemist 5
 ANTAG_REP Clown 4
+ANTAG_REP Cook 5
 ANTAG_REP Curator 5
 ANTAG_REP Cyborg 4
 ANTAG_REP Geneticist 5
