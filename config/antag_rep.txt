@@ -8,9 +8,9 @@
 
 ## Short explanation of antag rep rewards:
 ##	- When a player joins as a station job, they are set to earn that job's antag reputation
+##	- Players that are antagonist are set to lose antag reputation
 ##	- At a certain time into the round, all players are checked
 ##	- Players that are dead, dying, or AFK are set to earn no antag reputation for that round
-##	- Players that are antagonist are set to lose antag reputation
 ##	- When the round ends, all players are checked again
 ##	- Players that are on centcom and alive receive 2x antag reputation
 ##	- Players that are not on centcom and alive receive 1.5x antag reputation
