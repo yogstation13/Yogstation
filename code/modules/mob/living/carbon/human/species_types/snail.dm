@@ -6,6 +6,7 @@
 	default_color = "336600" //vomit green
 	species_traits = list(EYECOLOR, HAIR, FACEHAIR, LIPS, MUTCOLORS, NO_UNDERWEAR, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_ALWAYS_CLEAN)
+	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG) // splat
 	attack_verb = "slap"
 	say_mod = "slurs"
 	coldmod = 0.5 //snails only come out when its cold and wet
