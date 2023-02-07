@@ -148,6 +148,7 @@
 	else
 		return ..()
 
+
 // NT-M870 Shotgun
 
 /obj/item/gun/ballistic/shotgun/ntm870
@@ -172,6 +173,7 @@
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)
+
 //NT-M870 mag(?)
 /obj/item/ammo_box/magazine/recharge/ntm870
 	name = "medium power pack"
@@ -192,6 +194,18 @@
 			qdel(get_round())
 		update_icon()
 
+/obj/item/gun/ballistic/shotgun/ntm870/proc/select_fire(mob/living/user)
+	select++
+	if (select > ammo_type.len)
+		select = 1
+	var/obj/item/ammo_casing/caseless/hlmag/shot = ammo_type[select]
+	if (shot.select_name)
+		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
+	return
+
+
+// Hardlight Shotgun Ammo
+
 /obj/item/ammo_casing/caseless/hlmag
 	var/select_name = "hardlight ammo"
 
@@ -204,12 +218,3 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
 	caliber = ENERGY
 	select_name = "buckshot"
-
-/obj/item/gun/ballistic/shotgun/ntm870/proc/select_fire(mob/living/user)
-	select++
-	if (select > ammo_type.len)
-		select = 1
-	var/obj/item/ammo_casing/caseless/hlmag/shot = ammo_type[select]
-	if (shot.select_name)
-		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
-	return
