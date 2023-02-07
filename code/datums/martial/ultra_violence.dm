@@ -290,6 +290,7 @@
 	H.dna.species.punchstunthreshold += 4
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
 	H.dna.species.speedmod -= 0.1
+	update_movespeed(TRUE)
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
@@ -309,6 +310,7 @@
 	H.dna.species.punchstunthreshold -= 4
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	H.dna.species.speedmod += 0.1
+	update_movespeed(TRUE)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
