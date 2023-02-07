@@ -23544,6 +23544,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"fja" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_y = 32
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "fjk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/sustenance{
@@ -61387,6 +61394,12 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"uQK" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_y = 32
+	},
+/turf/open/space/basic,
+/area/space)
 "uQR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -108000,7 +108013,7 @@ cmd
 cmd
 cmd
 cmd
-aaa
+uQK
 aaa
 aaa
 aaa
@@ -110056,7 +110069,7 @@ cmd
 cmd
 cmd
 cmd
-pEf
+fja
 eKu
 hag
 khH
