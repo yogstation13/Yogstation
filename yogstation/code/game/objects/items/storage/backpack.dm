@@ -173,20 +173,19 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
 
 //Nick's snail shit
-
+// Additional things in code\modules\mob\living\carbon\human\species_types\snail.dm
 /obj/item/storage/backpack/snail
 	name = "snail shell"
 	desc = "You wonder who this came from."
 	icon = 'yogstation/icons/obj/storage.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
-	item_state = "snail_green"
-	icon_state = "snail_green"
+	item_state = "snailshell"
+	icon_state = "snailshell"
 	slowdown = 1
-
 
 /obj/item/storage/backpack/snail/green
 	name = "green shell backpack"
-	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
+	desc = "An emerald-green snail shell. Still smells of salt."
 	item_state = "snail_green"
 	icon_state = "snail_green"
 

@@ -15,11 +15,14 @@
 	siemens_coeff = 2 //snails are mostly water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	sexes = FALSE //snails are hermaphrodites
-	var/shell_type = /obj/item/storage/backpack/snail/species
+	species_language_holder = /datum/language_holder/english // No snail language.. yet.
+	skinned_type = /obj/item/storage/backpack/snail // drop the funny backpack on gib
 
 	mutanteyes = /obj/item/organ/eyes/snail
 	mutanttongue = /obj/item/organ/tongue/snail
 	exotic_blood = /datum/reagent/lube
+
+	smells_like = "organic lubricant" // like IPCs
 
 /datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem,/datum/reagent/consumable/sodiumchloride))
@@ -48,20 +51,19 @@
 		C.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
 
-/obj/item/storage/backpack/snail/species
+// Unused, perhaps for "advanced snails" or something
+/obj/item/storage/backpack/snail/armored
 	name = "snail shell"
 	desc = "Worn by snails as armor and storage compartment."
-	icon_state = "snailshell"
-	item_state = "snailshell"
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 0, ACID = 50)
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-/obj/item/storage/backpack/snail/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+// Instead of losing the backpack, empty it
+/obj/item/storage/backpack/snail/doStrip(mob/stripper, mob/owner)
+	var/datum/component/storage/ST = GetComponent(/datum/component/storage)
+	ST.quick_empty(stripper)
+	return src
 
 /datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
