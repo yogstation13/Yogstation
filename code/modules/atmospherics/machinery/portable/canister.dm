@@ -317,7 +317,8 @@
 #define CANISTER_UPDATE_PRESSURE_5	(1<<9)
 #define CANISTER_UPDATE_FULL		(1<<10)
 #define CANISTER_UPDATE_FUSION		(1<<11)
-#define CANISTER_LIGHT_RANGE 0.5
+#define CANISTER_LIGHT_RANGE 0.4
+#define CANISTER_LIGHT_POWER 0.5
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
 	if(stat & BROKEN)
@@ -376,37 +377,37 @@
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_RED_LIGHT)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_1)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_RED_LIGHT)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_2)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_ORANGE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_3)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_ORANGE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_4)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_YELLOW)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_YELLOW)
 	else if(update & CANISTER_UPDATE_PRESSURE_5)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_LIME)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_LIME)
 	else if(update & CANISTER_UPDATE_FULL)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, 1, COLOR_GREEN)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_GREEN)
 	else if(update & CANISTER_UPDATE_FUSION)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, EMISSIVE_PLANE, dir)
@@ -427,6 +428,8 @@
 #undef CANISTER_UPDATE_PRESSURE_5
 #undef CANISTER_UPDATE_FULL
 #undef CANISTER_UPDATE_FUSION
+#undef CANISTER_LIGHT_RANGE
+#undef CANISTER_LIGHT_POWER
 
 /obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
