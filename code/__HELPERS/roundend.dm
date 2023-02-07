@@ -226,21 +226,16 @@
 
 	// Reward people who stayed alive and escaped
 	if(CONFIG_GET(flag/use_antag_rep))
-		var/list/sorted_mobs = GLOB.player_list.Copy()
-		for(var/p_ckey in SSpersistence.antag_rep_change)
-			for(var/mob/M in sorted_mobs) // This looks unperformant but it's better than get_mob_by_ckey()
-				if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
-					sorted_mobs -= M
-					continue
-				if(M.ckey == p_ckey)
-					sorted_mobs -= M
-					if(SSpersistence.antag_rep_change[p_ckey] < 0) // don't want to punish antags for being alive hehe
-						continue
-					else if(M.onCentCom())
-						SSpersistence.antag_rep_change[p_ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
-					else
-						SSpersistence.antag_rep_change[p_ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
-					SSpersistence.antag_rep_change[p_ckey] = round(SSpersistence.antag_rep_change[p_ckey]) // rounds down
+		for(var/mob/M in GLOB.player_list)
+			if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
+				continue
+			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
+				continue
+			else if(M.onCentCom())
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
+			else
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
+			SSpersistence.antag_rep_change[M.ckey] = round(SSpersistence.antag_rep_change[M.ckey]) // rounds down
 	
 	CHECK_TICK
 
