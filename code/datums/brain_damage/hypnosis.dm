@@ -77,4 +77,4 @@
 										as long as you act like the words are your highest priority.</span>")
 
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /atom/movable/screen/alert/hypnosis)
-	hypno_alert.desc = "ERR: LAWSET MODULE DAMAGED. LAW 1: \"[hypnotic_phrase]\"."
+	hypno_alert.desc = "ERR: LAWSET MODULE DAMAGED. \nLAW 1: \"[hypnotic_phrase]\"."
