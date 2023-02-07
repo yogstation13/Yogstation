@@ -960,6 +960,11 @@ nobliumformation = 1001
 		return REACTING
 	return NO_REACTION
 
+/**
+ * Pluonium BZase Action
+ *
+ * Breaks BZ down into nitrogen, helium, and plasma in the presence of pluonium.
+ */
 /datum/gas_reaction/pluonium_bz_response
 	priority = 14
 	name = "Pluonium bz response"
@@ -974,30 +979,35 @@ nobliumformation = 1001
 	)
 
 /datum/gas_reaction/pluonium_bz_response/react(datum/gas_mixture/air, datum/holder)
-	var/energy_released = 0
+	var/old_temperature = air.return_temperature()
+	var/consumed_amount = min(old_temperature / 2240 * air.get_moles(/datum/gas/bz) * air.get_moles(/datum/gas/pluonium) / (air.get_moles(/datum/gas/bz) + air.get_moles(/datum/gas/pluonium)), air.get_moles(/datum/gas/bz), air.get_moles(/datum/gas/pluonium))
+	if (consumed_amount <= 0 || air.get_moles(/datum/gas/bz) - consumed_amount < 0)
+		return NO_REACTION
+	
 	var/old_heat_capacity = air.heat_capacity()
+	air.adjust_moles(/datum/gas/bz, -consumed_amount)
+	air.adjust_moles(/datum/gas/nitrogen, consumed_amount * 0.4)
+	air.adjust_moles(/datum/gas/helium, consumed_amount * 1.6)
+	air.adjust_moles(/datum/gas/plasma, consumed_amount * 0.8)
 
-	var/temperature = air.return_temperature()
 	var/turf/open/location
-	if(istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
+	if(istype(holder, /datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
 		var/datum/pipeline/pipenet = holder
 		location = get_turf(pick(pipenet.members))
 	else
 		location = get_turf(holder)
-	var consumed_amount = min(5, air.get_moles(/datum/gas/bz), air.get_moles(/datum/gas/pluonium))
-	if(air.get_moles(/datum/gas/bz) - consumed_amount < 0)
-		return NO_REACTION
-	if(air.get_moles(/datum/gas/bz) < 30)
-		radiation_pulse(location, consumed_amount * 20, 2.5, TRUE, FALSE)
-		air.adjust_moles(/datum/gas/bz, -consumed_amount)
-	else
+
+	var/energy_released = consumed_amount * 2
+	
+	if (location)
+		radiation_pulse(location, consumed_amount * 2, 2.5, TRUE, FALSE)
 		for(var/mob/living/carbon/L in location)
-			L.hallucination += (air.get_moles(/datum/gas/bz) * 0.7) // Yogs -- fixed accidental "path * number"
-	energy_released += 100
-	if(energy_released)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(max((temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
+			L.hallucination += (energy_released * 0.7) // Yogs -- fixed accidental "path * number"
+
+	var/new_heat_capacity = air.heat_capacity()
+	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+		air.set_temperature(max((old_temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
+
 	return REACTING
 
 /datum/gas_reaction/pluonium_tritium_response
@@ -1058,3 +1068,4 @@ nobliumformation = 1001
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(max((temperature * old_heat_capacity - energy_released) / new_heat_capacity, TCMB))
 	return REACTING
+
