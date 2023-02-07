@@ -275,7 +275,7 @@
 		last_found = world.time
 		if((last_newpatient_speak + (emagged ? 20 : 300)) < world.time) //Don't spam these messages!
 			var/list/messagevoice = list("Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/coming.ogg',"Wait [H.name]! I want to help!" = 'sound/voice/medbot/help.ogg',"[H.name], you appear to be injured!" = 'sound/voice/medbot/injured.ogg')
-			var/message = pick(messagevoice)
+			var/message = "Guh"
 			speak(message)
 			playsound(src, messagevoice[message], 50, 0)
 			last_newpatient_speak = world.time
@@ -309,7 +309,7 @@
 	tipper_name = null
 	if(world.time > last_tipping_action_voice + 15 SECONDS)
 		last_tipping_action_voice = world.time
-		var/message = pick(messagevoice)
+		var/message = "Guh"
 		speak(message)
 		playsound(src, messagevoice[message], 70)
 	tipped_status = MEDBOT_PANIC_NONE
@@ -340,7 +340,7 @@
 		do_jitter_animation(tipped_status * 0.1)
 
 	if(messagevoice)
-		var/message = pick(messagevoice)
+		var/message = "Guh"
 		speak(message)
 		playsound(src, messagevoice[message], 70)
 	else if(prob(tipped_status * 0.2))
@@ -391,7 +391,7 @@
 				playsound(src, pick(i_need_scissors), 70)
 			else
 				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
-				var/message = pick(messagevoice)
+				var/message = "Guh"
 				speak(message)
 				playsound(src, messagevoice[message], 50)
 
@@ -523,7 +523,7 @@
 		if(world.time > last_tipping_action_voice + 15 SECONDS)
 			last_tipping_action_voice = world.time // message for tipping happens when we start interacting, message for righting comes after finishing
 			var/list/messagevoice = list("Hey, wait..." = 'sound/voice/medbot/hey_wait.ogg',"Please don't..." = 'sound/voice/medbot/please_dont.ogg',"I trusted you..." = 'sound/voice/medbot/i_trusted_you.ogg', "Nooo..." = 'sound/voice/medbot/nooo.ogg', "Oh fuck-" = 'sound/voice/medbot/oh_fuck.ogg')
-			var/message = pick(messagevoice)
+			var/message = "Guh"
 			speak(message)
 			playsound(src, messagevoice[message], 70, FALSE)
 
@@ -565,7 +565,7 @@
 
 	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
 		var/list/messagevoice = list("No! Stay with me!" = 'sound/voice/medbot/no.ogg',"Live, damnit! LIVE!" = 'sound/voice/medbot/live.ogg',"I...I've never lost a patient before. Not today, I mean." = 'sound/voice/medbot/lost.ogg')
-		var/message = pick(messagevoice)
+		var/message = "Guh"
 		speak(message)
 		playsound(src, messagevoice[message], 50)
 		oldpatient = patient
@@ -619,7 +619,7 @@
 		if(C.maxHealth - C.health < heal_threshold)
 			to_chat(src, span_notice("[C] is healthy! Your programming prevents you from injecting anyone without at least [heal_threshold] damage of any one type ([heal_threshold + 15] for oxygen damage.)"))
 		var/list/messagevoice = list("All patched up!" = 'sound/voice/medbot/patchedup.ogg',"An apple a day keeps me away." = 'sound/voice/medbot/apple.ogg',"Feel better soon!" = 'sound/voice/medbot/feelbetter.ogg')
-		var/message = pick(messagevoice)
+		var/message = "Guh"
 		speak(message)
 		playsound(src, messagevoice[message], 50)
 		bot_reset()
