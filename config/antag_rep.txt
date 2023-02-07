@@ -19,7 +19,7 @@
 ## Default is currently 3, as listed in code/modules/jobs/job_types/_job.dm
 
 ## Heads are important and envied roles, we should reward people for playing them
-ANTAG_REP AI 8 # AI is an important role but will survive 80% of rounds
+ANTAG_REP AI 6 # AI is an important role but will survive 80% of rounds
 ANTAG_REP Captain 15
 ANTAG_REP Chief_Engineer 10
 ANTAG_REP Chief_Medical Officer 10
