@@ -100,7 +100,7 @@
 	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		user.visible_message("[user.name] starts prying [src.name] apart.", \
 							span_notice("You start prying the barricade apart"))
-		if(I.use_tool(src, user, 190, volume=50))
+		if(I.use_tool(src, user, 100, volume=50))
 			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
