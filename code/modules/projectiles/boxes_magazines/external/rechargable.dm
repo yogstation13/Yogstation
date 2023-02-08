@@ -203,6 +203,16 @@
 		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
 	return
 
+/obj/item/ammo_box/magazine/recharge/ntm870/update_icon()
+	..()
+	cut_overlays()
+	var/cur_ammo = ammo_count()
+	if(cur_ammo)
+		if(cur_ammo > 0)
+			add_overlay("wtm870_mag_[cur_ammo]")
+		else
+			add_overlay("wtm870_mag_0")
+
 
 // Hardlight Shotgun Ammo
 
