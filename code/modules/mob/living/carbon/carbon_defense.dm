@@ -97,7 +97,9 @@
 	if(!embedding.on_embed(src, body_part))
 		return
 	body_part.embedded_objects |= embedding
-	embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
+	var/obj/item/ammo_casing/AC = embedding
+	if(!((istype(AC) && !AC.harmful) || embedding.taped))
+		embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
 	embedding.forceMove(src)
 	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
 	if(deal_damage)
@@ -147,9 +149,13 @@
 	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
 	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
 		return
+	var/obj/item/ammo_casing/AC = choice
 	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class
-	body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
-	body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
+	if((istype(AC) && !AC.harmful) || choice.taped)
+		body_part.receive_damage(stamina = damage_amount * 0.25, sharpness = SHARP_EDGED)//Non-harmful stuff causes stamina damage when removed
+	else
+		body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+		body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
 	if(remove_embedded_object(choice, get_turf(src), damage_amount))
 		user.put_in_hands(choice)
 		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))

@@ -124,7 +124,7 @@
 		explosion(src.loc,1,2,4,flame_range = 2)
 		qdel(src)
 	else
-		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/foam/metal/smart(get_turf(src)))
+		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/fluid/foam/metal/smart(get_turf(src)))
 		qdel(src)
 	return
 

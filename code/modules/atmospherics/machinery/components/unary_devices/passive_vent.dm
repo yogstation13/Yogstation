@@ -1,6 +1,5 @@
 /obj/machinery/atmospherics/components/unary/passive_vent
 	icon_state = "passive_vent_map-3"
-
 	name = "passive vent"
 	desc = "It is an open vent."
 	can_unwrench = TRUE
@@ -17,12 +16,12 @@
 	icon_state = "passive_vent"
 
 /obj/machinery/atmospherics/components/unary/passive_vent/process_atmos()
-	..()
-	if(isclosedturf(loc))
+	var/turf/location = get_turf(loc)
+	if(isclosedturf(location))
 		return
 
 	var/active = FALSE
-	var/datum/gas_mixture/external = loc.return_air()
+	var/datum/gas_mixture/external = location.return_air()
 	var/datum/gas_mixture/internal = airs[1]
 	var/external_pressure = external.return_pressure()
 	var/internal_pressure = internal.return_pressure()

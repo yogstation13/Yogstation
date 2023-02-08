@@ -15,7 +15,7 @@ const SentientCreature: Antagonist = {
     `,
     SENTIENTCREATURE_MECHANICAL_DESCRIPTION,
   ],
-  category: Category.Roundstart,
+  category: Category.Midround,
   priority: -1,
 };
 

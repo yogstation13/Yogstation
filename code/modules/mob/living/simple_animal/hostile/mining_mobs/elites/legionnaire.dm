@@ -210,8 +210,8 @@
 		visible_message(span_boldwarning("[src] spews smoke from the tip of their spine!"))
 	else
 		visible_message(span_boldwarning("[src] spews smoke from its maw!"))
-	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(2, T)
+	var/datum/effect_system/fluid_spread/smoke/smoke = new
+	smoke.set_up(2, location = T)
 	smoke.start()
 
 /obj/item/gps/internal/legionnaire
