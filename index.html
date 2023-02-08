@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(572 modules,
-    1458/8239 macros, 17.7%)</aside></h3>
+<aside>(576 modules,
+    1470/8247 macros, 17.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -177,6 +177,7 @@ General Public License version 3.
     <li><a href="code/controllers/subsystem/asset_loading.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;asset_loading">asset_loading</a></li>
     <li><a href="code/controllers/subsystem/chat.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;chat">chat</a></li>
     <li><a href="code/controllers/subsystem/early_assets.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;early_assets">early_assets</a></li>
+    <li><a href="code/controllers/subsystem/fluids.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;fluids">fluids</a></li>
     <li><a href="code/controllers/subsystem/garbage.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;garbage">garbage</a></li>
     <li><a href="code/controllers/subsystem/materials.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;materials">materials</a> - How material datums work
 Materials are now instanced datums, with an associative list of them being kept in SSmaterials. We only instance the materials once and then re-use these instances for everything.
@@ -297,7 +298,11 @@ SPDX-License-Identifier: MIT</li>
     <li><span class="no-substance">decals&#x2F;turfdecal&#x2F;</span><a href="code/game/objects/effects/decals/turfdecal/tilecoloring.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;turfdecal&#x2F;tilecoloring">tilecoloring</a></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system">effect_system</span><ul class="index-tree">
     <li><a href="code/game/objects/effects/effect_system/effects_other.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;effects_other">effects_other</a></li>
-    <li><a href="code/game/objects/effects/effect_system/effects_smoke.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;effects_smoke">effects_smoke</a></li>
+    <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;fluid_spread">fluid_spread</span><ul class="index-tree">
+    <li><a href="code/game/objects/effects/effect_system/fluid_spread/_fluid_spread.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;fluid_spread&#x2F;_fluid_spread">_fluid_spread</a></li>
+    <li><a href="code/game/objects/effects/effect_system/fluid_spread/effects_foam.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;fluid_spread&#x2F;effects_foam">effects_foam</a></li>
+    <li><a href="code/game/objects/effects/effect_system/fluid_spread/effects_smoke.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;fluid_spread&#x2F;effects_smoke">effects_smoke</a></li>
+    </ul></li>
     </ul></li>
     <li><a href="code/game/objects/effects/forcefields.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;forcefields">forcefields</a></li>
     <li><span class="no-substance">spawners&#x2F;</span><a href="code/game/objects/effects/spawners/lootdrop.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;spawners&#x2F;lootdrop">lootdrop</a></li>
@@ -689,6 +694,7 @@ transformations and other events that cause new languages to become available.</
     <li class="has-children"><span title="code&#x2F;modules&#x2F;reagents">reagents</span><ul class="index-tree">
     <li class="has-children"><a href="code/modules/reagents/chemistry.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry">chemistry</a> - <strong>NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.</strong><ul class="index-tree">
     <li><a href="code/modules/reagents/chemistry/holder.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder">holder</a></li>
+    <li><span class="no-substance">machinery&#x2F;</span><a href="code/modules/reagents/chemistry/machinery/smoke_machine.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;machinery&#x2F;smoke_machine">smoke_machine</a></li>
     <li class="has-children"><a href="code/modules/reagents/chemistry/reagents.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents">reagents</a><ul class="index-tree">
     <li><a href="code/modules/reagents/chemistry/reagents/alcohol_reagents.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;alcohol_reagents">alcohol_reagents</a></li>
     <li><a href="code/modules/reagents/chemistry/reagents/cat2_medicine_reagents.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;cat2_medicine_reagents">cat2_medicine_reagents</a></li>
@@ -854,7 +860,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(621 detailed/1328 documented/27234 total, 4.9%)</aside></h3>
+<aside>(635 detailed/1372 documented/27248 total, 5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1137,6 +1143,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/achievements.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;achievements">Achievements</a></li>
     <li><a href="datum/controller/subsystem/atoms.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;atoms">Atoms</a></li>
     <li><a href="datum/controller/subsystem/economy.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy">Economy</a></li>
+    <li><a href="datum/controller/subsystem/fluids.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;fluids">Fluid</a></li>
     <li><a href="datum/controller/subsystem/job.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;job">Jobs</a></li>
     <li><a href="datum/controller/subsystem/mapping.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;mapping">Mapping</a></li>
     <li><a href="datum/controller/subsystem/materials.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;materials">Materials</a></li>
@@ -1279,6 +1286,31 @@ DONKPOCCKETS</li>
 Exported to JSON in the dynamic.json log file.</li>
     <li><a href="datum/dynamic_snapshot_ruleset.html" title="&#x2F;datum&#x2F;dynamic_snapshot_ruleset">dynamic_snapshot_ruleset</a> - A ruleset chosen during a snapshot</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;effect_system">effect_system</span><ul class="index-tree">
+    <li class="has-children"><a href="datum/effect_system/fluid_spread.html" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread">fluid_spread</a> - A factory which produces fluid groups.<ul class="index-tree">
+    <li class="has-children"><a href="datum/effect_system/fluid_spread/foam.html" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam">foam</a> - A factory for foam fluid floods.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam&#x2F;firefighting">firefighting</span> - A factory which produces firefighting foam</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam&#x2F;long">long</span> - A factory which produces foam with an extended lifespan.</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam&#x2F;metal">metal</span> - A factory which produces aluminium metal foam.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam&#x2F;metal&#x2F;iron">iron</span> - A factory which produces iron metal foam.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;foam&#x2F;metal&#x2F;smart">smart</span> - A factory which produces smart aluminium metal foam.</li>
+    </ul></li>
+    </ul></li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke">smoke</span> - A factory which produces clouds of smoke.<ul class="index-tree">
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;bad">bad</span> - A factory which produces smoke that makes you cough.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;bad&#x2F;black">black</span> - A factory which produces black smoke that makes you cough.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;bad&#x2F;green">green</span> - A factory which produces green smoke that makes you cough.</li>
+    </ul></li>
+    <li class="has-children"><a href="datum/effect_system/fluid_spread/smoke/chem.html" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;chem">chem</a> - A factory which produces clouds of chemical bearing smoke.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;chem&#x2F;smoke_machine">smoke_machine</span> - A factory which produces clouds of smoke for the smoke machine.</li>
+    </ul></li>
+    <li class="has-children"><a href="datum/effect_system/fluid_spread/smoke/freezing.html" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;freezing">freezing</a> - A factory which produces light blue, transparent smoke and a blast that chills every turf in the area.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;freezing&#x2F;decon">decon</span> - A variant of the base freezing smoke formerly used by the vent decontamination event.</li>
+    </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;quick">quick</span> - A factory which produces smoke that dissipates as quickly as possible.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;sleeping">sleeping</span> - A factory which produces sleeping smoke.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;fluid_spread&#x2F;smoke&#x2F;transparent">transparent</span> - Same as the base type, but the smoke produced is not opaque</li>
+    </ul></li>
+    </ul></li>
     <li><span class="no-substance">steam_spread&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;steam_spread&#x2F;bloodsucker">bloodsucker</span> - STEP FIVE: Create animal at prev location
 TELEPORT: Move to Coffin &amp; Close it!</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
@@ -1302,6 +1334,8 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     <li><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix&#x2F;bane">bane</span> - Good suffixes</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix&#x2F;fool">fool</span> - Bad suffixes</li>
     </ul></li>
+    <li><a href="datum/fluid_group.html" title="&#x2F;datum&#x2F;fluid_group">fluid_group</a> - SMOKE SYSTEMS
+A group of fluid objects.</li>
     <li class="has-children"><a href="datum/game_mode.html" title="&#x2F;datum&#x2F;game_mode">invalid</a><ul class="index-tree">
     <li><a href="datum/game_mode/bloodsucker.html" title="&#x2F;datum&#x2F;game_mode&#x2F;bloodsucker">bloodsucker</a></li>
     <li><a href="datum/game_mode/dynamic.html" title="&#x2F;datum&#x2F;game_mode&#x2F;dynamic">dynamic mode</a></li>
@@ -1602,6 +1636,7 @@ DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spice
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;round_event">round_event</span><ul class="index-tree">
     <li><a href="datum/round_event/pirates.html" title="&#x2F;datum&#x2F;round_event&#x2F;pirates">pirates</a></li>
+    <li><a href="datum/round_event/scrubber_overflow.html" title="&#x2F;datum&#x2F;round_event&#x2F;scrubber_overflow">scrubber_overflow</a></li>
     <li><a href="datum/round_event/stray_cargo.html" title="&#x2F;datum&#x2F;round_event&#x2F;stray_cargo">stray_cargo</a> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     </ul></li>
     <li class="has-children"><a href="datum/round_event_control.html" title="&#x2F;datum&#x2F;round_event_control">round_event_control</a><ul class="index-tree">
@@ -1908,7 +1943,32 @@ Place a pool ladder at the top of the pool so that it leads to a normal tile (or
 Place a pool filter somewhere in the pool if you want people to be able to modify the pool's settings (Temperature) or dump reagents into the pool (which'll change the pool's colour)</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;overlay&#x2F;status_display_text">status_display_text</span> - Nice overlay to make text smoothly scroll with no client updates after setup.</li>
     </ul></li>
-    <li><span class="no-substance">particle_effect&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;smoke">smoke</span> - SMOKE SYSTEMS</li>
+    <li class="has-children"><span class="no-substance">particle_effect&#x2F;</span><a href="obj/effect/particle_effect/fluid.html" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid">fluid</a> - A particle effect that belongs to a fluid group.<ul class="index-tree">
+    <li class="has-children"><a href="obj/effect/particle_effect/fluid/foam.html" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam">foam</a><ul class="index-tree">
+    <li><a href="obj/effect/particle_effect/fluid/foam/firefighting.html" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;firefighting">firefighting foam</a> - A variant of foam which absorbs plasma in the air if there is a fire.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;long_life">long_life</span> - A foam variant which lasts for an extended amount of time.</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;metal">aluminium foam</span> - A foam variant which<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;metal&#x2F;iron">iron foam</span> - A metal foam variant which produces slightly sturdier walls.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;metal&#x2F;resin">resin foam</span> - A foam variant which produces atmos resin walls.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;metal&#x2F;smart">smart foam</span> - A variant of metal foam which only produces walls at area boundaries.</li>
+    </ul></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;foam&#x2F;short_life">short_life</span> - A foam variant which dissipates quickly.</li>
+    </ul></li>
+    <li class="has-children"><a href="obj/effect/particle_effect/fluid/smoke.html" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke">smoke</a> - A fluid which spreads through the air affecting every mob it engulfs.<ul class="index-tree">
+    <li class="has-children"><a href="obj/effect/particle_effect/fluid/smoke/bad.html" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;bad">bad</a> - Smoke that makes you cough and reduces the power of lasers.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;bad&#x2F;black">black smoke</span> - Black smoke that makes you cough. (Actually dark grey)</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;bad&#x2F;green">green smoke</span> - Green smoke that makes you cough.</li>
+    </ul></li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;chem">chem</span> - Smoke which contains reagents which it applies to everything it comes into contact with.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;chem&#x2F;quick">quick</span> - A version of chemical smoke with a very short lifespan.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;chem&#x2F;smoke_machine">smoke_machine</span> - Smoke which is produced by the smoke machine. Slightly transparent and does not block line of sight.</li>
+    </ul></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;freezing">nanofrost smoke</span> - Light blue, transparent smoke which is usually paired with a blast that chills every turf in the area.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;quick">quick</span> - Smoke that dissipates as quickly as possible.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;sleeping">sleeping</span> - Smoke which knocks you out if you breathe it in.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;transparent">transparent</span> - Same as the base type, but is not opaque.</li>
+    </ul></li>
+    </ul></li>
     <li><a href="obj/effect/penance_giver.html" title="&#x2F;obj&#x2F;effect&#x2F;penance_giver">code ing</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder">proc_holder</span><ul class="index-tree">
     <li><a href="obj/effect/proc_holder/bloodsucker.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;bloodsucker">bloodsucker</a> - Target Proc Holder</li>
@@ -1917,7 +1977,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling&#x2F;wing_flap">Wing Flap</span> - drakeling wing flap attack: deals relatively minor damage to lavaland fauna and pushes anything it hits away, also breaks rocks on contact like a plasmacutter</li>
     </ul></li>
     <li><a href="obj/effect/proc_holder/ranged_ai.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;ranged_ai">ranged_ai</a> - The actual ranged proc holder.</li>
-    <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell">spell</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/effect/proc_holder/spell.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell">Spell</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;aoe_turf">aoe_turf</span><ul class="index-tree">
     <li><span class="no-substance">conjure&#x2F;construct&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;aoe_turf&#x2F;conjure&#x2F;construct&#x2F;lesser">lesser</span> - Construct Spells</li>
     <li><span class="no-substance">rust_conversion&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;aoe_turf&#x2F;rust_conversion&#x2F;small">Rust Conversion</span> - What we want is the 3 tiles around the user and the tile under him to be rusted, so min(dist,1)-1 causes us to get 0 for these tiles, rest of the tiles are based on chance</li>
@@ -2620,6 +2680,10 @@ Chance to give Bat form, or turn them into a bat.</li>
     </ul></li>
     <li><a href="obj/structure/discoball.html" title="&#x2F;obj&#x2F;structure&#x2F;discoball">Disco Ball</a></li>
     <li><span class="no-substance">filingcabinet&#x2F;</span><a href="obj/structure/filingcabinet/colored.html" title="&#x2F;obj&#x2F;structure&#x2F;filingcabinet&#x2F;colored">colored cabinet</a></li>
+    <li class="has-children"><a href="obj/structure/foamedmetal.html" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal">foamed metal</a> - FOAM STRUCTURE. Formed by metal foams. Dense and opaque, but easy to break<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal&#x2F;iron">iron</span> - A variant of metal foam walls with higher durability.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal&#x2F;resin">ATMOS Resin</span> - Atmos Backpack Resin, transparent, prevents atmos and filters the air</li>
+    </ul></li>
     <li><a href="obj/structure/geyser.html" title="&#x2F;obj&#x2F;structure&#x2F;geyser">geyser</a></li>
     <li><span class="no-substance">girder&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;girder&#x2F;cult">runed girder</span> - cult girder</li>
     <li><a href="obj/structure/glowshroom.html" title="&#x2F;obj&#x2F;structure&#x2F;glowshroom">glowshroom</a></li>
@@ -2685,7 +2749,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/198c9f89aa4217f5ffc7863adc41348a19062989">198c9f8</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/7345f0e82d2c9daebd4a80d8bf80e120bed982fd">7345f0e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
