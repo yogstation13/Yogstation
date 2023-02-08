@@ -70,7 +70,7 @@
 	open = TRUE
 	update_icon()
 
-/obj/item/storage/lockbox/AltClick(mob/user)
+/obj/item/storage/lockbox/CtrlClick(mob/user)
 	..()
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
@@ -132,9 +132,9 @@
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
-		. += span_notice("Alt-click to [open ? "close":"open"] it.")
+		. += span_notice("Ctrl-click to [open ? "close":"open"] it.")
 
-/obj/item/storage/lockbox/medal/AltClick(mob/user)
+/obj/item/storage/lockbox/medal/CtrlClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
 		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
 			open = (open ? FALSE : TRUE)
@@ -285,7 +285,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vialbox/AltClick(mob/user)
+/obj/item/storage/lockbox/vialbox/CtrlClick(mob/user)
 	..()
 	update_icon()
 
