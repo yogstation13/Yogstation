@@ -585,8 +585,9 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/check_cracked_parts()
 	for(var/obj/machinery/atmospherics/components/unary/hypertorus/part in machine_parts)
 		if(part.cracked)
-			return TRUE
-	return FALSE
+			return part
+
+	return null
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/create_crack()
 	var/obj/machinery/atmospherics/components/unary/hypertorus/part = pick(machine_parts)
@@ -600,6 +601,7 @@
 	var/turf/origin_turf = origin.loc
 	if(!origin_turf)
 		return
+
 	origin_turf.assume_air(remove_mixture)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/check_spill(delta_time)
@@ -623,10 +625,12 @@
 
 	if (moderator_internal.total_moles() < HYPERTORUS_HYPERCRITICAL_MOLES)
 		return
+
 	cracked_part = create_crack()
 	// See if we do anything in the initial rupture
 	if (moderator_internal.return_pressure() < HYPERTORUS_MEDIUM_SPILL_PRESSURE)
 		return
+
 	if (moderator_internal.return_pressure() < HYPERTORUS_STRONG_SPILL_PRESSURE)
 		// Medium explosion on initial rupture
 		explosion(
@@ -639,6 +643,7 @@
 			)
 		spill_gases(cracked_part, moderator_internal, ratio = HYPERTORUS_MEDIUM_SPILL_INITIAL)
 		return
+
 	// Enough pressure for a strong explosion. Oh dear, oh dear.
 	explosion(
 		epicenter = cracked_part,
