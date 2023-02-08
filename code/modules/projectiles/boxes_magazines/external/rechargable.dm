@@ -268,7 +268,7 @@
 /obj/item/gun/ballistic/shotgun/ntm870/update_icon()
 	..()
 	cut_overlays()
-	var/cur_ammo = magazine.stored_ammo.len
+	var/cur_ammo = magazine.ammo_count()
 	if(cur_ammo)
 		if(cur_ammo > 0)
 			add_overlay("ntm870_mag_[cur_ammo]")
