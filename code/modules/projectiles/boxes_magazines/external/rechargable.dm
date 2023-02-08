@@ -178,6 +178,7 @@
 /obj/item/ammo_box/magazine/recharge/ntm870
 	name = "medium power pack"
 	desc = "A medium sized, rechargeable power pack for the NT-M870. Capable of synthesizing up to 8 shots in either slug or buckshot form."
+	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "ntm870_mag"
 	ammo_type = list (/obj/item/ammo_casing/caseless/hlmag/slug, /obj/item/ammo_casing/caseless/hlmag/buck) // idk if this works i need to test a lot.
 	max_ammo = 8
@@ -212,6 +213,7 @@
 			add_overlay("ntm870_mag_[cur_ammo]")
 		else
 			add_overlay("ntm870_mag_0")
+
 // Snowflake cases for actions because otherwise you cant rack it with a mag in
 /obj/item/gun/ballistic/shotgun/ntm870/attack_hand(mob/user)
 	if(!internal_magazine && loc == user && user.is_holding(src) && magazine)
