@@ -1,5 +1,0 @@
-author: "TemporalOroboros & several other /tg/ contributors"
-delete-after: true 
-changes: 
-  - rscadd: "Improved foam & smoke behaviour"
-  - tweak: "Clogged vents event now only lasts for 1 seconds"
