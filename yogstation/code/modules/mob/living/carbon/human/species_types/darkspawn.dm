@@ -39,6 +39,10 @@
 	if(C.mind)
 		C.mind.name = C.real_name
 	C.dna.real_name = C.real_name
+	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) //No Appendicitis in my round-defining antag please
+	if(A)
+		A.Remove(C)
+		QDEL_NULL(A)
 
 /datum/species/darkspawn/on_species_loss(mob/living/carbon/C)
 	. = ..()
