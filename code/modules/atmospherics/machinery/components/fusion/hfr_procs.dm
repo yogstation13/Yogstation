@@ -575,7 +575,7 @@
  * Emit radiation
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/emit_rads(radiation)
-	rad_power = log(2, 1 + (radiation / 1e5))
+	rad_power = log(2, 1 + (radiation / (HFR_RADIATION_FALLOFF * 1e5))) * HFR_RADIATION_FALLOFF
 	radiation_pulse(loc, rad_power)
 
 /*

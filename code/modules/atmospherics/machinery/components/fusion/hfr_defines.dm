@@ -32,6 +32,8 @@
 #define IRON_OXYGEN_HEAL_PER_SECOND (IRON_ACCUMULATED_PER_SECOND * (100 - IRON_CHANCE_PER_FUSION_LEVEL) / 100)
 ///Amount of oxygen in moles required to fully remove 100% iron content. Currently about 2409mol. Calculated to consume at most 10mol/s.
 #define OXYGEN_MOLES_CONSUMED_PER_IRON_HEAL (10 / IRON_OXYGEN_HEAL_PER_SECOND)
+///Amount of rads at which it will start to fall off
+#define HFR_RADIATION_FALLOFF 5000
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define HYPERTORUS_MELTING_PERCENT 5
