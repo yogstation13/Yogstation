@@ -38,6 +38,13 @@
 	)	
 	. = ..()
 
+/obj/item/modular_computer/tablet/pda/preset/paramed/mining
+/obj/item/modular_computer/tablet/pda/preset/paramed/mining/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/secureye/mining
+	)	
+	. = ..()
+	
 /obj/item/modular_computer/tablet/pda/preset/engineering
 /obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
 	starting_files |= list(

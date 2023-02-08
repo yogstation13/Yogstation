@@ -198,6 +198,7 @@
 	transfer_access = ACCESS_MINING
 	size = 5
 	program_icon = "globe"
+	usage_flags = PROGRAM_ALL //more of a paramedic thing than a security thing
 
 	network = list("mine", "auxbase")
 
