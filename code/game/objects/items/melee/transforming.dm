@@ -108,6 +108,7 @@
 	bare_wound_bonus = 0
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	attack_verb_off = list("tapped", "poked")
+	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
 	armour_penetration = 25
 	light_system = MOVABLE_LIGHT
