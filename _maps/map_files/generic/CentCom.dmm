@@ -20407,6 +20407,7 @@
 	pixel_y = 9
 	},
 /obj/item/melee/transforming/energy/blade,
+/obj/item/bodypart/l_arm/robot/buster,
 /obj/item/melee/transforming/energy/blade/hardlight,
 /obj/item/melee/transforming/energy/sword/bananium,
 /turf/open/floor/wood,
