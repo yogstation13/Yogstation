@@ -174,7 +174,7 @@
 	)
 
 //NT-M870 mags
-/obj/item/ammo_box/magazine/recharge/ntm870
+/obj/item/ammo_box/magazine/recharge/ntm870/buck
 	name = "medium power pack"
 	desc = "A medium sized, rechargeable power pack for the NT-M870. This one is set to fabircate buckshot"
 	icon = 'icons/obj/guns/projectile.dmi'
@@ -183,12 +183,14 @@
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/recharge/ntm870/slug
+	name = "medium power pack"
 	desc = "A medium sized, rechargeable power pack for the NT-M870. This one is set to fabricate slugs."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "ntm870_mag_slug"
 	ammo_type = /obj/item/ammo_casing/caseless/hlmag/slug
+	max_ammo = 8
 
-/obj/item/ammo_box/magazine/recharge/ntm870/empty
+/obj/item/ammo_box/magazine/recharge/ntm870/buck/empty
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/recharge/ntm870/slug/empty
@@ -203,7 +205,7 @@
 			qdel(get_round())
 		update_icon()
 
-/obj/item/ammo_box/magazine/recharge/ntm870/update_icon()
+/obj/item/ammo_box/magazine/recharge/ntm870/buck/update_icon()
 	..()
 	cut_overlays()
 	var/cur_ammo = ammo_count()
@@ -230,10 +232,10 @@
 	icon_state = "modkit_ntusp"
 	w_class = WEIGHT_CLASS_TINY // blatant theivery from above
 
-/obj/item/ammo_box/magazine/recharge/ntm870/attackby(obj/item/A, mob/user)
+/obj/item/ammo_box/magazine/recharge/ntm870/buck/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntm870_conversion_kit))
 		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate buckshot."))
-		new /obj/item/ammo_box/magazine/recharge/ntm870/empty(get_turf(src))
+		new /obj/item/ammo_box/magazine/recharge/ntm870/buck/empty(get_turf(src))
 		qdel(src)
 	else
 		return ..()

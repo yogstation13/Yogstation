@@ -222,4 +222,4 @@
 	icon_state = "hlslug"
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
 	pellets = 2
-	variance = 2 // wacky TWO slugs??!?!?!
+	variance = 6 // wacky TWO slugs??!?!?!
