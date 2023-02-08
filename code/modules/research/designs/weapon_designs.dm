@@ -399,7 +399,7 @@
 
 /datum/design/vib_blade
 	name = "Vibration Blade"
-	desc = "A long hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
 	id = "vib_blade"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/silver = 2500, /datum/material/gold = 1000)
