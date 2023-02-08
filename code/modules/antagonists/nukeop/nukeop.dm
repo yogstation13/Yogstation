@@ -215,7 +215,7 @@
 		if(!istype(H))
 			P.forceMove(get_turf(H))
 		else
-			H.put_in_hands(P, TRUE)
+			H.put_in_hands(P, TRUE, no_sound = TRUE)
 			H.update_icons()
 
 /datum/antagonist/nukeop/leader/give_alias()

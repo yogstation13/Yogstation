@@ -430,13 +430,6 @@
 	gain_text = span_notice("You have learned to understand Draconic.")
 	lose_text = span_notice("You have forgotten how to understand Draconic.")
 
-/datum/quirk/multilingual/felinid
-	name = "Multilingual (Felinid)"
-	desc = "You spent a portion of your life learning to understand Felinid. You may or may not be able to speak it based on your anatomy."
-	specific = /datum/language/felinid
-	gain_text = span_notice("You have learned to understand Felinid.")
-	lose_text = span_notice("You have forgotten how to understand Felinid.")
-
 /datum/quirk/multilingual/sylvan
 	name = "Multilingual (Sylvan)"
 	desc = "You spent a portion of your life learning to understand Sylvan. You may or may not be able to speak it based on your anatomy."
