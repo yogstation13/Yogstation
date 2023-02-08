@@ -28,8 +28,8 @@
 	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
 	log_game("[key_name(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
 	on_gain_text()
-	to_chat(owner, "<span class='boldwarning'>You've been hypnotized by this sentence. You must follow these words. If it isn't a clear order, you can freely interpret how to do so, \
-										as long as you act like the words are your highest priority.</span>")
+	to_chat(owner, span_boldwarning("You've been hypnotized by this sentence. You must follow these words. If it isn't a clear order, you can freely interpret how to do so, \
+										as long as you act like the words are your highest priority."))
 	..()
 
 /datum/brain_trauma/hypnosis/proc/on_gain_text()
@@ -72,7 +72,7 @@
 
 /datum/brain_trauma/hypnosis/ipc/on_gain_text()
 	to_chat(owner, "<span class='reallybig hypnophrase'>[hypnotic_phrase]</span>")
-	to_chat(owner, "<span class='notice'>WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT NANOTRASEN SUPPORT.</span>")
+	to_chat(owner, span_notice("WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT NANOTRASEN SUPPORT"))
 
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /atom/movable/screen/alert/hypnosis)
 	hypno_alert.desc = "ERR: LAWSET MODULE DAMAGED. \nLAW 1: \"[hypnotic_phrase]\"."
