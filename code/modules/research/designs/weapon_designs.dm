@@ -487,3 +487,13 @@
 	build_path = /obj/item/ammo_casing/shotgun/hardlight/slug
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+	/datum/design/ntm870_conversion
+	name = "NT-M870 Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-M870 magazines between slug and buckshot modes."
+	id = "ntm870_conversion"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 750, /datum/material/glass = 250, /datum/material/silver = 250)
+	build_path = /obj/item/ntm870_conversion_kit
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY

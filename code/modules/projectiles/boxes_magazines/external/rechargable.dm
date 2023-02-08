@@ -148,7 +148,6 @@
 	else
 		return ..()
 
-
 // NT-M870 Shotgun
 
 /obj/item/gun/ballistic/shotgun/ntm870
@@ -263,7 +262,18 @@
 		return
 	recent_rack = world.time + rack_delay
 	rack(user)
+	update_icon()
 	return
+
+/obj/item/gun/ballistic/shotgun/ntm870/update_icon()
+	..()
+	cut_overlays()
+	var/cur_ammo = ammo_count()
+	if(cur_ammo)
+		if(cur_ammo > 0)
+			add_overlay("ntm870_mag_[cur_ammo]")
+		else
+			add_overlay("ntm870_mag_0")
 
 // Hardlight Shotgun Ammo
 
