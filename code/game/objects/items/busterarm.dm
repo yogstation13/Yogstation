@@ -7,22 +7,18 @@
 		return FALSE
 	if(!owner)
 		return FALSE
-	if(AB_CHECK_RESTRAINED)
-		if(owner.restrained())
+	if(owner.restrained())
+		return FALSE
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(L.IsParalyzed() || L.IsStun())
 			return FALSE
-	if(AB_CHECK_STUN)
-		if(isliving(owner))
-			var/mob/living/L = owner
-			if(L.IsParalyzed() || L.IsStun())
-				return FALSE
-	if(AB_CHECK_LYING)
-		if(isliving(owner))
-			var/mob/living/L = owner
-			if(!(L.mobility_flags & MOBILITY_STAND))
-				return FALSE
-	if(AB_CHECK_CONSCIOUS)
-		if(owner.stat)
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(!(L.mobility_flags & MOBILITY_STAND))
 			return FALSE
+	if(owner.stat)
+		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_PACIFISM))
 		return FALSE
 	return ..()
