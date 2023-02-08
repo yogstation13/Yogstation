@@ -952,18 +952,6 @@
 				return
 	add_fingerprint(user)
 
-	if(istype(C,/obj/item/stack/sheet/mineral/wood))
-		var/obj/item/stack/sheet/mineral/wood/W = C
-		if(W.amount < 5)
-			to_chat(user, span_warning("You need at least five wooden planks to barricade the airlock!"))
-			return
-		else
-			to_chat(user, span_notice("You start adding [C] to [src]..."))
-			if(do_after(user, 5 SECONDS, src))
-				W.use(5)
-				new /obj/structure/barricade/wooden/crude(get_turf(src))
-				return
-
 	if(panel_open)
 		switch(security_level)
 			if(AIRLOCK_SECURITY_NONE)

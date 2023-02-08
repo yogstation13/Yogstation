@@ -258,6 +258,23 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	recipes = GLOB.wood_recipes
 	return ..()
 
+/obj/item/stack/sheet/mineral/wood/attack_obj(obj/O, mob/living/user)
+	if(istype(O, /obj/structure/window) || istype(O, /obj/machinery/door/airlock) || istype(O,/obj/machinery/door)) //I hate this but reportedly there is no other way :skull:
+		for(var/obj/structure/barricade/wooden/crude/crude in get_turf(O))
+			to_chat(user, span_warning("There is already a barricade there!"))
+			return
+		var/obj/item/stack/sheet/mineral/wood/W = src
+		if(W.amount < 5)
+			to_chat(user, span_warning("You need at least five wooden planks to barricade the [O]!"))
+			return
+		else
+			to_chat(user, span_notice("You start adding [src] to [O]..."))
+			if(do_after(user, 5 SECONDS, src))
+				W.use(5)
+				new /obj/structure/barricade/wooden/crude(get_turf(O))
+				return
+	return ..()
+
 /obj/item/stack/sheet/mineral/wood/attackby(obj/item/item, mob/user, params)
 	if(item.get_sharpness())
 		user.visible_message(
