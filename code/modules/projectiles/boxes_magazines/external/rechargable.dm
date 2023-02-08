@@ -164,8 +164,7 @@
 	empty_indicator = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
-	var/select = 1
-	var/list/ammo_type = list(/obj/item/ammo_casing/caseless/hlmag)
+	var/select = TRUE
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
@@ -174,16 +173,25 @@
 		/obj/item/attachment/grip/vertical,
 	)
 
-//NT-M870 mag(?)
+//NT-M870 mags
 /obj/item/ammo_box/magazine/recharge/ntm870
 	name = "medium power pack"
-	desc = "A medium sized, rechargeable power pack for the NT-M870. Capable of synthesizing up to 8 shots in either slug or buckshot form."
+	desc = "A medium sized, rechargeable power pack for the NT-M870. This one is set to fabircate buckshot"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "ntm870_mag"
-	ammo_type = list (/obj/item/ammo_casing/caseless/hlmag/slug, /obj/item/ammo_casing/caseless/hlmag/buck) // idk if this works i need to test a lot.
+	ammo_type = /obj/item/ammo_casing/caseless/hlmag/buck
 	max_ammo = 8
 
+/obj/item/ammo_box/magazine/recharge/ntm870/slug
+	desc = "A medium sized, rechargeable power pack for the NT-M870. This one is set to fabricate slugs."
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "ntm870_mag_slug"
+	ammo_type = /obj/item/ammo_casing/caseless/hlmag/slug
+
 /obj/item/ammo_box/magazine/recharge/ntm870/empty
+	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/recharge/ntm870/slug/empty
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/recharge/ntm870/emp_act(severity)
@@ -195,24 +203,48 @@
 			qdel(get_round())
 		update_icon()
 
-/obj/item/gun/ballistic/shotgun/ntm870/proc/select_fire(mob/living/user)
-	select++
-	if (select > ammo_type.len)
-		select = 1
-	var/obj/item/ammo_casing/caseless/hlmag/shot = ammo_type[select]
-	if (shot.select_name)
-		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
-	return
-
 /obj/item/ammo_box/magazine/recharge/ntm870/update_icon()
 	..()
 	cut_overlays()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo > 0)
-			add_overlay("ntm870_mag_[cur_ammo]")
+			add_overlay("ntm870_mag")
 		else
-			add_overlay("ntm870_mag_0")
+			add_overlay("ntm870_mag_empty")
+
+/obj/item/ammo_box/magazine/recharge/ntm870/slug/update_icon()
+	..()
+	cut_overlays()
+	var/cur_ammo = ammo_count()
+	if(cur_ammo)
+		if(cur_ammo > 0)
+			add_overlay("ntm870_mag_slug")
+		else
+			add_overlay("ntm870_mag_slug_empty")
+
+/obj/item/ntm870_conversion_kit
+	name = "NT-M870 magazine conversion kit"
+	desc = "A standard conversion kit for use in converting NT-M80 magazines to fabricate slugs or buckshot."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit_ntusp"
+	w_class = WEIGHT_CLASS_TINY // blatant theivery from above
+
+/obj/item/ammo_box/magazine/recharge/ntm870/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/ntm870_conversion_kit))
+		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate buckshot."))
+		new /obj/item/ammo_box/magazine/recharge/ntm870/empty(get_turf(src))
+		qdel(src)
+	else
+		return ..()
+
+/obj/item/ammo_box/magazine/recharge/ntm870/slug/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/ntm870_conversion_kit))
+		to_chat(user, span_notice("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate slugs."))
+		new /obj/item/ammo_box/magazine/recharge/ntm870/slug/empty(get_turf(src))
+		qdel(src)
+	else
+		return ..()
 
 // Snowflake cases for actions because otherwise you cant rack it with a mag in
 /obj/item/gun/ballistic/shotgun/ntm870/attack_hand(mob/user)
@@ -222,7 +254,7 @@
 	return ..()
 
 /obj/item/gun/ballistic/shotgun/ntm870/attack_self(mob/living/user) 
-	if(bolt_type == BOLT_TYPE_LOCKING && bolt_locked)
+	if(bolt_type == BOLT_TYPE_LOCKING && bolt_locked) // might make it locking in the future so might as well
 		drop_bolt(user)
 		return
 	if (recent_rack > world.time)
@@ -235,13 +267,12 @@
 
 /obj/item/ammo_casing/caseless/hlmag
 	var/select_name = "hardlight ammo"
+	caliber = ENERGY
 
 /obj/item/ammo_casing/caseless/hlmag/slug
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/hardlight
-	caliber = ENERGY
 	select_name = "slug"
 
 /obj/item/ammo_casing/caseless/hlmag/buck
 	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
-	caliber = ENERGY
 	select_name = "buckshot"
