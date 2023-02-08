@@ -2387,6 +2387,15 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 3
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 9
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 16
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "age" = (
