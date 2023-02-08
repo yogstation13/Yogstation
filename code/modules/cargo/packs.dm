@@ -743,6 +743,39 @@
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
 
+/datum/supply_pack/security/armory/hardlight_shotgun
+	name = "Hardlight Shotguns Crate"
+	desc = "USP not pack enough of a punch? Are you the only one doing your job against the grey tide? Finally put them in their place with these specialty non-lethal shotguns! Contains three hardlight shotguns, spare magazines, and modkits. Requires Armory access to open."
+	cost = 9000
+	contains = list(/obj/item/ntm870_conversion_kit, 
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/gun/ballistic/shotgun/ntm870,
+					/obj/item/ntm870_conversion_kit, 
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/gun/ballistic/shotgun/ntm870,
+					/obj/item/ntm870_conversion_kit, 
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/gun/ballistic/shotgun/ntm870)
+	crate_name = "hardlight shotguns crate"
+
+/datum/supply_pack/security/armory/hardlight_shotgun_single
+	name = "Hardlight Shotgun Single-Pack"
+	desc = "Looking to protect yourself, or deal some damage? Well, this can only do the former, but it stops people from doing the latter! Contains one hardlight shotgun, magazine, and modkit. Requires Armory access to open."
+	cost = 4100
+	small_item = TRUE
+	contains = list(/obj/item/ntm870_conversion_kit, 
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/gun/ballistic/shotgun/ntm870)
+
+/datum/supply_pack/security/armory/hardlight_shotgun_magazine
+	name = "Hardlight Shotgun Magazine Crate"
+	desc = "Are you known around the office for being 'The guy that misses a lot'? Well worry no more. Contains three hardlight shotgun magazines. Requires Armory access to open."
+	cost = 1500
+	small_item = TRUE
+	contains = list(/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck,
+					/obj/item/ammo_box/magazine/recharge/ntm870/buck)
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
