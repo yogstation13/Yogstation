@@ -15,7 +15,7 @@
 	inherent_biotypes = list(MOB_ROBOTIC)
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic
-	mutanteyes = /obj/item/organ/eyes/robotic
+	mutanteyes = /obj/item/organ/eyes/robotic/synth
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded
 	mutantstomach = /obj/item/organ/stomach/cell
