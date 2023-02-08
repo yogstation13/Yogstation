@@ -68,7 +68,6 @@
 			conductivity_blocked_directions |= direction
 			continue
 
-
 		var/other_contains_firelock = 1
 		if(locate(/obj/machinery/door/firedoor) in T)
 			other_contains_firelock |= 2
