@@ -251,6 +251,7 @@
 /obj/item/gun/ballistic/shotgun/ntm870/attack_hand(mob/user)
 	if(!internal_magazine && loc == user && user.is_holding(src) && magazine)
 		eject_magazine(user)
+		update_icon()
 		return
 	return ..()
 
@@ -268,12 +269,17 @@
 /obj/item/gun/ballistic/shotgun/ntm870/update_icon()
 	..()
 	cut_overlays()
-	var/cur_ammo = magazine.ammo_count()
+	var/cur_ammo = magazine.ammo_count() // i think this is where the linter is angry, but idk
 	if(cur_ammo)
 		if(cur_ammo > 0)
 			add_overlay("ntm870_mag_[cur_ammo]")
 		else
 			add_overlay("ntm870_mag_0")
+	if(magazine.ammo_type = /obj/item/ammo_casing/caseless/hlmag/slug)
+		add_overlay("slug colour thing idk")
+	if(magazine.ammo_type = /obj/item/ammo_casing/caseless/hlmag/buck)
+		add_overlay("buckshot thing idk")
+
 
 // Hardlight Shotgun Ammo
 
