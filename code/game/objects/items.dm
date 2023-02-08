@@ -1042,10 +1042,11 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
 	var/delay = 2 SECONDS
 
-	if(IS_ENGINEERING(user))
-		delay *= 0.9
-	else if(IS_SCIENCE(user))
-		delay *= 0.8
+	if(H != user)
+		if(IS_ENGINEERING(user))
+			delay *= 0.9
+		else if(IS_SCIENCE(user))
+			delay *= 0.8
 
 	if(I.use_tool(H, user, delay, amount, volume))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
