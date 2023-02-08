@@ -371,7 +371,7 @@
 	for(var/atom/movable/thing as anything in location)
 		if(thing == src)
 			continue
-		if(location.intact && thing.level == 1) //hidden under the floor
+		if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && thing.level == 1) //hidden under the floor
 			continue
 		reagents.reaction(thing, TOUCH, fraction)
 

@@ -89,7 +89,7 @@
 			continue
 		if(isturf(object.loc))
 			var/turf/turf = object.loc
-			if(turf.intact && object.level == 1) //hidden under the floor
+			if(turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && object.level == 1) //hidden under the floor
 				continue
 		reagents.reaction(object, VAPOR, fraction)
 
