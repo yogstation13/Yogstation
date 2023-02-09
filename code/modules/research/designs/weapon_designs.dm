@@ -479,7 +479,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 	
 /datum/design/hardlight_slug
-	name = "Hardlight Buckshot Shell"
+	name = "Hardlight Slug"
 	desc = "Basically a battery with a lens on it. When struck with a firing pin, it overloads the cell inside and causes the discharge of all power instantly. This one has a focusing lens, generating two powerful shots."
 	id = "hardlight_slug"
 	build_type = PROTOLATHE
