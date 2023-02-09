@@ -322,23 +322,16 @@
 		H.sec_hud_set_ID()
 
 	if(pda_type)
-		var/obj/item/modular_computer/PDA = new pda_type()
-		if(istype(PDA))
-			if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
-				PDA.InsertID(C)
-				H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-			else // just in case you hate change
-				H.equip_to_slot_if_possible(PDA, pda_slot)
-				H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-			
-			PDA.update_label()
-			PDA.update_icon()
-			PDA.update_filters()
-			
-		else
-			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+    var/obj/item/modular_computer/PDA = new pda_type()
+    if(istype(PDA))
+      if (H.id_in_pda)
+        PDA.InsertID(C)
+        H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+      else // just in case you hate change
+        H.equip_to_slot_if_possible(PDA, pda_slot)
+        H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+    else
+      H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
 		for(var/obj/item/gps/G in H.GetAllContents())
