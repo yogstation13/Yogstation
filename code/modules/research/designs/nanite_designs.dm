@@ -383,13 +383,6 @@
 	program_type = /datum/nanite_program/triggered/sleepy
 	category = list("Suppression Nanites")
 
-/datum/design/nanites/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
-	id = "fakedeath_nanites"
-	program_type = /datum/nanite_program/fake_death
-	category = list("Suppression Nanites")
-
 /datum/design/nanites/pacifying
 	name = "Pacification"
 	desc = "The nanites suppress the aggression center of the brain, preventing the host from causing direct harm to others."
