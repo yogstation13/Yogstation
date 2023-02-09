@@ -181,7 +181,6 @@
 
 /**
  * Called if something comes back to life inside the pit. Expected sources are badmins and changelings.
- * Ethereals should take enough damage to be smashed and not revive.
  *
  * Arguments
  * * escapee - Lucky guy who just came back to life at the bottom of a hole.
