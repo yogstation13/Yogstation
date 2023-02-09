@@ -187,7 +187,8 @@
 	hud_type = DATA_HUD_SECURITY_BASIC // Apparently the basic sec HUD is just IDs and the basic ones we use (mindshield detection etc. are "advanced" sec HUDs.
 	flash_protect = 1
 	tint = 1
-
+	glass_colour_type = /datum/client_colour/glass_colour/blue
+	
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"
 	desc = "A HUD with multiple functions."
