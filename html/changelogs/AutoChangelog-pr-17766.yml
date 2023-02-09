@@ -1,7 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "L6 has three round burst again"
-  - tweak: "All L6 bullet damage has been increased by 5"
-  - tweak: "L6 AP has 45 AP, down from 60"
-  - tweak: "L6 has 14 spread, up from 7"
