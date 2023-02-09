@@ -340,9 +340,11 @@ Key procs
 
 /datum/language_holder/preternis
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/machine = list(LANGUAGE_ATOM),)
+								/datum/language/machine = list(LANGUAGE_ATOM),
+							/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/machine = list(LANGUAGE_ATOM),)
+							/datum/language/machine = list(LANGUAGE_ATOM),
+							/datum/language/felinid = list(LANGUAGE_ATOM))
 
 /datum/language_holder/polysmorph
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
