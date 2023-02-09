@@ -316,9 +316,11 @@ Key procs
 
 /datum/language_holder/plant
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/sylvan = list(LANGUAGE_ATOM))
+								/datum/language/sylvan = list(LANGUAGE_ATOM),
+								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/sylvan = list(LANGUAGE_ATOM))
+							/datum/language/sylvan = list(LANGUAGE_ATOM),
+							/datum/language/felinid = list(LANGUAGE_ATOM))
 
 /datum/language_holder/plasmaman
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
