@@ -84,7 +84,7 @@
 	name = "Chain Detonation"
 	desc = "Detonates all the nanites inside the host in a chain reaction when triggered."
 	trigger_cost = 25 //plus every idle nanite left afterwards
-	trigger_cooldown = 200 //No spamming explosions, give the poor sap a break
+	trigger_cooldown = 1 MINUTES //No spamming explosions, give the poor sap a break
 	rogue_types = list(/datum/nanite_program/toxic)
 	harmful = TRUE
 
@@ -100,9 +100,6 @@
 	host_mob.adjustBruteLoss(nanite_amount/5) //Instead of gibbing we'll just do an asston of damage
 	var/light_range = FLOOR(nanite_amount/50, 1) - 1
 	explosion(host_mob, 0, 0, light_range)
-	addtimer(VARSET_CALLBACK(nanites, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
-	nanites.cloud_id = 0 //temporarily disable resyncing so explosion can't be immediately readded
-	qdel(src) //removes itself after the explosion
 
 //TODO make it defuse if triggered again
 
