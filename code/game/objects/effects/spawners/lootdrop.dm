@@ -405,26 +405,33 @@
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 
 	loot = GLOB.maintenance_loot_makeshift
+	lootcount = 1
 
 	switch(rand(1,10000))
 		if(1 to 5)
 			loot = GLOB.maintenance_loot_serious
-			lootcount = 1
 		if(6 to 30)
 			loot = GLOB.maintenance_loot_major
-			lootcount = 1
 		if(31 to 400)
 			loot = GLOB.maintenance_loot_moderate
-			lootcount = 1
 		if(401 to 2000)
 			loot = GLOB.maintenance_loot_minor
-			lootcount = rand(lootcount,lootcount*6)
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*6)
+					break
 		if(2001 to 4000)
 			loot = GLOB.maintenance_loot_makeshift
-			lootcount = rand(lootcount,lootcount*6)
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*6)
+					break
 		if(4001 to 10000)
 			loot = GLOB.maintenance_loot_traditional
-			lootcount = rand(lootcount,lootcount*3)
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*3)
+					break
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		lootcount = CEILING(lootcount * 1.5, 1)
