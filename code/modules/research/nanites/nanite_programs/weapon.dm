@@ -83,7 +83,7 @@
 /datum/nanite_program/triggered/explosive
 	name = "Chain Detonation"
 	desc = "Detonates all the nanites inside the host in a chain reaction when triggered."
-	trigger_cost = 25 //plus every idle nanite left afterwards
+	trigger_cost = 50
 	trigger_cooldown = 1 MINUTES //No spamming explosions, give the poor sap a break
 	rogue_types = list(/datum/nanite_program/toxic)
 	harmful = TRUE
