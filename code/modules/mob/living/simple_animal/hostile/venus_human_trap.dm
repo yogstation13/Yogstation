@@ -224,8 +224,8 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
 	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
-			var/obj/effect/particle_effect/smoke/chem/gas = contents
+		if(istype(contents, /obj/effect/particle_effect/fluid/smoke/chem))
+			var/obj/effect/particle_effect/fluid/smoke/chem/gas = contents
 			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
 				return TRUE
 	return FALSE

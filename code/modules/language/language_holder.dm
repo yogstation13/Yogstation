@@ -377,7 +377,6 @@ Key procs
 
 /datum/language_holder/spiderbot
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/felinid = list(LANGUAGE_ATOM), ///Spiderbots, I am sorry for making you understand this shit
 								/datum/language/english = list(LANGUAGE_ATOM),
 								/datum/language/mothian = list(LANGUAGE_ATOM),
 								/datum/language/polysmorph = list(LANGUAGE_ATOM),
@@ -387,7 +386,6 @@ Key procs
 								/datum/language/draconic = list(LANGUAGE_ATOM),
 								/datum/language/machine = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM),
 							/datum/language/english = list(LANGUAGE_ATOM),
 							/datum/language/mothian = list(LANGUAGE_ATOM),
 							/datum/language/polysmorph = list(LANGUAGE_ATOM),
