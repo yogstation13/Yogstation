@@ -324,7 +324,7 @@
 
 /obj/item/reagent_containers/syringe/big/curare
 	name = "syringe (curare)"
-	desc = "Contains 3O units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly.
+	desc = "Contains 3O units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
 
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
