@@ -87,21 +87,6 @@
 	. = ..()
 	REMOVE_TRAIT(host_mob, TRAIT_MUTE, "nanites")
 
-/datum/nanite_program/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
-	use_rate = 4.5
-	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
-	harmful = TRUE
-
-/datum/nanite_program/fake_death/enable_passive_effect()
-	. = ..()
-	host_mob.fakedeath("nanites")
-
-/datum/nanite_program/fake_death/disable_passive_effect()
-	. = ..()
-	host_mob.cure_fakedeath("nanites")
-
 //Can receive transmissions from a nanite communication remote for customized messages
 /datum/nanite_program/triggered/comm
 	var/comm_code = 0
