@@ -18929,7 +18929,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19943,7 +19943,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20581,7 +20581,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20765,16 +20765,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/centcom/holding)
-"aPZ" = (
-/obj/structure/flora/grass/both,
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/obj/structure/table,
-/obj/item/soap/deluxe,
-/turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "aQa" = (
 /obj/machinery/meter,
@@ -22795,7 +22785,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -25867,7 +25857,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/bluespace_locker";
 	name = "Bluespace Locker APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
@@ -26453,7 +26443,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -44603,7 +44593,7 @@ aSX
 aSX
 aSX
 aSX
-aar
+aQr
 aSX
 aSX
 aSX
@@ -45629,7 +45619,7 @@ aSX
 aSX
 aSX
 aSX
-aPZ
+aQr
 aSs
 aSX
 aSX
