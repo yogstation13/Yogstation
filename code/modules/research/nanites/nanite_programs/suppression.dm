@@ -15,24 +15,6 @@
 	host_mob.drowsyness += 20
 	addtimer(CALLBACK(host_mob, /mob/living.proc/Sleeping, 200), rand(60,200))
 
-/datum/nanite_program/paralyzing
-	name = "Paralysis"
-	desc = "The nanites force muscle contraction, effectively paralyzing the host."
-	use_rate = 3
-	rogue_types = list(/datum/nanite_program/nerve_decay)
-	harmful = TRUE
-
-/datum/nanite_program/paralyzing/active_effect()
-	host_mob.Stun(40)
-
-/datum/nanite_program/paralyzing/enable_passive_effect()
-	. = ..()
-	to_chat(host_mob, span_warning("Your muscles seize! You can't move!"))
-
-/datum/nanite_program/paralyzing/disable_passive_effect()
-	. = ..()
-	to_chat(host_mob, span_notice("Your muscles relax, and you can move again."))
-
 /datum/nanite_program/triggered/shocking
 	name = "Electric Shock"
 	desc = "The nanites shock the host when triggered. Destroys a large amount of nanites!"
