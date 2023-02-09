@@ -319,56 +319,49 @@ Key procs
 								/datum/language/sylvan = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/sylvan = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM))
+							/datum/language/sylvan = list(LANGUAGE_ATOM))
 
 /datum/language_holder/plasmaman
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/bonespeak = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/bonespeak = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM))
+							/datum/language/bonespeak = list(LANGUAGE_ATOM))
 
 /datum/language_holder/pod
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/sylvan = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/sylvan = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM))
+							/datum/language/sylvan = list(LANGUAGE_ATOM)
 
 /datum/language_holder/preternis
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/machine = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/machine = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM))
+							/datum/language/machine = list(LANGUAGE_ATOM))
 
 /datum/language_holder/polysmorph
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/polysmorph = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/polysmorph = list(LANGUAGE_ATOM),
-								/datum/language/felinid = list(LANGUAGE_ATOM))
+								/datum/language/polysmorph = list(LANGUAGE_ATOM))
 
 /datum/language_holder/mothmen
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/mothian = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/mothian = list(LANGUAGE_ATOM),
-								/datum/language/felinid = list(LANGUAGE_ATOM))
+								/datum/language/mothian = list(LANGUAGE_ATOM))
 
 /datum/language_holder/ethereal
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/etherean = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/etherean = list(LANGUAGE_ATOM),
-								/datum/language/felinid = list(LANGUAGE_ATOM))
+								/datum/language/etherean = list(LANGUAGE_ATOM))
 
 /datum/language_holder/clockwork
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
@@ -427,5 +420,4 @@ Key procs
 								/datum/language/english = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/english = list(LANGUAGE_ATOM),
-							/datum/language/felinid = list(LANGUAGE_ATOM))
+							/datum/language/english = list(LANGUAGE_ATOM))
