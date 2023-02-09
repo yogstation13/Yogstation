@@ -13,6 +13,7 @@
 
 /obj/item/forbidden_book/Destroy()
 	last_user = null
+	last_rune = null
 	. = ..()
 
 
