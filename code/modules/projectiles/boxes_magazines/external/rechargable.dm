@@ -275,9 +275,9 @@
 			add_overlay("ntm870_mag_[cur_ammo]")
 		else
 			add_overlay("ntm870_mag_0")
-	if(magazine.ammo_type = /obj/item/ammo_casing/caseless/hlmag/slug)
+	if(magazine.ammo_type == /obj/item/ammo_casing/caseless/hlmag/slug)
 		add_overlay("slug colour thing idk")
-	if(magazine.ammo_type = /obj/item/ammo_casing/caseless/hlmag/buck)
+	if(magazine.ammo_type == /obj/item/ammo_casing/caseless/hlmag/buck)
 		add_overlay("buckshot thing idk")
 
 
