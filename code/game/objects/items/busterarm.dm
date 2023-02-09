@@ -1,4 +1,5 @@
 /datum/action/cooldown/buster
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	icon_icon = 'icons/mob/actions/actions_arm.dmi'
 
@@ -7,23 +8,25 @@
 		return FALSE
 	if(!owner)
 		return FALSE
-	if(owner.restrained())
-		return FALSE
-	if(isliving(owner))
-		var/mob/living/L = owner
-		if(L.IsParalyzed() || L.IsStun())
+	if(check_flags & AB_CHECK_RESTRAINED)
+		if(owner.restrained())
 			return FALSE
-	if(isliving(owner))
-		var/mob/living/L = owner
-		if(!(L.mobility_flags & MOBILITY_STAND))
+	if(check_flags & AB_CHECK_STUN)
+		if(isliving(owner))
+			var/mob/living/L = owner
+			if(L.IsParalyzed() || L.IsStun())
+				return FALSE
+	if(check_flags & AB_CHECK_LYING)
+		if(isliving(owner))
+			var/mob/living/L = owner
+			if(!(L.mobility_flags & MOBILITY_STAND))
+				return FALSE
+	if(check_flags & AB_CHECK_CONSCIOUS)
+		if(owner.stat)
 			return FALSE
-	if(owner.stat)
-		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_PACIFISM))
 		return FALSE
 	return ..()
-
-
 
 //Separate isavailables so if someone is using two arms they won't care about the other
 
