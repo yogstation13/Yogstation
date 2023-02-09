@@ -141,6 +141,13 @@
 			to_chat(user, "Your mind is filled with the knowledge of huntspeak... Well thats what felinids want you to believe anyway.")
 			LH.grant_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	..()
+
+/obj/item/clothing/head/kitty/dropped(mob/user)
+	..()
+	var/datum/language_holder/LH = user.get_language_holder()
+	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
+		to_chat(user, "You lose the keenness in your ears.")
+		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
