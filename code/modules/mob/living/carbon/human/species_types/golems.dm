@@ -1493,7 +1493,7 @@
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
 	changesource_flags = MIRROR_BADMIN 
 	random_eligible = FALSE // Hell no
-	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interact with you, while taking half times more brute damage and three times more burn damage. You explode on death."
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
 	attack_verb = "dusting punch"
 	attack_sound = 'sound/effects/supermatter.ogg'
 	fixed_mut_color = "ff0"
