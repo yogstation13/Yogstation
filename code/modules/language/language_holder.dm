@@ -364,9 +364,11 @@ Key procs
 
 /datum/language_holder/ethereal
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/etherean = list(LANGUAGE_ATOM))
+								/datum/language/etherean = list(LANGUAGE_ATOM),
+								/datum/language/felinid = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/etherean = list(LANGUAGE_ATOM))
+								/datum/language/etherean = list(LANGUAGE_ATOM),
+								/datum/language/felinid = list(LANGUAGE_ATOM))
 
 /datum/language_holder/clockwork
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
