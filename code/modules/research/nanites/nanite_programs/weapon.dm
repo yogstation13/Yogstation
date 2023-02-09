@@ -100,7 +100,7 @@
 	host_mob.adjustBruteLoss(nanite_amount/5) //Instead of gibbing we'll just do an asston of damage
 	var/light_range = FLOOR(nanite_amount/50, 1) - 1
 	explosion(host_mob, 0, 0, light_range)
-	addtimer(VARSET_CALLBACK(nanites, nanites.cloud_id, nanites.cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
+	addtimer(VARSET_CALLBACK(nanites, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
 	nanites.cloud_id = 0 //temporarily disable resyncing so explosion can't be immediately readded
 	qdel(src) //removes itself after the explosion
 
