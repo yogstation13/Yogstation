@@ -12,7 +12,7 @@
 	heatmod = 1.5
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_HEAD)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 	var/list/upgrades = list()
 	COOLDOWN_DECLARE(reflect_cd_1)
@@ -39,10 +39,6 @@
 	if(C.mind)
 		C.mind.name = C.real_name
 	C.dna.real_name = C.real_name
-	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) //No Appendicitis in my round-defining antag please
-	if(A)
-		A.Remove(C)
-		QDEL_NULL(A)
 
 /datum/species/darkspawn/on_species_loss(mob/living/carbon/C)
 	. = ..()
