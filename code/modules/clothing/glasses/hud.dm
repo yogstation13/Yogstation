@@ -182,7 +182,7 @@
 /obj/item/clothing/glasses/hud/personnel
 	name = "personnel HUD sunglasses"
 	desc = "Sunglasses with a personnel HUD."
-	icon_state = "sun"
+	icon_state = "sunhudhop"
 	item_state = "glasses"
 	hud_type = DATA_HUD_SECURITY_BASIC // Apparently the basic sec HUD is just IDs and the basic ones we use (mindshield detection etc. are "advanced" sec HUDs.
 	flash_protect = 1
