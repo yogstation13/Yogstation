@@ -99,14 +99,6 @@
 "aaq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"aar" = (
-/obj/structure/flora/grass/brown,
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/yogs/infiltrator_base/outside)
 "aas" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1431,22 +1423,6 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"ady" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
 "adz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet{
@@ -1604,10 +1580,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"adP" = (
-/obj/machinery/vending/cigarette/syndicate,
-/turf/closed/indestructible/riveted,
-/area/yogs/infiltrator_base)
 "adQ" = (
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/holofloor{
@@ -9694,11 +9666,6 @@
 /obj/item/storage/box/survival,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"auM" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Primary Hallway"
-	},
-/area/yogs/infiltrator_base/jail)
 "auN" = (
 /obj/machinery/portable_atmospherics/canister/pluoxium,
 /turf/open/floor/bluespace,
@@ -15199,38 +15166,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
-"aFA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -7;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -7;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "aFB" = (
 /obj/item/cardboard_cutout/chess/white/bishop,
 /turf/open/floor/holofloor{
@@ -19207,37 +19142,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"aMS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/defibrillator_mount/loaded{
-	pixel_y = 28
-	},
-/obj/structure/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/clothing/mask/gas/syndicate{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/mask/gas/syndicate{
-	pixel_x = -4;
-	pixel_y = -8
-	},
-/obj/item/clothing/mask/gas/syndicate{
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/item/clothing/mask/gas/syndicate{
-	pixel_x = 9;
-	pixel_y = -8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/yogs/infiltrator_base)
 "aMT" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
@@ -25808,6 +25712,37 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"bUf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -7;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/yogs/infiltrator_base)
 "cgW" = (
 /turf/open/indestructible/wiki/whitescreen,
 /area/centcom/testchamber)
@@ -25931,26 +25866,6 @@
 	icon_state = "title7"
 	},
 /area/centcom/testchamber)
-"hEo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/bot_white,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/dark,
-/area/yogs/infiltrator_base)
 "hHV" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -26047,6 +25962,11 @@
 	icon_state = "info28"
 	},
 /area/centcom/testchamber)
+"lnJ" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Shoe Storage"
+	},
+/area/yogs/infiltrator_base/jail)
 "lVQ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info5"
@@ -26152,6 +26072,26 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"oxS" = (
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/yogs/infiltrator_base)
 "oAH" = (
 /obj/machinery/light{
 	dir = 1
@@ -26174,6 +26114,18 @@
 	icon_state = "info9"
 	},
 /area/centcom/testchamber)
+"oXi" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/yogs/infiltrator_base)
 "pGS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -26216,6 +26168,18 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"ruy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/centcom{
+	name = "Atmos Room";
+	opacity = 1;
+	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/dark,
+/area/yogs/infiltrator_base)
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
@@ -26245,15 +26209,6 @@
 	icon_state = "info10"
 	},
 /area/centcom/testchamber)
-"tzM" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
-	},
-/turf/closed/indestructible/fakedoor{
-	name = "Primary Hallway"
-	},
-/area/yogs/infiltrator_base)
 "tID" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info6"
@@ -26431,6 +26386,36 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"xgw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 28
+	},
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/gas/syndicate{
+	pixel_x = 9;
+	pixel_y = -8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/yogs/infiltrator_base)
 "xjU" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "32"
@@ -26474,6 +26459,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"yal" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/yogs/infiltrator_base)
 "ydX" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info4"
@@ -40973,8 +40977,8 @@ aSX
 aSX
 aSX
 aSX
-aSX
-aSX
+aSA
+aSA
 ayN
 aOa
 arc
@@ -41230,9 +41234,9 @@ aSX
 aSX
 aSX
 aSX
-aSX
-aSX
-auM
+aSA
+oxS
+lnJ
 aWg
 aXF
 aDj
@@ -42002,7 +42006,7 @@ aSX
 aSX
 aSA
 aSA
-tzM
+ruy
 ayN
 ayN
 aVR
@@ -42026,7 +42030,7 @@ aSX
 aSX
 aQr
 aSX
-aar
+aBU
 aSX
 aSX
 aXT
@@ -42509,9 +42513,9 @@ aSX
 aSX
 aoV
 aQr
-adP
 aSA
-aFA
+aSA
+bUf
 aNC
 aWs
 aTi
@@ -43283,7 +43287,7 @@ aQr
 aSA
 aSA
 aYI
-hEo
+yal
 aSA
 abq
 ael
@@ -43806,7 +43810,7 @@ aSA
 aeI
 aSA
 aSA
-aMS
+xgw
 acd
 aWT
 aWT
@@ -44578,7 +44582,7 @@ aYF
 aRU
 aSA
 adv
-ady
+oXi
 aSA
 aQr
 aQr
