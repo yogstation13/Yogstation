@@ -17,21 +17,6 @@ map yogstation
 	votable
 endmap
 
-map yogsmeta
-	minplayers 25
-	votable
-endmap
-
-map gaxstation
-	maxplayers 40
-	votable
-endmap
-
-map asteroidstation
-	minplayers 40
-	votable
-endmap
-
 map runtimestation
 	disabled 
 endmap
