@@ -957,7 +957,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 	if(istype(hitby, /obj/item/projectile))
 		var/obj/item/projectile/P = hitby
-		if(P.damage_type != BURN)
+		if(P.flag != ENERGY)
 			final_block_chance = 0
 		else if(P.reflectable & REFLECT_NORMAL)
 			return FALSE //To avoid reflection chance double-dipping with block chance
