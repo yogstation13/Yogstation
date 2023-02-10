@@ -176,7 +176,7 @@
 	damage = 0 //We're just here for the stunning!
 	damage_type = BURN
 	flag = BOMB
-	range = 3
+	range = 5
 	log_override = TRUE
 
 /obj/item/projectile/kindle/Destroy()
