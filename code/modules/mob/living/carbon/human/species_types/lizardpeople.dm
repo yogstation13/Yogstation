@@ -90,11 +90,11 @@
 					H.emote("wag")
 				if(-1)
 					stop_wagging_tail(H)
-	if(!regrowtimer && !("waggingtail_lizard" in mutant_bodyparts) && !("tail_lizard" in mutant_bodyparts))
+	if(!H.getorganslot(ORGAN_SLOT_TAIL) && !regrowtimer)
 		regrowtimer = addtimer(CALLBACK(src, .proc/regrow_tail, H), 20 MINUTES, TIMER_UNIQUE)
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
-	if(!("waggingtail_lizard" in mutant_bodyparts) && !("tail_lizard" in mutant_bodyparts) && H.stat != DEAD)
+	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
 		mutant_bodyparts |= "tail_lizard"
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
