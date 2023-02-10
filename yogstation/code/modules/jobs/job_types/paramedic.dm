@@ -25,8 +25,6 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 15,
@@ -36,15 +34,6 @@
 	)
 
 	smells_like = "pre-packaged oxygen"
-
-/datum/job/paramedic/proc/OmegaStationChanges()
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/paramedic/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"

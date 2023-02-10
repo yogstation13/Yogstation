@@ -31,3 +31,6 @@
 	savefile_key = "id_in_pda"
 	savefile_identifier = PREFERENCE_PLAYER
 	default_value = FALSE
+
+/datum/preference/toggle/id_in_pda/apply_to_human(mob/living/carbon/human/target, value)
+	target.id_in_pda = value
