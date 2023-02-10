@@ -374,9 +374,11 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 					mapvotes[global.config.defaultmap.map_name] += 1
 				continue
 			mapvotes[vote] += 1
-	else
-		for(var/M in global.config.maplist)
-			mapvotes[M] = 1
+	// All maps get 1 vote, for if either pmv is disabled, or if no one has a map as their preference, it still has a chance
+	for(var/M in global.config.maplist)
+		mapvotes[M] += 1
+
+	var/map_weights = get_map_ratio()
 
 	//filter votes
 	for (var/map in mapvotes)
@@ -401,6 +403,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		if(pmv)
 			mapvotes[map] = mapvotes[map]*VM.voteweight
+		if(map in map_weights)
+			mapvotes[map] = mapvotes[map]*map_weights[map]
 
 	var/pickedmap = pickweight(mapvotes)
 	if (!pickedmap)
@@ -408,14 +412,50 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/datum/map_config/VM = global.config.maplist[pickedmap]
 	message_admins("Randomly rotating map to [VM.map_name].")
 	. = changemap(VM)
+	map_voted = .
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
+
+/// Returns the fraction of the recent maps that any given map was
+/// If history is set to 10 maps, and YogStation was 5 of them, it will be 0.5
+/datum/controller/subsystem/mapping/proc/get_map_ratio()
+	. = list()
+
+	var/limit = CONFIG_GET(number/map_weight_history)
+
+	if(!limit)
+		return
+
+	if(!SSdbcore.Connect())
+		return
+	
+	var/datum/DBQuery/query_map_count = SSdbcore.NewQuery({"
+	SELECT
+		map_name,
+		COUNT(map_name) as count
+	FROM (
+		SELECT map_name
+		FROM [format_table_name("round")]
+		ORDER BY id DESC
+		LIMIT :limit
+	) as rounds
+	GROUP BY map_name
+	"}, list("limit" = limit))
+
+	if(!query_map_count.warn_execute())
+		qdel(query_map_count)
+		return
+	
+	while(query_map_count.NextRow())
+		.[query_map_count.item[1]] = text2num(query_map_count.item[2]) / limit
+
+	qdel(query_map_count)
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
-		return
+		return FALSE
 
 	next_map_config = VM
 	return TRUE

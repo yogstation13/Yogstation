@@ -305,6 +305,11 @@
 	max_val = 1
 	integer = FALSE
 
+/datum/config_entry/number/map_weight_history
+	config_entry_value = 10
+	min_val = 0
+	integer = TRUE
+
 /datum/config_entry/number/soft_popcap
 	config_entry_value = null
 	min_val = 0
