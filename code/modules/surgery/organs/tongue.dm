@@ -30,6 +30,7 @@
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted,
+		/datum/language/felinid,
 		/datum/language/english,
 		/datum/language/french
 	))

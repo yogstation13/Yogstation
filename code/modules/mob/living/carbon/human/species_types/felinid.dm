@@ -18,7 +18,7 @@
 	mutanttail = /obj/item/organ/tail/cat
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	swimming_component = /datum/component/swimming/felinid
-	species_language_holder = /datum/language_holder/english
+	species_language_holder = /datum/language_holder/felinid
 
 	screamsound = list('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
 
