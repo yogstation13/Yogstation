@@ -29,7 +29,7 @@
 	desc = "A power cell that holds 20 MJ of energy."
 	id = "super_cell"
 	build_type = PROTOLATHE | MECHFAB
-	materials = list(/datum/material/iron = 700, /datum/material/glass = 70, /datum/material/dilithium = 250) //Yogs: added dilithium
+	materials = list(/datum/material/iron = 700, /datum/material/glass = 80)
 	construction_time=100
 	build_path = /obj/item/stock_parts/cell/super/empty
 	category = list("Misc","Power Designs")
