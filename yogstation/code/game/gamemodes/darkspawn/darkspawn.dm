@@ -121,7 +121,7 @@
 		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 		Eyes filled with stars.</b>\n\
 		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
-		[span_boldwarning("It cannot be allowed to succeed.")]")
+		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 
