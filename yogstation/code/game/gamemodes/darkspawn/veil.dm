@@ -33,7 +33,7 @@
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
 	mob_override.maxHealth -= 40
 
-/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
+/datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	mob_override.maxHealth += 40
 
 /datum/antagonist/veil/greet()
