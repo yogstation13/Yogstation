@@ -167,10 +167,12 @@
 
 /obj/item/twohanded/fishingrod/collapsable
 	name = "collapsable fishing rod"
-	icon_state = "fishing_rod_collapse_c"
 	desc = "A collapsable fishing rod! This one can fit into your backpack for space hikes and the like."
-	var/opened = FALSE
+	icon_state = "fishing_rod_collapse_c"
 	fishing_power = 15
+	var/opened = FALSE
+	var/rod_icon_state = "fishing_rod_collapse"
+	
 
 /obj/item/twohanded/fishingrod/collapsable/attackby(obj/item/B, mob/user, params)
 	if(!istype(B,/obj/item/reagent_containers/food/snacks/bait))
@@ -200,7 +202,7 @@
 	update_icon()
 
 /obj/item/twohanded/fishingrod/collapsable/update_icon()
-	icon_state = "fishing_rod_collapse[opened ? "" : "_c"]"
+	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
 
 /obj/item/twohanded/fishingrod/collapsable/attack_self(mob/user)
 	if(!opened)
@@ -213,3 +215,10 @@
 		to_chat(user,"The collapsable rod has to be open before you can do anything!")
 		return
 	..()
+
+/obj/item/twohanded/fishingrod/collapsable/miningmedic
+	name = "ol' reliable"
+	desc = "Hey! I caught a miner!"
+	icon_state = "fishing_rod_miningmedic_c"
+	rod_icon_state = "fishing_rod_miningmedic"
+	fishing_power = 1 //Rescue Yo Miners Bitch Damn! Fuck You Doin Fishin For!
