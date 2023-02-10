@@ -1,4 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - tweak: "RPD with paint mode disabled will now allow building when clicking on pipes"
