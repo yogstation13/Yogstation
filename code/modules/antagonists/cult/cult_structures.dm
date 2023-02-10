@@ -453,7 +453,7 @@
 	for(var/turf/T in range(5,src))
 		var/dist = get_dist(src, T)
 		if (dist <= 2)
-			T.ChangeTurf(/turf/open/floor/engine/cult)
+			T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			for (var/obj/structure/S in T)
 				if(!istype(S,/obj/structure/destructible/cult))
 					S.ex_act(EXPLODE_DEVASTATE)
@@ -461,7 +461,7 @@
 				qdel(M)
 		else if (dist <= 4)
 			if (istype(T,/turf/open/space))
-				T.ChangeTurf(/turf/open/floor/engine/cult)
+				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			else
 				T.narsie_act(TRUE, TRUE)
 		else if (dist <= 5)
