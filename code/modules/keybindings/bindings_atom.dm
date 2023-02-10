@@ -15,7 +15,7 @@
 	if((movement_dir & EAST) && (movement_dir & WEST))
 		movement_dir &= ~(EAST|WEST)
 
-	if (user.pixel_shifting && user.mob?.stat < UNCONSCIOUS)
+	if (user.pixel_shifting && user.mob?.stat < UNCONSCIOUS) // note: null is less than 2
 		setShift(movement_dir)
 	else if(user.movement_locked && user.mob?.stat < UNCONSCIOUS)
 		setDir(movement_dir)
