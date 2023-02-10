@@ -1879,5 +1879,5 @@
 /datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
-	..()
+	return ..()
 	
