@@ -926,7 +926,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror
 	name = "mirror shield"
-	desc = "An infamous shield used by Nar'sien sects to confuse and disorient their enemies. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy."
+	desc = "An infamous shield used by Nar'sien sects to confuse and disorient enemies who prefer ranged weapons. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy. The shield cannot block melee or unarmed attacks."
 	icon_state = "mirror_shield" // eshield1 for expanded
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -937,55 +937,54 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
+	block_chance = 75 //Yogstation change. 50% to 75%.
 	var/illusions = 5
 
+//Start of Yogstation Change: Refactors mirror shield.
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(iscultist(owner))
-		if(istype(hitby, /obj/item/projectile))
-			var/obj/item/projectile/P = hitby
-			if(P.damage_type == BRUTE || P.damage_type == BURN)
-				if(P.damage >= 30)
-					var/turf/T = get_turf(owner)
-					T.visible_message(span_warning("The sheer force from [P] shatters the mirror shield!"))
-					new /obj/effect/temp_visual/cult/sparks(T)
-					playsound(T, 'sound/effects/glassbr3.ogg', 100)
-					owner.Paralyze(25)
-					qdel(src)
-					return FALSE
-			if(P.reflectable & REFLECT_NORMAL)
-				return FALSE //To avoid reflection chance double-dipping with block chance
-		. = ..()
-		if(.)
-			if(illusions > 0)
-				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
-				illusions--
-				addtimer(CALLBACK(src, /obj/item/shield/mirror.proc/readd), 450)
-				if(prob(60))
-					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
-					M.faction = list("cult")
-					M.Copy_Parent(owner, 70, 10, 5)
-					M.move_to_delay = owner.movement_delay()
-				else
-					var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
-					E.Copy_Parent(owner, 70, 10)
-					E.GiveTarget(owner)
-					E.Goto(owner, owner.movement_delay(), E.minimum_distance)
-			else
-				var/turf/T = get_turf(owner)
-				T.visible_message(span_warning("[src] shatters as it blocks [hitby]!"))
-				new /obj/effect/temp_visual/cult/sparks(T)
-				qdel(src)
-			return TRUE
 
-	else
-		if(prob(50))
-			var/mob/living/simple_animal/hostile/illusion/H = new(owner.loc)
-			H.Copy_Parent(owner, 100, 20, 5)
-			H.faction = list("cult")
-			H.GiveTarget(owner)
-			H.move_to_delay = owner.movement_delay()
-			to_chat(owner, span_danger("<b>[src] betrays you!</b>"))
+	if(!iscultist(owner))
+		var/mob/living/simple_animal/hostile/illusion/H = new(owner.loc)
+		H.Copy_Parent(owner, 100, 20, 5)
+		H.faction = list("cult")
+		H.GiveTarget(owner)
+		H.move_to_delay = owner.movement_delay()
+		to_chat(owner, span_danger("<b>[src] betrays you!</b>"))
 		return FALSE
+
+	if(attack_type == MELEE_ATTACK || attack_type == UNARMED_ATTACK || attack_type == LEAP_ATTACK)
+		final_block_chance = 0
+
+	if(istype(hitby, /obj/item/projectile))
+		var/obj/item/projectile/P = hitby
+		if(P.damage_type != BURN)
+			final_block_chance = 0
+		else if(P.reflectable & REFLECT_NORMAL)
+			return FALSE //To avoid reflection chance double-dipping with block chance
+
+	. = ..()
+
+	if(.)
+		if(illusions > 0)
+			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
+			illusions--
+			addtimer(CALLBACK(src, /obj/item/shield/mirror.proc/readd), 450)
+			if(prob(60))
+				var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
+				M.faction = list("cult")
+				M.Copy_Parent(owner, 70, 10, 5)
+				M.move_to_delay = owner.movement_delay()
+			else
+				var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
+				E.Copy_Parent(owner, 70, 10)
+				E.GiveTarget(owner)
+				E.Goto(owner, owner.movement_delay(), E.minimum_distance)
+		else
+			var/turf/T = get_turf(owner)
+			T.visible_message(span_warning("[src] shatters as it blocks [hitby]!"))
+			new /obj/effect/temp_visual/cult/sparks(T)
+			qdel(src)
+//End of yogstation change.
 
 /obj/item/shield/mirror/proc/readd()
 	illusions++
