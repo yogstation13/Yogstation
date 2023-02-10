@@ -926,7 +926,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror
 	name = "mirror shield"
-	desc = "An infamous shield used by Nar'sien sects to confuse and disorient enemies who prefer ranged weapons. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy. The shield cannot block melee or unarmed attacks."
+	desc = "An infamous shield used by Nar'sien sects to confuse and disorient enemies who prefer ranged weapons. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy. The shield can only block ranged laser or energy attacks."
 	icon_state = "mirror_shield" // eshield1 for expanded
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -957,7 +957,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 	if(istype(hitby, /obj/item/projectile))
 		var/obj/item/projectile/P = hitby
-		if(P.flag != ENERGY)
+		if(!(P.flag & (ENERGY|LASER)))
 			final_block_chance = 0
 		else if(P.reflectable & REFLECT_NORMAL)
 			return FALSE //To avoid reflection chance double-dipping with block chance
