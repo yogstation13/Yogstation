@@ -68,16 +68,44 @@
 		return 0
 	if (targloc == curloc)
 		return 0
-	
-	
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
-	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)))	//If we are targetting not a turf and they're within reach
-		precise_attack(target)		//We stab it if we can
+	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc))	//If we are targetting not a turf and they're within reach
+		precise_attack(target)	//We stab it if we can
 	else if(cleave)
-		cleave_attack()			//Or swing wildly
+		cleave_attack()	//Or swing wildly
+	else	//Failure to sword
+		return 0
 	chassis.log_message("Attacked with [src.name], targeting [target].", LOG_MECHA)
 	return 1
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/can_stab_at(turf/starter, turf/target)
+	//Note that we don't check for valid turfs or if starter and target are the same because that's already done in action()
+	var/turf/current = null
+	var/turf/next = null
+	if(abs(starter.x - target.x) == abs(starter.y - target.y))	//If we're exactly diagonal
+		current = get_step_towards(starter, target)	//We check directly diagonal for reasons
+	else
+		current = get_step_towards2(starter, target)	//Otherwise we use a more lenient check
+	if(!starter.Adjacent(current))	//Not next to our first turf, immediately fail
+		return 0
+	if(current != target)	//If our target isn't our first turf, find the next turf
+		next = get_step_towards(current, target)
+	while(current != target)	//as long as we haven't reached our target turf
+		if(!current.Adjacent(next))	//check if we can stab from our current turf to the next one
+			return 0
+		if(current.density)	//If it's a wall and we're not at our target, we can't stab through it
+			return 0
+		for(var/obj/O in current)
+			if(O.density && !(O.pass_flags & LETPASSTHROW))	//If there's a solid object we can't reach over on the turf
+				return 0
+		current = next
+		if(next != target)	//Move to the next tile if we're not already there
+			next = get_step_towards(next, target)
+	return 1
+
+
+
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/precise_attack(atom/target)	//No special attack by default. These will be set in the weapons themselves
 	return 0
@@ -138,7 +166,7 @@
 		special_hit(T)	//So we can hit turfs too
 		for(var/atom/A in T.contents)
 			special_hit(A)
-			if(isliving(A))						
+			if(isliving(A) && can_stab_at(M, T))	//If there's a stabbable mob
 				var/mob/living/L = A
 				
 				if(iscarbon(L))	//If we're a carbon we can get armor and jazz
@@ -156,7 +184,7 @@
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 				playsound(L, mob_strike_sound, 50)
 
-			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
+			if(isstructure(A) || (ismachinery(A) && can_stab_at(M, T)) || (istype(A, /obj/mecha) && can_stab_at(M, T)))	//if it's a big thing we hit anyways. Structures ALWAYS are hit, machines and mechs can be protected
 				var/obj/O = A
 				if(!O.density)	//Make sure it's not an open door or something
 					continue
@@ -239,7 +267,7 @@
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
 	fauna_damage_bonus = 20		//because why not
 	deflect_bonus = 20			//anime reasons
-	base_armor_piercing = 15	//30 on the precise attacks
+	base_armor_piercing = 10	//20 on the precise attacks, meant for lighter targets
 	structure_damage_mult = 1.5	//katana is less smashy than other swords
 	minimum_damage = 15
 	sword_wound_bonus = 15		//More bleeding
@@ -352,7 +380,7 @@
 	var/lunge_cd = 2 SECONDS	//2 second cooldown on the lunge attack
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/precise_attack(atom/target)
-	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)
+	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//Extended range except it has to be in melee to actually hit
 		return
 	for(var/i in 1 to stab_number)
 		if(i == 1)
@@ -385,6 +413,7 @@
 			return
 		chassis.do_attack_animation(target, hit_effect)
 		playsound(chassis, attack_sound, 50, 1)
+		start_cooldown()	//no cheeky multistabbing
 		sleep(0.2 SECONDS)	//For a slight delay between attacks
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/special_hit(atom/target)
