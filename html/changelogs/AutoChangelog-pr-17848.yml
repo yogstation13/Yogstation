@@ -1,0 +1,6 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - rscadd: "Airlocks and doors can now be barricaded"
+  - tweak: "The crude barricade is now faster to crowbar than harm intenting it with it"
+  - bugfix: "It is no longer possible to put multiple barricades on the same tile"
