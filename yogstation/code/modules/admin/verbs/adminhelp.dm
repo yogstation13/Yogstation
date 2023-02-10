@@ -417,6 +417,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(check_rights(R_ADMIN, FALSE) && alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			if(SSticker.delay_end)
+				if(alert(usr,"Restart has been delayed, restart anyways?","Round restart","Yes","No") != "Yes")
+					return
 			SSticker.Reboot(delay = 100)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
