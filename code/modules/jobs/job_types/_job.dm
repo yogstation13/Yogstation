@@ -116,6 +116,16 @@
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
+
+	Here is another example of using this:
+
+	/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
+	supervisors = "the captain and the head of personnel"
 	*/
 
 /datum/job/New()

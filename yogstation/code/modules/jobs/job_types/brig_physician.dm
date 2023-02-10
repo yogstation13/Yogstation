@@ -31,16 +31,7 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYSICIAN
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	smells_like = "crimson guardianship"
-
-/datum/job/brigphysician/proc/OmegaStationChanges()
-	return TRUE
-
-/datum/job/brigphysician/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
 
 /datum/outfit/job/brigphysician
 	name = "Brig Physician"

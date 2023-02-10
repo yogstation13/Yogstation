@@ -35,8 +35,6 @@
 		/datum/job_department/security,
 	)
 
-	changed_maps = list("YogsPubby", "OmegaStation")
-
 	mail_goodies = list(
 		/obj/item/storage/box/fancy/cigarettes = 15,
 		/obj/item/storage/box/handcuffs = 10,
@@ -48,12 +46,6 @@
 	)
 
 	smells_like = "gunpowdery justice"
-
-/datum/job/warden/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
-
-/datum/job/warden/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/job/warden/get_access()
 	var/list/L = list()
