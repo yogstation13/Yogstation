@@ -736,3 +736,7 @@
 	new /obj/item/autosurgeon/upgraded_cyberlungs(src)
 	new /obj/item/autosurgeon/upgraded_cyberstomach(src)
 	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/beanbag/syndie_darts/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/dart/hidden(src)
