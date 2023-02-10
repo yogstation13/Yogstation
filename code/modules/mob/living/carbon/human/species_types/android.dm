@@ -7,7 +7,12 @@
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	meat = null
 	damage_overlay_type = "synth"
+	mutantbrain = /obj/item/organ/brain/positron
+	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
+	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
+	mutantstomach = /obj/item/organ/stomach/cybernetic	//Is there even anything an android would use a stomach for?
+	mutantears = /obj/item/organ/ears/cybernetic
 	species_language_holder = /datum/language_holder/synthetic
 	limbs_id = "synth"
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
