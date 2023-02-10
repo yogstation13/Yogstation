@@ -136,18 +136,7 @@
 	if(ishuman(user) && slot == SLOT_HEAD)
 		update_icon(user)
 		user.update_inv_head() //Color might have been changed by update_icon.
-		var/datum/language_holder/LH = user.get_language_holder()
-		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
-			to_chat(user, "Your mind is filled with the knowledge of huntspeak... Well thats what felinids want you to believe anyway.")
-			LH.grant_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	..()
-
-/obj/item/clothing/head/kitty/dropped(mob/user)
-	..()
-	var/datum/language_holder/LH = user.get_language_holder()
-	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
-		to_chat(user, "You lose the keenness in your ears.")
-		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
@@ -371,3 +360,15 @@
 	icon_state = "rflower"
 	item_state = "rflower"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/clothing/head/Floralwizhat
+	name = "Druid hat"
+	desc = "A black wizard hat with an exotic looking purple flower on it"
+	icon_state = "flowerwizhat"
+	item_state = "flowerwizhat"
+
+/obj/item/clothing/head/fedora/gtrim_fedora
+	name = "Gold trimmed Fedora"
+	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	icon_state = "gtrim_fedora"
+	item_state = "gtrim_fedora"

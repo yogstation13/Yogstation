@@ -233,6 +233,8 @@
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
+/// This human wants to see the color of their glasses, for some reason
+#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -299,6 +301,7 @@
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
 #define ATTACHMENT_TRAIT "attachment-trait"
+#define GLASSES_TRAIT "glasses"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -348,6 +351,7 @@
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

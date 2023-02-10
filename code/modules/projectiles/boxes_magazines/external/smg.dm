@@ -2,40 +2,39 @@
 
 /obj/item/ammo_box/magazine/wt550m9
 	name = "\improper WT-550 magazine (4.6x30mm)"
-	desc = "A 22-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
-			4.6x30mm rounds have inherent armor-penetrating capabilities."
+	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine."
 	icon_state = "46x30mmt-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm
 	caliber = "4.6x30mm"
-	max_ammo = 22
+	max_ammo = 20
 
 /obj/item/ammo_box/magazine/wt550m9/update_icon()
 	..()
 	switch(ammo_count())
-		if(19 to 22)
+		if(17 to 21) //Considers the extra bullet in the chamber
 			icon_state = "46x30mmt[sprite_designation]-20"
-		if(15 to 18)
+		if(13 to 16)
 			icon_state = "46x30mmt[sprite_designation]-16"
-		if(11 to 14)
+		if(9 to 12)
 			icon_state = "46x30mmt[sprite_designation]-12"
-		if(7 to 10)
+		if(5 to 8)
 			icon_state = "46x30mmt[sprite_designation]-8"
-		if(3 to 6)
+		if(1 to 4)
 			icon_state = "46x30mmt[sprite_designation]-4"
 		else
 			icon_state = "46x30mmt[sprite_designation]-0"
 
 /obj/item/ammo_box/magazine/wt550m9/wtap
 	name = "\improper WT-550 magazine (Armor-Piercing 4.6x30mm)"
-	desc = "A 22-round AP 4.6x30mm magazine, designed for the WT-550 Carbine. \
-			These rounds trade damage for even more armor-piercing capability."
+	desc = "A 20-round AP 4.6x30mm magazine, designed for the WT-550 Carbine. \
+			These rounds trade damage for armor-piercing capability."
 	icon_state = "46x30mmtA-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
 	sprite_designation = "A"
 
 /obj/item/ammo_box/magazine/wt550m9/wtic
 	name = "\improper WT-550 magazine (Incendiary 4.6x30mm)"
-	desc = "A 22-round Incendiary 4.6x30mm magazine, designed for the WT-550 Carbine. \
+	desc = "A 20-round Incendiary 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds trade damage for ignition of targets."
 	icon_state = "46x30mmtI-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/inc
@@ -43,7 +42,7 @@
 
 /obj/item/ammo_box/magazine/wt550m9/wtr
 	name = "\improper WT-550 magazine (Rubber Rounds 4.6x30mm)"
-	desc = "A 22-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
+	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds possess minimal lethality but deal high stamina damage to targets."
 	icon_state = "46x30mmtR-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/rubber

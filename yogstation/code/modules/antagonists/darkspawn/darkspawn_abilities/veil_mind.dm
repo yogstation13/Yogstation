@@ -6,7 +6,7 @@
 	button_icon_state = "veil_mind"
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	psi_cost = 60 //since this is only useful when cast directly after a succ it should be pretty expensive
-	lucidity_price = 6 //Yep, thralling is optional! It's just one of many possible playstyles.
+	lucidity_price = 2
 
 /datum/action/innate/darkspawn/veil_mind/Activate()
 	var/mob/living/carbon/human/H = owner
