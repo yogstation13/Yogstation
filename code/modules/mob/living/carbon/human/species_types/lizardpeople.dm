@@ -94,7 +94,7 @@
 		regrowtimer = addtimer(CALLBACK(src, .proc/regrow_tail, H), 20 MINUTES, TIMER_UNIQUE)
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
-	if(!("waggingtail_lizard" in mutant_bodyparts) && !("tail_lizard" in mutant_bodyparts))
+	if(!("waggingtail_lizard" in mutant_bodyparts) && !("tail_lizard" in mutant_bodyparts) && H.stat != DEAD)
 		mutant_bodyparts |= "tail_lizard"
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
