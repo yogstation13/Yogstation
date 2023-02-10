@@ -72,10 +72,10 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 **All maintainers should follow set standards for handling Pull Requests.** These standards include waiting 24 hours before merging or closing a Pull Request, as well as merging only Pull Requests that fall under your area of expertise (i.e. an Art Maintainer should not merge code, and a Code Maintainer should not merge art.) Lastly, revert Pull Requests should only be merged by a Head Developer. The above limitations do not apply to round-breaking or repo-breaking changes; however, please notify any head developers if this occurs.
 
-**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close draft Pull Requests if:
+**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close Pull Requests if:
 * A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
-* A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
-* A contributor has not contributed to their draft Pull Request in a week’s time.
+* A contributor has opened a Pull Request that has no changes present in it after the initial 24 hours.
+* A contributor has not contributed to their Pull Request in a week’s time.
 * The Pull Request was opened with inadequate rationale or is lacking naming or following existing guidelines.
 
 
