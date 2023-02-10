@@ -25,7 +25,13 @@
 	. = ..()
 
 /obj/item/modular_computer/laptop/preset/paramedic/mining_medic
-	desc = "A low-end laptop often used by mining medics."
+	desc = "A low-end laptop often used by mining medics. Comes with an upgraded network card to allow for use while off Station."
+	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
+								/obj/item/stock_parts/cell/computer,
+								/obj/item/computer_hardware/hard_drive,
+								/obj/item/computer_hardware/network_card/advanced,
+								/obj/item/computer_hardware/card_slot)
+
 /obj/item/modular_computer/laptop/preset/paramedic/mining_medic/Initialize()
 	starting_files |= list(
 		new /datum/computer_file/program/secureye/mining
