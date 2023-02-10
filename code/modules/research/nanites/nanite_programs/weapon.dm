@@ -7,7 +7,7 @@
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	harmful = TRUE
-	var/damage = 0.75
+	var/damage = 1
 
 /datum/nanite_program/flesh_eating/active_effect()
 	if(iscarbon(host_mob))
@@ -66,7 +66,7 @@
 	use_rate = 10
 	rogue_types = list(/datum/nanite_program/glitch)
 	harmful = TRUE
-	var/damage = 2.5
+	var/damage = 3
 
 /datum/nanite_program/meltdown/active_effect()
 	host_mob.adjustFireLoss(damage)
