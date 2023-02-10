@@ -68,10 +68,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
-		if(istype(BP,/obj/item/bodypart/l_arm) || istype(BP,/obj/item/bodypart/r_arm))//reasonable
-			BP.max_damage = 40
+		if(istype(BP,/obj/item/bodypart/l_arm) || istype(BP,/obj/item/bodypart/r_arm))
+			BP.max_damage = 45
 			continue
-		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//stick legs
+		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 25
 
 	if(ishuman(C))
