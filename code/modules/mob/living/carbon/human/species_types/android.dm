@@ -15,6 +15,8 @@
 	mutantears = /obj/item/organ/ears/cybernetic
 	species_language_holder = /datum/language_holder/synthetic
 	limbs_id = "synth"
+	toxmod = 0
+	clonemod = 0
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/android/on_species_gain(mob/living/carbon/C)
