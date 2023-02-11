@@ -163,7 +163,7 @@
 	if(!reagents.total_volume || !M.reagents)
 		return
 		
-	to_chat(user, span_warning("You begin to injecting [src]'s contents into [M]"))
+	to_chat(user, span_warning("You begin to inject [src]'s contents into [M]"))
 	if(!do_after(user, 0.5 SECONDS, M))
 		return
 	reagents.reaction(M, INJECT, reagents.total_volume)

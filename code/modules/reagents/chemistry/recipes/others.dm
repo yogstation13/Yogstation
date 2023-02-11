@@ -11,6 +11,12 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
+/datum/chemical_reaction/naniteremover
+	name = "Nanolytic Agent"
+	id = /datum/reagent/medicine/naniteremover
+	results = list(/datum/reagent/medicine/naniteremover = 3)
+	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)
+
 /datum/chemical_reaction/itching_powder
 	name = "Itching Powder"
 	id = /datum/reagent/itching_powder
