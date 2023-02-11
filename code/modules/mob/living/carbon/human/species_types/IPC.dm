@@ -284,7 +284,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		return
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
-	emagged = TRUE
 
 /*------------------------
 
