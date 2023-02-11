@@ -20,6 +20,8 @@
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the ammo is fired.
 	var/heavy_metal = TRUE
 	var/harmful = TRUE //pacifism check for boolet, set to FALSE if bullet is non-lethal
+	/// If this casing has a different sprite for when it is live
+	var/live_sprite = TRUE 
 
 /obj/item/ammo_casing/spent
 	name = "spent bullet casing"
@@ -36,7 +38,7 @@
 
 /obj/item/ammo_casing/update_icon()
 	..()
-	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
+	icon_state = "[initial(icon_state)][BB && live_sprite ? "-live" : ""]"
 	desc = "[initial(desc)][BB ? "" : " This one is spent."]"
 
 //proc to magically refill a casing with a new projectile

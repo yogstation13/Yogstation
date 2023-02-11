@@ -250,15 +250,15 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 
 //bullet_act() return values
 /// It's a successful hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_HIT				"HIT"		//It's a successful hit, whatever that means in the context of the thing it's hitting.
+#define BULLET_ACT_HIT				(1<<0)		//It's a successful hit, whatever that means in the context of the thing it's hitting.
 /// It's a blocked hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_BLOCK			"BLOCK"
+#define BULLET_ACT_BLOCK			(1<<1)
 /// It pierces through the object regardless of the bullet being piercing by default.
-#define BULLET_ACT_FORCE_PIERCE		"PIERCE"
+#define BULLET_ACT_FORCE_PIERCE		(1<<2)
 /// It hit us but it should hit something on the same turf too. Usually used for turfs.
-#define BULLET_ACT_TURF				"TURF"
+#define BULLET_ACT_TURF				(1<<3)
 /// It hit something, but it should just keep going until it hit something else
-#define BULLET_ACT_PENETRATE		"PENETRATE"
+#define BULLET_ACT_PENETRATE		(1<<4)
 
 // Weather immunities //
 #define WEATHER_STORM "storm"

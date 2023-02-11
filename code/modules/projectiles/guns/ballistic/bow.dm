@@ -25,6 +25,7 @@
 	var/draw_slowdown = 1.5
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
+	var/equip_when_loaded = FALSE
 
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber()
 	return
@@ -51,16 +52,14 @@
 
 /obj/item/gun/ballistic/bow/process_chamber()
 	chambered = null
-	magazine.get_round(0)
+	magazine.get_round(FALSE)
 	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attack_self(mob/living/user)
 	if(chambered)
-		var/obj/item/ammo_casing/AC = magazine.get_round(0)
-		user.put_in_hands(AC)
-		chambered = null
-		to_chat(user, span_notice("You gently release the bowstring, removing the arrow."))
+		release_draw()
+		to_chat(user, span_notice("You gently release the bowstring."))
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
@@ -84,17 +83,23 @@
 
 /obj/item/gun/ballistic/bow/attack_hand(mob/user)
 	if(internal_magazine && loc == user && user.is_holding(src) && (chambered || get_ammo()))
-		var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
-		user.put_in_hands(AC)
-		chambered = null
-		update_slowdown()
-		update_icon()
+		remove_arrow(user)
 		return
 	return ..()
 
+/obj/item/gun/ballistic/bow/proc/remove_arrow(mob/user)
+	if(!chambered && !get_ammo())
+		return
+	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
+	user.put_in_hands(AC)
+	chambered = null
+	to_chat(user, span_notice("You remove [AC]."))
+	update_slowdown()
+	update_icon()
+
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
 	if (magazine.attackby(I, user, params, 1))
-		to_chat(user, span_notice("You notch the arrow."))
+		to_chat(user, span_notice("You notch [I]."))
 	update_slowdown()
 	update_icon()
 
@@ -102,8 +107,8 @@
 	cut_overlay(arrow_overlay, TRUE)
 	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
 	if(get_ammo())
-		var/obj/item/ammo_casing/caseless/arrow/energy/E = magazine.get_round(TRUE)
-		arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
+		var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
+		arrow_overlay = mutable_appearance(icon, "[initial(E.item_state)][chambered ? "_firing" : ""]")
 		add_overlay(arrow_overlay, TRUE)
 
 /obj/item/gun/ballistic/bow/proc/update_slowdown()
@@ -111,6 +116,12 @@
 		slowdown = draw_slowdown
 	else
 		slowdown = initial(slowdown)
+	if(equip_when_loaded)
+		return
+	if(get_ammo())
+		slot_flags = NONE
+	else
+		slot_flags = initial(slot_flags)
 
 /obj/item/gun/ballistic/bow/can_shoot()
 	return chambered
@@ -145,12 +156,21 @@
 	name = "wooden crossbow"
 	desc = "A handcrafted version of a typical medieval crossbow. The stock is heavy and loading it takes time, but it can be quickly fired once ready."
 	icon_state = "crossbow"
+	item_state = "crossbow"
 	force = 15 //Beating someone with a goddamned stock are we
 	spread = 0
 	draw_time = 2 SECONDS
 	draw_slowdown = FALSE
 	drop_release_draw = FALSE
 	move_drawing = FALSE
+	equip_when_loaded = TRUE
+	
+/obj/item/gun/ballistic/bow/crossbow/ashen
+	name = "bone crossbow"
+	desc = "An advanced primitive bow that is designed to function similar to a typical medieval crossbow. The stock is heavy and loading it takes time, but it can be quickly fired once ready."
+	icon_state = "ashencrossbow"
+	item_state = "ashencrossbow"
+	spread = 1
 	
 /obj/item/gun/ballistic/bow/crossbow/magfed
 	name = "wooden magfed crossbow"
@@ -215,26 +235,133 @@
 		return
 	return ..()
 
+/obj/item/gun/ballistic/bow/toy/white
+	name = "white toy bow"
+	icon_state = "bow_toy_white"
+	item_state = "bow_hardlight_arrow_disable"
+
 /obj/item/gun/ballistic/bow/toy/blue
 	name = "blue toy bow"
 	desc = "A Nanotrasen themed plastic bow that can fire arrows. Features real voice action!"
 	icon_state = "bow_toy_blue"
-	item_state = "bow_hardlight"
+	item_state = "bow_ert_arrow_pulse"
 	assembly = /obj/item/assembly/voice_box/bow/nanotrasen
 
 /obj/item/gun/ballistic/bow/toy/red
-	name = "blue toy bow"
+	name = "red toy bow"
 	desc = "A Syndicate themed plastic bow that can fire arrows. Features real voice action!"
 	icon_state = "bow_toy_red"
-	item_state = "bow_syndicate"
+	item_state = "bow_syndicate_arrow_energy"
 	assembly = /obj/item/assembly/voice_box/bow/syndie
 
 /obj/item/gun/ballistic/bow/toy/clockwork
 	name = "clockwork toy bow"
 	desc = "A Ratvarian themed plastic bow that can fire arrows. Features real voice action!"
 	icon_state = "bow_toy_clockwork"
-	item_state = "bow_clockwork"
+	item_state = "bow_clockwork_arrow_energy"
 	assembly = /obj/item/assembly/voice_box/bow/clockwork
+
+
+// Wizard //
+
+/obj/item/gun/ballistic/bow/break_bow
+	name = "break bow"
+	desc = "A finely crafted bow consisting of two blades combined at the hilt and a magical, semi-transparent bowstring. Can be taken apart to use the blades individualy."
+	icon_state = "breakbow"
+	item_state = "breakbow"
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	force = 20	// You can still hit them with one of the blades
+	throwforce = 20
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
+	wound_bonus = 10
+	var/bladetype = /obj/item/break_blade
+
+/obj/item/gun/ballistic/bow/break_bow/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
+
+/obj/item/gun/ballistic/bow/break_bow/attack_self(mob/living/user)
+	if(get_ammo())
+		return ..()
+	form_blades(user)
+
+/obj/item/gun/ballistic/bow/break_bow/proc/form_blades(mob/living/user)
+	moveToNullspace()
+	user.put_in_hands(new bladetype())
+	user.put_in_hands(new bladetype())
+	playsound(user, 'sound/weapons/batonextend.ogg', 50, 1)
+	to_chat(user, span_notice("You detach the two blades of [src]."))
+	qdel(src)
+
+/obj/item/break_blade
+	name = "break bow blade"
+	desc = "One of ideally two blades used to form a break bow. Can attack with both blades at the same time or combine them into a bow."
+	icon_state = "brakebow_blade"
+	item_state = "brakebow_blade"
+	icon = 'icons/obj/weapons/swords.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 65, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
+	force = 20
+	throwforce = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
+	wound_bonus = 10
+	var/bowtype = /obj/item/gun/ballistic/bow/break_bow
+
+/obj/item/break_blade/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
+
+/obj/item/break_blade/attack_self(mob/living/user)
+	var/obj/item/break_blade/secondblade = user.get_inactive_held_item()
+	if(istype(secondblade))
+		form_bow(user, secondblade)
+	else
+		to_chat(user, span_warning("You need two of [src] to combine them!"))
+
+/obj/item/break_blade/proc/form_bow(mob/living/user, var/obj/item/break_blade/other_blade)
+	if(!istype(other_blade))
+		return
+	moveToNullspace()
+	other_blade.moveToNullspace()
+	user.put_in_hands(new bowtype())
+	playsound(user, 'sound/weapons/batonextend.ogg', 50, 1)
+	to_chat(user, span_notice("You combine the two [src]."))
+	qdel(other_blade)
+	qdel(src)
+
+/obj/item/break_blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+	. = ..()
+	var/obj/item/break_blade/secondblade = user.get_inactive_held_item()
+	if(istype(secondblade) && !secondattack)
+		sleep(0.2 SECONDS)
+		secondblade.attack(M, user, TRUE)
+
+/obj/item/break_blade/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	. = ..()
+	if(!thrower)
+		return
+	addtimer(CALLBACK(src, .proc/return_to, thrower), 3 SECONDS)
+	var/obj/item/break_blade/secondblade = thrower.get_inactive_held_item()
+	if(istype(secondblade))
+		sleep(0.2 SECONDS)
+		thrower.dropItemToGround(secondblade, silent = TRUE)
+		thrower.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
+
+/obj/item/break_blade/proc/return_to(mob/living/user)
+	if(!istype(user))
+		return
+
+	var/mob/holder = loc
+	if(istype(holder) && holder.anti_magic_check())
+		to_chat(holder, span_notice("You feel [src] tugging on you."))
+		return
+
+	if(!user.put_in_hands(src))
+		return
+	playsound(user, 'sound/magic/blink.ogg', 50, 1)
+	to_chat(user, span_notice("[src] suddenly returns to you!"))
 
 
 // Hardlight //
@@ -249,14 +376,51 @@
 	draw_slowdown = 0
 	var/recharge_time = 1 SECONDS
 
+	var/can_fold = FALSE
+	var/folded_w_class = WEIGHT_CLASS_NORMAL
+	var/folded = FALSE
+	var/stored_ammo ///what was stored in the magazine before being folded?
+	var/fold_sound = 'sound/weapons/batonextend.ogg'
+
+/obj/item/gun/ballistic/bow/energy/Initialize()
+	if(folded)
+		toggle_folded(TRUE)
+	. = ..()
+
+/obj/item/gun/ballistic/bow/energy/examine(mob/user)
+	. = ..()
+	var/obj/item/ammo_box/magazine/internal/bow/energy/M = magazine
+	if(M.selectable_types.len > 1)
+		. += "You can select firing modes by using ALT + CLICK."
+	if(can_fold)
+		. += "[folded ? "It is currently folded, you can unfold it" : "It can be folded into a compact form"] by using CTRL + CLICK."
+	if(TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
+		. += span_warning("It is currently recharging!")
+
 /obj/item/gun/ballistic/bow/energy/update_icon()
 	cut_overlay(arrow_overlay, TRUE)
-	if(get_ammo())
-		var/obj/item/ammo_casing/caseless/arrow/energy/E = magazine.get_round(TRUE)
-		arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
-		add_overlay(arrow_overlay, TRUE)
+
+	if(folded)
+		icon_state = "[initial(icon_state)]_folded"
+		item_state = "[initial(item_state)]_folded"
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+
+		if(get_ammo())
+			var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
+			arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
+			add_overlay(arrow_overlay, TRUE)
+			item_state = "[item_state]_[E.icon_state]"
+
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_hands()
 
 /obj/item/gun/ballistic/bow/energy/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
+	if(folded)
+		to_chat(user, span_notice("You must unfold [src] before firing it!"))
+		return FALSE
 	. = ..()
 	if(recharge_time)
 		TIMER_COOLDOWN_START(src, "arrow_recharge", recharge_time)
@@ -266,9 +430,10 @@
 	playsound(src, 'sound/effects/sparks4.ogg', 25, 0)
 
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
+	if(folded)
+		toggle_folded(FALSE, user)
 	if(chambered)
-		chambered = null
-		to_chat(user, span_notice("You disperse the arrow."))
+		remove_arrow()
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
@@ -286,8 +451,18 @@
 	update_slowdown()
 	update_icon()
 
+/obj/item/gun/ballistic/bow/energy/remove_arrow(mob/user)
+	if(!chambered && !get_ammo())
+		return
+	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
+	chambered = null
+	to_chat(user, span_notice("You disperse [AC]."))
+	qdel(AC)
+	update_slowdown()
+	update_icon()
+
 /obj/item/gun/ballistic/bow/energy/proc/recharge_bolt()
-	if(magazine.get_round(TRUE))
+	if(folded || magazine.get_round(TRUE))
 		return
 	var/ammo_type = magazine.ammo_type
 	magazine.give_round(new ammo_type())
@@ -327,9 +502,9 @@
 
 	var/list/choice_list = list()
 	for(var/arrow_type in M.selectable_types)
-		var/obj/item/ammo_casing/caseless/arrow/energy/arrow = new arrow_type()
+		var/obj/item/ammo_casing/reusable/arrow/energy/arrow = new arrow_type()
 		choice_list[arrow] = image(arrow)
-	var/obj/item/ammo_casing/caseless/arrow/energy/choice = show_radial_menu(user, user, choice_list, tooltips = TRUE)
+	var/obj/item/ammo_casing/reusable/arrow/energy/choice = show_radial_menu(user, user, choice_list, tooltips = TRUE)
 	if(!choice || !(choice.type in M.selectable_types))
 		return
 	M.ammo_type = choice.type
@@ -340,11 +515,48 @@
 	QDEL_NULL(choice_list)
 	update_icon()
 
+/obj/item/gun/ballistic/bow/energy/CtrlClick(mob/living/user)
+	if(!can_fold || !user.is_holding(src))
+		return ..()
+	toggle_folded(!folded, user)
+
+/obj/item/gun/ballistic/bow/energy/proc/toggle_folded(new_folded, mob/living/user)
+	if(!can_fold)
+		return
+
+	if(folded != new_folded)
+		playsound(src.loc, fold_sound, 50, 1)
+
+	folded = new_folded
+
+	if(folded)
+		w_class = folded_w_class
+		chambered = null
+		stored_ammo = magazine.ammo_list()
+		magazine.stored_ammo = null
+		if(user)
+			to_chat(user, span_notice("You fold [src]."))
+	else
+		w_class = initial(w_class)
+		magazine.stored_ammo = stored_ammo
+		if(user)
+			to_chat(user, span_notice("You extend [src], allowing it to be fired."))
+	update_icon()
+
 /obj/item/gun/ballistic/bow/energy/advanced
 	name = "advanced hardlight bow"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/advanced
 	recharge_time = 0
 	pin = /obj/item/firing_pin
+	can_fold = TRUE
+
+/obj/item/gun/ballistic/bow/energy/ert
+	name = "ert hardlight bow" // Skrem, change this shit to something good
+	icon_state = "bow_ert"
+	item_state = "bow_ert"
+	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/ert
+	pin = /obj/item/firing_pin/implant/mindshield
+	can_fold = TRUE
 
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "syndicate hardlight bow"
@@ -358,54 +570,10 @@
 	pin = /obj/item/firing_pin
 	fire_sound = null
 	draw_sound = null
-	var/folded = FALSE
-	var/stored_ammo ///what was stored in the magazine before being folded?
+	can_fold = TRUE
 
-/obj/item/gun/ballistic/bow/energy/syndicate/examine(mob/user)
-	. = ..()
-	. += "It can be folded into a compact form by using CTRL + CLICK."
-
-/obj/item/gun/ballistic/bow/energy/syndicate/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] before firing it!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/attack_self(mob/living/user)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] to chamber a round!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/AltClick(mob/living/user)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] to switch firing modes!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/CtrlClick(mob/living/user)
-	if(!user.is_holding(src))
-		to_chat(user, span_notice("You need be holding [src] to do that!"))
-		return
-	folded = !folded
-	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
-	if(folded)
-		to_chat(user, span_notice("You fold [src]."))
-		w_class = WEIGHT_CLASS_NORMAL
-		chambered = null
-		icon_state = "bow_syndicate_folded"
-		stored_ammo = magazine.ammo_list()
-		magazine.stored_ammo = null
-		update_icon()
-	else
-		w_class = WEIGHT_CLASS_BULKY
-		to_chat(user, span_notice("You extend [src], allowing it to be fired."))
-		icon_state = "bow_syndicate"
-		magazine.stored_ammo = stored_ammo
-		update_icon()
+/obj/item/gun/ballistic/bow/energy/syndicate/folded
+	folded = TRUE
 
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "brass bow"

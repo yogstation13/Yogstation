@@ -808,10 +808,18 @@
 	content_overlays = TRUE
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-/obj/item/storage/belt/quiver/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null)
-	if(!override_state && !isinhands && (locate(/obj/item/ammo_casing/caseless/arrow) in contents))
-		override_state = "[icon_state]_empty"
+
+/obj/item/storage/belt/quiver/update_icon()
 	..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_belt()
+		M.update_inv_back()
+
+/obj/item/storage/belt/quiver/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null)
+	if(!override_state && !isinhands && !(locate(/obj/item/ammo_casing/reusable/arrow) in contents))
+		override_state = "[icon_state]_empty"
+	return ..()
 
 /obj/item/storage/belt/quiver/ComponentInitialize()
 	. = ..()
@@ -820,7 +828,7 @@
 	STR.max_combined_w_class = 20
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/ammo_casing/reusable/arrow,
 		/obj/item/stand_arrow,
 		/obj/item/throwing_star/magspear
 		))
@@ -832,9 +840,9 @@
 	item_state = "quiver_weaver"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+/obj/item/storage/belt/quiver/weaver/ashwalker/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+		new /obj/item/ammo_casing/reusable/arrow/bone(src)
 
 /obj/item/storage/belt/quiver/admin
 	name = "admin quiver"
@@ -848,8 +856,8 @@
 	STR.max_items = 100
 
 /obj/item/storage/belt/quiver/admin/full/PopulateContents()
-	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
-		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+	for(var/arrow in typesof(/obj/item/ammo_casing/reusable/arrow))
+		if(istype(arrow, /obj/item/ammo_casing/reusable/arrow/energy))
 			continue
 		for(var/i in 1 to 10)
 			new arrow(src)
@@ -858,17 +866,17 @@
 	icon_state = "quiver_blue"
 	item_state = "quiver_blue"
 
-/obj/item/storage/belt/quiver/blue/PopulateContents()
+/obj/item/storage/belt/quiver/blue/full/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/ammo_casing/caseless/arrow/toy/blue(src)
+		new /obj/item/ammo_casing/reusable/arrow/toy/pulse(src)
 
 /obj/item/storage/belt/quiver/red
 	icon_state = "quiver_red"
 	item_state = "quiver_red"
 
-/obj/item/storage/belt/quiver/red/PopulateContents()
+/obj/item/storage/belt/quiver/red/full/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/ammo_casing/caseless/arrow/toy/red(src)
+		new /obj/item/ammo_casing/reusable/arrow/toy/energy(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"

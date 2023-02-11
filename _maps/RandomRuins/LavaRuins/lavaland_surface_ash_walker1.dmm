@@ -1224,10 +1224,10 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/storage/belt/quiver/ashwalker{
+/obj/item/storage/belt/quiver/weaver/ashwalker{
 	pixel_y = 2
 	},
-/obj/item/storage/belt/quiver/ashwalker{
+/obj/item/storage/belt/quiver/weaver/ashwalker{
 	pixel_y = -2
 	},
 /obj/item/gun/ballistic/bow/ashen{

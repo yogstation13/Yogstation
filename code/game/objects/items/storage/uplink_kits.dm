@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "hawkeye" = 2)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -267,6 +267,13 @@
 			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+		if("hawkeye")
+			new /obj/item/clothing/neck/cloak/ranger/syndie(src) // Just a weaker version of the wizard ranger cloak
+			new /obj/item/gun/ballistic/bow/energy/syndicate/folded(src) // 6 TC
+			new /obj/item/clothing/glasses/thermal/syndi(src) // 4 TC
+			new /obj/item/clothing/gloves/krav_maga/combatglovesplus
+			// TODO: Add more to this
 
 #undef CARP_CARP_CARP
 

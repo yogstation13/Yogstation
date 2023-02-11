@@ -81,7 +81,7 @@
 	uniform = /obj/item/clothing/under/ash_robe/hunter
 	suit = /obj/item/clothing/suit/hooded/cloak/goliath/desert
 	back = /obj/item/gun/ballistic/bow/ashen
-	belt = /obj/item/storage/belt/quiver/ashwalker
+	belt = /obj/item/storage/belt/quiver/weaver/ashwalker
 	shoes = /obj/item/clothing/shoes/xeno_wraps
 
 /datum/outfit/ashwalker/warrior
