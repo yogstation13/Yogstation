@@ -835,7 +835,7 @@
 
 /obj/item/storage/belt/quiver/weaver
 	name = "weaver chitin quiver"
-	desc = "A quiver made from the chitin of a weaver. Used to hold arrows."
+	desc = "A fireproof quiver made from the chitin of a marrow weaver. Used to hold arrows."
 	icon_state = "quiver_weaver"
 	item_state = "quiver_weaver"
 	resistance_flags = FIRE_PROOF
@@ -863,6 +863,8 @@
 			new arrow(src)
 
 /obj/item/storage/belt/quiver/blue
+	name = "toy blue quiver"
+	desc = "A quiver that holds toy arrows that look suspiciously like the disabler arrows fabricated by certain hardlight bows."
 	icon_state = "quiver_blue"
 	item_state = "quiver_blue"
 
@@ -871,6 +873,8 @@
 		new /obj/item/ammo_casing/reusable/arrow/toy/pulse(src)
 
 /obj/item/storage/belt/quiver/red
+	name = "toy red quiver"
+	desc = "A strange quiver filled with toy energy arrows, meant to be used in games of pretend."
 	icon_state = "quiver_red"
 	item_state = "quiver_red"
 

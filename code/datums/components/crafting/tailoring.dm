@@ -541,7 +541,7 @@
 	subcategory = CAT_EQUIPMENT
 
 /datum/crafting_recipe/resinband
-	name = "Resin armband"
+	name = "Resin Armband"
 	result = /obj/item/clothing/accessory/resinband
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/ashresin = 3)
@@ -577,6 +577,14 @@
 	result = /obj/item/storage/belt/quiver
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 4)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
+
+/datum/crafting_recipe/chitinquiver
+	name = "Chitin Quiver"
+	result = /obj/item/storage/belt/quiver/weaver
+	time = 8 SECONDS
+	reqs = list(/obj/item/stack/sheet/animalhide/weaver_chitin = 4) //Just one spider!
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
 

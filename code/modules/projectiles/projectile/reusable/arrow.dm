@@ -121,28 +121,29 @@
 // Toy //
 
 /obj/item/projectile/bullet/reusable/arrow/toy //Toy arrow with velcro tip that safely embeds into target
+	name = "toy arrow"
 	damage = 0
 	embed_chance = 0.9
 	break_chance = 0
 
 /obj/item/projectile/bullet/reusable/arrow/toy/energy
-	name = "energy bolt"
+	name = "toy energy bolt"
 	icon_state = "arrow_energy"
 
 /obj/item/projectile/bullet/reusable/arrow/toy/disabler
-	name = "disabler bolt"
+	name = "toy disabler bolt"
 	icon_state = "arrow_disable"
 
 /obj/item/projectile/bullet/reusable/arrow/toy/pulse
-	name = "pulse bolt"
+	name = "toy pulse bolt"
 	icon_state = "arrow_pulse"
 
 /obj/item/projectile/bullet/reusable/arrow/toy/xray
-	name = "X-ray bolt"
+	name = "toy X-ray bolt"
 	icon_state = "arrow_xray"
 
 /obj/item/projectile/bullet/reusable/arrow/toy/shock
-	name = "shock bolt"
+	name = "toy shock bolt"
 	icon_state = "arrow_shock"
 
 

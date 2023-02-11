@@ -63,15 +63,16 @@
 	
 /obj/item/assembly/voice_box/bow
 	cooldown_time = 1 SECONDS
-
+	
+// Good god all the below need to be changed
 /obj/item/assembly/voice_box/bow/nanotrasen
 	messages = list("Death to the Syndicate!!", "Glory to Nanotrasen!!", "Die Syndie scum!!", "Eat hardlight!!")
 
 /obj/item/assembly/voice_box/bow/syndie
-	messages = list("Death to the Nanotrasen!!", "Glory to Syndicate!!", "Die NT scum!!", "Eat hardlight!!")
+	messages = list("Death to Nanotrasen!!", "Glory to the Syndicate!!", "Die NT scum!!", "Eat hardlight!!")
 
 /obj/item/assembly/voice_box/bow/clockwork
-	messages = list("For Ratvar!!", "Cog and gear!!", "Death to the non-believers!!", "Glory to Ratvar!!")
+	messages = list("For Ratvar!!", "Death to the non-believers!!", "Glory to Ratvar!!")
 
 #undef VOICEBOX_OPTION_ADD
 #undef VOICEBOX_OPTION_CLEAR

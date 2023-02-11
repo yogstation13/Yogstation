@@ -249,14 +249,14 @@
 
 /obj/item/ammo_casing/reusable/arrow/toy/energy
 	name = "toy energy bolt"
-	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble an energy bolt from a hardlight bow."
+	desc = "A deceiving arrow that looks to be lethal, but is a velcro-tipped toy. For use with toy bows."
 	icon_state = "arrow_energy"
 	item_state = "arrow_toy_energy"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/energy
 
 /obj/item/ammo_casing/reusable/arrow/toy/disabler
 	name = "toy disabler bolt"
-	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a disabler bolt from a hardlight bow."
+	desc = "A toy arrow that looks like a disabler bolt fabricated from a hardlight bow. Tipped with velcro to allow it to stick to targets."
 	icon_state = "arrow_disable"
 	item_state = "arrow_toy_disable"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/disabler
