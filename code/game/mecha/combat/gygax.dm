@@ -26,7 +26,7 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
-	max_equip = 4
+	max_equip = 5
 	destruction_sleep_duration = 20
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize()
@@ -34,6 +34,8 @@
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
 	ME.attach(src)

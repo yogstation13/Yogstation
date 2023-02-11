@@ -375,6 +375,7 @@
 	energy_drain = 40
 	cleave = FALSE
 	base_armor_piercing = 25	//50 on precise attack
+	deflect_bonus = 15			//mech fencing but it parries bullets too because robot reaction time or something
 	structure_damage_mult = 2	//Ever try to shank an engine block?
 	attack_sharpness = SHARP_POINTY
 	attack_speed_modifier = 0.8	//Counteracts the 0.2 second time between attacks

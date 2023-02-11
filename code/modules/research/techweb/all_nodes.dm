@@ -950,6 +950,46 @@
 	design_ids = list("mech_shortsword")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/mech_katana
+	id = "mech_katana"
+	display_name = "Exosuit Weapon (OWM-5 \"Ronin\" katana)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","mech_shortsword")
+	design_ids = list("mech_katana")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_batong
+	id = "mech_batong"
+	display_name = "Exosuit Weapon (AV-98 \"Ingram\" heavy stun baton)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","adv_weaponry", "sec_basic")
+	design_ids = list("mech_batong")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_trogdor
+	id = "mech_trogdor"
+	display_name = "Exosuit Weapon (TO-4 \"Tahu\" flaming chainsword)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","mech_shortsword")
+	design_ids = list("mech_trogdor")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_maul
+	id = "mech_maul"
+	display_name = "Exosuit Weapon (CX-22 \"Barbados\" heavy maul)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","mech_shortsword")
+	design_ids = list("mech_maul")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_spear
+	id = "mech_spear"
+	display_name = "Exosuit Weapon (S5-C \"White Witch\" shortspear)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_mecha","adv_weaponry")
+	design_ids = list("mech_spear")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
 /////////////////////////Nanites/////////////////////////
 /datum/techweb_node/nanite_base
 	id = "nanite_base"

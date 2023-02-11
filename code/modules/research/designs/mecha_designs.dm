@@ -524,3 +524,48 @@
 	materials = list(/datum/material/iron=15000,/datum/material/titanium=10000,/datum/material/plasma=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+
+/datum/design/mech_katana
+	name = "Exosuit Weapon (OWM-5 \"Ronin\" katana)"
+	id = "mech_katana"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana
+	materials = list(/datum/material/iron=15000,/datum/material/titanium=10000,/datum/material/bluespace=5000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_trogdor
+	name = "Exosuit Weapon (TO-4 \"Tahu\" flaming chainsword)"
+	id = "mech_trogdor"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor
+	materials = list(/datum/material/iron=15000,/datum/material/silver=10000,/datum/material/gold=10000,/datum/material/plasma=10000 )
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_stunbaton
+	name = "Exosuit Weapon (AV-98 \"Ingram\" heavy stun baton)"
+	id = "mech_stunbaton"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong
+	materials = list(/datum/material/iron=15000,/datum/material/gold=10000,/datum/material/plasma=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_maul
+	name = "Exosuit Weapon (CX-22 \"Barbados\" heavy maul)"
+	id = "mech_maul"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
+	materials = list(/datum/material/iron=25000 ,/datum/material/uranium=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_spear
+	name = "Exosuit Weapon (S5-C \"White Witch\" shortspear)"
+	id = "mech_spear"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/spear
+	materials = list(/datum/material/iron=10000,/datum/material/titanium=10000,/datum/material/silver=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
