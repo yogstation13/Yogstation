@@ -1,7 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new Personnel HUD type"
-  - rscadd: "Gives a pair of new personnel HUD sunglasses to the HoP and Cap worn at round start."
-  - imageadd: "Lightens up the CMO shades to make them a more lighter/brighter blue."
-  - imageadd: "Renames current CMO shades for personnel."
