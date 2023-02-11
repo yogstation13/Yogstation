@@ -160,7 +160,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
 	no_pin_required = FALSE
 	draw_slowdown = 0
-	var/recharge_time = 1.5 SECONDS
+	var/recharge_time = 1 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/update_icon()
 	cut_overlay(arrow_overlay, TRUE)
@@ -265,7 +265,6 @@
 	icon_state = "bow_syndicate"
 	item_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
-	recharge_time = 2 SECONDS
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5

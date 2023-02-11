@@ -1,6 +1,9 @@
 /datum/job/virologist
 	title = "Virologist"
+	description = "Study the effects of various diseases and synthesize a \
+		vaccine for them. Engineer beneficial viruses."
 	flag = VIROLOGIST
+	orbit_icon = "virus"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -15,7 +18,7 @@
 
 	outfit = /datum/outfit/job/virologist
 
-	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist")
+	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist", "Disease Control Expert")
 
 	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
@@ -25,7 +28,9 @@
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 	minimal_character_age = 24 //Requires understanding of microbes, biology, infection, and all the like, as well as being able to understand how to interface the machines. Epidemiology is no joke of a field
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/random_virus = 15,
@@ -36,9 +41,6 @@
 	)
 
 	smells_like = "germlessness"
-
-/datum/job/virologist/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/virologist
 	name = "Virologist"

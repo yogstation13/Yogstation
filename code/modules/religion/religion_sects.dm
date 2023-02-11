@@ -193,7 +193,7 @@
 	if(!ishuman(L))
 		return
 	if(world.time < last_dono) // immersion broken
-		user.visible_message(span_notice("You are getting too greedy! You can recieve another donation in [(last_dono - world.time)/10] seconds!"))
+		user.visible_message(span_notice("You are getting too greedy! You can receive another donation in [(last_dono - world.time)/10] seconds!"))
 		return
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
@@ -205,16 +205,16 @@
 		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
 		return
 	if(!id_cardu)
-		to_chat(user,span_notice("You have no id card to recieve your 'donation'"))
+		to_chat(user,span_notice("You have no id card to receive your 'donation'"))
 		return
 	if(!id_cardu.registered_account)
-		to_chat(user,span_notice("You have no bank account to recieve your 'donation'"))
+		to_chat(user,span_notice("You have no bank account to receive your 'donation'"))
 		return
 
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
 	if(money_to_donate <= 0)
-		user.visible_message(span_notice("[H] is too poor to recieve [GLOB.deity]'s blessing!"))
+		user.visible_message(span_notice("[H] is too poor to receive [GLOB.deity]'s blessing!"))
 	else
 		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
 		var/heal_amt = 30
@@ -355,7 +355,7 @@
 /datum/religion_sect/oldgods
 	name = "Gathering of the Old Ones"
 	desc = "A sect dedicated to the Old Gods."
-	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on your altar and then sacrifice it in the name of the Old Gods."
+	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on top of your altar and then sacrifice it in the name of the Old Gods."
 	alignment = ALIGNMENT_EVIL //kind of evil?
 	max_favor = 3000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)
@@ -375,9 +375,9 @@
 	else
 		adjust_favor(75, user)
 	qdel(offering)
-	return 
-	
-/// The Honkmother sect, sacrifice bananas to feed your prank power. 
+	return
+
+/// The Honkmother sect, sacrifice bananas to feed your prank power.
 
 /datum/religion_sect/honkmother
 	name = "The Honkmother"
@@ -420,7 +420,7 @@
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
 	if(!istype(offering))
 		return
-	adjust_favor(10, user)			
+	adjust_favor(10, user)
 	to_chat(user, span_notice("HONK"))
 	qdel(offering)
 	return

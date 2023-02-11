@@ -45,6 +45,9 @@
 #define BLOB_RANDOM_PLACEMENT 1
 
 
+/// The dimensions of the antagonist preview icon. Will be scaled to this size.
+#define ANTAGONIST_PREVIEW_ICON_SIZE 96
+
 /// How many telecrystals a normal traitor starts with
 #define TELECRYSTALS_DEFAULT 20
 /// How many telecrystals mapper/admin only "precharged" uplink implant

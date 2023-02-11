@@ -239,6 +239,20 @@
 		M.hallucination += 5
 	return ..()
 
+/datum/reagent/toxin/relaxant
+	name = "Muscle Relaxant"
+	description = "A potent paralytic chemical that causes the patient to move and act slower."
+	toxpwr = 0
+
+/datum/reagent/toxin/relaxant/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.next_move_modifier *= 3
+
+/datum/reagent/toxin/relaxant/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	L.next_move_modifier /= 3
+
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
@@ -395,10 +409,17 @@
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
 	process_flags = ORGANIC | SYNTHETIC
+	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += 40
+	M.radiation += radpower
 	..()
+
+/datum/reagent/toxin/polonium/ebow
+	name = "Potent Polonium"
+	description = "A more potent form of Polonium. It is purged more quickly from the body, but also significantly more deadly."
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	radpower = 80
 
 /datum/reagent/toxin/histamine
 	name = "Histamine"
@@ -534,7 +555,7 @@
 
 /datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(/datum/reagent/itching_powder, reac_volume)
+		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume)
 
 /datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))

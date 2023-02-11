@@ -371,7 +371,7 @@
 	icon_state = "dragon"
 	desc = "A suit of armour fashioned from the remains of an ash drake."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
-	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 20, LASER = 30, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -383,7 +383,7 @@
 	name = "drake helm"
 	icon_state = "dragon"
 	desc = "The skull of a dragon."
-	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 20, LASER = 50, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -394,11 +394,12 @@
 	icon_state = "h2armor"
 	item_state = "h2armor"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 //////////////// PLATED ARMOR ////////////////
 // Helmet type in code/modules/clothing/head/helmet.dm

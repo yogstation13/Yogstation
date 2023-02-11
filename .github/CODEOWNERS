@@ -37,3 +37,7 @@
 
 /code/modules/mob/living/silicon/ai/decentralized @TheGamerdk
 /code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk
+
+#alexkar598
+*.so @alexkar598
+rust_g @alexkar598

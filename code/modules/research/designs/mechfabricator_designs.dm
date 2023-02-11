@@ -200,6 +200,7 @@
 	materials = list(/datum/material/iron=20000)
 	construction_time = 100
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_torso
 	name = "Exosuit Torso (\"Gygax\")"
@@ -209,6 +210,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/glass=10000,/datum/material/diamond=2000)
 	construction_time = 300
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_head
 	name = "Exosuit Head (\"Gygax\")"
@@ -218,6 +220,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/glass=5000, /datum/material/diamond=2000)
 	construction_time = 200
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_left_arm
 	name = "Exosuit Left Arm (\"Gygax\")"
@@ -227,6 +230,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/diamond=1000)
 	construction_time = 200
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_right_arm
 	name = "Exosuit Right Arm (\"Gygax\")"
@@ -236,6 +240,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/diamond=1000)
 	construction_time = 200
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_left_leg
 	name = "Exosuit Left Leg (\"Gygax\")"
@@ -245,6 +250,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/diamond=2000)
 	construction_time = 200
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_right_leg
 	name = "Exosuit Right Leg (\"Gygax\")"
@@ -254,6 +260,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/diamond=2000)
 	construction_time = 200
 	category = list("Gygax")
+	combat_design = TRUE
 
 /datum/design/gygax_armor
 	name = "Exosuit Armor (\"Gygax\")"
@@ -263,6 +270,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/diamond=10000,/datum/material/titanium=10000)
 	construction_time = 600
 	category = list("Gygax")
+	combat_design = TRUE
 
 //Durand
 /datum/design/durand_chassis
@@ -273,6 +281,7 @@
 	materials = list(/datum/material/iron=25000)
 	construction_time = 100
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_torso
 	name = "Exosuit Torso (\"Durand\")"
@@ -282,6 +291,7 @@
 	materials = list(/datum/material/iron=25000,/datum/material/glass=10000,/datum/material/silver=10000)
 	construction_time = 300
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_head
 	name = "Exosuit Head (\"Durand\")"
@@ -291,6 +301,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/glass=15000,/datum/material/silver=2000)
 	construction_time = 200
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_left_arm
 	name = "Exosuit Left Arm (\"Durand\")"
@@ -300,6 +311,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
 	construction_time = 200
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_right_arm
 	name = "Exosuit Right Arm (\"Durand\")"
@@ -309,6 +321,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
 	construction_time = 200
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_left_leg
 	name = "Exosuit Left Leg (\"Durand\")"
@@ -318,6 +331,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
 	construction_time = 200
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_right_leg
 	name = "Exosuit Right Leg (\"Durand\")"
@@ -327,6 +341,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
 	construction_time = 200
 	category = list("Durand")
+	combat_design = TRUE
 
 /datum/design/durand_armor
 	name = "Exosuit Armor (\"Durand\")"
@@ -336,6 +351,7 @@
 	materials = list(/datum/material/iron=30000,/datum/material/uranium=25000,/datum/material/titanium=20000)
 	construction_time = 600
 	category = list("Durand")
+	combat_design = TRUE
 
 //H.O.N.K
 /datum/design/honk_chassis
@@ -346,6 +362,7 @@
 	materials = list(/datum/material/iron=20000)
 	construction_time = 100
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_torso
 	name = "Exosuit Torso (\"H.O.N.K\")"
@@ -355,6 +372,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/glass=10000,/datum/material/bananium=10000)
 	construction_time = 300
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_head
 	name = "Exosuit Head (\"H.O.N.K\")"
@@ -364,6 +382,7 @@
 	materials = list(/datum/material/iron=10000,/datum/material/glass=5000,/datum/material/bananium=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_left_arm
 	name = "Exosuit Left Arm (\"H.O.N.K\")"
@@ -373,6 +392,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/bananium=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_right_arm
 	name = "Exosuit Right Arm (\"H.O.N.K\")"
@@ -382,6 +402,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/bananium=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_left_leg
 	name = "Exosuit Left Leg (\"H.O.N.K\")"
@@ -391,6 +412,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 /datum/design/honk_right_leg
 	name = "Exosuit Right Leg (\"H.O.N.K\")"
@@ -400,6 +422,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
+	combat_design = TRUE
 
 
 //Phazon
@@ -411,6 +434,7 @@
 	materials = list(/datum/material/iron=20000)
 	construction_time = 100
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_torso
 	name = "Exosuit Torso (\"Phazon\")"
@@ -420,6 +444,7 @@
 	materials = list(/datum/material/iron=35000,/datum/material/glass=10000,/datum/material/plasma=20000)
 	construction_time = 300
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_head
 	name = "Exosuit Head (\"Phazon\")"
@@ -429,6 +454,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/glass=5000,/datum/material/plasma=10000)
 	construction_time = 200
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_left_arm
 	name = "Exosuit Left Arm (\"Phazon\")"
@@ -438,6 +464,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
 	construction_time = 200
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_right_arm
 	name = "Exosuit Right Arm (\"Phazon\")"
@@ -447,6 +474,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
 	construction_time = 200
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_left_leg
 	name = "Exosuit Left Leg (\"Phazon\")"
@@ -456,6 +484,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
 	construction_time = 200
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_right_leg
 	name = "Exosuit Right Leg (\"Phazon\")"
@@ -465,6 +494,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
 	construction_time = 200
 	category = list("Phazon")
+	combat_design = TRUE
 
 /datum/design/phazon_armor
 	name = "Exosuit Armor (\"Phazon\")"
@@ -474,6 +504,7 @@
 	materials = list(/datum/material/iron=25000,/datum/material/plasma=20000,/datum/material/titanium=20000)
 	construction_time = 300
 	category = list("Phazon")
+	combat_design = TRUE
 
 
 //Clarke
@@ -667,6 +698,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=5000)
 	construction_time = 300
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_banana_mortar
 	name = "H.O.N.K Weapon (Banana Mortar)"
@@ -676,6 +708,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=5000)
 	construction_time = 300
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_honker
 	name = "H.O.N.K Weapon (HoNkER BlAsT 5000)"
@@ -685,6 +718,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=10000)
 	construction_time = 500
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_punching_glove
 	name = "H.O.N.K Weapon (Oingo Boingo Punch-face)"
@@ -694,6 +728,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/bananium=7500)
 	construction_time = 400
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /////////////////////////////////////////
 //////////////Borg Upgrades//////////////
@@ -996,7 +1031,7 @@
 	category = list("IPC Components")
 
 /datum/design/ipc_lungs
-	name = "Auditory Sensors"
+	name = "Cooling Radiator"
 	id = "ipc_lungs"
 	build_type = MECHFAB
 	build_path = /obj/item/organ/lungs/ipc

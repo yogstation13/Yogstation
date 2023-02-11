@@ -462,6 +462,10 @@
 	if(owner.stat == DEAD)
 		qdel(src)
 	else
+		if(faction_check(owner.faction, list("mining", "boss")))
+			owner.apply_damage(10)
+		else //This is so that it doesn't murder humans drastically as there are none in either faction.
+			owner.apply_damage(2)
 		add_bleed(-1)
 
 /datum/status_effect/saw_bleed/proc/add_bleed(amount)
@@ -980,8 +984,9 @@
 /datum/status_effect/eldritch/ash/on_effect()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.adjustStaminaLoss(10 * repetitions)
 		carbon_owner.adjustFireLoss(5 * repetitions)
+		carbon_owner.adjust_fire_stacks(2)
+		carbon_owner.IgniteMob()
 		for(var/mob/living/carbon/victim in range(1,carbon_owner))
 			if(IS_HERETIC(victim) || victim == carbon_owner)
 				continue
@@ -1212,3 +1217,8 @@
 		M.faction = tamer.faction
 		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
 		. = ..()
+
+/datum/status_effect/exhumed
+	id = "exhume"
+	tick_interval = -1
+	alert_type = null

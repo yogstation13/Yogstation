@@ -46,8 +46,8 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = alert("Re-enter the tumor?", "Despawn yourself?", "Yes", "No")
-			if(elite_remove == "No" || !src || QDELETED(src))
+			var/elite_remove = tgui_alert(usr,"Re-enter the tumor?", "Despawn yourself?", list("Yes", "No"))
+			if(elite_remove == "No" || QDELETED(src) || !Adjacent(T))
 				return
 			T.mychild = null
 			T.activity = TUMOR_INACTIVE
@@ -191,11 +191,11 @@ obj/structure/elite_tumor/proc/return_elite()
 	activator = null
 	return ..()
 
-/obj/structure/elite_tumor/process()
+/obj/structure/elite_tumor/process(delta_time)
 	if(isturf(loc))
 		for(var/mob/living/simple_animal/hostile/asteroid/elite/elitehere in loc)
 			if(elitehere == mychild && activity == TUMOR_PASSIVE)
-				mychild.adjustHealth(-mychild.maxHealth*0.05)
+				mychild.adjustHealth(-mychild.maxHealth*0.025 * delta_time)
 				var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(mychild))
 				H.color = "#FF0000"
 

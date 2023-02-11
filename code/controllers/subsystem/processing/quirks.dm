@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	name = "Quirks"
 	init_order = INIT_ORDER_QUIRKS
 	flags = SS_BACKGROUND
-	wait = 10
+	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME
 
 	var/list/quirks = list()		//Assoc. list of all roundstart quirk datum types; "name" = /path/
@@ -57,3 +57,73 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			badquirk = TRUE
 	if(badquirk)
 		cli.prefs.save_character()
+
+/// Takes a list of quirk names and returns a new list of quirks that would
+/// be valid.
+/// If no changes need to be made, will return the same list.
+/// Expects all quirk names to be unique, but makes no other expectations.
+/datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, client/C)
+	var/list/new_quirks = list()
+	var/list/positive_quirks = list()
+	var/balance = 0
+
+	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (C.prefs.yogtoggles & PREF_MOOD))
+
+	for (var/quirk_name in quirks)
+		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
+		if (isnull(quirk))
+			continue
+
+		if (initial(quirk.mood_quirk) && !ismoody)
+			continue
+
+		// Returns error string, FALSE if quirk is okay to have
+		var/datum/quirk/quirk_obj = new quirk(no_init = TRUE)
+		if (quirk_obj?.check_quirk(C.prefs))
+			continue
+		qdel(quirk_obj)
+
+		var/blacklisted = FALSE
+
+		for (var/list/blacklist as anything in quirk_blacklist)
+			if (!(quirk in blacklist))
+				continue
+
+			for (var/other_quirk in blacklist)
+				if (other_quirk in new_quirks)
+					blacklisted = TRUE
+					break
+
+			if (blacklisted)
+				break
+
+		if (blacklisted)
+			continue
+
+		var/value = initial(quirk.value)
+		if (value > 0)
+			if (positive_quirks.len == MAX_QUIRKS)
+				continue
+
+			positive_quirks[quirk_name] = value
+
+		balance += value
+		new_quirks += quirk_name
+
+	if (balance > 0)
+		var/balance_left_to_remove = balance
+
+		for (var/positive_quirk in positive_quirks)
+			var/value = positive_quirks[positive_quirk]
+			balance_left_to_remove -= value
+			new_quirks -= positive_quirk
+
+			if (balance_left_to_remove <= 0)
+				break
+
+	// It is guaranteed that if no quirks are invalid, you can simply check through `==`
+	if (new_quirks.len == quirks.len)
+		return quirks
+
+	return new_quirks

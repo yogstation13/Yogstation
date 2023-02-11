@@ -85,6 +85,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
+#define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -154,6 +155,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 
 #define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
+
+#define issupplypod(A) (istype(A, /obj/structure/closet/supplypod))
 
 GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,

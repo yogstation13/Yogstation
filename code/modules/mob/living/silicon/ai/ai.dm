@@ -166,7 +166,7 @@
 
 	create_eye()
 	if(client)
-		apply_pref_name("ai",client)
+		INVOKE_ASYNC(src, .proc/apply_pref_name, /datum/preference/name/ai, client)
 
 	INVOKE_ASYNC(src, .proc/set_core_display_icon)
 
@@ -214,7 +214,7 @@
 			return
 		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
 			_key = text2num(_key)
-			if(client.keys_held["Ctrl"]) //do we assign a new hotkey?
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
 				cam_hotkeys[_key] = eyeobj.loc
 				to_chat(src, "Location saved to Camera Group [_key].")
 				return
@@ -243,13 +243,13 @@
 /mob/living/silicon/ai/proc/set_core_display_icon(input, client/C)
 	if(client && !C)
 		C = client
-	if(!input && !C?.prefs?.preferred_ai_core_display)
+	if(!input && !C?.prefs?.read_preference(/datum/preference/choiced/ai_core_display))
 		for (var/each in GLOB.ai_core_displays) //change status of displays
 			var/obj/machinery/status_display/ai_core/M = each
 			M.set_ai(initial(icon_state))
 			M.update()
 	else
-		var/preferred_icon = input ? input : C.prefs.preferred_ai_core_display
+		var/preferred_icon = input ? input : C.prefs.read_preference(/datum/preference/choiced/ai_core_display)
 		icon = initial(icon) //yogs
 
 		for (var/each in GLOB.ai_core_displays) //change status of displays
@@ -364,7 +364,7 @@
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	var/datum/browser/alerts = new(usr, "aitalerts", "Current Station Alerts", 400, 410)
+	var/datum/browser/alerts = new(src, "aitalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
 
@@ -659,7 +659,6 @@
 			queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
 	else
 		queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
-	if (viewalerts) ai_alerts()
 	return 1
 
 /mob/living/silicon/ai/cancelAlarm(class, area/A, obj/origin)
@@ -676,7 +675,6 @@
 				L -= I
 	if (cleared)
 		queueAlarm("--- [class] alarm in [A.name] has been cleared.", class, 0)
-		if (viewalerts) ai_alerts()
 	return !cleared
 
 //Replaces /mob/living/silicon/ai/verb/change_network() in ai.dm & camera.dm
@@ -763,7 +761,7 @@
 	if(incapacitated())
 		return
 	var/input
-	switch(alert("Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,"Crew Member","Unique","Animal"))
+	switch(tgui_alert(usr,"Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,list("Crew Member","Unique","Animal")))
 		if("Crew Member")
 			var/list/personnel_list = list()
 
@@ -777,7 +775,7 @@
 					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 					holo_icon = getHologramIcon(icon(character_icon))
 			else
-				alert("No suitable records found. Aborting.")
+				tgui_alert(usr,"No suitable records found. Aborting.")
 
 		if("Animal")
 			var/list/icon_list = list(
@@ -974,7 +972,7 @@
 		jobpart = "Unknown"
 
 	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span>[span_message("[treated_message]")]</span></i>"
-	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans)
 
 	show_message(rendered, 2)

@@ -34,7 +34,7 @@
 	name = "7.12x82mm armor-piercing bullet"
 	damage = 35
 	wound_bonus = -45				//they go straight through with little damage to surrounding tissue
-	armour_penetration = 60
+	armour_penetration = 45
 	bare_wound_bonus = -10			//flesh wont stop these very effectively but armor might make it tumble a bit before it enters
 
 /obj/item/projectile/bullet/mm712x82/hp

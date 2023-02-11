@@ -2,6 +2,7 @@
 	name = "tongue"
 	desc = "A fleshy muscle mostly used for lying."
 	icon_state = "tonguenormal"
+	visual = FALSE
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
@@ -30,7 +31,8 @@
 		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted,
 		/datum/language/felinid,
-		/datum/language/english
+		/datum/language/english,
+		/datum/language/french
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

@@ -63,6 +63,7 @@
 
 /datum/guardian_stats/proc/short_info()
 	var/list/stats_info = list()
+	stats_info += "Ranged: [ranged ? "Yes" : "No"]"
 	stats_info += "Damage [level_to_grade(damage)]"
 	stats_info += "Defense [level_to_grade(defense)]"
 	stats_info += "Speed [level_to_grade(speed)]"

@@ -35,13 +35,15 @@
 	var/fauna_damage_bonus = 0
 	//Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
-
+	//Standard cleave visual effect. Change this if you've got a weird weapon with non-standard cleave attacks.
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
 	if(!..())
 		return FALSE
-	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) || M.melee_allowed)
+	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
+		return TRUE
+	if(M.melee_allowed)
 		return TRUE
 	return FALSE
 
@@ -188,6 +190,8 @@
 	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
 	minimum_damage = 40			
 	attack_speed_modifier = 1.5 //Kinda chunky
+	light_system = MOVABLE_LIGHT
+	light_range = 5
 	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()	//Mostly copy-pasted sword cleave code with minor tweaks.
@@ -237,11 +241,11 @@
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
 	START_PROCESSING(SSobj, src)
-	set_light(5)
+	set_light_on(TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_deselect()
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)	
+	set_light_on(FALSE)	
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"

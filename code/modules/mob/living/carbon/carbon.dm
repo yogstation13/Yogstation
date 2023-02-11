@@ -129,6 +129,11 @@
 /mob/living/carbon/proc/toggle_throw_mode()
 	if(stat)
 		return
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		if(M.occupant == src)
+			M.cycle_action.Activate()
+			return
 	if(in_throw_mode)
 		throw_mode_off()
 	else
@@ -884,7 +889,8 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
+		// If player has holoparasites, ignore TRAIT_NODEATH
+		if( health <= HEALTH_THRESHOLD_DEAD && ( !HAS_TRAIT(src, TRAIT_NODEATH) || LAZYLEN(hasparasites()) ) )
 			death()
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))

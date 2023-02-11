@@ -194,6 +194,9 @@
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
 
+/proc/log_signal(text)
+	WRITE_LOG(GLOB.signals_log, text)
+
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)

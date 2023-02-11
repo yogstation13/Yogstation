@@ -1,6 +1,8 @@
 /datum/job/bartender
 	title = "Bartender"
+	description = "Serve booze, mix drinks, keep the crew drunk."
 	flag = BARTENDER
+	orbit_icon = "cocktail"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -21,6 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 	minimal_character_age = 21 //I shouldn't have to explain this one
 
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
 	mail_goodies = list(
 		/obj/item/storage/box/rubbershot = 30,
 		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
@@ -29,13 +35,7 @@
 		/obj/item/reagent_containers/food/drinks/shaker = 5,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	smells_like = "alcohol"
-
-/datum/job/bartender/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
 
 /datum/outfit/job/bartender
 	name = "Bartender"

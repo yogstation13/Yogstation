@@ -2,7 +2,8 @@
 	var/name = "???"
 	var/sound
 	var/behavior
-	var/speed = 0.75
+	var/sharpness
+	var/speed = 0.4
 
 /datum/holotool_mode/proc/can_be_used(var/obj/item/holotool/H)
 	return TRUE
@@ -11,11 +12,13 @@
 	H.usesound = sound ? sound : 'sound/items/pshoom.ogg'
 	H.toolspeed = speed ? speed : 1
 	H.tool_behaviour = behavior ? behavior : null
+	H.sharpness = sharpness ? sharpness : SHARP_NONE
 
 /datum/holotool_mode/proc/on_unset(var/obj/item/holotool/H)
 	H.usesound = initial(H.usesound)
 	H.toolspeed = initial(H.toolspeed)
 	H.tool_behaviour = initial(H.tool_behaviour)
+	H.sharpness = initial(H.sharpness)
 
 ////////////////////////////////////////////////
 
@@ -27,6 +30,7 @@
 	name = "holo-screwdriver"
 	sound = 'yogstation/sound/items/holotool.ogg'
 	behavior = TOOL_SCREWDRIVER
+	sharpness = SHARP_POINTY
 
 /datum/holotool_mode/crowbar
 	name = "holo-crowbar"
@@ -50,7 +54,7 @@
 
 /datum/holotool_mode/welder
 	name = "holo-welder"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')//so it actually gives the expected feedback from welding
 	behavior = TOOL_WELDER
 
 ////////////////////////////////////////////////
@@ -58,13 +62,13 @@
 /datum/holotool_mode/knife
 	name = "holo-knife"
 	sound = 'sound/weapons/blade1.ogg'
+	sharpness = SHARP_EDGED
 
 /datum/holotool_mode/knife/can_be_used(var/obj/item/holotool/H)
 	return (H.obj_flags & EMAGGED)
 
 /datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
 	..()
-	H.sharpness = SHARP_EDGED
 	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
 	H.armour_penetration = 45
@@ -73,7 +77,6 @@
 
 /datum/holotool_mode/knife/on_unset(var/obj/item/holotool/H)
 	..()
-	H.sharpness = initial(H.sharpness)
 	H.force = initial(H.force)
 	H.attack_verb = initial(H.attack_verb)
 	H.armour_penetration = initial(H.armour_penetration)

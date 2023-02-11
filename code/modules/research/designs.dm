@@ -41,6 +41,7 @@ other types of metals and chemistry for reagents).
 	var/icon_cache
 	/// Optional string that interfaces can use as part of search filters. See- item/borg/upgrade/ai and the Exosuit Fabs.
 	var/search_metadata
+	var/combat_design = FALSE // Limit the mechfab producing these
 
 /datum/design/error_design
 	name = "ERROR"

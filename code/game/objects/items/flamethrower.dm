@@ -16,6 +16,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=500)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 	var/status = FALSE
 	var/lit = FALSE	//on or off
 	light_color = LIGHT_COLOR_FIRE
@@ -133,9 +135,11 @@
 	else
 		return ..()
 
-/obj/item/flamethrower/analyzer_act(mob/living/user, obj/item/I)
+/obj/item/flamethrower/return_analyzable_air()
 	if(ptank)
-		ptank.analyzer_act(user, I)
+		return ptank.return_analyzable_air()
+	else
+		return null
 
 
 /obj/item/flamethrower/attack_self(mob/user)
@@ -173,6 +177,7 @@
 		set_light(0)
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
+	set_light_on(lit)
 	update_icon()
 
 /obj/item/flamethrower/CheckParts(list/parts_list)

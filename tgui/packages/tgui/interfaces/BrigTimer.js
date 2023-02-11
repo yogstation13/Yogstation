@@ -1,20 +1,17 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, Section, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const BrigTimer = (props, context) => {
   const { act, data } = useBackend(context);
+  const { pettyCrimes, minorCrimes, moderateCrimes, majorCrimes, severeCrimes } = data;
   return (
-    <Window
-      width={460}
-      height={510}
-      resizable>
+    <Window width={560} height={550}>
       <Window.Content scrollable>
         <Section
           title="Cell Timer"
           buttons={(
-            <Fragment>
+            <>
               <Button
                 icon="clock-o"
                 content={data.timing ? 'Stop' : 'Start'}
@@ -29,52 +26,46 @@ export const BrigTimer = (props, context) => {
                 icon="id-card-alt"
                 content={data.desired_name ? data.desired_name : "Enter Prisoner Name"}
                 onClick={() => act("prisoner_name")} />
-            </Fragment>
+            </>
           )}>
-          <Flex>
-            <Flex.Item>
-              <Button
-                icon="fast-backward"
-                onClick={() => act('time', { adjust: -600 })} />
-              <Button
-                icon="backward"
-                onClick={() => act('time', { adjust: -100 })} />
-              {' '}
-              {String(data.minutes).padStart(2, '0')}:
-              {String(data.seconds).padStart(2, '0')}
-              {' '}
-              <Button
-                icon="forward"
-                onClick={() => act('time', { adjust: 100 })} />
-              <Button
-                icon="fast-forward"
-                onClick={() => act('time', { adjust: 600 })} />
-              <br />
-              <Button
-                icon="hourglass-start"
-                content="Short"
-                onClick={() => act('preset', { preset: 'short' })} />
-              <Button
-                icon="hourglass-start"
-                content="Medium"
-                onClick={() => act('preset', { preset: 'medium' })} />
-              <Button
-                icon="hourglass-start"
-                content="Long"
-                onClick={() => act('preset', { preset: 'long' })} />
-            </Flex.Item>
-            <Flex.Item>
-              <Section title="Current Inputted Crimes">
-                {data.desired_crime}
-              </Section>
-            </Flex.Item>
-          </Flex>
+          <Button
+            icon="fast-backward"
+            onClick={() => act('time', { adjust: -600 })} />
+          <Button
+            icon="backward"
+            onClick={() => act('time', { adjust: -100 })} />
+          {' '}
+          {String(data.minutes).padStart(2, '0')}:
+          {String(data.seconds).padStart(2, '0')}
+          {' '}
+          <Button
+            icon="forward"
+            onClick={() => act('time', { adjust: 100 })} />
+          <Button
+            icon="fast-forward"
+            onClick={() => act('time', { adjust: 600 })} />
+          <br />
+          <Button
+            icon="hourglass-start"
+            content="Short"
+            onClick={() => act('preset', { preset: 'short' })} />
+          <Button
+            icon="hourglass-start"
+            content="Medium"
+            onClick={() => act('preset', { preset: 'medium' })} />
+          <Button
+            icon="hourglass-start"
+            content="Long"
+            onClick={() => act('preset', { preset: 'long' })} />
+          <Section title="Current Inputted Crimes">
+            {data.desired_crime}
+          </Section>
         </Section>
         <Section title="Crimes">
           <Flex direction="column">
-            <Flex.Item grow={1}>
-              {Object.keys(data.pettyCrimes).map(petty => {
-                let value = data.pettyCrimes[petty];
+            <Flex.Item>
+              {Object.keys(pettyCrimes).map(petty => {
+                const value = pettyCrimes[petty];
                 return (
                   <Button
                     key={petty}
@@ -88,8 +79,8 @@ export const BrigTimer = (props, context) => {
             </Flex.Item>
             <Flex.Item>
               <hr />
-              {Object.keys(data.minorCrimes).map(minor => {
-                let value = data.minorCrimes[minor];
+              {Object.keys(minorCrimes).map(minor => {
+                const value = minorCrimes[minor];
                 return (
                   <Button
                     key={minor}
@@ -103,8 +94,8 @@ export const BrigTimer = (props, context) => {
             </Flex.Item>
             <Flex.Item>
               <hr />
-              {Object.keys(data.moderateCrimes).map(moderate => {
-                let value = data.moderateCrimes[moderate];
+              {Object.keys(moderateCrimes).map(moderate => {
+                const value = moderateCrimes[moderate];
                 return (
                   <Button
                     key={moderate}
@@ -118,8 +109,8 @@ export const BrigTimer = (props, context) => {
             </Flex.Item>
             <Flex.Item>
               <hr />
-              {Object.keys(data.majorCrimes).map(major => {
-                let value = data.majorCrimes[major];
+              {Object.keys(majorCrimes).map(major => {
+                const value = majorCrimes[major];
                 return (
                   <Button
                     key={major}
@@ -133,8 +124,8 @@ export const BrigTimer = (props, context) => {
             </Flex.Item>
             <Flex.Item>
               <hr />
-              {Object.keys(data.severeCrimes).map(severe => {
-                let value = data.severeCrimes[severe];
+              {Object.keys(severeCrimes).map(severe => {
+                const value = severeCrimes[severe];
                 return (
                   <Button
                     key={severe}

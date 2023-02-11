@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - bugfix: "fixes vxtvul hammer light and slightly optimizes its code but not really i was lazy"

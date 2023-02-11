@@ -152,12 +152,13 @@
 			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
-		if("oddjob") //Total TC value of 27ish TC
+		if("oddjob") //Total TC value of 26ish TC
 			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
 			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
 			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
 			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
-			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun); you only get 7 shots. Realistically only like 7 TC just because you can't reload it; still highballing it
+			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
+			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
 			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
@@ -358,7 +359,7 @@
 			<ol>
 				<li>Open the Syndicate Contract Uplink program.</li>
 				<li>Here, you can accept a contract, and redeem your TC payments from completed contracts.</li>
-				<li>The payment number shown in brackets is the bonus you'll recieve when bringing your target <b>alive</b>. You recieve the
+				<li>The payment number shown in brackets is the bonus you'll receive when bringing your target <b>alive</b>. You receive the
 				other number regardless of if they were alive or dead.</li>
 				<li>Contracts are completed by bringing the target to designated dropoff, calling for extraction, and putting them
 				inside the pod.</li>
@@ -378,7 +379,7 @@
 			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
 			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
-			
+
 			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 
 	return ..()
@@ -396,6 +397,7 @@
 	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
 	new /obj/item/storage/box/syndicate/contractor_loadout(src)
 	new /obj/item/melee/classic_baton/telescopic/contractor_baton(src)
+	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
 
 	// All about 4 TC or less - some nukeops only items, but fit nicely to the theme.
 	var/list/item_list = list(
@@ -502,7 +504,7 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
-	
+
 /obj/item/storage/box/syndie_kit/imp_mindshield
 	real_name = "mindshield implant box"
 
@@ -603,7 +605,7 @@
 	new /obj/item/hemostat/supermatter(src)
 	new /obj/item/nuke_core_container/supermatter(src)
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
-	
+
 /obj/item/storage/box/syndie_kit/supermatter_delaminator
 	real_name = "box"
 
@@ -734,3 +736,7 @@
 	new /obj/item/autosurgeon/upgraded_cyberlungs(src)
 	new /obj/item/autosurgeon/upgraded_cyberstomach(src)
 	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/beanbag/syndie_darts/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/dart/hidden(src)

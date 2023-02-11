@@ -30,6 +30,7 @@
 #define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
 #define PLUONIUM_TRANSMIT_MODIFIER 15
+#define STIMULUM_TRANSMIT_MODIFIER 75 //absurd amount of power, but quickly decays into nuclear particles
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
@@ -71,6 +72,7 @@
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
 #define DETONATION_HALLUCINATION 600
+#define SUPERMATTER_EXPLOSION_LAMBDA 20
 
 #define WARNING_DELAY 60
 
@@ -363,7 +365,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			M.rad_act(rads)
 
 	var/turf/T = get_turf(src)
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, 200 * max(0.2, gasmix_power_ratio), 300 * max(0.2, gasmix_power_ratio), TRUE, FALSE, FALSE, TRUE)
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
 		var/turf/T2 = get_turf(M)
@@ -382,20 +383,22 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				S.energy = 800
 			S.consume(src)
 	else
-		if(antinoblium_attached)
-			explosion_power = explosion_power * 2
-			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
-			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
-				message_admins("[src] has exploded in empty space.")
-				investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
-				explosion(T, explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
-			else
-				message_admins("[src] has exploded")
-				explosion(T, explosion_power * max(gasmix_power_ratio, 0.5) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.5) + 2, explosion_power * max(gasmix_power_ratio, 0.5) + 4 , explosion_power * max(gasmix_power_ratio, 0.5) + 6, 1, 1)
+		if(power < 0) // in case of negative energy, make it positive
+			power = -power
+		var/explosion_mod = clamp((1.001**power) / ((1.001**power) + SUPERMATTER_EXPLOSION_LAMBDA), 0.1, 1)
+		//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
+		if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
+			message_admins("[src] has exploded in empty space.")
+			investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
+			explosion_mod = max(explosion_mod, 0.5)
 		else
 			message_admins("[src] has exploded")
-			explosion(T, explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
 			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
+		if(antinoblium_attached)
+			explosion_mod += 1
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * explosion_mod, (explosion_power * explosion_mod * 2) + (explosion_power/4), TRUE, FALSE, FALSE, TRUE)
+		explosion(T, explosion_power * explosion_mod * 0.5 , explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4 , explosion_power * explosion_mod + 6, 1, 1)
+		radiation_pulse(src, (last_rads + 2400) * explosion_power)
 		if(power > POWER_PENALTY_THRESHOLD)
 			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
 			var/obj/singularity/energy_ball/E = new(T)
@@ -495,6 +498,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/zaukcomp = max(removed.get_moles(/datum/gas/zauker)/combined_gas, 0)
 		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
 		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
+		var/stimcomp = max(removed.get_moles(/datum/gas/stimulum)/combined_gas, 0)
 
 		if (healcomp >= 0.1)
 			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1 //Increases healing and healing cap
@@ -508,16 +512,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		// Mole releated calculations
 		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
+		var/stimmol = max(removed.get_moles(/datum/gas/stimulum), 0)
 
 		// Power of the gas. Scale of 0 to 1
-		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp - pluoxiumcomp - n2comp, 0), 1)
+		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + stimcomp - pluoxiumcomp - n2comp, 0, 1)
 
 		// How much heat to emit/resist
 		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY), 0.5)
 		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) + (h2comp * HYDROGEN_HEAT_RESISTANCE) + (pluoniumcomp * PLUONIUM_HEAT_RESISTANCE) + (nobliumcomp * NOBLIUM_HEAT_RESISTANCE), 1)
 
 		// Used to determine radiation output as it concerns things like collecters
-		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER)
+		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (stimcomp * STIMULUM_TRANSMIT_MODIFIER)
 		// More moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
@@ -550,6 +555,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
 			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumcomp) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
 			radiation_pulse(src, max(last_rads))
+
+		if(stimmol > STIM_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
+			var/balls_shot = min(round(stimmol / STIM_BALL_MOLES_REQUIRED), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED)
+			var/starting_angle = rand(0, 360)
+			for(var/i = 0 to balls_shot) //  fires particles in a ring, with some random variation in the angle
+				src.fire_nuclear_particle(starting_angle + rand(-180/balls_shot, 180/balls_shot) + (i * 360 / balls_shot))
+			removed.set_moles(/datum/gas/stimulum, max(stimmol - (balls_shot * STIM_BALL_MOLES_REQUIRED), 0)) //converts stimulum into radballs
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
@@ -1210,5 +1222,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 #undef HALLUCINATION_RANGE
 #undef GRAVITATIONAL_ANOMALY
+#undef SUPERMATTER_EXPLOSION_LAMBDA
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY

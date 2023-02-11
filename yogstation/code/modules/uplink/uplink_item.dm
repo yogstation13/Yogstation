@@ -175,7 +175,7 @@
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
-	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down — avoiding burning out altogether."
 	item = /obj/item/camera/tator
 	cost = 4
 	surplus = 15

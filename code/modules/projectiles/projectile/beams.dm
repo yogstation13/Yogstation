@@ -5,14 +5,16 @@
 	damage = 20
 	wound_bonus = -20
 	bare_wound_bonus = 10
-	light_range = 2
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	flag = LASER
 	eyeblur = 2
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 2
 	light_color = LIGHT_COLOR_RED
+	light_flags = LIGHT_NO_LUMCOUNT
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
@@ -69,7 +71,7 @@
 /obj/item/projectile/beam/xray
 	name = "\improper X-ray beam"
 	icon_state = "xray"
-	damage = 15
+	damage = 10
 	irradiate = 300
 	range = 15
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
@@ -93,6 +95,16 @@
 	tracer_type = /obj/effect/projectile/tracer/disabler
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
+
+/obj/item/projectile/beam/disabler/bounce
+	name = "bouncing disabler ball"
+	icon_state = "omnibouncer"
+	damage = 20
+	ricochets_max = 5
+	ricochet_chance = 100
+
+/obj/item/projectile/beam/disabler/bounce/check_ricochet_flag(atom/A)
+	return TRUE //whatever it is, we bounce on it
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"

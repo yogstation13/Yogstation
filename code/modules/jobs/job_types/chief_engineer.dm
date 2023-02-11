@@ -1,6 +1,9 @@
 /datum/job/chief_engineer
 	title = "Chief Engineer"
+	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
+		make sure the Supermatter doesn't blow up, maintain telecommunications."
 	flag = CHIEF
+	orbit_icon = "user-astronaut"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = ENGSEC
@@ -29,6 +32,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
+
+	departments_list = list(
+		/datum/job_department/engineering,
+		/datum/job_department/command,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly

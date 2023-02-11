@@ -37,7 +37,7 @@
 		to_chat(src, span_warning("Filename must end in '.dmm': [map]"), confidential=TRUE)
 		return
 	var/datum/map_template/M
-	switch(alert(src, "What kind of map is this?", "Map type", "Normal", "Shuttle", "Cancel"))
+	switch(tgui_alert(usr, "What kind of map is this?", "Map type", list("Normal", "Shuttle", "Cancel")))
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
 		if("Shuttle")
@@ -55,11 +55,11 @@
 		report_link = " - <a href='?src=[REF(report)];[HrefToken(TRUE)];show=1'>validation report</a>"
 		to_chat(src, span_warning("Map template '[map]' <a href='?src=[REF(report)];[HrefToken()];show=1'>failed validation</a>."), confidential=TRUE)
 		if(report.loadable)
-			var/response = alert(src, "The map failed validation, would you like to load it anyways?", "Map Errors", "Cancel", "Upload Anyways")
+			var/response = tgui_alert(usr, "The map failed validation, would you like to load it anyways?", "Map Errors", list("Cancel", "Upload Anyways"))
 			if(response != "Upload Anyways")
 				return
 		else
-			alert(src, "The map failed validation and cannot be loaded.", "Map Errors", "Oh Darn")
+			tgui_alert(usr, "The map failed validation and cannot be loaded.", "Map Errors", list("Oh Darn"))
 			return
 
 	SSmapping.map_templates[M.name] = M

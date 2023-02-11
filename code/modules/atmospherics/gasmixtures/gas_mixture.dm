@@ -313,3 +313,55 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 
 		return TRUE
 	return FALSE
+
+/datum/gas_mixture/proc/remove_specific_ratio(gas_id, ratio)
+	if(ratio <= 0)
+		return null
+	ratio = min(ratio, 1)
+
+	var/datum/gas_mixture/removed = new
+
+	removed.set_temperature(return_temperature())
+
+	var/current_moles = get_moles(gas_id)
+	var/moles_to_remove = QUANTIZE(current_moles * ratio)
+	var/moles_left = current_moles - moles_to_remove
+
+	// sanitize moles to ensure we aren't writing any invalid or tiny values
+	moles_left = clamp(moles_left, 0, current_moles)
+	if (moles_left < MINIMUM_MOLE_COUNT)
+		moles_left = 0
+		moles_to_remove = current_moles
+
+	removed.set_moles(gas_id, moles_to_remove)
+	set_moles(gas_id, moles_left)
+
+	return removed
+
+///Distributes the contents of two mixes equally between themselves
+//Returns: bool indicating whether gases moved between the two mixes
+/datum/gas_mixture/proc/equalize(datum/gas_mixture/other)
+	. = FALSE
+
+	var/self_temp = return_temperature()
+	var/other_temp = other.return_temperature()
+	if(abs(self_temp - other_temp) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+		. = TRUE
+		var/self_heat_cap = heat_capacity()
+		var/other_heat_cap = other.heat_capacity()
+		var/new_temp = (self_temp * self_heat_cap + other_temp * other_heat_cap) / (self_heat_cap + other_heat_cap)
+		set_temperature(new_temp)
+		other.set_temperature(new_temp)
+
+	var/min_p_delta = 0.1
+	var/total_volume = return_volume() + other.return_volume()
+	var/list/gas_list = get_gases() | other.get_gases()
+	for(var/gas_id in gas_list)
+		//math is under the assumption temperatures are equal
+		var/self_moles = get_moles(gas_id)
+		var/other_moles = other.get_moles(gas_id)
+		if(abs(self_moles / return_volume() - other_moles / other.return_volume()) > min_p_delta / (R_IDEAL_GAS_EQUATION * return_temperature()))
+			. = TRUE
+			var/total_moles = self_moles + other_moles
+			set_moles(gas_id, total_moles * (return_volume() / total_volume))
+			other.set_moles(gas_id, total_moles * (other.return_volume() / total_volume))

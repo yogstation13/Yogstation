@@ -25,6 +25,7 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=darkspawn'>Make Darkspawn</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=vampire'>Make Vampire</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=infiltrator'>Make Infiltration Team (Requires Ghosts)</a>
 		"}
@@ -42,7 +43,7 @@
 		var/turf/T = get_turf(applicant)
 		if(!is_station_level(T.z))
 			return FALSE
-	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconcious when made, ie if they have selfhealing abilities.
+	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconscious when made, ie if they have selfhealing abilities.
 		return FALSE
 	if(!considered_alive(applicant.mind) || considered_afk(applicant.mind)) //makes sure the player isn't a zombie, brain, or just afk all together
 		return FALSE
@@ -352,7 +353,6 @@
 
 	equipAntagOnDummy(mannequin, ert)
 
-	COMPILE_OVERLAYS(mannequin)
 	CHECK_TICK
 	var/icon/preview_icon = icon('icons/effects/effects.dmi', "nothing")
 	preview_icon.Scale(48+32, 16+32)
@@ -451,7 +451,7 @@
 
 				//Spawn the body
 				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
-				chosen_candidate.client.prefs.copy_to(ERTOperative)
+				chosen_candidate.client.prefs.apply_prefs_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
 				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
@@ -562,7 +562,7 @@
 
 				//Spawn the body
 				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
-				chosen_candidate.client.prefs.copy_to(ERTOperative)
+				chosen_candidate.client.prefs.apply_prefs_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
 				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
