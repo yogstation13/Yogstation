@@ -7,7 +7,7 @@
 /datum/martial_art/ultra_violence
 	name = "Ultra Violence"
 	id = MARTIALART_ULTRAVIOLENCE
-	no_guns = FALSE
+	no_guns = TRUE
 	deflection_chance = 0
 	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
