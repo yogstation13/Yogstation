@@ -316,13 +316,9 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-		else // just in case you hate change
-			H.equip_to_slot_if_possible(PDA, pda_slot)
-			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-		
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()
