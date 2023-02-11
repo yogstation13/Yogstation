@@ -1,0 +1,6 @@
+author: "Xander3359"
+delete-after: true 
+changes: 
+  - tweak: "Crusher can now be carried in 1 hand, wield it before using or you will fumble."
+  - imageadd: "Added new crusher sprites and in-hands."
+  - imagedel: "Old Crusher sprites are gone"
