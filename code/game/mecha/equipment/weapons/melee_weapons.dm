@@ -6,41 +6,41 @@
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	melee_override = TRUE
 	var/restricted = TRUE //for our special hugbox exofabs
-	//If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
+	/// If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
 	var/extended_range = 0
-	//Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
+	/// Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
 	var/attack_speed_modifier = 1
-	//Attack sound for the weapon
+	/// Attack sound for the weapon
 	var/attack_sound = 'sound/weapons/mechasword.ogg'
 	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
-    //If the weapon has an AOE attack
+    /// If the weapon has an AOE attack
 	var/cleave = FALSE
-	//If the weapon has a single-target strike
+	/// If the weapon has a single-target strike
 	var/precise_attacks = TRUE
 
-	//Damage type for the weapon
+	/// Damage type for the weapon
 	var/dam_type = BRUTE
-	//If it's sharp or not
+	/// If it's sharp or not
 	var/attack_sharpness = SHARP_NONE
-	//Damage the weapon will do. Note this is ADDED to the base mecha attack damage (usually)
+	/// Damage the weapon will do. Note this is ADDED to the base mecha attack damage (usually)
 	var/weapon_damage = 0
-	//If we have both cleave and precise attacks, the precise may have more damage
+	/// If we have both cleave and precise attacks, the precise may have more damage
 	var/precise_weapon_damage = 0
-	//Minimum damage dealt with a weapon. Applies to non-combat mechs with the secret compartment module to make them suck a little less
+	/// Minimum damage dealt with a weapon. Applies to non-combat mechs with the secret compartment module to make them suck a little less
 	var/minimum_damage = 0
-	//Bonus deflection chance for using a melee weapon capable of blocking attacks
+	/// Bonus deflection chance for using a melee weapon capable of blocking attacks
 	var/deflect_bonus = 0
-	//Base armor piercing value of the weapon. This value is doubled for precise attacks
+	/// Base armor piercing value of the weapon. This value is doubled for precise attacks
 	var/base_armor_piercing = 0
-	//Fauna bonus damage, if any
+	/// Fauna bonus damage, if any
 	var/fauna_damage_bonus = 0
-	//Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
+	/// Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
 
-	//Effect on hitting something
+	/// Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
-	//Effect of the cleave attack
+	/// Effect of the cleave attack
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
@@ -372,19 +372,21 @@
 	base_armor_piercing = 25	//50 on precise attack
 	structure_damage_mult = 2	//Ever try to shank an engine block?
 	attack_sharpness = SHARP_POINTY
+	attack_speed_modifier = 0.8	//Counteracts the 0.2 second time between attacks
 	extended_range = 1			//so we can jump at people
 	attack_sound = 'sound/weapons/rapierhit.ogg'
 	sword_wound_bonus = 10		//Stabby
 	var/stab_number = 2			//Stabby stabby
 	var/next_lunge = 0
-	var/lunge_cd = 2 SECONDS	//2 second cooldown on the lunge attack
+	var/base_lunge_cd = 1		//cooldown for lunge (in seconds because math)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/precise_attack(atom/target)
-	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//Extended range except it has to be in melee to actually hit
+	if(get_dist(chassis, target) > 1)	//First we hop forward
+		do_lunge_at(target)
+	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//If we weren't able to get within range we don't attack
+		addtimer(CALLBACK(src, .proc/set_ready_state, 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
 		return
 	for(var/i in 1 to stab_number)
-		if(i == 1)
-			start_cooldown()	//To avoid shenanigans because sleep is wonky
 		special_hit(target)
 		if(isliving(target))						
 			var/mob/living/L = target
@@ -393,7 +395,7 @@
 				var/mob/living/carbon/C = L
 				var/obj/item/bodypart/body_part = C.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
 				if(i > 1)
-					body_part = pick(C.bodyparts)	//If it's not the first hit we pick a random one
+					body_part = pick(C.bodyparts)	//If it's not the first strike we pick a random one, mostly to reduce the chances of instant dismembering
 				var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//more AP for precision attacks
 				C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
 			else
@@ -413,10 +415,11 @@
 			return
 		chassis.do_attack_animation(target, hit_effect)
 		playsound(chassis, attack_sound, 50, 1)
-		start_cooldown()	//no cheeky multistabbing
-		sleep(0.2 SECONDS)	//For a slight delay between attacks
+		set_ready_state(0)	//Wait till we're done multi-stabbing before we do it again
+		if(i != stab_number)	//Only sleep between attacks
+			sleep(0.2 SECONDS)	//Slight delay
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/special_hit(atom/target)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/proc/do_lunge_at(atom/target)
 	if(world.time < next_lunge)	//On cooldown
 		return
 	if(get_dist(get_turf(src.chassis), get_turf(target)) <= 1)	//Already in melee range
@@ -424,7 +427,7 @@
 	if(isturf(target))	//No free moving, you gotta stab something
 		return
 	step_towards(src.chassis, target)
-	next_lunge = world.time + lunge_cd
+	next_lunge = world.time + base_lunge_cd * (chassis.melee_cooldown * check_eva())	//If we can attack faster we can lunge faster too
 
 
 	//		//=========================================================\\
