@@ -42,14 +42,14 @@
 
 		var/turf/chosen_spawn = pick(spawn_locs)
 		spawn_locs -= chosen_spawn // No spawning in the same place
-		var/mob/living/carbon/human/H = new (chosen_spawn)
-		player_mind.transfer_to(H)
+		var/mob/living/carbon/human/spawned_human = new (chosen_spawn)
+		player_mind.transfer_to(spawned_human)
 		player_mind.assigned_role = "Darkspawn"
 		player_mind.special_role = "Darkspawn"
-		var/datum/antagonist/darkspawn/D = player_mind.add_antag_datum(/datum/antagonist/darkspawn)
-		D.force_divulge()
-		playsound(H, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
-		message_admins("[ADMIN_LOOKUPFLW(H)] has been made into a Darkspawn by an event.")
-		log_game("[key_name(H)] was spawned as a Darkspawn by an event.")
-		spawned_mobs += H
+		var/datum/antagonist/darkspawn/darkspawn_datum = player_mind.add_antag_datum(/datum/antagonist/darkspawn)
+		darkspawn_datum.force_divulge()
+		playsound(spawned_human, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		message_admins("[ADMIN_LOOKUPFLW(spawned_human)] has been made into a Darkspawn by an event.")
+		log_game("[key_name(spawned_human)] was spawned as a Darkspawn by an event.")
+		spawned_mobs += spawned_human
 	return SUCCESSFUL_SPAWN
