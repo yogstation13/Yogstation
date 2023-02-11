@@ -174,11 +174,11 @@
 	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/disabler
 
-/obj/item/projectile/energy/arrow/pulse //Hardlight projectile.
+/obj/item/projectile/energy/arrow/pulse //Hardlight projectile. Woe to your enemies.
 	name = "pulse bolt"
 	icon_state = "arrow_pulse"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 50
+	damage = 75
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/pulse
 
 /obj/item/projectile/energy/arrow/pulse/on_hit(atom/target, blocked = FALSE)
@@ -200,12 +200,12 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/xray
 
-/obj/item/projectile/energy/arrow/shock //Hardlight projectile.
+/obj/item/projectile/energy/arrow/shock //Hardlight projectile. Replicable tasers are fair and balanced.
 	name = "shock bolt"
 	icon_state = "arrow_shock"
 	light_color = LIGHT_COLOR_YELLOW 
 	nodamage = TRUE
-	paralyze = 100
+	paralyze = 10 SECONDS
 	stutter = 5
 	jitter = 20
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/shock

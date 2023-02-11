@@ -334,7 +334,7 @@
 
 /obj/item/clothing/neck/cloak/ranger
 	name = "ranger cloak"
-	desc = "A cape that uses light altering magic to make the wearer invisable and dodge projectiles. The illusion weakens the more the wearer moves."
+	desc = "A cape that uses light-altering magic to make the wearer invisible and allow them to dodge projectiles. The illusion weakens the more the wearer moves."
 	icon_state = "ranger_cloak"
 
 	/// The mob currently wearing this
@@ -416,8 +416,9 @@
 
 /obj/item/clothing/neck/cloak/ranger/syndie
 	name = "shadow cloak"
-	desc = "A cape that uses advanced chameleon technology to make the wearer nearly invisable and dodge projectiles. The illusion weakens the more the wearer moves."
+	desc = "A dark red cape that uses advanced chameleon technology to make the wearer nearly invisible and aid them in dodging projectiles. Unable to sustain its image under distress or EMP."
 	icon_state = "syndie_cloak"
-	max_cloak = 90
-	cloak_charge_rate = 7
-	cloak_move_loss = 7
+	max_cloak = 75 //Max 75% dodge is a little quirky
+	cloak_charge_rate = 10
+	cloak_move_loss = 5
+	cloak_dodge_loss = 75 //Considering nukies are wearing this, they shouldn't get to dodge multiple times in a row
