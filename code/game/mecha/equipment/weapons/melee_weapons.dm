@@ -70,7 +70,7 @@
 		return 0
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
-	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc))	//If we are targetting not a turf and they're within reach
+	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc) && !istype(target, obj/item) && !istype(target, obj/effect))	//If we are targetting something stabbable and they're within reach
 		precise_attack(target)	//We stab it if we can
 	else if(cleave)
 		cleave_attack()	//Or swing wildly
@@ -286,6 +286,7 @@
 	hit_effect = ATTACK_EFFECT_BOOP		//Boop :)
 	attack_sharpness = SHARP_NONE
 	mob_strike_sound = 'sound/weapons/egloves.ogg'
+	attack_sound = 'sound/weapons/egloves.ogg'
 	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
 	var/stunforce = 10 SECONDS
 
