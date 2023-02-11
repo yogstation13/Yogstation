@@ -262,6 +262,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana	//Anime mech sword
 	name = "\improper OWM-5 \"Ronin\" katana"
 	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
+	icon_state = "mecha_katana"
 	energy_drain = 15
 	cleave = FALSE				//small fast blade
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
@@ -275,6 +276,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
 	name = "\improper AV-98 \"Ingram\" heavy stun baton" 
 	desc = "A stun baton, but bigger. The tide of toolbox-armed assistants don't stand a chance."
+	icon_state = "mecha_batong"
 	energy_drain = 300
 	attack_speed_modifier = 2	//needs to recharge
 	structure_damage_mult = 1
@@ -319,6 +321,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor	//TROGDOR!!!!! (But he's not a robot so I can't make the visible name that)
 	name = "\improper TO-4 \"Tahu\" flaming chainsword"	//ITS ALSO A CHAINSWORD FUCK YEAH
 	desc = "It's as ridiculous as it is badass. You feel like use of this this might be considered a war crime somewhere."
+	icon_state = "mecha_trogdor"
 	energy_drain = 30
 	precise_weapon_damage = 5	//Gotta make space for the burninating
 	attack_speed_modifier = 1.2	//Little unwieldy
@@ -346,6 +349,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
 	name = "\improper CX-22 \"Barbados\" heavy maul"
 	desc = "A massive, unwieldy, mace-like weapon, this thing really looks like something you don't want to be hit by if you're not a fan of being concave."
+	icon_state = "mecha_maul"
 	energy_drain = 40
 	weapon_damage = 25			//Very smashy
 	precise_weapon_damage = 30
@@ -367,6 +371,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier
 	name = "\improper E9-V \"Sigrun\" rapier"
 	desc = "A remarkably thin blade for a weapon wielded by an exosuit, this rapier is the favorite of syndicate pilots that perfer finesse over brute force."
+	icon_state = "mecha_rapier"
 	energy_drain = 40
 	cleave = FALSE
 	base_armor_piercing = 25	//50 on precise attack
@@ -457,7 +462,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/spear
 	name = "\improper S5-C \"White Witch\" shortspear"
 	desc = "A hardened, telescoping metal rod with a wicked-sharp tip. Perfect for punching holes in things normally out of reach."
-	//icon_state = "mecha_spear"   get sprites!!
+	icon_state = "mecha_spear"
 	energy_drain = 30
 	force = 10						//I want someone to stab someone else with this by hand
 	extended_range = 1				//Hits from a tile away
