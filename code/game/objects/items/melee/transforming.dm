@@ -104,7 +104,7 @@
 	force_on = 23
 	throwforce = 0
 	throwforce_on = 10
-	wound_bonus = 10 // doesn't roll for wounds when 0 force
+	wound_bonus = -10
 	bare_wound_bonus = 0
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	attack_verb_off = list("tapped", "poked")
