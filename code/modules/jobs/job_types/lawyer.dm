@@ -29,12 +29,7 @@
 		/datum/job_department/service,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	smells_like = "legal lies"
-
-/datum/job/lawyer/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/lawyer
 	name = "Lawyer"

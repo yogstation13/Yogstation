@@ -64,6 +64,7 @@ handles linking back and forth.
 		/datum/material/bananium,
 		/datum/material/titanium,
 		/datum/material/bluespace,
+		/datum/material/dilithium,
 		/datum/material/plastic,
 		)
 

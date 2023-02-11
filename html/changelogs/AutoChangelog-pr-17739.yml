@@ -1,0 +1,6 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - tweak: "Less shitty loot in the necro chest loot pool - Mod disks are gone"
+  - tweak: "KA's are now buyable after completing basic material processing"
+  - tweak: "Special mod disks now buyable after completing plasma extraction."
