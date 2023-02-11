@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Darkspawn has been moved to a midround event instead of a gamemode"
-  - rscdel: "Nightmare has been removed from midround rotation"
