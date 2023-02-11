@@ -23,8 +23,6 @@
 		/datum/job_department/service,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/maintenance/three = 35, //bunch of stuff that could interest assistants
 		/obj/item/stack/sheet/plastic/five = 30,
@@ -45,13 +43,6 @@
 	)
 
 	smells_like = "cheap plastic"
-
-/datum/job/clerk/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
-
-/datum/job/clerk/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/clerk
 	name = "Clerk"

@@ -145,6 +145,12 @@ export const sound_ship_ambience: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const sound_jukebox: FeatureToggle = {
+  name: "Enable jukebox sound",
+  category: "SOUND",
+  component: CheckboxInput,
+};
+
 export const split_admin_tabs: FeatureToggle = {
   name: "Split admin tabs",
   category: "ADMIN",

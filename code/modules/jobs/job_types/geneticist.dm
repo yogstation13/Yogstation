@@ -35,16 +35,7 @@
 		/obj/item/dnainjector/elvismut = 1
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	smells_like = "monkey hair"
-
-/datum/job/geneticist/proc/OmegaStationChanges()
-	return TRUE
-
-/datum/job/geneticist/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
 
 /datum/outfit/job/geneticist
 	name = "Geneticist"

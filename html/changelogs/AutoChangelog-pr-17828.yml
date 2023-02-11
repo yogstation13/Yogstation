@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "IPC martial now makes you immune to stamina damage and hard crit"
+  - tweak: "IPC martial now gives a 0.1 movementspeed boost at all times"

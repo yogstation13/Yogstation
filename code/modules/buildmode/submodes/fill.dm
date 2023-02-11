@@ -13,7 +13,7 @@
 
 /datum/buildmode_mode/fill/change_settings(client/c)
 	var/target_path = input(c, "Enter typepath:" ,"Typepath","/obj/structure/closet")
-	if(!target_path)
+	if(!target_path || target_path == "")
 		var/alertresult = alert(src, "WARNING: You have not entered a typepath, this will bring up EVERY TYPEPATH and will lag you for ~25 seconds. Continue?",,"I'm ready to die", "No")
 		if(alertresult == "No")
 			return

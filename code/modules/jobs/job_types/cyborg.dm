@@ -21,15 +21,7 @@
 		/datum/job_department/silicon,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	smells_like = "inorganic indifference"
-
-/datum/job/cyborg/proc/EclipseStationChanges()
-	spawn_positions = 3
-
-/datum/job/cyborg/proc/OmegaStationChanges()
-	spawn_positions = 1
 
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)
@@ -57,9 +49,12 @@
 		return
 
 	if(C.prefs.read_preference(/datum/preference/toggle/borg_hat))
-		var/type = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
-		if(type)
-			var/obj/item/hat = new type()
-			if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
-				H.place_on_head(hat)
-
+		var/datum/donator_gear/donor_hat_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
+		if(donor_hat_datum)
+			var/donor_hat_type = donor_hat_datum.unlock_path
+			if (!!donor_hat_datum.ckey && (lowertext(C.ckey) != lowertext(donor_hat_datum.ckey)))
+				to_chat(C, span_warning("Your selected donor hat is restricted to [donor_hat_datum.ckey]."))
+			else if (donor_hat_type)
+				var/obj/item/hat = new donor_hat_type()
+				if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
+					H.place_on_head(hat)

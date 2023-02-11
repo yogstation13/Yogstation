@@ -77,6 +77,7 @@
 				if(is_type_in_list(local_atom_in_range,local_required_atom_list))
 					selected_atoms |= local_atom_in_range
 					local_required_atoms -= list(local_required_atom_list)
+					break // We found the atom we want, so we can move on to the next required item
 
 		if(length(local_required_atoms) > 0)
 			continue
@@ -337,8 +338,8 @@
 	..()
 
 /datum/status_effect/brazil_penance/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
+	var/datum/effect_system/fluid_spread/smoke/S = new
+	S.set_up(1, location = get_turf(owner))
 	S.start()
 	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
 	owner.regenerate_organs()

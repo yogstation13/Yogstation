@@ -32,8 +32,6 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/random_virus = 15,
 		/obj/item/reagent_containers/glass/bottle/formaldehyde = 10,
@@ -47,9 +45,6 @@
 	)
 
 	smells_like = "germlessness"
-
-/datum/job/virologist/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/virologist
 	name = "Virologist"

@@ -126,7 +126,7 @@ PROBABILITY CULT 5
 PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 0 //For now
+PROBABILITY SHADOWLING 6
 PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
 PROBABILITY MALF 8
@@ -161,7 +161,7 @@ CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
-CONTINUOUS MALF
+#CONTINUOUS MALF
 CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
@@ -299,6 +299,12 @@ DEFAULT_ANTAG_TICKETS 100
 
 ## The maximum amount of extra tickets a user may use from their ticket bank in addition to the default tickets
 MAX_TICKETS_PER_ROLL 100
+
+## The antag-rep multiplier bonus for escaping alive on Central Command at the end of a round
+ESCAPED_ALIVE_BONUS 2
+
+## The antag-rep multiplier bonus for being alive (and not escaping to CC) at the end of a round
+STAYED_ALIVE_BONUS 1.5
 
 ## Uncomment to allow players to see the set odds of different rounds in secret/random in the get server revision screen. This will NOT tell the current roundtype.
 SHOW_GAME_TYPE_ODDS

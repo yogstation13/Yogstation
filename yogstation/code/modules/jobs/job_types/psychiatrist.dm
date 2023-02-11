@@ -26,7 +26,7 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("OmegaStation","GaxStation")
+	changed_maps = list("GaxStation")
 
 	mail_goodies = list(
 		/obj/item/storage/box/hug = 30,
@@ -38,9 +38,6 @@
 	)
 
 	smells_like = "calm peace"
-
-/datum/job/psych/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/job/psych/proc/GaxStationChanges() // I'M SORRY
 	return TRUE

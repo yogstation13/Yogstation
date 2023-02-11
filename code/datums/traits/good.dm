@@ -364,3 +364,101 @@
 	if(disallowed_trait) 
 		return "You have no DNA!"
 	return FALSE
+
+/datum/quirk/multilingual
+	name = "Multilingual"
+	desc = "You spent a portion of your life learning to understand an additional language. You may or may not be able to speak it based on your anatomy."
+	icon = "book"
+	value = 2
+	var/datum/language/specific
+	gain_text = span_notice("You have learned to understand an additional language.")
+	lose_text = span_notice("You have forgotten how to understand a language.")
+	var/list/blacklisted_languages = list(
+		/datum/language/codespeak,
+		/datum/language/narsie,
+		/datum/language/ratvar,
+		/datum/language/encrypted) // guh
+
+/datum/quirk/multilingual/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(specific)
+		H.grant_language(specific, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
+	else
+		var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+		var/list/languages_possible = T.languages_possible
+		languages_possible = languages_possible - blacklisted_languages
+		languages_possible = languages_possible - H.language_holder.understood_languages
+		languages_possible = languages_possible - H.language_holder.blocked_languages
+		if(length(languages_possible))
+			var/datum/language/random_language = pick(languages_possible)
+			H.grant_language(random_language, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
+
+/datum/quirk/multilingual/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(species && specific)
+		var/mob/M = new /mob // can't instantiate a language holder without an owner
+		var/datum/language_holder/lang = new species.species_language_holder(M)
+		if(length(lang.understood_languages) && (specific in lang.understood_languages))
+			var/datum/language/L = new specific()
+			return "You already know [L.name]!"
+		if(length(lang.blocked_languages) && (specific in lang.blocked_languages))
+			var/datum/language/L = new specific()
+			return "You are incapable of understanding [L.name]!"
+	return FALSE
+
+/datum/quirk/multilingual/english
+	name = "Multilingual (English)"
+	desc = "You spent a portion of your life learning to understand English. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/english
+	gain_text = span_notice("You have learned to understand English.")
+	lose_text = span_notice("You have forgotten how to understand English.")
+
+/datum/quirk/multilingual/etherean
+	name = "Multilingual (Etherean)"
+	desc = "You spent a portion of your life learning to understand Etherean. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/etherean
+	gain_text = span_notice("You have learned to understand Etherean.")
+	lose_text = span_notice("You have forgotten how to understand Etherean.")
+
+/datum/quirk/multilingual/mothian
+	name = "Multilingual (Mothian)"
+	desc = "You spent a portion of your life learning to understand Mothian. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/mothian
+	gain_text = span_notice("You have learned to understand Mothian.")
+	lose_text = span_notice("You have forgotten how to understand Mothian.")
+
+/datum/quirk/multilingual/draconic
+	name = "Multilingual (Draconic)"
+	desc = "You spent a portion of your life learning to understand Draconic. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/draconic
+	gain_text = span_notice("You have learned to understand Draconic.")
+	lose_text = span_notice("You have forgotten how to understand Draconic.")
+
+/datum/quirk/multilingual/felinid
+	name = "Multilingual (Felinid)"
+	desc = "You spent a portion of your life learning to understand Felinid. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/felinid
+	gain_text = span_notice("You have learned to understand Felinid.")
+	lose_text = span_notice("You have forgotten how to understand Felinid.")
+
+/datum/quirk/multilingual/sylvan
+	name = "Multilingual (Sylvan)"
+	desc = "You spent a portion of your life learning to understand Sylvan. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/sylvan
+	gain_text = span_notice("You have learned to understand Sylvan.")
+	lose_text = span_notice("You have forgotten how to understand Sylvan.")
+
+/datum/quirk/multilingual/polysmorph
+	name = "Multilingual (Polysmorph)"
+	desc = "You spent a portion of your life learning to understand Polysmorph. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/polysmorph
+	gain_text = span_notice("You have learned to understand Polysmorph.")
+	lose_text = span_notice("You have forgotten how to understand Polysmorph.")
+
+/datum/quirk/multilingual/bonespeak
+	name = "Multilingual (Bonespeak)"
+	desc = "You spent a portion of your life learning to understand Bonespeak. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/bonespeak
+	gain_text = span_notice("You have learned to understand Bonespeak.")
+	lose_text = span_notice("You have forgotten how to understand Bonespeak.")

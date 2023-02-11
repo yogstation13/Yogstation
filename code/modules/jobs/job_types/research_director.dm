@@ -41,8 +41,6 @@
 		/datum/job_department/command,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/aimodule_neutral = 15,
 		/obj/item/transfer_valve = 15,
@@ -57,9 +55,6 @@
 	)
 
 	smells_like = "theorhetical education"
-
-/datum/job/rd/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/rd
 	name = "Research Director"

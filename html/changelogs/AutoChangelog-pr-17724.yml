@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Shafter miners and Mining medics now spawn with a wormhole jaunter"
+  - rscdel: "Removes wormhole jaunters from mining lockers"

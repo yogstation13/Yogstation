@@ -33,8 +33,6 @@
 		/datum/job_department/security,
 	)
 
-	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
-
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
 		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
@@ -45,20 +43,6 @@
 	)
 
 	smells_like = "donuts"
-
-/datum/job/officer/proc/EclipseStationChanges()
-	total_positions = 14
-	spawn_positions = 10
-
-/datum/job/officer/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
-
-/datum/job/officer/proc/OmegaStationChanges()
-	total_positions = 3
-	spawn_positions = 3
-	added_access = list()
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
 
 /datum/job/officer/get_access()
 	var/list/L = list()

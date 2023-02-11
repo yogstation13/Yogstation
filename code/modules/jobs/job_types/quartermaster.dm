@@ -24,8 +24,6 @@
 		/datum/job_department/cargo,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	mail_goodies = list(
 		/obj/item/stack/sheet/mineral/gold = 10,
 		/obj/item/clothing/mask/facehugger/toy = 5,
@@ -40,9 +38,6 @@
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
-
-/datum/job/qm/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"

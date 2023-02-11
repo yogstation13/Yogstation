@@ -36,17 +36,7 @@
 		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	smells_like = "a gas leak"
-
-/datum/job/atmos/proc/OmegaStationChanges()
-	total_positions = 3
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/atmos/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
