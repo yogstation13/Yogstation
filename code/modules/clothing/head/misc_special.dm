@@ -378,3 +378,8 @@
 	icon_state = "flowerwizhat"
 	item_state = "flowerwizhat"
 
+/obj/item/clothing/head/fedora/gtrim_fedora
+	name = "Gold trimmed Fedora"
+	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	icon_state = "gtrim_fedora"
+	item_state = "gtrim_fedora"

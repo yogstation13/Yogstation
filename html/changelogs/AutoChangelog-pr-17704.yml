@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Ling fakedeath will no longer take closing the confirmation window as consent"

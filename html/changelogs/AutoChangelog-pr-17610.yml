@@ -1,0 +1,5 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - tweak: "Increase Nuke Op pop requirements from 30 to 35."
+  - tweak: "Increases the minimum amount of nuke ops from 2 to 3."

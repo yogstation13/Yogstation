@@ -32,18 +32,12 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
 
-	changed_maps = list("EclipseStation")
-
 	smells_like = "bloody soot"
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,
 		/obj/item/fulton_core = 1
 	)
-
-/datum/job/miningmedic/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
 
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
@@ -53,7 +47,9 @@
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/reagent_containers/autoinjector/medipen/survival = 1)
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
+		/obj/item/modular_computer/laptop/preset/paramedic/mining_medic = 1)
+
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson

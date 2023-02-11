@@ -26,6 +26,7 @@
 		"sound_midi" = SOUND_MIDI,
 		"sound_prayers" = SOUND_PRAYERS,
 		"sound_ship_ambience" = SOUND_SHIP_AMBIENCE,
+		"sound_jukebox" = SOUND_JUKEBOX,
 	)
 
 	var/static/list/legacy_extra_toggles = list(

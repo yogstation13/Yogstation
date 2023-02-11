@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,25)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -27,54 +27,44 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(5)
 			new /obj/item/stack/sheet/mineral/mythril(src)
 		if(6)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(7)
 			new /obj/item/rod_of_asclepius(src)
-		if(8)
+		if(7)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(9)
+		if(8)
 			new /obj/item/ship_in_a_bottle(src)
-		if(10)
+		if(9)
 			new /obj/item/clothing/glasses/telepathy(src)
-		if(11)
+		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(12)
+		if(11)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(13)
+		if(12)
 			new /obj/item/nullrod/armblade(src)
-		if(14)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(15)
+		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(16)
+		if(14)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(17)
+		if(15)
 			new /obj/item/eflowers(src)
-		if(18)
+		if(16)
 			new /obj/item/voodoo(src)
-		if(19)
+		if(17)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(20)
+		if(18)
 			new /obj/item/book_of_babel(src)
-		if(21)
+		if(19)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(22)
+		if(20)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(23)
+		if(21)
 			new /obj/item/rune_scimmy(src)
-		if(24)
+		if(22)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(25)
+		if(23)
 			new /obj/item/clothing/gloves/gauntlets(src)
 
 //KA modkit design discs
@@ -88,55 +78,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	. = ..()
 	blueprints[1] = new modkit_design
 
-/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
-	name = "Offensive Mining Explosion Mod Disk"
-	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
-
-/obj/item/disk/design_disk/modkit_disc/rapid_repeater
-	name = "Rapid Repeater Mod Disk"
-	modkit_design = /datum/design/unique_modkit/rapid_repeater
-
-/obj/item/disk/design_disk/modkit_disc/resonator_blast
-	name = "Resonator Blast Mod Disk"
-	modkit_design = /datum/design/unique_modkit/resonator_blast
-
-/obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
-	modkit_design = /datum/design/unique_modkit/bounty
-
 /datum/design/unique_modkit
 	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
 	build_type = PROTOLATHE | MECHFAB
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-
-/datum/design/unique_modkit/offensive_turf_aoe
-	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
-	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
-	id = "hyperaoemod"
-	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
-	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-
-/datum/design/unique_modkit/rapid_repeater
-	name = "Kinetic Accelerator Rapid Repeater Mod"
-	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
-	id = "repeatermod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
-	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
-
-/datum/design/unique_modkit/resonator_blast
-	name = "Kinetic Accelerator Resonator Blast Mod"
-	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
-	id = "resonatormod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
-	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
-
-/datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
-	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
-	id = "bountymod"
-	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
-	reagents_list = list(/datum/reagent/blood = 40)
-	build_path = /obj/item/borg/upgrade/modkit/bounty
 
 //Spooky special loot
 
@@ -493,9 +438,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target)
+/obj/item/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
-	if(ismovable(target))
+	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		if(A.anchored)
 			return
