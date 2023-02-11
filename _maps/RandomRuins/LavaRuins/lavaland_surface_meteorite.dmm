@@ -277,7 +277,7 @@
 "fO" = (
 /obj/structure/fluff/grave/empty,
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = 11;
 	pixel_y = 2
 	},
@@ -809,7 +809,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ov" = (
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = -10;
 	pixel_y = 7
 	},
@@ -1755,23 +1755,23 @@
 	pixel_x = 1;
 	pixel_y = 1
 	},
-/obj/item/storage/belt/quiver/ashwalker{
+/obj/item/storage/belt/quiver/weaver/ashwalker{
 	pixel_x = -9;
 	pixel_y = -3
 	},
 /obj/item/circular_saw/bone{
 	pixel_x = 7
 	},
-/obj/item/ammo_casing/caseless/arrow/ash,
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash,
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = 9;
 	pixel_y = -6
 	},
@@ -2449,11 +2449,11 @@
 /area/lavaland/surface/outdoors)
 "RF" = (
 /obj/structure/marker_beacon,
-/obj/item/ammo_casing/caseless/arrow/ash{
+/obj/item/ammo_casing/reusable/arrow/ash{
 	pixel_x = 6;
 	pixel_y = -11
 	},
-/obj/item/ammo_casing/caseless/arrow/ash,
+/obj/item/ammo_casing/reusable/arrow/ash,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "RG" = (

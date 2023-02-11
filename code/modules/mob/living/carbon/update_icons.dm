@@ -184,9 +184,9 @@
 	clear_alert("legcuffed")
 	if(legcuffed)
 		var/mutable_appearance/legcuffs = mutable_appearance('icons/mob/restraints.dmi', legcuffed.item_state, -LEGCUFF_LAYER)
-		legcuffs.color = handcuffed.color
+		legcuffs.color = legcuffed.color
 
-		overlays_standing[HANDCUFF_LAYER] = legcuffs
+		overlays_standing[LEGCUFF_LAYER] = legcuffs
 		apply_overlay(LEGCUFF_LAYER)
 		throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = legcuffed)
 

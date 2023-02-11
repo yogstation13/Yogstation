@@ -701,7 +701,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
 			new /obj/item/gun/ballistic/bow(spot)
 			for(var/i in 1 to 5)
-				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+				new /obj/item/ammo_casing/reusable/arrow/bronze(spot)
 		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
 			switch(rand(1,5))
 				if(1)

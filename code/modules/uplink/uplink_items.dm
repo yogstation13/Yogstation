@@ -2668,6 +2668,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/energy/pulse/pistol
 	cost = 35
 
+/datum/uplink_item/nt/energy_weps/hardlightbow
+	name = "ERT Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows, capable of firing multiple types of arrows including pulse and stun. Doesn't need to be charged."
+	item = /obj/item/gun/ballistic/bow/energy/ert
+	cost = 60
+
 /datum/uplink_item/nt/energy_weps/pulsedestroyer
 	name = "Pulse Destroyer"
 	desc = "LOG-ENTRY ERROR. DEATH. DEATH. DEATH. KILL. DESTROY. NONE LEFT ALIVE."

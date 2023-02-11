@@ -562,6 +562,7 @@
 	crafting_recipe_types = list(/datum/crafting_recipe/bola_arrow,
 								/datum/crafting_recipe/explosive_arrow,
 								/datum/crafting_recipe/flaming_arrow,
+								/datum/crafting_recipe/syringe_arrow,
 								/datum/crafting_recipe/raider_leather,
 								/datum/crafting_recipe/tribal_wraps,
 								/datum/crafting_recipe/ash_robe,
