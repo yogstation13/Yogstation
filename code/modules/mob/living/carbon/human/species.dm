@@ -2106,7 +2106,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 			H.adjust_bodytemperature(11)
 		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 2))
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
@@ -2155,8 +2155,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
-	var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return tail?.get_availability(H.dna.species)
+	// var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
+	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
 	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)

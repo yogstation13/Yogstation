@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Scaling infection chance for zombie bites is now less overcomplicated and more consistent"

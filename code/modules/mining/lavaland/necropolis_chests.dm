@@ -264,7 +264,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
-		RegisterSignal(user, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
 	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "memento_mori"
 	if(!active_owner)
 		return
-	UnregisterSignal(active_owner, COMSIG_ITEM_PRESTRIP)
+	UnregisterSignal(src, COMSIG_ITEM_PRESTRIP)
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
 	to_chat(H, span_userdanger("You feel your life rapidly slipping away from you!"))
@@ -493,9 +493,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target)
+/obj/item/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
-	if(ismovable(target))
+	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		if(A.anchored)
 			return

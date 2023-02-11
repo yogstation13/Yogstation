@@ -116,6 +116,16 @@
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
+
+	Here is another example of using this:
+
+	/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
+	supervisors = "the captain and the head of personnel"
 	*/
 
 /datum/job/New()
@@ -316,7 +326,7 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
+		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 		else // just in case you hate change
