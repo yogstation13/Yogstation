@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - experiment: "Antagonist reputation has been tweaked for all jobs, being alive or escaping alive increases antag rep gain!"
