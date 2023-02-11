@@ -17,8 +17,7 @@
 		return NOT_ENOUGH_PLAYERS
 	
 	var/list/spawn_locs = list()
-	for(var/X in GLOB.xeno_spawn)
-		var/turf/T = X
+	for(var/turf/T in GLOB.xeno_spawn)
 		var/light_amount = T.get_lumcount()
 		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
 			spawn_locs += T
@@ -43,14 +42,14 @@
 
 		var/turf/chosen_spawn = pick(spawn_locs)
 		spawn_locs -= chosen_spawn // No spawning in the same place
-		var/mob/living/carbon/human/S = new (chosen_spawn)
-		player_mind.transfer_to(S)
+		var/mob/living/carbon/human/H = new (chosen_spawn)
+		player_mind.transfer_to(H)
 		player_mind.assigned_role = "Darkspawn"
 		player_mind.special_role = "Darkspawn"
 		var/datum/antagonist/darkspawn/D = player_mind.add_antag_datum(/datum/antagonist/darkspawn)
 		D.force_divulge()
-		playsound(S, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
-		message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Darkspawn by an event.")
-		log_game("[key_name(S)] was spawned as a Darkspawn by an event.")
-		spawned_mobs += S
+		playsound(H, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		message_admins("[ADMIN_LOOKUPFLW(H)] has been made into a Darkspawn by an event.")
+		log_game("[key_name(H)] was spawned as a Darkspawn by an event.")
+		spawned_mobs += H
 	return SUCCESSFUL_SPAWN
