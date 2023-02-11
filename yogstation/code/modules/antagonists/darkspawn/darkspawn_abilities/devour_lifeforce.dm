@@ -18,6 +18,8 @@
 	for(var/mob/living/L in view(7, owner))
 		if(L == owner)
 			continue
+		if(L.faction == owner.faction)
+			continue
 		if(issilicon(L))
 			to_chat(L, span_ownerdanger("$@!) ERR: SYNAPTIC OVERLOAD ^!</"))
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
