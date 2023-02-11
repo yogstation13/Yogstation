@@ -31,7 +31,7 @@
 	var/datum/job/warden = SSjob.GetJob("Warden")
 	var/datum/job/officers = SSjob.GetJob("Security Officer")
 	var/sec_amount = hos.current_positions + warden.current_positions + officers.current_positions
-	if(sec_amount >= 5 && candidates.len >= 2)
+	if(sec_amount >= 5 && candidates.len >= 2 && spawn_locs.len >= 2)
 		darkspawn_to_spawn = 2
 
 	for(var/i=0,i<darkspawn_to_spawn,i++)
