@@ -70,7 +70,7 @@
 		return 0
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
-	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc) && !istype(target, obj/item) && !istype(target, obj/effect))	//If we are targetting something stabbable and they're within reach
+	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
 		precise_attack(target)	//We stab it if we can
 	else if(cleave)
 		cleave_attack()	//Or swing wildly
@@ -140,7 +140,8 @@
 	harmful = TRUE											//DO NOT give to children. Or do, I'm not the police.
 	minimum_damage = 0
 	var/sword_wound_bonus = 0								//Wound bonus if it's supposed to be ouchy beyond just doing damage
-
+	var/precise_no_mobdamage = FALSE							//If our precise attacks have a light touch for mobs
+	var/precise_no_objdamage = FALSE							//Same but for objects/structures
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/special_hit(atom/target)	
 	return 0
 
@@ -205,12 +206,12 @@
 	if(isliving(target))						
 		var/mob/living/L = target
 
-		if(iscarbon(L))
+		if(iscarbon(L) && !precise_no_mobdamage)
 			var/mob/living/carbon/C = L
 			var/obj/item/bodypart/body_part = L.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
 			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//more AP for precision attacks
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
-		else
+		else if(!precise_no_mobdamage)
 			L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
@@ -219,7 +220,7 @@
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
-	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
+	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
 		O.take_damage(object_damage, dam_type, "melee", 0)
@@ -283,12 +284,13 @@
 	precise_weapon_damage = -20	//Mostly nonlethal
 	weapon_damage = -20
 	minimum_damage = 10
-	hit_effect = ATTACK_EFFECT_BOOP		//Boop :)
+	hit_effect = ATTACK_EFFECT_BOOP	//Boop :^)
 	attack_sharpness = SHARP_NONE
+	precise_no_mobdamage = TRUE	//Light touch for targetted stuns
 	mob_strike_sound = 'sound/weapons/egloves.ogg'
 	attack_sound = 'sound/weapons/egloves.ogg'
 	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
-	var/stunforce = 10 SECONDS
+	var/stunforce = 12 SECONDS	//Stuns a little harder too
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)	//It's a stun baton. It stuns.
 	if(ishuman(target))
@@ -398,14 +400,14 @@
 		if(isliving(target))						
 			var/mob/living/L = target
 
-			if(iscarbon(L))
+			if(iscarbon(L) && !precise_no_mobdamage)
 				var/mob/living/carbon/C = L
 				var/obj/item/bodypart/body_part = C.get_bodypart(chassis.occupant? chassis.occupant.zone_selected : BODY_ZONE_CHEST)
 				if(i > 1)
 					body_part = pick(C.bodyparts)	//If it's not the first strike we pick a random one, mostly to reduce the chances of instant dismembering
 				var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//more AP for precision attacks
 				C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness, wound_bonus = sword_wound_bonus)
-			else
+			else if(!precise_no_mobdamage)
 				L.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type)
 				if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
 					L.apply_damage(fauna_damage_bonus, dam_type)
@@ -414,7 +416,7 @@
 					span_userdanger("[chassis.name] strikes you with [src]!"))
 			chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
-		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
+		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 			var/obj/O = target
 			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
 			O.take_damage(object_damage, dam_type, "melee", 0)
