@@ -69,10 +69,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(istype(BP,/obj/item/bodypart/l_arm) || istype(BP,/obj/item/bodypart/r_arm))
-			BP.max_damage = 45
+			BP.max_damage = 40
 			continue
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
-			BP.max_damage = 25
+			BP.max_damage = 30
 
 	if(ishuman(C))
 		maglock = new
