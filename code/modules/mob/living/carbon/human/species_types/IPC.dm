@@ -43,7 +43,6 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
-	var/emagged = FALSE
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -279,12 +278,12 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
 /datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	if(emagged)
-		return
 	if(H == user)//no emagging yourself
 		return
+	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
+		return
 	H.SetUnconscious(10 SECONDS)
-	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_ABSOLUTE)
+	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
 	emagged = TRUE
 
 /*------------------------
