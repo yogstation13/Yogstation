@@ -1921,10 +1921,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		littlefinish(user, M)
 		M.apply_status_effect(/datum/status_effect/exhumed)
 		return TRUE
-	if(iscarbon(M) || issilicon(M))
-		if(M.health < M.maxHealth/8)
-			littlefinish(user, M)
-			return TRUE
+	if(iscarbon(M) && M.health < M.maxHealth/8)
+		littlefinish(user, M)
+		return TRUE
 	if(M.health < M.maxHealth/2.8)
 		littlefinish(user, M)
 		return TRUE
