@@ -1,0 +1,4 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - bugfix: "no more invoking with donator plushie"
