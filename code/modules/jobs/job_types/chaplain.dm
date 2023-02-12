@@ -20,6 +20,7 @@
 	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
+	mind_traits = list(TRAIT_NOGUNS_HOLY)
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	minimal_character_age = 18 //My guy you are literally just a priest

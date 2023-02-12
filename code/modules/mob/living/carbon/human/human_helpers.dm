@@ -139,7 +139,7 @@
 /mob/living/carbon/human/can_use_guns(obj/item/G)
 	. = ..()
 
-	if(job == "Chaplain" && !istype(G, /obj/item/gun/magic)) // Can still use magic staves
+	if(HAS_TRAIT(mind, TRAIT_NOGUNS_HOLY) && !istype(G, /obj/item/gun/magic)) // Can still use magic staves
 		to_chat(src, span_warning("This is not a tool of justice! Use your null rod!"))
 		return FALSE
 
