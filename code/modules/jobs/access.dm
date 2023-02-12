@@ -274,6 +274,8 @@
 			return "Chapel Office"
 		if(ACCESS_TECH_STORAGE)
 			return "Technical Storage"
+		if(ACCESS_SECURE_TECH_STORAGE)
+			return "Secure Tech Storage"
 		if(ACCESS_ATMOSPHERICS)
 			return "Atmospherics"
 		if(ACCESS_CREMATORIUM)
