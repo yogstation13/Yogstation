@@ -163,6 +163,16 @@
 	if(no_react)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
 
+/obj/item/ammo_casing/shotgun/dart/hidden
+	name = "beanbag slug"
+	desc = "A weak beanbag slug for riot control."
+	icon_state = "bshell"
+	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
+
+/obj/item/ammo_casing/shotgun/dart/hidden/Initialize()
+	. = ..()
+	DISABLE_BITFIELD(reagents.flags, TRANSPARENT) // cant examine reagents, stealthy
+
 /obj/item/ammo_casing/shotgun/dart/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
 	if(!BB)
 		return
