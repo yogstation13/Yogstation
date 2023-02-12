@@ -25,8 +25,6 @@
 	SSair.stop_processing_machine(src)
 	disconnect()
 	QDEL_NULL(air_contents)
-	SSair.atmos_machinery -= src
-
 	return ..()
 
 /obj/machinery/portable_atmospherics/ex_act(severity, target)
