@@ -147,8 +147,8 @@
 /obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh
 	name = "energy bolt"
 	icon_state = "arrow_energy"
-	damage = 32
-	damage_type = BURN
+	damage = 40
+	wound_bonus = -60
 	speed = 0.6
 	var/embed_chance = 0.4
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
@@ -165,7 +165,7 @@
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 48
+	damage = 50
 	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 
@@ -173,8 +173,9 @@
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
-	damage = 21
-	irradiate = 400
+	damage = 30
+	wound_bonus = -30
+	irradiate = 500
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
@@ -182,4 +183,5 @@
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
 	damage = 18
+	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt

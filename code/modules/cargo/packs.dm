@@ -413,9 +413,16 @@
 	name = "Standard Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 standard firing pins. Requires Security access to open."
 	cost = 2000
-	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/firingpins,
 					/obj/item/storage/box/firingpins)
+	crate_name = "firing pins crate"
+
+/datum/supply_pack/security/secfiringpins
+	name = "Mindshield Firing Pins Crate"
+	desc = "Upgrade your arsenal with 10 mindshield firing pins. Requires Security access to open."
+	cost = 3000
+	contains = list(/obj/item/storage/box/secfiringpins,
+					/obj/item/storage/box/secfiringpins)
 	crate_name = "firing pins crate"
 
 /datum/supply_pack/security/justiceinbound
@@ -709,11 +716,11 @@
 	cost = 3500
 	contains = list(/obj/item/gun/ballistic/automatic/wt550,
 					/obj/item/gun/ballistic/automatic/wt550)
-	crate_name = "auto rifle crate"
+	crate_name = "autocarbine crate"
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains four 20-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -721,8 +728,8 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
-	name = "Surplus Security Autocarbine Ammo Crate"
-	desc = "Contains four 22-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Less-Lethal Ammo Crate"
+	desc = "Contains four 20-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
 					/obj/item/ammo_box/magazine/wt550m9/wtr,
@@ -731,7 +738,7 @@
 
 /datum/supply_pack/security/armory/wt550ammo_single
 	name = "Surplus Security Autocarbine Ammo Crate Single-Pack"
-	desc = "Contains a 22-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains a 20-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
@@ -767,7 +774,7 @@
 	name = "APLU MK-I Crate"
 	desc = "A do-it-yourself kit for building an ALPU MK-I \"Ripley\", designed for lifting and carrying heavy equipment, and other station tasks. Batteries not included."
 	cost = 2000
-	access_view = ACCESS_ROBOTICS
+	access_view = ACCESS_ROBO_CONTROL
 	contains = list(/obj/item/mecha_parts/chassis/ripley,
 					/obj/item/mecha_parts/part/ripley_torso,
 					/obj/item/mecha_parts/part/ripley_right_arm,
@@ -1609,8 +1616,8 @@
 	name = "Robotics Assembly Crate"
 	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains four proximity sensors, two empty first aid kits, two health analyzers, two red hardhats, two mechanical toolboxes, and two cleanbot assemblies! Requires Robotics access to open."
 	cost = 1500
-	access = ACCESS_ROBOTICS
-	access_view = ACCESS_ROBOTICS
+	access = ACCESS_ROBO_CONTROL
+	access_view = ACCESS_ROBO_CONTROL
 	contains = list(/obj/item/assembly/prox_sensor,
 					/obj/item/assembly/prox_sensor,
 					/obj/item/assembly/prox_sensor,
@@ -1930,6 +1937,18 @@
 	desc = "Modifiers for a kinetic accelerator that increase the range of its projectiles."
 	cost = 350
 	contains = list(/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range)
+
+/datum/supply_pack/clearance/special_mods
+	name = "KA Special Mods"
+	desc = "Modifiers for a kinetic accelerator that significantly change its properties. Comes in four different forms."
+	cost = 750
+	contains = list(/obj/item/borg/upgrade/modkit/aoe/turfs/andmobs, /obj/item/borg/upgrade/modkit/cooldown/repeater, /obj/item/borg/upgrade/modkit/resonator_blasts, /obj/item/borg/upgrade/modkit/bounty)
+
+/datum/supply_pack/clearance/kacrate
+	name = "Kinetic Accelerator Crate"
+	desc = "Two Kinetic Accelerators, self recharging, ranged mining tools that do increased damage in low pressure."
+	cost = 900
+	contains = list(/obj/item/gun/energy/kinetic_accelerator, /obj/item/gun/energy/kinetic_accelerator)
 
 /datum/supply_pack/clearance/plasmacutter
 	name = "Plasmacutter Crate"

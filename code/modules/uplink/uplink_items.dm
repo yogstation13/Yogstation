@@ -321,6 +321,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous
 	category = "Conspicuous Weapons"
 
+/datum/uplink_item/dangerous/busterarm
+	name = "Buster Arm"
+	desc = "A combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user can send people \
+	and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected from the arm \
+	which can even pull items right into the user's hand with a precise hit."
+	item = /obj/item/bodypart/l_arm/robot/buster
+	cost = 15
+	manufacturer = /datum/corporation/traitor/cybersun
+	surplus = 0
+
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
@@ -599,7 +609,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
-	cost = 8
+	cost = 6
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -630,6 +640,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
+
+/datum/uplink_item/stealthy_weapons/dart_pistol
+	name = "Box of Chemical Shotgun Darts"
+	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
+			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
+			out of their arm. Be careful not to mix them up with actual beanbag slugs!"
+	item = /obj/item/storage/box/beanbag/syndie_darts
+	cost = 2
+	surplus = 0 // useless for most people
 
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "Dehydrated Space Carp"
@@ -1378,6 +1397,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/stealthy_tools/shadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 10
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/stealthy_tools/nuclearshadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 20
+	include_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/stealthy_tools/syndireverse
 	name = "Bluespace Projectile Weapon Disrupter"
 	desc = "Hidden in an ordinary-looking playing card, this device will teleport an opponent's gun to your hand when they fire at you. Just make sure to hold this in your hand!"
@@ -1720,8 +1753,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/roburger_recipe
 	name = "Roburger crafting recipe"
 	desc = "This book contains legendary knowledge about how to make roburgers. \
-			Roburgers turn people into cyborgs after a short while when eaten. \
-			This book doesn't dissaper after use, so consider hiding it somewhere."
+			Roburgers turn people into cyborgs when eaten after a short while. \
+			This book doesn't disappear after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
@@ -1890,6 +1923,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants
 	category = "Implants"
 	surplus = 50
+
+/datum/uplink_item/implants/reusable
+	name = "Reusable Autosurgeon"
+	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
+	item = /obj/item/autosurgeon/suspicious
+	cost = 5
+	// Nukies have no use for this and their autosurgeons are already multi-use
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
@@ -2786,26 +2827,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ammo/wt
 	name = "4.6x30mm Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9
 	cost = 2
 	required_ert_uplink = null
 
 /datum/uplink_item/nt/ammo/wt/ap
 	name = "4.6x30mm AP Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtap
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/ic
 	name = "4.6x30mm Incendiary Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtic
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/r
 	name = "4.6x30mm Rubber Shot Magazine"
-	desc = "An additional 22-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
+	desc = "An additional 20-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
 	item = /obj/item/ammo_box/magazine/wt550m9/wtr
 	cost = 1
 
@@ -2815,7 +2856,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/mech/marauder
 	name = "Marauder exosuit"
-	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting three pieces of equipment."
+	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting four pieces of equipment."
 	item = /obj/mecha/combat/marauder
 	cost = 12
 

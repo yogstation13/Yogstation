@@ -123,7 +123,10 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			var/list/flooring_near_beacon = list()
 			for(var/turf/open/floor in orange(1, beacon))
 				flooring_near_beacon += floor
-			holder_obj.forceMove(pick(flooring_near_beacon))
+			if(LAZYLEN(flooring_near_beacon) > 0)
+				holder_obj.forceMove(pick(flooring_near_beacon))
+			else
+				to_chat(user, span_userdanger("The beacon malfunctions! It couldn't find a place to land!"))
 			animate(holder_obj, pixel_z = 10, time = 5 SECONDS)
 			sleep(5 SECONDS)
 			animate(holder_obj, pixel_z = 15, time = 1 SECONDS)

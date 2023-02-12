@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Injector",			/obj/machinery/atmospherics/components/unary/outlet_injector, TRUE),
 		new /datum/pipe_info/pipe("Scrubber",			/obj/machinery/atmospherics/components/unary/vent_scrubber, TRUE),
 		new /datum/pipe_info/pipe("Unary Vent",			/obj/machinery/atmospherics/components/unary/vent_pump, TRUE),
+		new /datum/pipe_info/pipe("Passive Vent",		/obj/machinery/atmospherics/components/unary/passive_vent, TRUE),
 		new /datum/pipe_info/pipe("Manual Valve",		/obj/machinery/atmospherics/components/binary/valve, TRUE),
 		new /datum/pipe_info/pipe("Digital Valve",		/obj/machinery/atmospherics/components/binary/valve/digital, TRUE),
 		new /datum/pipe_info/pipe("Pressure Valve",		/obj/machinery/atmospherics/components/binary/pressure_valve, TRUE),
@@ -389,12 +390,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	//make sure what we're clicking is valid for the current category
 	var/static/list/make_pipe_whitelist
 	if(!make_pipe_whitelist)
-		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe, /obj/structure/window, /obj/structure/grille))
+		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe, /obj/structure/window, /obj/structure/grille, /obj/machinery/atmospherics/pipe))
 	var/can_make_pipe = (isturf(A) || is_type_in_typecache(A, make_pipe_whitelist))
 
 	. = FALSE
 
-	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	if((mode & DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
 	// yogs start - disposable check
 		if(istype(A, /obj/item/pipe))
 			var/obj/item/pipe/P = A
@@ -409,7 +410,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			qdel(A)
 		return
 
-	if((mode&PAINT_MODE))
+	if (mode & PAINT_MODE)
 		if(istype(A, /obj/machinery/atmospherics/pipe) && !istype(A, /obj/machinery/atmospherics/pipe/layer_manifold))
 			var/obj/machinery/atmospherics/pipe/P = A
 			to_chat(user, span_notice("You start painting \the [P] [paint_color]..."))
@@ -427,14 +428,16 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				user.visible_message(span_notice("[user] paints \the [A] [paint_color]."),span_notice("You paint \the [A] [paint_color]."))
 			return
 
-	if(mode&BUILD_MODE)
+	if (mode & BUILD_MODE)
 		if(istype(get_area(user), /area/reebe/city_of_cogs))
 			to_chat(user, span_notice("You cannot build on Reebe.."))
 			return
+
 		switch(category) //if we've gotten this var, the target is valid
 			if(ATMOS_CATEGORY) //Making pipes
 				if(!can_make_pipe)
 					return ..()
+
 				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 				if (recipe.type == /datum/pipe_info/meter)
 					to_chat(user, span_notice("You start building a meter..."))
