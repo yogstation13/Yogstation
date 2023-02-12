@@ -139,6 +139,10 @@
 /mob/living/carbon/human/can_use_guns(obj/item/G)
 	. = ..()
 
+	if(job == "Chaplain" && !istype(G, /obj/item/gun/magic)) // Can still use magic staves
+		to_chat(src, span_warning("This is not a tool of justice! Use your null rod!"))
+		return FALSE
+
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
 		if(src.dna.check_mutation(HULK) || src.dna.check_mutation(ACTIVE_HULK))
 			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
@@ -146,6 +150,7 @@
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
 			to_chat(src, span_warning("Your fingers don't fit in the trigger guard!"))
 			return FALSE
+	
 	if(mind?.martial_art?.no_guns) //great dishonor to famiry
 		if(!istype(mind.martial_art, /datum/martial_art/ultra_violence))
 			to_chat(src, span_warning("Use of ranged weaponry would bring dishonor to the clan."))
