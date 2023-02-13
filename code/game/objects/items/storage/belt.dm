@@ -833,6 +833,10 @@
 		/obj/item/throwing_star/magspear
 		))
 
+/obj/item/storage/belt/quiver/full/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow(src)
+
 /obj/item/storage/belt/quiver/weaver
 	name = "weaver chitin quiver"
 	desc = "A fireproof quiver made from the chitin of a marrow weaver. Used to hold arrows."
@@ -857,7 +861,7 @@
 
 /obj/item/storage/belt/quiver/admin/full/PopulateContents()
 	for(var/arrow in typesof(/obj/item/ammo_casing/reusable/arrow))
-		if(istype(arrow, /obj/item/ammo_casing/reusable/arrow/energy))
+		if(ispath(arrow, /obj/item/ammo_casing/reusable/arrow/energy))
 			continue
 		for(var/i in 1 to 10)
 			new arrow(src)

@@ -53,7 +53,8 @@
 		ammo_type = ispath(ammo_type) ? new ammo_type(ammo_type) : ammo_type
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
-		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(ammo_type, part, TRUE))
+		var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
+		if(!(istype(arrow) && arrow.explosive) && prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(ammo_type, part, TRUE))
 			dropped = TRUE
 	return ..()
 

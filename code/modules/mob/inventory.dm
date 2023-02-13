@@ -343,6 +343,7 @@
 			else
 				I.forceMove(newloc)
 		I.dropped(src, silent)
+	SEND_SIGNAL(I, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.

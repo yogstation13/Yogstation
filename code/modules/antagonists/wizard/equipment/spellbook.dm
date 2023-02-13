@@ -307,6 +307,17 @@
 	desc = "A sword capable of firing blasts of energy which rip targets limb from limb."
 	item_path = /obj/item/gun/magic/staff/spellblade
 
+/datum/spellbook_entry/item/breakbow
+	name = "Break Bow"
+	desc = "A bow consisting that can be taken apart to use the blades individualy. Comes with a quiver of unlimited arrows"
+	item_path = /obj/item/gun/ballistic/bow/break_bow
+	cost = 1
+
+/datum/spellbook_entry/item/armor/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
+	if(.)
+		new /obj/item/clothing/shoes/sandal/magic(get_turf(user)) //In case they've lost them.
+
 /datum/spellbook_entry/item/staffdoor
 	name = "Staff of Door Creation"
 	desc = "A particular staff that can mold solid walls into ornate doors. Useful for getting around in the absence of other transportation. Does not work on glass."
@@ -363,6 +374,13 @@
 	if(.)
 		new /obj/item/clothing/shoes/sandal/magic(get_turf(user)) //In case they've lost them.
 		new /obj/item/clothing/gloves/color/purple(get_turf(user))//To complete the outfit
+
+/datum/spellbook_entry/item/ranger_cloak
+	name = "Ranger Cloak"
+	desc = "A cape that make the wearer invisable and dodge projectiles, though the illusion weakens the more the wearer moves."
+	item_path = /obj/item/clothing/neck/cloak/ranger
+	cost = 2
+	category = "Defensive"
 
 /datum/spellbook_entry/item/contract
 	name = "Contract of Apprenticeship"

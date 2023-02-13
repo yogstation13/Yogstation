@@ -274,6 +274,7 @@
 	throwforce = 20
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	wound_bonus = 10
+	draw_time = 0.25 SECONDS
 	var/bladetype = /obj/item/break_blade
 
 /obj/item/gun/ballistic/bow/break_bow/Initialize()
@@ -302,9 +303,10 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 65, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 10, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
 	force = 20
-	throwforce = 10
+	throwforce = 15
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	wound_bonus = 10
 	var/bowtype = /obj/item/gun/ballistic/bow/break_bow
@@ -347,7 +349,7 @@
 	if(istype(secondblade))
 		sleep(0.2 SECONDS)
 		thrower.dropItemToGround(secondblade, silent = TRUE)
-		thrower.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
+		secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
 
 /obj/item/break_blade/proc/return_to(mob/living/user)
 	if(!istype(user))
@@ -357,6 +359,18 @@
 	if(istype(holder) && holder.anti_magic_check())
 		to_chat(holder, span_notice("You feel [src] tugging on you."))
 		return
+
+	var/mob/living/carbon/carbon = loc
+	if(istype(carbon))
+		var/obj/item/bodypart/part = carbon.get_embedded_part(src)
+		if(part)
+			var/damage_amount = embedding.embedded_unsafe_removal_pain_multiplier * w_class
+			part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)
+			part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
+			if(!carbon.remove_embedded_object(src))
+				to_chat(holder, span_notice("You feel [src] tugging on you."))
+				return
+			to_chat(carbon, span_userdanger("[src] suddenly rips out of you!"))
 
 	if(!user.put_in_hands(src))
 		return

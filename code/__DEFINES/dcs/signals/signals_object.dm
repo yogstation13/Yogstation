@@ -146,6 +146,24 @@
 ///from base of obj/item/hit_reaction(): (list/args)
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
+
+/// Called before an item is embedded (mob/living/carbon/target = carbon that it is getting embedded into)
+#define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded" 
+	// Prevents the embed
+	#define COMSIG_ITEM_BLOCK_EMBED (1 << 0)
+
+/// Called before an item is removed from being embedded (mob/living/carbon/embedded = carbon that is currently embedded)
+#define COMSIG_ITEM_EMBED_REMOVAL "mob_carbon_embed_removal" 
+	// Prevents the removal of the embed
+	#define COMSIG_ITEM_BLOCK_EMBED_REMOVAL (1 << 0)
+	// Qdels the object when it is removed instead of droping it
+	#define COMSIG_ITEM_QDEL_EMBED_REMOVAL (1 << 0)
+
+/// Called every life tick for the embedded mob when the item is embedded (mob/living/carbon/embedded = carbon that is currently embedded)
+#define COMSIG_ITEM_EMBED_TICK "mob_carbon_embed_tick" 
+	// Prevents the rest of the tick logic for the item from proccessing
+	#define COMSIG_ITEM_BLOCK_EMBED_TICK (1 << 0)
+
 ///from base of item/sharpener/attackby(): (amount, max)
 #define COMSIG_ITEM_SHARPEN_ACT "sharpen_act"
 	#define COMPONENT_BLOCK_SHARPEN_APPLIED (1<<0)
