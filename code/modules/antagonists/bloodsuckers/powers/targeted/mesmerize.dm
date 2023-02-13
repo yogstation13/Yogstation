@@ -5,7 +5,6 @@
  * 	Level 2: Additionally mutes
  * 	Level 3: Can be used through face protection
  * 	Level 5: Doesn't need to be facing you anymore
- * 	Level 6: Causes the target to fall asleep
  */
 
 /datum/action/bloodsucker/targeted/mesmerize
