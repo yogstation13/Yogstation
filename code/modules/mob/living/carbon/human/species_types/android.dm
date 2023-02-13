@@ -47,19 +47,3 @@
 	. = ..()
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
-/datum/species/android/holy //EMP immune android for the technophile sect.
-	id = "holy android"
-	changesource_flags = MIRROR_BADMIN
-	random_eligible = FALSE
-	
-/datum/species/android/holy/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-
-	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF) // The power of god protects them from EMPS.
-	
-/datum/species/android/holy/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	. = ..()
-
-	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	empproof.RemoveComponent()//remove emp proof if they stop being an android
