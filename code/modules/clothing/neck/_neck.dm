@@ -327,6 +327,11 @@
 	desc = "Worn by the right hand of the captain. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
 
+/obj/item/clothing/neck/cloak/nukie
+	name = "tactical ablative shawl"
+	desc = "Worn by the leader of an elite team of nuclear operatives. Commit mass murder in style!"
+	icon_state = "nukie_cloak"
+
 /obj/item/clothing/neck/cloak/tribalmantle
 	name = "ornate mantle"
 	desc = "An ornate mantle commonly worn by a shaman or chieftain."
@@ -350,6 +355,10 @@
 	/// How much the cloak decreases on a successful dodge
 	var/cloak_dodge_loss = 30
 
+/obj/item/clothing/neck/cloak/ranger/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, .proc/on_unequip)
+
 /obj/item/clothing/neck/cloak/ranger/equipped(mob/user, slot)
 	. = ..()
 	update_signals()
@@ -358,14 +367,18 @@
 	. = ..()
 	update_signals()
 
+/obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	. = ..()
+	update_signals()
+
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
 	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
 		return TRUE
 
+	set_cloak(0)
 	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
 	if(user)
 		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
-	adjust_cloak(0)
 
 	var/mob/new_user = loc
 	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
@@ -376,7 +389,7 @@
 	else
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/clothing/neck/cloak/ranger/proc/adjust_cloak(ammount)
+/obj/item/clothing/neck/cloak/ranger/proc/set_cloak(ammount)
 	cloak = clamp(ammount, 0, max_cloak)
 	var/mob/user = loc
 	if(istype(user))
@@ -389,7 +402,7 @@
 	if(!istype(user) || !user.get_item_by_slot(SLOT_NECK) == src)
 		
 		return
-	adjust_cloak(cloak + (cloak_charge_rate * delta_time))
+	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
 /obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(dodge(owner, hitby, attack_text))
@@ -398,7 +411,7 @@
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_move(mob/user, Dir, Forced = FALSE)
 	if(update_signals(user))
-		adjust_cloak(cloak - cloak_move_loss)
+		set_cloak(cloak - cloak_move_loss)
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
 	if(dodge(user, P, "[P]"))
@@ -408,7 +421,7 @@
 	if(!update_signals(user) || current_user.incapacitated(check_immobilized = TRUE) || !prob(cloak))
 		return FALSE
 
-	adjust_cloak(cloak - cloak_dodge_loss)
+	set_cloak(cloak - cloak_dodge_loss)
 	current_user.SpinAnimation(7,1)
 	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
 	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
@@ -422,3 +435,20 @@
 	cloak_charge_rate = 10
 	cloak_move_loss = 5
 	cloak_dodge_loss = 75 //Considering nukies are wearing this, they shouldn't get to dodge multiple times in a row
+	var/cloak_emp_disable_duration = 10 SECONDS
+	var/cloak_emp_loss = 20
+
+/obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
+	. = ..()
+	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
+		return
+	if(EMP_HEAVY)
+		set_cloak(0)
+		TIMER_COOLDOWN_START(src, "cloak_emp_disable", cloak_emp_disable_duration)
+	else
+		set_cloak(cloak - cloak_emp_loss)
+
+/obj/item/clothing/neck/cloak/ranger/syndie/process(delta_time)
+	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))
+		return
+	return ..()

@@ -23,6 +23,8 @@
 	var/flaming = FALSE
 
 /obj/item/ammo_casing/reusable/arrow/Initialize()
+	RegisterSignal(src, COMSIG_ITEM_EMBEDDED, PROC_REF(on_embed))
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_tick))
 	var/list/new_parts
 	if(ispath(explosive))
 		LAZYADD(new_parts, new explosive())
@@ -139,14 +141,13 @@
 	flaming = TRUE
 	update_icon()
 	
-/obj/item/ammo_casing/reusable/arrow/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+/obj/item/ammo_casing/reusable/arrow/proc/on_embed(mob/living/carbon/embedde)
 	if(syringe)
-		return syringe.on_embed(embedde, part)
-	return TRUE
+		syringe.embed_inject(embedde)
 	
-/obj/item/ammo_casing/reusable/arrow/embed_tick(embedde, part)
+/obj/item/ammo_casing/reusable/arrow/proc/embed_tick(mob/living/carbon/embedde)
 	if(syringe)
-		syringe.embed_tick(embedde, part)
+		syringe.embed_inject(embedde)
 
 
 // Arrow Subtypes //
@@ -315,8 +316,15 @@
 	var/tick_damage_type = FIRE
 	var/tick_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/ammo_casing/reusable/arrow/energy/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
+/obj/item/ammo_casing/reusable/arrow/energy/Initialize()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+	..()
+
+/obj/item/ammo_casing/reusable/arrow/energy/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL
+
+/obj/item/ammo_casing/reusable/arrow/energy/on_embed(mob/living/carbon/embedde)
+	return
 
 /obj/item/ammo_casing/reusable/arrow/energy/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(ticks >= tick_max)

@@ -22,6 +22,7 @@
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
 		update_icon()
+	RegisterSignals(src, list(COMSIG_ITEM_EMBEDDED, COMSIG_ITEM_EMBED_TICK), PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
 	update_icon()
@@ -195,13 +196,7 @@
 		add_overlay(injoverlay)
 		M.update_inv_hands()
 	
-/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-	reagents.reaction(embedde, INJECT, fraction)
-	reagents.trans_to(embedde, amount_per_transfer_from_this)
-	return TRUE
-	
-/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
+/obj/item/reagent_containers/syringe/proc/embed_inject(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
@@ -309,6 +304,10 @@
 /obj/item/reagent_containers/syringe/dart/temp
 	item_flags = DROPDEL
 
-/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
+/obj/item/reagent_containers/syringe/dart/temp/Initialize()
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+
+/obj/item/reagent_containers/syringe/dart/temp/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL
 	

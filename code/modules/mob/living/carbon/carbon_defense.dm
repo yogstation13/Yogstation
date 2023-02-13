@@ -82,7 +82,7 @@
   *	Embeds an object into this carbon
   */
 /mob/living/carbon/proc/embed_object(obj/item/embedding, part, deal_damage, silent, forced)
-	if(!(forced || (can_embed(embedding) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))))
+	if(!(forced || (can_embed(embedding) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))) || get_embedded_part(embedding))
 		return FALSE
 	var/obj/item/bodypart/body_part = part
 	// In case its a zone
@@ -94,9 +94,9 @@
 		// Thats probably not good
 		if(!istype(body_part))
 			return FALSE
-	if(!embedding.on_embed(src, body_part))
-		return
-	body_part.embedded_objects |= embedding
+	if(CHECK_BITFIELD(SEND_SIGNAL(embedding, COMSIG_ITEM_EMBEDDED, src), COMSIG_ITEM_BLOCK_EMBED) || !embedding)
+		return FALSE
+	LAZYADD(body_part.embedded_objects, embedding)
 	var/obj/item/ammo_casing/AC = embedding
 	if(!((istype(AC) && !AC.harmful) || embedding.taped))
 		embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
@@ -113,21 +113,23 @@
   *	Removes the given embedded object from this carbon
   */
 /mob/living/carbon/proc/remove_embedded_object(obj/item/embedded, new_loc, silent, forced)
-	var/obj/item/bodypart/body_part
-	for(var/obj/item/bodypart/part in bodyparts)
-		if(embedded in part.embedded_objects)
-			body_part = part
+	var/obj/item/bodypart/body_part = get_embedded_part(embedded)
 	if(!body_part)
-		return
-	body_part.embedded_objects -= embedded
+		return FALSE
+	var/sig_return = SEND_SIGNAL(embedded, COMSIG_ITEM_EMBED_REMOVAL, src)
+	if(CHECK_BITFIELD(sig_return, COMSIG_ITEM_BLOCK_EMBED_REMOVAL))
+		LAZYADD(body_part.embedded_objects, embedded)
+		return FALSE
+	LAZYREMOVE(body_part.embedded_objects, embedded)
 	if(!silent)
 		emote("scream")
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-	if(new_loc)
+	if(CHECK_BITFIELD(sig_return, COMSIG_ITEM_QDEL_EMBED_REMOVAL))
+		qdel(embedded)
+	else if(new_loc)
 		embedded.forceMove(new_loc)
-	embedded.on_embed_removal(src)
 	return TRUE
 
 /**
@@ -140,9 +142,7 @@
 		for(var/obj/item/embedded in part.embedded_objects)
 			choice_list[embedded] = image(embedded)
 	var/obj/item/choice = show_radial_menu(user, src, choice_list, tooltips = TRUE)
-	for(var/obj/item/bodypart/part in bodyparts)
-		if(choice in part.embedded_objects)
-			body_part = part
+	body_part = get_embedded_part(choice)
 	if(!istype(choice) || !(choice in choice_list))
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
@@ -156,10 +156,39 @@
 	else
 		body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
 		body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
-	if(remove_embedded_object(choice, get_turf(src), damage_amount))
+	if(remove_embedded_object(choice, get_turf(src), damage_amount) && choice)
 		user.put_in_hands(choice)
 		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))
 	return TRUE
+
+/**
+  *	Returns the bodypart that the item is embedded in or returns false if it is not currently embedded
+  */
+/mob/living/carbon/proc/get_embedded_part(obj/item/embedded)
+	if(!embedded)
+		return FALSE
+	var/obj/item/bodypart/body_part
+	for(var/obj/item/bodypart/part in bodyparts)
+		if(embedded in part.embedded_objects)
+			body_part = part
+	if(!body_part)
+		return FALSE
+
+	if(embedded.loc != src)
+		LAZYREMOVE(body_part.embedded_objects, embedded)
+		if(!has_embedded_objects())
+			clear_alert("embeddedobject")
+			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+		return FALSE
+	return body_part
+
+/**
+  *	Returns a list of all embedded objects
+  */
+/mob/living/carbon/proc/get_embedded_objects()
+	for(var/obj/item/bodypart/part in bodyparts)
+		if(part.embedded_objects)
+			LAZYADD(., part.embedded_objects)
 
 /mob/living/carbon/proc/get_interaction_efficiency(zone)
 	var/obj/item/bodypart/limb = get_bodypart(zone)

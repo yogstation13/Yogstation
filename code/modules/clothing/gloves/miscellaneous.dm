@@ -50,6 +50,13 @@
 	..()
 	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
+/obj/item/clothing/gloves/fingerless/weaver
+	name = "weaver chitin gloves"
+	desc = "Grey gloves without fingertips made from the hide of a dead arachnid found on lavaland. Increases the work speed of the wearer."
+	icon_state = "fingerless"
+	item_state = "fingerless"
+	tacticalspeed = 0.8
+
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."
