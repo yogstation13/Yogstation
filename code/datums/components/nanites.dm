@@ -24,7 +24,7 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !(MOB_ROBOTIC in host_mob.mob_biotypes && MOB_HUMANOID in host_mob.mob_biotypes) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !(MOB_ROBOTIC in host_mob.mob_biotypes && MOB_HUMANOID in host_mob.mob_biotypes)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
 			return COMPONENT_INCOMPATIBLE
 
 		host_mob.hud_set_nanite_indicator()
