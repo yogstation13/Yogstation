@@ -148,7 +148,7 @@
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
 		to_chat(user, "You lose the keenness in your ears.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
-	
+
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
 	if(ishuman(user))
@@ -371,6 +371,12 @@
 	icon_state = "rflower"
 	item_state = "rflower"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/clothing/head/CustodianHelm
+	name = "Custodian Helmet"
+	desc = "Gives you the willpower to defend your plasmaman Captain till the end of time. If this was real that is..."
+	icon_state = "CustodianHat"
+	item_state = "CustodianHat"
 
 /obj/item/clothing/head/Floralwizhat
 	name = "Druid hat"
