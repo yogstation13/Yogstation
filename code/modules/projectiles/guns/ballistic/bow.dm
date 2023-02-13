@@ -22,7 +22,7 @@
 	var/drop_release_draw = TRUE
 	var/move_drawing = TRUE
 	var/draw_time = 0.5 SECONDS
-	var/draw_slowdown = 1.5
+	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
 	var/equip_when_loaded = FALSE
@@ -167,7 +167,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow/ashen
 	name = "bone crossbow"
-	desc = "An advanced primitive bow that is designed to function similar to a typical medieval crossbow. The stock is heavy and loading it takes time, but it can be quickly fired once ready."
+	desc = "An advanced, primitive bow that is designed to function similar to a crossbow. The stock is heavy and loading it takes time, but it can be quickly fired once ready."
 	icon_state = "ashencrossbow"
 	item_state = "ashencrossbow"
 	spread = 1
@@ -266,7 +266,7 @@
 
 /obj/item/gun/ballistic/bow/break_bow
 	name = "break bow"
-	desc = "A finely crafted bow consisting of two blades combined at the hilt and a magical, semi-transparent bowstring. Can be taken apart to use the blades individualy."
+	desc = "A finely-crafted bow consisting of two blades combined at the hilt and a magical, semi-transparent bowstring. Can be taken apart to use the blades individually."
 	icon_state = "breakbow"
 	item_state = "breakbow"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -296,7 +296,7 @@
 
 /obj/item/break_blade
 	name = "break bow blade"
-	desc = "One of ideally two blades used to form a break bow. Can attack with both blades at the same time or combine them into a bow."
+	desc = "One of two blades used to form a break bow. Can attack with both blades at the same time or combine them into a bow."
 	icon_state = "brakebow_blade"
 	item_state = "brakebow_blade"
 	icon = 'icons/obj/weapons/swords.dmi'
@@ -565,11 +565,12 @@
 	can_fold = TRUE
 
 /obj/item/gun/ballistic/bow/energy/ert
-	name = "ert hardlight bow" // Skrem, change this shit to something good
+	name = "\improper HL-P1 Multipurpose Combat Bow"
+	desc = "An expensive hardlight bow designed by Nanotrasen and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
 	icon_state = "bow_ert"
 	item_state = "bow_ert"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/ert
-	pin = /obj/item/firing_pin/implant/mindshield
+	pin = /obj/item/firing_pin
 	can_fold = TRUE
 
 /obj/item/gun/ballistic/bow/energy/syndicate

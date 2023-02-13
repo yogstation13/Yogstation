@@ -868,7 +868,7 @@
 
 /obj/item/storage/belt/quiver/blue
 	name = "toy blue quiver"
-	desc = "A quiver that holds toy arrows that look suspiciously like the disabler arrows fabricated by certain hardlight bows."
+	desc = "A quiver that holds toy arrows that look suspiciously like the pulse arrows fabricated by certain hardlight bows."
 	icon_state = "quiver_blue"
 	item_state = "quiver_blue"
 

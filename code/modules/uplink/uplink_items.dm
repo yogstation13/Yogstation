@@ -1791,6 +1791,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	surplus = 90
 
+/datum/uplink_item/device_tools/dodge_cloak
+	name = "Shadow Cloak"
+	desc = "A highly advanced cloak that renders the user transparent over time and able to dodge attacks. Moving, \
+			dodging attacks, or suffering an EMP will reduce or remove the transperency temporarily."
+	item = /obj/item/clothing/neck/cloak/ranger/syndie
+	cost = 30
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/device_tools/medkit
 	name = "Syndicate Combat Medic Kit"
 	desc = "Included is a combat stimulant injector \
@@ -2669,10 +2677,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 35
 
 /datum/uplink_item/nt/energy_weps/hardlightbow
-	name = "ERT Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows, capable of firing multiple types of arrows including pulse and stun. Doesn't need to be charged."
+	name = "HL-P1 Multipurpose Combat Bow"
+	desc = "An expensive hardlight bow designed by Nanotrasen and often sold to the SIC's espionage branch. Capable of firing disabler, energy, pulse, and taser bolts."
 	item = /obj/item/gun/ballistic/bow/energy/ert
-	cost = 60
+	cost = 75 //Doesn't need to be recharged but also fires once every now and then instead of being spammable
 
 /datum/uplink_item/nt/energy_weps/pulsedestroyer
 	name = "Pulse Destroyer"

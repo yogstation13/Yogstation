@@ -141,36 +141,36 @@
 
 // Arrows //
 /obj/item/ammo_box/arrow
-	name = "ammo box (Arrrow)"
+	name = "ammo box (Arrow)"
 	icon_state = "arrowbox_green"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow
 	max_ammo = 10
 
 /obj/item/ammo_box/arrow/toy
-	name = "ammo box (Toy Arrrow)"
+	name = "ammo box (Toy Arrow)"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy
 
 /obj/item/ammo_box/arrow/toy/energy
-	name = "ammo box (Toy Energy Arrrow)"
+	name = "ammo box (Toy Energy Arrow)"
 	icon_state = "arrowbox_red"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/energy
 
 /obj/item/ammo_box/arrow/toy/disabler
-	name = "ammo box (Toy Disabler Arrrow)"
+	name = "ammo box (Toy Disabler Arrow)"
 	icon_state = "arrowbox_teal"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/disabler
 
 /obj/item/ammo_box/arrow/toy/pulse
-	name = "ammo box (Toy Pulse Arrrow)"
+	name = "ammo box (Toy Pulse Arrow)"
 	icon_state = "arrowbox_blue"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/pulse
 
 /obj/item/ammo_box/arrow/toy/xray
-	name = "ammo box (Toy X-ray Arrrow)"
+	name = "ammo box (Toy X-ray Arrow)"
 	icon_state = "arrowbox_green"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/xray
 
 /obj/item/ammo_box/arrow/toy/shock
-	name = "ammo box (Toy Shock Arrrow)"
+	name = "ammo box (Toy Shock Arrow)"
 	icon_state = "arrowbox_yellow"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/shock

@@ -264,7 +264,7 @@
 
 /obj/item/ammo_casing/reusable/arrow/toy/pulse
 	name = "toy pulse bolt"
-	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a pulse bolt from a hardlight bow."
+	desc = "A plastic, fake arrow that looks like a pulse bolt. A velcro head lets it stick to targets."
 	icon_state = "arrow_pulse"
 	item_state = "arrow_toy_pulse"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/pulse
