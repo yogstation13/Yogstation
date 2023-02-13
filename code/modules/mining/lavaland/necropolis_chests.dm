@@ -1814,7 +1814,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 //Legion
 #define COOLDOWN_TAP 60
 #define COOLDOWN_BAND 200
-#define COOLDOWN_TELE 10
+#define COOLDOWN_TELE 15
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
