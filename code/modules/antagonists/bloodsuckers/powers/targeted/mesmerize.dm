@@ -104,7 +104,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/mesmerized = target
 		to_chat(owner, span_notice("Successfully mesmerized [mesmerized]."))
-		else if(level_current >= 1)
+		if(level_current >= 1)
 			ADD_TRAIT(mesmerized, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		mesmerized.Immobilize(power_time)
 		//mesmerized.silent += power_time / 10 // Silent isn't based on ticks.
