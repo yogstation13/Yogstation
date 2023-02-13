@@ -32,16 +32,20 @@
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, TRUE)
-		O.brute_reduction_reduction = 5
-		O.burn_reduction_reduction = 4
+	
+	for (var/obj/item/bodypart/BP in C.bodyparts)
+		BP.burn_reduction = 5
+		BP.brute_reduction = 4
 
 /datum/species/android/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		O.change_bodypart_status(BODYPART_ORGANIC,FALSE, TRUE)
-		O.brute_reduction_reduction = initial(BP.brute_reduction)
-		O.burn_reduction_reduction = initial(BP.burn_reduction)
+		
+	for (var/obj/item/bodypart/BP in C.bodyparts)
+		BP.burn_reduction = initial(BP.burn_reduction)
+		BP.brute_reduction = initial(BP.brute_reduction)
 
 /datum/species/android/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
