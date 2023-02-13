@@ -22,7 +22,7 @@
 	var/drop_release_draw = TRUE
 	var/move_drawing = TRUE
 	var/draw_time = 0.5 SECONDS
-	var/draw_slowdown = 1.5
+	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
 	var/equip_when_loaded = FALSE
