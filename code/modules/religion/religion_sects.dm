@@ -390,7 +390,7 @@
 	altar_icon_state = "convertaltar-red"
 
 //honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
-/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+/datum/religion_sect/honkmother/sect_bless(mob/living/blessed, mob/living/user)
 	if(!ishuman(blessed))
 		return
 	var/mob/living/carbon/human/H = blessed
