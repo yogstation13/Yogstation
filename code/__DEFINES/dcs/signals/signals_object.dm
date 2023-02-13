@@ -157,7 +157,7 @@
 	// Prevents the removal of the embed
 	#define COMSIG_ITEM_BLOCK_EMBED_REMOVAL (1 << 0)
 	// Qdels the object when it is removed instead of droping it
-	#define COMSIG_ITEM_QDEL_EMBED_REMOVAL (1 << 0)
+	#define COMSIG_ITEM_QDEL_EMBED_REMOVAL (1 << 1)
 
 /// Called every life tick for the embedded mob when the item is embedded (mob/living/carbon/embedded = carbon that is currently embedded)
 #define COMSIG_ITEM_EMBED_TICK "mob_carbon_embed_tick" 
