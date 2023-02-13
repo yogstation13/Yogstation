@@ -13407,6 +13407,21 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"dAc" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "19;23";
+	security_level = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/storage/tech)
 "dAi" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -70911,21 +70926,6 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
-"wYP" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "76";
-	security_level = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/storage/tech)
 "wYZ" = (
 /obj/structure/sign/directions/supply{
 	pixel_x = -64;
@@ -100943,7 +100943,7 @@ aAA
 ycH
 qGQ
 hGB
-wYP
+dAc
 nyJ
 tuJ
 cTp
