@@ -16900,6 +16900,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"cCl" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/atmos_sim{
+	dir = 2;
+	mode = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "cCv" = (
 /obj/machinery/light_switch{
 	pixel_x = 8;
@@ -24420,14 +24428,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"fCl" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/atmos_sim{
-	dir = 3;
-	mode = 1
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "fCu" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -110242,7 +110242,7 @@ ldW
 ldW
 ldW
 cmd
-fCl
+cCl
 owJ
 etJ
 ufo

@@ -144,6 +144,13 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "dukeofsoleil"
 	unlock_path = /obj/item/clothing/head/Floralwizhat
 
+
+/datum/donator_gear/boxta
+	name = "Gold Trimmed Fedora & Falcon"
+	ckey = "boxta"
+	unlock_path = /obj/item/storage/box/boxta
+
+///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
 	unlock_path = /obj/item/clothing/head/yogs/beanie
@@ -578,10 +585,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/plushvar
 	name = "Ratvar"
 	unlock_path = /obj/item/toy/plush/plushvar
-	plush = TRUE
-/datum/donator_gear/narplush
-	name = "Nar'Sie"
-	unlock_path = /obj/item/toy/plush/narplush
 	plush = TRUE
 
 /datum/donator_gear/blahajplush

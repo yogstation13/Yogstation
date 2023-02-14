@@ -248,7 +248,7 @@
 	if (air.return_temperature() > T20C)
 		air.set_temperature(max(air.return_temperature() / 2, T20C))
 
-	location.air_update_turf(FALSE, FALSE)
+	location.air_update_turf()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
 	var/atom/movable/deposit = ..()
@@ -299,7 +299,7 @@
 
 /obj/structure/foamedmetal/Initialize(mapload)
 	. = ..()
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/foamedmetal/Move()
 	var/turf/T = loc
