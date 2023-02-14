@@ -36,6 +36,13 @@
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.burn_reduction = 5
 		BP.brute_reduction = 4
+		
+		BP.light_brute_msg = "marred"
+		BP.medium_brute_msg = "dented"
+		BP.heavy_brute_msg = "falling apart"
+		BP.light_burn_msg = "scorched"
+		BP.medium_burn_msg = "charred"
+		BP.heavy_burn_msg = "smoldering"
 
 /datum/species/android/on_species_loss(mob/living/carbon/C)
 	. = ..()
@@ -46,6 +53,13 @@
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
+		
+		BP.light_brute_msg = initial(BP.light_brute_msg)
+		BP.medium_brute_msg = initial(BP.medium_brute_msg)
+		BP.heavy_brute_msg = initial(BP.heavy_brute_msg)
+		BP.light_burn_msg = initial(BP.light_burn_msg)
+		BP.medium_burn_msg = initial(BP.medium_burn_msg)
+		BP.heavy_burn_msg = initial(BP.heavy_burn_msg)
 
 /datum/species/android/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
