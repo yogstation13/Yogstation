@@ -47,7 +47,11 @@ GLOBAL_LIST_EMPTY(ipc_chassis_list)
 GLOBAL_LIST_INIT(plasmaman_helmet_list, list("None" = "", "Slit" = "S", "Nyan" = "N", "Gassy" = "G", "Bane" = "B", "Halo" = "H", "Wizard" = "W"))
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
-GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
+GLOBAL_LIST_INIT(color_list_ethereal,
+				list("O Class (Dark Green)" = "37833F", "O2 Class(Green)" = "97ee63", "O3 Class (Light Green)" = "00ff00",\
+				"B Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff", "A2 Class (Turquoise)" = "00fa9a", "F Class (White)" = "ffffff",\
+				"K Class (Yellow)" = "ffff00", "M Class (Orange)" = "ff8700", "L Class (Red)" = "ff0000", "L2 Class (Dark Red)" = "9c3030",\
+				"T Class (Light Purple)" = "ff00ff", "T2 Class (Dark Purple)" = "ee82ee"))
 GLOBAL_LIST_INIT(color_list_preternis, list("Factory Default" = "FFFFFF", "Rust" = "B7410E", "Chrome" = "B0C4DE", "Overgrown" = "b2ee69", "Gunmetal Gray" = "8D918D", "Gold" = "D4AF37"))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
