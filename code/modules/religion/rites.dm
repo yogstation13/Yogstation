@@ -645,8 +645,8 @@
 	ritual_length = 60 SECONDS
 	ritual_invocations = list(
 	"This being is in dire need of your assistance...",
+	"...As they have been inflicted with great ailment...",
 	"...Please, grant us the unbridled power of the Holy Light...",
-	"...They need our help, as they have been inflicted with great ailment...",
 	"...We will channel our power in your name...",
 	)
 	invoke_msg = "So that this being may be reborn in your image!"
@@ -682,7 +682,7 @@
 	if(!man_to_revive)
 		return FALSE
 	var/was_dead = man_to_revive.stat == DEAD
-	man_to_revive.fully_heal(TRUE)
+	man_to_revive.revive(TRUE)
 	if(was_dead) // aheal needs downside
 		man_to_revive.adjustCloneLoss(75) // can be slowly healed with the rod of asclepius anyways
 	man_to_revive.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
