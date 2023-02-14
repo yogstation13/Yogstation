@@ -433,7 +433,6 @@
 	icon_state = "syndie_cloak"
 	max_cloak = 75 //Max 75% dodge is a little quirky
 	cloak_charge_rate = 20
-	cloak_move_loss = 5
 	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS
 	var/cloak_emp_loss = 25
