@@ -12,6 +12,7 @@
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
+	owner.current.updatehealth()
 
 /datum/antagonist/veil/on_removal()
 	SSticker.mode.update_darkspawn_icons_removed(owner)
@@ -28,6 +29,7 @@
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
 	M.update_sight()
+	M.updatehealth()
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)

@@ -88,9 +88,17 @@
 	. = ..()
 	if(H.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(H.health, 0) / 100
+		var/range = (4 * healthpercent) + 1
+		var/power = healthpercent + 1
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		ethereal_light.set_light_range_power_color(1 + (4 * healthpercent), 1 + (1 * healthpercent), current_color)
+
+		if(isveil(H) || is_thrall(H))//bad boy coming through
+			range = (6 * healthpercent) + 1
+			power = -((2 * healthpercent) + 1)
+			current_color = "#000000"
+
+		ethereal_light.set_light_range_power_color(range, power, current_color)
 		ethereal_light.set_light_on(TRUE)
 		fixed_mut_color = copytext_char(current_color, 2)
 	else

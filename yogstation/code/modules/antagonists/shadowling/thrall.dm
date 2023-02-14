@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/lesser_glare(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadow_walk(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/thrall_night_vision(null))
+	owner.current.updatehealth()
 
 /datum/antagonist/thrall/on_removal()
 	SSticker.mode.update_shadow_icons_removed(owner)
@@ -51,6 +52,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the shadowlings or your time under their command..."))
 	M.update_sight()
+	M.updatehealth()
 	return ..()
 
 /datum/antagonist/thrall/greet()
