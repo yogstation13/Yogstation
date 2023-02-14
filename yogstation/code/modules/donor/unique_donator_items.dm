@@ -587,6 +587,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/toy/plush/plushvar
 	plush = TRUE
 
+/datum/donator_gear/narplush
+	name = "Nar'Sie"
+	unlock_path = /obj/item/toy/plush/narplush/hugbox
+	plush = TRUE
+
 /datum/donator_gear/blahajplush
 	name = "Shark"
 	unlock_path = /obj/item/toy/plush/blahaj
