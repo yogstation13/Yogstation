@@ -78,14 +78,10 @@
 		return
 	COOLDOWN_START(src, hug_therapy_cd, hug_therapy_cd_time)
 	var/cure_chance = random_cure_chance / 6
-	if(HAS_TRAIT(hugger.mind, TRAIT_PSYCH))
-		cure_chance *= 3.5
 	if(HAS_TRAIT(hugger, TRAIT_FRIENDLY))
 		cure_chance *= 1.25
-	if(iscarbon(hugged))
-		var/mob/living/carbon/C = hugged
-		if(C.hypnosis_vulnerable())
-			cure_chance *= 1.5
+	cure_chance *= psych_bonus(flasher) * 0.35 // hugging is not that good at curing trauma but it helps
+	cure_chance *= check_hypno_vulnerable(hugged)
 	if(prob(cure_chance))
 		qdel(src) // Sometimes, all you need is a good hug..
 
@@ -96,12 +92,8 @@
 		return
 	COOLDOWN_START(src, flash_therapy_cd, flash_therapy_cd_time)
 	var/cure_chance = random_cure_chance / 10
-	if(HAS_TRAIT(flasher.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
-		cure_chance *= 10
-	if(iscarbon(flashed))
-		var/mob/living/carbon/C = flashed
-		if(C.hypnosis_vulnerable())
-			cure_chance *= 1.5
+	cure_chance *= psych_bonus(flasher)
+	cure_chance *= check_hypno_vulnerable(flashed)
 	if(prob(cure_chance))
 		qdel(src)
 
@@ -112,12 +104,8 @@
 		return
 	COOLDOWN_START(src, laser_therapy_cd, laser_therapy_cd_time)
 	var/cure_chance = random_cure_chance / 11
-	if(HAS_TRAIT(laserer.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
-		cure_chance *= 10
-	if(iscarbon(lasered))
-		var/mob/living/carbon/C = lasered
-		if(C.hypnosis_vulnerable())
-			cure_chance *= 1.5
+	cure_chance *= psych_bonus(laserer)
+	cure_chance *= check_hypno_vulnerable(lasered)
 	if(prob(cure_chance))
 		qdel(src)
 
@@ -130,11 +118,16 @@
 	var/cure_chance = random_cure_chance / 15
 	if(istype(the_light, /obj/item/flashlight/pen)) // Use a proper penlight!
 		cure_chance *= 1.25
-	if(HAS_TRAIT(shiner.mind, TRAIT_PSYCH)) // Non-practitioners are bad at this
-		cure_chance *= 10
-	if(iscarbon(shined))
-		var/mob/living/carbon/C = shined
-		if(C.hypnosis_vulnerable())
-			cure_chance *= 1.5
+	cure_chance *= psych_bonus(shiner)
+	cure_chance *= check_hypno_vulnerable(shined)
 	if(prob(cure_chance))
 		qdel(src)
+
+/datum/brain_trauma/proc/psych_bonus(mob/living/psych)
+	return HAS_TRAIT(laserer.mind, TRAIT_PSYCH) ? 10 : 1
+
+/datum/brain_trauma/proc/check_hypno_vulnerable(mob/living/carbon/victim)
+	if(istype(victim))
+		return victim.hypnosis_vulnerable() ? 1.5 : 1
+	else
+		return 1
