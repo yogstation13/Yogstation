@@ -516,8 +516,13 @@
 
 	var/list/choice_list = list()
 	for(var/arrow_type in M.selectable_types)
-		var/obj/item/ammo_casing/reusable/arrow/energy/arrow = new arrow_type()
-		choice_list[arrow] = image(arrow)
+		choice_list[arrow_type] = 
+		available_surgeries[S.name] = S
+		var/datum/radial_menu_choice/choice = new
+		choice.image = image(arrow_type.icon, icon_state = )
+		choice.info = S.desc
+		radial_list[S.name] = choice
+		break
 	var/obj/item/ammo_casing/reusable/arrow/energy/choice = show_radial_menu(user, user, choice_list, tooltips = TRUE)
 	if(!choice || !(choice.type in M.selectable_types))
 		return

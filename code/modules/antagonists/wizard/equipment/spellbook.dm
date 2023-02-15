@@ -95,7 +95,7 @@
 		S = new spell_type()
 	var/dat =""
 	dat += "<b>[initial(S.name)]</b>"
-	if(S.charge_type == "recharge")
+	if(S.charge_type == SPELL_CHARGE_TYPE_RECHARGE)
 		dat += " Cooldown:[S.charge_max/10]"
 	dat += " Cost:[cost]<br>"
 	dat += "<i>[S.desc][desc]</i><br>"
@@ -224,6 +224,11 @@
 	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
 
+/datum/spellbook_entry/magic_arrows
+	name = "Summon Magic Arrows"
+	spell_type = /obj/effect/proc_holder/spell/targeted/conjure_item/arrow/magic
+	cost = 1
+
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
@@ -309,14 +314,14 @@
 
 /datum/spellbook_entry/item/breakbow
 	name = "Break Bow"
-	desc = "A bow consisting that can be taken apart to use the blades individualy. Comes with a quiver of unlimited arrows"
+	desc = "A bow consisting that can be taken apart to use the blades individualy. Comes with a spell to summon arrows"
 	item_path = /obj/item/gun/ballistic/bow/break_bow
 	cost = 1
 
-/datum/spellbook_entry/item/armor/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+/datum/spellbook_entry/item/breakbow/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	. = ..()
 	if(.)
-		new /obj/item/clothing/shoes/sandal/magic(get_turf(user)) //In case they've lost them.
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/arrow())
 
 /datum/spellbook_entry/item/staffdoor
 	name = "Staff of Door Creation"

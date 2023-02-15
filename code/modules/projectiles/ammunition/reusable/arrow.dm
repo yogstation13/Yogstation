@@ -5,6 +5,7 @@
 	caliber = "arrow"
 	icon_state = "arrow"
 	item_state = "arrow"
+	base_rotation = 45
 	force = 5
 	throwforce = 5 //If, if you want to throw the arrow since you don't have a bow?
 	throw_speed = 3
@@ -234,6 +235,47 @@
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 	variance = 5
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass/plasma
+
+/obj/item/ammo_casing/reusable/arrow/magic
+	name = "magic arrow"
+	desc = "An arrow made of magic that can track targets, though it can't track those under the effects of anti-magic. Can make a good throwing weapon in a pinch!"
+	icon_state = "arrow_magic"
+	item_state = "arrow_magic"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/magic
+	force = 12
+	throwforce = 20
+	embedding = list("embed_chance" = 50, "embedded_fall_chance" = 0)
+	/// Causes the arrow to become weaker, as I was told to prevent it from being used against wizards
+	var/dulled = FALSE
+
+/obj/item/ammo_casing/reusable/arrow/magic/examine(mob/user)
+	. = ..()
+	if(dulled)
+		. += "It appears to be dulled, and the tracking magic has left it."
+
+/obj/item/ammo_casing/reusable/arrow/magic/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
+	. = ..()
+	if(!.)
+		return
+
+	if(dulled)
+		BB.damage = 20
+		BB.armour_penetration = -25
+		var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+		if(!istype(arrow))
+			arrow.embed_chance = 0
+	else
+		BB.set_homing_target(target)
+		var/mob/M = target
+		if(istype(M) && M.anti_magic_check(chargecost = 0))
+			BB.homing_away = TRUE // And there it goes!
+
+/obj/item/ammo_casing/reusable/arrow/magic/on_land(var/obj/item/projectile/old_projectile)
+	dulled = TRUE
+	force = 3
+	throwforce = 0
+	sharpness = SHARP_NONE // It IS dull after all
+	. = ..()
 
 
 // Toy //

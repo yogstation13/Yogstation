@@ -23,6 +23,6 @@
 
 	if(istype(ammo_type, /obj/item/ammo_casing/reusable))
 		var/obj/item/ammo_casing/reusable/reusable_to_drop = thing_to_drop
-		reusable_to_drop.on_land()
+		reusable_to_drop.on_land(src)
 
 	dropped = TRUE

@@ -460,7 +460,7 @@
 	set hidden = TRUE
 
 	var/obj/item/I = get_active_held_item()
-	if (I)
+	if (!CHECK_BITFIELD(SEND_SIGNAL(src, COMSIG_MOB_QUICK_EQUIP, I), COMPONENT_BLOCK_QUICK_EQUIP) && I)
 		I.equip_to_best_slot(src)
 
 //used in code for items usable by both carbon and drones, this gives the proper back slot for each mob.(defibrillator, backpack watertank, ...)

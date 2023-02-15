@@ -2,7 +2,7 @@
 	name = "Mimicry"
 	desc = "Why fight your foes when you can simply outwit them? Disguises the caster as a random crewmember. The body-covering shell keeps your form as is, and protects you from body-altering effects."
 	invocation = "CONJR DIS GUISE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	school = "transmutation"
 	charge_max = 30 SECONDS
 	level_max = 2

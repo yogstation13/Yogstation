@@ -118,6 +118,14 @@
 	damage = 25
 	armour_penetration = 45 //18.75 damage against elite hardsuit assuming chest shot (and that's a long reload, draw, projectile speed, etc.)
 
+/obj/item/projectile/bullet/reusable/arrow/magic
+	name = "magic arrow"
+	desc = "A magic arrow thats probably tracking you, how nice!"
+	icon_state = "arrow_magic"
+	damage = 40
+	embed_chance = 0.6
+	armour_penetration = 0
+
 
 // Toy //
 

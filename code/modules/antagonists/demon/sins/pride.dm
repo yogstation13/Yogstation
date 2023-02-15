@@ -2,7 +2,7 @@
 	name = "Summon Mirror"
 	desc = "Summon forth a temporary mirror of sin that will allow you and others to change anything they want about themselves."
 	invocation = "Aren't I so amazing?"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	charge_max = 600
 	cooldown_min = 200
