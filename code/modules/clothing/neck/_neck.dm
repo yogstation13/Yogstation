@@ -349,7 +349,7 @@
 	/// What cloak is capped to
 	var/max_cloak = 100
 	/// How much the cloak charges per process
-	var/cloak_charge_rate = 10
+	var/cloak_charge_rate = 35
 	/// How much the cloak decreases when moving
 	var/cloak_move_loss = 5
 	/// How much the cloak decreases on a successful dodge
@@ -432,11 +432,10 @@
 	desc = "A dark red cape that uses advanced chameleon technology to make the wearer nearly invisible and aid them in dodging projectiles. Unable to sustain its image under distress or EMP."
 	icon_state = "syndie_cloak"
 	max_cloak = 75 //Max 75% dodge is a little quirky
-	cloak_charge_rate = 10
-	cloak_move_loss = 5
-	cloak_dodge_loss = 75 //Considering nukies are wearing this, they shouldn't get to dodge multiple times in a row
+	cloak_charge_rate = 20
+	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS
-	var/cloak_emp_loss = 20
+	var/cloak_emp_loss = 25
 
 /obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
 	. = ..()

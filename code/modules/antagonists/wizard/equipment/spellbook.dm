@@ -314,9 +314,9 @@
 
 /datum/spellbook_entry/item/breakbow
 	name = "Break Bow"
-	desc = "A bow consisting that can be taken apart to use the blades individualy. Comes with a spell to summon arrows"
+	desc = "A bladed bow that can be split into two swords which attack simultaneously as well as return to their thrower. Comes with a quiver of unlimited, powerful arrows."
 	item_path = /obj/item/gun/ballistic/bow/break_bow
-	cost = 1
+	cost = 2
 
 /datum/spellbook_entry/item/breakbow/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	. = ..()
@@ -382,7 +382,7 @@
 
 /datum/spellbook_entry/item/ranger_cloak
 	name = "Ranger Cloak"
-	desc = "A cape that make the wearer invisable and dodge projectiles, though the illusion weakens the more the wearer moves."
+	desc = "A cape that makes the wearer quickly invisible while standing still, permitting them to dodge ranged attacks. Moving or dodging projectiles reduces the effect."
 	item_path = /obj/item/clothing/neck/cloak/ranger
 	cost = 2
 	category = "Defensive"

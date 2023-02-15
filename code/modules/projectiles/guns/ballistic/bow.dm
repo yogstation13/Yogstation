@@ -270,11 +270,14 @@
 	icon_state = "breakbow"
 	item_state = "breakbow"
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 20	// You can still hit them with one of the blades
-	throwforce = 20
+	force = 40	// You can still hit them with both of the blades (better)
+	throwforce = 40 //Last ditch screaming
+	armour_penetration = 50 //Bro this shit's MAGIC
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	wound_bonus = 10
 	draw_time = 0.25 SECONDS
+	draw_slowdown = 0 //They're a wizard they need to zoom around
 	var/bladetype = /obj/item/break_blade
 
 /obj/item/gun/ballistic/bow/break_bow/Initialize()
@@ -304,8 +307,9 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 10, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
-	force = 20
-	throwforce = 15
+	force = 27 //Total of 54 damage = death in two clicks (probably) PLUS it doesn't care about anti-magic
+	throwforce = 45 //Can't return if it hits anti-magic
+	armour_penetration = 50 //Enchanted blade of fuck you
 	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	wound_bonus = 10
