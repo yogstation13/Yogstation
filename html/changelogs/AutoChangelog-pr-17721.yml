@@ -1,0 +1,4 @@
+author: " ynot01, Wejengin2"
+delete-after: true 
+changes: 
+  - experiment: "Psychiatrist has been reworked. They can now examine to detect traumas and have a wide variety of tools to cure them."
