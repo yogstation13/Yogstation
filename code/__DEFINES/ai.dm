@@ -1,6 +1,6 @@
 
 ///All AI machinery heat production is multiplied by this value
-#define AI_TEMPERATURE_MULTIPLIER 5 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
+#define AI_TEMPERATURE_MULTIPLIER 1 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
 ///Temperature limit of all AI machinery
 #define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
