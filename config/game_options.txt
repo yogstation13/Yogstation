@@ -129,7 +129,7 @@ PROBABILITY CLOCKWORK_CULT 5
 PROBABILITY SHADOWLING 6
 PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
-PROBABILITY MALF 8
+PROBABILITY MALF 0
 PROBABILITY CLOWNOPS 0 #Broke
 
 # Special
@@ -187,7 +187,7 @@ MIDROUND_ANTAG CLOCKWORK_CULT
 MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
-MIDROUND_ANTAG MALF
+#MIDROUND_ANTAG MALF
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
