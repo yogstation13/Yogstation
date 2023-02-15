@@ -23097,6 +23097,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
+"eXU" = (
+/obj/effect/turf_decal/arrows/white{
+	color = "#99ccff";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area)
 "eYk" = (
 /obj/machinery/door/poddoor{
 	id = "Shuttle Construction Storage";
@@ -54197,13 +54204,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"rTC" = (
-/obj/effect/turf_decal/arrows/white{
-	color = "#99ccff";
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "rTL" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -109190,7 +109190,7 @@ cdh
 nxT
 cKt
 nEH
-rTC
+eXU
 tTO
 jte
 pkP
