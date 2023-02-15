@@ -80,7 +80,7 @@
 	var/cure_chance = random_cure_chance / 6
 	if(HAS_TRAIT(hugger, TRAIT_FRIENDLY))
 		cure_chance *= 1.25
-	cure_chance *= psych_bonus(flasher) * 0.35 // hugging is not that good at curing trauma but it helps
+	cure_chance *= psych_bonus(hugger) * 0.35 // hugging is not that good at curing trauma but it helps
 	cure_chance *= check_hypno_vulnerable(hugged)
 	if(prob(cure_chance))
 		qdel(src) // Sometimes, all you need is a good hug..
