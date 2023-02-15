@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "IPC don't take hard crit damage if they have NOHARDCRIT trait"
