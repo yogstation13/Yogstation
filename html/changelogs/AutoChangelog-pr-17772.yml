@@ -1,0 +1,7 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - tweak: "Minigun TC Price reduction - 36 to 30"
+  - tweak: "Minigun Dmg increase - 34 to 36"
+  - tweak: "Minigun Slowdown reduction (1.5 to 1.4)"
+  - tweak: "Minigun Heat limit increased (30 to 50)"
