@@ -853,7 +853,7 @@
 	var/datum/DBQuery/query_edit_ban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")]
 		SET
-			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
+			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval]),
 			[format_table_name("ban")].applies_to_admins = :applies_to_admins,
 			[format_table_name("ban")].reason = :reason,
 			[format_table_name("ban")].ckey = :ckey,
