@@ -11044,18 +11044,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"axF" = (
-/obj/structure/curtain,
-/obj/machinery/shower{
-	pixel_y = 14
-	},
-/obj/machinery/door/window{
-	name = "Shower Door"
-	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/yogs/infiltrator_base)
 "axG" = (
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
@@ -13182,20 +13170,6 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aBX" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/obj/machinery/light/small,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/yogs/infiltrator_base)
 "aBY" = (
 /obj/item/toy/figure/syndie,
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -18142,19 +18116,6 @@
 "aKQ" = (
 /turf/open/floor/plating,
 /area/centcom/evac)
-"aKR" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/toilet{
-	pixel_y = 18
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/yogs/infiltrator_base)
 "aKS" = (
 /obj/machinery/door/window/northright{
 	name = "Security Desk";
@@ -25796,6 +25757,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"emJ" = (
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/yogs/infiltrator_base)
+"epT" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/yogs/infiltrator_base)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -25895,11 +25871,40 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"iYz" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/toilet{
+	pixel_y = 18
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/yogs/infiltrator_base)
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
 	},
 /area/centcom/testchamber)
+"jEN" = (
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 14
+	},
+/obj/machinery/door/window{
+	name = "Shower Door"
+	},
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/yogs/infiltrator_base)
 "jJm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26154,6 +26159,22 @@
 	icon_state = "info11"
 	},
 /area/centcom/testchamber)
+"qhT" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/yogs/infiltrator_base)
 "ria" = (
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/plasteel/dark,
@@ -45344,7 +45365,7 @@ aSX
 aSX
 aSX
 aSA
-axF
+jEN
 aLx
 aVB
 afi
@@ -45601,8 +45622,8 @@ aSX
 aSX
 aSX
 aSA
-aKR
-aBX
+iYz
+emJ
 aSA
 aSA
 aUx
@@ -45858,8 +45879,8 @@ aSX
 aSX
 aSX
 aSA
-aSA
-aSA
+epT
+qhT
 aSA
 aYp
 afd
@@ -46114,9 +46135,9 @@ aSX
 aSX
 aSX
 aSX
-aSX
-aSX
-aSX
+aSA
+aSA
+aSA
 aSA
 aOh
 afm
