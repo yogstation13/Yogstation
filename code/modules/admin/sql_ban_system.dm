@@ -858,7 +858,7 @@
 			[format_table_name("ban")].reason = :reason,
 			[format_table_name("ban")].ckey = :ckey,
 			[format_table_name("ban")].ip = INET_ATON(:ip),
-			[format_table_name("ban")].computerid = :ci
+			[format_table_name("ban")].computerid = :cid,
 			[format_table_name("ban")].edits = CONCAT(IFNULL(edits,''), :change_message)
 		WHERE [where]
 	"}, arguments)
