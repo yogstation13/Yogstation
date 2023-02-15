@@ -124,7 +124,7 @@
 		qdel(src)
 
 /datum/brain_trauma/proc/psych_bonus(mob/living/psych)
-	return HAS_TRAIT(laserer.mind, TRAIT_PSYCH) ? 10 : 1
+	return HAS_TRAIT(psych.mind, TRAIT_PSYCH) ? 10 : 1
 
 /datum/brain_trauma/proc/check_hypno_vulnerable(mob/living/carbon/victim)
 	if(istype(victim))
