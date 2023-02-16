@@ -937,7 +937,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
-	block_chance = 75 //Yogstation change. 50% to 75%.
+	block_chance = 60 //Yogstation change. 50% to 60%.
 	var/illusions = 5
 
 //Start of Yogstation Change: Refactors mirror shield.
@@ -965,7 +965,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	. = ..()
 
 	if(.)
-		if(illusions > 0)
+		if(illusions >= 1)
 			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 			illusions--
 			addtimer(CALLBACK(src, /obj/item/shield/mirror.proc/readd), 450)
