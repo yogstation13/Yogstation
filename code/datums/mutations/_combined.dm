@@ -25,10 +25,6 @@
 	required = "/datum/mutation/human/shock; /datum/mutation/human/telekinesis"
 	result = SHOCKTOUCHFAR
 
-/datum/generecipe/antiglow
-	required = "/datum/mutation/human/glow; /datum/mutation/human/void"
-	result = ANTIGLOWY
-
 /datum/generecipe/cerebral
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/mindreader"
 	result = CEREBRAL
