@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - bugfix: "Atmos fire fighting backpack will now launch resin globs correctly again"
