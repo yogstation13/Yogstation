@@ -147,7 +147,7 @@
 		drop_part(robot_arm, Tsec)
 
 	do_sparks(3, TRUE, src)
-	for(var/IS = 0 to 4)
+	for(var/IS = 0 to 3) // dont set this to 4 or itll drop 5 swords idiot
 		drop_part(baton_type, Tsec)
 	new /obj/effect/decal/cleanable/oil(Tsec)
 	qdel(src)
