@@ -14,7 +14,7 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 30
+	var/overheat_max = 50
 	var/heat_stage = 0
 	var/heat_diffusion = 2
 
@@ -109,7 +109,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
-	slowdown = 2
+	slowdown = 1.4
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()

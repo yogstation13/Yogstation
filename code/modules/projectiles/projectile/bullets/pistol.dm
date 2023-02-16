@@ -3,6 +3,7 @@
 /obj/item/projectile/bullet/c9mm
 	name = "9mm bullet"
 	damage = 20
+	wound_bonus = -10
 
 /obj/item/projectile/bullet/c9mm/ap
 	name = "9mm armor-piercing bullet"
@@ -19,6 +20,7 @@
 /obj/item/projectile/bullet/c10mm
 	name = "10mm bullet"
 	damage = 30
+	wound_bonus = -30
 
 /obj/item/projectile/bullet/c10mm/ap
 	name = "10mm armor-piercing bullet"
@@ -48,13 +50,13 @@
 
 /obj/item/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
-	damage = 20
+	damage = 25
 	fire_stacks = 2
 
 /obj/item/projectile/bullet/c10mm/emp
 	name = "10mm EMP bullet"
-	damage = 20
+	damage = 25
 
 /obj/item/projectile/bullet/c10mm/emp/on_hit(atom/target, blocked = FALSE)
 	..()
-	empulse(target, -1, 0) //Only EMPs whatever's hit
+	empulse(target, 0.5, 1) //Heavy EMP on target, light EMP in tiles around

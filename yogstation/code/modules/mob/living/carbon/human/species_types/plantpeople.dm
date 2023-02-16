@@ -36,6 +36,8 @@
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
 
+	smells_like = "bloody grass"
+
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
 	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))
@@ -279,5 +281,32 @@
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
+
+/datum/species/pod/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_pod_name(gender)
+	return pod_name(gender)
+
+/datum/species/pod/get_species_description()
+	return ""//"TODO: This is plant description"
+
+/datum/species/pod/get_species_lore()
+	return list(
+		""//"TODO: This is plant lore"
+	)
+
+/datum/species/pod/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/pod/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
 
 #undef STATUS_MESSAGE_COOLDOWN

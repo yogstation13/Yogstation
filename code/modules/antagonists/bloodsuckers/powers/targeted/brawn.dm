@@ -130,7 +130,7 @@
 				span_danger("[user] lands a vicious punch, sending [target] away!"), \
 				span_userdanger("[user] has landed a horrifying punch on you, sending you flying!"),
 			)
-			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
+			target.Knockdown(min(5 SECONDS, rand(1 SECONDS, 1 SECONDS * powerlevel)))
 		// Attack!
 		to_chat(owner, span_warning("You punch [target]!"))
 		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, TRUE, -1)
@@ -213,23 +213,19 @@
 	var/mob/living/carbon/human/H = target_atom
 	H.apply_status_effect(STATUS_EFFECT_SHADOWAFFLICTED)
 	var/turf/T = get_turf(H)
-	for(var/datum/light_source/LS in T.affecting_lights)
+	for(var/datum/light_source/LS in T.get_affecting_lights())
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			var/obj/item/I = LO
 			if(istype(I, /obj/item/clothing/head/helmet/space/hardsuit))
 				var/obj/item/clothing/head/helmet/space/hardsuit/HA = I
-				if(HA.on)
-					HA.on = FALSE
+				HA.set_light_on(FALSE)
 			if(istype(I, /obj/item/clothing/head/helmet/space/plasmaman))
 				var/obj/item/clothing/head/helmet/space/plasmaman/PA = I
-				if(PA.on)
-					PA.on = FALSE
+				PA.set_light_on(FALSE)
 			if(istype(I, /obj/item/flashlight))
 				var/obj/item/flashlight/F = I
-				if(F.on)
-					F.on = FALSE
-					F.update_brightness()
+				F.set_light_on(FALSE)
 		if(istype(LO, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)

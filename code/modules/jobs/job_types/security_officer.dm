@@ -1,6 +1,9 @@
 /datum/job/officer
 	title = "Security Officer"
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
 	flag = OFFICER
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -15,7 +18,7 @@
 
 	outfit = /datum/outfit/job/security
 
-	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer")
+	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer", "Peacekeeper")
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
@@ -26,7 +29,9 @@
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
-	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
@@ -36,19 +41,7 @@
 		///obj/item/melee/baton/security/boomerang/loaded = 1
 	)
 
-/datum/job/officer/proc/EclipseStationChanges()
-	total_positions = 14
-	spawn_positions = 10
-
-/datum/job/officer/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
-
-/datum/job/officer/proc/OmegaStationChanges()
-	total_positions = 3
-	spawn_positions = 3
-	added_access = list()
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
+	smells_like = "donuts"
 
 /datum/job/officer/get_access()
 	var/list/L = list()
@@ -62,7 +55,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	// Assign department security
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_security_department
+		department = M.client?.prefs?.read_preference(/datum/preference/choiced/security_department)
 		if(!LAZYLEN(GLOB.available_depts_sec) || department == "None")
 			return
 		else if(department in GLOB.available_depts_sec)
@@ -95,7 +88,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			accessory =  /obj/item/clothing/accessory/armband/medblue
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX)
+			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY)
 			destination = /area/security/checkpoint/science
 			spawn_point = locate(/obj/effect/landmark/start/depsec/science) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/science
@@ -158,7 +151,6 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
-	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(/obj/item/melee/baton/loaded=1)
 
 	backpack = /obj/item/storage/backpack/security

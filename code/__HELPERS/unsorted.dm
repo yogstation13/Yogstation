@@ -186,7 +186,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-/mob/proc/apply_pref_name(role, client/C)
+/mob/proc/apply_pref_name(preference_type, client/C)
 	if(!C)
 		C = client
 	var/oldname = real_name
@@ -197,20 +197,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/banned = C ? is_banned_from(C.ckey, "Appearance") : null
 
 	while(loop && safety < 5)
-		if(C && C.prefs.custom_names[role] && !safety && !banned)
-			newname = C.prefs.custom_names[role]
+		if(!safety && !banned)
+			newname = C?.prefs?.read_preference(preference_type)
 		else
-			switch(role)
-				if("human")
-					newname = random_unique_name(gender)
-				if("clown")
-					newname = pick(GLOB.clown_names)
-				if("mime")
-					newname = pick(GLOB.mime_names)
-				if("ai")
-					newname = pick(GLOB.ai_names)
-				else
-					return FALSE
+			var/datum/preference/preference = GLOB.preference_entries[preference_type]
+			newname = preference.create_informed_default_value(C.prefs)
 
 		for(var/mob/living/M in GLOB.player_list)
 			if(M == src)
@@ -582,69 +573,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 /area/proc/addSorted()
 	GLOB.sortedAreas.Add(src)
 	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
-
-//Takes: Area type as a text string from a variable.
-//Returns: Instance for the area in the world.
-/proc/get_area_instance_from_text(areatext)
-	if(istext(areatext))
-		areatext = text2path(areatext)
-	return GLOB.areas_by_type[areatext]
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype, subtypes=TRUE)
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	else if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-	else if(!ispath(areatype))
-		return null
-
-	var/list/areas = list()
-	if(subtypes)
-		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(cache[A.type])
-				areas += V
-	else
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(A.type == areatype)
-				areas += V
-	return areas
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	else if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-	else if(!ispath(areatype))
-		return null
-
-	var/list/turfs = list()
-	if(subtypes)
-		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(!cache[A.type])
-				continue
-			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
-					turfs += T
-	else
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(A.type != areatype)
-				continue
-			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
-					turfs += T
-	return turfs
 
 /proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
@@ -1459,9 +1387,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(is_servant_of_ratvar(V) || isobserver(V))
 			. += V
 
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
-
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
@@ -1496,7 +1421,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/clothing,
 		/obj/item/reagent_containers/food/snacks/grown/shell, //base types
 		/obj/item/reagent_containers/food/snacks/store/bread,
-		/obj/item/reagent_containers/food/snacks/grown/nettle
+		/obj/item/reagent_containers/food/snacks/grown/nettle,
+		/obj/item/reagent_containers/food/snacks/fish // debug fish
 		)
 	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable)
 
@@ -1512,7 +1438,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
-		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/blue,
 		/mob/living/simple_animal/hostile/retaliate/goat/brown,
 		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
@@ -1538,7 +1463,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
-		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/ras,
 		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
 		/mob/living/simple_animal/hostile/retaliate/goat/confetti,

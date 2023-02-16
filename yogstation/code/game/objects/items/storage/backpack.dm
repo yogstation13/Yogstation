@@ -6,8 +6,7 @@
 	var/cut = FALSE
 	var/appears_split = FALSE
 
-/obj/item/storage/backpack/holding/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
-	state = item_state
+/obj/item/storage/backpack/holding/build_worn_icon(var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
 	if(default_icon_file == 'icons/mob/clothing/head/head.dmi')
 		default_icon_file = 'yogstation/icons/mob/clothing/head/head.dmi' // thats a fun dilemma.... how to keep the tg sprites when doing back but do yogs sprites when worn on head.
 	return ..()
@@ -165,17 +164,13 @@
 
 /obj/item/disabled_boh
 	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless"
+	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless."
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "brokenpack"
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
-
-/obj/item/disabled_boh/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
-	state = "brokenpack"
-	return ..()
 
 //Nick's snail shit
 

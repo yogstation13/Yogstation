@@ -15,6 +15,7 @@
 		to_chat(src, span_notice("You're too exhausted to keep going..."))
 	SEND_SIGNAL(src, COMSIG_CARBON_STATUS_STAMCRIT)
 	stam_paralyzed = TRUE
+	update_mobility()
 
 /mob/living/carbon/adjust_drugginess(amount)
 	druggy = max(druggy+amount, 0)

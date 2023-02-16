@@ -269,7 +269,7 @@
 		to_chat(user, span_notice("[target] is not a tile!"))
 		return
 	if(use_paint(user))
-		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
+		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, FALSE, color, null, null, 255)
 
 /obj/item/airlock_painter/decal/attack_self(mob/user)
 	. = ..()

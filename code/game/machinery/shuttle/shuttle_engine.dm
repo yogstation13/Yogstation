@@ -221,6 +221,7 @@
 	update_engine()
 
 /obj/machinery/shuttle/engine/ion/proc/on_capacitor_deleted(datum/source, force)
+	SIGNAL_HANDLER
 	register_capacitor_bank(null)
 
 

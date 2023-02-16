@@ -1,6 +1,10 @@
 /datum/job/cargo_tech
 	title = "Cargo Technician"
+	description = "Distribute supplies to the departments that ordered them, \
+		collect empty crates, load and unload the supply shuttle, \
+		ship bounty cubes."
 	flag = CARGOTECH
+	orbit_icon = "box"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -21,6 +25,10 @@
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 	minimal_character_age = 18 //We love manual labor and exploiting the young for our corporate purposes
 
+	departments_list = list(
+		/datum/job_department/cargo,
+	)
+
 	mail_goodies = list(
 		/obj/item/pizzabox = 10,
 		/obj/item/stack/sheet/mineral/gold = 5,
@@ -29,18 +37,7 @@
 		/obj/item/gun/ballistic/rifle/boltaction = 1
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
-/datum/job/cargo_tech/proc/EclipseStationChanges()
-	total_positions = 5
-	spawn_positions = 4
-
-/datum/job/cargo_tech/proc/OmegaStationChanges()
-	total_positions = 2
-	spawn_positions = 2
-	added_access = list()
-	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
-	supervisors = "the head of personnel"
+	smells_like = "cardboard"
 
 /datum/outfit/job/cargo_tech
 	name = "Cargo Technician"

@@ -1,7 +1,9 @@
 /obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
-	damage = 46
+	var/tile_dropoff = 3
+	var/tile_dropoff_s = 2.25
+	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
 
@@ -65,21 +67,37 @@
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
+/obj/item/projectile/bullet/shotgun/slug/uranium
+	name = "depleted uranium slug"
+	icon_state = "ubullet"
+	damage = 35 //Most certainly to drop below 3-shot threshold because of damage falloff
+	armour_penetration = 60 // he he funny round go through armor
+	wound_bonus = -40
+	penetrating = TRUE //Goes through an infinite number of mobs
+
+/obj/item/projectile/bullet/shotgun/slug/Range()
+	..()
+	if(damage > 0)
+		damage -= tile_dropoff
+	if(stamina > 0)
+		stamina -= tile_dropoff_s
+
 /obj/item/projectile/bullet/pellet
 	speed = 0.5 //Shotgun = slower
-	var/tile_dropoff = 0.45
-	var/tile_dropoff_s = 0.35
+	var/tile_dropoff = 0.4
+	var/tile_dropoff_s = 0.3
+	armour_penetration = -20 //Armor is 25% stronger against pellets
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 12
+	damage = 11 //Total of 66
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
 	
 /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
 	name = "syndicate buckshot pellet"
-	damage = 15.5 //7 damage more and crit instantly assuming PBS
+	damage = 14.5 //3.5 more damage so it sucks less?
 	wound_bonus = 2
 	bare_wound_bonus = 2
 	wound_falloff_tile = -2.5
@@ -87,10 +105,10 @@
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
 	speed = 0.4 //You're special
-	damage = 13
+	damage = 12
 	wound_bonus = 4
 	bare_wound_bonus = 4
-	armour_penetration = 40
+	armour_penetration = 40 //You're the exception of pellets not sucking against armor because ??
 	tile_dropoff = 0.35 //Ranged pellet because I guess?
 	wound_falloff_tile = -1
 
@@ -102,7 +120,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 14.5
+	stamina = 13 //Total of 78 with less falloff (very big)
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
@@ -117,13 +135,27 @@
 		var/mob/living/M = target
 		M.adjust_bodytemperature((temperature - M.bodytemperature))
 
-/obj/item/projectile/bullet/shotgun/slug/uranium
-	name = "depleted uranium slug"
-	icon_state = "ubullet"
-	damage = 26
-	armour_penetration = 60 // he he funny round go through armor
-	wound_bonus = -40
-	penetrating = TRUE //Goes through an infinite number of mobs
+/obj/item/projectile/bullet/pellet/shotgun_improvised
+	name = "improvised pellet"
+	damage = 6
+	wound_bonus = 0
+	bare_wound_bonus = 7.5
+	tile_dropoff = 0.35
+
+/obj/item/projectile/bullet/pellet/shotgun_improvised/on_range()
+	do_sparks(1, TRUE, src)
+	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot
+	name = "thundershot pellet"
+	damage = 3
+	sharpness = SHARP_NONE
+	hitsound = 'sound/magic/lightningbolt.ogg'
+
+/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
+	..()
+	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
@@ -133,21 +165,6 @@
 		stamina -= tile_dropoff_s
 	if(damage < 0 && stamina < 0)
 		qdel(src)
-
-/obj/item/projectile/bullet/pellet/shotgun_improvised
-	name = "improvised pellet"
-	damage = 6
-	wound_bonus = 0
-	bare_wound_bonus = 7.5
-	tile_dropoff = 0.35	//Will likely disappear anyway befoer this really matters
-
-/obj/item/projectile/bullet/pellet/shotgun_improvised/Initialize()
-	. = ..()
-	range = rand(1, 8)
-
-/obj/item/projectile/bullet/pellet/shotgun_improvised/on_range()
-	do_sparks(1, TRUE, src)
-	..()
 
 // Mech Scattershot
 
@@ -166,15 +183,4 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
-
-/obj/item/projectile/bullet/pellet/shotgun_thundershot
-	name = "thundershot pellet"
-	damage = 3
-	sharpness = SHARP_NONE
-	hitsound = 'sound/magic/lightningbolt.ogg'
-
-/obj/item/projectile/bullet/pellet/shotgun_thundershot/on_hit(atom/target)
-	..()
-	tesla_zap(target, rand(2, 3), 17500, TESLA_MOB_DAMAGE)
-	return BULLET_ACT_HIT
 	

@@ -25,21 +25,23 @@
 	med_hud_set_status()
 
 /mob/living/Destroy()
-	if(LAZYLEN(status_effects))
-		for(var/s in status_effects)
-			var/datum/status_effect/S = s
-			if(S.on_remove_on_mob_delete) //the status effect calls on_remove when its mob is deleted
-				qdel(S)
-			else
-				S.be_replaced()
+	for(var/datum/status_effect/effect as anything in status_effects)
+		// The status effect calls on_remove when its mob is deleted
+		if(effect.on_remove_on_mob_delete)
+			qdel(effect)
+		else
+			effect.be_replaced()
+	
 	if(ranged_ability)
 		ranged_ability.remove_ranged_ability(src)
+
 	if(buckled)
 		buckled.unbuckle_mob(src,force=1)
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
 	QDEL_LIST(diseases)
+	QDEL_LIST(surgeries)
 	return ..()
 
 /mob/living/onZImpact(turf/T, levels)
@@ -283,7 +285,7 @@
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
-			M.LAssailant = usr
+			M.LAssailant = WEAKREF(usr)
 		if(isliving(M))
 			var/mob/living/L = M
 			//Share diseases that are spread by touch
@@ -441,7 +443,7 @@
 		to_chat(src, span_notice("You are already sleeping."))
 		return
 	else
-		if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
+		if(tgui_alert(usr, "You sure you want to sleep for a while?", "Sleep", list("Yes", "No")) == "Yes")
 			SetSleeping(400) //Short nap
 	update_mobility()
 
@@ -849,7 +851,7 @@
 	who.visible_message(span_danger("[src] tries to remove [who]'s [what.name]."), \
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
-	SEND_SIGNAL(who, COMSIG_ITEM_PRESTRIP)
+	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
 	if(do_mob(src, who, what.strip_delay))
 		if(what && Adjacent(who))
 			if(islist(where))

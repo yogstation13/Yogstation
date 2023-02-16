@@ -1,0 +1,10 @@
+// Used to direct channels to speak into.
+#define SAY_CHANNEL "Say"
+#define RADIO_CHANNEL "Radio"
+#define ME_CHANNEL "Me"
+#define OOC_CHANNEL "OOC"
+#define LOOC_CHANNEL "LOOC"
+#define ASAY_CHANNEL "ASay"
+#define MSAY_CHANNEL "MSay"
+#define DONORSAY_CHANNEL "DonorSay"
+#define DEADSAY_CHANNEL "DeadSay"

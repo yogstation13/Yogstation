@@ -50,6 +50,9 @@
 	else
 		holder.icon_state = "hudgland_spent"
 
+/obj/item/organ/heart/gland/update_icon()
+	return // stop it from switching to the non existent heart_on sprite
+	
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
 		return FALSE
@@ -145,8 +148,8 @@
 	owner.vomit(20)
 
 	var/mob/living/simple_animal/slime/Slime = new(get_turf(owner), "grey")
-	Slime.Friends = list(owner)
-	Slime.Leader = owner
+	Slime.set_friends(list(owner))
+	Slime.set_leader(owner)
 
 /obj/item/organ/heart/gland/mindshock
 	true_name = "neural crosstalk uninhibitor"
@@ -462,7 +465,7 @@
 	owner.adjustToxLoss(-5, TRUE, TRUE)
 	..()
 
-/obj/item/organ/heart/gland/plasma
+/obj/item/organ/heart/gland/gas //Yogstation change: plasma -> gas
 	true_name = "effluvium sanguine-synonym emitter"
 	cooldown_low = 2 MINUTES
 	cooldown_high = 3 MINUTES
@@ -470,16 +473,16 @@
 	mind_control_uses = 1
 	mind_control_duration = 80 SECONDS
 
-/obj/item/organ/heart/gland/plasma/activate()
+/obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
-	addtimer(CALLBACK(src, .proc/vomit_plasma), 20 SECONDS)
+	addtimer(CALLBACK(src, .proc/vomit_gas), 20 SECONDS) //Yogstation change: plasma -> gas
 
-/obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
+/obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas
 	if(!owner)
 		return
-	owner.visible_message(span_danger("[owner] vomits a cloud of plasma!"))
+	owner.visible_message(span_danger("[owner] vomits a cloud of miasma!")) //Yogstation change: plasma -> miasma
 	var/turf/open/T = get_turf(owner)
 	if(istype(T))
-		T.atmos_spawn_air("plasma=50;TEMP=[T20C]")
+		T.atmos_spawn_air("miasma=50;TEMP=[T20C]") //Yogstation change: plasma -> miasma
 	owner.vomit()

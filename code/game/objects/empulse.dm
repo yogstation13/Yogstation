@@ -22,7 +22,7 @@
 			distance = 0
 		if(distance < heavy_range)
 			T.emp_act(EMP_HEAVY)
-		else if(distance == heavy_range)
+		else if(heavy_range && distance == heavy_range)	//0 radius heavy EMPs will have no effect
 			if(prob(50))
 				T.emp_act(EMP_HEAVY)
 			else

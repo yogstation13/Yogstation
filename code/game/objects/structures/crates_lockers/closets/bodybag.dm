@@ -289,7 +289,7 @@
 	foldedbag_path = /obj/item/bodybag/environmental/prisoner/syndicate
 	weather_protection = list(WEATHER_ALL)
 	breakout_time = 8 MINUTES
-	sinch_time = 20 SECONDS
+	sinch_time = 4 SECONDS
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
 	. = ..()
@@ -297,14 +297,14 @@
 
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
-	if(sinched && !air_contents)
+	if(sinched)
 		refresh_air()
 	else if(!sinched && air_contents)
 		air_contents = null
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/proc/refresh_air()
 	air_contents = null
-	air_contents = new(50) //liters
+	air_contents = new(50) // liters
 	air_contents.set_temperature(T20C)
 	air_contents.set_moles(/datum/gas/oxygen, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
 	air_contents.set_moles(/datum/gas/nitrous_oxide, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
@@ -327,11 +327,9 @@
 		return air_contents // The internals for this bag are bottomless. Syndicate bluespace trickery.
 	return ..(amount)
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/analyzer_act(mob/living/user, obj/item/I)
-	if(sinched)
-		update_airtightness()
-		atmosanalyzer_scan(air_contents, user, src)
-	return ..()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/return_analyzable_air()
+	update_airtightness()
+	return air_contents
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/togglelock(mob/living/user, silent)
 	. = ..()

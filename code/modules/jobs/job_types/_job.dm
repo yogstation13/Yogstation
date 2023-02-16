@@ -1,17 +1,42 @@
 /datum/job
 	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
+
+	/// The description of the job, used for preferences menu.
+	/// Keep it short and useful. Avoid in-jokes, these are for new players.
+	var/description
+
 	/// This job comes with these accesses by default
 	var/list/base_access = list()
+
 	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
 	var/list/added_access = list()
+
 	/// Who is responsible for demoting them
 	var/department_head = list()
+
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
+
 	// Used for something in preferences_savefile.dm
+	// NOTE: currently unused
 	var/department_flag = NONE
+
+	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
+	var/departments_bitflags = NONE
+
+	/// If specified, this department will be used for the preferences menu.
+	var/datum/job_department/department_for_prefs = null
+
+	/// Lazy list with the departments this job belongs to.
+	/// Required to be set for playable jobs.
+	/// The first department will be used in the preferences menu,
+	/// unless department_for_prefs is set.
+	/// TODO: Currently not used so will always be empty! Change this to department datums
+	var/list/departments_list = null
+
 	var/flag = NONE //Deprecated
+	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
 	// Players will be allowed to spawn in as jobs that are set to "Station"
@@ -42,10 +67,10 @@
 	var/exp_requirements = 0
 	/// Which type of XP is required see `EXP_TYPE_` in __DEFINES/preferences.dm
 	var/exp_type = ""
-	/// Department XP required
+	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
-	var/antag_rep = 10
+	var/antag_rep = 3
 	/// Base pay of the job
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
@@ -64,6 +89,12 @@
 	var/exclusive_mail_goodies = FALSE
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+	///The text a person using olfaction will see for the job of the target's scent
+	var/smells_like = "a freeloader"
+
+	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
+	var/orbit_icon
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
@@ -85,6 +116,16 @@
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
+
+	Here is another example of using this:
+
+	/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
+	supervisors = "the captain and the head of personnel"
 	*/
 
 /datum/job/New()
@@ -115,7 +156,7 @@
 	return TRUE
 
 /datum/job/proc/GetAntagRep()
-	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
+	. = CONFIG_GET(keyed_list/antag_rep)[replacetext(lowertext(title)," ", "_")]
 	if(. == null)
 		return antag_rep
 
@@ -128,7 +169,7 @@
 	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
-			H.apply_pref_name("human", preference_source)
+			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
@@ -159,10 +200,17 @@
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
 
+/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	return
+
+/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	dna.species.before_equip_job(equipping, src, visual_only)
+	equipOutfit(equipping.outfit, visual_only)
+
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer_here, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -203,6 +251,8 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
 	ipc_box = /obj/item/storage/box/ipc
+
+	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
@@ -303,6 +353,16 @@
 	types += satchel
 	types += duffelbag
 	return types
+
+/datum/outfit/job/get_types_to_preload()
+	var/list/preload = ..()
+	preload += backpack
+	preload += satchel
+	preload += duffelbag
+	preload += /obj/item/storage/backpack/satchel/leather
+	var/skirtpath = "[uniform]/skirt"
+	preload += text2path(skirtpath)
+	return preload
 
 /// An overridable getter for more dynamic goodies.
 /datum/job/proc/get_mail_goodies(mob/recipient)

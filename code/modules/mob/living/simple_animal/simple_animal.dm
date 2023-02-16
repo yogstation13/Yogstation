@@ -300,10 +300,10 @@
 		verb_say = pick(speak_emote)
 	. = ..()
 
-/mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
+/mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE, is_keybind = FALSE)
 	if(stat)
-		return
-	. = ..()
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value

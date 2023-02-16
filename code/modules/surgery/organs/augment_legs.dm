@@ -7,12 +7,49 @@
 
 	//to determine what type of implant for checking if both legs are the same
 	var/implant_type = "leg implant"
+	COOLDOWN_DECLARE(emp_notice)
 
 /obj/item/organ/cyberimp/leg/Initialize()
 	. = ..()
 	update_icon()
 	SetSlotFromZone()
 
+/obj/item/organ/cyberimp/leg/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	
+	var/obj/item/bodypart/L = owner.get_bodypart(zone)
+	if(!L)	//how did you get an implant in a limb you don't have?
+		return
+
+	L.receive_damage(5,0,10)	//always take a least a little bit of damage to the leg
+
+	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
+		if(COOLDOWN_FINISHED(src, emp_notice))
+			to_chat(owner, span_warning("The EMP causes the [src] in your [L] to twitch randomly!"))
+			COOLDOWN_START(src, emp_notice, 30 SECONDS)
+		return
+
+	L.set_disabled(TRUE)	//disable the bodypart
+	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+	if(severity & EMP_HEAVY && prob(5))	//put probabilities into a calculator before you try fucking with this
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly breaking it!"))	
+		var/datum/wound/blunt/severe/breakdown = new
+		breakdown.apply_wound(L)
+		L.receive_damage(20)
+	else if(COOLDOWN_FINISHED(src, emp_notice))
+		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your [L] from moving!"))
+		COOLDOWN_START(src, emp_notice, 30 SECONDS)
+
+/obj/item/organ/cyberimp/leg/proc/reenableleg()
+	var/obj/item/bodypart/L = owner.get_bodypart(zone)
+	if(!L)	//You got emped and then lost the leg in those 10 seconds? impressive
+		return
+
+	L.set_disabled(FALSE)
+	
 /obj/item/organ/cyberimp/leg/proc/SetSlotFromZone()
 	switch(zone)
 		if(BODY_ZONE_L_LEG)
@@ -178,7 +215,7 @@
 
 /datum/action/innate/boost/IsAvailable()
 	if(COOLDOWN_FINISHED(src, dash_cooldown))
-		return TRUE
+		return ..()
 	else
 		to_chat(holder, span_warning("The implant's internal propulsion needs to recharge still!"))
 		return FALSE

@@ -1,6 +1,8 @@
 /datum/job/psych
 	title = "Psychiatrist"
+	description = "Diagnose crew members with psychological issues and aid their treatment."
 	flag = PSYCH
+	orbit_icon = "brain"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -17,17 +19,21 @@
 	base_access = list(ACCESS_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
+	mind_traits = list(TRAIT_PSYCH)
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 	minimal_character_age = 24 //Psychology, therapy, and the like; all branches that would probably need to be certified as properly educated
 
-	changed_maps = list("OmegaStation","GaxStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
+
+	changed_maps = list("GaxStation")
 
 	mail_goodies = list(
 		/obj/item/gun/ballistic/revolver/russian = 1
 	)
 
-/datum/job/psych/proc/OmegaStationChanges()
-	return TRUE
+	smells_like = "calm peace"
 
 /datum/job/psych/proc/GaxStationChanges() // I'M SORRY
 	return TRUE

@@ -6,6 +6,13 @@
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+// Cannot be directly loaded into guns with internal magazines, but can load magazines/cylinders
+/obj/item/ammo_box/no_direct/a357
+	name = "ammo box (.357)"
+	icon_state = "357box"
+	ammo_type = /obj/item/ammo_casing/a357
+	max_ammo = 20
+
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
 	desc = "A seven-shot speed loader designed for .357 revolvers. \
@@ -74,7 +81,7 @@
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
 	desc = "A seven-shot speed loader designed for the Caldwell Tracking Revolver. \
-			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
+			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is five minutes."
 	icon_state = "32trac"
 	ammo_type = /obj/item/ammo_casing/tra32
 	max_ammo = 7
