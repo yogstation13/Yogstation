@@ -488,7 +488,7 @@
 	id = "autolathe"
 	build_path = /obj/item/circuitboard/machine/autolathe
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL		//Lets be honest here half the maps have public ones.
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENT_FLAG_SCIENCE | DEPARTMENT_FLAG_CARGO		//Lets be honest here half the maps have public ones.
 
 /datum/design/board/recharger
 	name = "Machine Design (Weapon Recharger Board)"
