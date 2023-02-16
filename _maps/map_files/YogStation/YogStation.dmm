@@ -22156,6 +22156,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"eKH" = (
+/obj/structure/sign/warning/radiation,
+/turf/closed/wall,
+/area/engine/engineering)
 "eKU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -33436,10 +33440,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"jmH" = (
-/obj/structure/sign/warning/radiation,
-/turf/closed/wall/r_wall,
-/area/engine/engineering)
 "jmL" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -43051,31 +43051,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"njT" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/highsecurity{
-	id_tag = "ai_core_airlock_interior";
-	name = "AI Core";
-	req_access_txt = "65"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "aicoredoor";
-	name = "AI Chamber entrance shutters"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "njY" = (
 /obj/machinery/camera{
 	c_tag = "Aft Primary Hallway 2";
@@ -56528,6 +56503,31 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"sTf" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	id_tag = "ai_core_airlock_interior";
+	name = "AI Core";
+	req_access_txt = "65"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "aicoredoor";
+	name = "AI Chamber entrance shutters"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "sTj" = (
 /obj/structure/sink{
 	dir = 8;
@@ -103439,7 +103439,7 @@ eoC
 mrK
 jXI
 kra
-ccw
+cig
 vwZ
 mvb
 cig
@@ -103696,14 +103696,14 @@ uLO
 uLO
 uLO
 xhr
-ccw
+cig
 plE
 gha
-ccw
+cig
 aaa
 mXz
 aaa
-jmH
+eKH
 ucZ
 cig
 aaa
@@ -111422,7 +111422,7 @@ cva
 cva
 cva
 cva
-njT
+sTf
 cva
 cva
 cva
