@@ -162,20 +162,32 @@
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
+#define HAMMER_CLOSED 0
+#define HAMMER_RELOAD 1
+#define HAMMER_FULL 2
 
 /obj/item/gun/ballistic/revolver/single_action
 	name = ".44 Magnum single action revolver"
 	desc = "A single action fixed cylinder revolver. Ineffective in the hands of an inexperienced user due to the lack of automation found in more recently designed weapons, though its robust construction allows it to chamber powerful ammunition. Uses .44 Magnum ammo."
 	icon_state = "single-action"
-	///whether we are shooting or reloading
-	var/reload_mode = FALSE
-	///if the hammer is in firing position
-	var/hammer_set = FALSE
+	///current hampter position
+	var/hammer_set = HAMMER_CLOSED
+
+/obj/item/gun/ballistic/revolver/single_action/update_icon()
+	cut_overlays()
+	switch(hammer_set)
+		if(HAMMER_CLOSED)
+			add_overlay("[icon_state]_closed")
+		if(HAMMER_RELOAD)
+			add_overlay("[icon_state]_half")
+		if(HAMMER_FULL)
+			add_overlay("[icon_state]_full")
+
 
 /obj/item/gun/ballistic/revolver/single_action/examine(mob/user)
 	. = ..()
-	. += "Use in hand to switch between reloading and firing. Currently [reload_mode ? "reloading" : "firing"]."
-	if(reload_mode)
+	. += "Use in hand to switch between reloading and firing. Currently [hammer_set == HAMMER_RELOAD ? "reloading" : "firing"]."
+	if(hammer_set == HAMMER_RELOAD)
 		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
 		. += "The currently accessible chamber is [casing ? casing.BB ? "loaded" : "spent" : "empty"]."
 
@@ -183,7 +195,7 @@
 	. += "While reloading, attempting to shoot will rotate the cylinder and eject spent casings, Alt-Click to eject any bullet in the accessible cylinder, spent or not."
 
 /obj/item/gun/ballistic/revolver/single_action/afterattack(atom/target, mob/living/user, flag, params)
-	if(reload_mode)
+	if(hammer_set == HAMMER_RELOAD)
 		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
 		var/obj/item/ammo_box/magazine/internal/cylinder/cylinder = magazine
 		user.changeNext_move(CLICK_CD_RANGE)
@@ -197,31 +209,34 @@
 		casing = magazine.get_round(TRUE, FALSE)
 		balloon_alert(user, casing ? casing.BB ? "Chamber loaded" : "Chamber spent" : "Chamber empty")
 		return
-	if(hammer_set || (ismob(target) && user.a_intent == INTENT_GRAB)) //able to shoot or attempting a holdup
+	if(hammer_set == HAMMER_FULL || (ismob(target) && user.a_intent == INTENT_GRAB)) //able to shoot or attempting a holdup
 		return ..()
 	to_chat(user, span_warning("You pull back [src]'s hammer."))
 	playsound(src, dry_fire_sound, 30, TRUE)
 	user.changeNext_move(CLICK_CD_RANGE)
-	hammer_set = TRUE
+	var/mutable_appearance/hammer = mutable_appearance(icon, "single-action_anim", 1)
+	flick(hammer, src)
+	hammer_set = HAMMER_FULL
+	update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/attack_self(mob/user)
-	if(reload_mode)
+	if(hammer_set == HAMMER_RELOAD)
 		balloon_alert(user, "Now aiming.")
 		to_chat(user, span_warning("You pull [src]'s hammer the rest of the way back and prepare to fire."))
 		user.changeNext_move(CLICK_CD_RANGE)
-		reload_mode = FALSE
 		playsound(src, dry_fire_sound, 30, TRUE)
-		hammer_set = TRUE
+		hammer_set = HAMMER_FULL
 		chamber_round(FALSE)
+		update_icon()
 	else
 		balloon_alert(user, "Now reloading.")
 		to_chat(user, span_warning("You pull [src]'s hammer halfway back and begin reloading."))
-		reload_mode = TRUE
+		hammer_set = HAMMER_RELOAD
 		chambered = null
-		hammer_set = FALSE //no you CANNOT hold someone up then shoot them WHILE reloading
+		update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/AltClick(mob/user) //dump whatever casing we currently have since automatic dumping safely ignores unspent bullets
-	if(reload_mode)
+	if(hammer_set == HAMMER_RELOAD)
 		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
 		if(casing)
 			casing.forceMove(drop_location())
@@ -232,7 +247,7 @@
 		to_chat(user, span_warning("You push... nothing... out of [src]."))
 
 /obj/item/gun/ballistic/revolver/single_action/attackby(obj/item/A, mob/user, params)
-	if(!reload_mode && istype(A, /obj/item/ammo_casing))
+	if(!(hammer_set == HAMMER_RELOAD) && istype(A, /obj/item/ammo_casing))
 		to_chat(user, span_warning("[src]'s loading gate is not open, use it in hand to start reloading!"))
 		balloon_alert(user, "Loading gate closed!")
 		return
@@ -246,17 +261,19 @@
 	. = ..()
 
 /obj/item/gun/ballistic/revolver/single_action/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, cd_override = FALSE)
-	if(!hammer_set)
+	if(!hammer_set == HAMMER_FULL)
 		return FALSE
 	. = ..()
-	hammer_set = FALSE //BANG
+	hammer_set = HAMMER_CLOSED //BANG
+	update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	..()
-	hammer_set = FALSE //CLICK
+	hammer_set = HAMMER_CLOSED //CLICK
+	update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/do_spin()
-	if(!reload_mode)
+	if(!hammer_set == HAMMER_RELOAD)
 		return
 	. = ..()
 
