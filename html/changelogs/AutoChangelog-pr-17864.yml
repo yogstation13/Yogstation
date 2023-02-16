@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "Ebow chemicals reduced from 8 units to 6 units, reducing their lifespan from ~13 to ~8 chem ticks (~16 seconds)"
+  - tweak: "Ebow cooldown reduced from 20 seconds to 10 seconds"
+  - tweak: "Ebow polonium removed from reality for being annoying and giving the weapon an identity crisis"
