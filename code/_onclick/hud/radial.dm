@@ -310,8 +310,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Presents radial menu to user anchored to anchor (or user if the anchor is currently in users screen)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
+	
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, numitems)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
@@ -324,6 +325,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	GLOB.radial_menus[uniqueid] = menu
 	if(radius)
 		menu.radius = radius
+	if(numitems)
+		menu.min_angle = 360/numitems
 	if(istype(custom_check))
 		menu.custom_check_callback = custom_check
 	menu.anchor = anchor
