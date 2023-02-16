@@ -232,7 +232,7 @@
 
 /obj/item/clothing/head/beret/hop
 	name = "head of personnel beret"
-	desc = "A lovely blue beret with a red nanotrasen logo emblazoned on it."
+	desc = "A lovely blue beret with a red nanotrasen logo emblazoned on it. It seems to have a bit of dog hair in it."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_hop"
