@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed an oversight that made all brawn knockdowns last for 0.5 seconds regardless of level"
