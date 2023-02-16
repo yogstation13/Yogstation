@@ -101,6 +101,7 @@
 	icon_dead = "watcher_magmawing_dead"
 	maxHealth = 235 //Compensate for the lack of slowdown on projectiles with a bit of extra health
 	health = 235
+	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
@@ -162,9 +163,11 @@
 		new /obj/item/gem/fdiamond(loc)
 		deathmessage = "spits out a diamond as it dies!"
 	. = ..()
+	deathmessage = initial(deathmessage)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/death(gibbed)
 	if(prob(10))
-		new /obj/item/gem/fdiamond(loc)
+		new /obj/item/gem/magma(loc)
 		deathmessage = "spits out a golden gem as it dies!"
 	. = ..()
+	deathmessage = initial(deathmessage)

@@ -101,6 +101,8 @@
 	throw_range = 3
 	sharpness = SHARP_EDGED
 	light_color = "#ff0000"
+	light_system = MOVABLE_LIGHT
+	light_range = 4
 	attack_verb = list("cleaved", "slashed", "torn", "hacked", "ripped", "diced", "carved")
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "cultbastard"
@@ -120,7 +122,6 @@
 
 /obj/item/twohanded/required/cult_bastard/Initialize()
 	. = ..()
-	set_light(4)
 	jaunt = new(src)
 	linked_action = new(src)
 	AddComponent(/datum/component/butchering, 50, 80)
@@ -361,7 +362,7 @@
 	icon_state = "cult_helmet"
 	item_state = "cult_helmet"
 	armor = list(MELEE = 60, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 40, ACID = 75)
-	brightness_on = 0
+	light_system = NO_LIGHT_SUPPORT
 	actions_types = list()
 
 /obj/item/clothing/suit/space/hardsuit/cult
@@ -608,7 +609,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	name = "void torch"
 	desc = "Used by veteran cultists to instantly transport items to their needful brethren."
 	w_class = WEIGHT_CLASS_SMALL
-	brightness_on = 1
+	light_range = 1
 	icon_state = "torch"
 	item_state = "torch"
 	color = "#ff0000"
@@ -788,6 +789,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	nondirectional_sprite = TRUE
 	damage_type = BRUTE
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
+	damage = 20
+	armour_penetration = 0
 
 /obj/item/projectile/magic/arcane_barrage/blood/Bump(atom/target)
 	var/turf/T = get_turf(target)

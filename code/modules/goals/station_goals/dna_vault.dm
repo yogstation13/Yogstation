@@ -4,7 +4,7 @@
 // DNA vaults require high tier stock parts and cold
 // After completion each crewmember can receive single upgrade chosen out of 2 for the mob.
 #define VAULT_TOXIN "Toxin Adaptation"
-#define VAULT_SELFSUFFICIENT "Celluar Self-Sufficiency"
+#define VAULT_SELFSUFFICIENT "Cellular Self-Sufficiency"
 #define VAULT_FIREPROOF "Thermal Regulation"
 #define VAULT_STUNTIME "Neural Repathing"
 #define VAULT_ARMOUR "Bone Reinforcement"

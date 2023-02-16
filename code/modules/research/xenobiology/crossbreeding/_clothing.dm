@@ -55,7 +55,7 @@ Slimecrossing Armor
 	. = ..()
 	color = newcolor
 	light_color = newcolor
-	set_light(5)
+	set_light(2)
 
 /obj/structure/light_prism/attack_hand(mob/user)
 	to_chat(user, span_notice("You dispel [src]"))

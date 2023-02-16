@@ -10,6 +10,11 @@
 	var/ghoul_amt = 1
 	var/list/spooky_scaries
 
+/datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
+	. = ..()
+	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/flesh
+	user.put_in_hands(realknife)
+
 /datum/eldritch_knowledge/base_flesh/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!ishuman(target) || target == user)
@@ -41,7 +46,7 @@
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [user.real_name]")
 	//we change it to true only after we know they passed all the checks
 	. = TRUE
-	RegisterSignal(human_target,COMSIG_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(human_target,COMSIG_GLOB_MOB_DEATH,.proc/remove_ghoul)
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
 	human_target.health = 25
@@ -56,7 +61,7 @@
 	var/mob/living/carbon/human/humie = source
 	spooky_scaries -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
-	UnregisterSignal(source, COMSIG_MOB_DEATH)
+	UnregisterSignal(source, COMSIG_GLOB_MOB_DEATH)
 
 /datum/eldritch_knowledge/base_flesh/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

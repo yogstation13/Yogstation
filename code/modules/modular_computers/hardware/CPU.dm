@@ -13,8 +13,8 @@
 	var/single_purpose = FALSE // If you can switch to other programs or only use the initial program
 	device_type = MC_CPU
 
-/obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/MC, mob/user)
-	MC.shutdown_computer()
+/obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/remove_from, mob/user)
+	remove_from.shutdown_computer()
 
 /obj/item/computer_hardware/processor_unit/small
 	name = "microprocessor"
@@ -42,8 +42,15 @@
 
 /obj/item/computer_hardware/processor_unit/pda
 	name = "cheep microprocessor"
-	desc = "A cheep, massproduced miniaturised CPU used in pdas. It can only run one program at a time."
+	desc = "A BRISC V based CPU that uses very little power while providing good processing power"
 	icon_state = "cpu"
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 25
-	max_idle_programs = 0
+	max_idle_programs = 2
+
+/obj/item/computer_hardware/processor_unit/pda/can_install(obj/item/modular_computer/M, mob/living/user)
+	if(!istype(M, /obj/item/modular_computer/tablet))
+		to_chat(user, span_warning("\The [M] does not support BRISC V architectures!"))
+		return FALSE
+	return ..()
+	

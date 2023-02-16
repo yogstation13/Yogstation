@@ -51,7 +51,6 @@
 		if(!tool)
 			tool = S
 // yogs end
-
 	if(accept_any_item)
 		if(tool && tool_check(user, tool))
 			success = TRUE
@@ -70,7 +69,7 @@
 				if(tool_check(user, tool))
 					success = TRUE
 					break
-
+					
 	if(success)
 		if(target_zone == surgery.location)
 			if(get_location_accessible(target, target_zone) || surgery.ignore_clothes)
@@ -94,8 +93,7 @@
 	surgery.step_in_progress = TRUE
 	var/advance = FALSE
 
-	var/tool_speed_mod = 1
-	var/user_speed_mod = 1
+	var/speed_mod = 1
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
@@ -103,14 +101,18 @@
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
 	if(tool)
-		tool_speed_mod = tool.toolspeed
+		speed_mod = tool.toolspeed
 
 	if(IS_MEDICAL(user))
-		user_speed_mod = 0.8
+		speed_mod *= 0.8
+
+	if(istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
+		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(SLOT_GLOVES)
+		speed_mod *= surgicalgloves.surgeryspeed
 
 	var/previous_loc = user.loc
 
-	if(do_after(user, time * tool_speed_mod * user_speed_mod, target))
+	if(do_after(user, time * speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
@@ -127,13 +129,14 @@
 
 		if((prob(prob_chance) || (iscyborg(user) && !silicons_obey_prob)) && chem_check(target, user, tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
+				target.balloon_alert(user, "Success!")
 				play_success_sound(user, target, target_zone, tool, surgery)
 				advance = TRUE
 		else
 			if(failure(user, target, target_zone, tool, surgery))
-				play_failure_sound(user, target, target_zone, tool, surgery)
-				
 				advance = TRUE
+			target.balloon_alert(user, "Failure!")
+			play_failure_sound(user, target, target_zone, tool, surgery)
 		if(iscarbon(target) && !HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
 				var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)

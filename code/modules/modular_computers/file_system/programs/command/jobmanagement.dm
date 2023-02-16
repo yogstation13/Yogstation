@@ -44,7 +44,7 @@
 
 /datum/computer_file/program/job_management/proc/can_close_job(datum/job/job)
 	if(!(job?.title in blacklisted))
-		if(job.total_positions > length(GLOB.player_list) * (max_relative_positions / 100))
+		if(job.total_positions > job.current_positions && opened_positions[job.title] > 0)
 			var/delta = (world.time / 10) - GLOB.time_last_changed_position
 			if((change_position_cooldown < delta) || (opened_positions[job.title] > 0))
 				return TRUE
@@ -54,11 +54,11 @@
 	if(..())
 		return
 
-	var/authed = FALSE
+	var/authed = IsAdminGhost(usr)
 	var/mob/user = usr
 	var/obj/item/card/id/user_id = user.get_idcard()
 	computer.play_interact_sound()
-	if(user_id)
+	if(user_id && !authed)
 		if(ACCESS_CHANGE_IDS in user_id.access)
 			authed = TRUE
 
@@ -109,9 +109,9 @@
 /datum/computer_file/program/job_management/ui_data(mob/user)
 	var/list/data = get_header_data()
 
-	var/authed = FALSE
+	var/authed = IsAdminGhost(user)
 	var/obj/item/card/id/user_id = user.get_idcard(FALSE)
-	if(user_id)
+	if(user_id && !authed)
 		if(ACCESS_CHANGE_IDS in user_id.access)
 			authed = TRUE
 

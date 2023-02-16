@@ -5,6 +5,8 @@
 /obj/item/modular_computer/proc/can_show_ui(mob/user)
 	if(!enabled)
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT) // Open uplink TGUI instead of our TGUI
+		return FALSE
 	if(!use_power())
 		return FALSE
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
@@ -35,11 +37,10 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		var/headername
-		switch(device_theme)
-			if("ntos")
-				headername = "NtOS Main Menu"
-			if("syndicate")
-				headername = "Syndix Main Menu"
+		if(device_theme == "syndicate")
+			headername = "Syndix Main Menu"
+		else
+			headername = "NtOS Main Menu"
 		ui = new(user, src, "NtosMain", headername, 400, 500)
 		if(ui.open())
 			ui.send_asset(get_asset_datum(/datum/asset/simple/headers))
@@ -175,12 +176,7 @@
 
 		if("PC_toggle_light")
 			play_interact_sound()
-			light_on = !light_on
-			if(light_on)
-				set_light(comp_light_luminosity, 1, comp_light_color)
-			else
-				set_light(0)
-			return TRUE
+			return toggle_flashlight()
 
 		if("PC_light_color")
 			var/mob/user = usr
@@ -194,10 +190,7 @@
 				if(color_hex2num(new_color) < 200) //Colors too dark are rejected
 					to_chat(user, span_warning("That color is too dark! Choose a lighter one."))
 					new_color = null
-			comp_light_color = new_color
-			light_color = new_color
-			update_light()
-			return TRUE
+			return set_flashlight_color(new_color)
 
 		if("PC_Eject_Disk")
 			var/param = params["name"]

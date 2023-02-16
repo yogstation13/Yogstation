@@ -5,7 +5,7 @@
 	category = PROGRAM_CATEGORY_MED
 	ui_header = "health_green.gif"
 	program_icon_state = "crew"
-	requires_ntnet = TRUE
+	requires_ntnet = FALSE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_INTEGRATED | PROGRAM_PDA
@@ -33,21 +33,28 @@
 /datum/computer_file/program/crew_monitor/proc/update_overlay()
 	if(!computer)
 		return
-	var/z = computer.z
-	if(!z)
-		var/turf/T = get_turf(computer)
-		z = T.z
-	var/list/death_list = GLOB.crewmonitor.death_list?["[z]"]
+
+	var/turf/computer_turf = get_turf(computer)
+	if (!computer_turf)
+		return
+	
+	var/computer_z = computer_turf.z
+	if (!computer_z)
+		return
+
+	var/list/death_list = GLOB.crewmonitor.death_list?["[computer_z]"]
 	if(death_list && death_list.len > 0)
 		alarm = TRUE
 	else
 		alarm = FALSE
+
 	if(alarm)
 		program_icon_state = program_icon_state_alarm
 		ui_header = "health_red.gif"
 	else
 		program_icon_state = initial(program_icon_state)
 		ui_header = "health_green.gif"
+
 	if(istype(computer))
 		computer.update_icon()
 

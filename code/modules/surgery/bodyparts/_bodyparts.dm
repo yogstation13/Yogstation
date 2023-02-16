@@ -477,7 +477,7 @@
 		injury_mod += W.threshold_penalty
 
 	var/part_mod = -wound_resistance
-	if(get_damage(TRUE) >= max_damage)
+	if(get_damage(stamina=TRUE) >= max_damage)
 		part_mod += disabled_wound_penalty
 
 	injury_mod += part_mod
@@ -534,9 +534,13 @@
 		needs_processing = FALSE
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
-	var/total = brute_dam + burn_dam
-	if(include_stamina)
+/obj/item/bodypart/proc/get_damage(brute = TRUE, burn = TRUE, stamina = FALSE)
+	var/total = 0
+	if(brute)
+		total += brute_dam
+	if(burn)
+		total += burn_dam
+	if(stamina)
 		total = max(total, stamina_dam)
 	return total
 
@@ -837,6 +841,8 @@
 			else if(use_digitigrade)
 				if("[species_id]" == "polysmorph")
 					limb.icon_state = "pdigitigrade_[use_digitigrade]_[body_zone]"
+				else if("[species_id]" == "preternis")
+					limb.icon_state = "preternis_[use_digitigrade]_[body_zone]"
 				else
 					limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
 			else
@@ -861,6 +867,10 @@
 		limb.icon = icon
 		if(should_draw_gender)
 			limb.icon_state = "[body_zone]_[icon_gender]"
+		else if(use_digitigrade)
+			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+		else if(body_zone == BODY_ZONE_HEAD || body_zone == BODY_ZONE_CHEST)//default to male for the torso and head if the species is agendered
+			limb.icon_state = "[body_zone]_m"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)
@@ -922,7 +932,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		if(!embeddies.taped)
+		var/obj/item/ammo_casing/AC = embeddies
+		if(!(embeddies.taped || (istype(AC) && !AC.harmful)))
 			bleed_rate += 0.5
 
 	for(var/thing in wounds)

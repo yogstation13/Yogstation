@@ -3,6 +3,7 @@
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_STOMACH
@@ -70,13 +71,13 @@
 			H.clear_alert("disgust")
 			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			H.throw_alert("disgust", /obj/screen/alert/gross)
+			H.throw_alert("disgust", /atom/movable/screen/alert/gross)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/gross)
 		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			H.throw_alert("disgust", /obj/screen/alert/verygross)
+			H.throw_alert("disgust", /atom/movable/screen/alert/verygross)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/verygross)
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			H.throw_alert("disgust", /obj/screen/alert/disgusted)
+			H.throw_alert("disgust", /atom/movable/screen/alert/disgusted)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/disgusted)
 
 /obj/item/organ/stomach/Remove(mob/living/carbon/M, special = 0)
@@ -85,6 +86,9 @@
 		H.clear_alert("disgust")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 	..()
+
+/obj/item/organ/stomach/get_availability(datum/species/species)
+	return !(NOSTOMACH in species.species_traits)
 
 /obj/item/organ/stomach/cybernetic
 	name = "cybernetic stomach"
@@ -140,10 +144,10 @@
 /obj/item/organ/stomach/cell/emp_act(severity)
 	switch(severity)
 		if(1)
-			owner.nutrition = 50
+			owner.adjust_nutrition(-150)
 			to_chat(owner, "<span class='warning'>Alert: Heavy EMP Detected. Rebooting power cell to prevent damage.</span>")
 		if(2)
-			owner.nutrition = 250
+			owner.adjust_nutrition(-50)
 			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>")
 
 /obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
@@ -161,11 +165,18 @@
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
-	var/crystal_charge = ETHEREAL_CHARGE_FULL
+	var/crystal_charge = ETHEREAL_CHARGE_ALMOSTFULL
 
 /obj/item/organ/stomach/ethereal/on_life()
 	..()
-	adjust_charge(-ETHEREAL_CHARGE_FACTOR)
+	var/chargemod = 1
+	if(HAS_TRAIT(owner, TRAIT_EAT_LESS))
+		chargemod *= 0.75 //power consumption rate reduced by about 25%
+	if(HAS_TRAIT(owner, TRAIT_EAT_MORE))
+		chargemod *= 3 //hunger rate tripled
+	if(HAS_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH))
+		crystal_charge = min(crystal_charge, ETHEREAL_CHARGE_ALMOSTFULL) //capped, can never be truly full
+	adjust_charge(-(ETHEREAL_CHARGE_FACTOR * chargemod))
 
 /obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()
@@ -183,11 +194,11 @@
 /obj/item/organ/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
 	if(illusion)
 		return
-	adjust_charge(shock_damage * siemens_coeff * 2)
+	adjust_charge(shock_damage * siemens_coeff * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
-	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
+	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_DANGEROUS)
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"

@@ -268,7 +268,7 @@
 	if(!iscarbon(owner))
 		H.LAssailant = null
 	else
-		H.LAssailant = O
+		H.LAssailant = WEAKREF(O)
 	while(do_mob(O, H, 50))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
@@ -415,3 +415,10 @@
 	return result.Join("<br>")
 #undef BLOOD_SUCK_BASE
 #undef ALL_POWERS_UNLOCKED
+
+/datum/antagonist/vampire/get_preview_icon()
+	var/icon/vampire_icon = icon('icons/mob/animal.dmi', "bat")
+
+	vampire_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return vampire_icon

@@ -264,7 +264,7 @@
 	else if((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 20)
 		patient_status = "Lightly Injured"
 	if(pandemonium || user.hallucinating())
-		patient_status = pick("The only kiosk is kiosk, but is the only patient, patient?", "Breathing manually.","Constact NTOS site admin.","97% carbon, 3% natural flavoring","The ebb and flow wears us all in time.","It's Lupus. You have Lupus.","Undergoing monkey disease.")
+		patient_status = pick("The only kiosk is kiosk, but is the only patient, patient?", "Breathing manually.","Contact NTOS site admin.","97% carbon, 3% natural flavoring","The ebb and flow wears us all in time.","It's Lupus. You have Lupus.","Undergoing monkey disease.")
 
 	if((brain_loss) >= 100)   //Brain status checks.
 		brain_status = "Grave brain damage detected."
@@ -276,14 +276,14 @@
 		brain_status = "Mild brain damage detected."  //You may have a miiiild case of severe brain damage.
 
 	if(rad_sickness_value >= 1000)  //
-		rad_sickness_status = "Patient is suffering from extreme radiation poisoning, high toxen damage expected. Suggested treatment: Repeated dosages of Pentetic Acid or high amounts of Cold Seiver and anti-toxen"
+		rad_sickness_status = "Patient is suffering from extreme radiation poisoning, high toxin damage expected. Suggested treatment: Repeated dosages of Pentetic Acid or high amounts of Cold Seiver and anti-toxin"
 	else if(rad_sickness_value >= 300)
-		rad_sickness_status = "Patient is suffering from alarming radiation poisoning. Suggested treatment: Take Cold Seiver or Potassium Iodine, watch the toxen levels."
+		rad_sickness_status = "Patient is suffering from alarming radiation poisoning. Suggested treatment: Take Cold Seiver or Potassium Iodine, watch the toxin levels."
 	else if(rad_sickness_value >= 100)
 		rad_sickness_status = "Patient has moderate radioactive signatures. Symptoms will subside in a few minutes"
 
 	if(rad_contamination_value >= 400)  //
-		rad_contamination_status = "Patient is wearing extremely radioactive clothing.  Suggested treatment: Isolation of patient and shower, remove all clothing and objects immediatly and place in a washing machine"
+		rad_contamination_status = "Patient is wearing extremely radioactive clothing.  Suggested treatment: Isolation of patient and shower, remove all clothing and objects immediately and place in a washing machine"
 	else if(rad_contamination_value >= 150)
 		rad_contamination_status = "Patient is wearing alarming radioactive clothing. Suggested treatment: Scan for contaminated objects and wash them with soap and water"
 	else if(rad_contamination_value >= 50)

@@ -19,6 +19,7 @@
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
+		/obj/item/ammo_box/magazine/m308/laser,
 		/obj/item/modular_computer))
 
 /obj/machinery/recharger/RefreshParts()
@@ -121,26 +122,41 @@
 		charging.forceMove(drop_location())
 		setCharging(null)
 
-/obj/machinery/recharger/process()
+/obj/machinery/recharger/process(delta_time)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
-	if(charging)
+	if(charging && charging.loc == src)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
-				C.give(C.chargerate * recharge_coeff)
-				use_power(250 * recharge_coeff)
+				C.give(C.chargerate * recharge_coeff * delta_time / 2)
+				use_power(125 * recharge_coeff * delta_time)
 			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
-				R.stored_ammo += new R.ammo_type(R)
-				use_power(200 * recharge_coeff)
+				for(var/i in 1 to recharge_coeff) //So it actually gives more ammo when upgraded
+					R.stored_ammo += new R.ammo_type(R)
+					if(R.stored_ammo.len <= R.max_ammo)
+						break
+				use_power(100 * recharge_coeff)
+			update_icon()
+			return
+		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
+			var/obj/item/ammo_box/magazine/m308/laser/R = charging
+			if(R.stored_ammo.len < R.max_ammo)
+				for(var/i in 1 to recharge_coeff) //See above
+					R.stored_ammo += new R.ammo_type(R)
+				use_power(100 * recharge_coeff)
 			update_icon()
 			return
 	else
+		if(charging)
+			charging.update_icon()
+			charging.forceMove(drop_location())
+			setCharging(null)
 		return PROCESS_KILL
 
 /obj/machinery/recharger/emp_act(severity)
@@ -164,11 +180,20 @@
 	if(charging)
 		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
+		var/num = 0
 		if(C)
-			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(C.charge/C.maxcharge, 0.01))
+			num = round(C.charge/C.maxcharge, 0.01)
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
-			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
+		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
+			var/obj/item/ammo_box/magazine/m308/laser/R = charging
+			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
+		
+		if(num >= 1)
+			scan.color = "#58d0ff"
+		else
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), num)
 		add_overlay(scan)
 
 /obj/machinery/recharger/wallrecharger

@@ -82,7 +82,7 @@
 		if("tdomereset")
 			if(!check_rights_for(rights, R_ADMIN))
 				return
-			var/delete_mobs = alert(mob_user, "Clear all mobs?","Confirm","Yes","No","Cancel")
+			var/delete_mobs = tgui_alert(mob_user, "Clear all mobs?","Confirm",list("Yes","No","Cancel"))
 			if(delete_mobs == "Cancel")
 				return
 
@@ -121,7 +121,7 @@
 		if("night_shift_set")
 			if(!check_rights_for(rights, R_ADMIN))
 				return
-			var/val = alert(mob_user, "What do you want to set night shift to? This will override the automatic system until set to automatic again.", "Night Shift", "On", "Off", "Automatic")
+			var/val = tgui_alert(mob_user, "What do you want to set night shift to? This will override the automatic system until set to automatic again.", "Night Shift", list("On", "Off", "Automatic"))
 			switch(val)
 				if("Automatic")
 					if(CONFIG_GET(flag/enable_night_shifts))
@@ -216,10 +216,10 @@
 			if(!check_rights_for(rights, R_ADMIN))
 				return
 			if(!SSticker.HasRoundStarted())
-				alert(mob_user, "The game hasn't started yet!")
+				tgui_alert(mob_user, "The game hasn't started yet!")
 			else if (SSticker.mode)
-				alert(mob_user, "The game mode is [SSticker.mode.name]")
-			else alert(mob_user, "For some reason there's a SSticker, but not a game mode")
+				tgui_alert(mob_user, "The game mode is [SSticker.mode.name]")
+			else tgui_alert(mob_user, "For some reason there's a SSticker, but not a game mode")
 		if("manifest")
 			if(!check_rights_for(rights, R_ADMIN))
 				return
@@ -307,7 +307,7 @@
 			if(!check_rights_for(rights, R_FUN))
 				return
 			if(!SSticker.HasRoundStarted())
-				alert(mob_user, "The game hasn't started yet!")
+				tgui_alert(mob_user, "The game hasn't started yet!")
 				return
 			var/objective = stripped_input(mob_user, "Enter an objective")
 			if(!objective)
@@ -334,7 +334,7 @@
 			if(!check_rights_for(rights, R_FUN))
 				return
 			if(!SSticker.HasRoundStarted())
-				alert(mob_user, "The game hasn't started yet!")
+				tgui_alert(mob_user, "The game hasn't started yet!")
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("IAA All"))
 			for(var/mob/living/H in GLOB.player_list)
@@ -375,18 +375,20 @@
 		if("anime")
 			if(!check_rights_for(rights, R_FUN))
 				return
-			var/animetype = alert(mob_user, "Would you like to have the clothes be changed?",,"Yes","No","Cancel")
+			var/animetype = tgui_alert(mob_user, "Would you like to have the clothes be changed?",,list("Yes","No","Cancel"))
 
 			var/droptype
 			if(animetype =="Yes")
-				droptype = alert(mob_user, "Make the uniforms Nodrop?",,"Yes","No","Cancel")
+				droptype = tgui_alert(mob_user, "Make the uniforms Nodrop?",,list("Yes","No","Cancel"))
 
 			if(animetype == "Cancel" || droptype == "Cancel")
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Chinese Cartoons"))
 			message_admins("[key_name_admin(mob_user)] made everything kawaii.")
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				if(H.client.prefs && H.client.prefs.disable_alternative_announcers)
+				if(!get_turf(H))
+					continue
+				if(H.client?.prefs?.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 					SEND_SOUND(H, sound(SSstation.default_announcer.event_sounds[ANNOUNCER_ANIMES]))
 				else
 					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
@@ -427,7 +429,7 @@
 			if(!check_rights_for(rights, R_FUN))
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Virus Outbreak"))
-			switch(alert(mob_user, "Do you want this to be a random disease or do you have something in mind?",,"Make Your Own","Random","Choose"))
+			switch(tgui_alert(mob_user, "Do you want this to be a random disease or do you have something in mind?",,list("Make Your Own","Random","Choose")))
 				if("Make Your Own")
 					AdminCreateVirus(mob_user.client)
 				if("Random")
@@ -556,7 +558,7 @@
 	if(E)
 		E.processing = FALSE
 		if(E.announceWhen>0)
-			if(alert(mob_user, "Would you like to alert the crew?", "Alert", "Yes", "No") == "No")
+			if(tgui_alert(mob_user, "Would you like to alert the crew?", "Alert",list("Yes", "No")) == "No")
 				E.announceWhen = -1
 		E.processing = TRUE
 	if (mob_user)

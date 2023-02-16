@@ -1,11 +1,11 @@
-/obj/screen/human
+/atom/movable/screen/human
 	icon = 'icons/mob/screen_midnight.dmi'
 
-/obj/screen/human/toggle
+/atom/movable/screen/human/toggle
 	name = "toggle"
 	icon_state = "toggle"
 
-/obj/screen/human/toggle/Click()
+/atom/movable/screen/human/toggle/Click()
 
 	var/mob/targetmob = usr
 
@@ -23,26 +23,26 @@
 
 	targetmob.hud_used.hidden_inventory_update(usr)
 
-/obj/screen/human/equip
+/atom/movable/screen/human/equip
 	name = "equip"
 	icon_state = "act_equip"
 
-/obj/screen/human/equip/Click()
+/atom/movable/screen/human/equip/Click()
 	if(ismecha(usr.loc)) // stops inventory actions in a mech
 		return 1
 	var/mob/living/carbon/human/H = usr
 	H.quick_equip()
 
-/obj/screen/devil
+/atom/movable/screen/devil
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/devil/soul_counter
+/atom/movable/screen/devil/soul_counter
 	icon = 'icons/mob/screen_gen.dmi'
 	name = "souls owned"
 	icon_state = "Devil-6"
 	screen_loc = ui_devilsouldisplay
 
-/obj/screen/devil/soul_counter/proc/update_counter(souls = 0)
+/atom/movable/screen/devil/soul_counter/proc/update_counter(souls = 0)
 	invisibility = 0
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#FF0000'>[souls]</font></div>"
 	switch(souls)
@@ -59,91 +59,91 @@
 		else
 			icon_state = "Devil-6"
 
-/obj/screen/devil/soul_counter/proc/clear()
+/atom/movable/screen/devil/soul_counter/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/ling
+/atom/movable/screen/ling
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/ling/sting
+/atom/movable/screen/ling/sting
 	name = "current sting"
 	screen_loc = ui_lingstingdisplay
 
-/obj/screen/ling/sting/Click()
+/atom/movable/screen/ling/sting/Click()
 	if(isobserver(usr))
 		return
 	var/mob/living/carbon/U = usr
 	U.unset_sting()
 
-/obj/screen/ling/chems
+/atom/movable/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 
-/obj/screen/bloodsucker
+/atom/movable/screen/bloodsucker
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/bloodsucker/proc/clear()
+/atom/movable/screen/bloodsucker/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/bloodsucker/proc/update_counter()
+/atom/movable/screen/bloodsucker/proc/update_counter()
 	invisibility = 0
 
-/obj/screen/bloodsucker/blood_counter
+/atom/movable/screen/bloodsucker/blood_counter
 	name = "Blood Consumed"
 	icon_state = "blood_display"
 	screen_loc = ui_blood_display
 
-/obj/screen/bloodsucker/rank_counter
+/atom/movable/screen/bloodsucker/rank_counter
 	name = "Bloodsucker Rank"
 	icon_state = "rank"
 	screen_loc = ui_vamprank_display
 
-/obj/screen/bloodsucker/sunlight_counter
+/atom/movable/screen/bloodsucker/sunlight_counter
 	name = "Solar Flare Timer"
 	icon_state = "sunlight_night"
 	screen_loc = ui_sunlight_display
 
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	..()
-	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
+	owner.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
 
 	var/widescreen_layout = FALSE
-	if(owner.client?.prefs?.widescreenpref)
+	if(owner.client?.prefs?.read_preference(/datum/preference/toggle/widescreen))
 		widescreen_layout = TRUE
 
-	var/obj/screen/using
-	var/obj/screen/inventory/inv_box
+	var/atom/movable/screen/using
+	var/atom/movable/screen/inventory/inv_box
 
-	using = new/obj/screen/language_menu
+	using = new/atom/movable/screen/language_menu
 	using.icon = ui_style
 	if(!widescreen_layout)
 		using.screen_loc = UI_BOXLANG
 	static_inventory += using
 
-	using = new /obj/screen/area_creator
+	using = new /atom/movable/screen/area_creator
 	using.icon = ui_style
 	if(!widescreen_layout)
 		using.screen_loc = UI_BOXAREA
 	static_inventory += using
 
-	action_intent = new /obj/screen/act_intent/segmented
+	action_intent = new /atom/movable/screen/act_intent/segmented
 	action_intent.icon_state = mymob.a_intent
 	static_inventory += action_intent
 
-	using = new /obj/screen/mov_intent
+	using = new /atom/movable/screen/mov_intent
 	using.icon = ui_style
 	using.icon_state = (mymob.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	using.screen_loc = ui_movi
 	static_inventory += using
 
-	using = new /obj/screen/drop()
+	using = new /atom/movable/screen/drop()
 	using.icon = ui_style
 	using.screen_loc = ui_drop_throw
 	static_inventory += using
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "i_clothing"
 	inv_box.icon = ui_style
 	inv_box.slot_id = SLOT_W_UNIFORM
@@ -151,7 +151,7 @@
 	inv_box.screen_loc = ui_iclothing
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "o_clothing"
 	inv_box.icon = ui_style
 	inv_box.slot_id = SLOT_WEAR_SUIT
@@ -161,19 +161,19 @@
 
 	build_hand_slots()
 
-	using = new /obj/screen/swap_hand()
+	using = new /atom/movable/screen/swap_hand()
 	using.icon = ui_style
 	using.icon_state = "swap_1"
 	using.screen_loc = ui_swaphand_position(owner,1)
 	static_inventory += using
 
-	using = new /obj/screen/swap_hand()
+	using = new /atom/movable/screen/swap_hand()
 	using.icon = ui_style
 	using.icon_state = "swap_2"
 	using.screen_loc = ui_swaphand_position(owner,2)
 	static_inventory += using
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "id"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "id"
@@ -181,7 +181,7 @@
 	inv_box.slot_id = SLOT_WEAR_ID
 	static_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "mask"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "mask"
@@ -189,7 +189,7 @@
 	inv_box.slot_id = SLOT_WEAR_MASK
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "neck"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "neck"
@@ -197,7 +197,7 @@
 	inv_box.slot_id = SLOT_NECK
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "back"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "back"
@@ -205,7 +205,7 @@
 	inv_box.slot_id = SLOT_BACK
 	static_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "storage1"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
@@ -213,7 +213,7 @@
 	inv_box.slot_id = SLOT_L_STORE
 	static_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "storage2"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
@@ -221,7 +221,7 @@
 	inv_box.slot_id = SLOT_R_STORE
 	static_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "suit storage"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
@@ -229,22 +229,22 @@
 	inv_box.slot_id = SLOT_S_STORE
 	static_inventory += inv_box
 
-	using = new /obj/screen/resist()
+	using = new /atom/movable/screen/resist()
 	using.icon = ui_style
 	using.screen_loc = ui_above_intent
 	hotkeybuttons += using
 
-	using = new /obj/screen/human/toggle()
+	using = new /atom/movable/screen/human/toggle()
 	using.icon = ui_style
 	using.screen_loc = ui_inventory
 	static_inventory += using
 
-	using = new /obj/screen/human/equip()
+	using = new /atom/movable/screen/human/equip()
 	using.icon = ui_style
 	using.screen_loc = ui_equip_position(mymob)
 	static_inventory += using
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "gloves"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "gloves"
@@ -252,7 +252,7 @@
 	inv_box.slot_id = SLOT_GLOVES
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "eyes"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "glasses"
@@ -260,7 +260,7 @@
 	inv_box.slot_id = SLOT_GLASSES
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "ears"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
@@ -268,7 +268,7 @@
 	inv_box.slot_id = SLOT_EARS
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "head"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "head"
@@ -276,7 +276,7 @@
 	inv_box.slot_id = SLOT_HEAD
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "shoes"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "shoes"
@@ -284,7 +284,7 @@
 	inv_box.slot_id = SLOT_SHOES
 	toggleable_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "belt"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "belt"
@@ -293,58 +293,58 @@
 	inv_box.slot_id = SLOT_BELT
 	static_inventory += inv_box
 
-	throw_icon = new /obj/screen/throw_catch()
+	throw_icon = new /atom/movable/screen/throw_catch()
 	throw_icon.icon = ui_style
 	throw_icon.screen_loc = ui_drop_throw
 	hotkeybuttons += throw_icon
 
-	rest_icon = new /obj/screen/rest()
+	rest_icon = new /atom/movable/screen/rest()
 	rest_icon.icon = ui_style
 	rest_icon.screen_loc = ui_above_movement
 	static_inventory += rest_icon
 
-	internals = new /obj/screen/internals()
+	internals = new /atom/movable/screen/internals()
 	infodisplay += internals
 
-	healths = new /obj/screen/healths()
+	healths = new /atom/movable/screen/healths()
 	infodisplay += healths
 
-	stamina = new /obj/screen/stamina()
+	stamina = new /atom/movable/screen/stamina()
 	stamina.hud = src
 	infodisplay += stamina
 
-	healthdoll = new /obj/screen/healthdoll()
+	healthdoll = new /atom/movable/screen/healthdoll()
 	infodisplay += healthdoll
 
-	pull_icon = new /obj/screen/pull()
+	pull_icon = new /atom/movable/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(mymob)
 	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
-	lingchemdisplay = new /obj/screen/ling/chems()
+	lingchemdisplay = new /atom/movable/screen/ling/chems()
 	infodisplay += lingchemdisplay
 
-	lingstingdisplay = new /obj/screen/ling/sting()
+	lingstingdisplay = new /atom/movable/screen/ling/sting()
 	infodisplay += lingstingdisplay
 
-	devilsouldisplay = new /obj/screen/devil/soul_counter
+	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
 
 	//bloodsuckers
-	blood_display = new /obj/screen/bloodsucker/blood_counter
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter
 	infodisplay += blood_display
-	vamprank_display = new /obj/screen/bloodsucker/rank_counter
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter
 	infodisplay += vamprank_display
-	sunlight_display = new /obj/screen/bloodsucker/sunlight_counter
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter
 	infodisplay += sunlight_display
 
-	zone_select =  new /obj/screen/zone_sel()
+	zone_select =  new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style
 	zone_select.update_icon(mymob)
 	static_inventory += zone_select
 
-	for(var/obj/screen/inventory/inv in (static_inventory + toggleable_inventory))
+	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv
@@ -359,7 +359,7 @@
 	if(!istype(H) || !H.dna.species)
 		return
 	var/datum/species/S = H.dna.species
-	for(var/obj/screen/inventory/inv in (static_inventory + toggleable_inventory))
+	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			if(inv.slot_id in S.no_equip)
 				inv.alpha = 128

@@ -5,12 +5,48 @@
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //What no if you touch things with your bare fingies you're gonna get shocked
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
 	undyeable = TRUE
+	var/tacticalspeed = 0.9
+	var/worn
+
+/obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(slot == SLOT_GLOVES)
+		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
+			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
+			worn = TRUE
+
+/obj/item/clothing/gloves/fingerless/dropped(mob/user)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
+		boss.physiology.do_after_speed /= tacticalspeed
+		worn = FALSE
+
+/obj/item/clothing/gloves/fingerless/bigboss
+	var/carrytrait = TRAIT_QUICKER_CARRY
+	tacticalspeed = 0.66 //Does channels 34% faster
+
+/obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
+	var/mob/living/M = loc
+	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
+	. = FALSE
+
+/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
+	..()
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
+	..()
+	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
@@ -46,6 +82,7 @@
 	icon_state = "bracers"
 	item_state = "bracers"
 	transfer_prints = TRUE
+	siemens_coefficient = 1 //They're not gloves?
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -167,11 +204,13 @@ obj/effect/proc_holder/swipe
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
-			L.adjustBruteLoss(60)
 			if(L.stat != DEAD)
+				L.adjustBruteLoss(60)
 				caller.adjustBruteLoss(-13)
 				caller.adjustFireLoss(-13)
 				caller.adjustToxLoss(-13)
+				if(L.stat == DEAD)
+					to_chat(caller, span_notice("You kill [L], healing yourself more!"))
 			if(L.stat == DEAD)
 				L.gib()
 				to_chat(caller, span_notice("You're able to consume the body entirely!"))

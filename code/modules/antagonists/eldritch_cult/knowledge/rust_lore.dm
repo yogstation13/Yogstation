@@ -8,10 +8,16 @@
 	route = PATH_RUST
 	tier = TIER_PATH
 
+/datum/eldritch_knowledge/base_rust/on_gain(mob/user)
+	. = ..()
+	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/rust
+	user.put_in_hands(realknife)
+
 /datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	target.rust_heretic_act()
-	return TRUE
+	if(user.a_intent == INTENT_HARM)
+		. = TRUE
+		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -21,9 +27,6 @@
 		if(E)
 			E.on_effect()
 			H.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART),25)
-	else if(user.a_intent == INTENT_HARM)
-		. = TRUE
-		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/rust_regen
 	name = "Leeching Walk"
@@ -41,7 +44,7 @@
 	var/mob/living/living_user = user
 	living_user.adjustBruteLoss(-2, FALSE)
 	living_user.adjustFireLoss(-2, FALSE)
-	living_user.adjustToxLoss(-2, FALSE)
+	living_user.adjustToxLoss(-2, FALSE, TRUE)
 	living_user.adjustOxyLoss(-0.5, FALSE)
 	living_user.adjustStaminaLoss(-2)
 

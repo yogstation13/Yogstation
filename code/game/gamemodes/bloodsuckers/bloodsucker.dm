@@ -39,7 +39,13 @@
 			break
 		var/datum/mind/bloodsucker = antag_pick(antag_candidates)
 		//Yogs start -- fixes plasmaman vampires
-		if(bloodsucker?.current?.client.prefs.pref_species && (NOBLOOD in bloodsucker.current.client.prefs.pref_species.species_traits))
+		var/species_type = bloodsucker?.current?.client.prefs.read_preference(/datum/preference/choiced/species)
+		var/datum/species/species = new species_type
+
+		var/noblood = (NOBLOOD in species.species_traits)
+		qdel(species)
+
+		if(noblood)
 			antag_candidates -= bloodsucker // kinda need to do this to prevent some edge-case infinite loop or whatever
 			i-- // to undo the imminent increment
 			continue
@@ -60,7 +66,7 @@
 	..()
 
 /datum/game_mode/bloodsucker/generate_report()
-	return "There's been a report of the undead roaming around the sector, especially those that display Vampiric abilities.\
+	return "There's been a report of the undead roaming around the sector, especially those that display vampiric abilities.\
 			 They've displayed the ability to disguise themselves as anyone and brainwash the minds of people they capture alive.\
 			 Please take care of the crew and their health, as it is impossible to tell if one is lurking in the darkness behind."
 

@@ -3,7 +3,7 @@ import { useBackend, useLocalState } from '../../backend';
 import { BlockQuote, Box, Button, ByondUi, Collapsible, Flex, Icon, Input, Knob, LabeledList, NumberInput, ProgressBar, Section, Slider, Tabs, Tooltip } from '../../components';
 import { DraggableControl } from '../../components/DraggableControl';
 import { Window } from '../../layouts';
-import { sendLogEntry } from 'tgui-dev-server/link/client';
+import { sendLogEntry } from 'tgui-dev-server/link/client.cjs';
 
 const COLORS_ARBITRARY = [
   'red',
@@ -77,8 +77,7 @@ export const KitchenSink = (props, context) => {
   const PageComponent = PAGES[pageIndex].component();
   return (
     <Window
-      theme={theme}
-      resizable>
+      theme={theme}>
       <Window.Content scrollable>
         <Section>
           <Flex>

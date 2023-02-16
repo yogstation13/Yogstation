@@ -11,7 +11,7 @@
 	required_enemies = 5
 	recommended_enemies = 8
 	reroll_friendly = 0
-	traitor_name = "Nanotrasen Internal Affairs Agent"
+	traitor_name = "Syndicate Internal Affairs Agent"
 	antag_flag = ROLE_INTERNAL_AFFAIRS
 	title_icon = "traitor"
 
@@ -20,7 +20,7 @@
 	antag_datum = /datum/antagonist/traitor/internal_affairs
 	restricted_jobs = list("AI", "Cyborg")//Yogs -- Silicons can no longer be IAA
 
-	announce_text = "There are Nanotrasen Internal Affairs Agents trying to kill each other!\n\
+	announce_text = "There are Syndicate Internal Affairs Agents trying to kill each other!\n\
 	<span class='danger'>IAA</span>: Eliminate your targets and protect yourself!\n\
 	<span class='notice'>Crew</span>: Stop the IAA agents before they can cause too much mayhem."
 
@@ -81,8 +81,8 @@
 
 
 /datum/game_mode/traitor/internal_affairs/generate_report()
-	return "Nanotrasen denies any accusations of placing internal affairs agents onboard your station to eliminate inconvenient employees.  Any further accusations against CentCom for such \
-			actions will be met with a conversation with an official internal affairs agent."
+	return "Nanotrasen believes that a Syndicate cell operating in the region has successfully been tricked by a false intelligence leak. If this leak was successful, \
+			be wary of Syndicate agents turning on their own on your station; we are unsure the lengths they will go to excise treason."
 
 /datum/game_mode/traitor/double_agents/generate_credit_text()
 	var/list/round_credits = list()

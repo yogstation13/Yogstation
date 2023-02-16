@@ -18,6 +18,26 @@
 #define CHOCOLATE	(1<<17) //cat
 #define SEAFOOD		(1<<18)
 #define MICE		(1<<19) //disliked/liked by anything that dislikes/likes any of RAW, MEAT, or GROSS, except felinids
+#define NUTS 		(1<<20)
+
+/// A list of food type names, in order of their flags
+#define FOOD_FLAGS list( \
+	"MEAT", \
+	"VEGETABLES", \
+	"RAW", \
+	"JUNKFOOD", \
+	"GRAIN", \
+	"FRUIT", \
+	"DAIRY", \
+	"FRIED", \
+	"ALCOHOL", \
+	"SUGAR", \
+	"GROSS", \
+	"TOXIC", \
+	"PINEAPPLE", \
+	"BREAKFAST", \
+	"CLOTH", \
+)
 
 #define DRINK_NICE	1
 #define DRINK_GOOD	2

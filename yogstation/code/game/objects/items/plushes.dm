@@ -89,7 +89,7 @@
 
 /obj/item/toy/plush/realgoat
 	name = "goat plushie"
-	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same, or atleast it would if it wasnt a normal plushie."
+	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same, or at least it would if it wasn't a normal plushie."
 	icon_state = "realgoat"
 	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
 
@@ -104,7 +104,7 @@
 
 /obj/item/toy/plush/goatplushie/angry/ascendedkinggoat
 	name = "Ascended King Goat Plushie"
-	desc = "A plushie depicting the god of all goats."
+	desc = "A plushie depicting the God of all goats."
 	icon_state = "ascendedkinggoat"
 	cooldown_modifier = 1
 	throwforce = 30
@@ -137,9 +137,8 @@
 		new/obj/item/toy/plush/goatplushie/angry/guardgoat(location)
 		new/obj/item/toy/plush/goatplushie/angry/guardgoat(location)
 
-/obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(/obj/item/reagent_containers/food/snacks/grown/cabbage/C,mob/living/user,params)
-		var/C = /obj/item/reagent_containers/food/snacks/grown/cabbage
-		user.visible_message(span_notice("[user] watches as [src] takes a bite out of the cabbage!"), span_notice("[src]'s fur now starts glowing it seems it has ascended!"))
+/obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/reagent_containers/food/snacks/grown/cabbage/C,mob/living/user,params)
+		user.visible_message(span_notice("[user] watches as [src] takes a bite out of the cabbage!"), span_notice("[src]'s fur now starts glowing. It seems it has ascended!"))
 		playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 		qdel(C)
 		qdel(src)
@@ -149,14 +148,14 @@
 
 /obj/item/toy/plush/goatplushie/angry/guardgoat
 	name = "guard goat plushie"
-	desc = "A plushie depicting one of the king goats guards, tasked to protecting the king at all costs."
+	desc = "A plushie depicting one of the king goat's guards, tasked with protecting the king at all costs."
 	icon_state = "guardgoat"
 	cooldown_modifier = 5
 	throwforce = 10
 
 /obj/item/toy/plush/goatplushie/angry/masterguardgoat
 	name = "royal guard goat plushie"
-	desc = "A plushie depicting one of the royal king goats guards, tasked to protecting the king at all costs and training new goat guards."
+	desc = "A plushie depicting one of the royal king goat's guards, tasked with protecting the king at all costs and training new goat guards."
 	icon_state = "royalguardgoat"
 	cooldown_modifier = 4
 	throwforce = 15

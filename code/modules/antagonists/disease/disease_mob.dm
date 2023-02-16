@@ -73,10 +73,12 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/Destroy()
 	. = ..()
 	QDEL_NULL(adaptation_menu_action)
+	disease_template = null
 	for(var/V in GLOB.sentient_disease_instances)
 		var/datum/disease/advance/sentient_disease/S = V
 		if(S.overmind == src)
 			S.overmind = null
+	browser = null
 
 /mob/camera/disease/Login()
 	..()
@@ -126,7 +128,7 @@ the new instance inside the host to be updated to the template's stats.
 	else
 		link = ""
 	// Create map text prior to modifying message for goonchat
-	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans)
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
@@ -287,7 +289,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/ClickOn(var/atom/A, params)
 	if(freemove && ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(alert(src, "Select [H.name] as your initial host?", "Select Host", "Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Select [H.name] as your initial host?", "Select Host", list("Yes", "No")) != "Yes")
 			return
 		if(!freemove)
 			return

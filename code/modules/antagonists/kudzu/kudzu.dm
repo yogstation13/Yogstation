@@ -5,10 +5,15 @@
 /datum/team/kudzu/roundend_report()
 	var/list/parts = list()
 	//is kudzu alive? if yes, greentext
-	parts += "The [name] [locate(/obj/structure/spacevine) in world ? "were [span_greentext("successful")]" : "have [span_redtext("failed")]"] in protecting the kudzu!</span>\n"
+	var/succeeded = FALSE
+	for(var/obj/structure/spacevine/V in world)
+		if(is_station_level(V.z))
+			succeeded = TRUE
+			break
+	parts += "<span class='header'>The [name] [succeeded ? "were [span_greentext("successful")]" : "have [span_redtext("failed")]"] in protecting the kudzu!</span>\n"
 	parts += "The [name] were:"
 	parts += printplayerlist(members)
-	return "<div class='player redborder'>[parts.Join("<br>")]</div>"
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/antagonist/kudzu
 	name = "Venus Human Trap"

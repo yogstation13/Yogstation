@@ -98,7 +98,7 @@
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/roundstart/changeling
-	name = "Changelings"
+	name = "Changeling"
 	antag_flag = ROLE_CHANGELING
 	antag_datum = /datum/antagonist/changeling
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
@@ -108,6 +108,7 @@
 	cost = 16
 	scaling_cost = 10
 	requirements = list(75,70,60,50,40,20,20,10,10,10)
+	minimum_players = 25
 	antag_cap = list("denominator" = 29)
 
 /datum/dynamic_ruleset/roundstart/changeling/pre_execute(population)
@@ -146,7 +147,7 @@
 	scaling_cost = 9
 	requirements = list(101,101,101,40,35,20,20,15,10,10)
 	antag_cap = list("denominator" = 24)
-
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/heretics/pre_execute(population)
 	. = ..()
@@ -190,6 +191,7 @@
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/roundstart_wizards = list()
+	minimum_players = 34
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -236,6 +238,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
 	var/datum/team/cult/main_cult
+	minimum_players = 29
 
 /datum/dynamic_ruleset/roundstart/bloodcult/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -292,7 +295,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	var/datum/team/nuclear/nuke_team
-	minimum_players = 36
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/nuclear/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -359,6 +362,62 @@
 
 //////////////////////////////////////////////
 //                                          //
+//             INFILTRATORS                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/infiltration
+	name = "Infiltration"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = ANTAG_DATUM_INFILTRATOR
+	minimum_required_age = 14
+	restricted_roles = list("Head of Security", "Captain")
+	required_candidates = 5
+	weight = 4
+	cost = 18
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	flags = HIGH_IMPACT_RULESET
+	antag_cap = list("denominator" = 15, "offset" = 1)
+	var/datum/team/infiltrator/sit_team
+	minimum_players = 30
+
+/datum/dynamic_ruleset/roundstart/infiltration/ready(population, forced = FALSE)
+	required_candidates = get_antag_cap(population)
+	. = ..()
+
+/datum/dynamic_ruleset/roundstart/infiltration/pre_execute(population)
+	. = ..()
+	var/inflitrators_amount = get_antag_cap(population)
+	for(var/i = 1 to inflitrators_amount)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.assigned_role = "Syndicate Infiltrator"
+		M.mind.special_role = "Syndicate Infiltrator"
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/execute()
+	sit_team = new /datum/team/infiltrator
+	for(var/datum/mind/sit_mind in assigned)
+		sit_mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	sit_team.update_objectives()
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/round_result()
+	var/result = sit_team.get_result()
+	switch(result)
+		if(INFILTRATION_ALLCOMPLETE)
+			SSticker.mode_result = "major win - objectives complete"
+		if(INFILTRATION_MOSTCOMPLETE)
+			SSticker.mode_result = "minor win - most objectives complete"
+		if(INFILTRATION_SOMECOMPLETE)
+			SSticker.mode_result = "neutral - some objectives complete"
+		else
+			SSticker.mode_result = "loss - no objectives complete"
+
+//////////////////////////////////////////////
+//                                          //
 //               REVS		                //
 //                                          //
 //////////////////////////////////////////////
@@ -379,7 +438,7 @@
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
 	// I give up, just there should be enough heads with 35 players...
-	minimum_players = 35
+	minimum_players = 30
 	var/datum/team/revolution/revolution
 	var/finished = FALSE
 
@@ -525,7 +584,7 @@
 	requirements = list(100,90,80,70,60,50,30,30,30,30)
 	antag_cap = list(4,4,4,5,5,6,6,7,7,8) //this isn't used but having it probably stops a runtime
 	flags = HIGH_IMPACT_RULESET
-	minimum_players = 38
+	minimum_players = 25
 	var/ark_time
 
 //FIX(?) CLOCKCULT XOXEYOS 3/13/2021 IF IT ALL GOES TO SHIT!
@@ -615,6 +674,7 @@
 	antag_leader_datum = /datum/antagonist/nukeop/leader/clownop
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	flags = HIGH_IMPACT_RULESET
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops/pre_execute()
 	. = ..()
@@ -645,6 +705,7 @@
 	flags = LONE_RULESET
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	antag_cap = list("denominator" = 30)
+	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/devil/pre_execute(population)
 	. = ..()
@@ -760,6 +821,7 @@
 	flags = LONE_RULESET
 	var/nometeors = 0
 	var/rampupdelta = 5
+	minimum_players = 40
 
 /datum/dynamic_ruleset/roundstart/meteor/rule_process()
 	if(nometeors || meteordelay > world.time - SSticker.round_start_time)
@@ -797,7 +859,7 @@
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 30
 	antag_cap = 3
-	var/datum/team/shadowling/shadowling
+	minimum_players = 32
 
 /datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -844,6 +906,7 @@
 	antag_cap = list(3,3,3,3,3,3,3,3,3,4)
 	var/autovamp_cooldown = (15 MINUTES)
 	COOLDOWN_DECLARE(autovamp_cooldown_check)
+	minimum_players = 15
 
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute(population)
 	. = ..()
@@ -883,6 +946,7 @@
 	requirements = list(100,100,100,100,90,90,85,85,85,80)
 	antag_cap = list(5,5,5,5,5,5,5,5,5,5)
 	roundstart_wizards = list()
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
 	if(GLOB.wizardstart.len == 0)
@@ -918,7 +982,8 @@
 	minimum_players = 40
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	antag_cap = list(999,999,999,999,999)
-	
+	minimum_players = 40
+
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	. = ..()
 	if(.)
@@ -945,7 +1010,7 @@
 	scaling_cost = 20
 	antag_cap = 3
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
-	minimum_players = 35
+	minimum_players = 32
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
 	. = ..()
@@ -984,6 +1049,18 @@
 	antag_cap = list("denominator" = 24)
 	minimum_players = 25
 
+/datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/player in candidates)
+		var/species_type = player?.client?.prefs.read_preference(/datum/preference/choiced/species)
+		var/datum/species/species = new species_type
+
+		var/noblood = (NOBLOOD in species.species_traits)
+		qdel(species)
+
+		if(noblood)
+			candidates.Remove(player)
+
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
 	. = ..()
 	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
@@ -1002,38 +1079,4 @@
 		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
 		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
 			assigned -= assigned_bloodsuckers
-	return TRUE
-
-//////////////////////////////////////////////
-//                                          //
-//         Internal Affairs Agents          //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/roundstart/iaa
-	name = "Internal Affairs Agents"
-	persistent = TRUE
-	antag_flag = ROLE_INTERNAL_AFFAIRS
-	antag_datum = /datum/antagonist/traitor/internal_affairs
-	minimum_required_age = 0
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
-	required_candidates = 1
-	weight = 5
-	cost = 10
-	scaling_cost = 9
-	requirements = list(25,25,25,25,25,25,25,25,25,25)
-	antag_cap = list("denominator" = 24)
-
-/datum/dynamic_ruleset/roundstart/iaa/pre_execute(population)
-	. = ..()
-	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
-	for (var/i = 1 to num_traitors)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.special_role = ROLE_INTERNAL_AFFAIRS
-		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Internal Affairs Agent")
 	return TRUE

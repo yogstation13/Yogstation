@@ -503,8 +503,7 @@
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder && holder.my_atom)
-		explosion(get_turf(holder.my_atom), 0 ,4, 8)
-
+		explosion(get_turf(holder.my_atom), 0 , 0, 4, flame_range = 12) //same radius as before 4 heavy + 8 light is 12
 
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"

@@ -1,6 +1,8 @@
 /datum/job/ai
 	title = "AI"
+	description = "Assist the crew, follow your laws, coordinate your cyborgs."
 	flag = AI_JF
+	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	department_flag = ENGSEC
 	faction = "Station"
@@ -16,7 +18,14 @@
 	display_order = JOB_DISPLAY_ORDER_AI
 	var/do_special_check = TRUE
 
+	departments_list = list(
+		/datum/job_department/silicon,
+	)
+
 	alt_titles = list("Station Central Processor", "Central Silicon Intelligence", "Cyborg Overlord")
+
+	//this should never be seen because of the way olfaction works but just in case
+	smells_like = "chained intellect"
 
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
@@ -36,7 +45,7 @@
 	GLOB.ai_os.set_cpu(AI, total_available_cpu)
 	GLOB.ai_os.add_ram(AI, total_available_ram)
 
-	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
+	AI.apply_pref_name(/datum/preference/name/ai, M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)
 
 	//we may have been created after our borg

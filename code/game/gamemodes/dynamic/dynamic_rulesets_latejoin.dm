@@ -94,6 +94,7 @@
 	var/required_heads_of_staff = 3
 	var/finished = FALSE
 	var/datum/team/revolution/revolution
+	minimum_players = 30
 
 /datum/dynamic_ruleset/latejoin/provocateur/ready(forced=FALSE)
 	if (forced)
@@ -202,7 +203,7 @@
 	weight = 4
 	cost = 15
 	requirements = list(45,40,40,35,30,30,20,20,20,20)
-	minimum_players = 30
+	minimum_players = 15
 	repeatable = TRUE
 
 
@@ -248,6 +249,13 @@
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	minimum_players = 25
 	repeatable = FALSE
+
+/datum/dynamic_ruleset/latejoin/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/living/carbon/C in candidates)
+		if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+			candidates -= C
+			continue
 
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()
 	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.

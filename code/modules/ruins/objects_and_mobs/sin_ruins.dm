@@ -89,6 +89,10 @@
 
 /obj/effect/gluttony/Cross(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
 	. = ..()
+	if(ismob(mover))
+		var/mob/M = mover
+		if(is_sinfuldemon(M))
+			return TRUE
 	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover
 		if(H.nutrition >= NUTRITION_LEVEL_FAT)

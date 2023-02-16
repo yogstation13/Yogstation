@@ -1,6 +1,6 @@
 import { scale, toFixed } from 'common/math';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from '../components';
+import { Box, Button, Divider, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from '../components';
 import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
 import { NtosWindow } from '../layouts';
@@ -9,6 +9,7 @@ export const NtosNetDownloader = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     PC_device_theme,
+    theme_collection = [],
     disk_size,
     disk_used,
     downloadcompletion,
@@ -33,7 +34,7 @@ export const NtosNetDownloader = (props, context) => {
     selectedCategory !== all_categories[0]
     && filter(program => program.category === selectedCategory),
     // This filters the list to only contain verified programs
-    (!emagged && PC_device_theme === "ntos")
+    (!emagged && theme_collection.some(theme => theme.theme_file === PC_device_theme))
     && filter(program => program.verifiedsource === 1),
     // This sorts all programs in the lists by name and compatibility
     sortBy(
@@ -89,7 +90,7 @@ export const NtosNetDownloader = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Flex>
+        <Flex height="92%">
           <Flex.Item minWidth="105px" shrink={0} basis={0}>
             <Tabs vertical>
               {all_categories.map(category => (
@@ -102,12 +103,16 @@ export const NtosNetDownloader = (props, context) => {
               ))}
             </Tabs>
           </Flex.Item>
-          <Flex.Item grow={1} basis={0}>
-            {items?.map(program => (
-              <Program
-                key={program.filename}
-                program={program} />
-            ))}
+          <Flex.Item grow={1} basis={0} height="100%">
+            <Section fill scrollable>
+              {items?.map(program => (
+                <Box key={program.filename}>
+                  <Program
+                    program={program} />
+                  <Divider />
+                </Box>
+              ))}
+            </Section>
           </Flex.Item>
         </Flex>
       </NtosWindow.Content>
@@ -128,7 +133,7 @@ const Program = (props, context) => {
   } = data;
   const disk_free = disk_size - disk_used;
   return (
-    <Section>
+    <Box>
       <Flex align="baseline">
         <Flex.Item grow={1} blod>
           <Icon name={program.icon} mr={1} />
@@ -137,7 +142,7 @@ const Program = (props, context) => {
         <Flex.Item shrink={0} width="48px" textAlign="right" color="label" nowrap>
           {program.size} GQ
         </Flex.Item>
-        <Flex.Item shrink={0} width="134px" textAlign="right">
+        <Flex.Item shrink={0} width="134px" textAlign="right" pr={"1rem"}>
           {(downloading && program.filename === downloadname) && (
             <ProgressBar
               width="101px"
@@ -187,6 +192,6 @@ const Program = (props, context) => {
           download and usage of software from non-official servers.
         </NoticeBox>
       )}
-    </Section>
+    </Box>
   );
 };

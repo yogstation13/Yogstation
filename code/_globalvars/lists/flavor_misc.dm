@@ -38,16 +38,17 @@ GLOBAL_LIST_EMPTY(animated_tails_list_human)
 GLOBAL_LIST_EMPTY(ears_list)
 GLOBAL_LIST_EMPTY(wings_list)
 GLOBAL_LIST_EMPTY(wings_open_list)
-GLOBAL_LIST_EMPTY(r_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)
 GLOBAL_LIST_EMPTY(ipc_chassis_list)
+GLOBAL_LIST_INIT(plasmaman_helmet_list, list("None" = "", "Slit" = "S", "Nyan" = "N", "Gassy" = "G", "Bane" = "B", "Halo" = "H", "Wizard" = "W"))
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
+GLOBAL_LIST_INIT(color_list_preternis, list("Factory Default" = "FFFFFF", "Rust" = "B7410E", "Chrome" = "B0C4DE", "Overgrown" = "b2ee69", "Gunmetal Gray" = "8D918D", "Gold" = "D4AF37"))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
@@ -98,17 +99,25 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Triumvirate-M",
 	"Weird"))
 
-/proc/resolve_ai_icon(input)
+/// A form of resolve_ai_icon that is guaranteed to never sleep.
+/// Not always accurate, but always synchronous.
+/proc/resolve_ai_icon_sync(input)
+	SHOULD_NOT_SLEEP(TRUE)
+
 	if(!input || !(input in GLOB.ai_core_display_screens))
 		return "ai"
 	else
 		if(input == "Random")
 			input = pick(GLOB.ai_core_display_screens - "Random")
-		if(input == "Portrait")
-			var/datum/portrait_picker/tgui  = new(usr)//create the datum
-			tgui.ui_interact(usr)//datum has a tgui component, here we open the window
-			return "ai-portrait" //just take this until they decide
 		return "ai-[lowertext(input)]"
+
+/proc/resolve_ai_icon(input)
+	if (input == "Portrait")
+		var/datum/portrait_picker/tgui = new(usr)//create the datum
+		tgui.ui_interact(usr)//datum has a tgui component, here we open the window
+		return "ai-portrait" //just take this until they decide
+
+	return resolve_ai_icon_sync(input)
 
 GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 

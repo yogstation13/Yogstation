@@ -116,8 +116,8 @@
 	list_reagents = list(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/facid
-	name = "Fluorosulfuric Acid Bottle"
-	desc = "A small bottle. Contains a small amount of fluorosulfuric acid."
+	name = "Fluorosulphuric Acid Bottle"
+	desc = "A small bottle. Contains a small amount of fluorosulphuric acid."
 	list_reagents = list(/datum/reagent/toxin/acid/fluacid = 30)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
@@ -379,9 +379,9 @@
 	name = "phosphorus bottle"
 	list_reagents = list(/datum/reagent/phosphorus = 30)
 
-/obj/item/reagent_containers/glass/bottle/sulfur
-	name = "sulfur bottle"
-	list_reagents = list(/datum/reagent/sulfur = 30)
+/obj/item/reagent_containers/glass/bottle/sulphur
+	name = "sulphur bottle"
+	list_reagents = list(/datum/reagent/sulphur = 30)
 
 /obj/item/reagent_containers/glass/bottle/chlorine
 	name = "chlorine bottle"
@@ -474,7 +474,7 @@
 /obj/item/reagent_containers/glass/bottle/vial/Initialize()
 	if(icon_state in striped_vial_skins)
 		filling_icon_state = "[base_icon_state]stripe"
-	..()
+	return ..()
 
 /obj/item/reagent_containers/glass/bottle/vial/attackby(obj/P, mob/user, params)
 	add_fingerprint(user)
@@ -558,7 +558,7 @@
 	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/coagulant
-	name = "vial (Coagulant)"
+	name = "vial (Sanguirite)"
 	icon_state = "vial_red"
 	list_reagents = list(/datum/reagent/medicine/coagulant = 15)
 	custom_premium_price = 50
@@ -583,6 +583,39 @@
 	name = "Flu virion culture vial"
 	desc = "A small vial for holding small amounts of reagents. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
+
+
+// Bottles for mail goodies.
+
+/obj/item/reagent_containers/glass/bottle/clownstears
+	name = "bottle of distilled clown misery"
+	desc = "A small bottle. Contains a mythical liquid used by sublime bartenders; made from the unhappiness of clowns."
+	list_reagents = list(/datum/reagent/consumable/clownstears = 30)
+
+/obj/item/reagent_containers/glass/bottle/saltpetre
+	name = "saltpetre bottle"
+	desc = "A small bottle. Contains saltpetre."
+	list_reagents = list(/datum/reagent/saltpetre = 30)
+
+/obj/item/reagent_containers/glass/bottle/flash_powder
+	name = "flash powder bottle"
+	desc = "A small bottle. Contains flash powder."
+	list_reagents = list(/datum/reagent/flash_powder = 30)
+
+///obj/item/reagent_containers/glass/bottle/exotic_stabilizer
+	//name = "exotic stabilizer bottle"
+	//desc = "A small bottle. Contains exotic stabilizer."
+	//list_reagents = list(/datum/reagent/exotic_stabilizer = 30)
+
+///obj/item/reagent_containers/glass/bottle/leadacetate
+	//name = "lead acetate bottle"
+	//desc = "A small bottle. Contains lead acetate."
+	//list_reagents = list(/datum/reagent/toxin/leadacetate = 30)
+
+/obj/item/reagent_containers/glass/bottle/caramel
+	name = "bottle of caramel"
+	desc = "A bottle containing caramalized sugar, also known as caramel. Do not lick."
+	list_reagents = list(/datum/reagent/consumable/caramel = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large
 	name = "large vial"

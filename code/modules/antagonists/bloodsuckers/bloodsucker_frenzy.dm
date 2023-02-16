@@ -28,20 +28,20 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 	tick_interval = 10
-	examine_text = span_notice("They seem... inhumane, and feral!")
-	alert_type = /obj/screen/alert/status_effect/frenzy
+	examine_text = span_notice("They look feral and inhuman!")
+	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	/// Store whether they were an advancedtooluser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE
 	/// The stored Bloodsucker antag datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum
 
-/obj/screen/alert/status_effect/frenzy
+/atom/movable/screen/alert/status_effect/frenzy
 	name = "Frenzy"
 	desc = "You are in a Frenzy! You are entirely feral, and depending on your Clan - fighting for your life! <i>Feeding</i> while in this state is instant!"
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	icon_state = "power_recover"
 
-/obj/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
 	desc = initial(desc)
 	return ..()
 
@@ -52,14 +52,14 @@
 	// Disable ALL Powers and notify their entry
 	bloodsuckerdatum.DisableAllPowers()
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! Your skin starts sizzling...."))
-	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
+	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, and cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	// Stamina resistances
 	user.physiology.stamina_mod *= 0.4
 
 	// Give the other Frenzy effects
 	ADD_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, FRENZY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, FRENZY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
 	if(user.IsAdvancedToolUser())
 		was_tooluser = TRUE
@@ -82,7 +82,7 @@
 	to_chat(owner, span_warning("You come back to your senses."))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, FRENZY_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, FRENZY_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
 	if(was_tooluser)
 		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
@@ -106,4 +106,4 @@
 		user.clear_cuffs(legcuffs, TRUE)
 	if(!bloodsuckerdatum.frenzied)
 		return
-	user.adjustFireLoss(0.5 + (bloodsuckerdatum.humanity_lost / 15))
+	user.adjustFireLoss(min(0.5 + (bloodsuckerdatum.humanity_lost / 15), bloodsuckerdatum.my_clan == CLAN_GANGREL ? 2 : 100))

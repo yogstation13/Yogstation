@@ -10,8 +10,8 @@
 	var/mood_modifier = 1 //Modifier to allow certain mobs to be less affected by moodlets
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
-	var/obj/screen/mood/screen_obj
-	var/obj/screen/sanity/screen_obj_sanity
+	var/atom/movable/screen/mood/screen_obj
+	var/atom/movable/screen/sanity/screen_obj_sanity
 
 /datum/component/mood/Initialize()
 	if(!isliving(parent))
@@ -171,7 +171,7 @@
 					screen_obj.color = "#2eeb9a"
 			break
 
-/datum/component/mood/process() //Called on SSmood process
+/datum/component/mood/process(delta_time) //Called on SSmood process
 	var/mob/living/owner = parent
 	if(!owner)
 		qdel(src)
@@ -179,23 +179,23 @@
 
 	switch(mood_level)
 		if(1)
-			setSanity(sanity-0.2)
+			setSanity(sanity-0.2*delta_time)
 		if(2)
-			setSanity(sanity-0.125, minimum=SANITY_CRAZY)
+			setSanity(sanity-0.125*delta_time, minimum=SANITY_CRAZY)
 		if(3)
-			setSanity(sanity-0.075, minimum=SANITY_UNSTABLE)
+			setSanity(sanity-0.075*delta_time, minimum=SANITY_UNSTABLE)
 		if(4)
-			setSanity(sanity-0.025, minimum=SANITY_DISTURBED)
+			setSanity(sanity-0.025*delta_time, minimum=SANITY_DISTURBED)
 		if(5)
 			setSanity(sanity+0.1)
 		if(6)
-			setSanity(sanity+0.15)
+			setSanity(sanity+0.15*delta_time)
 		if(7)
-			setSanity(sanity+0.2)
+			setSanity(sanity+0.2*delta_time)
 		if(8)
-			setSanity(sanity+0.25, maximum=SANITY_GREAT)
+			setSanity(sanity+0.25*delta_time, maximum=SANITY_GREAT)
 		if(9)
-			setSanity(sanity+0.4, maximum=INFINITY)
+			setSanity(sanity+0.4*delta_time, maximum=INFINITY)
 
 	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
 		if(prob(0.05))
@@ -311,9 +311,12 @@
 	RegisterSignal(screen_obj, COMSIG_CLICK, .proc/hud_click)
 
 /datum/component/mood/proc/unmodify_hud(datum/source)
+	SIGNAL_HANDLER
 	if(!screen_obj)
 		return
 	var/mob/living/owner = parent
+	if(!owner)
+		return
 	var/datum/hud/hud = owner.hud_used
 	if(hud && hud.infodisplay)
 		hud.infodisplay -= screen_obj
@@ -359,6 +362,10 @@
 			clear_event(null, "charge")
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
+		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
+			add_event(null, "charge", /datum/mood_event/overcharged)
+		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
+			add_event(null, "charge", /datum/mood_event/supercharged)
 
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)

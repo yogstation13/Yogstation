@@ -45,7 +45,7 @@
 
 /datum/supply_pack/misc/sphere
 	name = "Advanced Crates"
-	desc = "Contains a Advanced Crate that defies all known cargo standards!"
+	desc = "Contains an advanced crate that defies all known cargo standards!"
 	cost = 10000
 	contains = list(/obj/structure/closet/crate/sphere)
 	crate_name = "Advanced Crate Container"
@@ -110,10 +110,24 @@
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/balloons
+	name = "Balloon Crate"
+	desc = "A crate filled with 6 fun filled balloon boxes!"
+	cost = 2000
+	contains = list(
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox
+	)
+
 /datum/supply_pack/security/prisonclothes
 	name = "Prison Jumpsuit Crate"
 	desc = "A crate containing a five cheap looking orange jumpsuits."
 	cost = 500
+	small_item = TRUE
 	contains = list(/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
@@ -175,7 +189,7 @@
 	hidden = TRUE
 	cost = 2000
 	contains = list(/mob/living/simple_animal/hostile/carp)
-	crate name = "fish crate"
+	crate_name = "fish crate"
 
 /datum/supply_pack/critter/carp/generate()
 	. = ..()

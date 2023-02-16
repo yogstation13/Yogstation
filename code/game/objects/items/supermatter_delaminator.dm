@@ -8,7 +8,7 @@
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\
 	<li>Extricate yourself immediately. You have approximately 5 minutes before the infrastructure fails completely.</li>\
 	<li>Upon complete infrastructure failure, the crystal well will destabilize and emit electromagnetic waves that span the entire station.</li>\
-	<li>Nanotresen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
+	<li>Nanotrasen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
 	</ul>"
 
 /obj/item/supermatter_delaminator/Initialize()

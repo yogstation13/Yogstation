@@ -10422,24 +10422,6 @@
 /obj/item/clothing/neck/stripedbluescarf,
 /turf/open/floor/grass,
 /area/centcom/testchamber)
-"awh" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large{
-	pin = /obj/item/firing_pin;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "awi" = (
 /obj/structure/statue/diamond/captain,
 /turf/open/floor/holofloor/grass,
@@ -18947,7 +18929,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19936,7 +19918,7 @@
 "aOm" = (
 /obj/structure/table/wood,
 /obj/item/veilrender/honkrender/honkhulkrender,
-/obj/item/melee/baseball_bat/homerun,
+/obj/item/twohanded/required/baseball_bat/homerun,
 /obj/item/melee/singularity_sword,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -19961,7 +19943,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20425,6 +20407,7 @@
 	pixel_y = 9
 	},
 /obj/item/melee/transforming/energy/blade,
+/obj/item/bodypart/l_arm/robot/buster,
 /obj/item/melee/transforming/energy/blade/hardlight,
 /obj/item/melee/transforming/energy/sword/bananium,
 /turf/open/floor/wood,
@@ -20598,7 +20581,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -22812,7 +22795,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -24046,7 +24029,7 @@
 "aWC" = (
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/rapid,
-/obj/item/clothing/gloves/krav_maga/sec,
+/obj/item/clothing/gloves/sec_maga,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "aWD" = (
@@ -25880,6 +25863,14 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"eiz" = (
+/obj/machinery/power/apc{
+	areastring = "/area/bluespace_locker";
+	name = "Bluespace Locker APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -25910,6 +25901,10 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
+"gkW" = (
+/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "gCx" = (
 /obj/effect/light_emitter{
 	light_range = 30
@@ -26226,6 +26221,11 @@
 	icon_state = "info7"
 	},
 /area/centcom/testchamber)
+"rod" = (
+/obj/structure/ghostbeacon,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
@@ -26453,7 +26453,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -46010,7 +46010,7 @@ aVa
 aVa
 aOw
 aVa
-aVa
+eiz
 aGa
 aOQ
 aOQ
@@ -51111,9 +51111,9 @@ aZs
 aXk
 aNI
 aNd
-aaa
-aaa
-aaa
+aNd
+aNd
+aNd
 aaa
 aaa
 aaa
@@ -51368,9 +51368,9 @@ aUV
 aCV
 aUl
 aNd
-aaa
-aaa
-aaa
+aXk
+gkW
+aNd
 aaa
 aaa
 aaa
@@ -51624,10 +51624,10 @@ aNd
 aPM
 aXk
 aXk
+aRe
+aXk
+rod
 aNd
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -51882,9 +51882,9 @@ aYm
 aCV
 aUl
 aNd
-aaa
-aaa
-aaa
+aXk
+gkW
+aNd
 aaa
 aaa
 aaa
@@ -52139,9 +52139,9 @@ aMs
 aXk
 aNI
 aNd
-aaa
-aaa
-aaa
+aNd
+aNd
+aNd
 aaa
 aaa
 aaa
@@ -65235,7 +65235,7 @@ aQo
 aHE
 awS
 aWI
-awh
+aVC
 aWx
 aZw
 aQz
@@ -70699,13 +70699,13 @@ abj
 aQs
 ads
 atg
-aaN
+abU
 aLh
 aLh
 aLh
 aLh
 aex
-abU
+aaN
 abj
 aaa
 aaa

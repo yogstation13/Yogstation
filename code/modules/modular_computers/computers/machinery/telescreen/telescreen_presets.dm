@@ -6,7 +6,7 @@
 								/obj/item/computer_hardware/network_card)
 
 /obj/machinery/modular_computer/telescreen/preset/Initialize()
-	..()
+	. = ..()
 	cpu.enabled = TRUE
 
 // ===== ENGINEERING TELESCREEN =====
