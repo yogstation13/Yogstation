@@ -200,7 +200,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_rd"
-	armor = list(bomb = 5, bio = 5, fire = 5, acid = 10)
+	armor = list(bomb = 15, bio = 10, fire = 10, acid = 15)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/med
