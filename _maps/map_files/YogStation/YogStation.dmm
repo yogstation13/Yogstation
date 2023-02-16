@@ -35257,20 +35257,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"kar" = (
-/obj/machinery/door/window/eastright{
-	dir = 1;
-	name = "Filing Room";
-	req_access_txt = "5"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "kav" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
@@ -61566,6 +61552,19 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
+"uRx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/door/window/brigdoor/northright{
+	name = "Filing Room";
+	req_access_txt = "5"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "uRV" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway West";
@@ -107246,7 +107245,7 @@ jdO
 itu
 jdO
 jdO
-jdO
+jhe
 bHk
 cmL
 cmL
@@ -108274,7 +108273,7 @@ oIh
 jaT
 vbD
 vFJ
-jhe
+jdO
 wFq
 hpd
 hjl
@@ -108526,12 +108525,12 @@ shN
 ejf
 qGf
 adK
-jhe
-jhe
-jhe
-jhe
-jhe
-jhe
+jdO
+jdO
+jdO
+jdO
+jdO
+jdO
 xFh
 fyq
 vRr
@@ -109304,7 +109303,7 @@ qlM
 faj
 iRr
 pTN
-kar
+uRx
 tEx
 jxu
 nTv
