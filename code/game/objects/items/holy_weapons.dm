@@ -896,6 +896,9 @@
 	if(held_up)
 		unwield(user)
 		return
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, span_warning("You do not wish to bring holy wrath upon anyone!"))
+		return
 	user.visible_message(span_notice("[user] raises \the [src]."), span_notice("You raise \the [src]."))
 	held_up = TRUE
 	w_class = WEIGHT_CLASS_GIGANTIC // Heavy, huh?
