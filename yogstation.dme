@@ -1070,6 +1070,7 @@
 #include "code\game\objects\items\handcuffs.dm"
 #include "code\game\objects\items\his_grace.dm"
 #include "code\game\objects\items\holosign_creator.dm"
+#include "code\game\objects\items\holy_armours.dm"
 #include "code\game\objects\items\holy_weapons.dm"
 #include "code\game\objects\items\hot_potato.dm"
 #include "code\game\objects\items\hourglass.dm"
