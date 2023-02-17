@@ -21,7 +21,7 @@
 	wound_bonus = -10
 	cryo_preserve = TRUE
 	var/reskinned = FALSE
-	var/menutab = 
+	var/menutab = MENU_MISC //that way if someone forgets, it gets put in the tab that isn't specialized
 	var/chaplain_spawnable = TRUE
 
 /obj/item/nullrod/Initialize()
@@ -109,28 +109,11 @@
 		return FALSE
 	return TRUE
 
-/obj/item/nullrod/godhand
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "disintegrate"
-	item_state = "disintegrate"
-	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
-	name = "god hand"
-	desc = "This hand of yours glows with an awesome power!"
-	item_flags = ABSTRACT | DROPDEL
-	w_class = WEIGHT_CLASS_HUGE
-	slot_flags = null
-	hitsound = 'sound/weapons/sear.ogg'
-	damtype = BURN
-	attack_verb = list("punched", "cross countered", "pummeled")
-
-/obj/item/nullrod/godhand/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-
-/obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
-	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
-
+/*---------------------------------------------------------------------------
+|
+|		WEAPON null rods
+|
+----------------------------------------------------------------------------*/
 /obj/item/nullrod/staff
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff-red"
@@ -144,6 +127,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	block_chance = 50
 	var/shield_icon = "shield-red"
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/staff/worn_overlays(isinhands)
 	. = list()
@@ -171,6 +155,7 @@
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
@@ -178,29 +163,29 @@
 	return ..()
 
 /obj/item/nullrod/claymore/darkblade
+	name = "dark blade"
+	desc = "Spread the glory of the dark gods!"
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "dark blade"
-	desc = "Spread the glory of the dark gods!"
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
-	icon_state = "chainswordon"
-	item_state = "chainswordon"
 	name = "sacred chainsaw sword"
 	desc = "Suffer not a heretic to live."
+	icon_state = "chainswordon"
+	item_state = "chainswordon"
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 
-/obj/item/nullrod/claymore/glowing
-	icon_state = "swordon"
-	item_state = "swordon"
+/obj/item/nullrod/claymore/glowing//reminder, make it actually glow
 	name = "force weapon"
 	desc = "The blade glows with the power of faith. Or possibly a battery."
+	icon_state = "swordon"
+	item_state = "swordon"
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/nullrod/claymore/katana
@@ -223,24 +208,24 @@
 
 /obj/item/nullrod/claymore/saber
 	name = "light energy sword"
+	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
 	hitsound = 'sound/weapons/blade1.ogg'
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
-	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/nullrod/claymore/saber/red
 	name = "dark energy sword"
+	desc = "Woefully ineffective when used on steep terrain."
 	icon_state = "swordred"
 	item_state = "swordred"
-	desc = "Woefully ineffective when used on steep terrain."
 
 /obj/item/nullrod/claymore/saber/pirate
 	name = "nautical energy sword"
+	desc = "Convincing HR that your religion involved piracy was no mean feat."
 	icon_state = "cutlass1"
 	item_state = "cutlass1"
-	desc = "Convincing HR that your religion involved piracy was no mean feat."
 
 /obj/item/nullrod/claymore/corvo
 	name = "folding blade"
@@ -255,7 +240,6 @@
 
 /obj/item/nullrod/claymore/corvo/attack_self(mob/user)
 	on = !on
-
 	if(on)
 		to_chat(user, "<span class ='warning'>You unfold the sword.</span>")
 		icon_state = "corvo_1"
@@ -275,83 +259,56 @@
 	playsound(src.loc, on_sound, 50, 1)
 	add_fingerprint(user)
 
-
-/obj/item/nullrod/sord
-	name = "\improper UNREAL SORD"
-	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
-	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "sord"
-	item_state = "sord"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	force = 4.13
-	throwforce = 1
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
+//SCYTHES
 /obj/item/nullrod/scythe
+	name = "reaper scythe"
+	desc = "Ask not for whom the bell tolls..."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "scythe1"
 	item_state = "scythe1"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "reaper scythe"
-	desc = "Ask not for whom the bell tolls..."
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 35
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_EDGED
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/scythe/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
 /obj/item/nullrod/scythe/vibro
+	name = "high frequency blade"
+	desc = "Bad references are the DNA of the soul."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "high frequency blade"
-	desc = "Bad references are the DNA of the soul."
 	attack_verb = list("chopped", "sliced", "cut", "zandatsu'd")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
-/obj/item/nullrod/Hypertool
-	icon = 'icons/obj/device.dmi'
-	icon_state = "hypertool"
-	item_state = "hypertool"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	name = "hypertool"
-	desc = "A tool so powerful even you cannot perfectly use it."
-	armour_penetration = 35
-	damtype = BRAIN
-	attack_verb = list("pulsed", "mended", "cut")
-	hitsound = 'sound/effects/sparks4.ogg'
-
 /obj/item/nullrod/scythe/spellblade
+	name = "dormant spellblade"
+	desc = "The blade grants the wielder nearly limitless power...if they can figure out how to turn it on, that is."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spellblade"
 	item_state = "spellblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	icon = 'icons/obj/guns/magic.dmi'
-	name = "dormant spellblade"
-	desc = "The blade grants the wielder nearly limitless power...if they can figure out how to turn it on, that is."
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
 /obj/item/nullrod/scythe/talking
+	name = "possessed blade"
+	desc = "When the station falls into chaos, it's nice to have a friend by your side."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "talking_sword"
 	item_state = "talking_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "possessed blade"
-	desc = "When the station falls into chaos, it's nice to have a friend by your side."
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/possessed = FALSE
@@ -367,11 +324,8 @@
 		return
 
 	to_chat(user, "You attempt to wake the spirit of the blade...")
-
 	possessed = TRUE
-
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the spirit of [user.real_name]'s blade?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
-
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/shade/S = new(src)
@@ -396,72 +350,58 @@
 		qdel(S)
 	return ..()
 
-/obj/item/nullrod/scythe/talking/chainsword
-	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "chainswordon"
-	item_state = "chainswordon"
-	name = "possessed chainsaw sword"
-	desc = "Suffer not a heretic to live."
-	chaplain_spawnable = FALSE
-	force = 30
+/obj/item/nullrod/Hypertool
+	name = "hypertool"
+	desc = "A tool so powerful even you cannot perfectly use it."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "hypertool"
+	item_state = "hypertool"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
-	hitsound = 'sound/weapons/chainsawhit.ogg'
-
+	armour_penetration = 35
+	damtype = BRAIN
+	attack_verb = list("pulsed", "mended", "cut")
+	hitsound = 'sound/effects/sparks4.ogg'
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/hammmer
+	name = "relic war hammer"
+	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammeron"
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	name = "relic war hammer"
-	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
+	menutab = MENU_WEAPON
 
-/obj/item/nullrod/chainsaw
-	name = "chainsaw hand"
-	desc = "Good? Bad? You're the guy with the chainsaw hand."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "chainsaw_on"
-	item_state = "mounted_chainsaw"
-	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	w_class = WEIGHT_CLASS_HUGE
-	item_flags = ABSTRACT
-	sharpness = SHARP_EDGED
-	slot_flags = null
-	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
-	hitsound = 'sound/weapons/chainsawhit.ogg'
-
-/obj/item/nullrod/chainsaw/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
 
 /obj/item/nullrod/clown
+	name = "clown dagger"
+	desc = "Used for absolutely hilarious sacrifices."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "clownrender"
 	item_state = "render"
-	name = "clown dagger"
-	desc = "Used for absolutely hilarious sacrifices."
 	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = SHARP_EDGED
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/pride_hammer
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "pride"
 	name = "Pride-struck Hammer"
 	desc = "It resonates an aura of Pride."
+	icon = 'icons/obj/weapons/misc.dmi'
+	icon_state = "pride"
 	force = 16
 	throwforce = 15
 	w_class = 4
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb = list("attacked", "smashed", "crushed", "splattered", "cracked")
 	hitsound = 'sound/weapons/blade1.ogg'
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/pride_hammer/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
 	. = ..()
@@ -484,98 +424,40 @@
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
+	menutab = MENU_WEAPON
 	
 /obj/item/nullrod/whip/Initialize()
 	. = ..()
 	weapon_stats[REACH] = 3
 
-/obj/item/nullrod/fedora
-	name = "atheist's fedora"
-	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
-	icon_state = "fedora"
-	item_state = "fedora"
-	slot_flags = ITEM_SLOT_HEAD
-	icon = 'icons/obj/clothing/hats.dmi'
-	force = 0
-	throw_speed = 4
-	throw_range = 7
-	throwforce = 30
-	sharpness = SHARP_EDGED
-	attack_verb = list("enlightened", "redpilled")
 
-/obj/item/nullrod/armblade
-	name = "dark blessing"
-	desc = "Particularly twisted deities grant gifts of dubious value."
-	icon = 'icons/obj/changeling.dmi'
-	icon_state = "arm_blade"
-	item_state = "arm_blade"
-	tool_behaviour = TOOL_MINING
-	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	slot_flags = null
-	item_flags = ABSTRACT
-	w_class = WEIGHT_CLASS_HUGE
-	sharpness = SHARP_EDGED
-	wound_bonus = -20
-	bare_wound_bonus = 25
-
-/obj/item/nullrod/armblade/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	AddComponent(/datum/component/butchering, 80, 70)
-
-/obj/item/nullrod/armblade/tentacle
-	name = "unholy blessing"
-	icon_state = "tentacle"
-	item_state = "tentacle"
-
-/obj/item/nullrod/carp
-	name = "carp-sie plushie"
-	desc = "An adorable stuffed toy that resembles the god of all carp. The teeth look pretty sharp. Activate it to receive the blessing of Carp-Sie."
-	icon = 'icons/obj/plushes.dmi'
-	icon_state = "carpplush"
-	item_state = "carp_plushie"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	force = 15
-	attack_verb = list("bitten", "eaten", "fin slapped")
-	hitsound = 'sound/weapons/bite.ogg'
-	var/used_blessing = FALSE
-
-/obj/item/nullrod/carp/attack_self(mob/living/user)
-	if(used_blessing)
-	else if(user.mind && (user.mind.holy_role))
-		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
-		user.faction |= "carp"
-		used_blessing = TRUE
-
-/obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
-	icon = 'icons/obj/weapons/misc.dmi'
+/obj/item/nullrod/bostaff
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
+	icon = 'icons/obj/weapons/misc.dmi'
+	icon_state = "bostaff0"
+	item_state = "bostaff0"
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	hitsound = "swing_hit"
+	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	w_class = WEIGHT_CLASS_BULKY
 	damtype = STAMINA
 	force = 15
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
-	hitsound = "swing_hit"
-	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "bostaff0"
-	item_state = "bostaff0"
-	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	menutab = MENU_WEAPON
 
 /obj/item/nullrod/tribal_knife
+	name = "arrhythmic knife"
+	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "crysknife"
 	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "arrhythmic knife"
 	w_class = WEIGHT_CLASS_HUGE
-	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
 	sharpness = SHARP_EDGED
 	slot_flags = null
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -596,13 +478,13 @@
 
 
 /obj/item/nullrod/pitchfork
+	name = "unholy pitchfork"
+	desc = "Holding this makes you look absolutely devilish."
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "unholy pitchfork"
 	w_class = WEIGHT_CLASS_NORMAL
-	desc = "Holding this makes you look absolutely devilish."
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_POINTY
@@ -618,17 +500,102 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
 
-/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(hud_type && slot == SLOT_GLASSES)
-		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+/*---------------------------------------------------------------------------
+|
+|		ARM null rods
+|
+----------------------------------------------------------------------------*/
+/obj/item/nullrod/godhand
+	name = "god hand"
+	desc = "This hand of yours glows with an awesome power!"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	item_flags = ABSTRACT | DROPDEL
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = null
+	hitsound = 'sound/weapons/sear.ogg'
+	damtype = BURN
+	attack_verb = list("punched", "cross countered", "pummeled")
+	menutab = MENU_ARM
 
-/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
-	..()
-	if(hud_type && istype(user) && user.glasses == src)
-		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+/obj/item/nullrod/godhand/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
+	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
+	
+/obj/item/nullrod/chainsaw
+	name = "chainsaw hand"
+	desc = "Good? Bad? You're the guy with the chainsaw hand."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "chainsaw_on"
+	item_state = "mounted_chainsaw"
+	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
+	w_class = WEIGHT_CLASS_HUGE
+	item_flags = ABSTRACT
+	sharpness = SHARP_EDGED
+	slot_flags = null
+	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
+	hitsound = 'sound/weapons/chainsawhit.ogg'
+	menutab = MENU_ARM
+
+/obj/item/nullrod/chainsaw/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
+
+/obj/item/nullrod/armblade
+	name = "dark blessing"
+	desc = "Particularly twisted deities grant gifts of dubious value."
+	icon = 'icons/obj/changeling.dmi'
+	icon_state = "arm_blade"
+	item_state = "arm_blade"
+	tool_behaviour = TOOL_MINING
+	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	slot_flags = null
+	item_flags = ABSTRACT
+	w_class = WEIGHT_CLASS_HUGE
+	sharpness = SHARP_EDGED
+	wound_bonus = -20
+	bare_wound_bonus = 25
+	menutab = MENU_ARM
+
+/obj/item/nullrod/armblade/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	AddComponent(/datum/component/butchering, 80, 70)
+
+/obj/item/nullrod/armblade/tentacle
+	name = "unholy blessing"
+	icon_state = "tentacle"
+	item_state = "tentacle"
+
+/*---------------------------------------------------------------------------
+|
+|		CLOTHING null rods
+|
+----------------------------------------------------------------------------*/
+
+/obj/item/nullrod/fedora
+	name = "atheist's fedora"
+	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
+	icon_state = "fedora"
+	item_state = "fedora"
+	slot_flags = ITEM_SLOT_HEAD
+	icon = 'icons/obj/clothing/hats.dmi'
+	force = 0
+	throw_speed = 4
+	throw_range = 7
+	throwforce = 30
+	sharpness = SHARP_EDGED
+	attack_verb = list("enlightened", "redpilled")
+
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
 	desc = "Even in death, I still serve"
@@ -660,6 +627,11 @@
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
 		H2.remove_hud_from(user)
 
+/*---------------------------------------------------------------------------
+|
+|		MISC null rods
+|
+----------------------------------------------------------------------------*/
 /obj/item/nullrod/cross
 	name = "golden crucifix"
 	desc = "Resist the devil, and he will flee from you."
@@ -746,6 +718,55 @@
 /obj/item/nullrod/cross/examine(mob/user)
 	. = ..()
 	. += "[span_notice("Use in-hand while facing evil to ")][span_danger("purge it.")]"
+
+/obj/item/nullrod/sord
+	name = "\improper UNREAL SORD"
+	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "sord"
+	item_state = "sord"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	force = 4.13
+	throwforce = 1
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	menutab = MENU_MISC //banish it from being associated with proper weapons
+
+/obj/item/nullrod/carp
+	name = "carp-sie plushie"
+	desc = "An adorable stuffed toy that resembles the god of all carp. The teeth look pretty sharp. Activate it to receive the blessing of Carp-Sie."
+	icon = 'icons/obj/plushes.dmi'
+	icon_state = "carpplush"
+	item_state = "carp_plushie"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	force = 15
+	attack_verb = list("bitten", "eaten", "fin slapped")
+	hitsound = 'sound/weapons/bite.ogg'
+	var/used_blessing = FALSE
+	menutab = MENU_MISC //a downgrade from proper weapons entirely for the gimmick of carp blessing
+
+/obj/item/nullrod/carp/attack_self(mob/living/user)
+	if(used_blessing)
+	else if(user.mind && (user.mind.holy_role))
+		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
+		user.faction |= "carp"
+		used_blessing = TRUE
+
+//NOT CHAPLAIN SPAWNABLE
+/obj/item/nullrod/scythe/talking/chainsword
+	name = "possessed chainsaw sword"
+	desc = "Suffer not a heretic to live."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "chainswordon"
+	item_state = "chainswordon"
+	chaplain_spawnable = FALSE
+	force = 30
+	slot_flags = ITEM_SLOT_BELT
+	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
+	hitsound = 'sound/weapons/chainsawhit.ogg'
 
 #undef MENU_WEAPON
 #undef MENU_ARM
