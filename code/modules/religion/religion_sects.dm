@@ -437,7 +437,7 @@
 
 /datum/religion_sect/holylight/on_conversion(mob/living/L)
 	. = ..()
-	for(var/obj/item/storage/book/bible/da_bible in L.get_contents())
+	for(var/obj/item/storage/book/bible/da_bible in L.GetAllContents())
 		da_bible.success_heal_chance = 80
 
 /datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
