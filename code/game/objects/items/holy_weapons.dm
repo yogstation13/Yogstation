@@ -276,7 +276,7 @@
 
 /obj/item/nullrod/attack_self(mob/user)
 	if(user.mind && (user.mind.holy_role) && !reskinned)
-		reskin_holy_weapon(user)
+		ui_interact(user)
 
   /*
   reskin_holy_weapon: Shows a user a list of all available nullrod reskins and based on his choice replaces the nullrod with the reskinned version
@@ -284,17 +284,28 @@
   Arguments:
   M : The mob choosing a nullrod reskin
   */
-/obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	var/list/display_names = list()
-	var/list/nullrod_icons = list()
+/obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "NullRod", name)
+		ui.open()
+	
+/obj/item/nullrod/ui_data(mob/user)
+	var/list/data = list()
 	for(var/V in typesof(/obj/item/nullrod))
 		var/obj/item/nullrod/rodtype = V
 		if(initial(rodtype.chaplain_spawnable))
-			display_names[initial(rodtype.name)] = rodtype
-			nullrod_icons += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
+			data["names"] += rodtype
+			data["icons"] += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
+
+	return data
+
+/*
+/obj/item/nullrod/ui_act(action, params)
+	if(..())
+		return
 
 	nullrod_icons = sortList(nullrod_icons)
-	var/choice = show_radial_menu(M, src , nullrod_icons, custom_check = CALLBACK(src, .proc/check_menu, M), radius = 42, require_near = TRUE, tooltips = TRUE)
 	if(!choice || !check_menu(M))
 		return
 
@@ -309,6 +320,7 @@
 		holy_weapon.reskinned = TRUE
 		qdel(src)
 		M.put_in_active_hand(holy_weapon)
+*/
 
   /*
   check_menu : Checks if we are allowed to interact with a radial menu
