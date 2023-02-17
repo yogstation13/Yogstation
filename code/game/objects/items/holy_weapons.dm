@@ -896,9 +896,6 @@
 	if(held_up)
 		unwield(user)
 		return
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You do not wish to bring holy wrath upon anyone!"))
-		return
 	user.visible_message(span_notice("[user] raises \the [src]."), span_notice("You raise \the [src]."))
 	held_up = TRUE
 	w_class = WEIGHT_CLASS_GIGANTIC // Heavy, huh?
@@ -939,7 +936,11 @@
 		return PROCESS_KILL // something has gone terribly wrong
 	if(!isliving(loc))
 		return PROCESS_KILL // something has gone terribly wrong
-	
+	var/mob/user = loc
+	var/damage = TRUE
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))//no hurting as a pacifist
+		damage = FALSE
+
 	var/notify = FALSE
 	if(COOLDOWN_FINISHED(src, holy_notification))
 		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)
@@ -956,10 +957,12 @@
 			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
 			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
 			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
-				L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
+				if(damage)
+					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
 				L.adjustStaminaLoss(2)
 			else
-				L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
+				if(damage)
+					L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
 				L.adjustStaminaLoss(3)
 
 /obj/item/nullrod/cross/examine(mob/user)
