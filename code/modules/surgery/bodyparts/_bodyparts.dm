@@ -382,6 +382,13 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
+	
+	// If we have an open surgery site here, wound more easily
+	var/open_surgery = FALSE
+	for(var/datum/surgery/S in owner.surgeries)
+		if(S.operated_bodypart == src)
+			damage *= 1.25
+			break
 
 	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
 	var/injury_roll = base_roll
