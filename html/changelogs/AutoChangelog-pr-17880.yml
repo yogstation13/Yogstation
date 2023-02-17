@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed vote weights not working"
-  - bugfix: "fixed preferred map pref not working"
