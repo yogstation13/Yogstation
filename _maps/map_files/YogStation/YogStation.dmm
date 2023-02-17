@@ -10041,6 +10041,20 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"blQ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/psych)
 "blS" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -13949,10 +13963,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"bUq" = (
-/obj/structure/chair/comfy/brown,
-/turf/open/floor/carpet,
-/area/medical/psych)
 "bUs" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
@@ -24843,6 +24853,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"fMN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "fMR" = (
 /obj/machinery/power/smes,
 /obj/structure/cable/yellow{
@@ -32538,20 +32558,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"iRr" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/psych";
-	dir = 4;
-	name = "Psychiatrist APC";
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/medical/psych)
 "iRt" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -37242,20 +37248,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"kTi" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "psych";
-	name = "psychiatrist shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/psych)
 "kTm" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/structure/window/reinforced{
@@ -41788,6 +41780,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"mGe" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/psych)
 "mGk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -45181,6 +45187,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"ogH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/psych";
+	dir = 4;
+	name = "Psychiatrist APC";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/medical/psych)
 "ogV" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -49465,13 +49485,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"pTN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/wood,
-/area/medical/psych)
 "pUH" = (
 /obj/structure/table,
 /obj/item/hand_tele,
@@ -50336,15 +50349,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"qlM" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/wood,
-/area/medical/psych)
 "qlP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -56974,6 +56978,14 @@
 /obj/structure/chair/wood/wings,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"sZJ" = (
+/obj/structure/chair/comfy/brown,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "sZP" = (
 /obj/structure/closet/radiation,
 /obj/machinery/firealarm{
@@ -64882,6 +64894,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"wfP" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/wood,
+/area/medical/psych)
 "wfS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -108797,7 +108814,7 @@ rVt
 fHF
 aDR
 lMs
-bUq
+sZJ
 wfd
 qns
 bwo
@@ -109310,10 +109327,10 @@ adK
 jrP
 xTZ
 dms
-qlM
+wfP
 faj
-iRr
-pTN
+fMN
+ogH
 uRx
 tEx
 jxu
@@ -109567,10 +109584,10 @@ adK
 kav
 lWq
 aDR
-aDR
+mGe
 wwp
+blQ
 aDR
-kTi
 aDR
 aDR
 jxu
