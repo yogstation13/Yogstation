@@ -1,6 +1,8 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/arrow
 	name = "Summon Arrow"
 	desc = "A spell that summons a sharp arrow in the user's hand, ready to be shot out of a bow.  Can be quickly casted by pressing the 'quick-equip' key on an empty hand."
+	action_icon = 'icons/obj/ammo.dmi'
+	action_icon_state = "arrow"
 	invocation_type = SPELL_INVOCATION_EMOTE
 	invocation = "snap"
 	item_type = /obj/item/ammo_casing/reusable/arrow
@@ -27,6 +29,7 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/arrow/magic
 	name = "Summon Magic Arrow"
 	desc = "A spell that summons a homing arrow in the user's hand, ready to be shot out of a bow that quickly becomes dull after hitting something.  Can be quickly casted by pressing the 'quick-equip' key on an empty hand."
+	action_icon_state = "arrow_magic"
 	item_type = /obj/item/ammo_casing/reusable/arrow/magic
 	charge_max = 15 SECONDS
 	cooldown_min = 0.25 SECONDS

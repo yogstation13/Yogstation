@@ -1073,8 +1073,6 @@
 	for(var/i in 1 to 10)
 		new /obj/item/ammo_casing/reusable/arrow/toy/energy(src)
 
-// Anomaly Quivers
-
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
 	desc = "A dorky fannypack for keeping small items in."
