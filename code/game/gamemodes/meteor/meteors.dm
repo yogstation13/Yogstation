@@ -289,12 +289,12 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	desc = "Oh, what a feat! He's one with the meat!"
 	hits = INFINITY // You cannot stop the Meatball Man.
 	lifetime = 0 // Meatball Man is eternal.
-	spin = FALSE
+	var/spin = FALSE
 	hitpwr = 1
 	heavy = 1
 	meteorsound = 'sound/effects/blobattack.ogg'
 	threat = 200
-	move_delay = 40 // Meatball Man never rushes, for all will become Meat in time.
+	var/move_delay = 40 // Meatball Man never rushes, for all will become Meat in time.
 	var/meaty_range = 6
 	var/eaty_range = 3
 	var/meat_spreadiness = 12
