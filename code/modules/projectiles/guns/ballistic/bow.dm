@@ -337,6 +337,12 @@
 	qdel(other_blade)
 	qdel(src)
 
+/obj/item/break_blade/pre_attack(atom/A, mob/living/user, params)
+	if(istype(A, /obj/item/break_blade))
+		form_bow(user, A)
+		return FALSE
+	. = ..()
+
 /obj/item/break_blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()
 	var/obj/item/break_blade/secondblade = user.get_inactive_held_item()
@@ -360,7 +366,7 @@
 		return
 
 	var/mob/holder = loc
-	if(istype(holder) && holder.anti_magic_check())
+	if(istype(holder) && holder.anti_magic_check(TRUE, FALSE, FALSE, 0))
 		to_chat(holder, span_notice("You feel [src] tugging on you."))
 		return
 
@@ -368,11 +374,8 @@
 	if(istype(carbon))
 		var/obj/item/bodypart/part = carbon.get_embedded_part(src)
 		if(part)
-			var/damage_amount = embedding.embedded_unsafe_removal_pain_multiplier * w_class
-			part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)
-			part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
-			if(!carbon.remove_embedded_object(src))
-				to_chat(holder, span_notice("You feel [src] tugging on you."))
+			if(!carbon.remove_embedded_object(src, unsafe = TRUE))
+				to_chat(carbon, span_notice("You feel [src] tugging on you."))
 				return
 			to_chat(carbon, span_userdanger("[src] suddenly rips out of you!"))
 
@@ -504,38 +507,37 @@
 	if(!istype(M) || !M.selectable_types)
 		return
 	var/list/selectable_types = M.selectable_types
-
-	if(selectable_types.len == 1)
-		M.ammo_type = selectable_types[1]
-		to_chat(user, span_notice("\The [src] doesn't have any other firing modes."))
-		update_icon()
-		return
-
-	if(selectable_types.len == 2)
-		selectable_types = selectable_types - M.ammo_type
-		M.ammo_type = selectable_types[1]
-		to_chat(user, span_notice("You switch \the [src]'s firing mode."))
-		update_icon()
-		return
-
-	var/list/choice_list = list()
-	for(var/arrow_type in M.selectable_types)
-		choice_list[arrow_type] = 
-		available_surgeries[S.name] = S
-		var/datum/radial_menu_choice/choice = new
-		choice.image = image(arrow_type.icon, icon_state = )
-		choice.info = S.desc
-		radial_list[S.name] = choice
-		break
-	var/obj/item/ammo_casing/reusable/arrow/energy/choice = show_radial_menu(user, user, choice_list, tooltips = TRUE)
-	if(!choice || !(choice.type in M.selectable_types))
-		return
-	M.ammo_type = choice.type
-	to_chat(user, span_notice("You switch \the [src]'s firing mode to \"[choice]\"."))
-	for(var/arrow in choice_list)
-		QDEL_NULL(choice_list[arrow])
-		QDEL_NULL(arrow)
-	QDEL_NULL(choice_list)
+	
+	switch(selectable_types.len)
+		if(1)
+			M.ammo_type = selectable_types[1]
+			to_chat(user, span_notice("\The [src] doesn't have any other firing modes."))
+		if(2)
+			selectable_types = selectable_types - M.ammo_type
+			M.ammo_type = selectable_types[1]
+			to_chat(user, span_notice("You switch \the [src]'s firing mode."))
+		else
+			var/list/choice_list = list()
+			var/list/radial_list = list()
+			for(var/type in M.selectable_types)
+				var/obj/item/arrow_type = type
+				var/datum/radial_menu_choice/choice = new
+				choice.image = image(initial(arrow_type.icon), icon_state = initial(arrow_type.icon_state))
+				choice.info = initial(arrow_type.desc)
+				choice_list[initial(arrow_type.name)] = arrow_type
+				radial_list[initial(arrow_type.name)] = choice
+			var/raw_choice = show_radial_menu(user, user, radial_list, tooltips = TRUE)
+			message_admins("[raw_choice]")
+			if(!raw_choice || !(raw_choice in radial_list))
+				return
+			var/obj/item/ammo_casing/reusable/arrow/energy/choice = choice_list[raw_choice]
+			message_admins("[choice]")
+			if(!choice || !(choice in M.selectable_types))
+				return
+			M.ammo_type = choice
+			to_chat(user, span_notice("You switch \the [src]'s firing mode to \"[initial(choice.name)]\"."))
+			QDEL_NULL(choice_list)
+			QDEL_NULL(radial_list)
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/CtrlClick(mob/living/user)

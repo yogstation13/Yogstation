@@ -18,7 +18,7 @@
 	UnregisterSignal(user, COMSIG_MOB_QUICK_EQUIP)
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/arrow/proc/on_quick_equip(obj/item/held_item)
-	if(held_item || usr.get_active_held_item())
+	if(isitem(held_item) || isitem(usr.get_active_held_item()))
 		return
 	Click()
 	if(usr.get_active_held_item())

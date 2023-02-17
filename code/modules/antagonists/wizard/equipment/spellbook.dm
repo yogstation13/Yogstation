@@ -321,7 +321,7 @@
 /datum/spellbook_entry/item/breakbow/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	. = ..()
 	if(.)
-		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/arrow())
+		new /obj/item/storage/belt/quiver/unlimited(get_turf(user)) // Quiver of limitless arrows
 
 /datum/spellbook_entry/item/staffdoor
 	name = "Staff of Door Creation"

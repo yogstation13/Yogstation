@@ -142,13 +142,13 @@
 	flaming = TRUE
 	update_icon()
 	
-/obj/item/ammo_casing/reusable/arrow/proc/on_embed(mob/living/carbon/embedde)
+/obj/item/ammo_casing/reusable/arrow/proc/on_embed(target, mob/living/carbon/embedde)
 	if(syringe)
-		syringe.embed_inject(embedde)
+		syringe.embed_inject(target, embedde)
 	
-/obj/item/ammo_casing/reusable/arrow/proc/embed_tick(mob/living/carbon/embedde)
+/obj/item/ammo_casing/reusable/arrow/proc/embed_tick(target, mob/living/carbon/embedde)
 	if(syringe)
-		syringe.embed_inject(embedde)
+		syringe.embed_inject(target, embedde)
 
 
 // Arrow Subtypes //
@@ -342,6 +342,27 @@
 	add_flame()
 
 
+// Joke? //
+
+/*
+/obj/item/ammo_casing/reusable/arrow/supermatter
+	name = "supermatter tipped arrow"
+	desc = "An arrow made of a hypernoblium tipped rod, a shard of supermatter, and poor decision making."
+	icon_state = "supermatterarrow"
+	item_state = "supermatterarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter
+
+/obj/item/ammo_casing/reusable/arrow/supermatter/proc/disintigrate
+
+/obj/item/ammo_casing/reusable/arrow/supermatter/sliver
+
+/obj/item/ammo_casing/reusable/arrow/singulo
+	var/obj/item/singularity_shard/shard
+
+/obj/item/ammo_casing/reusable/arrow/singulo/shard6
+	shard = /obj/item/singularity_shard/stage6
+*/
+
 // Hardlight //
 
 /obj/item/ammo_casing/reusable/arrow/energy
@@ -368,7 +389,7 @@
 /obj/item/ammo_casing/reusable/arrow/energy/on_embed(mob/living/carbon/embedde)
 	return
 
-/obj/item/ammo_casing/reusable/arrow/energy/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+/obj/item/ammo_casing/reusable/arrow/energy/embed_tick(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(ticks >= tick_max)
 		embedde.remove_embedded_object(src, , TRUE, TRUE)
 		return

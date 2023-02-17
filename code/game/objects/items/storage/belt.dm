@@ -808,10 +808,9 @@
 	content_overlays = TRUE
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-
 /obj/item/storage/belt/quiver/update_icon()
 	..()
-	if(ismob(loc))
+	if(content_overlays && ismob(loc))
 		var/mob/M = loc
 		M.update_inv_belt()
 		M.update_inv_back()
@@ -836,6 +835,194 @@
 /obj/item/storage/belt/quiver/full/PopulateContents()
 	for(var/i in 1 to 10)
 		new /obj/item/ammo_casing/reusable/arrow(src)
+
+/obj/item/storage/belt/quiver/unlimited
+	name = "quiver of unlimited arrows"
+	desc = "Gives +1 to holding arrows. Also contains unlimited arrows."
+	var/new_arrow_type = /obj/item/ammo_casing/reusable/arrow
+
+/obj/item/storage/belt/quiver/unlimited/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(check_arrow_refresh))
+
+/obj/item/storage/belt/quiver/unlimited/PopulateContents()
+	new new_arrow_type(src)
+
+/obj/item/storage/belt/quiver/unlimited/proc/check_arrow_refresh()
+	var/list/inv = list()
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_RETURN_INVENTORY, inv)
+	for(var/item in inv)
+		if(istype(item, new_arrow_type))
+			return
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, new new_arrow_type(), null, TRUE, TRUE)
+	playsound(src, 'sound/magic/blink.ogg', 10, 1)
+
+/obj/item/storage/belt/quiver/returning
+	name = "quiver of returning"
+	desc = "A quiver that uses magic to return arrows after a few seconds of them being removed. The arrow doesn't return if the wearer is holding it still."
+	/// The type that are returned to this quiver after being fired
+	var/return_type = /obj/item/ammo_casing/reusable/arrow
+	/// The time it takes for an arrow to return
+	var/return_time = 5 SECONDS
+	/// If the return is blocked by anti-magic
+	var/anti_magic_check = TRUE
+
+/obj/item/storage/belt/quiver/returning/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(mark_arrow_return))
+
+/obj/item/storage/belt/quiver/returning/proc/mark_arrow_return(target, atom/movable/AM, atom/new_location)
+	if(!istype(AM, return_type))
+		return
+	addtimer(CALLBACK(src, .proc/check_arrow_return, AM), return_time)
+
+/obj/item/storage/belt/quiver/returning/proc/check_arrow_return(atom/movable/arrow)
+	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && loc == arrow.loc))
+		return
+	var/mob/arrow_holder = arrow.loc
+	if(anti_magic_check && istype(arrow_holder) && arrow_holder.anti_magic_check(TRUE, FALSE ,FALSE, 0))
+		to_chat(arrow_holder, span_notice("You feel [arrow] tugging on you."))
+		return
+	var/mob/living/carbon/carbon = arrow.loc
+
+	if(istype(carbon))
+		var/obj/item/bodypart/part = carbon.get_embedded_part(arrow)
+		if(part)
+			if(!carbon.remove_embedded_object(src, unsafe = TRUE))
+				to_chat(carbon, span_notice("You feel [arrow] tugging on you."))
+				return
+			to_chat(carbon, span_userdanger("[arrow] suddenly rips out of you!"))
+
+	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
+		return
+
+	if(ismob(loc))
+		to_chat(loc, span_notice("[arrow] suddenly returns to your [src]!"))
+	playsound(src, 'sound/magic/blink.ogg', 10, 1)
+
+/obj/item/storage/belt/quiver/returning/bone
+	name = "ash covered quiver"
+	desc = "A quiver caked in ash, it seems to have a magical aura."
+	icon_state = "quiver_weaver"
+	item_state = "quiver_weaver"
+	resistance_flags = FIRE_PROOF
+	return_type = /obj/item/ammo_casing/reusable/arrow/bone
+
+/obj/item/storage/belt/quiver/returning/bone/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow/bone(src)
+
+/obj/item/storage/belt/quiver/returning/holding
+	name = "quiver of holding"
+	desc = "The pinnacle of conventional archery technology, can store a vast amount of arrows and return those removed after a short while using bluespace micro tags and short-ranged teleportation. Probably safe."
+	icon_state = "quiver_holding"
+	item_state = "quiver_holding"
+	content_overlays = FALSE // The arrows are stored in the quiver, so none of it hangs out
+	anti_magic_check = FALSE
+
+/obj/item/storage/belt/quiver/returning/holding/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 50
+	STR.max_combined_w_class = 50
+
+/obj/item/storage/belt/quiver/anomaly
+	name = "anomaly quiver"
+	desc = "A specialized quiver with an empty slot for an anomaly core to give it a special function."
+	icon_state = "quiver_anomaly_empty"
+	item_state = "quiver_anomaly_empty"
+
+/obj/item/storage/belt/quiver/anomaly/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10	// Less space for arrows due to all the parts inside
+	STR.max_combined_w_class = 10
+
+/obj/item/storage/belt/quiver/anomaly/attackby(obj/item/I, mob/user, params)
+	..()
+	var/static/list/anomaly_quiver_types = list(
+		/obj/effect/anomaly/grav	                = /obj/item/storage/belt/quiver/anomaly/vacuum,
+		/obj/effect/anomaly/pyro	  			    = /obj/item/storage/belt/quiver/anomaly/pyro,
+		/obj/effect/anomaly/bluespace 	            = /obj/item/storage/belt/quiver/returning/holding
+		)
+
+	if(istype(I, /obj/item/assembly/signaler/anomaly))
+		var/obj/item/assembly/signaler/anomaly/A = I
+		var/quiver_path = anomaly_quiver_types[A.anomaly_type]
+		if(!quiver_path)
+			to_chat(user, span_warning("[A] can't be used in \the [src]."))
+			return
+		var/list/inv = list()
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_RETURN_INVENTORY, inv)
+		if(inv.len) // Want to tell them after so that they don't empty the quiver just to find out they can't use the core
+			to_chat(user, span_warning("You need to empty [src] before [A] can be inserted."))
+			return
+		to_chat(user, span_notice("You insert [A] into \the [src], and it gently hums to life."))
+		new quiver_path(get_turf(src))
+		qdel(src)
+		qdel(A)
+
+/obj/item/storage/belt/quiver/anomaly/vacuum
+	name = "vacuum quiver"
+	desc = "A specialized quiver with a gravitational anomaly core inside, sucking in arrows towards the user and pulling them inside."
+	icon_state = "quiver_anomaly"
+	item_state = "quiver_anomaly"
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/process(delta_time)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	var/turf/T = loc ? get_turf(loc) : loc(src)
+	var/processed = 0
+	for(var/thing in T)
+		if(processed > 50) // So we dont kill the server with tons of items
+			return
+		var/obj/I = thing
+		if(I && SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, I))
+			++processed
+	
+	for(var/thing in orange(5, src))
+		if(processed > 50)
+			return
+		var/obj/I = thing
+		if(I && STR.can_be_inserted(I))
+			step_towards(I, T)
+			++processed
+
+/obj/item/storage/belt/quiver/anomaly/pyro
+	name = "incindiary quiver"
+	desc = "A specialized quiver with a pyroclastic anomaly core inside, igniting arrows when the user removes them."
+	icon_state = "quiver_anomaly"
+	item_state = "quiver_anomaly"
+	/// Time after igniting an arrow for it to allow you to light another
+	var/ignite_cooldown = 1 SECONDS
+
+/obj/item/storage/belt/quiver/anomaly/pyro/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(ignite_arrow))
+
+/obj/item/storage/belt/quiver/anomaly/pyro/proc/ignite_arrow(target, obj/item/ammo_casing/reusable/arrow/arrow, atom/new_location)
+	if(!istype(arrow) || arrow.flaming || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
+		return
+	TIMER_COOLDOWN_START(src, "ignite_cooldown", ignite_cooldown)
+	arrow.add_flame()
+	visible_message(span_notice("\The [src] ignites \the [arrow]."))
+
+/obj/item/storage/belt/quiver/anomaly/pyro/emp_act(severity)
+	. = ..()
+	if((. & EMP_PROTECT_SELF) || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
+		return
+	TIMER_COOLDOWN_START(src, "ignite_cooldown", ignite_cooldown)
+	visible_message(span_danger("\The [src] backfires and spews fire!"))
+	fire_act()
+	if(istype(loc))
+		loc.fire_act()
 
 /obj/item/storage/belt/quiver/weaver
 	name = "weaver chitin quiver"
@@ -885,6 +1072,8 @@
 /obj/item/storage/belt/quiver/red/full/PopulateContents()
 	for(var/i in 1 to 10)
 		new /obj/item/ammo_casing/reusable/arrow/toy/energy(src)
+
+// Anomaly Quivers
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"

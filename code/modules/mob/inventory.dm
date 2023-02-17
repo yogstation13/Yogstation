@@ -454,7 +454,7 @@
 	to_chat(M, span_warning("You are unable to equip that!"))
 	return FALSE
 
-
+ 
 /mob/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = TRUE

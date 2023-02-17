@@ -255,7 +255,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
-
+	if(taped)
+		. += "[src] seems to be covered in tape."
 	if(!user.research_scanner)
 		return
 
