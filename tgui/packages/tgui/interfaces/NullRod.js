@@ -5,8 +5,9 @@ import { Window } from '../layouts';
 export const NullRod = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    names,
-    icons,
+    names = [],
+    desc = [],
+    icons = [],
   } = data;
   return (
     <Window

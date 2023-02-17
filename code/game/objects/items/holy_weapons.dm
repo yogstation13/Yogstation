@@ -296,7 +296,8 @@
 		var/obj/item/nullrod/rodtype = V
 		if(initial(rodtype.chaplain_spawnable))
 			data["names"] += rodtype
-			data["icons"] += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
+			data["desc"] += rodtype.desc
+			data["icons"] += rodtype.icon_state
 
 	return data
 
