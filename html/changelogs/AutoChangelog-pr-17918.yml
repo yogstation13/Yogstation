@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "You now still get centcom bonus antag rep if the round was force ended and you lived"
