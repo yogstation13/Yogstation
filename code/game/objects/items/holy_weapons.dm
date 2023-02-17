@@ -360,18 +360,21 @@
 	slot_flags = ITEM_SLOT_BACK
 	block_chance = 50
 	var/shield_icon = "shield-red"
+	var/blue = FALSE
 
 /obj/item/nullrod/staff/worn_overlays(isinhands)
 	. = list()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
-/obj/item/nullrod/staff/blue
-	icon = 'icons/obj/wizard.dmi'
-	name = "blue holy staff"
-	icon_state = "staff-blue"
-	item_state = "godstaff-blue"
-	shield_icon = "shield-old"
+/obj/item/nullrod/staff/attack_self(mob/user)
+	. = ..()
+	blue = !blue
+	to_chat(user, "You swap the [src] into [blue ? "blue" : "red"] mode.")
+	name = "[blue ? "blue" : "red"] holy staff"
+	icon_state = "staff-[blue ? "blue" : "red"]"
+	item_state = "godstaff-[blue ? "blue" : "red"]"
+	shield_icon = "shield-[blue ? "old" : "red"]"
 
 /obj/item/nullrod/claymore
 	icon = 'icons/obj/weapons/swords.dmi'
