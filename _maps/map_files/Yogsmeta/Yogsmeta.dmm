@@ -34187,10 +34187,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
-"bNB" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
 "bNE" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -45735,14 +45731,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
-"cPA" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chapel_shutters_parlour";
-	name = "chapel shutters"
-	},
-/turf/open/floor/plating,
-/area/chapel/main)
 "cPB" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/light/small{
@@ -46168,14 +46156,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/chapel/main)
-"cRL" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chapel_shutters_space";
-	name = "chapel shutters"
-	},
-/turf/open/floor/plating,
 /area/chapel/main)
 "cRM" = (
 /obj/machinery/processor/slime,
@@ -49653,6 +49633,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet,
 /area/library)
+"dCZ" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/hydroponics)
 "dDf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -51983,6 +51967,16 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"eSm" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/medical/genetics/cloning)
 "eSn" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -52089,19 +52083,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
-"eWm" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/machinery/door/window/southleft{
-	name = "Filing Room";
-	req_access_txt = "5"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
@@ -52797,6 +52778,10 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"fwY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "fxc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -55317,20 +55302,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"hiu" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "psych";
-	name = "psychiatrist shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/psych)
 "hjp" = (
 /obj/structure/sink/puddle,
 /mob/living/carbon/monkey,
@@ -58423,6 +58394,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"jnv" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "chapel_shutters_parlour";
+	name = "chapel shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/chapel/main)
 "jou" = (
 /obj/structure/sign/warning/nosmoking,
 /turf/closed/wall,
@@ -63288,6 +63267,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"mnY" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/psych)
 "mob" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Hydroponics Maintenance";
@@ -64317,6 +64310,9 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/security/prison/hallway)
+"mWz" = (
+/turf/closed/wall/r_wall,
+/area/medical/psych)
 "mWK" = (
 /obj/effect/landmark/start/mime,
 /turf/open/floor/carpet,
@@ -66556,6 +66552,14 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"ooI" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "chapel_shutters_space";
+	name = "chapel shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/chapel/main)
 "opg" = (
 /obj/structure/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -70576,6 +70580,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"qWA" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "qWD" = (
 /obj/structure/closet/radiation,
 /obj/effect/turf_decal/stripes/line{
@@ -76092,6 +76100,19 @@
 	},
 /turf/open/floor/plating,
 /area/engine/foyer)
+"uyY" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/door/window/brigdoor/southleft{
+	name = "Filing Room";
+	req_access_txt = "5"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "uzI" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -101637,11 +101658,11 @@ aaa
 aaa
 aaa
 cMI
-cPA
-cPA
-cPA
+jnv
+jnv
+jnv
 cMI
-cPA
+jnv
 cMI
 aaa
 aaa
@@ -101899,7 +101920,7 @@ cPZ
 cQT
 cMI
 cRE
-cPA
+jnv
 aaa
 aaa
 aaa
@@ -102670,7 +102691,7 @@ cOP
 cxX
 cbp
 cRH
-cPA
+jnv
 aaa
 aaa
 aaa
@@ -102927,7 +102948,7 @@ cOP
 cxY
 cOP
 cRH
-cPA
+jnv
 aaa
 aaa
 aaa
@@ -103184,7 +103205,7 @@ cxI
 cxZ
 cya
 cRq
-cPA
+jnv
 aaa
 aaa
 aaa
@@ -104983,7 +105004,7 @@ cxP
 cQF
 cQV
 cRp
-cRL
+ooI
 aaa
 aaa
 aaa
@@ -105213,7 +105234,7 @@ qUJ
 qUJ
 cvt
 cvt
-bIK
+eSm
 dsh
 cvt
 cvt
@@ -105224,7 +105245,7 @@ uXQ
 cxU
 auQ
 sZP
-hiu
+mnY
 auQ
 auQ
 auQ
@@ -105240,7 +105261,7 @@ cxV
 cQF
 cOP
 cRp
-cRL
+ooI
 aaa
 aaa
 aaa
@@ -105497,7 +105518,7 @@ cxW
 cQG
 cOP
 cRq
-cRL
+ooI
 aaa
 aaa
 aaa
@@ -105754,7 +105775,7 @@ bWW
 cQF
 cOP
 cRp
-cRL
+ooI
 aaa
 aaa
 aaa
@@ -106011,7 +106032,7 @@ cQl
 cQF
 cQV
 cRp
-cRL
+ooI
 aaa
 aaa
 aaa
@@ -106251,7 +106272,7 @@ cCe
 qHu
 cCe
 auQ
-eWm
+uyY
 fQD
 cdG
 tXA
@@ -106512,7 +106533,7 @@ gLq
 vyf
 okv
 wdP
-auQ
+mWz
 bUs
 cLa
 cMI
@@ -107026,7 +107047,7 @@ mTn
 bSe
 dfW
 hYx
-auQ
+mWz
 qkN
 cZr
 qbF
@@ -107281,9 +107302,9 @@ tFJ
 auQ
 auQ
 bSm
-auQ
-auQ
-auQ
+mWz
+mWz
+mWz
 vrg
 hTx
 lsu
@@ -114688,7 +114709,7 @@ bqJ
 bqJ
 bmP
 bmP
-bqJ
+fwY
 bmP
 bmP
 dik
@@ -116750,7 +116771,7 @@ sFz
 uLW
 bOV
 bOV
-bNB
+qWA
 chv
 chL
 bqs
@@ -117010,7 +117031,7 @@ bCS
 bKe
 bQH
 bKe
-wiT
+dCZ
 bST
 bVu
 bsK
