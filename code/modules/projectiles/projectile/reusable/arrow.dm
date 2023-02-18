@@ -45,6 +45,7 @@
 
 	if(prob(break_chance))
 		if(istype(ammo_type))
+			visible_message(span_danger("\The [ammo_type] breaks on impact!"))
 			qdel(ammo_type)
 		dropped = TRUE
 		return ..()
@@ -154,6 +155,33 @@
 /obj/item/projectile/bullet/reusable/arrow/toy/shock
 	name = "toy shock bolt"
 	icon_state = "arrow_shock"
+
+
+// Joke? //
+
+/obj/item/projectile/bullet/reusable/arrow/supermatter
+	name = "supermatter arrow"
+
+/obj/item/projectile/bullet/reusable/arrow/supermatter/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/obj/item/ammo_casing/reusable/arrow/supermatter/arrow = ammo_type
+	if(istype(arrow))
+		arrow.disintigrate(target)
+
+/obj/item/projectile/bullet/reusable/arrow/supermatter/on_range()
+	. = ..()
+	var/obj/item/ammo_casing/reusable/arrow/supermatter/arrow = ammo_type
+	if(istype(arrow))
+		arrow.disintigrate(get_turf(src))
+
+/obj/item/projectile/bullet/reusable/arrow/singulo
+	name = "singularity shard arrow"
+
+/obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/obj/item/ammo_casing/reusable/arrow/singulo/arrow = ammo_type
+	if(istype(arrow))
+		arrow.shard_effect()
 
 
 // Hardlight //

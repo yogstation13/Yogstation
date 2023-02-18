@@ -978,7 +978,7 @@
 
 /obj/item/storage/belt/quiver/anomaly/vacuum/process(delta_time)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	var/turf/T = loc ? get_turf(loc) : loc(src)
+	var/turf/T = loc ? get_turf(loc) : get_turf(src)
 	var/processed = 0
 	for(var/thing in T)
 		if(processed > 50) // So we dont kill the server with tons of items
