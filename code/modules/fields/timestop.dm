@@ -42,7 +42,7 @@
 		timestop()
 
 /obj/effect/timestop/Destroy()
-	qdel(chronofield)
+	QDEL_NULL(chronofield)
 	return ..()
 
 /obj/effect/timestop/proc/timestop()

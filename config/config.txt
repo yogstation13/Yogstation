@@ -125,9 +125,6 @@ LOG_VIRUS
 ## log cloning actions
 LOG_CLONING
 
-## Enable the demo subsystem
-DEMOS_ENABLED
-
 ##Log camera pictures - Must have picture logging enabled
 # PICTURE_LOGGING_CAMERA
 
@@ -455,9 +452,3 @@ MAX_SHUTTLE_SIZE 300
 ## Enable/disable roundstart station traits
 #STATION_TRAITS
 
-## Assets can opt-in to caching their results into `tmp`.
-## This is important, as preferences assets take upwards of 30 seconds (without sleeps) to collect.
-## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
-## This should be disabled (through `CACHE_ASSETS 0`) on development,
-## but enabled on production (the default).
-CACHE_ASSETS 1

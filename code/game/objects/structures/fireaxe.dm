@@ -12,6 +12,7 @@
 	var/open = FALSE
 	var/obj/item/twohanded/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
+	var/obj/item/twohanded/fishingrod/collapsable/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
 	var/axe = TRUE
 
@@ -82,6 +83,17 @@
 				return
 			spareid = S
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
+			update_icon()
+			return
+		else if(istype(I, /obj/item/twohanded/fishingrod/collapsable/miningmedic) && !olreliable && !axe)
+			var/obj/item/twohanded/fishingrod/collapsable/miningmedic/R = I
+			if(R.opened)
+				to_chat(user, span_caution("[R.name] won't seem to fit!"))
+				return
+			if(!user.transferItemToLoc(R, src))
+				return
+			olreliable = R
+			to_chat(user, span_caution("You place the [R.name] back in the [name]."))
 			update_icon()
 			return
 		else if(!broken)
@@ -155,13 +167,16 @@
 	if(.)
 		return
 	if(open || broken)
-		if(fireaxe || spareid)
+		if(fireaxe || spareid || olreliable)
 			if(spareid)
 				fireaxe = spareid
+			if(olreliable)
+				fireaxe = olreliable
 			user.put_in_hands(fireaxe)
 			to_chat(user, span_caution("You take the [fireaxe.name] from the [name]."))
 			fireaxe = null
 			spareid = null
+			olreliable = null
 			src.add_fingerprint(user)
 			update_icon()
 			return
@@ -185,6 +200,8 @@
 		add_overlay("axe")
 	if(spareid)
 		add_overlay("card")
+	if(olreliable)
+		add_overlay("rod")
 	if(!open)
 		var/hp_percent = obj_integrity/max_integrity * 100
 		if(broken)
@@ -276,3 +293,19 @@
 	if(!.)
 		return
 	trigger_alarm()
+
+
+/obj/structure/fireaxecabinet/fishingrod
+	name = "fishing cabinet"
+	desc = "There is a small label that reads \"Fo* Em**gen*y u*e *nly\". All the other text is scratched out and replaced with various fish weights. <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
+	icon = 'icons/obj/wallmounts.dmi'
+	icon_state = "fishingrod"
+	axe = FALSE
+	alert = FALSE
+	req_access = list(ACCESS_MEDICAL, ACCESS_MINING)
+
+/obj/structure/fireaxecabinet/fishingrod/Initialize()
+	. = ..()
+	fireaxe = null
+	olreliable = new(src)
+	update_icon()

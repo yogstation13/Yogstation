@@ -10,7 +10,6 @@
 	SSticker.mode.update_darkspawn_icons_added(owner)
 	SSticker.mode.veils += owner
 	owner.special_role = "veil"
-	owner.current?.maxHealth = min(owner.current.maxHealth, 35)
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 
@@ -27,10 +26,15 @@
 	else
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
-		to_chat(owner, span_notice("As your mind is released from their grasp, you feel much stronger, though you will never again be whole."))
-	M.maxHealth = max(M.maxHealth, 70)
+		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
 	M.update_sight()
 	return ..()
+
+/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
+	mob_override.maxHealth -= 40
+
+/datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
+	mob_override.maxHealth += 40
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
