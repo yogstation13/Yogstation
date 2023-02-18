@@ -607,8 +607,8 @@
 	stuttering = 0
 	slurring = 0
 	jitteriness = 0
-	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
-		REMOVE_TRAIT(target, TRAIT_BADDNA, CHANGELING_DRAIN)
+	if(HAS_TRAIT_FROM(src, TRAIT_BADDNA, CHANGELING_DRAIN))
+		REMOVE_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
 	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
 	if (mood)
 		mood.remove_temp_moods(admin_revive)
