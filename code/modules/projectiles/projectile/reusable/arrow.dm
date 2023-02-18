@@ -127,7 +127,6 @@
 	embed_chance = 0.6
 	armour_penetration = 0
 
-
 // Toy //
 
 /obj/item/projectile/bullet/reusable/arrow/toy //Toy arrow with velcro tip that safely embeds into target

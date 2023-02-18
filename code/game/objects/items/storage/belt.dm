@@ -901,7 +901,7 @@
 	playsound(src, 'sound/magic/blink.ogg', 10, 1)
 
 /obj/item/storage/belt/quiver/returning/bone
-	name = "ash covered quiver"
+	name = "ash-covered quiver"
 	desc = "A quiver caked in ash, it seems to have a magical aura."
 	icon_state = "quiver_weaver"
 	item_state = "quiver_weaver"
@@ -996,7 +996,7 @@
 			++processed
 
 /obj/item/storage/belt/quiver/anomaly/pyro
-	name = "incindiary quiver"
+	name = "incendiary quiver"
 	desc = "A specialized quiver with a pyroclastic anomaly core inside, igniting arrows when the user removes them."
 	icon_state = "quiver_anomaly"
 	item_state = "quiver_anomaly"

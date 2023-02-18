@@ -345,8 +345,8 @@
 // Joke? //
 
 /obj/item/ammo_casing/reusable/arrow/supermatter
-	name = "supermatter tipped arrow"
-	desc = "An arrow made of a hypernoblium tipped rod, a shard of supermatter, and poor decision making."
+	name = "supermatter-tipped arrow"
+	desc = "An arrow made of a hypernoblium-tipped rod, a shard of supermatter, and poor decision making."
 	icon_state = "supermatterarrow"
 	item_state = "supermatterarrow"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter

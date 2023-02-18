@@ -53,8 +53,8 @@
 /obj/item/clothing/gloves/fingerless/weaver
 	name = "weaver chitin gloves"
 	desc = "Grey gloves without fingertips made from the hide of a dead arachnid found on lavaland. Increases the work speed of the wearer."
-	icon_state = "fingerless"
-	item_state = "fingerless"
+	icon_state = "weaver_chitin"
+	item_state = "weaver_chitin"
 	tacticalspeed = 0.8
 
 /obj/item/clothing/gloves/botanic_leather
