@@ -206,9 +206,10 @@
 	to_chat(user, span_warning("You pull back [src]'s hammer."))
 	playsound(src, dry_fire_sound, 30, TRUE)
 	user.changeNext_move(CLICK_CD_RANGE)
-	var/mutable_appearance/hammer = mutable_appearance(icon, "single-action_anim", 1)
+	var/mutable_appearance/hammer = mutable_appearance(icon, "single-action_anim")
 	flick(hammer, src)
 	hammer_set = HAMMER_FULL
+	sleep(2)
 	update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/attack_self(mob/user)
