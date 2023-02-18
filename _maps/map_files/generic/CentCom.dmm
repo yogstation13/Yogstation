@@ -25653,6 +25653,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"bDC" = (
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/centcom/holding)
 "bEO" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info16"
@@ -53653,8 +53659,8 @@ aaa
 aNd
 ayM
 aXk
-aYo
-aXk
+bDC
+bDC
 aNd
 aSG
 aFh
@@ -53911,7 +53917,7 @@ aNd
 aOG
 aXk
 aXk
-aXk
+aHH
 aNd
 aWu
 aFh
