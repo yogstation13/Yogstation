@@ -1,8 +1,8 @@
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
-#define MENU_WEAPON "nullrod weapon"
-#define MENU_ARM "nullrod arm"
-#define MENU_CLOTHING "nullrod clothing"
-#define MENU_MISC "nullrod misc"
+#define MENU_WEAPON "nullrod weapon" //standard weapons
+#define MENU_ARM "nullrod arm" //things that replace the arm
+#define MENU_CLOTHING "nullrod clothing" //things that can be worn
+#define MENU_MISC "nullrod misc" //anything that doesn't quite fit into the other categories
 
 /obj/item/nullrod
 	name = "null rod"
@@ -44,35 +44,63 @@
 		H.dropItemToGround(src, TRUE, TRUE)
 	qdel(user, TRUE)
 	
-
 /obj/item/nullrod/attack_self(mob/user)
-	if(user.mind && (user.mind.holy_role) && !reskinned)
+	if(user?.mind?.holy_role && check_menu)
 		ui_interact(user)
 
-  /*
-  reskin_holy_weapon: Shows a user a list of all available nullrod reskins and based on his choice replaces the nullrod with the reskinned version
-
-  Arguments:
-  M : The mob choosing a nullrod reskin
-  */
+/obj/item/nullrod/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src) || reskinned)
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+	
 /obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NullRod", name)
 		ui.open()
 	
-/obj/item/nullrod/ui_data(mob/user)
+/obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
-	for(var/V in typesof(/obj/item/nullrod))
-		var/obj/item/nullrod/rodtype = V
-		if(initial(rodtype.chaplain_spawnable))
-			data["names"] += rodtype
-			data["desc"] += rodtype.desc
-			data["icons"] += rodtype.icon_state
+	data["categories"][MENU_WEAPON] = list()
+	data["categories"][MENU_ARM] = list()
+	data["categories"][MENU_CLOTHING] = list()
+	data["categories"][MENU_MISC] = list()
+
+	for(var/category in uplink_items)
+		for(var/obj/item/nullrod/rodtype in typesof(/obj/item/nullrod))
+			if(initial(rodtype.chaplain_spawnable) && initial(rodtype.menutab))
+				data["categories"][rodtype.menutab] += list(
+					"name" = rodtype.name,
+					"desc" = rodtype.desc,
+					)
 
 	return data
 
+/obj/item/nullrod/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	if(!active)
+		return
+	switch(action)
+		if("confirm")
+			var/item_name = params["name"]
+			var/list/buyable_items = list()
+			for(var/category in uplink_items)
+				buyable_items += uplink_items[category]
+			if(item_name in buyable_items)
+				var/datum/uplink_item/I = buyable_items[item_name]
+				MakePurchase(usr, I)
+				return TRUE
+		if("select")
+			selected_cat = params["category"]
+			return TRUE
 /*
+	
 /obj/item/nullrod/ui_act(action, params)
 	if(..())
 		return
@@ -100,14 +128,6 @@
   Arguments:
   user : The mob interacting with a menu
   */
-/obj/item/nullrod/proc/check_menu(mob/user)
-	if(!istype(user))
-		return FALSE
-	if(QDELETED(src) || reskinned)
-		return FALSE
-	if(user.incapacitated() || !user.is_holding(src))
-		return FALSE
-	return TRUE
 
 /*---------------------------------------------------------------------------
 |
