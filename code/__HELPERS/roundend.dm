@@ -231,7 +231,7 @@
 				continue
 			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
 				continue
-			else if(M.onCentCom())
+			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
 			else
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
