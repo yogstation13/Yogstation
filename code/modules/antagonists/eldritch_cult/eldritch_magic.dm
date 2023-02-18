@@ -86,7 +86,7 @@
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
 	invocation = "RUST TO RUST"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 3
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "corrode"
@@ -114,7 +114,7 @@
 	charge_max = 150
 	clothes_req = FALSE
 	invocation = "ETERNAL FLAMES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "blood_siphon"
 	action_background_icon_state = "bg_ecult"
@@ -165,7 +165,7 @@
 	action_icon_state = "rust_wave"
 	action_background_icon_state = "bg_ecult"
 	invocation = "FACE INEVITABILITY"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 
 /obj/item/projectile/magic/spell/rust_wave
 	name = "Patron's Reach"
@@ -212,7 +212,7 @@
 	charge_max = 350
 	clothes_req = FALSE
 	invocation = "RIP AND TEAR"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "cleave"
@@ -266,7 +266,7 @@
 	school = "transmutation"
 	charge_max = 150
 	clothes_req = FALSE
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 2
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "mad_touch"
@@ -299,7 +299,7 @@
 	desc = "Fires 5 blasts of fire in angles away from you, dealing heavy damage to anything they hit."
 	school = "transmutation"
 	invocation = "IGNITE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	charge_max = 300
 	range = 15
 	clothes_req = FALSE
@@ -362,7 +362,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
 	invocation = "BEND MY FORM"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	possible_shapes = list(/mob/living/simple_animal/mouse,\
@@ -376,7 +376,7 @@
 /obj/effect/proc_holder/spell/targeted/emplosion/eldritch
 	name = "Entropic Pulse"
 	invocation = "ENTROPIC PULSE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -392,7 +392,7 @@
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
 	invocation = "CONFLAGRATE"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 4
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "fire_ring"
@@ -418,7 +418,7 @@
 
 /obj/effect/proc_holder/spell/targeted/telepathy/eldritch
 	invocation = ""
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 
@@ -426,7 +426,7 @@
 	name = "Oath of Fire"
 	desc = "Engulf yourself in a cloak of flames for a minute. The flames are harmless to you, but dangerous to anyone else."
 	invocation = "FUEL FOR THE FIRE"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -464,7 +464,7 @@
 /obj/effect/proc_holder/spell/targeted/worm_contract
 	name = "Force Contract"
 	desc = "Forces all the worm parts to collapse onto a single turf"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -495,7 +495,7 @@
 	name = "Nightwatcher's Rebirth"
 	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition they will be finished off."
 	invocation = "ASHES TO ASHES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -530,7 +530,7 @@
 	charge_max = 300
 	clothes_req = FALSE
 	invocation = "HEAR MY VOICE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 10
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "mansus_link"
@@ -633,7 +633,7 @@
 	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
 	school = "illusion"
 	invocation = "GUST OF RUST"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'

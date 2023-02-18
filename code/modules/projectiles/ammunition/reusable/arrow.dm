@@ -5,6 +5,7 @@
 	caliber = "arrow"
 	icon_state = "arrow"
 	item_state = "arrow"
+	base_rotation = 45
 	force = 5
 	throwforce = 5 //If, if you want to throw the arrow since you don't have a bow?
 	throw_speed = 3
@@ -141,13 +142,13 @@
 	flaming = TRUE
 	update_icon()
 	
-/obj/item/ammo_casing/reusable/arrow/proc/on_embed(mob/living/carbon/embedde)
+/obj/item/ammo_casing/reusable/arrow/proc/on_embed(target, mob/living/carbon/embedde)
 	if(syringe)
-		syringe.embed_inject(embedde)
+		syringe.embed_inject(target, embedde)
 	
-/obj/item/ammo_casing/reusable/arrow/proc/embed_tick(mob/living/carbon/embedde)
+/obj/item/ammo_casing/reusable/arrow/proc/embed_tick(target, mob/living/carbon/embedde)
 	if(syringe)
-		syringe.embed_inject(embedde)
+		syringe.embed_inject(target, embedde)
 
 
 // Arrow Subtypes //
@@ -235,6 +236,47 @@
 	variance = 5
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass/plasma
 
+/obj/item/ammo_casing/reusable/arrow/magic
+	name = "magic arrow"
+	desc = "An arrow made of magic that can track targets, though it can't track those under the effects of anti-magic. Can make a good throwing weapon in a pinch!"
+	icon_state = "arrow_magic"
+	item_state = "arrow_magic"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/magic
+	force = 12
+	throwforce = 20
+	embedding = list("embed_chance" = 50, "embedded_fall_chance" = 0)
+	/// Causes the arrow to become weaker, as I was told to prevent it from being used against wizards
+	var/dulled = FALSE
+
+/obj/item/ammo_casing/reusable/arrow/magic/examine(mob/user)
+	. = ..()
+	if(dulled)
+		. += "It appears to be dulled, and the tracking magic has left it."
+
+/obj/item/ammo_casing/reusable/arrow/magic/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
+	. = ..()
+	if(!.)
+		return
+
+	if(dulled)
+		BB.damage = 20
+		BB.armour_penetration = -25
+		var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+		if(!istype(arrow))
+			arrow.embed_chance = 0
+	else
+		BB.set_homing_target(target)
+		var/mob/M = target
+		if(istype(M) && M.anti_magic_check(chargecost = 0))
+			BB.homing_away = TRUE // And there it goes!
+
+/obj/item/ammo_casing/reusable/arrow/magic/on_land(var/obj/item/projectile/old_projectile)
+	dulled = TRUE
+	force = 3
+	throwforce = 0
+	sharpness = SHARP_NONE // It IS dull after all
+	. = ..()
+
 
 // Toy //
 
@@ -300,6 +342,138 @@
 	add_flame()
 
 
+// Joke? //
+
+/obj/item/ammo_casing/reusable/arrow/supermatter
+	name = "supermatter tipped arrow"
+	desc = "An arrow made of a hypernoblium tipped rod, a shard of supermatter, and poor decision making."
+	icon_state = "supermatterarrow"
+	item_state = "supermatterarrow"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter
+
+/obj/item/ammo_casing/reusable/arrow/supermatter/proc/disintigrate(atom/dusting)
+	if(ismob(dusting))
+		var/mob/ded = dusting
+		if(ded.status_flags & GODMODE)
+			return FALSE
+		dusting.visible_message(span_danger("As [ded] is impacted by [src], [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
+				span_userdanger("You are hit by [src], and start to glow. Uh oh."),\
+				span_italics("Everything suddenly goes silent."))
+		radiation_pulse(src, 500, 2)
+		ded.dust()
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+		return TRUE
+
+	else if(isobj(dusting))
+		dusting.visible_message(span_danger("As [dusting] is impacted by [src], [dusting.p_they()] burned into your eyes before disapearing into nothing!"))
+		radiation_pulse(src, 100, 2)
+		qdel(dusting)
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+		return TRUE
+
+	else if(isturf(dusting))
+		var/turf/T = dusting
+		var/oldtype = T.type
+		var/oldname = T.name
+		var/turf/newT = T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+		if(newT.type == oldtype)
+			return FALSE
+		dusting.visible_message(span_danger("As [oldname] is impacted by [src], its image is burned into your eyes before disapearing into nothing!"))
+		radiation_pulse(src, 50, 2)
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+		return TRUE
+
+/obj/item/ammo_casing/reusable/arrow/supermatter/sliver
+	name = "supermatter sliver arrow"
+	desc = "An arrow made of a hypernoblium tipped rod, a sliver of supermatter, and poor decision making. It looks like it will only survive one hit."
+
+/obj/item/ammo_casing/reusable/arrow/supermatter/sliver/disintigrate(atom/dusting)
+	. = ..()
+	if(.)
+		qdel(src)
+
+/obj/item/ammo_casing/reusable/arrow/singulo
+	name = "singularity shard arrow"
+	desc = "An arrow with a shard of a singularity at the end. It radiates a small amout of radiation and slightly pulls you towards it."
+	icon_state = "singuloarrow"
+	item_state = "singuloarrow"
+	force = 4
+	throwforce = 4
+	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+	variance = 5
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/singulo
+	/// The shard currently in the arrow
+	var/obj/item/singularity_shard/shard
+
+/obj/item/ammo_casing/reusable/arrow/singulo/Initialize()
+	..()
+	if(ispath(shard))
+		CheckParts(list(new shard()))
+
+/obj/item/ammo_casing/reusable/arrow/singulo/CheckParts(list/parts_list)
+	var/obj/item/singularity_shard/new_shard = locate(/obj/item/singularity_shard) in parts_list
+	if(!new_shard)
+		if(!shard) // No shard, no point in having the arrow
+			qdel(src)
+		return ..()
+
+	if(istype(shard))
+		new_shard.forceMove(new_shard.drop_location())
+	else
+		new_shard.forceMove(src)
+		shard = new_shard
+		update_icon()
+	..()
+
+/obj/item/ammo_casing/reusable/arrow/singulo/update_icon(force_update)
+	..()
+	if(istype(shard))
+		add_overlay(mutable_appearance(icon, "[icon_state]_[shard.icon_state]"), TRUE)
+
+/obj/item/ammo_casing/reusable/arrow/singulo/proc/shard_effect()
+	if(!shard)
+		qdel(src)
+		return
+	var/break_chance = 0
+	var/rads_released = 0
+	switch(shard.type)
+		if(/obj/item/singularity_shard/stage1)
+			break_chance = 0.1
+			rads_released = 100
+		if(/obj/item/singularity_shard/stage2)
+			break_chance = 0.5
+			rads_released = 200
+			empulse(src, 0, 1)
+		if(/obj/item/singularity_shard/stage3)
+			break_chance = 1.5
+			rads_released = 500
+			empulse(src, 0, 3)
+		if(/obj/item/singularity_shard/stage4)
+			break_chance = 5
+			rads_released = 1000
+			empulse(src, 1, 5)
+		if(/obj/item/singularity_shard/stage5)
+			break_chance = 10
+			rads_released = 2000
+			empulse(src, 2, 7)
+		if(/obj/item/singularity_shard/stage6)
+			break_chance = 100
+			rads_released = 3000
+			empulse(src, 5, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
+
+	if(rads_released)
+		radiation_pulse(src, rads_released, RAD_DISTANCE_COEFFICIENT * 0.5)
+	if(prob(break_chance))
+		playsound(src, "shatter", 70, 1)
+		if(shard.all_powerful)
+			new /obj/singularity(get_turf(src), 100)
+			visible_message(span_danger("\The [shard] shatters on impact, releasing a singularity!"))
+		else
+			visible_message(span_danger("\The [shard] shatters on impact!"))
+
+/obj/item/ammo_casing/reusable/arrow/singulo/shard6
+	shard = /obj/item/singularity_shard/stage6
+
 // Hardlight //
 
 /obj/item/ammo_casing/reusable/arrow/energy
@@ -326,7 +500,7 @@
 /obj/item/ammo_casing/reusable/arrow/energy/on_embed(mob/living/carbon/embedde)
 	return
 
-/obj/item/ammo_casing/reusable/arrow/energy/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+/obj/item/ammo_casing/reusable/arrow/energy/embed_tick(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(ticks >= tick_max)
 		embedde.remove_embedded_object(src, , TRUE, TRUE)
 		return

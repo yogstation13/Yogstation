@@ -52,7 +52,7 @@
 			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
-	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE)
+	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE, 0)
 	I.taped = TRUE
 
 /obj/item/stack/tape/guerrilla

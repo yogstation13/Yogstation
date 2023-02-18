@@ -1,11 +1,11 @@
 /obj/effect/proc_holder/spell/targeted/tesla
 	name = "Tesla Blast"
 	desc = "Charge up a tesla arc and release it at a random nearby target! You can move freely while it charges. The arc jumps between targets and can knock them down if they do not have shock protection."
-	charge_type = "recharge"
+	charge_type = SPELL_CHARGE_TYPE_RECHARGE
 	charge_max	= 200
 	clothes_req = TRUE
 	invocation = "UN'LTD P'WAH!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 7
 	cooldown_min = 30
 	selection_type = "view"

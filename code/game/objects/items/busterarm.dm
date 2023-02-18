@@ -40,7 +40,6 @@
 	name = "Wire Snatch"
 	desc = "Extend a wire to your active hand for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
 	pull you towards them instead. It can be used 3 times before reeling back into the arm."
-	invocation_type = "none"
 	include_user = TRUE
 	range = -1
 	charge_max = 50

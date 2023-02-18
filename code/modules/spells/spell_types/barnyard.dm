@@ -2,13 +2,13 @@
 	name = "Curse of the Barnyard"
 	desc = "This spell dooms an unlucky soul to possess the speech and facial attributes of a barnyard animal."
 	school = "transmutation"
-	charge_type = "recharge"
+	charge_type = SPELL_CHARGE_TYPE_RECHARGE
 	charge_max	= 150
 	charge_counter = 0
 	clothes_req = FALSE
 	stat_allowed = FALSE
 	invocation = "KN'A FTAGHU, PUCK 'BTHNK!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 7
 	cooldown_min = 30
 	selection_type = "range"

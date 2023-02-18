@@ -154,3 +154,27 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_available = FALSE
+/*
+/datum/crafting_recipe/supermatter_sliver_arrow
+	name = "Supermatter Sliver Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow/supermatter/sliver
+	time = 5 SECONDS // Need to be very careful
+	reqs = list(/obj/item/nuke_core/supermatter_sliver = 1,
+				/obj/item/scalpel/supermatter = 1,	// Needed so the sliver doesn't destroy the rod and so atmos techs can't mass produce instant dust arrows
+				/obj/item/stack/rods = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+
+/datum/crafting_recipe/singularity_shard_arrow
+	name = "Singularity Shard Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow/singulo
+	time = 5 SECONDS
+	reqs = list(/obj/item/singularity_shard = 1,
+				/obj/item/stack/rods = 1, 
+				/obj/item/stack/cable_coil = 3)
+	parts = list(/obj/item/singularity_shard = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+*/

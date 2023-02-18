@@ -16,7 +16,7 @@
 		revert_cast()
 		return
 	invocation(thearea,user)
-	if(charge_type == "recharge" && recharge)
+	if(charge_type == SPELL_CHARGE_TYPE_RECHARGE && recharge)
 		INVOKE_ASYNC(src, .proc/start_recharge)
 	cast(targets,thearea,user)
 	after_cast(targets)
@@ -72,21 +72,8 @@
 			playsound(get_turf(user), sound2, 50,1)
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/invocation(area/chosenarea = null,mob/living/user = usr)
-	if(!invocation_area || !chosenarea)
-		..()
+	if(say_destination && chosenarea)
+		invocation = "[initial(invocation)] [uppertext(chosenarea.name)]"
 	else
-		var/words
-		if(say_destination)
-			words = "[invocation] [uppertext(chosenarea.name)]"
-		else
-			words = "[invocation]"
-
-		switch(invocation_type)
-			if("shout")
-				user.say(words, forced = "spell")
-				if(user.gender==MALE)
-					playsound(user.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
-				else
-					playsound(user.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
-			if("whisper")
-				user.whisper(words, forced = "spell")
+		invocation = initial(invocation)
+	..()
