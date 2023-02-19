@@ -123,14 +123,10 @@
 	name = "Wire Snatch"
 	desc = "Extend a wire for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. Anchored targets that are hit will\
 	pull you towards them instead. It can be used 3 times before reeling back into the arm."
-	include_user = TRUE
-	range = -1
-	charge_max = 50
-	cooldown_min = 10
-	action_icon = 'icons/obj/guns/magic.dmi'
-	action_icon_state = "hook"
-	var/summon_path = /obj/item/gun/magic/wire
-
+	icon_icon = 'icons/obj/guns/magic.dmi'
+	button_icon_state = "hook"
+	cooldown_time = 5 SECONDS
+	
 /datum/action/cooldown/buster/wire_snatch/l/Trigger()
 	if(!..())
 		return FALSE
