@@ -212,7 +212,8 @@
 /area/reebe/city_of_cogs)
 "fi" = (
 /obj/machinery/stasis{
-	dir = 4
+	dir = 4;
+	color = "#FF8000"
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
