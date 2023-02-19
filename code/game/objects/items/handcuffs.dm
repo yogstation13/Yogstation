@@ -405,7 +405,7 @@
 	name = "gonbola"
 	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
 	icon_state = "gonbola"
-	item_state = "ebola"
+	item_state = "bola_r"
 	breakouttime = 300
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference

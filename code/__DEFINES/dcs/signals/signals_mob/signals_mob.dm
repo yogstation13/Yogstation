@@ -141,6 +141,10 @@
 ///Called on user, from base of /datum/strippable_item/try_(un)equip() (atom/target, obj/item/equipping?)
 #define COMSIG_TRY_STRIP "try_strip"
 	#define COMPONENT_CANT_STRIP (1<<0)
+///Called on user by /mob/verb/quick_equip() (atom/target, obj/item/equipping?)
+#define COMSIG_MOB_QUICK_EQUIP "quick_equip"
+	/// return this if you want to stop the rest of the quick equip logic
+	#define COMPONENT_BLOCK_QUICK_EQUIP (1<<0)
 ///From /datum/component/creamed/Initialize()
 #define COMSIG_MOB_CREAMED "mob_creamed"
 ///From /obj/item/gun/proc/check_botched()

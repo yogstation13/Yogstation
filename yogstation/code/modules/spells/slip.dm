@@ -7,7 +7,7 @@
 	cooldown_min = 100 //50 deciseconds reduction per level
 	range = 3
 	invocation = "OO'BANAN'A!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "slip"
 

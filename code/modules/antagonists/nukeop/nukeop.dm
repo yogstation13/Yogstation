@@ -202,7 +202,7 @@
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
 	var/title
-	preview_outfit = /datum/outfit/nuclear_operative
+	preview_outfit = /datum/outfit/nuclear_operative/leader
 	preview_outfit_behind = null
 
 /datum/antagonist/nukeop/leader/memorize_code()
@@ -261,6 +261,10 @@
 			newname = randomname
 
 	return capitalize(newname)
+
+/datum/outfit/nuclear_operative/leader
+	name = "Nuclear Operative Leader (Preview only)"
+	neck = /obj/item/clothing/neck/cloak/nukie
 
 /datum/antagonist/nukeop/lone
 	name = "Lone Operative"

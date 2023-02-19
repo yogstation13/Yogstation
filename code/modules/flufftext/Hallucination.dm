@@ -467,7 +467,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 					image_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 				else
 					image_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-				A = image(image_file,H,"crossbow", layer=ABOVE_MOB_LAYER)
+				A = image(image_file,H,"ecrossbow", layer=ABOVE_MOB_LAYER)
 			if("baton")
 				if(side == "right")
 					image_file = 'icons/mob/inhands/equipment/security_righthand.dmi'

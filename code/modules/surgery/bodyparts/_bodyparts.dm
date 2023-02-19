@@ -935,12 +935,11 @@
 	if(generic_bleedstacks > 0)
 		bleed_rate += generic_bleedstacks
 
-	//We want an accurate reading of .len
-	listclearnulls(embedded_objects)
-	for(var/obj/item/embeddies in embedded_objects)
-		var/obj/item/ammo_casing/AC = embeddies
-		if(!(embeddies.taped || (istype(AC) && !AC.harmful)))
-			bleed_rate += 0.5
+	if(embedded_objects)
+		//We want an accurate reading of .len
+		listclearnulls(embedded_objects)
+		for(var/obj/item/embeddies in embedded_objects)
+			bleed_rate += embeddies.embedding.embedded_bleed_rate
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing

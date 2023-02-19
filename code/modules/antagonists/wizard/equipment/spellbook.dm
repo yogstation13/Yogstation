@@ -95,7 +95,7 @@
 		S = new spell_type()
 	var/dat =""
 	dat += "<b>[initial(S.name)]</b>"
-	if(S.charge_type == "recharge")
+	if(S.charge_type == SPELL_CHARGE_TYPE_RECHARGE)
 		dat += " Cooldown:[S.charge_max/10]"
 	dat += " Cost:[cost]<br>"
 	dat += "<i>[S.desc][desc]</i><br>"
@@ -224,6 +224,11 @@
 	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
 
+/datum/spellbook_entry/magic_arrows
+	name = "Summon Magic Arrows"
+	spell_type = /obj/effect/proc_holder/spell/targeted/conjure_item/arrow/magic
+	cost = 1
+
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
@@ -307,6 +312,17 @@
 	desc = "A sword capable of firing blasts of energy which rip targets limb from limb."
 	item_path = /obj/item/gun/magic/staff/spellblade
 
+/datum/spellbook_entry/item/breakbow
+	name = "Break Bow"
+	desc = "A bladed bow that can be split into two swords which attack simultaneously as well as return to their thrower. Comes with a quiver of unlimited, powerful arrows."
+	item_path = /obj/item/gun/ballistic/bow/break_bow
+	cost = 2
+
+/datum/spellbook_entry/item/breakbow/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
+	if(.)
+		new /obj/item/storage/belt/quiver/unlimited(get_turf(user)) // Quiver of limitless arrows
+
 /datum/spellbook_entry/item/staffdoor
 	name = "Staff of Door Creation"
 	desc = "A particular staff that can mold solid walls into ornate doors. Useful for getting around in the absence of other transportation. Does not work on glass."
@@ -363,6 +379,13 @@
 	if(.)
 		new /obj/item/clothing/shoes/sandal/magic(get_turf(user)) //In case they've lost them.
 		new /obj/item/clothing/gloves/color/purple(get_turf(user))//To complete the outfit
+
+/datum/spellbook_entry/item/ranger_cloak
+	name = "Ranger Cloak"
+	desc = "A cape that makes the wearer quickly invisible while standing still, permitting them to dodge ranged attacks. Moving or dodging projectiles reduces the effect."
+	item_path = /obj/item/clothing/neck/cloak/ranger
+	cost = 2
+	category = "Defensive"
 
 /datum/spellbook_entry/item/contract
 	name = "Contract of Apprenticeship"

@@ -63,13 +63,12 @@
 			. += span_warning("[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!")
 
 	//handcuffed?
-
-	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")
-		else
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+		. += span_warning("[t_He] [t_is] handcuffed with [handcuffed.get_examine_string(user)]!")
+
+	//legcuffed?
+	if(legcuffed)
+		. += span_warning("[t_He] [t_is] legcuffed with [legcuffed.get_examine_string(user)]!")
 
 	//belt
 	if(belt)
@@ -548,10 +547,11 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")
-		else
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+		. += span_warning("[t_He] [t_is] handcuffed with [handcuffed.get_examine_string(user)]!")
+
+	//legcuffed?
+	if(legcuffed)
+		. += span_warning("[t_He] [t_is] legcuffed with [legcuffed.get_examine_string(user)]!")
 
 	//belt
 	if(belt)

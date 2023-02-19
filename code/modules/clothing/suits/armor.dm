@@ -136,34 +136,37 @@
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
-	desc = "A tribal armor plate, crafted from animal bone."
+	desc = "A mass of bones wrapped together into a protective shell. Not as effective as modern protection, but it still offers notable protection."
+	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "bonearmor"
 	item_state = "bonearmor"
 	blood_overlay_type = "armor"
-	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
+	armor = list(MELEE = 45, BULLET = 15, LASER = 15, ENERGY = 5, BOMB = 35, BIO = 0, RAD = 0, FIRE = 10, ACID = 10, WOUND = 15)
+	slowdown = 0.2
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/suit/armor/bone/heavy
 	name = "heavy bone armor"
-	desc = "A heavy tribal armor plate, crafted from a lot animal bone."
+	desc = "A hefty set of bones that covers most of the body. Slowing, but able to repel considerable blows."
 	icon_state = "hbonearmor"
 	item_state = "hbonearmor"
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 15, BOMB = 20, BIO = 0, RAD = 0, FIRE = 60, ACID = 30, WOUND = 20)
-	slowdown = 0.20
+	armor = list(MELEE = 55, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 65, BIO = 0, RAD = 0, FIRE = 20, ACID = 20, WOUND = 20)
+	slowdown = 0.4
 
 /obj/item/clothing/suit/armor/tribalcoat
 	name = "tribal coat"
-	desc = "A light yet tough leather coat reinforced with bone pauldrons."
+	desc = "A light, yet tough leather coat, reinforced with bone pauldrons. Often worn by tribal leaders."
+	allowed = list (/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "tribalcoat"
 	item_state = "tribalcoat"
 	blood_overlay_type = "armor"
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
+	armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 5, BOMB = 50, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10) //Better against bomb than goliath, but worse in other ways
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/suit/armor/pathfinder
 	name = "pathfinder cloak"
-	desc = "A thick cloak woven from sinew and hides meant to protect its wearer from hazardous weather."
+	desc = "A thick cloak woven from sinew and hides, designed to protect its wearer from hazardous weather."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
@@ -333,9 +336,9 @@
 /obj/item/clothing/suit/hooded/cloak/goliath
 	name = "goliath cloak"
 	icon_state = "goliath_cloak"
-	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
+	desc = "A staunch, practical cape made out of numerous monster materials. It is coveted amongst exiles and hermits."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
-	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
 	resistance_flags = FIRE_PROOF
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -343,15 +346,15 @@
 /obj/item/clothing/head/hooded/cloakhood/goliath
 	name = "goliath cloak hood"
 	icon_state = "golhood"
-	desc = "A protective & concealing hood."
-	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
+	desc = "A protective and concealing hood."
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
 	transparent_protection = HIDEMASK
 
 /obj/item/clothing/suit/hooded/cloak/goliath/desert
 	name = "brown leather cape"
-	desc = "An ash coated cloak."
+	desc = "An ash-coated cloak."
 	icon_state = "desertcloak"
 	armor = list()
 	resistance_flags = 0
@@ -360,7 +363,7 @@
 /obj/item/clothing/head/hooded/cloakhood/goliath/desert
 	name = "goliath cloak hood"
 	icon_state = "desertcloak"
-	desc = "An ash coated cloak hood."
+	desc = "The hood of an ashy cloak."
 	armor = list()
 	resistance_flags = 0
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
@@ -383,7 +386,7 @@
 	name = "drake helm"
 	icon_state = "dragon"
 	desc = "The skull of a dragon."
-	armor = list(MELEE = 70, BULLET = 20, LASER = 50, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 20, LASER = 30, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF

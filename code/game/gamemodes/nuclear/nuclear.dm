@@ -137,6 +137,7 @@
 	id = /obj/item/card/id/syndicate/nuke_leader
 	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	r_hand = /obj/item/nuclear_challenge
+	neck = /obj/item/clothing/neck/cloak/nukie
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals

@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,24)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -66,6 +66,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 		if(23)
 			new /obj/item/clothing/gloves/gauntlets(src)
+		if(24)
+			new /obj/item/gun/ballistic/bow/ashen(src)
+			new /obj/item/storage/belt/quiver/returning/bone(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -653,7 +656,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
 			new /obj/item/gun/ballistic/bow(spot)
 			for(var/i in 1 to 5)
-				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+				new /obj/item/ammo_casing/reusable/arrow/bronze(spot)
 		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
 			switch(rand(1,5))
 				if(1)

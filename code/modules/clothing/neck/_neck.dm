@@ -327,6 +327,11 @@
 	desc = "Worn by the right hand of the captain. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
 
+/obj/item/clothing/neck/cloak/nukie
+	name = "tactical ablative shawl"
+	desc = "Worn by the leader of an elite team of nuclear operatives. Commit mass murder in style!"
+	icon_state = "nukie_cloak"
+
 /obj/item/clothing/neck/cloak/tribalmantle
 	name = "ornate mantle"
 	desc = "An ornate mantle commonly worn by a shaman or chieftain."
@@ -344,3 +349,120 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "falcon"
 	item_state = "falcon"
+
+// Stealth cloaks
+
+/obj/item/clothing/neck/cloak/ranger
+	name = "ranger cloak"
+	desc = "A cape that uses light-altering magic to make the wearer invisible and allow them to dodge projectiles. The illusion weakens the more the wearer moves."
+	icon_state = "ranger_cloak"
+
+	/// The mob currently wearing this
+	var/mob/current_user
+	/// How much the user is cloaked as a percentage, which effects the wearer's transparency and dodge chance
+	var/cloak = 0
+	/// What cloak is capped to
+	var/max_cloak = 100
+	/// How much the cloak charges per process
+	var/cloak_charge_rate = 35
+	/// How much the cloak decreases when moving
+	var/cloak_move_loss = 5
+	/// How much the cloak decreases on a successful dodge
+	var/cloak_dodge_loss = 30
+
+/obj/item/clothing/neck/cloak/ranger/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, .proc/on_unequip)
+
+/obj/item/clothing/neck/cloak/ranger/equipped(mob/user, slot)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/neck/cloak/ranger/dropped(mob/user)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
+		return TRUE
+
+	set_cloak(0)
+	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+	if(user)
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+
+	var/mob/new_user = loc
+	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
+		current_user = new_user
+		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, .proc/on_move)
+		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, .proc/on_projectile_hit)
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/clothing/neck/cloak/ranger/proc/set_cloak(ammount)
+	cloak = clamp(ammount, 0, max_cloak)
+	var/mob/user = loc
+	if(istype(user))
+		animate(user, alpha = round(clamp(255 * (1 - (cloak * 0.01)), 0, 255)), time = 0.5 SECONDS)
+
+/obj/item/clothing/neck/cloak/ranger/process(delta_time)
+	if(!update_signals())
+		return
+	var/mob/user = loc
+	if(!istype(user) || !user.get_item_by_slot(SLOT_NECK) == src)
+		
+		return
+	set_cloak(cloak + (cloak_charge_rate * delta_time))
+
+/obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(dodge(owner, hitby, attack_text))
+		return TRUE
+	return ..()
+
+/obj/item/clothing/neck/cloak/ranger/proc/on_move(mob/user, Dir, Forced = FALSE)
+	if(update_signals(user))
+		set_cloak(cloak - cloak_move_loss)
+
+/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+	if(dodge(user, P, "[P]"))
+		return BULLET_ACT_FORCE_PIERCE
+
+/obj/item/clothing/neck/cloak/ranger/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+	if(!update_signals(user) || current_user.incapacitated(check_immobilized = TRUE) || !prob(cloak))
+		return FALSE
+
+	set_cloak(cloak - cloak_dodge_loss)
+	current_user.SpinAnimation(7,1)
+	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
+	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
+	return TRUE
+
+/obj/item/clothing/neck/cloak/ranger/syndie
+	name = "shadow cloak"
+	desc = "A dark red cape that uses advanced chameleon technology to make the wearer nearly invisible and aid them in dodging projectiles. Unable to sustain its image under distress or EMP."
+	icon_state = "syndie_cloak"
+	max_cloak = 75 //Max 75% dodge is a little quirky
+	cloak_charge_rate = 20
+	cloak_dodge_loss = 40
+	var/cloak_emp_disable_duration = 10 SECONDS
+	var/cloak_emp_loss = 25
+
+/obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
+	. = ..()
+	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
+		return
+	if(EMP_HEAVY)
+		set_cloak(0)
+		TIMER_COOLDOWN_START(src, "cloak_emp_disable", cloak_emp_disable_duration)
+	else
+		set_cloak(cloak - cloak_emp_loss)
+
+/obj/item/clothing/neck/cloak/ranger/syndie/process(delta_time)
+	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))
+		return
+	return ..()

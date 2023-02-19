@@ -2648,6 +2648,41 @@
 	crate_name = "standard costume crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/randomised/archery
+	name = "Archery Crate"
+	desc = "Shoot apples of peoples heads with this kit containing everything you need to start your archery carrier."
+	cost = 1000
+	contains = list(/obj/item/gun/ballistic/bow,
+					/obj/item/storage/belt/quiver/full
+	)
+	crate_name = "archery crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/randomised/archery_war
+	name = "Archery War Crate"
+	desc = "Set up an all out archery war with this simple kit!"
+	cost = 5000
+	contains = list(/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/storage/belt/quiver/blue,
+					/obj/item/storage/belt/quiver/blue,
+					/obj/item/storage/belt/quiver/blue,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/storage/belt/quiver/red,
+					/obj/item/storage/belt/quiver/red,
+					/obj/item/storage/belt/quiver/red,
+					/obj/item/ammo_box/arrow/toy/disabler,
+					/obj/item/ammo_box/arrow/toy/energy,
+					/obj/item/ammo_box/arrow/toy/pulse,
+					/obj/item/ammo_box/arrow/toy/xray,
+					/obj/item/ammo_box/arrow/toy/shock,
+	)
+	crate_name = "archery crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
 /datum/supply_pack/costumes_toys/randomised/toys
 	name = "Toy Crate"
 	desc = "Who cares about pride and accomplishment? Skip the gaming and get straight to the sweet rewards with this product! Contains five random toys. Warranty void if used to prank research directors."

@@ -444,7 +444,7 @@
 		to_chat(user, span_warning("Not enough lollipops left!"))
 		return FALSE
 	candy--
-	var/obj/item/ammo_casing/caseless/lollipop/A = new /obj/item/ammo_casing/caseless/lollipop(src)
+	var/obj/item/ammo_casing/reusable/lollipop/A = new /obj/item/ammo_casing/reusable/lollipop(src)
 	A.BB.damage = hitdamage
 	if(hitdamage)
 		A.BB.nodamage = FALSE
@@ -459,7 +459,7 @@
 		to_chat(user, span_warning("Not enough gumballs left!"))
 		return FALSE
 	candy--
-	var/obj/item/ammo_casing/caseless/gumball/A = new /obj/item/ammo_casing/caseless/gumball(src)
+	var/obj/item/ammo_casing/reusable/gumball/A = new /obj/item/ammo_casing/reusable/gumball(src)
 	A.BB.damage = hitdamage
 	if(hitdamage)
 		A.BB.nodamage = FALSE
@@ -512,12 +512,11 @@
 #undef THROW_GUMBALL_MODE
 #undef DISPENSE_ICECREAM_MODE
 
-/obj/item/ammo_casing/caseless/gumball
+/obj/item/ammo_casing/reusable/gumball
 	name = "Gumball"
 	desc = "Why are you seeing this?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
 	click_cooldown_override = 2
-
 
 /obj/item/projectile/bullet/reusable/gumball
 	name = "gumball"
@@ -526,14 +525,12 @@
 	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	nodamage = TRUE
 
-/obj/item/projectile/bullet/reusable/gumball/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/gumball/S = new ammo_type(T)
-		S.color = color
-		dropped = TRUE
+/obj/item/projectile/bullet/reusable/gumball/Initialize()
+	. = ..()
+	ammo_type = new ammo_type(src)
+	color = ammo_type.color
 
-/obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
+/obj/item/ammo_casing/reusable/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
 	name = "Lollipop"
 	desc = "Why are you seeing this?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/lollipop
@@ -550,17 +547,11 @@
 /obj/item/projectile/bullet/reusable/lollipop/Initialize()
 	. = ..()
 	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)
+	ammo_type = S
 	color2 = S.headcolor
 	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
 	head.color = color2
 	add_overlay(head)
-
-/obj/item/projectile/bullet/reusable/lollipop/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(T)
-		S.change_head_color(color2)
-		dropped = TRUE
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 

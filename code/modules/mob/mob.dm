@@ -856,11 +856,11 @@
 	for(var/obj/effect/proc_holder/spell/S in spells)
 		if(S.can_be_cast_by(src))
 			switch(S.charge_type)
-				if("recharge")
+				if(SPELL_CHARGE_TYPE_RECHARGE)
 					L[++L.len] = list("[S.panel]", "[S.charge_counter/10.0]/[S.charge_max/10]", S.name, REF(S))
-				if("charges")
+				if(SPELL_CHARGE_TYPE_CHARGES)
 					L[++L.len] = list("[S.panel]", "[S.charge_counter]/[S.charge_max]", S.name, REF(S))
-				if("holdervar")
+				if(SPELL_CHARGE_TYPE_HOLDERVAR)
 					L[++L.len] = list("[S.panel]", "[S.holder_var_type] [S.holder_var_amount]", S.name, REF(S))
 	return L
 

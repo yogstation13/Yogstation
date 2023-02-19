@@ -665,7 +665,11 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
 		for(var/obj/item/I in BP.embedded_objects)
-			I.embed_tick(src, BP)
+			// If its not embedded, don't bother proccessing it
+			if(!get_embedded_part(I))
+				continue
+			if(CHECK_BITFIELD(SEND_SIGNAL(I, COMSIG_ITEM_EMBED_TICK, src), COMSIG_ITEM_BLOCK_EMBED_TICK))
+				continue
 			var/pain_chance_current = I.embedding.embedded_pain_chance
 			if(!(mobility_flags & MOBILITY_STAND))
 				pain_chance_current *= 0.2
@@ -681,9 +685,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
 				remove_embedded_object(I, drop_location(), FALSE)
 				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"), span_userdanger("[I] falls out of your [BP.name]!"))
-				if(!has_embedded_objects())
-					clear_alert("embeddedobject")
-					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//
