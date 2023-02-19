@@ -28,6 +28,8 @@
 		/datum/job_department/science,
 	)
 
+	changed_maps = list("OmegaStation")
+
 	mail_goodies = list(
 		/obj/item/storage/box/flashes = 20,
 		/obj/item/stack/sheet/metal/twenty = 15,
@@ -35,6 +37,9 @@
 	)
 
 	smells_like = "burnt solder"
+
+/datum/job/roboticist/proc/OmegaStationChanges()
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/roboticist
 	name = "Roboticist"

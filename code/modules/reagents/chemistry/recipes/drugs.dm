@@ -32,8 +32,8 @@
 	var/datum/reagents/R = new/datum/reagents(5)
 	R.my_atom = holder.my_atom
 	R.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
-	var/datum/effect_system/fluid_spread/smoke/chem/S = new
-	S.set_up(0.5, location = holder, carry = R,)
+	var/datum/effect_system/smoke_spread/chem/S = new
+	S.set_up(R, 0.5, holder.my_atom, 0)
 	S.start()
 	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
 

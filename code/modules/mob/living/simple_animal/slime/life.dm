@@ -51,13 +51,13 @@
 			break
 
 		if(Target.health <= -70 || Target.stat == DEAD)
-			set_target(null)
+			Target = null
 			AIproc = 0
 			break
 
 		if(Target)
 			if(locate(/mob/living/simple_animal/slime) in Target.buckled_mobs)
-				set_target(null)
+				Target = null
 				AIproc = 0
 				break
 			if(!AIproc)
@@ -97,7 +97,7 @@
 				// Bug of the month candidate: slimes were attempting to move to target only if it was directly next to them, which caused them to target things, but not approach them
 					step_to(src, Target)
 			else
-				set_target(null)
+				Target = null
 				AIproc = 0
 				break
 
@@ -188,10 +188,12 @@
 	if(M.stat == DEAD) // our victim died
 		if(!client)
 			if(!rabid && !attacked)
-				var/mob/last_to_hurt = M.LAssailant?.resolve()
-				if(last_to_hurt && last_to_hurt != M)
+				if(M.LAssailant && M.LAssailant != M)
 					if(prob(50))
-						add_friendship(last_to_hurt, 1)
+						if(!(M.LAssailant in Friends))
+							Friends[M.LAssailant] = 1
+						else
+							++Friends[M.LAssailant]
 		else
 			to_chat(src, "<i>This subject does not have a strong enough life energy anymore...</i>")
 
@@ -307,7 +309,7 @@
 			--target_patience
 			if (target_patience <= 0 || SStun > world.time || Discipline || attacked || docile) // Tired of chasing or something draws out attention
 				target_patience = 0
-				set_target(null)
+				Target = null
 
 		if(AIproc && SStun > world.time)
 			return
@@ -322,7 +324,7 @@
 		if(hungry == 2 && !client) // if a slime is starving, it starts losing its friends
 			if(Friends.len > 0 && prob(1))
 				var/mob/nofriend = pick(Friends)
-				add_friendship(nofriend, -1)
+				--Friends[nofriend]
 
 		if(!Target)
 			if(will_hunt() && hungry || attacked || rabid) // Only add to the list if we need to
@@ -361,16 +363,16 @@
 
 				if(targets.len > 0)
 					if(attacked || rabid || hungry == 2)
-						set_target(targets[1]) // I am attacked and am fighting back or so hungry I don't even care
+						Target = targets[1] // I am attacked and am fighting back or so hungry I don't even care
 					else
 						for(var/mob/living/carbon/C in targets)
 							if(!Discipline && prob(5))
 								if(ishuman(C) || isalienadult(C))
-									set_target(C)
+									Target = C
 									break
 
 							if(islarva(C) || ismonkey(C))
-								set_target(C)
+								Target = C
 								break
 
 			if (Target)
@@ -444,13 +446,13 @@
 					if (Leader == who) // Already following him
 						to_say = pick("Yes...", "Lead...", "Follow...")
 					else if (Friends[who] > Friends[Leader]) // VIVA
-						set_leader(who)
+						Leader = who
 						to_say = "Yes... I follow [who]..."
 					else
 						to_say = "No... I follow [Leader]..."
 				else
 					if (Friends[who] >= SLIME_FRIENDSHIP_FOLLOW)
-						set_leader(who)
+						Leader = who
 						to_say = "I follow..."
 					else // Not friendly enough
 						to_say = pick("No...", "I no follow...")
@@ -458,27 +460,27 @@
 				if (buckled) // We are asked to stop feeding
 					if (Friends[who] >= SLIME_FRIENDSHIP_STOPEAT)
 						Feedstop()
-						set_target(null)
+						Target = null
 						if (Friends[who] < SLIME_FRIENDSHIP_STOPEAT_NOANGRY)
-							add_friendship(who, -1)
+							--Friends[who]
 							to_say = "Grrr..." // I'm angry but I do it
 						else
 							to_say = "Fine..."
 				else if (Target) // We are asked to stop chasing
 					if (Friends[who] >= SLIME_FRIENDSHIP_STOPCHASE)
-						set_target(null)
+						Target = null
 						if (Friends[who] < SLIME_FRIENDSHIP_STOPCHASE_NOANGRY)
-							add_friendship(who, -1)
+							--Friends[who]
 							to_say = "Grrr..." // I'm angry but I do it
 						else
 							to_say = "Fine..."
 				else if (Leader) // We are asked to stop following
 					if (Leader == who)
 						to_say = "Yes... I stay..."
-						set_target(null)
+						Leader = null
 					else
 						if (Friends[who] > Friends[Leader])
-							set_target(null)
+							Leader = null
 							to_say = "Yes... I stop..."
 						else
 							to_say = "No... keep follow..."
@@ -500,7 +502,7 @@
 						to_say = "No... won't stay..."
 			else if (findtext(phrase, "attack"))
 				if (rabid && prob(20))
-					set_target(who)
+					Target = who
 					AIprocess() //Wake up the slime's Target AI, needed otherwise this doesn't work
 					to_say = "ATTACK!?!?"
 				else if (Friends[who] >= SLIME_FRIENDSHIP_ATTACK)
@@ -508,14 +510,14 @@
 						if (findtext(phrase, lowertext(L.name)))
 							if (isslime(L))
 								to_say = "NO... [L] slime friend"
-								add_friendship(who, -1) //Don't ask a slime to attack its friend
+								--Friends[who] //Don't ask a slime to attack its friend
 							else if(!Friends[L] || Friends[L] < 1)
-								set_target(L)
+								Target = L
 								AIprocess()//Wake up the slime's Target AI, needed otherwise this doesn't work
 								to_say = "Ok... I attack [Target]"
 							else
 								to_say = "No... like [L] ..."
-								add_friendship(who, -1) //Don't ask a slime to attack its friend
+								--Friends[who] //Don't ask a slime to attack its friend
 							break
 				else
 					to_say = "No... no listen"

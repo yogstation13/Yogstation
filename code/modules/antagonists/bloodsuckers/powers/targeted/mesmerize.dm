@@ -5,6 +5,7 @@
  * 	Level 2: Additionally mutes
  * 	Level 3: Can be used through face protection
  * 	Level 5: Doesn't need to be facing you anymore
+ * 	Level 6: Causes the target to fall asleep
  */
 
 /datum/action/bloodsucker/targeted/mesmerize
@@ -19,6 +20,7 @@
 		At level 1, your target will additionally be muted.\n\
 		At level 3, you will be able to use the power through items covering your face.\n\
 		At level 5, you will be able to mesmerize regardless of your target's direction.\n\
+		At level 6, you will cause your target to fall asleep.\n\
 		Higher levels will increase the time of the mesmerize's freeze."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
@@ -104,7 +106,9 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/mesmerized = target
 		to_chat(owner, span_notice("Successfully mesmerized [mesmerized]."))
-		if(level_current >= 1)
+		if(level_current >= 6)
+			mesmerized.SetUnconscious(power_time)
+		else if(level_current >= 1)
 			ADD_TRAIT(mesmerized, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		mesmerized.Immobilize(power_time)
 		//mesmerized.silent += power_time / 10 // Silent isn't based on ticks.

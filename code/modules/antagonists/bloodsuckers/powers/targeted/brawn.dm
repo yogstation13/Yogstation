@@ -130,7 +130,7 @@
 				span_danger("[user] lands a vicious punch, sending [target] away!"), \
 				span_userdanger("[user] has landed a horrifying punch on you, sending you flying!"),
 			)
-			target.Knockdown(min(5 SECONDS, rand(1 SECONDS, 1 SECONDS * powerlevel)))
+			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
 		// Attack!
 		to_chat(owner, span_warning("You punch [target]!"))
 		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, TRUE, -1)

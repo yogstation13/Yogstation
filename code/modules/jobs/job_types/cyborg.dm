@@ -21,7 +21,15 @@
 		/datum/job_department/silicon,
 	)
 
+	changed_maps = list("EclipseStation", "OmegaStation")
+
 	smells_like = "inorganic indifference"
+
+/datum/job/cyborg/proc/EclipseStationChanges()
+	spawn_positions = 3
+
+/datum/job/cyborg/proc/OmegaStationChanges()
+	spawn_positions = 1
 
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)

@@ -273,9 +273,7 @@
 
 /mob/living/simple_animal/bot/firebot/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if((temperature > T0C + 200 || temperature < BODYTEMP_COLD_DAMAGE_LIMIT) && foam_cooldown + FOAM_INTERVAL < world.time)
-		var/datum/effect_system/fluid_spread/foam/firefighting/foam = new
-		foam.set_up(3, holder = src, location = loc)
-		foam.start()
+		new /obj/effect/particle_effect/foam/firefighting(loc)
 		foam_cooldown = world.time
 	..()
 

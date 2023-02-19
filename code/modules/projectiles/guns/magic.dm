@@ -12,7 +12,7 @@
 	var/checks_antimagic = TRUE
 	var/max_charges = 6
 	var/charges = 0
-	var/recharge_rate = 8 // Seconds per charge
+	var/recharge_rate = 8
 	var/charge_timer = 0
 	var/can_charge = TRUE
 	var/ammo_type
@@ -68,11 +68,8 @@
 
 
 /obj/item/gun/magic/process(delta_time)
-	if(charges >= max_charges)
-		charge_timer = 0
-		return 0
 	charge_timer += delta_time
-	if(charge_timer < recharge_rate)
+	if(charge_timer < recharge_rate || charges >= max_charges)
 		return 0
 	charge_timer = 0
 	charges++

@@ -28,10 +28,6 @@
 
 	var/next_activate = 0 //When we're next allowed to activate - for spam control
 
-/obj/item/assembly/Destroy()
-	holder = null
-	return ..()
-
 /obj/item/assembly/get_part_rating()
 	return 1
 

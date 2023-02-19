@@ -206,18 +206,16 @@
   */
 /atom/Destroy()
 	if(alternate_appearances)
-		for(var/current_alternate_appearance in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
-			selected_alternate_appearance.remove_from_hud(src)
+		for(var/K in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
+			AA.remove_from_hud(src)
 
 	if(reagents)
 		qdel(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
-	// Checking length(overlays) before cutting has significant speed benefits
-	if (length(overlays))
-		overlays.Cut()
+	LAZYCLEARLIST(overlays)
 	LAZYCLEARLIST(priority_overlays)
 
 	for(var/i in targeted_by)
@@ -227,8 +225,6 @@
 	targeted_by = null
 
 	QDEL_NULL(light)
-	if (length(light_sources))
-		light_sources.Cut()
 
 	return ..()
 

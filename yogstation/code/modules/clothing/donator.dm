@@ -185,18 +185,14 @@
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
 
-/obj/item/storage/box/boxta
-	name = "Inmate belongings box"
-	desc = "A criminals' belongings, returned upon their release. Just stop killing people."
-
-/obj/item/storage/box/boxta/PopulateContents() 
-	. = ..()
-	new /obj/item/clothing/neck/falcon(src)
-	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
-
-/obj/item/bedsheet/pride
+/obj/item/bedsheets/pridebedsheet/cark
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
+	icon = 'icons/obj/bedsheets.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi' 
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
+	slot_flags = ITEM_SLOT_NECK
+	layer = MOB_LAYER

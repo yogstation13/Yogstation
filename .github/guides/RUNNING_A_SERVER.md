@@ -64,9 +64,10 @@ https://github.com/tgstation/tgstation-server
 Yogstation currently comes equipped with the following maps.
 
 * [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
+* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
+* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
 * [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
-* [NVS Gax](https://wiki.yogstation.net/wiki/NVS_Gax)
-* [AsteroidStation](https://wiki.yogstation.net/wiki/AsteroidStation)
+* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
 

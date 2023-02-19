@@ -12,7 +12,7 @@
 
 /datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/flesh
+	var/obj/realknife = new /obj/item/melee/sickly_blade/flesh
 	user.put_in_hands(realknife)
 
 /datum/eldritch_knowledge/base_flesh/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)

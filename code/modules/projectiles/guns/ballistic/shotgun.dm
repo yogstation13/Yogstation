@@ -21,16 +21,6 @@
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
 
-/obj/item/gun/ballistic/shotgun/automatic
-	name = "semi-auto shotgun"
-	desc = "A shotgun that automatically chambers a new round after firing."
-	rack_sound = "sound/weapons/gun_slide_lock_5.ogg"
-	rack_sound_vary = FALSE
-	bolt_type = BOLT_TYPE_LOCKING
-	semi_auto = TRUE
-	casing_ejector = TRUE
-	bolt_wording = "charging handle"
-
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0
 	if(chambered && chambered.BB)
@@ -50,6 +40,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
 	can_be_sawn_off  = TRUE
+	weapon_weight = WEAPON_HEAVY
 
 // Breaching Shotgun //
 
@@ -64,9 +55,13 @@
 
 // Automatic Shotguns//
 
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
+	..()
+	rack()
+
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi-automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
 	fire_delay = 5
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
@@ -74,7 +69,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "compact combat shotgun"
-	desc = "A compact version of the semi-automatic combat shotgun. For close encounters."
+	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
@@ -89,6 +84,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
 	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
+	semi_auto = TRUE
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()

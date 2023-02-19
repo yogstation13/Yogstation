@@ -34,7 +34,7 @@ Burning extracts:
 /obj/item/slimecross/burning/grey/do_effect(mob/user)
 	var/mob/living/simple_animal/slime/S = new(get_turf(user),"grey")
 	S.visible_message(span_danger("A baby slime emerges from [src], and it nuzzles [user] before burbling hungrily!"))
-	S.set_friendship(user, 20) //Gas, gas, gas
+	S.Friends[user] = 20 //Gas, gas, gas
 	S.bodytemperature = T0C + 400 //We gonna step on the gas.
 	S.set_nutrition(S.get_hunger_nutrition()) //Tonight, we fight!
 	..()
@@ -45,11 +45,11 @@ Burning extracts:
 
 /obj/item/slimecross/burning/orange/do_effect(mob/user)
 	user.visible_message(span_danger("[src] boils over with a caustic gas!"))
-	var/datum/reagents/tmp_holder = new/datum/reagents(100)
-	tmp_holder.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 100)
+	var/datum/reagents/R = new/datum/reagents(100)
+	R.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 100)
 
-	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new
-	smoke.set_up(7, location = get_turf(user), carry = tmp_holder)
+	var/datum/effect_system/smoke_spread/chem/smoke = new
+	smoke.set_up(R, 7, get_turf(user))
 	smoke.start()
 	..()
 
@@ -120,11 +120,11 @@ Burning extracts:
 
 /obj/item/slimecross/burning/darkblue/do_effect(mob/user)
 	user.visible_message(span_danger("[src] releases a burst of chilling smoke!"))
-	var/datum/reagents/tmp_holder = new/datum/reagents(100)
-	tmp_holder.add_reagent(/datum/reagent/consumable/frostoil, 40)
-	user.reagents.add_reagent(/datum/reagent/medicine/regen_jelly, 10)
-	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new
-	smoke.set_up(7, location = get_turf(user), carry = tmp_holder)
+	var/datum/reagents/R = new/datum/reagents(100)
+	R.add_reagent(/datum/reagent/consumable/frostoil, 40)
+	user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone,10)
+	var/datum/effect_system/smoke_spread/chem/smoke = new
+	smoke.set_up(R, 7, get_turf(user))
 	smoke.start()
 	..()
 
@@ -200,10 +200,10 @@ Burning extracts:
 	for(var/mob/living/simple_animal/slime/S in view(7, get_turf(user)))
 		if(user in S.Friends)
 			var/friendliness = S.Friends[user]
-			S.clear_friends()
-			S.set_friendship(user, friendliness)
+			S.Friends = list()
+			S.Friends[user] = friendliness
 		else
-			S.clear_friends()
+			S.Friends = list()
 		S.rabid = 1
 		S.visible_message(span_danger("The [S] is driven into a dangerous frenzy!"))
 	..()

@@ -87,7 +87,7 @@
 	var/obj/item/gun/ballistic/automatic/pistol/martial/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You extract a hidden gun from your hand."))	
+	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
 	D.Paralyze((A.get_punchdamagehigh() / 10) SECONDS)	//1 second
 	streak = ""
 
@@ -137,9 +137,9 @@
 	set category = "Combat Modules"
 	to_chat(usr, "<b><i>You try to remember some basic actions from your upgraded combat modules.</i></b>")
 
-	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hidden blade, dealing 30 brute damage.")
+	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hiden blade, dealing 30 brute damage.")
 	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third attack will stealthy inject respectively 5 units of cyanide and 8 unites of sodium thiopental.")
-	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyse your target and place a stealthy version of a stechkin in your hand.")
+	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyze your target and place a stealthy version of a stechkin in your hand.")
 
 #undef PRE_DAGGER_COMBO
 #undef DAGGER_COMBO 

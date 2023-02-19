@@ -21,7 +21,7 @@
 /atom/movable/screen/swarmer/barricade
 	icon_state = "ui_barricade"
 	name = "Create Barricade (Costs 4 Resources)"
-	desc = "Creates a destructible barricade that will stop any non-swarmer from passing it while allowing disabler beams to pass through."
+	desc = "Creates a destructible barricade that will stop any non-swarmer from passing it. Also allows disabler beams to pass through."
 
 /atom/movable/screen/swarmer/barricade/Click()
 	if(isswarmer(usr))
@@ -31,7 +31,7 @@
 /atom/movable/screen/swarmer/replicate
 	icon_state = "ui_replicate"
 	name = "Replicate (Costs 20 Resources)"
-	desc = "Creates an autonomous melee drone that will follow you and attack all non-swarmers entities in sight. They can be ordered to move to a target location by a middle-click."
+	desc = "Creates an autonomous melee drone that will follow you and attack all non-swamers entities in sight. They can be ordered to move to a target location by a middle-click."
 
 /atom/movable/screen/swarmer/replicate/Click()
 	if(isswarmer(usr))

@@ -37,10 +37,15 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	location = null
 	return ..()
 
-/datum/effect_system/proc/set_up(number = 3, cardinals_only = FALSE, location)
-	src.number = min(number, 10)
-	src.cardinals = cardinals_only
-	src.location = get_turf(location)
+/datum/effect_system/proc/set_up(n = 3, c = FALSE, loca)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	if(isturf(loca))
+		location = loca
+	else
+		location = get_turf(loca)
 
 /datum/effect_system/proc/attach(atom/atom)
 	holder = atom

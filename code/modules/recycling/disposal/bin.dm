@@ -139,7 +139,7 @@
 		else
 			target.visible_message(span_danger("[user] has placed [target] in [src]."), span_userdanger("[user] has placed [target] in [src]."))
 			log_combat(user, target, "stuffed", addition="into [src]")
-			target.LAssailant = WEAKREF(user)
+			target.LAssailant = user
 		update_icon()
 
 /obj/machinery/disposal/relaymove(mob/user)

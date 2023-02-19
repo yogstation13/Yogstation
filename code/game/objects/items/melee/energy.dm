@@ -229,10 +229,6 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-/obj/item/melee/transforming/energy/blade/Destroy()
-	QDEL_NULL(spark_system)
-	return ..()
-
 /obj/item/melee/transforming/energy/blade/transform_weapon(mob/living/user, supress_message_text)
 	return
 

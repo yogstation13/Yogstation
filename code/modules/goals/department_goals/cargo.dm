@@ -21,8 +21,7 @@
 			/datum/material/silver,
 			/datum/material/plasma,
 			/datum/material/glass,
-			/datum/material/iron,
-			/datum/material/dilithium)
+			/datum/material/iron)
 
 		for(var/mat in material_list)
 			var/datum/material/M = getmaterialref(mat)

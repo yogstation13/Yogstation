@@ -64,9 +64,9 @@
 	desc = "Autonomous Power Loader Unit MK-II. This prototype Ripley is refitted with a pressurized cabin, trading its prior speed for atmospheric protection"
 	name = "\improper APLU MK-II \"Ripley\""
 	icon_state = "ripleymkii"
-	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
-	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
-	step_in = 3
+	fast_pressure_step_in = 2 //step_in while in low pressure conditions
+	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
+	step_in = 4
 	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 40, BIO = 100, RAD = 55, FIRE = 100, ACID = 100)
 	wreckage = /obj/structure/mecha_wreckage/ripley/mkii
 	enclosed = TRUE
@@ -119,9 +119,6 @@
 /obj/mecha/working/ripley/deathripley/real
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
-	fast_pressure_step_in = 1.5
-	slow_pressure_step_in = 3
-	step_in = 3
 
 /obj/mecha/working/ripley/deathripley/real/Initialize()
 	. = ..()

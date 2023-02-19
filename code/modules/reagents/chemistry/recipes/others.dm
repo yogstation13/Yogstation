@@ -11,12 +11,6 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/naniteremover
-	name = "Nanolytic Agent"
-	id = /datum/reagent/medicine/naniteremover
-	results = list(/datum/reagent/medicine/naniteremover = 3)
-	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)
-
 /datum/chemical_reaction/itching_powder
 	name = "Itching Powder"
 	id = /datum/reagent/itching_powder
@@ -388,7 +382,15 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	holder.create_foam(/datum/effect_system/fluid_spread/foam, 2 * created_volume, notification = span_danger("The solution spews out foam!"))
+	var/location = get_turf(holder.my_atom)
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, span_danger("The solution spews out foam!"))
+	var/datum/effect_system/foam_spread/s = new()
+	s.set_up(created_volume*2, location, holder)
+	s.start()
+	holder.clear_reagents()
+	return
+
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
@@ -397,7 +399,15 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal, 5 * created_volume, /obj/structure/foamedmetal, span_danger("The solution spews out a metallic foam!"))
+	var/location = get_turf(holder.my_atom)
+
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, span_danger("The solution spews out a metallic foam!"))
+
+	var/datum/effect_system/foam_spread/metal/s = new()
+	s.set_up(created_volume*5, location, holder, 1)
+	s.start()
+	holder.clear_reagents()
 
 /datum/chemical_reaction/smart_foam
 	name = "Smart Metal Foam"
@@ -406,7 +416,12 @@
 	mob_react = TRUE
 
 /datum/chemical_reaction/smart_foam/on_reaction(datum/reagents/holder, created_volume)
-	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal/smart, 5 * created_volume, /obj/structure/foamedmetal, span_danger("The solution spews out metallic foam!"))
+	var/turf/location = get_turf(holder.my_atom)
+	location.visible_message(span_danger("The solution spews out metallic foam!"))
+	var/datum/effect_system/foam_spread/metal/smart/s = new()
+	s.set_up(created_volume * 5, location, holder, TRUE)
+	s.start()
+	holder.clear_reagents()
 
 /datum/chemical_reaction/ironfoam
 	name = "Iron Foam"
@@ -415,7 +430,13 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal/iron, 5 * created_volume, /obj/structure/foamedmetal/iron, span_danger("The solution spews out a metallic foam!"))
+	var/location = get_turf(holder.my_atom)
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, span_danger("The solution spews out a metallic foam!"))
+	var/datum/effect_system/foam_spread/metal/s = new()
+	s.set_up(created_volume*5, location, holder, 2)
+	s.start()
+	holder.clear_reagents()
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"

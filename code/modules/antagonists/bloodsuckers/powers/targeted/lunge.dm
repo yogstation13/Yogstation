@@ -108,7 +108,7 @@
 			span_notice("You spin!"),
 			)
 		return
-	do_smoke(0, owner.loc, smoke_type = /obj/effect/particle_effect/fluid/smoke/transparent)
+	do_smoke(0, owner.loc, smoke_type = /obj/effect/particle_effect/smoke/transparent)
 
 /datum/action/bloodsucker/targeted/lunge/proc/lunge_end(atom/hit_atom)
 	var/mob/living/user = owner

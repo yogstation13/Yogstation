@@ -415,6 +415,12 @@
 	M.radiation += radpower
 	..()
 
+/datum/reagent/toxin/polonium/ebow
+	name = "Potent Polonium"
+	description = "A more potent form of Polonium. It is purged more quickly from the body, but also significantly more deadly."
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	radpower = 80
+
 /datum/reagent/toxin/histamine
 	name = "Histamine"
 	description = "Histamine's effects become more dangerous depending on the dosage amount. They range from mildly annoying to incredibly lethal."

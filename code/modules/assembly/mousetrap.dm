@@ -49,17 +49,11 @@
 			if("feet")
 				if(!H.shoes)
 					affecting = H.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
-					if(affecting?.status != BODYPART_ROBOTIC)
-						H.Paralyze(60)
-					else
-						affecting = null
-			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+					H.Paralyze(60)
+			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 				if(!H.gloves)
 					affecting = H.get_bodypart(type)
-					if(affecting?.status != BODYPART_ROBOTIC)
-						H.Stun(60)
-					else
-						affecting = null
+					H.Stun(60)
 		if(affecting)
 			if(affecting.receive_damage(1, 0))
 				H.update_damage_overlays()
@@ -78,9 +72,9 @@
 		to_chat(user, span_notice("You arm [src]."))
 	else
 		if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-			var/which_hand = BODY_ZONE_L_ARM
+			var/which_hand = BODY_ZONE_PRECISE_L_HAND
 			if(!(user.active_hand_index % 2))
-				which_hand = BODY_ZONE_R_ARM
+				which_hand = BODY_ZONE_PRECISE_R_HAND
 			triggered(user, which_hand)
 			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
 								 span_warning("You accidentally trigger [src]!"))

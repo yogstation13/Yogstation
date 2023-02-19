@@ -92,13 +92,10 @@
 										 span_danger("You direct [src] to [M]'s eyes."))
 					if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
 						to_chat(user, span_warning("[M]'s pupils don't react to the light!"))
-					else
-						for(var/datum/brain_trauma/trauma in M.get_traumas())
-							trauma.on_shine_light(user, M, src)
-						if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
-							to_chat(user, span_danger("[M]'s pupils give an eerie glow!"))
-						else //they're okay!
-							to_chat(user, span_notice("[M]'s pupils narrow."))
+					else if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
+						to_chat(user, span_danger("[M]'s pupils give an eerie glow!"))
+					else //they're okay!
+						to_chat(user, span_notice("[M]'s pupils narrow."))
 
 			if(BODY_ZONE_PRECISE_MOUTH)
 

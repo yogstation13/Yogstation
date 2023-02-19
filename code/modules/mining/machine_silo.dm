@@ -26,9 +26,8 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		/datum/material/bananium,
 		/datum/material/titanium,
 		/datum/material/bluespace,
-		/datum/material/dilithium,
-		/datum/material/plastic
-		
+		/datum/material/plastic,
+		/datum/material/dilithium
 		)
 	AddComponent(/datum/component/material_container, materials_list, INFINITY, allowed_types=/obj/item/stack, _disable_attackby=TRUE)
 	if (!GLOB.ore_silo_default && mapload && is_station_level(z))

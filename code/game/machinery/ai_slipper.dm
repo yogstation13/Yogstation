@@ -35,9 +35,7 @@
 	if(cooldown_time > world.time)
 		to_chat(user, span_danger("[src] cannot be activated for <b>[DisplayTimeText(world.time - cooldown_time)]</b>."))
 		return
-	var/datum/effect_system/fluid_spread/foam/foam = new
-	foam.set_up(4, holder = src, location = loc)
-	foam.start()
+	new /obj/effect/particle_effect/foam(loc)
 	uses--
 	to_chat(user, span_notice("You activate [src]. It now has <b>[uses]</b> uses of foam remaining."))
 	cooldown = world.time + cooldown_time

@@ -42,7 +42,12 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
-	
+	var/total_votes = 0
+	for(var/option in choices)
+		var/votes = choices[option]
+		total_votes += votes
+		if(votes > greatest_votes)
+			greatest_votes = votes
 	//default-vote for everyone who didn't vote
 	if(!CONFIG_GET(flag/default_no_vote) && choices.len)
 		var/list/non_voters = GLOB.directory.Copy()
@@ -65,21 +70,19 @@ SUBSYSTEM_DEF(vote)
 				for (var/non_voter_ckey in non_voters)
 					var/client/C = non_voters[non_voter_ckey]
 					var/preferred_map = C.prefs.read_preference(/datum/preference/choiced/preferred_map)
+					if(isnull(global.config.defaultmap))
+						continue
+					if(!preferred_map)
+						if(global.config.defaultmap.map_name)
+							preferred_map = global.config.defaultmap.map_name
 					if(preferred_map)
 						choices[preferred_map] += 1
-
+					greatest_votes = max(greatest_votes, choices[preferred_map])
 	. = list()
-	for(var/option in choices)
-		var/weight = 1
-		if(mode == "map")
-			var/datum/map_config/VM = config.maplist[option]
-			weight = VM.voteweight
-		var/votes = choices[option] * weight
-		if(votes == greatest_votes)
-			. += option
-		if(votes > greatest_votes)
-			. = list(option)
-			greatest_votes = votes
+	if(greatest_votes)
+		for(var/option in choices)
+			if(choices[option] == greatest_votes)
+				. += option
 	return .
 
 /datum/controller/subsystem/vote/proc/announce_result()

@@ -52,7 +52,7 @@
 /obj/effect/anomaly/Destroy()
 	GLOB.poi_list.Remove(src)
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(countdown)
+	qdel(countdown)
 	return ..()
 
 /obj/effect/anomaly/proc/anomalyEffect(delta_time)
@@ -67,7 +67,7 @@
 		qdel(src)
 
 /obj/effect/anomaly/proc/anomalyNeutralize()
-	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
+	new /obj/effect/particle_effect/smoke/bad(loc)
 
 	for(var/atom/movable/O in src)
 		O.forceMove(drop_location())

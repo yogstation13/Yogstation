@@ -30,7 +30,6 @@
 	species_language_holder = /datum/language_holder/lizard
 	var/heat_stunmod = 0
 	var/last_heat_stunmod = 0
-	var/regrowtimer
 
 	smells_like = "putrid scales"
 
@@ -90,13 +89,6 @@
 					H.emote("wag")
 				if(-1)
 					stop_wagging_tail(H)
-	if(!H.getorganslot(ORGAN_SLOT_TAIL) && !regrowtimer)
-		regrowtimer = addtimer(CALLBACK(src, .proc/regrow_tail, H), 20 MINUTES, TIMER_UNIQUE)
-
-/datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
-	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
-		mutant_bodyparts |= "tail_lizard"
-		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
 /datum/species/lizard/get_species_description()
 	return /*"The militaristic Lizardpeople hail originally from Tizira, but have grown \

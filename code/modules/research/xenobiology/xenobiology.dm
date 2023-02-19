@@ -320,7 +320,11 @@
 			return 250
 
 		if(SLIME_ACTIVATE_MAJOR)
-			user.reagents.create_foam(/datum/effect_system/fluid_spread/foam, 20)
+			var/location = get_turf(user)
+			var/datum/effect_system/foam_spread/s = new()
+			s.set_up(20, location, user.reagents)
+			s.start()
+			user.reagents.clear_reagents()
 			user.visible_message(span_danger("Foam spews out from [user]'s skin!"), span_warning("You activate [src], and foam bursts out of your skin!"))
 			return 600
 

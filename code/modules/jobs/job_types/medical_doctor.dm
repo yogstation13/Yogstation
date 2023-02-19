@@ -29,6 +29,8 @@
 		/datum/job_department/medical,
 	)
 
+	changed_maps = list("EclipseStation", "OmegaStation")
+
 	mail_goodies = list(
 		/obj/item/healthanalyzer/advanced = 15,
 		/obj/item/scalpel/advanced = 6,
@@ -40,6 +42,18 @@
 	)
 
 	smells_like = "a hospital"
+
+/datum/job/doctor/proc/EclipseStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
+/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/doctor
 	name = "Medical Doctor"

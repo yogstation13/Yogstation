@@ -220,7 +220,7 @@
 	var/list/dancefloor_turfs
 	var/list/dancefloor_turfs_types
 	var/dancefloor_exists = FALSE
-	var/datum/effect_system/fluid_spread/smoke/transparent/dancefloor_devil/smoke
+	var/datum/effect_system/smoke_spread/transparent/dancefloor_devil/smoke
 
 
 /obj/effect/proc_holder/spell/targeted/summon_dancefloor/cast(list/targets, mob/user = usr)
@@ -229,7 +229,7 @@
 
 	if(!smoke)
 		smoke = new()
-	smoke.set_up(0, location = get_turf(user))
+	smoke.set_up(0, get_turf(user))
 	smoke.start()
 
 	if(dancefloor_exists)
@@ -253,8 +253,8 @@
 			T.ChangeTurf((i % 2 == 0) ? /turf/open/floor/light/colour_cycle/dancefloor_a : /turf/open/floor/light/colour_cycle/dancefloor_b, flags = CHANGETURF_INHERIT_AIR)
 			i++
 
-/datum/effect_system/fluid_spread/smoke/transparent/dancefloor_devil
-	effect_type = /obj/effect/particle_effect/fluid/smoke/transparent/dancefloor_devil
+/datum/effect_system/smoke_spread/transparent/dancefloor_devil
+	effect_type = /obj/effect/particle_effect/smoke/transparent/dancefloor_devil
 
-/obj/effect/particle_effect/fluid/smoke/transparent/dancefloor_devil
+/obj/effect/particle_effect/smoke/transparent/dancefloor_devil
 	lifetime = 2

@@ -1,65 +1,8 @@
 ## Custom antag reputation values
 ## List of job titles followed by antag rep value, all prefixed with ANTAG_REP. See code/modules/jobs/job_types for titles
-## Jobs with spaces in them must have an underscore instead
 ## e.g. 
 ## ANTAG_REP Captain 10
-## ANTAG_REP Security_Officer 5
 ## ANTAG_REP Assistant 0
 
-## Short explanation of antag rep rewards:
-##	- Players that are antagonist are set to lose antag reputation
-##	- When a player joins as a station job, they are set to earn that job's antag reputation
-##	- At a certain time into the round, all players are checked
-##	- Players that are dead, dying, or AFK are set to earn no antag reputation for that round
-##	- When the round ends, all players are checked again
-##	- Players that are on centcom and alive receive 2x antag reputation
-##	- Players that are not on centcom and alive receive 1.5x antag reputation
-## Antag reputation is always rounded down
-
-## Default is currently 3, as listed in code/modules/jobs/job_types/_job.dm
-
-## Heads are important and envied roles, we should reward people for playing them
-ANTAG_REP AI 6 # AI is an important role but will survive 80% of rounds
-ANTAG_REP Captain 15
-ANTAG_REP Chief_Engineer 10
-ANTAG_REP Chief_Medical Officer 10
-ANTAG_REP Head_of_Personnel 12
-ANTAG_REP Head_of_Security 14
-ANTAG_REP Research_Director 8 # Basically scientist++
-
-## Security also gets bonus rep, play sec to roll antag more!
-ANTAG_REP Detective 9
-ANTAG_REP Security_Officer 12
-ANTAG_REP Warden 13
-
-## Certain civilian jobs are more important than others and get more rep
-ANTAG_REP Artist 3
-ANTAG_REP Assistant 3
-ANTAG_REP Atmospheric_Technician 5
-ANTAG_REP Bartender 5
-ANTAG_REP Botanist 5
-ANTAG_REP Cargo_Technician 5
-ANTAG_REP Chaplain 6
-ANTAG_REP Chemist 5
-ANTAG_REP Clown 4
-ANTAG_REP Cook 5
-ANTAG_REP Curator 5
-ANTAG_REP Cyborg 4
-ANTAG_REP Geneticist 5
-ANTAG_REP Janitor 5
-ANTAG_REP Lawyer 5
-ANTAG_REP Medical_Doctor 7 # God bless our med staff
-ANTAG_REP Mime 4
-ANTAG_REP Quartermaster 6
-ANTAG_REP Roboticist 5
-ANTAG_REP Scientist 5
-ANTAG_REP Shaft_Miner 6
-ANTAG_REP Station_Engineer 6
-ANTAG_REP Virologist 5
-ANTAG_REP Brig_Physician 6
-ANTAG_REP Clerk 5
-ANTAG_REP Mining_Medic 6
-ANTAG_REP Network_Admin 6
-ANTAG_REP Paramedic 6
-ANTAG_REP Psychiatrist 5
-ANTAG_REP Tourist 3
+ANTAG_REP Assistant 10
+## Like everyone else :)

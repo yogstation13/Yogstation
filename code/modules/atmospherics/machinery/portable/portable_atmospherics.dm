@@ -24,9 +24,11 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	disconnect()
-	QDEL_NULL(air_contents)
 	SSair.atmos_machinery -= src
+
+	disconnect()
+	qdel(air_contents)
+	air_contents = null
 
 	return ..()
 

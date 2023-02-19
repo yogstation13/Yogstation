@@ -268,7 +268,7 @@
 	if(!iscarbon(owner))
 		H.LAssailant = null
 	else
-		H.LAssailant = WEAKREF(O)
+		H.LAssailant = O
 	while(do_mob(O, H, 50))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))

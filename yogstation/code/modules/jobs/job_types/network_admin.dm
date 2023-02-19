@@ -27,11 +27,18 @@
 		/datum/job_department/engineering,
 	)
 
+	changed_maps = list("OmegaStation")
+
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/plushies = 20
 	)
 
 	smells_like = "thermal paste"
+
+/datum/job/network_admin/proc/OmegaStationChanges()
+	added_access = list()
+	base_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/network_admin
 	name = "Network Admin"

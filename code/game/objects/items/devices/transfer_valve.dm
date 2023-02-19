@@ -14,10 +14,6 @@
 	var/valve_open = FALSE
 	var/toggle = TRUE
 
-/obj/item/transfer_valve/Destroy()
-	attached_device = null
-	return ..()
-
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return TRUE
 

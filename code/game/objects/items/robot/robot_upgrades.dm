@@ -776,8 +776,8 @@
 		R.SetLockdown(1)
 		R.anchored = TRUE
 		R.expansion_count++
-		var/datum/effect_system/fluid_spread/smoke/smoke = new
-		smoke.set_up(1, location = R.loc)
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(1, R.loc)
 		smoke.start()
 		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)

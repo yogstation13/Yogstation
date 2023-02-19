@@ -254,49 +254,43 @@
 	return
 
 /obj/item/extinguisher/mini/nozzle/afterattack(atom/target, mob/user)
-	if(AttemptRefill(target, user))
-		return
-
 	if(nozzle_mode == EXTINGUISHER)
-		return ..()
-
+		..()
+		return
 	var/Adj = user.Adjacent(target)
+	if(Adj)
+		AttemptRefill(target, user)
 	if(nozzle_mode == RESIN_LAUNCHER)
 		if(Adj)
 			return //Safety check so you don't blast yourself trying to refill your tank
-
 		var/datum/reagents/R = reagents
 		if(R.total_volume < launcher_cost)
 			to_chat(user, span_warning("You need at least [launcher_cost] units of water to use the resin launcher!"))
 			return
-
 		if(!COOLDOWN_FINISHED(src, resin_cooldown))
 			to_chat(user, span_warning("Resin launcher is still recharging..."))
 			return
-
-		COOLDOWN_START(src, resin_cooldown, 5 SECONDS)
+		resin_cooldown = TRUE
 		R.remove_any(launcher_cost)
-		var/obj/effect/resin_container/resin = new (get_turf(src))
+		var/obj/effect/resin_container/A = new (get_turf(src))
 		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
-		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
+		playsound(src,'sound/items/syringeproj.ogg',40,1)
 		for(var/a=0, a<5, a++)
-			step_towards(resin, target)
+			step_towards(A, target)
 			sleep(0.2 SECONDS)
-		resin.Smoke()
+		A.Smoke()
+		COOLDOWN_START(src, resin_cooldown, 5 SECONDS)
 		return
-
 	if(nozzle_mode == RESIN_FOAM)
-		if(!Adj || !isturf(target))
+		if(!Adj|| !isturf(target))
 			return
-
 		for(var/S in target)
-			if(istype(S, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
+			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
 				to_chat(user, span_warning("There's already resin here!"))
 				return
-
 		if(resin_charges)
-			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
-			foam.group.target_size = 0
+			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
+			F.amount = 0
 			resin_charges--
 			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
 		else
@@ -319,10 +313,9 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
-	foaming.set_up(4, holder = src, location = loc)
-	foaming.start()
-	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
+	var/obj/effect/particle_effect/foam/metal/resin/S = new /obj/effect/particle_effect/foam/metal/resin(get_turf(loc))
+	S.amount = 4
+	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
 
 #undef EXTINGUISHER

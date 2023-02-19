@@ -92,7 +92,7 @@
 
 /obj/effect/proc_holder/spell/targeted/touch/pacify
 	name = "Pacify"
-	desc = "This spell charges your hand with pure pacifism, allowing you to temporarily mute and pacify your targets, as well as turn them into gondolas."
+	desc = "This spell charges your hand with pure pacifism, alows to pacify your targets and turn them into gondolas. Also temporary mutes them."
 	hand_path = /obj/item/melee/touch_attack/pacifism
 
 	school = "evocation"

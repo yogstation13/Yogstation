@@ -11,10 +11,7 @@
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
-	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
-		to_chat(user, span_warning("Our abilities are being dampened! We cannot use [src]!"))
-		return
-	if(tgui_alert(usr,"Are we sure we wish to kill ourself and create a headslug?",,list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr,"Are we sure we wish to kill ourself and create a headslug?",,list("Yes", "No")) == "No")
 		return
 	..()
 	var/datum/mind/M = user.mind

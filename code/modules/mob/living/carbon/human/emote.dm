@@ -59,7 +59,6 @@
 	key = "hiss"
 	key_third_person = "hisses"
 	message = "hisses."
-	message_param = "hisses at %t."
 	emote_type = EMOTE_AUDIBLE
 	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
 
@@ -72,17 +71,13 @@
 		return 'sound/voice/lizard/hiss.ogg'
 	if(istype(T, /obj/item/organ/tongue/polysmorph))
 		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-	if(iscatperson(user))//yogs: catpeople can hiss!
-		return pick('sound/voice/feline/hiss1.ogg', 'sound/voice/feline/hiss2.ogg', 'sound/voice/feline/hiss3.ogg')
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
 		return FALSE
 	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-	if(iscatperson(user)) //yogs: cat people can hiss!
-		return TRUE
-	return is_type_in_list(T, viable_tongues)
+	var/obj/item/organ/tongue/T = H?.getorganslot(ORGAN_SLOT_TONGUE)
+	return is_type_in_list(T, viable_tongues) && ..()
 
 /datum/emote/living/carbon/human/hug
 	key = "hug"

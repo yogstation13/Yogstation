@@ -18,7 +18,12 @@
 	damtype = "brute"
 	var/inserted_organ = /obj/item/organ/zombie_infection
 	var/infect_chance = 100 //Before armor calculations
-	var/scaled_infect_chance = FALSE //Do we use steeper armor infection block chance or linear?
+	var/scaled_infect_chance = FALSE //Does infection chance scale with damage? (100% of infect chance at 50% health(Crit, humans have 200% health!), 0% at max health)
+	//Approx chances, with 100 infect_chance
+	//20% at 40 damage
+	//40% at 60 damage
+	//70% at 80 damage
+	//100% at 100 damage
 
 /obj/item/zombie_hand/Initialize()
 	. = ..()
@@ -71,10 +76,19 @@
 			if(H.health <= HEALTH_THRESHOLD_FULLCRIT || (L && L.status != BODYPART_ROBOTIC))//no more infecting via metal limbs unless they're in hard crit and probably going to die
 				var/flesh_wound = ran_zone(user.zone_selected)
 				if(scaled_infect_chance)
-					var/scaled_infection = ((100 - H.getarmor(flesh_wound, MELEE))/100) ^ 1.5	//20 armor -> 71.5% chance of infection
-					if(prob(infect_chance * scaled_infection))									//40 armor -> 46.5% chance
-						try_to_zombie_infect(M, inserted_organ)									//60 armor -> 25.3% chance
-				else																			//80 armor -> 8.9% chance
+					var/mob/living/mob_target = M
+					var/total_damage = mob_target.get_damage_amount(BRUTE)
+
+					var/infect_modifier = (total_damage ** 2) / 100
+
+					infect_modifier = clamp(infect_modifier, 0, 100)
+
+					if(prob(infect_modifier))
+						if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
+							if(!H.stat)
+								try_to_zombie_infect(M, inserted_organ)
+
+				else
 					if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
 						try_to_zombie_infect(M, inserted_organ)
 			else

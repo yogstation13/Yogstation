@@ -37,6 +37,8 @@
 		/datum/job_department/command,
 	)
 
+	changed_maps = list("OmegaStation")
+
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/organ_spawner = 10,
 		/obj/effect/spawner/lootdrop/memeorgans = 8,
@@ -45,6 +47,9 @@
 	)
 
 	smells_like = "blood-soaked stress"
+
+/datum/job/cmo/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"

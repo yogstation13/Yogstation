@@ -56,10 +56,10 @@
 	wine_power = 60
 
 /obj/item/reagent_containers/food/snacks/grown/onion/slice(accuracy, obj/item/W, mob/user)
-	var/datum/effect_system/fluid_spread/smoke/chem/S = new	//Since the onion is destroyed when it's sliced,
+	var/datum/effect_system/smoke_spread/chem/S = new	//Since the onion is destroyed when it's sliced,
 	var/splat_location = get_turf(src)	//we need to set up the smoke beforehand
 	S.attach(splat_location)
-	S.set_up(0, location = splat_location, carry = reagents)
+	S.set_up(reagents, 0, splat_location, 0)
 	if(..())
 		S.start()
 		return TRUE

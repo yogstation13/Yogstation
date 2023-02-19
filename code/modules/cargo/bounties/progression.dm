@@ -16,18 +16,18 @@
 	reward = 5000
 	required_count = 20
 	wanted_types = list(/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/uranium)
-	unlocked_crates = list(/datum/supply_pack/clearance/ka_damage,/datum/supply_pack/clearance/ka_cooldown,/datum/supply_pack/clearance/ka_range, /datum/supply_pack/clearance/kacrate)
+	unlocked_crates = list(/datum/supply_pack/clearance/ka_damage,/datum/supply_pack/clearance/ka_cooldown,/datum/supply_pack/clearance/ka_range)
 
 /datum/bounty/item/progression/mining_basic/reward_string()
 	return "[reward] Credits and clearance to order basic kinetic accelerator modification crates"
 
 /datum/bounty/item/progression/mining_plasma
 	name = "Plasma Extraction"
-	description = "The reason you're here: plasma. Ship us 20 sheets of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment and special kinetic accelerator mods."
+	description = "The reason you're here: plasma. Ship us 20 sheets of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment."
 	reward = 4000
 	wanted_types = list(/obj/item/stack/sheet/mineral/plasma)
 	required_count = 20
-	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter, /datum/supply_pack/clearance/special_mods)
+	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter)
 
 /datum/bounty/item/progression/mining_plasma/reward_string()
 	return "[reward] Credits and clearance to order plasmacutters"

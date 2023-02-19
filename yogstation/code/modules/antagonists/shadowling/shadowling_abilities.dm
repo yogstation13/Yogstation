@@ -534,10 +534,10 @@
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
 	B.reagents.add_reagent(/datum/reagent/shadowling_blindness_smoke, 10)
-	var/datum/effect_system/fluid_spread/smoke/chem/S = new
+	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(B)
 	if(S)
-		S.set_up(4, location = B.loc, carry = B.reagents)
+		S.set_up(B.reagents, 4, 0, B.loc)
 		S.start()
 	qdel(B)
 

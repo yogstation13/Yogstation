@@ -15,19 +15,17 @@
 	var/setting = 1 // displayed range is 3 * setting
 	var/max_range = 3 // displayed max range is 3 * max range
 
-/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/set_up(range = 1, amount = DIAMOND_AREA(range), atom/location = null, datum/reagents/carry = null, efficiency = 10, silent=FALSE)
-	src.location = get_turf(location)
-	src.amount = amount
-	carry?.copy_to(chemholder, 20)
-	carry?.remove_any(amount / efficiency)
+/datum/effect_system/smoke_spread/chem/smoke_machine/set_up(datum/reagents/carry, setting=1, efficiency=10, loc, silent=FALSE)
+	amount = setting
+	carry.copy_to(chemholder, 20)
+	carry.remove_any(amount * 16 / efficiency)
+	location = loc
 
-/// A factory which produces clouds of smoke for the smoke machine.
-/datum/effect_system/fluid_spread/smoke/chem/smoke_machine
-	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/smoke_machine
+/datum/effect_system/smoke_spread/chem/smoke_machine
+	effect_type = /obj/effect/particle_effect/smoke/chem/smoke_machine
 
-/// Smoke which is produced by the smoke machine. Slightly transparent and does not block line of sight.
-/obj/effect/particle_effect/fluid/smoke/chem/smoke_machine
-	opacity = FALSE
+/obj/effect/particle_effect/smoke/chem/smoke_machine
+	opaque = FALSE
 	alpha = 100
 
 /obj/machinery/smoke_machine/Initialize()
@@ -56,9 +54,9 @@
 	if(new_volume < reagents.total_volume)
 		reagents.reaction(loc, TOUCH) // if someone manages to downgrade it without deconstructing
 		reagents.clear_reagents()
-	efficiency = 18
+	efficiency = 9
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		efficiency += 2 * C.rating
+		efficiency += C.rating
 	max_range = 1
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		max_range += M.rating
@@ -72,12 +70,12 @@
 		on = FALSE
 		update_icon()
 		return
-	var/turf/location = get_turf(src)
-	var/smoke_test = locate(/obj/effect/particle_effect/fluid/smoke) in location
+	var/turf/T = get_turf(src)
+	var/smoke_test = locate(/obj/effect/particle_effect/smoke) in T
 	if(on && !smoke_test)
 		update_icon()
-		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/smoke = new()
-		smoke.set_up(setting * 3, location = location, carry = reagents, efficiency = efficiency)
+		var/datum/effect_system/smoke_spread/chem/smoke_machine/smoke = new()
+		smoke.set_up(reagents, setting*3, efficiency, T)
 		smoke.start()
 
 /obj/machinery/smoke_machine/attackby(obj/item/I, mob/user, params)

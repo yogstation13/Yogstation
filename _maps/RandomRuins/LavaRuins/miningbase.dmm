@@ -1277,12 +1277,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"oI" = (
-/obj/structure/fireaxecabinet/fishingrod{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "pc" = (
 /obj/machinery/space_heater,
 /obj/structure/window/spawner/east,
@@ -5222,7 +5216,7 @@ WO
 Er
 Yy
 kD
-oI
+fA
 fA
 fA
 fA

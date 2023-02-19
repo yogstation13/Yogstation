@@ -126,7 +126,7 @@
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
-	if(charging && charging.loc == src)
+	if(charging)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
@@ -153,10 +153,6 @@
 			update_icon()
 			return
 	else
-		if(charging)
-			charging.update_icon()
-			charging.forceMove(drop_location())
-			setCharging(null)
 		return PROCESS_KILL
 
 /obj/machinery/recharger/emp_act(severity)

@@ -27,6 +27,8 @@
 		/datum/job_department/cargo,
 	)
 
+	changed_maps = list("EclipseStation", "OmegaStation")
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 10,
 		/obj/item/grenade/plastic/miningcharge/lesser = 10,
@@ -38,6 +40,18 @@
 	)
 	
 	smells_like = "ash and dust"
+
+/datum/job/mining/proc/OmegaStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+	added_access = list()
+	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
+	supervisors = "the head of personnel"
+
+
+/datum/job/mining/proc/EclipseStationChanges()
+	total_positions = 6
+	spawn_positions = 4
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
@@ -51,15 +65,13 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner
-	l_pocket = /obj/item/wormhole_jaunter
+	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
 	r_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(
-		/obj/item/storage/bag/ore = 1,\
-		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/mining_voucher = 1,\
-		/obj/item/stack/marker_beacon/ten = 1,\
-		/obj/item/reagent_containers/autoinjector/medipen/survival = 1
-		)
+		/obj/item/storage/bag/ore=1,\
+		/obj/item/kitchen/knife/combat/survival=1,\
+		/obj/item/mining_voucher=1,\
+		/obj/item/stack/marker_beacon/ten=1)
 
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer

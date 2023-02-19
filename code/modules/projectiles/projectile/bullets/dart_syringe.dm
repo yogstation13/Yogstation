@@ -5,16 +5,6 @@
 	var/obj/item/reagent_containers/container
 	var/piercing = FALSE
 
-/obj/item/projectile/bullet/reusable/dart/hidden
-	name = "beanbag slug"
-	stamina = 5 // gotta act like we did stamina
-	sharpness = SHARP_NONE
-
-// don't want our "beanbag slugs" dropping reagent darts everywhere
-/obj/item/projectile/bullet/reusable/dart/hidden/handle_drop()
-	if(!dropped)
-		QDEL_NULL(container)
-		dropped = TRUE
 
 /obj/item/projectile/bullet/reusable/dart/Initialize()
 	. = ..()

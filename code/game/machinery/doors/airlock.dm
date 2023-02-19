@@ -1110,20 +1110,6 @@
 		update_icon()
 		user.transferItemToLoc(C, src, TRUE)
 		charge = C
-	else if(istype(C,/obj/item/electronics/airlock))
-		if(!security_level && panel_open)
-			var/obj/item/electronics/airlock/ae = C
-			if(!electronics)
-				if(req_one_access)
-					ae.one_access = 1
-					ae.accesses = req_one_access
-				else
-					ae.accesses = req_access
-			else
-				ae.one_access = electronics.one_access
-				ae.accesses = electronics.req_access
-			to_chat(user, span_notice("You copy the access of [src] to [ae]."))
-
 	else if(istype(C, /obj/item/paper) || istype(C, /obj/item/photo))
 		if(note)
 			to_chat(user, span_warning("There's already something pinned to this airlock! Use wirecutters to remove it."))

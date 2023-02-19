@@ -498,7 +498,7 @@
 	if(!iscarbon(user))
 		target.LAssailant = null
 	else
-		target.LAssailant = WEAKREF(user)
+		target.LAssailant = user
 	cooldown_check = world.time + cooldown
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()

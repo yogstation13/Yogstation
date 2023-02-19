@@ -138,7 +138,7 @@
 
 /datum/action/bloodsucker/targeted/haste/batdash/FireTargetedPower(atom/target_atom)
 	. = ..()
-	do_smoke(2, owner.loc, smoke_type = /obj/effect/particle_effect/fluid/smoke/transparent) //so you can attack people after hasting
+	do_smoke(2, owner.loc, smoke_type = /obj/effect/particle_effect/smoke/transparent) //so you can attack people after hasting
 
 /datum/action/bloodsucker/targeted/bloodbolt
 	name = "Blood Bolt"

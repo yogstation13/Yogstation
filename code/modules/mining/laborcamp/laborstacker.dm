@@ -31,13 +31,6 @@ GLOBAL_LIST(labor_sheet_values)
 			sheet_list += list(list("ore" = initial(sheet.name), "value" = initial(sheet.point_value)))
 		GLOB.labor_sheet_values = sortList(sheet_list, /proc/cmp_sheet_list)
 
-/obj/machinery/mineral/labor_claim_console/Destroy()
-	QDEL_NULL(Radio)
-	if(stacking_machine)
-		stacking_machine.console = null
-		stacking_machine = null
-	return ..()
-
 /proc/cmp_sheet_list(list/a, list/b)
 	return a["value"] - b["value"]
 
@@ -116,7 +109,9 @@ GLOBAL_LIST(labor_sheet_values)
 /obj/machinery/mineral/labor_claim_console/proc/locate_stacking_machine()
 	stacking_machine = locate(/obj/machinery/mineral/stacking_machine, get_step(src, machinedir))
 	if(stacking_machine)
-		stacking_machine.console = src
+		stacking_machine.CONSOLE = src
+	else
+		qdel(src)
 
 /obj/machinery/mineral/labor_claim_console/emag_act(mob/user)
 	if(!(obj_flags & EMAGGED))

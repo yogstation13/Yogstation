@@ -146,13 +146,11 @@
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
 			to_chat(src, span_warning("Your fingers don't fit in the trigger guard!"))
 			return FALSE
-	if(mind?.martial_art?.no_guns) //great dishonor to famiry
-		if(!istype(mind.martial_art, /datum/martial_art/ultra_violence))
+	if(mind)
+		if(mind.martial_art && mind.martial_art.no_guns) //great dishonor to famiry
 			to_chat(src, span_warning("Use of ranged weaponry would bring dishonor to the clan."))
 			return FALSE
-		else if(!istype(G, /obj/item/gun/ballistic/revolver/ipcmartial) && !istype(G, /obj/item/gun/ballistic/shotgun/ipcmartial))//more snowflake shit
-			to_chat(src, span_warning("This gun is not compliant with Ultra Violence standards."))
-			return FALSE
+
 	return .
 
 /mob/living/carbon/human/proc/get_bank_account()

@@ -148,8 +148,8 @@
 	owner.vomit(20)
 
 	var/mob/living/simple_animal/slime/Slime = new(get_turf(owner), "grey")
-	Slime.set_friends(list(owner))
-	Slime.set_leader(owner)
+	Slime.Friends = list(owner)
+	Slime.Leader = owner
 
 /obj/item/organ/heart/gland/mindshock
 	true_name = "neural crosstalk uninhibitor"

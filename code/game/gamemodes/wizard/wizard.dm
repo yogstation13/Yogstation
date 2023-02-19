@@ -8,7 +8,7 @@
 	report_type = "wizard"
 	antag_flag = ROLE_WIZARD
 	false_report_weight = 10
-	required_players = 34
+	required_players = 27
 	required_enemies = 1
 	recommended_enemies = 1
 	enemy_minimum_age = 14

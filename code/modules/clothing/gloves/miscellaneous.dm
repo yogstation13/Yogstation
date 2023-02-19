@@ -31,6 +31,8 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
+	name = "tactical fingerless gloves"
+	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
 	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
 

@@ -451,15 +451,3 @@
 	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))
 		return
 	return ..()
-
-///////////
-// OTHER //
-///////////
-
-/obj/item/clothing/neck/falcon
-	name = "Faclonry pauldron"
-	desc = "A thick leather pad for a falcon to rest one. This one comes with a fake bird, free of charge."
-	icon = 'icons/obj/clothing/neck.dmi'
-	w_class = WEIGHT_CLASS_SMALL
-	icon_state = "falcon"
-	item_state = "falcon"

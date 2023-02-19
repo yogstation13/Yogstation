@@ -141,16 +141,6 @@
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/escaped_alive_bonus
-	config_entry_value = 2
-	integer = FALSE
-	min_val = 1
-
-/datum/config_entry/number/stayed_alive_bonus
-	config_entry_value = 1.5
-	integer = FALSE
-	min_val = 1
-
 /datum/config_entry/number/midround_antag_time_check	// How late (in minutes you want the midround antag system to stay on, setting this to 0 will disable the system)
 	config_entry_value = 60
 	integer = FALSE
