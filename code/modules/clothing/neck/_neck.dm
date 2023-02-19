@@ -383,7 +383,6 @@
 	update_signals()
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
-	. = ..()
 	update_signals()
 
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
@@ -456,7 +455,7 @@
 	. = ..()
 	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
 		return
-	if(EMP_HEAVY)
+	if(severity == EMP_HEAVY)
 		set_cloak(0)
 		TIMER_COOLDOWN_START(src, "cloak_emp_disable", cloak_emp_disable_duration)
 	else
