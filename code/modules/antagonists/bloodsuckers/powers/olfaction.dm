@@ -63,10 +63,10 @@
 		if(tracking_flags & TRACKING_SCENT)
 			scents |= samples.return_scents()
 	for(var/mob/living/carbon/C in GLOB.carbon_list)
-		if(IS_BLOODSUCKER(C)) // Bloodsuckers have no scent, and finding their lair with this during Sol would be OP
-			continue
 		if(blood_samples.Find(C.dna.unique_enzymes) && !possible.Find(C))
 			possible |= C
+		if(IS_BLOODSUCKER(C)) // Bloodsuckers have no scent, and finding their lair with this during Sol would be OP
+			continue
 		if(scents[md5(C.dna.uni_identity)] && !possible.Find(C))
 			var/datum/job/J = SSjob.GetJob(C.job)
 			if(!J)
