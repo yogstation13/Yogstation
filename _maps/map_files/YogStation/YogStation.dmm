@@ -37031,6 +37031,30 @@
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"kOv" = (
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "76";
+	security_level = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/storage/tech)
 "kOH" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -47449,30 +47473,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/construction)
-"peA" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "19;23";
-	security_level = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/storage/tech)
 "peT" = (
 /obj/item/radio/intercom{
 	frequency = 1485;
@@ -96755,7 +96755,7 @@ bCs
 bCs
 sAJ
 eUQ
-peA
+kOv
 vOX
 sAJ
 bCs
