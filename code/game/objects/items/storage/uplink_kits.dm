@@ -543,7 +543,7 @@
 /obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 9
+	STR.max_items = 12
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
 	new /obj/item/reagent_containers/syringe/big/polonium(src)
@@ -554,6 +554,9 @@
 	new /obj/item/reagent_containers/syringe/big/pancuronium(src)
 	new /obj/item/reagent_containers/syringe/big/sodium_thiopental(src)
 	new /obj/item/reagent_containers/syringe/big/curare(src)
+	new /obj/item/reagent_containers/syringe/big/amanitin(src)
+	new /obj/item/reagent_containers/syringe/big/coniine(src)
+	new /obj/item/reagent_containers/syringe/big/relaxant(src)
 	new /obj/item/reagent_containers/syringe/big(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo

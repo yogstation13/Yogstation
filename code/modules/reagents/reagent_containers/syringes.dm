@@ -289,42 +289,58 @@
 
 /obj/item/reagent_containers/syringe/big/polonium
 	name = "syringe (polonium)"
-	desc = "Contains 3O units of polonium. Will irradiate victims, metabolized very slowly."
+	desc = "Contains 30 units of polonium. Will irradiate victims, metabolized very slowly."
 	list_reagents = list(/datum/reagent/toxin/polonium = 30)
 
 /obj/item/reagent_containers/syringe/big/venom
 	name = "syringe (venom)"
-	desc = "Contains 3O units of venom. Deadliness increase with the dosage, can decay into histamine."
+	desc = "Contains 30 units of venom. Deadliness increase with the dosage, can decay into histamine."
 	list_reagents = list(/datum/reagent/toxin/venom = 30)
 
 /obj/item/reagent_containers/syringe/big/spewium
 	name = "syringe (spewium)"
-	desc = "Contains 3O units of spewium. Cause victims to vomit, more than 29 units cause to victims puking out their own organs."
+	desc = "Contains 30 units of spewium. Cause victims to vomit, more than 29 units cause to victims puking out their own organs."
 	list_reagents = list(/datum/reagent/toxin/spewium = 30)
 
 /obj/item/reagent_containers/syringe/big/histamine
 	name = "syringe (histamine)"
-	desc = "Contains 3O units of histamine. Provoke itching, sneezing, coughing and blurry vision, more than 30 units cause victims to take large amounts of brute, toxin and oxygen damage."
+	desc = "Contains 30 units of histamine. Provoke itching, sneezing, coughing and blurry vision, more than 30 units cause victims to take large amounts of brute, toxin and oxygen damage."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
 /obj/item/reagent_containers/syringe/big/initropidril
 	name = "syringe (initropidril)"
-	desc = "Contains 3O units of initropidril. A paralytic agent that will cause failures of respiratory systems and cardiac arrest."
+	desc = "Contains 30 units of initropidril. A paralytic agent that will cause failures of respiratory systems and cardiac arrest."
 	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
 
 /obj/item/reagent_containers/syringe/big/pancuronium
 	name = "syringe (pancuronium)"
-	desc = "Contains 3O units of pancuronium. Stun and suffocate victims."
+	desc = "Contains 30 units of pancuronium. Stun and suffocate victims."
 	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
 
 /obj/item/reagent_containers/syringe/big/sodium_thiopental
 	name = "syringe (sodium thiopental)"
-	desc = "Contains 3O units of sodium thiopental. Will tire victims and knock them out non lethally."
+	desc = "Contains 30 units of sodium thiopental. Will tire victims and knock them out non lethally."
 	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
 
 /obj/item/reagent_containers/syringe/big/curare
 	name = "syringe (curare)"
-	desc = "Contains 3O units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
+	desc = "Contains 30 units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/curare = 30)
+
+/obj/item/reagent_containers/syringe/big/amanitin
+	name = "syringe (amanitin)"
+	desc = "Contains 30 units of amanitin. Once fully metabolized inflict toxin damage proportional to the time it was in system of the victims."
+	list_reagents = list(/datum/reagent/toxin/amanitin = 30)
+
+/obj/item/reagent_containers/syringe/big/coniine
+	name = "syringe (coniine)"
+	desc = "Contains 30 units of coniine. Will cause toxin and loss of breath, metabolized incredibly slowly."
+	list_reagents = list(/datum/reagent/toxin/coniine = 30)
+
+/obj/item/reagent_containers/syringe/big/relaxant
+	name = "syringe (muscle relaxant)"
+	desc = "Contains 30 units of muscle relaxant. Slow the movements and actions of the victims noticeably."
+	list_reagents = list(/datum/reagent/toxin/relaxant = 30)
 
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
