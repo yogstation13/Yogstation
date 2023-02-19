@@ -23,16 +23,7 @@
 		/datum/job_department/service,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	smells_like = "cheap plastic"
-
-/datum/job/clerk/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
-
-/datum/job/clerk/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/clerk
 	name = "Clerk"

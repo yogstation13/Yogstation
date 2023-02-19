@@ -96,7 +96,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
 	obj_flags = 0
-	overheat_time = 20 SECONDS
+	overheat_time = 10 SECONDS
 	holds_charge = TRUE
 	unique_frequency = TRUE
 	can_flashlight = FALSE

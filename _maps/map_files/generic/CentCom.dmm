@@ -99,14 +99,6 @@
 "aaq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"aar" = (
-/obj/structure/flora/grass/brown,
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/yogs/infiltrator_base/outside)
 "aas" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1441,12 +1433,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/centcom/holding)
+/turf/open/floor/plasteel,
+/area/yogs/infiltrator_base)
 "adz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet{
@@ -1604,10 +1592,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"adP" = (
-/obj/machinery/vending/cigarette/syndicate,
-/turf/closed/indestructible/riveted,
-/area/yogs/infiltrator_base)
 "adQ" = (
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/holofloor{
@@ -9696,7 +9680,7 @@
 /area/wizard_station)
 "auM" = (
 /turf/closed/indestructible/fakedoor{
-	name = "Primary Hallway"
+	name = "Shoe Storage"
 	},
 /area/yogs/infiltrator_base/jail)
 "auN" = (
@@ -13216,6 +13200,8 @@
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aBX" = (
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
@@ -13223,8 +13209,6 @@
 /obj/structure/mirror{
 	pixel_x = 28
 	},
-/obj/machinery/light/small,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer{
 	dir = 2
 	},
@@ -15228,7 +15212,6 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "aFB" = (
@@ -18929,7 +18912,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19209,7 +19192,6 @@
 /area/centcom/holding)
 "aMS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/defibrillator_mount/loaded{
 	pixel_y = 28
 	},
@@ -19229,12 +19211,12 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
 /obj/item/clothing/mask/gas/syndicate{
 	pixel_x = 9;
 	pixel_y = -8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
@@ -19943,7 +19925,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20407,6 +20389,7 @@
 	pixel_y = 9
 	},
 /obj/item/melee/transforming/energy/blade,
+/obj/item/bodypart/l_arm/robot/buster,
 /obj/item/melee/transforming/energy/blade/hardlight,
 /obj/item/melee/transforming/energy/sword/bananium,
 /turf/open/floor/wood,
@@ -20580,7 +20563,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20764,16 +20747,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/centcom/holding)
-"aPZ" = (
-/obj/structure/flora/grass/both,
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/obj/structure/table,
-/obj/item/soap/deluxe,
-/turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "aQa" = (
 /obj/machinery/meter,
@@ -22794,7 +22767,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -25866,7 +25839,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/bluespace_locker";
 	name = "Bluespace Locker APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
@@ -25900,6 +25873,26 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
+"gaj" = (
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/item/clothing/shoes/combat/coldres{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/yogs/infiltrator_base)
 "gkW" = (
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
@@ -25941,7 +25934,6 @@
 	},
 /area/centcom/testchamber)
 "hEo" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chocolatebar{
@@ -26255,13 +26247,16 @@
 	},
 /area/centcom/testchamber)
 "tzM" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
-/turf/closed/indestructible/fakedoor{
-	name = "Primary Hallway"
+/obj/machinery/door/airlock/centcom{
+	name = "Atmos Room";
+	opacity = 1;
+	req_access_txt = "150"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
 "tID" = (
 /turf/open/indestructible/wiki/info{
@@ -26452,7 +26447,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -40982,8 +40977,8 @@ aSX
 aSX
 aSX
 aSX
-aSX
-aSX
+aSA
+aSA
 ayN
 aOa
 arc
@@ -41239,8 +41234,8 @@ aSX
 aSX
 aSX
 aSX
-aSX
-aSX
+aSA
+gaj
 auM
 aWg
 aXF
@@ -42035,7 +42030,7 @@ aSX
 aSX
 aQr
 aSX
-aar
+aBU
 aSX
 aSX
 aXT
@@ -42518,7 +42513,7 @@ aSX
 aSX
 aoV
 aQr
-adP
+aSA
 aSA
 aFA
 aNC
@@ -44602,7 +44597,7 @@ aSX
 aSX
 aSX
 aSX
-aar
+aQr
 aSX
 aSX
 aSX
@@ -45628,7 +45623,7 @@ aSX
 aSX
 aSX
 aSX
-aPZ
+aQr
 aSs
 aSX
 aSX

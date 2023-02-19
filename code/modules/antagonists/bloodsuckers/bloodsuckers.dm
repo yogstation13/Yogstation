@@ -61,6 +61,8 @@
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 	var/frenzy_blood_drank = 0
+	var/task_heart_required = 0
+	var/task_blood_required = 0
 	var/task_blood_drank = 0
 	var/frenzies = 0
 
@@ -89,6 +91,7 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
+		TRAIT_RESISTDAMAGESLOWDOWN,
 	)
 
 /mob/living/proc/explain_powers()

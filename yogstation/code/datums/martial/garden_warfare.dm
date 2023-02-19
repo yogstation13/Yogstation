@@ -77,7 +77,7 @@
 		return TRUE
 
 /datum/martial_art/gardern_warfare/proc/vine_mark(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	to_chat(A, span_notice("You mark [D] with a vine mark. Using vine snatch now will pull an item from their active hands to you, or knokdown them and pull them to you."))
+	to_chat(A, span_notice("You mark [D] with a vine mark. Using vine snatch now will pull an item from their active hands to you, or knockdown them and pull them to you."))
 	to_chat(D, span_danger("[A] marks you!"))
 	vine_snatch.marked_dude = D
 	vine_snatch.last_time_marked = world.time
@@ -167,7 +167,7 @@
 	return TRUE
 
 /datum/action/vine_snatch
-	name = "Vine Snatch - using it while having a target, recently marked with a vine mark in the range of 2 tiles will pull an item in their active hands to you, or pull and knockdown them.."
+	name = "Vine Snatch - using it while having a target, recently marked with a vine mark in the range of 2 tiles will pull an item in their active hands to you, or pull and knockdown them."
 	icon_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "tentacle"
 	var/mob/living/carbon/human/marked_dude = null
@@ -202,7 +202,7 @@
 	else
 		marked_dude.throw_at(get_step_towards(owner, marked_dude), 7, 2) 
 		marked_dude.visible_message(span_warning("[owner] grabs [marked_dude] with a vine, knocking them down and pulling them closer!"), \
-							span_userdanger("[owner] grabs you with a vine, pulling you to themselfs!"))  
+							span_userdanger("[owner] grabs you with a vine, pulling you closer!"))  
 		marked_dude.Knockdown(3 SECONDS)
 	marked_dude = null
 				
@@ -256,7 +256,7 @@
 	to_chat(usr, "<b><i>You try to remember some basic actions from the garden warfare art.</i></b>")
 
 	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishing this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 5 seconds.")
-	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxyloss damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxyloss damage per second.")
+	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxygen damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxygen damage per second.")
 	to_chat(usr, "[span_notice("Splinter stab")]: Harm harm Harm. The second attack will deal increased damage with 30 armor penetration, and finishing the combo will deal 20 damage with 30 armor penetration, while also embedding a splinter into the targets limb.")
 
 	to_chat(usr, span_notice("Additionally, if you have throw mode on you have a 75% block chance (35% if strangling someone) and can counter-attack, dealing 10 damage and embedding a splinter into the attacker."))

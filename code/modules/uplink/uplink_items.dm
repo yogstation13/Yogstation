@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Slaughter your enemies through sheer force, prone to overheating with extended use. We made this gun so advanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
-	cost = 36
+	cost = 30
 	surplus = 0
 	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
@@ -640,6 +640,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
+
+/datum/uplink_item/stealthy_weapons/dart_pistol
+	name = "Box of Chemical Shotgun Darts"
+	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
+			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
+			out of their arm. Be careful not to mix them up with actual beanbag slugs!"
+	item = /obj/item/storage/box/beanbag/syndie_darts
+	cost = 2
+	surplus = 0 // useless for most people
 
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "Dehydrated Space Carp"
@@ -1744,8 +1753,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/roburger_recipe
 	name = "Roburger crafting recipe"
 	desc = "This book contains legendary knowledge about how to make roburgers. \
-			Roburgers turn people into cyborgs after a short while when eaten. \
-			This book doesn't dissaper after use, so consider hiding it somewhere."
+			Roburgers turn people into cyborgs when eaten after a short while. \
+			This book doesn't disappear after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
@@ -1922,6 +1931,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants
 	category = "Implants"
 	surplus = 50
+
+/datum/uplink_item/implants/reusable
+	name = "Reusable Autosurgeon"
+	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
+	item = /obj/item/autosurgeon/suspicious
+	cost = 5
+	// Nukies have no use for this and their autosurgeons are already multi-use
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
@@ -2853,7 +2870,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/mech/marauder
 	name = "Marauder exosuit"
-	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting three pieces of equipment."
+	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting four pieces of equipment."
 	item = /obj/mecha/combat/marauder
 	cost = 12
 
