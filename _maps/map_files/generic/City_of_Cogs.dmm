@@ -195,6 +195,11 @@
 	},
 /turf/closed/wall/clockwork,
 /area/reebe/city_of_cogs)
+"cj" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "cC" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
@@ -202,6 +207,12 @@
 	},
 /obj/item/kitchen/fork{
 	pixel_x = -4
+	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"fi" = (
+/obj/machinery/stasis{
+	dir = 4
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
@@ -4589,7 +4600,7 @@ px
 aj
 aj
 aj
-Nw
+cj
 ah
 ah
 aH
@@ -4681,7 +4692,7 @@ aj
 aj
 aj
 aj
-Nw
+fi
 ah
 ai
 ag
