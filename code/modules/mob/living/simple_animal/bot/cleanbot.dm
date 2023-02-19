@@ -253,7 +253,9 @@
 					T.MakeSlippery(TURF_WET_WATER, min_wet_time = 20 SECONDS, wet_time_to_add = 15 SECONDS)
 			else
 				visible_message(span_danger("[src] whirs and bubbles violently, before releasing a plume of froth!"))
-				new /obj/effect/particle_effect/foam(loc)
+				var/datum/effect_system/fluid_spread/foam/foam = new
+				foam.set_up(2, holder = src, location = loc)
+				foam.start()
 
 	else
 		..()
@@ -274,7 +276,7 @@
 	..()
 
 /obj/machinery/bot_core/cleanbot
-	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
+	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBO_CONTROL)
 
 /mob/living/simple_animal/bot/cleanbot/get_controls(mob/user)
 	var/dat
@@ -314,7 +316,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 
 /mob/living/simple_animal/bot/cleanbot/medical/Initialize()
     . = ..()
-    bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)
+    bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBO_CONTROL, ACCESS_MEDICAL)
 
 /mob/living/simple_animal/bot/cleanbot/spacebar
     name = "Frank Cleansington III"

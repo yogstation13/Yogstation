@@ -37,7 +37,7 @@
 #define ACCESS_JANITOR 26
 #define ACCESS_CREMATORIUM 27
 #define ACCESS_KITCHEN 28
-#define ACCESS_ROBOTICS 29
+#define ACCESS_ROBO_CONTROL 29
 #define ACCESS_RD 30
 #define ACCESS_CARGO 31
 #define ACCESS_CONSTRUCTION 32
@@ -88,6 +88,8 @@
 #define ACCESS_FREEMINER_ENGINEER 73
 //Yogs: Brig Physician access, used for their locker and offices if one is added
 #define ACCESS_BRIG_PHYS 74
+#define ACCESS_ROBOTICS 75 // Access to robotics airlocks & buttons only, old ACCESS_ROBOTICS renamed to ACCESS_ROBO_CONTROL
+#define ACCESS_SECURE_TECH_STORAGE 76 // Creating this to cleanly fix door remote bug will be equivalent to ACCESS_AI_UPLOAD for Cap and RD
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
