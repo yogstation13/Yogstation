@@ -25653,6 +25653,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"bDC" = (
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/centcom/holding)
 "bEO" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info16"
@@ -26014,6 +26020,14 @@
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
+"ngw" = (
+/obj/machinery/computer/cryopod{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -28
+	},
+/turf/open/floor/wood,
+/area/centcom/holding)
 "nuH" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -53653,8 +53667,8 @@ aaa
 aNd
 ayM
 aXk
-aYo
-aXk
+bDC
+bDC
 aNd
 aSG
 aFh
@@ -53911,7 +53925,7 @@ aNd
 aOG
 aXk
 aXk
-aXk
+aHH
 aNd
 aWu
 aFh
@@ -54168,7 +54182,7 @@ aNd
 aTK
 aXk
 aXk
-aXk
+ngw
 aNd
 aQA
 aFh

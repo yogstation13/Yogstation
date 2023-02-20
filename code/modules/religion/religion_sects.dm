@@ -444,15 +444,18 @@
 	if(!ishuman(L))
 		return FALSE
 	
+	if(!L.client)
+		return FALSE
+
 	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
 		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
 		return FALSE
-	COOLDOWN_START(src, last_heal, 12 SECONDS)
 
 	var/mob/living/carbon/human/H = L
 	var/heal_amt = 20
 	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ANY)
 	if(hurt_limbs.len)
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
 		var/amount_healed = 0
 		for(var/X in hurt_limbs)
 			var/obj/item/bodypart/affecting = X

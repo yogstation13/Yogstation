@@ -11450,25 +11450,6 @@
 "fBu" = (
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"fBx" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "19;23";
-	security_level = 6
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/storage/tech)
 "fBG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17643,6 +17624,25 @@
 "iJQ" = (
 /turf/closed/wall,
 /area/medical/morgue)
+"iKb" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "76";
+	security_level = 6
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/storage/tech)
 "iKA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -72829,7 +72829,7 @@ lmD
 xXt
 eKF
 tGv
-fBx
+iKb
 cCx
 eKF
 eKF

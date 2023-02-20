@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency)
+	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
