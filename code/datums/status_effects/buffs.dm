@@ -392,9 +392,11 @@
 	var/hand
 	var/deathTick = 0
 	var/efficiency = 1
+	var/rod_type = /obj/item/rod_of_asclepius
 
-/datum/status_effect/hippocraticOath/on_creation(mob/living/new_owner, _efficiency)
+/datum/status_effect/hippocraticOath/on_creation(mob/living/new_owner, _efficiency, _rod_type)
 	efficiency = _efficiency
+	rod_type = _rod_type
 	. = ..()
 
 /datum/status_effect/hippocraticOath/on_apply()
@@ -422,7 +424,7 @@
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
 			new /obj/effect/decal/cleanable/ash(owner.loc)
-			new /obj/item/rod_of_asclepius(owner.loc)
+			new rod_type(owner.loc)
 			if(owner.mind)
 				owner.mind.transfer_to(healSnake)
 			healSnake.grab_ghost()
@@ -431,9 +433,8 @@
 		if(iscarbon(owner))
 			var/mob/living/carbon/itemUser = owner
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
-			if(heldItem == null || !istype(heldItem, /obj/item/rod_of_asclepius)) //Checks to make sure the rod is still in their hand
-				var/obj/item/rod_of_asclepius/newRod = new(itemUser.loc)
-				newRod.efficiency = efficiency
+			if(heldItem == null || heldItem.type != rod_type) //Checks to make sure the rod is still in their hand
+				var/obj/item/rod_of_asclepius/newRod = new rod_type(itemUser.loc)
 				newRod.activated()
 				if(!itemUser.has_hand_for_held_index(hand))
 					//If user does not have the corresponding hand anymore, give them one and return the rod to their hand
