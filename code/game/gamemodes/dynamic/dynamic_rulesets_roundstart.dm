@@ -191,7 +191,7 @@
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/roundstart_wizards = list()
-	minimum_players = 27
+	minimum_players = 34
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -295,7 +295,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	var/datum/team/nuclear/nuke_team
-	minimum_players = 30
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/nuclear/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -983,7 +983,7 @@
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	antag_cap = list(999,999,999,999,999)
 	minimum_players = 40
-	
+
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	. = ..()
 	if(.)

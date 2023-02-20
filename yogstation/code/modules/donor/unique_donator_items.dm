@@ -136,7 +136,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/cark
 	name = "Pride Bedsheet"
 	ckey = "cark"
-	unlock_path = /obj/item/bedsheets/pridebedsheet/cark
+	unlock_path = /obj/item/bedsheet/pride
 
 	///Generic donator hats, ckey agnostic.
 /datum/donator_gear/dukeofsoleil
@@ -585,6 +585,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/plushvar
 	name = "Ratvar"
 	unlock_path = /obj/item/toy/plush/plushvar
+	plush = TRUE
+
+/datum/donator_gear/narplush
+	name = "Nar'Sie"
+	unlock_path = /obj/item/toy/plush/narplush/hugbox
 	plush = TRUE
 
 /datum/donator_gear/blahajplush

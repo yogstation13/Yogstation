@@ -1,8 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Semi-auto shotguns are now actually semi-auto"
-  - imageadd: "Adds bolt_state icons for semi-auto shotguns"
-  - tweak: "Racking a ballistic (interacting with it in-hand while a round is chambered, be it live or not) of medium or heavy size requires your off-hand to be empty"
-  - tweak: "Riot shotgun is no longer weapon_heavy"
-  - imagedel: "Removes outdated stechkin animation sprites"

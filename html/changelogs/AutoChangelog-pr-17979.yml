@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "holy light bible healing will no longer go on cooldown if you try to heal someone who is already at full health"
