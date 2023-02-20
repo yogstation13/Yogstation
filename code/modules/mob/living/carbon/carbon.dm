@@ -883,7 +883,7 @@
 /mob/living/carbon/proc/update_internals()
 	if(getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 		return TRUE
-	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc = src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
+	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc == src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
 		return TRUE
 	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE))
 		return TRUE
