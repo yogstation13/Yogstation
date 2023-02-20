@@ -191,7 +191,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
 			new /obj/item/twohanded/pitchfork/trident(src)
-			new /obj/item/grenade/clusterbuster/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
+			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
