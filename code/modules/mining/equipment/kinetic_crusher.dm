@@ -473,7 +473,7 @@
 
 //Magmite Crusher
 
-/obj/item/twohanded/required/kinetic_crusher/mega
+/obj/item/twohanded/kinetic_crusher/mega
     icon_state = "magmite_crusher"
     item_state = "magmite_crusher"
     lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -482,7 +482,7 @@
     desc = "An early design of the proto-kinetic accelerator, it is now a combination of various mining tools infused with magmite, forming a high-tech club, increasing its capacity as a mining tool. \
      It does little to aid any but the most skilled and/or suicidal miners against local fauna."
 
-/obj/item/twohanded/required/kinetic_crusher/mega/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/twohanded/kinetic_crusher/mega/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
     if(!proximity_flag && charged)
         var/turf/proj_turf = user.loc
         if(!isturf(proj_turf))
