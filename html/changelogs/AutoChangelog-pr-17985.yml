@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Transcendent Olfaction now has a 60 second cooldown"
-  - tweak: "Transcendent Olfaction now vanishes much faster"
-  - tweak: "Transcendent Olfaction can no longer track bloodsuckers"

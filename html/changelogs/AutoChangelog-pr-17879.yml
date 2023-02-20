@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Defibrillation now works even if it can't grab a ghost"
