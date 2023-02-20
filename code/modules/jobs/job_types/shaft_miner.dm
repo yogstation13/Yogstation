@@ -51,13 +51,15 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner
-	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
+	l_pocket = /obj/item/wormhole_jaunter
 	r_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(
-		/obj/item/storage/bag/ore=1,\
-		/obj/item/kitchen/knife/combat/survival=1,\
-		/obj/item/mining_voucher=1,\
-		/obj/item/stack/marker_beacon/ten=1)
+		/obj/item/storage/bag/ore = 1,\
+		/obj/item/kitchen/knife/combat/survival = 1,\
+		/obj/item/mining_voucher = 1,\
+		/obj/item/stack/marker_beacon/ten = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1
+		)
 
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer

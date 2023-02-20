@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Cloning no longer circumvents darkspawn veil health loss"
-  - tweak: "Darkspawn veils now lose 40 max hp rather than 65 and get it ALL back upon deconversion"

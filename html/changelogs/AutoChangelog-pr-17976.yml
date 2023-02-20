@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed Rod of The White becoming the Rod of Asclepius on death"
+  - bugfix: "fixed Rod of The White losing its white color if frozen then unfrozen"

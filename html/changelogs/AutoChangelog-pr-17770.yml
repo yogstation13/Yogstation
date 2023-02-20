@@ -1,5 +1,0 @@
-author: "githubuser4141"
-delete-after: true 
-changes: 
-  - tweak: "Changed the MK-II Ripley's speed to 3 (indoors), and 1.75 (outdoors.) Changes the admin-only Nukie Ripley's speed to 3 indoors, 1.5 outdoors."
-  - spellcheck: "fixed the uplink desc for Marauders saying they only had 3 equipment slots when they have 4."
