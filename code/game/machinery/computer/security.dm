@@ -42,6 +42,10 @@
 	radio.independent = TRUE
 	radio.recalculateChannels()
 
+/obj/machinery/computer/secure_data/Destroy()
+	. = ..()
+	QDEL_NULL(radio)
+
 /obj/machinery/computer/secure_data/syndie
 	icon_keyboard = "syndie_key"
 

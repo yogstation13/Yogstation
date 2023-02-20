@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "lets preternis and ethereals be affected by trait_eat_more and trait_eat_less"

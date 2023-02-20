@@ -15,7 +15,7 @@
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
 
-	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist") // Yes Druggist is a real thing.
 
 	outfit = /datum/outfit/job/chemist
 
@@ -26,6 +26,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
+
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 

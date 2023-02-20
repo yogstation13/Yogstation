@@ -1,4 +1,4 @@
-#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+#define CONSCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
 
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
@@ -96,6 +96,30 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.dna.features["ipc_screen"] = null //Turns off screen on death
 	C.update_body()
 
+/datum/species/ipc/get_species_description()
+	return /*"IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created."*/
+
+/datum/species/ipc/get_species_lore()
+	return list("TBD",/*
+		"The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
+		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind."
+	*/)
+
+/datum/species/ipc/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/ipc/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -187,13 +211,13 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
+	CONSCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
+	CONSCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Finalizing setup..."))
+	CONSCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	CONSCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
 	if(H.stat == DEAD)
 		return
 	H.dna.features["ipc_screen"] = saved_screen
@@ -261,7 +285,7 @@ ipc martial arts stuff
 /datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
-		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
@@ -289,4 +313,4 @@ ipc martial arts stuff
 	if(ipcmartial)
 		ipcmartial.Destroy()
 
-#undef CONCIOUSAY
+#undef CONSCIOUSAY

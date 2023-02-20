@@ -257,9 +257,9 @@
 	else
 		O = outfit
 		if(!istype(O))
-			return 0
+			return FALSE
 	if(!O)
-		return 0
+		return FALSE
 
 	return O.equip(src, visualsOnly)
 
@@ -331,4 +331,33 @@
 	if(!stored || stored.on_found(src))
 		return
 	stored.attack_hand(src) // take out thing from belt
+	return
+
+/mob/living/carbon/human/proc/smart_equipsuit()
+	var/obj/item/thing = get_active_held_item()
+	var/obj/item/equipped_suit = get_item_by_slot(SLOT_S_STORE)
+	if(!equipped_suit) 
+		if(!thing)
+			to_chat(src, span_notice("You have no suit storage to take something out of."))
+			return
+		if(equip_to_slot_if_possible(thing, SLOT_S_STORE))
+			update_inv_hands()
+		return
+	if(!SEND_SIGNAL(equipped_suit, COMSIG_CONTAINS_STORAGE)) // not a storage item
+		if(!thing)
+			equipped_suit.attack_hand(src)
+		else
+			to_chat(src, span_notice("You can't fit anything in."))
+		return
+	if(thing) // put thing in suit storage
+		if(!SEND_SIGNAL(equipped_suit, COMSIG_TRY_STORAGE_INSERT, thing, src))
+			to_chat(src, span_notice("You can't fit anything in."))
+		return
+	if(!equipped_suit.contents.len) // nothing to take out
+		to_chat(src, span_notice("There's nothing in your suit storage to take out."))
+		return
+	var/obj/item/stored = equipped_suit.contents[equipped_suit.contents.len]
+	if(!stored || stored.on_found(src))
+		return
+	stored.attack_hand(src) // take out thing from suit storage
 	return

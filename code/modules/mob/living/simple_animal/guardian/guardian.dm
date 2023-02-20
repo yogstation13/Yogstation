@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -38,6 +39,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	butcher_results = list(/obj/item/ectoplasm = 1)
 	AIStatus = AI_OFF
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 	hud_type = /datum/hud/guardian
 	dextrous_hud_type = /datum/hud/dextrous/guardian //if we're set to dextrous, account for it.
 	var/list/guardian_overlays[GUARDIAN_TOTAL_LAYERS]
@@ -338,12 +342,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<span class='danger'><B>You don't have another mode!</span></B>")
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
-	if(light_range<3)
+	if(!light_on)
 		to_chat(src, span_notice("You activate your light."))
-		set_light(3)
+		set_light_on(TRUE)
 	else
 		to_chat(src, span_notice("You deactivate your light."))
-		set_light(0)
+		set_light_on(FALSE)
 
 /mob/living/simple_animal/hostile/guardian/verb/ShowType()
 	set name = "Check Guardian Type"
@@ -395,7 +399,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
 //FORCE RECALL/RESET
-
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
@@ -572,7 +575,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	add_verb(user, list(/mob/living/proc/guardian_comm, \
 						/mob/living/proc/guardian_recall, \
-						/mob/living/proc/guardian_reset))
+						/mob/living/proc/guardian_reset, \
+						/mob/living/proc/finduser))
 	G?.client.init_verbs()
 
 /obj/item/guardiancreator/choose

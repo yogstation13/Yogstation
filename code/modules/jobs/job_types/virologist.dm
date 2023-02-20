@@ -18,7 +18,7 @@
 
 	outfit = /datum/outfit/job/virologist
 
-	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist")
+	alt_titles = list("Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist", "Disease Control Expert")
 
 	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
@@ -27,6 +27,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 	minimal_character_age = 24 //Requires understanding of microbes, biology, infection, and all the like, as well as being able to understand how to interface the machines. Epidemiology is no joke of a field
+
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	changed_maps = list("OmegaStation")
 

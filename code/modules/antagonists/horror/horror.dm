@@ -787,7 +787,7 @@
 	if(victim.health <= 75)
 		detatch()
 		to_chat(src, span_warning("It appears that [victim]s brain detected danger, and hastily took over."))
-		to_chat(victim, span_danger("Your body is under attack, you unconciously forced your brain to immediately take over!"))
+		to_chat(victim, span_danger("Your body is under attack, you unconsciously forced your brain to immediately take over!"))
 
 /mob/living/simple_animal/horror/proc/detatch()
 	if(!victim || !controlling)
@@ -859,3 +859,4 @@
 	else
 		RemoveInfestActions()
 		GrantHorrorActions()
+

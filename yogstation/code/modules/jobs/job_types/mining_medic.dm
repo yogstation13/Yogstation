@@ -17,9 +17,14 @@
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue")
 
 	minimal_character_age = 26 //Matches MD
+
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/cargo,
+	)
 
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
@@ -43,7 +48,7 @@
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
-	
+
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\

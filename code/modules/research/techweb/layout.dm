@@ -335,6 +335,10 @@
 	ui_x = -224
 	ui_y = -288
 
+/datum/techweb_node/nerd_suit
+	ui_x = -272
+	ui_y = -288
+
 /datum/techweb_node/NVGtech
 	ui_x = -160
 	ui_y = -64
@@ -406,6 +410,10 @@
 /datum/techweb_node/ballistic_weapons
 	ui_x = -736
 	ui_y = -416
+
+/datum/techweb_node/hardlight_weapons
+	ui_x = -672
+	ui_y = -352
 
 /datum/techweb_node/gygax
 	ui_x = -672

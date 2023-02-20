@@ -1,6 +1,6 @@
 /mob/living/simple_animal/crab/clown
 	name = "Bananium Kreb"
-	desc = "Its shell seems to be made out of pure bananium this kreb sure is living the high life!"
+	desc = "Its shell seems to be made out of pure bananium. This kreb sure is living the high life!"
 	real_name = "Fancy Kreb"
 	icon = 'yogstation/icons/mob/clownpets.dmi'
 	icon_state = "clown_kreb"

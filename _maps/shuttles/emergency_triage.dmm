@@ -37,11 +37,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"al" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/docking_port/mobile/emergency,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "as" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -713,6 +708,17 @@
 /obj/machinery/light,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"Rr" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/docking_port/mobile/emergency,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "RO" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -848,7 +854,7 @@ BC
 ae
 uf
 ae
-al
+Rr
 ae
 Uw
 Uw

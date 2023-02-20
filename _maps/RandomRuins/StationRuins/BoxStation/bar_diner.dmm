@@ -23,12 +23,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -127,12 +121,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "au" = (
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"av" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ax" = (
@@ -1054,6 +1042,15 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"yn" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "yv" = (
 /obj/effect/landmark/blobstart,
 /obj/item/reagent_containers/food/snacks/burger/plain,
@@ -1250,6 +1247,12 @@
 /obj/effect/turf_decal/ameritard,
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"UE" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "WE" = (
 /obj/structure/disposalpipe/segment,
@@ -1529,7 +1532,7 @@ dc
 ab
 "}
 (15,1,1) = {"
-ah
+UE
 au
 aI
 aW
@@ -1546,7 +1549,7 @@ ab
 "}
 (16,1,1) = {"
 ab
-av
+yn
 aJ
 ab
 ab

@@ -14,7 +14,7 @@
 
 	outfit = /datum/outfit/job/cook
 
-	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
+	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian")
 
 	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
 	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
@@ -23,6 +23,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_COOK
 	minimal_character_age = 18 //My guy they just a cook
+
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 

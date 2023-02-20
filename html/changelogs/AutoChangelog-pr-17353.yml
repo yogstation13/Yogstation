@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Plasmaman martial art now has fire and heat immunity"
-  - bugfix: "Plasmaman martial art help verb should now work(?)"

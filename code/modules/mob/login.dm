@@ -36,7 +36,7 @@
 		create_mob_hud()
 	if(hud_used)
 		hud_used.show_hud(hud_used.hud_version)
-		hud_used.update_ui_style(ui_style2icon(client.prefs.UI_style))
+		hud_used.update_ui_style(ui_style2icon(client.prefs?.read_preference(/datum/preference/choiced/ui_style)))
 
 	next_move = 1
 
@@ -74,7 +74,7 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		client.change_view(getScreenSize(client.prefs.widescreenpref))
+		client.change_view(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)
 				A.Grant(src)

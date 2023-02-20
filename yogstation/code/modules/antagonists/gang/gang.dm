@@ -7,6 +7,7 @@
 	var/hud_type = "gangster"
 	var/message_name = "Gangster"
 	var/datum/team/gang/gang
+	preview_outfit = /datum/outfit/gangster
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -473,6 +474,13 @@
 
 /datum/team/gang/proc/adjust_uniform_influence(value)
 	uniform_influence = max(0, uniform_influence + value)
+
+/datum/outfit/gangster
+	name = "Gangster (Preview only)"
+	mask = /obj/item/clothing/mask/cigarette/cigar/havana
+	uniform = /obj/item/clothing/under/rank/vice
+	neck = /obj/item/clothing/neck/necklace/dope
+	head = /obj/item/clothing/head/fedora
 
 /datum/team/gang/proc/count_members()
 	for(var/datum/mind/gangmind in members)

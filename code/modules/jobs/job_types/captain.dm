@@ -19,7 +19,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
-	alt_titles = list("Station Commander", "Facility Director")
+	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer")
 
 	outfit = /datum/outfit/job/captain
 
@@ -27,6 +27,11 @@
 	base_access = list() 	//See get_access()
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
+
+	department_for_prefs = /datum/job_department/captain
+	departments_list = list(
+		/datum/job_department/command,
+	)
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
@@ -54,7 +59,7 @@
 
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
-	
+
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain

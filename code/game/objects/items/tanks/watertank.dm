@@ -285,12 +285,12 @@
 		if(!Adj|| !isturf(target))
 			return
 		for(var/S in target)
-			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
+			if(istype(S, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
 				to_chat(user, span_warning("There's already resin here!"))
 				return
 		if(resin_charges)
-			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
-			F.amount = 0
+			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
+			foam.group.target_size = 0
 			resin_charges--
 			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
 		else
@@ -313,8 +313,9 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	var/obj/effect/particle_effect/foam/metal/resin/S = new /obj/effect/particle_effect/foam/metal/resin(get_turf(loc))
-	S.amount = 4
+	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
+	foaming.set_up(4, location = src)
+	foaming.start()
 	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
 
@@ -336,7 +337,8 @@
 	var/on = FALSE
 	volume = 300
 	var/usage_ratio = 5 //5 unit added per 1 removed
-	var/injection_amount = 1
+	/// How much to inject per second
+	var/injection_amount = 0.5
 	amount_per_transfer_from_this = 5
 	reagent_flags = OPENCONTAINER
 	spillable = FALSE
@@ -410,7 +412,7 @@
 	if(ismob(loc))
 		to_chat(loc, span_notice("[src] turns off."))
 
-/obj/item/reagent_containers/chemtank/process()
+/obj/item/reagent_containers/chemtank/process(delta_time)
 	if(!ishuman(loc))
 		turn_off()
 		return
@@ -422,9 +424,10 @@
 		turn_off()
 		return
 
-	var/used_amount = injection_amount/usage_ratio
-	reagents.reaction(user, INJECT,injection_amount,0)
-	reagents.trans_to(user,used_amount,multiplier=usage_ratio)
+	var/inj_am = injection_amount * delta_time
+	var/used_amount = inj_am / usage_ratio
+	reagents.reaction(user, INJECT, used_amount, 0)
+	reagents.trans_to(user, used_amount, multiplier=usage_ratio)
 	update_filling()
 	user.update_inv_back() //for overlays update
 

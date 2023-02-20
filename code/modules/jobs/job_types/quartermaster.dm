@@ -12,13 +12,17 @@
 	supervisors = "the head of personnel"
 	selection_color = "#d7b088"
 	outfit = /datum/outfit/job/quartermaster
-	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer")
+	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Postmaster General")
 	added_access = list()
 	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 	minimal_character_age = 20 //Probably just needs some baseline experience with bureaucracy, enough trust to land the position
+
+	departments_list = list(
+		/datum/job_department/cargo,
+	)
 
 	changed_maps = list("OmegaStation")
 

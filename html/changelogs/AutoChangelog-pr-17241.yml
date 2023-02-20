@@ -1,6 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixes low-energy tritium combustion not consuming oxygen"
-  - bugfix: "fixed high-energy trit/h2 combustion consuming 18x more oxygen that it's supposed to"
-  - tweak: "hydrogen burns with half the energy of tritium while consuming twice as many moles"

@@ -32,6 +32,11 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	minimal_character_age = 30 //Do you knoW HOW MANY JOBS YOU HAVE TO KNOW TO DO?? This should really be like 35 or something
 
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/command,
+	)
+
 	changed_maps = list("OmegaStation")
 
 	mail_goodies = list(
@@ -64,7 +69,7 @@
 	suit_store = /obj/item/flashlight/pen/paramedic
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
-
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med

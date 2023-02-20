@@ -10,7 +10,7 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
-	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic")
+	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue")
 
 	outfit = /datum/outfit/job/paramedic
 
@@ -20,6 +20,10 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
 	minimal_character_age = 20 //As a paramedic you just need to know basic first aid and handling of patients in shock. Ideally you're also strong and able to stay cool. You don't know surgery
+
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
@@ -59,3 +63,4 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile

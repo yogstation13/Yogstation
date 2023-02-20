@@ -548,6 +548,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	merge_type = /obj/item/stack/sheet/cardboard
 	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 10)
+	fryable = TRUE
 
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cardboard_recipes
@@ -620,7 +621,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
 	var/area/A = get_area(user)
-	if((!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed))
+	if((!is_station_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed)) //Yogstation change: Can't make runes on lavaland anymore.
 		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return ..()

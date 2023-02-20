@@ -13,7 +13,7 @@
 
 	outfit = /datum/outfit/job/clown
 
-	alt_titles = list("Entertainer", "Comedian", "Jester")
+	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
 	added_access = list()
 	base_access = list(ACCESS_THEATRE)
@@ -22,6 +22,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	minimal_character_age = 18 //Honk
+	
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
@@ -36,7 +40,7 @@
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	H.apply_pref_name("clown", M.client)
+	H.apply_pref_name(/datum/preference/name/clown, M.client)
 
 /datum/outfit/job/clown
 	name = "Clown"
@@ -65,7 +69,7 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
-	
+
 /datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))

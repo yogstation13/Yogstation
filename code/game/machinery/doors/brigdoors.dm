@@ -163,7 +163,6 @@
 
 
 /obj/machinery/door_timer/proc/timer_end(forced = FALSE)
-
 	if(stat & (NOPOWER|BROKEN))
 		return 0
 
@@ -200,11 +199,24 @@
 	return 1
 
 
+/**
+ * Return time left.
+ * Arguments:
+ * * seconds - return time in seconds if TRUE, else deciseconds.
+ */
 /obj/machinery/door_timer/proc/time_left(seconds = FALSE)
 	. = max(0,timer_duration - (activation_time ? world.time - activation_time : 0))
 	if(seconds)
 		. /= 10
 
+/**
+ * Set the timer. Does NOT automatically start counting down, but does update the display.
+ *
+ * returns TRUE if no change occurred
+ *
+ * Arguments:
+ * value - time in deciseconds to set the timer for.
+ */
 /obj/machinery/door_timer/proc/set_timer(value)
 	var/new_time = clamp(value,0,MAX_TIMER)
 	. = new_time == timer_duration //return 1 on no change
@@ -216,49 +228,6 @@
 		ui = new(user, src, "BrigTimer", name)
 		ui.open()
 
-//icon update function
-// if NOPOWER, display blank
-// if BROKEN, display blue screen of death icon AI uses
-// if timing=true, run update display function
-/obj/machinery/door_timer/update_icon()
-	if(stat & (NOPOWER))
-		icon_state = "frame"
-		return
-
-	if(stat & (BROKEN))
-		set_picture("ai_bsod")
-		return
-
-	if(timing)
-		var/disp1 = id
-		var/time_left = time_left(seconds = TRUE)
-		var/disp2 = "[add_leading(num2text((time_left / 60) % 60), 2, "0")]:[add_leading(num2text(time_left % 60), 2, "0")]"
-		if(length(disp2) > CHARS_PER_LINE)
-			disp2 = "Error"
-		update_display(disp1, disp2)
-	else
-		if(maptext)
-			maptext = ""
-	return
-
-
-// Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(state)
-	if(maptext)
-		maptext = ""
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
-
-
-//Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
-// Stolen from status_display
-/obj/machinery/door_timer/proc/update_display(line1, line2)
-	line1 = uppertext(line1)
-	line2 = uppertext(line2)
-	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
-	if(maptext != new_text)
-		maptext = new_text
-
 /obj/machinery/door_timer/ui_data()
 	var/list/data = list()
 	var/time_left = time_left(seconds = TRUE)
@@ -268,17 +237,23 @@
 	data["flash_charging"] = FALSE
 	data["desired_name"] = desired_name
 	data["desired_crime"] = desired_crime
-	data["pettyCrimes"] = crimespetty
-	data["minorCrimes"] = crimesminor
-	data["moderateCrimes"] = crimesmoderate
-	data["majorCrimes"] = crimesmajor
-	data["severeCrimes"] = crimessevere
+
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash && (F.last_flash + 150) > world.time)
 			data["flash_charging"] = TRUE
 			break
 	return data
 
+/obj/machinery/door_timer/ui_static_data()
+	var/list/data = list()
+
+	data["pettyCrimes"] = crimespetty
+	data["minorCrimes"] = crimesminor
+	data["moderateCrimes"] = crimesmoderate
+	data["majorCrimes"] = crimesmajor
+	data["severeCrimes"] = crimessevere
+
+	return data
 
 /obj/machinery/door_timer/ui_act(action, params)
 	if(..())
@@ -336,6 +311,48 @@
 		else
 			. = FALSE
 
+//icon update function
+// if NOPOWER, display blank
+// if BROKEN, display blue screen of death icon AI uses
+// if timing=true, run update display function
+/obj/machinery/door_timer/update_icon()
+	if(stat & (NOPOWER))
+		icon_state = "frame"
+		return
+
+	if(stat & (BROKEN))
+		set_picture("ai_bsod")
+		return
+
+	if(timing)
+		var/disp1 = id
+		var/time_left = time_left(seconds = TRUE)
+		var/disp2 = "[add_leading(num2text((time_left / 60) % 60), 2, "0")]:[add_leading(num2text(time_left % 60), 2, "0")]"
+		if(length(disp2) > CHARS_PER_LINE)
+			disp2 = "Error"
+		update_display(disp1, disp2)
+	else
+		if(maptext)
+			maptext = ""
+	return
+
+
+// Adds an icon in case the screen is broken/off, stolen from status_display.dm
+/obj/machinery/door_timer/proc/set_picture(state)
+	if(maptext)
+		maptext = ""
+	cut_overlays()
+	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
+
+
+//Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
+// Stolen from status_display
+/obj/machinery/door_timer/proc/update_display(line1, line2)
+	line1 = uppertext(line1)
+	line2 = uppertext(line2)
+	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
+	if(maptext != new_text)
+		maptext = new_text
 
 #undef PRESET_SHORT
 #undef PRESET_MEDIUM

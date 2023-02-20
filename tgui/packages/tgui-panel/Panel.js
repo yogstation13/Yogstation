@@ -4,12 +4,11 @@
  * @license MIT
  */
 
-import { Button, Flex, Section } from 'tgui/components';
+import { Button, Section, Stack } from 'tgui/components';
 import { Pane } from 'tgui/layouts';
-import { classes } from '../common/react';
 import { NowPlayingWidget, useAudio } from './audio';
 import { ChatPanel, ChatTabs } from './chat';
-import { gameReducer, useGame } from './game';
+import { useGame } from './game';
 import { Notifications } from './Notifications';
 import { PingIndicator } from './ping';
 import { SettingsPanel, useSettings } from './settings';
@@ -35,15 +34,13 @@ export const Panel = (props, context) => {
   }
   return (
     <Pane theme={settings.theme}>
-      <Flex
-        direction="column"
-        height="100%">
+      <Stack fill vertical>
         {settings.visible && (
-          <Flex.Item mt={1}>
+          <Stack.Item>
             <SettingsPanel />
-          </Flex.Item>
+          </Stack.Item>
         )}
-        <Flex.Item mb={1} grow={1}>
+        <Stack.Item grow>
           <Section fill fitted position="relative">
             <Pane.Content scrollable>
               <ChatPanel lineHeight={settings.lineHeight} />
@@ -59,63 +56,61 @@ export const Panel = (props, context) => {
                     </Button>
                   )}>
                   You are either AFK, experiencing lag or the connection
-                  has closed. If the server has been nuked, you
-                  are just lagging, you should be fine in a moment.
+                  has closed.
                 </Notifications.Item>
               )}
-              {game.reconnectTimer > 0 && (
+              {game.roundRestartedAt && (
                 <Notifications.Item>
                   The connection has been closed because the server is
-                  restarting. Please wait while you are automatically reconnected
-                  in {game.reconnectTimer} Seconds.
+                  restarting. Please wait while you automatically reconnect.
                 </Notifications.Item>
               )}
             </Notifications>
           </Section>
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Section fitted className="clip-include">
-            <Flex mx={0.5} align="center">
-              <Flex.Item mx={0.5} grow={game.pointerLockState ? 0 : 1} overflowX="auto">
+            <Stack mr={1} align="center">
+              <Stack.Item grow={game.pointerLockState ? 0 : 1} overflowX="auto">
                 <ChatTabs />
-              </Flex.Item>
-              <Flex.Item mx={0.5}>
+              </Stack.Item>
+              <Stack.Item>
                 <PingIndicator />
-              </Flex.Item>
+              </Stack.Item>
               {!game.pointerLockState && (
                 <>
-                  <Flex.Item mx={0.5}>
+                  <Stack.Item>
                     <Button
                       color="grey"
                       selected={audio.visible}
                       icon="music"
                       tooltip="Music player"
-                      tooltipPosition="top-start"
+                      tooltipPosition="bottom-start"
                       onClick={() => audio.toggle()} />
-                  </Flex.Item>
-                  <Flex.Item mx={0.5}>
+                  </Stack.Item>
+                  <Stack.Item>
                     <Button
                       icon={settings.visible ? 'times' : 'cog'}
                       selected={settings.visible}
                       tooltip={settings.visible
                         ? 'Close settings'
                         : 'Open settings'}
-                      tooltipPosition="top-start"
+                      tooltipPosition="bottom-start"
                       onClick={() => settings.toggle()} />
-                  </Flex.Item>
+                  </Stack.Item>
                 </>
               )}
-            </Flex>
+            </Stack>
           </Section>
-        </Flex.Item>
+        </Stack.Item>
         {audio.visible && (
-          <Flex.Item mt={1}>
+          <Stack.Item>
             <Section className="clip-include">
               <NowPlayingWidget />
             </Section>
-          </Flex.Item>
+          </Stack.Item>
         )}
-      </Flex>
+      </Stack>
     </Pane>
   );
 };
@@ -137,9 +132,7 @@ const HoboPanel = (props, context) => {
           Settings
         </Button>
         {settings.visible && (
-          <Flex.Item mt={1}>
-            <SettingsPanel />
-          </Flex.Item>
+          <SettingsPanel />
         ) || (
           <ChatPanel lineHeight={settings.lineHeight} />
         )}

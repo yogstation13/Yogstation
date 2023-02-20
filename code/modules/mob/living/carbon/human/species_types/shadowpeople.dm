@@ -4,6 +4,7 @@
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
 	name = "???"
+	plural_form = "???"
 	id = "shadow"
 	sexes = FALSE
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
@@ -30,8 +31,58 @@
 		return TRUE
 	return ..()
 
+/datum/species/shadow/get_species_description()
+	return "Victims of a long extinct space alien. Their flesh is a sickly \
+		seethrough filament, their tangled insides in clear view. Their form \
+		is a mockery of life, leaving them mostly unable to work with others under \
+		normal circumstances."
+
+/datum/species/shadow/get_species_lore()
+	return list(
+		"Long ago, the Spinward Sector used to be inhabited by terrifying aliens aptly named \"Shadowlings\" \
+		after their control over darkness, and tendancy to kidnap victims into the dark maintenance shafts. \
+		Around 2558, the long campaign Nanotrasen waged against the space terrors ended with the full extinction of the Shadowlings.",
+
+		"Victims of their kidnappings would become brainless thralls, and via surgery they could be freed from the Shadowling's control. \
+		Those more unlucky would have their entire body transformed by the Shadowlings to better serve in kidnappings. \
+		Unlike the brain tumors of lesser control, these greater thralls could not be reverted.",
+
+		"With Shadowlings long gone, their will is their own again. But their bodies have not reverted, burning in exposure to light. \
+		Nanotrasen has assured the victims that they are searching for a cure. No further information has been given, even years later. \
+		Most shadowpeople now assume Nanotrasen has long since shelfed the project.",
+	)
+
+/datum/species/shadow/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "moon",
+			SPECIES_PERK_NAME = "Shadowborn",
+			SPECIES_PERK_DESC = "Their skin blooms in the darkness. All kinds of damage, \
+				no matter how extreme, will heal over time as long as there is no light.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "eye",
+			SPECIES_PERK_NAME = "Nightvision",
+			SPECIES_PERK_DESC = "Their eyes are adapted to the night, and can see in the dark with no problems.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "sun",
+			SPECIES_PERK_NAME = "Lightburn",
+			SPECIES_PERK_DESC = "Their flesh withers in the light. Any exposure to light is \
+				incredibly painful for the shadowperson, charring their skin.",
+		),
+	)
+
+	return to_add
+
 /datum/species/shadow/nightmare
 	name = "Nightmare"
+	plural_form = null
 	id = "nightmare"
 	limbs_id = "shadow"
 	burnmod = 1.5
@@ -198,7 +249,7 @@
 			if(borg.lamp_enabled)
 				borg.smash_headlamp()
 		else if(ishuman(AM))
-			for(var/obj/item/O in AM)
+			for(var/obj/item/O in AM.GetAllContents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 		if(L.pulling && L.pulling.light_range && isitem(L.pulling))
@@ -211,9 +262,8 @@
 /obj/item/light_eater/proc/disintegrate(obj/item/O)
 	if(istype(O, /obj/item/pda))
 		var/obj/item/pda/PDA = O
-		PDA.set_light(0)
-		PDA.fon = FALSE
-		PDA.f_lum = 0
+		PDA.set_light_on(FALSE)
+		PDA.set_light_range(0) //It won't be turning on again.
 		PDA.update_icon()
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else

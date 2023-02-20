@@ -9,6 +9,7 @@
 #define RAD_COLLECTOR_STORED_OUT 0.1	// (this*100)% of stored power outputted per tick. Doesn't actualy change output total, lower numbers just means collectors output for longer in absence of a source
 #define RAD_COLLECTOR_MINING_CONVERSION_RATE 0.000125 //This is gonna need a lot of tweaking to get right. This is the number used to calculate the conversion of watts to research points per process()
 #define RAD_COLLECTOR_OUTPUT min(stored_power, (stored_power*RAD_COLLECTOR_STORED_OUT)+1000) //Produces at least 1000 watts if it has more than that stored
+#define RAD_COLLECTOR_PAYOUT_SCALE 300
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
@@ -29,7 +30,7 @@
 	// Are the controls and tanks locked
 	var/locked = FALSE
 	/// use modifier for gas use
-	var/drainratio = 1
+	var/drainratio = 0.5
 	/// How much gas to drain
 	var/drain = 0.01
 	/// What is it producing
@@ -44,13 +45,14 @@
 	var/machine_tier = 0
 	// Higher power bonus will give more power
 	var/power_bonus = 0
+	// Balance amount of money given to crew
+	var/creditpayout = 0
 
 	var/obj/item/radio/radio
 	var/obj/item/tank/internals/plasma/loaded_tank = null
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
-
 	radio = new(src)
 	radio.keyslot = new /obj/item/encryptionkey/headset_eng
 	radio.subspace_transmission = TRUE
@@ -64,10 +66,10 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/process(delta_time)
 	if(!loaded_tank || !active)
 		return
-	var/gasdrained = drain*drainratio
+	var/gasdrained = drain*drainratio*delta_time
 	for(var/gasID in using) // Preliminary check before doing it again
 		if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
@@ -106,7 +108,8 @@
 				if(D)
 					var/payout = output/8000
 					stored_power -= min(payout*20000, stored_power)
-					D.adjust_money(payout)
+					creditpayout = log(1 + (payout / RAD_COLLECTOR_PAYOUT_SCALE)) * (RAD_COLLECTOR_PAYOUT_SCALE / log(2))
+					D.adjust_money(creditpayout)
 					last_output = payout
 
 /obj/machinery/power/rad_collector/interact(mob/user)
@@ -265,7 +268,7 @@
 		else if(mode == SCIENCE)
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*60] research points per minute.</span>"
 		else if(mode == MONEY)
-			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [last_output*60] credits per minute.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [creditpayout] credits per minute.</span>"
 	else
 		if(mode == POWER)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"

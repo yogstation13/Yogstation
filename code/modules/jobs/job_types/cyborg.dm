@@ -17,6 +17,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
+	departments_list = list(
+		/datum/job_department/silicon,
+	)
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 	smells_like = "inorganic indifference"
@@ -52,10 +56,13 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.donor_hat && C.prefs.borg_hat)
-		var/type = C.prefs.donor_hat
-		if(type)
-			var/obj/item/hat = new type()
-			if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
-				H.place_on_head(hat)
-
+	if(C.prefs.read_preference(/datum/preference/toggle/borg_hat))
+		var/datum/donator_gear/donor_hat_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
+		if(donor_hat_datum)
+			var/donor_hat_type = donor_hat_datum.unlock_path
+			if (!!donor_hat_datum.ckey && (lowertext(C.ckey) != lowertext(donor_hat_datum.ckey)))
+				to_chat(C, span_warning("Your selected donor hat is restricted to [donor_hat_datum.ckey]."))
+			else if (donor_hat_type)
+				var/obj/item/hat = new donor_hat_type()
+				if(istype(hat) && hat.slot_flags & ITEM_SLOT_HEAD && H.hat_offset != INFINITY && !is_type_in_typecache(hat, H.blacklisted_hats))
+					H.place_on_head(hat)

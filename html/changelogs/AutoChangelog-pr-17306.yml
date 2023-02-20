@@ -1,5 +1,0 @@
-author: "Willox"
-delete-after: true 
-changes: 
-  - rscadd: "Added 'Toggle Gas Scan' verb to allow observers to analyze gas mixtures"
-  - tweak: "Mechs, critter closets, and transmit-tube-pods can be analyzed with analyzers"
