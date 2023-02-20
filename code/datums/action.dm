@@ -72,7 +72,7 @@
 		M.actions += src
 		if(M.client)
 			M.client.screen += button
-			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
+			button.locked = M.client.prefs.read_preference(/datum/preference/toggle/buttons_locked) || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
 		for(var/mob/dead/observer/O in M.observers)
 			O?.client.screen += button
@@ -626,6 +626,18 @@
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rshield"
 
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
 //Preset for spells
 /datum/action/spell_action
 	check_flags = NONE
@@ -719,7 +731,9 @@
 	button.maptext_height = 12
 
 /datum/action/cooldown/IsAvailable()
-	return next_use_time <= world.time
+	if(next_use_time > world.time)
+		return FALSE
+	return ..()
 
 /datum/action/cooldown/proc/StartCooldown()
 	next_use_time = world.time + cooldown_time

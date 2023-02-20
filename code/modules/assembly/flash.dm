@@ -14,6 +14,7 @@
 	light_range = FLASH_LIGHT_RANGE
 	light_power = FLASH_LIGHT_POWER
 	light_on = FALSE
+	fryable = TRUE
 	///flicked when we flash
 	var/flashing_overlay = "flash-f"
 	///Number of times the flash has been used.
@@ -143,6 +144,8 @@
 				visible_message(span_disarm("[user] blinds [M] with the flash!"))
 				to_chat(user, span_danger("You blind [M] with the flash!"))
 				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
+				for(var/datum/brain_trauma/trauma in M.get_traumas())
+					trauma.on_flash(user, M)
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
 			if(M.IsParalyzed())

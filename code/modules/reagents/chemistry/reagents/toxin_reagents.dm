@@ -415,12 +415,6 @@
 	M.radiation += radpower
 	..()
 
-/datum/reagent/toxin/polonium/ebow
-	name = "Potent Polonium"
-	description = "A more potent form of Polonium. It is purged more quickly from the body, but also significantly more deadly."
-	metabolization_rate = 0.8 * REAGENTS_METABOLISM
-	radpower = 80
-
 /datum/reagent/toxin/histamine
 	name = "Histamine"
 	description = "Histamine's effects become more dangerous depending on the dosage amount. They range from mildly annoying to incredibly lethal."
@@ -555,7 +549,7 @@
 
 /datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(/datum/reagent/itching_powder, reac_volume)
+		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume)
 
 /datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))

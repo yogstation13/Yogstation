@@ -1,14 +1,14 @@
 /*********************Mining Hammer****************/
-/obj/item/twohanded/required/kinetic_crusher
+/obj/item/twohanded/kinetic_crusher
 	icon = 'icons/obj/mining.dmi'
-	icon_state = "mining_hammer1"
-	item_state = "mining_hammer1"
+	icon_state = "mining_hammer0"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	name = "proto-kinetic crusher"
 	desc = "An early design of the proto-kinetic accelerator, it is little more than a combination of various mining tools cobbled together, forming a high-tech club. \
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
-	force = 20 //As much as a bone spear, but this is significantly more annoying to carry around due to requiring the use of both hands at all times
+	force = 0 //Can't be used if not wielded
+	force_wielded = 20 //As much as a bone spear, but this is significantly more annoying to carry around due to requiring the use of both hands at all times
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BACK
@@ -28,15 +28,19 @@
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
 
-/obj/item/twohanded/required/kinetic_crusher/Initialize()
+/obj/item/twohanded/kinetic_crusher/update_icon()  //Updates the sprite for in-hand and on-mob.
+	icon_state = "mining_hammer[wielded]"
+	return
+
+/obj/item/twohanded/kinetic_crusher/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
 
-/obj/item/twohanded/required/kinetic_crusher/Destroy()
+/obj/item/twohanded/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)
 	return ..()
 
-/obj/item/twohanded/required/kinetic_crusher/examine(mob/living/user)
+/obj/item/twohanded/kinetic_crusher/examine(mob/living/user)
 	. = ..()
 	. += span_notice("Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
 	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
@@ -44,7 +48,7 @@
 		var/obj/item/crusher_trophy/T = t
 		. += span_notice("It has \a [T] attached, which causes [T.effect_desc()].")
 
-/obj/item/twohanded/required/kinetic_crusher/attackby(obj/item/I, mob/living/user)
+/obj/item/twohanded/kinetic_crusher/attackby(obj/item/I, mob/living/user)
 	if(I.tool_behaviour == TOOL_CROWBAR)
 		if(LAZYLEN(trophies))
 			to_chat(user, span_notice("You remove [src]'s trophies."))
@@ -60,7 +64,10 @@
 	else
 		return ..()
 
-/obj/item/twohanded/required/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
+/obj/item/twohanded/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
+	if(!wielded)
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
+		return	
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	if(!C)
 		C = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
@@ -73,8 +80,11 @@
 	if(!QDELETED(C) && !QDELETED(target))
 		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
-/obj/item/twohanded/required/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
+/obj/item/twohanded/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
 	. = ..()
+	if(!wielded)
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
+		return	
 	if(!proximity_flag && charged)//Mark a target, or mine a tile.
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
@@ -89,7 +99,7 @@
 		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
 		D.fire()
 		charged = FALSE
-		icon_state = "mining_hammer1_uncharged"
+		icon_state = "mining_hammer0_uncharged"
 		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
 		return
 	if(proximity_flag && isliving(target))
@@ -120,14 +130,14 @@
 					C.total_damage += detonation_damage
 				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
 
-/obj/item/twohanded/required/kinetic_crusher/proc/Recharge(magmite = FALSE)
+/obj/item/twohanded/kinetic_crusher/proc/Recharge(magmite = FALSE)
 	if(magmite == TRUE)
 		charged = TRUE
 		icon_state = "magmite_crusher"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 	if(!charged)
 		charged = TRUE
-		icon_state = "mining_hammer1"
+		icon_state = "mining_hammer0"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
 //destablizing force
@@ -140,7 +150,7 @@
 	flag = BOMB
 	range = 6
 	log_override = TRUE
-	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
+	var/obj/item/twohanded/kinetic_crusher/hammer_synced
 
 /obj/item/projectile/destabilizer/Destroy()
 	hammer_synced = null
@@ -179,12 +189,12 @@
 	return "errors"
 
 /obj/item/crusher_trophy/attackby(obj/item/A, mob/living/user)
-	if(istype(A, /obj/item/twohanded/required/kinetic_crusher))
+	if(istype(A, /obj/item/twohanded/kinetic_crusher))
 		add_to(A, user)
 	else
 		..()
 
-/obj/item/crusher_trophy/proc/add_to(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/proc/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	for(var/t in H.trophies)
 		var/obj/item/crusher_trophy/T = t
 		if(istype(T, denied_type) || istype(src, T.denied_type))
@@ -196,7 +206,7 @@
 	to_chat(user, span_notice("You attach [src] to [H]."))
 	return TRUE
 
-/obj/item/crusher_trophy/proc/remove_from(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/proc/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	forceMove(get_turf(H))
 	H.trophies -= src
 	return TRUE
@@ -320,12 +330,12 @@
 /obj/item/crusher_trophy/legion_skull/effect_desc()
 	return "a kinetic crusher to recharge <b>[bonus_value*0.1]</b> second\s faster"
 
-/obj/item/crusher_trophy/legion_skull/add_to(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/legion_skull/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.charge_time -= bonus_value
 
-/obj/item/crusher_trophy/legion_skull/remove_from(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/legion_skull/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.charge_time += bonus_value
@@ -378,14 +388,14 @@
 /obj/item/crusher_trophy/demon_claws/effect_desc()
 	return "melee hits to do <b>[bonus_value * 0.2]</b> more damage and heal you for <b>[bonus_value * 0.1]</b>, with <b>5X</b> effect on mark detonation"
 
-/obj/item/crusher_trophy/demon_claws/add_to(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/demon_claws/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.force += bonus_value * 0.2
 		H.force_wielded += bonus_value * 0.2
 		H.detonation_damage += bonus_value * 0.8
 
-/obj/item/crusher_trophy/demon_claws/remove_from(obj/item/twohanded/required/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/demon_claws/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.force -= bonus_value * 0.2
@@ -455,7 +465,7 @@
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]</b>% chance to mark nearby targets"
 
-/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
     if(hammer_synced)
         for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
             if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))

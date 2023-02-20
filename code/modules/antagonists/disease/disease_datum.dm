@@ -75,6 +75,11 @@
 
 	return result.Join("<br>")
 
+/datum/antagonist/disease/get_preview_icon()
+	var/icon/icon = icon('icons/mob/hud.dmi', "virus_infected")
+	icon.Blend(COLOR_GREEN_GRAY, ICON_MULTIPLY)
+	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	return icon
 
 /datum/objective/disease_infect
 	explanation_text = "Survive and infect as many people as possible."
@@ -102,3 +107,9 @@
 		if(L.onCentCom() || L.onSyndieBase())
 			return TRUE
 	return FALSE
+
+/datum/antagonist/disease/get_preview_icon()
+	var/icon/disease_icon = icon('icons/mob/hud.dmi', "infected")
+	disease_icon.Blend(COLOR_GREEN_GRAY, ICON_MULTIPLY)
+	disease_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	return disease_icon

@@ -61,7 +61,7 @@
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
+	if(istype(mymob) && mymob.client?.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
@@ -154,7 +154,7 @@
 
 /atom/movable/screen/plane_master/runechat/backdrop(mob/mymob)
 	filters = list()
-	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
+	if(istype(mymob) && mymob.client?.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
 
 /atom/movable/screen/plane_master/o_light_visual
