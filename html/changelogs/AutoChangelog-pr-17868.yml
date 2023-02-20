@@ -1,0 +1,4 @@
+author: "Uristthedorf"
+delete-after: true 
+changes: 
+  - tweak: "Removed super power cell dilithium cost, increased super power cell glass cost to match that of hyper power cell, added silver and gold cost to half that of hyper power cell cost."
