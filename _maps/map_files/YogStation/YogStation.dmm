@@ -25910,10 +25910,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"gmW" = (
-/obj/item/paper/fluff/jobs/security/beepsky_mom,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "gnb" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -98985,7 +98981,7 @@ xit
 xng
 ewO
 mKD
-gmW
+lLO
 qQn
 pck
 afL
