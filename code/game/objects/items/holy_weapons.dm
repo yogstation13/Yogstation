@@ -1,8 +1,8 @@
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
-#define MENU_WEAPON "nullrod weapon" //standard weapons
-#define MENU_ARM "nullrod arm" //things that replace the arm
-#define MENU_CLOTHING "nullrod clothing" //things that can be worn
-#define MENU_MISC "nullrod misc" //anything that doesn't quite fit into the other categories
+#define MENU_WEAPON "nullrod_weapons" //standard weapons
+#define MENU_ARM "nullrod_arms" //things that replace the arm
+#define MENU_CLOTHING "nullrod_clothing" //things that can be worn
+#define MENU_MISC "nullrod_misc" //anything that doesn't quite fit into the other categories
 
 /obj/item/nullrod
 	name = "null rod"
@@ -45,7 +45,7 @@
 	qdel(user, TRUE)
 	
 /obj/item/nullrod/attack_self(mob/user)
-	if(user?.mind?.holy_role && check_menu)
+	if(user?.mind?.holy_role && check_menu(user))
 		ui_interact(user)
 
 /obj/item/nullrod/proc/check_menu(mob/user)
@@ -65,14 +65,20 @@
 	
 /obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
+	data["categories"] = list()
 	data["categories"][MENU_WEAPON] = list()
 	data["categories"][MENU_ARM] = list()
 	data["categories"][MENU_CLOTHING] = list()
 	data["categories"][MENU_MISC] = list()
 
-	for(var/category in uplink_items)
-		for(var/obj/item/nullrod/rodtype in typesof(/obj/item/nullrod))
-			if(initial(rodtype.chaplain_spawnable) && initial(rodtype.menutab))
+	to_chat(world, "calling ui_static_data")
+	for(var/I in subtypesof(/obj/item/nullrod))
+		to_chat(world, "checking [I] for istype [istype(I, /obj/item/nullrod)? "true" : "false"]")
+		if(istype(I, /obj/item/nullrod))
+			var/obj/item/nullrod/rodtype = I
+			to_chat(world, "checking [rodtype] for spawnable")
+			if(rodtype?.chaplain_spawnable)
+				to_chat(world, "adding [rodtype] to the tgui")
 				data["categories"][rodtype.menutab] += list(
 					"name" = rodtype.name,
 					"desc" = rodtype.desc,
@@ -84,23 +90,11 @@
 	. = ..()
 	if(.)
 		return
-	if(!active)
-		return
 	switch(action)
-		if("confirm")
-			var/item_name = params["name"]
-			var/list/buyable_items = list()
-			for(var/category in uplink_items)
-				buyable_items += uplink_items[category]
-			if(item_name in buyable_items)
-				var/datum/uplink_item/I = buyable_items[item_name]
-				MakePurchase(usr, I)
-				return TRUE
-		if("select")
-			selected_cat = params["category"]
-			return TRUE
+		if("test")
+			to_chat(world, "get fucked buddy")
+
 /*
-	
 /obj/item/nullrod/ui_act(action, params)
 	if(..())
 		return

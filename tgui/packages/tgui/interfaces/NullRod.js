@@ -1,177 +1,32 @@
-import { createSearch, decodeHtmlEntities } from 'common/string';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Input, Section, Table, Tabs, NoticeBox } from '../components';
-import { formatMoney } from '../format';
+import { useBackend } from '../backend';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-import { classes } from 'common/react';
 
-const MAX_SEARCH_RESULTS = 25;
-
-export const Uplink = (props, context) => {
-  return (
-    <Window
-      width={620}
-      height={580}
-      theme="ntos"
-      resizable>
-      <Window.Content scrollable>
-        <GenericUplink
-          currencyAmount={telecrystals}
-          currencySymbol="TC" />
-      </Window.Content>
-    </Window>
-  );
-};
-
-export const GenericUplink = (context) => {
+export const NullRod = (props, context) => {
   const { act, data } = useBackend(context);
+  // Extract `health` and `color` variables from the `data` object.
   const {
     categories = [],
   } = data;
-  const [
-    searchText,
-    setSearchText,
-  ] = useLocalState(context, 'searchText', '');
-  const [
-    selectedCategory,
-    setSelectedCategory,
-  ] = useLocalState(context, 'category', categories[0]?.name);
-  const items = searchText.length > 0
-    // Flatten all categories and apply search to it
-    && categories
-      .flatMap(category => category.items || [])
-      .filter(testSearch)
-      .filter((item, i) => i < MAX_SEARCH_RESULTS)
-    // Select a category and show all items in it
-    || categories
-      .find(category => category.name === selectedCategory)
-      ?.items
-    // If none of that results in a list, return an empty list
-    || [];
   return (
-    <Flex>
-      {searchText.length === 0 && (
-        <Flex.Item>
-          <Tabs vertical>
-            {categories.map(category => (
-              <Tabs.Tab
-                key={category.name}
-                selected={category.name === selectedCategory}
-                onClick={() => setSelectedCategory(category.name)}>
-                {category.name} ({category.items?.length || 0})
-              </Tabs.Tab>
-            ))}
-          </Tabs>
-        </Flex.Item>
-      )}
-      <Flex.Item grow={1} basis={0}>
-        <ItemList
-          compactMode={searchText.length > 0 || compactMode}
-          currencyAmount={currencyAmount}
-          currencySymbol={currencySymbol}
-          items={items} />
-      </Flex.Item>
-    </Flex>
-  );
-};
-
-const ItemList = (props, context) => {
-  const {
-    compactMode,
-    currencyAmount,
-    currencySymbol,
-  } = props;
-  const { act } = useBackend(context);
-  const [
-    hoveredItem,
-    setHoveredItem,
-  ] = useLocalState(context, 'hoveredItem', {});
-  const hoveredCost = hoveredItem && hoveredItem.cost || 0;
-  // Append extra hover data to items
-  const items = props.items.map(item => {
-    const notSameItem = hoveredItem && hoveredItem.name !== item.name;
-    const notEnoughHovered = currencyAmount - hoveredCost < item.cost;
-    const disabledDueToHovered = notSameItem && notEnoughHovered;
-    const disabled = currencyAmount < item.cost || disabledDueToHovered;
-    return {
-      ...item,
-      disabled,
-    };
-  });
-  if (compactMode) {
-    return (
-      <Table>
-        {items.map(item => (
-          <Table.Row
-            key={item.name}
-            className="candystripe">
-            <Table.Cell>
-              {" "}
-              {<span
-                className={classes([
-                  'uplink32x32',
-                  item.path,
-                ])}
-                style={{
-                  'vertical-align': 'middle',
-                  'horizontal-align': 'right',
-                }} />}
-              {" "}
-            </Table.Cell>
-            <Table.Cell bold>
-              {decodeHtmlEntities(item.name)}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign="right">
+    <Window resizable>
+      <Window.Content scrollable>
+        <Section title="Nullrod">
+          <LabeledList>
+            <LabeledList.Item label="Name">
+              {categories?.nullrod_weapons?.[0]?.name}
+            </LabeledList.Item>
+            <LabeledList.Item label="Desc">
+              {categories?.nullrod_weapons?.[0]?.desc}
+            </LabeledList.Item>
+            <LabeledList.Item label="Button">
               <Button
-                fluid
-                content={formatMoney(item.cost) + ' ' + currencySymbol}
-                disabled={item.disabled}
-                tooltip={item.desc}
-                tooltipPosition="left"
-                onmouseover={() => setHoveredItem(item)}
-                onmouseout={() => setHoveredItem({})}
-                onClick={() => act('buy', {
-                  name: item.name,
-                })} />
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table>
-    );
-  }
-  return items.map(item => (
-    <Section
-      key={item.name}
-      title={
-        <Box inline>
-          {" "}
-          <span
-            className={classes([
-              'uplink32x32',
-              item.path,
-            ])}
-            style={{
-              'vertical-align': 'middle',
-              'horizontal-align': 'right',
-            }} />
-          {" "}
-          {item.name}
-        </Box>
-      }
-      level={2}
-      buttons={(
-        <Button
-          content={item.cost + ' ' + currencySymbol}
-          disabled={item.disabled}
-          onmouseover={() => setHoveredItem(item)}
-          onmouseout={() => setHoveredItem({})}
-          onClick={() => act('buy', {
-            name: item.name,
-          })} />
-      )}>
-      {decodeHtmlEntities(item.desc)}
-      <br />
-      {item.manufacturer ? "Brought to you by: " + decodeHtmlEntities(item.manufacturer): ""}
-    </Section>
-  ));
+                content="Dispatch a 'test' action"
+                onClick={() => act('test')} />
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      </Window.Content>
+    </Window>
+  );
 };
