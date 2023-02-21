@@ -257,7 +257,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/raincoat
 	flags_inv = HIDEGLOVES|HIDESUITSTORAGE|HIDENECK|HIDEJUMPSUIT
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
-	
+
 /obj/item/clothing/head/hooded/raincoat
 	name = "raincoat hood"
 	desc = "A lightweight but protective hood that will keep all manner of fluids off you."
@@ -365,6 +365,12 @@
 /*
  * Misc
  */
+
+/obj/item/clothing/suit/CustodianChest
+	name = "Custodian Armor"
+	desc = "Strong enough to handle the toughest of blows if it was made with the real deal instead of some trash material like gold"
+	icon_state = "CustodianBody"
+	item_state = "CustodianBody"
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
@@ -762,3 +768,4 @@
 	name = "hide mantle"
 	desc = "The tanned hide of some brown furred creature."
 	icon_state = "mantle_liz"
+

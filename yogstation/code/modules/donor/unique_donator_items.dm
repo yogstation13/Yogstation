@@ -150,6 +150,16 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "boxta"
 	unlock_path = /obj/item/storage/box/boxta
 
+/datum/donator_gear/SomeCustodian
+	name = "Custodian Helmet"
+	ckey = "SomeCustodian"
+	unlock_path = /obj/item/clothing/head/CustodianHelm
+
+/datum/donator_gear/SomeCustodian
+	name = "Custodian Armor"
+	ckey = "SomeCustodian"
+	unlock_path = /obj/item/clothing/suit/CustodianChest
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
