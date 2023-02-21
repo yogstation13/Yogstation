@@ -126,7 +126,7 @@
 	icon_icon = 'icons/obj/guns/magic.dmi'
 	button_icon_state = "hook"
 	cooldown_time = 5 SECONDS
-	
+
 /datum/action/cooldown/buster/wire_snatch/l/Trigger()
 	if(!..())
 		return FALSE
