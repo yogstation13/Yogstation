@@ -372,7 +372,7 @@
 	item_state = "rflower"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/clothing/head/CustodianHelm
+/obj/item/clothing/head/custodianhelm
 	name = "Custodian Helmet"
 	desc = "Gives you the willpower to defend your plasmaman Captain till the end of time. If this was real that is..."
 	icon_state = "CustodianHat"

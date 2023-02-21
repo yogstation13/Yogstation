@@ -151,14 +151,14 @@
 	name = "radioactive box"
 	desc = "WARNING: not actually radioactive."
 
-/obj/item/storage/box/isotope/PopulateContents() 
+/obj/item/storage/box/isotope/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/under/rank/scientist/black(src)
 	new /obj/item/lighter/badass(src)
 
 /obj/item/storage/box/hisa
 	name = "Hunters Stash"
-	desc = "Legend has it if this box is not held by a hunter, its held by prey" 
+	desc = "Legend has it if this box is not held by a hunter, its held by prey"
 
 /obj/item/storage/box/hisa/PopulateContents()
 	. = ..()
@@ -170,7 +170,7 @@
 	name = "Discharge package"
 	desc = "Thank you for your service. Please dont come back."
 
-/obj/item/storage/box/manatee/PopulateContents() 
+/obj/item/storage/box/manatee/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/accessory/dogtags(src)
 	new /obj/item/clothing/head/peacekeeperberet(src)
@@ -189,10 +189,19 @@
 	name = "Inmate belongings box"
 	desc = "A criminals' belongings, returned upon their release. Just stop killing people."
 
-/obj/item/storage/box/boxta/PopulateContents() 
+/obj/item/storage/box/boxta/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/neck/falcon(src)
 	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
+
+/obj/item/storage/box/somecustodian
+	name = "Golden Box"
+	desc = "Holds a set of one of the most powerful suits of armor known to mankind.(99 cents rip off)"
+
+/obj/item/storage/box/somecustodian/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/head/custodianhelm(src)
+	new /obj/item/clothing/suit/custodianchest(src)
 
 /obj/item/bedsheets/pridebedsheet/cark
 	name = "Pride Bedsheet"
@@ -200,7 +209,7 @@
 	icon = 'icons/obj/bedsheets.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi' 
+	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
 	slot_flags = ITEM_SLOT_NECK
