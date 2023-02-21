@@ -308,38 +308,38 @@
 /obj/item/mecha_parts/part/sidewinder_torso
 	name = "\improper Sidewinder torso"
 	desc = "A Sidewinder torso part. Contains a light power unit, processing units, and life support systems."
-	icon_state = "gygax_harness"
+	icon_state = "sidewinder_harness"
 
 /obj/item/mecha_parts/part/sidewinder_head
 	name = "\improper Sidewinder head"
 	desc = "A Sidewinder head. A light armor shell houses advanced surveillance and environmental sensors."
-	icon_state = "gygax_head"
+	icon_state = "sidewinder_head"
 
 /obj/item/mecha_parts/part/sidewinder_left_arm
 	name = "\improper Sidewinder left arm"
 	desc = "A Sidewinder left arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
-	icon_state = "gygax_l_arm"
+	icon_state = "sidewinder_l_arm"
 
 /obj/item/mecha_parts/part/sidewinder_right_arm
 	name = "\improper Sidewinder right arm"
 	desc = "A Sidewinder right arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
-	icon_state = "gygax_r_arm"
+	icon_state = "sidewinder_r_arm"
 
 /obj/item/mecha_parts/part/sidewinder_left_leg
 	name = "\improper Sidewinder left leg"
 	desc = "A Sidewinder left leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
-	icon_state = "gygax_l_leg"
+	icon_state = "sidewinder_l_leg"
 
 /obj/item/mecha_parts/part/sidewinder_right_leg
 	name = "\improper Sidewinder right leg"
 	desc = "A sidewinder right leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
-	icon_state = "gygax_r_leg"
+	icon_state = "sidewinder_r_leg"
 
 /obj/item/mecha_parts/part/sidewinder_armor
 	gender = PLURAL
 	name = "\improper Sidewinder armor plates"
 	desc = "A set of armor plates designed for the Sidewinder. They act as a thin shell to protect the most vulnerable areas without limiting mobility."
-	icon_state = "gygax_armor"
+	icon_state = "sidewinder_armor"
 
 
 ///////// Circuitboards

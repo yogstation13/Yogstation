@@ -1316,22 +1316,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			if(MP)
 				evaNum *= MP.piloting_speed
 	return evaNum
-  
-/obj/mecha/proc/face_atom(atom/A)
-	if( !A || !x || !y || !A.x || !A.y )	//Do we have a target with a location and do we have a location?
-		return								//Note: we don't check for states and stuff because this is just for forcing facing. That can come later.
-	var/dx = A.x - x	//Gets the difference in x and y coordinates
-	var/dy = A.y - y
-	if(!dx && !dy) 		// Wall items are graphically shifted but on the floor
-		if(A.pixel_y > 16)
-			setDir(NORTH)
-		else if(A.pixel_y < -16)
-			setDir(SOUTH)
-		else if(A.pixel_x > 16)
-			setDir(EAST)
-		else if(A.pixel_x < -16)
-			setDir(WEST)
-		return
 
 /obj/mecha/proc/face_atom(atom/A)			//Pretty much identical to the mob proc that does the same thing
 	if( !A || !x || !y || !A.x || !A.y )	//Do we have a target with a location and do we have a location?
