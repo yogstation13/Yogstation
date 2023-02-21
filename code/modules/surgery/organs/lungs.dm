@@ -352,6 +352,17 @@
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
 	// Stimulum
+		var/stim_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/stimulum))
+		if (prob(stim_pp))
+			to_chat(H, span_alert("Your muscles are starting to hurt!"))
+		if (stim_pp >40)
+			H.emote("gasp")
+			H.adjustBruteLoss(10)
+			if (prob(stim_pp/2))
+				to_chat(H, span_alert("Your throat closes up!"))
+				H.silent = max(H.silent, 3)
+		else
+			H.adjustBruteLoss(stim_pp/4)
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)
 		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/stimulum)
