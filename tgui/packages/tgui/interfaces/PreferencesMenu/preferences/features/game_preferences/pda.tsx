@@ -20,9 +20,3 @@ export const pda_theme: Feature<string> = {
   description: "The theme of your equipped PDA.",
   component: FeatureDropdownInput,
 };
-
-export const id_in_pda: FeatureToggle = {
-  name: "Spawn with ID in PDA",
-  category: "GAMEPLAY",
-  component: CheckboxInput,
-};

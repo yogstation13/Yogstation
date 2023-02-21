@@ -1493,7 +1493,7 @@
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
 	changesource_flags = MIRROR_BADMIN 
 	random_eligible = FALSE // Hell no
-	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
 	attack_verb = "dusting punch"
 	attack_sound = 'sound/effects/supermatter.ogg'
 	fixed_mut_color = "ff0"
@@ -1507,18 +1507,18 @@
 	..()
 	H.adjustFireLoss(2)
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
-	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust in a flash of light!"))
+	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust with a flash of light!"))
 	qdel(AM)
 	
 /datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
 	..()
-	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust in a brilliant flash of light!"))
+	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust with a brilliant flash of light!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 	M.dust()
 
 /datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	..()
-	H.visible_message(span_danger("[user] tries to attack [H] with [I], but in a brilliant flash of light [I] turns into dust!"))
+	H.visible_message(span_danger("[user] tries to attack [H] with [I], but [I] turns into dust with a brilliant flash of light!"))
 	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
 	qdel(I)
 	

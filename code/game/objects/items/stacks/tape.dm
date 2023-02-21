@@ -10,7 +10,7 @@
 	resistance_flags = FLAMMABLE
 	grind_results = list(/datum/reagent/cellulose = 5)
 	var/maximum_weight_class = WEIGHT_CLASS_SMALL
-	var/static/list/tape_blacklist = typecacheof(/obj/item/grenade) //stuff you can't take that may or may not be max_weight_class
+	var/static/list/tape_blacklist = typecacheof(/obj/item/grenade, /obj/item/slime_extract, /obj/item/slimecross) //stuff you can't take that may or may not be max_weight_class
 	var/fall_chance = 10
 	var/removal_time = 0
 	var/removal_pain = 0
