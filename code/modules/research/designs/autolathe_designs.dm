@@ -636,7 +636,7 @@
 	build_path = /obj/item/taperecorder/empty
 	category = list("initial", "Miscellaneous")
 
-/datum/design/tape
+/datum/design/recorder_tape
 	name = "Tape"
 	id = "tape"
 	build_type = AUTOLATHE
