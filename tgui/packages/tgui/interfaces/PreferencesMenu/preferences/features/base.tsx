@@ -141,7 +141,6 @@ export type FeatureChoicedServerData = {
   choices: string[];
   display_names?: Record<string, string>;
   icons?: Record<string, string>;
-  key_locked?: Record<string, string>;
 };
 
 export type FeatureChoiced = Feature<string, string, FeatureChoicedServerData>;
@@ -201,20 +200,6 @@ export const FeatureDropdownInput = (
     );
 
   let choices = sortStrings(serverData.choices);
-  if (serverData.key_locked)
-  {
-    const key_locked = serverData.key_locked;
-
-    choices = choices.filter(choice => {
-      const choice_ckey = key_locked[choice];
-      if (choice_ckey)
-      {
-        return choice_ckey === client_ckey;
-      }
-
-      return true;
-    });
-  }
 
   return (<StandardizedDropdown
     choices={choices}

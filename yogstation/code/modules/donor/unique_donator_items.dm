@@ -36,8 +36,6 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 /datum/donator_gear
 	/// Name of the gear, as displayed in the preferences menu
 	var/name = "Base type donator item"
-	/// A valid ckey belonging to a player with donator status.
-	var/ckey = null
 	/// A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
 	var/unlock_path = null
 	/// Is this a hat? For categorisation in the UI.
@@ -64,12 +62,10 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 /datum/donator_gear/orca
 	name = "Megumus Dress (orcacora)"
-	ckey = "orcacora"
 	unlock_path = /obj/item/storage/box/megumu
 
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
-	ckey = "fataleyes"
 	unlock_path = /obj/item/bedsheet/cosmos/fatal_eyes
 
 /obj/item/bedsheet/cosmos/fatal_eyes
@@ -79,75 +75,61 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 /datum/donator_gear/mqiib
 	name = "Singularity Necklace (Mqiib)"
-	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
 /datum/donator_gear/cowbot
 	name = "Singularity Wakizashi (Cowbot93)"
-	ckey = "Cowbot93"
 	unlock_path = /obj/item/toy/katana/singulo_wakizashi
 
 /datum/donator_gear/marmio64
 	name = "Eldritch Cowl (Marmio64)"
-	ckey = "Marmio64"
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
 
 /datum/donator_gear/manatee
 	name = "Peacekeeper Beret & Dogtags (Majesticmanateee)"
-	ckey = "Majesticmanateee"
 	unlock_path = /obj/item/storage/box/manatee
 
 /datum/donator_gear/Hisakaki
 	name = "Transdimensional halo (Hisakaki)"
-	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
 	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower (Skrem7)"
-	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
 
 /datum/donator_gear/alvcyktor
 	name = "Shark Hoodie (alvcyktor)"
-	ckey = "alvcyktor"
 	unlock_path = /obj/item/clothing/accessory/sharkhoodie
 
 /datum/donator_gear/isotope
 	name = "Dark Scientist Jumpsuit and Badass Lighter (Nightmare1243)"
-	ckey = "Nightmare1243"
 	unlock_path = /obj/item/storage/box/isotope
 
 /datum/donator_gear/cuackles
 	name = "punk jacket (cuackles)"
-	ckey = "cuackles"
 	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
 
 /datum/donator_gear/hisa
 	name = "Hunter Stash (hisakaki)"
-	ckey = "hisakaki"
 	unlock_path = /obj/item/storage/box/hisa
 
 /datum/donator_gear/slicerv
 	name = "axolotl plush"
-	ckey = "slicerv"
 	unlock_path = /obj/item/toy/plush/axolotlplushie
 
 /datum/donator_gear/cark
 	name = "Pride Bedsheet"
-	ckey = "cark"
 	unlock_path = /obj/item/bedsheet/pride
 
 	///Generic donator hats, ckey agnostic.
 /datum/donator_gear/dukeofsoleil
 	name = "Druid hat"
-	ckey = "dukeofsoleil"
 	unlock_path = /obj/item/clothing/head/Floralwizhat
 
 
 /datum/donator_gear/boxta
 	name = "Gold Trimmed Fedora & Falcon"
-	ckey = "boxta"
 	unlock_path = /obj/item/storage/box/boxta
 
 ///Generic donator hats, ckey agnostic.
@@ -599,13 +581,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 /datum/donator_gear/slicerv
 	name = "axolotl (slicerv)"
-	ckey = "slicerv"
 	unlock_path = /obj/item/toy/plush/axolotlplushie
 	plush = TRUE
 
 /datum/donator_gear/azeelium
 	name = "Utatul-Azeel (Anvilman6)"
-	ckey = "Anvilman6"
 	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
 	plush = TRUE
 

@@ -19,24 +19,6 @@
 
 	return values
 
-/datum/preference/choiced/donor_hat/compile_constant_data()
-	var/list/data = ..()
-
-	var/list/key_locked = list()
-
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot != SLOT_HEAD && !S.plush)
-			continue
-
-		if (!S.ckey)
-			continue
-
-		key_locked[S.name] = lowertext(S.ckey)
-
-	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
-
-	return data
-
 
 /datum/preference/choiced/donor_item
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -59,24 +41,6 @@
 
 	return values
 
-/datum/preference/choiced/donor_item/compile_constant_data()
-	var/list/data = ..()
-
-	var/list/key_locked = list()
-
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
-			continue
-
-		if (!S.ckey)
-			continue
-
-		key_locked[S.name] = lowertext(S.ckey)
-
-	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
-
-	return data
-
 
 /datum/preference/choiced/donor_plush
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -96,29 +60,6 @@
 			values += S.name
 
 	return values
-
-/datum/preference/choiced/donor_plush/compile_constant_data()
-	var/list/data = ..()
-
-	var/list/key_locked = list()
-
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
-			continue
-
-		if(!S.plush)
-			continue
-
-		if (!S.ckey)
-			continue
-
-		key_locked[S.name] = lowertext(S.ckey)
-
-	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
-
-	return data
-
-
 
 /datum/preference/toggle/borg_hat
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

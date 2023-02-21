@@ -14,9 +14,7 @@
 	var/datum/donator_gear/donor_hat_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_hat)]
 	if(donor_hat_datum)
 		var/donor_hat_type = donor_hat_datum.unlock_path
-		if (!!donor_hat_datum.ckey && (lowertext(C.ckey) != lowertext(donor_hat_datum.ckey)))
-			to_chat(C, span_warning("Your selected donor hat is restricted to [donor_hat_datum.ckey]."))
-		else if (donor_hat_type)
+		if (donor_hat_type)
 			var/obj/hat = new donor_hat_type()
 			if(!H.equip_to_appropriate_slot(hat))
 				var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
@@ -28,18 +26,14 @@
 		var/datum/donator_gear/donor_item_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_item)]
 		if (donor_item_datum)
 			var/donor_item_type = donor_item_datum.unlock_path
-			if (!!donor_item_datum.ckey && (lowertext(C.ckey) != lowertext(donor_item_datum.ckey)))
-				to_chat(C, span_warning("Your selected donor item is restricted to [donor_item_datum.ckey]."))
-			else if (donor_item_type)
+			if (donor_item_type)
 				var/obj/item = new donor_item_type()
 				if(!H.put_in_hands(item))
 					item.forceMove(BP)
 		var/datum/donator_gear/donor_plush_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_plush)]
 		if (donor_plush_datum)
 			var/donor_plush_type = donor_plush_datum.unlock_path
-			if (!!donor_plush_datum.ckey && (lowertext(C.ckey) != lowertext(donor_plush_datum.ckey)))
-				to_chat(C, span_warning("Your selected donor item is restricted to [donor_plush_datum.ckey]."))
-			else if (donor_plush_type)
+			if (donor_plush_type)
 				var/obj/item = new donor_plush_type()
 				if(!H.put_in_hands(item))
 					item.forceMove(BP)
