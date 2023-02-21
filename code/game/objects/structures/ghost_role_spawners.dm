@@ -31,7 +31,6 @@
 	return ..()
 
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
-
 /obj/effect/mob_spawn/human/ash_walker
 	name = "ash walker egg"
 	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
@@ -63,11 +62,13 @@
 	if(A)
 		notify_ghosts("[mob_name] egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
+//Ash walker shaman eggs: Spawns in ash walker dens in lavaland. Only one can exist at a time and have the sole purpose of keeping other ashwalkers alive.
 /obj/effect/mob_spawn/human/ash_walker/shaman
 	name = "ash walker shaman egg"
 	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
 	mob_name = "an ash walker shaman"
 	mob_species = /datum/species/lizard/ashwalker/shaman
+	outfit = /datum/outfit/ashwalker/shaman //might be OP, but the flavour is there
 	short_desc = "You are an ash walker. Your tribe worships the Necropolis."
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."

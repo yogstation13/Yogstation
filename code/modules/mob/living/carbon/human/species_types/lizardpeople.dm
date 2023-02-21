@@ -165,22 +165,28 @@
 /datum/species/lizard/ashwalker/shaman
 	name = "Ash Walker Shaman"
 	id = "ashlizardshaman"
-	brutemod = 1.05 //more of a support than a standard role
-	burnmod = 1.05
-	punchdamagehigh = 8
-	punchstunthreshold = 8
+	armor = -1 //more of a support than a standard ashwalker, don't get hit
+	brutemod = 1.1
+	burnmod = 1.1
+	speedmod = -0.1 //similar to ethereals, should help with saving others
+	punchdamagehigh = 7
+	punchstunthreshold = 7
+	action_speed_coefficient = 0.9 //they're smart and efficient unlike other lizards
 	var/obj/effect/proc_holder/spell/targeted/touch/healtouch/goodtouch
 
+//gives the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()	
 	goodtouch = new /obj/effect/proc_holder/spell/targeted/touch/healtouch
 	C.AddSpell(goodtouch)
 
+//removes the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	if(goodtouch)
 		C.RemoveSpell(goodtouch)
 
+//basic touch ability that heals brute and burn, only accessed by the ashwalker shaman
 /obj/effect/proc_holder/spell/targeted/touch/healtouch
 	name = "Healing touch"
 	desc = "This spell charges your hand with vile energy that can be used to violently explode victims with healing."
@@ -188,30 +194,30 @@
 
 	school = "evocation"
 	panel = "Ashwalker"
-	charge_max = 30 SECONDS
+	charge_max = 20 SECONDS
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 
 	action_icon_state = "spell_default"
 
 /obj/item/melee/touch_attack/healtouch
-	name = "\improper disintegrating touch"
+	name = "\improper healing touch"
 	desc = "This hand of mine glows with an awesome power!"
 	catchphrase = "BE HEALED!!"
 	on_use_sound = 'sound/magic/staff_healing.ogg'
 	icon_state = "touchofdeath" //ironic huh
 	item_state = "touchofdeath"
-	var/healamount = 20
+	var/healamount = 20 //total of 40 assuming they're hurt by both brute and burn
 
 /obj/item/melee/touch_attack/healtouch/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE)) //exploding after touching yourself would be bad
+	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE)) //no healing yourself
 		return
 	if(!user.can_speak_vocal())
 		to_chat(user, span_notice("You can't get the words out!"))
 		return
 	var/mob/living/M = target
-	new /obj/effect/temp_visual/heal(get_turf(M), "#375637")
-	M.heal_overall_damage(healamount, healamount, 0, BODYPART_ANY, TRUE)	
+	new /obj/effect/temp_visual/heal(get_turf(M), "#899d39")
+	M.heal_overall_damage(healamount, healamount, 0, BODYPART_ANY, TRUE) //notice it doesn't heal toxins, still need to learn chems for that
 	return ..()
 /*
  Lizard subspecies: DRACONIDS

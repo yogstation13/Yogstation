@@ -65,6 +65,7 @@
 	desc = "Rudimentary gloves that aid in carrying."
 	icon_state = "goligloves"
 	item_state = "goligloves"
+	can_be_cut = FALSE //no turning goliath gloves into fingerless gloves
 
 /obj/item/clothing/gloves/color/black/goliath/equipped(mob/user, slot)
 	..()
