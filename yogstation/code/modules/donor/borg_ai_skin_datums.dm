@@ -229,11 +229,6 @@
 	icon_state = "argus"
 	module_locked = "Engineering"
 
-/datum/borg_skin/butterfly
-	name = "Butterfly"
-	icon_state = "butterfly"
-	module_locked = "Engineering"
-
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
