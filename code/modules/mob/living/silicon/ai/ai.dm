@@ -288,7 +288,7 @@
 
 	if(is_donator(client))
 		for(var/datum/ai_skin/S in GLOB.DonorBorgHolder.skins)
-			if(S.owner == client.ckey || !S.owner) //We own this skin.
+			if(S.owner == client.ckey || !S.owner || !CONFIG_GET(flag/ckey_locked_donator_items)) //We own this skin.
 				iconstates[S] = image(icon = S.icon, icon_state = S.icon_state)
 
 

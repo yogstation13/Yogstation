@@ -15,7 +15,7 @@
 		for(var/T in GLOB.DonorBorgHolder.skins)
 			if(istype(T, /datum/borg_skin))
 				var/datum/borg_skin/S = T
-				if(S.owner == client.ckey || !S.owner) //We own this skin.
+				if(S.owner == client.ckey || !S.owner || !CONFIG_GET(flag/ckey_locked_donator_items)) //We own this skin.
 					if(!S.module_locked || S.module_locked == module.name)
 						skins[S] = image(icon = S.icon, icon_state = S.icon_state) //So add it to the temp list which we'll iterate through
 		var/datum/borg_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit

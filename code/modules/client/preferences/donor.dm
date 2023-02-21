@@ -24,14 +24,15 @@
 
 	var/list/key_locked = list()
 
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot != SLOT_HEAD && !S.plush)
-			continue
+	if(CONFIG_GET(flag/ckey_locked_donator_items))
+		for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
+			if(S.slot != SLOT_HEAD && !S.plush)
+				continue
 
-		if (!S.ckey)
-			continue
+			if (!S.ckey)
+				continue
 
-		key_locked[S.name] = lowertext(S.ckey)
+			key_locked[S.name] = lowertext(S.ckey)
 
 	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
 
@@ -64,14 +65,15 @@
 
 	var/list/key_locked = list()
 
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
-			continue
+	if(CONFIG_GET(flag/ckey_locked_donator_items))
+		for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
+			if(S.slot == SLOT_HEAD)
+				continue
 
-		if (!S.ckey)
-			continue
+			if (!S.ckey)
+				continue
 
-		key_locked[S.name] = lowertext(S.ckey)
+			key_locked[S.name] = lowertext(S.ckey)
 
 	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
 
@@ -102,17 +104,18 @@
 
 	var/list/key_locked = list()
 
-	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
-			continue
+	if(CONFIG_GET(flag/ckey_locked_donator_items))
+		for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
+			if(S.slot == SLOT_HEAD)
+				continue
 
-		if(!S.plush)
-			continue
+			if(!S.plush)
+				continue
 
-		if (!S.ckey)
-			continue
+			if (!S.ckey)
+				continue
 
-		key_locked[S.name] = lowertext(S.ckey)
+			key_locked[S.name] = lowertext(S.ckey)
 
 	data[CHOICED_PREFERENCE_KEY_LOCKED] = key_locked
 

@@ -432,3 +432,5 @@
 
 /datum/config_entry/number/max_shuttle_size
 	config_entry_value = 250
+
+/datum/config_entry/flag/ckey_locked_donator_items

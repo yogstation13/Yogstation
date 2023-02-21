@@ -452,3 +452,5 @@ MAX_SHUTTLE_SIZE 300
 ## Enable/disable roundstart station traits
 #STATION_TRAITS
 
+## Enable ckey-locked donator items (Donator items/skins can be locked to only be used by specified ckeys)
+#CKEY_LOCKED_DONATOR_ITEMS
