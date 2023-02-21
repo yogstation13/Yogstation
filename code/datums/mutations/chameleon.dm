@@ -44,5 +44,5 @@
 	locked = TRUE
 	efficiency = 50
 
-/datum/mutation/human/chameleon/proc/on_move() // Do not completely reveal us when we move
+/datum/mutation/human/chameleon/on_move() // Do not completely reveal us when we move
 	owner.alpha = clamp(owner.alpha + efficiency, CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY,CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY)
