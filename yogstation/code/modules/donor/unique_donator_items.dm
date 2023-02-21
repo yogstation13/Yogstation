@@ -77,10 +77,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Singularity Necklace (Mqiib)"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
-/datum/donator_gear/cowbot
-	name = "Singularity Wakizashi (Cowbot93)"
-	unlock_path = /obj/item/toy/katana/singulo_wakizashi
-
 /datum/donator_gear/marmio64
 	name = "Eldritch Cowl (Marmio64)"
 	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl

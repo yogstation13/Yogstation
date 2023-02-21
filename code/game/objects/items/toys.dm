@@ -397,17 +397,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-
-//singularity wakizashi
-/obj/item/toy/katana/singulo_wakizashi
-	name = "replica singularity wakizashi"
-	desc = "The power of the singularity condensed into one short, cheap, and fake wakizashi!"
-	icon_state = "singulo_wakizashi"
-	item_state = "singulo_wakizashi"
-	force = 0 //sorry, no
-	throwforce = 0
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 /*
  * Snap pops
  */
