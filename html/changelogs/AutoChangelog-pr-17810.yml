@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Preterni attack 0.1 second slower"
-  - tweak: "Preterni arms have 5 more health (40)"
-  - tweak: "Preterni legs have 5 less health (30)"
