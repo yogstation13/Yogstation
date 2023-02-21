@@ -54,7 +54,6 @@
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
 	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
 	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>") //yogs - removed a sentence
-
 	new_spawn.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
 /obj/effect/mob_spawn/human/ash_walker/Initialize(mapload, datum/team/ashwalkers/ashteam)
@@ -62,7 +61,17 @@
 	var/area/A = get_area(src)
 	team = ashteam
 	if(A)
-		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+		notify_ghosts("[mob_name] egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+
+/obj/effect/mob_spawn/human/ash_walker/shaman
+	name = "ash walker shaman egg"
+	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
+	mob_name = "an ash walker shaman"
+	mob_species = /datum/species/lizard/ashwalker/shaman
+	short_desc = "You are an ash walker. Your tribe worships the Necropolis."
+	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
+	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
+	assignedrole = "Ash Walker Shaman"
 
 /datum/outfit/ashwalker
 	name = "Ashwalker"
