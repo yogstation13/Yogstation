@@ -59,7 +59,7 @@
 	if(meat_counter >= ASH_WALKER_SPAWN_THRESHOLD)
 		//spawn a shaman if there isn't a living one, or an egg for one
 		var/shaman = FALSE
-		for(var/mob/living/mob/human/lizardfinder in GLOB.mob_living_list)
+		for(var/mob/living/carbon/human/lizardfinder in GLOB.mob_living_list)
 			if(is_species(lizardfinder, /datum/species/lizard/ashwalker/shaman))
 				shaman = TRUE //lizard found
 		if(!shaman)
