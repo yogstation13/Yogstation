@@ -161,6 +161,58 @@
 	. = ..()
 	C.weather_immunities -= "ash"
 
+//Ashwalker shaman, worse defensive stats, but better at surgery and have a healing touch ability
+/datum/species/lizard/ashwalker/shaman
+	name = "Ash Walker Shaman"
+	id = "ashlizardshaman"
+	brutemod = 1.05 //more of a support than a standard role
+	burnmod = 1.05
+	punchdamagehigh = 8
+	punchstunthreshold = 8
+	var/obj/effect/proc_holder/spell/targeted/touch/healtouch/goodtouch
+
+/datum/species/lizard/ashwalker/shaman/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()	
+	goodtouch = new /obj/effect/proc_holder/spell/targeted/touch/healtouch
+	C.AddSpell(goodtouch)
+
+/datum/species/lizard/ashwalker/shaman/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	if(goodtouch)
+		C.RemoveSpell(goodtouch)
+
+/obj/effect/proc_holder/spell/targeted/touch/healtouch
+	name = "Healing touch"
+	desc = "This spell charges your hand with vile energy that can be used to violently explode victims with healing."
+	hand_path = /obj/item/melee/touch_attack/healtouch
+
+	school = "evocation"
+	panel = "Ashwalker"
+	charge_max = 30 SECONDS
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+
+	action_icon_state = "spell_default"
+
+/obj/item/melee/touch_attack/healtouch
+	name = "\improper disintegrating touch"
+	desc = "This hand of mine glows with an awesome power!"
+	catchphrase = "BE HEALED!!"
+	on_use_sound = 'sound/magic/staff_healing.ogg'
+	icon_state = "touchofdeath" //ironic huh
+	item_state = "touchofdeath"
+	var/healamount = 20
+
+/obj/item/melee/touch_attack/healtouch/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE)) //exploding after touching yourself would be bad
+		return
+	if(!user.can_speak_vocal())
+		to_chat(user, span_notice("You can't get the words out!"))
+		return
+	var/mob/living/M = target
+	new /obj/effect/temp_visual/heal(get_turf(M), "#375637")
+	M.heal_overall_damage(healamount, healamount, 0, BODYPART_ANY, TRUE)	
+	return ..()
 /*
  Lizard subspecies: DRACONIDS
  These guys only come from the dragon's blood bottle from lavaland. They're basically just lizards with all-around marginally better stats and fire resistance.
