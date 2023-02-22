@@ -203,7 +203,6 @@
 	new /obj/item/clothing/head/custodianhelm(src)
 	new /obj/item/clothing/suit/custodianchest(src)
 
-/obj/item/bedsheets/pridebedsheet/cark
 /obj/item/bedsheet/pride
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
