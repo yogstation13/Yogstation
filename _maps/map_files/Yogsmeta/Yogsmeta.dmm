@@ -56041,6 +56041,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hJz" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/door/window/brigdoor/southleft{
+	name = "Filing Room";
+	req_access_txt = "77"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "hJW" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -76109,19 +76122,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/foyer)
-"uyY" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/door/window/brigdoor/southleft{
-	name = "Filing Room";
-	req_access_txt = "5"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "uzI" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -106281,7 +106281,7 @@ cCe
 qHu
 cCe
 auQ
-uyY
+hJz
 fQD
 cdG
 tXA
