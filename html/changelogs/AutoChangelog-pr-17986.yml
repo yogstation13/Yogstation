@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Jump boots button now shows its cooldown"
-  - tweak: "Jump boots now immobilize you for a very short time to ensure that you complete your entire jump"
