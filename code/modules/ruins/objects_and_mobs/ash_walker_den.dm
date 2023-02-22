@@ -63,9 +63,11 @@
 			if(is_species(lizardfinder, /datum/species/lizard/ashwalker/shaman))
 				shaman = FALSE //lizard found
 		if(shaman)
-			for(var/obj/eggy in GLOB.mob_spawners)//if an admin spawns in a shaman egg somewhere randomly, that will prevent any eggs from spawning normally
-				if(istype(eggy, /obj/effect/mob_spawn/human/ash_walker/shaman))
-					shaman = FALSE
+			for(var/spawners in GLOB.mob_spawners)//if an admin spawns in a shaman egg somewhere randomly, that will prevent any eggs from spawning normally
+				for(var/egg in GLOB.mob_spawners[spawners])
+					if(istype(egg, /obj/effect/mob_spawn/human/ash_walker/shaman))
+						shaman = FALSE
+						break
 
 		if(shaman)//is a shaman being spawned?
 			new /obj/effect/mob_spawn/human/ash_walker/shaman(get_step(loc, pick(GLOB.alldirs)), ashies)
