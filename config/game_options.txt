@@ -301,7 +301,7 @@ DEFAULT_ANTAG_TICKETS 100
 MAX_TICKETS_PER_ROLL 100
 
 ## The antag-rep multiplier bonus for escaping alive on Central Command at the end of a round
-ESCAPED_ALIVE_BONUS 2
+ESCAPED_ALIVE_BONUS 1.5
 
 ## The antag-rep multiplier bonus for being alive (and not escaping to CC) at the end of a round
 STAYED_ALIVE_BONUS 1.5
