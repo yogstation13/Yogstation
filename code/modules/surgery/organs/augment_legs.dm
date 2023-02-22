@@ -182,7 +182,7 @@
 	name = "Jumpboots implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
 	implant_type = "jumpboots"
-	var/datum/action/innate/boost/implant_ability
+	var/datum/action/cooldown/boost/implant_ability
 	
 /obj/item/organ/cyberimp/leg/jumpboots/l
 	zone = BODY_ZONE_L_LEG
@@ -197,39 +197,32 @@
 	if(implant_ability)
 		implant_ability.Remove(owner)
 
-/datum/action/innate/boost//legally distinct dash ability
+/datum/action/cooldown/boost//legally distinct dash ability
 	name = "Dash"
 	desc = "Dash forward."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-	COOLDOWN_DECLARE(dash_cooldown)
-	var/cooldownlength = 6 SECONDS
+	cooldown_time = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
 	var/mob/living/carbon/human/holder
 
-/datum/action/innate/boost/Grant(mob/user)
+/datum/action/cooldown/boost/Grant(mob/user)
 	. = ..()
 	holder = user
 
-/datum/action/innate/boost/IsAvailable()
-	if(COOLDOWN_FINISHED(src, dash_cooldown))
-		return ..()
-	else
-		to_chat(holder, span_warning("The implant's internal propulsion needs to recharge still!"))
-		return FALSE
-
-/datum/action/innate/boost/Activate()
-	if(!IsAvailable())
-		return FALSE
+/datum/action/cooldown/boost/Trigger()
+	. = ..()
+	if(!.)
+		return
 
 	var/atom/target = get_edge_target_turf(holder, holder.dir) //gets the user's direction
 
 	if (holder.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+		holder.Immobilize(0.1 SECONDS)
 		playsound(holder, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 		holder.visible_message(span_warning("[usr] dashes forward into the air!"))
-		COOLDOWN_START(src, dash_cooldown, cooldownlength)
 	else
 		to_chat(holder, span_warning("Something prevents you from dashing forward!"))
 
@@ -290,7 +283,7 @@
 	desc = "An implant that uses propulsion technology to keep you above the ground and let you move faster."
 	syndicate_implant = TRUE
 	implant_type = "airshoes"
-	var/datum/action/innate/boost/implant_dash
+	var/datum/action/cooldown/boost/implant_dash
 	var/datum/action/innate/airshoes/implant_scooter
 	
 /obj/item/organ/cyberimp/leg/airshoes/l
