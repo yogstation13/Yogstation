@@ -21040,6 +21040,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"kDR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "kEd" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -25491,14 +25500,6 @@
 /obj/item/twohanded/required/pool/rubber_ring,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"mEu" = (
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "mFc" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Tech Storage";
@@ -31580,6 +31581,20 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pRI" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -30
+	},
+/obj/machinery/bounty_packager,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "pRL" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -31691,19 +31706,6 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
-"pUp" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Quartermaster's Desk";
-	departmentType = 2;
-	pixel_x = -32
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "pUA" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -32915,6 +32917,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"qxp" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/machinery/computer/bounty{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "qxA" = (
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
@@ -35449,6 +35461,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rJj" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -32
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "rJw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -36380,15 +36405,6 @@
 "sjP" = (
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"sjX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "slm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
@@ -38222,6 +38238,14 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"tdO" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "ted" = (
 /obj/machinery/light{
 	dir = 4
@@ -39228,16 +39252,6 @@
 	},
 /turf/open/floor/plating,
 /area/library)
-"tJh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/obj/machinery/computer/bounty{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "tJI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -47092,20 +47106,6 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
-"xBR" = (
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/machinery/light,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -30
-	},
-/obj/machinery/bounty_packager,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "CUBES"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "xCs" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -74161,7 +74161,7 @@ pQR
 xZY
 bUS
 usS
-pUp
+rJj
 pQR
 gTy
 dNz
@@ -76730,7 +76730,7 @@ pRg
 bPi
 msR
 fWC
-mEu
+tdO
 dby
 gtb
 fDV
@@ -76986,8 +76986,8 @@ nEQ
 maX
 fDA
 fkR
-tJh
-xBR
+qxp
+pRI
 laH
 fDA
 aPG
@@ -77243,8 +77243,8 @@ ewA
 fbN
 uwH
 jHK
-sjX
-mEu
+kDR
+tdO
 dby
 dTN
 jHK
