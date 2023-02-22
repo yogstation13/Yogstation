@@ -4,6 +4,10 @@
 	var/reward = 1000 // In credits.
 	var/claimed = FALSE
 	var/high_priority = FALSE
+	var/datum/bank_account/account
+
+/datum/bounty/New(datum/bank_account/account)
+	src.account = account
 
 // Displayed on bounty UI screen.
 /datum/bounty/proc/completion_string()
@@ -47,7 +51,7 @@
 	reward = round(reward * scale_reward)
 
 // Returns a new bounty of random type, but does not add it to GLOB.bounties_list.
-/proc/random_bounty(guided = FALSE)
+/proc/random_bounty(guided = FALSE, datum/bank_account/account)
 	var/bounty_type
 	if(!guided || guided == CIV_JOB_RANDOM)
 		bounty_type = rand(1,13)
@@ -56,51 +60,42 @@
 	else
 		bounty_type = guided
 
+	var/subtype
 	switch(bounty_type)
 		if(CIV_JOB_BASIC)
-			var/subtype = pick(subtypesof(/datum/bounty/item/assistant))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/assistant))
 		if(CIV_JOB_ROBO)
-			var/subtype = pick(subtypesof(/datum/bounty/item/mech))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/mech))
 		if(CIV_JOB_CHEF)
-			var/subtype = pick(subtypesof(/datum/bounty/item/chef))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/chef))
 		if(CIV_JOB_SEC)
-			var/subtype = pick(subtypesof(/datum/bounty/item/security))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/security))
 		if(CIV_JOB_DRINK)
 			if(rand(2) == 1)
-				return new /datum/bounty/reagent/simple_drink
-			return new /datum/bounty/reagent/complex_drink
+				subtype = /datum/bounty/reagent/simple_drink
+			else
+				subtype = /datum/bounty/reagent/complex_drink
 		if(CIV_JOB_CHEM)
 			if(rand(2) == 1)
-				return new /datum/bounty/reagent/chemical_simple
-			return new /datum/bounty/reagent/chemical_complex
+				subtype = /datum/bounty/reagent/chemical_simple
+			else
+				subtype = /datum/bounty/reagent/chemical_complex
 		if(CIV_JOB_VIRO)
-			var/subtype = pick(subtypesof(/datum/bounty/virus))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/virus))
 		if(CIV_JOB_SCI)
-			var/subtype = pick(subtypesof(/datum/bounty/item/science))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/science))
 		if(CIV_JOB_XENO)
-			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/slime))
 		if(CIV_JOB_MINE)
-			var/subtype
-			if(rand(2)) == 1)
+			if(rand(2) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/mining))
 			else
 				subtype = pick(subtypesof(/datum/bounty/item/gems))
-			return new subtype
 		if(CIV_JOB_MED)
-			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/medical))
 		if(CIV_JOB_GROW)
-			var/subtype = pick(subtypesof(/datum/bounty/item/botany))
-			return new subtype
+			subtype = pick(subtypesof(/datum/bounty/item/botany))
 		if(CIV_JOB_ATMO)
-			var/subtype
 			switch(rand(3))
 				if(1)
 					subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
@@ -108,5 +103,6 @@
 					subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
 				if(3)
 					subtype = pick(subtypesof(/datum/bounty/item/h2metal))
-			return new subtype
+
+	return new subtype(account)
 

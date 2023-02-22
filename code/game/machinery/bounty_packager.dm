@@ -36,7 +36,7 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 		if(!selected_bounty.can_claim())
 			return
 		var/obj/item/bounty_cube/cube = new(drop_location())
-		cube.set_up(selected_bounty, linked_console.ID)
+		cube.set_up(selected_bounty)
 		selected_bounty.claim()
 		selected_bounty = null
 
@@ -136,15 +136,15 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 		nag_cooldown = nag_cooldown * nag_cooldown_multiplier
 		COOLDOWN_START(src, next_nag_time, nag_cooldown)
 
-/obj/item/bounty_cube/proc/set_up(datum/bounty/my_bounty, obj/item/card/id/holder_id)
+/obj/item/bounty_cube/proc/set_up(datum/bounty/my_bounty)
 	bounty_value = my_bounty.reward
 	bounty_name = my_bounty.name
-	bounty_holder = holder_id.registered_name
-	bounty_holder_job = holder_id.assignment
-	bounty_holder_account = holder_id.registered_account
+	bounty_holder = my_bounty.account.account_holder
+	bounty_holder_job = my_bounty.account.account_job
+	bounty_holder_account = my_bounty.account
 	name = "\improper [bounty_value] cr [name]"
 	desc += " The sales tag indicates it contains <i>[bounty_holder] ([bounty_holder_job])</i>'s <i>[bounty_name]</i> bounty."
-	AddComponent(/datum/component/pricetag, holder_id.registered_account, holder_cut)
+	AddComponent(/datum/component/pricetag, bounty_holder_account, holder_cut)
 	START_PROCESSING(SSobj, src)
 	COOLDOWN_START(src, next_nag_time, nag_cooldown)
 	radio.talk_into(src,"Created in [get_area(src)] by [bounty_holder] ([bounty_holder_job]). Speedy delivery bonus lost in [time2text(next_nag_time - world.time,"mm:ss")].", RADIO_CHANNEL_SUPPLY)
