@@ -66,8 +66,7 @@
 
 /obj/item/twohanded/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!wielded)
-		to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
-		user.drop_all_held_items()
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
 		return	
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	if(!C)
@@ -84,8 +83,7 @@
 /obj/item/twohanded/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
 	if(!wielded)
-		to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
-		user.drop_all_held_items()
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
 		return	
 	if(!proximity_flag && charged)//Mark a target, or mine a tile.
 		var/turf/proj_turf = user.loc

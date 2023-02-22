@@ -111,6 +111,8 @@
 			//chance to actually hit the eyes depends on internal component
 			if(prob(effectchance * diode.rating) && C.flash_act(severity))
 				outmsg = span_notice("You blind [C] by shining [src] in [C.p_their()] eyes.")
+				for(var/datum/brain_trauma/trauma in C.get_traumas())
+					trauma.on_shine_laser(user, C)
 			else
 				outmsg = span_warning("You fail to blind [C] by shining [src] at [C.p_their()] eyes!")
 
