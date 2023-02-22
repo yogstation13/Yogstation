@@ -136,24 +136,18 @@
 	var/datum/objective/objective // Object not typepath
 	var/difficulty = 0
 	var/tc = 0
-	var/admin_msg = FALSE
-	// Steal objectives initialized later
-	var/list/easy_objectives = list(
-		new /datum/objective/download, // Download research nodes
-		new /datum/objective/minor/pet, // Kill a pet
-	)
-	var/list/med_objectives = list(
-		new /datum/objective/assassinate/once, // Kill someone once
-	)
-	var/list/hard_objectives = list(
-		new /datum/objective/destroy, // Kill AI
-	)
+	var/list/easy_objectives
+	var/list/med_objectives
+	var/list/hard_objectives
+	var/iteration = 1
+	var/max_iterations = 3 // Can only do 3 folder objectives
 
-/obj/item/folder/objective/Initialize(mapload, _user, _obj, _diff)
+/obj/item/folder/objective/Initialize(mapload, _user, _iteration, _obj, _diff)
 	. = ..()
 
-	init_steal_objs()
+	init_potential_objs()
 
+	iteration = _iteration
 	difficulty = _diff ? _diff : rand(1,3)
 	tc = clamp(difficulty * 2 + rand(-1,1), 2, 10)
 	forge_objective(_obj)
@@ -181,8 +175,18 @@
 	if(_user)
 		to_chat(_user, span_notice("<b>Your objective has been curated.</b> You will find it as a [folder_color] folder in [get_area_name(src, TRUE)]."))
 
-/// Initialize steal objectives based on difficulty
-/obj/item/folder/objective/proc/init_steal_objs()
+/// Initialize objectives based on difficulty
+/obj/item/folder/objective/proc/init_potential_objs()
+	easy_objectives = list(
+		new /datum/objective/download, // Download research nodes
+		new /datum/objective/minor/pet, // Kill a pet
+	)
+	med_objectives = list(
+		new /datum/objective/assassinate/once, // Kill someone once
+	)
+	hard_objectives = list(
+		new /datum/objective/destroy, // Kill AI
+	)
 	for(var/I in subtypesof(/datum/objective_item/steal))
 		var/datum/objective/steal/newsteal = new /datum/objective/steal
 		var/datum/objective_item/steal/S = new I
@@ -221,7 +225,7 @@
 			
 			objective = pick(potential_objectives)
 			
-			// i hate objective code so much WHO WROTE THIS????
+			// i hate objective code so much
 			if(!istype(objective, /datum/objective/steal)) 
 				objective.find_target()
 			
@@ -264,7 +268,6 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		// Open UI
-		admin_msg = FALSE
 		ui = new(user, src, "FolderObjective")
 		ui.open()
 
@@ -273,7 +276,6 @@
 	.["tc"] = tc || "0"
 	.["difficulty"] = list("EASY", "MEDIUM", "HARD")[difficulty]
 	.["objective_text"] = objective?.explanation_text
-	.["admin_msg"] = admin_msg
 
 /obj/item/folder/objective/ui_act(action, list/params)
 	. = ..()
@@ -282,26 +284,55 @@
 	switch(action)
 		if("check_done")
 			if(objective.check_completion())
-				to_chat(usr, span_notice("<b>NOTICE: OBJECTIVE COMPLETE.</b> GOOD WORK AGENT. DISPENSING REWARD. MAKE SURE THE OBJECTIVE STAYS COMPLETED OR WE WILL HURT YOU."))
+				to_chat(usr, span_notice("<b>NOTICE: OBJECTIVE COMPLETE.</b> GOOD WORK AGENT. DISPENSING REWARD."))
+				iteration += 1
+				if(iteration >= max_iterations)
+					to_chat(usr, span_notice("<b>NOTICE: NO FURTHER OBJECTIVES AVAILABLE.</b>"))
+				else
+					gen_new(usr, iteration)
 				to_chat(usr, "\The [src] suddenly transforms into [tc] telecrystal[tc == 1 ? "" : "s"]!")
 				usr.playsound_local(loc, 'sound/machines/ping.ogg', 20, 0)
 				var/obj/item/stack/telecrystal/reward = new /obj/item/stack/telecrystal
 				reward.amount = tc
 				dropped(usr, TRUE)
 				usr.put_in_hands(reward)
-				if(usr.mind?.has_antag_datum(/datum/antagonist/traitor))
-					var/datum/antagonist/traitor/T = usr.mind.has_antag_datum(/datum/antagonist/traitor)
-					T.add_objective(objective) // Keep the objective done or you will redtext
+				if(usr.mind?.has_antag_datum(/datum/antagonist/brother))
+					var/datum/antagonist/brother/brother_datum = usr.mind.has_antag_datum(/datum/antagonist/brother)
+					brother_datum.team?.add_objective(objective) // Keep the objective done or you will redtext
 				qdel(src)
-				return TRUE
-			else if(istype(objective, /datum/objective/custom))
-				admin_msg = TRUE
-				message_admins("[ADMIN_LOOKUPFLW(usr)] has requested an admin objective be checked for completion (<b>[objective.explanation_text]</b>). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_accept=[REF(src)];requester=[REF(usr)]'>MARK COMPLETED</A>) (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_deny=[REF(src)];requester=[REF(usr)]'>MARK INCOMPLETE</A>)")
-				to_chat(usr, span_danger("<b>NOTICE: SENT OBJECTIVE STATUS TO COMMAND FOR REVIEW.</b>"))
 				return TRUE
 			else
 				to_chat(usr, span_danger("<b>ERR: OBJECTIVE NOT COMPLETE</b>"))
 				usr.playsound_local(loc, 'sound/machines/buzz-two.ogg', 20, 0)
 				return TRUE
 
-			
+/obj/item/folder/objective/proc/gen_new(mob/user, _iteration)
+	set waitfor = FALSE
+
+	var/turf/open/floor/F
+	var/can_see = TRUE
+	var/see_loops = 0 // infinite loop protection
+
+	var/list/areas_to_search = GLOB.the_station_areas.Copy()
+
+	// Filter out areas that clockies can't warp to, we don't want any super hard-to-reach places
+	for(var/area/verify_area in areas_to_search)
+		if(verify_area.clockwork_warp_allowed)
+			continue
+		areas_to_search -= verify_area
+
+	while(can_see && see_loops < 40)
+		F = get_safe_random_station_turf(areas_to_search)
+
+		if(!istype(F))
+			see_loops++
+			continue
+
+		can_see = FALSE
+		for(var/mob/living/M in view(13, F))
+			if(M.client)
+				can_see = TRUE
+				break
+		see_loops++
+
+	return new /obj/item/folder/objective(F, user, _iteration)

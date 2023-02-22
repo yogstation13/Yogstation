@@ -31,6 +31,25 @@
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
 	W.on_reading_finished(owner.current)
 	qdel(W)
+	owner.equip_traitor(uplink_owner = src, starting_tc = 0)
+
+	if(!iscarbon(owner.current))
+		return
+	var/mob/living/carbon/brother_to_equip = owner.current
+
+	var/list/slots = list(
+		"backpack" = SLOT_IN_BACKPACK,
+		"left pocket" = SLOT_L_STORE,
+		"right pocket" = SLOT_R_STORE
+	)
+	var/obj_folder = new /obj/item/folder/objective
+	var/where = brother_to_equip.equip_in_one_of_slots(obj_folder, slots)
+	if(!where)
+		to_chat(brother_to_equip, span_userdanger("Unfortunately, you weren't able to get a [obj_folder]. This is very bad and you should adminhelp immediately (press F1)."))
+	else
+		to_chat(brother_to_equip, span_danger("You have a [obj_folder] in your [where] that contains an objective. Complete this objective and you will receive a reward of telecrystals."))
+		if(where == "backpack")
+			SEND_SIGNAL(brother_to_equip.back, COMSIG_TRY_STORAGE_SHOW, brother_to_equip)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner
@@ -183,15 +202,34 @@
 	parts += span_header("The blood brothers of [name] were:")
 	for(var/datum/mind/M in members)
 		parts += printplayer(M)
+	
+	// Spending report
+	var/purchases = ""
+	var/TC_uses = 0
+	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
+	for(var/datum/mind/I in members)
+		var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[I.key]
+		if(H)
+			TC_uses += H.total_spent
+			purchases += H.generate_render(show_key = FALSE)
+	
 	var/win = TRUE
 	var/objective_count = 1
+	var/objectives_text = ""
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+			objectives_text += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+			objectives_text += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
 			win = FALSE
 		objective_count++
+
+	parts += "(used [TC_uses] TC) [purchases]"
+	if(TC_uses == 0 && win)
+		parts += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
+
+	parts += objectives_text
+
 	if(win)
 		parts += span_greentext("The blood brothers were successful!")
 	else

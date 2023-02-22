@@ -530,6 +530,7 @@
 
 /obj/item/book/granter/crafting_recipe
 	var/list/crafting_recipe_types = list()
+	var/spam = TRUE
 
 /obj/item/book/granter/crafting_recipe/on_reading_finished(mob/user)
 	. = ..()
@@ -538,7 +539,8 @@
 	for(var/crafting_recipe_type in crafting_recipe_types)
 		var/datum/crafting_recipe/R = crafting_recipe_type
 		user.mind.teach_crafting_recipe(crafting_recipe_type)
-		to_chat(user,span_notice("You learned how to make [initial(R.name)]."))
+		if(spam)
+			to_chat(user,span_notice("You learned how to make [initial(R.name)]."))
 
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
@@ -546,6 +548,7 @@
 	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
 	icon_state = "bookCrafting"
 	oneuse = TRUE
+	spam = FALSE // lot of fucking things
 
 /obj/item/book/granter/crafting_recipe/roburgers
 	name = "roburger crafting recipe"

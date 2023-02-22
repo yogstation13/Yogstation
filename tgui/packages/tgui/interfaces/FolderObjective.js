@@ -23,12 +23,6 @@ export const FolderObjective = (props, context) => {
             <LabeledList.Item label="OBJECTIVE">{objective_text}</LabeledList.Item>
           </LabeledList>
         </Section>
-        {admin_msg ? (
-          <NoticeBox info textAlign="center">
-            Your objective status is being reviewed by command.
-            Please try again later.
-          </NoticeBox>
-        ) : ""}
         <Button
           fluid
           content="Check Completion"

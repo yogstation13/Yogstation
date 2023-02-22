@@ -293,7 +293,7 @@
 	remove_rev()
 	SSticker.mode.update_cult_icons_removed(src)
 
-/datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
+/datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!current)
 		return
 	var/mob/living/carbon/human/traitor_mob = current
@@ -349,7 +349,7 @@
 	
 	if(!implant)
 		. = uplink_loc
-		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
+		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key, TRUE, FALSE, null, starting_tc)
 		if(!U)
 			CRASH("Uplink creation failed.")
 		U.setup_unlock_code()
