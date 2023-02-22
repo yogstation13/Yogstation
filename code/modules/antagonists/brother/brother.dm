@@ -47,7 +47,7 @@
 	if(!where)
 		to_chat(brother_to_equip, span_userdanger("Unfortunately, you weren't able to get a [obj_folder]. This is very bad and you should adminhelp immediately (press F1)."))
 	else
-		to_chat(brother_to_equip, span_danger("You have a [obj_folder] in your [where] that contains an objective. Complete this objective and you will receive a reward of telecrystals."))
+		to_chat(brother_to_equip, span_danger("You have \a [obj_folder] in your [where] that contains an objective. Complete this objective and you will receive a reward of telecrystals."))
 		if(where == "backpack")
 			SEND_SIGNAL(brother_to_equip.back, COMSIG_TRY_STORAGE_SHOW, brother_to_equip)
 
