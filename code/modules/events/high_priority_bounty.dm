@@ -23,7 +23,7 @@
 	priority_announce("Central Command has issued a high-priority cargo bounty to [account.account_holder]. Details have been sent to all bounty consoles.", "Nanotrasen Bounty Program")
 
 /datum/round_event/high_priority_bounty/start()
-	var/datum/bounty/B = random_bounty()
+	var/datum/bounty/B = random_bounty(CIV_JOB_RANDOM, account)
 	if(!B)
 		return
 	B.mark_high_priority(3)

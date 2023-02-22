@@ -77,7 +77,7 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	///Who completed the bounty.
 	var/bounty_holder
 	///What job the bounty holder had.
-	var/bounty_holder_job
+	var/datum/job/bounty_holder_job
 	///What the bounty was for.
 	var/bounty_name
 	///Bank account of the person who completed the bounty.
@@ -143,11 +143,11 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 	bounty_holder_job = my_bounty.account.account_job
 	bounty_holder_account = my_bounty.account
 	name = "\improper [bounty_value] cr [name]"
-	desc += " The sales tag indicates it contains <i>[bounty_holder] ([bounty_holder_job])</i>'s <i>[bounty_name]</i> bounty."
+	desc += " The sales tag indicates it contains <i>[bounty_holder] ([bounty_holder_job.title])</i>'s <i>[bounty_name]</i> bounty."
 	AddComponent(/datum/component/pricetag, bounty_holder_account, holder_cut)
 	START_PROCESSING(SSobj, src)
 	COOLDOWN_START(src, next_nag_time, nag_cooldown)
-	radio.talk_into(src,"Created in [get_area(src)] by [bounty_holder] ([bounty_holder_job]). Speedy delivery bonus lost in [time2text(next_nag_time - world.time,"mm:ss")].", RADIO_CHANNEL_SUPPLY)
+	radio.talk_into(src,"Created in [get_area(src)] by [bounty_holder] ([bounty_holder_job.title]). Speedy delivery bonus lost in [time2text(next_nag_time - world.time,"mm:ss")].", RADIO_CHANNEL_SUPPLY)
 
 /obj/item/bounty_cube/debug_cube
 	name = "debug bounty cube"
@@ -164,7 +164,7 @@ GLOBAL_DATUM(bounty_packager, /obj/machinery/bounty_packager)
 		var/mob/living/squeezer = user
 		var/obj/item/card/id/id = squeezer.get_idcard()
 		if(id?.registered_account)
-			set_up(random_bounty(), id)
+			set_up(random_bounty(CIV_JOB_RANDOM, id.registered_account), id)
 			set_up = TRUE
 			return ..()
 		to_chat(user, span_notice("It can't detect your bank account."))

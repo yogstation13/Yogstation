@@ -125,9 +125,9 @@
 	if(!account_job.bounty_types)
 		return "Job not eligible for bounties"
 
-	bounties = list(random_bounty(account_job.bounty_types), // Two from your job
-					random_bounty(account_job.bounty_types),
-					random_bounty(CIV_JOB_BASIC))            // One from assistant
+	bounties = list(random_bounty(account_job.bounty_types, src), // Two from your job
+					random_bounty(account_job.bounty_types, src),
+					random_bounty(CIV_JOB_BASIC, src))            // One from assistant
 	COOLDOWN_START(src, bounty_timer, 5 MINUTES)
 	return TRUE
 

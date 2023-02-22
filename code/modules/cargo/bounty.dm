@@ -51,7 +51,7 @@
 	reward = round(reward * scale_reward)
 
 // Returns a new bounty of random type, but does not add it to GLOB.bounties_list.
-/proc/random_bounty(guided = FALSE, datum/bank_account/account)
+/proc/random_bounty(guided, datum/bank_account/account)
 	var/bounty_type
 	if(!guided || guided == CIV_JOB_RANDOM)
 		bounty_type = rand(1,13)
