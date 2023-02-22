@@ -40,7 +40,7 @@
 
 	smells_like = "welding fuel"
 	
-	bounty_types = CIV_JOB_ATMO
+	bounty_types = CIV_JOB_ATMOS
 
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 

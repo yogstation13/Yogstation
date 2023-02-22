@@ -5,18 +5,18 @@
 	weight = 20
 	earliest_start = 10
 
-/datum/round_event
+/datum/round_event/high_priority_bounty
 	var/datum/bank_account/account
 
 /datum/round_event/high_priority_bounty/setup()
 	var/list/datum/bank_account/candidates
 
 	for(var/account_code as anything in SSeconomy.bank_accounts)
-		var/datum/bank_account/B = SSeconomy.bank_accounts[account_code]
-		if(!B) continue
-		if(!B.bounties) continue
-		if(B.bounties.len > 0)
-			candidates += B
+		var/datum/bank_account/bank_account = SSeconomy.bank_accounts[account_code]
+		if(!bank_account) continue
+		if(!bank_account.bounties) continue
+		if(bank_account.bounties.len > 0)
+			candidates += bank_account
 	
 	account = pick(candidates)
 
@@ -24,10 +24,10 @@
 	priority_announce("Central Command has issued a high-priority cargo bounty to [account.account_holder]. Details have been sent to all bounty consoles.", "Nanotrasen Bounty Program")
 
 /datum/round_event/high_priority_bounty/start()
-	var/datum/bounty/B = random_bounty(CIV_JOB_RANDOM, account)
-	if(!B)
+	var/datum/bounty/bounty = random_bounty(CIV_JOB_RANDOM, account)
+	if(!bounty)
 		return
-	B.mark_high_priority(3)
-	account.bounties += B
+	bounty.mark_high_priority(3)
+	account.bounties += bounty
 
 

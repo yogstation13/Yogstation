@@ -37,7 +37,7 @@
 
 	smells_like = "a gas leak"
 
-	bounty_types = CIV_JOB_ATMO
+	bounty_types = CIV_JOB_ATMOS
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"

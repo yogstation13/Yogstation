@@ -20,15 +20,17 @@
 /datum/bounty/proc/can_claim()
 	return !claimed
 
-// Called when the claim button is clicked. Override to provide fancy rewards.
-/datum/bounty/proc/claim(mob/user)
+// Called when the bounty cube is created
+/datum/bounty/proc/claim()
 	if(can_claim())
-		// var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-		// if(D)
-		// 	D.adjust_money(reward * SSeconomy.bounty_modifier)
-		// 	D.bounties_claimed += 1
-		// 	if(D.bounties_claimed == 10)
-		// 		SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
+		account.bounties_claimed += 1
+		if(account.bounties_claimed == 10)
+			//So we currently only know what is *supposed* to be the real_name of the client's mob. If we can find them, we can get them this achievement.
+			for(var/x in GLOB.player_list)
+				var/mob/M = x
+				if(M.real_name == account.account_holder)
+					SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, M.client)
+					//break would result in the possibility of this being given to changeling who has duplicated the shipper, and not to the actual shipper.
 		claimed = TRUE
 
 // If an item sent in the cargo shuttle can satisfy the bounty.
@@ -54,7 +56,7 @@
 /proc/random_bounty(guided, datum/bank_account/account)
 	var/bounty_type
 	if(!guided || guided == CIV_JOB_RANDOM)
-		bounty_type = rand(1,13)
+		bounty_type = rand(1, CIV_JOB_RANDOM - 1)
 	else if(islist(guided))
 		bounty_type = pick(guided)
 	else
@@ -71,12 +73,12 @@
 		if(CIV_JOB_SEC)
 			subtype = pick(subtypesof(/datum/bounty/item/security))
 		if(CIV_JOB_DRINK)
-			if(rand(2) == 1)
+			if(rand(1) == 1)
 				subtype = /datum/bounty/reagent/simple_drink
 			else
 				subtype = /datum/bounty/reagent/complex_drink
 		if(CIV_JOB_CHEM)
-			if(rand(2) == 1)
+			if(rand(1) == 1)
 				subtype = /datum/bounty/reagent/chemical_simple
 			else
 				subtype = /datum/bounty/reagent/chemical_complex
@@ -87,7 +89,7 @@
 		if(CIV_JOB_XENO)
 			subtype = pick(subtypesof(/datum/bounty/item/slime))
 		if(CIV_JOB_MINE)
-			if(rand(2) == 1)
+			if(rand(1) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/mining))
 			else
 				subtype = pick(subtypesof(/datum/bounty/item/gems))
@@ -95,13 +97,13 @@
 			subtype = pick(subtypesof(/datum/bounty/item/medical))
 		if(CIV_JOB_GROW)
 			subtype = pick(subtypesof(/datum/bounty/item/botany))
-		if(CIV_JOB_ATMO)
-			switch(rand(3))
-				if(1)
+		if(CIV_JOB_ATMOS)
+			switch(rand(2))
+				if(0)
 					subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
-				if(2)
+				if(1)
 					subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
-				if(3)
+				if(2)
 					subtype = pick(subtypesof(/datum/bounty/item/h2metal))
 
 	return new subtype(account)

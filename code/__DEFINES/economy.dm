@@ -55,5 +55,5 @@
 #define CIV_JOB_MINE 10
 #define CIV_JOB_MED 11
 #define CIV_JOB_GROW 12
-#define CIV_JOB_ATMO 13
-#define CIV_JOB_RANDOM 14
+#define CIV_JOB_ATMOS 13
+#define CIV_JOB_RANDOM 14 // Must be the last index

@@ -30,7 +30,7 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_ENG
 
-	bounty_types = CIV_JOB_ATMO
+	bounty_types = CIV_JOB_ATMOS
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
