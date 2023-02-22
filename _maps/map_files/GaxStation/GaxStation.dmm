@@ -8166,12 +8166,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"eeG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "eeV" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -11098,15 +11092,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"fsY" = (
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/machinery/light,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "ftr" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics)
@@ -11191,7 +11176,7 @@
 "fwr" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -13282,7 +13267,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 4;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -16300,7 +16285,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -16561,7 +16546,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -17073,7 +17058,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -19410,13 +19395,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"jGo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "jGV" = (
 /obj/structure/fireaxecabinet/bridge{
 	pixel_x = 32
@@ -22909,7 +22887,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -23799,21 +23777,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"lQU" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
-	},
-/obj/machinery/computer/bounty{
-	dir = 1
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Quartermaster's Desk";
-	departmentType = 2;
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "lRg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -25528,6 +25491,14 @@
 /obj/item/twohanded/required/pool/rubber_ring,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"mEu" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "mFc" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Tech Storage";
@@ -29532,15 +29503,6 @@
 	},
 /turf/open/floor/carpet/exoticblue,
 /area/bridge/meeting_room)
-"oJl" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 1
-	},
-/obj/machinery/computer/bounty{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "oJy" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -31729,6 +31691,19 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"pUp" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -32
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "pUA" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -36405,6 +36380,15 @@
 "sjP" = (
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
+"sjX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "slm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
@@ -39244,6 +39228,16 @@
 	},
 /turf/open/floor/plating,
 /area/library)
+"tJh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/machinery/computer/bounty{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "tJI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -40858,7 +40852,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -45272,7 +45266,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -47098,6 +47092,20 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"xBR" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -30
+	},
+/obj/machinery/bounty_packager,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "xCs" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -74153,7 +74161,7 @@ pQR
 xZY
 bUS
 usS
-lQU
+pUp
 pQR
 gTy
 dNz
@@ -76722,7 +76730,7 @@ pRg
 bPi
 msR
 fWC
-jaW
+mEu
 dby
 gtb
 fDV
@@ -76978,8 +76986,8 @@ nEQ
 maX
 fDA
 fkR
-jGo
-fsY
+tJh
+xBR
 laH
 fDA
 aPG
@@ -77235,11 +77243,11 @@ ewA
 fbN
 uwH
 jHK
-eeG
-jaW
+sjX
+mEu
 dby
 dTN
-oJl
+jHK
 nFF
 iLn
 laH

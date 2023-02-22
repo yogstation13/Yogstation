@@ -621,12 +621,6 @@
 /mob/living/simple_animal/cockroach,
 /turf/open/floor/engine,
 /area/maintenance/starboard/fore)
-"aff" = (
-/obj/machinery/computer/security/qm{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "afg" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -7177,7 +7171,7 @@
 "bpg" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -10328,6 +10322,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"ctQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/bounty_packager,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "ctX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -13313,6 +13318,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port)
+"dxD" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "dxM" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -15732,18 +15747,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"epr" = (
-/obj/machinery/computer/cargo{
-	dir = 1
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Quartermaster's Desk";
-	departmentType = 2;
-	pixel_y = -33
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "epy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -15888,7 +15891,7 @@
 /area/space/nearstation)
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -18468,6 +18471,12 @@
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"flp" = (
+/obj/machinery/computer/cargo{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "flq" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/ai_monitored/turret_protected/ai_upload";
@@ -19092,13 +19101,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"fxN" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "fxW" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -26366,13 +26368,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"hTi" = (
-/obj/machinery/computer/bounty{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "hTw" = (
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -27395,16 +27390,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"imY" = (
-/obj/structure/table,
-/obj/item/folder/yellow,
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -29
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "ina" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27526,6 +27511,14 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
+"ipW" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "iqf" = (
@@ -27652,7 +27645,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -28247,6 +28240,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"iDS" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_y = -33
+	},
+/obj/machinery/computer/security/qm{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "iDZ" = (
 /turf/open/floor/plasteel/white,
 /area/security/physician)
@@ -30039,7 +30044,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -30058,16 +30063,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"jit" = (
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/structure/bed/dogbed{
-	desc = "Autumn's Bed! Looks comfy.";
-	name = "Autumn's Bed"
-	},
-/obj/item/toy/figure/cargotech,
-/mob/living/simple_animal/pet/fox/fennec/Autumn,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "jiu" = (
 /obj/structure/rack,
 /obj/item/coin/silver,
@@ -36780,14 +36775,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/fore)
-"lJd" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "lJg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -39468,6 +39455,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"mBd" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "mBt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -41980,7 +41977,7 @@
 /area/medical/medbay/central)
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -45153,6 +45150,10 @@
 	},
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai_upload)
+"ouG" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "ouT" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -51623,6 +51624,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"qxR" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/obj/structure/bed/dogbed{
+	desc = "Autumn's Bed! Looks comfy.";
+	name = "Autumn's Bed"
+	},
+/obj/item/toy/figure/cargotech,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "qxT" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56036,6 +56051,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"rSJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/computer/bounty{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "rSW" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -57013,6 +57043,21 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"shq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "CUBES"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "sht" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/structure/closet/radiation,
@@ -59284,7 +59329,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -60906,20 +60951,13 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
-"txw" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "txF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -61426,7 +61464,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -61809,12 +61847,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/tcoms)
-"tQh" = (
-/obj/machinery/computer/bounty{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "tQj" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -67038,7 +67070,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -69971,7 +70003,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -74142,6 +74174,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"ydo" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/item/folder/yellow,
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "ydp" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/firealarm{
@@ -91143,7 +91181,7 @@ ijO
 xJY
 aqZ
 aqZ
-jit
+vPP
 aLm
 sYq
 xgD
@@ -91400,7 +91438,7 @@ tBR
 xJY
 aqZ
 aqZ
-imY
+qxR
 aDE
 hIo
 xgD
@@ -91657,7 +91695,7 @@ jBN
 xJY
 aqZ
 aqZ
-hTi
+ydo
 aDE
 oLg
 wox
@@ -91904,7 +91942,7 @@ aZG
 sZm
 qbl
 rfi
-txw
+ipW
 uCb
 lNW
 ykA
@@ -92161,8 +92199,8 @@ iOa
 oMS
 qbl
 rfi
-lJd
-uCb
+mBd
+shq
 mMN
 ata
 kgu
@@ -92418,8 +92456,8 @@ aZG
 sZm
 qbl
 rfi
-txw
-uCb
+ctQ
+rSJ
 aqZ
 veG
 xxI
@@ -92675,7 +92713,7 @@ iul
 sZm
 qbl
 rfi
-fxN
+dxD
 pXP
 cUM
 rZw
@@ -92947,7 +92985,7 @@ eHk
 tCy
 gds
 gds
-tQh
+flp
 apO
 acb
 acb
@@ -93204,7 +93242,7 @@ tmv
 eDE
 jis
 crm
-epr
+iDS
 apO
 acb
 acb
@@ -93461,7 +93499,7 @@ qCM
 gAX
 agZ
 miN
-aff
+ouG
 apO
 acb
 acb
