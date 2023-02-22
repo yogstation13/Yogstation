@@ -36,7 +36,7 @@ export const CargoBountyConsole = (props, context) => {
             </Flex>
           ) || ""}
           {!has_id && is_packager && (
-            "Insert your ID to continue"
+            "No ID Detected"
           ) || ""}
           {!has_id && !is_packager && (
             "ERROR: NO LINK TO PACKAGER"
