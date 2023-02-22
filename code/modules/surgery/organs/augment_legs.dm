@@ -197,7 +197,8 @@
 	if(implant_ability)
 		implant_ability.Remove(owner)
 
-/datum/action/cooldown/boost//legally distinct dash ability
+//surf_ss13
+/datum/action/cooldown/boost
 	name = "Dash"
 	desc = "Dash forward."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
@@ -207,6 +208,13 @@
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
 	var/mob/living/carbon/human/holder
+
+/datum/action/cooldown/boost/link_to(target)
+	..()
+	if(target && isitem(target)) // Imitate an item_action
+		var/obj/item/I = target
+		LAZYINITLIST(I.actions)
+		I.actions += src
 
 /datum/action/cooldown/boost/Grant(mob/user)
 	. = ..()
@@ -220,6 +228,7 @@
 	var/atom/target = get_edge_target_turf(holder, holder.dir) //gets the user's direction
 
 	if (holder.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+		StartCooldown()
 		holder.Immobilize(0.1 SECONDS)
 		playsound(holder, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 		holder.visible_message(span_warning("[usr] dashes forward into the air!"))

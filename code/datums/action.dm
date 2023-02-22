@@ -768,12 +768,6 @@
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
-//surf_ss13
-/datum/action/item_action/bhop
-	name = "Activate Jump Boots"
-	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
 
 /datum/action/item_action/dash
 	name = "Dash"
