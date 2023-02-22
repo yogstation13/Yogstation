@@ -740,3 +740,11 @@
 /obj/item/storage/box/beanbag/syndie_darts/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/dart/hidden(src)
+
+/obj/item/storage/box/syndie_kit/buster
+	real_name = "Buster kit"
+
+/obj/item/storage/box/syndie_kit/buster/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_containers/food/snacks/monkeycube(src)
+	new /obj/item/bodypart/l_arm/robot/buster(src)

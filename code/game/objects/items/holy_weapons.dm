@@ -526,7 +526,7 @@
 
 /obj/item/nullrod/scythe/vibro
 	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "hfrequency0"
+	icon_state = "hfrequency0_ext"
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'

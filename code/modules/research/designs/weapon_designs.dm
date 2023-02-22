@@ -397,6 +397,16 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/vib_blade
+	name = "Vibration Blade"
+	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	id = "vib_blade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/silver = 2500, /datum/material/gold = 1000)
+	build_path = /obj/item/melee/transforming/vib_blade
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/mindflayer
 	name = "Mind Flayer"
 	desc = "A compact weapon made to destroy the brain."

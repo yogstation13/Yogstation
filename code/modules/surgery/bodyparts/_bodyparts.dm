@@ -382,6 +382,12 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
+	
+	// If we have an open surgery site here, wound more easily
+	for(var/datum/surgery/S in owner.surgeries)
+		if(S.operated_bodypart == src)
+			damage *= 1.25
+			break
 
 	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
 	var/injury_roll = base_roll
@@ -557,7 +563,7 @@
 		set_disabled(TRUE)
 		return
 
-	var/total_damage = max(brute_dam + burn_dam, stamina_dam)
+	var/total_damage = HAS_TRAIT(owner, TRAIT_STUNIMMUNE) ? (brute_dam + burn_dam) : max(brute_dam + burn_dam, stamina_dam)
 
 	// this block of checks is for limbs that can be disabled, but not through pure damage (AKA limbs that suffer wounds, human/monkey parts and such)
 	if(!disable_threshold)

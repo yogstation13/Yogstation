@@ -424,3 +424,48 @@
 	to_chat(user, span_notice("HONK"))
 	qdel(offering)
 	return
+
+///////////// Sect of the Holy Light /////////////
+/datum/religion_sect/holylight
+	name = "Holy Light"
+	desc = "A sect dedicated to healing."
+	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
+	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
+	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
+	altar_icon_state = "convertaltar-heal"
+	COOLDOWN_DECLARE(last_heal)
+
+/datum/religion_sect/holylight/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.GetAllContents())
+		da_bible.success_heal_chance = 80
+
+/datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return FALSE
+	
+	if(!L.client)
+		return FALSE
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
+	var/mob/living/carbon/human/H = L
+	var/heal_amt = 20
+	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ANY)
+	if(hurt_limbs.len)
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		var/amount_healed = 0
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			amount_healed += (heal_amt * 2) + min(affecting.brute_dam - heal_amt, 0) + min(affecting.burn_dam - heal_amt, 0)
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ANY))
+				H.update_damage_overlays()
+		adjust_favor(amount_healed, user)
+		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		return TRUE
+	return FALSE
