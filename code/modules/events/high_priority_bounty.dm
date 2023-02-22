@@ -11,7 +11,8 @@
 /datum/round_event/high_priority_bounty/setup()
 	var/list/datum/bank_account/candidates
 
-	for(var/datum/bank_account/B as anything in SSeconomy.bank_accounts)
+	for(var/account_code as anything in SSeconomy.bank_accounts)
+		var/datum/bank_account/B = SSeconomy.bank_accounts[account_code]
 		if(!B) continue
 		if(!B.bounties) continue
 		if(B.bounties.len > 0)
