@@ -677,11 +677,9 @@
 
 /obj/item/storage/belt/grenade/full/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/grenade/flashbang = 1,
-		/obj/item/grenade/smokebomb = 4,
 		/obj/item/grenade/empgrenade = 1,
 		/obj/item/grenade/empgrenade = 1,
-		/obj/item/grenade/syndieminibomb/concussion/frag = 10,
+		/obj/item/grenade/syndieminibomb/concussion/frag = 12,
 		/obj/item/grenade/gluon = 4,
 		/obj/item/grenade/chem_grenade/incendiary = 2,
 		/obj/item/grenade/chem_grenade/facid = 1,
