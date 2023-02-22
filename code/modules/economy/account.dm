@@ -118,7 +118,7 @@
 /// Generates bounties for account, returns error string if failed
 /datum/bank_account/proc/generate_bounties()
 	if(bounties && !COOLDOWN_FINISHED(src, bounty_timer))
-		return "Unable to issue new bounties, try again in [time2text(COOLDOWN_TIMELEFT(src, bounty_timer),"mm:ss")] minutes"
+		return "Unable to issue new bounties, try again in [time2text(COOLDOWN_TIMELEFT(src, bounty_timer),"mm:ss")]"
 	if(!account_job)
 		return "Account has no associated job"
 	if(!account_job.bounty_types)
