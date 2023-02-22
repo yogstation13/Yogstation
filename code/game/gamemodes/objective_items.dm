@@ -27,13 +27,13 @@
 	return ..()
 
 /datum/objective_item/steal/caplaser
-	name = "the captain's antique laser gun."
+	name = "the Captain's antique laser gun."
 	targetitem = /obj/item/gun/energy/laser/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/hoslaser
-	name = "the head of security's personal laser gun."
+	name = "the Head of Security's personal laser gun."
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
 	excludefromjob = list("Head Of Security")
@@ -51,7 +51,7 @@
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/magboots
-	name = "the chief engineer's advanced magnetic boots."
+	name = "the Chief Engineer's advanced magnetic boots."
 	targetitem =  /obj/item/clothing/shoes/magboots/advance
 	difficulty = 5
 	excludefromjob = list("Chief Engineer")
@@ -63,8 +63,8 @@
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/hypo
-	name = "the hypospray."
-	targetitem = /obj/item/reagent_containers/hypospray/CMO
+	name = "the Chief Medical Officer's hypospray deluxe."
+	targetitem = /obj/item/hypospray/deluxe/cmo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer")
 
@@ -84,7 +84,7 @@
 	excludefromjob = list("Head of Security", "Warden")
 
 /datum/objective_item/steal/reactive
-	name = "the reactive teleport armor."
+	name = "the Research Director's reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
 	difficulty = 5
 	excludefromjob = list("Research Director")
@@ -158,7 +158,7 @@
 	return 0
 
 /datum/objective_item/steal/blueprints
-	name = "the station blueprints."
+	name = "the Chief Engineer's station blueprints."
 	targetitem = /obj/item/areaeditor/blueprints
 	difficulty = 10
 	excludefromjob = list("Chief Engineer")
@@ -188,7 +188,7 @@
 	name = "the telecommunications blackbox."
 	targetitem = /obj/item/blackbox
 	difficulty = 10
-	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Network Admin")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red
@@ -214,7 +214,7 @@
 
 //Old ninja objectives.
 /datum/objective_item/special/pinpointer/nuke
-	name = "the captain's pinpointer."
+	name = "the Captain's pinpointer."
 	targetitem = /obj/item/pinpointer
 	difficulty = 10
 
@@ -229,7 +229,7 @@
 	difficulty = 10
 
 /datum/objective_item/special/boh
-	name = "a bag of holding."
+	name = "the Research Director's bag of holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Aquizit Jan '23
 	targetitem = /obj/item/storage/backpack/holding
 	difficulty = 10
 

@@ -2,6 +2,11 @@ GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwis
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
+/client/verb/ooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "OOC \"text\"") as null|text
+	ooc(message)
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -38,12 +43,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	//yogs start -- smarter ick ock detection
-	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
-	//captures a lot of accidental in character speech in ooc chat
-	if(length(msg) > 4 && ickock.Find(msg))
-	//yogs end
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
+		if(tgui_alert(usr,"Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
@@ -68,8 +69,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/keyname = key
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
-			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
-	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
+			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
 
 	//PINGS
@@ -100,18 +100,19 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
 		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
-			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
+			var/ooc_color = prefs.read_preference(/datum/preference/color/ooc_color)
+			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color) ? "<font color=[ooc_color]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
 
 		if(holder.fakekey) // If they're stealhminning
-			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
-			oocmsg = span_ooc("<font color='[bussedcolor]'>[span_prefix("OOC:")] <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></font>")
+			oocmsg = span_ooc("<font color='[bussedcolor]'>[span_prefix("OOC:")] <EM>[holder.fakekey]:</EM> <span class='message'>[msg]</span></font>")
 			// ^ Message sent to normal people
 		else
-			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
+			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
 			oocmsg_toadmins = oocmsg
 	else
 		if(is_mentor()) // If the speaker is a mentor
@@ -119,17 +120,17 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			mposition = src.mentor_datum?.position
 			oocmsg = "<span class='ooc'>\["
 			oocmsg += "[mposition]"
-			oocmsg += "]<font color='[prefs.ooccolor]'>"
+			oocmsg += "]<font color='[prefs.read_preference(/datum/preference/color/ooc_color)]'>"
 		else
 			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
 			oocmsg += "<font color='[bussedcolor]'>"
-		oocmsg += "[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
+		oocmsg += "[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
 
 	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
-		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
+		if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
 			var/sentmsg // The message we're sending to this specific person
 			if(C.holder) // If they're an admin-ish
 				sentmsg = oocmsg_toadmins // Get the admin one
@@ -175,41 +176,24 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Misc"
-	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
+	set category = "Server"
+	GLOB.OOC_COLOR = sanitize_color(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Misc"
+	set category = "Server"
+	if(IsAdminAdvancedProcCall())
+		return
+	if(tgui_alert(usr, "Are you sure you want to reset the OOC color of all players?", "Reset Player OOC Color", list("Yes", "No")) != "Yes")
+		return
+	if(!check_rights(R_FUN))
+		message_admins("[usr.key] has attempted to use the Reset Player OOC Color verb!")
+		log_admin("[key_name(usr)] tried to reset player ooc color without authorization.")
+		return
+	message_admins("[key_name_admin(usr)] has reset the players' ooc color.")
+	log_admin("[key_name_admin(usr)] has reset player ooc color.")
 	GLOB.OOC_COLOR = null
-
-/client/verb/colorooc()
-	set name = "Set Your OOC Color"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-	var/new_ooccolor = input(src, "Please select your OOC color.", "OOC color", prefs.ooccolor) as color|null
-	if(new_ooccolor)
-		prefs.ooccolor = sanitize_ooccolor(new_ooccolor)
-		prefs.save_preferences()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set OOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/verb/resetcolorooc()
-	set name = "Reset Your OOC Color"
-	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-		prefs.ooccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
 
 //Checks admin notice
 /client/verb/admin_notice()

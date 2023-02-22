@@ -24,12 +24,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ag" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -97,12 +91,6 @@
 "ay" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aA" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aB" = (
@@ -463,6 +451,10 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"dt" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -570,15 +562,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"oC" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "pw" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/radio/intercom{
@@ -718,11 +701,30 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"zh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Af" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Ai" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ak" = (
 /obj/machinery/light,
 /obj/machinery/firealarm{
@@ -901,6 +903,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"PG" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "PU" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -1309,7 +1320,7 @@ PU
 ag
 "}
 (15,1,1) = {"
-af
+Ai
 aB
 aJ
 bf
@@ -1326,7 +1337,7 @@ ag
 "}
 (16,1,1) = {"
 ag
-aA
+PG
 aK
 ag
 ag
@@ -1381,7 +1392,7 @@ bq
 al
 bN
 bn
-oC
+zh
 tl
 ce
 ce
@@ -1398,7 +1409,7 @@ bc
 be
 br
 Kc
-tl
+dt
 cI
 ce
 BB

@@ -18,7 +18,7 @@
 	name = "radiant dance machine mark IV"
 	desc = "The first three prototypes were discontinued after mass casualty incidents."
 	icon_state = "disco"
-	req_access = list(ACCESS_BAR)
+	req_access = null
 	anchored = FALSE
 	var/list/spotlights = list()
 	var/list/sparkles = list()
@@ -29,6 +29,9 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/jukebox/disco/bar
+	req_access = list(ACCESS_BAR)
 
 /datum/track
 	var/song_name = "generic"
@@ -173,6 +176,17 @@
 	active = TRUE
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	var/sound/song_played = sound(selection.song_path)
+	var/list/close = range(10,src)
+	for(var/mob/L in GLOB.player_list)
+		if(!L || !L.client)
+			continue
+		// it doesn't send at 0 volume so you get 0.001 volume on init
+		L.playsound_local(get_turf(L), null, 0.001, channel = CHANNEL_JUKEBOX, S = song_played)
+		if(L in close && L.client.prefs.toggles & SOUND_JUKEBOX)
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
+		else
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	stop = world.time + selection.song_length
 
 /obj/machinery/jukebox/disco/activate_music()
@@ -184,60 +198,28 @@
 	var/turf/cen = get_turf(src)
 	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_RED
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
 		if(t.x == cen.x && t.y < cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_PURPLE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_PURPLE)
 			continue
 		if(t.x > cen.x && t.y == cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_YELLOW
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_YELLOW)
 			continue
 		if(t.x < cen.x && t.y == cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_GREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_GREEN)
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_ORANGE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_ORANGE)
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_CYAN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_CYAN)
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUEGREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_BLUEGREEN)
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_BLUE)
 			continue
 		continue
 	FOR_DVIEW_END
@@ -245,7 +227,7 @@
 /obj/machinery/jukebox/disco/proc/hierofunk()
 	for(var/i in 1 to 10)
 		spawn_atom_to_turf(/obj/effect/temp_visual/hierophant/telegraph/edge, src, 1, FALSE)
-		sleep(5)
+		sleep(0.5 SECONDS)
 
 #define DISCO_INFENO_RANGE (rand(85, 115)*0.01)
 
@@ -266,64 +248,83 @@
 			if(25)
 				S.pixel_y = 7
 				S.forceMove(get_turf(src))
-		sleep(7)
+		sleep(0.7 SECONDS)
 	if(selection.song_name == "Engineering's Ultimate High-Energy Hustle")
-		sleep(280)
-	for(var/obj/reveal in sparkles)
+		sleep(28 SECONDS)
+	for(var/s in sparkles)
+		var/obj/effect/overlay/sparkles/reveal = s
 		reveal.alpha = 255
 	while(active)
-		for(var/obj/item/flashlight/spotlight/glow in spotlights) // The multiples reflects custom adjustments to each colors after dozens of tests
-			if(QDELETED(src) || !active || QDELETED(glow))
+		for(var/g in spotlights) // The multiples reflects custom adjustments to each colors after dozens of tests
+			var/obj/item/flashlight/spotlight/glow = g
+			if(QDELETED(glow))
+				stack_trace("[glow?.gc_destroyed ? "Qdeleting glow" : "null entry"] found in [src].[gc_destroyed ? " Source qdeleting at the time." : ""]")
 				return
-			if(glow.light_color == LIGHT_COLOR_RED)
-				glow.light_color = LIGHT_COLOR_BLUE
-				glow.light_power = glow.light_power * 1.48
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_BLUE)
-				glow.light_color = LIGHT_COLOR_GREEN
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.light_power = glow.light_power * 2 // Any changes to power must come in pairs to neutralize it for other colors
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_GREEN)
-				glow.light_color = LIGHT_COLOR_ORANGE
-				glow.light_power = glow.light_power * 0.5
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_ORANGE)
-				glow.light_color = LIGHT_COLOR_PURPLE
-				glow.light_power = glow.light_power * 2.27
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_PURPLE)
-				glow.light_color = LIGHT_COLOR_BLUEGREEN
-				glow.light_power = glow.light_power * 0.44
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_BLUEGREEN)
-				glow.light_color = LIGHT_COLOR_YELLOW
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_YELLOW)
-				glow.light_color = LIGHT_COLOR_CYAN
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_CYAN)
-				glow.light_color = LIGHT_COLOR_RED
-				glow.light_power = glow.light_power * 0.68
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
+			switch(glow.light_color)
+				if(LIGHT_COLOR_RED)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_BLUE)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 1.48, LIGHT_COLOR_BLUE)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_BLUE)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 2, LIGHT_COLOR_GREEN)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_GREEN)
+				if(LIGHT_COLOR_GREEN)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_ORANGE)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.5, LIGHT_COLOR_ORANGE)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_ORANGE)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 2.27, LIGHT_COLOR_PURPLE)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_PURPLE)
+				if(LIGHT_COLOR_PURPLE)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_BLUEGREEN)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.44, LIGHT_COLOR_BLUEGREEN)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_BLUEGREEN)
+					if(glow.even_cycle)
+						glow.set_light_range(glow.base_light_range * DISCO_INFENO_RANGE)
+						glow.set_light_color(LIGHT_COLOR_YELLOW)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_YELLOW)
+				if(LIGHT_COLOR_YELLOW)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_CYAN)
+					else
+						glow.set_light_range(glow.base_light_range * DISCO_INFENO_RANGE)
+						glow.set_light_color(LIGHT_COLOR_CYAN)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_CYAN)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.68, LIGHT_COLOR_RED)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_RED)
+			glow.even_cycle = !glow.even_cycle
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
 			INVOKE_ASYNC(src, .proc/hierofunk)
 		sleep(selection.song_beat)
+		if(QDELETED(src))
+			return
 
 #undef DISCO_INFENO_RANGE
 
@@ -340,7 +341,7 @@
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
 		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
-		sleep(20)
+		sleep(2 SECONDS)
 
 /mob/proc/dance_flip()
 	if(dir == WEST)
@@ -355,46 +356,46 @@
 			if (1 to 15)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(0,1)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (16 to 30)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(1,-1)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (31 to 45)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(-1,-1)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (46 to 60)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(-1,1)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (61 to 75)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(1,0)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 		M.setDir(turn(M.dir, 90))
 		switch (M.dir)
 			if (NORTH)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(0,3)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (SOUTH)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(0,-3)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (EAST)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(3,0)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (WEST)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(-3,0)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
-		sleep(1)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
+		sleep(0.1 SECONDS)
 	M.lying_fix()
 
 /obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
-	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
+	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)
 		if (!M)
@@ -402,38 +403,38 @@
 		if (i<31)
 			initial_matrix = matrix(M.transform)
 			initial_matrix.Translate(0,1)
-			animate(M, transform = initial_matrix, time = 1, loop = 0)
+			animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 		if (i>30)
 			initial_matrix = matrix(M.transform)
 			initial_matrix.Translate(0,-1)
-			animate(M, transform = initial_matrix, time = 1, loop = 0)
+			animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 		M.setDir(turn(M.dir, 90))
 		switch (M.dir)
 			if (NORTH)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(0,3)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (SOUTH)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(0,-3)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (EAST)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(3,0)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
 			if (WEST)
 				initial_matrix = matrix(M.transform)
 				initial_matrix.Translate(-3,0)
-				animate(M, transform = initial_matrix, time = 1, loop = 0)
-		sleep(1)
+				animate(M, transform = initial_matrix, time = 0.1 SECONDS, loop = 0)
+		sleep(0.1 SECONDS)
 	M.lying_fix()
 
 /mob/living/proc/lying_fix()
-	animate(src, transform = null, time = 1, loop = 0)
+	animate(src, transform = null, time = 0.1 SECONDS, loop = 0)
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
+	for(var/mob/L in GLOB.player_list)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
@@ -446,20 +447,18 @@
 
 /obj/machinery/jukebox/process()
 	if(world.time < stop && active)
-		var/sound/song_played = sound(selection.song_path)
-
 		for(var/mob/M in range(10,src))
 			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 				continue
 			if(!(M in rangers))
 				rangers[M] = TRUE
-				M.playsound_local(get_turf(M), null, volume, channel = CHANNEL_JUKEBOX, S = song_played)
+			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // We want volume updated without having to walk away!!
 		for(var/mob/L in rangers)
 			if(get_dist(src,L) > 10)
 				rangers -= L
 				if(!L || !L.client)
 					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
+				L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	else if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)

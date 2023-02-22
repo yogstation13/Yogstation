@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
+	cryo_preserve = TRUE
 	var/flush = FALSE
 	var/mob/living/silicon/ai/AI
 
@@ -84,7 +85,7 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = alert("Are you sure you want to wipe this card's memory?", name, "Yes", "No")
+				var/confirm = tgui_alert(usr, "Are you sure you want to wipe this card's memory?", name, list("Yes", "No"))
 				if(confirm == "Yes" && !..())
 					flush = TRUE
 					if(AI && AI.loc == src)
@@ -92,7 +93,7 @@
 						while(AI.stat != DEAD && flush)
 							AI.adjustOxyLoss(1)
 							AI.updatehealth()
-							sleep(5)
+							sleep(0.5 SECONDS)
 						flush = FALSE
 			. = TRUE
 		if("wireless")

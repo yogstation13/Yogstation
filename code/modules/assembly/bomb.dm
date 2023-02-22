@@ -57,9 +57,6 @@
 		return TRUE
 
 
-/obj/item/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
-	bombtank.analyzer_act(user, I)
-
 /obj/item/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, TRUE)
 	add_fingerprint(user)
@@ -68,7 +65,7 @@
 /obj/item/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
 	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
 	playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
-	sleep(10)
+	sleep(1 SECONDS)
 	if(QDELETED(src))
 		return
 	if(status)
@@ -198,3 +195,9 @@
 		return
 	T.assume_air(removed)
 	air_update_turf()
+
+/obj/item/onetankbomb/return_analyzable_air()
+	if(bombtank)
+		return bombtank.return_analyzable_air()
+	else
+		return null

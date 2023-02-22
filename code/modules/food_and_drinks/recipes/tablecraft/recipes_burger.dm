@@ -54,7 +54,7 @@
 /datum/crafting_recipe/food/blueburger
 	name = "Blue Burger"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak/plain = 1,
+		/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 		/obj/item/toy/crayon/blue = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)
@@ -149,7 +149,7 @@
 /datum/crafting_recipe/food/baseballburger
 	name = "Home Run Baseball Burger"
 	reqs = list(
-			/obj/item/melee/baseball_bat = 1,
+			/obj/item/twohanded/required/baseball_bat = 1,
 			/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/baseball
@@ -313,4 +313,15 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotdog
 	subcategory = CAT_BURGER
-	
+
+/datum/crafting_recipe/food/roburger
+	name = "Roburger"
+	reqs = list(
+		/obj/item/bodypart/head/robot = 1,
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/stack/cable_coil = 10,
+	)
+	result = /obj/item/reagent_containers/food/snacks/burger/roburger
+	subcategory = CAT_MISCFOOD
+	always_available = FALSE
+

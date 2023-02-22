@@ -65,7 +65,7 @@
 		return
 	to_chat(user, span_notice("You struggle to disable the hydraulics..."))
 	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-	if(do_after(user, 2 SECONDS SECONDS, target = src))
+	if(do_after(user, 20 SECONDS, src))
 		remove(user)
 
 /obj/structure/deployed_brace/proc/remove(mob/user = null)

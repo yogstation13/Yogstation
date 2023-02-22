@@ -10,10 +10,14 @@
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
-	var/damage = 0		//total damage this organ has sustained
+	///total damage this organ has sustained
+	var/damage = 0
+	///how functional this organ is, higher numbers = stronger lower = garbage, scales multiplicitively with health (50% health = *50% efficiency)
+	var/organ_efficiency = 1
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
+	var/life_tick	 	= 0
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -26,12 +30,18 @@
 	var/high_threshold_cleared
 	var/low_threshold_cleared
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	///Do we effect the appearance of our mob. Used to save time in preference code
+	var/visual = TRUE
+
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
+	if(special_zone)
+		zone = special_zone
+
 	var/obj/item/organ/replaced = M.getorganslot(slot)
-	if(replaced)
+	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))
@@ -77,7 +87,8 @@
 		var/mob/living/carbon/C = owner
 		if(!C)
 			return
-		if(C.stat == DEAD && !(IS_IN_STASIS(C) || HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)))
+		life_tick++
+		if(C.stat == DEAD && !HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS))
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth
@@ -102,7 +113,6 @@
 			damage = max(0, damage - ((maxHealth * healing_factor) * (C.satiety / MAX_SATIETY) * 4))
 		check_damage_thresholds(C)
 		prev_damage = damage
-	return
 
 /** check_damage_thresholds
   * input: M (a mob, the owner of the organ we call the proc on)
@@ -168,6 +178,14 @@
 	START_PROCESSING(SSobj, src)
 	return ..()
 
+///Used as callbacks by object pooling
+/obj/item/organ/proc/exit_wardrobe()
+	START_PROCESSING(SSobj, src)
+
+//See above
+/obj/item/organ/proc/enter_wardrobe()
+	STOP_PROCESSING(SSobj, src)
+
 /obj/item/organ/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(owner)
@@ -191,6 +209,10 @@
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
+///returns an organ's efficiency, a percent value (rounded to the 10s) based on damage that is multiplied by organ_efficiency
+/obj/item/organ/proc/get_organ_efficiency()
+	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * 1-(damage/maxHealth), 0.1)
+
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
 /obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
 	if(maximum < d + damage)
@@ -204,6 +226,20 @@
 		organ_flags |= ORGAN_FAILING
 	else
 		organ_flags &= ~ORGAN_FAILING
+
+
+/** get_availability
+ * returns whether the species should innately have this organ.
+ *
+ * regenerate organs works with generic organs, so we need to get whether it can accept certain organs just by what this returns.
+ * This is set to return true or false, depending on if a species has a trait that would nulify the purpose of the organ.
+ * For example, lungs won't be given if you have NO_BREATH, stomachs check for NO_HUNGER, and livers check for NO_METABOLISM.
+ * If you want a carbon to have a trait that normally blocks an organ but still want the organ. Attach the trait to the organ using the organ_traits var
+ * Arguments:
+ * owner_species - species, needed to return whether the species has an organ specific trait
+ */
+/obj/item/organ/proc/get_availability(datum/species/owner_species)
+	return TRUE
 
 //Looking for brains?
 //Try code/modules/mob/living/carbon/brain/brain_item.dm

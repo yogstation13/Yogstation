@@ -19,7 +19,7 @@
 	else
 		var/values = list(
 			"player_ckey" = player_ckey,
-			"must_apply_to_admins" = !!(GLOB.admin_datums[player_ckey] || GLOB.deadmins[player_ckey]),
+			"must_apply_to_admins" = !!(GLOB.permissions.admin_datums[player_ckey] || GLOB.permissions.deadmins[player_ckey]),
 		)
 		var/sql_roles
 		if(islist(roles))
@@ -52,8 +52,33 @@
 //checks DB ban table if a ckey, ip and/or cid is banned from a specific role
 //returns an associative nested list of each matching row's ban id, bantime, ban round id, expiration time, ban duration, applies to admins, reason, key, ip, cid and banning admin's key in that order
 /proc/is_banned_from_with_details(player_ckey, player_ip, player_cid, role)
+	var/datum/DBQuery/query_get_bypass_creds = SSdbcore.NewQuery({"
+		SELECT
+			computerid,
+			INET_NTOA(ip)
+		FROM [format_table_name("bound_credentials")]
+		WHERE
+			ckey = :ckey AND 
+			FIND_IN_SET('bypass_bans', [format_table_name("bound_credentials")].flags) 
+	"}, list("ckey" = player_ckey));
+	if(!query_get_bypass_creds.warn_execute())
+		qdel(query_get_bypass_creds)
+		return
+
+	while(query_get_bypass_creds.NextRow())
+		var/bound_cid = query_get_bypass_creds.item[1]
+		var/bound_ip = query_get_bypass_creds.item[2]
+
+		//If we bypass, set the thing to null so that we can not check it
+		if(bound_cid == player_cid)
+			player_cid = null
+		if(bound_ip == player_ip)
+			player_ip = null
+	qdel(query_get_bypass_creds)
+
 	if(!player_ckey && !player_ip && !player_cid)
 		return
+
 	var/datum/DBQuery/query_check_ban = SSdbcore.NewQuery({"
 		SELECT
 			id,
@@ -88,7 +113,7 @@
 	if(C && istype(C))
 		C.ban_cache = list()
 		var/is_admin = FALSE
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		var/datum/DBQuery/query_build_ban_cache = SSdbcore.NewQuery(
 			"SELECT [format_table_name("ban")].role, applies_to_admins FROM [format_table_name("ban")] WHERE ckey = :ckey AND unbanned_datetime IS NULL AND (expiration_time IS NULL OR expiration_time > NOW())",
@@ -109,7 +134,8 @@
 		panel_height = 240
 	var/datum/browser/panel = new(usr, "banpanel", "Banning Panel", 910, panel_height)
 	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
-	if(usr.client.prefs.tgui_fancy) //some browsers (IE8) have trouble with unsupported css3 elements and DOM methods that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
+	var/tgui_fancy = usr.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy)
+	if(tgui_fancy) //some browsers (IE8) have trouble with unsupported css3 elements and DOM methods that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
 		panel.add_stylesheet("banpanelcss3", 'html/admin/banpanel_css3.css')
 		panel.add_script("banpaneljs", 'html/admin/banpanel.js')
 	var/list/output = list("<form method='get' action='?src=[REF(src)]'>[HrefTokenFormField()]")
@@ -215,14 +241,14 @@
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
 		var/break_counter = 0
-		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
+		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
 		for(var/job in GLOB.original_command_positions)
 			if(break_counter > 0 && (break_counter % 3 == 0))
 				output += "<br>"
 			output += {"<label class='inputlabel checkbox'>[job]
-						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'[usr.client.prefs.tgui_fancy ? " onClick='toggle_head(this, \"_dep\")'" : ""]>
+						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'[tgui_fancy ? " onClick='toggle_head(this, \"_dep\")'" : ""]>
 						<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 			"}
 			break_counter++
@@ -235,9 +261,9 @@
 							"Supply" = GLOB.original_supply_positions)
 		for(var/department in job_lists)
 			//the first element is the department head so they need the same javascript call as above
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			output += {"<label class='inputlabel checkbox'>[job_lists[department][1]]
-						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'[usr.client.prefs.tgui_fancy ? " onClick='toggle_head(this, \"_com\")'" : ""]>
+						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'[tgui_fancy ? " onClick='toggle_head(this, \"_com\")'" : ""]>
 						<div class='inputbox[(job_lists[department][1] in banned_from) ? " banned" : ""]'></div></label>
 			"}
 			break_counter = 1
@@ -254,7 +280,7 @@
 		var/list/headless_job_lists = list("Silicon" = GLOB.original_nonhuman_positions,
 										"Abstract" = list("Appearance", "Emote", "OOC", "Voice Announcements", "DEAD"))
 		for(var/department in headless_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in headless_job_lists[department])
 				if(break_counter > 0 && (break_counter % 3 == 0))
@@ -266,17 +292,17 @@
 				break_counter++
 			output += "</div></div>"
 		var/list/long_job_lists = list("Civilian" = GLOB.original_civilian_positions,
-									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE),
+									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE, ROLE_MOUSE, ROLE_GOLEM, ROLE_GHOSTBEACON),
 									"Antagonist Positions" = list(ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_BLOB,
-									ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
+									ROLE_BLOODSUCKER, ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
 									ROLE_DEVIL, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
-									ROLE_MONKEY, ROLE_NINJA, ROLE_OPERATIVE,
+									ROLE_MONKEY, ROLE_MONSTERHUNTER, ROLE_NINJA, ROLE_OPERATIVE,
 									ROLE_REV, ROLE_REVENANT,
 									ROLE_REV_HEAD, ROLE_SERVANT_OF_RATVAR, ROLE_SYNDICATE,
 									ROLE_TRAITOR, ROLE_WIZARD, ROLE_GANG, ROLE_VAMPIRE,
 									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_ZOMBIE, ROLE_HERETIC)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
 		for(var/department in long_job_lists)
-			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
@@ -437,11 +463,11 @@
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -462,7 +488,7 @@
 		if(query_check_adminban_count.NextRow())
 			var/adminban_count = text2num(query_check_adminban_count.item[1])
 			var/max_adminbans = MAX_ADMINBANS_PER_ADMIN
-			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
+			if(check_rights(R_PERMISSIONS, FALSE)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
 				to_chat(usr, span_danger("You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!"), confidential=TRUE)
@@ -532,7 +558,7 @@
 	if(C)
 		build_ban_cache(C)
 		to_chat(C, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]", confidential=TRUE)
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 			qdel(C)
@@ -542,7 +568,7 @@
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
 			to_chat(i, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]")
-			if(GLOB.admin_datums[i.ckey] || GLOB.deadmins[i.ckey])
+			if(GLOB.permissions.admin_datums[i.ckey] || GLOB.permissions.deadmins[i.ckey])
 				is_admin = TRUE
 			if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 				qdel(i)
@@ -697,7 +723,7 @@
 		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	if(alert(usr, "Please confirm unban of [target] from [role].", "Unban confirmation", "Yes", "No") == "No")
+	if(tgui_alert(usr, "Please confirm unban of [target] from [role].", "Unban confirmation", list("Yes", "No")) == "No")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
@@ -757,11 +783,11 @@
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)
@@ -780,7 +806,7 @@
 		if(query_check_adminban_count.NextRow())
 			var/adminban_count = text2num(query_check_adminban_count.item[1])
 			var/max_adminbans = MAX_ADMINBANS_PER_ADMIN
-			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
+			if(check_rights(R_PERMISSIONS, FALSE)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
 				to_chat(usr, span_danger("You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!"), confidential=TRUE)
@@ -827,12 +853,12 @@
 	var/datum/DBQuery/query_edit_ban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")]
 		SET
-			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
+			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval]),
 			[format_table_name("ban")].applies_to_admins = :applies_to_admins,
 			[format_table_name("ban")].reason = :reason,
 			[format_table_name("ban")].ckey = :ckey,
 			[format_table_name("ban")].ip = INET_ATON(:ip),
-			[format_table_name("ban")].computerid = :ci
+			[format_table_name("ban")].computerid = :cid,
 			[format_table_name("ban")].edits = CONCAT(IFNULL(edits,''), :change_message)
 		WHERE [where]
 	"}, arguments)

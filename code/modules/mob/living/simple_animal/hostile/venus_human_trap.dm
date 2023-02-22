@@ -19,9 +19,14 @@
 	smooth = SMOOTH_FALSE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
 	var/growth_time = 1200
+	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.
+	var/finish_time
+	/// The countdown ghosts see to when the plant will hatch
+	var/obj/effect/countdown/flower_bud/countdown
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize()
 	. = ..()
+	countdown = new(src)
 	var/list/anchors = list()
 	anchors += locate(x-2,y+2,z)
 	anchors += locate(x+2,y+2,z)
@@ -31,7 +36,9 @@
 	for(var/turf/T in anchors)
 		var/datum/beam/B = Beam(T, "vine", time=INFINITY, maxdistance=5, beam_type=/obj/effect/ebeam/vine)
 		B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
+	finish_time = world.time + growth_time
 	addtimer(CALLBACK(src, .proc/bear_fruit), growth_time)
+	countdown.start()
 
 /**
   * Spawns a venus human trap, then qdels itself.
@@ -72,6 +79,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
+	unique_name = TRUE
 	icon_state = "venus_human_trap"
 	layer = SPACEVINE_MOB_LAYER
 	health = 50
@@ -134,10 +142,15 @@
 	
 	var/datum/beam/newVine = Beam(the_target, "vine", time=INFINITY, maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
 	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, .proc/remove_vine, newVine)
+	listclearnulls(vines)
 	vines += newVine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
-		L.Paralyze(20)
+		if(iscarbon(the_target))
+			L.Immobilize(0.25 SECONDS)
+			L.Knockdown(2 SECONDS)
+		else
+			L.Paralyze(2 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
@@ -162,7 +175,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/proc/humanize_plant(mob/user)
 	if(key || !playable_plant || stat)
 		return
-	var/plant_ask = alert("Become a venus human trap?", "Are you reverse vegan?", "Yes", "No")
+	var/plant_ask = tgui_alert(usr,"Become a venus human trap?", "Are you reverse vegan?", list("Yes", "No"))
 	if(plant_ask == "No" || QDELETED(src))
 		return
 	if(key)
@@ -211,8 +224,8 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
 	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
-			var/obj/effect/particle_effect/smoke/chem/gas = contents
+		if(istype(contents, /obj/effect/particle_effect/fluid/smoke/chem))
+			var/obj/effect/particle_effect/fluid/smoke/chem/gas = contents
 			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
 				return TRUE
 	return FALSE

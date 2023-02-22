@@ -19,11 +19,11 @@
 	icon_state = "fire0"
 	max_integrity = 250
 	integrity_failure = 100
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	resistance_flags = FIRE_PROOF
 
 	light_power = 0
@@ -310,8 +310,10 @@
 		return  // do nothing if we're already active
 	if(fire)
 		set_light(l_power = 0.8)
+		update_icon()
 	else
 		set_light(l_power = 0)
+		update_icon()
 
 /*
  * Return of the Return of the Party button

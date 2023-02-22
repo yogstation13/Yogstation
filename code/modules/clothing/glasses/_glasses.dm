@@ -64,6 +64,15 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
+/obj/item/clothing/glasses/meson/equipped(mob/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == SLOT_GLASSES)
+		ADD_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
+
+/obj/item/clothing/glasses/meson/dropped(mob/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
+
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
@@ -107,11 +116,20 @@
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	glass_colour_type = /datum/client_colour/glass_colour/purple
 	resistance_flags = ACID_PROOF
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 
 /obj/item/clothing/glasses/science/item_action_slot_check(slot)
 	if(slot == SLOT_GLASSES)
 		return 1
+
+/obj/item/clothing/glasses/science/night
+	name = "night vision science goggles"
+	desc = "A pair of snazzy goggles used to protect against chemical spills that happen in complete darkness. Fitted with an analyzer for scanning items and reagents."
+	icon_state = "sciencehudnight"
+	item_state = "sciencehudnight"
+	darkness_view = 8
+	flash_protect = -1
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
@@ -133,14 +151,18 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
+/obj/item/clothing/glasses/eyepatch/bigboss
+	name = "faded eyepatch"
+	desc = "Offers night vision and protection from flashes. Another mission, right boss?"
+	darkness_view = 8
+	flash_protect = 1
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
 	vision_correction = 1
-
-
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -207,6 +229,11 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
+
+/obj/item/clothing/glasses/sunglasses/prescription
+	name = "prescription sunglasses"
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks flashes. Has prescription lenses that correct nearsightedness."
+	vision_correction = 1
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"
@@ -322,7 +349,7 @@
 	. = list()
 	if(!isinhands && ishuman(loc) && !colored_before)
 		var/mob/living/carbon/human/H = loc
-		var/mutable_appearance/M = mutable_appearance('icons/mob/eyes.dmi', "blindfoldwhite")
+		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")
 		M.appearance_flags |= RESET_COLOR
 		M.color = "#[H.eye_color]"
 		. += M
@@ -518,16 +545,18 @@
 
 /obj/item/clothing/glasses/AltClick(mob/user)
 	if(glass_colour_type && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.client)
-			if(H.client.prefs)
-				if(src == H.glasses)
-					H.client.prefs.uses_glasses_colour = !H.client.prefs.uses_glasses_colour
-					if(H.client.prefs.uses_glasses_colour)
-						to_chat(H, "You will now see glasses colors.")
-					else
-						to_chat(H, "You will no longer see glasses colors.")
-					H.update_glasses_color(src, 1)
+		var/mob/living/carbon/human/human_user = user
+
+		if (human_user.glasses != src)
+			return ..()
+
+		if (HAS_TRAIT_FROM(human_user, TRAIT_SEE_GLASS_COLORS, GLASSES_TRAIT))
+			REMOVE_TRAIT(human_user, TRAIT_SEE_GLASS_COLORS, GLASSES_TRAIT)
+			to_chat(human_user, span_notice("You will now see glasses colors."))
+		else
+			ADD_TRAIT(human_user, TRAIT_SEE_GLASS_COLORS, GLASSES_TRAIT)
+			to_chat(human_user, span_notice("You will no longer see glasses colors."))
+		human_user.update_glasses_color(src, TRUE)
 	else
 		return ..()
 
@@ -543,7 +572,7 @@
 
 
 /mob/living/carbon/human/proc/update_glasses_color(obj/item/clothing/glasses/G, glasses_equipped)
-	if(client && client.prefs.uses_glasses_colour && glasses_equipped)
+	if (HAS_TRAIT(src, TRAIT_SEE_GLASS_COLORS) && glasses_equipped)
 		add_client_colour(G.glass_colour_type)
 	else
 		remove_client_colour(G.glass_colour_type)

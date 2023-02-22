@@ -34,7 +34,7 @@
 /datum/antagonist/brainwashed/greet()
 	to_chat(owner, span_warning("Your mind reels as it begins focusing on a single purpose..."))
 	to_chat(owner, "<big><span class='warning'><b>Follow the Directives, at any cost!</b></span></big>")
-	owner.current.throw_alert("brainwash_notif", /obj/screen/alert/brainwashed)
+	owner.current.throw_alert("brainwash_notif", /atom/movable/screen/alert/brainwashed)
 	SEND_SOUND(owner.current, sound('sound/ambience/ambimystery.ogg'))
 	SEND_SOUND(owner.current, sound('sound/effects/glassbr1.ogg'))
 	var/i = 1
@@ -49,6 +49,24 @@
 	owner.current.clear_alert("brainwash_notif")
 	owner.announce_objectives()
 
+/datum/antagonist/brainwashed/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	update_traitor_icons_added()
+
+/datum/antagonist/brainwashed/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	update_traitor_icons_removed()
+
+/datum/antagonist/brainwashed/proc/update_traitor_icons_added(datum/mind/slave_mind)
+	var/datum/atom_hud/antag/brainwashedhud = GLOB.huds[ANTAG_HUD_BRAINWASHED]
+	brainwashedhud.join_hud(owner.current)
+	set_antag_hud(owner.current, "brainwashed")
+
+/datum/antagonist/brainwashed/proc/update_traitor_icons_removed(datum/mind/slave_mind)
+	var/datum/atom_hud/antag/brainwashedhud = GLOB.huds[ANTAG_HUD_BRAINWASHED]
+	brainwashedhud.leave_hud(owner.current)
+	set_antag_hud(owner.current, null)
+
 /datum/antagonist/brainwashed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
@@ -58,9 +76,9 @@
 		var/objective = stripped_input(admin, "Add an objective, or leave empty to finish.", "Brainwashing", null, MAX_MESSAGE_LEN)
 		if(objective)
 			objectives += objective
-	while(alert(admin,"Add another objective?","More Brainwashing","Yes","No") == "Yes")
+	while(tgui_alert(admin,"Add another objective?","More Brainwashing",list("Yes","No")) == "Yes")
 
-	if(alert(admin,"Confirm Brainwashing?","Are you sure?","Yes","No") == "No")
+	if(tgui_alert(admin,"Confirm Brainwashing?","Are you sure?",list("Yes","No")) == "No")
 		return
 
 	if(!LAZYLEN(objectives))

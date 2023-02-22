@@ -1,11 +1,12 @@
 /mob/living/simple_animal/hostile/retaliate/clown
-	name = "Clown"
+	name = "clown"
 	desc = "A denizen of clown planet."
 	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "clown"
 	icon_living = "clown"
 	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
+	health_doll_icon = "clown" //if >32x32, it will use this generic. for all the huge clown mobs that subtype from this
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	turns_per_move = 5
 	response_help = "pokes"
@@ -25,7 +26,7 @@
 	attack_sound = 'sound/items/bikehorn.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	del_on_death = 1
+	del_on_death = TRUE
 	loot = list(/obj/effect/mob_spawn/human/clown/corpse)
 
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
@@ -71,7 +72,7 @@
 	response_help = "dips a finger into"
 	response_disarm = "gently scoops and pours aside"
 	emote_see = list("bubbles", "oozes")
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/particle_effect/foam)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/particle_effect/fluid/foam)
 
 /mob/living/simple_animal/hostile/retaliate/clown/lube/Life()
 	. = ..()
@@ -225,7 +226,7 @@
 	armour_penetration = 20
 	attacktext = "steals the girlfriend of"
 	attack_sound = 'sound/items/airhorn2.ogg'
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/fluid/foam, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus
 	name = "Honkmunculus"
@@ -245,7 +246,7 @@
 	melee_damage_upper = 10
 	attacktext = "ferociously mauls"
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/fluid/foam, /obj/item/soap)
 	attack_reagent = /datum/reagent/peaceborg/confuse
 
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer
@@ -266,7 +267,7 @@
 	attacktext = "acts out divine vengeance on"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/fluid/foam, /obj/item/soap)
 	
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/punisher
 	name = "The Punisher"
@@ -287,7 +288,7 @@
 	attacktext = "flexes on"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/fluid/foam, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant
 	name = "Unknown"
@@ -323,7 +324,7 @@
 	mob_size = MOB_SIZE_LARGE
 	speed = 20
 	attacktext = "bounces off of"
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/fluid/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
 	attack_reagent = /datum/reagent/toxin/mindbreaker
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant/thicc
@@ -337,5 +338,5 @@
 	mob_size = MOB_SIZE_LARGE
 	speed = 20
 	attacktext = "bounces off of"
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/fluid/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
 	attack_reagent = /datum/reagent/consumable/banana

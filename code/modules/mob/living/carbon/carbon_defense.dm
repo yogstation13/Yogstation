@@ -1,5 +1,7 @@
 /mob/living/carbon/get_eye_protection()
 	. = ..()
+	if(HAS_TRAIT(src, TRAIT_BLIND))
+		return INFINITY //Can't get flashed if you cant see
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
 		return INFINITY //Can't get flashed without eyes
@@ -50,10 +52,15 @@
 	return TRUE
 
 /mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	if(!skipcatch)	//ugly, but easy
-		if(can_catch_item())
-			if(istype(AM, /obj/item))
-				var/obj/item/I = AM
+	var/obj/item/I = AM
+	if(istype(I, /obj/item))
+		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
+			var/obj/item/bodypart/body_part = pick(bodyparts)
+			if(prob(clamp(I.embedding.embed_chance - run_armor_check(body_part, MELEE), 0, 100)) && embed_object(I, body_part, deal_damage = TRUE))
+				hitpush = FALSE
+				skipcatch = TRUE //can't catch the now embedded item
+		if(!skipcatch)	//ugly, but easy
+			if(can_catch_item())
 				if(I.item_flags & UNCATCHABLE)
 					return FALSE
 				if(isturf(I.loc))
@@ -64,9 +71,95 @@
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
 						I.transform = initial(I.transform)
-						throw_mode_off()
+						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
+						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
+						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
+							throw_mode_off()
 						return TRUE
 	..()
+
+/**
+  *	Embeds an object into this carbon
+  */
+/mob/living/carbon/proc/embed_object(obj/item/embedding, part, deal_damage, silent, forced)
+	if(!(forced || (can_embed(embedding) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))))
+		return FALSE
+	var/obj/item/bodypart/body_part = part
+	// In case its a zone
+	if(!istype(body_part) && body_part)
+		body_part = get_bodypart(body_part)
+	// Otherwise pick one
+	if(!istype(body_part))
+		body_part = pick(bodyparts)
+		// Thats probably not good
+		if(!istype(body_part))
+			return FALSE
+	if(!embedding.on_embed(src, body_part))
+		return
+	body_part.embedded_objects |= embedding
+	var/obj/item/ammo_casing/AC = embedding
+	if(!((istype(AC) && !AC.harmful) || embedding.taped))
+		embedding.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
+	embedding.forceMove(src)
+	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
+	if(deal_damage)
+		body_part.receive_damage(embedding.w_class*embedding.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
+	if(!silent)
+		throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
+		visible_message(span_danger("[embedding] embeds itself in [src]'s [body_part.name]!"), span_userdanger("[embedding] embeds itself in your [body_part.name]!"))
+	return TRUE
+
+/**
+  *	Removes the given embedded object from this carbon
+  */
+/mob/living/carbon/proc/remove_embedded_object(obj/item/embedded, new_loc, silent, forced)
+	var/obj/item/bodypart/body_part
+	for(var/obj/item/bodypart/part in bodyparts)
+		if(embedded in part.embedded_objects)
+			body_part = part
+	if(!body_part)
+		return
+	body_part.embedded_objects -= embedded
+	if(!silent)
+		emote("scream")
+	if(!has_embedded_objects())
+		clear_alert("embeddedobject")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+	if(new_loc)
+		embedded.forceMove(new_loc)
+	embedded.on_embed_removal(src)
+	return TRUE
+
+/**
+  *	Called when a mob tries to remove an embedded object from this carbon
+  */
+/mob/living/carbon/proc/try_remove_embedded_object(mob/user)
+	var/list/choice_list = list()
+	var/obj/item/bodypart/body_part
+	for(var/obj/item/bodypart/part in bodyparts)
+		for(var/obj/item/embedded in part.embedded_objects)
+			choice_list[embedded] = image(embedded)
+	var/obj/item/choice = show_radial_menu(user, src, choice_list, tooltips = TRUE)
+	for(var/obj/item/bodypart/part in bodyparts)
+		if(choice in part.embedded_objects)
+			body_part = part
+	if(!istype(choice) || !(choice in choice_list))
+		return
+	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
+	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
+	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
+		return
+	var/obj/item/ammo_casing/AC = choice
+	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class
+	if((istype(AC) && !AC.harmful) || choice.taped)
+		body_part.receive_damage(stamina = damage_amount * 0.25, sharpness = SHARP_EDGED)//Non-harmful stuff causes stamina damage when removed
+	else
+		body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+		body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
+	if(remove_embedded_object(choice, get_turf(src), damage_amount))
+		user.put_in_hands(choice)
+		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))
+	return TRUE
 
 /mob/living/carbon/proc/get_interaction_efficiency(zone)
 	var/obj/item/bodypart/limb = get_bodypart(zone)
@@ -158,7 +251,7 @@
 
 	for(var/datum/surgery/S in surgeries)
 		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
-			if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
+			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
 				if(S.next_step(user, user.a_intent))
 					return TRUE
 
@@ -247,7 +340,7 @@
 
 /mob/living/carbon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & EMP_PROTECT_SELF)
 		return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
@@ -286,6 +379,8 @@
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
+			adjustOxyLoss(-50)
+			adjustToxLoss(-50)
 			revive()
 			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)
@@ -327,6 +422,17 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
+		for(var/datum/brain_trauma/trauma in get_traumas())
+			trauma.on_hug(M, src)
+
+		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
+		fire_stacks = averagestacks
+		M.fire_stacks = averagestacks
+		if(averagestacks > 1)
+			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
+		else if(averagestacks < -1)
+			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
+
 	AdjustStun(-60)
 	AdjustKnockdown(-60)
 	AdjustUnconscious(-60)
@@ -460,7 +566,7 @@
 		return
 
 	to_chat(src, span_warning("You grasp at your [grasped_part.name], trying to stop the bleeding..."))
-	if(!do_after(src, 1.5 SECONDS, target = src))
+	if(!do_after(src, 1.5 SECONDS, src))
 		to_chat(src, span_danger("You can't get a good enough grip to slow the bleeding on [grasped_part.name]."))
 		return
 
@@ -475,6 +581,7 @@
 /obj/item/self_grasp
 	name = "self-grasp"
 	desc = "Sometimes all you can do is slow the bleeding."
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "latexballon"
 	item_state = "nothing"
 	force = 0
@@ -512,7 +619,7 @@
 	grasped_part = grasping_part
 	grasped_part.grasped_by = src
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
-	RegisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
+	RegisterSignals(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
 
 	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)

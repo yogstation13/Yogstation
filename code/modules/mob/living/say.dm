@@ -176,7 +176,26 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
+	//Yogs -- Moved the message_range calculation a bit earlier in the say steps, for.. reasons.
+	//No screams in space, unless you're next to someone.
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	var/pressure = (environment)? environment.return_pressure() : 0
+	if(pressure < SOUND_MINIMUM_PRESSURE)
+		message_range = 1
+	//yogs end
+
 	message = treat_message(message) // unfortunately we still need this
+	if(istype(saymode,/datum/saymode/vocalcords)) // Yogs -- some hack to make sure that the message gets to Voice of God unscathed
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			var/obj/item/organ/vocal_cords/V = C.getorganslot(ORGAN_SLOT_VOICE)
+			if(V)
+				if(V.does_modify_message())
+					message = V.modify_message(message)
+				else if(V.does_say_message())
+					V.say_message(message,message_range)
+					return on_say_success(message,message_range,succumbed, spans, language, message_mods) // Yogs end
 	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
 	if (sigreturn & COMPONENT_UPPERCASE_SPEECH)
 		message = uppertext(message)
@@ -210,27 +229,21 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(!message_mods[WHISPER_MODE])
 			message_mods[WHISPER_MODE] = MODE_WHISPER
 	if(radio_return & NOPASS)
-		return 1
-
-	//No screams in space, unless you're next to someone.
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/environment = T.return_air()
-	var/pressure = (environment)? environment.return_pressure() : 0
-	if(pressure < SOUND_MINIMUM_PRESSURE)
-		message_range = 1
+		return on_say_success(message,message_range,succumbed, spans, language, message_mods)//Yogs -- deferred things are good
 
 	if(pressure < ONE_ATMOSPHERE*0.4) //Thin air, let's italicise the message
 		spans |= SPAN_ITALICS
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods)
 
+	
+	return on_say_success(message,message_range,succumbed, spans, language, message_mods)//Yogs
+/mob/living/proc/on_say_success(message,message_range,succumbed, spans, language, message_mods) // A helper function of stuff that is deferred to when /mob/living/say() is done and has successfully said something.
 	if(succumbed)
 		succumb(1)
 		to_chat(src, compose_message(src, language, message, , spans, message_mods))
-	
 	for(var/obj/item/I in contents)
 		I.on_mob_say(src, message, message_range)
-
 	return 1
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
@@ -239,6 +252,12 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		return
 	var/deaf_message
 	var/deaf_type
+	var/avoid_highlight
+	if(istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/virt = speaker
+		avoid_highlight = src == virt.source
+	else
+		avoid_highlight = src == speaker
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
 			deaf_message = "[span_name("[speaker]")] [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
@@ -247,7 +266,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		deaf_message = span_notice("You can't hear yourself!")
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 	// Create map text prior to modifying message for goonchat
-	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && stat != UNCONSCIOUS && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)) && can_hear())
 		create_chat_message(speaker, message_language, raw_message, spans)
 
 
@@ -255,7 +274,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
-	show_message(message, 2, deaf_message, deaf_type)
+	show_message(message, 2, deaf_message, deaf_type, avoid_highlight)
 	return message
 
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, list/message_mods = list())
@@ -317,7 +336,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
-		if(!ignore_spam && client.handle_spam_prevention(message,MUTE_IC))
+		if(!ignore_spam && message != null && client.handle_spam_prevention(message,MUTE_IC))
 			return FALSE
 
 	return TRUE
@@ -340,6 +359,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	if(derpspeech)
 		message = derpspeech(message, stuttering)
+
+	if(lizardspeech)
+		message = lizardspeech(message)
 
 	if(stuttering)
 		message = stutter(message)
@@ -364,6 +386,23 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
+	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(SLOT_BELT), get_item_by_slot(SLOT_R_STORE), get_item_by_slot(SLOT_L_STORE), get_item_by_slot(SLOT_S_STORE))
+	for(var/obj/item/radio/hand in storage_item)
+		if(message_mods[MODE_HEADSET])
+			hand.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in hand.channels))
+			hand.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+
+	for (var/obj/item/radio/intercom/I in view(1, null))
+		if(message_mods[MODE_HEADSET])
+			I.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in I.channels))
+			I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+			
 	switch(message_mods[RADIO_EXTENSION])
 		if(MODE_R_HAND)
 			for(var/obj/item/r_hand in get_held_items_for_side("r", all = TRUE))

@@ -108,7 +108,7 @@
 
 /obj/effect/ctf/flag_reset
 	name = "banner landmark"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	desc = "This is where a banner with Nanotrasen's logo on it would go."
 	layer = LOW_ITEM_LAYER
@@ -171,7 +171,7 @@
 	GLOB.poi_list.Remove(src)
 	..()
 
-/obj/machinery/capture_the_flag/process()
+/obj/machinery/capture_the_flag/process(delta_time)
 	for(var/i in spawned_mobs)
 		if(!i)
 			spawned_mobs -= i
@@ -183,8 +183,8 @@
 		else
 			// The changes that you've been hit with no shield but not
 			// instantly critted are low, but have some healing.
-			M.adjustBruteLoss(-5)
-			M.adjustFireLoss(-5)
+			M.adjustBruteLoss(-2.5 * delta_time)
+			M.adjustFireLoss(-2.5 * delta_time)
 
 /obj/machinery/capture_the_flag/red
 	name = "Red CTF Controller"
@@ -265,7 +265,7 @@
 
 /obj/machinery/capture_the_flag/proc/spawn_team_member(client/new_team_member)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(src))
-	new_team_member.prefs.copy_to(M)
+	new_team_member.prefs.apply_prefs_to(M)
 	M.set_species(/datum/species/synth)
 	M.key = new_team_member.key
 	M.faction += team
@@ -660,11 +660,11 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/machinery/capture_the_flag/controlling
 	var/team = "none"
-	var/point_rate = 1
+	var/point_rate = 0.5
 
-/obj/machinery/control_point/process()
+/obj/machinery/control_point/process(delta_time)
 	if(controlling)
-		controlling.control_points += point_rate
+		controlling.control_points += point_rate * delta_time
 		if(controlling.control_points >= controlling.control_points_to_win)
 			controlling.victory()
 
@@ -678,7 +678,7 @@
 	capture(user)
 
 /obj/machinery/control_point/proc/capture(mob/user)
-	if(do_after(user, 3 SECONDS, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
 			if(CTF.ctf_enabled && (user.ckey in CTF.team_members))
 				controlling = CTF

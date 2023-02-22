@@ -1,7 +1,7 @@
 /obj/item/access_kit
 	name = "access kit (unset)"
 	desc = "A one-use device that can be used to spoof and grant the access associated with a low-level job."
-	icon_state = "suspiciousphone"
+	icon_state = "red_phone"
 	var/datum/job/job
 	var/list/available_jobs = list(/datum/job/hydro, /datum/job/janitor, /datum/job/cargo_tech, /datum/job/scientist, /datum/job/doctor, /datum/job/engineer)
 
@@ -38,7 +38,7 @@
 	var/obj/item/card/id/id = target
 	id.assignment = job.title
 	id.originalassignment = job.title
-	id.access |= job.minimal_access
+	id.access |= job.base_access
 	id.update_label()
 	to_chat(user, span_notice("You apply [src] to [id], granting it the access of a [job.title]!"))
 	if (is_infiltrator(user))

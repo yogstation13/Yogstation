@@ -5,6 +5,7 @@
 	min_players = 2
 	earliest_start = 10 MINUTES
 	max_occurrences = 6
+	max_alert = SEC_LEVEL_DELTA
 	
 /datum/round_event_control/carp_migration/New()
 	. = ..()
@@ -30,7 +31,7 @@
 	var/mob/living/simple_animal/hostile/carp/fish
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
 		//yogs -- Gondola Day for some goddamn reason. Can't they just let go of Oak?
-		if(SSevents.holidays["Gondola Day"])
+		if(SSevents.holidays && SSevents.holidays["Gondola Day"])
 			fish = new /mob/living/simple_animal/pet/gondola
 			return
 		//yogs end

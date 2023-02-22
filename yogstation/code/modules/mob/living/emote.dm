@@ -12,6 +12,20 @@
 		qdel(N)
 		to_chat(user, span_warning("You don't have any free hands to high-five with."))
 
+/datum/emote/living/handhold
+	key = "handhold"
+	key_third_person = "handholds"
+	restraint_check = TRUE
+
+/datum/emote/living/handhold/run_emote(mob/user, params)
+	. = ..()
+	var/obj/item/handholding/HH = new(user)
+	if(user.put_in_hands(HH))
+		to_chat(user, span_notice("You prepare to hold hands..."))
+	else
+		qdel(HH)
+		to_chat(user, span_warning("You don't have any free hands to hold with."))
+
 /datum/emote/living/pose
 	key = "pose"
 	key_third_person = "poses"

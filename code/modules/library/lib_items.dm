@@ -20,7 +20,7 @@
 	opacity = 0
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	var/state = 0
 	var/list/allowed_books = list(/obj/item/book, /obj/item/spellbook, /obj/item/storage/book) //Things allowed in the bookcase
 
@@ -224,7 +224,7 @@
 		if(!literate)
 			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
-		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
+		var/choice = input(usr, "What would you like to change?",,list("Title", "Contents", "Author", "Cancel"))
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)
@@ -264,7 +264,7 @@
 
 	else if(istype(I, /obj/item/kitchen/knife) || I.tool_behaviour == TOOL_WIRECUTTER)
 		to_chat(user, span_notice("You begin to carve out [title]..."))
-		if(do_after(user, 3 SECONDS, target = src))
+		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			var/obj/item/storage/book/B = new
 			B.name = src.name

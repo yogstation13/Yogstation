@@ -49,6 +49,7 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/cracker/ = 1)
 	melee_damage_upper = 10
 	melee_damage_lower = 5
+	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	response_help  = "pets"
 	response_disarm = "gently moves aside"

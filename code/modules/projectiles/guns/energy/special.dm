@@ -76,16 +76,18 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/energy/mindflayer
-	name = "\improper Mind Flayer"
-	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
-	icon_state = "xray"
-	item_state = null
+	name = "mind flayer"
+	desc = "A vicious weapon locking up the motor neurons of the respiratory system and taking advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
+	icon_state = "mindflayer"
+	item_state = "mindflayer"
+	w_class = WEIGHT_CLASS_SMALL
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
+	pin = null
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow
 	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
@@ -94,7 +96,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
 	obj_flags = 0
-	overheat_time = 20
+	overheat_time = 10 SECONDS
 	holds_charge = TRUE
 	unique_frequency = TRUE
 	can_flashlight = FALSE
@@ -106,17 +108,6 @@
 	icon_state = "crossbow_halloween"
 	item_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
-
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
-	icon_state = "crossbowlarge"
-	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/iron=4000)
-	suppressed = null
-	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
-	pin = null
-
 
 /obj/item/gun/energy/plasmacutter
 	name = "plasma cutter"
@@ -137,6 +128,14 @@
 	var/progress_flash_divisor = 10  //copypasta is best pasta
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
+
+/obj/item/gun/energy/plasmacutter/mini
+	name = "mini plasma cutter"
+	desc = "A weak plasma based mining tool."
+	icon_state = "plasmacutter_mini"
+	item_state = "plasmacutter_mini"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
+	toolspeed = 2
 
 /obj/item/gun/energy/plasmacutter/Initialize()
 	. = ..()
@@ -199,9 +198,11 @@
 		else
 			progress_flash_divisor--
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
+		target.add_overlay(GLOB.welding_sparks)
 		. = ..()
+		target.cut_overlay(GLOB.welding_sparks)	
 	else
 		. = ..(amount=1)
 
@@ -212,16 +213,26 @@
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
+	item_state = "adv_plasmacutter"
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
+
+/obj/item/gun/energy/plasmacutter/adv/mega
+	name = "mega plasma cutter"
+	icon_state = "adv_plasmacutter_m"
+	item_state = "plasmacutter_mega"
+	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff. This one has been enhanced with plasma magmite."
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/mega)
 
 /obj/item/gun/energy/plasmacutter/scatter
 	name = "plasma cutter shotgun"
 	icon_state = "miningshotgun"
 	item_state = "miningshotgun"
-	desc = "An industrial-grade heavy-duty mining shotgun"
+	desc = "An industrial-grade, heavy-duty mining shotgun."
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
+
+
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -229,6 +240,13 @@
 		to_chat(user, span_notice("You install [I] into [src]"))
 		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
 		qdel(I)
+
+/obj/item/gun/energy/plasmacutter/scatter/mega
+	name = "mega plasma cutter shotgun"
+	icon_state = "miningshotgun_mega"
+	item_state = "miningshotgun_mega"
+	desc = "An industrial-grade, heavy-duty mining shotgun. This one seems... mega!"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter/adv/mega)
 
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"
@@ -260,6 +278,10 @@
 		ammo_type = list(kaboom)
 		return TRUE
 	return FALSE
+
+//no upgrading this one either (for now)
+/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I)
+	return
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"

@@ -12,7 +12,7 @@
 	var/mob_react = TRUE //Determines if a chemical reaction can occur inside a mob
 
 	var/required_temp = 0
-	var/is_cold_recipe = 0 // Set to 1 if you want the recipe to only react when it's BELOW the required temp.
+	var/is_cold_recipe = FALSE // Set to TRUE if you want the recipe to only react when it's BELOW the required temp.
 	var/mix_message = "The solution begins to bubble." //The message shown to nearby people upon mixing, if applicable
 	var/mix_sound = 'sound/effects/bubbles.ogg' //The sound played upon mixing, if applicable
 
@@ -69,11 +69,11 @@
 				spawn(0) //so everything moves at the same time.
 					if(setting_type)
 						for(var/i = 0, i < moving_power, i++)
-							sleep(2)
+							sleep(0.2 SECONDS)
 							if(!step_away(X, T))
 								break
 					else
 						for(var/i = 0, i < moving_power, i++)
-							sleep(2)
+							sleep(0.2 SECONDS)
 							if(!step_towards(X, T))
 								break

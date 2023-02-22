@@ -316,7 +316,6 @@
 		if(outfit_type)
 			mannequin.equipOutfit(outfit_type,TRUE)
 		mannequin.setDir(SOUTH)
-		COMPILE_OVERLAYS(mannequin)
 		. = image(mannequin)
 		unset_busy_human_dummy("HOLODISK_PRESET")
 
@@ -325,7 +324,7 @@
 	preset_record_text = {"
 	NAME Clown
 	DELAY 10
-	SAY Why did the chaplain cross the maint ?
+	SAY Why did the chaplain cross the maint?
 	DELAY 20
 	SAY He wanted to get to the other side!
 	SOUND clownstep
@@ -359,6 +358,9 @@
 /datum/preset_holoimage/engineer/atmos/rig
 	outfit_type = /datum/outfit/job/engineer/gloved/rig
 
+/datum/preset_holoimage/rd
+	outfit_type = /datum/outfit/job/rd
+
 /datum/preset_holoimage/researcher
 	outfit_type = /datum/outfit/job/scientist
 
@@ -376,6 +378,15 @@
 
 /datum/preset_holoimage/clown
 	outfit_type = /datum/outfit/job/clown
+
+/datum/preset_holoimage/ai/ai
+	nonhuman_mobtype = /mob/living/silicon/ai
+
+/datum/preset_holoimage/ai/core
+	nonhuman_mobtype = /obj/machinery/ai/data_core
+
+/datum/preset_holoimage/ai/upgradeboard
+	nonhuman_mobtype = /obj/machinery/ai/server_cabinet
 
 /obj/item/disk/holodisk/donutstation/whiteship
 	name = "Blackbox Print-out #DS024"
@@ -463,3 +474,59 @@
     NAME Blackbox Automated Message
     SAY Connection lost. Dumping audio logs to disk.
     DELAY 50"}
+
+/obj/item/disk/holodisk/tutorial/AICore
+	name = "AI Core Information"
+	desc = "This is a tutorial disk that explains how one may create a new AI, and how to upgrade it."
+	preset_image_type = /datum/preset_holoimage/ai
+	preset_record_text = {"
+	PRESET /datum/preset_holoimage/ai/ai
+	LANGUAGE /datum/language/common
+	NAME RESTRICTED INFORMATION
+	SAY Loading information...
+	DELAY 30
+	SOUND sparks
+	SAY This disk is for authorized personnel only, if you are not part of the onboard scientific staff, lease control over this disk immediately; Otherwise you may continue.
+	DELAY 60
+	SAY Hello initiate, this is a tutorial disk regarding classified information about your onboard AI data core.
+	DELAY 50
+	SAY To begin, collect these materials for me;
+	DELAY 20
+	SAY 1. A sentient positronic brain.
+	DELAY 20
+	SAY 2. A screwdriver.
+	DELAY 20
+	SAY 3. A wrench.
+	DELAY 20
+	SAY 4. Thirty cable coils.
+	DELAY 20
+	SAY 5. A p-protective enviromental suit, designed for cold enviroments.
+	DELAY 20
+	SAY 6. Thirty metal sheets.
+	DELAY 20
+	SAY 7. Two to four AI CPU boards from the science department's lathe.
+	DELAY 20
+	SAY 8. Two to four AI memory boards from the science department's lathe.
+	DELAY 60
+	PRESET /datum/preset_holoimage/rd
+	SAY Now, you must have your onboard Research Director to give way to, or ask them for access to the AI data core room, as well as access to the AI control console.
+	DELAY 40
+	sound sparks
+	PRESET /datum/preset_holoimage/ai/ai
+	SAY Nnnnow, with access to the AI control console, you must insert the posit-t-ttronic brain into the AI control console.
+	LANGUAGE /datum/language/machine
+	SAY They are a shadow of my own power, annelid.
+	DELAY 50
+	PRESET /datum/preset_holoimage/ai/upgradeboard
+	LANGUAGE /datum/language/common
+	SAY Now, with the metal, tools, and boards you have, you shall now create an AI expansion card bus. You still have those, right?
+	DELAY 60
+	SAY You require a cooled atmosphere that has the maximum temperature of eighty degrees for a functional bus, do not allow them to overheat. This is the same for the AI data cores.
+	DELAY 60
+	PRESET /datu/preset_holoimage/ai/ai
+	SAY Now that you've taken your time, you must insert at least two CPU boards, as INFERIOR AI's require atleast two to download most programs.
+	DELAY 60
+	SAY The memory boards, or RAM, allow the AI to run multiple programs at a time.
+	DELAY 40
+	SAY This tutorial has concluded; Remember, this is classified material, unauthorized access will not be tolerated.
+	"}

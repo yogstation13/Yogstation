@@ -4,10 +4,6 @@
 #define RAD_LEVEL_VERY_HIGH 800
 #define RAD_LEVEL_CRITICAL 1500
 
-#define RAD_MEASURE_SMOOTHING 5
-
-#define RAD_GRACE_PERIOD 2
-
 /obj/item/geiger_counter //DISCLAIMER: I know nothing about how real-life Geiger counters work. This will not be realistic. ~Xhuis
 	name = "\improper Geiger counter"
 	desc = "A handheld device used for detecting and measuring radiation pulses."
@@ -18,9 +14,10 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
+	item_flags = NOBLUDGEON
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
 
-	var/grace = RAD_GRACE_PERIOD
+	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop
 
 	var/scanning = FALSE
@@ -39,28 +36,23 @@
 /obj/item/geiger_counter/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+/obj/item/geiger_counter/process(delta_time)
+	if(scanning)
+		radiation_count = LPFILTER(radiation_count, current_tick_amount, delta_time, RAD_GEIGER_RC)
 
-/obj/item/geiger_counter/process()
-	update_icon()
-	update_sound()
+		if(current_tick_amount)
+			grace = RAD_GEIGER_GRACE_PERIOD
+			last_tick_amount = current_tick_amount
 
-	if(!scanning)
-		current_tick_amount = 0
-		return
-
-	radiation_count -= radiation_count/RAD_MEASURE_SMOOTHING
-	radiation_count += current_tick_amount/RAD_MEASURE_SMOOTHING
-
-	if(current_tick_amount)
-		grace = RAD_GRACE_PERIOD
-		last_tick_amount = current_tick_amount
-
-	else if(!(obj_flags & EMAGGED))
-		grace--
-		if(grace <= 0)
-			radiation_count = 0
+		else if(!(obj_flags & EMAGGED))
+			grace -= delta_time
+			if(grace <= 0)
+				radiation_count = 0
 
 	current_tick_amount = 0
+
+	update_icon()
+	update_sound()
 
 /obj/item/geiger_counter/examine(mob/user)
 	. = ..()
@@ -145,18 +137,20 @@
 
 /obj/item/geiger_counter/proc/scan(atom/A, mob/user)
 	var/rad_strength = get_rad_contamination(A)
+	var/list/combined_msg = list()
 
 	if(isliving(A))
 		var/mob/living/M = A
 		if(!M.radiation)
-			to_chat(user, span_notice("[icon2html(src, user)] Radiation levels within normal boundaries."))
+			combined_msg += span_notice("[icon2html(src, user)] Radiation levels within normal boundaries.")
 		else
-			to_chat(user, span_boldannounce("[icon2html(src, user)] Subject is irradiated. Radiation levels: [M.radiation]."))
+			combined_msg += span_boldannounce("[icon2html(src, user)] Subject is irradiated. Radiation levels: [M.radiation].")
 
 	if(rad_strength)
-		to_chat(user, span_boldannounce("[icon2html(src, user)] Target contains radioactive contamination. Radioactive strength: [rad_strength]"))
+		combined_msg += span_boldannounce("[icon2html(src, user)] Target contains radioactive contamination. Radioactive strength: [rad_strength]")
 	else
-		to_chat(user, span_notice("[icon2html(src, user)] Target is free of radioactive contamination."))
+		combined_msg += span_notice("[icon2html(src, user)] Target is free of radioactive contamination.")
+	to_chat(user, examine_block(combined_msg.Join("\n")))
 
 /obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER && (obj_flags & EMAGGED))

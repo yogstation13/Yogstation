@@ -1,5 +1,20 @@
 //Speech verbs.
 
+/mob/verb/say_wrapper()
+	set name = ".Say"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Say \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		say_verb(message)
+
 ///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"
@@ -7,6 +22,9 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
+		if(client.prefs.muted & MUTE_IC)
+			return
+		client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
 		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 		message_admins(log_message)
@@ -28,6 +46,9 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
+		if(client.prefs.muted & MUTE_IC)
+			return
+		client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 		to_chat(usr, span_notice("You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
 		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 		message_admins(log_message)
@@ -43,6 +64,21 @@
 ///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
+
+/mob/verb/me_wrapper()
+	set name = ".me"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Me \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		me_verb(message)
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)

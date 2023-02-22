@@ -300,7 +300,6 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += desc
 
 	. += generate_station_goal_report()
-	. += generate_station_trait_report()
 
 	desc += "\n\n[generate_station_trait_announcement()]"
 
@@ -330,7 +329,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 /datum/game_mode/dynamic/proc/show_threatlog(mob/admin)
 	if(!SSticker.HasRoundStarted())
-		alert("The round hasn't started yet!")
+		tgui_alert(usr, "The round hasn't started yet!")
 		return
 
 	if(!check_rights(R_ADMIN))
@@ -749,12 +748,15 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 				rule.candidates = list(newPlayer)
 				rule.trim_candidates()
+				if(!rule.candidates || isemptylist(rule.candidates))
+					continue
 				if (rule.ready())
 					drafted_rules[rule] = rule.get_weight()
 
 			if (drafted_rules.len > 0 && pick_latejoin_rule(drafted_rules))
 				var/latejoin_injection_cooldown_middle = 0.5*(latejoin_delay_max + latejoin_delay_min)
 				latejoin_injection_cooldown = round(clamp(EXP_DISTRIBUTION(latejoin_injection_cooldown_middle), latejoin_delay_min, latejoin_delay_max)) + world.time
+				return
 				
 /// Apply configurations to rule.
 /datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
@@ -767,7 +769,9 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		ruleset.restricted_roles |= ruleset.protected_roles
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		ruleset.restricted_roles |= "Assistant"	
+		ruleset.restricted_roles |= "Assistant"
+	if(CONFIG_GET(flag/protect_heads_from_antagonist))
+		ruleset.restricted_roles |= GLOB.command_positions
 
 /// Refund threat, but no more than threat_level.
 /datum/game_mode/dynamic/proc/refund_threat(regain)

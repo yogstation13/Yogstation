@@ -45,6 +45,15 @@ require only minor tweaks.
 #define ZTRAIT_ASHSTORM "Weather_Ashstorm"
 #define ZTRAIT_ACIDRAIN "Weather_Acidrain"
 
+/// boolean - does this z prevent ghosts from observing it
+#define ZTRAIT_SECRET "Secret"
+
+/// boolean - does this z prevent phasing
+#define ZTRAIT_NOPHASE "No Phase"
+
+/// boolean - does this z prevent xray/meson/thermal vision
+#define ZTRAIT_NOXRAY "No X-Ray"
+
 // number - bombcap is multiplied by this before being applied to bombs
 #define ZTRAIT_BOMBCAP_MULTIPLIER "Bombcap Multiplier"
 
@@ -68,9 +77,13 @@ require only minor tweaks.
 #define ZTRAIT_BASETURF "Baseturf"
 
 // default trait definitions, used by SSmapping
-#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
+///Z level traits for CentCom
+#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_NOPHASE = TRUE)
+///Z level traits for Space Station 13
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
+///Z level traits for Deep Space
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
+///Z level traits for Lavaland
 #define ZTRAITS_LAVALAND list(\
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_ASHSTORM = TRUE, \
@@ -91,6 +104,11 @@ require only minor tweaks.
     ZTRAIT_UP = -1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
+
+///Z level traits for Away Missions
+#define ZTRAITS_AWAY list(ZTRAIT_AWAY = TRUE)
+///Z level traits for Secret Away Missions
+#define ZTRAITS_AWAY_SECRET list(ZTRAIT_AWAY = TRUE, ZTRAIT_SECRET = TRUE, ZTRAIT_NOPHASE = TRUE)
 
 #define DL_NAME "name"
 #define DL_TRAITS "traits"

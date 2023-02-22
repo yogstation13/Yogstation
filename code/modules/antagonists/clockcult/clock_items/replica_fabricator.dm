@@ -93,7 +93,7 @@
 		fabrication_values["power_cost"] = 0
 
 	var/turf/Y = get_turf(user)
-	if(!Y || (!is_centcom_level(Y.z) && !is_station_level(Y.z) && !is_mining_level(Y.z)))
+	if(!Y || (!is_centcom_level(Y.z) && !is_station_level(Y.z))) //Yogstation change: Added penalty for being on lavaland base.
 		fabrication_values["operation_time"] *= 2
 		if(fabrication_values["power_cost"] > 0)
 			fabrication_values["power_cost"] *= 2
@@ -115,7 +115,7 @@
 			else
 				user.visible_message(span_warning("[user]'s [name] starts consuming [target]!"), \
 				span_brass("Your [name] starts consuming [target]..."))
-		if(!do_after(user, fabrication_values["operation_time"], target = target, extra_checks = CALLBACK(src, .proc/fabricate_checks, fabrication_values, target, target_type, user, TRUE)))
+		if(!do_after(user, fabrication_values["operation_time"], target, extra_checks = CALLBACK(src, .proc/fabricate_checks, fabrication_values, target, target_type, user, TRUE)))
 			return FALSE
 		if(!silent)
 			var/atom/A = fabrication_values["new_obj_type"]

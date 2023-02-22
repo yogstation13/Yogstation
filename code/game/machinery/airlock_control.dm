@@ -33,7 +33,7 @@
 			locked = FALSE
 			update_icon()
 
-			sleep(2)
+			sleep(0.2 SECONDS)
 			open(1)
 
 			locked = TRUE
@@ -44,7 +44,7 @@
 			close(1)
 
 			locked = TRUE
-			sleep(2)
+			sleep(0.2 SECONDS)
 			update_icon()
 
 	send_status()
@@ -90,7 +90,7 @@
 	name = "airlock sensor"
 	resistance_flags = FIRE_PROOF
 
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 
 	var/id_tag
 	var/master_tag

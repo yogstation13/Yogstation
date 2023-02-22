@@ -48,7 +48,7 @@
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
-	alert_type = /obj/screen/alert/status_effect/asleep
+	alert_type = /atom/movable/screen/alert/status_effect/asleep
 	needs_update_stat = TRUE
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
@@ -77,7 +77,7 @@
 		if(prob(10) && owner.health > owner.crit_threshold)
 			owner.emote("snore")
 
-/obj/screen/alert/status_effect/asleep
+/atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
 	icon_state = "asleep"
@@ -88,8 +88,10 @@
 	id = "stasis"
 	duration = -1
 	tick_interval = 10
-	alert_type = /obj/screen/alert/status_effect/stasis
+	alert_type = /atom/movable/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,23 +103,28 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
-/obj/screen/alert/status_effect/stasis
+/atom/movable/screen/alert/status_effect/stasis
 	name = "Stasis"
 	desc = "Your biological functions have halted. You could live forever this way, but it's pretty boring."
 	icon_state = "stasis"
@@ -128,7 +135,7 @@
 /datum/status_effect/strandling //get it, strand as in durathread strand + strangling = strandling hahahahahahahahahahhahahaha i want to die
 	id = "strandling"
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/strandling
+	alert_type = /atom/movable/screen/alert/status_effect/strandling
 
 /datum/status_effect/strandling/on_apply()
 	ADD_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
@@ -138,33 +145,20 @@
 	REMOVE_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
 	return ..()
 
-/obj/screen/alert/status_effect/strandling
+/atom/movable/screen/alert/status_effect/strandling
 	name = "Choking strand"
 	desc = "A magical strand of Durathread is wrapped around your neck, preventing you from breathing! Click this icon to remove the strand."
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
-/obj/screen/alert/status_effect/strandling/Click(location, control, params)
+/atom/movable/screen/alert/status_effect/strandling/Click(location, control, params)
 	. = ..()
 	to_chat(mob_viewer, span_notice("You attempt to remove the durathread strand from around your neck."))
-	if(do_after(mob_viewer, 3.5 SECONDS, null, mob_viewer))
+	if(do_after(mob_viewer, 3.5 SECONDS, mob_viewer, FALSE))
 		if(isliving(mob_viewer))
 			var/mob/living/L = mob_viewer
 			to_chat(mob_viewer, span_notice("You succesfuly remove the durathread strand."))
 			L.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
-
-
-/datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
-	. = ..()
-
-/datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-	return ..()
-
-/datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
 //OTHER DEBUFFS
 /datum/status_effect/pacify
@@ -190,9 +184,9 @@
 	id = "his_wrath"
 	duration = -1
 	tick_interval = 4
-	alert_type = /obj/screen/alert/status_effect/his_wrath
+	alert_type = /atom/movable/screen/alert/status_effect/his_wrath
 
-/obj/screen/alert/status_effect/his_wrath
+/atom/movable/screen/alert/status_effect/his_wrath
 	name = "His Wrath"
 	desc = "You fled from His Grace instead of feeding Him, and now you suffer."
 	icon_state = "his_grace"
@@ -211,11 +205,11 @@
 	duration = 70
 	tick_interval = 0 //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /obj/screen/alert/status_effect/belligerent
+	alert_type = /atom/movable/screen/alert/status_effect/belligerent
 	var/leg_damage_on_toggle = 2 //damage on initial application and when the owner tries to toggle to run
 	var/cultist_damage_on_toggle = 10 //damage on initial application and when the owner tries to toggle to run, but to cultists
 
-/obj/screen/alert/status_effect/belligerent
+/atom/movable/screen/alert/status_effect/belligerent
 	name = "Belligerent"
 	desc = "<b><font color=#880020>Kneel, her-eti'c.</font></b>"
 	icon_state = "belligerent"
@@ -358,15 +352,50 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
+/datum/status_effect/the_shadow
+	id = "the_shadow"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = -1
+	var/mutable_appearance/shadow
+
+/datum/status_effect/the_shadow/on_apply()
+	if(ishuman(owner))
+		shadow = mutable_appearance('icons/effects/effects.dmi', "curse")
+		shadow.pixel_x = -owner.pixel_x
+		shadow.pixel_y = -owner.pixel_y
+		owner.add_overlay(shadow)
+		to_chat(owner, span_boldwarning("The shadows invade your mind, MUST. GET. THEM. OUT"))
+		return TRUE
+	return FALSE
+
+/datum/status_effect/the_shadow/tick()
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > 0.2)
+		to_chat(owner, span_notice("As the light reaches the shadows, they dissipate!"))
+		qdel(src)
+	if(owner.stat == DEAD)
+		qdel(src)
+	owner.hallucination += 2
+	owner.confused += 2
+	owner.adjustEarDamage(0, 5)
+
+/datum/status_effect/the_shadow/Destroy()
+	if(owner)
+		owner.cut_overlay(shadow)
+	QDEL_NULL(shadow)
+	return ..()
+
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/mutable_appearance/marked_underlay
-	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
+	var/obj/item/twohanded/kinetic_crusher/hammer_synced
 
-/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/twohanded/required/kinetic_crusher/new_hammer_synced)
+/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/twohanded/kinetic_crusher/new_hammer_synced)
 	. = ..()
 	if(.)
 		hammer_synced = new_hammer_synced
@@ -433,6 +462,10 @@
 	if(owner.stat == DEAD)
 		qdel(src)
 	else
+		if(faction_check(owner.faction, list("mining", "boss")))
+			owner.apply_damage(10)
+		else //This is so that it doesn't murder humans drastically as there are none in either faction.
+			owner.apply_damage(2)
 		add_bleed(-1)
 
 /datum/status_effect/saw_bleed/proc/add_bleed(amount)
@@ -510,7 +543,7 @@
 /datum/status_effect/necropolis_curse/proc/apply_curse(set_curse)
 	curse_flags |= set_curse
 	if(curse_flags & CURSE_BLINDING)
-		owner.overlay_fullscreen("curse", /obj/screen/fullscreen/curse, 1)
+		owner.overlay_fullscreen("curse", /atom/movable/screen/fullscreen/curse, 1)
 
 /datum/status_effect/necropolis_curse/proc/remove_curse(remove_curse)
 	if(remove_curse & CURSE_BLINDING)
@@ -525,7 +558,7 @@
 		wasting_effect.setDir(owner.dir)
 		wasting_effect.transform = owner.transform //if the owner has been stunned the overlay should inherit that position
 		wasting_effect.alpha = 255
-		animate(wasting_effect, alpha = 0, time = 32)
+		animate(wasting_effect, alpha = 0, time = 3.2 SECONDS)
 		playsound(owner, 'sound/effects/curse5.ogg', 20, 1, -1)
 		owner.adjustFireLoss(0.75)
 	if(effect_last_activation <= world.time)
@@ -587,7 +620,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
 	duration = 100
-	alert_type = /obj/screen/alert/status_effect/kindle
+	alert_type = /atom/movable/screen/alert/status_effect/kindle
 	var/old_health
 
 /datum/status_effect/kindle/tick()
@@ -611,7 +644,7 @@
 	owner.visible_message(span_warning("The light in [owner]'s eyes fades!"), \
 	span_boldannounce("You snap out of your daze!"))
 
-/obj/screen/alert/status_effect/kindle
+/atom/movable/screen/alert/status_effect/kindle
 	name = "Dazzling Lights"
 	desc = "Blinding light dances in your vision, stunning and silencing you. <i>Any damage taken will shorten the light's effects!</i>"
 	icon_state = "kindle"
@@ -624,7 +657,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 600
 	examine_text = span_warning("SUBJECTPRONOUN is drenched in thick, blue ichor!")
-	alert_type = /obj/screen/alert/status_effect/ichorial_stain
+	alert_type = /atom/movable/screen/alert/status_effect/ichorial_stain
 
 /datum/status_effect/ichorial_stain/on_apply()
 	owner.visible_message(span_danger("[owner] gets back up, [owner.p_their()] body dripping blue ichor!"), \
@@ -635,7 +668,7 @@
 	owner.visible_message(span_danger("The blue ichor on [owner]'s body dries out!"), \
 	span_boldnotice("The ichor on your body is dry - you can now be revived by vitality matrices again!"))
 
-/obj/screen/alert/status_effect/ichorial_stain
+/atom/movable/screen/alert/status_effect/ichorial_stain
 	name = "Ichorial Stain"
 	desc = "Your body is covered in blue ichor! You can't be revived by vitality matrices."
 	icon_state = "ichorial_stain"
@@ -666,9 +699,9 @@
 	tick_interval = 10
 	examine_text = span_warning("SUBJECTPRONOUN seems slow and unfocused.")
 	var/stun = TRUE
-	alert_type = /obj/screen/alert/status_effect/trance
+	alert_type = /atom/movable/screen/alert/status_effect/trance
 
-/obj/screen/alert/status_effect/trance
+/atom/movable/screen/alert/status_effect/trance
 	name = "Trance"
 	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."
 	icon_state = "high"
@@ -773,7 +806,7 @@
 	id = "dna_melt"
 	duration = 600
 	status_type = STATUS_EFFECT_REPLACE
-	alert_type = /obj/screen/alert/status_effect/dna_melt
+	alert_type = /atom/movable/screen/alert/status_effect/dna_melt
 	var/kill_either_way = FALSE //no amount of removing mutations is gonna save you now
 
 /datum/status_effect/dna_melt/on_creation(mob/living/new_owner, set_duration, updating_canmove)
@@ -787,7 +820,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.something_horrible(kill_either_way)
 
-/obj/screen/alert/status_effect/dna_melt
+/atom/movable/screen/alert/status_effect/dna_melt
 	name = "Genetic Breakdown"
 	desc = "I don't feel so good. Your body can't handle the mutations! You have one minute to remove your mutations, or you will be met with a horrible fate."
 	icon_state = "dna_melt"
@@ -797,7 +830,7 @@
 	duration = 100
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 1
-	alert_type = /obj/screen/alert/status_effect/go_away
+	alert_type = /atom/movable/screen/alert/status_effect/go_away
 	var/direction
 
 /datum/status_effect/go_away/on_creation(mob/living/new_owner, set_duration, updating_canmove)
@@ -810,10 +843,56 @@
 	var/turf/T = get_step(owner, direction)
 	owner.forceMove(T)
 
-/obj/screen/alert/status_effect/go_away
+/atom/movable/screen/alert/status_effect/go_away
 	name = "TO THE STARS AND BEYOND!"
 	desc = "I must go, my people need me!"
 	icon_state = "high"
+
+/datum/status_effect/fake_virus
+	id = "fake_virus"
+	duration = 3 MINUTES
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 1
+	alert_type = null
+	var/msg_stage = 0//so you dont get the most intense messages immediately
+
+/datum/status_effect/fake_virus/tick()
+	var/fake_msg = ""
+	var/fake_emote = ""
+	switch(msg_stage)
+		if(0 to 300)
+			if(prob(1))
+				fake_msg = pick(
+					span_warning(pick("Your head hurts.", "Your head pounds.")),
+					span_warning(pick("You're having difficulty breathing.", "Your breathing becomes heavy.")),
+					span_warning(pick("You feel dizzy.", "Your head spins.")),
+					span_warning(pick("You swallow excess mucus.", "You lightly cough.")),
+					span_warning(pick("Your head hurts.", "Your mind blanks for a moment.")),
+					span_warning(pick("Your throat hurts.", "You clear your throat.")))
+		if(301 to 600)
+			if(prob(2))
+				fake_msg = pick(
+					span_warning(pick("Your head hurts a lot.", "Your head pounds incessantly.")),
+					span_warning(pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")),
+					span_warning("You feel very [pick("dizzy","woozy","faint")]."),
+					span_warning(pick("You hear a ringing in your ear.", "Your ears pop.")),
+					span_warning("You nod off for a moment."))
+		else
+			if(prob(3))
+				if(prob(50))// coin flip to throw a message or an emote
+					fake_msg = pick(
+					span_userdanger(pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")),
+					span_userdanger(pick("Your lungs hurt!", "It hurts to breathe!")),
+					span_warning(pick("You feel nauseated.", "You feel like you're going to throw up!")))
+				else
+					fake_emote = pick("cough", "sniff", "sneeze")
+
+	if(fake_emote)
+		owner.emote(fake_emote)
+	else if(fake_msg)
+		to_chat(owner, fake_msg)
+
+	msg_stage++
 
 //Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, going down by 1 second for every point of damage the target takes. //yogs start: darkspawn
 /datum/status_effect/broken_will
@@ -822,7 +901,7 @@
 	tick_interval = 5
 	duration = 300
 	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
-	alert_type = /obj/screen/alert/status_effect/broken_will
+	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	var/old_health
 
 /datum/status_effect/broken_will/tick()
@@ -838,7 +917,7 @@
 	duration -= health_difference
 	old_health = owner.health
 
-/obj/screen/alert/status_effect/broken_will
+/atom/movable/screen/alert/status_effect/broken_will
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
@@ -905,8 +984,9 @@
 /datum/status_effect/eldritch/ash/on_effect()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.adjustStaminaLoss(10 * repetitions)
 		carbon_owner.adjustFireLoss(5 * repetitions)
+		carbon_owner.adjust_fire_stacks(2)
+		carbon_owner.IgniteMob()
 		for(var/mob/living/carbon/victim in range(1,carbon_owner))
 			if(IS_HERETIC(victim) || victim == carbon_owner)
 				continue
@@ -1066,122 +1146,79 @@
 		for(var/i in S.damage_coeff)
 			S.damage_coeff[i] /= power
 
-#define HERETIC_SACRIFICE_EFFECT_THRESHOLD 3 //number of ticks per event, this will get cut off if it occurs at the same time the effect ends.
-#define LIMB_SPOOK "limb_skeletonification"
-#define WOUNDING "oof_ouch_my_bones"
-#define BRAIN_DAMAGE "shouldnt_have_done_that"
+/datum/status_effect/knuckled
+    id = "knuckle_wound"
+    duration = 10 SECONDS
+    status_type = STATUS_EFFECT_REPLACE
+    alert_type = null
+    var/mutable_appearance/bruise
+    var/obj/item/melee/knuckles
 
-/datum/status_effect/heretic_sacrifice
-	id = "heretic_sac"
+/datum/status_effect/knuckled/on_apply()
+    bruise = mutable_appearance('icons/effects/effects.dmi', "rshield")
+    bruise.pixel_x = -owner.pixel_x
+    bruise.pixel_y = -owner.pixel_y
+    owner.underlays += bruise
+    return TRUE
+
+/datum/status_effect/knuckled/Destroy()
+    if(owner)
+        owner.underlays -= bruise
+    QDEL_NULL(bruise)
+    return ..()
+
+/datum/status_effect/knuckled/be_replaced()
+    owner.underlays -= bruise
+    ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
 	alert_type = null
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 4 MINUTES
-	tick_interval = 15 SECONDS
-	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-	var/list/all_limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST, BODY_ZONE_HEAD)
-	var/next_event_timer = 0
-	var/list/limb_removal_flavor = list("The skin on your %LIMB falls off, revealing the skeleton beneath!")
-	var/dam_type = BRUTE
-	var/wound_type = /datum/wound/blunt/critical
-	var/list/wound_flavor = list("The bones in your %LIMB suddenly snap!")
-	var/list/brain_traumas = list(/datum/brain_trauma/mild/phobia/space, /datum/brain_trauma/mild/phobia/supernatural, /datum/brain_trauma/severe/monophobia, /datum/brain_trauma/special/death_whispers, /datum/brain_trauma/mild/phobia/clowns,/datum/brain_trauma/mild/phobia/robots,/datum/brain_trauma/mild/phobia/conspiracies) //if death whipsers is too stupid feel free to axe it
-	var/list/brain_damage_flavor = list("You see... nothing...? It hurts.", "The stars are wrong.", "One of the dark stars suddenly vanishes. You think? Your mind slips.", "You catch a glimpse of something of something of something- that shouldn't- that's too- that's... old. Then it's gone.")
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 35
+	var/needs_to_tame = FALSE
+	var/mob/living/tamer
 
-/datum/status_effect/heretic_sacrifice/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
-	S.start()
-	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
-	owner.regenerate_organs()
-	owner.regenerate_limbs()
-	owner.grab_ghost()
-	owner.SetStun(60 MINUTES, ignore_canstun = TRUE)
-	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
-	for(var/i in GLOB.brazil_reception)
-		if(locate(/mob) in get_turf(i)) //there are actually 64 total spots at brazil to get teleported to so if this gets filled (unlikely) they just get returned as a failsafe
-			continue
-		owner.forceMove(get_turf(i))
-		return TRUE
-
-/datum/status_effect/heretic_sacrifice/tick()
-	owner.SetStun(60 MINUTES, ignore_canstun = TRUE) //not getting out of it that easy
-	if(!iscarbon(owner))
-		return
-	if(prob(20))
-		to_chat(owner, span_velvet(pick("The stars flicker in the distance.", "You faintly see movement.", "You feel something turn its gaze to you, then move on.", "This can't be it, can it?")))
-	next_event_timer++
-	var/mob/living/carbon/C = owner
-	if(!(next_event_timer % HERETIC_SACRIFICE_EFFECT_THRESHOLD))
-		if(prob(1)) //small chance of no effect
-			to_chat(owner, span_boldnotice("You float, The glow of the dark stars oddly relaxing. Everything feels alright for once.</span>"))
-			return
-		var/effect = pick(LIMB_SPOOK, WOUNDING, BRAIN_DAMAGE)
-		switch(effect)
-			if(LIMB_SPOOK)
-				var/obj/item/bodypart/BP
-				while(!BP)
-					if(!LAZYLEN(unspooked_limbs))
-						break
-					var/target_zone = pick_n_take(unspooked_limbs)
-					BP = C.get_bodypart(target_zone)
-					var/obj/item/bodypart/replacement_part = new BP.type
-					if(BP.species_id == "skeleton")
-						continue
-					var/msg = pick(limb_removal_flavor)
-					msg = replacetext(msg, "%LIMB", BP.name)
-					to_chat(owner, span_userdanger(msg))
-					replacement_part.species_id = "skeleton"
-					replacement_part.original_owner = "inside"
-					replacement_part.replace_limb(owner)
-					C.apply_damage(30, damagetype = dam_type, def_zone = target_zone, wound_bonus = CANT_WOUND)
-					owner.emote("scream")
-				if(BP)
-					qdel(BP)
-			if(WOUNDING)
-				var/obj/item/bodypart/BP
-				while(!BP)
-					if(!LAZYLEN(all_limbs))
-						break
-					BP = C.get_bodypart(pick_n_take(all_limbs))
-					BP.force_wound_upwards(wound_type)
-					var/msg = pick(wound_flavor)
-					msg = replacetext(msg, "%LIMB", BP.name)
-					to_chat(owner, span_userdanger(msg))
-			if(BRAIN_DAMAGE)
-				var/msg = pick(brain_damage_flavor)
-				to_chat(owner, span_userdanger(msg))
-				if(!owner.has_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE) && prob(20)) //20% chance for a blinding necropolis curse instead of a permanent trauma (only happens once, lasts several minutes)
-					owner.apply_necropolis_curse(CURSE_BLINDING)
-				else
-					var/trauma = pick_n_take(brain_traumas)
-					var/datum/brain_trauma/T = new trauma
-					C.gain_trauma(T, TRAUMA_RESILIENCE_LOBOTOMY)
-
-/datum/status_effect/heretic_sacrifice/on_remove()
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
 	. = ..()
-	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of the past few minutes, or any proof of it beyond your mangled state.</span>")
-	owner.SetStun(2 SECONDS, ignore_canstun = TRUE)
-	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
-	if(safe_turf)
-		owner.forceMove(safe_turf)
+	if(!.)
+		return
+	tamer = user
 
-/datum/status_effect/heretic_sacrifice/ash
-	limb_removal_flavor = list("The flesh on your %LIMB ignites and burns off, revealing the bones beneath!")
-	wound_type = /datum/wound/burn/critical
-	wound_flavor = list("You feel a stinging pain as the skin on your %LIMB suddenly bursts into flames!")
-	brain_damage_flavor = list("You see a fire, people, burning, screaming.", "Suddenly, two flaming eyes appear before you. Their stare burning into your eyes, your mind.", "For a moment, you are in the middle of a raging inferno, you can see your skin burn and melt, then you're back here.", "You see someone you know trapped in a fire, but you can't reach them. You can't help.")
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
 
-/datum/status_effect/heretic_sacrifice/flesh
-	limb_removal_flavor = list("The flesh on your %LIMB suddenly rots off, revealing the bones beneath!", "You feel a presence by your side, then a flash of pain. By the time you can turn, your %LIMB is already reduced to bones, and the presence is gone.")
-	wound_flavor = list("Your %LIMB's bones suddenly crumble beneath your skin!")
-	brain_damage_flavor = list("You see bodies. So many bodies...  The worst part is, you think you can recognize some of them.", "You see yourself, bleeding, dying.", "For a minute, you feel something... knitting? Your skin. But whenever you turn, it moves somewhere else.")
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
 
-/datum/status_effect/heretic_sacrifice/rust
-	limb_removal_flavor = list("The flesh on your %LIMB begins to flake off, revealing the bones beneath!")
-	wound_flavor = list("Your %LIMB's bones, brittle and aching at the joints, finally break!")
-	brain_damage_flavor = list("You see everything you've worked for reduced to dust before your eyes...", "You see an ending.", "You find yourself on the station for a moment, but it's rusted and derelict. You check the time... it's only been an hour?")
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
 
-#undef HERETIC_SACRIFICE_EFFECT_THRESHOLD
-#undef LIMB_SPOOK
-#undef WOUNDING
-#undef BRAIN_DAMAGE
+/datum/status_effect/taming/on_remove()
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()
+
+/datum/status_effect/exhumed
+	id = "exhume"
+	tick_interval = -1
+	alert_type = null

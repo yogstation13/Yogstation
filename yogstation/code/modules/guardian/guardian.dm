@@ -1,8 +1,16 @@
 
 GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
+GLOBAL_LIST_INIT(guardian_projectile_damage, list(
+	1 = 2,    // F
+	2 = 4,    // D
+	3 = 6.5,  // C
+	4 = 10,   // B
+	5 = 17.5, // A
+))
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -10,7 +18,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	desc = "A mysterious being that stands by its charge, ever vigilant."
 	speak_emote = list("hisses")
 	gender = NEUTER
-	mob_biotypes = list(MOB_INORGANIC)
+	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
 	bubble_icon = "guardian"
 	response_help  = "passes through"
 	response_disarm = "flails at"
@@ -19,9 +27,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	icon_state = "magicOrange"
 	icon_living = "magicOrange"
 	icon_dead = "magicOrange"
-	speed = 0
+	speed = -1
 	a_intent = INTENT_HARM
-	stop_automated_movement = 1
+	stop_automated_movement = TRUE
 	movement_type = FLYING // Immunity to chasms and landmines, etc.
 	attack_sound = 'sound/weapons/punch1.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -30,21 +38,25 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	attacktext = "punches"
 	maxHealth = INFINITY //The spirit itself is invincible
 	health = INFINITY
-	healable = FALSE //don't brusepack the guardian
+	healable = FALSE //don't bruisepack the guardian
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5) //how much damage from each damage type we transfer to the owner
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 	hud_type = /datum/hud/guardian
+	see_in_dark = 8
 	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
 	var/range = 10
 	var/cooldown = 0
 	var/datum/mind/summoner
-	var/toggle_button_type = /obj/screen/guardian/ToggleMode
+	var/toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/datum/guardian_stats/stats
 	var/summoner_visible = TRUE
@@ -54,11 +66,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/berserk = FALSE
 	var/requiem = FALSE
 	// ability stuff below
-	var/list/snares = list()
-	var/list/bombs = list()
-	var/obj/structure/receiving_pad/beacon
-	var/beacon_cooldown = 0
-	var/list/pocket_dim
 	var/transforming = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
@@ -90,7 +97,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/cut_barriers()
 	if (client)
-		for(var/image/I in barrier_images)
+		for (var/image/I in barrier_images)
 			client.images -= I
 			qdel(I)
 		barrier_images.Cut()
@@ -104,19 +111,19 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/sz = summoner.current.z
 	if (sx - range - 1 < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
 		return
-	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
+	for (var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
-	for(var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
+	for (var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
-	for(var/turf/T in getline(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
+	for (var/turf/T in getline(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
-	for(var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
+	for (var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, WEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
-	for(var/image/I in barrier_images)
+	for (var/image/I in barrier_images)
 		I.layer = ABOVE_LIGHTING_PLANE
 		I.plane = FLOOR_PLANE
 		client.images += I
@@ -127,19 +134,19 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/list/possible_names = list()
 	switch(pickedtheme)
 		if ("magic")
-			for(var/type in (subtypesof(/datum/guardianname/magic) - namedatum.type))
+			for (var/type in (subtypesof(/datum/guardianname/magic) - namedatum.type))
 				possible_names += new type
 		if ("tech")
-			for(var/type in (subtypesof(/datum/guardianname/tech) - namedatum.type))
+			for (var/type in (subtypesof(/datum/guardianname/tech) - namedatum.type))
 				possible_names += new type
 		if ("carp")
-			for(var/type in (subtypesof(/datum/guardianname/carp) - namedatum.type))
+			for (var/type in (subtypesof(/datum/guardianname/carp) - namedatum.type))
 				possible_names += new type
 	namedatum = pick(possible_names)
 	updatetheme(pickedtheme)
 
 /mob/living/simple_animal/hostile/guardian/proc/updatetheme(theme) //update the guardian's theme to whatever its datum is; proc for adminfuckery
-	name = "[namedatum.prefixname] [namedatum.suffixcolour]"
+	name = "[namedatum.prefixname] [namedatum.suffixcolor]"
 	real_name = "[name]"
 	icon_living = "[namedatum.parasiteicon]"
 	icon_state = "[namedatum.parasiteicon]"
@@ -147,7 +154,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	bubble_icon = "[namedatum.bubbleicon]"
 
 	if (namedatum.stainself)
-		add_atom_colour(namedatum.colour, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(namedatum.color, FIXED_COLOUR_PRIORITY)
 
 	//Special case holocarp, because #snowflake code
 	if (theme == "carp")
@@ -162,12 +169,14 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	. = ..()
 	if (mind)
 		mind.name = "[real_name]"
+	if (client?.prefs)
+		gender = client.prefs.read_preference(/datum/preference/choiced/gender)
 	if (berserk)
 		return
 	if (!summoner?.current)
-		to_chat(src, "<span class='holoparasite bold'>For some reason, somehow, you have no summoner. Please report this bug immediately.</span>")
+		to_chat(src, span_holoparasite(span_bold("For some reason, somehow, you have no summoner. Please report this bug immediately.")))
 		return
-	to_chat(src, span_holoparasite("You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.current.real_name]."))
+	to_chat(src, span_holoparasite("You are <font color=\"[namedatum.color]\"><b>[real_name]</b></font>, bound to serve [summoner.current.real_name]."))
 	to_chat(src, span_holoparasite("You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.current.p_them()] privately there."))
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself."))
 	setup_barriers()
@@ -188,7 +197,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				to_chat(src, span_userdanger("Your summoner has died!"))
 				visible_message(span_bolddanger("[src] dies along with its user!"))
 				summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
-				for(var/obj/item/W in summoner.current)
+				for (var/obj/item/W in summoner.current)
 					if (!summoner.current.dropItemToGround(W))
 						qdel(W)
 				death(TRUE)
@@ -211,7 +220,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		UnregisterSignal(summoner.current, COMSIG_MOVABLE_MOVED)
 	cut_barriers()
 	var/mob/living/carbon/H = summoner.current
-	remove_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+	remove_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -327,26 +336,39 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/proc/is_deployed()
 	return loc != summoner?.current
 
+/mob/living/simple_animal/hostile/guardian/proc/has_ability(ability_type)
+	. = FALSE
+	if (!ispath(ability_type))
+		stack_trace("passed non-path to has_ability(ability_type)")
+		return
+	if (istype(stats.ability, ability_type))
+		return stats.ability
+	for (var/A in stats.minor_abilities)
+		var/datum/guardian_ability/minor/ability = A
+		if (istype(ability, ability_type))
+			return ability
+
 /mob/living/simple_animal/hostile/guardian/Shoot(atom/targeted_atom)
-	if ( QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from )
+	if (QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
 		return
 	var/turf/startloc = get_turf(targets_from)
-	var/obj/item/projectile/P = new /obj/item/projectile/guardian(startloc)
+	var/obj/item/projectile/guardian/emerald_splash = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	if (namedatum)
-		P.color = namedatum.colour
-	P.damage = stats.damage * 3
-	P.starting = startloc
-	P.firer = src
-	P.fired_from = src
-	P.yo = targeted_atom.y - startloc.y
-	P.xo = targeted_atom.x - startloc.x
+		emerald_splash.color = namedatum.color
+	emerald_splash.guardian_master = summoner
+	emerald_splash.damage = GLOB.guardian_projectile_damage[stats.damage]
+	emerald_splash.starting = startloc
+	emerald_splash.firer = src
+	emerald_splash.fired_from = src
+	emerald_splash.yo = targeted_atom.y - startloc.y
+	emerald_splash.xo = targeted_atom.x - startloc.x
 	if (AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
 		newtonian_move(get_dir(targeted_atom, targets_from))
-	P.original = targeted_atom
-	P.preparePixelProjectile(targeted_atom, src)
-	P.fire()
-	return P
+	emerald_splash.original = targeted_atom
+	emerald_splash.preparePixelProjectile(targeted_atom, src)
+	emerald_splash.fire()
+	return emerald_splash
 
 /mob/living/simple_animal/hostile/guardian/RangedAttack(atom/A, params)
 	if (transforming)
@@ -449,7 +471,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		. += span_holoparasite("<b>RANGE:</b> [level_to_grade(stats.range)]")
 		if (stats.ability)
 			. += span_holoparasite("<b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]")
-		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+		for (var/datum/guardian_ability/minor/M in stats.minor_abilities)
 			. += span_holoparasite("<b>MINOR ABILITY:</b> [M.name] - [M.desc]")
 
 /mob/living/simple_animal/hostile/guardian/gib()
@@ -529,12 +551,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	cooldown = world.time + 10
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
-	if (light_range<3)
+	if(!light_on)
 		to_chat(src, span_notice("You activate your light."))
-		set_light(3)
+		set_light_on(TRUE)
 	else
 		to_chat(src, span_notice("You deactivate your light."))
-		set_light(0)
+		set_light_on(FALSE)
 
 /mob/living/simple_animal/hostile/guardian/verb/show_detail()
 	set name = "Show Powers"
@@ -547,7 +569,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<b>RANGE:</b> [level_to_grade(stats.range)]")
 	if (stats.ability)
 		to_chat(src, "<b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]")
-	for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+	for (var/datum/guardian_ability/minor/M in stats.minor_abilities)
 		to_chat(src, "<b>MINOR ABILITY:</b> [M.name] - [M.desc]")
 
 //COMMUNICATION
@@ -559,14 +581,14 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			return
 
 		var/preliminary_message = span_holoparasite(span_bold(input)) //apply basic color/bolding
-		var/my_message = "<font color=\"[namedatum.colour]\"><b><i>[src]:</i></b></font> [preliminary_message]" //add source, color source with the guardian's color
-		var/ghost_message = "<font color=\"[namedatum.colour]\"><b><i>[src] -> [summoner.name]:</i></b></font> [preliminary_message]"
+		var/my_message = "<font color=\"[namedatum.color]\"><b><i>[src]:</i></b></font> [preliminary_message]" //add source, color source with the guardian's color
+		var/ghost_message = "<font color=\"[namedatum.color]\"><b><i>[src] -> [summoner.name]:</i></b></font> [preliminary_message]"
 
 		to_chat(summoner.current, my_message)
 		var/list/guardians = summoner.current.hasparasites()
-		for(var/para in guardians)
+		for (var/para in guardians)
 			to_chat(para, my_message)
-		for(var/M in GLOB.dead_mob_list)
+		for (var/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [ghost_message]")
 
@@ -585,15 +607,65 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	to_chat(src, my_message)
 	var/list/guardians = hasparasites()
-	for(var/para in guardians)
+	for (var/para in guardians)
 		var/mob/living/simple_animal/hostile/guardian/G = para
-		to_chat(G, "<font color=\"[G.namedatum.colour]\"><b><i>[src]:</i></b></font> [preliminary_message]" )
-	for(var/M in GLOB.dead_mob_list)
+		to_chat(G, "<font color=\"[G.namedatum.color]\"><b><i>[src]:</i></b></font> [preliminary_message]" )
+	for (var/M in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(M, src)
 		to_chat(M, "[link] [my_message]")
 
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
+/mob/living/proc/finduser()
+	set name = "Find another user"
+	set category = "Guardian"
+	set desc = "Search for the rough location of another person with a Guardian."
+	var/turf/my_loc = get_turf(src)
+	var/closest_dist = 9999
+	var/mob/living/closest_user
+
+	to_chat(src, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
+	if(!do_after(src, 5 SECONDS))
+		return FALSE
+	var/list/datum/mind/users = list()
+	var/list/guardians = hasparasites()
+	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
+		if(all_carbons == src) //don't track ourselves!
+			continue
+		if(!all_carbons.mind)
+			continue
+		var/datum/mind/carbon_minds = all_carbons.mind
+		for(var/para in guardians)
+			var/mob/living/simple_animal/hostile/guardian/G = para
+			if(G.summoner?.current.ckey == src.ckey)
+				users += carbon_minds
+				
+
+	for(var/datum/mind/user_minds in users)
+		if(!user_minds.current || user_minds.current == src)
+			continue
+		for(var/antag_datums in user_minds.antag_datums)
+			var/datum/antagonist/antag_datum = antag_datums
+			if(!istype(antag_datum))
+				continue
+			var/their_loc = get_turf(user_minds.current)
+			var/distance = get_dist_euclidian(my_loc, their_loc)
+			/// Found One: Closer than previous/max distance
+			if(distance < closest_dist && distance <= GUARDIAN_SCAN_DISTANCE)
+				closest_dist = distance
+				closest_user = user_minds.current
+				/// Stop searching through my antag datums and go to the next guy
+				break
+
+	/// Found one!
+	if(closest_user)
+		var/distString = closest_dist <= GUARDIAN_SCAN_DISTANCE / 4 ? "<b>somewhere nearby!</b>" : "somewhere in the distance."
+		to_chat(src, span_warning("You detect signs of a user [distString]"))
+
+	/// Will yield a "?"
+	else
+		to_chat(src, span_notice("There are no users nearby."))
+		
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
@@ -609,12 +681,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	set category = "Guardian"
 	set desc = "Forcibly recall your guardian."
 	var/list/guardians = hasparasites()
-	for(var/para in guardians)
+	for (var/para in guardians)
 		var/mob/living/simple_animal/hostile/guardian/G = para
 		G.Recall()
 
 /mob/living/proc/guardian_reset()
-	set name = "Reset Guardian Player (One Use)"
+	set name = "Reset Guardian Player"
 	set category = "Guardian"
 	set desc = "Re-rolls which ghost will control your Guardian."
 
@@ -632,12 +704,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [summoner.current.real_name]'s [real_name]? ([stats.short_info()])", ROLE_HOLOPARASITE, null, FALSE, 10 SECONDS)
 	if (!LAZYLEN(candidates))
 		if (!silent)
-			to_chat(src, span_holoparasite("There were no ghosts willing to take control of <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>. Looks like you're stuck with it for now."))
+			to_chat(src, span_holoparasite("There were no ghosts willing to take control of <font color=\"[namedatum.color]\"><b>[real_name]</b></font>. Looks like you're stuck with it for now."))
 		return
 	var/mob/dead/observer/C = pick(candidates)
 	if (!silent)
 		to_chat(src, span_holoparasite("Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance."))
-		to_chat(summoner.current, span_holoparasite(span_bold("Your <font color=\"[namedatum.colour]\">[real_name]</font> has been successfully reset.")))
+		to_chat(summoner.current, span_holoparasite(span_bold("Your <font color=\"[namedatum.color]\">[real_name]</font> has been successfully reset.")))
 	log_game("[key_name(summoner.current)] has reset their holoparasite, it is now [key_name(src)] (initiated by [initiated_by])")
 	ghostize(FALSE)
 	if (!custom_name)
@@ -646,15 +718,15 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if (!silent)
 		switch(namedatum.theme)
 			if ("tech")
-				to_chat(src, span_holoparasite("<font color=\"[namedatum.colour]\"><b>[real_name]</b></font> is now online!"))
+				to_chat(src, span_holoparasite("<font color=\"[namedatum.color]\"><b>[real_name]</b></font> is now online!"))
 			if ("magic")
-				to_chat(src, span_holoparasite("<font color=\"[namedatum.colour]\"><b>[real_name]</b></font> has been summoned!"))
+				to_chat(src, span_holoparasite("<font color=\"[namedatum.color]\"><b>[real_name]</b></font> has been summoned!"))
 
 // misc guardian procs //
 
 /mob/living/proc/hasparasites() //returns a list of guardians the mob is a summoner for
 	. = list()
-	for(var/P in GLOB.parasites)
+	for (var/P in GLOB.parasites)
 		var/mob/living/simple_animal/hostile/guardian/G = P
 		if (G.summoner == mind)
 			. += G
@@ -662,8 +734,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/revive_guardian()
 	var/list/guardians = hasparasites()
 	if (LAZYLEN(guardians))
-		add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
-		for(var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
+		add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
+		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(src)
 			jojo.RegisterSignal(src, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
 			jojo.revive()
@@ -676,7 +748,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /datum/mind/proc/hasparasites() //returns a list of guardians the mind is a summoner for
 	. = list()
-	for(var/P in GLOB.parasites)
+	for (var/P in GLOB.parasites)
 		var/mob/living/simple_animal/hostile/guardian/G = P
 		if (G.summoner == src)
 			. += G
@@ -696,22 +768,23 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			return "B"
 		if (5)
 			return "A"
-	return "F"
+	return "ERROR"
 
 /datum/mind/proc/transfer_parasites()
 	var/list/guardians = hasparasites()
 	if (LAZYLEN(guardians))
-		add_verb(current, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
-		for(var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
+		add_verb(current, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
+		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(current)
 			jojo.RegisterSignal(current, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
 			if (jojo.stat == DEAD)
 				jojo.revive()
-				var/mob/gost = jojo.grab_ghost(TRUE)
-				if (gost)
-					jojo.ckey = gost.ckey
-				else
-					jojo.reset(TRUE, "host mind transfer")
+				if (!jojo.ckey)
+					var/mob/gost = jojo.grab_ghost(TRUE)
+					if (gost)
+						jojo.ckey = gost.ckey
+					else
+						jojo.reset(TRUE, "host mind transfer")
 				to_chat(jojo, span_notice("You manifest into existence, as your master's soul appears in a new body!"))
 
 /obj/item/projectile/guardian
@@ -719,4 +792,5 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
-	armour_penetration = 100
+	armour_penetration = 100 // no one can just deflect the emerald splash!
+	var/datum/mind/guardian_master

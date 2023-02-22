@@ -3,15 +3,16 @@
 	filedesc = "Software Download Tool"
 	program_icon_state = "generic"
 	extended_desc = "This program allows downloads of software from official NT repositories"
-	unsendable = 1
-	undeletable = 1
-	size = 4
-	requires_ntnet = 1
+	unsendable = TRUE
+	undeletable = TRUE
+	size = 1
+	requires_ntnet = FALSE
 	requires_ntnet_feature = NTNET_SOFTWAREDOWNLOAD
-	available_on_ntnet = 0
+	available_on_ntnet = FALSE
 	ui_header = "downloader_finished.gif"
 	tgui_id = "NtosNetDownloader"
 	program_icon = "download"
+	alert_able = TRUE
 
 	var/datum/computer_file/program/downloaded_file = null
 	var/hacked_download = FALSE
@@ -24,9 +25,11 @@
 	var/list/antag_repo
 
 	var/list/show_categories = list(
-		PROGRAM_CATEGORY_CREW,
+		PROGRAM_CATEGORY_CMD,
+		PROGRAM_CATEGORY_SEC,
 		PROGRAM_CATEGORY_ENGI,
-		PROGRAM_CATEGORY_ROBO,
+		PROGRAM_CATEGORY_SCI,
+		PROGRAM_CATEGORY_MED,
 		PROGRAM_CATEGORY_SUPL,
 		PROGRAM_CATEGORY_MISC,
 	)
@@ -90,6 +93,12 @@
 	if(!computer || !hard_drive || !hard_drive.store_file(downloaded_file))
 		// The download failed
 		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
+		computer.alert_call(src, "Aborted download of file [downloaded_file.filename].[downloaded_file.filetype].")
+	else 
+		computer.alert_call(src, "Completed download of file [downloaded_file.filename].[downloaded_file.filetype].")
+	
+	if(computer.active_program != src)
+		alert_pending = TRUE
 	downloaded_file = null
 	download_completion = 0
 	ui_header = "downloader_finished.gif"
@@ -99,9 +108,10 @@
 		return
 	if(download_completion >= downloaded_file.size)
 		complete_file_download()
+		return
 	// Download speed according to connectivity state. NTNet server is assumed to be on unlimited speed so we're limited by our local connectivity
 	download_netspeed = 0
-	// Speed defines are found in misc.dm
+	// Speed defines are found in code/__DEFINES/machines.dm
 	switch(ntnet_status)
 		if(1)
 			download_netspeed = NTNETSPEED_LOWSIGNAL
@@ -109,11 +119,23 @@
 			download_netspeed = NTNETSPEED_HIGHSIGNAL
 		if(3)
 			download_netspeed = NTNETSPEED_ETHERNET
-	download_completion += download_netspeed
+	
+	if(ntnet_status != 3) // Ethernet unaffected by distance
+		var/dist = 100
+		// Loop through every ntnet relay, find the closest one and use that
+		for(var/obj/machinery/ntnet_relay/n in SSnetworks.station_network.relays)
+			var/cur_dist = get_dist_euclidian(n, computer)
+			if(n.is_operational() && cur_dist <= dist)
+				dist = cur_dist
+		// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
+		download_netspeed *= max((-dist/50) + 3, 1)
+
+	download_completion = min(downloaded_file.size, download_completion + download_netspeed) // Add the progress
 
 /datum/computer_file/program/ntnetdownload/ui_act(action, params)
 	if(..())
 		return TRUE
+	computer.play_interact_sound()
 	switch(action)
 		if("PRG_downloadfile")
 			if(!downloaded_file)

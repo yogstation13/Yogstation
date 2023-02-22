@@ -52,11 +52,11 @@
 			if (INFILTRATION_SOMECOMPLETE)
 				var/static/list/messages = list(
 					"Better than a complete fluke, I guess.",
-					"Nowhere near the smoothest operation I've ever seen, but it was okay.",
-					"We did it, but we didn't get everything. We'll get it next time."
+					"I'm going to have to pull some strings to make sure we don't get a pay cut for sub-par preformance.",
+					"I suppose it wasn't a complete waste of time at least..."
 				)
-				parts += span_marooned(span_big("Infiltrator Minor Victory"))
-				parts += span_bold("The Syndicate infiltrators completed some of their objectives successfully!")
+				parts += span_marooned(span_big("Neutral victory"))
+				parts += span_bold("The Syndicate infiltrators completed some of their objectives, but not enough to win.")
 				flavor_message = pick(messages)
 			else
 				var/static/list/messages = list(
@@ -151,11 +151,11 @@
 		else
 			objectives_failed++
 
-	if(objectives_failed == 0 && objectives_complete > 0)
+	if(objectives_failed == 0 && objectives_complete > 0) //Complete all, and fail none, big win!
 		return INFILTRATION_ALLCOMPLETE
-	else if (objectives_complete > objectives_failed)
+	else if (objectives_failed == 1 && objectives_complete > 0) // Fail one, but complete the rest, still pretty good!
 		return INFILTRATION_MOSTCOMPLETE
-	else if((objectives_complete == objectives_failed) || (objectives_complete > 0 && objectives_failed > objectives_complete))
+	else if((objectives_complete == objectives_failed) || (objectives_complete > 0 && objectives_failed > objectives_complete)) //Fail almost all of them, not very good...
 		return INFILTRATION_SOMECOMPLETE
 	else
-		return INFILTRATION_NONECOMPLETE
+		return INFILTRATION_NONECOMPLETE //You completely failed, you suck.

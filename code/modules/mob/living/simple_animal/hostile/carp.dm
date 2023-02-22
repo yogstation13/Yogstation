@@ -8,6 +8,7 @@
 	icon_living = "base"
 	icon_dead = "base_dead"
 	icon_gib = "carp_gib"
+	health_doll_icon = "megacarp"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak_chance = 0
 	turns_per_move = 5
@@ -26,6 +27,7 @@
 	obj_damage = 50
 	melee_damage_lower = 20
 	melee_damage_upper = 20
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("gnashes")
@@ -61,6 +63,9 @@
 	var/static/list/carp_colors_rare = list(\
 	"silver" = "#fdfbf3", \
 	)
+
+/mob/living/simple_animal/hostile/carp/loan
+	faction = list("hostile")
 
 /mob/living/simple_animal/hostile/carp/Initialize(mapload)
 	. = ..()

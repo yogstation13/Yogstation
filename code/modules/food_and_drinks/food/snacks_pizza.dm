@@ -9,6 +9,15 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES
+	burns_in_oven = TRUE
+
+/obj/item/reagent_containers/food/snacks/pizza/raw
+	foodtype =  GRAIN | DAIRY | VEGETABLES | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
@@ -23,6 +32,16 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/pizza/margherita/raw
+	name = "raw pizza margherita"
+	icon_state = "pizzamargherita_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/margherita/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/margherita, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize()
 	bonus_reagents += list(/datum/reagent/nanomachines = 70)
@@ -46,6 +65,16 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	foodtype = GRAIN | VEGETABLES| DAIRY | MEAT
 
+/obj/item/reagent_containers/food/snacks/pizza/meat/raw
+	name = "raw meatpizza"
+	icon_state = "meatpizza_raw"
+	foodtype =  GRAIN | VEGETABLES| DAIRY | MEAT | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/meat/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/meat, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/pizzaslice/meat
 	name = "meatpizza slice"
 	desc = "A nutritious slice of meat pizza."
@@ -63,6 +92,16 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+
+/obj/item/reagent_containers/food/snacks/pizza/mushroom/raw
+	name = "raw mushroom pizza"
+	icon_state = "mushroompizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/mushroom/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/mushroom, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/mushroom
 	name = "mushroom pizza slice"
@@ -82,6 +121,16 @@
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
+/obj/item/reagent_containers/food/snacks/pizza/vegetable/raw
+	name = "raw vegetable pizza"
+	icon_state = "vegetablepizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/vegetable/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/vegetable, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/pizzaslice/vegetable
 	name = "vegetable pizza slice"
 	desc = "A slice of the most green pizza of all the pizzas not containing green ingredients."
@@ -99,6 +148,16 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/medicine/omnizine = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
+
+/obj/item/reagent_containers/food/snacks/pizza/donkpocket/raw
+	name = "raw donkpocket pizza"
+	icon_state = "donkpocketpizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/donkpocket/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/donkpocket, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/donkpocket
 	name = "donkpocket pizza slice"
@@ -118,6 +177,16 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
 
+/obj/item/reagent_containers/food/snacks/pizza/dank/raw
+	name = "raw dank pizza"
+	icon_state = "dankpizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/dank/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/dank, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	name = "dank pizza slice"
 	desc = "So good, man..."
@@ -134,6 +203,16 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+
+/obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
+	name = "raw sassysage pizza"
+	icon_state = "sassysagepizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/sassysage/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/sassysage, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/sassysage
 	name = "sassysage pizza slice"
@@ -152,6 +231,16 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
 
+/obj/item/reagent_containers/food/snacks/pizza/pineapple/raw
+	name = "raw Hawaiian pizza"
+	icon_state = "pineapplepizza_raw"
+	foodtype =  GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/pineapple/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/pineapple, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
 	name = "\improper Hawaiian pizza slice"
 	desc = "A slice of delicious controversy."
@@ -160,6 +249,33 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
 
+/obj/item/reagent_containers/food/snacks/pizza/seafood
+	name = "\improper Tuna pizza"
+	desc = "Steak of the sea, now topping of the sea."
+	icon_state = "tunapizza"
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/seafood
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 8) //got that omega 3 fatty acid
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "tuna" = 2)
+	foodtype = GRAIN | VEGETABLES | SEAFOOD | DAIRY
+
+/obj/item/reagent_containers/food/snacks/pizza/seafood/raw
+	name = "raw Tuna pizza"
+	icon_state = "tunapizza_raw"
+	foodtype =  GRAIN | VEGETABLES |  SEAFOOD | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/seafood/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/seafood, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/seafood
+	name = "\improper Tuna pizza slice"
+	desc = "A slice of delicious tuna pizza."
+	icon_state = "tunapizzaslice"
+	filling_color = "#ffdebf"
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "tuna" = 2)
+	foodtype = GRAIN | VEGETABLES | SEAFOOD | DAIRY
+
 /obj/item/reagent_containers/food/snacks/pizza/arnold
 	name = "\improper Arnold pizza"
 	desc = "Hello, you've reached Arnold's pizza shop. I'm not here now, I'm out killing pepperoni."
@@ -167,6 +283,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/arnold
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/iron = 10, /datum/reagent/medicine/omnizine = 30)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2, "9 millimeter bullets" = 2)
+
+/obj/item/reagent_containers/food/snacks/pizza/arnold/raw
+	name = "raw Arnold pizza"
+	icon_state = "arnoldpizza_raw"
+	foodtype =  GRAIN | DAIRY | VEGETABLES | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/arnold/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/arnold, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/proc/try_break_off(mob/living/M, mob/living/user) //maybe i give you a pizza maybe i break off your arm
 	var/obj/item/bodypart/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)

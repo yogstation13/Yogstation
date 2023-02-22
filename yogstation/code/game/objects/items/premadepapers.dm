@@ -7,9 +7,12 @@
   * It's a subtype of paper, with written text already on it.
   *
   */
+/obj/item/paper/paperwork/
+	var/id = 0
+	var/printable = TRUE
 /obj/item/paper/paperwork/general_request_form
 	name = "General Requests Form (Form NT-010)"
-
+	id = 1
 
 /obj/item/paper/paperwork/general_request_form/Initialize()
 	. = ..()
@@ -34,11 +37,12 @@
   */
 /obj/item/paper/paperwork/complaint_form
 	name = "Complaint Form (Form NT-021)"
+	id = 2
 
 /obj/item/paper/paperwork/complaint_form/Initialize()
 	. = ..()
 	written = list()
-	written += new/datum/langtext("<center><h3>Complaint Form NT-020</h3></center><hr><b>Complainant: </b>",/datum/language/common)
+	written += new/datum/langtext("<center><h3>Complaint Form NT-021</h3></center><hr><b>Complainant: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><b>Complainees: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
@@ -65,6 +69,7 @@
   */
 /obj/item/paper/paperwork/incident_report
 	name = "Incident Report (Form NT-400)"
+	id = 3
 
 /obj/item/paper/paperwork/incident_report/Initialize()
 	. = ..()
@@ -113,14 +118,14 @@
   */
 /obj/item/paper/paperwork/sec_incident_report
 	name = "Security Incident Report (Form SEC-030)"
+	id = 4
 
 /obj/item/paper/paperwork/sec_incident_report/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<center><h3>Security Incident Report (Form SEC-030)</h3>",/datum/language/common)
-	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<br>",/datum/language/common)
+	written += new/datum/langtext("<hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Offense/Incident Type: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -131,43 +136,43 @@
 	written += new/datum/langtext("<b>Reporting Officer: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Assisting Officer(s) </b><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</row></b><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("<b>Assisting Officer(s)</b><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Rank</b></th><th><b>Name</b></th><th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell> ",/datum/language/common)
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td> ",/datum/language/common)
+	written += new/datum/langtext("<td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</row> ",/datum/language/common)
+	written += new/datum/langtext("</td></tr> ",/datum/language/common)
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("</table><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Other Personnel</b><br>",/datum/language/common)
-	written += new/datum/langtext("<font size=\"1\"><i>(V-Victim, S-Suspect, W-Witness, M-Missing, A-Arrested, RP-Reporting Person, D-Deceased)</i></font><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</b><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("<font size=\"1\"><i>(V-Victim, S-Suspect, W-Witness, M-Missing, A-Arrested, RP-Reporting Person, D-Deceased)</i></font><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Rank</b></th> <th><b>Name</b></th> <th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell> ",/datum/language/common)
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<br>",/datum/language/common)
-	written += new/datum/langtext("</table><br>",/datum/language/common)
-	written += new/datum/langtext("<hr><h3>Description of Items/Property </h3><br>",/datum/language/common)
-	written += new/datum/langtext("<font size=\"1\"><i>(D-Damaged, E-Evidence, L-Lost, R-Recovered, S-Stolen)</i></font><br><br>",/datum/language/common)
-	written += new/datum/langtext("<table><row><cell><b>Rank</b><cell> <b>Name</b><cell> <b>Position</b></row><br>",/datum/language/common)
-	written += new/datum/langtext("<row><cell><b>",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</b><cell>",/datum/language/common)
+	written += new/datum/langtext("</td></tr></table><br>",/datum/language/common)
+	written += new/datum/langtext("<hr><h3>Description of Items/Property </h3>",/datum/language/common)
+	written += new/datum/langtext("<font size=\"1\"><i>(D-Damaged, E-Evidence, L-Lost, R-Recovered, S-Stolen)</i></font><br>",/datum/language/common)
+	written += new/datum/langtext("<table><tr><th><b>Item</b></th> <th><b>Description</b></th> <th><b>Status</b></th></tr><br>",/datum/language/common)
+	written += new/datum/langtext("<tr><td><b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("<cell> ",/datum/language/common)
+	written += new/datum/langtext("</b></td><td>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
-	written += new/datum/langtext("</row><br>",/datum/language/common)
+	written += new/datum/langtext("</td><td> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("</td></tr><br>",/datum/language/common)
 	written += new/datum/langtext("</table><br>",/datum/language/common)
 	written += new/datum/langtext("<hr><h3>Narrative </h3>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Reporting Officer's Signature</b><br>:",/datum/language/common)
+	written += new/datum/langtext("<b>Reporting Officer's Signature</b>:",/datum/language/common)
 	update_icon()
 
 /**
@@ -180,6 +185,7 @@
   */
 /obj/item/paper/paperwork/item_form
 	name = "Item Request Form (Form NT-089)"
+	id = 5
 
 /obj/item/paper/paperwork/item_form/Initialize()
 	. = ..()
@@ -214,6 +220,7 @@
   */
 /obj/item/paper/paperwork/cyborg_request_form
 	name = "Cyborgization Consent Form (Form NT-203)"
+	id = 6
 
 /obj/item/paper/paperwork/cyborg_request_form/Initialize()
 	. = ..()
@@ -248,6 +255,7 @@
   */
 /obj/item/paper/paperwork/hopaccessrequestform
 	name = "HoP Access Request Form (Form NT-022)"
+	id = 7
 
 /obj/item/paper/paperwork/hopaccessrequestform/Initialize()
 	. = ..()
@@ -278,6 +286,7 @@
   */
 /obj/item/paper/paperwork/hop_job_change_form
 	name = "Job Reassignment Form (Form NT-059)"
+	id = 8
 
 /obj/item/paper/paperwork/hop_job_change_form/Initialize()
 	. = ..()
@@ -315,6 +324,7 @@
   */
 /obj/item/paper/paperwork/rd_form
 	name = "R&D Request Form (Form SCI-3)"
+	id = 9
 
 /obj/item/paper/paperwork/rd_form/Initialize()
 	. = ..()
@@ -344,6 +354,7 @@
   */
 /obj/item/paper/paperwork/mech_form
 	name = "R&D Mech Request Form (Form SCI-9)"
+	id = 10
 
 /obj/item/paper/paperwork/mech_form/Initialize()
 	. = ..()
@@ -373,6 +384,7 @@
   */
 /obj/item/paper/paperwork/jobchangecert
 	name = "Job Change Certificate"
+	id = 11
 
 /obj/item/paper/paperwork/jobchangecert/Initialize()
 	. = ..()
@@ -391,6 +403,117 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><br><b>Stamp:</b>",/datum/language/common)
 	written += new/datum/langtext("",/datum/language/common)
+	update_icon()
+
+/**
+  *
+  * 
+  * A form for testing employee literacy.
+  *
+  * A form for employee literacy testing. The bane of everyone.
+  *
+  */
+/obj/item/paper/paperwork/literacytest
+	name = "Literacy Test for NT Employees (Form NT-43)"
+	id = 12
+
+/obj/item/paper/paperwork/literacytest/Initialize()
+	. = ..()
+	//a list of questions for the test
+	var/list/questions = list(
+		"In the first space below, write the year the Credit was introduced.<br>218",
+		"In the first space below, write the year the UN split.<br>220",
+		"What was the first race discovered by humanity? Answer below.<br>",
+		"Who is the CEO of Nanotrasen? Answer below.<br>",
+		"From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?<br>"
+	)
+	//select test question 1
+	var/question_one = pick(questions)
+	//remove from pool
+	questions -= question_one
+	//select test question 2
+	var/question_two = pick(questions)
+	//remove from pool
+	questions -= question_two
+	//select test question 3
+	var/question_three = pick(questions)
+	//remove from pool
+	questions -= question_three
+	//select test question 4
+	var/question_four = pick(questions)
+	//remove from pool
+	questions -= question_four
+	//select final test question
+	var/question_five = pick(questions)
+	//remove final pick from pool
+	questions -= question_five
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-43 Literacy Test for Nanotrasen Employees</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Race:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br>",/datum/language/common)
+	written += new/datum/langtext("<b>Name of Test-Taker:</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Do what you are told in each statement, nothing more and nothing less. Each correct answer is worth 2 points.</b><hr>",/datum/language/common)
+	written += new/datum/langtext(question_one,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_two,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_three,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_four,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>",/datum/language/common)
+	written += new/datum/langtext(question_five,/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<hr>" ,/datum/language/common)
+	written += new/datum/langtext("Sign your name where there is an option.<br>",/datum/language/common)
+	written += new/datum/langtext("<b>I,</b> ",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
+	update_icon()
+
+/**
+  *
+  * 
+  * The answer key to the literacy test.
+  *
+  * Nobody will know the answers if I don't include this.
+  *
+  */
+/obj/item/paper/paperwork/literacytest/answers
+	name = "Literacy Test Answers (NT-44)"
+	id = 13
+	printable = FALSE
+
+/obj/item/paper/paperwork/literacytest/answers/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>NT-44 Literacy Test Answer Key</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>1. In the first space below, write the year the credit was introduced.</b> <u>The credit was introduced in 2181.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>2. In the first space below, write the year the UN split.</b> <u>The UN split in 2205.</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>3. What was the first race discovered by humanity? Answer below.</b> <u>Plasmamen</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
+	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
+	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
+	update_icon()
+
+// How to perform autopsy
+
+/obj/item/paper/autopsy
+	name = "Autopsy 101"
+
+/obj/item/paper/autopsy/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("Step 1: Apply drapes to the chest and select Autopsy.<br>",/datum/language/common)
+	written += new/datum/langtext("Step 2: Incise the chest with a scalpel.<br>",/datum/language/common)
+	written += new/datum/langtext("Step 3: While holding a forensic scanner in your off-hand, perform the autopsy using the scalpel again.<br>",/datum/language/common)
 	update_icon()
 
 //academy ruin papers
@@ -467,6 +590,7 @@
   * [Cyborg Consent Form][/obj/item/paper/paperwork/cyborg_request_form]
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test for NT Employees][/obj/item/paper/paperwork/literacytest]
   */
 /obj/item/clipboard/yog/paperwork/rd/Initialize()
 	. = ..()
@@ -480,6 +604,7 @@
 	new /obj/item/paper/paperwork/cyborg_request_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -504,6 +629,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
@@ -518,6 +644,8 @@
   * [Complaint Form][/obj/item/paper/paperwork/complaint_form]
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/captain/Initialize()
 	. = ..()
@@ -527,6 +655,8 @@
 	new /obj/item/paper/paperwork/complaint_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -540,6 +670,8 @@
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [HoP Job Change Request Form][/obj/item/paper/paperwork/hop_job_change_form]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/hop/Initialize()
 	. = ..()
@@ -550,6 +682,8 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
 	new /obj/item/paper/paperwork/incident_report(src)
+	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 
@@ -654,6 +788,8 @@
   * [Research Request Form][/obj/item/paper/paperwork/rd_form]
   * [Mech Request Form][/obj/item/paper/paperwork/mech_form]
   * [Job Change Certificate][/obj/item/paper/paperwork/jobchangecert]
+  * [Literacy Test][/obj/item/paper/paperwork/literacytest]
+  * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
 /obj/item/clipboard/yog/paperwork/admin/Initialize()
 	. = ..()
@@ -669,6 +805,8 @@
 	new /obj/item/paper/paperwork/rd_form(src)
 	new /obj/item/paper/paperwork/mech_form(src)
 	new /obj/item/paper/paperwork/jobchangecert(src)
+	new /obj/item/paper/paperwork/literacytest(src)
+	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
 	update_icon()
 //turdis bad

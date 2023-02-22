@@ -13,7 +13,7 @@
 	icon_state = "vest_stealth"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 70, "acid" = 70)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
 	actions_types = list(/datum/action/item_action/hands_free/activate)
 	allowed = list(
 		/obj/item/abductor,
@@ -24,10 +24,10 @@
 		)
 	var/mode = VEST_STEALTH
 	var/stealth_active = 0
-	var/combat_cooldown = 10
+	var/combat_cooldown = 20
 	var/datum/icon_snapshot/disguise
-	var/stealth_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 70, "acid" = 70)
-	var/combat_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 90, "acid" = 90)
+	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
+	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/toggle_nodrop()
 	if(HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT))
@@ -105,7 +105,7 @@
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/Adrenaline()
 	if(ishuman(loc))
-		if(combat_cooldown != initial(combat_cooldown))
+		if(combat_cooldown < initial(combat_cooldown))
 			to_chat(loc, span_warning("Combat injection is still recharging."))
 			return
 		var/mob/living/carbon/human/M = loc
@@ -118,9 +118,9 @@
 		combat_cooldown = 0
 		START_PROCESSING(SSobj, src)
 
-/obj/item/clothing/suit/armor/abductor/vest/process()
-	combat_cooldown++
-	if(combat_cooldown==initial(combat_cooldown))
+/obj/item/clothing/suit/armor/abductor/vest/process(delta_time)
+	combat_cooldown += delta_time
+	if(combat_cooldown >= initial(combat_cooldown))
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/armor/abductor/Destroy()
@@ -230,7 +230,7 @@
 		to_chat(user, span_warning("You need to be next to the specimen to prepare it for transport!"))
 		return
 	to_chat(user, span_notice("You begin preparing [target] for transport..."))
-	if(do_after(user, 10 SECONDS, target = target))
+	if(do_after(user, 10 SECONDS, target))
 		marked = target
 		to_chat(user, span_notice("You finish preparing [target] for transport."))
 
@@ -523,7 +523,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.visible_message(span_danger("[user] has induced sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel very drowsy!"))
 		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
-		L.Sleeping(1200)
+		L.Sleeping(30 SECONDS)
 		log_combat(user, L, "put to sleep")
 	else
 		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
@@ -673,30 +673,35 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	name = "alien scalpel"
 	desc = "It's a gleaming sharp knife made out of silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "scalpel_alien"
 	toolspeed = 0.25
 
 /obj/item/hemostat/alien
 	name = "alien hemostat"
 	desc = "You've never seen this before."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "hemostat_alien"
 	toolspeed = 0.25
 
 /obj/item/retractor/alien
 	name = "alien retractor"
 	desc = "You're not sure if you want the veil pulled back."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "retractor_alien"
 	toolspeed = 0.25
 
 /obj/item/circular_saw/alien
 	name = "alien saw"
 	desc = "Do the aliens also lose this, and need to find an alien hatchet?"
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "saw_alien"
 	toolspeed = 0.25
 
 /obj/item/surgicaldrill/alien
 	name = "alien drill"
 	desc = "Maybe alien surgeons have finally found a use for the drill."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "drill_alien"
 	toolspeed = 0.25
 
 /obj/item/cautery/alien
@@ -704,6 +709,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "Why would bloodless aliens have a tool to stop bleeding? \
 		Unless..."
 	icon = 'icons/obj/abductor.dmi'
+	icon_state = "cautery_alien"
 	toolspeed = 0.25
 
 /obj/item/clothing/head/helmet/abductor
@@ -746,7 +752,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one alien alloy sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/abductor(src.loc)
 			qdel(src)
@@ -757,7 +763,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one sheet of silver to do	this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/optable/abductor(src.loc)
 			qdel(src)
@@ -785,6 +791,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bed"
 	can_buckle = 1
+	/// Amount to inject per second
+	var/inject_am = 0.5
 
 	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
@@ -794,13 +802,13 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		START_PROCESSING(SSobj, src)
 		to_chat(AM, span_danger("You feel a series of tiny pricks!"))
 
-/obj/structure/table/optable/abductor/process()
+/obj/structure/table/optable/abductor/process(delta_time)
 	. = PROCESS_KILL
 	for(var/mob/living/carbon/C in get_turf(src))
 		. = TRUE
 		for(var/chemical in injected_reagents)
-			if(C.reagents.get_reagent_amount(chemical) < 1)
-				C.reagents.add_reagent(chemical, 1)
+			if(C.reagents.get_reagent_amount(chemical) < inject_am * delta_time)
+				C.reagents.add_reagent(chemical, inject_am * delta_time)
 
 /obj/structure/table/optable/abductor/Destroy()
 	STOP_PROCESSING(SSobj, src)

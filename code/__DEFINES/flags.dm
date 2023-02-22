@@ -30,25 +30,23 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define CONDUCT_1					(1<<5)
 /// For machines and structures that should not break into parts, eg, holodeck stuff
 #define NODECONSTRUCT_1				(1<<7)
-/// atom queued to SSoverlay
-#define OVERLAY_QUEUED_1			(1<<8)
 /// item has priority to check when entering or leaving
-#define ON_BORDER_1					(1<<9)
+#define ON_BORDER_1					(1<<8)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define PREVENT_CLICK_UNDER_1		(1<<11)
-#define HOLOGRAM_1					(1<<12)
+#define PREVENT_CLICK_UNDER_1		(1<<9)
+#define HOLOGRAM_1					(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define TESLA_IGNORE_1				(1<<13)
+#define TESLA_IGNORE_1				(1<<11)
 ///Whether /atom/Initialize() has already run for the object
-#define INITIALIZED_1				(1<<14)
+#define INITIALIZED_1				(1<<12)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED_1			    (1<<15)
+#define ADMIN_SPAWNED_1			    (1<<13)
 /// should not get harmed if this gets caught by an explosion?
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<14)
 /// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 (1 << 17)
+#define RAD_PROTECT_CONTENTS_1 (1 << 15)
 /// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 (1 << 18)
+#define RAD_NO_CONTAMINATE_1 (1 << 16)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -59,6 +57,19 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<10)
+
+//AREA FLAGS
+/// If blobs can spawn there and if it counts towards their score.
+#define BLOBS_ALLOWED (1<<1)
+/// If mining tunnel generation is allowed in this area
+#define CAVES_ALLOWED (1<<2)
+/// If flora are allowed to spawn in this area randomly through tunnel generation
+#define FLORA_ALLOWED (1<<3)
+/// If mobs can be spawned by natural random generation
+#define MOB_SPAWN_ALLOWED (1<<4)
+/// If megafauna can be spawned by natural random generation
+#define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
+/// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
@@ -74,6 +85,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define LETPASSTHROW	(1<<6)
 #define PASSMACHINES	(1<<7)
 #define PASSCOMPUTER	(1<<8)
+#define PASSSTRUCTURE	(1<<9)
 
 //Movement Types
 #define GROUND			(1<<0)

@@ -18,7 +18,7 @@
 /obj/item/clothing/head/chefhat/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to become a chef."))
 	user.say("Bork Bork Bork!", forced = "chef hat suicide")
-	sleep(20)
+	sleep(2 SECONDS)
 	user.visible_message(span_suicide("[user] climbs into an imaginary oven!"))
 	user.say("BOOORK!", forced = "chef hat suicide")
 	playsound(user, 'sound/machines/ding.ogg', 50, 1)
@@ -31,7 +31,7 @@
 	icon_state = "captain"
 	item_state = "that"
 	flags_inv = 0
-	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/captain
 
@@ -49,7 +49,7 @@
 	name = "head of personnel's cap"
 	icon_state = "hopcap"
 	desc = "The symbol of true bureaucratic micromanagement."
-	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	dog_fashion = /datum/dog_fashion/head/hop
 
 //Chaplain
@@ -68,8 +68,8 @@
 //Detective
 /obj/item/clothing/head/fedora/det_hat
 	name = "detective's fedora"
-	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat."
-	armor = list("melee" = 25, "bullet" = 5, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50, "wound" = 5)
+	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat. Woven with lightly protective fibers."
+	armor = list(MELEE = 25, BULLET = 5, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 5)
 	icon_state = "detective"
 	var/candy_cooldown = 0
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora/detective
@@ -95,15 +95,21 @@
 			else
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
 
+/obj/item/clothing/head/fedora/det_hat/grey
+	name = "detective's grey fedora"
+	desc = "A darker tone of P.I. headwear for those thick-skinned detectives. Woven with lightly protective fibers."
+	icon_state = "fedora"
+
 /obj/item/clothing/head/det_hat/evil
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
-	desc = "A suspicious black fedora with a red band."
-	w_class = 4
+	desc = "A suspicious black fedora with a red band. It can be activated in-hand to extend or retract razor blades which cause significant damage when thrown. Also heavily armored."
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("poked", "tipped")
+	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
@@ -111,18 +117,25 @@
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 	if(extended)
 		force = 15
+		armour_penetration = 15
 		throwforce = 40
+		wound_bonus = -10
+		bare_wound_bonus = 10
 		sharpness = SHARP_EDGED
+		w_class = WEIGHT_CLASS_BULKY //Kinda hard to put a razorblade hat in your bag innit
 		icon_state = "syndicate_fedora_sharp"
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
+		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
 	else
 		force = 0
 		throwforce = 0
 		sharpness = SHARP_NONE
+		w_class = WEIGHT_CLASS_NORMAL
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
+		hattable = TRUE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(loc) || !iscarbon(thrownby))
@@ -169,12 +182,21 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
+/obj/item/clothing/head/beret/emt
+	name = "EMT beret"
+	desc = "A beret with a dark turquoise color and a reflective cross on the top."
+	icon_state = "emtberet"
+
+/obj/item/clothing/head/beret/emt/green
+	name = "green EMT beret"
+	desc = "A beret with a green color and a reflective cross on the top."
+	icon_state = "emtgrberet"
+
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"
 	desc =  "A beret made from durathread, its resilient fibres provide some protection to the wearer."
 	icon_state = "beretdurathread"
-	item_color = null
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5, "wound" = 5)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 15, ENERGY = 5, BOMB = 10, BIO = 0, RAD = 0, FIRE = 30, ACID = 5, WOUND = 5)
 
 //Security
 
@@ -182,7 +204,7 @@
 	name = "head of security cap"
 	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60, "wound" = 10)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 60, WOUND = 10)
 	strip_delay = 80
 	dynamic_hair_suffix = ""
 
@@ -203,7 +225,7 @@
 	name = "warden's police hat"
 	desc = "It's a special armored hat issued to the Warden of a security force. Protects the head from impacts."
 	icon_state = "policehelm"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60, "wound" = 6)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 60, WOUND = 6)
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/warden
 
@@ -278,7 +300,7 @@
 	name = "security beret"
 	desc = "A robust beret with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
 	icon_state = "beret_badge"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50, "wound" = 4)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30,ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 20, ACID = 50, WOUND = 4)
 	strip_delay = 60
 	dog_fashion = null
 
@@ -291,7 +313,7 @@
 	name = "warden's beret"
 	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
 	icon_state = "wardenberet"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50, "wound" = 6)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 6)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sec/navyofficer

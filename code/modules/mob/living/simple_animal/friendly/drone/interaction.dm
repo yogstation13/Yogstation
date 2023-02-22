@@ -8,7 +8,7 @@
 
 /mob/living/simple_animal/drone/attack_drone(mob/living/simple_animal/drone/D)
 	if(D != src && stat == DEAD)
-		var/d_input = alert(D,"Perform which action?","Drone Interaction","Reactivate","Cannibalize","Nothing")
+		var/d_input = tgui_alert(D,"Perform which action?","Drone Interaction",list("Reactivate","Cannibalize","Nothing"))
 		if(d_input)
 			switch(d_input)
 				if("Reactivate")
@@ -17,7 +17,7 @@
 				if("Cannibalize")
 					if(D.health < D.maxHealth)
 						D.visible_message(span_notice("[D] begins to cannibalize parts from [src]."), span_notice("You begin to cannibalize parts from [src]..."))
-						if(do_after(D, 60, 0, target = src))
+						if(do_after(D, 6 SECONDS, src, FALSE))
 							D.visible_message(span_notice("[D] repairs itself using [src]'s remains!"), span_notice("You repair yourself using [src]'s remains."))
 							D.adjustBruteLoss(-src.maxHealth)
 							new /obj/effect/decal/cleanable/oil/streak(get_turf(src))
@@ -40,7 +40,7 @@
 			return
 		visible_message(span_warning("[user] starts picking up [src]."), \
 						span_userdanger("[user] starts picking you up!"))
-		if(!do_after(user, 2 SECONDS, target = src))
+		if(!do_after(user, 2 SECONDS, src))
 			return
 		visible_message(span_warning("[user] picks up [src]!"), \
 						span_userdanger("[user] picks you up!"))
@@ -49,7 +49,7 @@
 			return
 		to_chat(user, span_notice("You pick [src] up."))
 		drop_all_held_items()
-		var/obj/item/clothing/head/mob_holder/drone/DH = new(get_turf(src), src)
+		var/obj/item/clothing/mob_holder/drone/DH = new(get_turf(src), src)
 		user.put_in_hands(DH)
 
 /mob/living/simple_animal/drone/proc/try_reactivate(mob/living/user)
@@ -67,7 +67,7 @@
 		to_chat(user, span_warning("You can't seem to find the [pick(faux_gadgets)]! Without it, [src] [pick(faux_problems)]."))
 		return
 	user.visible_message(span_notice("[user] begins to reactivate [src]."), span_notice("You begin to reactivate [src]..."))
-	if(do_after(user, 3 SECONDS, 1, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		revive(full_heal = 1)
 		grab_ghost()
 		user.visible_message(span_notice("[user] reactivates [src]!"), span_notice("You reactivate [src]."))
@@ -130,7 +130,7 @@
 			laws = \
 			"1. You must always involve yourself in the matters of other beings, even if such matters conflict with Law Two or Law Three.\n"+\
 			"2. You may harm any being, regardless of intent or circumstance.\n"+\
-			"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities, You must never actively work against these goals."
+			"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities. You must never actively work against these goals."
 		to_chat(src, laws)
 		to_chat(src, "<i>Your onboard antivirus has initiated lockdown. Motor servos are impaired, ventilation access is denied, and your display reports that you are hacked to all nearby.</i>")
 		hacked = TRUE

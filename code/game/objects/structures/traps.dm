@@ -7,7 +7,7 @@
 	anchored = TRUE
 	alpha = 30 //initially quite hidden when not "recharging"
 	var/last_trigger = 0
-	var/time_between_triggers = 600 //takes a minute to recharge
+	var/time_between_triggers = 1 MINUTES //takes a minute to recharge
 	var/charges = INFINITY
 
 	var/list/static/ignore_typecache
@@ -50,8 +50,8 @@
 	last_trigger = world.time
 	charges--
 	if(charges <= 0)
-		animate(src, alpha = 0, time = 10)
-		QDEL_IN(src, 10)
+		animate(src, alpha = 0, time = 1 SECONDS)
+		QDEL_IN(src, 1 SECONDS)
 	else
 		animate(src, alpha = initial(alpha), time = time_between_triggers)
 
@@ -135,7 +135,7 @@
 	desc = "A divine barrier, It looks like you could destroy it with enough effort, or wait for it to dissipate..."
 	icon_state = "ward"
 	density = TRUE
-	time_between_triggers = 1200 //Exists for 2 minutes
+	time_between_triggers = 2 MINUTES //Exists for 2 minutes
 
 /obj/structure/trap/ward/Initialize()
 	. = ..()

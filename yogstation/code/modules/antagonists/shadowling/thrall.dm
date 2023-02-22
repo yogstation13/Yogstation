@@ -55,7 +55,10 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 
 /datum/antagonist/thrall/greet()
 	to_chat(owner, span_shadowling("<b>You see the truth. Reality has been torn away and you realize what a fool you've been.</b>"))
-	to_chat(owner, span_shadowling("<b>The shadowlings are your masters.</b> Serve them above all else and ensure they complete their goals.</b>"))
+	if(ispreternis(owner))
+		to_chat(owner, span_shadowling("<b>The shadowlings- your creators, have returned to become gods.</b> Serve them above all else and ensure they complete their goals.</b>"))
+	else
+		to_chat(owner, span_shadowling("<b>The shadowlings are your masters.</b> Serve them above all else and ensure they complete their goals.</b>"))
 	to_chat(owner, span_shadowling("You may not harm other thralls or the shadowlings. However, you do not need to obey other thralls."))
 	to_chat(owner, span_shadowling("Your body has been irreversibly altered. The attentive can see this - you may conceal it by wearing a mask."))
 	to_chat(owner, span_shadowling("Though not nearly as powerful as your masters, you possess some weak powers. These can be found in the Thrall Abilities tab."))

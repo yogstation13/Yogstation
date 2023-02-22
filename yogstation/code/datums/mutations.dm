@@ -58,7 +58,7 @@
 
 /datum/mutation/human/tourettes/on_life()
 	if(prob(10) && owner.stat == CONSCIOUS)
-		owner.Stun(20)
+		owner.Stun(2 SECONDS)
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")
@@ -68,8 +68,8 @@
 		var/y_offset_old = owner.pixel_y
 		var/x_offset = owner.pixel_x + rand(-2,2)
 		var/y_offset = owner.pixel_y + rand(-1,1)
-		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
-		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 0.1 SECONDS)
+		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 0.1 SECONDS)
 
 /datum/mutation/human/hulk
 	species_allowed = list()

@@ -1,7 +1,7 @@
 /obj/item/ammo_casing/caseless/laser
 	name = "laser casing"
 	desc = "You shouldn't be seeing this."
-	caliber = "laser"
+	caliber = LASER
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/beam
 	fire_sound = 'sound/weapons/laser.ogg'

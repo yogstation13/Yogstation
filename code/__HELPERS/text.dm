@@ -47,7 +47,7 @@
 
 /proc/sanitize_name(t,list/repl_chars = null)
 	if(t == "space" || t == "floor" || t == "wall" || t == "r-wall" || t == "monkey" || t == "unknown" || t == "inactive ai")
-		alert("Invalid name.")
+		tgui_alert(usr,"Invalid name.")
 		return ""
 	return sanitize(t)
 
@@ -67,7 +67,7 @@
 
 
 //Returns null if there is any bad text in the string
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE, require_pretty=TRUE)
+/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE, require_pretty=TRUE, allow_newline=FALSE, allow_code=FALSE)
 	if(require_pretty && isnotpretty(text))
 		return
 	var/char_count = 0
@@ -80,9 +80,17 @@
 		if(char_count > max_length)
 			return
 		switch(text2ascii(char))
-			if(62, 60, 92, 47) // <, >, \, /
+			if(9, 62, 60, 92, 47) // tab, <, >, \, /
+				if(!allow_code)
+					return
+			if(10, 13) //Carriage returns (CR) and newline (NL)
+				if(!allow_newline)
+					return
+			if(0 to 8)
 				return
-			if(0 to 31)
+			if(11, 12)
+				return
+			if(14 to 31)
 				return
 			if(32)
 				continue
@@ -256,11 +264,29 @@
 
 	return ""
 
+//Returns a string with reserved characters and spaces after the first and last letters removed
+//Like trim(), but very slightly faster. worth it for niche usecases
+/proc/trim_reduced(text)
+	var/starting_coord = 1
+	var/text_len = length(text)
+	for (var/i in 1 to text_len)
+		if (text2ascii(text, i) > 32)
+			starting_coord = i
+			break
+
+	for (var/i = text_len, i >= starting_coord, i--)
+		if (text2ascii(text, i) > 32)
+			return copytext(text, starting_coord, i + 1)
+
+	if(starting_coord > 1)
+		return copytext(text, starting_coord)
+	return ""
+
 //Returns a string with reserved characters and spaces before the first word and after the last word removed.
 /proc/trim(text, max_length)
 	if(max_length)
 		text = copytext_char(text, 1, max_length)
-	return trim_left(trim_right(text))
+	return trim_reduced(text)
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
@@ -815,3 +841,8 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 #define is_alpha(X) ((text2ascii(X) <= 122) && (text2ascii(X) >= 97))
 #define is_digit(X) ((length(X) == 1) && (length(text2num(X)) == 1))
+
+/// Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts
+/proc/sanitize_css_class_name(name)
+	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
+	return replacetext(name, regex, "")

@@ -4,7 +4,7 @@
 	id = "polysmorph"
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
-	liked_food = GROSS | MEAT
+	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
 	species_language_holder = /datum/language_holder/polysmorph
@@ -16,7 +16,7 @@
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE)
+	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutanteyes = /obj/item/organ/eyes/polysmorph
@@ -32,6 +32,8 @@
 	mutantlungs = /obj/item/organ/lungs/xeno
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
+	smells_like = "charred, acidic meat"
+
 /datum/species/polysmorph/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_polysmorph_name()
@@ -39,3 +41,36 @@
 	var/randname = polysmorph_name()
 
 	return randname
+
+/datum/species/polysmorph/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	.=..()
+	var/mob/living/carbon/human/H = C
+	if(H.physiology)
+		H.physiology.armor.wound += 10	//Pseudo-exoskeleton makes them harder to wound
+
+/datum/species/polysmorph/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	.=..()
+	if(C.physiology)
+		C.physiology.armor.wound -= 10
+
+/datum/species/polysmorph/get_species_description()
+	return ""//"TODO: This is polysmorph description"
+
+/datum/species/polysmorph/get_species_lore()
+	return list(
+		""//"TODO: This is polysmorph lore"
+	)
+
+/datum/species/polysmorph/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/polysmorph/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add

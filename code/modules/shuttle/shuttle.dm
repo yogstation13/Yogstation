@@ -31,6 +31,8 @@
 	///are we invisible to shuttle navigation computers?
 	var/hidden = FALSE
 
+	///Delete this port after ship fly off.
+	var/delete_after = FALSE
 
 	//these objects are indestructible
 /obj/docking_port/Destroy(force)
@@ -449,8 +451,11 @@
 	if(S1)
 		if(initiate_docking(S1) != DOCKING_SUCCESS)
 			WARNING("shuttle \"[id]\" could not enter transit space. Docked at [S0 ? S0.id : "null"]. Transit dock [S1 ? S1.id : "null"].")
-		else
-			previous = S0
+		else if(S0)
+			if(S0.delete_after)
+				qdel(S0, TRUE)
+			else
+				previous = S0
 	else
 		WARNING("shuttle \"[id]\" could not enter transit space. S0=[S0 ? S0.id : "null"] S1=[S1 ? S1.id : "null"]")
 
@@ -477,7 +482,9 @@
 		if(!oldT || !istype(oldT.loc, area_type))
 			continue
 		var/area/old_area = oldT.loc
+		old_area.turfs_to_uncontain += oldT
 		underlying_area.contents += oldT
+		underlying_area.contained_turfs += oldT
 		oldT.change_area(old_area, underlying_area)
 		oldT.empty(FALSE)
 

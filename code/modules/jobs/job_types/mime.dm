@@ -1,6 +1,8 @@
 /datum/job/mime
 	title = "Mime"
+	description = "..."
 	flag = MIME
+	orbit_icon = "comment-slash"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -13,21 +15,36 @@
 
 	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
 
-	access = list(ACCESS_THEATRE)
-	minimal_access = list(ACCESS_THEATRE)
+	added_access = list()
+	base_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_MIME
+	minimal_character_age = 18 //Mime?? Might increase this a LOT depending on how mime lore turns out
+
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/baguette = 15,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
+		/obj/item/book/mimery = 1,
+	)
+
+	smells_like = "complete nothingness"
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
-	H.apply_pref_name("mime", M.client)
+	H.apply_pref_name(/datum/preference/name/mime, M.client)
 
 /datum/outfit/job/mime
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	belt = /obj/item/pda/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
 	uniform_skirt = /obj/item/clothing/under/rank/mime/skirt
@@ -52,6 +69,7 @@
 	if(visualsOnly)
 		return
 
+	H.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_MIME)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
 		H.mind.miming = 1

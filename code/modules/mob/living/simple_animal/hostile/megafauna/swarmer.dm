@@ -50,17 +50,19 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	mob_biotypes = list(MOB_ROBOTIC)
 	internal_type = /obj/item/gps/internal/swarmer_beacon
 	faction = list("mining", "boss", "swarmer")
-	weather_immunities = list("lava","ash")
+	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	stop_automated_movement = TRUE
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
 	AIStatus = AI_OFF
+	loot = list(/obj/item/bodypart/r_arm/robot/seismic)
+	deathmessage = "falls to pieces, leaving an odd prosthesis behind."
 	var/swarmer_spawn_cooldown = 0
 	var/swarmer_spawn_cooldown_amt = 150 //Deciseconds between the swarmers we spawn
 	var/call_help_cooldown = 0
 	var/call_help_cooldown_amt = 150 //Deciseconds between calling swarmers to help us when attacked
 	var/static/list/swarmer_caps
-
+	
 
 /mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Initialize()
 	. = ..()
@@ -98,13 +100,14 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	desc = "Transmitted over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
 	invisibility = 100
 
+
 //SWARMER AI
 //AI versions of the swarmer mini-antag
 //This is an Abstract Base, it re-enables AI, but does not give the swarmer any goals/targets
 /mob/living/simple_animal/hostile/swarmer/ai
 	wander = 1
 	faction = list("swarmer", "mining")
-	weather_immunities = list("ash") //wouldn't be fun otherwise
+	weather_immunities = list(WEATHER_ASH) //wouldn't be fun otherwise
 	AIStatus = AI_ON
 
 /mob/living/simple_animal/hostile/swarmer/ai/Initialize()

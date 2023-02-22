@@ -3,7 +3,7 @@
 INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	move_resist = INFINITY
 	throwforce = 0
 
@@ -82,15 +82,15 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/addr = csa[pick]
 
-	if(alert(src, "Jump to server [pick] ([addr])?", "Server Hop", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Jump to server [pick] ([addr])?", "Server Hop", list("Yes", "No")) != "Yes")
 		return
 
 	var/client/C = client
 	to_chat(C, span_notice("Sending you to [pick]."))
-	new /obj/screen/splash(C)
+	new /atom/movable/screen/splash(C)
 
 	notransform = TRUE
-	sleep(29)	//let the animation play
+	sleep(2.9 SECONDS)	//let the animation play
 	notransform = FALSE
 
 	if(!C)

@@ -17,7 +17,7 @@
 	var/can_max_release_pressure = (ONE_ATMOSPHERE * 10)
 	var/can_min_release_pressure = (ONE_ATMOSPHERE / 10)
 
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 50)
 	max_integrity = 250
 	integrity_failure = 100
 	pressure_resistance = 7 * ONE_ATMOSPHERE
@@ -304,7 +304,8 @@
 	if(stat & BROKEN)
 		cut_overlays()
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-		icon_state = "[icon_state]-1"
+		if(!findtext(icon_state,"-1")) //A wise man once said, if it's already broke, don't break it more.
+			icon_state = "[icon_state]-1"
 		return
 
 	var/last_update = update
@@ -489,32 +490,43 @@
 		ui = new(user, src, "Canister", name)
 		ui.open()
 
+/obj/machinery/portable_atmospherics/canister/ui_static_data(mob/user)
+	return list(
+		"defaultReleasePressure" = round(CAN_DEFAULT_RELEASE_PRESSURE),
+		"minReleasePressure" = round(can_min_release_pressure),
+		"maxReleasePressure" = round(can_max_release_pressure),
+		"holdingTankLeakPressure" = round(TANK_LEAK_PRESSURE),
+		"holdingTankFragPressure" = round(TANK_FRAGMENT_PRESSURE)
+	)
+
 /obj/machinery/portable_atmospherics/canister/ui_data()
-	var/data = list()
-	data["portConnected"] = connected_port ? 1 : 0
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
-	data["defaultReleasePressure"] = round(CAN_DEFAULT_RELEASE_PRESSURE)
-	data["minReleasePressure"] = round(can_min_release_pressure)
-	data["maxReleasePressure"] = round(can_max_release_pressure)
-	data["valveOpen"] = valve_open ? 1 : 0
+	. = list(
+		"portConnected" = !!connected_port,
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(release_pressure),
+		"valveOpen" = !!valve_open,
+		"isPrototype" = !!prototype,
+		"hasHoldingTank" = !!holding
+	)
 
-	data["isPrototype"] = prototype ? 1 : 0
 	if (prototype)
-		data["restricted"] = restricted
-		data["timing"] = timing
-		data["time_left"] = get_time_left()
-		data["timer_set"] = timer_set
-		data["timer_is_not_default"] = timer_set != default_timer_set
-		data["timer_is_not_min"] = timer_set != minimum_timer_set
-		data["timer_is_not_max"] = timer_set != maximum_timer_set
+		. += list(
+			"restricted" = restricted,
+			"timing" = timing,
+			"time_left" = get_time_left(),
+			"timer_set" = timer_set,
+			"timer_is_not_default" = timer_set != default_timer_set,
+			"timer_is_not_min" = timer_set != minimum_timer_set,
+			"timer_is_not_max" = timer_set != maximum_timer_set
+		)
 
-	data["hasHoldingTank"] = holding ? 1 : 0
 	if (holding)
-		data["holdingTank"] = list()
-		data["holdingTank"]["name"] = holding.name
-		data["holdingTank"]["tankPressure"] = round(holding.air_contents.return_pressure())
-	return data
+		. += list(
+			"holdingTank" = list(
+				"name" = holding.name,
+				"tankPressure" = round(holding.air_contents.return_pressure())
+			)
+		)
 
 /obj/machinery/portable_atmospherics/canister/ui_act(action, params)
 	if(..())

@@ -3,6 +3,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 80
+	fryable = TRUE
 	var/damaged_clothes = CLOTHING_PRISTINE //similar to machine's BROKEN stat and structure's broken var
 	var/flash_protect = 0		//What level of bright light protection item has. 1 = Flashers, Flashes, & Flashbangs | 2 = Welding | -1 = OH GOD WELDING BURNT OUT MY RETINAS
 	var/tint = 0				//Sets the item's level of visual impairment tint, normally set to the same as flash_protect
@@ -65,8 +66,8 @@
 	if(ismecha(M.loc)) // stops inventory actions in a mech
 		return
 
-	if(!M.incapacitated() && loc == M && istype(over_object, /obj/screen/inventory/hand))
-		var/obj/screen/inventory/hand/H = over_object
+	if(!M.incapacitated() && loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
 
@@ -99,7 +100,7 @@
 					to_chat(user, span_warning("You require 3 [S.name] to repair [src]."))
 					return
 				to_chat(user, span_notice("You begin fixing the damage to [src] with [S]..."))
-				if(do_after(user, 6 SECONDS, TRUE, src))
+				if(do_after(user, 6 SECONDS, src))
 					if(S.use(3))
 						repair(user, params)
 		return 1
@@ -173,7 +174,7 @@
 		body_parts_covered &= ~i
 
 	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
-		obj_destruction((damage_type == BRUTE ? "melee" : "laser")) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
+		obj_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
 		return
 
 	damaged_clothes = CLOTHING_DAMAGED
@@ -221,13 +222,6 @@
 	if(damaged_clothes == CLOTHING_SHREDDED)
 		. += span_warning("<b>It is completely shredded and requires mending before it can be worn again!</b>")
 		return
-	switch (max_heat_protection_temperature)
-		if (400 to 1000)
-			. += "[src] offers the wearer limited protection from fire."
-		if (1001 to 1600)
-			. += "[src] offers the wearer some protection from fire."
-		if (1601 to 35000)
-			. += "[src] offers the wearer robust protection from fire."
 	for(var/zone in damage_by_parts)
 		var/pct_damage_part = damage_by_parts[zone] / limb_integrity * 100
 		var/zone_name = parse_zone(zone)
@@ -255,6 +249,60 @@
 			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
+
+	if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee || armor.fire || armor.acid|| flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
+
+/obj/item/clothing/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["list_armor"])
+		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
+		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee)
+			readout += "\n<b>ARMOR (I-X)</b>"
+			if(armor.bio)
+				readout += "\nTOXIN [armor_to_protection_class(armor.bio)]"
+			if(armor.bomb)
+				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
+			if(armor.bullet)
+				readout += "\nBULLET [armor_to_protection_class(armor.bullet)]"
+			if(armor.energy)
+				readout += "\nENERGY [armor_to_protection_class(armor.energy)]"
+			if(armor.laser)
+				readout += "\nLASER [armor_to_protection_class(armor.laser)]"
+			if(armor.melee)
+				readout += "\nMELEE [armor_to_protection_class(armor.melee)]"
+		if(armor.fire || armor.acid)
+			readout += "\n<b>DURABILITY (I-X)</b>"
+			if(armor.fire)
+				readout += "\nFIRE [armor_to_protection_class(armor.fire)]"
+			if(armor.acid)
+				readout += "\nACID [armor_to_protection_class(armor.acid)]"
+		if(flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
+			var/list/things_blocked = list()
+			if(flags_cover & HEADCOVERSMOUTH)
+				things_blocked += "facehuggers"
+			if(flags_cover & HEADCOVERSEYES)
+				things_blocked += "pepperspray"
+			if(length(things_blocked))
+				readout += "\n<b>COVERAGE</b>"
+				readout += "\nIt will block [english_list(things_blocked)]."
+
+		readout += "</span>"
+
+		to_chat(usr, "[readout.Join()]")
+
+/**
+  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
+  *
+  * Arguments:
+  * * armor_value - Number we're converting
+  */
+/obj/item/clothing/proc/armor_to_protection_class(armor_value)
+	if (armor_value < 0)
+		. = "-"
+	. += "\Roman[round(abs(armor_value), 10) / 10]"
+	return .
 
 /obj/item/clothing/obj_break(damage_flag)
 	damaged_clothes = CLOTHING_DAMAGED
@@ -293,13 +341,13 @@ BLIND     // can't see anything
 
 /proc/generate_female_clothing(index,t_color,icon,type) //In a shellnut, blends the uniform sprite with a pre-made sprite in uniform.dmi that's mostly white pixels with a few empty ones to trim off the pixels in the empty spots
 	var/icon/female_clothing_icon	= icon(icon, t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
-	var/icon/female_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
+	var/icon/female_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
 	GLOB.female_clothing_icons[index] = fcopy_rsc(female_clothing_icon) //Then it saves the icon in a global list so it doesn't have to make it again
 
 /proc/generate_skinny_clothing(index,t_color,icon,type) //Works the exact same as above but for skinny people
 	var/icon/skinny_clothing_icon	= icon(icon, t_color)
-	var/icon/skinny_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
+	var/icon/skinny_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
 	skinny_clothing_icon.Blend(skinny_s, ICON_MULTIPLY)
 	GLOB.skinny_clothing_icons[index] = fcopy_rsc(skinny_clothing_icon)
 
@@ -450,13 +498,13 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/obj_destruction(damage_flag)
-	if(damage_flag == "bomb")
+	if(damage_flag == BOMB)
 		var/turf/T = get_turf(src)
 		spawn(1) //so the shred survives potential turf change from the explosion.
 			var/obj/effect/decal/cleanable/shreds/Shreds = new(T)
 			Shreds.desc = "The sad remains of what used to be [name]."
 		deconstruct(FALSE)
-	else if(!(damage_flag in list("acid", "fire")))
+	else if(!(damage_flag in list(ACID, FIRE)))
 		damaged_clothes = CLOTHING_SHREDDED
 		body_parts_covered = NONE
 		name = "shredded [initial(name)]"
@@ -475,7 +523,7 @@ BLIND     // can't see anything
 		return
 	if(prob(0.2))
 		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
-		
+
 /*obj/item/clothing/proc/set_sensor_glob()
 	var/mob/living/carbon/human/H = src.loc
 
@@ -484,8 +532,8 @@ BLIND     // can't see anything
 		if (U.has_sensor && U.sensor_mode && U.has_sensor != BROKEN_SENSORS)
 			GLOB.suit_sensors_list |= H
 
-		else 
+		else
 			GLOB.suit_sensors_list -= H
 
-	else 
+	else
 		GLOB.suit_sensors_list -= H	*/

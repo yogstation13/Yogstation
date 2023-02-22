@@ -9,7 +9,7 @@
 	density = FALSE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_HEADS, ACCESS_SECURITY) //used to control clamps
 	var/obj/item/defibrillator/defib //this mount's defibrillator
 	var/clamps_locked = FALSE //if true, and a defib is loaded, it can't be removed without unlocking the clamps
@@ -105,7 +105,7 @@
 	user.visible_message(span_notice("[user] presses [multitool] into [src]'s ID slot..."), \
 	span_notice("You begin overriding the clamps on [src]..."))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	if(!do_after(user, 10 SECONDS, target = src) || !clamps_locked)
+	if(!do_after(user, 10 SECONDS, src) || !clamps_locked)
 		return
 	user.visible_message(span_notice("[user] pulses [multitool], and [src]'s clamps slide up."), \
 	span_notice("You override the locking clamps on [src]!"))

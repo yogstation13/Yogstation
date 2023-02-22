@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_ash
 	name = "Nightwatcher's Secret"
-	desc = "Opens up the path of ash to you. Allows you to transmute a match with a knife or its derivatives into an ashen blade. Additionally empowers your mansus grasp to throw away enemies."
+	desc = "Opens up the path of ash to you. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally empowers your mansus grasp to throw away enemies and makes you resistant to fire."
 	gain_text = "The City Guard knows their watch. If you ask them past dusk they may tell you tales of the Ashy Lantern."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
@@ -9,31 +9,37 @@
 	tier = TIER_PATH
 
 /datum/eldritch_knowledge/base_ash/on_gain(mob/user)
-	..()
-	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-	var/datum/eldritch_transmutation/basic/B = EC.get_transmutation(1)
-	B.effect_path = STATUS_EFFECT_HERETIC_SACRIFICE_ASH
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.physiology.heat_mod *= 0.6
+	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
+	user.put_in_hands(realknife)
 
 /datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!iscarbon(target))
 		return
+	var/mob/living/carbon/C = target
+	var/atom/throw_target = get_edge_target_turf(C, user.dir)
+	if(!C.anchored)
+		. = TRUE
+		C.throw_at(throw_target, rand(4,8), 14, user)
+	return
 
+/datum/eldritch_knowledge/base_ash/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!iscarbon(target))
+		return
 	var/mob/living/carbon/C = target
 	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh)
 	if(E)
-		. = TRUE
 		E.on_effect()
 		for(var/X in user.mind.spell_list)
 			if(!istype(X,/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp))
 				continue
 			var/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp/MG = X
 			MG.charge_counter = min(round(MG.charge_counter + MG.charge_max * 0.75),MG.charge_max) // refunds 75% of charge.
-	var/atom/throw_target = get_edge_target_turf(C, user.dir)
-	if(!C.anchored)
-		. = TRUE
-		C.throw_at(throw_target, rand(4,8), 14, user)
-	return
 
 /datum/eldritch_knowledge/ashen_shift
 	name = "Ashen Shift"
@@ -56,15 +62,16 @@
 /datum/eldritch_knowledge/ash_mark
 	name = "Mark of Ash"
 	gain_text = "Spread the famine."
-	desc = "Your sickly blade now applies ash mark on hit. Use your mansus grasp to detonate the mark. The Mark of Ash causes stamina damage, and fire loss, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
+	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. The Mark of Ash causes fire loss, attempts to ignite them, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_ASH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/ash_mark/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(atom/target,mob/user,proximity_flag,click_parameters)
 	. = ..()
 	if(isliving(target))
+		. = TRUE
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash,5)
 
@@ -106,7 +113,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.adjust_fire_stacks(1)
+		C.adjust_fire_stacks(2)
 		C.IgniteMob()
 
 /datum/eldritch_knowledge/flame_birth

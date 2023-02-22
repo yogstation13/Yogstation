@@ -119,6 +119,12 @@ Nothing else in the console has ID requirements.
 	return ..()
 
 /obj/machinery/computer/rdconsole/attackby(obj/item/D, mob/user, params)
+	if(istype(D, /obj/item/research_notes))
+		var/obj/item/research_notes/R = D
+		SSresearch.science_tech.add_point_list(R.points)
+		playsound(src, 'sound/items/pshred.ogg', 25, 1)
+		qdel(R)
+		return TRUE
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(istype(D, /obj/item/disk/tech_disk))
@@ -699,6 +705,11 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/machine_icon(atom/item)
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
+/obj/machinery/computer/rdconsole/proc/can_research(mob/user)
+	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
+		return TRUE
+	return FALSE
+
 /obj/machinery/computer/rdconsole/proc/ui_techweb_single_node(datum/techweb_node/node, selflink=TRUE, minimal=FALSE)
 	var/list/l = list()
 	if (stored_research.hidden_nodes[node.id])
@@ -846,11 +857,12 @@ Nothing else in the console has ID requirements.
 				ui += ui_settings()
 			if(RDSCREEN_DEVICE_LINKING)
 				ui += ui_device_linking()
+	
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
-		ui[i] = replacetextEx(ui[i], RDSCREEN_NOBREAK, "")
-	return ui.Join("")
+	. = ui.Join("")
+	return replacetextEx(., RDSCREEN_NOBREAK, "")
 
 /obj/machinery/computer/rdconsole/Topic(raw, ls)
 	if(..())
@@ -974,10 +986,13 @@ Nothing else in the console has ID requirements.
 	if(ls["disk_slot"])
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
+		if(!can_research(usr))
+			to_chat(usr, "ACCESS DENIED")
+			return
 		if(!research_control)
 			return				//honestly should call them out for href exploiting :^)
-		if(!SSresearch.science_tech.available_nodes[ls["research_node"]])
-			return			//Nope!
+		if(!stored_research.available_nodes[ls["research_node"]])
+			return 			//Nope!
 		research_node(ls["research_node"], usr)
 	if(ls["clear_tech"]) //Erase la on the technology disk.
 		if(QDELETED(t_disk))
@@ -1154,3 +1169,21 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/experiment
 	name = "E.X.P.E.R.I-MENTOR R&D Console"
+
+/obj/machinery/computer/rdconsole/nolock
+	name = "R&D Console"
+	desc = "A console used to interface with R&D tools. This one seems to not have an access requirement."
+
+	req_access = list()	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+
+/obj/machinery/computer/rdconsole/nolock/ruin
+	name = "R&D Console"
+	desc = "A console used to interface with R&D tools. This one seems to run on different research tech and does not have access requirement."
+	circuit = /obj/item/circuitboard/computer/rdconsole/ruin
+
+/obj/machinery/computer/rdconsole/nolock/ruin/Initialize()
+    . = ..()
+    if(stored_research)
+        stored_research.consoles_accessing -= src
+    stored_research = SSresearch.ruin_tech
+    stored_research.consoles_accessing[src] = TRUE

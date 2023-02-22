@@ -104,6 +104,8 @@
 #define SIGNFONT "Times New Roman"
 #define CHARCOAL_FONT "Candara"
 
+#define PAPER_FIELD "<span class=\"paper_field\"></span>"
+
 
 #define RESIZE_DEFAULT_SIZE 1
 
@@ -190,42 +192,40 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define GHOST_ORBIT_SQUARE		"square"
 #define GHOST_ORBIT_PENTAGON	"pentagon"
 
+#define GHOST_ORBIT_DEFAULT_OPTION GHOST_ORBIT_CIRCLE
+
 //Ghost showing preferences:
-#define GHOST_ACCS_NONE		1
-#define GHOST_ACCS_DIR		50
-#define GHOST_ACCS_FULL		100
+#define GHOST_ACCS_NONE "Default sprites"
+#define GHOST_ACCS_DIR "Only directional sprites"
+#define GHOST_ACCS_FULL "Full accessories"
 
-#define GHOST_ACCS_NONE_NAME		"default sprites"
-#define GHOST_ACCS_DIR_NAME			"only directional sprites"
-#define GHOST_ACCS_FULL_NAME		"full accessories"
+#define GHOST_ACCS_DEFAULT_OPTION GHOST_ACCS_FULL
 
-#define GHOST_ACCS_DEFAULT_OPTION	GHOST_ACCS_FULL
+#define GHOST_OTHERS_SIMPLE "White ghosts"
+#define GHOST_OTHERS_DEFAULT_SPRITE "Default sprites"
+#define GHOST_OTHERS_THEIR_SETTING "Their sprites"
 
-GLOBAL_LIST_INIT(ghost_accs_options, list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST_ACCS_FULL)) //So save files can be sanitized properly.
-
-#define GHOST_OTHERS_SIMPLE 			1
-#define GHOST_OTHERS_DEFAULT_SPRITE		50
-#define GHOST_OTHERS_THEIR_SETTING 		100
-
-#define GHOST_OTHERS_SIMPLE_NAME 			"white ghost"
-#define GHOST_OTHERS_DEFAULT_SPRITE_NAME 	"default sprites"
-#define GHOST_OTHERS_THEIR_SETTING_NAME 	"their setting"
-
-#define GHOST_OTHERS_DEFAULT_OPTION			GHOST_OTHERS_THEIR_SETTING
+#define GHOST_OTHERS_DEFAULT_OPTION GHOST_OTHERS_THEIR_SETTING
 
 #define GHOST_MAX_VIEW_RANGE_DEFAULT 10
 #define GHOST_MAX_VIEW_RANGE_MEMBER 14
 
 
-GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING)) //Same as ghost_accs_options.
-
 //pda fonts
-#define MONO		"Monospaced"
-#define VT			"VT323"
-#define ORBITRON	"Orbitron"
-#define SHARE		"Share Tech Mono"
+#define PDA_FONT_MONO "Monospaced"
+#define PDA_FONT_VT "VT323"
+#define PDA_FONT_ORBITRON "Orbitron"
+#define PDA_FONT_SHARE "Share Tech Mono"
 
-GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
+GLOBAL_LIST_INIT(pda_styles, list(PDA_FONT_MONO, PDA_FONT_VT, PDA_FONT_ORBITRON, PDA_FONT_SHARE))
+
+//pda colours
+#define PDA_COLOR_NORMAL "Normal"
+#define PDA_COLOR_TRANSPARENT "Transparent"
+#define PDA_COLOR_PIPBOY "Pip Boy"
+#define PDA_COLOR_RAINBOW "Rainbow"
+
+GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_COLOR_PIPBOY, PDA_COLOR_RAINBOW))
 
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
@@ -267,8 +267,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define MAP_MAXZ 6
 
 // Defib stats
-#define DEFIB_TIME_LIMIT 900
-#define DEFIB_TIME_LOSS 60
+#define DEFIB_TIME_LIMIT 15 MINUTES
 
 // Diagonal movement
 #define FIRST_DIAG_STEP 1
@@ -293,7 +292,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
+#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.permissions.admins, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 #define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
@@ -372,7 +371,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define SECURITY_TRUSTED 3
 
 //Dummy mob reserve slots
-#define DUMMY_HUMAN_SLOT_PREFERENCES "dummy_preference_preview"
 #define DUMMY_HUMAN_SLOT_ADMIN "admintools"
 #define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 
@@ -488,3 +486,13 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define ALIGNMENT_GOOD "good"
 #define ALIGNMENT_NEUT "neutral"
 #define ALIGNMENT_EVIL "evil"
+
+/// Whether we have succesfully hidden out blood level
+#define BLOODSUCKER_HIDE_BLOOD "hide_blood_volume"
+#define BLOODSUCKER_SHOW_BLOOD "show_blood_volume"
+/// 1 tile down
+#define ui_blood_display "WEST:6,CENTER-1:0"
+/// 2 tiles down
+#define ui_vamprank_display "WEST:6,CENTER-2:-5"
+/// 6 pixels to the right, zero tiles & 5 pixels DOWN.
+#define ui_sunlight_display "WEST:6,CENTER-0:0"

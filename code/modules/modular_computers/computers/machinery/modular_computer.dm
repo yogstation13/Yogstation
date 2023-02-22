@@ -31,6 +31,11 @@
 	var/list/starting_files = list()
 	var/datum/computer_file/program/initial_program
 
+	// Interaction Sounds
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
+
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
 /obj/machinery/modular_computer/Initialize()
@@ -75,11 +80,11 @@
 		return ..()
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
-/obj/machinery/modular_computer/process()
+/obj/machinery/modular_computer/process(delta_time)
 	if(cpu)
 		// Keep names in sync.
 		cpu.name = name
-		cpu.process()
+		cpu.process(delta_time)
 
 // Used in following function to reduce copypaste
 /obj/machinery/modular_computer/proc/power_failure(malfunction = 0)
@@ -98,6 +103,10 @@
 		update_icon()
 		return
 	. = ..()
+
+/obj/machinery/modular_computer/screwdriver_act(mob/user, obj/item/tool)
+	if(cpu)
+		return cpu.screwdriver_act(user, tool)
 
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
 	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))

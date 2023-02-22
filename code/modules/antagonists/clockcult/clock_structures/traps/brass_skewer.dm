@@ -65,7 +65,7 @@
 			playsound(squirrel, 'sound/effects/splat.ogg', 50, TRUE)
 			playsound(squirrel, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			squirrel.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
-		mouse_opacity = MOUSE_OPACITY_OPAQUE //So players can interact with the tile it's on to pull them off
+			squirrel.Stun(20)
 		buckle_mob(squirrel, TRUE)
 	else
 		visible_message(span_danger("A massive brass spike erupts from the ground!"))
@@ -93,7 +93,7 @@
 		user.visible_message(span_warning("[user] starts wriggling off of [src]!"), \
 		span_danger("You start agonizingly working your way off of [src]..."))
 		wiggle_wiggle = TRUE
-		if(!do_after(user, 30 SECONDS, target = user))
+		if(!do_after(user, 30 SECONDS, user))
 			user.visible_message(span_warning("[user] slides back down [src]!"))
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
@@ -104,7 +104,7 @@
 	else
 		user.visible_message(span_danger("[user] starts tenderly lifting [skewee] off of [src]..."), \
 		span_danger("You start tenderly lifting [skewee] off of [src]..."))
-		if(!do_after(user, 6 SECONDS, target = skewee))
+		if(!do_after(user, 6 SECONDS, skewee))
 			skewee.visible_message(span_warning("[skewee] painfully slides back down [src]."))
 			skewee.emote("moan")
 			return

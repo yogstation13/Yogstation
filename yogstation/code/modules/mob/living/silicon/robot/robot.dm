@@ -42,6 +42,12 @@
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	R.PickBorgSkin()
+	if(hat)
+		if(R.hat_offset == INFINITY)
+			R.forceMove(get_turf(R))
+		else
+			R.place_on_head(hat)
+		hat = null
 
 /mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
 	var/old_icon = icon_state
@@ -60,7 +66,7 @@
 			else
 				add_overlay("ov-opencover -c")
 		if(hat)
-			var/mutable_appearance/head_overlay = hat.build_worn_icon(state = hat.icon_state, default_layer = 20, default_icon_file = 'icons/mob/head.dmi')
+			var/mutable_appearance/head_overlay = hat.build_worn_icon(default_layer = 20, default_icon_file = 'icons/mob/clothing/head/head.dmi')
 			head_overlay.pixel_y += hat_offset
 			add_overlay(head_overlay)
 		update_fire()
@@ -89,3 +95,29 @@
 	if(connected_ai)
 		to_chat(connected_ai, "<br><br>[span_alert("ALERT - Cyborg detonation detected: [usr]")]<br>")
 	self_destruct()
+
+/mob/living/silicon/robot/verb/eject_hat()
+	set category = "Robot Commands"
+	set name = "Eject Hat"
+
+	if(!hat) //no hat, no ejection
+		to_chat(usr, span_danger("You have no hat to eject!"))
+		return
+
+	if(usr.stat == DEAD || usr.incapacitated())
+		return //won't work if dead or incapacitated
+
+	if(alert("WARNING: Are you sure you wish to eject your hat? You will not be able to equip another without outside help!",,"Yes","No") != "Yes")
+		return
+
+	if(!hat) //no hat, no ejection
+		to_chat(usr, span_danger("You have no hat to eject!"))
+		return
+
+	if(usr.stat == DEAD || usr.incapacitated())
+		to_chat(usr, span_danger("You can't do that right now!"))
+		return //won't work if dead or incapacitated
+
+	hat.forceMove(get_turf(usr))
+	hat = null
+	update_icons()

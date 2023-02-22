@@ -119,9 +119,9 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
-/datum/spellbook_entry/disintegrate
-	name = "Disintegrate"
-	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
+/datum/spellbook_entry/pacify
+	name = "Pacify"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
 
 /datum/spellbook_entry/disabletech
 	name = "Disable Tech"
@@ -154,11 +154,6 @@
 	name = "Blind"
 	spell_type = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	cost = 1
-
-/datum/spellbook_entry/mindswap
-	name = "Mindswap"
-	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
-	category = "Mobility"
 
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
@@ -195,6 +190,10 @@
 	name = "Flesh to Stone"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
 
+/datum/spellbook_entry/touchofdeath		//yogs start
+	name = "Touch of Death"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs end
+
 /datum/spellbook_entry/summonitem
 	name = "Summon Item"
 	spell_type = /obj/effect/proc_holder/spell/targeted/summonitem
@@ -205,6 +204,7 @@
 	name = "Bind Soul"
 	spell_type = /obj/effect/proc_holder/spell/targeted/lichdom
 	category = "Defensive"
+	cost = 4
 
 /datum/spellbook_entry/teslablast
 	name = "Tesla Blast"
@@ -227,7 +227,7 @@
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
-	cost = 2
+	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
 /datum/spellbook_entry/barnyard
@@ -327,12 +327,6 @@
 	item_path = /obj/item/gun/magic/staff/locker
 	category = "Defensive"
 
-/datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
-	item_path = /obj/item/scrying
-	category = "Defensive"
-
 /datum/spellbook_entry/item/soulstones
 	name = "Six Soul Stone Shards and the spell Artificer"
 	desc = "Soul Stone Shards are ancient tools capable of capturing and harnessing the spirits of the dead and dying. The spell Artificer allows you to create arcane machines for the captured souls to pilot."
@@ -359,7 +353,7 @@
 
 /datum/spellbook_entry/item/armor
 	name = "Mastercrafted Armor Set"
-	desc = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space."
+	desc = "An artifact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space. Additionally provides anti-magic protection, though this may interfere with magic you cast on yourself (i.e Mutate or wands)."
 	item_path = /obj/item/clothing/suit/space/hardsuit/wizard
 	cost = 1
 	category = "Defensive"
@@ -433,6 +427,11 @@
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact."
 	item_path = /obj/item/twohanded/singularityhammer
 
+/datum/spellbook_entry/item/demon_chainsaw
+	name = "Demonic Chainsaw"
+	desc = "A demon that has taken the form of a chainsaw! This demon will grant you eternal life, so long as you feed it blood!"
+	item_path = /obj/item/twohanded/required/chainsaw/demon
+	cost = 3
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
 	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
@@ -504,7 +503,7 @@
 /datum/spellbook_entry/summon/portals
 	name = "Summon Portal Storm"
 	desc = "Terrorize the crew with a portal storm! Whatever crawls out of these portals will be a threat not just to the crew, but you as well!"
-	cost = 3
+	cost = 1
 
 /datum/spellbook_entry/summon/portals/IsAvailible()
 	if(!SSticker.mode)

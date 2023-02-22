@@ -206,7 +206,7 @@
 	name = "banana mask"
 	desc = "Do you want a banana?"
 	clothing_flags = MASKINTERNALS
-	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
 	icon_state = "bananamask"
 	item_state = "bananamask"
 	worn_x_dimension = 64

@@ -1,5 +1,5 @@
 /datum/species/golem
-	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
+	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck. no need eat
 	name = "Golem"
 	id = "iron golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
@@ -22,6 +22,7 @@
 	// changes, only the Random Golem type can be chosen
 	limbs_id = "golem"
 	fixed_mut_color = "aaa"
+	swimming_component = /datum/component/swimming/golem
 	var/info_text = "As an <span class='danger'>Iron Golem</span>, you don't have any special traits."
 	var/random_eligible = TRUE //If false, the golem subtype can't be made through golem mutation toxin
 
@@ -42,6 +43,21 @@
 
 	var/golem_name = "[prefix] [golem_surname]"
 	return golem_name
+
+/datum/species/golem/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "gem",
+		SPECIES_PERK_NAME = "Lithoid",
+		SPECIES_PERK_DESC = "Lithoids are creatures made out of elements instead of \
+			blood and flesh. Because of this, they're generally stronger, slower, \
+			and mostly immune to environmental dangers and dangers to their health, \
+			such as viruses and dismemberment.",
+	))
+
+	return to_add
 
 /datum/species/golem/random
 	name = "Random Golem"
@@ -86,7 +102,7 @@
 	fixed_mut_color = "a3d"
 	meat = /obj/item/stack/ore/plasma
 	//Can burn and takes damage from heat
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER) //no RESISTHEAT, NOFIRE
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER) //no RESISTHEAT, NOFIRE
 	info_text = "As a <span class='danger'>Plasma Golem</span>, you burn easily. Be careful, if you get hot enough while burning, you'll blow up!"
 	heatmod = 0 //fine until they blow up
 	prefix = "Plasma"
@@ -222,11 +238,11 @@
 
 /datum/species/golem/titanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/golem/titanium/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
+	C.weather_immunities -= WEATHER_ASH
 
 //Immune to ash storms and lava
 /datum/species/golem/plastitanium
@@ -241,13 +257,13 @@
 
 /datum/species/golem/plastitanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "lava"
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= WEATHER_LAVA
+	C.weather_immunities |= WEATHER_ASH
 
 /datum/species/golem/plastitanium/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
-	C.weather_immunities -= "lava"
+	C.weather_immunities -= WEATHER_ASH
+	C.weather_immunities -= WEATHER_LAVA
 
 //Fast and regenerates... but can only speak like an abductor
 /datum/species/golem/alloy
@@ -276,7 +292,7 @@
 	fixed_mut_color = "9E704B"
 	meat = /obj/item/stack/sheet/mineral/wood
 	//Can burn and take damage from heat
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	armor = 30
 	burnmod = 1.25
 	heatmod = 1.5
@@ -318,8 +334,9 @@
 /datum/species/golem/wood/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == /datum/reagent/toxin/plantbgone)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return 1
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return TRUE
+	return ..()
 
 /datum/species/golem/wood/holy //slightly upgraded wood golem, for the plant sect
 	id = "holy wood golem"
@@ -354,7 +371,7 @@
 /datum/species/golem/uranium/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/radiation_block = target.run_armor_check(affecting, "rad")
+	var/radiation_block = target.run_armor_check(affecting, RAD)
 	///standard damage roll for use in determining how much you irradiate per punch
 	var/attacker_irradiate_value = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 	target.apply_effect(attacker_irradiate_value*5, EFFECT_IRRADIATE, radiation_block)
@@ -398,7 +415,7 @@
 
 /datum/species/golem/sand/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H))
-		if(P.flag == "bullet" || P.flag == "bomb")
+		if(P.flag == BULLET || P.flag == BOMB)
 			playsound(H, 'sound/effects/shovel_dig.ogg', 70, 1)
 			H.visible_message(span_danger("The [P.name] sinks harmlessly in [H]'s sandy body!"), \
 			span_userdanger("The [P.name] sinks harmlessly in [H]'s sandy body!"))
@@ -431,7 +448,7 @@
 
 /datum/species/golem/glass/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H)) //self-shots don't reflect
-		if(P.flag == "laser" || P.flag == "energy")
+		if(P.flag == LASER || P.flag == ENERGY)
 			H.visible_message(span_danger("The [P.name] gets reflected by [H]'s glass skin!"), \
 			span_userdanger("The [P.name] gets reflected by [H]'s glass skin!"))
 			if(P.starting)
@@ -509,7 +526,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "jaunt"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
-	var/cooldown = 150
+	var/cooldown = 15 SECONDS
 	var/last_teleport = 0
 
 /datum/action/innate/unstable_teleport/IsAvailable()
@@ -533,7 +550,7 @@
 	do_teleport(H, get_turf(H), 12, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	last_teleport = world.time
 	UpdateButtonIcon() //action icon looks unavailable
-	sleep(cooldown + 5)
+	sleep(cooldown + 0.5 SECONDS)
 	UpdateButtonIcon() //action icon looks available again
 
 
@@ -665,12 +682,15 @@
 /datum/species/golem/runic/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem, /datum/reagent/water/holywater))
 		H.adjustFireLoss(4)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return TRUE
 
 	if(chem.type == /datum/reagent/fuel/unholywater)
 		H.adjustBruteLoss(-4)
 		H.adjustFireLoss(-4)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return TRUE
+	return ..()
 
 
 /datum/species/golem/clockwork
@@ -736,7 +756,7 @@
 	info_text = "As a <span class='danger'>Cloth Golem</span>, you are able to reform yourself after death, provided your remains aren't burned or destroyed. You are, of course, very flammable. \
 	Being made of cloth, your body is magic resistant and faster than that of other golems, but weaker and less resilient."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR) //no mutcolors, and can burn
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS,TRAIT_NOHUNGER)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	armor = 15 //feels no pain, but not too resistant
 	burnmod = 2 // don't get burned
@@ -787,8 +807,8 @@
 	name = "pile of bandages"
 	desc = "It emits a strange aura, as if there was still life within it..."
 	max_integrity = 50
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = -50, "acid" = -50)
-	icon = 'icons/obj/items_and_weapons.dmi'
+	armor = list(MELEE = 90, BULLET = 90, LASER = 25, ENERGY = 80, BOMB = 50, BIO = 100, FIRE = -50, ACID = -50)
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pile_bandages"
 	resistance_flags = FLAMMABLE
 
@@ -827,7 +847,7 @@
 	new /obj/effect/temp_visual/mummy_animation(get_turf(src))
 	if(cloth_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		cloth_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	cloth_golem.forceMove(get_turf(src))
 	cloth_golem.visible_message(span_danger("[src] rises and reforms into [cloth_golem]!"),span_userdanger("You reform into yourself!"))
 	cloth_golem = null
@@ -874,7 +894,7 @@
 /datum/species/golem/bronze/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(world.time > last_gong_time + gong_cooldown))
 		return BULLET_ACT_HIT
-	if(P.flag == "bullet" || P.flag == "bomb")
+	if(P.flag == BULLET || P.flag == BOMB)
 		gong(H)
 		return BULLET_ACT_HIT
 
@@ -938,7 +958,7 @@
 	prefix = "Snow"
 	special_names = list("Flake", "Blizzard", "Storm", "Frosty")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors, no eye sprites
-	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 
 	var/obj/effect/proc_holder/spell/targeted/conjure_item/snowball/ball
 	var/obj/effect/proc_holder/spell/aimed/cryo/cryo
@@ -985,7 +1005,7 @@
 	special_names = list("Box")
 	info_text = "As a <span class='danger'>Cardboard Golem</span>, you aren't very strong, but you are a bit quicker and can easily create more brethren by using cardboard on yourself."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	limbs_id = "c_golem" //special sprites
 	attack_verb = "whips"
 	attack_sound = 'sound/weapons/whip.ogg'
@@ -1013,7 +1033,7 @@
 			to_chat(H, span_warning("You do not have enough cardboard!"))
 			return FALSE
 		to_chat(H, span_notice("You attempt to create a new cardboard brother."))
-		if(do_after(user, 3 SECONDS, target = user))
+		if(do_after(user, 3 SECONDS, user))
 			if(last_creation + brother_creation_cooldown > world.time) //no cheesing dork
 				return
 			if(!C.use(10))
@@ -1030,7 +1050,7 @@
 	name = "Leather Golem"
 	id = "leather golem"
 	special_names = list("Face", "Man", "Belt") //Ah dude 4 strength 4 stam leather belt AHHH
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER, TRAIT_STRONG_GRABBER)
+	inherent_traits = list(TRAIT_NOBREATH,TRAIT_NOHUNGER, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER, TRAIT_STRONG_GRABBER)
 	prefix = "Leather"
 	fixed_mut_color = "624a2e"
 	info_text = "As a <span class='danger'>Leather Golem</span>, you are flammable, but you can grab things with incredible ease, allowing all your grabs to start at a strong level."
@@ -1045,7 +1065,7 @@
 	special_names = list("Boll","Weave")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	fixed_mut_color = null
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Durathread Golem</span>, your strikes will cause those your targets to start choking, but your woven body won't withstand fire as well."
 
 /datum/species/golem/durathread/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -1066,7 +1086,7 @@
 	mutanttongue = /obj/item/organ/tongue/bone
 	sexes = FALSE
 	fixed_mut_color = null
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Bone Golem</span>, You have a powerful spell that lets you chill your enemies with fear, and milk heals you! Just make sure to watch our for bone-hurting juice."
 	var/datum/action/innate/bonechill/bonechill
 
@@ -1125,7 +1145,7 @@
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	fixed_mut_color = null
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Capitalist Golem</span>, your fist spreads the powerful industrializing light of capitalism."
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
@@ -1136,6 +1156,7 @@
 	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), SLOT_GLASSES)
 	C.revive(full_heal = TRUE)
 	to_chat(C, span_alert("You are now a capitalist golem! Do not harm fellow capitalist golems. Kill communist golems and hit people with your fists to spread the industrializing light of capitalism to others! Hello I like money!")) //yogs memes
+	to_chat(C, span_userdanger("Hit non-golems several times in order to get them fat and on your side!"))
 
 	SEND_SOUND(C, sound('sound/misc/capitialism.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
@@ -1174,7 +1195,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES)
 	fixed_mut_color = null
 	speedmod = 1.5
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Churchgoing Capitalist Golem</span>, your god-given right is to make fat stacks of money!"
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
@@ -1196,7 +1217,7 @@
 	special_names = list("Stalin","Lenin","Trotsky","Marx","Comrade") //comrade comrade
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	fixed_mut_color = null
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Soviet Golem</span>, your fist spreads the bright soviet light of communism."
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
@@ -1205,8 +1226,9 @@
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), SLOT_HEAD)
 	C.revive(full_heal = TRUE)
-	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!")) //yogs memes
-
+	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!"))
+	to_chat(C, span_userdanger("Hit non-golems several times in order to get them starving and on your side!"))
+	
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
@@ -1239,7 +1261,7 @@
 	id = "cheese golem"
 	fixed_mut_color = "F1D127"
 	meat = /obj/item/stack/sheet/cheese
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	armor = 10
 	burnmod = 1.25
 	heatmod = 1.5
@@ -1276,7 +1298,7 @@
 	stunmod = 0.6 //as opposed to plasteel's 0.4
 	special_names = list("Primordial","Indivisible","Proton", "Superconductor","Supersolid","Metastable","Oppenheimer") //the first element, in an exotic and theoretical state
 	armor = 75 //5 more than diamond, 20 more than base golem
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS) //removed NOFIRE because hydrogen burns and they come from the fire department
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS,TRAIT_NOHUNGER) //removed NOFIRE because hydrogen burns and they come from the fire department
 
 /datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -1386,3 +1408,201 @@
 /datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE
 	playsound(source, 'sound/effects/curseattack.ogg', 100, 1, 1)
+
+/datum/species/golem/wax //has a love-hate relationship with fire
+	name = "Wax Golem"
+	id = "wax golem"
+	limbs_id = "waxgolem"
+	sexes = FALSE
+	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
+	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
+	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS,TRAIT_NOHUNGER) //no resistheat or nofire
+	armor = 10 // made of wax, tough wax but still wax
+	burnmod = 0.75
+	speedmod = 1 // not as heavy as stone
+	heatmod = 0.1 //very little damage, but still there. Its like how a candle doesn't melt in seconds but still melts.
+	punchstunthreshold = 7
+	punchdamagehigh = 9 // not as heavy as stone
+	prefix = "Wax"
+	special_names = list("Candelabra", "Candle")
+
+/datum/species/golem/wax/spec_life(mob/living/carbon/human/H)
+	if(H.fire_stacks < 1)
+		H.adjust_fire_stacks(1) //always prone to burning
+	..()
+
+/datum/species/golem/wax/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(H.on_fire)
+		H.visible_message(span_danger("[H] melts apart into wax!"))
+		new /obj/structure/wax_pile(get_turf(H), H)
+		return
+	else
+		return
+
+/obj/structure/wax_pile
+	name = "pile of wax"
+	desc = "It emits a strange aura, as if there was still life within it..."
+	max_integrity = 150
+	armor = list(MELEE = 50, BULLET = 50, LASER = 25, ENERGY = 80, BOMB = 50, BIO = 100, FIRE = 95, ACID = -50)
+	icon = 'icons/obj/misc.dmi'
+	icon_state = "pile_wax"
+
+	var/revive_time = 80 SECONDS
+	var/mob/living/carbon/human/wax_golem
+
+/obj/structure/wax_pile/Initialize(mapload, mob/living/carbon/human/H)
+	. = ..()
+	if(!QDELETED(H) && is_species(H, /datum/species/golem/wax))
+		H.unequip_everything()
+		H.forceMove(src)
+		wax_golem = H
+		to_chat(wax_golem, span_notice("You start gathering your life energy, preparing to rise again..."))
+		addtimer(CALLBACK(src, .proc/revive), revive_time)
+	else
+		return INITIALIZE_HINT_QDEL
+
+/obj/structure/wax_pile/Destroy()
+	if(wax_golem)
+		QDEL_NULL(wax_golem)
+	return ..()
+
+/obj/structure/wax_pile/proc/revive()
+	if(QDELETED(src) || QDELETED(wax_golem)) //QDELETED also checks for null, so if no wax golem is set this won't runtime
+		return
+	if(wax_golem.suiciding || wax_golem.hellbound)
+		QDEL_NULL(wax_golem)
+		return
+
+	invisibility = INVISIBILITY_MAXIMUM //disappear before the animation
+	new /obj/effect/temp_visual/wax_animation(get_turf(src))
+	if(wax_golem.revive(full_heal = TRUE, admin_revive = TRUE))
+		wax_golem.grab_ghost() //won't pull if it's a suicide
+	sleep(2 SECONDS)
+	wax_golem.forceMove(get_turf(src))
+	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
+	wax_golem = null
+	qdel(src)
+
+/datum/species/golem/supermatter
+	name = "Supermatter Golem"
+	id = "supermatter golem"
+	mutanthands = /obj/item/melee/supermatter_sword/hand
+	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	changesource_flags = MIRROR_BADMIN 
+	random_eligible = FALSE // Hell no
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical object that interacts with you, while taking half as much brute damage and three times more burn damage. You also explode on death."
+	attack_verb = "dusting punch"
+	attack_sound = 'sound/effects/supermatter.ogg'
+	fixed_mut_color = "ff0"
+	brutemod = 1.5
+	burnmod = 3
+	var/burnheal = 1
+	var/bruteheal = 0.5
+	var/randexplode = FALSE
+
+/datum/species/golem/supermatter/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
+	..()
+	H.adjustFireLoss(2)
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust with a flash of light!"))
+	qdel(AM)
+	
+/datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+	..()
+	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust with a brilliant flash of light!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	M.dust()
+
+/datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+	..()
+	H.visible_message(span_danger("[user] tries to attack [H] with [I], but [I] turns into dust with a brilliant flash of light!"))
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	qdel(I)
+	
+
+/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	. = ..()
+	if(istype(P, /obj/item/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
+		return .
+	H.visible_message(span_danger("[P] melts on collision with [H]!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	return BULLET_ACT_FORCE_PIERCE 
+
+/datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
+	. = ..()
+	C.adjustFireLoss(-burnheal)
+	C.adjustBruteLoss(-bruteheal)
+	if(C.InCritical() && prob(1.5))
+		randexplode = TRUE
+		C.visible_message(span_danger("[C]'s body violently explodes!"))
+		explosion(get_turf(C), 1 ,3, 6)
+		qdel(C)
+
+/datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(randexplode) //No double explosions
+		return
+	H.visible_message(span_danger("[H]'s body violently explodes!"))
+	explosion(get_turf(H), 1 ,3, 6)
+	qdel(H)
+
+/obj/item/melee/supermatter_sword/hand
+	name = "supermatter hand"
+	desc = "A hand of a robust supermatter golem."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	color = "#ffff00"
+
+/obj/item/melee/supermatter_sword/hand/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+
+
+/datum/species/golem/cloth/get_species_description()
+	return "A wrapped up Mummy! They descend upon Space Station Thirteen every year to spook the crew! \"Return the slab!\""
+
+/datum/species/golem/cloth/get_species_lore()
+	return list(
+		"Mummies are very self conscious. They're shaped weird, they walk slow, and worst of all, \
+		they're considered the laziest halloween costume. But that's not even true, they say.",
+
+		"Making a mummy costume may be easy, but making a CONVINCING mummy costume requires \
+		things like proper fabric and purposeful staining to achieve the look. Which is FAR from easy. Gosh.",
+	)
+
+// Calls parent, as Golems have a species-wide perk we care about.
+/datum/species/golem/cloth/create_pref_unique_perks()
+	var/list/to_add = ..()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "recycle",
+		SPECIES_PERK_NAME = "Reformation",
+		SPECIES_PERK_DESC = "Mummies collapse into \
+			a pile of bandages after they die. If left alone, they will reform back \
+			into themselves. The bandages themselves are very vulnerable to fire.",
+	))
+
+	return to_add
+
+// Override to add a perk elaborating on just how dangerous fire is.
+/datum/species/golem/cloth/create_pref_temperature_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "fire-alt",
+		SPECIES_PERK_NAME = "Incredibly Flammable",
+		SPECIES_PERK_DESC = "Mummies are made entirely of cloth, which makes them \
+			very vulnerable to fire. They will not reform if they die while on \
+			fire, and they will easily catch alight. If your bandages burn to ash, you're toast!",
+	))
+
+	return to_add

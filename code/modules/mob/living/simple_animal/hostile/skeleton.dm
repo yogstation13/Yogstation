@@ -17,6 +17,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	minbodytemp = 0
 	maxbodytemp = 1500
 	healable = 0 //they're skeletons how would bruise packs help them??
@@ -44,7 +45,7 @@
 	icon_dead = "eskimo_dead"
 	maxHealth = 55
 	health = 55
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	gold_core_spawnable = NO_SPAWN
 	melee_damage_lower = 17
 	melee_damage_upper = 20
@@ -63,7 +64,7 @@
 	icon_dead = "templar_dead"
 	maxHealth = 150
 	health = 150
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	speed = 2
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 1
@@ -84,7 +85,7 @@
 	speed = 5
 	maxHealth = 75
 	health = 75
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	color = rgb(114,228,250)
 	loot = list(/obj/effect/decal/remains/human{color = rgb(114,228,250)})
 
@@ -115,6 +116,7 @@
 	harm_intent_damage = 15
 	melee_damage_lower = 20
 	melee_damage_upper = 25
+	attack_vis_effect = null // jackhammer moment
 	attacktext = "blasts"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)

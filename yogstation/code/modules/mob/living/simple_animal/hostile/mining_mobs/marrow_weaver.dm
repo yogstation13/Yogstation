@@ -7,7 +7,7 @@
 	icon_aggro = "weaver"
 	icon_dead = "weaver_dead"
 	throw_message = "bounces harmlessly off the"
-	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
+	butcher_results = list(/obj/item/stack/ore/uranium = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
 	loot = list()
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -25,7 +25,7 @@
 	pass_flags = PASSTABLE
 	attack_sound = 'sound/weapons/bite.ogg'
 	deathmessage = "rolls over, frothing at the mouth before stilling."
-	var/poison_type = /datum/reagent/toxin
+	var/poison_type = /datum/reagent/toxin/spore
 	var/poison_per_bite = 5
 	var/buttmad = 0
 	var/melee_damage_lower_angery0 = 13
@@ -42,8 +42,8 @@
 			melee_damage_upper = melee_damage_upper_angery1
 			move_to_delay = 8
 			speed = 3
-			poison_type = /datum/reagent/toxin/spore
-			poison_per_bite = 5
+			poison_type = /datum/reagent/toxin/venom
+			poison_per_bite = 6
 	else if(buttmad == 1)
 		if(health > maxHealth/2)
 			buttmad = 0
@@ -82,7 +82,7 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
 	if(..())
 		return TRUE
-	if((health < maxHealth) && ishuman(A))
+	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
 		var/mob/living/carbon/human/H = A
 		for(var/obj/item/organ/O in H.internal_organs)
 			if(O.zone == "chest")
@@ -122,7 +122,7 @@
 	health = 450
 	maxHealth = 450
 	poison_type = /datum/reagent/cluwnification
-
+	
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice
 	name = "Frostbite Spider"
 	desc = "A big, angry, venomous ice spider. It likes to snack on bone marrow. Its preferred food source is you."
@@ -133,3 +133,4 @@
 	melee_damage_lower = 10 //stronger venom, but weaker attack.
 	melee_damage_upper = 13
 	poison_type = /datum/reagent/consumable/frostoil
+	poison_per_bite = 5

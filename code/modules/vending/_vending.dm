@@ -34,6 +34,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/custom_premium_price
 	///Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item
 	var/age_restricted = FALSE
+	///List of items that have been returned to the vending machine.
+	var/list/returned_products
 
 /**
   * # vending machines
@@ -52,7 +54,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	verb_exclaim = "beeps"
 	max_integrity = 300
 	integrity_failure = 100
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+	armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	circuit = /obj/item/circuitboard/machine/vendor
 	payment_department = ACCOUNT_SRV
 	/// Is the machine active (No sales pitches if off)!
@@ -63,6 +65,12 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/purchase_message_cooldown
 	///Last mob to shop with us
 	var/last_shopper
+	var/tilted = FALSE
+	var/tiltable = TRUE
+	var/squish_damage = 75
+	var/forcecrit = 0
+	var/num_shards = 7
+	var/list/pinned_mobs = list()
 
 
 	/**
@@ -90,6 +98,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/product_slogans = ""
 	///String of small ad messages in the vending screen - random chance
 	var/product_ads = ""
+	var/current_ad = ""
+	var/product_cd = 10 SECONDS
+	COOLDOWN_DECLARE(product_ad_cooldown)
 
 	var/list/product_records = list()
 	var/list/hidden_records = list()
@@ -114,7 +125,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	///When this is TRUE, we fire items at customers! We're broken!
 	var/shoot_inventory = 0
 	///How likely this is to happen (prob 100)
-	var/shoot_inventory_chance = 2
+	var/shoot_inventory_chance = 1
 	//Stop spouting those godawful pitches!
 	var/shut_up = 0
 	///can we access the hidden inventory?
@@ -148,6 +159,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	//The type of refill canisters used by this machine.
 	var/obj/item/vending_refill/refill_canister = null
 
+	/// how many items have been inserted in a vendor
+	var/loaded_items = 0
+	
 	/// used for narcing on underages
 	var/obj/item/radio/alertradio
 
@@ -165,6 +179,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
   * * TRUE - all other cases
   */
 /obj/machinery/vending/Initialize(mapload)
+	if(tilted)
+		src.tilt() // We don't need to set tilted to false before tilt because it will handle it.
 	var/build_inv = FALSE
 	if(!refill_canister)
 		circuit = null
@@ -177,6 +193,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		build_inventory(premium, coin_records)
 
 	slogan_list = splittext(product_slogans, ";")
+	small_ads = splittext(product_ads, ";")
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
@@ -247,6 +264,14 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		found_anything = FALSE
 		for(var/record in shuffle(product_records))
 			var/datum/data/vending_product/R = record
+
+				//first dump any of the items that have been returned, in case they contain the nuke disk or something
+			for(var/obj/returned_obj_to_dump in R.returned_products)
+				LAZYREMOVE(R.returned_products, returned_obj_to_dump)
+				returned_obj_to_dump.forceMove(get_turf(src))
+				step(returned_obj_to_dump, pick(GLOB.alldirs))
+				R.amount--
+
 			if(R.amount <= 0) //Try to use a record that actually has something to dump.
 				continue
 			var/dump_path = R.product_path
@@ -362,6 +387,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/wrench_act(mob/living/user, obj/item/I)
 	if(panel_open)
 		default_unfasten_wrench(user, I, time = 60)
+		unbuckle_all_mobs(TRUE)
 	return TRUE
 
 /obj/machinery/vending/screwdriver_act(mob/living/user, obj/item/I)
@@ -424,20 +450,162 @@ GLOBAL_LIST_EMPTY(vending_products)
 				updateUsrDialog()
 	else
 		..()
+		if(tiltable && !tilted && I.force)
+			switch(rand(1, 100))
+				if(1 to 5)
+					freebie(user, 3)
+				if(6 to 15)
+					freebie(user, 2)
+				if(16 to 25)
+					freebie(user, 1)
+				if(76 to 90)
+					tilt(user)
+				if(91 to 100)
+					tilt(user, crit=TRUE)
+				else
+					return
 
-/obj/machinery/vending/proc/loadingAttempt(obj/item/I,mob/user)
+/obj/machinery/vending/proc/freebie(mob/fatty, freebies)
+	visible_message("<span class='notice'>[src] yields [freebies > 1 ? "several free goodies" : "a free goody"]!</span>")
+
+	for(var/i in 1 to freebies)
+		for(var/datum/data/vending_product/R in shuffle(product_records))
+
+			if(R.amount <= 0) //Try to use a record that actually has something to dump.
+				continue
+			var/dump_path = R.product_path
+			if(!dump_path)
+				continue
+			if(R.amount > LAZYLEN(R.returned_products)) //always give out new stuff that costs before free returned stuff, because of the risk getting gibbed involved
+				new dump_path(get_turf(src))
+			else
+				var/obj/returned_obj_to_dump = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+				LAZYREMOVE(R.returned_products, returned_obj_to_dump)
+				returned_obj_to_dump.forceMove(get_turf(src))
+			R.amount--
+			break
+
+/obj/machinery/vending/proc/tilt(mob/fatty, crit=FALSE)
+	var/no_tipper = FALSE
+	if(!fatty)
+		no_tipper = TRUE
+	visible_message("<span class='danger'>[src] tips over!</span>")
+	tilted = TRUE
+	layer = ABOVE_MOB_LAYER
+
+	var/crit_case
+	if(crit)
+		crit_case = rand(1,4)
+
+	if(forcecrit)
+		crit_case = forcecrit
+
+	if(no_tipper || in_range(fatty, src))
+		for(var/mob/living/L in get_turf(fatty))
+			var/mob/living/carbon/C = L
+
+			if(istype(C))
+				var/crit_rebate = 0 // lessen the normal damage we deal for some of the crits
+
+				if(crit_case != 5) // the head asplode case has its own description
+					C.visible_message("<span class='danger'>[C] is crushed by [src]!</span>", \
+						"<span class='userdanger'>You are crushed by [src]!</span>")
+
+				switch(crit_case) // only carbons can have the fun crits
+					if(1) // shatter their legs and bleed 'em
+						crit_rebate = 60
+						C.bleed(150)
+						var/obj/item/bodypart/l_leg/l = C.get_bodypart(BODY_ZONE_L_LEG)
+						if(l)
+							l.receive_damage(brute=200, updating_health=TRUE)
+						var/obj/item/bodypart/r_leg/r = C.get_bodypart(BODY_ZONE_R_LEG)
+						if(r)
+							r.receive_damage(brute=200, updating_health=TRUE)
+						if(l || r)
+							C.visible_message("<span class='danger'>[C]'s legs shatter with a sickening crunch!</span>", \
+								"<span class='userdanger'>Your legs shatter with a sickening crunch!</span>")
+					if(2) // pin them beneath the machine until someone untilts it
+						forceMove(get_turf(C))
+						buckle_mob(C, force=TRUE)
+						C.visible_message("<span class='danger'>[C] is pinned underneath [src]!</span>", \
+							"<span class='userdanger'>You are pinned down by [src]!</span>")
+					if(3) // glass candy
+						crit_rebate = 50
+						for(var/i = 0, i < num_shards, i++)
+							var/obj/item/shard/shard = new /obj/item/shard(get_turf(C))
+							shard.embedding = shard.embedding.setRating(embed_chance = 100, embedded_ignore_throwspeed_threshold = TRUE, embedded_impact_pain_multiplier=1,embedded_pain_chance=5)
+							C.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
+							shard.embedding = shard.embedding.setRating(embed_chance = EMBED_CHANCE, embedded_ignore_throwspeed_threshold = FALSE)
+					if(4) // paralyze this binch
+						// the new paraplegic gets like 4 lines of losing their legs so skip them
+						visible_message("<span class='danger'>[C]'s spinal cord is obliterated with a sickening crunch!</span>")
+						C.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic, TRAUMA_RESILIENCE_LOBOTOMY)
+					if(5) // skull squish!
+						var/obj/item/bodypart/head/O = C.get_bodypart(BODY_ZONE_HEAD)
+						if(O)
+							C.visible_message("<span class='danger'>[O] explodes in a shower of gore beneath [src]!</span>", \
+								"<span class='userdanger'>Oh f-</span>")
+							O.dismember()
+							O.drop_organs()
+							qdel(O)
+							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
+
+				C.apply_damage(max(0, squish_damage - crit_rebate))
+				C.AddComponent(/datum/element/squish, 18 SECONDS)
+			else
+				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
+				"<span class='userdanger'>You are crushed by [src]!</span>")
+				L.apply_damage(squish_damage)
+				if(crit_case)
+					L.apply_damage(squish_damage)
+
+			L.Paralyze(60)
+			L.emote("scream")
+			playsound(L, 'sound/effects/blobattack.ogg', 40, TRUE)
+			playsound(L, 'sound/effects/splat.ogg', 50, TRUE)
+
+	var/matrix/M = matrix()
+	M.Turn(pick(90, 270))
+	transform = M
+
+	if(fatty && get_turf(fatty) != get_turf(src))
+		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
+
+/obj/machinery/vending/proc/untilt(mob/user)
+	user.visible_message("<span class='notice'>[user] rights [src].", \
+		"<span class='notice'>You right [src].")
+
+	unbuckle_all_mobs(TRUE)
+
+	tilted = FALSE
+	layer = initial(layer)
+
+	var/matrix/M = matrix()
+	M.Turn(0)
+	transform = M
+
+/obj/machinery/vending/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
+	if(!force)
+		return
+	. = ..()
+
+/obj/machinery/vending/proc/loadingAttempt(obj/item/I, mob/user)
 	. = TRUE
 	if(!user.transferItemToLoc(I, src))
 		return FALSE
-	for(var/datum/data/vending_product/R as anything in product_records)
-		if(R.product_path == I.type)
-			R.amount++
-			to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
-			qdel(I)
-			break
-		
-	return FALSE
+	to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
 
+	for(var/datum/data/vending_product/product_datum in product_records + coin_records + hidden_records)
+		if(ispath(I.type, product_datum.product_path))
+			product_datum.amount++
+			LAZYADD(product_datum.returned_products, I)
+			return
+
+	if(vending_machine_input[format_text(I.name)])
+		vending_machine_input[format_text(I.name)]++
+	else
+		vending_machine_input[format_text(I.name)] = 1
+	loaded_items++
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
 	if(!istype(W))
@@ -475,6 +643,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
 			return
+
+	if(tilted && !user.buckled && !isAI(user))
+		to_chat(user, span_notice("You begin righting [src]."))
+		if(do_after(user, 5 SECONDS, src))
+			untilt(user)
+		return
 	return ..()
 
 /obj/machinery/vending/ui_assets(mob/user)
@@ -527,6 +701,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
+
+	.["product_ad"] = current_ad
+
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
 
@@ -548,7 +725,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["department"] = C.registered_account.account_job.paycheck_department
 			else
 				.["user"]["job"] = "No Job"
-				.["user"]["department"] = "No Department"
+				.["user"]["department"] = DEPARTMENT_UNASSIGNED
 	.["stock"] = list()
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
@@ -622,6 +799,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 					price_to_use = 0
 				if(coin_records.Find(R) || hidden_records.Find(R))
 					price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+				if(LAZYLEN(R.returned_products))
+					price_to_use = 0 //returned items are free
 				if(price_to_use && !account.adjust_money(-price_to_use))
 					say("You do not possess the funds to purchase [R.name].")
 					flick(icon_deny,src)
@@ -638,27 +817,37 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(icon_vend) //Show the vending animation if needed
 				flick(icon_vend,src)
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
-			new R.product_path(get_turf(src))
+			var/obj/item/vended_item
+			if(!LAZYLEN(R.returned_products)) //always give out free returned stuff first, e.g. to avoid walling a traitor objective in a bag behind paid items
+				vended_item = new R.product_path(get_turf(src))
+			else
+				vended_item = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+				LAZYREMOVE(R.returned_products, vended_item)
+				vended_item.forceMove(get_turf(src))
 			R.amount--
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
 
-/obj/machinery/vending/process()
+/obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
 		return PROCESS_KILL
 	if(!active)
 		return
 
+	if(COOLDOWN_FINISHED(src, product_ad_cooldown) && LAZYLEN(small_ads) > 0)
+		COOLDOWN_START(src, product_ad_cooldown, product_cd)
+		current_ad = pick(small_ads)
+	
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && prob(5))
+	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && DT_PROB(2.5, delta_time))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
 
-	if(shoot_inventory && prob(shoot_inventory_chance))
+	if(shoot_inventory && DT_PROB(shoot_inventory_chance, delta_time))
 		throw_item()
 /**
   * Speak the given message verbally
@@ -707,9 +896,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 		var/dump_path = R.product_path
 		if(!dump_path)
 			continue
-
+		if(R.amount > LAZYLEN(R.returned_products)) //always throw new stuff that costs before free returned stuff, because of the hacking effort and time between throws involved
+			throw_item = new dump_path(loc)
+		else
+			throw_item = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+			throw_item.forceMove(loc)
+			LAZYREMOVE(R.returned_products, throw_item)
 		R.amount--
-		throw_item = new dump_path(loc)
 		break
 	if(!throw_item)
 		return 0

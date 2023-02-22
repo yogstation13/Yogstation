@@ -98,15 +98,14 @@
 	update_text()
 
 /obj/item/paper/contract/infernal/suicide_act(mob/user)
-	if(signed && (user == target.current) && istype(user, /mob/living/carbon/human/))
+	if(signed && (user == target.current) && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.say("OH GREAT INFERNO!  I DEMAND YOU COLLECT YOUR BOUNTY IMMEDIATELY!", forced = "infernal contract suicide")
 		H.visible_message(span_suicide("[H] holds up a contract claiming [user.p_their()] soul, then immediately catches fire.  It looks like [user.p_theyre()] trying to commit suicide!"))
 		H.adjust_fire_stacks(20)
 		H.IgniteMob()
 		return(FIRELOSS)
-	else
-		..()
+	return ..()
 
 /obj/item/paper/contract/infernal/update_text()
 	info = "This shouldn't be seen.  Error DEVIL:6"
@@ -182,7 +181,7 @@
 	add_fingerprint(user)
 	if(M == user && target == M?.mind?.soulOwner != owner && attempt_signature(user, 1))
 		user.visible_message(span_danger("[user] slices [user.p_their()] wrist with [src], and scrawls [user.p_their()] name in blood."), span_danger("You slice your wrist open and scrawl your name in blood."))
-		user.blood_volume = max(user.blood_volume - 100, 0)
+		user.blood_volume = max(user.blood_volume - 25, 0) //devil blood cost quartered from 100 because otherwise people with the blood deficiency trait fucking die
 	else
 		return ..()
 
@@ -193,14 +192,11 @@
 	if(user.mind != target)
 		to_chat(user, span_notice("Your signature simply slides off the sheet, it seems this contract is not meant for you to sign."))
 		return 0
-	if(user.mind.soulOwner == owner)
-		to_chat(user, span_notice("This devil already owns your soul, you may not sell it to [owner.p_them()] again."))
+	if(user.mind.soulOwner != user.mind) //fixes a really, really stupid bug where you could sell souls you didnt have to multiple devils, scamming them.
+		to_chat(user, span_notice("You do not own a soul to sell."))
 		return 0
 	if(signed)
 		to_chat(user, span_notice("This contract has already been signed.  It may not be signed again."))
-		return 0
-	if(!user.mind.hasSoul)
-		to_chat(user, span_notice("You do not possess a soul."))
 		return 0
 	if(HAS_TRAIT(user, TRAIT_DUMB))
 		to_chat(user, span_notice("You quickly scrawl 'your name' on the contract."))
@@ -260,7 +256,7 @@
 	devilInfo.add_soul(user.mind)
 	update_text(user.real_name, blood)
 	to_chat(user, span_notice("A profound emptiness washes over you as you lose ownership of your soul."))
-	to_chat(user, span_boldnotice("This does NOT make you an antagonist if you were not already."))
+	to_chat(user, span_userdanger("This does NOT make you an antagonist if you were not already."))
 	return TRUE
 
 /obj/item/paper/contract/infernal/proc/signIncorrectly(mob/living/carbon/human/user = target.current, blood = FALSE)

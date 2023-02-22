@@ -12,6 +12,7 @@
 					/obj/item/toy/gun/toyglock = 3,
 					/obj/item/toy/gun/toyflaregun = 3,
 					/obj/item/toy/toygrenade = 15,
+					/obj/item/balloonbox = 3,
 					/obj/item/toy/plush/teddybear = 5,
 					/obj/item/toy/plush/stuffedmonkey = 5,
 					/obj/item/toy/plush/flowerbunch = 5,
@@ -35,6 +36,8 @@
 					/obj/item/toy/plush/mothplushie = 2,
 					/obj/item/toy/plush/foxplushie = 2,
 					/obj/item/toy/plush/pkplushie = 2,
+					/obj/item/toy/plush/cdragon = 2,
+					/obj/item/clothing/head/yogs/froghat = 3,
 					/obj/item/instrument/accordion = 1,
 					/obj/item/instrument/eguitar = 1,
 					/obj/item/instrument/glockenspiel = 1,
@@ -82,6 +85,7 @@
 					  /obj/item/cartridge/rd = 2,
 					  /obj/item/cartridge/captain = 1)
 	premium = list(/obj/item/multitool = 1,
+				   /obj/item/clothing/head/soft/fishfear = 4,
 				   /obj/item/pda/clear = 1)
 
 	default_price = 50

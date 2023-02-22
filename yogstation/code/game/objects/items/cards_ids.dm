@@ -18,7 +18,7 @@
 	"Chief Medical Officer" = list("medical","silver"),
 	"Station Engineer" = list("engineering","yellow"),
 	"Atmospheric Technician" = list("engineering","white"),
-	"Signal Technician" = list("engineering","green"),
+	"Network Admin" = list("engineering","green"),
 	"Medical Doctor" = list("medical","blue"),
 	"Geneticist" = list("medical","purple"),
 	"Virologist" = list("medical","green"),
@@ -72,7 +72,9 @@
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
-	if(prob(10))
+	if(istype(otherEmag, /obj/item/card/emag/improvised))
+		return
+	if(prob(7))
 		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))
 		playsound(src.loc, "sparks", 50, 1)
 		qdel(otherEmag)
@@ -86,7 +88,7 @@
 
 /obj/item/card/id/gasclerk
 	name = "Clerk"
-	desc = "A employee ID used to access areas around the gastation."
+	desc = "An employee ID used to access areas around the gas station."
 	access = list(ACCESS_MANUFACTURING)
 
 /obj/item/card/id/gasclerk/New()

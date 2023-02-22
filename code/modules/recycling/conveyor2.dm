@@ -7,17 +7,30 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
-	desc = "A conveyor belt."
+	desc = "A conveyor belt. You can rotate it with a wrench, and reverse it with a screwdriver, or detach it with a crowbar."
 	layer = BELOW_OPEN_DOOR_LAYER
-	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
-	var/operable = 1	// true if can operate (no broken segments in this belt run)
-	var/forwards		// this is the default (forward) direction, set by the map dir
-	var/backwards		// hopefully self-explanatory
-	var/movedir			// the actual direction to move stuff in
-	var/id = ""			// the control ID	- must match controller ID
-	var/verted = 1		// Inverts the direction the conveyor belt moves.
+	/// The current state of the switch.
+	var/operating = 0
+	/// This is the default (forward) direction, set by the map dir.
+	var/forwards
+	/// The opposite of forwards. It's set in a special var for corner belts, which aren't using the opposite direction when in reverse.
+	var/backwards
+	/// The actual direction to move stuff in.
+	var/movedir
+	/// The control ID - must match at least one conveyor switch's ID to be useful.
+	var/id = ""
+	/// Inverts the direction the conveyor belt moves when true.
+	var/inverted = FALSE
+	/// Are we currently conveying items?
 	speed_process = TRUE
 	var/conveying = FALSE
+
+/obj/machinery/conveyor/examine(mob/user)
+	. = ..()
+	if(inverted)
+		. += span_notice("It is currently set to go in reverse.")
+	. += "\nLeft-click with a <b>wrench</b> to rotate."
+	. += "Left-click with a <b>screwdriver</b> to invert its direction."
 
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
@@ -25,7 +38,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/inverted //Directions inverted so you can use different corner peices.
 	icon_state = "conveyor_map_inverted"
-	verted = -1
+	inverted = TRUE
 
 /obj/machinery/conveyor/inverted/Initialize(mapload)
 	. = ..()
@@ -96,7 +109,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(SOUTHWEST)
 			forwards = WEST
 			backwards = NORTH
-	if(verted == -1)
+	if(inverted)
 		var/temp = forwards
 		forwards = backwards
 		backwards = temp
@@ -107,22 +120,22 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/update_icon()
-	if(stat & BROKEN)
-		icon_state = "conveyor-broken"
+	if(!operating)
+		icon_state = "conveyor[inverted ? "-0" : "0"]"
 	else
-		icon_state = "conveyor[operating * verted]"
+		icon_state = "conveyor[inverted ? -operating : operating]"
 
 /obj/machinery/conveyor/proc/update()
-	if(stat & BROKEN || !operable || stat & NOPOWER)
+	. = TRUE
+	if(stat & NOPOWER)
 		operating = FALSE
-		update_icon()
-		return FALSE
-	return TRUE
+		. = FALSE
+	update_icon()
 
 	// machine process
 	// move items to the target location
 /obj/machinery/conveyor/process()
-	if(!operating || conveying)	//If the conveyor is broken or already moving items
+	if(!operating || conveying)	//If the conveyor is off or already moving items
 		return
 
 	if(!operating)
@@ -167,24 +180,22 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
 		span_notice("You struggle to pry up \the [src] with \the [I]."))
 		if(I.use_tool(src, user, 40, volume=40))
-			if(!(stat & BROKEN))
-				var/obj/item/stack/conveyor/C = new /obj/item/stack/conveyor(loc, 1, TRUE, id)
-				transfer_fingerprints_to(C)
+			var/obj/item/stack/conveyor/C = new /obj/item/stack/conveyor(loc, 1, TRUE, id)
+			transfer_fingerprints_to(C)
 			to_chat(user, span_notice("You remove the conveyor belt."))
 			qdel(src)
 
 	else if(I.tool_behaviour == TOOL_WRENCH)
-		if(!(stat & BROKEN))
-			I.play_tool_sound(src)
-			setDir(turn(dir,-45))
-			update_move_direction()
-			to_chat(user, span_notice("You rotate [src]."))
+		I.play_tool_sound(src)
+		setDir(turn(dir,-45))
+		update_move_direction()
+		to_chat(user, span_notice("You rotate [src]."))
 
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(!(stat & BROKEN))
-			verted = verted * -1
-			update_move_direction()
-			to_chat(user, span_notice("You reverse [src]'s direction."))
+		inverted = !inverted
+		update_move_direction()
+		to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
+		update_icon()
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
@@ -198,34 +209,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	user.Move_Pulled(src)
 
-// make the conveyor broken
-// also propagate inoperability to any connected conveyor with the same ID
-/obj/machinery/conveyor/proc/broken()
-	obj_break()
-	update()
-
-	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
-	if(C)
-		C.set_operable(dir, id, 0)
-
-	C = locate() in get_step(src, turn(dir,180))
-	if(C)
-		C.set_operable(turn(dir,180), id, 0)
-
-
-//set the operable var if ID matches, propagating in the given direction
-
-/obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
-
-	if(id != match_id)
-		return
-	operable = op
-
-	update()
-	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
-	if(C)
-		C.set_operable(stepdir, id, op)
-
 /obj/machinery/conveyor/power_change()
 	. = ..()
 	update()
@@ -236,7 +219,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch
 	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	desc = "A conveyor control switch. You can switch it to one-way with a wrench, or detach it with a crowbar."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	speed_process = TRUE
@@ -348,7 +331,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	desc = "A conveyor control switch. It appears to only go in one direction. you can switch it to two way with a wrench, or detach it with a crowbar."
 	oneway = TRUE
 
 /obj/machinery/conveyor_switch/oneway/Initialize()
@@ -362,6 +345,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	w_class = WEIGHT_CLASS_BULKY
+	materials = list(/datum/material/iron = 50)
 	var/id = "" //inherited by the switch
 
 /obj/item/conveyor_switch_construct/Initialize()
@@ -397,7 +381,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	max_amount = 30
 	singular_name = "conveyor belt"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron = 3000)
+	materials = list(/datum/material/iron = 1000)
 	///id for linking
 	var/id = ""
 

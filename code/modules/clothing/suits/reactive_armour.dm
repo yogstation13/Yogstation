@@ -1,25 +1,26 @@
-/obj/item/reactive_armour_shell
-	name = "reactive armour shell"
-	desc = "An experimental suit of armour, awaiting installation of an anomaly core."
+/obj/item/reactive_armor_shell
+	name = "reactive armor shell"
+	desc = "An experimental suit of armor, awaiting installation of an anomaly core."
 	icon_state = "reactiveoff"
 	icon = 'icons/obj/clothing/suits.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/reactive_armour_shell/attackby(obj/item/I, mob/user, params)
+/obj/item/reactive_armor_shell/attackby(obj/item/I, mob/user, params)
 	..()
-	var/static/list/anomaly_armour_types = list(
+	var/static/list/anomaly_armor_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
+		/obj/effect/anomaly/pyro	  			    = /obj/item/clothing/suit/armor/reactive/fire,
 		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport
 		)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
 		var/obj/item/assembly/signaler/anomaly/A = I
-		var/armour_path = anomaly_armour_types[A.anomaly_type]
-		if(!armour_path)
-			armour_path = /obj/item/clothing/suit/armor/reactive/stealth //Lets not cheat the player if an anomaly type doesnt have its own armour coded
-		to_chat(user, "You insert [A] into the chest plate, and the armour gently hums to life.")
-		new armour_path(get_turf(src))
+		var/armor_path = anomaly_armor_types[A.anomaly_type]
+		if(!armor_path)
+			armor_path = /obj/item/clothing/suit/armor/reactive/stealth //Lets not cheat the player if an anomaly type doesnt have its own armor coded
+		to_chat(user, "You insert [A] into the chest plate, and the armor gently hums to life.")
+		new armor_path(get_turf(src))
 		qdel(src)
 		qdel(A)
 
@@ -33,7 +34,7 @@
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	actions_types = list(/datum/action/item_action/toggle)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hit_reaction_chance = 50
@@ -79,22 +80,7 @@
 			owner.visible_message(span_danger("The reactive teleport system is still recharging! It fails to teleport [H]!"))
 			return
 		owner.visible_message(span_danger("The reactive teleport system flings [H] clear of [attack_text], shutting itself off in the process!"))
-		playsound(get_turf(owner),'sound/magic/blink.ogg', 100, 1)
-		var/list/turfs = new/list()
-		for(var/turf/T in orange(tele_range, H))
-			if(T.density)
-				continue
-			if(T.x>world.maxx-tele_range || T.x<tele_range)
-				continue
-			if(T.y>world.maxy-tele_range || T.y<tele_range)
-				continue
-			turfs += T
-		if(!turfs.len)
-			turfs += pick(/turf in orange(tele_range, H))
-		var/turf/picked = pick(turfs)
-		if(!isturf(picked))
-			return
-		H.forceMove(picked)
+		do_teleport(H, get_turf(H), tele_range, asoundin = 'sound/magic/blink.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 		H.rad_act(rad_amount)
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return 1
@@ -119,9 +105,9 @@
 		playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
 		for(var/mob/living/carbon/C in range(6, owner))
 			if(C != owner)
-				C.fire_stacks += 8
+				C.adjust_fire_stacks(8)
 				C.IgniteMob()
-		owner.fire_stacks = -20
+		owner.fire_stacks = -1
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return 1
 	return 0
@@ -131,6 +117,7 @@
 /obj/item/clothing/suit/armor/reactive/stealth
 	name = "reactive stealth armor"
 	desc = "An experimental suit of armor that renders the wearer invisible on detection of imminent harm, and creates a decoy that runs away from the owner. You can't fight what you can't see."
+	reactivearmor_cooldown_duration = 80
 
 /obj/item/clothing/suit/armor/reactive/stealth/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -158,6 +145,7 @@
 	name = "reactive tesla armor"
 	desc = "An experimental suit of armor with sensitive detectors hooked up to a huge capacitor grid, with emitters strutting out of it. Zap."
 	siemens_coefficient = -1
+	reactivearmor_cooldown_duration = 3 SECONDS
 	var/tesla_power = 25000
 	var/tesla_range = 20
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
@@ -176,7 +164,9 @@
 	if(!active)
 		return FALSE
 	if(!damage)
-		return 0
+		return FALSE
+	if(owner.stat == DEAD)
+		return FALSE
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
@@ -194,6 +184,7 @@
 /obj/item/clothing/suit/armor/reactive/repulse
 	name = "reactive repulse armor"
 	desc = "An experimental suit of armor that violently throws back attackers."
+	reactivearmor_cooldown_duration = 5 SECONDS
 	var/repulse_force = MOVE_FORCE_EXTREMELY_STRONG
 
 /obj/item/clothing/suit/armor/reactive/repulse/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)

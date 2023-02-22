@@ -21,10 +21,30 @@
 
 	var/datum/data/record/active_general_record = null
 	var/datum/data/record/active_security_record = null
+	
+	//Radio internal
+	var/obj/item/radio/radio
+	var/radio_key = /obj/item/encryptionkey/heads/hos
+	var/sec_freq = RADIO_CHANNEL_SECURITY
+	var/command_freq = RADIO_CHANNEL_COMMAND
 
 	var/special_message
 
 	light_color = LIGHT_COLOR_RED
+
+/obj/machinery/computer/secure_data/Initialize(mapload)
+	. = ..()
+	radio = new(src)
+	radio.keyslot = new radio_key
+	radio.subspace_transmission = TRUE
+	radio.listening = FALSE
+	radio.use_command = TRUE
+	radio.independent = TRUE
+	radio.recalculateChannels()
+
+/obj/machinery/computer/secure_data/Destroy()
+	. = ..()
+	QDEL_NULL(radio)
 
 /obj/machinery/computer/secure_data/syndie
 	icon_keyboard = "syndie_key"
@@ -86,6 +106,7 @@
 					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 
 					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
+
 		data["has_access"] = check_access(user.get_idcard())
 
 
@@ -121,16 +142,19 @@
 					record["recordColor"] = "#5C4949"
 					record["recordIcon"] = "search"
 				if("Incarcerated")
-					record["recordColor"] = "#CD6500"
+					record["recordColor"] = "#181818"
 					record["recordIcon"] = "dungeon"
+				if("Suspected")
+					record["recordColor"] = "#CD6500"
+					record["recordIcon"] = "exclamation"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 					record["recordIcon"] = "unlink"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#740349"
 				if("")
 					crime_status = "No Record."
 
@@ -151,23 +175,30 @@
 			return
 		var/list/assets = list()
 		data["active_general_record"] = TRUE
+
 		if(istype(active_general_record.fields["photo_front"], /obj/item/photo))
-			var/obj/item/photo/P1 = active_general_record.fields["photo_front"]
-			if(!SSassets.cache["photo_front_[active_general_record.fields["id"]].png"])
-				SSassets.transport.register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
-			assets["photo_front_[active_general_record.fields["id"]].png"] = P1.picture.picture_image
+			var/obj/item/photo/P2 = active_general_record.fields["photo_front"]
+			var/icon/picture = icon(P2.picture.picture_image)
+			var/md5 = md5(fcopy_rsc(picture))
+
+			if(!SSassets.cache["photo_[md5]_cropped.png"])
+				SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+			SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+
+			record["front_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 
 		if(istype(active_general_record.fields["photo_side"], /obj/item/photo))
-			var/obj/item/photo/P2 = active_general_record.fields["photo_side"]
-			if(!SSassets.cache["photo_side_[active_general_record.fields["id"]].png"])
-				SSassets.transport.register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
-			assets["photo_side_[active_general_record.fields["id"]].png"] = P2.picture.picture_image
+			var/obj/item/photo/P3 = active_general_record.fields["photo_side"]
+			var/icon/picture = icon(P3.picture.picture_image)
+			var/md5 = md5(fcopy_rsc(picture))
+
+			if(!SSassets.cache["photo_[md5]_cropped.png"])
+				SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+			SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+
+			record["side_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 
 		SSassets.transport.send_assets(user, assets)
-		
-		record["front_image"] = SSassets.transport.get_asset_url("photo_front_[active_general_record.fields["id"]].png")
-		record["side_image"] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
-
 
 		record["name"] = active_general_record.fields["name"]
 		record["id"] = active_general_record.fields["id"]
@@ -192,13 +223,15 @@
 				if("Search")
 					record["recordColor"] = "#5C4949"
 				if("Incarcerated")
+					record["recordColor"] = "#181818"
+				if("Suspected")
 					record["recordColor"] = "#CD6500"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#740349"
 
 			record["citations"] = list()
 
@@ -437,7 +470,7 @@
 		if("delete_records")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete all security records?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete all security records?",, list("Yes", "No")) != "Yes")
 				return
 			investigate_log("[key_name(usr)] has purged all the security records.", INVESTIGATE_RECORDS)
 			for(var/datum/data/record/R in GLOB.data_core.security)
@@ -512,7 +545,7 @@
 		if("delete_general_record_and_security")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete these records?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete these records?",, list("Yes", "No")) != "Yes")
 				return
 			if(active_general_record)
 				investigate_log("[key_name(usr)] has deleted all records for [active_general_record.fields["name"]].", INVESTIGATE_RECORDS)
@@ -533,7 +566,7 @@
 		if("delete_security_record")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete this record?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete this record?",, list("Yes", "No")) != "Yes")
 				return
 			investigate_log("[key_name(usr)] has deleted the security records for [active_general_record.fields["name"]].", INVESTIGATE_RECORDS)
 			if(active_security_record)
@@ -603,6 +636,18 @@
 							return
 						active_general_record.fields["species"] = species
 
+				if("upd_photo_front")
+					var/obj/item/photo/photo = get_photo(usr)
+					if(photo)
+						qdel(active_general_record.fields["photo_front"])
+						//Lets center it to a 32x32.
+						var/icon/I = photo.picture.picture_image
+						var/w = I.Width()
+						var/h = I.Height()
+						var/dw = w - 32
+						var/dh = w - 32
+						I.Crop(dw/2, dh/2, w - dw/2, h - dh/2)
+						active_general_record.fields["photo_front"] = photo
 
 				if("print_photo_front")
 					if(active_general_record.fields["photo_front"])
@@ -610,6 +655,18 @@
 							var/obj/item/photo/P = active_general_record.fields["photo_front"]
 							print_photo(P.picture.picture_image, active_general_record.fields["name"])
 
+				if("upd_photo_side")
+					var/obj/item/photo/photo = get_photo(usr)
+					if(photo)
+						qdel(active_general_record.fields["photo_side"])
+						//Lets center it to a 32x32.
+						var/icon/I = photo.picture.picture_image
+						var/w = I.Width()
+						var/h = I.Height()
+						var/dw = w - 32
+						var/dh = w - 32
+						I.Crop(dw/2, dh/2, w - dw/2, h - dh/2)
+						active_general_record.fields["photo_side"] = photo
 
 				if("print_photo_side")
 					if(active_general_record.fields["photo_side"])
@@ -692,7 +749,7 @@
 
 				if("criminal_status")
 					if(active_security_record)
-						var/crime = input("Select a status", "Criminal Status Selection") as null|anything in list("None", "Arrest", "Search", "Incarcerated", "Paroled", "Discharged")
+						var/crime = input("Select a status", "Criminal Status Selection") as null|anything in list("None", "Arrest", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
 						if(!crime)
 							crime = "none"
 						var/old_field = active_security_record.fields["criminal"]
@@ -705,6 +762,8 @@
 								active_security_record.fields["criminal"] = "Search"
 							if("Incarcerated")
 								active_security_record.fields["criminal"] = "Incarcerated"
+							if("Suspected")
+								active_security_record.fields["criminal"] = "Suspected"
 							if("Paroled")
 								active_security_record.fields["criminal"] = "Paroled"
 							if("Discharged")
@@ -714,15 +773,23 @@
 							H.sec_hud_set_security_status()
 
 				if("rank")
-					var/list/allowed_ranks = list("Head of Personnel", "Captain", "AI", "Central Command")
 					var/changed_rank = null
-					if((istype(active_general_record, /datum/data/record) && allowed_ranks.Find(rank)))
-						changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
+					var/mob/living/carbon/human/user = usr
+					if(!issilicon(usr))
+						if(user.wear_id)
+							var/list/access = user.wear_id.GetAccess()
+							if((ACCESS_KEYCARD_AUTH || ACCESS_CAPTAIN || ACCESS_CHANGE_IDS || ACCESS_HOP || ACCESS_HOS) in access)							
+								changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
+							else
+								say("You do not have the required access to do this!")
+								return
+						else
+							say("Cannot detect ID in your ID slot!")
+							return
 					else
-						alert(usr, "You do not have the required rank to do this!")
-						return
+						changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
 
-					if(active_general_record)
+					if(active_general_record && changed_rank)
 						active_general_record.fields["rank"] = strip_html(changed_rank)
 						if(changed_rank in get_all_jobs())
 							active_general_record.fields["real_rank"] = changed_rank
@@ -742,9 +809,8 @@
 	var/obj/item/photo/P = null
 	if(issilicon(user))
 		var/mob/living/silicon/tempAI = user
-		var/datum/picture/selection = tempAI.GetPhoto(user)
-		if(selection)
-			P = new(null, selection)
+		var/datum/picture/selection = tempAI.aicamera?.selectpicture(user)
+		P = new(null, selection)
 	else if(istype(user.get_active_held_item(), /obj/item/photo))
 		P = user.get_active_held_item()
 	return P
@@ -762,6 +828,45 @@
 	P.pixel_y = rand(-10, 10)
 	printing = FALSE
 
+/obj/machinery/computer/secure_data/proc/trigger_alarm() //Copy pasted from /area/proc/burglaralert(obj/trigger) because why not
+	var/area/alarmed = get_area(src)
+	if(alarmed.always_unpowered) //no burglar alarms in space/asteroid
+		return
+
+	//Trigger alarm effect
+	alarmed.set_fire_alarm_effect()
+	//Lockdown airlocks
+	for(var/obj/machinery/door/DOOR in alarmed)
+		alarmed.close_and_lock_door(DOOR)
+
+	for (var/i in GLOB.silicon_mobs)
+		var/mob/living/silicon/SILICON = i
+		if(SILICON.triggerAlarm("Burglar", alarmed, alarmed.cameras, src))
+			//Cancel silicon alert after 1 minute
+			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,alarmed), 600)
+
+/obj/machinery/computer/secure_data/emag_act(mob/user)
+	var/name
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.get_idcard(TRUE))
+			var/obj/item/card/id/ID = human_user.get_idcard(TRUE)
+			name = "[ID.registered_name]"
+		else
+			name = "Unknown"
+			
+	if(issilicon(user))
+		name = "[user.name]"
+
+	if(!logged_in)
+		logged_in = TRUE
+		to_chat(user, span_warning("You override [src]'s ID lock."))
+		trigger_alarm()
+		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+		var/area/A = get_area(loc)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+	
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
 
@@ -781,7 +886,7 @@
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged")
+					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)
@@ -791,7 +896,9 @@
 				if(8)
 					var/datum/data/record/G = pick(GLOB.data_core.general)
 					R.fields["photo_front"] = G.fields["photo_front"]
+					R.fields["upd_photo_front"] = G.fields["upd_photo_front"]
 					R.fields["photo_side"] = G.fields["photo_side"]
+					R.fields["upd_photo_side"] = G.fields["upd_photo_side"]
 			continue
 
 		else if(prob(1))

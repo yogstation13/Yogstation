@@ -22,5 +22,6 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
+	can_be_held = TRUE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	gold_core_spawnable = FRIENDLY_SPAWN

@@ -21,9 +21,9 @@ Class Variables:
    power_channel (num)
       What channel to draw from when drawing power for power mode
       Possible Values:
-         EQUIP:0 -- Equipment Channel
-         LIGHT:2 -- Lighting Channel
-         ENVIRON:3 -- Environment Channel
+         AREA_USAGE_EQUIP:0 -- Equipment Channel
+         AREA_USAGE_LIGHT:2 -- Lighting Channel
+         AREA_USAGE_ENVIRON:3 -- Environment Channel
 
    component_parts (list)
       A list of component parts of machine used by frame based machines.
@@ -53,11 +53,11 @@ Class Procs:
       Default definition uses 'use_power', 'power_channel', 'active_power_usage',
       'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
 
-   powered(chan = EQUIP)         'modules/power/power.dm'
+   powered(chan = AREA_USAGE_EQUIP)         'modules/power/power.dm'
       Checks to see if area that contains the object has power available for power
       channel given in 'chan'.
 
-   use_power(amount, chan=EQUIP)   'modules/power/power.dm'
+   use_power(amount, chan=AREA_USAGE_EQUIP)   'modules/power/power.dm'
       Deducts 'amount' from the power channel 'chan' of the area that contains the object.
 
    power_change()               'modules/power/power.dm'
@@ -103,11 +103,12 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/power_channel = EQUIP
-		//EQUIP,ENVIRON or LIGHT
+	var/power_channel = AREA_USAGE_EQUIP
+		//AREA_USAGE_EQUIP, AREA_USAGE_ENVIRON or AREA_USAGE_LIGHT
 	var/wire_compatible = FALSE
 
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/works_with_rped_anyways = FALSE //whether it has special RPED behavior despite not having component parts
 	var/panel_open = FALSE
 	var/state_open = FALSE
 	var/critical_machine = FALSE //If this machine is critical to station operation and should have the area be excempted from power failures.
@@ -132,7 +133,7 @@ Class Procs:
 
 /obj/machinery/Initialize()
 	if(!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
 	GLOB.machines += src
 
@@ -241,29 +242,61 @@ Class Procs:
 	return !(stat & (NOPOWER|BROKEN|MAINT))
 
 /obj/machinery/can_interact(mob/user)
-	var/silicon = issiliconoradminghost(user)
-	if((stat & (NOPOWER|BROKEN)) && !(interaction_flags_machine & INTERACT_MACHINE_OFFLINE))
+	if((stat & (NOPOWER|BROKEN)) && !(interaction_flags_machine & INTERACT_MACHINE_OFFLINE)) // Check if the machine is broken, and if we can still interact with it if so
 		return FALSE
-	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
-		if(!silicon || !(interaction_flags_machine & INTERACT_MACHINE_OPEN_SILICON))
-			return FALSE
 
-	if(silicon)
+	//if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_INTERACT)
+	//	return FALSE
+
+
+	if(IsAdminGhost(user))
+		return TRUE //the Gods have unlimited power and do not care for things such as range or blindness
+
+	if(!isliving(user))
+		return FALSE //no ghosts allowed, sorry
+
+	var/is_dextrous = FALSE
+	if(isanimal(user))
+		var/mob/living/simple_animal/user_as_animal = user
+		if (user_as_animal.dextrous)
+			is_dextrous = TRUE
+
+	if(!issilicon(user) && !is_dextrous && !user.can_hold_items())
+		return FALSE //spiders gtfo
+
+	if(issilicon(user)) // If we are a silicon, make sure the machine allows silicons to interact with it
 		if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON))
 			return FALSE
-	else
-		if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON)
+
+		if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN) && !(interaction_flags_machine & INTERACT_MACHINE_OPEN_SILICON))
 			return FALSE
-		
-		if(is_species(user, /datum/species/lizard/ashwalker))
-			return FALSE
-		var/mob/living/carbon/H = user
-		if(istype(H) && H.has_dna() && H.dna.check_mutation(ACTIVE_HULK))
+
+		return user.can_interact_with(src) //AIs don't care about petty mortal concerns like needing to be next to a machine to use it, but borgs do care somewhat
+
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
+		return FALSE
+
+	if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON) //if the user was a silicon, we'd have returned out earlier, so the user must not be a silicon
+		return FALSE
+
+
+	var/mob/living/L = user
+	if(is_species(L, /datum/species/lizard/ashwalker))
+		return FALSE // ashwalkers cant use modern machines
+
+	var/mob/living/carbon/H = user
+	if(istype(H) && H.has_dna())
+		if (H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE
-		if(!Adjacent(user))
-			if(!(istype(H) && H.has_dna() && H.dna.check_mutation(TK)))
-				return FALSE
+			return FALSE // hulks cant use machines
+
+		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+			return FALSE // need to be close or have telekinesis
+
 	return TRUE
 
 /obj/machinery/proc/check_nap_violations()
@@ -326,7 +359,7 @@ Class Procs:
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message(span_danger("[user.name] smashes against \the [src.name] with its paws."), null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -366,11 +399,12 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		deconstruct(TRUE)
 
-/obj/machinery/deconstruct(disassembled = TRUE)
+/obj/machinery/deconstruct(disassembled = TRUE, force = FALSE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		on_deconstruction()
 		if(component_parts && component_parts.len)
-			spawn_frame(disassembled)
+			if(!force)
+				spawn_frame(disassembled)
 			for(var/obj/item/I in component_parts)
 				I.forceMove(loc)
 			component_parts.Cut()
@@ -475,6 +509,9 @@ Class Procs:
 						break
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
+						//won't replace beakers if they have reagents in them to prevent funny explosions
+						if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
+							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)
 							var/obj/item/stock_parts/cell/checked_cell = B
@@ -552,7 +589,7 @@ Class Procs:
 		else if (prob(50))
 			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
-		take_damage(power/2000, BURN, "energy")
+		take_damage(power/2000, BURN, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 
@@ -583,7 +620,7 @@ Class Procs:
 	START_PROCESSING(subsystem, src)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, "melee", 1)
+	take_damage(500, BRUTE, MELEE, 1)
 
 /obj/machinery/MouseDrop_T(atom/movable/O, mob/user)
 	. = ..()
@@ -628,8 +665,23 @@ Class Procs:
 									"<span class='notice'>You climb onto [src].</span>")
 				log_combat(user, src, "climbed onto")
 				if(climb_stun)
+					var/mob/living/carbon/human/H = user
+					var/wagging = FALSE
+					if(H && H.dna.species.is_wagging_tail())
+						wagging = TRUE
 					user.Stun(climb_stun)
+					if(wagging)
+						H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
 	machineclimber = null
+
+/obj/machinery/CanAStarPass(ID, dir, caller)
+	. = ..()
+	if(climbable)
+		return TRUE
+	if(can_be_occupant(caller))
+		return TRUE
+
+	

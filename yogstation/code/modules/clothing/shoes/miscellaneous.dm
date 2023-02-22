@@ -17,7 +17,7 @@
 	name = "scary clown shoes"
 	desc = "Clown shoes often seen being worn by sewer clowns."
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "scaryclownshoes"
 	item_state = "scaryclownshoes"
 
@@ -25,7 +25,7 @@
 	name = "bee shoes"
 	desc = "It's hip to wear bees."
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "bee_shoes"
 	item_state = "bee_shoes"
 
@@ -40,10 +40,13 @@
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
-/obj/item/clothing/shoes/yogs/fire_crocs
+/obj/item/clothing/shoes/fire_crocs
 	name = "fire crocs"
 	desc = "You are now the coolest kid on the station."
 	icon = 'icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'icons/mob/feet.dmi'
 	icon_state = "fire_crocs"
 	item_state = "fire_crocs"
+
+/obj/item/clothing/shoes/fire_crocs/Initialize()
+	. = ..()
+	AddComponent(/datum/component/fishingbonus,5)

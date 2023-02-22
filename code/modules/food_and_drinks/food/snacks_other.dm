@@ -57,7 +57,10 @@
 /obj/item/reagent_containers/food/snacks/popcorn
 	name = "popcorn"
 	desc = "Now let's find some cinema."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon_state = "popcorn"
+	item_state = "popcorn"
 	trash = /obj/item/trash/popcorn
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
@@ -83,7 +86,6 @@
 	name = "space fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
 	icon_state = "fries"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	filling_color = "#FFD700"
 	tastes = list("fries" = 3, "salt" = 1)
@@ -94,7 +96,7 @@
 	desc = "A large fried potato nugget that may or may not try to valid you."
 	icon_state = "tatortot"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	filling_color = "FFD700"
+	filling_color = "#FFD700"
 	tastes = list("potato" = 3, "valids" = 1)
 	foodtype = FRIED | VEGETABLES
 
@@ -102,7 +104,6 @@
 	name = "soy dope"
 	desc = "Dope from a soy."
 	icon_state = "soydope"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	filling_color = "#DEB887"
 	tastes = list("soy" = 1)
@@ -112,7 +113,6 @@
 	name = "cheesy fries"
 	desc = "Fries. Covered in cheese. Duh."
 	icon_state = "cheesyfries"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	filling_color = "#FFD700"
@@ -123,7 +123,6 @@
 	name = "poutine"
 	desc = "Fries, cheese, and gravy. Une maudite poutine!"
 	icon_state = "poutine"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/gravy = 6)
 	filling_color = "#5e4b39"
@@ -150,7 +149,6 @@
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."
 	icon_state = "carrotfries"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#FFA500"
 	tastes = list("carrots" = 3, "salt" = 1)
@@ -172,7 +170,6 @@
 	desc = "It is only wafer thin."
 	icon_state = "mint"
 	bitesize = 1
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/toxin/minttoxin = 2)
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
@@ -201,7 +198,7 @@
 	desc = "It's slightly twitching in your hand. Ew..."
 	icon_state = "spiderling"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 4)
-	filling_color = "#00800"
+	filling_color = "#008000"
 	tastes = list("cobwebs" = 1, "guts" = 2)
 	foodtype = MEAT | TOXIC
 
@@ -210,7 +207,7 @@
 	desc = "Still gross, but at least it has a mountain of sugar on it."
 	icon_state = "spiderlollipop"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 1, /datum/reagent/iron = 10, /datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/omnizine = 2) //lollipop, but vitamins = toxins
-	filling_color = "#00800"
+	filling_color = "#008000"
 	tastes = list("cobwebs" = 1, "sugar" = 2)
 	foodtype = JUNKFOOD | SUGAR
 
@@ -249,7 +246,6 @@
 	name = "eggplant parmigiana"
 	desc = "The only good recipe for eggplant."
 	icon_state = "eggplantparm"
-	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#BA55D3"
@@ -320,7 +316,6 @@
 	name = "yaki imo"
 	desc = "Made with roasted sweet potatoes!"
 	icon_state = "yakiimo"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
 	filling_color = "#8B1105"
 	tastes = list("sweet potato" = 1)
@@ -330,7 +325,6 @@
 	name = "roast parsnip"
 	desc = "Sweet and crunchy."
 	icon_state = "roastparsnip"
-	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	filling_color = "#FF5500"
 	tastes = list("parsnip" = 1)
@@ -500,7 +494,7 @@
 	icon_state = "taco"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
-	filling_color = "F0D830"
+	filling_color = "#F0D830"
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
 	foodtype = MEAT | DAIRY | GRAIN | VEGETABLES
 
@@ -576,29 +570,3 @@
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
 
-/obj/item/reagent_containers/food/snacks/dolphincereal
-	name = "dolphin cereal"
-	desc = "Finest dolphin skin flakes. This looks flippin' disgusting."
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "dolphincereal"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("milk" = 1, "old cardboard" = 1)
-
-/obj/item/reagent_containers/food/snacks/dolphinandchips
-	name = "dolphin and chips"
-	desc = "Dolphin and chips, wrapped in the finest newspaper from the clown's newscaster channel."
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "dolphinandchips"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("dolphin meat" = 1, "fries" = 1)
-
-/obj/item/reagent_containers/food/snacks/youmonster
-	name = "full dolphin platter"
-	desc = "A whole dolphin. Good luck eating this. (WARNING: do not consume any wafer thin mints after consumption)"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "youmonster"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("dolphin meat" = 1, "regret" = 1)

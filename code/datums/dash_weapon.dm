@@ -30,7 +30,7 @@
 
 /datum/action/innate/dash/proc/Teleport(mob/user, atom/target)
 	if(!IsAvailable())
-		return
+		return FALSE
 	var/turf/T = get_turf(target)
 	var/area/AU = get_area(user)
 	var/area/AT = get_area(T)

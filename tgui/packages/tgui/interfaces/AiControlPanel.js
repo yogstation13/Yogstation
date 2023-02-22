@@ -107,7 +107,7 @@ export const AiControlPanel = (props, context) => {
               )}>
                 {data.downloading && (
                   <Fragment>
-                    <NoticeBox mb={0.1} danger>Currently downloading G2</NoticeBox>
+                    <NoticeBox mb={0.1} danger>Currently downloading {data.downloading}</NoticeBox>
                     <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100" />
                     <Button mt={0.5} fluid color="bad" icon="stop" tooltip="WARNING" textAlign="center" onClick={() => act("stop_download")}>Cancel Download</Button>
                     {!!data.current_ai_ref && data.current_ai_ref === data.downloading_ref && (
@@ -130,6 +130,12 @@ export const AiControlPanel = (props, context) => {
                               ) }
                               {!!ai.being_hijacked && (
                                 <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
+                              )}
+                              {!!data.is_servant_of_ratvar && !ai.being_cogged && (
+                                <Button color="good" tooltip="Requires an integration cog" icon="download" onClick={() => act("start_cog", { target_ai: ai.ref })}>Start integrating</Button>
+                              ) }
+                              {!!ai.being_cogged && (
+                                <Button color="bad" icon="stop" onClick={() => act("stop_cog", { target_ai: ai.ref })}>Stop integrating</Button>
                               )}
                             </Fragment>
                           )}>

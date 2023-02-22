@@ -5,7 +5,9 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH,HAS_BONE)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
+	mutant_bodyparts = list("pod_hair", "pod_flower")
+	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
@@ -15,9 +17,15 @@
 	coldmod = 1.5
 	acidmod = 2
 	speedmod = 0.33
+	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
+	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
+	punchstunthreshold = 9 
+	payday_modifier = 0.7 //Neutrally viewed by NT
+	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
-	disliked_food = MEAT | DAIRY
-	liked_food = VEGETABLES | FRUIT | GRAIN
+	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
+	toxic_food = ALCOHOL
+	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
 
@@ -27,6 +35,8 @@
 	var/last_light_level = 0
 	var/last_light_message = -STATUS_MESSAGE_COOLDOWN
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
+
+	smells_like = "bloody grass"
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
@@ -47,6 +57,8 @@
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
+		return
+	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)
@@ -85,11 +97,14 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				H.nutrition += light_amount * 2
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
+					//just enough to function			
+					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
-				H.nutrition += light_amount * 1.75
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					H.nutrition += light_amount * 1.75				
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
@@ -99,7 +114,9 @@
 			if (0.76 to 1)
 				//super high light
 				light_level = 5
-				H.nutrition += light_amount * 1.5
+				if(H.nutrition < NUTRITION_LEVEL_FED)
+					//this will give the positive fed moodlet instead of being stuck on "i'm so fat" for existing
+					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
@@ -109,7 +126,7 @@
 		//no light, this is baaaaaad
 		light_level = 0
 		light_msg = span_userdanger("Darkness! Your insides churn and your skin screams in pain!")
-		H.nutrition -= 3
+		H.nutrition -= 10
 		//enough to make you faint for good, and eventually die
 		if(H.getOxyLoss() < 60)
 			H.adjustOxyLoss(min(5 * dark_damage_multiplier, 60 - H.getOxyLoss()), 1)
@@ -145,19 +162,19 @@
 		return 1
 
 	if(chem.type == /datum/reagent/saltpetre)
-		H.adjustFireLoss(-2.5*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustFireLoss(-1.5*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustToxLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
 	if(chem.type == /datum/reagent/ammonia)
-		H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustFireLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
 	if(chem.type == /datum/reagent/plantnutriment/robustharvestnutriment)
-		H.adjustToxLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 		for(var/V in H.reagents.reagent_list)//slow down the processing of harmful reagents.
 			var/datum/reagent/R = V
 			if(istype(R, /datum/reagent/toxin) || istype(R, /datum/reagent/drug))
@@ -223,7 +240,12 @@
 		light_heal_multiplier = 2
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
-		//removal is handled in /datum/reagent/sugar/on_mob_delete()
+		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so that was a lie
+		
+		//if there's none left after the removal, the light multiplier needs to go back to the default
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+			light_heal_multiplier = initial(light_heal_multiplier)
+			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
@@ -235,7 +257,6 @@
 			if(chem.current_cycle > 50)
 				H.IsSleeping(3)
 			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -260,5 +281,32 @@
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
+
+/datum/species/pod/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_pod_name(gender)
+	return pod_name(gender)
+
+/datum/species/pod/get_species_description()
+	return ""//"TODO: This is plant description"
+
+/datum/species/pod/get_species_lore()
+	return list(
+		""//"TODO: This is plant lore"
+	)
+
+/datum/species/pod/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/pod/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
 
 #undef STATUS_MESSAGE_COOLDOWN

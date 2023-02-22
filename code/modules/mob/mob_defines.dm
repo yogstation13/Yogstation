@@ -28,6 +28,8 @@
 	var/cached_multiplicative_slowdown
 	/// List of action hud items the user has
 	var/list/datum/action/actions = list()
+	/// Actions that belong to this mob used in observers
+	var/list/datum/action/originalactions = list()
 	/// A special action? No idea why this lives here
 	var/list/datum/action/chameleon_item_actions
 
@@ -149,8 +151,8 @@
 	/// Can this mob enter shuttles
 	var/move_on_shuttle = 1
 
-	///The last mob/living/carbon to push/drag/grab this mob (exclusively used by slimes friend recognition)
-	var/mob/living/carbon/LAssailant = null
+	///A weakref to the last mob/living/carbon to push/drag/grab this mob (exclusively used by slimes friend recognition)
+	var/datum/weakref/LAssailant = null
 
 	/**
 	  * construct spells and mime spells.

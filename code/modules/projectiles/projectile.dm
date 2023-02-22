@@ -49,6 +49,11 @@
 	var/ricochet_chance = 30
 	var/force_hit = FALSE //If the object being hit can pass ths damage on to something else, it should not do it for this bullet.
 
+	//Atom penetration, set to mobs by default
+	var/penetrating = FALSE
+	var/penetrations = INFINITY
+	var/penetration_type = 0 //Set to 1 if you only want to have it penetrate objects. Set to 2 if you want it to penetrate objects and mobs.
+
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
 	var/list/beam_segments	//assoc list of datum/point or datum/point/vector, start = end. Used for hitscan effect generation.
@@ -111,6 +116,8 @@
 	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
 	var/wound_falloff_tile
 
+	var/splatter = FALSE // Make a cool splatter effect even if it doesn't do brute damage
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()
@@ -162,17 +169,26 @@
 
 		W.add_dent(WALL_DENT_SHOT, hitx, hity)
 
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	if(!isliving(target))
 		if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
+
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	var/mob/living/L = target
 
 	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && damage_type == BRUTE)
+		if(damage && L.blood_volume && (damage_type == BRUTE || splatter))
 			var/mob/living/carbon/C = L
 			var/splatter_dir = dir
 			if(starting)
@@ -183,6 +199,11 @@
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
 			else
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
+			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
+			if(B?.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
+				do_sparks(2, FALSE, target.loc)
+				if(prob(25))
+					new /obj/effect/decal/cleanable/oil(target_loca)
 			if(prob(33))
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)
@@ -530,7 +551,7 @@
 	if(!hitscanning && !forcemoved)
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
-		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
+		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 0.1 SECONDS, flags = ANIMATION_END_NOW)
 	Range()
 
 /obj/item/projectile/proc/process_homing()			//may need speeding up in the future performance wise.
@@ -579,6 +600,8 @@
 	else
 		var/mob/living/L = target
 		if(!direct_target)
+			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_STAND) && (L in range(1, starting))) //if we're shooting over someone who's prone and nearby bc formations are cool and not going to be unbalanced
+				return FALSE
 			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
 				return FALSE
 	return TRUE

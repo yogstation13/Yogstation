@@ -11,6 +11,7 @@
 	var/message_robot = "" //Message displayed if the user is a robot
 	var/message_AI = "" //Message displayed if the user is an AI
 	var/message_monkey = "" //Message displayed if the user is a monkey
+	var/message_ipc = "" // Message to display if the user is an IPC
 	var/message_simple = "" //Message to display if the user is a simple_animal
 	var/message_param = "" //Message to display if a param was given
 	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
@@ -77,10 +78,13 @@
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE)
 
 /// For handling emote cooldown, return true to allow the emote to happen
-/datum/emote/proc/check_cooldown(mob/user, intentional, update=TRUE)
+/datum/emote/proc/check_cooldown(mob/user, intentional, update=TRUE, is_keybind = FALSE)
 	if(!intentional)
 		return TRUE
-	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
+	var/cd = cooldown
+	if (is_keybind)
+		cd = 2 SECONDS // cooldown when used as a keybind
+	if(user.emotes_used && user.emotes_used[src] + cd > world.time)
 		return FALSE
 	if(!update)
 		return TRUE
@@ -117,6 +121,8 @@
 		. = message_AI
 	else if(ismonkey(user) && message_monkey)
 		. = message_monkey
+	else if(isipc(user) && message_ipc)
+		. = message_ipc
 	else if(isanimal(user) && message_simple)
 		. = message_simple
 

@@ -41,6 +41,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_all, list(
 	/client/proc/cmd_admin_test_atmos_controllers,
 	/datum/admins/proc/show_traitor_panel,
 	/client/proc/disable_communication,
+	/client/proc/show_map_reports,
 	/client/proc/cmd_show_at_list,
 	/client/proc/cmd_show_at_markers,
 	/client/proc/manipulate_organs,
@@ -77,7 +78,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug_all, list(
 	/client/proc/reload_configuration,
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/debug_typeof, // Yogs -- Adds a debug verb for getting the subtypes of something
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/debug_mail_loot
 ))
 GLOBAL_PROTECT(admin_verbs_debug_all)
 
@@ -136,8 +138,8 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Camera Report"
 
 	if(!Master)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
-		return 0
+		tgui_alert(usr,"Master_controller not found.","Sec Camera Report")
+		return FALSE
 
 	var/list/obj/machinery/camera/CL = list()
 
@@ -188,6 +190,18 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 				if (!(F in view(7,I.loc)))
 					qdel(F)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Intercom Range") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/show_map_reports()
+	set category = "Mapping"
+	set name = "Show map report list"
+	set desc = "Displays a list of map reports"
+
+	var/dat = {"<b>List of all map reports:</b><br>"}
+
+	for(var/datum/map_report/report as anything in GLOB.map_reports)
+		dat += "[report.tag] ([report.original_path]) - <a href='?src=[REF(report)];[HrefToken()];show=1'>View</a><br>"
+
+	usr << browse(dat, "window=map_reports")
 
 /client/proc/cmd_show_at_list()
 	set category = "Misc.Server Debug"
@@ -336,7 +350,6 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 					qdel(I)
 				randomize_human(D)
 				JB.equip(D, TRUE, FALSE)
-				COMPILE_OVERLAYS(D)
 				var/icon/I = icon(getFlatIcon(D), frame = 1)
 				final.Insert(I, JB.title)
 	qdel(D)

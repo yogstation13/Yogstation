@@ -43,6 +43,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/datum/mind/boss = antag_pick(antag_candidates)
 		antag_candidates -= boss
 		gangboss_candidates += boss
+		boss.special_role = ROLE_GANG
 		boss.restricted_roles = restricted_jobs
 
 	if(gangboss_candidates.len < 1) //Need at least one gangs

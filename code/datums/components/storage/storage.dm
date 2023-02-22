@@ -42,8 +42,8 @@
 
 	var/display_numerical_stacking = FALSE			//stack things of the same type and show as a single object with a number.
 
-	var/obj/screen/storage/boxes					//storage display object
-	var/obj/screen/close/closer						//close button object
+	var/atom/movable/screen/storage/boxes					//storage display object
+	var/atom/movable/screen/close/closer						//close button object
 
 	var/allow_big_nesting = FALSE					//allow storage objects of the same or greater size.
 
@@ -119,14 +119,33 @@
 /datum/component/storage/PreTransfer()
 	update_actions()
 
-/datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
+/// Almost 100% of the time the lists passed into set_holdable are reused for each instance of the component
+/// Just fucking cache it 4head
+/// Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+/// If you find yourself needing this pattern, you're likely better off using static typecaches
+/// I'm not because I do not trust implementers of the storage component to use them, BUT
+/// IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+/// ~Lemon
+GLOBAL_LIST_EMPTY(cached_storage_typecaches)
+
+/datum/component/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list)
+	if(!islist(can_hold_list))
+		can_hold_list = list(can_hold_list)
+	if(!islist(cant_hold_list))
+		cant_hold_list = list(cant_hold_list)
+
 	can_hold_description = generate_hold_desc(can_hold_list)
-
 	if (can_hold_list)
-		can_hold = typecacheof(can_hold_list)
+		var/unique_key = can_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
+		can_hold = GLOB.cached_storage_typecaches[unique_key]
 
-	if (cant_hold_list)
-		cant_hold = typecacheof(cant_hold_list)
+	if (cant_hold_list != null)
+		var/unique_key = cant_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
+		cant_hold = GLOB.cached_storage_typecaches[unique_key]
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
 	var/list/desc = list()
@@ -215,7 +234,7 @@
 		return
 	var/datum/progressbar/progress = new(M, len, I.loc)
 	var/list/rejections = list()
-	while(do_after(M, 1 SECONDS, TRUE, parent, FALSE, CALLBACK(src, .proc/handle_mass_pickup, things, I.loc, rejections, progress)))
+	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, .proc/handle_mass_pickup, things, I.loc, rejections, progress)))
 		stoplag(1)
 	qdel(progress)
 	to_chat(M, span_notice("You put everything you could [insert_preposition] [parent]."))
@@ -273,7 +292,7 @@
 	var/turf/T = get_turf(A)
 	var/list/things = contents()
 	var/datum/progressbar/progress = new(M, length(things), T)
-	while (do_after(M, 1 SECONDS, TRUE, T, FALSE, CALLBACK(src, .proc/mass_remove_from_storage, T, things, progress)))
+	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, .proc/mass_remove_from_storage, T, things, progress)))
 		stoplag(1)
 	qdel(progress)
 
@@ -541,18 +560,20 @@
 			return FALSE
 		if(ismecha(M.loc)) // stops inventory actions in a mech
 			return FALSE
+		if(ismouse(M) && (locate(/obj/structure/table) in get_turf(parent))) // Prevents mice using storages on tables
+			return FALSE
 		// this must come before the screen objects only block, dunno why it wasn't before
 		if(over_object == M)
 			user_show_to_mob(M)
 		if(!M.incapacitated())
-			if(!istype(over_object, /obj/screen))
+			if(!istype(over_object, /atom/movable/screen))
 				dump_content_at(over_object, M)
 				return
 			if(A.loc != M)
 				return
 			playsound(A, "rustle", 50, 1, -5)
-			if(istype(over_object, /obj/screen/inventory/hand))
-				var/obj/screen/inventory/hand/H = over_object
+			if(istype(over_object, /atom/movable/screen/inventory/hand))
+				var/atom/movable/screen/inventory/hand/H = over_object
 				M.putItemFromInventoryInHandIfPossible(A, H.held_index)
 				return
 			A.add_fingerprint(M)

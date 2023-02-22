@@ -15,7 +15,9 @@
 					/obj/item/clothing/suit/apron/chef = 2,
 					/obj/item/kitchen/rollingpin = 2,
 					/obj/item/kitchen/knife = 2,
-					/obj/item/reagent_containers/glass/mixbowl = 3) // Yogs -- chef's mixing bowl 
+					/obj/item/reagent_containers/glass/mixbowl = 3, // Yogs -- chef's mixing bowl 
+					/obj/item/reagent_containers/food/condiment/cinnamon = 5, // Yogs -- cinnamon shakers!
+					/obj/item/plate = 10) 
 	contraband = list(/obj/item/kitchen/knife/butcher = 2, // Yogs -- Pan
 					  /obj/item/melee/fryingpan = 2) // Yogs -- Pan
 	refill_canister = /obj/item/vending_refill/dinnerware

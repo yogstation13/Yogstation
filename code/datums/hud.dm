@@ -4,41 +4,44 @@ GLOBAL_LIST_EMPTY(all_huds)
 
 //GLOBAL HUD LIST
 GLOBAL_LIST_INIT(huds, list(
-	DATA_HUD_SECURITY_BASIC = new/datum/atom_hud/data/human/security/basic(),
-	DATA_HUD_SECURITY_ADVANCED = new/datum/atom_hud/data/human/security/advanced(),
-	DATA_HUD_MEDICAL_BASIC = new/datum/atom_hud/data/human/medical/basic(),
-	DATA_HUD_MEDICAL_ADVANCED = new/datum/atom_hud/data/human/medical/advanced(),
-	DATA_HUD_DIAGNOSTIC_BASIC = new/datum/atom_hud/data/diagnostic/basic(),
-	DATA_HUD_DIAGNOSTIC_ADVANCED = new/datum/atom_hud/data/diagnostic/advanced(),
-	DATA_HUD_ABDUCTOR = new/datum/atom_hud/abductor(),
-	DATA_HUD_SENTIENT_DISEASE = new/datum/atom_hud/sentient_disease(),
-	DATA_HUD_AI_DETECT = new/datum/atom_hud/ai_detector(),
-	ANTAG_HUD_CULT = new/datum/atom_hud/antag(),
-	ANTAG_HUD_REV = new/datum/atom_hud/antag(),
-	ANTAG_HUD_OPS = new/datum/atom_hud/antag(),
-	ANTAG_HUD_WIZ = new/datum/atom_hud/antag(),
-	ANTAG_HUD_SHADOW = new/datum/atom_hud/antag(),
-	ANTAG_HUD_TRAITOR = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_NINJA = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_CHANGELING = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_ABDUCTOR = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_DEVIL = new/datum/atom_hud/antag(),
-	ANTAG_HUD_SINTOUCHED = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_SOULLESS = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_CLOCKWORK = new/datum/atom_hud/antag(),
-	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_OBSESSED = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_FUGITIVE = new/datum/atom_hud/antag(),
-	ANTAG_HUD_HIVEAWAKE = new/datum/atom_hud/antag(),
-	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // Yogs
-	ANTAG_HUD_DARKSPAWN = new/datum/atom_hud/antag(), //Yogs
-	ANTAG_HUD_CAPITALIST = new/datum/atom_hud/antag(),
-	ANTAG_HUD_COMMUNIST = new/datum/atom_hud/antag(),
-	ANTAG_HUD_HERETIC = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_ZOMBIE = new/datum/atom_hud/antag(),
-	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag() // Yogs
+	DATA_HUD_SECURITY_BASIC = 		new/datum/atom_hud/data/human/security/basic(),
+	DATA_HUD_SECURITY_ADVANCED = 	new/datum/atom_hud/data/human/security/advanced(),
+	DATA_HUD_MEDICAL_BASIC = 		new/datum/atom_hud/data/human/medical/basic(),
+	DATA_HUD_MEDICAL_ADVANCED = 	new/datum/atom_hud/data/human/medical/advanced(),
+	DATA_HUD_DIAGNOSTIC_BASIC = 	new/datum/atom_hud/data/diagnostic/basic(),
+	DATA_HUD_DIAGNOSTIC_ADVANCED = 	new/datum/atom_hud/data/diagnostic/advanced(),
+	DATA_HUD_ABDUCTOR = 			new/datum/atom_hud/abductor(),
+	DATA_HUD_SENTIENT_DISEASE = 	new/datum/atom_hud/sentient_disease(),
+	DATA_HUD_AI_DETECT = 			new/datum/atom_hud/ai_detector(),
+	DATA_HUD_SECURITY_MEDICAL = 	new/datum/atom_hud/data/human/security/advanced/hos(),
+	ANTAG_HUD_CULT = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_REV = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_OPS = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_WIZ = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_SHADOW = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_TRAITOR = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_NINJA = 		new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_CHANGELING = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_ABDUCTOR = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_DEVIL = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_SINTOUCHED = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_SOULLESS = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_CLOCKWORK = 	new/datum/atom_hud/antag(),
+	ANTAG_HUD_BROTHER = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_HIVE = 		new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_OBSESSED = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_FUGITIVE = 	new/datum/atom_hud/antag(),
+	ANTAG_HUD_VAMPIRE = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_DARKSPAWN = 	new/datum/atom_hud/antag(),
+	ANTAG_HUD_CAPITALIST = 	new/datum/atom_hud/antag(),
+	ANTAG_HUD_COMMUNIST = 	new/datum/atom_hud/antag(),
+	ANTAG_HUD_HERETIC = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_MINDSLAVE = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_ZOMBIE = 		new/datum/atom_hud/antag(),
+	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag(),
+	ANTAG_HUD_BLOODSUCKER = new/datum/atom_hud/antag(),
+	ANTAG_HUD_MHUNTER = 	new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_BRAINWASHED = new/datum/atom_hud/antag/hidden()
 	))
 
 /datum/atom_hud
@@ -62,14 +65,17 @@ GLOBAL_LIST_INIT(huds, list(
 	GLOB.all_huds -= src
 	return ..()
 
-/datum/atom_hud/proc/remove_hud_from(mob/M)	// this is called when something disables HUD
+/datum/atom_hud/proc/remove_hud_from(mob/M, absolute = FALSE)
 	if(!M || !hudusers[M])
 		return
-	if (!--hudusers[M])
+	if (absolute || !--hudusers[M])
+		UnregisterSignal(M, COMSIG_PARENT_QDELETING)
 		var/M_is_silicon = FALSE
 		if(do_silicon_check && istype(M, /mob/living/silicon))
 			M_is_silicon = TRUE
 		hudusers -= M
+		if(next_time_allowed[M])
+			next_time_allowed -= M
 		if(queued_to_see[M])
 			queued_to_see -= M
 		else
@@ -108,6 +114,7 @@ GLOBAL_LIST_INIT(huds, list(
 		return
 	if(!hudusers[M])
 		hudusers[M] = 1
+		RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/unregister_mob)
 		var/M_is_silicon = FALSE
 		if(do_silicon_check && istype(M, /mob/living/silicon))
 			M_is_silicon = TRUE
@@ -126,6 +133,10 @@ GLOBAL_LIST_INIT(huds, list(
 				add_to_single_hud(M, A)
 	else
 		hudusers[M]++		// the hell does this do?
+
+/datum/atom_hud/proc/unregister_mob(datum/source, force)
+	SIGNAL_HANDLER
+	remove_hud_from(source, TRUE)
 
 /datum/atom_hud/proc/show_hud_images_after_cooldown(M, M_is_silicon)
 	if(queued_to_see[M])

@@ -31,8 +31,8 @@
 	if(istype(src, /turf/closed/wall/mineral/cult)) //if we haven't changed type
 		var/previouscolor = color
 		color = "#FAE48C"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /turf/closed/wall/mineral/cult/artificer
 	name = "runed stone wall"
@@ -49,9 +49,9 @@
 /turf/closed/wall/clockwork
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	explosion_block = 2
-	hardness = 6
-	slicing_duration = 100
+	explosion_block = 3
+	hardness = 5
+	slicing_duration = 150
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
@@ -87,8 +87,11 @@
 	if(istype(src, /turf/closed/wall/clockwork)) //if we haven't changed type
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
+
+/turf/closed/wall/clockwork/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+	return FALSE
 
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)
@@ -105,11 +108,17 @@
 		user.adjustFireLoss(5)
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 
-/turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M)
+/turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M, equip_allowed)
 	..()
 	if(heated)
 		to_chat(M.occupant, span_userdanger("The wall's intense heat completely reflects your [M.name]'s attack!"))
 		M.take_damage(20, BURN)
+
+/turf/closed/wall/clockwork/attack_eminence(mob/camera/eminence/user, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["alt"] && istype(user))
+		user.superheat_wall(src)
+		return
 
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()
 	if(!heated)
@@ -119,14 +128,14 @@
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
 		slicing_duration = 170
-		animate(realappearance, color = "#FFC3C3", time = 5)
+		animate(realappearance, color = "#FFC3C3", time = 0.5 SECONDS)
 	else
 		name = initial(name)
 		visible_message(span_notice("[src] cools down."))
 		heated = FALSE
 		hardness = initial(hardness)
 		slicing_duration = initial(slicing_duration)
-		animate(realappearance, color = initial(realappearance.color), time = 25)
+		animate(realappearance, color = initial(realappearance.color), time = 2.5 SECONDS)
 
 
 /turf/closed/wall/vault

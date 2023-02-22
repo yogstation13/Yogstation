@@ -28,13 +28,13 @@
 	var/length = 10 SECONDS
 
 /obj/effect/proc_holder/spell/self/erase_time/cast(list/targets, mob/user)
-	if(!isturf(user.loc) && !isguardian(user))
+	if (!isturf(user.loc) || !isguardian(user))
 		revert_cast()
 		return
 	var/list/immune = list(user)
-	if(isguardian(user))
+	if (isguardian(user))
 		var/mob/living/simple_animal/hostile/guardian/G = user
-		if(G.summoner?.current)
+		if (G.summoner?.current)
 			immune |= G.summoner.current
 			for(var/other in G.summoner.current.hasparasites())
 				immune |= other
@@ -49,10 +49,10 @@
 	target.setStaminaLoss(0, 0)
 	target.status_flags |= GODMODE
 	var/mob/living/old_pulledby = target.pulledby
-	if(old_pulledby)
+	if (old_pulledby)
 		target.pulledby.stop_pulling()
 	var/mob/living/simple_animal/hostile/illusion/fake
-	if(isturf(target.loc))
+	if (isturf(target.loc))
 		fake = new(target.loc)
 		fake.setDir(target.dir)
 		fake.Copy_Parent(target, INFINITY, 100)
@@ -111,13 +111,13 @@
 	return ..()
 
 /obj/effect/dummy/phased_mob/king_crimson/process()
-	if(next_animate > world.time)
+	if (next_animate > world.time)
 		return
 	var/i,f
 	for(i=1, i<=7, ++i)
 		f = filters[i]
-		var/next = rand()*20+10
-		animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
+		var/next = rand()*20+(1 SECONDS)
+		animate(f, offset=f:offset, time=0 SECONDS, loop=3, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 
@@ -162,11 +162,11 @@
 	..()
 	src.seers = seers
 	for(var/mob/M in GLOB.mob_list)
-		if(mobShouldSee(M))
+		if (mobShouldSee(M))
 			add_hud_to(M)
 			M.reload_huds()
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson/mobShouldSee(mob/M)
-	if(isobserver(M) || (M in seers))
+	if (isobserver(M) || (M in seers))
 		return FALSE // they see the actual sprite
 	return TRUE

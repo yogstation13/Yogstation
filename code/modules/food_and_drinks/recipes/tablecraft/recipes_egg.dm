@@ -73,7 +73,7 @@
 		/obj/item/reagent_containers/food/snacks/egg = 12,
 		/datum/reagent/teslium = 1 //To shock the whole thing into life
 	)
-	result = /mob/living/simple_animal/pet/eggdog
+	result = /mob/living/simple_animal/pet/dog/eggdog
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/omelette

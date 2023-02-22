@@ -144,8 +144,8 @@
 	icon_state = "etherealmeat"
 	desc = "So shiny you feel like ingesting it might make you shine too"
 	filling_color = "#97ee63"
-	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3)
-	tastes = list("pure electrictiy" = 2, "meat" = 1)
+	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3, /datum/reagent/consumable/tinlux = 3)
+	tastes = list("pure electricity" = 2, "meat" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 ////////////////////////////////////// OTHER MEATS ////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@
 	name = "synthmeat"
 	icon_state = "meat_old"
 	desc = "A synthetic slab of meat."
-	foodtype = RAW | MEAT //hurr durr chemicals we're harmed in the production of this meat thus its non-vegan.
+	foodtype = RAW | MEAT //hurr durr chemicals were harmed in the production of this meat thus its non-vegan.
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat/MakeGrillable()
 	AddComponent(/datum/component/grillable,/obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
@@ -177,12 +177,17 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/mouse
 	name = "mouse meat"
 	desc = "A slab of mouse meat. Best not eat it raw."
-	foodtype = RAW | MEAT | GROSS
+	foodtype = MICE
 
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well you know..."
 	tastes = list("meat" = 4, "a fondness for wearing hats" = 1)
+	foodtype = RAW | MEAT | GROSS
+
+/obj/item/reagent_containers/food/snacks/meat/slab/mothroach
+	name = "mothroach meat"
+	desc = "A light slab of meat."
 	foodtype = RAW | MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/pug
@@ -318,10 +323,23 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	filling_color = "#B22222"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/penguin, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
+
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	name = "chicken meat"
+	icon_state = "birdmeat"
+	desc = "A slab of chicken meat. Tastes like ch....wait..."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 2) //low fat high nutrition
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	filling_color = "#B22222"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/reagent_containers/food/snacks/meat/slab/blessed
 	name = "blessed meat"
@@ -340,6 +358,19 @@
 	icon_state = "shadowmeat"
 	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
+/obj/item/reagent_containers/food/snacks/meat/slab/plagued
+	name = "meat"
+	desc = "A slab of disease-ridden meat. Eating it is a questionable idea."
+	icon_state = "meat"
+	dried_type = /obj/item/reagent_containers/food/snacks/sosjerky/
+	bitesize = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2, /datum/reagent/plaguebacteria = 3) //It is infected by plague
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
+	slices_num = 3
+	filling_color = "#FF0000"
+	tastes = list("meat" = 2, "decay" = 1)
+	foodtype = MEAT | RAW
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
@@ -349,34 +380,41 @@
 	icon_state = "meatsteak"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	trash = /obj/item/trash/plate
 	filling_color = "#B22222"
 	foodtype = MEAT
 	tastes = list("meat" = 1)
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
+	slices_num = 3
 	juice_results = list(/datum/reagent/consumable/drippings = 15)
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain
-    foodtype = MEAT
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
+	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
 	tastes = list("tender meat" = 1)
 	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/steak/killertomato
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/killertomato
 	name = "killer tomato steak"
 	tastes = list("tomato" = 1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/bear
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
 	name = "bear steak"
 	tastes = list("meat" = 1, "salmon" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/xeno
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
 	name = "xeno steak"
 	tastes = list("meat" = 1, "acid" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/spider
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider steak"
 	tastes = list("cobwebs" = 1)
 
@@ -390,15 +428,24 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/gondola
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/gondola
 	name = "gondola steak"
 	tastes = list("meat" = 1, "tranquility" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/penguin
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin steak"
 	icon_state = "birdsteak"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	name = "chicken steak"
+	icon_state = "birdsteak"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human/lizard
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "lizard steak"
 	icon_state = "birdsteak"
 	tastes = list("juicy chicken" = 3, "scales" = 1)
@@ -410,6 +457,7 @@
 	tastes = list("enhanced char" = 2, "suspicious tenderness" = 2, "natural & artificial dyes" = 2, "emulsifying agents" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/synth
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "synthsteak"
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
 	icon_state = "meatsteak_old"
@@ -436,7 +484,7 @@
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
 	..()
 	S.name = "[meat_type] cutlet"
-	
+
 
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/plain
@@ -494,10 +542,24 @@
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	name = "raw penguin cutlet"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	name = "raw chicken cutlet"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl
+	name = "axolotl cutlet"
+	tastes = list("meat" = 1, "fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/axolotl, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 //Cooked cutlets
 
@@ -543,4 +605,12 @@
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin cutlet"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	name = "chicken cutlet"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/cutlet/axolotl
+	name = "axolotl cutlet"
+	tastes = list("meat" = 1, "fish" = 1)

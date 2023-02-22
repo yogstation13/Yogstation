@@ -8,11 +8,11 @@
 	invocation = "none"
 	invocation_type = "none"
 	range = -1
-	cooldown_min = 100 //50 deciseconds reduction per rank
+	cooldown_min = 10 SECONDS //5 seconds reduction per rank
 	include_user = TRUE
 	nonabstract_req = TRUE
-	var/jaunt_duration = 50 //in deciseconds
-	var/jaunt_in_time = 5
+	var/jaunt_duration = 5 SECONDS //in seconds
+	var/jaunt_in_time = 0.5 SECONDS
 	var/jaunt_in_type = /obj/effect/temp_visual/wizard
 	var/jaunt_out_type = /obj/effect/temp_visual/wizard/out
 	action_icon_state = "jaunt"
@@ -43,7 +43,7 @@
 	target.mobility_flags &= ~MOBILITY_MOVE
 	holder.reappearing = 1
 	play_sound("exit",target)
-	sleep(25 - jaunt_in_time)
+	sleep(2.5 SECONDS - jaunt_in_time)
 	new jaunt_in_type(mobloc, holder.dir)
 	target.setDir(holder.dir)
 	sleep(jaunt_in_time)
@@ -70,42 +70,15 @@
 			playsound(get_turf(target), 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 
 /obj/effect/dummy/phased_mob/spell_jaunt
-	name = "water"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "nothing"
+	movespeed = 2 //quite slow.
 	var/reappearing = FALSE
-	var/movedelay = 0
-	var/movespeed = 2
-	density = FALSE
-	anchored = TRUE
-	invisibility = 60
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/effect/dummy/phased_mob/spell_jaunt/Destroy()
-	// Eject contents if deleted somehow
-	for(var/atom/movable/AM in src)
-		AM.forceMove(get_turf(src))
-	return ..()
-
-/obj/effect/dummy/phased_mob/spell_jaunt/relaymove(var/mob/user, direction)
-	if ((movedelay > world.time) || reappearing || !direction)
+/obj/effect/dummy/phased_mob/spell_jaunt/phased_check(mob/living/user, direction)
+	if(reappearing)
 		return
-	var/turf/newLoc = get_step(src,direction)
-	setDir(direction)
-
-	movedelay = world.time + movespeed
-
-	if(newLoc.flags_1 & NOJAUNT_1)
-		to_chat(user, span_warning("Some strange aura is blocking the way."))
+	. = ..()
+	if(!.)
 		return
-	if (locate(/obj/effect/blessing, newLoc))
-		to_chat(user, span_warning("Holy energies block your path!"))
-		return
-
-	forceMove(newLoc)
-
-/obj/effect/dummy/phased_mob/spell_jaunt/ex_act(blah)
-	return
-
-/obj/effect/dummy/phased_mob/spell_jaunt/bullet_act(blah)
-	return BULLET_ACT_FORCE_PIERCE
+	if (locate(/obj/effect/blessing, .))
+		to_chat(user, "<span class='warning'>Holy energies block your path!</span>")
+		return null

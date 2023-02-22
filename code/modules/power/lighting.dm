@@ -44,7 +44,7 @@
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
 	max_integrity = 200
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 
 	var/stage = 1
 	var/fixture_type = "tube"
@@ -170,6 +170,8 @@
 						newlight = new /obj/machinery/light/built(loc)
 					if("bulb")
 						newlight = new /obj/machinery/light/small/built(loc)
+					if("floor")
+						newlight = new /obj/machinery/light/floor/built(loc)
 				newlight.setDir(dir)
 				transfer_fingerprints_to(newlight)
 				if(cell)
@@ -196,7 +198,12 @@
 	fixture_type = "bulb"
 	sheets_refunded = 1
 
-
+/obj/structure/light_construct/floor
+	name = "floor light fixture frame"
+	icon_state = "floor-construct-stage1"
+	fixture_type = "floor"
+	sheets_refunded = 1
+	layer = LOW_OBJ_LAYER
 
 // the standard tube light fixture
 /obj/machinery/light
@@ -211,7 +218,7 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = FALSE
 	var/forced_off = FALSE
@@ -279,6 +286,14 @@
 	status = LIGHT_EMPTY
 	update(0)
 
+/obj/machinery/light/floor/built
+	icon_state = "floor-empty"
+
+/obj/machinery/light/floor/built/Initialize()
+	. = ..()
+	status = LIGHT_EMPTY
+	update(0)
+
 /obj/machinery/light/small/built
 	icon_state = "bulb-empty"
 
@@ -307,6 +322,10 @@
 				if(prob(2))
 					break_light_tube(1)
 			if("bulb")
+				brightness = 4
+				if(prob(5))
+					break_light_tube(1)
+			if("floor bulb")
 				brightness = 4
 				if(prob(5))
 					break_light_tube(1)
@@ -396,9 +415,9 @@
 		on_gs = on
 		if(on)
 			static_power_used = brightness * 20 //20W per unit luminosity
-			addStaticPower(static_power_used, STATIC_LIGHT)
+			addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 		else
-			removeStaticPower(static_power_used, STATIC_LIGHT)
+			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
 
@@ -537,6 +556,10 @@
 			if("bulb")
 				newlight = new /obj/structure/light_construct/small(src.loc)
 				newlight.icon_state = "bulb-construct-stage[cur_stage]"
+
+			if("floor bulb")
+				newlight = new /obj/structure/light_construct/floor(src.loc)
+				newlight.icon_state = "floor-construct-stage[cur_stage]"
 		newlight.setDir(src.dir)
 		newlight.stage = cur_stage
 		if(!disassembled)
@@ -626,7 +649,7 @@
 				break
 			on = !on
 			update(0)
-			sleep(rand(5, 15))
+			sleep(rand(0.5, 1.5) SECONDS)
 		on = (status == LIGHT_OK) && !forced_off
 		update(0)
 	flickering = 0
@@ -662,11 +685,11 @@
 			var/datum/species/ethereal/eth_species = H.dna?.species
 			if(istype(eth_species))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 5 SECONDS, target = src))
+				if(do_after(user, 5 SECONDS, src))
 					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						stomach.adjust_charge(5)
+						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return
@@ -725,6 +748,15 @@
 	var/obj/item/light/L = drop_light_tube()
 	L.attack_tk(user)
 
+/obj/machinery/light/attack_eminence(mob/camera/eminence/user, params)
+	if(status == LIGHT_EMPTY || status == LIGHT_BROKEN)
+		return
+		
+	to_chat(user, span_brass("You concentrate your power, trying to break [src]..."))
+	if(!do_after(user, 2 SECONDS, src))
+		return
+	to_chat(user, span_brass("You sucessfully break [src]!"))
+	break_light_tube(0)
 
 // break the light and make sparks if was on
 
@@ -772,9 +804,9 @@
 	set waitfor = 0
 	var/turf/T = get_turf(src.loc)
 	break_light_tube()	// break it first to give a warning
-	sleep(2)
+	sleep(0.2 SECONDS)
 	explosion(T, 0, 1, 2, 4)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	qdel(src)
 
 // the light item
@@ -906,6 +938,30 @@
 	base_state = "floor"		// base description and icon_state
 	icon_state = "floor"
 	brightness = 4
-	layer = 2.5
+	layer = LOW_OBJ_LAYER
 	light_type = /obj/item/light/bulb
-	fitting = "bulb"
+	fitting = "floor bulb"
+
+/obj/item/floor_light
+	name = "floor light frame"
+	desc = "Used for building lights."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "floor-construct-stage1"
+
+/obj/item/floor_light/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Use in-hand to place a [src].\n"
+
+/obj/item/floor_light/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, span_warning("You need more space to place a [src] here."))
+		return
+	if((locate(/obj/machinery/light/floor) in user.loc) || (locate(/obj/structure/light_construct/floor) in user.loc))
+		to_chat(user, span_warning("There is already a [src] here."))
+		return
+	to_chat(user, span_notice("You anchor the [src] in place."))
+	playsound(user, 'sound/machines/click.ogg', 50, 1)
+	var/obj/structure/light_construct/floor/M = new(user.loc)
+	transfer_fingerprints_to(M)
+	qdel(src)
+

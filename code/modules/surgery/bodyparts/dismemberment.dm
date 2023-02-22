@@ -81,7 +81,9 @@
 	owner.bodyparts -= src
 
 	if(held_index)
-		owner.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
+		var/obj/item/I = owner.get_item_for_held_index(held_index)
+		if(I)
+			owner.dropItemToGround(I, TRUE)
 		owner.hand_bodyparts[held_index] = null
 
 	for(var/thing in wounds)
@@ -104,8 +106,7 @@
 			break
 
 	for(var/obj/item/I in embedded_objects)
-		embedded_objects -= I
-		I.forceMove(src)
+		phantom_owner.remove_embedded_object(I, src, TRUE, TRUE)
 	if(!phantom_owner.has_embedded_objects())
 		phantom_owner.clear_alert("embeddedobject")
 		SEND_SIGNAL(phantom_owner, COMSIG_CLEAR_MOOD_EVENT, "embedded")
@@ -227,7 +228,7 @@
 			C.handcuffed = null
 			C.update_handcuffed()
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
 			if(R)
 				R.update_icon()
 		if(C.gloves)
@@ -245,7 +246,7 @@
 			C.handcuffed = null
 			C.update_handcuffed()
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
 			if(L)
 				L.update_icon()
 		if(C.gloves)
@@ -321,7 +322,7 @@
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
 	moveToNullspace()
-	owner = C
+	set_owner(C)
 	C.bodyparts += src
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)
@@ -330,7 +331,7 @@
 		if(C.dna.species.mutanthands && !is_pseudopart)
 			C.put_in_hand(new C.dna.species.mutanthands(), held_index)
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/hand = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/hand = C.hud_used.hand_slots["[held_index]"]
 			if(hand)
 				hand.update_icon()
 		C.update_inv_gloves()
@@ -362,13 +363,14 @@
 		LAZYADD(C.all_scars, thing)
 
 	update_bodypart_damage_state()
+	if(C.dna && C.dna.species && (ROBOTIC_LIMBS in C.dna.species.species_traits) && src.status == BODYPART_ROBOTIC)
+		src.render_like_organic = TRUE
 
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()
 	C.update_damage_overlays()
 	C.update_mobility()
-
 
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
 	//Transfer some head appearance vars over
@@ -438,6 +440,16 @@
 			L.set_burn_dam(0)
 			L.brutestate = 0
 			L.burnstate = 0
+
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
+				L.change_bodypart_status(BODYPART_ROBOTIC)
+				L.render_like_organic = TRUE
+			if(limb_zone == "head" && H.dna && H.dna.species && (NOMOUTH in H.dna.species.species_traits))
+				var/obj/item/bodypart/head/head = L
+				if(head)
+					head.mouth = FALSE
 
 		L.attach_limb(src, 1)
 		var/datum/scar/scaries = new

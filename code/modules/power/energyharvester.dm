@@ -1,9 +1,9 @@
 #define MAXIMUM_POWER_LIMIT 1000000000000000.0 //1 Petawatt, same as PTL
-#define POWER_SOFTCAP_1 75000000.0 //75MJ, or 250KW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
-#define POWER_SOFTCAP_2 3000000000.0 //3GJ or 10MW/s for 300s
-#define SOFTCAP_BUDGET_1 2000 //reward for reaching the first softcap
-#define SOFTCAP_BUDGET_2 3000 //extra money added on top of the first softcap for going beyond it, until softcap 2
-#define HARDCAP_BUDGET 5000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
+#define POWER_SOFTCAP_1 300000000.0 //300MJ, or 1MW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
+#define POWER_SOFTCAP_2 9000000000.0 //9GJ or 30MW/s for 300s
+#define SOFTCAP_BUDGET_1 5000 //reward for reaching the first softcap
+#define SOFTCAP_BUDGET_2 10000 //extra money added on top of the first softcap for going beyond it, until softcap 2
+#define HARDCAP_BUDGET 20000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
 
 /obj/item/energy_harvester
 	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model."

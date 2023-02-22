@@ -1,4 +1,12 @@
-#define STARTING_PAYCHECKS 5
+#define STARTING_PAYCHECKS 3 // Amount of paychecks
+#define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
+#define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
+/// How much mail the Economy SS will create per minute, regardless of firing time.
+#define MAX_MAIL_PER_MINUTE 6
+/// Chance to generate junk mail compared to generating nothing while packing mail crates.
+#define MAIL_JUNK_CHANCE 45 
+/// Probability of using letters of envelope sprites on all letters.
+#define FULL_CRATE_LETTER_ODDS 70
 
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5
@@ -7,7 +15,8 @@
 #define PAYCHECK_HARD 40
 #define PAYCHECK_COMMAND 100
 
-#define STARTING_SEC_BUDGET 10000
+#define STARTING_SEC_BUDGET 14000
+#define STARTING_CAR_BUDGET 5000
 
 #define MAX_GRANT_CIV 2500
 #define MAX_GRANT_ENG 3000
@@ -29,7 +38,7 @@
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
 
-#define MEGAFAUNA_CASH_SCALE 5
+#define MEGAFAUNA_CASH_SCALE 2
 
 #define NO_FREEBIES "commies go home"
 

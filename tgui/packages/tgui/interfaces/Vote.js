@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Icon, Stack, Button, Section, NoticeBox, LabeledList, Collapsible } from '../components';
+import { Box, Icon, Button, Section, NoticeBox, LabeledList, Collapsible, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const Vote = (props, context) => {
@@ -17,14 +17,14 @@ export const Vote = (props, context) => {
   return (
     <Window resizable title={windowTitle} width={400} height={500}>
       <Window.Content>
-        <Stack fill vertical>
+        <Flex direction="column" height="100%">
           <Section title="Create Vote">
             <VoteOptions />
             {!!lower_admin && <VotersList />}
           </Section>
           <ChoicesPanel />
           <TimePanel />
-        </Stack>
+        </Flex>
       </Window.Content>
     </Window>
   );
@@ -45,12 +45,12 @@ const VoteOptions = (props, context) => {
   } = data;
 
   return (
-    <Stack.Item>
+    <Flex.Item>
       <Collapsible title="Start a Vote">
-        <Stack justify="space-between">
-          <Stack.Item>
-            <Stack vertical>
-              <Stack.Item>
+        <Flex>
+          <Flex.Item>
+            <Flex direction="column">
+              <Flex.Item>
                 {!!lower_admin && (
                   <Button.Checkbox
                     mr={!allow_vote_map ? 1 : 1.6}
@@ -64,8 +64,8 @@ const VoteOptions = (props, context) => {
                 <Button disabled={!allow_vote_map} onClick={() => act('map')}>
                   Map
                 </Button>
-              </Stack.Item>
-              <Stack.Item>
+              </Flex.Item>
+              <Flex.Item>
                 {!!lower_admin && (
                   <Button.Checkbox
                     mr={!allow_vote_restart ? 1 : 1.6}
@@ -81,8 +81,8 @@ const VoteOptions = (props, context) => {
                   onClick={() => act('restart')}>
                   Restart
                 </Button>
-              </Stack.Item>
-              <Stack.Item>
+              </Flex.Item>
+              <Flex.Item>
                 {!!lower_admin && (
                   <Button.Checkbox
                     mr={!allow_vote_mode ? 1 : 1.6}
@@ -98,19 +98,19 @@ const VoteOptions = (props, context) => {
                   onClick={() => act('gamemode')}>
                   Gamemode
                 </Button>
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
+              </Flex.Item>
+            </Flex>
+          </Flex.Item>
+          <Flex.Item>
             {!!lower_admin && (
               <Button disabled={!lower_admin} onClick={() => act('custom')}>
                 Create Custom Vote
               </Button>
             )}
-          </Stack.Item>
-        </Stack>
+          </Flex.Item>
+        </Flex>
       </Collapsible>
-    </Stack.Item>
+    </Flex.Item>
   );
 };
 
@@ -123,7 +123,7 @@ const VotersList = (props, context) => {
   const { voting } = data;
 
   return (
-    <Stack.Item>
+    <Flex.Item>
       <Collapsible title={`View Voters${voting.length ? `: ${voting.length}` : ""}`}>
         <Section height={8} fill scrollable>
           {voting.map(voter => {
@@ -131,7 +131,7 @@ const VotersList = (props, context) => {
           })}
         </Section>
       </Collapsible>
-    </Stack.Item>
+    </Flex.Item>
   );
 };
 
@@ -144,7 +144,7 @@ const ChoicesPanel = (props, context) => {
   const { choices, selected_choice } = data;
 
   return (
-    <Stack.Item grow>
+    <Flex.Item grow={1}>
       <Section fill scrollable title="Choices">
         {choices.length !== 0 ? (
           <LabeledList>
@@ -180,7 +180,7 @@ const ChoicesPanel = (props, context) => {
           <NoticeBox>No choices available!</NoticeBox>
         )}
       </Section>
-    </Stack.Item>
+    </Flex.Item>
   );
 };
 
@@ -193,9 +193,9 @@ const TimePanel = (props, context) => {
   const { lower_admin, time_remaining } = data;
 
   return (
-    <Stack.Item mt={1}>
+    <Flex.Item mt={1}>
       <Section>
-        <Stack justify="space-between">
+        <Flex justify="space-between">
           <Box fontSize={1.5}>Time Remaining: {time_remaining || 0}s</Box>
           {!!lower_admin && (
             <Button
@@ -205,8 +205,8 @@ const TimePanel = (props, context) => {
               Cancel Vote
             </Button>
           )}
-        </Stack>
+        </Flex>
       </Section>
-    </Stack.Item>
+    </Flex.Item>
   );
 };

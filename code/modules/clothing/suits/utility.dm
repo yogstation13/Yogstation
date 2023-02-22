@@ -18,9 +18,9 @@
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/extinguisher, /obj/item/crowbar)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/extinguisher, /obj/item/crowbar)
 	slowdown = 1
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -57,8 +57,10 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 20,"energy" = 10, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
+	armor = list(MELEE = 20, BULLET = 0, LASER = 20,ENERGY = 10, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 	flags_inv = HIDEFACE|HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
 	dynamic_hair_suffix = ""
 	dynamic_fhair_suffix = ""
@@ -70,6 +72,7 @@
 	equip_delay_other = 70
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
+	hattable = FALSE
 
 
 /obj/item/clothing/suit/bomb_suit
@@ -83,7 +86,7 @@
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 2
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 20,"energy" = 10, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
+	armor = list(MELEE = 20, BULLET = 0, LASER = 20,ENERGY = 10, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 	flags_inv = HIDEJUMPSUIT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
@@ -97,12 +100,15 @@
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)	//Much better armor, lots of padding against low-power kinetic blows!
 
 /obj/item/clothing/suit/bomb_suit/security
+	desc = "A slightly more advanced bomb suit for use by NT security forces. Comes with a holster for your favorite assistant-beating tools!"
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
 	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs)
-
+	slowdown = 1.5	//Meant for more stressful situations than JUST disarming a bomb, whatever that might be.
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 
 /obj/item/clothing/head/bomb_hood/white
 	icon_state = "bombsuit_white"
@@ -122,12 +128,13 @@
 	desc = "A hood with radiation protective properties. The label reads, 'Made with lead. Please do not consume insulation.'"
 	clothing_flags = THICKMATERIAL
 	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 0,"energy" = 0, "bomb" = 5, "bio" = 60, "rad" = 100, "fire" = 30, "acid" = 30)
+	armor = list(MELEE = 5, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 5, BIO = 60, RAD = 100, FIRE = 30, ACID = 30)
 	strip_delay = 60
 	equip_delay_other = 60
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	flags_1 = RAD_PROTECT_CONTENTS_1
+	hattable = FALSE
 
 /obj/item/clothing/suit/radiation
 	name = "radiation suit"
@@ -139,9 +146,9 @@
 	permeability_coefficient = 0.5
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/geiger_counter)
-	slowdown = 1.5
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 0,"energy" = 0, "bomb" = 5, "bio" = 60, "rad" = 100, "fire" = 30, "acid" = 30)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/geiger_counter)
+	slowdown = 0.5
+	armor = list(MELEE = 5, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 5, BIO = 60, RAD = 100, FIRE = 30, ACID = 30)
 	strip_delay = 60
 	equip_delay_other = 60
 	flags_inv = HIDEJUMPSUIT

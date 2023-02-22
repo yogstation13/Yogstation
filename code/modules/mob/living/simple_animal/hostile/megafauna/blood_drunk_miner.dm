@@ -28,6 +28,7 @@ Difficulty: Medium
 	icon_state = "miner"
 	icon_living = "miner"
 	icon = 'icons/mob/broadMobs.dmi'
+	health_doll_icon = "miner"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	light_color = "#E4C7C5"
 	movement_type = GROUND
@@ -39,8 +40,8 @@ Difficulty: Medium
 	ranged = TRUE
 	ranged_cooldown_time = 16
 	pixel_x = -16
-	crusher_loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crusher_trophy/miner_eye)
-	loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator)
+	crusher_loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crusher_trophy/miner_eye, /obj/item/gem/phoron)
+	loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator, /obj/item/gem/phoron)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -234,7 +235,7 @@ Difficulty: Medium
 	playsound(own_turf, 'sound/weapons/punchmiss.ogg', 40, 1, -1)
 	dashing = TRUE
 	alpha = 0
-	animate(src, alpha = 255, time = 5)
+	animate(src, alpha = 255, time = 0.5 SECONDS)
 	SLEEP_CHECK_DEATH(2)
 	D.forceMove(step_forward_turf)
 	forceMove(target_turf)
@@ -271,11 +272,11 @@ Difficulty: Medium
 	if(dir & (EAST|WEST)) //Facing east or west
 		final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
 
-	animate(src, transform = M, pixel_y = -6, dir = final_dir, time = 2, easing = EASE_IN|EASE_OUT)
-	sleep(5)
-	animate(src, color = list("#A7A19E", "#A7A19E", "#A7A19E", list(0, 0, 0)), time = 10, easing = EASE_IN, flags = ANIMATION_PARALLEL)
-	sleep(4)
-	animate(src, alpha = 0, time = 6, easing = EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(src, transform = M, pixel_y = -6, dir = final_dir, time = 0.2 SECONDS, easing = EASE_IN|EASE_OUT)
+	sleep(0.5 SECONDS)
+	animate(src, color = list("#A7A19E", "#A7A19E", "#A7A19E", list(0, 0, 0)), time = 1 SECONDS, easing = EASE_IN, flags = ANIMATION_PARALLEL)
+	sleep(0.4 SECONDS)
+	animate(src, alpha = 0, time = 0.6 SECONDS, easing = EASE_OUT, flags = ANIMATION_PARALLEL)
 
 /obj/item/gps/internal/miner
 	icon_state = null

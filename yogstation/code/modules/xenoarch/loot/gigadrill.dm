@@ -105,7 +105,7 @@
 	
 	for(var/turf/closed/mineral/M in range(src,1))
 		if(get_dir(src,M)&src.dir)
-			M.gets_drilled()
+			M.attempt_drill()
 
 	if(!QDELETED(OB))
 		for(var/obj/item/stack/ore/ore in range(1, src))

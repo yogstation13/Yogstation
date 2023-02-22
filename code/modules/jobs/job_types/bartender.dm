@@ -1,6 +1,8 @@
 /datum/job/bartender
 	title = "Bartender"
+	description = "Serve booze, mix drinks, keep the crew drunk."
 	flag = BARTENDER
+	orbit_icon = "cocktail"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -14,26 +16,36 @@
 
 	outfit = /datum/outfit/job/bartender
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_WEAPONS)
+	added_access = list(ACCESS_HYDROPONICS, ACCESS_KITCHEN, ACCESS_MORGUE)
+	base_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_WEAPONS)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
+	minimal_character_age = 21 //I shouldn't have to explain this one
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
+	mail_goodies = list(
+		/obj/item/storage/box/rubbershot = 30,
+		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
+		/obj/item/stack/sheet/mineral/plasma = 10,
+		/obj/item/stack/sheet/mineral/uranium = 10,
+		/obj/item/reagent_containers/food/drinks/shaker = 5,
+	)
+
+	smells_like = "alcohol"
+	
 	bounty_types = CIV_JOB_DRINK
-
-/datum/job/bartender/proc/OmegaStationChanges()
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
-	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
 
 /datum/outfit/job/bartender
 	name = "Bartender"
 	jobtype = /datum/job/bartender
 
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
-	belt = /obj/item/pda/bar
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/bartender
 	uniform_skirt = /obj/item/clothing/under/rank/bartender/skirt

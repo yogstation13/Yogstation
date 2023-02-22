@@ -9,6 +9,7 @@
 	obj_damage = 100
 	melee_damage_lower = 25
 	melee_damage_upper = 50
+	attack_vis_effect = ATTACK_EFFECT_SLASH // I always thought they bit. Guess I was wrong.
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = list("creature")
@@ -16,7 +17,10 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
+	robust_searching = 1
+	stat_attack = UNCONSCIOUS
 	faction = list("nether")
+
 
 /mob/living/simple_animal/hostile/netherworld/migo
 	name = "mi-go"
@@ -59,9 +63,8 @@
 	gold_core_spawnable = NO_SPAWN
 	health = 100
 	maxHealth = 100
-	melee_damage_lower = 5
-	melee_damage_upper = 10
-	attacktext = "punches"
+	speed = -0.7
+	attacktext = "slashes"
 	deathmessage = "falls apart into a fine dust."
 
 /obj/structure/spawner/nether
@@ -96,11 +99,11 @@
 							span_userdanger("Touching the portal, you are quickly pulled through into a world of unimaginable horror!"))
 		contents.Add(user)
 
-/obj/structure/spawner/nether/process()
+/obj/structure/spawner/nether/process(delta_time)
 	for(var/mob/living/M in contents)
 		if(M)
 			playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
-			M.adjustBruteLoss(60)
+			M.adjustBruteLoss(60 * delta_time)
 			new /obj/effect/gibspawner/generic(get_turf(M), M)
 			if(M.stat == DEAD)
 				var/mob/living/simple_animal/hostile/netherworld/blankbody/blank

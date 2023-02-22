@@ -7,18 +7,28 @@
 	icon_state = "mecha_equip"
 	force = 5
 	max_integrity = 300
-	var/equip_cooldown = 0 // cooldown after use
-	var/equip_ready = 1 //whether the equipment is ready for use. (or deactivated/activated for static stuff)
+	/// Cooldown after use
+	var/equip_cooldown = 0
+	/// is the module ready for use
+	var/equip_ready = TRUE
+	/// How much energy it drains when used or while in use
 	var/energy_drain = 0
+	/// Linked Mech/Chassis
 	var/obj/mecha/chassis = null
-	var/range = MELEE //bitFflags
-	var/salvageable = 1
-	var/selectable = 1	// Set to 0 for passive equipment such as mining scanner or armor plates
-	var/harmful = FALSE //Controls if equipment can be used to attack by a pacifist.
+	/// Bitflag: MECHA_MELEE|MECHA_RANGED what ranges it operates at
+	var/range = MECHA_MELEE
+	/// Can the module be salvaged
+	var/salvageable = TRUE
+	/// Is it a passive module(FALSE) or a selectable module(TRUE)
+	var/selectable = TRUE
+	/// Used for pacifism checks
+	var/harmful = FALSE
+	/// Sound when this module is destroyed
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
-
+	//Special melee override for melee weapons
+	var/melee_override = FALSE
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
@@ -34,6 +44,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
+		if(chassis.selected == src)	//If it's the active equipment, we lose any passive effects
+			on_deselect()
 		chassis.equipment -= src
 		if(chassis.selected == src)
 			chassis.selected = null
@@ -69,10 +81,10 @@
 	return txt
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
-	return range&RANGED
+	return range & MECHA_RANGED
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_melee()
-	return range&MELEE
+	return range & MECHA_MELEE
 
 
 /obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
@@ -97,7 +109,7 @@
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown)
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown * check_eva())
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(atom/target)
 	if(!chassis)
@@ -105,7 +117,7 @@
 	var/C = chassis.loc
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	. = do_after(chassis.occupant, equip_cooldown, target=target)
+	. = do_after(chassis.occupant, equip_cooldown * check_eva(), target)
 	set_ready_state(1)
 	if(!chassis || 	chassis.loc != C || src != chassis.selected || !(get_dir(chassis, target)&chassis.dir))
 		return 0
@@ -114,7 +126,7 @@
 	if(!chassis)
 		return
 	var/C = chassis.loc
-	. = do_after(chassis.occupant, delay, target=target)
+	. = do_after(chassis.occupant, delay, target)
 	if(!chassis || 	chassis.loc != C || src != chassis.selected || !(get_dir(chassis, target)&chassis.dir))
 		return 0
 
@@ -131,6 +143,8 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+	if(chassis.selected == src)
+		src.on_deselect()
 	moveto = moveto || get_turf(chassis)
 	if(src.Move(moveto))
 		chassis.equipment -= src
@@ -169,6 +183,18 @@
 /obj/item/mecha_parts/mecha_equipment/proc/rearm()
 	return 0
 
-
 /obj/item/mecha_parts/mecha_equipment/proc/needs_rearm()
 	return 0
+
+
+//used for equipment, such as melee weapons, that have passive effects
+/obj/item/mecha_parts/mecha_equipment/proc/on_select()
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/proc/on_deselect()
+	return 0
+
+// Is the occupant wearing a pilot suit?
+/obj/item/mecha_parts/mecha_equipment/proc/check_eva()
+	return chassis?.check_eva()
+

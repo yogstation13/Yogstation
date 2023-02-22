@@ -89,3 +89,28 @@
 	action_icon_state = "horror"
 	action_background_icon_state = "bg_ecult"
 	sound = 'sound/magic/fleshtostone.ogg'
+
+/obj/effect/proc_holder/spell/targeted/touch/pacify
+	name = "Pacify"
+	desc = "This spell charges your hand with pure pacifism, allowing you to temporarily mute and pacify your targets, as well as turn them into gondolas."
+	hand_path = /obj/item/melee/touch_attack/pacifism
+
+	school = "evocation"
+	charge_max = 1 MINUTES
+	clothes_req = FALSE
+	cooldown_min = 20 SECONDS
+	action_icon ='icons/mob/gondolas.dmi'
+
+	action_icon_state = "gondola"
+
+/obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs start
+	name = "Touch of Death"
+	desc = "This spell charges your hand with necrotic energy that can kill both organic and inorganic beings instantly."
+	hand_path = /obj/item/melee/touch_attack/touchofdeath
+
+	school = "evocation"
+	charge_max = 400
+	clothes_req = TRUE
+	cooldown_min = 200 //50 deciseconds reduction per rank
+
+	action_icon_state = "touchofdeath"	//yogs end

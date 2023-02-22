@@ -10,6 +10,14 @@
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/shuttle/engine/ion
+	name = "Machine Design (Ion Thruster Board)"
+	desc = "The circuit board for a Ion thruster."
+	id = "engine_ion"
+	build_path = /obj/item/circuitboard/machine/shuttle/engine/ion
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/shuttle/engine/void
 	name = "Machine Design (Void Thruster Board)"
 	desc = "The circuit board for a void thruster."
@@ -25,6 +33,14 @@
 	build_path = /obj/item/circuitboard/machine/shuttle/heater
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/shuttle/engine/capacitor_bank
+	name = "Machine Design (Capacitor Bank Board)"
+	desc = "The circuit board for a capacitor bank."
+	id = "engine_capacitor_bank"
+	build_path = /obj/item/circuitboard/machine/shuttle/capacitor_bank
+	category = list ("Shuttle Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 	
 /datum/design/board/spaceship_navigation_beacon
 	name = "Machine Design (Bluespace Navigation Gigabeacon)"
@@ -33,7 +49,15 @@
 	build_path = /obj/item/circuitboard/machine/spaceship_navigation_beacon
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
-	
+
+/datum/design/board/medical_kiosk
+	name = "Machine Design (Medical Kiosk)"
+	desc = "The circuit board for a Medical Kiosk."
+	id = "medical_kiosk"
+	build_path = /obj/item/circuitboard/machine/medical_kiosk
+	category = list ("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/board/smes
 	name = "Machine Design (SMES Board)"
 	desc = "The circuit board for an SMES."
@@ -571,6 +595,14 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/board/oven
+	name = "Machine Design (Oven)"
+	desc = "The circuit board for a Oven."
+	id = "oven"
+	build_path = /obj/item/circuitboard/machine/oven
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/board/donksofttoyvendor
 	name = "Machine Design (Donksoft Toy Vendor Board)"
 	desc = "The circuit board for a Donksoft Toy Vendor."
@@ -659,6 +691,22 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/suit_storage_unit
+	name = "Machine Design (Suit Storage Unit)"
+	desc = "The circuit board for a suit storage unit."
+	id = "suit_storage_unit"
+	build_path = /obj/item/circuitboard/machine/suit_storage_unit
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/decontamination_unit
+	name = "Machine Design (Decontamination Unit)"
+	desc = "The circuit board for a decontamination unit."
+	id = "decontamination_unit"
+	build_path = /obj/item/circuitboard/machine/decontamination_unit
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/crystallizer
 	name = "Machine Design (Crystallizer)"
 	desc = "The circuit board for a crystallizer."
@@ -667,11 +715,11 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/expansion_card_holder
-	name = "Machine Design (Expansion Card Bus Board)"
-	desc = "The circuit board for an expansion card bus."
-	id = "expansion_card_holder"
-	build_path = /obj/item/circuitboard/machine/expansion_card_holder
+/datum/design/board/server_cabinet
+	name = "Machine Design (Server Cabinet Board)"
+	desc = "The circuit board for a server cabinet."
+	id = "server_cabinet"
+	build_path = /obj/item/circuitboard/machine/server_cabinet
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -681,4 +729,29 @@
 	id = "ai_data_core"
 	build_path = /obj/item/circuitboard/machine/ai_data_core
 	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+
+/datum/design/board/ai_core_display
+	name = "Machine Design (AI Core Display Board)"
+	desc = "The circuit board for an AI core display."
+	id = "ai_core_display"
+	build_path = /obj/item/circuitboard/machine/ai_core_display
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/rack_creator
+	name = "Machine Design (Rack Creator Board)"
+	desc = "The circuit board for a rack creator."
+	id = "rack_creator"
+	build_path = /obj/item/circuitboard/machine/rack_creator
+	category = list("Research Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/plort
+	name = "Machine Design (Plort Redemption Machine)"
+	desc = "The circuit board for a plort redemption machine."
+	id = "plort"
+	build_path = /obj/item/circuitboard/machine/plort
+	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

@@ -40,12 +40,12 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp)
-			return (temp.ckey in GLOB.deadmins)
+			return (temp.ckey in GLOB.permissions.deadmins)
 	
 	if(istype(user, /client))
 		var/client/temp = user
 		if(temp)
-			return (temp.ckey in GLOB.deadmins)
+			return (temp.ckey in GLOB.permissions.deadmins)
 
 	return FALSE
 
@@ -61,11 +61,11 @@
 
 	if(ismob(user))
 		var/mob/temp = user
-		if(temp && temp.client)
+		if(temp?.client)
 			if(temp.client.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.client.prefs)
-				return (temp.client.prefs.unlock_content & 2)
+				return (temp.client.prefs.unlock_content & DONOR_YOGS)
 
 	else if(istype(user, /client))
 		var/client/temp = user
@@ -73,7 +73,7 @@
 			if(temp.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.prefs)
-				return (temp.prefs.unlock_content & 2)
+				return (temp.prefs.unlock_content & DONOR_YOGS)
 
 	return FALSE
 

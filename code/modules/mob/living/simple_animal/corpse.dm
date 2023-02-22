@@ -85,7 +85,7 @@
 	uniform = /obj/item/clothing/under/pirate
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses = /obj/item/clothing/glasses/eyepatch
-	head = /obj/item/clothing/head/bandana
+	head = /obj/item/clothing/head/pirate/bandana
 
 
 /obj/effect/mob_spawn/human/corpse/pirate/ranged

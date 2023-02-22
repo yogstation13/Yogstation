@@ -146,6 +146,14 @@
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
 	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
+/obj/structure/falsewall/CanAStarPass(ID, dir, caller)
+	. = ..()
+	if(!isliving(caller))
+		return FALSE
+	var/mob/living/passer = caller
+	if(passer.client)
+		return TRUE
+	
 /*
  * False R-Walls
  */
@@ -290,13 +298,22 @@
 	walltype = /turf/closed/wall/mineral/wood
 	canSmoothWith = list(/obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood)
 
+/obj/structure/falsewall/bamboo
+	name = "bamboo wall"
+	desc = "A wall with bamboo finish. Zen."
+	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon_state = "bamboo"
+	mineral = /obj/item/stack/sheet/mineral/bamboo
+	walltype = /turf/closed/wall/mineral/bamboo
+	canSmoothWith = list(/obj/structure/falsewall/bamboo, /turf/closed/wall/mineral/bamboo)
+
 /obj/structure/falsewall/iron
 	name = "rough metal wall"
 	desc = "A wall with rough metal plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
-	mineral_amount = 5
+	mineral_amount = 2
 	walltype = /turf/closed/wall/mineral/iron
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 

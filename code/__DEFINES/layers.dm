@@ -30,6 +30,8 @@
 #define GAS_PIPE_HIDDEN_LAYER 2.35 //layer = initial(layer) + piping_layer / 1000 in atmospherics/update_icon() to determine order of pipe overlap
 #define WIRE_LAYER 2.4
 #define WIRE_TERMINAL_LAYER 2.45
+#define UNDER_CATWALK 2.454
+#define CATWALK_LAYER 2.455
 #define GAS_SCRUBBER_LAYER 2.46 
 #define GAS_PIPE_VISIBLE_LAYER 2.47 //layer = initial(layer) + piping_layer / 1000 in atmospherics/update_icon() to determine order of pipe overlap
 #define GAS_FILTER_LAYER 2.48
@@ -105,8 +107,12 @@
 #define RAD_TEXT_LAYER 15.1
 
 
-#define ABOVE_LIGHTING_PLANE 16
-#define ABOVE_LIGHTING_LAYER 16
+#define O_LIGHTING_VISUAL_PLANE 16
+#define O_LIGHTING_VISUAL_LAYER 16
+#define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
+
+#define ABOVE_LIGHTING_PLANE 17
+#define ABOVE_LIGHTING_LAYER 17
 #define ABOVE_LIGHTING_RENDER_TARGET "ABOVE_LIGHTING_PLANE"
 
 #define FLOOR_OPENSPACE_PLANE 17
@@ -121,6 +127,8 @@
 #define CAMERA_STATIC_RENDER_TARGET "CAMERA_STATIC_PLANE"
 
 #define RUNECHAT_PLANE 20
+
+#define BALLOON_CHAT_PLANE 20.9
 
 //HUD layer defines
 

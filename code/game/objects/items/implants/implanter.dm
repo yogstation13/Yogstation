@@ -1,7 +1,7 @@
 /obj/item/implanter
 	name = "implanter"
 	desc = "A sterile automatic implant injector."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/implants.dmi'
 	icon_state = "implanter0"
 	item_state = "syringe_0"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -10,6 +10,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=600, /datum/material/glass=200)
+	fryable = TRUE
 	var/obj/item/implant/imp = null
 	var/imp_type = null
 

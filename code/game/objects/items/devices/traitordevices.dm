@@ -82,6 +82,9 @@ effective or pretty fucking useless.
 	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
 		return
 	if(!used)
+		if(beep_cooldown < world.time)
+			playsound(src, 'sound/effects/fastbeep.ogg', 20)
+			beep_cooldown = world.time + 40
 		log_combat(user, M, "irradiated", src)
 		var/cooldown = get_cooldown()
 		used = TRUE
@@ -197,7 +200,7 @@ effective or pretty fucking useless.
 
 /obj/item/shadowcloak
 	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness."
+	desc = "Makes you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
@@ -245,7 +248,7 @@ effective or pretty fucking useless.
 	if(user && user.get_item_by_slot(SLOT_BELT) != src)
 		Deactivate()
 
-/obj/item/shadowcloak/process()
+/obj/item/shadowcloak/process(delta_time)
 	if(user.get_item_by_slot(SLOT_BELT) != src)
 		Deactivate()
 		return
@@ -253,10 +256,10 @@ effective or pretty fucking useless.
 	if(on)
 		var/lumcount = T.get_lumcount()
 		if(lumcount > 0.3)
-			charge = max(0,charge - 25)//Quick decrease in light
+			charge = max(0,charge - 12.5 * delta_time)//Quick decrease in light
 		else
-			charge = min(max_charge,charge + 50) //Charge in the dark
-		animate(user,alpha = clamp(255 - charge,0,255),time = 10)
+			charge = min(max_charge,charge + 25 * delta_time) //Charge in the dark
+		animate(user,alpha = clamp(255 - charge,0,255),time = 1 SECONDS)
 
 
 /obj/item/jammer

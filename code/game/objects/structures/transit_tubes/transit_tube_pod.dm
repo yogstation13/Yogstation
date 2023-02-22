@@ -79,7 +79,7 @@
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		to_chat(user, span_notice("You start trying to escape from the pod..."))
-		if(do_after(user, 1 MINUTES, target = src))
+		if(do_after(user, 1 MINUTES, src))
 			to_chat(user, span_notice("You manage to open the pod."))
 			empty_pod()
 
@@ -157,6 +157,9 @@
 		deconstruct(FALSE)	//we automatically deconstruct the pod
 
 /obj/structure/transit_tube_pod/return_air()
+	return air_contents
+
+/obj/structure/transit_tube_pod/return_analyzable_air()
 	return air_contents
 
 /obj/structure/transit_tube_pod/assume_air(datum/gas_mixture/giver)

@@ -25,6 +25,7 @@
 	desc = "A small sleeper typically used to put people to sleep for briefing on the mission."
 	mob_name = "a spacepol officer"
 	flavour_text = "Justice has arrived. I am a member of the Spacepol!"
+	short_desc = "You are a Space Policeman!"
 	back_story = "space cop"
 	outfit = /datum/outfit/spacepol
 	icon = 'icons/obj/machines/sleeper.dmi'

@@ -1,4 +1,5 @@
 #define MILK_TO_BUTTER_COEFF 15
+#define LIQUID_TO_SOLID_COEFF 25
 
 /obj/machinery/reagentgrinder
 	name = "\improper All-In-One Grinder"
@@ -240,7 +241,7 @@
 	add_overlay("juicer_blend")
 	var/offset = prob(50) ? -2 : 2
 	var/old_pixel_x = pixel_x
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = -1) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)
 
 /obj/machinery/reagentgrinder/proc/stop_shaking(old_px)
@@ -265,7 +266,7 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
-	operate_for(50, juicing = TRUE)
+	operate_for(5 SECONDS, juicing = TRUE)
 	for(var/obj/item/i in holdingitems)
 		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
@@ -285,7 +286,7 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
-	operate_for(60)
+	operate_for(6 SECONDS)
 	for(var/i in holdingitems)
 		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
@@ -314,8 +315,8 @@
 	power_change()
 	if(!container || stat & (NOPOWER|BROKEN))
 		return
-	operate_for(50, juicing = TRUE)
-	addtimer(CALLBACK(src, /obj/machinery/reagentgrinder/proc/mix_complete), 50)
+	operate_for(5 SECONDS, juicing = TRUE)
+	addtimer(CALLBACK(src, /obj/machinery/reagentgrinder/proc/mix_complete), 5 SECONDS)
 
 /obj/machinery/reagentgrinder/proc/mix_complete()
 	if(container?.reagents.total_volume)
@@ -329,9 +330,17 @@
 			var/amount = container.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
 			container.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
 			container.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
+		//Recipe to make Soap
+		var/soap_amt = FLOOR(container.reagents.get_reagent_amount(/datum/reagent/liquidsoap) / LIQUID_TO_SOLID_COEFF, 1)
+		container.reagents.remove_reagent(/datum/reagent/liquidsoap, LIQUID_TO_SOLID_COEFF * soap_amt)
+		for(var/i in 1 to soap_amt)
+			new /obj/item/soap/homemade(drop_location())
 
 /obj/machinery/reagentgrinder/MouseDrop_T(atom/dropping, mob/user)
 	if(istype(dropping, /obj/item/reagent_containers/glass))
 		attackby(dropping, user)
 	else
 		..()
+
+#undef MILK_TO_BUTTER_COEFF
+#undef LIQUID_TO_SOLID_COEFF

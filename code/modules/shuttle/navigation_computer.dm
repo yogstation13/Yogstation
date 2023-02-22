@@ -120,7 +120,7 @@
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
 		to_chat(current_user, span_warning("Targeting transit location, please wait [DisplayTimeText(designate_time)]..."))
 		designating_target_loc = the_eye.loc
-		var/wait_completed = do_after(current_user, designate_time, FALSE, designating_target_loc, TRUE, CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
+		var/wait_completed = do_after(current_user, designate_time, designating_target_loc, FALSE, TRUE, CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
 		designating_target_loc = null
 		if(!current_user)
 			return
@@ -271,7 +271,7 @@
 
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
-	use_static = USE_STATIC_NONE
+	use_static = FALSE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
 
@@ -362,7 +362,7 @@
 			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 			remote_eye.setLoc(T)
 			to_chat(target, span_notice("Jumped to [selected]"))
-			C.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			C.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			C.clear_fullscreen("flash", 3)
 	else
 		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)

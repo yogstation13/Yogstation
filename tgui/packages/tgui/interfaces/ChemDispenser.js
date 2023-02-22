@@ -1,6 +1,5 @@
 import { toFixed } from 'common/math';
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, Icon, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -70,6 +69,8 @@ export const ChemDispenser = (props, context) => {
                 width="129.5px"
                 lineHeight={1.75}
                 content={chemical.title}
+                disabled={chemical.locked}
+                tooltip={chemical.locked ? "Requires T" + chemical.tier + " manipulator!" : ""}
                 onClick={() => act('dispense', {
                   reagent: chemical.id,
                 })} />
@@ -102,12 +103,12 @@ export const ChemDispenser = (props, context) => {
                 && 'Virtual beaker'
                 || data.isBeakerLoaded
                   && (
-                    <Fragment>
+                    <>
                       <AnimatedNumber
                         initial={0}
                         value={data.beakerCurrentVolume} />
                       /{data.beakerMaxVolume} units
-                    </Fragment>
+                    </>
                   )
                 || 'No beaker'}
             </LabeledList.Item>

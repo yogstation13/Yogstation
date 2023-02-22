@@ -24,6 +24,7 @@
 	obj_damage = 60
 	melee_damage_lower = 12
 	melee_damage_upper = 12
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites into"
 	a_intent = INTENT_HARM
 	speak_emote = list("chitters")
@@ -41,7 +42,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = "energy"
+	flag = ENERGY
 	temperature = 50
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/GiveTarget(new_target)
@@ -67,10 +68,12 @@
 	icon_living = "watcher"
 	icon_aggro = "watcher"
 	icon_dead = "watcher_dead"
+	health_doll_icon = "watcher"
 	pixel_x = -10
 	throw_message = "bounces harmlessly off of"
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = null // doesn't bite unlike the parent type.
 	attacktext = "impales"
 	a_intent = INTENT_HARM
 	speak_emote = list("telepathically cries")
@@ -98,6 +101,7 @@
 	icon_dead = "watcher_magmawing_dead"
 	maxHealth = 235 //Compensate for the lack of slowdown on projectiles with a bit of extra health
 	health = 235
+	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
@@ -153,3 +157,17 @@
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril
 	fromtendril = TRUE
+
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing/death(gibbed)
+	if(prob(10))
+		new /obj/item/gem/fdiamond(loc)
+		deathmessage = "spits out a diamond as it dies!"
+	. = ..()
+	deathmessage = initial(deathmessage)
+
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/death(gibbed)
+	if(prob(10))
+		new /obj/item/gem/magma(loc)
+		deathmessage = "spits out a golden gem as it dies!"
+	. = ..()
+	deathmessage = initial(deathmessage)

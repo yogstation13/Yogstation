@@ -26,9 +26,15 @@
 /turf/open/floor/holofloor/grass
 	gender = PLURAL
 	name = "lush grass"
-	icon_state = "grass"
+	icon_state = "grass1"
 	bullet_bounce_sound = null
 	tiled_dirt = FALSE
+
+/turf/open/floor/holofloor/grass/Initialize()
+	. = ..()
+	if(src.type == /turf/open/floor/holofloor/grass) //don't want grass subtypes getting the icon state,
+		icon_state = "grass[rand(1,4)]"
+		update_icon()
 
 /turf/open/floor/holofloor/beach
 	gender = PLURAL

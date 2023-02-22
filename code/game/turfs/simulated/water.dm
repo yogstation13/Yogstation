@@ -15,3 +15,13 @@
 	barefootstep = FOOTSTEP_WATER
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
+
+/turf/open/water/safe
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
+	baseturfs = /turf/open/indestructible/grass/sand
+
+/turf/open/water/safe/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/fishable)
+	

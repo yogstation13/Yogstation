@@ -131,7 +131,12 @@
 		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
-
+//yogs start -- fucking stupid but modular holotool patch
+	if(quality == TOOL_MULTITOOL)
+		if(istype(best_item,/obj/item/holotool))
+			var/obj/item/holotool/H = best_item
+			return H.internal_multitool
+//yogs end
 	return best_item
 
 
@@ -170,7 +175,7 @@
 		return FALSE
 	return !held_items[hand_index]
 
-/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE)
+/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE, no_sound = FALSE)
 	if(forced || can_put_in_hand(I, hand_index))
 		if(isturf(I.loc) && !ignore_anim)
 			I.do_pickup_animation(src)
@@ -182,7 +187,7 @@
 		held_items[hand_index] = I
 		I.layer = ABOVE_HUD_LAYER
 		I.plane = ABOVE_HUD_PLANE
-		I.equipped(src, SLOT_HANDS)
+		I.equipped(src, SLOT_HANDS, no_sound)
 		if(I.pulledby)
 			I.pulledby.stop_pulling()
 		update_inv_hands()
@@ -209,8 +214,8 @@
 	return FALSE
 
 //Puts the item into our active hand if possible. returns TRUE on success.
-/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE)
-	return put_in_hand(I, active_hand_index, forced, ignore_animation)
+/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE, no_sound = FALSE)
+	return put_in_hand(I, active_hand_index, forced, ignore_animation, no_sound)
 
 
 //Puts the item into our inactive hand if possible, returns TRUE on success
@@ -221,7 +226,7 @@
 //Puts the item our active hand if possible. Failing that it tries other hands. Returns TRUE on success.
 //If both fail it drops it on the floor and returns FALSE.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE)
+/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, no_sound = FALSE)
 	if(!I)
 		return FALSE
 
@@ -245,14 +250,14 @@
 						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
 						return TRUE
 
-	if(put_in_active_hand(I, forced))
+	if(put_in_active_hand(I, forced, no_sound = no_sound))
 		return TRUE
 
 	var/hand = get_empty_held_index_for_side("l")
 	if(!hand)
 		hand =  get_empty_held_index_for_side("r")
 	if(hand)
-		if(put_in_hand(I, hand, forced))
+		if(put_in_hand(I, hand, forced, no_sound = no_sound))
 			return TRUE
 	if(del_on_fail)
 		qdel(I)
@@ -293,11 +298,16 @@
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
-	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+	if(I)//signals don't like null arguments
+		SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
+		. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+		I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
-	return doUnEquip(I, force, newloc, FALSE, silent = silent)
+	if(I)
+		. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+		I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D

@@ -331,7 +331,8 @@
 	var/azimuth_rate = 1 ///degree change per minute
 
 	var/track = SOLAR_TRACK_OFF ///SOLAR_TRACK_OFF, SOLAR_TRACK_TIMED, SOLAR_TRACK_AUTO
-
+	var/force_auto = FALSE //if true, will force solar panels to connect and be set to SOLAR_TRACK_AUTO
+	
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
 	var/mob/living/carbon/human/last_user // The last guy to open up the console
@@ -343,6 +344,11 @@
 	connect_to_network()
 	if(powernet)
 		set_panels(azimuth_target)
+	if(powernet && force_auto)
+		search_for_connected() //are we actually connected to anything useful?
+		if(connected_tracker && !isemptylist(connected_panels))
+			track = SOLAR_TRACK_AUTO
+			connected_tracker.sun_update(SSsun, SSsun.azimuth)
 	update_icon()
 
 /obj/machinery/power/solar_control/Destroy()

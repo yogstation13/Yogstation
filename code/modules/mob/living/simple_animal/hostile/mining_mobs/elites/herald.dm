@@ -24,6 +24,7 @@
 	icon_aggro = "herald"
 	icon_dead = "herald_dying"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "herald"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 20
@@ -35,6 +36,7 @@
 	speed = 4
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/herald
 	deathsound = 'sound/magic/demon_dies.ogg'
 	deathmessage = "begins to shudder as it becomes transparent..."
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
@@ -188,6 +190,16 @@
 	my_mirror.my_master = src
 	my_mirror.faction = faction.Copy()
 
+/obj/item/gps/internal/herald
+	icon_state = null
+	gpstag = "Reverent Signal"
+	desc = "Mirrors inside mirrors inside mirrors inside mirrors."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/herald/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
+
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
 	name = "herald's mirror"
 	desc = "This fiendish work of magic copies the herald's attacks.  Seems logical to smash it."
@@ -200,6 +212,7 @@
 	del_on_death = TRUE
 	is_mirror = TRUE
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/my_master = null
+	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/Initialize()
 	..()
@@ -229,7 +242,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 		return
 	else if(isliving(target))
 		var/mob/living/L = target
@@ -266,10 +279,9 @@
 	H.fire(set_angle)
 
 /obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!prob(hit_reaction_chance))
-		return FALSE
-	owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
-	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
-	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
-	addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)
-	return TRUE
+	. = FALSE
+	if(prob(hit_reaction_chance))
+		owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
+		var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
+		playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
+		addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)

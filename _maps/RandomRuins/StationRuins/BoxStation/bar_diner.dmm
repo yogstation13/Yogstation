@@ -23,12 +23,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -127,12 +121,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "au" = (
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"av" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ax" = (
@@ -521,17 +509,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bv" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bw" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel{
@@ -959,6 +936,16 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"jX" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/burger/baseball{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "kJ" = (
 /obj/structure/table/american,
 /obj/item/clothing/head/that,
@@ -1003,20 +990,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"nm" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/snacks/burger/baseball{
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "pL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1068,6 +1041,15 @@
 "xx" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"yn" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "yv" = (
 /obj/effect/landmark/blobstart,
@@ -1266,6 +1248,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"UE" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "WE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1294,6 +1282,30 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"Zn" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Zr" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1520,7 +1532,7 @@ dc
 ab
 "}
 (15,1,1) = {"
-ah
+UE
 au
 aI
 aW
@@ -1537,7 +1549,7 @@ ab
 "}
 (16,1,1) = {"
 ab
-av
+yn
 aJ
 ab
 ab
@@ -1592,7 +1604,7 @@ bi
 aj
 bn
 bE
-nm
+jX
 Ga
 bD
 bD
@@ -1609,7 +1621,7 @@ bs
 bp
 bF
 js
-Ga
+Zr
 bU
 bD
 pL
@@ -1654,7 +1666,7 @@ aj
 ba
 bl
 aj
-bv
+Zn
 bI
 bR
 bR

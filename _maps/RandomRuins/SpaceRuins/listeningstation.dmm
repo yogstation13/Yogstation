@@ -761,6 +761,38 @@
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation)
+"lY" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/listeningstation)
 "na" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -799,6 +831,12 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/listeningstation)
+"pZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation)
 "qP" = (
 /obj/structure/rack{
@@ -963,12 +1001,6 @@
 	pixel_y = -29
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
-"Fm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation)
 "Gg" = (
 /obj/machinery/door/airlock/hatch{
@@ -1178,38 +1210,6 @@
 /obj/item/paper_bin,
 /obj/item/paper/fluff/ruins/listeningstation/reports/november,
 /obj/item/pen,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
-"Xp" = (
-/obj/structure/table,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
 "Yt" = (
@@ -1940,18 +1940,18 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -1980,7 +1980,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 wp
 ac
 Yt
@@ -1988,11 +1988,11 @@ cy
 aN
 dc
 aZ
-Xp
+lY
 ac
 jY
-ac
-ac
+ag
+ag
 ab
 ab
 ab
@@ -2020,7 +2020,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 ar
 Jr
 aI
@@ -2032,7 +2032,7 @@ Dk
 ac
 Cy
 UF
-ac
+ag
 ab
 ab
 ab
@@ -2059,8 +2059,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+ag
+ag
 ac
 ac
 aJ
@@ -2072,7 +2072,7 @@ bk
 Nl
 bx
 bw
-ac
+ag
 ab
 ab
 ab
@@ -2098,8 +2098,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+ag
+ag
 ah
 as
 ac
@@ -2112,7 +2112,7 @@ bl
 ac
 bz
 bD
-ac
+ag
 ab
 ab
 ab
@@ -2138,7 +2138,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 DC
 ai
 at
@@ -2152,9 +2152,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+ag
+ag
+ag
 ab
 ab
 ab
@@ -2178,7 +2178,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 ae
 aj
 au
@@ -2194,7 +2194,7 @@ bq
 by
 aO
 bF
-ac
+ag
 ab
 ab
 ab
@@ -2218,8 +2218,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+ag
+ag
 ak
 VQ
 qP
@@ -2234,7 +2234,7 @@ br
 bB
 bn
 bG
-ac
+ag
 ab
 ab
 ab
@@ -2259,7 +2259,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 ac
 ac
 ac
@@ -2272,9 +2272,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+ag
+ag
+ag
 ab
 ab
 ab
@@ -2298,8 +2298,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+ag
+ag
 dJ
 vQ
 aC
@@ -2312,7 +2312,7 @@ Je
 SG
 Pa
 nM
-ac
+ag
 ab
 ab
 ab
@@ -2338,7 +2338,7 @@ aa
 aa
 ab
 ab
-ac
+ag
 ND
 vU
 Iv
@@ -2352,7 +2352,7 @@ fn
 tg
 ye
 eM
-ac
+ag
 ab
 ab
 ab
@@ -2378,8 +2378,8 @@ aa
 aa
 aa
 ab
-ac
-ac
+ag
+ag
 Zv
 ac
 aE
@@ -2391,8 +2391,8 @@ ac
 Gs
 Mw
 bu
-ac
-ac
+ag
+ag
 ab
 ab
 ab
@@ -2422,16 +2422,16 @@ ab
 ag
 tz
 ag
-Fm
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+pZ
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab

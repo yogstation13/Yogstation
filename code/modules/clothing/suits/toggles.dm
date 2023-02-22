@@ -35,12 +35,12 @@
 /obj/item/clothing/suit/hooded/proc/RemoveHood()
 	src.icon_state = "[initial(icon_state)]"
 	suittoggled = FALSE
-	if(ishuman(hood.loc))
+	if(ishuman(hood?.loc))
 		var/mob/living/carbon/H = hood.loc
 		H.transferItemToLoc(hood, src, TRUE)
 		H.update_inv_wear_suit()
 	else
-		hood.forceMove(src)
+		hood?.forceMove(src)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -71,6 +71,7 @@
 
 /obj/item/clothing/head/hooded
 	var/obj/item/clothing/suit/hooded/suit
+	hattable = FALSE
 
 /obj/item/clothing/head/hooded/Destroy()
 	suit = null
@@ -129,10 +130,11 @@
 	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/Destroy()
-	if(helmet)
+	if(!QDELETED(helmet))
 		helmet.suit = null
-		qdel(helmet)
-	qdel(jetpack)
+		QDEL_NULL(helmet)
+	if(jetpack && istype(jetpack))
+		QDEL_NULL(jetpack)
 	return ..()
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()

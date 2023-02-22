@@ -11,7 +11,7 @@
 	var/start_at = NUTRITION_LEVEL_WELL_FED
 	var/stop_at = NUTRITION_LEVEL_STARVING
 	var/free_exit = TRUE //set to false to prevent people from exiting before being completely stripped of fat
-	var/bite_size = 15 //amount of nutrients we take per process
+	var/bite_size = 7.5 //amount of nutrients we take per second
 	var/nutrients //amount of nutrients we got build up
 	var/nutrient_to_meat = 90 //one slab of meat gives about 52 nutrition
 	var/datum/looping_sound/microwave/soundloop //100% stolen from microwaves
@@ -37,7 +37,7 @@
 	var/rating = 0
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
 		rating += L.rating
-	bite_size = initial(bite_size) + rating * 5
+	bite_size = initial(bite_size) + rating * 2.5
 	nutrient_to_meat = initial(nutrient_to_meat) - rating * 5
 
 /obj/machinery/fat_sucker/examine(mob/user)
@@ -76,7 +76,7 @@
 		user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 			span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 			span_italics("You hear a metallic creaking from [src]."))
-		if(do_after(user, breakout_time, target = src))
+		if(do_after(user, breakout_time, src))
 			if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 				return
 			free_exit = TRUE
@@ -117,20 +117,20 @@
 		else
 			overlays += "[icon_state]_door_off"
 			if(occupant)
-				if(powered(EQUIP))
+				if(powered(AREA_USAGE_EQUIP))
 					overlays += "[icon_state]_stack"
 					overlays += "[icon_state]_yellow"
 			else
 				overlays += "[icon_state]_red"
-	else if(powered(EQUIP))
+	else if(powered(AREA_USAGE_EQUIP))
 		overlays += "[icon_state]_red"
 	if(panel_open)
 		overlays += "[icon_state]_panel"
 
-/obj/machinery/fat_sucker/process()
+/obj/machinery/fat_sucker/process(delta_time)
 	if(!processing)
 		return
-	if(!powered(EQUIP) || !occupant || !iscarbon(occupant))
+	if(!powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		open_machine()
 		return
 
@@ -139,8 +139,8 @@
 		open_machine()
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 		return
-	C.adjust_nutrition(-bite_size)
-	nutrients += bite_size
+	C.adjust_nutrition(-bite_size * delta_time)
+	nutrients += bite_size * delta_time
 
 	if(next_fact <= 0)
 		next_fact = initial(next_fact)
@@ -151,7 +151,7 @@
 	use_power(500)
 
 /obj/machinery/fat_sucker/proc/start_extracting()
-	if(state_open || !occupant || processing || !powered(EQUIP))
+	if(state_open || !occupant || processing || !powered(AREA_USAGE_EQUIP))
 		return
 	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant

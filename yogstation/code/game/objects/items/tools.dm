@@ -46,6 +46,11 @@
 			user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 			qdel(C.handcuffed)
 			return
+		if(istype(C) && C.legcuffed)
+			user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
+			qdel(C.legcuffed)
+			C.legcuffed = null
+			return
 		else
 			..()
 	else
@@ -99,6 +104,21 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
+	sharpness = SHARP_POINTY
+
+/obj/item/handdrill/attack(mob/living/carbon/M, mob/living/carbon/user)
+	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
+	if(!istype(M))
+		return ..()
+	if(user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_HEAD)
+		return ..()
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, span_warning("You don't want to harm [M]!"))
+		return
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+		M = user
+	return eyestab(M,user)
 
 /obj/item/handdrill/attack_self(mob/user)
 	if (tool_behaviour == TOOL_SCREWDRIVER)
@@ -114,6 +134,7 @@
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
 	icon_state = "drill_bolt"
 	tool_behaviour = TOOL_WRENCH
+	sharpness = SHARP_NONE
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
@@ -125,6 +146,7 @@
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
 	icon_state = "drill_screw"
 	tool_behaviour = TOOL_SCREWDRIVER
+	sharpness = SHARP_POINTY
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into screw mode."))

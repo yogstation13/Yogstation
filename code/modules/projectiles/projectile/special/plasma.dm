@@ -11,11 +11,19 @@
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
+/obj/item/projectile/plasma/weak
+	name = "weak plasma blast"
+	icon_state = "plasmacutter_weak"
+	damage = 3
+	dismemberment = 5
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	mine_range = 0
+
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 		if(mine_range)
 			mine_range--
 			range++
@@ -33,6 +41,10 @@
 	range = 5
 	mine_range = 5
 
+/obj/item/projectile/plasma/adv/mega
+	range = 7
+	mine_range = 7
+
 /obj/item/projectile/plasma/scatter
 	damage = 2
 	range = 5
@@ -41,6 +53,35 @@
 
 // Same as the scatter but with automatic defusing
 /obj/item/projectile/plasma/scatter/adv
+
+// Megafauna loot, possibly best cutter?
+/obj/item/projectile/plasma/scatter/adv/stalwart
+	name = "plasma beam"
+	icon_state = "plasmacutter_stalwart"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	tracer_type = /obj/effect/projectile/tracer/laser/blue
+	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
+	impact_type = /obj/effect/projectile/impact/laser/blue
+	damage_type = STAMINA
+	damage = 5
+	range = 4
+	mine_range = 6
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	var/fauna_damage_bonus = 10
+	var/fauna_damage_type = BRUTE
+
+/obj/item/projectile/plasma/scatter/adv/stalwart/on_hit(atom/target)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+			playsound(L, 'sound/weapons/resonator_blast.ogg', 100, 1)
+
+//mega plasma shotgun auto defuses
+/obj/item/projectile/plasma/scatter/adv/mega
+	range = 7
+	mine_range = 3
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 10

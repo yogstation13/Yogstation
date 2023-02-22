@@ -144,7 +144,7 @@
 
   /*
   Proc called when giving an item to another player
-  
+
   This handles creating an alert and adding an overlay to it
   */
 /mob/living/carbon/give()
@@ -158,14 +158,14 @@
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(!CanReach(C))
 			return
-		var/obj/screen/alert/give/G = C.throw_alert("[src]", /obj/screen/alert/give)
+		var/atom/movable/screen/alert/give/G = C.throw_alert("[src]", /atom/movable/screen/alert/give)
 		if(!G)
 			return
 		G.setup(C, src, receiving)
 
   /*
   Proc called when the player clicks the give alert
-  
+
   Handles checking if the player taking the item has open slots and is in range of the giver
   Also deals with the actual transferring of the item to the players hands
   Arguments:

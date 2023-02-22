@@ -19,7 +19,7 @@ Contents:
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/stock_parts/cell)
 	slowdown = 1
 	resistance_flags = LAVA_PROOF | ACID_PROOF
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 100, ACID = 100)
 	strip_delay = 12
 
 	actions_types = list(/datum/action/item_action/initialize_ninja_suit, /datum/action/item_action/ninjasmoke, /datum/action/item_action/ninjaboost, /datum/action/item_action/ninjapulse, /datum/action/item_action/ninjastar, /datum/action/item_action/ninjanet, /datum/action/item_action/ninja_sword_recall, /datum/action/item_action/ninja_stealth, /datum/action/item_action/toggle_glove)
@@ -40,8 +40,8 @@ Contents:
 		//Main function variables.
 	var/s_initialized = 0//Suit starts off.
 	var/s_coold = 0//If the suit is on cooldown. Can be used to attach different cooldowns to abilities. Ticks down every second based on suit ntick().
-	var/s_cost = 5//Base energy cost each ntick.
-	var/s_acost = 25//Additional cost for additional powers active.
+	var/s_cost = 2.5//Base energy cost each ntick.
+	var/s_acost = 12.5//Additional cost for additional powers active.
 	var/s_delay = 40//How fast the suit does certain things, lower is faster. Can be overridden in specific procs. Also determines adverse probability.
 	var/a_transfer = 20//How much radium is used per adrenaline boost.
 	var/a_maxamount = 7//Maximum number of adrenaline boosts.
@@ -87,8 +87,8 @@ Contents:
 
 //Randomizes suit parameters.
 /obj/item/clothing/suit/space/space_ninja/proc/randomize_param()
-	s_cost = rand(1,20)
-	s_acost = rand(20,100)
+	s_cost = rand(1,10)
+	s_acost = rand(10,50)
 	s_delay = rand(10,100)
 	s_bombs = rand(5,20)
 	a_boost = rand(1,7)

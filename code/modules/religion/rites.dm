@@ -26,7 +26,7 @@
 		return FALSE
 	to_chat(user, span_notice("You begin to perform the rite of [name]..."))
 	if(!ritual_invocations)
-		if(do_after(user, target = user, delay = ritual_length))
+		if(do_after(user, ritual_length, user))
 			if(invoke_msg)
 				user.say(invoke_msg, forced = "ritual")
 			return TRUE
@@ -39,10 +39,10 @@
 			continue
 		if(!ritual_invocations.len) //we divide so we gotta protect
 			return FALSE
-		if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len))
+		if(!do_after(user, ritual_length/ritual_invocations.len, user))
 			return FALSE
 		user.say(i, forced = "ritual")
-	if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len)) //because we start at 0 and not the first fraction in invocations, we still have another fraction of ritual_length to complete
+	if(!do_after(user, ritual_length/ritual_invocations.len, user)) //because we start at 0 and not the first fraction in invocations, we still have another fraction of ritual_length to complete
 		return FALSE
 	if(invoke_msg)
 		user.say(invoke_msg, forced = "ritual")
@@ -109,13 +109,13 @@
 	ritual_invocations =list( "Let your will power our forges.",
 							"...Help us in our great conquest!")
 	invoke_msg = "The end of flesh is near!"
-	favor_cost = 200	
+	favor_cost = 200
 
 /datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	..()
 	var/altar_turf = get_turf(religious_tool)
 	var/blessing = pick(
-					/obj/item/organ/cyberimp/arm/surgery,
+					/obj/item/organ/cyberimp/arm/toolset/surgery,
 					/obj/item/organ/cyberimp/eyes/hud/diagnostic,
 					/obj/item/organ/cyberimp/eyes/hud/medical,
 					/obj/item/organ/cyberimp/mouth/breathing_tube,
@@ -320,6 +320,51 @@
 	playsound(altar_turf, 'sound/magic/fireball.ogg', 50, TRUE)
 	return TRUE
 
+/datum/religion_rites/candletransformation //in case you'd rather look like your lord than be flameproof
+	name = "Wax Conversion"
+	desc = "Convert a human-esque individual into a being of wax."
+	ritual_length = 30 SECONDS
+	ritual_invocations = list(
+	"Let us offer this unworthy being...",
+	"... Offered in hope to become something much more...",
+	"... And in hope to better suit your great image..."
+	)
+	invoke_msg = "... Rise, rise! Rise in your new form!!"
+	favor_cost = 2000
+
+/datum/religion_rites/candletransformation/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			return
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
+		return
+	return ..()
+
+/datum/religion_rites/candletransformation/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2wax
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2wax = i
+			break
+	if(!human2wax)
+		return FALSE
+	human2wax.set_species(/datum/species/golem/wax)
+	human2wax.visible_message(span_notice("[human2wax] has been converted by the rite of [name]!"))
+
+
 /*********Plant people**********/
 
 /datum/religion_rites/plantconversion
@@ -383,7 +428,7 @@
 
 /datum/religion_rites/ruinousknife
 	name = "Ruinous Knife"
-	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon. It is extra effective as a butchering tool, and can be upgraded with crafting alongside a piece of ruinous metal."
 	ritual_length = 5 SECONDS
 	invoke_msg = "please, old ones, lend us a tool of holy creation."
 	favor_cost = 50
@@ -396,7 +441,7 @@
 
 /datum/religion_rites/meatbless
 	name = "Meat Blessing"
-	desc = "Bless a piece of meat. Preps it for sacrifice"
+	desc = "Bless a piece of meat. Preps it for sacrifice. The meat must be on top of the altar."
 	ritual_length = 2 SECONDS
 	//no invoke message, this does a custom one down below in invoke_effect
 	///the piece of meat that will be blessed, only one per rite
@@ -483,3 +528,168 @@
 		return FALSE
 	human2ruinous.set_species(/datum/species/golem/ruinous)
 	human2ruinous.visible_message(span_notice("[human2ruinous] has been converted by the rite of [name]!"))
+
+	/*********Honkmother**********/
+
+/datum/religion_rites/holypie
+	name = "Holy Pie"
+	desc = "Creates a cream pie to throw at others"
+	ritual_length = 5 SECONDS
+	invoke_msg = "Oh, Honkmother, grant us the pie to cream the faces of the people."
+	favor_cost = 50
+
+/datum/religion_rites/holypie/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/reagent_containers/food/snacks/pie/cream (altar_turf)
+	playsound(altar_turf, 'sound/items/bikehorn.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/honkabot
+	name = "Honk a Bot"
+	desc = "Summons a Honkbot to bring honking to the station"
+	ritual_length = 5 SECONDS
+	invoke_msg = "Great Honkmother, hear my pray: HONK!"
+	favor_cost = 150
+
+/datum/religion_rites/honkabot/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /mob/living/simple_animal/bot/honkbot(altar_turf)
+	return TRUE
+
+/datum/religion_rites/bananablessing
+	name = "Banana Blessing"
+	desc = "Creates a piece of bananium to further the clown researches"
+	ritual_length = 30 SECONDS
+	ritual_invocations = list(
+	"I pray to the Honkmother to hear my pleas...",
+	"...Bring us the power to entertain our allies...",
+	"...And merciless prank our enemies...",
+	)
+	invoke_msg = "Show the true power of clownkind!"
+	favor_cost = 1000
+
+/datum/religion_rites/bananablessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/stack/sheet/mineral/bananium (altar_turf)
+	playsound(altar_turf, 'sound/items/bikehorn.ogg', 50, TRUE)
+	return TRUE
+
+/*********Holy Light**********/
+/datum/religion_rites/medibot
+	name = "Angelic Assistance"
+	desc = "Creates a medibot."
+	ritual_length = 15 SECONDS
+	ritual_invocations = list(
+	"To prolong healing far past even my expiration...",
+	"...Automated, soulless, but efficient...",
+	"...Grant us this sustaining robot...",
+	)
+	invoke_msg = "So that we may live forever!"
+	favor_cost = 150
+
+/datum/religion_rites/medibot/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	var/atom/newitem = new /mob/living/simple_animal/bot/medbot (altar_turf)
+	newitem.name = "\improper Holy Medibot"
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/holysight
+	name = "Holy Sight"
+	desc = "Creates a medhud implant."
+	ritual_length = 15 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey to heal...",
+	"...Grant us the ability to see within...",
+	)
+	invoke_msg = "So that we may seek the injured!"
+	favor_cost = 250
+
+/datum/religion_rites/holysight/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
+	newitem.name = "autosurgeon of truesight"
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/healrod
+	name = "The White"
+	desc = "Creates an area-of-effect healing rod."
+	ritual_length = 20 SECONDS
+	ritual_invocations = list(
+	"To ensure all remain healthy...",
+	"...Grant us a tool capable of passively healing the injured...",
+	"...One that binds us to an unbreakable contract of pacifism..."
+	)
+	invoke_msg = "So that we may heal all indiscriminately!"
+	favor_cost = 400
+
+/obj/item/rod_of_asclepius/white
+	name = "\improper Rod of The White"
+	desc = "A sleek white rod with a snake spiraling along it."
+	efficiency = 0.5
+	resistance_flags = FREEZE_PROOF
+
+/obj/item/rod_of_asclepius/white/Initialize()
+	. = ..()
+	add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+
+/datum/religion_rites/healrod/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/rod_of_asclepius/white (altar_turf)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 75, TRUE)
+	return TRUE
+
+/datum/religion_rites/holyrevival
+	name = "Rebirth"
+	desc = "Regenerates a being to its once pure state."
+	ritual_length = 60 SECONDS
+	ritual_invocations = list(
+	"This being is in dire need of your assistance...",
+	"...As they have been inflicted with great ailment...",
+	"...Please, grant us the unbridled power of the Holy Light...",
+	"...We will channel our power in your name...",
+	)
+	invoke_msg = "So that this being may be reborn in your image!"
+	favor_cost = 650
+
+/datum/religion_rites/holyrevival/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle)
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			return
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
+		return
+	return ..()
+
+/datum/religion_rites/holyrevival/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/man_to_revive
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			man_to_revive = i
+			break
+	if(!man_to_revive)
+		return FALSE
+	var/was_dead = man_to_revive.stat == DEAD
+	man_to_revive.revive(TRUE)
+	if(was_dead) // aheal needs downside
+		man_to_revive.adjustCloneLoss(75) // can be slowly healed with the rod of asclepius anyways
+	man_to_revive.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+	to_chat(man_to_revive, span_userdanger("As you rise anew, you forget all that had previously harmed you!"))
+	man_to_revive.emote("smile")
+	man_to_revive.visible_message(span_notice("[man_to_revive] rises, reborn in the Holy Light!"))
+	var/altar_turf = get_turf(religious_tool)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 100, TRUE)
+	return TRUE

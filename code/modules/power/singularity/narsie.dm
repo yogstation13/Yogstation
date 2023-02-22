@@ -73,36 +73,72 @@
 			singulo.target = src
 	
 	soul_goal = round(1 + LAZYLEN(souls_needed) * 0.75)
-	INVOKE_ASYNC(src, .proc/begin_the_end)
+	INVOKE_ASYNC(GLOBAL_PROC, .proc/begin_the_end)
 
-/obj/singularity/narsie/large/cult/proc/begin_the_end()
-	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
-	sleep(50)
-	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
-	sleep(500)
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
-	sleep(50)
+/proc/begin_the_end()
+	ending_helper()
+	if(QDELETED(GLOB.cult_narsie)) // uno
+		priority_announce("Status report? We detected a anomaly, but it disappeared almost immediately.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		GLOB.cult_narsie = null
+		sleep(20)
+		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		return
+	sleep(5 SECONDS)
+	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
+	sleep(30 SECONDS)
+	if(QDELETED(GLOB.cult_narsie)) // dos
+		priority_announce("Termination of event has been detected. Please note that further damage to company property or wastage of company resources will not be tolerated.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		GLOB.cult_narsie = null
+		sleep(20)
+		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		return
+	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs")
+	sleep(5 SECONDS)
 	set_security_level("delta")
-	SSshuttle.registerHostileEnvironment(src)
+	SSshuttle.registerHostileEnvironment(GLOB.cult_narsie)
 	SSshuttle.lockdown = TRUE
-	sleep(600)
-	if(resolved == FALSE)
-		resolved = TRUE
+	sleep(25 SECONDS)
+	if(QDELETED(GLOB.cult_narsie)) // tres
+		priority_announce("Nuclear detonation has been aborted due to termination of event. Please note that further damage to corporate property will not be tolerated.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		GLOB.cult_narsie = null
+		sleep(2 SECONDS)
+		set_security_level("red")
+		SSshuttle.clearHostileEnvironment()
+		SSshuttle.lockdown = FALSE
+		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		return
+	if(GLOB.cult_narsie.resolved == FALSE)
+		GLOB.cult_narsie.resolved = TRUE
 		sound_to_playing_players('sound/machines/alarm.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 120)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 12 SECONDS)
 
 /obj/singularity/narsie/large/cult/Destroy()
-	GLOB.cult_narsie = null
+	send_to_playing_players("<span class='narsie'>\"<b>[pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-")]\"</b></span>")
+	sound_to_playing_players('sound/magic/demon_dies.ogg', 50)
+	var/list/all_cults = list()
+	for(var/datum/antagonist/cult/C in GLOB.antagonists)
+		if(!C.owner)
+			continue
+		all_cults |= C.cult_team
+	for(var/datum/team/cult/T in all_cults)
+		var/datum/objective/eldergod/summon_objective = locate() in T.objectives
+		if(summon_objective)
+			summon_objective.summoned = FALSE
+			summon_objective.killed = TRUE
 	return ..()
 
 /proc/ending_helper()
 	SSticker.force_ending = 1
 
-/proc/cult_ending_helper(var/no_explosion = 0)
-	if(no_explosion)
+/proc/cult_ending_helper(var/ending_type = 0)
+	if(ending_type == 2) //narsie fukkin died
+		Cinematic(CINEMATIC_CULT_FAIL,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+	else if(ending_type) //no explosion
 		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
-	else
+	else // explosion
 		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+
+
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/singularity/narsie/large/attack_ghost(mob/dead/observer/user as mob)
@@ -138,7 +174,7 @@
 		if(M.stat == CONSCIOUS)
 			if(!iscultist(M))
 				to_chat(M, span_cultsmall("You feel conscious thought crumble away in an instant as you gaze upon [src.name]..."))
-				M.apply_effect(60, EFFECT_STUN)
+				M.apply_effect(6 SECONDS, EFFECT_STUN)
 
 
 /obj/singularity/narsie/consume(atom/A)
@@ -220,7 +256,7 @@
 	setDir(SOUTH)
 	move_self = 0
 	flick("narsie_spawn_anim",src)
-	sleep(11)
+	sleep(1.1 SECONDS)
 	move_self = 1
 	icon = initial(icon)
 

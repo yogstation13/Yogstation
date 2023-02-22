@@ -213,6 +213,15 @@
 			if(!(antag_flag in client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag, ROLE_SYNDICATE)))
 				candidates.Remove(P)
 				continue
+		if (P.mind.assigned_role in restricted_roles) // Does their job allow for it?
+			candidates.Remove(P)
+			continue
+		if ((exclusive_roles.len > 0) && !(P.mind.assigned_role in exclusive_roles)) // Is the rule exclusive to their job?
+			candidates.Remove(P)
+			continue
+		if(P.mind.quiet_round) //Does the candidate have quiet mode enabled?
+			candidates.Remove(P)
+			continue
 
 /// Do your checks if the ruleset is ready to be executed here.
 /// Should ignore certain checks if forced is TRUE

@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(explosions)
 	set name = "Check Bomb Impact"
 	set category = "Misc.Server Debug"
 
-	var/newmode = alert("Use reactionary explosions?","Check Bomb Impact", "Yes", "No")
+	var/newmode = tgui_alert(usr, "Use reactionary explosions?","Check Bomb Impact", list("Yes", "No"))
 	var/turf/epicenter = get_turf(mob)
 	if(!epicenter)
 		return
@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(explosions)
 	var/heavy = 0
 	var/light = 0
 	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = input("Bomb Size?") in choices
+	var/choice = input(usr, "Pick the bomb size", "Bomb Size?", choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -210,6 +210,12 @@ SUBSYSTEM_DEF(explosions)
 		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
 		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
 		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
+	else // If they don't respect the bomb cap, still make them affected by the z-level bomb multiplier
+		devastation_range *= cap_multiplier
+		heavy_impact_range *= cap_multiplier
+		light_impact_range *= cap_multiplier
+		flash_range *= cap_multiplier
+		flame_range *= cap_multiplier
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/started_at = REALTIMEOFDAY
@@ -338,6 +344,8 @@ SUBSYSTEM_DEF(explosions)
 				var/atom/A = I
 				if (length(A.contents) && !(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
 					items += A.GetAllContents()
+				if(istype(A, /mob/living))
+					items -= A				//So we don't do double damage to mobs for balance raisins
 			for(var/thing in items)
 				var/atom/movable/movable_thing = thing
 				if(QDELETED(movable_thing))

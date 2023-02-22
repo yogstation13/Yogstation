@@ -6,6 +6,7 @@
 	name = "Changeling"
 	roundend_category  = "changelings"
 	antagpanel_category = "Changeling"
+	show_to_ghosts = TRUE
 	job_rank = ROLE_CHANGELING
 	antag_moodlet = /datum/mood_event/changeling
 
@@ -20,10 +21,10 @@
 	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
-	var/chem_charges = 20
-	var/chem_storage = 75
-	var/chem_recharge_rate = 1
-	var/chem_recharge_slowdown = 0
+	var/chem_charges = 50 // chems we have on spawn
+	var/chem_storage = 125 // max chems
+	var/chem_recharge_rate = 2 // how fast we restore chems
+	var/chem_recharge_slowdown = 0 // how much is our chem restore rate hampered (keep at 0)
 	var/sting_range = 2
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
@@ -82,6 +83,7 @@
 	generate_name()
 	create_actions()
 	reset_powers()
+	make_absorbable() // Lings need to be able to absorb other lings
 	create_initial_profile()
 	if(give_objectives)
 		if(team_mode)
@@ -101,6 +103,16 @@
 			B.decoy_override = FALSE
 	remove_changeling_powers()
 	. = ..()
+
+/datum/antagonist/changeling/proc/make_absorbable()
+	var/mob/living/carbon/C = owner.current
+	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
+		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
+		C.set_species(/datum/species/human, TRUE, TRUE)
+		if(C.client?.prefs?.read_preference(/datum/preference/name/real_name) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/real_name))
+		else
+			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 
 /datum/antagonist/changeling/proc/remove_clownmut()
 	if (owner)
@@ -310,7 +322,6 @@
 			prof.name_list[slot] = I.name
 			prof.appearance_list[slot] = I.appearance
 			prof.flags_cover_list[slot] = I.flags_cover
-			prof.item_color_list[slot] = I.item_color
 			prof.item_state_list[slot] = I.item_state
 			prof.exists_list[slot] = 1
 		else
@@ -614,3 +625,24 @@
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+/datum/antagonist/changeling/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+
+	final_icon.Shift(WEST, world.icon_size / 2)
+	final_icon.Shift(EAST, world.icon_size / 2)
+
+	split_icon.Shift(EAST, world.icon_size / 2)
+	split_icon.Shift(WEST, world.icon_size / 2)
+
+	final_icon.Blend(split_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/changeling
+	name = "Changeling"
+
+	head = /obj/item/clothing/head/helmet/changeling
+	suit = /obj/item/clothing/suit/armor/changeling
+	l_hand = /obj/item/melee/arm_blade

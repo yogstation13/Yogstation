@@ -1,5 +1,5 @@
 /obj/item/wallframe
-	icon = 'icons/obj/wallframe.dmi'
+	icon = 'icons/obj/frame.dmi'
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2)
 	flags_1 = CONDUCT_1
 	item_state = "syringe_kit"
@@ -40,7 +40,7 @@
 		if(inverse)
 			ndir = turn(ndir, 180)
 
-		var/obj/O = new result_path(get_turf(user), ndir, TRUE)
+		var/obj/O = new result_path(get_turf(user), ndir, TRUE, user)
 		if(pixel_shift)
 			switch(ndir)
 				if(NORTH)
@@ -88,11 +88,13 @@
 	inverse = 1
 
 
-/obj/item/wallframe/apc/try_build(turf/on_wall, user)
+/obj/item/wallframe/apc/try_build(turf/on_wall, mob/user)
 	if(!..())
 		return
-	var/turf/T = get_turf(on_wall) //the user is not where it needs to be.
-	var/area/A = get_area(T)
+	var/turf/T = get_turf(on_wall) //we still need T for checks later in this proc
+	var/area/A = get_area(user) //get the turf the user is standing on, not where it's being placed.
+	if(!A)
+		A = get_area(on_wall) //default back to the turf if the user or their loc is null
 	if(A.get_apc())
 		to_chat(user, span_warning("This area already has an APC!"))
 		return //only one APC per area

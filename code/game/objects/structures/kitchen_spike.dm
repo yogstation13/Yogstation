@@ -81,7 +81,7 @@
 			buckle_mob(L, force=1)
 			var/matrix/m180 = matrix(L.transform)
 			m180.Turn(180)
-			animate(L, transform = m180, time = 3)
+			animate(L, transform = m180, time = 0.3 SECONDS)
 			L.pixel_y = L.get_standard_pixel_y_offset(180)
 	else if (has_buckled_mobs())
 		for(var/mob/living/L in buckled_mobs)
@@ -102,7 +102,7 @@
 				"[user] tries to pull [M] free of [src]!",\
 				span_notice("[user] is trying to pull you off [src], opening up fresh wounds!"),\
 				span_italics("You hear a squishy wet noise."))
-			if(!do_after(user, 30 SECONDS, target = src))
+			if(!do_after(user, 30 SECONDS, src))
 				if(M && M.buckled)
 					M.visible_message(\
 					"[user] fails to free [M]!",\
@@ -115,7 +115,7 @@
 			span_notice("You struggle to break free from [src], exacerbating your wounds! (Stay still for two minutes.)"),\
 			span_italics("You hear a wet squishing noise.."))
 			M.adjustBruteLoss(30)
-			if(!do_after(M, 2 MINUTES, target = src))
+			if(!do_after(M, 2 MINUTES, src))
 				if(M && M.buckled)
 					to_chat(M, span_warning("You fail to free yourself!"))
 				return
@@ -126,13 +126,13 @@
 /obj/structure/kitchenspike/proc/release_mob(mob/living/M)
 	var/matrix/m180 = matrix(M.transform)
 	m180.Turn(180)
-	animate(M, transform = m180, time = 3)
+	animate(M, transform = m180, time = 0.3 SECONDS)
 	M.pixel_y = M.get_standard_pixel_y_offset(180)
 	M.adjustBruteLoss(30)
 	src.visible_message(span_danger("[M] falls free of [src]!"))
 	unbuckle_mob(M,force=1)
 	M.emote("scream")
-	M.AdjustParalyzed(20)
+	M.AdjustParalyzed(2 SECONDS)
 
 /obj/structure/kitchenspike/Destroy()
 	if(has_buckled_mobs())

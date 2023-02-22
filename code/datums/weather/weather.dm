@@ -31,7 +31,7 @@
 	var/overlay_layer = AREA_LAYER //Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
 	var/overlay_plane = BLACKNESS_PLANE
 	var/aesthetic = FALSE //If the weather has no purpose other than looks
-	var/immunity_type = "storm" //Used by mobs to prevent them from being affected by the weather
+	var/immunity_type = WEATHER_STORM //Used by mobs to prevent them from being affected by the weather
 
 	var/stage = END_STAGE //The stage of the weather, from 1-4
 
@@ -105,18 +105,31 @@
 	if(stage == END_STAGE)
 		return 1
 	stage = END_STAGE
-	STOP_PROCESSING(SSweather, src)
+	STOP_PROCESSING_DUMB(SSweather, src)
 	update_areas()
 
-/datum/weather/proc/can_weather_act(mob/living/L) //Can this weather impact a mob?
-	var/turf/mob_turf = get_turf(L)
-	if(mob_turf && !(mob_turf.z in impacted_z_levels))
+/datum/weather/proc/can_weather_act(mob/living/mob_to_check) // Can this weather impact a mob?
+	var/turf/mob_turf = get_turf(mob_to_check)
+
+	if(!mob_turf)
 		return
-	if(immunity_type in L.weather_immunities)
+
+	if(!(mob_turf.z in impacted_z_levels))
 		return
-	if(!(get_area(L) in impacted_areas))
+
+	if(istype(mob_to_check.loc, /obj/structure/closet))
+		var/obj/structure/closet/current_locker = mob_to_check.loc
+		if(current_locker.weather_protection)
+			if((immunity_type in current_locker.weather_protection) || (WEATHER_ALL in current_locker.weather_protection))
+				return
+
+	if((immunity_type in mob_to_check.weather_immunities) || (WEATHER_ALL in mob_to_check.weather_immunities))
 		return
-	return 1
+
+	if(!(get_area(mob_to_check) in impacted_areas))
+		return
+
+	return TRUE
 
 /datum/weather/proc/weather_act(mob/living/L) //What effect does this weather have on the hapless mob?
 	return

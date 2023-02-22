@@ -1,7 +1,4 @@
 GLOBAL_LIST_EMPTY(clients)							//all clients
-GLOBAL_LIST_EMPTY(admins)							//all clients whom are admins
-GLOBAL_PROTECT(admins)
-GLOBAL_LIST_EMPTY(deadmins)							//all ckeys who have used the de-admin verb.
 
 GLOBAL_LIST_EMPTY(directory)							//all ckeys with associated client
 GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys, for stealthmins
@@ -42,8 +39,12 @@ GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
 
-GLOBAL_LIST_INIT(accents_name2file,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
-GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding accents
+/// Keys are the names of the accents, values are the name of their .json file.
+GLOBAL_LIST_INIT(accents_name2file, strings("accents.json", "accent_file_names", directory = "strings/accents"))
+/// List of all accents
+GLOBAL_LIST_INIT(accents_names, list(ACCENT_NONE) + assoc_to_keys(GLOB.accents_name2file))
+/// Holds some complex data regarding accents
+GLOBAL_LIST_EMPTY(accents_name2regexes)
 
 GLOBAL_LIST_EMPTY(walkingmushroom)
 

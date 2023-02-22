@@ -1,11 +1,35 @@
 /datum/emote/living/carbon/human
 	mob_type_allowed_typecache = list(/mob/living/carbon/human)
 
+
+/// The time it takes for the crying visual to be removed
+#define CRY_DURATION 12.8 SECONDS
+
 /datum/emote/living/carbon/human/cry
 	key = "cry"
 	key_third_person = "cries"
 	message = "cries."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user)) // Give them a visual crying effect if they're human
+		var/mob/living/carbon/human/human_user = user
+		ADD_TRAIT(human_user, TRAIT_CRYING, "[type]")
+		human_user.update_body()
+
+		// Use a timer to remove the effect after the defined duration has passed
+		var/list/key_emotes = GLOB.emote_list["cry"]
+		for(var/datum/emote/living/carbon/human/cry/human_emote in key_emotes)
+			// The existing timer restarts if it is already running
+			addtimer(CALLBACK(human_emote, .proc/end_visual, human_user), CRY_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/emote/living/carbon/human/cry/proc/end_visual(mob/living/carbon/human/human_user)
+	if(!QDELETED(human_user))
+		REMOVE_TRAIT(human_user, TRAIT_CRYING, "[type]")
+		human_user.update_body()
+
+#undef CRY_DURATION
 
 /datum/emote/living/carbon/human/dap
 	key = "dap"
@@ -35,6 +59,7 @@
 	key = "hiss"
 	key_third_person = "hisses"
 	message = "hisses."
+	message_param = "hisses at %t."
 	emote_type = EMOTE_AUDIBLE
 	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
 
@@ -47,12 +72,16 @@
 		return 'sound/voice/lizard/hiss.ogg'
 	if(istype(T, /obj/item/organ/tongue/polysmorph))
 		return pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
+	if(iscatperson(user))//yogs: catpeople can hiss!
+		return pick('sound/voice/feline/hiss1.ogg', 'sound/voice/feline/hiss2.ogg', 'sound/voice/feline/hiss3.ogg')
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
-		return
+		return FALSE
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	if(iscatperson(user)) //yogs: cat people can hiss!
+		return TRUE
 	return is_type_in_list(T, viable_tongues)
 
 /datum/emote/living/carbon/human/hug
@@ -83,19 +112,8 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(iscatperson(H))
-		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
-	else if(ishumanbasic(H))
-		if(user.gender == FEMALE)
-			return pick('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
-		else
-			if(prob(1))
-				return 'sound/voice/human/wilhelm_scream.ogg'
-			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
-	else if(ismoth(H))
-		return 'sound/voice/moth/scream_moth.ogg'
-	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
-		return H.dna.species.screamsound //yogs end - current added screams: lizard, preternis.
+	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
+		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
 
 /datum/emote/living/carbon/meow
 	key = "meow"
@@ -105,10 +123,21 @@
 	cooldown = 10 SECONDS
 
 /datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return iscatperson(user)
+	return iscatperson(user) && ..()
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
+
+/datum/emote/living/carbon/human/rattle
+	key = "rattle"
+	key_third_person = "rattles"
+	message = "rattles their bones!"
+	message_param = "rattles %t bones!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/rattled.ogg'
+
+/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return isskeleton(user) && ..()
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -150,10 +179,8 @@
 		H.dna.species.stop_wagging_tail(H)
 
 /datum/emote/living/carbon/human/wag/can_run_emote(mob/user, status_check = TRUE , intentional)
-	if(!..())
-		return FALSE
 	var/mob/living/carbon/human/H = user
-	return H.dna && H.dna.species && H.dna.species.can_wag_tail(user)
+	return H?.dna?.species?.can_wag_tail(user) && ..()
 
 /datum/emote/living/carbon/human/wag/select_message_type(mob/user, intentional)
 	. = ..()
@@ -186,12 +213,9 @@
 		. = "closes " + message
 
 /datum/emote/living/carbon/human/wing/can_run_emote(mob/user, status_check = TRUE, intentional)
-	if(!..())
-		return FALSE
 	var/mob/living/carbon/human/H = user
-	if(H.dna && H.dna.species && (H.dna.features["wings"] != "None"))
-		return TRUE
-		
+	return H?.dna?.species && H?.dna?.features["wings"] != "None" && ..()
+
 /mob/living/carbon/human/proc/OpenWings()
 	if(!dna || !dna.species)
 		return
@@ -218,4 +242,69 @@
 		var/turf/T = loc
 		T.Entered(src)
 
-//Ayy lmao
+/datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
+	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
+	return T?.status == ORGAN_ROBOTIC && ..()
+
+/datum/emote/living/carbon/human/robot_tongue/beep
+	key = "beep"
+	key_third_person = "beeps"
+	message = "beeps."
+	message_param = "beeps at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/beep/get_sound(mob/living/user)
+	return 'sound/machines/twobeep.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz
+	key = "buzz"
+	key_third_person = "buzzes"
+	message = "buzzes."
+	message_param = "buzzes at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz/get_sound(mob/living/user)
+	return 'sound/machines/buzz-sigh.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2
+	key = "buzz2"
+	message = "buzzes twice."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2/get_sound(mob/living/user)
+	return 'sound/machines/buzz-two.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/chime
+	key = "chime"
+	key_third_person = "chimes"
+	message = "chimes."
+
+/datum/emote/living/carbon/human/robot_tongue/chime/get_sound(mob/living/user)
+	return 'sound/machines/chime.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/ping
+	key = "ping"
+	key_third_person = "pings"
+	message = "pings."
+	message_param = "pings at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
+	return 'sound/machines/ping.ogg'
+
+ // Clown Robotic Tongue ONLY. Henk.
+
+/datum/emote/living/carbon/human/robot_tongue/clown/can_run_emote(mob/user, status_check = TRUE , intentional)
+	return user?.mind?.assigned_role == "Clown" && ..()
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk
+	key = "honk"
+	key_third_person = "honks"
+	message = "honks."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk/get_sound(mob/living/user)
+	return 'sound/items/bikehorn.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad
+	key = "sad"
+	key_third_person = "plays a sad trombone..."
+	message = "plays a sad trombone..."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/living/user)
+	return 'sound/misc/sadtrombone.ogg'

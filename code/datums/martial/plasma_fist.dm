@@ -30,7 +30,7 @@
 			break
 		A.setDir(i)
 		playsound(A.loc, 'sound/weapons/punch1.ogg', 15, 1, -1)
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /datum/martial_art/plasma_fist/proc/Tornado(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.say("TORNADO SWEEP!", forced="plasma fist")

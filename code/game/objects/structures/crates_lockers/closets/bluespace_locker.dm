@@ -34,10 +34,9 @@
 
 /obj/structure/closet/bluespace/internal/Initialize()
 	if(SSbluespace_locker.internal_locker && SSbluespace_locker.internal_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.internal_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/internal/get_other_locker()
 	return SSbluespace_locker.external_locker
@@ -75,7 +74,7 @@
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		other.visible_message(span_warning("[other] begins to shake violently!"))
 		to_chat(user, span_notice("You start pushing the door open... (this will take about [DisplayTimeText(other.breakout_time)].)"))
-		if(do_after(user,(other.breakout_time), target = src))
+		if(do_after(user, (other.breakout_time), src))
 			if(!user || user.stat != CONSCIOUS || other.opened || (!other.locked && !other.welded))
 				return
 			//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
@@ -144,14 +143,13 @@
 
 /obj/structure/closet/bluespace/external/Initialize()
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.external_locker = src
-	..()
+	return ..()
 
 /obj/structure/closet/bluespace/external/Destroy()
 	SSbluespace_locker.external_locker = null
-	SSbluespace_locker.bluespaceify_random_locker()
+	SSbluespace_locker.redistribute_locker()
 	return ..()
 
 /obj/structure/closet/bluespace/external/can_open()
@@ -268,7 +266,7 @@
 				F.pixel_y -= py
 			add_overlay(fullbrights)
 			if(add_reset_timer)
-				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
+				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE | TIMER_STOPPABLE)
 			else if(reset_timer_id)
 				deltimer(reset_timer_id)
 			pixel_x = px + dx*32

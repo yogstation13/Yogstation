@@ -3,7 +3,7 @@
 		var/color = input(user, "Select a color!", "Esword color") as null|anything in list("red", "green", "blue", "purple", "rainbow")
 		if(!color)
 			return
-		item_color = color
+		saber_color = color
 
 		if(active)
 			icon_state = "sword[color]"

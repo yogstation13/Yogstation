@@ -555,7 +555,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "zy" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,

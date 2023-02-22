@@ -21,6 +21,8 @@
 	var/motd
 	var/policy
 
+	var/load_complete = FALSE
+
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
 		return
@@ -50,6 +52,8 @@
 	LoadMOTD()
 	LoadPolicy()
 	
+	load_complete = TRUE
+
 	if (Master)
 		Master.OnConfigLoad()
 
@@ -192,6 +196,8 @@
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
 		CRASH("Tried to retrieve an abstract config_entry: [entry_type]")
+	if(!islist(entries_by_type))
+		CRASH("entries_by_type is not a list when trying to get: [entry_type]")
 	E = entries_by_type[entry_type]
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")

@@ -48,7 +48,7 @@
 /obj/item/cultivator
 	name = "cultivator"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "cultivator"
 	item_state = "cultivator"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -75,10 +75,15 @@
 	flags_1 = NONE
 	resistance_flags = FLAMMABLE
 
+/obj/item/cultivator/bone
+	name = "bone cultivator"
+	desc = "A handle and a few bones tied together to resemble a hoe. Should work for removing weeds."
+	icon_state = "cultivator_bone"
+
 /obj/item/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "hatchet"
 	item_state = "hatchet"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -110,8 +115,14 @@
 	materials = null
 	flags_1 = NONE
 
+/obj/item/hatchet/bone
+	name = "bone hatchet"
+	desc = "A primitive hatchet made out of mostly bone, with some sinew to keep it together. It just might do for cutting logs into planks."
+	icon_state = "hatchet_bone"
+
 /obj/item/scythe
 	icon_state = "scythe0"
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "scythe"

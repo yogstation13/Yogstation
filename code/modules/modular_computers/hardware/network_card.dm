@@ -77,3 +77,25 @@
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "net_wired"
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/computer_hardware/network_card/integrated //Borg tablet version, only works while the borg has power and is not locked
+	name = "cyborg data link"
+
+/obj/item/computer_hardware/network_card/integrated/get_signal(specific_action = 0)
+	var/obj/item/modular_computer/tablet/integrated/modularInterface = holder
+
+	if(!modularInterface || !istype(modularInterface))
+		return FALSE //wrong type of tablet
+
+	if(istype(modularInterface.borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = modularInterface.borgo
+		if(!R)
+			return FALSE //No borg found
+
+		if(R.lockcharge)
+			return FALSE //lockdown restricts borg networking
+
+		if(!R.cell || R.cell.charge == 0)
+			return FALSE //borg cell dying restricts borg networking
+
+	return ..()

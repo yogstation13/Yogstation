@@ -47,7 +47,7 @@
 			if(L.client && !L.incapacitated())
 				L.visible_message(span_notice("[L] starts climbing through [src]..."), \
 				span_notice("You begin climbing through [src]..."))
-				if(!do_after(L, 30, target = L))
+				if(!do_after(L, 3 SECONDS, L))
 					return
 		if(!istype(AM, /obj/effect/))
 			beckon(AM)
@@ -70,7 +70,7 @@
 	do_sparks(5, TRUE, AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
-		L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+		L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 		L.clear_fullscreen("flash", 5)
 		var/obj/item/transfer_valve/TTV = locate() in L.GetAllContents()
 		if(TTV)

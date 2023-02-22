@@ -4,7 +4,7 @@
 	icon_state = "chronohelmet"
 	item_state = "chronohelmet"
 	slowdown = 1
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 90, "rad" = 90, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 90, RAD = 90, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/obj/item/clothing/suit/space/chronos/suit
 
@@ -24,7 +24,7 @@
 	icon_state = "chronosuit"
 	item_state = "chronosuit"
 	actions_types = list(/datum/action/item_action/toggle)
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 90, "rad" = 90, "fire" = 100, "acid" = 1000)
+	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 90, RAD = 90, FIRE = 100, ACID = 1000)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/list/chronosafe_items = list(/obj/item/chrono_eraser, /obj/item/gun/energy/chrono_gun)
 	var/obj/item/clothing/head/helmet/space/chronos/helmet
@@ -65,6 +65,7 @@
 
 /obj/item/clothing/suit/space/chronos/Destroy()
 	dropped()
+	QDEL_NULL(teleport_now)
 	return ..()
 
 /obj/item/clothing/suit/space/chronos/emp_act(severity)
@@ -140,13 +141,13 @@
 		user.anchored = TRUE
 		user.Stun(INFINITY)
 
-		animate(user, color = "#00ccee", time = 3)
+		animate(user, color = "#00ccee", time = 0.3 SECONDS)
 		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_2, user, to_turf, phase_in_ds), 3, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/chronos/proc/phase_2(mob/living/carbon/human/user, turf/to_turf, phase_in_ds)
 	if(teleporting && activated && user)
-		animate(user, color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0), time = 2)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_3, user, to_turf, phase_in_ds), 2, TIMER_STOPPABLE)
+		animate(user, color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0), time = 0.2 SECONDS)
+		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_3, user, to_turf, phase_in_ds), 0.2 SECONDS, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
 
@@ -160,7 +161,7 @@
 
 /obj/item/clothing/suit/space/chronos/proc/phase_4(mob/living/carbon/human/user, turf/to_turf)
 	if(teleporting && activated && user)
-		animate(user, color = "#ffffff", time = 3)
+		animate(user, color = "#ffffff", time = 0.3 SECONDS)
 		phase_timer_id = addtimer(CALLBACK(src, .proc/finish_chronowalk, user, to_turf), 3, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
@@ -250,7 +251,7 @@
 	var/mob/holder
 	var/phase_time = 0
 	var/phase_time_length = 3
-	var/obj/screen/chronos_target/target_ui
+	var/atom/movable/screen/chronos_target/target_ui
 	var/obj/item/clothing/suit/space/chronos/chronosuit
 
 /obj/effect/chronos_cam/singularity_act()
@@ -310,17 +311,17 @@
 			holder.unset_machine()
 	return ..()
 
-/obj/screen/chronos_target
+/atom/movable/screen/chronos_target
 	name = "target display"
 	screen_loc = "CENTER,CENTER"
 	color = list(1,0,0,0, 0,1,0,0.8, 0,0,1,0.933, 0,0,0,0, 0,0,0,0)
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 
-/obj/screen/chronos_target/Initialize(mapload, mob/living/carbon/human/user)
+/atom/movable/screen/chronos_target/Initialize(mapload, mob/living/carbon/human/user)
 	if(user)
 		vis_contents += user
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	return ..()
 
 /datum/action/innate/chrono_teleport
@@ -329,6 +330,10 @@
 	button_icon_state = "chrono_phase"
 	check_flags = AB_CHECK_CONSCIOUS //|AB_CHECK_INSIDE
 	var/obj/item/clothing/suit/space/chronos/chronosuit = null
+
+/datum/action/innate/chrono_teleport/Destroy()
+	chronosuit = null
+	return ..()
 
 /datum/action/innate/chrono_teleport/IsAvailable()
 	return (chronosuit && chronosuit.activated && chronosuit.camera && !chronosuit.teleporting)

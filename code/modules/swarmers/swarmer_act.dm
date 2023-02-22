@@ -86,7 +86,8 @@
 	var/isonshuttle = istype(get_area(src), /area/shuttle)
 	for(var/turf/T in range(1, src))
 		var/area/A = get_area(T)
-		if(isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
+		var/datum/gas_mixture/turf_air = T.return_air()
+		if(turf_air.get_moles(/datum/gas/hydrogen) > 1 || turf_air.get_moles(/datum/gas/tritium) > 1 || turf_air.get_moles(/datum/gas/plasma) > 1 || (locate(/obj/effect/hotspot) in T) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
 			to_chat(S, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
 			S.target = null
 			return FALSE
@@ -135,6 +136,10 @@
 	to_chat(S, span_warning("Searching... sensor malfunction! Target lost. Aborting."))
 	return FALSE
 
+/obj/structure/destructible/cult/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, span_warning("Err: unresolved object. Aborting."))
+	return FALSE
+
 /obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("Destroying this object could cause a chain reaction. Aborting."))
 	return FALSE
@@ -167,7 +172,8 @@
 	var/isonshuttle = istype(loc, /area/shuttle)
 	for(var/turf/T in range(1, src))
 		var/area/A = get_area(T)
-		if(isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
+		var/datum/gas_mixture/turf_air = T.return_air()
+		if(turf_air.get_moles(/datum/gas/hydrogen) > 1 || turf_air.get_moles(/datum/gas/tritium) > 1 || turf_air.get_moles(/datum/gas/plasma) > 1 || (locate(/obj/effect/hotspot) in T) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
 			to_chat(S, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
 			S.target = null
 			return TRUE
@@ -181,7 +187,8 @@
 	var/is_on_shuttle = istype(get_area(src), /area/shuttle)
 	for(var/turf/adj_turf in range(1, src))
 		var/area/adj_area = get_area(adj_turf)
-		if(isspaceturf(adj_turf) || (!is_on_shuttle && (istype(adj_area, /area/shuttle) || istype(adj_area, /area/space))) || (is_on_shuttle && !istype(adj_area, /area/shuttle)))
+		var/datum/gas_mixture/turf_air = adj_turf.return_air()
+		if(turf_air.get_moles(/datum/gas/hydrogen) > 1 || turf_air.get_moles(/datum/gas/tritium) > 1 || turf_air.get_moles(/datum/gas/plasma) > 1 || (locate(/obj/effect/hotspot) in adj_turf) || turf_air.return_pressure() > 500 || turf_air.return_temperature() > 750 || !turf_air.total_moles() || isspaceturf(adj_turf) || (!is_on_shuttle && (istype(adj_area, /area/shuttle) || istype(adj_area, /area/space))) || (is_on_shuttle && !istype(adj_area, /area/shuttle)))
 			to_chat(actor, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
 			actor.target = null
 			return TRUE

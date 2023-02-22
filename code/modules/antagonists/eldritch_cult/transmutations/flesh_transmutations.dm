@@ -1,6 +1,7 @@
 /datum/eldritch_transmutation/flesh_blade
+	name = "Flesh Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood)
-	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
+	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/flesh)
 	required_shit_list = "A pool of blood and a knife."
 
 /datum/eldritch_transmutation/voiceless_dead
@@ -48,14 +49,14 @@
 	var/datum/antagonist/heretic/master = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
 	atoms -= humie
-	RegisterSignal(humie,COMSIG_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(humie,COMSIG_GLOB_MOB_DEATH,.proc/remove_ghoul)
 	ghouls += humie
 
 /datum/eldritch_transmutation/voiceless_dead/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
 	ghouls -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
-	UnregisterSignal(source,COMSIG_MOB_DEATH)
+	UnregisterSignal(source,COMSIG_GLOB_MOB_DEATH)
 
 /datum/eldritch_transmutation/summon/raw_prophet
 	name = "Summon Raw Prophet"

@@ -5,7 +5,7 @@
 
 /datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	var/datum/hud/H = user.hud_used
-	var/obj/screen/craft/C = new()
+	var/atom/movable/screen/craft/C = new()
 	C.icon = H.ui_style
 	H.static_inventory += C
 	CL.screen += C
@@ -20,14 +20,17 @@
 					CAT_WEAPON,
 					CAT_AMMO,
 				),
+				CAT_TOOLS = CAT_NONE,
 				CAT_ROBOT = CAT_NONE,
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
+				CAT_STRUCTURES = CAT_NONE,
 				CAT_FOOD = list(
 					CAT_BREAD,
 					CAT_BURGER,
 					CAT_CAKE,
 					CAT_EGG,
+					CAT_BAIT, //this is alphabetical in game
 					CAT_MEAT,
 					CAT_MISCFOOD,
 					CAT_PASTRY,
@@ -37,14 +40,18 @@
 					CAT_SANDWICH,
 					CAT_SOUP,
 					CAT_SPAGHETTI,
+					CAT_SEAFOOD,
 				),
 				CAT_DRINK = CAT_NONE,
-				CAT_CLOTHING = CAT_NONE,
+				CAT_APPAREL = list(
+					CAT_CLOTHING,
+					CAT_ARMOR,
+					CAT_EQUIPMENT
+				),
 			)
 
 	var/cur_category = CAT_NONE
 	var/cur_subcategory = CAT_NONE
-	var/datum/action/innate/crafting/button
 	var/display_craftable_only = FALSE
 	var/display_compact = TRUE
 
@@ -63,28 +70,40 @@
 
 
 
-/datum/component/personal_crafting/proc/check_contents(datum/crafting_recipe/R, list/contents)
+/datum/component/personal_crafting/proc/check_contents(mob/user, datum/crafting_recipe/R, list/contents)
+	var/list/item_instances = contents["instances"]
 	contents = contents["other"]
-	main_loop:
-		for(var/A in R.reqs)
-			var/needed_amount = R.reqs[A]
-			for(var/B in contents)
-				if(ispath(B, A))
-					if (R.blacklist.Find(B))
-						continue
-					if(contents[B] >= R.reqs[A])
-						continue main_loop
-					else
-						needed_amount -= contents[B]
-						if(needed_amount <= 0)
-							continue main_loop
-						else
-							continue
-			return 0
-	for(var/A in R.chem_catalysts)
-		if(contents[A] < R.chem_catalysts[A])
-			return 0
-	return 1
+
+	var/list/requirements_list = list()
+
+	// Process all requirements
+	for(var/requirement_path in R.reqs)
+		// Check we have the appropriate ammount avalible in the contents list
+		var/needed_amount = R.reqs[requirement_path]
+		for(var/content_item_path in contents)
+			// Right path and not blacklisted
+			if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
+				continue
+
+			needed_amount -= contents[content_item_path]
+			if(needed_amount <= 0)
+				break
+
+		if(needed_amount > 0)
+			return FALSE
+
+		// Store the instances of what we will use for R.check_requirements() for requirement_path
+		var/list/instances_list = list()
+		for(var/instance_path in item_instances)
+			if(ispath(instance_path in item_instances))
+				instances_list += item_instances[instance_path]
+
+		requirements_list[requirement_path] = instances_list
+
+	for(var/requirement_path in R.chem_catalysts)
+		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
+			return FALSE
+	return R.check_requirements(user, requirements_list)
 
 /datum/component/personal_crafting/proc/get_environment(mob/user)
 	. = list()
@@ -106,9 +125,14 @@
 	. = list()
 	.["tool_behaviour"] = list()
 	.["other"] = list()
+	.["instances"] = list()
 	for(var/obj/item/I in get_environment(user))
-		if(I.flags_1 & HOLOGRAM_1)
+		if(I.status_traits && HAS_TRAIT(I,TRAIT_NODROP) || I.flags_1 & HOLOGRAM_1)
 			continue
+		if(.["instances"][I.type])
+			.["instances"][I.type] += I
+		else
+			.["instances"][I.type] = list(I)
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			.["other"][I.type] += S.amount
@@ -130,6 +154,13 @@
 	var/list/present_qualities = list()
 	present_qualities |= contents["tool_behaviour"]
 	for(var/obj/item/I in user.contents)
+		if(istype(I, /obj/item/organ/cyberimp/arm/toolset))
+			var/obj/item/organ/cyberimp/arm/toolset/T = I
+			if(T.owner == user)
+				for(var/obj/item/implant_item in I.contents)
+					possible_tools += implant_item.type
+					if(implant_item.tool_behaviour)
+						present_qualities.Add(implant_item.tool_behaviour)
 		if(istype(I, /obj/item/storage))
 			for(var/obj/item/SI in I.contents)
 				possible_tools += SI.type
@@ -159,11 +190,11 @@
 	var/send_feedback = 1
 	if(HAS_TRAIT(user, TRAIT_CRAFTY))
 		R.time *= 0.75
-	if(check_contents(R, contents))
+	if(check_contents(user, R, contents))
 		if(check_tools(user, R, contents))
-			if(do_after(user, R.time, target = user))
+			if(do_after(user, R.time, user))
 				contents = get_surroundings(user)
-				if(!check_contents(R, contents))
+				if(!check_contents(user, R, contents))
 					return ", missing component."
 				if(!check_tools(user, R, contents))
 					return ", missing tool."
@@ -303,7 +334,7 @@
 /datum/component/personal_crafting/ui_state(mob/user)
 	return GLOB.not_incapacitated_turf_state
 
-/datum/component/personal_crafting/proc/component_ui_interact(obj/screen/craft/image, location, control, params, user)
+/datum/component/personal_crafting/proc/component_ui_interact(atom/movable/screen/craft/image, location, control, params, user)
 	if(user == parent)
 		ui_interact(user)
 
@@ -333,12 +364,12 @@
 	for(var/rec in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/R = rec
 
-		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
 
 		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
 			continue
-		craftability["[REF(R)]"] = check_contents(R, surroundings)
+		craftability["[REF(R)]"] = check_contents(user, R, surroundings)
 
 	data["craftability"] = craftability
 	return data
@@ -353,7 +384,7 @@
 		if(R.name == "") //This is one of the invalid parents that sneaks in
 			continue
 
-		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
 
 		if(isnull(crafting_recipes[R.category]))

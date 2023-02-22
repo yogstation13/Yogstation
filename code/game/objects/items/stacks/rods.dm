@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
 	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = 0), \
 	new/datum/stack_recipe("railing", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
+	new/datum/stack_recipe("railing corner", /obj/structure/railing/corner, 3, time = 18, window_checks = TRUE), \
 	// yogs start
 	null, \
 	new/datum/stack_recipe("fore port spacepod frame", /obj/item/pod_parts/pod_frame/fore_port, 15, time = 30, one_per_turf = 0), \
@@ -70,13 +71,16 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 	else if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = W
-		if(amount != 1)
-			to_chat(user, span_warning("You must use a single rod!"))
-		else if(S.w_class > WEIGHT_CLASS_SMALL)
+		if(S.w_class > WEIGHT_CLASS_SMALL)
 			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else
+			amount -= 1
 			var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/kebab(get_turf(src))
-			A.initialize_custom_food(src, S, user)
+			if (amount == 0)
+				A.initialize_custom_food(src, S, user)
+			else
+				A.initialize_custom_food(src, S, user, TRUE)
+				update_icon()
 	else
 		return ..()
 

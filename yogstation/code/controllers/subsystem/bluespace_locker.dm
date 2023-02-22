@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 	bluespaceify_random_locker()
 	if(external_locker)
 		external_locker.take_contents()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/bluespace_locker/proc/bluespaceify_random_locker()
 	if(external_locker)
@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 	// basically any normal-looking locker that isn't a secure one
 	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag)\
 	- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet)\
-	- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate)\
+	- typesof(/obj/structure/closet/cardboard)\
 	- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis)\
 	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE)
 
@@ -67,3 +67,17 @@ SUBSYSTEM_DEF(bluespace_locker)
 		internal_locker.dump_contents()
 	internal_locker.update_icon()
 	external_locker.update_icon()
+
+/datum/controller/subsystem/bluespace_locker/proc/redistribute_locker()
+	if(!internal_locker)
+		return
+	var/area/A = get_area(internal_locker)
+	for(var/atom/movable/M in A)
+		if(M == internal_locker)
+			continue
+		if(istype(M, /obj/machinery/light))
+			continue
+		if(istype(M, /obj/machinery/power))
+			continue
+		M.forceMove(find_safe_turf())
+	bluespaceify_random_locker()

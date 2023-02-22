@@ -3,22 +3,26 @@
 	desc = "A mechanical door that permits one-way access to an area."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "turnstile_map"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	density = TRUE
 	obj_integrity = 250
 	max_integrity = 250
 	//Robust! It'll be tough to break...
-	armor = list("melee" = 50, "bullet" = 20, "laser" = 0, "energy" = 80, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 20, LASER = 0, ENERGY = 80, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	anchored = TRUE
 	use_power = FALSE
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
 	climbable = FALSE
+	CanAtmosPass = ATMOS_PASS_NO
+
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
 	req_one_access = list(ACCESS_SEC_DOORS)
+	max_integrity = 400 /// Made of damn good steel
+	damage_deflection = 21 /// Same as airlocks!
 	
 /obj/machinery/turnstile/Initialize()
 	. = ..()
@@ -35,7 +39,7 @@
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
-	else if (!isliving(mover))
+	else if (!isliving(mover) && !istype(mover, /obj/vehicle/ridden/wheelchair))
 		flick("deny", src)
 		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
 		return FALSE
@@ -44,7 +48,15 @@
 	if(!allowed && mover.pulledby)
 		allowed = allowed(mover.pulledby)
 
-	if(get_dir(loc, mover.loc) == dir || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
+	if(istype(mover, /obj/vehicle/ridden/wheelchair))
+		for(var/mob/living/rider in mover.buckled_mobs)
+			if(allowed(rider) && !mover.pulledby) //defer to the above dragging code if we are being dragged
+				allowed = TRUE
+	var/is_handcuffed = FALSE
+	if(iscarbon(mover))
+		var/mob/living/carbon/C = mover
+		is_handcuffed = C.handcuffed
+	if((get_dir(loc, mover.loc) == dir && !is_handcuffed) || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE

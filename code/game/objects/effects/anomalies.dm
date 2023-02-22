@@ -1,4 +1,6 @@
 //Anomalies, used for events. Note that these DO NOT work by themselves; their procs are called by the event datum.
+/// Chance of taking a step per second
+#define ANOMALY_MOVECHANCE 45
 
 /obj/effect/anomaly
 	name = "anomaly"
@@ -7,7 +9,6 @@
 	density = FALSE
 	anchored = TRUE
 	light_range = 3
-	var/movechance = 70
 	var/obj/item/assembly/signaler/anomaly/aSignal
 	var/area/impact_area
 
@@ -41,8 +42,8 @@
 		countdown.color = countdown_colour
 	countdown.start()
 
-/obj/effect/anomaly/process()
-	anomalyEffect()
+/obj/effect/anomaly/process(delta_time)
+	anomalyEffect(delta_time)
 	if(death_time < world.time)
 		if(loc)
 			detonate()
@@ -51,11 +52,11 @@
 /obj/effect/anomaly/Destroy()
 	GLOB.poi_list.Remove(src)
 	STOP_PROCESSING(SSobj, src)
-	qdel(countdown)
+	QDEL_NULL(countdown)
 	return ..()
 
-/obj/effect/anomaly/proc/anomalyEffect()
-	if(prob(movechance))
+/obj/effect/anomaly/proc/anomalyEffect(delta_time)
+	if(DT_PROB(ANOMALY_MOVECHANCE, delta_time))
 		step(src,pick(GLOB.alldirs))
 
 /obj/effect/anomaly/proc/detonate()
@@ -66,7 +67,7 @@
 		qdel(src)
 
 /obj/effect/anomaly/proc/anomalyNeutralize()
-	new /obj/effect/particle_effect/smoke/bad(loc)
+	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 
 	for(var/atom/movable/O in src)
 		O.forceMove(drop_location())
@@ -251,7 +252,7 @@
 							blueeffect.plane = FULLSCREEN_PLANE
 							blueeffect.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 							M.client.screen += blueeffect
-							sleep(20)
+							sleep(2 SECONDS)
 							M.client.screen -= blueeffect
 							qdel(blueeffect)
 
@@ -261,14 +262,16 @@
 	name = "pyroclastic anomaly"
 	icon_state = "mustard"
 	var/ticks = 0
+	/// How many seconds between each gas release
+	var/releasedelay = 10
 
-/obj/effect/anomaly/pyro/anomalyEffect()
+/obj/effect/anomaly/pyro/anomalyEffect(delta_time)
 	..()
-	ticks++
-	if(ticks < 5)
+	ticks += delta_time
+	if(ticks < releasedelay)
 		return
 	else
-		ticks = 0
+		ticks -= releasedelay
 	var/turf/open/T = get_turf(src)
 	if(istype(T))
 		T.atmos_spawn_air("o2=5;plasma=5;TEMP=1000")
@@ -356,3 +359,7 @@
 				SSexplosions.medturf += T
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowturf += T
+
+ /////////////////////////
+
+#undef ANOMALY_MOVECHANCE

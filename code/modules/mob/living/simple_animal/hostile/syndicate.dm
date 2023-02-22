@@ -80,6 +80,7 @@
 /mob/living/simple_animal/hostile/syndicate/melee //dude with a knife and no shields
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	icon_state = "syndicate_knife"
 	icon_living = "syndicate_knife"
 	loot = list(/obj/effect/gibspawner/human)
@@ -297,6 +298,7 @@
 	maxHealth = 25
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	sharpness = SHARP_EDGED

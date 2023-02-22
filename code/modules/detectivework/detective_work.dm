@@ -100,3 +100,19 @@
 	A.add_fingerprint_list(return_fingerprints())
 	A.add_hiddenprint_list(return_hiddenprints())
 	A.fingerprintslast = fingerprintslast
+
+	A.add_scent_list(return_scents())
+
+//yog code for olfaction mutation
+/atom/proc/add_scent_list(list/scents)
+	if(length(scents))
+		. = AddComponent(/datum/component/forensics, null, null, null, null, scents)
+
+/atom/proc/add_scent(mob/M)
+	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
+	. = D.add_scent(M)
+
+/atom/proc/return_scents()
+	var/datum/component/forensics/D = GetComponent(/datum/component/forensics)
+	if(D)
+		. = D.scents

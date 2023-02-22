@@ -17,7 +17,7 @@ Difficulty: Extremely Hard
 	mob_biotypes = list(MOB_ORGANIC,MOB_HUMANOID)
 	light_color = "#E4C7C5"
 	movement_type = GROUND
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	speak_emote = list("roars")
 	armour_penetration = 100
 	melee_damage_lower = 10
@@ -222,22 +222,22 @@ Difficulty: Extremely Hard
 				P.original = target
 			P.fire()
 		SLEEP_CHECK_DEATH(8)
-	SetRecoveryTime(15, 20)
+	SetRecoveryTime(1.5 SECONDS, 2 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/check_enraged()
 	if(health <= maxHealth*0.25 && !enraged)
-		SetRecoveryTime(80, 80)
+		SetRecoveryTime(8 SECONDS, 8 SECONDS)
 		adjustHealth(-maxHealth)
 		enraged = TRUE
 		enraging = TRUE
-		animate(src, pixel_y = pixel_y + 96, time = 100, easing = ELASTIC_EASING)
-		spin(100, 10)
-		SLEEP_CHECK_DEATH(60)
+		animate(src, pixel_y = pixel_y + 96, time = 10 SECONDS, easing = ELASTIC_EASING)
+		spin(10 SECONDS, 1 SECONDS)
+		SLEEP_CHECK_DEATH(6 SECONDS)
 		playsound(src, 'sound/effects/explosion3.ogg', 100, TRUE)
 		overlays += mutable_appearance('icons/effects/effects.dmi', "curse")
-		animate(src, pixel_y = pixel_y - 96, time = 8, flags = ANIMATION_END_NOW)
-		spin(8, 2)
-		SLEEP_CHECK_DEATH(8)
+		animate(src, pixel_y = pixel_y - 96, time = 0.8 SECONDS, flags = ANIMATION_END_NOW)
+		spin(0.8 SECONDS, 0.2 SECONDS)
+		SLEEP_CHECK_DEATH(0.8 SECONDS)
 		for(var/mob/living/L in viewers(src))
 			shake_camera(L, 3, 2)
 		playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
@@ -312,10 +312,10 @@ Difficulty: Extremely Hard
 	id = "ice_block_talisman"
 	duration = 25
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/ice_block_talisman
+	alert_type = /atom/movable/screen/alert/status_effect/ice_block_talisman
 	var/icon/cube
 
-/obj/screen/alert/status_effect/ice_block_talisman
+/atom/movable/screen/alert/status_effect/ice_block_talisman
 	name = "Frozen Solid"
 	desc = "You're frozen inside an ice cube, and cannot move!"
 	icon_state = "frozen"

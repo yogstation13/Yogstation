@@ -9,7 +9,7 @@
 	var/obj/target = null
 	var/check_flags = NONE
 	var/processing = FALSE
-	var/obj/screen/movable/action_button/button = null
+	var/atom/movable/screen/movable/action_button/button = null
 	var/buttontooltipstyle = ""
 	var/transparent_when_unavailable = TRUE
 
@@ -20,6 +20,7 @@
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
 	var/syndicate = FALSE // are these buttons only for syndicates?
+	var/atom/movable/screen/cooldown_overlay/cooldown_overlay
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -43,6 +44,7 @@
 
 /datum/action/proc/Grant(mob/M)
 	if(M)
+		M.originalactions += src
 		if(owner)
 			if(owner == M)
 				return
@@ -70,9 +72,11 @@
 		M.actions += src
 		if(M.client)
 			M.client.screen += button
-			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
+			button.locked = M.client.prefs.read_preference(/datum/preference/toggle/buttons_locked) || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
-		M.update_action_buttons()
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen += button
+		M.update_action_buttons() // Now push the owners buttons back
 	else
 		Remove(owner)
 
@@ -80,12 +84,16 @@
 	if(M)
 		if(M.client)
 			M.client.screen -= button
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen -= button
+		M.originalactions -= src
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	if(button)
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		button.locked = FALSE
+		button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
@@ -143,7 +151,7 @@
 			button.color = rgb(255,255,255,255)
 			return 1
 
-/datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
+/datum/action/proc/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
 		current_button.cut_overlays(TRUE)
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
@@ -177,7 +185,7 @@
 		I.ui_action_click(owner, src)
 	return 1
 
-/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/item_action/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	if(button_icon && button_icon_state)
 		// If set, use the custom icon that we set instead
 		// of the item appearence
@@ -196,6 +204,73 @@
 
 /datum/action/item_action/toggle_light
 	name = "Toggle Light"
+
+/datum/action/item_action/toggle_laser_sight
+	name = "Toggle Laser Sight"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/toggle_laser_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtonIcon()
+
+/datum/action/item_action/toggle_laser_sight/UpdateButtonIcon(status_only = FALSE, force)
+	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()
+
+/datum/action/item_action/change_laser_sight_color
+	name = "Change Laser Sight Color"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/change_laser_sight_color/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/H = target
+			for(var/obj/item/attachment/A in H.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	if(att && owner)
+		var/C = input(owner, "Select Laser Color", "Select laser color", att.laser_color) as null|color
+		if(!C || QDELETED(att))
+			return
+		att.laser_color = C
+	UpdateButtonIcon()
+
+/datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
+	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()
+
+/datum/action/item_action/toggle_infrared_sight
+	name = "Toggle Infrared"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "ifr_sight"
+	var/obj/item/attachment/scope/infrared/att
+
+/datum/action/item_action/toggle_infrared_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/scope/infrared))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtonIcon()
+
+/datum/action/item_action/toggle_infrared_sight/UpdateButtonIcon(status_only = FALSE, force)
+	button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"
+	..()
 
 /datum/action/item_action/toggle_hood
 	name = "Toggle Hood"
@@ -218,6 +293,14 @@
 
 /datum/action/item_action/startchainsaw
 	name = "Pull The Starting Cord"
+
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/V = target
+	if(istype(V))
+		V.charge_hammer(owner)
 
 /datum/action/item_action/toggle_gunlight
 	name = "Toggle Gunlight"
@@ -362,6 +445,10 @@
 /datum/action/item_action/change
 	name = "Change"
 
+/datum/action/item_action/hatsky_voiceline
+	name = "Press Voice Button"
+	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
+
 /datum/action/item_action/nano_picket_sign
 	name = "Retext Nano Picket Sign"
 	var/obj/item/picket_sign/S
@@ -499,7 +586,7 @@
 		I.attack_self(owner)
 	else
 		if (owner.get_num_arms() <= 0)
-			to_chat(owner, span_warning("You dont have any usable hands!"))
+			to_chat(owner, span_warning("You don't have any usable hands!"))
 		else
 			to_chat(owner, span_warning("Your hands are full!"))
 
@@ -526,6 +613,30 @@
 		owner.forceMove(box.drop_location())
 		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 		QDEL_NULL(box)
+
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
+
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
 
 //Preset for spells
 /datum/action/spell_action
@@ -620,7 +731,9 @@
 	button.maptext_height = 12
 
 /datum/action/cooldown/IsAvailable()
-	return next_use_time <= world.time
+	if(next_use_time > world.time)
+		return FALSE
+	return ..()
 
 /datum/action/cooldown/proc/StartCooldown()
 	next_use_time = world.time + cooldown_time
@@ -662,6 +775,12 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
 /datum/action/language_menu
 	name = "Language Menu"
 	desc = "Open the language menu to review your languages, their keys, and select your default language."
@@ -681,6 +800,13 @@
 	desc = "Pops out or in your wheely-heel's wheels."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
+
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
 
 /datum/action/item_action/kindleKicks
 	name = "Activate Kindle Kicks"
@@ -715,6 +841,9 @@
 /datum/action/small_sprite/megafauna/colossus
 	small_icon_state = "Basilisk"
 
+/datum/action/small_sprite/megafauna/stalwart
+	small_icon_state = "Basilisk"
+
 /datum/action/small_sprite/megafauna/bubblegum
 	small_icon_state = "goliath2"
 
@@ -744,7 +873,7 @@
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "storage_gather_switch"
 
-/datum/action/item_action/storage_gather_mode/ApplyIcon(obj/screen/movable/action_button/current_button)
+/datum/action/item_action/storage_gather_mode/ApplyIcon(atom/movable/screen/movable/action_button/current_button)
 	. = ..()
 	var/old_layer = target.layer
 	var/old_plane = target.plane

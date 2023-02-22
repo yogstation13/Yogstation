@@ -21,6 +21,16 @@
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
 
+/obj/item/gun/ballistic/shotgun/automatic
+	name = "semi-auto shotgun"
+	desc = "A shotgun that automatically chambers a new round after firing."
+	rack_sound = "sound/weapons/gun_slide_lock_5.ogg"
+	rack_sound_vary = FALSE
+	bolt_type = BOLT_TYPE_LOCKING
+	semi_auto = TRUE
+	casing_ejector = TRUE
+	bolt_wording = "charging handle"
+
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0
 	if(chambered && chambered.BB)
@@ -54,13 +64,9 @@
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
-	..()
-	rack()
-
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A semi-automatic shotgun with tactical furniture and a six-shell capacity underneath."
 	fire_delay = 5
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
@@ -68,7 +74,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "compact combat shotgun"
-	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
+	desc = "A compact version of the semi-automatic combat shotgun. For close encounters."
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
@@ -83,7 +89,6 @@
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
 	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
-	semi_auto = TRUE
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
@@ -132,9 +137,8 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 	actions_types = list()
 	mag_display = TRUE
+	mag_display_ammo = TRUE
 	empty_indicator = TRUE
-	empty_alarm = TRUE
-	special_mags = TRUE
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
@@ -191,6 +195,13 @@
 	unique_reskin = null
 	var/slung = FALSE
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
+	if(prob(40))
+		playsound(src, dry_fire_sound, 30, TRUE)
+		return
+	else
+		. = ..()
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()

@@ -80,6 +80,7 @@
 /atom/proc/interact(mob/user)
 	if(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_INTERACT)
 		add_hiddenprint(user)
+		add_scent(user)
 	else
 		add_fingerprint(user)
 	if(interaction_flags_atom & INTERACT_ATOM_UI_INTERACT)
@@ -152,7 +153,7 @@
 		if(ishuman(ML))
 			var/mob/living/carbon/human/H = ML
 			affecting = H.get_bodypart(ran_zone(dam_zone))
-		var/armor = ML.run_armor_check(affecting, "melee")
+		var/armor = ML.run_armor_check(affecting, MELEE)
 		if(prob(75))
 			ML.apply_damage(rand(1,3), BRUTE, affecting, armor)
 			ML.visible_message(span_danger("[name] bites [ML]!"), \

@@ -29,13 +29,19 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, GLOB.spines_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines_animated, GLOB.animated_spines_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/legs, GLOB.legs_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wingsopen, GLOB.moth_wingsopen_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
+
 
 
 	//Species
@@ -52,7 +58,9 @@
 		var/datum/sprite_accessory/hair_gradient/H = new path()
 		GLOB.hair_gradients_list[H.name] = H
 
-	
+	// Keybindings
+	init_keybindings()
+
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))

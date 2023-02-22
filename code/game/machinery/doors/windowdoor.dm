@@ -9,7 +9,7 @@
 	var/base_state = "left"
 	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
@@ -60,9 +60,9 @@
 		return
 	autoclose = TRUE
 	if(check_access(null))
-		sleep(50)
+		sleep(5 SECONDS)
 	else //secure doors close faster
-		sleep(20)
+		sleep(2 SECONDS)
 	if(!density && autoclose) //did someone change state while we slept?
 		close()
 
@@ -150,7 +150,7 @@
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	icon_state ="[base_state]open"
-	sleep(10)
+	sleep(1 SECONDS)
 
 	density = FALSE
 	air_update_turf(1)
@@ -177,7 +177,7 @@
 	density = TRUE
 	air_update_turf(1)
 	update_freelook_sight()
-	sleep(10)
+	sleep(1 SECONDS)
 
 	operating = FALSE
 	return 1
@@ -217,7 +217,7 @@
 		operating = TRUE
 		flick("[base_state]spark", src)
 		playsound(src, "sparks", 75, 1)
-		sleep(6)
+		sleep(0.6 SECONDS)
 		operating = FALSE
 		desc += "<BR>[span_warning("Its access panel is smoking slightly.")]"
 		open(2)
@@ -421,7 +421,7 @@
 	if(src)
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
 /obj/machinery/door/window/clockwork/allowed(mob/M)

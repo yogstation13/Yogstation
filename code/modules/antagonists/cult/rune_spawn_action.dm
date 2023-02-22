@@ -28,7 +28,7 @@
 	if(locate(/obj/effect/rune) in T)
 		to_chat(owner, span_cult("There is already a rune here."))
 		return FALSE
-	if(!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z))
+	if(!is_station_level(T.z) && !is_reebe(T.z)) //Yogstation change: Can't make runes on lavaland anymore.
 		to_chat(owner, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return TRUE
@@ -66,7 +66,7 @@
 		if(istype(T, /turf/open/floor/engine/cult))
 			scribe_mod *= 0.5
 		playsound(T, 'sound/magic/enter_blood.ogg', 100, FALSE)
-		if(do_after(owner, scribe_mod, target = owner, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, health, action_interrupt)))
+		if(do_after(owner, scribe_mod, owner, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, health, action_interrupt)))
 			var/obj/effect/rune/new_rune = new rune_type(owner.loc)
 			new_rune.keyword = chosen_keyword
 		else

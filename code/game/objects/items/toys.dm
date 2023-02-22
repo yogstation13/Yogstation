@@ -23,6 +23,7 @@
  *		Clockwork Watches
  *		Toy Daggers
  *		Turn Tracker
+ *		ceremonial Rod of Asclepius
  */
 
 
@@ -230,7 +231,7 @@
 
 /obj/item/toy/ammo/gun
 	name = "capgun ammo"
-	desc = "Make sure to recyle the box in an autolathe when it gets empty."
+	desc = "Make sure to recycle the box in an autolathe when it gets empty."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "357OLD-7"
 	w_class = WEIGHT_CLASS_TINY
@@ -250,7 +251,7 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -259,18 +260,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/hacked = FALSE
+	var/saber_color = "blue"
 
 /obj/item/toy/sword/attack_self(mob/user)
 	active = !( active )
 	if (active)
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(user, 'sound/weapons/saberon.ogg', 20, 1)
-		if(hacked)
-			icon_state = "swordrainbow"
-			item_state = "swordrainbow"
-		else
-			icon_state = "swordblue"
-			item_state = "swordblue"
+		icon_state = "sword[saber_color]"
+		item_state = "sword[saber_color]"
 		w_class = WEIGHT_CLASS_BULKY
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
@@ -291,13 +289,13 @@
 			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
-				newSaber.item_color = "rainbow"
+				newSaber.saber_color = "rainbow"
 			qdel(W)
 			qdel(src)
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			to_chat(user, span_warning("RNBW_ENGAGE"))
 
 			if(active)
@@ -322,6 +320,24 @@
 	attack_verb = list("pricked", "absorbed", "gored")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball
+	name = "toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "baseballbat_donk"
+	item_state = "baseball_bat_donk"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	attack_verb = list("beat", "smacked")
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball/nerf
+	name = "antique toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle is almost rubbed off...\"nerf or nothing\"? what does that mean"
+	icon_state = "baseballbat"
+	item_state = "baseball_bat_plastic"
 
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
@@ -369,7 +385,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "katana"
 	item_state = "katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -382,6 +398,16 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+//singularity wakizashi
+/obj/item/toy/katana/singulo_wakizashi
+	name = "replica singularity wakizashi"
+	desc = "The power of the singularity condensed into one short, cheap, and fake wakizashi!"
+	icon_state = "singulo_wakizashi"
+	item_state = "singulo_wakizashi"
+	force = 0 //sorry, no
+	throwforce = 0
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 /*
  * Snap pops
  */
@@ -551,7 +577,7 @@
 		spawn(0)
 			for(var/message in messages)
 				toy_talk(user, message)
-				sleep(10)
+				sleep(1 SECONDS)
 
 		cooldown = TRUE
 		spawn(recharge_time)
@@ -805,8 +831,8 @@
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the deck."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the deck."))
 
@@ -933,7 +959,7 @@
 
 /obj/item/toy/cards/singlecard
 	name = "card"
-	desc = "a card"
+	desc = "A card."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "singlecard_down_nanotrasen"
 	w_class = WEIGHT_CLASS_TINY
@@ -1105,12 +1131,12 @@
 
 /obj/item/toy/nuke/attack_self(mob/user)
 	if (cooldown < world.time)
-		cooldown = world.time + 1800 //3 minutes
+		cooldown = world.time + 3 MINUTES //3 minutes
 		user.visible_message(span_warning("[user] presses a button on [src]."), span_notice("You activate [src], it plays a loud noise!"), span_italics("You hear the click of a button."))
-		sleep(5)
+		sleep(0.5 SECONDS)
 		icon_state = "nuketoy"
 		playsound(src, 'sound/machines/alarm.ogg', 100, 0)
-		sleep(135)
+		sleep(13.5 SECONDS)
 		icon_state = "nuketoycool"
 		sleep(cooldown - world.time)
 		icon_state = "nuketoyidle"
@@ -1147,15 +1173,16 @@
 	icon_state = "bigred"
 	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown = 0
+	var/boom_sound = 'sound/effects/explosionfar.ogg'
 
 /obj/item/toy/redbutton/attack_self(mob/user)
 	if (cooldown < world.time)
 		cooldown = (world.time + 300) // Sets cooldown at 30 seconds
 		user.visible_message(span_warning("[user] presses the big red button."), span_notice("You press the button, it plays a loud noise!"), span_italics("The button clicks loudly."))
-		playsound(src, 'sound/effects/explosionfar.ogg', 50, 0)
+		playsound(src, boom_sound, 50, 0)
 		for(var/mob/M in urange(10, src)) // Checks range
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
-				sleep(8) // Short delay to match up with the explosion sound
+				sleep(0.8 SECONDS) // Short delay to match up with the explosion sound
 				shake_camera(M, 2, 1) // Shakes player camera 2 squares for 1 second.
 
 	else
@@ -1251,8 +1278,8 @@ obj/item/toy/turn_tracker
 			M.put_in_hands(src)
 			to_chat(usr, span_notice("You pick up the turn tracker."))
 
-		else if(istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		else if(istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 				to_chat(usr, span_notice("You pick up the turn tracker."))
 	else
@@ -1314,7 +1341,7 @@ obj/item/toy/turn_tracker
 		cooldown = (world.time + 50) //5 second cooldown
 		user.visible_message(span_notice("[user] pulls back the string on [src]."))
 		icon_state = "[initial(icon_state)]_used"
-		sleep(5)
+		sleep(0.5 SECONDS)
 		audible_message(span_danger("[icon2html(src, viewers(src))] Hiss!"))
 		var/list/possible_sounds = list('sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg')
 		var/chosen_sound = pick(possible_sounds)
@@ -1347,6 +1374,7 @@ obj/item/toy/turn_tracker
 	desc = null
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nuketoy"
+	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown = 0
 	var/toysay = "What the fuck did you do?"
 	var/toysound = 'sound/machines/click.ogg'
@@ -1553,6 +1581,29 @@ obj/item/toy/turn_tracker
 	icon_state = "warden"
 	toysay = "Seventeen minutes for coughing at an officer!"
 
+/obj/item/toy/figure/traitor
+	name = "Traitor action figure"
+	icon_state = "traitor"
+	toysay = "I got this scroll from a dead assistant!"
+
+/obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pen/edagger))
+		var/obj/item/pen/edagger/pen = I
+		if(pen.on)
+			icon_state += "_pen" // edagger buddies
+			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, TRUE)
+	..()
+
+/obj/item/toy/figure/ling
+	name = "Changeling action figure"
+	icon_state = "ling"
+	toysay = ";g absorbing AI in traitor maint!"
+
+/obj/item/toy/figure/ling/Initialize()
+	. = ..()
+	if(prob(25))
+		icon_state = "ling[rand(1,3)]"
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 30, TRUE)
 
 /obj/item/toy/dummy
 	name = "ventriloquist dummy"
@@ -1616,3 +1667,15 @@ obj/item/toy/turn_tracker
 /obj/item/storage/box/heretic_box/PopulateContents()
 	for(var/i in 1 to rand(1,4))
 		new /obj/item/toy/reality_pierce(src)
+
+/*
+ * ceremonial Rod of Asclepius
+ */
+
+/obj/item/toy/rod_of_asclepius
+	name = "ceremonial Rod of Asclepius"
+	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. This is a ceremonial recreation given to the Chief Medical Officer, and has 'Nanotrasen Emergency Medical' engraved at the bottom."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	icon_state = "asclepius_dormant"

@@ -13,7 +13,7 @@
 	throw_range = 4
 	materials = list(/datum/material/iron = 500)
 	actions_types = list(/datum/action/item_action/set_internals)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 80, ACID = 30)
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/integrity = 3
@@ -112,9 +112,6 @@
 
 		qdel(src)
 
-/obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
-
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		var/turf/T = get_turf(src)
@@ -138,7 +135,7 @@
 			var/obj/item/bodypart/BP = i
 			BP.generic_bleedstacks += 5
 		H.gib_animation()
-		sleep(3)
+		sleep(0.3 SECONDS)
 		H.adjustBruteLoss(1000) //to make the body super-bloody
 		H.spawn_gibs()
 		H.spill_organs()
@@ -162,24 +159,26 @@
 		ui = new(user, src, "Tank", name)
 		ui.open()
 
+/obj/item/tank/ui_static_data(mob/user)
+	. = list (
+		"defaultReleasePressure" = round(TANK_DEFAULT_RELEASE_PRESSURE),
+		"minReleasePressure" = round(TANK_MIN_RELEASE_PRESSURE),
+		"maxReleasePressure" = round(TANK_MAX_RELEASE_PRESSURE),
+		"leakPressure" = round(TANK_LEAK_PRESSURE),
+		"fragmentPressure" = round(TANK_FRAGMENT_PRESSURE)
+	)
+
 /obj/item/tank/ui_data(mob/user)
-	var/list/data = list()
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["minReleasePressure"] = round(TANK_MIN_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
+	. = list(
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(distribute_pressure)
+	)
 
 	var/mob/living/carbon/C = user
 	if(!istype(C))
 		C = loc.loc
-	if(!istype(C))
-		return data
-
-	if(C.internal == src)
-		data["connected"] = TRUE
-
-	return data
+	if(istype(C) && C.internal == src)
+		.["connected"] = TRUE
 
 /obj/item/tank/ui_act(action, params)
 	if(..())
@@ -210,6 +209,9 @@
 	return air_contents.remove(amount)
 
 /obj/item/tank/return_air()
+	return air_contents
+
+/obj/item/tank/return_analyzable_air()
 	return air_contents
 
 /obj/item/tank/assume_air(datum/gas_mixture/giver)

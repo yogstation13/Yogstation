@@ -37,15 +37,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	location = null
 	return ..()
 
-/datum/effect_system/proc/set_up(n = 3, c = FALSE, loca)
-	if(n > 10)
-		n = 10
-	number = n
-	cardinals = c
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
+/datum/effect_system/proc/set_up(number = 3, cardinals_only = FALSE, location)
+	src.number = min(number, 10)
+	src.cardinals = cardinals_only
+	src.location = get_turf(location)
 
 /datum/effect_system/proc/attach(atom/atom)
 	holder = atom
@@ -70,7 +65,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		direction = pick(GLOB.alldirs)
 	var/steps_amt = pick(1,2,3)
 	for(var/j in 1 to steps_amt)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		step(E,direction)
 	if(!QDELETED(src))
 		addtimer(CALLBACK(src, .proc/decrement_total_effect), 20)

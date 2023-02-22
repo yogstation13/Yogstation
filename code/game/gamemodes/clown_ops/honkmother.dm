@@ -28,7 +28,7 @@
 	send_to_playing_players(span_clown("HONK!"))
 	//mine now bitch
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
-	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/items_and_weapons.dmi', "bike_horn")
+	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/toy.dmi', "bike_horn")
 	notify_ghosts("Pranks must be spread to the people! Touch The Honkmother at [get_area_name(src)] and become one of her glorious creations!", null, source = src, alert_overlay = alert_overlay)
 
 /obj/structure/destructible/honkmother/Destroy()
@@ -36,7 +36,7 @@
 	return ..()
 
 /obj/structure/destructible/honkmother/attack_ghost(mob/dead/observer/O)
-	var/alertresult = alert(O, "Become a honking abomination? You can no longer be cloned!",,"Yes", "No")
+	var/alertresult = tgui_alert(O, "Become a honking abomination? You can no longer be cloned!",,list("Yes", "No"))
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
 	var/type = pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))

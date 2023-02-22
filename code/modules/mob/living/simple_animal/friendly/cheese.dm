@@ -22,9 +22,14 @@
 	can_be_held = TRUE
 	density = FALSE
 	var/mob/living/stored_mob
+	var/temporary = FALSE //permanent until made temporary
 
 /mob/living/simple_animal/cheese/Life()
 	..()
+	if(stored_mob)
+		stored_mob.life_tickrate = 0
+	if(temporary)
+		addtimer(CALLBACK(src, .proc/uncheeseify, src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
 		return
 	if(health < maxHealth)
@@ -48,7 +53,7 @@
 			return
 		visible_message(span_warning("[L] starts picking up [src]."), \
 						span_userdanger("[L] starts picking you up!"))
-		if(!do_after(L, 20, target = src))
+		if(!do_after(L, 2 SECONDS, src))
 			return
 		visible_message(span_warning("[L] picks up [src]!"), \
 						span_userdanger("[L] picks you up!"))
@@ -57,7 +62,7 @@
 			return
 		to_chat(L, span_notice("You pick [src] up."))
 		drop_all_held_items()
-		var/obj/item/clothing/head/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, null, FALSE)
+		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, ITEM_SLOT_HEAD, mob_size, null)
 		L.put_in_hands(P)
 
 /mob/living/simple_animal/cheese/death(gibbed)
@@ -67,3 +72,20 @@
 		uncheeseify(src)
 	. = ..()
 	
+/mob/living/simple_animal/cheese/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
+	if(cheese.stored_mob)
+		var/mob/living/L = cheese.stored_mob
+		var/mob/living/simple_animal/cheese/C = cheese
+		L.life_tickrate = initial(L.life_tickrate)
+		L.forceMove(get_turf(C))
+		C.stored_mob = null
+		if(L.mind)
+			C.mind.transfer_to(L)
+		else
+			L.key = C.key
+		C.transfer_observers_to(L)
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		qdel(C)
+
+/mob/living/simple_animal/cheese/canSuicide()
+	return FALSE

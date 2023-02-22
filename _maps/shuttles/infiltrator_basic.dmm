@@ -1166,10 +1166,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/hallway)
-"cs" = (
-/obj/machinery/recharge_station,
-/turf/open/floor/circuit/red,
-/area/shuttle/syndicate/armory)
 "ct" = (
 /obj/machinery/telecomms/allinone{
 	intercept = 1
@@ -1285,6 +1281,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"sI" = (
+/obj/machinery/recharge_station/fullupgrade,
+/turf/open/floor/circuit/red,
+/area/shuttle/syndicate/armory)
 "tZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -1374,13 +1374,14 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"UF" = (
+"Qh" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/syndicate,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
+/obj/item/twohanded/vxtvulhammer,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 
@@ -1672,7 +1673,7 @@ aB
 tZ
 aX
 bc
-UF
+Qh
 bm
 bx
 bG
@@ -1730,7 +1731,7 @@ bO
 bW
 cg
 bP
-cs
+sI
 cy
 cE
 "}
@@ -1780,7 +1781,7 @@ bQ
 bX
 ci
 cn
-cs
+sI
 cy
 cG
 "}

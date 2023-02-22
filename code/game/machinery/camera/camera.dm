@@ -13,7 +13,7 @@
 	layer = WALL_OBJ_LAYER
 	resistance_flags = FIRE_PROOF
 
-	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 50)
 	max_integrity = 100
 	integrity_failure = 50
 	var/default_camera_icon = "camera" //the camera's base icon used by update_icon - icon_state is primarily used for mapping display purposes.
@@ -23,6 +23,7 @@
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/invuln = null
 	var/obj/item/camera_bug/bug = null
+	var/obj/item/radio/alertradio = null
 	var/obj/structure/camera_assembly/assembly = null
 	var/area/myarea = null
 
@@ -44,6 +45,7 @@
 
 	//Reference to the obj/mob we're built into
 	var/built_in
+	var/armory = FALSE
 
 /obj/machinery/camera/preset/toxins //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"
@@ -84,6 +86,13 @@
 		LAZYADD(myarea.cameras, src)
 	proximity_monitor = new(src, 1)
 
+	if(armory)
+		alertradio = new(src)
+		alertradio.set_frequency(FREQ_SECURITY)
+		alertradio.use_command = TRUE
+		alertradio.independent = TRUE
+		alertradio.name = "armory"
+
 	if(mapload && is_station_level(z) && prob(3) && !start_active)
 		toggle_cam()
 	else //this is handled by toggle_camera, so no need to update it twice.
@@ -95,6 +104,9 @@
 	GLOB.cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
+	
+	if(alertradio)
+		QDEL_NULL(alertradio)
 	QDEL_NULL(assembly)
 	QDEL_NULL(emp_component)
 	if(bug)
@@ -283,8 +295,12 @@
 					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+				if(istype(X))
+					info = X.render_body(AI)
 				AI.last_paper_seen = "<HTML><HEAD><meta charset='UTF-8'><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if (O.client && O.client.eye == src)
+				if(istype(X))
+					info = X.render_body(O)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 				O << browse(text("<HTML><HEAD><meta charset='UTF-8'><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
@@ -311,7 +327,7 @@
 	return ..()
 
 /obj/machinery/camera/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(damage_flag == "melee" && damage_amount < 12 && !(stat & BROKEN))
+	if(damage_flag == MELEE && damage_amount < 12 && !(stat & BROKEN))
 		return 0
 	. = ..()
 
@@ -450,7 +466,7 @@
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
 	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras

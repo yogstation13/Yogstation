@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Injector",			/obj/machinery/atmospherics/components/unary/outlet_injector, TRUE),
 		new /datum/pipe_info/pipe("Scrubber",			/obj/machinery/atmospherics/components/unary/vent_scrubber, TRUE),
 		new /datum/pipe_info/pipe("Unary Vent",			/obj/machinery/atmospherics/components/unary/vent_pump, TRUE),
+		new /datum/pipe_info/pipe("Passive Vent",		/obj/machinery/atmospherics/components/unary/passive_vent, TRUE),
 		new /datum/pipe_info/pipe("Manual Valve",		/obj/machinery/atmospherics/components/binary/valve, TRUE),
 		new /datum/pipe_info/pipe("Digital Valve",		/obj/machinery/atmospherics/components/binary/valve/digital, TRUE),
 		new /datum/pipe_info/pipe("Pressure Valve",		/obj/machinery/atmospherics/components/binary/pressure_valve, TRUE),
@@ -216,7 +217,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(/datum/material/iron=75000, /datum/material/glass=37500)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 	var/datum/effect_system/spark_spread/spark_system
 	var/working = 0
@@ -389,12 +390,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	//make sure what we're clicking is valid for the current category
 	var/static/list/make_pipe_whitelist
 	if(!make_pipe_whitelist)
-		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe, /obj/structure/window, /obj/structure/grille))
+		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe, /obj/structure/window, /obj/structure/grille, /obj/machinery/atmospherics/pipe))
 	var/can_make_pipe = (isturf(A) || is_type_in_typecache(A, make_pipe_whitelist))
 
 	. = FALSE
 
-	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	if((mode & DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
 	// yogs start - disposable check
 		if(istype(A, /obj/item/pipe))
 			var/obj/item/pipe/P = A
@@ -404,17 +405,17 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	// yogs end
 		to_chat(user, span_notice("You start destroying a pipe..."))
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-		if(do_after(user, destroy_speed, target = A))
+		if(do_after(user, destroy_speed, A))
 			activate()
 			qdel(A)
 		return
 
-	if((mode&PAINT_MODE))
+	if (mode & PAINT_MODE)
 		if(istype(A, /obj/machinery/atmospherics/pipe) && !istype(A, /obj/machinery/atmospherics/pipe/layer_manifold))
 			var/obj/machinery/atmospherics/pipe/P = A
 			to_chat(user, span_notice("You start painting \the [P] [paint_color]..."))
 			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-			if(do_after(user, paint_speed, target = A))
+			if(do_after(user, paint_speed, A))
 				P.paint(GLOB.pipe_paint_colors[paint_color]) //paint the pipe
 				user.visible_message(span_notice("[user] paints \the [P] [paint_color]."),span_notice("You paint \the [P] [paint_color]."))
 			return
@@ -422,23 +423,25 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		if(istype(P) && findtext("[P.pipe_type]", "/obj/machinery/atmospherics/pipe") && !findtext("[P.pipe_type]", "layer_manifold"))
 			to_chat(user, span_notice("You start painting \the [A] [paint_color]..."))
 			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-			if(do_after(user, paint_speed, target = A))
+			if(do_after(user, paint_speed, A))
 				A.add_atom_colour(GLOB.pipe_paint_colors[paint_color], FIXED_COLOUR_PRIORITY) //paint the pipe
 				user.visible_message(span_notice("[user] paints \the [A] [paint_color]."),span_notice("You paint \the [A] [paint_color]."))
 			return
 
-	if(mode&BUILD_MODE)
+	if (mode & BUILD_MODE)
 		if(istype(get_area(user), /area/reebe/city_of_cogs))
 			to_chat(user, span_notice("You cannot build on Reebe.."))
 			return
+
 		switch(category) //if we've gotten this var, the target is valid
 			if(ATMOS_CATEGORY) //Making pipes
 				if(!can_make_pipe)
 					return ..()
+
 				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 				if (recipe.type == /datum/pipe_info/meter)
 					to_chat(user, span_notice("You start building a meter..."))
-					if(do_after(user, atmos_build_speed, target = A))
+					if(do_after(user, atmos_build_speed, A))
 						activate()
 						var/obj/item/pipe_meter/PM = new /obj/item/pipe_meter(get_turf(A))
 						PM.setAttachLayer(piping_layer)
@@ -449,7 +452,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 						to_chat(user, span_notice("You can't build this object on the layer..."))
 						return ..()
 					to_chat(user, span_notice("You start building a pipe..."))
-					if(do_after(user, atmos_build_speed, target = A))
+					if(do_after(user, atmos_build_speed, A))
 						if(recipe.all_layers == FALSE && (piping_layer == 1 || piping_layer == 5))//double check to stop cheaters (and to not waste time waiting for something that can't be placed)
 							to_chat(user, span_notice("You can't build this object on the layer..."))
 							return ..()
@@ -474,12 +477,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a disposals pipe..."))
 				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-				if(do_after(user, disposal_build_speed, target = A))
+				if(do_after(user, disposal_build_speed, A))
 					var/obj/structure/disposalconstruct/C = new (A, queued_p_type, queued_p_dir, queued_p_flipped)
 
 					if(!C.can_place())
@@ -499,12 +502,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a transit tube..."))
 				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-				if(do_after(user, transit_build_speed, target = A))
+				if(do_after(user, transit_build_speed, A))
 					activate()
 					if(queued_p_type == /obj/structure/c_transit_tube_pod)
 						var/obj/structure/c_transit_tube_pod/pod = new /obj/structure/c_transit_tube_pod(A)
@@ -528,12 +531,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				if(!can_make_pipe)
 					return ..()
 				A = get_turf(A)
-				if(isclosedturf(A))
+				if(is_blocked_turf(A))
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a fluid duct..."))
 				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-				if(do_after(user, plumbing_build_speed, target = A))
+				if(do_after(user, plumbing_build_speed, A))
 					var/obj/machinery/duct/D
 					if(recipe.type == /datum/pipe_info/plumbing/multilayer)
 						var/temp_connects = NORTH + SOUTH

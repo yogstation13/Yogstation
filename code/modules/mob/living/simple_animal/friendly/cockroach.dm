@@ -16,6 +16,7 @@
 	response_help  = "pokes"
 	response_disarm = "shoos"
 	response_harm   = "splats"
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	speak_emote = list("chitters")
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS

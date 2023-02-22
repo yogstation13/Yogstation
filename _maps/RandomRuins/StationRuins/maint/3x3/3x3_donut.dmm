@@ -1,0 +1,93 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/item/reagent_containers/food/snacks/donut/jelly/cherryjelly{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/chair/stool/bar{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"z" = (
+/obj/item/reagent_containers/food/snacks/donut/meat{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/collectable/police,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/trashbin,
+/obj/structure/sign/poster/contraband/donut_corp{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating,
+/area/template_noop)
+"K" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/candle{
+	pixel_x = 10;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/snacks/donut/jelly/laugh{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"M" = (
+/obj/item/reagent_containers/food/snacks/donut/spaghetti{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/effect/spawner/lootdrop/trashbin{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+
+(1,1,1) = {"
+E
+j
+M
+"}
+(2,1,1) = {"
+z
+K
+t
+"}
+(3,1,1) = {"
+p
+B
+I
+"}

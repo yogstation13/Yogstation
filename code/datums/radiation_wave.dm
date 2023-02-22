@@ -30,12 +30,12 @@
 	STOP_PROCESSING(SSradiation, src)
 	..()
 
-/datum/radiation_wave/process()
+/datum/radiation_wave/process(delta_time)
 	master_turf = get_step(master_turf, move_dir)
 	if(!master_turf)
 		qdel(src)
 		return
-	steps++
+	steps += delta_time
 	var/list/atoms = get_rad_atoms()
 
 	var/strength
@@ -87,6 +87,11 @@
 			continue
 		if (thing.rad_insulation != RAD_NO_INSULATION)
 			intensity *= (1-((1-thing.rad_insulation)/width))
+		if (thing.rad_insulation == RAD_FULL_INSULATION)
+			if(intensity <= 5000)
+				intensity = log(intensity+1)/RAD_CONTAMINATION_STR_COEFFICIENT*width
+			else
+				intensity = (log(intensity+1)+RAD_MINIMUM_CONTAMINATION)/RAD_CONTAMINATION_STR_COEFFICIENT + 350
 
 /datum/radiation_wave/proc/radiate(list/atoms, strength)
 	var/contamination_chance = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_CHANCE_COEFFICIENT * min(1, 1/(steps*range_modifier))
@@ -111,8 +116,9 @@
 			continue
 		if(thing.flags_1 & RAD_NO_CONTAMINATE_1 || SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 			continue
-		if(prob(contamination_chance)) // Only stronk rads get to have little baby rads
+		if(prob(contamination_chance) && strength > 0 && thing.rad_insulation != RAD_FULL_INSULATION) // Only stronk rads get to have little baby rads
 			if(SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 				continue
-			var/rad_strength = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_STR_COEFFICIENT
-			thing.AddComponent(/datum/component/radioactive, rad_strength, source)
+			var/rad_strength =  log(strength/RAD_MINIMUM_CONTAMINATION) * RAD_MINIMUM_CONTAMINATION * RAD_CONTAMINATION_STR_COEFFICIENT
+			if(rad_strength>0)
+				thing.AddComponent(/datum/component/radioactive, rad_strength, source)

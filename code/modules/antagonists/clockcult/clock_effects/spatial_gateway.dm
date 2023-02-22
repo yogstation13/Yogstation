@@ -100,14 +100,14 @@
 	if(severity == 1 && uses)
 		uses = 0
 		visible_message(span_warning("[src] is disrupted!"))
-		animate(src, alpha = 0, transform = matrix()*2, time = 10, flags = ANIMATION_END_NOW)
+		animate(src, alpha = 0, transform = matrix()*2, time = 1 SECONDS, flags = ANIMATION_END_NOW)
 		deltimer(timerid)
-		timerid = QDEL_IN(src, 10)
+		timerid = QDEL_IN(src, 1 SECONDS)
 		linked_gateway.uses = 0
 		linked_gateway.visible_message(span_warning("[linked_gateway] is disrupted!"))
-		animate(linked_gateway, alpha = 0, transform = matrix()*2, time = 10, flags = ANIMATION_END_NOW)
+		animate(linked_gateway, alpha = 0, transform = matrix()*2, time = 1 SECONDS, flags = ANIMATION_END_NOW)
 		deltimer(linked_gateway.timerid)
-		linked_gateway.timerid = QDEL_IN(linked_gateway, 10)
+		linked_gateway.timerid = QDEL_IN(linked_gateway, 1 SECONDS)
 		return TRUE
 	return FALSE
 
@@ -152,14 +152,14 @@
 		uses = max(0, uses - 1)
 		linked_gateway.uses = max(0, linked_gateway.uses - 1)
 	if(!uses)
-		animate(src, transform = matrix() * 0.1, time = 10, flags = ANIMATION_END_NOW)
+		animate(src, transform = matrix() * 0.1, time = 1 SECONDS, flags = ANIMATION_END_NOW)
 		animate(linked_gateway, transform = matrix() * 0.1, time = 10, flags = ANIMATION_END_NOW)
 		density = FALSE
 		linked_gateway.density = FALSE
 	else
-		animate(src, transform = matrix() / 1.5, time = 10, flags = ANIMATION_END_NOW)
-		animate(linked_gateway, transform = matrix() / 1.5, time = 10, flags = ANIMATION_END_NOW)
-	addtimer(CALLBACK(src, .proc/check_uses), 10)
+		animate(src, transform = matrix() / 1.5, time = 1 SECONDS, flags = ANIMATION_END_NOW)
+		animate(linked_gateway, transform = matrix() / 1.5, time = 1 SECONDS, flags = ANIMATION_END_NOW)
+	addtimer(CALLBACK(src, .proc/check_uses), 1 SECONDS)
 	return TRUE
 
 /obj/effect/clockwork/spatial_gateway/proc/check_uses()

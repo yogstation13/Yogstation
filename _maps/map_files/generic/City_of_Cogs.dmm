@@ -40,15 +40,6 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"al" = (
-/obj/machinery/sleeper/clockwork,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
-"am" = (
-/obj/structure/table/reinforced/brass,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "an" = (
 /obj/structure/noticeboard,
 /obj/item/paper/fluff/ruins/djstation{
@@ -66,18 +57,6 @@
 /area/reebe/city_of_cogs)
 "aq" = (
 /obj/machinery/computer/camera_advanced/ratvar,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
-"ar" = (
-/obj/machinery/sleeper/clockwork{
-	dir = 8
-	},
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
-"as" = (
-/obj/machinery/sleeper/clockwork{
-	dir = 4
-	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "at" = (
@@ -120,12 +99,6 @@
 "aA" = (
 /obj/machinery/door/airlock/clockwork/brass{
 	name = "Infirmary"
-	},
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
-"aC" = (
-/obj/machinery/sleeper/clockwork{
-	dir = 1
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
@@ -222,6 +195,11 @@
 	},
 /turf/closed/wall/clockwork,
 /area/reebe/city_of_cogs)
+"cj" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "cC" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
@@ -229,6 +207,13 @@
 	},
 /obj/item/kitchen/fork{
 	pixel_x = -4
+	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"fi" = (
+/obj/machinery/stasis{
+	dir = 4;
+	color = "#FF8000"
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
@@ -260,6 +245,11 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"px" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/paper/servant_primer/infirmarypaper,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "wm" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
@@ -276,9 +266,17 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"wT" = (
+/obj/structure/table/reinforced/brass,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "Ct" = (
 /turf/closed/indestructible/riveted,
 /area/reebe)
+"Nw" = (
+/obj/item/clockwork/alloy_shards,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "Vl" = (
 /obj/structure/table/reinforced/brass,
 /obj/effect/landmark/servant_of_ratvar/scarab,
@@ -4599,11 +4597,11 @@ aj
 aj
 aj
 ai
-am
+px
 aj
 aj
 aj
-as
+cj
 ah
 ah
 aH
@@ -4695,7 +4693,7 @@ aj
 aj
 aj
 aj
-aC
+fi
 ah
 ai
 ag
@@ -4782,7 +4780,7 @@ aj
 aj
 aj
 ah
-al
+Nw
 aj
 aj
 aj
@@ -4966,7 +4964,7 @@ aj
 aj
 aj
 ah
-ar
+Nw
 aj
 aj
 aA
@@ -5059,7 +5057,7 @@ aj
 aj
 ah
 aQ
-am
+wT
 ai
 aj
 aj

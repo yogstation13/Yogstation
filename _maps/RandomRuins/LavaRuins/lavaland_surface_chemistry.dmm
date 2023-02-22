@@ -350,7 +350,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Q" = (
-/obj/machinery/chem_dispenser,
+/obj/machinery/chem_dispenser/fullupgrade,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},

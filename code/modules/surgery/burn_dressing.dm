@@ -4,6 +4,8 @@
 ///// Debride burnt flesh
 /datum/surgery/debride
 	name = "Debride infected flesh"
+	icon = 'icons/obj/stack_medical.dmi'
+	icon_state = "gauze"
 	steps = list(/datum/surgery_step/debride_infected, /datum/surgery_step/dress)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
@@ -24,8 +26,11 @@
 /datum/surgery_step/debride_infected
 	name = "excise infection"
 	implements = list(TOOL_SCALPEL = 100, TOOL_SAW = 60, TOOL_WIRECUTTER = 40)
-	time = 30
+	time = 3 SECONDS
 	repeatable = TRUE
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/retractor2.ogg'
+	failure_sound = 'sound/surgery/organ1.ogg'
 	/// How much sanitization is added per step
 	var/sanitization_added = 0.5
 	/// How much infestation is removed per step (positive number)
@@ -50,7 +55,7 @@
 	if(burn_wound)
 		display_results(user, target, span_notice("You successfully excise some of the infected flesh from [target]'s [parse_zone(target_zone)]."),
 			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
-			span_notice("[user] successfully excises some of the infected flesh from  [target]'s [parse_zone(target_zone)]!"))
+			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)]!"))
 		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 		surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
 		burn_wound.infestation -= infestation_removed
@@ -65,7 +70,7 @@
 	..()
 	display_results(user, target, span_notice("You carve away some of the healthy flesh from [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
-		span_notice("[user] carves away some of the healthy flesh from  [target]'s [parse_zone(target_zone)]!"))
+		span_notice("[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)]!"))
 	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=TRUE)
 
 /datum/surgery_step/debride_infected/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
@@ -80,7 +85,9 @@
 /datum/surgery_step/dress
 	name = "bandage burns"
 	implements = list(/obj/item/stack/medical/gauze = 100)
-	time = 40
+	time = 4 SECONDS
+	preop_sound = 'sound/effects/rip2.ogg'
+	success_sound = 'sound/effects/rip1.ogg'
 
 /datum/surgery_step/dress/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound

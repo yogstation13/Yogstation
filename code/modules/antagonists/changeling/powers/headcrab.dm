@@ -11,7 +11,10 @@
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
-	if(alert("Are we sure we wish to kill ourself and create a headslug?",,"Yes", "No") == "No")
+	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
+		to_chat(user, span_warning("Our abilities are being dampened! We cannot use [src]!"))
+		return
+	if(tgui_alert(usr,"Are we sure we wish to kill ourself and create a headslug?",,list("Yes", "No")) != "Yes")
 		return
 	..()
 	var/datum/mind/M = user.mind
@@ -33,9 +36,11 @@
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
 		S.Paralyze(60)
 	var/turf = get_turf(user)
+	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
+	H?.leave_victim()
 	user.gib()
 	. = TRUE
-	sleep(5) // So it's not killed in explosion
+	sleep(0.5 SECONDS) // So it's not killed in explosion
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
 	for(var/obj/item/organ/I in organs)
 		I.forceMove(crab)

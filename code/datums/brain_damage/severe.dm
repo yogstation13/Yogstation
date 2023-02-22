@@ -4,6 +4,7 @@
 
 /datum/brain_trauma/severe
 	resilience = TRAUMA_RESILIENCE_SURGERY
+	random_cure_chance = 4
 
 /datum/brain_trauma/severe/mute
 	name = "Mutism"
@@ -216,6 +217,8 @@
 				else
 					to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
 					owner.adjustOxyLoss(8)
+		else
+			return
 
 /datum/brain_trauma/severe/discoordination
 	name = "Discoordination"

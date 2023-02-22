@@ -134,6 +134,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
 	var/static/last_bwoinking = 0
+	var/static/last_unclaimed_notification = 0
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -175,13 +176,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[usr.client.ckey] PM'd [initiator_key_name]")
+		AddInteraction("[usr.client?.ckey] PM'd [initiator_key_name]")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
 
 		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+		var/admin_number_present = check_admins_online()
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin irc."), confidential=TRUE)
@@ -190,6 +191,38 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list += src
 	GLOB.ahelp_tickets.ticketAmount += 1
 
+/datum/admin_help/proc/check_admins_online()
+	var/list/adm = get_admin_counts(R_BAN)
+	var/list/activemins = adm["present"]
+	. = activemins.len
+	if(. > 0)
+		return
+	send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+	var/list/stealthmins = adm["stealth"]
+	if(stealthmins.len > 0) // If there are stealthmins, do nothing
+		return
+	// There are no admins online, try deadmins
+	var/found_deadmin = FALSE
+	if(GLOB.permissions.deadmins.len > 0)
+		for(var/deadmin_ckey in GLOB.permissions.deadmins)
+			var/datum/admins/A = GLOB.permissions.deadmins[deadmin_ckey]
+			if(!check_rights_for(A.owner, R_BAN))
+				continue
+			var/client/client = GLOB.directory[deadmin_ckey]
+			if(!client)
+				continue
+			if(client.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(client, sound('sound/effects/adminhelp.ogg'))
+			to_chat(client, span_danger("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
+			if(!found_deadmin)
+				found_deadmin = TRUE
+				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
+	if(!found_deadmin)
+		send_to_discord()
+
+/datum/admin_help/proc/send_to_discord()
+	if(state == AHELP_ACTIVE && !handling_admin)
+		webhook_send_ticket_unclaimed(initiator_ckey, name, id)
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
@@ -197,10 +230,25 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
-		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
+		var/msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font></span>")
+		for(var/client/X in GLOB.permissions.admins)
+			if(check_rights_for(X,R_BAN))
+				to_chat(X,
+					type = MESSAGE_TYPE_ADMINLOG,
+					html = msg,
+					confidential = TRUE)
+			else
+				if(world.time > last_unclaimed_notification)
+					last_unclaimed_notification = world.time + 1 SECONDS
+					msg = "<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Unclaimed Tickets!</font></span>"
+					to_chat(X,
+						type = MESSAGE_TYPE_ADMINLOG,
+						html = msg,
+						confidential = TRUE)
+
 		if(world.time > last_bwoinking)
 			last_bwoinking = world.time + 1 SECONDS
-			for(var/client/X in GLOB.admins)
+			for(var/client/X in GLOB.permissions.admins)
 				if(check_rights_for(X,R_BAN) && (X.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 					SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		return FALSE
@@ -208,7 +256,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE, ckey = null)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
-	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client.ckey))
+	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client?.ckey))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -256,7 +304,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction(msg)
 
 	//send this msg to all admins
-	for(var/client/X in GLOB.admins)
+	for(var/client/X in GLOB.permissions.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		window_flash(X, ignorepref = TRUE)
@@ -325,7 +373,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	GLOB.ahelp_tickets.ticketAmount -= 1
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
-		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+		if(check_rights(R_ADMIN, FALSE) && alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
 			SSticker.Reboot(delay = 100, force = TRUE)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
@@ -368,8 +416,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin_private(msg)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
-		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 100, force = TRUE)
+		if(check_rights(R_ADMIN, FALSE) && alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			if(SSticker.delay_end)
+				if(alert(usr,"Restart has been delayed, restart anyways?","Round restart","Yes","No") != "Yes")
+					return
+			SSticker.Reboot(delay = 100)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 
@@ -424,7 +475,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		to_chat(initiator, msg, confidential=TRUE)
-		initiator.mentorhelp(name)
+		initiator.mhelp(name, TRUE)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
 	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"
@@ -635,7 +686,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//client may of have disconnected by the time this proc gets called
 	if(!src)
 		return
-		
+
 	if(!locate(/client/verb/adminhelp) in src.verbs)
 		add_verb(src, /client/verb/adminhelp)
 
@@ -817,17 +868,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	usr << browse(null, "window=ViewTickets")
 	usr << browse(html, "window=ViewTickets")
 
-/client/Topic(href, href_list, hsrc)
-	..()
-
-	if(href_list["action"] == "refresh_admin_ticket_list")
-		var/client/C = usr.client
-		var/flag = href_list["flag"]
-		if(!flag)
-			flag = TICKET_FLAG_LIST_ALL
-
-		C.view_tickets_main(flag)
-
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()
 	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as text|null
@@ -897,7 +937,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /proc/get_admin_counts(requiredflags = R_BAN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
-	for(var/client/X in GLOB.admins)
+	if(!GLOB.permissions)
+		CRASH("Tried to fetch admin counts when permissions were not initialized")
+	for(var/client/X in GLOB.permissions.admins)
 		.["total"] += X
 		if(requiredflags != 0 && !check_rights_for(X, requiredflags))
 			.["noflags"] += X
@@ -951,7 +993,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")
 	var/list/admin_keys = list()
-	for(var/adm in GLOB.admins)
+	for(var/adm in GLOB.permissions.admins)
 		var/client/C = adm
 		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
 

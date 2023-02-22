@@ -67,6 +67,8 @@
 
 /datum/config_entry/flag/log_vote	// log voting
 
+/datum/config_entry/flag/log_donator // log donator chat
+
 /datum/config_entry/flag/log_whisper	// log client whisper
 
 /datum/config_entry/flag/log_attack	// log attack messages
@@ -159,9 +161,6 @@
 	min_val = 0 //oranges warned us
 	integer = FALSE
 
-/datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
-	protection = CONFIG_ENTRY_LOCKED
-
 /datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
 	protection = CONFIG_ENTRY_LOCKED
 
@@ -171,7 +170,7 @@
 /datum/config_entry/flag/enable_localhost_rank	//Gives the !localhost! rank to any client connecting from 127.0.0.1 or ::1
 	protection = CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/flag/load_legacy_ranks_only	//Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
+/datum/config_entry/string/permissions_backend // Sets the permissions backend to use
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/hostedby
@@ -219,6 +218,7 @@
 
 /datum/config_entry/string/apiurl
 	config_entry_value = "https://forums.yogstation.net/api"
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/demourl
 	config_entry_value = "https://yogstation13.github.io/demo-viewer/?roundid="
@@ -508,8 +508,32 @@
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
+/datum/config_entry/string/vpn_lookup_api	// URL for VPN lookup API
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/vpn_lookup_key	// Key for VPN lookup API
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/flag/auto_profile
 
 /datum/config_entry/flag/disable_gc_failure_hard_deletes
 
 /datum/config_entry/flag/disable_all_hard_deletes
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	default = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	default = 0
+	min_val = 0
+
+/// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+/datum/config_entry/flag/log_timers_on_bucket_reset
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
+
+/// Whether demos are written, if not set demo SS never initializes
+/datum/config_entry/flag/demos_enabled

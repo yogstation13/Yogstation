@@ -78,7 +78,7 @@
 			customname = S.name
 	name = "[customname] [initial(name)]"
 
-/obj/item/reagent_containers/food/snacks/customizable/proc/initialize_custom_food(obj/item/BASE, obj/item/I, mob/user)
+/obj/item/reagent_containers/food/snacks/customizable/proc/initialize_custom_food(obj/item/BASE, obj/item/I, mob/user, delayDeletion = FALSE)
 	if(istype(BASE, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/RC = BASE
 		RC.reagents.trans_to(src,RC.reagents.total_volume, transfered_by = user)
@@ -86,7 +86,8 @@
 		contents += O
 	if(I && user)
 		attackby(I, user)
-	qdel(BASE)
+	if(!delayDeletion)
+		qdel(BASE)
 
 /obj/item/reagent_containers/food/snacks/customizable/proc/mix_filling_color(obj/item/reagent_containers/food/snacks/S)
 	if(ingredients.len == 1)
@@ -141,8 +142,8 @@
 
 
 /obj/item/reagent_containers/food/snacks/customizable/Destroy()
-	for(. in ingredients)
-		qdel(.)
+	for(var/ingredient in ingredients)
+		qdel(ingredient)
 	return ..()
 
 
@@ -228,6 +229,16 @@
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzamargherita"
 	foodtype = GRAIN | DAIRY
+	burns_in_oven = TRUE
+
+/obj/item/reagent_containers/food/snacks/customizable/pizza/raw
+	name = "raw pizza"
+	icon_state = "pizzamargherita_raw"
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/customizable/pizza/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/customizable/pizza, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE, TRUE)
 
 
 /obj/item/reagent_containers/food/snacks/customizable/salad

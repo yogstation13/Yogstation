@@ -321,7 +321,7 @@
 		return
 	M.visible_message(span_warning("[AM] queues their servos to fling [M]!"))
 	playsound(AM,'sound/misc/borg/fling_start.ogg',80,1,-1)
-	if(!do_after(AM, 1 SECONDS, target = M))
+	if(!do_after(AM, 1 SECONDS, M))
 		M.visible_message(span_boldwarning("[AM]'s servos disengage!"))
 		playsound(AM,'sound/misc/borg/fling_cancel.ogg',80,1,-1)
 		return
@@ -380,7 +380,7 @@
 
 /obj/item/riding_offhand
 	name = "offhand"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT | DROPDEL | NOBLUDGEON

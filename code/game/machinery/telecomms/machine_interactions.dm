@@ -85,9 +85,9 @@
 	if(.)
 		return
 
-	if(!issilicon(operator))
-		if(!istype(operator.get_active_held_item(), /obj/item/multitool))
-			return
+	//if(!issilicon(operator)) // Yogs -- deleted old multitool code in favour of actually trusting get_multitool's output
+		//if(!istype(operator.get_active_held_item(), /obj/item/multitool))
+			//return
 
 	var/obj/item/multitool/heldmultitool = get_multitool(operator)
 
@@ -157,11 +157,13 @@
 						links += T
 						log_game("[key_name(operator)] linked [src] for [T] at [AREACOORD(src)].")
 						. = TRUE
-		if("buffer")
-			heldmultitool.buffer = src
+		if("buffer") // Yogs start -- holotool support
+			if(heldmultitool)
+				heldmultitool.buffer = src
 			. = TRUE
 		if("flush")
-			heldmultitool.buffer = null
+			if(heldmultitool)
+				heldmultitool.buffer = null // Yogs end
 			. = TRUE
 
 	add_act(action, params)

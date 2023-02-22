@@ -1,6 +1,9 @@
 /datum/job/lawyer
 	title = "Lawyer"
+	description = "Advocate for prisoners, create law-binding contracts, \
+		ensure Security is following protocol and Space Law."
 	flag = LAWYER
+	orbit_icon = "gavel"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -13,24 +16,27 @@
 
 	outfit = /datum/outfit/job/lawyer
 
-	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
-	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+	added_access = list()
+	base_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
+	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
-/datum/job/lawyer/proc/OmegaStationChanges()
-	return TRUE
+	smells_like = "legal lies"
 
 /datum/outfit/job/lawyer
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	belt = /obj/item/pda/lawyer
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
 	uniform_skirt = /obj/item/clothing/under/lawyer/bluesuit/skirt
@@ -53,3 +59,8 @@
 	if(J.lawyers>1)
 		uniform = /obj/item/clothing/under/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
+
+/datum/outfit/job/lawyer/get_types_to_preload()
+	. = ..()
+	. += /obj/item/clothing/under/lawyer/purpsuit
+	. += /obj/item/clothing/suit/toggle/lawyer/purple

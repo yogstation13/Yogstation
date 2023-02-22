@@ -186,7 +186,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-/mob/proc/apply_pref_name(role, client/C)
+/mob/proc/apply_pref_name(preference_type, client/C)
 	if(!C)
 		C = client
 	var/oldname = real_name
@@ -197,20 +197,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/banned = C ? is_banned_from(C.ckey, "Appearance") : null
 
 	while(loop && safety < 5)
-		if(C && C.prefs.custom_names[role] && !safety && !banned)
-			newname = C.prefs.custom_names[role]
+		if(!safety && !banned)
+			newname = C?.prefs?.read_preference(preference_type)
 		else
-			switch(role)
-				if("human")
-					newname = random_unique_name(gender)
-				if("clown")
-					newname = pick(GLOB.clown_names)
-				if("mime")
-					newname = pick(GLOB.mime_names)
-				if("ai")
-					newname = pick(GLOB.ai_names)
-				else
-					return FALSE
+			var/datum/preference/preference = GLOB.preference_entries[preference_type]
+			newname = preference.create_informed_default_value(C.prefs)
 
 		for(var/mob/living/M in GLOB.player_list)
 			if(M == src)
@@ -482,6 +473,16 @@ Turf and target are separate in case you want to teleport some distance from a t
 			processing += A.contents
 			. += A
 
+/atom/proc/get_all_contents_type(type)
+	var/list/processing_list = list(src)
+	. = list()
+	while(length(processing_list))
+		var/atom/checked_atom = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += checked_atom.contents
+		if(istype(checked_atom, type))
+			. += checked_atom
+
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
@@ -572,69 +573,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 /area/proc/addSorted()
 	GLOB.sortedAreas.Add(src)
 	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
-
-//Takes: Area type as a text string from a variable.
-//Returns: Instance for the area in the world.
-/proc/get_area_instance_from_text(areatext)
-	if(istext(areatext))
-		areatext = text2path(areatext)
-	return GLOB.areas_by_type[areatext]
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype, subtypes=TRUE)
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	else if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-	else if(!ispath(areatype))
-		return null
-
-	var/list/areas = list()
-	if(subtypes)
-		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(cache[A.type])
-				areas += V
-	else
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(A.type == areatype)
-				areas += V
-	return areas
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	else if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-	else if(!ispath(areatype))
-		return null
-
-	var/list/turfs = list()
-	if(subtypes)
-		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(!cache[A.type])
-				continue
-			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
-					turfs += T
-	else
-		for(var/V in GLOB.sortedAreas)
-			var/area/A = V
-			if(A.type != areatype)
-				continue
-			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
-					turfs += T
-	return turfs
 
 /proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
@@ -760,6 +698,8 @@ GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	if(is_type_in_typecache(W, GLOB.can_embed_types))
 		return TRUE
 
+	if(W.taped)
+		return TRUE
 
 /*
 Checks if that loc and dir has an item on the wall
@@ -1211,7 +1151,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #undef DELTA_CALC
 
-/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=20)
+/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=2 SECONDS)
 	var/client/C
 	if(ismob(mob_or_client))
 		var/mob/M = mob_or_client
@@ -1243,7 +1183,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
 	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
+	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.02 SECONDS, loop = duration)
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 
@@ -1447,9 +1387,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(is_servant_of_ratvar(V) || isobserver(V))
 			. += V
 
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
-
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
@@ -1484,7 +1421,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/clothing,
 		/obj/item/reagent_containers/food/snacks/grown/shell, //base types
 		/obj/item/reagent_containers/food/snacks/store/bread,
-		/obj/item/reagent_containers/food/snacks/grown/nettle
+		/obj/item/reagent_containers/food/snacks/grown/nettle,
+		/obj/item/reagent_containers/food/snacks/fish // debug fish
 		)
 	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable)
 
@@ -1495,6 +1433,65 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/drinks/bottle
 		)
 	return pick(subtypesof(/obj/item/reagent_containers/food/drinks) - blocked)
+
+/proc/get_random_goat()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/blue,
+		/mob/living/simple_animal/hostile/retaliate/goat/brown,
+		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
+		/mob/living/simple_animal/hostile/retaliate/goat/rainbow,
+		/mob/living/simple_animal/hostile/retaliate/goat/green,
+		/mob/living/simple_animal/hostile/retaliate/goat/red,
+		/mob/living/simple_animal/hostile/retaliate/goat/black,
+		/mob/living/simple_animal/hostile/retaliate/goat/panda,
+		/mob/living/simple_animal/hostile/retaliate/goat/watercolor,
+		/mob/living/simple_animal/hostile/retaliate/goat/orange,
+		/mob/living/simple_animal/hostile/retaliate/goat/purple,
+		/mob/living/simple_animal/hostile/retaliate/goat/yellow,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
+
+/proc/get_random_goat_colorful()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/ras,
+		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
+		/mob/living/simple_animal/hostile/retaliate/goat/confetti,
+		/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy,
+		/mob/living/simple_animal/hostile/retaliate/goat/glowing,
+		/mob/living/simple_animal/hostile/retaliate/goat/goatgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/horror,
+		/mob/living/simple_animal/hostile/retaliate/goat/inverted,
+		/mob/living/simple_animal/hostile/retaliate/goat/mirrored,
+		/mob/living/simple_animal/hostile/retaliate/goat/paper,
+		/mob/living/simple_animal/hostile/retaliate/goat/pixel,
+		/mob/living/simple_animal/hostile/retaliate/goat/cute,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard,
+		/mob/living/simple_animal/hostile/retaliate/goat/star,
+		/mob/living/simple_animal/hostile/retaliate/goat/twisted,
+		/mob/living/simple_animal/hostile/retaliate/goat/tiny,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/skiddo,
+		/mob/living/simple_animal/hostile/retaliate/goat/gogoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/sanic,
+		/mob/living/simple_animal/hostile/retaliate/goat/plunger,
+		/mob/living/simple_animal/hostile/retaliate/goat/suspicious,
+		/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
 
 //For these two procs refs MUST be ref = TRUE format like typecaches!
 /proc/weakref_filter_list(list/things, list/refs)

@@ -36,8 +36,8 @@
 	if(take_damage(rand(25, 50), BRUTE) && src) //if we still exist
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/destructible/clockwork/examine(mob/user)
 	var/can_see_clockwork = is_servant_of_ratvar(user) || isobserver(user)
@@ -72,7 +72,7 @@
 		return FALSE
 	return ..()
 
-/obj/structure/destructible/clockwork/mech_melee_attack(obj/mecha/M)
+/obj/structure/destructible/clockwork/mech_melee_attack(obj/mecha/M, equip_allowed)
 	if(M.occupant && is_servant_of_ratvar(M.occupant) && immune_to_servant_attacks)
 		return FALSE
 	return ..()

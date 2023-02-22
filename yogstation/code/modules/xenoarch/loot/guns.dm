@@ -42,7 +42,7 @@
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
-		sleep(1)
+		sleep(0.1 SECONDS)
 		playsound(src, chargesound, 75)
 	return
 
@@ -112,7 +112,7 @@
 	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',T,"spur_range")
 	impact.layer = ABOVE_MOB_LAYER
 	T.overlays += impact
-	sleep(3)
+	sleep(0.3 SECONDS)
 	T.overlays -= impact
 	qdel(impact)
 	..()
@@ -136,7 +136,7 @@
 	playsound(loc, impact_sound, 30)
 	if(istype(target,/turf/closed/mineral))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 	..()
 
 /obj/item/ammo_casing/energy/polarstar/spur

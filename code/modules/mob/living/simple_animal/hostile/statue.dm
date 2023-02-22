@@ -23,6 +23,7 @@
 	obj_damage = 100
 	melee_damage_lower = 68
 	melee_damage_upper = 83
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "claws"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 

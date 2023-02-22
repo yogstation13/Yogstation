@@ -15,6 +15,9 @@
 	mode = MODE_CHANGELING
 
 /datum/saymode/changeling/handle_message(mob/living/user, message, datum/language/language)
+	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
+		to_chat(user, span_warning("Our abilities are being dampened! We cannot speak through the hivemind!"))
+		return FALSE
 	switch(user.lingcheck())
 		if(LINGHIVE_LINK)
 			var/msg = span_changeling("<b>[user.mind]:</b> [message]")
@@ -77,13 +80,8 @@
 	mode = MODE_VOCALCORDS
 
 /datum/saymode/vocalcords/handle_message(mob/living/user, message, datum/language/language)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		var/obj/item/organ/vocal_cords/V = C.getorganslot(ORGAN_SLOT_VOICE)
-		if(V && V.can_speak_with())
-			V.handle_speech(message) //message
-			V.speak_with(message) //action
-	return FALSE
+	return TRUE //Yogs -- This is handled in a refactored, special-snowflake way someplace else,
+	// because most of vocalcord code is to resolve commands, which must evade accent code
 
 
 /datum/saymode/binary //everything that uses .b (silicons, drones, blobbernauts/spores, swarmers)

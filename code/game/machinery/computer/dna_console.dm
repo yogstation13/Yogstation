@@ -474,6 +474,8 @@
 			var/sequence = GET_GENE_STRING(path, scanner_occupant.dna)
 
 			var/newgene = params["gene"]
+			if(length(newgene) > 1) // Oh come on
+				return // fuck off
 			var/genepos = text2num(params["pos"])
 
 			// If the new gene is J, this means we're dealing with a JOKER
@@ -1352,7 +1354,7 @@
 
 			// If this would take us over the max instability, we inform the user.
 			if(instability_total > max_injector_instability)
-				to_chat(usr,span_warning("Extra mutation would make the advanced injector too instable."))
+				to_chat(usr,span_warning("Extra mutation would make the advanced injector too unstable."))
 				return
 
 			// If we've got here, all our checks are passed and we can successfully

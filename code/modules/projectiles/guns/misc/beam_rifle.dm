@@ -42,7 +42,6 @@
 	var/lastangle = 0
 	var/aiming_lastangle = 0
 	var/mob/current_user = null
-	var/list/obj/effect/projectile/tracer/current_tracers
 
 	var/structure_piercing = 2				//Amount * 2. For some reason structures aren't respecting this unless you have it doubled. Probably with the objects in question's Bump() code instead of this but I'll deal with this later.
 	var/structure_bleed_coeff = 0.7
@@ -170,7 +169,6 @@
 /obj/item/gun/energy/beam_rifle/Initialize()
 	. = ..()
 	fire_delay = delay
-	current_tracers = list()
 	START_PROCESSING(SSfastprocess, src)
 	zoom_lock_action = new(src)
 
@@ -289,7 +287,7 @@
 /obj/item/gun/energy/beam_rifle/onMouseDown(object, location, params, mob/mob)
 	if(istype(mob))
 		set_user(mob)
-	if(istype(object, /obj/screen) && !istype(object, /obj/screen/click_catcher))
+	if(istype(object, /atom/movable/screen) && !istype(object, /atom/movable/screen/click_catcher))
 		return
 	if((object in mob.contents) || (object == mob))
 		return
@@ -297,7 +295,7 @@
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/onMouseUp(object, location, params, mob/M)
-	if(istype(object, /obj/screen) && !istype(object, /obj/screen/click_catcher))
+	if(istype(object, /atom/movable/screen) && !istype(object, /atom/movable/screen/click_catcher))
 		return
 	process_aim()
 	if(aiming_time_left <= aiming_time_fire_threshold && check_user())
@@ -422,10 +420,10 @@
 	hitsound = 'sound/effects/explosion3.ogg'
 	damage = 0				//Handled manually.
 	damage_type = BURN
-	flag = "energy"
+	flag = ENERGY
 	range = 150
 	jitter = 10
-	var/obj/item/gun/energy/beam_rifle/gun
+	var/obj/item/gun/gun
 	var/structure_pierce_amount = 0				//All set to 0 so the gun can manually set them during firing.
 	var/structure_bleed_coeff = 0
 	var/structure_pierce = 0
@@ -459,7 +457,7 @@
 		if(!isitem(O))
 			if(O.level == 1)	//Please don't break underfloor items!
 				continue
-			O.take_damage(aoe_structure_damage * get_damage_coeff(O), BURN, "laser", FALSE)
+			O.take_damage(aoe_structure_damage * get_damage_coeff(O), BURN, LASER, FALSE)
 
 /obj/item/projectile/beam/beam_rifle/proc/check_pierce(atom/target)
 	if(!do_pierce)
@@ -481,7 +479,7 @@
 			if(structure_pierce < structure_pierce_amount)
 				if(isobj(AM))
 					var/obj/O = AM
-					O.take_damage((impact_structure_damage + aoe_structure_damage) * structure_bleed_coeff * get_damage_coeff(AM), BURN, "energy", FALSE)
+					O.take_damage((impact_structure_damage + aoe_structure_damage) * structure_bleed_coeff * get_damage_coeff(AM), BURN, ENERGY, FALSE)
 				pierced[AM] = TRUE
 				structure_pierce++
 				return TRUE
@@ -497,7 +495,7 @@
 /obj/item/projectile/beam/beam_rifle/proc/handle_impact(atom/target)
 	if(isobj(target))
 		var/obj/O = target
-		O.take_damage(impact_structure_damage * get_damage_coeff(target), BURN, "laser", FALSE)
+		O.take_damage(impact_structure_damage * get_damage_coeff(target), BURN, LASER, FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
 		L.adjustFireLoss(impact_direct_damage)

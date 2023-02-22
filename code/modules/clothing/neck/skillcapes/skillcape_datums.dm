@@ -2,7 +2,7 @@
 	var/name = ""
 	var/minutes = 18000
 	var/job
-	var/special = FALSE //If its TRUE it wont have a related job, it's for the switch statement in preferences.dm
+	var/special = FALSE // If true, exempt from the max cape
 	var/capetype = "" // goes along with special, for the switch statement.
 	var/path = /obj/item/clothing/neck/skillcape
 	var/id
@@ -138,16 +138,16 @@
     job = "Brig Physician"
     path = /obj/item/clothing/neck/skillcape/trimmed/physician
 
-/datum/skillcape/signaltech
-	name = "cape of the signal technician"
-	job = "Signal Technician"
-	path = /obj/item/clothing/neck/skillcape/signaltech
-	id = "signaltech"
+/datum/skillcape/network_admin
+	name = "cape of the network admin"
+	job = "Network Admin"
+	path = /obj/item/clothing/neck/skillcape/network_admin
+	id = "network_admin"
 
-/datum/skillcape/trimmed/signaltech
-	name = "cape of the grand signal technician"
-	job = "Signal Technician"
-	path = /obj/item/clothing/neck/skillcape/trimmed/signaltech
+/datum/skillcape/trimmed/network_admin
+	name = "cape of the grand network admin"
+	job = "Network Admin"
+	path = /obj/item/clothing/neck/skillcape/trimmed/network_admin
 	id = "signaltech_trimmed"
 
 /datum/skillcape/atmos
@@ -462,4 +462,29 @@
 	path = /obj/item/clothing/neck/skillcape/trimmed/botany
 	id = "botany_trimmed"
 
+/datum/skillcape/admin
+	name = "cape of mighty judgement"
+	job = "Admin"
+	path = /obj/item/clothing/neck/skillcape/admin
+	id = "admin"
+	special = TRUE
 
+/datum/skillcape/trimmed/admin
+	name = "cape of the supreme judge"
+	job = "Admin"
+	path = /obj/item/clothing/neck/skillcape/trimmed/admin
+	id = "admin_trimmed"
+	special = TRUE
+
+/datum/skillcape/mentor
+	name = "cape of the sage"
+	job = "Mentor"
+	path = /obj/item/clothing/neck/skillcape/mentor
+	id = "mentor"
+	special = TRUE
+
+/datum/skillcape/ghost
+	name = "cape of invisible skill"
+	job = "Ghost"
+	path = /obj/item/clothing/neck/skillcape
+	id = "ghost"

@@ -20,8 +20,6 @@
 #define CHAT_LAYER_MAX_Z			(CHAT_LAYER_MAX - CHAT_LAYER) / CHAT_LAYER_Z_STEP
 /// The dimensions of the chat message icons
 #define CHAT_MESSAGE_ICON_SIZE		9
-/// Macro from Lummox used to get height from a MeasureText proc
-#define WXH_TO_HEIGHT(x)			text2num(copytext(x, findtextEx(x, "x") + 1))
 
 /**
   * # Chat Message Overlay
@@ -84,6 +82,7 @@
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
 /datum/chatmessage/proc/on_parent_qdel()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /**
@@ -110,7 +109,7 @@
 	text = replacetext(text, span_check, "")
 
 	// Clip message
-	var/maxlen = owned_by.prefs.max_chat_length
+	var/maxlen = owned_by.prefs.read_preference(/datum/preference/numeric/max_chat_length)
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
@@ -314,4 +313,3 @@
 #undef CHAT_LAYER_Z_STEP
 #undef CHAT_LAYER_MAX_Z
 #undef CHAT_MESSAGE_ICON_SIZE
-#undef WXH_TO_HEIGHT

@@ -1,0 +1,11 @@
+{
+	"map_name": "[ALPHA] AsteroidStation",
+	"map_path": "map_files/AsteroidStation",
+	"map_file": "AsteroidStation.dmm",
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_box",
+		"emergency": "emergency_box"
+	}
+  }

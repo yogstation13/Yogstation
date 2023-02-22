@@ -192,15 +192,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"dv" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/bronze,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "dw" = (
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze,
@@ -312,6 +303,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"hn" = (
+/obj/machinery/oven,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "ia" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -322,6 +317,19 @@
 /obj/item/clockwork/alloy_shards/clockgolem_remains,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"il" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/structure/table/bronze,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "iO" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -487,6 +495,12 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"rg" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "rj" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/bronze/reebe,
@@ -868,12 +882,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"Ke" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "KX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only,
@@ -1124,6 +1132,15 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"Vv" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "Wq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1195,12 +1212,6 @@
 /area/crew_quarters/bar)
 "YH" = (
 /obj/item/clockwork/alloy_shards/small,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
-"YX" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 
@@ -1429,7 +1440,7 @@ rR
 Ws
 "}
 (15,1,1) = {"
-Ke
+rg
 AD
 Rz
 uu
@@ -1446,7 +1457,7 @@ Ws
 "}
 (16,1,1) = {"
 Ej
-YX
+Vv
 rj
 Ws
 Ws
@@ -1501,7 +1512,7 @@ bq
 al
 wO
 Uv
-dv
+il
 Ip
 eu
 CT
@@ -1518,7 +1529,7 @@ yl
 Bl
 SD
 np
-Ip
+hn
 Mg
 CT
 wp

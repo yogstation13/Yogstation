@@ -185,8 +185,9 @@
 
 				<h2>Poultice:</h2>
 
-				To prepare, first gather mushroom stems, cacti or porcini leaves, ashes from a burnt item, and a heat source such as a welder.
-				Next, mash together 4 mushroom stems and either 3 cacti fruit.
+				To prepare, first gather mushroom stems, cacti or porcini leaves, ashes from a burnt item, and a heat source such as a welder/lit candle.
+				Next, mash together 4 mushroom stems and 3 cacti fruit.
+				Porcini can be used instead of cacti fruit, but due to having less concentration it may be harder to fit enough leaves required to make the product.
 				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
 				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
 				Apply product to wounded parts to heal them. May cause loss of breath.
@@ -201,7 +202,7 @@
 
 				<h2>Capmix:</h2>
 
-				To prepare, first gather a mushroom cap, ashes from a burnt item, and a heat source such as a welder.
+				To prepare, first gather a mushroom cap, ashes from a burnt item, and a heat source such as a welder/lit candle.
 				Next, mash together one mushroom cap.
 				Afterwards, scoop up ashes with the mortar. If the ashes are warm enough, it may mix without extra heat needed.
 				If it has yet to mix, heat up the bowl by using the welder on it until it has done so.
@@ -217,7 +218,7 @@
 				Ingesting capmix in order to expel the resin.
 
 				Resin is also useful for ensuring things stick together, and is a stronger binder than watcher sinew.
-				To use it for this purpose you'll have to solidify it by heating it up.
+				To use it for this purpose you'll have to solidify it by adding water.
 
 				<h2>Mushroom Paste:</h2>
 
@@ -239,7 +240,7 @@
 				Every plant we are blessed with can be used in some way. 
 				All are not dangerous when consumed in moderation, save for mushroom caps.
 				All may be fermented and brewed into substances that induce a woozy and feel-good high.
-				Cacti fruit is rich in juices that will nurtur and heal your body.
+				Cacti fruit is rich in juices that will nurture and heal your body.
 				Polypore shavings are tough and can be used for crafts such as bowls and wood substitute, and contain a higher than average resin content.
 				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
 				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
@@ -379,10 +380,10 @@
 	page_link = "Infections"
 
 /obj/item/book/manual/wiki/telescience
-	name = "Teleportation Science - Bluespace for dummies!"
+	name = "Teleportation Science - Bluespace for Dummies!"
 	icon_state = "book7"
 	author = "University of Bluespace"
-	title = "Teleportation Science - Bluespace for dummies!"
+	title = "Teleportation Science - Bluespace for Dummies!"
 	page_link = "Guide_to_telescience"
 
 /obj/item/book/manual/wiki/engineering_hacking
@@ -511,7 +512,7 @@
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	if (!QDELETED(H))
 		H.emote("spin")
-		sleep(20)
+		sleep(2 SECONDS)
 		for(var/obj/item/W in H)
 			H.dropItemToGround(W)
 			if(prob(50))
@@ -521,7 +522,7 @@
 			var/obj/item/bodypart/BP = i
 			BP.generic_bleedstacks += 5
 		H.gib_animation()
-		sleep(3)
+		sleep(0.3 SECONDS)
 		H.adjustBruteLoss(1000) //to make the body super-bloody
 		H.spawn_gibs()
 		H.spill_organs()

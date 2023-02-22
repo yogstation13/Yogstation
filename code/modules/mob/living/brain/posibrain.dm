@@ -10,7 +10,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/askDelay = 600 //one minute
 	var/searching = FALSE
 	brainmob = null
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	braintype = "Android"
 	var/autoping = TRUE //if it pings on creation immediately
@@ -18,7 +18,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/success_message = span_notice("The positronic brain pings, and its lights start flashing. Success!")
 	var/fail_message = span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
 	var/new_role = "Positronic Brain"
-	var/welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
+	welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
 	<b>You are a positronic brain, brought into existence aboard Space Station 13.\n\
 	As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 	Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
@@ -44,7 +44,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob)
 		brainmob = new(src)
 	if(is_occupied())
-		to_chat(user, span_warning("This [name] is already active!"))
+		user.visible_message(span_danger("[user] begins to reset [src]'s memory banks"), span_danger("You begin to reset [src]'s memory banks"))
+		to_chat(brainmob, span_userdanger("[user] begins to reset your memory banks"))
+		if(do_after(user, remove_time, src))
+			user.visible_message(span_danger("[user] resets [src]'s memory banks"), span_danger("You successfully reset [src]'s memory banks"))
+			to_chat(brainmob, span_userdanger("Your memory banks have been cleared, you have no memories of anything before this moment."))
 		return
 	if(next_ask > world.time)
 		to_chat(user, recharge_message)
@@ -73,7 +77,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	activate(user)
 
 /obj/item/mmi/posibrain/proc/is_occupied()
-	if(brainmob.key)
+	if(brainmob.key && brainmob.client)
 		return TRUE
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -93,7 +97,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
 		return
-	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Yes","No")
+	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
 	if(posi_ask == "No" || QDELETED(src))
 		return
 	if(brainmob.suiciding) //clear suicide status if the old occupant suicided.
@@ -136,6 +140,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.stat = CONSCIOUS
 	brainmob.remove_from_dead_mob_list()
 	brainmob.add_to_alive_mob_list()
+	ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 
 	visible_message(new_mob_message)
 	check_success()

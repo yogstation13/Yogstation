@@ -10,7 +10,7 @@
 	magic_fluff_string = span_holoparasite("..And draw the CMO, a potent force of life... and death.")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! You caught a support carp. It's a kleptocarp!")
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Support modules active. Holoparasite swarm online.")
-	toggle_button_type = /obj/screen/guardian/ToggleMode
+	toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
 	var/toggle = FALSE
@@ -35,7 +35,7 @@
 		C.adjustToxLoss(-5)
 		var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(C))
 		if(namedatum)
-			H.color = namedatum.colour
+			H.color = namedatum.color
 		if(C == summoner)
 			update_health_hud()
 			med_hud_set_health()
@@ -100,7 +100,7 @@
 /obj/structure/receiving_pad/New(loc, mob/living/simple_animal/hostile/guardian/healer/G)
 	. = ..()
 	if(G.namedatum)
-		add_atom_colour(G.namedatum.colour, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(G.namedatum.color, FIXED_COLOUR_PRIORITY)
 
 /obj/structure/receiving_pad/proc/disappear()
 	visible_message("[src] vanishes!")

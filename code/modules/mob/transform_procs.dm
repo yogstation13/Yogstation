@@ -3,6 +3,9 @@
 /mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform || transformation_timer)
 		return
+	if(has_horror_inside())
+		to_chat(src, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	//Handle items on mob
 
 	if(tr_flags & TR_KEEPITEMS)
@@ -86,6 +89,7 @@
 		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
+		O.blood_volume = blood_volume * MONKIFY_BLOOD_COEFFICIENT
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -262,6 +266,7 @@
 		O.adjustOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
+		O.blood_volume = blood_volume / MONKIFY_BLOOD_COEFFICIENT
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -367,23 +372,13 @@
 	return ..()
 
 /mob/proc/AIize(transfer_after = TRUE, client/preference_source)
-	var/list/turf/landmark_loc = list()
-	for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-		if(locate(/mob/living/silicon/ai) in sloc.loc)
-			continue
-		if(sloc.primary_ai)
-			LAZYCLEARLIST(landmark_loc)
-			landmark_loc += sloc.loc
+	var/valid_core = FALSE
+	for(var/obj/machinery/ai/data_core/core in GLOB.data_cores)
+		if(core.valid_data_core())
+			valid_core = TRUE
 			break
-		landmark_loc += sloc.loc
-	if(!landmark_loc.len)
-		to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-		for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-			landmark_loc += sloc.loc
-
-	if(!landmark_loc.len)
-		message_admins("Could not find ai landmark for [src]. Yell at a mapper! We are spawning them at their current location.")
-		landmark_loc += loc
+	if(!valid_core)
+		message_admins("No valid data core for [src]. Yell at a mapper! The AI will die.")
 
 	if(client)
 		stop_sound_channel(CHANNEL_LOBBYMUSIC)
@@ -391,11 +386,11 @@
 	if(!transfer_after)
 		mind.active = FALSE
 
-	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
+	. = new /mob/living/silicon/ai(loc, null, src)
 
 
 	if(preference_source)
-		apply_pref_name("ai",preference_source)
+		apply_pref_name(/datum/preference/name/ai, preference_source)
 
 	qdel(src)
 
@@ -521,8 +516,8 @@
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60)
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points)
+/mob/proc/become_overmind(starting_points = 60, pointmodifier = 1)
+	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier)
 	B.key = key
 	. = B
 	qdel(src)
@@ -633,7 +628,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = input(usr, "Which type of mob should [src] turn into?", "Choose a type", sortList(mobtypes, /proc/cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))

@@ -3,8 +3,8 @@
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Synaptizine & Sulfur"
-	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulfur)
+	cure_text = "Synaptizine & sulphur"
+	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulphur)
 	agent = "Gravitokinetic Bipotential SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	desc = "If left untreated death will occur."

@@ -13,8 +13,8 @@
 
 	var/obj/structure/spacevine/SV = new()
 
-	for(var/area/maintenance/A in world)
-		for(var/turf/F in A)
+	for(var/area/maintenance/A in GLOB.areas)
+		for(var/turf/F as anything in A.get_contained_turfs())
 			if(F.Enter(SV))
 				turfs += F
 
@@ -124,7 +124,7 @@
 	return 1
 
 /datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
-	if(I && I.damtype == "fire")
+	if(I && I.damtype == BURN)
 		. = 0
 	else
 		. = expected_damage
@@ -332,7 +332,7 @@
 
 	for(var/datum/spacevine_mutation/SM in mutations)
 		damage_dealt = SM.on_hit(src, user, I, damage_dealt) //on_hit now takes override damage as arg and returns new value for other mutations to permutate further
-	take_damage(damage_dealt, I.damtype, "melee", 1)
+	take_damage(damage_dealt, I.damtype, MELEE, 1)
 
 /obj/structure/spacevine/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -391,17 +391,14 @@
 
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Delete Vines"] = "?_src_=[REF(src)];[HrefToken()];purge_vines=1"
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_SPACEVINE_PURGE, "Delete Vines")
 
-/datum/spacevine_controller/Topic(href, href_list)
-	if(..() || !check_rights(R_ADMIN, FALSE) || !usr.client.holder.CheckAdminHref(href, href_list))
-		return
-
-	if(href_list["purge_vines"])
-		if(alert(usr, "Are you sure you want to delete this spacevine cluster?", "Delete Vines", "Yes", "No") != "Yes")
-			return
-		DeleteVines()
+/datum/spacevine_controller/vv_do_topic(href_list)
+	. = ..()
+	if(href_list[VV_HK_SPACEVINE_PURGE])
+		if(tgui_alert(usr, "Are you sure you want to delete this spacevine cluster?", "Delete Vines", list("Yes", "No")) == "Yes")
+			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines()	//this is kill
 	QDEL_LIST(vines)	//this will also qdel us
@@ -443,7 +440,7 @@
 		KZ.set_production((spread_cap / initial(spread_cap)) * 5)
 		qdel(src)
 
-/datum/spacevine_controller/process()
+/datum/spacevine_controller/process(delta_time)
 	if(!LAZYLEN(vines))
 		qdel(src) //space vines exterminated. Remove the controller
 		return
@@ -451,9 +448,7 @@
 		qdel(src) //Sanity check
 		return
 
-	var/length = 0
-
-	length = min( spread_cap , max( 1 , vines.len / spread_multiplier ) )
+	var/length = round(clamp(delta_time * 0.5 * vines.len / spread_multiplier, 1, spread_cap))
 	var/i = 0
 	var/list/obj/structure/spacevine/queue_end = list()
 
@@ -466,7 +461,7 @@
 		for(var/datum/spacevine_mutation/SM in SV.mutations)
 			SM.process_mutation(SV)
 		if(SV.energy < 2) //If tile isn't fully grown
-			if(prob(20))
+			if(DT_PROB(10, delta_time))
 				SV.grow()
 		else //If tile is fully grown
 			SV.entangle_mob()
@@ -525,7 +520,7 @@
 						if(!istype(D, /obj/machinery/door/airlock/external))
 							var/obj/machinery/door/airlock/A = D
 							playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-							sleep(60)
+							sleep(6 SECONDS)
 							A.open(2)
 							for(var/datum/spacevine_mutation/SM in mutations)
 								SM.on_spread(src, stepturf)

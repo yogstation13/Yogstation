@@ -104,7 +104,7 @@
 	var/new_appearance = show_radial_menu(user, src, possible_appearances, custom_check = CALLBACK(src, .proc/check_menu, user, crayon), radius = 36, require_near = TRUE)
 	if(!new_appearance)
 		return FALSE
-	if(!do_after(user, 1 SECONDS, FALSE, src, TRUE))
+	if(!do_after(user, 1 SECONDS, src, FALSE))
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE
@@ -114,7 +114,7 @@
 	alpha = 255
 	icon = initial(icon)
 	if(!deceptive)
-		add_atom_colour("#FFD7A7", FIXED_COLOUR_PRIORITY)
+		add_atom_colour("#FFD7A7", ADMIN_COLOUR_PRIORITY)
 	switch(new_appearance)
 		if("Assistant")
 			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"

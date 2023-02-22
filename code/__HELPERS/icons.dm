@@ -224,8 +224,12 @@ world
 /icon/proc/GrayScale()
 	MapColors(0.3,0.3,0.3, 0.59,0.59,0.59, 0.11,0.11,0.11, 0,0,0)
 
+// Makes a icon mostly grey
+/icon/proc/Greyify()
+	MapColors(0.75,0.3,0.3, 0.6,0.75,0.6, 0.10,0.10,0.50, 0,0,0)
+
 /icon/proc/ColorTone(tone)
-	GrayScale()
+	Greyify()
 
 	var/list/TONE = ReadRGB(tone)
 	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
@@ -1048,7 +1052,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
 
 		if(prefs)
-			prefs.copy_to(body,TRUE,FALSE)
+			prefs.apply_prefs_to(body,TRUE)
 		if(J)
 			J.equip(body, TRUE, FALSE, outfit_override = outfit_override)
 		else if (outfit_override)
@@ -1058,7 +1062,6 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
 		for(var/D in showDirs)
 			body.setDir(D)
-			COMPILE_OVERLAYS(body)
 			var/icon/partial = getFlatIcon(body)
 			out_icon.Insert(partial,dir=D)
 

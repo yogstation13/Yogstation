@@ -113,9 +113,9 @@
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
-			U.adjustToxLoss(-1)
+			U.adjustToxLoss(-1, TRUE, TRUE)
 			U.adjustFireLoss(-1)
-		sleep(7.5)
+		sleep(0.75 SECONDS)
 
 
 /obj/effect/proc_holder/spell/pointed/gaze
@@ -323,14 +323,14 @@
 	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
-	user.revive(full_heal = TRUE)
-	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
 		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 		user.visible_message(span_warning("Shadowy matter takes the place of [user]'s missing limbs as they reform!"))
-		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
+		user.regenerate_limbs()
 		user.regenerate_organs()
+	user.revive(full_heal = TRUE)
+	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
 
 
 /obj/effect/proc_holder/spell/targeted/disease
@@ -466,9 +466,9 @@
 		if(!QDELETED(user) && !QDELETED(target))
 			to_chat(user, span_notice(". . ."))
 			to_chat(target, span_italics("Come to me, child."))
-			sleep(10)
+			sleep(1 SECONDS)
 			to_chat(target, span_italics("The world hasn't treated you well, has it?"))
-			sleep(15)
+			sleep(1.5 SECONDS)
 			to_chat(target, span_italics("Strike fear into their hearts..."))
 			to_chat(user, "<span class='notice italics bold'>They have signed the pact!</span>")
 			to_chat(target, span_userdanger("You sign Lilith's Pact."))

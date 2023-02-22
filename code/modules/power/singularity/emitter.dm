@@ -22,10 +22,12 @@
 	var/icon_state_underpowered = "emitter_+u"
 	var/active = FALSE
 	var/powered = FALSE
-	var/fire_delay = 100
-	var/maximum_fire_delay = 100
-	var/minimum_fire_delay = 20
-	var/last_shot = 0
+	var/fire_delay = 10 SECONDS //emitters always start with a 10 second starting time
+	var/maximum_reload_time = 10 SECONDS
+	var/minimum_reload_time = 2 SECONDS
+	var/shots_before_reload = 4 //how many times we shoot before "reloading"
+	var/delay_between_shots = 2 SECONDS //the time in seconds between regular shots, ie not "reloading"
+	var/last_shot = 0 
 	var/shot_number = 0
 	var/state = EMITTER_UNWRENCHED
 	var/locked = FALSE
@@ -77,17 +79,22 @@
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/power/emitter/RefreshParts()
-	var/max_firedelay = 120
-	var/firedelay = 120
-	var/min_firedelay = 24
-	var/power_usage = 350
+	var/max_reload = initial(maximum_reload_time) + 20
+	var/min_reload = initial(minimum_reload_time) + 4
+	var/power_usage = initial(active_power_usage) + 50
+	var/shot_delay = initial(delay_between_shots) + 2
+	var/shot_reload = initial(shots_before_reload) - 1
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
-		max_firedelay -= 20 * L.rating
-		min_firedelay -= 4 * L.rating
-		firedelay -= 20 * L.rating
-	maximum_fire_delay = max_firedelay
-	minimum_fire_delay = min_firedelay
-	fire_delay = firedelay
+		max_reload -= 20 * L.rating
+		min_reload -= 4 * L.rating
+	maximum_reload_time = max_reload
+	minimum_reload_time = min_reload
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		shot_delay  -= 2 * C.rating
+		shot_reload += C.rating
+	fire_delay = maximum_reload_time
+	delay_between_shots = shot_delay
+	shots_before_reload = shot_reload
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
@@ -95,7 +102,7 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds.<br>Power consumption at <b>[active_power_usage]W</b>.<span>"
+		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds, shooting [shots_before_reload] times before recharging. <br>Power consumption at <b>[active_power_usage]W</b>.<span>"
 
 /obj/machinery/power/emitter/ComponentInitialize()
 	. = ..()
@@ -137,7 +144,7 @@
 				active = TRUE
 				to_chat(user, span_notice("You turn on [src]."))
 				shot_number = 0
-				fire_delay = maximum_fire_delay
+				fire_delay = maximum_reload_time
 
 			message_admins("Emitter turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 			log_game("Emitter turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
@@ -161,7 +168,7 @@
 	if(!anchored)
 		step(src, get_dir(M, src))
 
-/obj/machinery/power/emitter/process()
+/obj/machinery/power/emitter/process(delta_time)
 	if(stat & (BROKEN))
 		return
 	if(state != EMITTER_WELDED || (!powernet && active_power_usage))
@@ -185,7 +192,7 @@
 				log_game("Emitter lost power in [AREACOORD(src)]")
 			return
 		if(charge <= 80)
-			charge += 5
+			charge += 2.5 * delta_time
 		if(!check_delay() || manual == TRUE)
 			return FALSE
 		fire_beam()
@@ -232,11 +239,11 @@
 		P.fire(dir2angle(dir))
 	if(!manual)
 		last_shot = world.time
-		if(shot_number < 3)
-			fire_delay = 20
-			shot_number ++
+		shot_number++
+		if(shot_number < shots_before_reload)
+			fire_delay = delay_between_shots
 		else
-			fire_delay = rand(minimum_fire_delay,maximum_fire_delay)
+			fire_delay = rand(minimum_reload_time,maximum_reload_time)
 			shot_number = 0
 	return P
 

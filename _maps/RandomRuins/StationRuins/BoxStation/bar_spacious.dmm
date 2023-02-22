@@ -21,12 +21,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -107,12 +101,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"ar" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "as" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -907,6 +895,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jY" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -990,6 +982,15 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"DJ" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Eu" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
@@ -1070,6 +1071,25 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Nu" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"NK" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "PW" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1120,15 +1140,6 @@
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"Zs" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ZD" = (
 /obj/machinery/griddle,
@@ -1360,7 +1371,7 @@ cq
 ab
 "}
 (15,1,1) = {"
-ah
+Nu
 cH
 Wu
 aG
@@ -1377,7 +1388,7 @@ ab
 "}
 (16,1,1) = {"
 ab
-ar
+DJ
 av
 ab
 ab
@@ -1432,7 +1443,7 @@ bd
 aj
 bq
 aY
-Zs
+NK
 ZD
 bC
 bC
@@ -1449,7 +1460,7 @@ aU
 aV
 aZ
 Ky
-ZD
+jY
 bX
 bC
 et

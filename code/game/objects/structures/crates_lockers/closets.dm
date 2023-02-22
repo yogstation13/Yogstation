@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	max_integrity = 200
 	integrity_failure = 50
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 60)
 	var/breakout_time = 1200
 	var/message_cooldown
 	var/can_weld_shut = TRUE
@@ -35,6 +35,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
+	/// Protection against weather that being inside of it provides.
+	var/list/weather_protection = null
+	/// How close being inside of the thing provides complete pressure safety. Must be between 0 and 1!
+	contents_pressure_protection = 0
+	/// How insulated the thing is, for the purposes of calculating body temperature. Must be between 0 and 1!
+	contents_thermal_insulation = 0
 	var/notreallyacloset = FALSE // It is genuinely a closet
 	var/datum/gas_mixture/air_contents
 	var/airtight_when_welded = TRUE
@@ -117,7 +123,6 @@ GLOBAL_LIST_EMPTY(lockers)
 	is_animating_door = FALSE
 	vis_contents -= door_obj
 	update_icon()
-	COMPILE_OVERLAYS(src)
 
 /obj/structure/closet/proc/get_door_transform(angle)
 	var/matrix/M = matrix()
@@ -346,7 +351,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O, mob/living/user)
-	if(!istype(O) || O.anchored || istype(O, /obj/screen))
+	if(!istype(O) || O.anchored || istype(O, /atom/movable/screen))
 		return
 	if(!istype(user) || user.incapacitated() || !(user.mobility_flags & MOBILITY_STAND))
 		return
@@ -459,7 +464,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	user.visible_message(span_warning("[src] begins to shake violently!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear banging from [src]."))
-	if(do_after(user,(breakout_time), target = src))
+	if(do_after(user, (breakout_time), src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
@@ -518,7 +523,7 @@ GLOBAL_LIST_EMPTY(lockers)
 
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 1)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
 
 /obj/structure/closet/emp_act(severity)
 	. = ..()
@@ -625,3 +630,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(air_contents)
 		return air_contents.return_temperature()
 	return ..()
+
+/obj/structure/closet/CanAStarPass(ID, dir, caller)
+	if(can_open(caller) || allowed(caller))
+		return TRUE
+	. = ..()
+	

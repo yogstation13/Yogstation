@@ -87,6 +87,42 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
 
+//////////STOUT AND ITS COCKTAILS//////////
+/datum/reagent/consumable/ethanol/beer/stout
+	name = "Stout Beer"
+	description = "a darker colored beer, made of barley and roast malt."
+	color = "#221915" // rgb: 34, 25, 21
+	taste_description = "malt and chocolate"
+	glass_name = "glass of stout"
+	glass_desc = "a cold pint of 'genius' brand stout."
+
+/datum/reagent/consumable/ethanol/beer/stout/irishflip
+	name = "Irish Flip"
+	description = "A creamy stout drink with... an egg?"
+	color = "#deaf57" // rgb: 222, 175, 87
+	taste_description = "chocolate cream and egg"
+	glass_icon_state = "irish_flip"
+	glass_name = "glass of irish flip"
+	glass_desc = "a fancy glass of creamy cocktail."
+
+/datum/reagent/consumable/ethanol/beer/stout/blackvelvet
+	name = "Black Velvet"
+	description = "A interesting mix of Champagne and Stout, made for the mourning of Prince Albert."
+	color = "#963900"  // rgb: 150, 57, 0
+	taste_description = "Champagne with a hint of chocolate."
+	glass_icon_state = "black_velvet"
+	glass_name = "glass of black velvet"
+	glass_desc = "a fancy drink with a melancholic past."
+
+/datum/reagent/consumable/ethanol/beer/stout/espressomartini
+	name = "Espresso Martini"
+	description = "A wake-me-the-fuck-up cocktail mix, guaranteed strong."
+	color = "#652a05"  
+	taste_description = "bitterness, chocolate, and cream."
+	glass_icon_state = "espresso_martini"
+	glass_name = "glass of espresso martini"
+	glass_desc = "a cocktail guaranteed to keep you awake."
+///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety has reduced calorie and alcohol content."
@@ -1218,11 +1254,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = rgb(51, 19, 3) //Sickly brown
 	boozepwr = 300 //I warned you
 	taste_description = "a wall of bricks"
-	glass_icon_state = "glass_brown2"
+	glass_icon_state = "bacchus"
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 
-
+/datum/reagent/consumable/ethanol/bacchus_blessing/on_mob_life(mob/living/carbon/C)
+	. = ..()
+	if(HAS_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE))
+		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		if(istype(L)) // Bacchus is proud
+			L.damage = min(L.damage - 1, 0)
 
 /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Atomic Bomb"
@@ -1399,6 +1440,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/narsour/on_mob_life(mob/living/carbon/M)
 	M.cultslurring = min(M.cultslurring + 3, 3)
 	M.stuttering = min(M.stuttering + 3, 3)
+	if(iscultist(M))
+		M.heal_overall_damage(0.5, 0.5)
 	..()
 
 /datum/reagent/consumable/ethanol/triple_sec
@@ -1855,7 +1898,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/minimum_percent = 0.15 //Percentages measured between 0 and 1.
+	var/const/minimum_percent = 0.15 //Percentages measured between 0 and 1.
+	//Yogs -- Fixed missing const specifier. Following code doesn't work right otherwise!
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
 	glass_name = "glass of [name]"
@@ -2118,6 +2162,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
 	if(islizard(M) && prob(15))
 		M.emote("scream")
+	else if(ishumanbasic(M))
+		M.heal_overall_damage(0.25, 0.25)
 	return ..()
 
 /datum/reagent/consumable/ethanol/cactuscooler
@@ -2268,7 +2314,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
 	M.emote("spin")
-	..()
+	if(is_servant_of_ratvar(M))
+		M.heal_overall_damage(0.5, 0.5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
@@ -2359,3 +2407,103 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
 
+/datum/reagent/consumable/ethanol/bilk/kortara
+	name = "Kortara"
+	description = "A sweet, milky nut-based drink traditional in vuulek cuisine. Frequently mixed with fruit juices and cocoa for extra refreshment."
+	boozepwr = 25
+	color = "#EEC39A"
+	quality = DRINK_GOOD
+	taste_description = "sweet nectar"
+	glass_icon_state = "kortara_glass"
+	glass_name = "glass of kortara"
+	glass_desc = "The fermented nectar of the Korta nut, as enjoyed by lizards galaxywide."
+
+	
+/datum/reagent/consumable/ethanol/sea_breeze
+	name = "Sea Breeze"
+	description = "Light and refreshing with a hint of mint and cocoa. Sweet, like a smoothie."
+	boozepwr = 15
+	color = "#CFFFE5"
+	quality = DRINK_VERYGOOD
+	taste_description = "mint choc chip"
+	glass_icon_state = "sea_breeze"
+	glass_name = "Sea Breeze"
+	glass_desc = "A creamy mint-chocolate shake."
+
+/datum/reagent/consumable/ethanol/sea_breeze/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	M.apply_status_effect(/datum/status_effect/throat_soothed)
+	..()
+
+/datum/reagent/consumable/ethanol/white_tiziran
+	name = "Kriiya"
+	description = "A mix of vodka and kortara, often utilized during vuulek celebrations."
+	boozepwr = 65
+	color = "#A68340"
+	quality = DRINK_GOOD
+	taste_description = "strikes and gutters"
+	glass_icon_state = "white_tiziran"
+	glass_name = "Kriiya"
+	glass_desc = "A sweet mint vodka with a hint of cocoa."
+
+/datum/reagent/consumable/ethanol/drunken_espatier
+	name = "M'thalu"
+	description = "A drink concocted by vuulek warriors for traditional duels. Strong and numbing."
+	boozepwr = 65
+	color = "#A68340"
+	quality = DRINK_GOOD
+	taste_description = "sorrow"
+	glass_icon_state = "drunken_espatier"
+	glass_name = "M'thalu"
+	glass_desc = "A drink that numbs the body, making it difficult to be aware of injury."
+	
+/datum/reagent/consumable/ethanol/drunken_espatier/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
+	C.hal_screwyhud = SCREWYHUD_HEALTHY //almost makes you forget how much it hurts
+	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "numb", name) //comfortably numb
+	..()
+
+/datum/reagent/consumable/ethanol/protein_blend
+	name = "Protein Blend"
+	description = "A vile blend of protein, pure grain alcohol, korta flour, and blood. Useful for bulking up, if you can keep it down."
+	boozepwr = 65
+	color = "#FF5B69"
+	quality = DRINK_NICE
+	taste_description = "regret"
+	glass_icon_state = "protein_blend"
+	glass_name = "Protein Blend"
+	glass_desc = "A vile yet nutritious drink that's hard to stomach."
+	nutriment_factor = 3 * REAGENTS_METABOLISM
+
+/datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	if(!islizard(M))
+		M.adjust_nutrition(2 * REM * delta_time)
+		M.adjust_disgust(5 * REM * delta_time)
+	else
+		M.adjust_disgust(2 * REM * delta_time)
+	..()
+
+/datum/reagent/consumable/ethanol/mushi_kombucha
+	name = "Mushi Kombucha"
+	description = "A popular mushroom tea among vuulen, traditionally enjoyed during blistering days of heat."
+	boozepwr = 10
+	color = "#C46400"
+	quality = DRINK_VERYGOOD
+	taste_description = "sweet 'shrooms"
+	glass_icon_state = "glass_orange"
+	glass_name = "glass of mushi kombucha"
+	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
+
+/datum/reagent/consumable/ethanol/triumphal_arch
+	name = "Triumphal Arch"
+	description = "A drink celebrating the Opsillian Republic and its rapid growth. A popular tool of integration efforts."
+	boozepwr = 60
+	color = "#FFD700"
+	quality = DRINK_FANTASTIC
+	taste_description = "victory"
+	glass_icon_state = "triumphal_arch"
+	glass_name = "Triumphal Arch"
+	glass_desc = "A toast to Sangris, the jewel of the vuulen."
+
+/datum/reagent/consumable/ethanol/triumphal_arch/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	if(islizard(M))
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "triumph", name)
+	return ..()

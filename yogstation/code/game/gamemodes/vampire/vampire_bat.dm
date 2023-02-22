@@ -49,5 +49,7 @@
 		mind.transfer_to(controller)
 		controller.status_flags &= ~GODMODE
 		controller.Knockdown(120)
-		to_chat(controller, span_userdanger("The force of being exiled from your bat form knocks you down!"))
+		controller.adjustBruteLoss(20)
+		to_chat(controller, span_userdanger("The force of being exiled from your bat form painfully throws you to the ground!"))
+		qdel()
 	. = ..()

@@ -1,11 +1,12 @@
 /obj/structure/railing
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
-	icon = 'icons/obj/fluff.dmi'
+	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing"
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
+	pixel_y = -16
 	climb_time = 10 // not that hard to jump a rail
 	climb_stun = 0 // if you dont fall
 	///Initial direction of the railing.
@@ -67,21 +68,23 @@
 /obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(get_dir(loc, target) & dir)
-		return !density
+		var/checking = FLYING | FLOATING
+		return . || mover.throwing || mover.movement_type & checking
 	return TRUE
 
 /obj/structure/railing/corner/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
-/obj/structure/railing/CheckExit(atom/movable/O, turf/target)
+/obj/structure/railing/CheckExit(atom/movable/mover, turf/target)
 	..()
 	if(get_dir(loc, target) & dir)
-		return 0
-	return 1
+		var/checking = UNSTOPPABLE | FLYING | FLOATING
+		return !density || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
+	return TRUE
 
 /obj/structure/railing/corner/CheckExit()
-	return 1
+	return TRUE
 
 /obj/structure/railing/proc/can_be_rotated(mob/user,rotation_type)
 	if(anchored)

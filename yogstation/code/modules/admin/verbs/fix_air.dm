@@ -30,7 +30,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(Master.current_runlevel < RUNLEVEL_GAME)
+	if(Master.current_runlevel < log(2, RUNLEVEL_GAME) + 1)
 		to_chat(src, "This command may not be used before the game has started!", confidential=TRUE)
 		message_admins("[src] has attempted to fix air before the game has started.")
 		return

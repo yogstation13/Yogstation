@@ -34,7 +34,7 @@
 			return get_step(center,SOUTH)
 		if(9)
 			return get_step(center,SOUTHEAST)
-		
+
 /obj/effect/sliding_puzzle/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
@@ -56,7 +56,7 @@
 /obj/effect/sliding_puzzle/proc/validate()
 	if(finished)
 		return
-	
+
 	if(elements.len < 8) //Someone broke it
 		qdel(src)
 
@@ -86,7 +86,7 @@
 		shake_camera(M, COLLAPSE_DURATION , 1)
 	for(var/obj/structure/puzzle_element/E in elements)
 		E.collapse()
-	
+
 	dispense_reward()
 
 /obj/effect/sliding_puzzle/proc/dispense_reward()
@@ -103,7 +103,7 @@
 		for(var/j in i to current_ordering.len)
 			if(current_ordering[j] < checked_value)
 				swap_tally++
-	
+
 	return swap_tally % 2 == 0
 
 //swap two tiles in same row
@@ -113,13 +113,13 @@
 	if(empty_tile_id == 1 || empty_tile_id == 2) //Can't swap with empty one so just grab some in second row
 		first_tile_id = 4
 		other_tile_id = 5
-	
+
 	var/turf/T1 = get_turf_for_id(first_tile_id)
 	var/turf/T2 = get_turf_for_id(other_tile_id)
-	
+
 	var/obj/structure/puzzle_element/E1 = locate() in T1
 	var/obj/structure/puzzle_element/E2 = locate() in T2
-	
+
 	E1.forceMove(T2)
 	E2.forceMove(T1)
 
@@ -237,7 +237,7 @@
 	T.add_overlay(MA)
 	//Some basic shaking animation
 	for(var/i in 1 to COLLAPSE_DURATION)
-		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=1)
+		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=0.1 SECONDS)
 	QDEL_IN(src,COLLAPSE_DURATION)
 
 /obj/structure/puzzle_element/Moved()
@@ -294,7 +294,7 @@
 
 //Some armor so it's harder to kill someone by mistake.
 /obj/structure/puzzle_element/prison
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 50, ACID = 50)
 
 /obj/structure/puzzle_element/prison/relaymove(mob/user)
 	return
@@ -311,7 +311,7 @@
 		return
 	var/mob/living/victim = target
 	var/mob/living/carbon/carbon_victim = victim
-	//Handcuffed or unconcious
+	//Handcuffed or unconscious
 	if(istype(carbon_victim) && carbon_victim.handcuffed || victim.stat != CONSCIOUS)
 		if(!puzzle_imprison(target))
 			to_chat(user,span_warning("[src] does nothing."))
@@ -319,7 +319,7 @@
 		to_chat(user,span_warning("You trap [victim] in the prison cube!"))
 		qdel(src)
 	else
-		to_chat(user,span_notice("[src] only accepts restrained or unconcious prisoners."))
+		to_chat(user,span_notice("[src] only accepts restrained or unconscious prisoners."))
 
 /proc/puzzle_imprison(mob/living/prisoner)
 	var/turf/T = get_turf(prisoner)
@@ -342,7 +342,7 @@
 	for(var/atom/movable/AM in things_to_throw)
 		var/throwtarget = get_edge_target_turf(T, get_dir(T, get_step_away(AM, T)))
 		AM.throw_at(throwtarget, 2, 3)
-	
+
 	//Create puzzle itself
 	cube.prisoner = prisoner
 	cube.setup()

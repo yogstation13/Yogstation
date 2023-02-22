@@ -149,7 +149,7 @@
 					to_chat(user, span_warning("You need one length of cable to wire the ED-209!"))
 					return
 				to_chat(user, span_notice("You start to wire [src]..."))
-				if(do_after(user, 4 SECONDS, target = src))
+				if(do_after(user, 4 SECONDS, src))
 					if(coil.get_amount() >= 1 && build_step == 6)
 						coil.use(1)
 						to_chat(user, span_notice("You wire [src]."))

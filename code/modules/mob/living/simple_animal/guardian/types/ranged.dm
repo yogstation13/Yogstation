@@ -23,7 +23,7 @@
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! Caught one, it's a ranged carp. This fishy can watch people pee in the ocean.")
 	see_invisible = SEE_INVISIBLE_LIVING
 	see_in_dark = 8
-	toggle_button_type = /obj/screen/guardian/ToggleMode
+	toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/list/snares = list()
 	var/toggle = FALSE
 
@@ -61,7 +61,7 @@
 	if(istype(., /obj/item/projectile))
 		var/obj/item/projectile/P = .
 		if(namedatum)
-			P.color = namedatum.colour
+			P.color = namedatum.color
 
 /mob/living/simple_animal/hostile/guardian/ranged/ToggleLight()
 	var/msg

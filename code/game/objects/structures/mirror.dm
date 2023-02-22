@@ -1,3 +1,14 @@
+#define FACIAL_HAIR "Facial hair"
+#define HEAD_HAIR "Hair"
+#define RACE "Race"
+#define GENDER "Gender"
+#define FACE_HAIR_COLOR "Facial hair color"
+#define HAIR_COLOR "Hair color"
+#define EYE_COLOR "Eye color"
+#define SKIN_COLOR "Skintone"
+#define MUTANT_COLOR "Mutant color"
+#define NAME "Name"
+
 //wip wip wup
 /obj/structure/mirror
 	name = "mirror"
@@ -14,6 +25,49 @@
 	if(icon_state == "mirror_broke" && !broken)
 		obj_break(null, mapload)
 
+/obj/structure/mirror/proc/get_choices(mob/living/carbon/human/H)
+	. = list()
+	var/datum/species/S = H.dna.species
+	if((FACEHAIR in S.species_traits))
+		. += list(FACIAL_HAIR = list("select a facial hair style", GLOB.facial_hair_styles_list))
+		. += list(FACE_HAIR_COLOR)
+	if((HAIR in S.species_traits))
+		. += list(HEAD_HAIR = list("select a hair style", GLOB.hair_styles_list))
+		. += list(HAIR_COLOR)
+
+// for things that dont use a list style syntax
+/obj/structure/mirror/proc/preapply_choices(selectiontype, mob/living/carbon/human/H)
+	switch(selectiontype)
+		if(FACE_HAIR_COLOR)
+			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color","#"+H.facial_hair_color) as color|null
+			if(!new_hair_color)
+				return TRUE
+			H.facial_hair_color = sanitize_hexcolor(new_hair_color)
+			H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
+			H.update_hair()
+			return TRUE
+		if(HAIR_COLOR)
+			var/new_hair_color = input(H, "Choose your hair color", "Hair Color","#"+H.hair_color) as color|null
+			if(!new_hair_color)
+				return TRUE
+			H.hair_color = sanitize_hexcolor(new_hair_color)
+			H.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+			H.update_hair()
+			return TRUE
+
+/obj/structure/mirror/proc/apply_choices(selectiontype, selection, mob/living/carbon/human/H)
+	if(!selection) // Prevent null-fuckups
+		return
+	switch(selectiontype)
+		if(FACIAL_HAIR)
+			H.facial_hair_style = selection
+			H.update_hair()
+			return TRUE
+		if(HEAD_HAIR)
+			H.hair_style = selection
+			H.update_hair()
+			return TRUE
+
 /obj/structure/mirror/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -21,30 +75,21 @@
 	if(broken || !Adjacent(user))
 		return
 
-	if(ishuman(user))
+	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
-
-		//see code/modules/mob/dead/new_player/preferences.dm at approx line 545 for comments!
-		//this is largely copypasted from there.
-
-		//handle facial hair (if necessary)
-		if(H.gender != FEMALE)
-			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in GLOB.facial_hair_styles_list
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return	//no tele-grooming
-			if(new_style)
-				H.facial_hair_style = new_style
-		else
-			H.facial_hair_style = "Shaved"
-
-		//handle normal hair
-		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.hair_styles_list
-		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-			return	//no tele-grooming
-		if(new_style)
-			H.hair_style = new_style
-
-		H.update_hair()
+		var/choices = get_choices(H) // Get the choices you can change
+		if(!choices) // No Choices
+			return
+		var/selection = input(user, "Choose your appearance", "Grooming") as null|anything in choices
+		if(!selection || !(selection in choices))
+			return
+		if(preapply_choices(selection, H))
+			return TRUE
+		var/stylelist = choices[selection] // Get subchoices (aka the styles you could apply)
+		var/newstyle = input(user, stylelist[1], "Grooming") as null|anything in stylelist[2]
+		if(!newstyle)
+			return
+		. = apply_choices(selection, newstyle, H) // Now apply the style
 
 /obj/structure/mirror/examine_status(mob/user)
 	if(broken)
@@ -118,134 +163,109 @@
 			choosable_races += initial(S.id)
 	..()
 
-/obj/structure/mirror/magic/attack_hand(mob/user)
+/obj/structure/mirror/magic/get_choices(mob/living/carbon/human/H)
 	. = ..()
-	if(.)
-		return
-	if(!ishuman(user))
-		return
+	. += list(RACE = list("select a new race", choosable_races))
+	. += list(GENDER = list("Select a new gender", list()))
+	var/datum/species/S = H.dna.species
+	if(!(AGENDER in S.species_traits) || !(FGENDER in S.species_traits) || !(MGENDER in S.species_traits))
+		.[GENDER][2] = list(MALE, FEMALE)
+	if(!(NOEYESPRITES in S.species_traits))
+		. += list(EYE_COLOR)
+	if(S.use_skintones)
+		. += list(SKIN_COLOR = list("select a new skintone", GLOB.skin_tones))
+	if((MUTCOLORS in S.species_traits) && !(NOCOLORCHANGE in S.species_traits))
+		. += list(MUTANT_COLOR)
+	. += list(NAME)
 
-	var/mob/living/carbon/human/H = user
-
-	var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "race", "gender", "hair", "eyes")
-
-	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		return
-
-	switch(choice)
-		if("name")
+/obj/structure/mirror/magic/preapply_choices(selectiontype, mob/living/carbon/human/H)
+	. = ..()
+	switch(selectiontype)
+		if(EYE_COLOR)
+			var/new_eye_color = input(H, "Choose your eye color", "Eye Color","#"+H.eye_color) as color|null
+			if(!new_eye_color)
+				return TRUE
+			H.eye_color = sanitize_hexcolor(new_eye_color)
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.update_body()
+			return TRUE
+		if(NAME)
 			var/newname = sanitize_name(reject_bad_text(stripped_input(H, "Who are we again?", "Name change", H.name, MAX_NAME_LEN)))
-
 			if(!newname)
-				return
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return
+				return TRUE
 			H.real_name = newname
 			H.name = newname
 			if(H.dna)
 				H.dna.real_name = newname
 			if(H.mind)
 				H.mind.name = newname
-
-		if("race")
-			var/newrace
-			var/racechoice = input(H, "What are we again?", "Race change") as null|anything in choosable_races
-			newrace = GLOB.species_list[racechoice]
-
-			if(!newrace)
-				return
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return
-			H.set_species(newrace, icon_update=0)
-
-			if(FGENDER in H.dna.species.species_traits)
-				H.gender = FEMALE
-			if(MGENDER in H.dna.species.species_traits)
-				H.gender = MALE
-			if(AGENDER in H.dna.species.species_traits)
-				H.gender = PLURAL
-
-			if(H.dna.species.use_skintones)
-				var/new_s_tone = input(user, "Choose your skin tone:", "Race change")  as null|anything in GLOB.skin_tones
-				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-					return
-
-				if(new_s_tone)
-					H.skin_tone = new_s_tone
-					H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
-
-			if((MUTCOLORS in H.dna.species.species_traits) && !(NOCOLORCHANGE in H.dna.species.species_traits))
-				var/new_mutantcolor = input(user, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
-				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-					return
-				if(new_mutantcolor)
-					var/temp_hsv = RGBtoHSV(new_mutantcolor)
-
-					if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
-						H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
-
-					else
-						to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
-
+			return TRUE
+		if(MUTANT_COLOR)
+			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
+			if(!new_mutantcolor)
+				return TRUE
+			var/temp_hsv = RGBtoHSV(new_mutantcolor)
+			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
+				H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+			else
+				to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
 			H.update_body()
 			H.update_hair()
 			H.update_body_parts()
 			H.update_mutations_overlay() // no hulk lizard
 
-		if("gender")
-			if(!(H.gender in list("male", "female"))) //blame the patriarchy
-				return
-			if((H.gender == "male") && !(MGENDER in H.dna.species.species_traits))
-				if(alert(H, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
-					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-						return
-					H.gender = "female"
-					to_chat(H, span_notice("Man, you feel like a woman!"))
-				else
-					return
+			return TRUE
 
-			else if((H.gender == "female") && !(FGENDER in H.dna.species.species_traits))
-				if(alert(H, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
-					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-						return
-					H.gender = "male"
-					to_chat(H, span_notice("Whoa man, you feel like a man!"))
-				else
-					return
+/obj/structure/mirror/magic/apply_choices(selectiontype, selection, mob/living/carbon/human/H)
+	. = ..()
+	var/datum/species/S = H.dna.species
+	switch(selectiontype)
+		if(GENDER)
+			if(selection == FEMALE)
+				H.gender = FEMALE
+				to_chat(H, span_notice("Man, you feel like a woman!"))
+
+			else if(selection == MALE)
+				H.gender = MALE
+				to_chat(H, span_notice("Whoa man, you feel like a man!"))
 			H.dna.update_ui_block(DNA_GENDER_BLOCK)
 			H.update_body()
 			H.update_mutations_overlay() //(hulk male/female)
+			return TRUE
 
-		if("hair")
-			var/hairchoice = alert(H, "Hair style or hair color?", "Change Hair", "Style", "Color")
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return
-			if(hairchoice == "Style") //So you just want to use a mirror then?
-				..()
-			else
-				var/new_hair_color = input(H, "Choose your hair color", "Hair Color","#"+H.hair_color) as color|null
-				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-					return
-				if(new_hair_color)
-					H.hair_color = sanitize_hexcolor(new_hair_color)
-					H.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
-				if(H.gender == "male")
-					var/new_face_color = input(H, "Choose your facial hair color", "Hair Color","#"+H.facial_hair_color) as color|null
-					if(new_face_color)
-						H.facial_hair_color = sanitize_hexcolor(new_face_color)
-						H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
-				H.update_hair()
+		if(RACE)
+			var/newrace = GLOB.species_list[selection]
+			H.set_species(newrace, icon_update=0)
+			if(FGENDER in S.species_traits)
+				H.gender = FEMALE
+			if(MGENDER in S.species_traits)
+				H.gender = MALE
+			if(AGENDER in S.species_traits)
+				H.gender = PLURAL
+			return TRUE
+		if(SKIN_COLOR)
+			H.skin_tone = selection
+			H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
+			H.update_body()
+			H.update_body_parts()
+			H.update_mutations_overlay() // no hulk lizard
+			return TRUE
 
-		if(BODY_ZONE_PRECISE_EYES)
-			var/new_eye_color = input(H, "Choose your eye color", "Eye Color","#"+H.eye_color) as color|null
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return
-			if(new_eye_color)
-				H.eye_color = sanitize_hexcolor(new_eye_color)
-				H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-				H.update_body()
-	if(choice)
+/obj/structure/mirror/magic/attack_hand(mob/user)
+	. = ..()
+	if(.)
 		curse(user)
 
 /obj/structure/mirror/magic/proc/curse(mob/living/user)
 	return
+
+#undef FACIAL_HAIR
+#undef HEAD_HAIR
+#undef RACE
+#undef GENDER
+#undef FACE_HAIR_COLOR
+#undef HAIR_COLOR
+#undef EYE_COLOR
+#undef SKIN_COLOR
+#undef MUTANT_COLOR
+#undef NAME

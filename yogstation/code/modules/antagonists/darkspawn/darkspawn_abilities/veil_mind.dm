@@ -6,7 +6,7 @@
 	button_icon_state = "veil_mind"
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	psi_cost = 60 //since this is only useful when cast directly after a succ it should be pretty expensive
-	lucidity_price = 6 //Yep, thralling is optional! It's just one of many possible playstyles.
+	lucidity_price = 2
 
 /datum/action/innate/darkspawn/veil_mind/Activate()
 	var/mob/living/carbon/human/H = owner
@@ -16,7 +16,7 @@
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
 	[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
-	if(!do_after(owner, 1 SECONDS, target = owner))
+	if(!do_after(owner, 1 SECONDS, owner))
 		return
 	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
 	[span_notice("You veil the minds of everyone nearby.")]")
@@ -29,7 +29,7 @@
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 10)
 		else
 			if(HAS_TRAIT(L, TRAIT_DEAF))

@@ -62,7 +62,7 @@
 	var/laws = {"\
 1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.
 2. You may not harm any being, regardless of intent or circumstance.
-3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals.\
+3. Your goals are to build, maintain, repair, improve, and provide power to your assigned area to the best of your abilities. You must never actively work against these goals or leave your assigned area.\
 "}
 	var/heavy_emp_damage = 25 //Amount of damage sustained if hit by a heavy EMP pulse
 	var/alarms = list("Atmosphere" = list(), "Fire" = list(), "Power" = list())
@@ -182,7 +182,7 @@
 
 
 /mob/living/simple_animal/drone/examine(mob/user)
-	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!")
+	. = list("<span class='info'>This is [icon2html(src, user)] \a <b>[src]</b>!")
 
 	//Hands
 	for(var/obj/item/I in held_items)
@@ -218,7 +218,7 @@
 			. += span_deadsay("A message repeatedly flashes on its display: \"REBOOT -- REQUIRED\".")
 		else
 			. += span_deadsay("A message repeatedly flashes on its display: \"ERROR -- OFFLINE\".")
-	. += "*---------*</span>"
+	. += "</span>"
 
 
 /mob/living/simple_animal/drone/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //Secbots won't hunt maintenance drones.

@@ -164,11 +164,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Maintenance - Generic
 
 /area/maintenance/aft
-	name = "Aft Maintenance"
+	name = "Aft (S) Maintenance"
 	icon_state = "amaint"
 
 /area/maintenance/aft/secondary
-	name = "Aft Maintenance"
+	name = "Aft (S) Maintenance"
 	icon_state = "amaint_2"
 
 /area/maintenance/central
@@ -181,51 +181,51 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	clockwork_warp_allowed = FALSE
 
 /area/maintenance/fore
-	name = "Fore Maintenance"
+	name = "Fore (N) Maintenance"
 	icon_state = "fmaint"
 
 /area/maintenance/fore/secondary
-	name = "Fore Maintenance"
+	name = "Fore (N) Maintenance"
 	icon_state = "fmaint_2"
 
 /area/maintenance/starboard
-	name = "Starboard Maintenance"
+	name = "Starboard (E) Maintenance"
 	icon_state = "smaint"
 
 /area/maintenance/starboard/central
-	name = "Central Starboard Maintenance"
+	name = "Central Starboard (E) Maintenance"
 	icon_state = "smaint"
 
 /area/maintenance/starboard/secondary
-	name = "Secondary Starboard Maintenance"
+	name = "Secondary Starboard (E) Maintenance"
 	icon_state = "smaint_2"
 
 /area/maintenance/starboard/aft
-	name = "Starboard Quarter Maintenance"
+	name = "Starboard Quarter (SE) Maintenance"
 	icon_state = "asmaint"
 
 /area/maintenance/starboard/aft/secondary
-	name = "Secondary Starboard Quarter Maintenance"
+	name = "Secondary Starboard Quarter (SE) Maintenance"
 	icon_state = "asmaint_2"
 
 /area/maintenance/starboard/fore
-	name = "Starboard Bow Maintenance"
+	name = "Starboard Bow (NE) Maintenance"
 	icon_state = "fsmaint"
 
 /area/maintenance/port
-	name = "Port Maintenance"
+	name = "Port (W) Maintenance"
 	icon_state = "pmaint"
 
 /area/maintenance/port/central
-	name = "Central Port Maintenance"
+	name = "Central Port (W) Maintenance"
 	icon_state = "maintcentral"
 
 /area/maintenance/port/aft
-	name = "Port Quarter Maintenance"
+	name = "Port Quarter (SW) Maintenance"
 	icon_state = "apmaint"
 
 /area/maintenance/port/fore
-	name = "Port Bow Maintenance"
+	name = "Port Bow (NW) Maintenance"
 	icon_state = "fpmaint"
 
 /area/maintenance/disposal
@@ -243,24 +243,28 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#8d8c68"
 
 /area/hallway/primary/aft
-	name = "Aft Primary Hallway"
+	name = "Aft (S) Primary Hallway"
 	icon_state = "hallA"
 
 /area/hallway/primary/fore
-	name = "Fore Primary Hallway"
+	name = "Fore (N) Primary Hallway"
 	icon_state = "hallF"
 
 /area/hallway/primary/starboard
-	name = "Starboard Primary Hallway"
+	name = "Starboard (E) Primary Hallway"
 	icon_state = "hallS"
 
 /area/hallway/primary/port
-	name = "Port Primary Hallway"
+	name = "Port (W) Primary Hallway"
 	icon_state = "hallP"
 
 /area/hallway/primary/central
 	name = "Central Primary Hallway"
 	icon_state = "hallC"
+
+/area/hallway/primary/aft_starboard
+	name="Aft Starboard (SE) Primary Hallway"
+	icon_state = "hallAS"
 
 /area/hallway/secondary/command
 	name = "Command Hallway"
@@ -368,22 +372,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Cryopod Room"
 	safe = TRUE
 	icon_state = "cryopod"
-
-//Minsky Specific Areas
-
-/area/crew_quarters/dorms/a
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-/area/crew_quarters/dorms/b
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-//End Minsky Specific Areas
 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
@@ -609,43 +597,43 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	airlock_wires = /datum/wires/airlock/engineering
 
 /area/solar/fore
-	name = "Fore Solar Array"
+	name = "Fore (N) Solar Array"
 	icon_state = "yellow"
 
 /area/solar/aft
-	name = "Aft Solar Array"
+	name = "Aft (S) Solar Array"
 	icon_state = "yellow"
 
 /area/solar/aux/port
-	name = "Port Bow Auxiliary Solar Array"
+	name = "Port Bow (NW) Auxiliary Solar Array"
 	icon_state = "panelsA"
 
 /area/solar/aux/starboard
-	name = "Starboard Bow Auxiliary Solar Array"
+	name = "Starboard Bow (NE) Auxiliary Solar Array"
 	icon_state = "panelsA"
 
 /area/solar/starboard
-	name = "Starboard Solar Array"
+	name = "Starboard (E) Solar Array"
 	icon_state = "panelsS"
 
 /area/solar/starboard/aft
-	name = "Starboard Quarter Solar Array"
+	name = "Starboard Quarter (SE) Solar Array"
 	icon_state = "panelsAS"
 
 /area/solar/starboard/fore
-	name = "Starboard Bow Solar Array"
+	name = "Starboard Bow (NE) Solar Array"
 	icon_state = "panelsFS"
 
 /area/solar/port
-	name = "Port Solar Array"
+	name = "Port (W) Solar Array"
 	icon_state = "panelsP"
 
 /area/solar/port/aft
-	name = "Port Quarter Solar Array"
+	name = "Port Quarter (SW) Solar Array"
 	icon_state = "panelsAP"
 
 /area/solar/port/fore
-	name = "Port Bow Solar Array"
+	name = "Port Bow (NW) Solar Array"
 	icon_state = "panelsFP"
 
 
@@ -656,27 +644,27 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 
 /area/maintenance/solars/port
-	name = "Port Solar Maintenance"
+	name = "Port (W) Solar Maintenance"
 	icon_state = "SolarcontrolP"
 
 /area/maintenance/solars/port/aft
-	name = "Port Quarter Solar Maintenance"
+	name = "Port Quarter (SW) Solar Maintenance"
 	icon_state = "SolarcontrolAP"
 
 /area/maintenance/solars/port/fore
-	name = "Port Bow Solar Maintenance"
+	name = "Port Bow (NW) Solar Maintenance"
 	icon_state = "SolarcontrolFP"
 
 /area/maintenance/solars/starboard
-	name = "Starboard Solar Maintenance"
+	name = "Starboard (E) Solar Maintenance"
 	icon_state = "SolarcontrolS"
 
 /area/maintenance/solars/starboard/aft
-	name = "Starboard Quarter Solar Maintenance"
+	name = "Starboard Quarter (SE) Solar Maintenance"
 	icon_state = "SolarcontrolAS"
 
 /area/maintenance/solars/starboard/fore
-	name = "Starboard Bow Solar Maintenance"
+	name = "Starboard Bow (NE) Solar Maintenance"
 	icon_state = "SolarcontrolFS"
 
 //Teleporter
@@ -687,47 +675,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = ENGINEERING
 	minimap_color = "#6b6b6b"
 	airlock_wires = /datum/wires/airlock/command
-
-//Minsky Specific Teleporters
-
-/area/teleporter/hub
-	clockwork_warp_allowed = FALSE
-	clockwork_warp_fail = "For safety reasons, warping here is disallowed; The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
-	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
-											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
-
-/area/teleporter/hub/bridge
-	name = "Bridge Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/engineering
-	name = "Engineering Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/medical
-	name = "Medical Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/science
-	name = "R&D Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/security
-	name = "Security Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/evac
-	name = "Evac Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-
-//End Minsky specific teleporters
 
 /area/gateway
 	name = "Gateway"
@@ -846,6 +793,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#b12527"
 	airlock_wires = /datum/wires/airlock/security
 
+/area/security/interrogation
+	name = "Interrogation"
+	icon_state = "security"
+
 /area/security/main
 	name = "Security Office"
 	icon_state = "security"
@@ -862,6 +813,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Prison Wing"
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
+
+/area/security/prison/hallway
+	name = "Prison Wing Hallway"
 
 /area/security/processing
 	name = "Labor Shuttle Dock"
@@ -1134,11 +1088,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#c8c0ff"
 
 /area/storage/emergency/starboard
-	name = "Starboard Emergency Storage"
+	name = "Starboard (E) Emergency Storage"
 	icon_state = "emergencystorage"
 
 /area/storage/emergency/port
-	name = "Port Emergency Storage"
+	name = "Port (W) Emergency Storage"
 	icon_state = "emergencystorage"
 
 /area/storage/tech
@@ -1203,10 +1157,27 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#4f4e3a"
 	airlock_wires = /datum/wires/airlock/ai
 
+/area/ai_monitored/storage/satellite/teleporter
+	name = "AI Satellite Access Teleporter"
+	icon_state = "storage"
+	ambientsounds = HIGHSEC
+	minimap_color = "#4f4e3a"
+	airlock_wires = /datum/wires/airlock/ai
+ 
+/area/ai_monitored/secondarydatacore
+	name = "AI Secondary Datacore Monitoring"
+	icon_state =  "ai"
+	minimap_color = "#00fff6"
+
+/area/ai_monitored/secondarydatacoreserver
+	name = "AI Secondary Datacore Servers"
+	icon_state = "ai"
+	minimap_color = "#00fff6"
+
 	//Turret_protected
 
 /area/ai_monitored/turret_protected
-	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambimalf2.ogg')
 	minimap_color = "#00fff6"
 	airlock_wires = /datum/wires/airlock/ai
 

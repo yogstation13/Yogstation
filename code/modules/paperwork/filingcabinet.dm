@@ -100,11 +100,11 @@
 			opentrim.color = cab.colour
 			var/overlays = list(opentrim, open)
 			add_overlay(overlays)
-			sleep(5)
+			sleep(0.5 SECONDS)
 			cut_overlay(overlays)
 		else
 			icon_state = "[initial(icon_state)]-open"
-			sleep(5)
+			sleep(0.5 SECONDS)
 			icon_state = initial(icon_state)
 			updateUsrDialog()
 	else if(P.tool_behaviour == TOOL_WRENCH)
@@ -166,11 +166,11 @@
 				opentrim.color = cab.colour
 				var/overlays = list(opentrim, open)
 				add_overlay(overlays)
-				sleep(5)
+				sleep(0.5 SECONDS)
 				cut_overlay(overlays)
 			else
 				icon_state = "[initial(icon_state)]-open"
-				sleep(5)
+				sleep(0.5 SECONDS)
 				icon_state = initial(icon_state)
 
 /obj/structure/filingcabinet/colored/attackby(obj/item/P, mob/user, params)
@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(employmentCabinets)
 			fillCurrent()
 			virgin = 0
 		cooldown = 1
-		sleep(100) // prevents the devil from just instantly emptying the cabinet, ensuring an easy win.
+		sleep(10 SECONDS) // prevents the devil from just instantly emptying the cabinet, ensuring an easy win.
 		cooldown = 0
 	else
 		to_chat(user, span_warning("[src] is jammed, give it a few seconds."))

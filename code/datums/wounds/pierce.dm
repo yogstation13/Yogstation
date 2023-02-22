@@ -64,7 +64,7 @@
 		if(prob(5))
 			to_chat(victim, span_notice("You feel the [lowertext(name)] in your [limb.name] firming up from the cold!"))
 
-	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS))
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) && (victim.stat != DEAD))
 		blood_flow += 0.5 // old heparin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
 
 	if(limb.current_gauze)
@@ -101,8 +101,11 @@
 /datum/wound/pierce/proc/suture(obj/item/stack/medical/suture/I, mob/user)
 	var/self_penalty_mult = (user == victim ? 1.4 : 1)
 	user.visible_message(span_notice("[user] begins stitching [victim]'s [limb.name] with [I]..."), span_notice("You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	if(!do_after(user, base_treat_time * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	playsound(I, pick(I.apply_sounds), 25)
+	
+	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
+
 	user.visible_message(span_green("[user] stitches up some of the bleeding on [victim]."), span_green("You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"]."))
 	var/blood_sutured = I.stop_bleeding / self_penalty_mult
 	blood_flow -= blood_sutured
@@ -120,9 +123,12 @@
 	var/self_penalty_mult = (user == victim ? 1.5 : 1) // 50% longer and less effective if you do it to yourself
 
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
-
+	
+	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
 	user.visible_message(span_green("[user] cauterizes some of the bleeding on [victim]."), span_green("You cauterize some of the bleeding on [victim]."))
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))
@@ -170,7 +176,7 @@
 /datum/wound/pierce/critical
 	name = "Ruptured Cavity"
 	desc = "Patient's internal tissue and circulatory system is shredded, causing significant internal bleeding and damage to internal organs."
-	treat_text = "Surgical repair of puncture wound, followed by supervised resanguination."
+	treat_text = "Surgical repair of puncture wound, followed by supervised blood infusion."
 	examine_desc = "is ripped clear through, barely held together by exposed bone"
 	occur_text = "blasts apart, sending chunks of viscera flying in all directions"
 	sound_effect = 'sound/effects/wounds/pierce3.ogg'

@@ -4,7 +4,7 @@
 	maxHealth = 125
 	health = 125
 	icon_state = "alienh"
-	var/obj/screen/leap_icon = null
+	var/atom/movable/screen/leap_icon = null
 
 /mob/living/carbon/alien/humanoid/hunter/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/small
@@ -45,13 +45,13 @@
 
 	else //Maybe uses plasma in the future, although that wouldn't make any sense...
 		leaping = 1
-		weather_immunities += "lava"
+		weather_immunities += WEATHER_LAVA
 		update_icons()
 		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0
-	weather_immunities -= "lava"
+	weather_immunities -= WEATHER_LAVA
 	update_icons()
 
 /mob/living/carbon/alien/humanoid/hunter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -70,16 +70,16 @@
 					blocked = TRUE
 			if(!blocked)
 				L.visible_message("<span class ='danger'>[src] pounces on [L]!</span>", "<span class ='userdanger'>[src] pounces on you!</span>")
-				L.Paralyze(100)
-				sleep(2)//Runtime prevention (infinite bump() calls on hulks)
+				L.Paralyze(10 SECONDS)
+				sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 				step_towards(src,L)
 			else
-				Paralyze(40, 1, 1)
+				Paralyze(4 SECONDS, 1, 1)
 
 			toggle_leap(0)
 		else if(hit_atom.density && !hit_atom.CanPass(src))
 			visible_message("<span class ='danger'>[src] smashes into [hit_atom]!</span>", "<span class ='alertalien'>[src] smashes into [hit_atom]!</span>")
-			Paralyze(40, 1, 1)
+			Paralyze(4 SECONDS, 1, 1)
 
 		if(leaping)
 			leaping = FALSE

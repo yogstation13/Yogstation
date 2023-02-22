@@ -76,7 +76,7 @@
 					body += "<a href='?_src_=holder;[HrefToken()];showmessageckey="+ckey+"'>N</a> - "
 					body += "<a href='?_src_=vars;[HrefToken()];Vars="+ref+"'>VV</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];traitor="+ref+"'>TP</a> - "
-					if (job == "Cyborg")
+					if (job.substring(0,6) == "Cyborg")
 						body += "<a href='?_src_=holder;[HrefToken()];borgpanel="+ref+"'>BP</a> - "
 					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
@@ -241,6 +241,9 @@
 						M_job = ROLE_PAI
 					else if(iscyborg(M))
 						M_job = "Cyborg"
+						var/mob/living/silicon/robot/R = M
+						if(R.module)
+							M_job += " [R.module.name]"
 					else
 						M_job = "Silicon-based"
 

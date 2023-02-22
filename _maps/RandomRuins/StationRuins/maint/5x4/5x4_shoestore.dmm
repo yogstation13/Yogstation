@@ -38,7 +38,7 @@
 	pixel_x = 12;
 	pixel_y = 7
 	},
-/obj/item/clothing/shoes/yogs/fire_crocs{
+/obj/item/clothing/shoes/fire_crocs{
 	pixel_x = 30;
 	pixel_y = 13
 	},

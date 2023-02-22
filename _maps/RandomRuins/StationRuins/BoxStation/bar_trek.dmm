@@ -21,19 +21,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/bar)
 "ag" = (
-/turf/closed/wall,
-/area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sign/plaques/deempisi{
-	pixel_y = -4
-	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "ai" = (
@@ -249,12 +237,6 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"aB" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/bar)
 "aC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1279,6 +1261,10 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
+"qD" = (
+/obj/machinery/oven,
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/kitchen)
 "qW" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
@@ -1291,12 +1277,16 @@
 /obj/machinery/griddle,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
-"xl" = (
+"uZ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -1411,6 +1401,15 @@
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Kd" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/bar)
 "MN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1512,6 +1511,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"Zo" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1738,7 +1743,7 @@ cF
 ag
 "}
 (15,1,1) = {"
-af
+Zo
 az
 aT
 be
@@ -1754,8 +1759,8 @@ cI
 ag
 "}
 (16,1,1) = {"
-ah
-aB
+ag
+Kd
 aV
 ag
 ag
@@ -1810,7 +1815,7 @@ bo
 al
 bF
 bR
-xl
+uZ
 sm
 bQ
 bQ
@@ -1827,7 +1832,7 @@ bf
 bG
 bS
 nm
-sm
+qD
 cq
 bQ
 nZ

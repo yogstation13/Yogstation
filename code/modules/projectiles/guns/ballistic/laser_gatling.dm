@@ -15,7 +15,8 @@
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 40
-	var/heat_diffusion = 1
+	var/heat_stage = 0
+	var/heat_diffusion = 0.5
 
 /obj/item/minigunpack/Initialize()
 	. = ..()
@@ -26,8 +27,10 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/minigunpack/process()
-	overheat = max(0, overheat - heat_diffusion)
+/obj/item/minigunpack/process(delta_time)
+	overheat = max(0, overheat - heat_diffusion * delta_time)
+	if(overheat == 0 && heat_stage > 0)
+		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/minigunpack/attack_hand(var/mob/living/carbon/user)
@@ -45,6 +48,10 @@
 			to_chat(user, span_warning("You are already holding the gun!"))
 	else
 		..()
+
+/obj/item/minigunpack/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Current heat level: [overheat] / [overheat_max]"
 
 /obj/item/minigunpack/attackby(obj/item/W, mob/user, params)
 	if(W == gun) //Don't need armed check, because if you have the gun assume its armed.
@@ -69,8 +76,8 @@
 
 		if(!M.incapacitated())
 
-			if(istype(over_object, /obj/screen/inventory/hand))
-				var/obj/screen/inventory/hand/H = over_object
+			if(istype(over_object, /atom/movable/screen/inventory/hand))
+				var/atom/movable/screen/inventory/hand/H = over_object
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 
@@ -135,6 +142,20 @@
 
 /obj/item/gun/ballistic/minigun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(ammo_pack)
+		if(ammo_pack.overheat > ammo_pack.overheat_max * (1 / 3) && ammo_pack.heat_stage < 1)
+			to_chat(user, "You feel warmth from the handle of the gun.")
+			ammo_pack.heat_stage += 1
+			..()
+
+		if(ammo_pack.overheat > ammo_pack.overheat_max * (2 / 3) && ammo_pack.heat_stage < 2)
+			to_chat(user, "The gun's heat sensor beeps rapidly as it reaches its limit!")
+			ammo_pack.heat_stage += 1
+			..()
+
+		if(ammo_pack.overheat < ammo_pack.overheat_max)
+			ammo_pack.overheat += burst_size
+			..()
+
 		if(ammo_pack.overheat < ammo_pack.overheat_max)
 			ammo_pack.overheat += burst_size
 			..()

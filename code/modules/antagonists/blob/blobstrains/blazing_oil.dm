@@ -3,9 +3,9 @@
 /datum/blobstrain/reagent/blazing_oil
 	name = "Blazing Oil"
 	description = "will do medium burn damage and set targets on fire."
-	effectdesc = "will also release bursts of flame when burnt, but takes damage from water."
+	effectdesc = "is completely immune to burn damage and will also release bursts of flame when burnt, but takes damage from water."
 	analyzerdescdamage = "Does medium burn damage and sets targets on fire."
-	analyzerdesceffect = "Releases fire when burnt, but takes damage from water and other extinguishing liquids."
+	analyzerdesceffect = "Releases fire when burnt and is completely immune to burning, but takes damage from water and other extinguishing liquids."
 	color = "#B68D00"
 	complementary_color = "#BE5532"
 	blobbernaut_message = "splashes"
@@ -14,15 +14,18 @@
 	reagent = /datum/reagent/blob/blazing_oil
 
 /datum/blobstrain/reagent/blazing_oil/extinguish_reaction(obj/structure/blob/B)
-	B.take_damage(1.5, BURN, "energy")
+	B.take_damage(1, BURN, ENERGY)
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
-	if(damage_type == BURN && damage_flag != "energy")
+	if(damage_type == BURN && damage_flag != ENERGY)
+		var/mob/camera/blob/O = overmind
+		O.add_points(damage / 10)//burn damage causes the blob to gain a very small amount of points: the 20 damage of a laser will generate 2 BP.
+		damage = 0 //completely and entirely immune to burn damage!
 		for(var/turf/open/T in range(1, B))
 			var/obj/structure/blob/C = locate() in T
 			if(!(C && C.overmind && C.overmind.blobstrain.type == B.overmind.blobstrain.type) && prob(80))
 				new /obj/effect/hotspot(T)
-	if(damage_flag == "fire")
+	if(damage_flag == FIRE)
 		return 0
 	return ..()
 

@@ -9,6 +9,7 @@
 	icon_state = "crawling"
 	icon_living = "crawling"
 	icon_dead = "dead"
+	health_doll_icon = "crawling"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	speak_chance = 80
 	maxHealth = 220
@@ -40,8 +41,8 @@
 
 	do_footstep = TRUE
 
-// Gorillas like to dismember limbs from unconcious mobs.
-// Returns null when the target is not an unconcious carbon mob; a list of limbs (possibly empty) otherwise.
+// Gorillas like to dismember limbs from unconscious mobs.
+// Returns null when the target is not an unconscious carbon mob; a list of limbs (possibly empty) otherwise.
 /mob/living/simple_animal/hostile/gorilla/proc/target_bodyparts(atom/the_target)
 	var/list/parts = list()
 	if(iscarbon(the_target))

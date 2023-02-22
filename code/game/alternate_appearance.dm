@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	if(alternate_appearances && alternate_appearances[key])
 		return
 	var/list/arguments = args.Copy(2)
-	new type(arglist(arguments))
+	return new type(arglist(arguments))
 
 /datum/atom_hud/alternate_appearance
 	var/appearance_key
@@ -190,3 +190,20 @@ datum/atom_hud/alternate_appearance/basic/onePerson
 	..(key, I, FALSE)
 	seer = M
 	add_hud_to(seer)
+
+/datum/atom_hud/alternate_appearance/basic/scent_hunter
+
+/datum/atom_hud/alternate_appearance/basic/scent_hunter/New()
+	..()
+	for(var/mob in GLOB.player_list)
+		if(mobShouldSee(mob))
+			add_hud_to(mob)
+
+/datum/atom_hud/alternate_appearance/basic/scent_hunter/mobShouldSee(mob/M)
+	if(isliving(M))
+		var/mob/living/L = M
+		if(L.has_status_effect(STATUS_EFFECT_SCENT_HUNTER) || L.has_status_effect(STATUS_EFFECT_BLOOD_HUNTER))
+			return TRUE
+	if(isobserver(M))
+		return TRUE
+	return FALSE

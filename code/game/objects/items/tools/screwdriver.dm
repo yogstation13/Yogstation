@@ -19,7 +19,7 @@
 	usesound = list('sound/items/screwdriver.ogg', 'sound/items/screwdriver2.ogg')
 	tool_behaviour = TOOL_SCREWDRIVER
 	toolspeed = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
 	pickup_sound =  'sound/items/handling/screwdriver_pickup.ogg'
 	sharpness = SHARP_POINTY
@@ -74,6 +74,8 @@
 		return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state)
 
 /obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
+	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
 	if(!istype(M))
 		return ..()
 	if(user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_HEAD)
@@ -98,17 +100,32 @@
 	name = "alien screwdriver"
 	desc = "An ultrasonic screwdriver."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "screwdriver_a"
+	icon_state = "screwdriver_alien"
 	item_state = "screwdriver_nuke"
 	usesound = 'sound/items/pshoom.ogg'
 	toolspeed = 0.1
 	random_color = FALSE
 
 /obj/item/screwdriver/abductor/get_belt_overlay()
-	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_nuke")
+	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_alien")
 
 /obj/item/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
+
+/obj/item/screwdriver/makeshift
+	name = "makeshift screwdriver"
+	desc = "Crude driver of screws. A primitive way to screw things up."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "screwdriver_makeshift"
+	toolspeed = 2
+	random_color = FALSE
+
+/obj/item/screwdriver/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
+		qdel(src)
+		return

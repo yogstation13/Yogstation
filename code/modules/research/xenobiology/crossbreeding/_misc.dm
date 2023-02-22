@@ -250,7 +250,7 @@ Slimecrossing Items
 	icon_state = "frozen"
 	density = TRUE
 	max_integrity = 100
-	armor = list("melee" = 30, "bullet" = 50, "laser" = -50, "energy" = -50, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = -80, "acid" = 30)
+	armor = list(MELEE = 30, BULLET = 50, LASER = -50, ENERGY = -50, BOMB = 0, BIO = 100, RAD = 100, FIRE = -80, ACID = 30)
 
 /obj/structure/ice_stasis/Initialize()
 	. = ..()
@@ -278,8 +278,8 @@ Slimecrossing Items
 		to_chat(user, span_warning("The capture device only works on simple creatures."))
 		return
 	if(M.mind)
-		to_chat(user, span_notice("You offer the device to [M]."))
-		if(alert(M, "Would you like to enter [user]'s capture device?", "Gold Capture Device", "Yes", "No") == "Yes")
+		to_chat(user, "<span class='notice'>You offer the device to [M].</span>")
+		if(tgui_alert(M, "Would you like to enter [user]'s capture device?", "Gold Capture Device", list("Yes", "No")) == "Yes")
 			if(user.canUseTopic(src, BE_CLOSE) && user.canUseTopic(M, BE_CLOSE))
 				to_chat(user, span_notice("You store [M] in the capture device."))
 				to_chat(M, span_notice("The world warps around you, and you're suddenly in an endless void, with a window to the outside floating in front of you."))
@@ -324,11 +324,17 @@ Slimecrossing Items
 		return
 	var/obj/item/stack/stack_item = target
 
-	if(istype(stack_item,/obj/item/stack/telecrystal))
+	if(istype(stack_item,/obj/item/stack/telecrystal) || istype(stack_item,/obj/item/stack/ore/bluespace_crystal/refined/nt))
 		var/mob/living/carbon/carbie = user
-		to_chat(user,"<span class='big red'>You will pay for your hubris!</span>")
-		carbie.gain_trauma(/datum/brain_trauma/special/beepsky,TRAUMA_RESILIENCE_ABSOLUTE)
+		visible_message(span_userdanger("\The [src] reacts violently with the unstable nature of \the [stack_item]!"))
+		for(var/obj/machinery/light/L in get_area(src))
+			L.on = TRUE
+			L.break_light_tube()
+			L.on = FALSE
+			CHECK_TICK
+		electrocute_mob(carbie, get_area(src), src)
 		qdel(src)
 		return
+	
 	stack_item.add(amt)
 	qdel(src)

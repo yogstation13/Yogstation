@@ -96,7 +96,7 @@
 
 /datum/world_topic/news_report/Run(list/input)
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")
-	
+
 /datum/world_topic/ooc_relay
 	keyword = "ooc_relay"
 	require_comms_key = TRUE
@@ -105,7 +105,7 @@
 	var/messages = json_decode(input["message"])
 	var/oocmsg = messages["normal"]
 	var/oocmsg_toadmins = messages["admin"]
-	
+
 	var/source = json_decode(input["message_sender"])
 	var/sourceadmin = source["is_admin"]
 	var/sourcekey = source["key"]
@@ -125,13 +125,14 @@
 
 /datum/world_topic/server_hop
 	keyword = "server_hop"
+	require_comms_key = TRUE
 
 /datum/world_topic/server_hop/Run(list/input)
 	var/expected_key = input[keyword]
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(O.key == expected_key)
 			if(O.client)
-				new /obj/screen/splash(O.client, TRUE)
+				new /atom/movable/screen/splash(O.client, TRUE)
 			break
 
 /datum/world_topic/adminmsg
@@ -159,7 +160,7 @@
 
 /datum/world_topic/adminwho/Run(list/input)
 	return ircadminwho()
-	
+
 /datum/world_topic/mentorwho
 	keyword = "mentorwho"
 	require_comms_key = TRUE
@@ -182,7 +183,7 @@
 /datum/world_topic/voice_announce/Run(list/input)
 	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce"]]
 	if(istype(A))
-		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]))
+		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]) SECONDS)
 
 // Cancels a voice announcement, given the ID of voice announcement datum, used if the user closes their browser window instead of uploading
 /datum/world_topic/voice_announce_cancel
@@ -193,7 +194,7 @@
 	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce_cancel"]]
 	if(istype(A))
 		qdel(A)
-		
+
 // Queries information about a voice announcement.
 /datum/world_topic/voice_announce_query
 	keyword = "voice_announce_query"
@@ -223,8 +224,8 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
-	.["revision"] = GLOB.revdata.commit
-	.["revision_date"] = GLOB.revdata.date
+	.["revision"] = GLOB.revdata?.commit
+	.["revision_date"] = GLOB.revdata?.date
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -243,22 +244,29 @@
 	.["security_level"] = get_security_level()
 	.["round_duration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
 	// Amount of world's ticks in seconds, useful for calculating round duration
-	
+
 	//Time dilation stats.
 	.["time_dilation_current"] = SStime_track.time_dilation_current
 	.["time_dilation_avg"] = SStime_track.time_dilation_avg
 	.["time_dilation_avg_slow"] = SStime_track.time_dilation_avg_slow
 	.["time_dilation_avg_fast"] = SStime_track.time_dilation_avg_fast
-	
+
 	//pop cap stats
 	.["soft_popcap"] = CONFIG_GET(number/soft_popcap) || 0
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
-	
+
 	if(SSshuttle && SSshuttle.emergency)
 		.["shuttle_mode"] = SSshuttle.emergency.mode
 		// Shuttle status, see /__DEFINES/stat.dm
 		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
 		// Shuttle timer, in seconds
-	
+
+/datum/world_topic/systemmsg
+	keyword = "systemmsg"
+	require_comms_key = TRUE
+
+/datum/world_topic/systemmsg/Run(list/input)
+	to_chat(world, span_boldannounce(input["message"]))
+

@@ -205,7 +205,7 @@
 			return power
 
 /datum/symptom/heal/darkness/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 2 * actual_power
+	var/heal_amt = 1 * actual_power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 
@@ -238,7 +238,6 @@
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_descs = list(
 		"Stealth 2" = "Host appears to die when falling into a coma.",
-		"Resistance 4" = "The virus also stabilizes the host while they are in critical condition.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
 
@@ -261,15 +260,15 @@
 		return power * 0.5
 	else if(M.IsSleeping())
 		return power * 0.25
-	else if(M.getBruteLoss() + M.getFireLoss() >= 70 && !active_coma)
+	else if(ispreternis(M) || isipc(M)) //ipc and preternis don't get round removed
+		return 0
+	else if(M.getBruteLoss() + M.getFireLoss() >= 90 && !active_coma)
 		to_chat(M, span_warning("You feel yourself slip into a regenerative coma..."))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
 /datum/symptom/heal/coma/proc/coma(mob/living/M)
-	if(deathgasp)
-		M.emote("deathgasp")
-	M.fakedeath("regenerative_coma")
+	M.fakedeath("regenerative_coma", !deathgasp)
 	M.update_stat()
 	M.update_mobility()
 	addtimer(CALLBACK(src, .proc/uncoma, M), 300)
@@ -283,7 +282,7 @@
 	M.update_mobility()
 
 /datum/symptom/heal/coma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 4 * actual_power
+	var/heal_amt = 6 * actual_power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 
@@ -398,11 +397,12 @@
 	if(environment)
 		if(environment.get_moles(/datum/gas/plasma) > GLOB.meta_gas_info[/datum/gas/plasma][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
 			. += power * 0.5
-	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = TRUE))
+	var/requires_metabolizing = !(A.process_dead && M.stat == DEAD) //don't require metabolizing if our host is dead and we have necrotic metabolsim
+	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = requires_metabolizing))
 		. +=  power * 0.75
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 4 * actual_power
+	var/heal_amt = 2 * actual_power
 
 	if(prob(5))
 		to_chat(M, span_notice("You feel yourself absorbing plasma inside and around you..."))
@@ -416,7 +416,7 @@
 		if(prob(5))
 			to_chat(M, span_notice("You feel warmer."))
 
-	M.adjustToxLoss(-heal_amt)
+	M.adjustToxLoss(-heal_amt * 2)
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 	if(!parts.len)

@@ -6,6 +6,7 @@
 	desc = "This is rubbish."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
+	fryable = TRUE
 
 /obj/item/trash/raisins
 	name = "\improper 4no raisins"
@@ -45,6 +46,7 @@
 
 /obj/item/trash/plate
 	name = "plate"
+	desc = "a relic from a forgotten time...  I miss eating off of plates..."
 	icon_state = "plate"
 	resistance_flags = NONE
 

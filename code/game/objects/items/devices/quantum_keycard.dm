@@ -21,7 +21,7 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	to_chat(user, span_notice("You start pressing [src]'s unlink button..."))
-	if(do_after(user, 4 SECONDS, target = src))
+	if(do_after(user, 4 SECONDS, src))
 		to_chat(user, span_notice("The keycard beeps twice and disconnects the quantum link."))
 		qpad = null
 

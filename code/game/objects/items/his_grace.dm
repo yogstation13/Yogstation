@@ -74,14 +74,14 @@
 		user.forceMove(get_turf(src))
 		user.visible_message(span_warning("[user] scrambles out of [src]!"), span_notice("You climb out of [src]!"))
 
-/obj/item/his_grace/process()
+/obj/item/his_grace/process(delta_time)
 	if(!bloodthirst)
 		drowse()
 		return
 	if(bloodthirst < HIS_GRACE_CONSUME_OWNER && !ascended)
-		adjust_bloodthirst(1 + FLOOR(LAZYLEN(contents) * 0.5, 1)) //Maybe adjust this?
+		adjust_bloodthirst((1 + FLOOR(LAZYLEN(contents) * 0.5, 1)) * delta_time) //Maybe adjust this?
 	else
-		adjust_bloodthirst(1) //don't cool off rapidly once we're at the point where His Grace consumes all.
+		adjust_bloodthirst(1 * delta_time) //don't cool off rapidly once we're at the point where His Grace consumes all.
 	var/mob/living/master = get_atom_on_turf(src, /mob/living)
 	if(istype(master) && (src in master.held_items))
 		switch(bloodthirst)
@@ -150,10 +150,10 @@
 		M4.Translate(0, -1)
 		transforms = list(M1, M2, M3, M4)
 
-	animate(src, transform=transforms[1], time=0.2, loop=-1)
-	animate(transform=transforms[2], time=0.1)
-	animate(transform=transforms[3], time=0.2)
-	animate(transform=transforms[4], time=0.3)
+	animate(src, transform=transforms[1], time=0.02 SECONDS, loop=-1)
+	animate(transform=transforms[2], time=0.01 SECONDS)
+	animate(transform=transforms[3], time=0.02 SECONDS)
+	animate(transform=transforms[4], time=0.03 SECONDS)
 
 /obj/item/his_grace/proc/drowse() //Good night, Mr. Grace.
 	if(!awakened || ascended)

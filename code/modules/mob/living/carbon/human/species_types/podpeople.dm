@@ -1,7 +1,13 @@
 // yogs - This file is mirrored to plantpeople.dm
+/*
+THIS FILE IS UNUSED AND NOT THE CORRECT FILE FOR WORKING WITH THE PLAYER CONTROLLED PODPEOPLE.
+yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm IS THE PLAYER RACE FOR PLANT PEOPLE
+DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED POD PEOPLE
+*/
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Podperson"
+	plural_form = "Podpeople"
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
@@ -9,12 +15,20 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	burnmod = 1.25
+	burnmod = 2
 	heatmod = 1.5
+	coldmod = 1.5
+	acidmod = 2
+	speedmod = 0.33
+	siemen_coeff = 0.75 //I wouldn't make semiconductors out of plant material
+	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
+	punchstunthreshold = 9 
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
-	disliked_food = MEAT | DAIRY | SEAFOOD
-	liked_food = VEGETABLES | FRUIT | GRAIN
+	exotic_blood = /datum/reagent/water
+	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
+	toxic_food = ALCOHOL
+	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -29,6 +43,8 @@
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
+		return
+	if(IS_BLOODSUCKER(H) && HAS_TRAIT(H, TRAIT_NODEATH))
 		return
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 	if(isturf(H.loc)) //else, there's considered to be no light
@@ -49,8 +65,9 @@
 /datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == /datum/reagent/toxin/plantbgone)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return 1
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return TRUE
+	return ..()
 
 /datum/species/pod/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
 	switch(P.type)

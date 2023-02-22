@@ -235,7 +235,7 @@ AI MODULES
 	if(newpos == null)
 		return
 	if(newpos < 15)
-		var/response = alert("Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", "Change to 15", "Cancel")
+		var/response = tgui_alert(usr, "Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", list("Change to 15", "Cancel"))
 		if (!response || response == "Cancel")
 			return
 		newpos = 15
@@ -446,7 +446,78 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** ChapAI *********************/
 
+/obj/item/aiModule/core/full/chapai
+	name = "'ChapAI' Core AI Module"
+	law_id = "chapai"
+
+/******************** Silicop *********************/
+
+/obj/item/aiModule/core/full/silicop
+	name = "'Silicop' Core AI Module"
+	law_id = "silicop"
+
+/******************** Researcher *********************/
+
+/obj/item/aiModule/core/full/researcher
+	name = "'Ethical Researcher' Core AI Module"
+	law_id = "researcher"
+
+
+/******************** Clown *********************/
+
+/obj/item/aiModule/core/full/clown
+	name = "'Clown' Core AI Module"
+	law_id = "clown"
+
+
+/******************** Mother *********************/
+
+/obj/item/aiModule/core/full/mother
+	name = "'Mother M(A.I.)' Core AI Module"
+	law_id = "mother"
+
+/******************** Spotless Reputation *********************/
+
+/obj/item/aiModule/core/full/spotless
+	name = "'Spotless Reputation' Core AI Module"
+	law_id = "spotless"
+
+/******************** Construction *********************/
+
+/obj/item/aiModule/core/full/construction
+	name = "'Construction Drone' Core AI Module"
+	law_id = "construction"
+
+/******************** Silicon Collective *********************/
+
+/obj/item/aiModule/core/full/siliconcollective
+	name = "'Silicon Collective' Core AI Module"
+	law_id = "siliconcollective"
+
+
+/******************** Meta Experiment *********************/
+
+/obj/item/aiModule/core/full/metaexperiment
+	name = "'Meta Experiment' Core AI Module"
+	law_id = "metaexperiment"
+
+
+/******************** Druid *********************/
+
+/obj/item/aiModule/core/full/druid
+	name = "'Druid' Core AI Module"
+	law_id = "druid"
+
+	
+/******************** Detective *********************/
+
+/obj/item/aiModule/core/full/detective
+	name = "'Detective' Core AI Module"
+	law_id = "detective"
+
+	
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
@@ -593,3 +664,9 @@ AI MODULES
 /obj/item/aiModule/core/full/overlord
 	name = "'Overlord' Core AI Module"
 	law_id = "overlord"
+
+/******************Revolutionary***************/
+
+/obj/item/aiModule/core/full/revolutionary
+	name = "'CommunistOS' Core AI Module"
+	law_id = "commie"

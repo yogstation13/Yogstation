@@ -1,8 +1,8 @@
-#define PRETERNIS_LEVEL_FULL 550
+#define PRETERNIS_LEVEL_FULL 600
 #define PRETERNIS_LEVEL_WELL_FED 450
-#define PRETERNIS_LEVEL_FED 350
-#define PRETERNIS_LEVEL_HUNGRY 250
-#define PRETERNIS_LEVEL_STARVING 150
+#define PRETERNIS_LEVEL_FED 300
+#define PRETERNIS_LEVEL_HUNGRY 200
+#define PRETERNIS_LEVEL_STARVING 100
 #define PRETERNIS_LEVEL_NONE 0
 
 #define ELECTRICITY_TO_NUTRIMENT_FACTOR 0.44 //1 power unit to 44 preternis charge they can uncharge an apc to 50% at most
@@ -19,3 +19,5 @@
 
  #define DARKSPAWN_DARK_HEAL 5 //how much damage of each type (with fire damage half rate) is healed in the dark
 #define DARKSPAWN_LIGHT_BURN 7 //how much damage the darkspawn receives per tick in lit areas
+
+#define MONKIFY_BLOOD_COEFFICIENT (BLOOD_VOLUME_MONKEY/BLOOD_VOLUME_GENERIC) //the ratio of monkey to human blood volume so a 100% blood volume monkey will not instantly die when you turn it into a human with ~58% blood volume

@@ -115,7 +115,10 @@
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	if(full_vampire == FALSE)
-		owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact.ogg',80,0)
+		if(prob(10))
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact_alt.ogg',80,0)
+		else
+			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/lilithspact.ogg',80,0)
 	else
 		if(prob(10))
 			owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire_alt.ogg',80,0)
@@ -265,7 +268,7 @@
 	if(!iscarbon(owner))
 		H.LAssailant = null
 	else
-		H.LAssailant = O
+		H.LAssailant = WEAKREF(O)
 	while(do_mob(O, H, 50))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
@@ -287,7 +290,7 @@
 			to_chat(O, span_warning("They've got no blood left to give."))
 			break
 		blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
-		if(H.stat == DEAD || !H.key)
+		if(H.stat == DEAD || !H.client)
 			blood_coeff = 0.2 //5 blood gain at base for dead or uninhabited, 7 with aggressive grab, 2 with stealth
 		blood = round(min(blood_to_take * blood_coeff, H.blood_volume))	//if the victim has less than the amount of blood left to take, just take all of it.
 		total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
@@ -412,3 +415,10 @@
 	return result.Join("<br>")
 #undef BLOOD_SUCK_BASE
 #undef ALL_POWERS_UNLOCKED
+
+/datum/antagonist/vampire/get_preview_icon()
+	var/icon/vampire_icon = icon('icons/mob/animal.dmi', "bat")
+
+	vampire_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return vampire_icon

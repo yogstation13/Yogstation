@@ -56,47 +56,6 @@
 	result = /obj/item/reagent_containers/food/snacks/kebab/tofu
 	subcategory = CAT_MEAT
 
-////////////////////////////////////////////////FISH////////////////////////////////////////////////
-
-/datum/crafting_recipe/food/sashimi
-	name = "Carp Sashimi"
-	reqs = list(
-		/datum/reagent/consumable/soysauce = 5,
-		/obj/item/reagent_containers/food/snacks/spidereggs = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/sashimi
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/cubancarp
-	name = "Cuban Carp"
-	reqs = list(
-		/datum/reagent/consumable/flour = 5,
-		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/cubancarp
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/fishandchips
-	name = "Fish and Chips"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/fries = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/fishandchips
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/fishfingers
-	name = "Fish Fingers"
-	reqs = list(
-		/datum/reagent/consumable/flour = 5,
-		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/fishfingers
-	subcategory = CAT_MEAT
-
 ////////////////////////////////////////////////OTHER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/nugget
@@ -209,7 +168,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
 		/obj/item/reagent_containers/food/snacks/grown/peas =1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfry
 	subcategory = CAT_MEAT

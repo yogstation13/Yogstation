@@ -15,7 +15,7 @@
 	return ..()
 
 /datum/round_event/pirates
-	startWhen = 60 //2 minutes to answer
+	startWhen = 150 //5 minutes to answer
 	var/datum/comm_message/threat
 	var/payoff = 0
 	var/payoff_min = 20000
@@ -30,7 +30,7 @@
 	beacon = new(ship_name)
 
 /datum/round_event/pirates/announce(fake)
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
+	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", RANDOM_REPORT_SOUND)
 	play_intro_music()
 	if(fake)
 		return
@@ -160,7 +160,7 @@
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(!active)
-		if(alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", "Yes", "Cancel") == "Cancel")
+		if(tgui_alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", list("Yes", "Cancel")) == "Cancel")
 			return
 		if(active || !user.canUseTopic(src, BE_CLOSE))
 			return

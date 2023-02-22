@@ -14,6 +14,7 @@
 	throw_range = 7
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 	var/active = FALSE
 	var/atom/movable/target //The thing we're searching for
 	var/minimum_range = 0 //at what range the pinpointer declares you to be at your destination
@@ -87,12 +88,16 @@
 
 /obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/H)
 	var/turf/here = get_turf(src)
-	if((H.z == 0 || H.z == here.z) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	var/nanite_sensors = FALSE
+	if(H in SSnanites.nanite_monitored_mobs)
+		nanite_sensors = TRUE
+	if((H.z == 0 || H.z == here.z) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
+		if(!nanite_sensors) // Does the mob have monitoring nanite?
+			var/obj/item/clothing/under/U = H.w_uniform
 
-		// Suit sensors must be on maximum.
-		if(!U.has_sensor || (U.sensor_mode < SENSOR_COORDS && !ignore_suit_sensor_level))
-			return FALSE
+			// Suit sensors must be on maximum.
+			if(!U.has_sensor || (U.sensor_mode < SENSOR_COORDS && !ignore_suit_sensor_level))
+				return FALSE
 
 		var/turf/there = get_turf(H)
 		return (H.z != 0 || (there && there.z == here.z))
@@ -109,7 +114,7 @@
 		pinpointer_owner = user
 
 	if (pinpointer_owner && pinpointer_owner != user)
-		to_chat(user, span_notice("The pinpointer doesn't respond. It seems to only recognise its owner."))
+		to_chat(user, span_notice("The pinpointer doesn't respond; it seems to only recognise its owner."))
 		return
 
 	var/list/name_counts = list()
@@ -135,7 +140,7 @@
 		user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
 		return
 
-	var/A = input(user, "Person to track", "Pinpoint") in names
+	var/A = input(user, "Person to track", "Pinpoint") in sortList(names)
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 
@@ -152,6 +157,70 @@
 	if(!target) //target can be set to null from above code, or elsewhere
 		active = FALSE
 
+/obj/item/pinpointer/tracker //A modified pinpointer that tracks mobs with tracking implants
+	name = "tracking implant pinpointer"
+	desc = "A handheld tracking device that points to individuals with active tracking implants."
+	icon_state = "pinpointer_tracker"
+	var/has_owner = FALSE
+	var/pinpointer_owner = null
+
+/obj/item/pinpointer/tracker/proc/implanted(mob/living/H)
+	var/turf/here = get_turf(src)
+	if(!locate(/obj/item/implant/tracking) in H.implants)
+		return FALSE
+
+	if(H.z == 0 || H.z == here.z)
+		var/turf/there = get_turf(H)
+		return (H.z != 0 || (there && there.z == here.z))
+	return FALSE
+
+/obj/item/pinpointer/tracker/attack_self(mob/living/user)
+	if(active)
+		toggle_on()
+		user.visible_message(span_notice("[user] deactivates [user.p_their()] pinpointer."), span_notice("You deactivate your pinpointer."))
+		return
+
+	if (has_owner && !pinpointer_owner)
+		pinpointer_owner = user
+
+	if (pinpointer_owner && pinpointer_owner != user)
+		to_chat(user, span_notice("The pinpointer doesn't respond; it seems to only recognise its owner."))
+		return
+
+	var/list/name_counts = list()
+	var/list/names = list()
+
+	for(var/mob/living/H in GLOB.mob_list)
+		if(!implanted(H))
+			continue
+
+		var/creature_name = H.name
+
+		while(creature_name in name_counts)
+			name_counts[creature_name]++
+			creature_name = text("[] ([])", creature_name, name_counts[creature_name])
+		names[creature_name] = H
+		name_counts[creature_name] = 1
+
+	if(!names.len)
+		user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
+		return
+
+	var/A = input(user, "Creature to track", "Pinpoint") in names
+	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
+		return
+
+	target = names[A]
+	toggle_on()
+	user.visible_message(span_notice("[user] activates [user.p_their()] pinpointer."), span_notice("You activate your pinpointer."))
+
+/obj/item/pinpointer/tracker/scan_for_target()
+	if(target)
+		var/mob/living/H = target
+		if(!implanted(H))
+			target = null
+	if(!target)
+		active = FALSE
 
 /obj/item/pinpointer/pair
 	name = "pair pinpointer"

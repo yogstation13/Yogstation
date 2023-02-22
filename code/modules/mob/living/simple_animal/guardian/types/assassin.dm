@@ -9,12 +9,13 @@
 	magic_fluff_string = span_holoparasite("..And draw the Space Ninja, a lethal, invisible assassin.")
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Assassin modules loaded. Holoparasite swarm online.")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! Caught one! It's an assassin carp! Just when you thought it was safe to go back to the water... which is unhelpful, because we're in space.")
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 
-	toggle_button_type = /obj/screen/guardian/ToggleMode/Assassin
+	toggle_button_type = /atom/movable/screen/guardian/ToggleMode/Assassin
 	var/toggle = FALSE
 	var/stealthcooldown = 160
-	var/obj/screen/alert/canstealthalert
-	var/obj/screen/alert/instealthalert
+	var/atom/movable/screen/alert/canstealthalert
+	var/atom/movable/screen/alert/instealthalert
 
 /mob/living/simple_animal/hostile/guardian/assassin/Initialize()
 	. = ..()
@@ -84,12 +85,12 @@
 	if(stealthcooldown <= world.time)
 		if(toggle)
 			if(!instealthalert)
-				instealthalert = throw_alert("instealth", /obj/screen/alert/instealth)
+				instealthalert = throw_alert("instealth", /atom/movable/screen/alert/instealth)
 				clear_alert("canstealth")
 				canstealthalert = null
 		else
 			if(!canstealthalert)
-				canstealthalert = throw_alert("canstealth", /obj/screen/alert/canstealth)
+				canstealthalert = throw_alert("canstealth", /atom/movable/screen/alert/canstealth)
 				clear_alert("instealth")
 				instealthalert = null
 	else

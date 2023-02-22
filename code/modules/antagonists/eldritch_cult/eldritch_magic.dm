@@ -2,8 +2,6 @@
 	name = "Ashen passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	school = "transmutation"
-	invocation = "PASSAGE OF ASH"
-	invocation_type = "whisper"
 	charge_max = 150
 	range = -1
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -55,7 +53,6 @@
 
 	if(!proximity_flag || target == user)
 		return
-	playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/tar = target
 		if(tar.anti_magic_check())
@@ -79,6 +76,7 @@
 		if(EK.on_mansus_grasp(target, user, proximity_flag, click_parameters))
 			use_charge = TRUE
 	if(use_charge)
+		playsound(user, 'sound/items/welder.ogg', 75, TRUE)
 		return ..()
 
 /obj/effect/proc_holder/spell/aoe_turf/rust_conversion
@@ -123,7 +121,7 @@
 
 /obj/item/melee/touch_attack/blood_siphon
 	name = "Blood Siphon"
-	desc = "A sinister looking aura that distorts the flow of reality around it. It looks... <i>hungry</i>..."
+	desc = "A sinister looking aura that distorts the flow of reality around it. It looks <i>hungry</i>..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "REGENERATE ME"
@@ -359,8 +357,8 @@
 			if(M in hit_list)
 				continue
 			hit_list += M
-			M.take_damage(45, BURN, "melee", 1)
-		sleep(1.5)
+			M.take_damage(45, BURN, MELEE, 1)
+		sleep(0.15 SECONDS)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
 	invocation = "BEND MY FORM"
@@ -413,7 +411,7 @@
 			for(var/mob/living/livies in T.contents - centre)
 				livies.adjustFireLoss(5)
 		_range++
-		sleep(3)
+		sleep(0.3 SECONDS)
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/big
 	range = 6
@@ -452,15 +450,15 @@
 /obj/effect/proc_holder/spell/targeted/fire_sworn/proc/remove()
 	has_fire_ring = FALSE
 
-/obj/effect/proc_holder/spell/targeted/fire_sworn/process()
+/obj/effect/proc_holder/spell/targeted/fire_sworn/process(delta_time)
 	. = ..()
 	if(!has_fire_ring)
 		return
 	for(var/turf/T in range(1,current_user))
 		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
+		T.hotspot_expose(700,250 * delta_time,1)
 		for(var/mob/living/L in T.contents - current_user)
-			L.adjustFireLoss(2.5)
+			L.adjustFireLoss(25 * delta_time)
 
 
 /obj/effect/proc_holder/spell/targeted/worm_contract

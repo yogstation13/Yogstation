@@ -28,26 +28,30 @@
 		to_chat(user, span_warning("[src] is empty!"))
 		return 0
 
-	if(!canconsume(M, user))
-		return 0
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(!canconsume(M, user))
+			return 0
 
-	if (!is_drainable())
-		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
-		return 0
+		if (!is_drainable())
+			to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
+			return 0
 
-	if(M == user)
-		user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
-		if(HAS_TRAIT(M, TRAIT_VORACIOUS))
-			M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
+		if(M == user)
+			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
+				M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
 
-	else
-		M.visible_message(span_danger("[user] attempts to feed the contents of [src] to [M]."), span_userdanger("[user] attempts to feed the contents of [src] to [M]."))
-		if(!do_mob(user, M))
+		else
+			if(!C.force_drink_text(src, C, user))
+				return
+			if(!do_mob(user, M))
+				return
+			if(!reagents || !reagents.total_volume)
+				return // The drink might be empty after the delay, such as by spam-feeding
+			log_combat(user, M, "fed", reagents.log_list())
+
+		if(!C.drink_text(src, C, user))
 			return
-		if(!reagents || !reagents.total_volume)
-			return // The drink might be empty after the delay, such as by spam-feeding
-		M.visible_message(span_danger("[user] feeds the contents of [src] to [M]."), span_userdanger("[user] feeds the contents of [src] to [M]."))
-		log_combat(user, M, "fed", reagents.log_list())
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
@@ -252,7 +256,10 @@
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
 	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon_state = "ramen"
+	item_state = "ramen"
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/sodiumchloride = 3)
 	foodtype = GRAIN
 	isGlass = FALSE
@@ -426,19 +433,19 @@
 		return SHAME
 	if(!is_drainable())
 		open_soda()
-		sleep(10)
+		sleep(1 SECONDS)
 	H.visible_message(span_suicide("[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!"))
 	playsound(H,'sound/items/drink.ogg', 80, 1)
 	reagents.trans_to(H, src.reagents.total_volume, transfered_by = H) //a big sip
-	sleep(5)
+	sleep(0.5 SECONDS)
 	H.say(pick("Now, Outbomb Cuban Pete, THAT was a game.", "All these new fangled arcade games are too slow. I prefer the classics.", "They don't make 'em like Orion Trail anymore.", "You know what they say. Worst day of spess carp fishing is better than the best day at work.", "They don't make 'em like good old fashioned singularity engines anymore."))
 	if(H.age >= 30)
-		H.Stun(50)
-		sleep(50)
+		H.Stun(5 SECONDS)
+		sleep(5 SECONDS)
 		playsound(H,'sound/items/drink.ogg', 80, 1)
 		H.say(pick("Another day, another dollar.", "I wonder if I should hold?", "Diversifying is for young'ns.", "Yeap, times were good back then."))
 		return MANUAL_SUICIDE_NONLETHAL
-	sleep(20) //dramatic pause
+	sleep(2 SECONDS) //dramatic pause
 	return TOXLOSS
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
@@ -468,6 +475,18 @@
 	icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	foodtype = SUGAR
+
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer
+	name = "Root Beer"
+	desc = "A soft drink made from roots. Non-Alcoholic."
+	custom_price = 10
+	icon_state = "Rootbeer_Mug"
+	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
+	foodtype = SUGAR
+
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize()
+	icon_state = pick("Rootbeer_Mug","Rootbeer_AW","Rootbeer_Barq")
+	. = ..()
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
@@ -595,3 +614,27 @@
 	. = ..()
 	if(prob(20))
 		desc = pick(descs)
+
+/obj/item/reagent_containers/food/drinks/colocup
+	name = "colo cup"
+	desc = "A cheap, mass produced style of cup, typically used at parties. They never seem to come out red, for some reason..."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "colocup"
+	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
+	item_state = "colocup"
+	custom_materials = list(/datum/material/plastic = 1000)
+	possible_transfer_amounts = list(5, 10, 15, 20)
+	volume = 20
+	amount_per_transfer_from_this = 5
+	isGlass = FALSE
+	/// Allows the lean sprite to display upon crafting
+	var/random_sprite = TRUE
+
+
+/obj/item/reagent_containers/food/drinks/colocup/Initialize()
+	.=..()
+	pixel_x = rand(-4,4)
+	pixel_y = rand(-4,4)
+	if (random_sprite)
+		icon_state = "colocup[rand(0, 6)]"

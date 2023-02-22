@@ -68,11 +68,25 @@
 			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
 			. += "Distribution Pressure: [internal.distribute_pressure]"
 
+	// CLOAKER BELT
+	if(istype(belt, /obj/item/shadowcloak))
+		var/obj/item/shadowcloak/SC = belt
+		var/turf/T = get_turf(src)
+		var/lumens = T.get_lumcount()
+		. += ""
+		. += "Cloaker Status: [SC.on ? "ON" : "OFF"]"
+		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
+		. += "Lumens Count: [round(lumens, 0.01)]"
+
 	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hivemind)
 		. += ""
 		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
 		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
+	var/mob/living/simple_animal/horror/H = has_horror_inside()
+	if(H && H.controlling)
+		. += ""
+		. += "Horror chemicals: [H.chemicals]"
 
 	if(mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
@@ -80,6 +94,15 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
+		
+		//WS Begin - Display Ethereal Charge
+		if(istype(src))
+			var/datum/species/ethereal/eth_species = src.dna?.species
+			if(istype(eth_species))
+				var/obj/item/organ/stomach/ethereal/stomach = src.getorganslot(ORGAN_SLOT_STOMACH)
+				if(istype(stomach))
+					. += "Crystal Charge: [round((stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER), 0.1)]%"
+
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
 			if((zombie.evolutionTime - world.time) > 0)
@@ -236,7 +259,7 @@
 			return
 		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
+		if(do_after(usr, time_taken, src))
 			if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 				return
 			L.embedded_objects -= I
@@ -397,7 +420,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -552,6 +575,8 @@
 					threatcount += 5
 				if("Incarcerated")
 					threatcount += 2
+				if("Suspected")
+					threatcount += 2
 				if("Paroled")
 					threatcount += 2
 
@@ -614,7 +639,7 @@
 			to_chat(src, span_warning("You fail to perform CPR on [C]!"))
 			return 0
 
-		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
+		var/they_breathe = !HAS_TRAIT_FROM(C, TRAIT_NOBREATH, SPECIES_TRAIT)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
@@ -623,7 +648,7 @@
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", span_notice("You perform CPR on [C.name]."))
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
 		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
@@ -797,8 +822,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - getStaminaLoss())
-			if(..(health_amount)) //not dead
+			if(..()) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
 						hud_used.healths.icon_state = "health6"
@@ -865,8 +889,8 @@
 		override = dna.species.override_float
 	..()
 
-/mob/living/carbon/human/vomit(lost_nutrition = 10, blood = 0, stun = 1, distance = 0, message = 1, toxic = 0)
-	if(blood && (NOBLOOD in dna.species.species_traits))
+/mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -877,17 +901,65 @@
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Make monkey"] = "?_src_=vars;[HrefToken()];makemonkey=[REF(src)]"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Make cyborg"] = "?_src_=vars;[HrefToken()];makerobot=[REF(src)]"
-	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=[REF(src)]"
-	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
-	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
-	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
-	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
-	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
-	.["Make Pacman"] = "?_src_=vars;[HrefToken()];makepacman=[REF(src)]" //I LOVE PACMAN
+	VV_DROPDOWN_SEPERATOR
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
+	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	VV_DROPDOWN_OPTION(VV_HK_CRITTERMONEY, "Toggle Critter Money")
+
+/mob/living/carbon/human/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_SET_SPECIES] && check_rights(R_SPAWN))
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+
+		if(result)
+			var/newtype = GLOB.species_list[result]
+			admin_ticket_log(src, "[key_name(usr)] has modified the species of [src] to [result]") // yogs - Yog Tickets
+			set_species(newtype)
+	if(href_list[VV_HK_PURRBATION] && check_rights(R_SPAWN))
+		if(!ishuman(src))
+			to_chat(usr, "Unfortunately xeno/monkey catgirls are not supported by the codebase yet.")
+			return
+
+		var/success = purrbation_toggle(src)
+		if(success)
+			to_chat(usr, "Put [src] on purrbation.")
+			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
+			var/msg = "[key_name(usr)] has put [key_name(src)] on purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+
+		else
+			to_chat(usr, "Removed [src] from purrbation.")
+			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
+			var/msg = "[key_name(usr)] has removed [key_name(src)] from purrbation." // yogs - Yog Tickets
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+	if(href_list[VV_HK_COPY_OUTFIT] && check_rights(R_SPAWN))
+		copy_outfit()
+	if(href_list[VV_HK_MOD_QUIRKS] && check_rights(R_SPAWN))
+		var/list/options = list("Clear"="Clear")
+		for(var/x in subtypesof(/datum/quirk))
+			var/datum/quirk/T = x
+			var/qname = initial(T.name)
+			options[has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+		if(result)
+			if(result == "Clear")
+				for(var/datum/quirk/q in roundstart_quirks)
+					remove_quirk(q.type)
+			else
+				var/T = options[result]
+				if(has_quirk(T))
+					remove_quirk(T)
+				else
+					add_quirk(T,TRUE)
+	if(href_list[VV_HK_CRITTERMONEY] && check_rights(R_SPAWN))
+		for(var/obj/item/card/id/id in src)
+			id.critter_money = !id.critter_money
+			to_chat(usr, "[id.critter_money ? "Added" : "Removed"] critter money from [src]s [id].")
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
@@ -903,7 +975,9 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
@@ -922,7 +996,7 @@
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
 		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space] start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
-		if(do_after(src, carrydelay, TRUE, target))
+		if(do_after(src, carrydelay, target))
 			//Second check to make sure they're still valid to be carried
 			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE) && !target.buckled)
 				if(target.loc != loc)
@@ -942,7 +1016,7 @@
 /mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
 	if(can_piggyback(target))
 		visible_message(span_notice("[target] starts to climb onto [src]..."))
-		if(do_after(target, 3 SECONDS, target = src))
+		if(do_after(target, 3 SECONDS, src))
 			if(can_piggyback(target))
 				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
 					target.visible_message(span_warning("[target] can't hang onto [src]!"))
@@ -1004,6 +1078,7 @@
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
 	. *= physiology.do_after_speed
+	. *= dna.species.action_speed_coefficient
 
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
@@ -1188,11 +1263,28 @@
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
 
+/mob/living/carbon/human/species/lizard/draconid
+	race = /datum/species/lizard/draconid
+
 /mob/living/carbon/human/species/moth
 	race = /datum/species/moth
 
 /mob/living/carbon/human/species/mush
 	race = /datum/species/mush
+
+/mob/living/carbon/human/species/ipc
+	race = /datum/species/ipc
+
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
@@ -1265,3 +1357,12 @@
 	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
+
+/mob/living/carbon/human/fall(forced)
+	. = ..()
+	if(resting)
+		return
+	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
+	if(istype(hat) && hat.hattable && prob(25))
+		visible_message("[src]'s [lowertext(hat.name)] falls off.")
+		dropItemToGround(hat)

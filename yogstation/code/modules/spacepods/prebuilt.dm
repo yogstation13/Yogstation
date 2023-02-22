@@ -8,7 +8,7 @@
 	construction_state = SPACEPOD_ARMOR_WELDED
 
 /obj/spacepod/prebuilt/Initialize()
-	..()
+	. =..()
 	add_armor(new armor_type(src))
 	if(cell_type)
 		cell = new cell_type(src)
@@ -48,7 +48,7 @@
 	construction_state = SPACEPOD_ARMOR_WELDED
 
 /obj/spacepod/random/Initialize()
-	..()
+	. = ..()
 	var/armor_type = pick(/obj/item/pod_parts/armor,
 		/obj/item/pod_parts/armor/syndicate,
 		/obj/item/pod_parts/armor/black,
@@ -58,7 +58,7 @@
 	add_armor(new armor_type(src))
 	cell = new /obj/item/stock_parts/cell/high/empty(src)
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
-	velocity_x = rand(-15, 15)
-	velocity_y = rand(-15, 15)
+	velocity_x = rand(-3, 3)
+	velocity_y = rand(-3, 3)
 	obj_integrity = rand(100, max_integrity)
 	brakes = FALSE

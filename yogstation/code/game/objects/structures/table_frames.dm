@@ -1,6 +1,6 @@
 /obj/structure/table_frame/bananium
 	name = "bananium table frame"
-	desc = "A table frame made out of bananium very squeaky. You could easily pass through this."
+	desc = "A table frame made out of bananium. Very squeaky. You could easily pass through this."
 	icon_state = "bananium_frame"
 	framestack = /obj/item/stack/sheet/mineral/bananium
 	framestackamount = 2
@@ -16,7 +16,7 @@
 			to_chat(user, span_warning("You need one bananium sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [W] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src) && W.use(1))
+		if(do_after(user, 2 SECONDS, src) && W.use(1))
 			make_new_table(/obj/structure/table/bananium)
 	else
 		return ..()

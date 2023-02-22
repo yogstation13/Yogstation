@@ -17,7 +17,7 @@
 /obj/structure/chair/examine(mob/user)
 	. = ..()
 	. += span_notice("It's held together by a couple of <b>bolts</b>.")
-	if(!has_buckled_mobs())
+	if(can_buckle && !has_buckled_mobs())
 		. += span_notice("Drag your sprite to sit in it.")
 
 /obj/structure/chair/Initialize()
@@ -245,8 +245,9 @@
 		if(!usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)))
 			return
 		usr.visible_message(span_notice("[usr] grabs \the [src.name]."), span_notice("You grab \the [src.name]."))
-		var/C = new item_chair(loc)
+		var/obj/C = new item_chair(loc)
 		TransferComponents(C)
+		C.color = color
 		usr.put_in_hands(C)
 		qdel(src)
 
@@ -255,6 +256,39 @@
 	desc = "It has some unsavory stains on it..."
 	icon_state = "bar"
 	item_chair = /obj/item/chair/stool/bar
+
+/obj/structure/chair/stool/bamboo
+	name = "bamboo stool"
+	desc = "A makeshift bamboo stool with a rustic look."
+	icon_state = "bamboo_stool"
+	resistance_flags = FLAMMABLE
+	max_integrity = 60
+	buildstacktype = /obj/item/stack/sheet/mineral/bamboo
+	buildstackamount = 2
+	item_chair = /obj/item/chair/stool/bamboo
+	
+/obj/structure/chair/stool/beanbag
+	name = "beanbag"
+	desc = "A lump of beads in cloth that forms around whatever sits in it, providing supreme comfort and relaxation."
+	icon_state = "beanbag"
+	item_chair = /obj/item/chair/stool/beanbag
+	buildstacktype = /obj/item/stack/sheet/cloth
+	buildstackamount = 5
+
+/obj/structure/chair/stool/beanbag/black
+	color = "#444444"
+
+/obj/structure/chair/stool/beanbag/blue
+	color = "#5555FF"
+
+/obj/structure/chair/stool/beanbag/red
+	color = "#FF5555"
+
+/obj/structure/chair/stool/beanbag/green
+	color = "#55FF55"
+
+/obj/structure/chair/stool/beanbag/yellow
+	color = "#FFFF55"
 
 /obj/item/chair
 	name = "chair"
@@ -300,6 +334,7 @@
 	var/obj/structure/chair/C = new origin_type(get_turf(loc))
 	TransferComponents(C)
 	C.setDir(dir)
+	C.color = color
 	qdel(src)
 
 /obj/item/chair/proc/smash(mob/living/user)
@@ -350,8 +385,26 @@
 	item_state = "stool_bar"
 	origin_type = /obj/structure/chair/stool/bar
 
+/obj/item/chair/stool/bamboo
+	name = "bamboo stool"
+	icon_state = "bamboo_stool_toppled"
+	item_state = "stool_bamboo"
+	hitsound = 'sound/weapons/genhit1.ogg'
+	origin_type = /obj/structure/chair/stool/bamboo
+	materials = null
+	break_chance = 50	//Submissive and breakable unlike the chad iron stool
+
 /obj/item/chair/stool/narsie_act()
 	return //sturdy enough to ignore a god
+
+/obj/item/chair/stool/beanbag
+	name = "beanbag"
+	icon_state = "beanbag_toppled"
+	item_state = "beanbag"
+	desc = "Pillow fight!"
+	damtype = STAMINA
+	hitsound = 'sound/weapons/slash.ogg'
+	origin_type = /obj/structure/chair/stool/beanbag
 
 /obj/item/chair/wood
 	name = "wooden chair"
@@ -443,3 +496,46 @@
 
 /obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
 	M.pixel_y -= 5
+
+/obj/structure/chair/comfy/plastic
+	icon_state = "plastic_chair"
+	name = "plastic chair"
+	desc = "Sitting in this chair is all you need to get motivated for work."
+	custom_materials = list(/datum/material/plastic = 10000)
+	buildstacktype = /obj/item/stack/sheet/plastic
+	buildstackamount = 5
+	COOLDOWN_DECLARE(scrape)
+	var/music_time = 0
+
+/obj/structure/chair/comfy/plastic/GetArmrest()
+	return mutable_appearance('icons/obj/chairs.dmi', "plastic_chair_armrest")
+
+/obj/structure/chair/comfy/plastic/AltClick(mob/living/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, scrape))
+		return
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(has_buckled_mobs())
+		playsound(src, pick('sound/items/chairscrape1.ogg','sound/items/chairscrape2.ogg'), 50, TRUE)
+		COOLDOWN_START(src, scrape, 1 SECONDS) //prevents spam of a mildly annoying sound
+
+/obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
+	. = ..()
+	music_time = world.time + 60 SECONDS
+	addtimer(CALLBACK(src, .proc/motivate, M), 60 SECONDS)
+
+/obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
+	. = ..()
+	if(world.time >= music_time)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
+		M.stop_sound_channel(CHANNEL_AMBIENCE)
+	music_time = 0
+
+/obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
+	if(world.time < music_time || music_time == 0)
+		return
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
+	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
+		M.stop_sound_channel(CHANNEL_AMBIENCE)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENCE)

@@ -95,6 +95,7 @@
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	thermal_conductivity = 0.04
 	canSmoothWith = list(/turf/closed/wall/mineral/plasma, /obj/structure/falsewall/plasma)
+	rad_insulation = RAD_FULL_INSULATION
 
 /turf/closed/wall/mineral/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)//If the temperature of the object is over 300, then ignite
@@ -135,12 +136,21 @@
 	explosion_block = 0
 	canSmoothWith = list(/turf/closed/wall/mineral/wood, /obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood/nonmetal)
 
+/turf/closed/wall/mineral/bamboo
+	name = "bamboo wall"
+	desc = "A wall with a bamboo finish."
+	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon_state = "bamboo"
+	sheet_type = /obj/item/stack/sheet/mineral/bamboo
+	hardness = 60
+	canSmoothWith = list(/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo)
+
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
 	if(W.is_sharp() && W.force)
 		var/duration = (48/W.force) * 2 //In seconds, for now.
 		if(istype(W, /obj/item/hatchet) || istype(W, /obj/item/twohanded/fireaxe))
 			duration /= 4 //Much better with hatchets and axes.
-		if(do_after(user, duration*10, target=src)) //Into deciseconds.
+		if(do_after(user, duration*10, src)) //Into deciseconds.
 			dismantle_wall(FALSE,FALSE)
 			return
 	return ..()
@@ -157,6 +167,7 @@
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	sheet_type = /obj/item/stack/rods
+	sheet_amount = 5
 	canSmoothWith = list(/turf/closed/wall/mineral/iron, /obj/structure/falsewall/iron)
 
 /turf/closed/wall/mineral/snow
@@ -258,6 +269,7 @@
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	smooth = SMOOTH_MORE|SMOOTH_DIAGONAL
 	canSmoothWith = list(/turf/closed/wall/mineral/plastitanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/plastitanium, /obj/structure/shuttle/engine, /obj/structure/falsewall/plastitanium)
+	rad_insulation = RAD_FULL_INSULATION
 
 /turf/closed/wall/mineral/plastitanium/nodiagonal
 	smooth = SMOOTH_MORE

@@ -13,6 +13,7 @@
 	var/tendrils = FALSE
 	var/chest = FALSE
 	var/fireproof = FALSE
+	var/fullpower = FALSE
 	threshold_descs = list(
 	"Resistance 15" = "The area near the host roils with paralyzing tendrils.",
 	"Resistance 20" = "Host becomes immune to heat, ash, and lava.",
@@ -49,19 +50,22 @@
 		if(5)
 			if(tendrils)
 				tendril(A)
-			M.dna.species.punchdamagelow = 5
-			M.dna.species.punchdamagehigh = 15
-			M.dna.species.punchstunthreshold = 11
-			M.dna.species.brutemod = 0.6
-			M.dna.species.burnmod = 0.6
-			M.dna.species.heatmod = 0.6
-			M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
-			ADD_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
-			if(fireproof)
-				ADD_TRAIT(M, TRAIT_RESISTHEAT, DISEASE_TRAIT)
-				ADD_TRAIT(M, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
-				M.weather_immunities |= "ash"
-				M.weather_immunities |= "lava"
+			if(!(fullpower) && ishuman(M))							//if we haven't gotten the buff yet
+				var/mob/living/carbon/human/H = M
+				fullpower = TRUE
+				H.physiology.punchdamagehigh_bonus += 4
+				H.physiology.punchdamagelow_bonus += 4
+				H.physiology.punchstunthreshold_bonus += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
+				H.physiology.brute_mod *= 0.6			
+				H.physiology.burn_mod *= 0.6
+				H.physiology.heat_mod *= 0.6
+				H.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
+				ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
+				if(fireproof)
+					ADD_TRAIT(H, TRAIT_RESISTHEAT, DISEASE_TRAIT)
+					ADD_TRAIT(H, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
+					M.weather_immunities |= "ash"
+					M.weather_immunities |= "lava"
 		else
 			if(prob(base_message_chance))
 				to_chat(M, span_notice("[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]"))
@@ -91,18 +95,20 @@
 	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
-	M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
-	M.dna.species.punchdamagelow = initial(M.dna.species.punchdamagelow)
-	M.dna.species.punchdamagehigh = initial(M.dna.species.punchdamagehigh)
-	M.dna.species.punchstunthreshold = initial(M.dna.species.punchstunthreshold)
-	M.dna.species.brutemod /= 0.6
-	M.dna.species.burnmod /= 0.6
-	M.dna.species.heatmod /= 0.6
-	REMOVE_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
-	if(fireproof)
-		REMOVE_TRAIT(M, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
-		REMOVE_TRAIT(M, TRAIT_RESISTHEAT, DISEASE_TRAIT)
-		M.weather_immunities -= "ash"
-		M.weather_immunities -= "lava"
+	if(fullpower && ishuman(M))							//undo the changes if we got the buff
+		var/mob/living/carbon/human/H = M
+		to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
+		H.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
+		H.physiology.punchdamagehigh_bonus -= 4
+		H.physiology.punchdamagelow_bonus -= 4
+		H.physiology.punchstunthreshold_bonus -= 1	
+		H.physiology.brute_mod /= 0.6
+		H.physiology.burn_mod /= 0.6
+		H.physiology.heat_mod /= 0.6
+		REMOVE_TRAIT(H, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
+		if(fireproof)
+			REMOVE_TRAIT(H, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)
+			REMOVE_TRAIT(H, TRAIT_RESISTHEAT, DISEASE_TRAIT)
+			H.weather_immunities -= "ash"
+			H.weather_immunities -= "lava"
 

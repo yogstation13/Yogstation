@@ -2,7 +2,7 @@
 /obj/effect/temp_visual/cult
 	icon = 'icons/effects/cult_effects.dmi'
 	randomdir = 0
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/cult/sparks
 	randomdir = 1
@@ -11,7 +11,7 @@
 
 /obj/effect/temp_visual/cult/blood  // The traditional teleport
 	name = "blood jaunt"
-	duration = 12
+	duration = 1.2 SECONDS
 	icon_state = "bloodin"
 
 /obj/effect/temp_visual/cult/blood/out
@@ -20,7 +20,7 @@
 /obj/effect/temp_visual/dir_setting/cult/phase  // The veil shifter teleport
 	icon = 'icons/effects/cult_effects.dmi'
 	name = "phase glow"
-	duration = 7
+	duration = 0.7 SECONDS
 	icon_state = "cultin"
 
 /obj/effect/temp_visual/dir_setting/cult/phase/out
@@ -46,12 +46,12 @@
 
 /obj/effect/temp_visual/cult/turf/floor
 	icon_state = "floorglow"
-	duration = 5
+	duration = 0.5
 	plane = FLOOR_PLANE
 
 /obj/effect/temp_visual/cult/portal
 	icon_state = "space"
-	duration = 600
+	duration = 60 SECONDS
 	layer = ABOVE_OBJ_LAYER
 
 //visuals for runes being magically created

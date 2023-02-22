@@ -118,6 +118,8 @@
 
 /datum/config_entry/flag/protect_assistant_from_antagonist	//If assistants can be traitor/cult/other
 
+/datum/config_entry/flag/protect_heads_from_antagonist	//If heads can be traitor/cult/other
+
 /datum/config_entry/flag/enforce_human_authority	//If non-human species are barred from joining as a head of staff
 
 /datum/config_entry/flag/allow_latejoin_antagonists	// If late-joining players can be traitor/changeling
@@ -138,6 +140,16 @@
 	config_entry_value = 100
 	integer = FALSE
 	min_val = 0
+
+/datum/config_entry/number/escaped_alive_bonus
+	config_entry_value = 2
+	integer = FALSE
+	min_val = 1
+
+/datum/config_entry/number/stayed_alive_bonus
+	config_entry_value = 1.5
+	integer = FALSE
+	min_val = 1
 
 /datum/config_entry/number/midround_antag_time_check	// How late (in minutes you want the midround antag system to stay on, setting this to 0 will disable the system)
 	config_entry_value = 60
@@ -168,8 +180,6 @@
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
-
-/datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
 
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
@@ -292,6 +302,11 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/config_gateway_chance
+	integer = FALSE
+	min_val = 0
+	max_val = 100
+
 /datum/config_entry/flag/ghost_interaction
 
 /datum/config_entry/flag/near_death_experience //If carbons can hear ghosts when unconscious and very close to death
@@ -313,6 +328,11 @@
 	value_mode = VALUE_MODE_FLAG
 
 /datum/config_entry/keyed_list/law_weight
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_NUM
+	splitter = ","
+
+/datum/config_entry/keyed_list/ion_law_weight
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
 	splitter = ","
@@ -395,6 +415,10 @@
 
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
+	min_val = 0
+
+/datum/config_entry/number/ratcap
+	default = 64
 	min_val = 0
 
 /datum/config_entry/flag/dynamic_config_enabled

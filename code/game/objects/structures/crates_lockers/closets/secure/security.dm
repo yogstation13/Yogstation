@@ -63,8 +63,9 @@
 	new /obj/item/storage/lockbox/loyalty(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/storage/box/flashbangs(src)
-	new /obj/item/shield/riot/tele(src)
-	new /obj/item/storage/belt/security/full(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
 	new /obj/item/gun/energy/e_gun/hos(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/pinpointer/nuke(src)
@@ -73,6 +74,7 @@
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -91,12 +93,13 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/flashlight/seclite(src)
-	new /obj/item/clothing/gloves/krav_maga/sec(src)
+	new /obj/item/clothing/gloves/sec_maga(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/warden(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -113,6 +116,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/clipboard/yog/paperwork/security(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -176,6 +180,7 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
+	new /obj/item/barrier_taperoll/police(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
@@ -316,3 +321,4 @@
 	new /obj/item/tank/internals/anesthetic(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/gloves/color/latex/nitrile

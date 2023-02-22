@@ -72,7 +72,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start adding [I] to [src]..."))
-			if(do_after(user, 5 SECONDS, target=src))
+			if(do_after(user, 5 SECONDS, src))
 				W.use(5)
 				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
 				qdel(src)
@@ -100,7 +100,7 @@
 	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		user.visible_message("[user.name] starts prying [src.name] apart.", \
 							span_notice("You start prying the barricade apart"))
-		if(I.use_tool(src, user, 190, volume=50))
+		if(I.use_tool(src, user, 10 SECONDS, volume=50))
 			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
@@ -136,7 +136,7 @@
 	anchored = FALSE
 	max_integrity = 180
 	proj_pass_rate = 20
-	armor = list("melee" = 10, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 10, "acid" = 0)
+	armor = list(MELEE = 10, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 10, ACID = 0)
 
 	var/deploy_time = 40
 	var/deploy_message = TRUE

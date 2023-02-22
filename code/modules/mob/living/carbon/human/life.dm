@@ -18,7 +18,7 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
@@ -27,8 +27,7 @@
 
 	if (QDELETED(src))
 		return 0
-
-	if(!IS_IN_STASIS(src))
+	if(LIFETICK_SKIP(src, times_fired))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
@@ -37,10 +36,6 @@
 		if(stat != DEAD)
 			//heart attack stuff
 			handle_heart()
-
-		if(stat != DEAD)
-			//Stuff jammed in your limbs hurts
-			handle_embedded_objects()
 
 		dna.species.spec_life(src) // for mutantraces
 	else
@@ -57,6 +52,13 @@
 	name = get_visible_name()
 
 	if(stat != DEAD)
+		var/datum/component/mood/moody = GetComponent(/datum/component/mood)
+		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
+			if(prob(50))
+				if(prob(50))
+					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
+				else
+					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
@@ -101,25 +103,29 @@
 	var/L = getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(!L)
-		if(health >= crit_threshold)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
+		if(isipc(src))
+			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
+			adjust_bodytemperature(20, max_temp = 500)
+		else
+			if(health >= crit_threshold)
+				adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
+			else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
+				adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		failed_last_breath = 1
+			failed_last_breath = 1
 
-		var/datum/species/S = dna.species
+			var/datum/species/S = dna.species
 
-		if(S.breathid == "o2")
-			throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
-		else if(S.breathid == "tox")
-			throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
-		else if(S.breathid == "co2")
-			throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
-		else if(S.breathid == "n2")
-			throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			if(S.breathid == "o2")
+				throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
+			else if(S.breathid == "tox")
+				throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
+			else if(S.breathid == "co2")
+				throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
+			else if(S.breathid == "n2")
+				throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
 
-		return FALSE
+			return FALSE
 	else
 		if(istype(L, /obj/item/organ/lungs))
 			var/obj/item/organ/lungs/lun = L
@@ -290,7 +296,7 @@
 		if(getToxLoss() >= 45 && nutrition > 20)
 			lastpuke += prob(50)
 			if(lastpuke >= 50) // about 25 second delay I guess
-				vomit(20, toxic = TRUE)
+				vomit(20)
 				lastpuke = 0
 
 
@@ -306,31 +312,6 @@
 		if(CH.clothing_flags & BLOCK_GAS_SMOKE_EFFECT)
 			return TRUE
 	return ..()
-
-
-/mob/living/carbon/human/proc/handle_embedded_objects()
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		for(var/obj/item/I in BP.embedded_objects)
-			var/pain_chance_current = I.embedding.embedded_pain_chance
-			if(mobility_flags & ~MOBILITY_STAND)
-				pain_chance_current *= 0.2
-			if(prob(pain_chance_current))
-				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier, wound_bonus = CANT_WOUND)
-				to_chat(src, span_userdanger("[I] embedded in your [BP.name] hurts!"))
-
-			var/fall_chance_current = I.embedding.embedded_fall_chance
-			if(mobility_flags & ~MOBILITY_STAND)
-				fall_chance_current *= 0.2
-
-			if(prob(fall_chance_current))
-				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
-				BP.embedded_objects -= I
-				I.forceMove(drop_location())
-				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"),span_userdanger("[I] falls out of your [BP.name]!"))
-				if(!has_embedded_objects())
-					clear_alert("embeddedobject")
-					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /mob/living/carbon/human/proc/handle_heart()
 	var/we_breath = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)

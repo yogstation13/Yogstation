@@ -104,7 +104,7 @@ This file contains the cult dagger and rune list code
 		if(!(A in summon_objective.summon_spots))
 			to_chat(user, span_cultlarge("The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!"))
 			return
-		var/confirm_final = alert(user, "This begins the FINAL ritual for the summoning. It will be a long, hard battle and the crew will be alerted to your presence.", "Are you prepared for the final battle?", "My life for Nar-Sie!", "No")
+		var/confirm_final = tgui_alert(user, "This is the FINAL step to summon Nar'Sie; it is a long, painful ritual and the crew will be alerted to your presence", "Are you prepared for the final battle?", list("My life for Nar'Sie!", "No"))
 		if(confirm_final == "No")
 			to_chat(user, span_cult("You decide to prepare further before scribing the rune."))
 			return
@@ -123,7 +123,7 @@ This file contains the cult dagger and rune list code
 	var/scribe_mod = initial(rune_to_scribe.scribe_delay)
 	if(istype(get_turf(user), /turf/open/floor/engine/cult) && !(ispath(rune_to_scribe, /obj/effect/rune/narsie)))
 		scribe_mod *= 0.5
-	if(!do_after(user, scribe_mod, target = get_turf(user)))
+	if(!do_after(user, scribe_mod, get_turf(user)))
 		for(var/V in shields)
 			var/obj/structure/emergency_shield/sanguine/S = V
 			if(S && !QDELETED(S))
@@ -150,7 +150,7 @@ This file contains the cult dagger and rune list code
 		to_chat(user, span_cult("There is already a rune here."))
 		return FALSE
 	var/area/A = get_area(T)
-	if((!is_station_level(T.z) && !is_mining_level(T.z)) || (A && !A.blob_allowed))
+	if((!is_station_level(T.z)) || (A && !A.blob_allowed)) //Yogstation change: Can't make runes on lavaland anymore.
 		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return TRUE

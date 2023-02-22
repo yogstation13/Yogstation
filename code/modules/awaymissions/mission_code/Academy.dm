@@ -10,11 +10,11 @@
 	icon_state = "away1"
 
 /area/awaymission/academy/academyfore
-	name = "Academy Fore Block"
+	name = "Academy Fore (N) Block"
 	icon_state = "away2"
 
 /area/awaymission/academy/academyaft
-	name = "Academy Aft Block"
+	name = "Academy Aft (S) Block"
 	icon_state = "away3"
 
 /area/awaymission/academy/academycellar
@@ -61,9 +61,9 @@
 /obj/singularity/academy/admin_investigate_setup()
 	return
 
-/obj/singularity/academy/process()
+/obj/singularity/academy/process(delta_time)
 	eat()
-	if(prob(1))
+	if(DT_PROB(0.5, delta_time))
 		mezzer()
 
 
@@ -182,7 +182,7 @@
 	rigged_value = 1
 
 /obj/item/dice/d20/fate/cursed/stealth
-	name = "Die of Fate"
+	name = "d20"
 	color = null
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
@@ -200,7 +200,7 @@
 	rigged_value = 20
 
 /obj/item/dice/d20/fate/blessed/stealth
-	name = "Die of Fate"
+	name = "d20"
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
 /obj/item/dice/d20/fate/blessed/one_use

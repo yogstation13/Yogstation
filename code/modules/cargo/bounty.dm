@@ -87,7 +87,11 @@
 			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
 			return new subtype
 		if(CIV_JOB_MINE)
-			var/subtype = pick(subtypesof(/datum/bounty/item/mining))
+			var/subtype
+			if(rand(2)) == 1)
+				subtype = pick(subtypesof(/datum/bounty/item/mining))
+			else
+				subtype = pick(subtypesof(/datum/bounty/item/gems))
 			return new subtype
 		if(CIV_JOB_MED)
 			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
@@ -97,9 +101,12 @@
 			return new subtype
 		if(CIV_JOB_ATMO)
 			var/subtype
-			if(rand(2) == 1)
-				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
-			else
-				subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
+			switch(rand(3))
+				if(1)
+					subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
+				if(2)
+					subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
+				if(3)
+					subtype = pick(subtypesof(/datum/bounty/item/h2metal))
 			return new subtype
 

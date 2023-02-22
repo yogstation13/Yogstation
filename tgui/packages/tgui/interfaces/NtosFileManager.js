@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -12,7 +11,7 @@ export const NtosFileManager = (props, context) => {
     usbfiles = [],
   } = data;
   return (
-    <NtosWindow resizable theme={PC_device_theme}>
+    <NtosWindow theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <Section>
           <FileTable
@@ -34,7 +33,7 @@ export const NtosFileManager = (props, context) => {
               files={usbfiles}
               usbconnected={usbconnected}
               onUpload={file => act('PRG_copyfromusb', { name: file })}
-              onDelete={file => act('PRG_deletefile', { name: file })}
+              onDelete={file => act('PRG_usbdeletefile', { name: file })}
               onRename={(file, newName) => act('PRG_rename', {
                 name: file,
                 new_name: newName,
@@ -99,7 +98,7 @@ const FileTable = props => {
                 onClick={() => onToggleSilence(file.name)} />
             )}
             {!file.undeletable && (
-              <Fragment>
+              <>
                 <Button.Confirm
                   icon="trash"
                   confirmIcon="times"
@@ -119,7 +118,7 @@ const FileTable = props => {
                       onClick={() => onUpload(file.name)} />
                   )
                 )}
-              </Fragment>
+              </>
             )}
           </Table.Cell>
         </Table.Row>

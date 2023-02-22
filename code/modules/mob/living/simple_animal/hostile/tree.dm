@@ -6,6 +6,7 @@
 	icon_living = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
+	health_doll_icon = "pine_1"
 	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 5
@@ -23,6 +24,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 12
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("pines")
@@ -34,7 +36,6 @@
 	minbodytemp = 0
 	maxbodytemp = 1200
 
-	faction = list("hostile")
 	deathmessage = "is hacked into pieces!"
 	loot = list(/obj/item/stack/sheet/mineral/wood)
 	gold_core_spawnable = HOSTILE_SPAWN

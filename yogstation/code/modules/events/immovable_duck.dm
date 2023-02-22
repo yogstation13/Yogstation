@@ -2,7 +2,7 @@
 	name = "Immovable Duck"
 	typepath = /datum/round_event/immovable_rod/duck
 	weight = 2
-	max_occurrences = 1
+	max_occurrences = 3
 
 /datum/round_event_control/immovable_rod/duck/admin_setup()
 	if(!check_rights(R_FUN))
@@ -55,16 +55,15 @@
 		penetrate(clong)
 	else if(istype(clong, type))
 		var/obj/effect/immovablerod/other = clong
-		visible_message("<span class='danger'>[src] collides with [other]!\
-			</span>")
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(2, get_turf(src))
+		visible_message(span_danger("[src] collides with [other]!"))
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(2, location = get_turf(src))
 		smoke.start()
 		qdel(src)
 		qdel(other)
 
 /obj/effect/immovablerod/duck/penetrate(mob/living/L)
-	L.visible_message(span_danger("[L] is QUACKED by an immovable duck!") , span_userdanger("You get QUACKED!!!") , "<span class ='danger'>You hear a QUACK!</span>")
+	L.visible_message(span_danger("[L] is QUACKED by an immovable duck!") , span_userdanger("You get QUACKED!!!") , span_danger("You hear a QUACK!"))
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.adjustBruteLoss(160)

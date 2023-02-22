@@ -1,6 +1,6 @@
 /client/verb/tcssave()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))
@@ -27,7 +27,7 @@
 
 /client/verb/tcscompile()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))
@@ -45,11 +45,17 @@
 					src << output(null, "tcserror")
 					src << output("Compiling on [Server.name]...", "tcserror")
 
-					var/list/compileerrors = Server.compile(mob) // then compile the code!
+					var/list/compileerrors = Server.compile(mob) // then compile the code! this can return a string or a list.
 					if(!telecomms_check(mob))
 						return
 
-					if(compileerrors.len)
+					if(!compileerrors)
+						src << output("<b>NTSL.exe Error</b>", "tcserror")
+						src << output("<font color = red>\t><b>A fatal error has occured. Please contact your local network adminstrator.</b></font color>", "tcserror")
+					else if(istext(compileerrors))
+						src << output("<b>NTSL.exe Error</b>", "tcserror")
+						src << output("<font color = red>\t><b>[compileerrors]</b></font color>", "tcserror")
+					else if(length(compileerrors))
 						src << output("<b>Compile Errors</b>", "tcserror")
 						var/i = 1
 						for(var/scriptError/e in compileerrors)
@@ -75,7 +81,7 @@
 								M << output("([compileerrors.len] errors)", "tcserror")
 
 
-					else // If no errors
+					else // Returned a blank list, means no errors.
 						src << output("<font color = blue>TCS compilation successful!</font color>", "tcserror")
 						src << output("Time of compile: [gameTimestamp("hh:mm:ss")]","tcserror")
 						//. ^ To make it obvious that it's done a new compile
@@ -111,7 +117,7 @@
 
 /client/verb/tcsrun()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))
@@ -150,7 +156,7 @@
 
 /client/verb/exittcs()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))
@@ -165,7 +171,7 @@
 
 /client/verb/tcsrevert()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))
@@ -197,7 +203,7 @@
 
 /client/verb/tcsclearmem()
 	set hidden = 1
-	if(is_banned_from(usr.ckey, "Signal Technician"))
+	if(is_banned_from(usr.ckey, "Network Admin"))
 		to_chat(usr, span_warning("You are banned from using NTSL."))
 		return
 	if(mob.machine || issilicon(mob))

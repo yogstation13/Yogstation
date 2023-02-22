@@ -8,7 +8,7 @@
 
 /datum/round_event/ghost_role/bad_wizard
 	minimum_required = 1
-	role_name = "Wizard Foundation Diplomat"
+	role_name = "Wizard Federation Diplomat"
 
 /datum/round_event/ghost_role/bad_wizard/spawn_role()
 	var/list/mob/dead/observer/candidates = get_candidates(ROLE_WIZARD, null, ROLE_WIZARD)

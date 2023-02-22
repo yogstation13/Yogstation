@@ -84,15 +84,21 @@
 	/// Is set to true if an antag was used to get this person picked as an antag
 	var/token_picked = FALSE
 
-/datum/mind/New(key)
-	src.key = key
+	/// If they have used the afk verb recently
+	var/afk_verb_used = FALSE
+	/// The timer for the afk verb
+	var/afk_verb_timer
+
+/datum/mind/New(_key)
+	key = _key
 	soulOwner = src
 	martial_art = default_martial_art
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
-	if(islist(antag_datums))
-		QDEL_LIST(antag_datums)
+	QDEL_NULL(antag_hud)
+	QDEL_LIST(antag_datums)
+	QDEL_NULL(language_holder)
 	current = null
 	soulOwner = null
 	return ..()
@@ -119,7 +125,7 @@
 					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
@@ -153,7 +159,7 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
@@ -295,7 +301,7 @@
 		return
 
 	var/list/all_contents = traitor_mob.GetAllContents()
-	var/obj/item/pda/PDA = locate() in all_contents
+	var/obj/item/modular_computer/PDA = locate() in all_contents
 	var/obj/item/radio/R = locate() in all_contents
 	var/obj/item/pen/P
 
@@ -313,33 +319,35 @@
 			P = inowhaveapen
 
 	var/obj/item/uplink_loc
+	var/implant = FALSE
 
-	if(traitor_mob.client && traitor_mob.client.prefs)
-		switch(traitor_mob.client.prefs.uplink_spawn_loc)
-			if(UPLINK_PDA)
-				uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = R
-				if(!uplink_loc)
-					uplink_loc = P
-			if(UPLINK_RADIO)
+	var/uplink_spawn_location = traitor_mob.client?.prefs?.read_preference(/datum/preference/choiced/uplink_location)
+	switch (uplink_spawn_location)
+		if(UPLINK_PDA)
+			uplink_loc = PDA
+			if(!uplink_loc)
 				uplink_loc = R
-				if(!uplink_loc)
-					uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = P
-			if(UPLINK_PEN)
+			if(!uplink_loc)
 				uplink_loc = P
-				if(!uplink_loc)
-					uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = R
+		if(UPLINK_RADIO)
+			uplink_loc = R
+			if(!uplink_loc)
+				uplink_loc = PDA
+			if(!uplink_loc)
+				uplink_loc = P
+		if(UPLINK_PEN)
+			uplink_loc = P
+			if(!uplink_loc)
+				uplink_loc = PDA
+			if(!uplink_loc)
+				uplink_loc = R
+		if(UPLINK_IMPLANT)
+			implant = TRUE
 
-	if (!uplink_loc)
-		if(!silent)
-			to_chat(traitor_mob, "Unfortunately, [employer] wasn't able to get you an Uplink.")
-		. = 0
-	else
+	if(!uplink_loc) // We've looked everywhere, let's just implant you
+		implant = TRUE
+	
+	if(!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
 		if(!U)
@@ -352,11 +360,18 @@
 				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
 				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [english_list(U.unlock_code)] from its starting position to unlock its hidden features.")
-
 		if(uplink_owner)
 			uplink_owner.antag_memory += U.unlock_note + "<br>"
 		else
 			traitor_mob.mind.store_memory(U.unlock_note)
+	else
+		var/obj/item/implant/uplink/starting/I = new(traitor_mob)
+		I.implant(traitor_mob, null, silent = TRUE)
+		if(!silent)
+			to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly implanted you with a Syndicate Uplink (although uplink implants cost valuable TC, so you will have slightly less). Simply trigger the uplink to access it.</span>")
+		return I
+
+
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 
@@ -398,6 +413,7 @@
 
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
+		output += A.task_memory
 		output += A.antag_memory
 		all_objectives |= A.objectives
 
@@ -566,7 +582,7 @@
 		switch(href_list["common"])
 			if("undress")
 				for(var/obj/item/W in current)
-					current.dropItemToGround(W, TRUE) //The 1 forces all items to drop, since this is an admin undress.
+					current.dropItemToGround(W, TRUE) //The TRUE forces all items to drop, since this is an admin undress.
 			if("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.
@@ -614,7 +630,7 @@
 	to_chat(current, span_notice("Your current objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
-		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
+		to_chat(current, "<B>[O.objective_name] #[obj_count]</B>: [O.explanation_text]")
 		obj_count++
 
 /datum/mind/proc/find_syndicate_uplink()
@@ -693,6 +709,7 @@
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	spell_list += S
 	S.action.Grant(current)
+	S.on_gain(current)
 
 /datum/mind/proc/owns_soul()
 	return soulOwner == src
@@ -705,6 +722,7 @@
 		var/obj/effect/proc_holder/spell/S = X
 		if(istype(S, spell))
 			spell_list -= S
+			S.on_lose(current)
 			qdel(S)
 	current?.client << output(null, "statbrowser:check_spells")
 
@@ -740,6 +758,7 @@
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
 		S.action.Grant(new_character)
+		S.on_gain(new_character)
 
 /datum/mind/proc/disrupt_spells(delay, list/exceptions = New())
 	for(var/X in spell_list)

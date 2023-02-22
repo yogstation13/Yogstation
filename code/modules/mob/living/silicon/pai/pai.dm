@@ -8,11 +8,15 @@
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
-	weather_immunities = list("ash")
+	weather_immunities = list(WEATHER_ASH)
 	health = 500
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER
 	can_be_held = TRUE
+	worn_slot_flags = ITEM_SLOT_HEAD
+	held_lh = 'icons/mob/pai_item_lh.dmi'
+	held_rh = 'icons/mob/pai_item_rh.dmi'
+	held_icon = 'icons/mob/pai_item_head.dmi'
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
 
@@ -64,13 +68,10 @@
 	var/obj/item/card/id/access_card = null
 	var/chassis = "repairbot"
 	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE)		//assoc value is whether it can be picked up.
-	var/static/item_head_icon = 'icons/mob/pai_item_head.dmi'
-	var/static/item_lh_icon = 'icons/mob/pai_item_lh.dmi'
-	var/static/item_rh_icon = 'icons/mob/pai_item_rh.dmi'
 
 	var/emitterhealth = 20
 	var/emittermaxhealth = 20
-	var/emitterregen = 0.25
+	var/emitter_regen_per_second = 1.25
 	var/emittercd = 50
 	var/emitteroverloadcd = 100
 	var/emittersemicd = FALSE
@@ -283,8 +284,8 @@
 	health = maxHealth - getBruteLoss() - getFireLoss()
 	update_stat()
 
-/mob/living/silicon/pai/process()
-	emitterhealth = clamp((emitterhealth + emitterregen), -50, emittermaxhealth)
+/mob/living/silicon/pai/process(delta_time)
+	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()

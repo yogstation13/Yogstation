@@ -41,10 +41,9 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	// We go backwards, so it'll be innermost objects sold first
 	var/list/to_delete = list()
 	for(var/atom/movable/thing as anything in reverseRange(contents))
-		var/sold = FALSE
-		if(QDELETED(thing))
-			continue
-		for(var/datum/export/E as anything in GLOB.exports_list)
+		if(istype(thingy) && thingy.item_flags & AUTOLATHED)
+			to_delete += thingy
+		for(var/datum/export/E as anything GLOB.exports_list)
 			if(!E)
 				continue
 			if(E.applies_to(thing, allowed_categories, apply_limit))

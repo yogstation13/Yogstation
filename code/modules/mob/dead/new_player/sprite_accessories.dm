@@ -59,6 +59,7 @@
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 	var/dimension_x = 32
 	var/dimension_y = 32
+	var/limbs_id // The limbs id supplied for full-body replacing features.
 	var/center = FALSE	//Should we center the sprite?
 
 //////////////////////
@@ -851,6 +852,267 @@
 	name = "Spiked Wavy"
 	icon_state = "wavy_spiked"
 
+// IPC accessories.
+
+/datum/sprite_accessory/ipc_screens
+	icon = 'icons/mob/ipc_accessories.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/ipc_screens/blue
+	name = "Blue"
+	icon_state = "blue"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/bsod
+	name = "BSOD"
+	icon_state = "bsod"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/breakout
+	name = "Breakout"
+	icon_state = "breakout"
+
+/datum/sprite_accessory/ipc_screens/blank
+	name = "Null"
+	icon_state = "blank"
+
+/datum/sprite_accessory/ipc_screens/console
+	name = "Console"
+	icon_state = "console"
+
+/datum/sprite_accessory/ipc_screens/ecgwave
+	name = "ECG Wave"
+	icon_state = "ecgwave"
+
+/datum/sprite_accessory/ipc_screens/eight
+	name = "Eight"
+	icon_state = "eight"
+
+/datum/sprite_accessory/ipc_screens/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
+/datum/sprite_accessory/ipc_screens/eyestall
+	name = "Tall Eyes"
+	icon_state = "eyestall"
+
+/datum/sprite_accessory/ipc_screens/eyesangry
+	name = "Angry Eyes"
+	icon_state = "eyesangry"
+
+/datum/sprite_accessory/ipc_screens/glider
+	name = "Glider"
+	icon_state = "glider"
+
+/datum/sprite_accessory/ipc_screens/goggles
+	name = "Goggles"
+	icon_state = "goggles"
+
+/datum/sprite_accessory/ipc_screens/exclamation
+	name = "Exclamation Point"
+	icon_state = "excla"
+
+/datum/sprite_accessory/ipc_screens/heart
+	name = "Heart"
+	icon_state = "heart"
+
+/datum/sprite_accessory/ipc_screens/L
+	name = "L"
+	icon_state = "l"
+
+/datum/sprite_accessory/ipc_screens/loading
+	name = "Loading"
+	icon_state = "loading"
+
+/datum/sprite_accessory/ipc_screens/monoeye
+	name = "Mono-eye"
+	icon_state = "monoeye"
+
+/datum/sprite_accessory/ipc_screens/nature
+	name = "Nature"
+	icon_state = "nature"
+
+/datum/sprite_accessory/ipc_screens/orange
+	name = "Orange"
+	icon_state = "orange"
+
+/datum/sprite_accessory/ipc_screens/pink
+	name = "Pink"
+	icon_state = "pink"
+
+/datum/sprite_accessory/ipc_screens/question
+	name = "Question Mark"
+	icon_state = "question"
+
+/datum/sprite_accessory/ipc_screens/ring
+	name = "Ring"
+	icon_state = "ring"
+
+/datum/sprite_accessory/ipc_screens/rainbow
+	name = "Rainbow"
+	icon_state = "rainbow"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/rainbowtwo
+	name = "Rainbow (Diagonal)"
+	icon_state = "rainbowdiag"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/redtext
+	name = "Red Text"
+	icon_state = "redtext"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/rgb
+	name = "RGB"
+	icon_state = "rgb"
+
+/datum/sprite_accessory/ipc_screens/scroll
+	name = "Scanline"
+	icon_state = "scroll"
+
+/datum/sprite_accessory/ipc_screens/shower
+	name = "Shower"
+	icon_state = "shower"
+
+/datum/sprite_accessory/ipc_screens/sinewave
+	name = "Sinewave"
+	icon_state = "sinewave"
+
+/datum/sprite_accessory/ipc_screens/squarewave
+	name = "Square wave"
+	icon_state = "squarewave"
+
+/datum/sprite_accessory/ipc_screens/static_screen
+	name = "Static"
+	icon_state = "static"
+
+/datum/sprite_accessory/ipc_screens/stars
+	name = "Stars"
+	icon_state = "stars"
+
+/datum/sprite_accessory/ipc_screens/sad
+	name = "Sad"
+	icon_state = "sad"
+
+/datum/sprite_accessory/ipc_screens/smiley
+	name = "Smiley"
+	icon_state = "smile"
+
+/datum/sprite_accessory/ipc_screens/tetris
+	name = "Tetris"
+	icon_state = "tetris"
+
+/datum/sprite_accessory/ipc_screens/tv
+	name = "Color Test"
+	icon_state = "tv"
+
+/datum/sprite_accessory/ipc_screens/textdrop
+	name = "Text drop"
+	icon_state = "textdrop"
+
+/datum/sprite_accessory/ipc_screens/windowsxp
+	name = "Windows XP"
+	icon_state = "windowsxp"
+
+/datum/sprite_accessory/ipc_screens/yellow
+	name = "Yellow"
+	icon_state = "yellow"
+
+/datum/sprite_accessory/ipc_antennas
+	icon = 'icons/mob/ipc_accessories.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/ipc_antennas/none
+	name = "None"
+	icon_state = "None"
+
+/datum/sprite_accessory/ipc_antennas/angled
+	name = "Angled"
+	icon_state = "antennae"
+
+/datum/sprite_accessory/ipc_antennas/antlers
+	name = "Antlers"
+	icon_state = "antlers"
+
+/datum/sprite_accessory/ipc_antennas/crowned
+	name = "Crowned"
+	icon_state = "crowned"
+
+/datum/sprite_accessory/ipc_antennas/cyberhead
+	name = "Cyberhead"
+	icon_state = "cyberhead"
+
+/datum/sprite_accessory/ipc_antennas/droneeyes
+	name = "Drone Eyes"
+	icon_state = "droneeyes"
+
+/datum/sprite_accessory/ipc_antennas/brokenlight
+	name = "Broken Light"
+	icon_state = "lightb"
+
+/datum/sprite_accessory/ipc_antennas/light
+	name = "Light"
+	icon_state = "light"
+
+/datum/sprite_accessory/ipc_antennas/sidelights
+	name = "Sidelights"
+	icon_state = "sidelights"
+
+/datum/sprite_accessory/ipc_antennas/tesla
+	name = "Tesla"
+	icon_state = "tesla"
+
+/datum/sprite_accessory/ipc_antennas/tv
+	name = "TV Antenna"
+	icon_state = "tvantennae"
+
+/datum/sprite_accessory/ipc_chassis // Used for changing limb icons, doesn't need to hold the actual icon. That's handled in ipc.dm
+	icon = null
+	icon_state = "who cares fuck you" // In order to pull the chassis correctly, we need AN icon_state(see line 36-39). It doesn't have to be useful, because it isn't used.
+	color_src = 0
+
+/datum/sprite_accessory/ipc_chassis/mcgreyscale
+	name = "Morpheus Cyberkinetics(Greyscale)"
+	limbs_id = "mcgipc"
+	color_src = MUTCOLORS
+
+/datum/sprite_accessory/ipc_chassis/bishopcyberkinetics
+	name = "Bishop Cyberkinetics"
+	limbs_id = "bshipc"
+
+/datum/sprite_accessory/ipc_chassis/bishopcyberkinetics2
+	name = "Bishop Cyberkinetics 2.0"
+	limbs_id = "bs2ipc"
+
+/datum/sprite_accessory/ipc_chassis/hephaestussindustries
+	name = "Hephaestus Industries"
+	limbs_id = "hsiipc"
+
+/datum/sprite_accessory/ipc_chassis/hephaestussindustries2
+	name = "Hephaestus Industries 2.0"
+	limbs_id = "hi2ipc"
+
+/datum/sprite_accessory/ipc_chassis/shellguardmunitions
+	name = "Shellguard Munitions Standard Series"
+	limbs_id = "sgmipc"
+
+/datum/sprite_accessory/ipc_chassis/wardtakahashimanufacturing
+	name = "Ward-Takahashi Manufacturing"
+	limbs_id = "wtmipc"
+
+/datum/sprite_accessory/ipc_chassis/xionmanufacturinggroup
+	name = "Xion Manufacturing Group"
+	limbs_id = "xmgipc"
+
+/datum/sprite_accessory/ipc_chassis/xionmanufacturinggroup2
+	name = "Xion Manufacturing Group 2.0"
+	limbs_id = "xm2ipc"
+
+/datum/sprite_accessory/ipc_chassis/zenghupharmaceuticals
+	name = "Zeng-Hu Pharmaceuticals"
+	limbs_id = "zhpipc"
+
 /////////////////////////////
 // Facial Hair Definitions //
 /////////////////////////////
@@ -1010,7 +1272,7 @@
 // Underwear Definitions //
 ///////////////////////////
 /datum/sprite_accessory/underwear
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/underwear.dmi'
 
 /datum/sprite_accessory/underwear/nude
 	name = "Nude"
@@ -1212,7 +1474,7 @@
 ////////////////////////////
 
 /datum/sprite_accessory/undershirt
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/undershirt.dmi'
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1461,6 +1723,36 @@
 	icon_state = "tank_white"
 	gender = NEUTER
 
+/datum/sprite_accessory/undershirt/tank_rainbow
+	name = "Tank Top (Rainbow)"
+	icon_state = "tank_rainbow"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_ace
+	name = "Tank Top (Asexual)"
+	icon_state = "tank_ace"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_bi
+	name = "Tank Top (Bi)"
+	icon_state = "tank_bi"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_les
+	name = "Tank Top (Lesbian)"
+	icon_state = "tank_les"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_enby
+	name = "Tank Top (Nonbinary)"
+	icon_state = "tank_enby"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_trans
+	name = "Tank Top (Trans)"
+	icon_state = "tank_trans"
+	gender = NEUTER
+
 /datum/sprite_accessory/undershirt/redtop
 	name = "Top (Red)"
 	icon_state = "redtop"
@@ -1496,7 +1788,7 @@
 ///////////////////////
 
 /datum/sprite_accessory/socks
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/socks.dmi'
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"
@@ -1504,21 +1796,45 @@
 
 // please make sure they're sorted alphabetically and categorized
 
+/datum/sprite_accessory/socks/bee_knee
+	name = "Knee-high (Bee)"
+	icon_state = "bee_knee"
+
 /datum/sprite_accessory/socks/black_knee
 	name = "Knee-high (Black)"
 	icon_state = "black_knee"
 
 /datum/sprite_accessory/socks/commie_knee
-	name = "Knee-High (Commie)"
+	name = "Knee-high (Commie)"
 	icon_state = "commie_knee"
 
 /datum/sprite_accessory/socks/usa_knee
-	name = "Knee-High (Freedom)"
+	name = "Knee-high (Freedom)"
 	icon_state = "assblastusa_knee"
 
 /datum/sprite_accessory/socks/rainbow_knee
 	name = "Knee-high (Rainbow)"
 	icon_state = "rainbow_knee"
+
+/datum/sprite_accessory/socks/ace_knee
+	name = "Knee-high (Asexual)"
+	icon_state = "ace_knee" // can be used to show that you follow rule 0.2
+
+/datum/sprite_accessory/socks/bi_knee
+	name = "Knee-high (Bi)"
+	icon_state = "bi_knee"
+
+/datum/sprite_accessory/socks/les_knee
+	name = "Knee-high (Lesbian)"
+	icon_state = "les_knee"
+
+/datum/sprite_accessory/socks/enby_knee
+	name = "Knee-high (Nonbinary)"
+	icon_state = "enby_knee"
+
+/datum/sprite_accessory/socks/trans_knee
+	name = "Knee-high (Trans)"
+	icon_state = "trans_knee"
 
 /datum/sprite_accessory/socks/striped_knee
 	name = "Knee-high (Striped)"
@@ -1535,10 +1851,6 @@
 /datum/sprite_accessory/socks/white_knee
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
-
-/datum/sprite_accessory/socks/bee_knee
-	name = "Knee-high (Bee)"
-	icon_state = "bee_knee"
 
 /datum/sprite_accessory/socks/black_norm
 	name = "Normal (Black)"
@@ -1574,7 +1886,7 @@
 
 /datum/sprite_accessory/socks/stockings_green
 	name = "Stockings (Green)"
-	icon_state = "stockings_black"
+	icon_state = "stockings_green"
 
 /datum/sprite_accessory/socks/stockings_orange
 	name = "Stockings (Orange)"
@@ -1592,6 +1904,10 @@
 	name = "Stockings (Yellow)"
 	icon_state = "stockings_yellow"
 
+/datum/sprite_accessory/socks/bee_thigh
+	name = "Thigh-high (Bee)"
+	icon_state = "bee_thigh"
+
 /datum/sprite_accessory/socks/black_thigh
 	name = "Thigh-high (Black)"
 	icon_state = "black_thigh"
@@ -1608,6 +1924,26 @@
 	name = "Thigh-high (Rainbow)"
 	icon_state = "rainbow_thigh"
 
+/datum/sprite_accessory/socks/ace_thigh
+	name = "Thigh-high (Asexual)"
+	icon_state = "ace_thigh"
+
+/datum/sprite_accessory/socks/bi_thigh
+	name = "Thigh-high (Bi)"
+	icon_state = "bi_thigh" //bi thigh highs? we gotta study this
+
+/datum/sprite_accessory/socks/les_thigh
+	name = "Thigh-high (Lesbian)"
+	icon_state = "les_thigh"
+
+/datum/sprite_accessory/socks/enby_thigh
+	name = "Thigh-high (Nonbinary)"
+	icon_state = "enby_thigh"
+
+/datum/sprite_accessory/socks/trans_thigh
+	name = "Thigh-high (Trans)"
+	icon_state = "trans_thigh"
+
 /datum/sprite_accessory/socks/striped_thigh
 	name = "Thigh-high (Striped)"
 	icon_state = "striped_thigh"
@@ -1623,10 +1959,6 @@
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
-
-/datum/sprite_accessory/socks/bee_thigh
-	name = "Thigh-high (Bee)"
-	icon_state = "bee_thigh"
 
 //////////.//////////////////
 // MutantParts Definitions //
@@ -1763,6 +2095,14 @@
 /datum/sprite_accessory/horns/long
 	name = "Long"
 	icon_state = "long"
+
+/datum/sprite_accessory/horns/knight
+	name = "Knight"
+	icon_state = "knight"
+
+/datum/sprite_accessory/horns/drake
+	name = "Drake"
+	icon_state = "drake"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -2154,3 +2494,142 @@
 /datum/sprite_accessory/dorsal_tubes/dtdouble
 	name = "Double"
 	icon_state = "dtdouble"
+
+/datum/sprite_accessory/dorsal_tubes/dtsplit
+	name = "Split"
+	icon_state = "dtsplit"
+
+/datum/sprite_accessory/dorsal_tubes/dtdown
+	name = "Down"
+	icon_state = "dtdown"
+
+//ETHEREAL FACE MARKINGS
+/datum/sprite_accessory/ethereal_mark
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/ethereal_mark/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
+/datum/sprite_accessory/ethereal_mark/diamond
+	name = "Diamond"
+	icon_state = "diamond"
+
+/datum/sprite_accessory/ethereal_mark/heart
+	name = "Heart"
+	icon_state = "heart"
+
+/datum/sprite_accessory/ethereal_mark/omega
+	name = "Omega"
+	icon_state = "omega"
+
+/datum/sprite_accessory/ethereal_mark/plus
+	name = "Plus"
+	icon_state = "plus"
+
+/datum/sprite_accessory/ethereal_mark/triangle
+	name = "Triangle"
+	icon_state = "triangle"
+
+/datum/sprite_accessory/ethereal_mark/x
+	name = "X"
+	icon_state = "x"
+
+//Phytosian hair
+/datum/sprite_accessory/pod_hair
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/pod_hair/bud
+	name = "Bud"
+	icon_state = "pod_hair_bud"
+
+/datum/sprite_accessory/pod_hair/cabbage
+	name = "Cabbage"
+	icon_state = "pod_hair_cabbage"
+
+/datum/sprite_accessory/pod_hair/fig
+	name = "Fig"
+	icon_state = "pod_hair_fig"
+
+/datum/sprite_accessory/pod_hair/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_hair_hibiscus"
+
+/datum/sprite_accessory/pod_hair/ivy
+	name = "Ivy"
+	icon_state = "pod_hair_ivy"
+
+/datum/sprite_accessory/pod_hair/orchid
+	name = "Orchid"
+	icon_state = "pod_hair_orchid"
+
+/datum/sprite_accessory/pod_hair/prayer
+	name = "Prayer"
+	icon_state = "pod_hair_prayer"
+
+/datum/sprite_accessory/pod_hair/rose
+	name = "Rose"
+	icon_state = "pod_hair_rose"
+
+/datum/sprite_accessory/pod_hair/shrub
+	name = "Shrub"
+	icon_state = "pod_hair_shrub"
+
+/datum/sprite_accessory/pod_hair/spinach
+	name = "Spinach"
+	icon_state = "pod_hair_spinach"
+
+/datum/sprite_accessory/pod_hair/vine
+	name = "Vine"
+	icon_state = "pod_hair_vine"
+
+//Phytosian hair flower
+/datum/sprite_accessory/pod_flower
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = FACEHAIR
+
+/datum/sprite_accessory/pod_flower/bud
+	name = "Bud"
+	icon_state = "pod_flower_bud"
+
+/datum/sprite_accessory/pod_flower/cabbage
+	name = "Cabbage"
+	icon_state = "pod_flower_cabbage"
+
+/datum/sprite_accessory/pod_flower/fig
+	name = "Fig"
+	icon_state = "pod_flower_fig"
+
+/datum/sprite_accessory/pod_flower/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_flower_hibiscus"
+
+/datum/sprite_accessory/pod_flower/ivy
+	name = "Ivy"
+	icon_state = "pod_flower_ivy"
+
+/datum/sprite_accessory/pod_flower/orchid
+	name = "Orchid"
+	icon_state = "pod_flower_orchid"
+
+/datum/sprite_accessory/pod_flower/prayer
+	name = "Prayer"
+	icon_state = "pod_flower_prayer"
+
+/datum/sprite_accessory/pod_flower/rose
+	name = "Rose"
+	icon_state = "pod_flower_rose"
+
+/datum/sprite_accessory/pod_flower/shrub
+	name = "Shrub"
+	icon_state = "pod_flower_shrub"
+
+/datum/sprite_accessory/pod_flower/spinach
+	name = "Spinach"
+	icon_state = "pod_flower_spinach"
+
+/datum/sprite_accessory/pod_flower/vine
+	name = "Vine"
+	icon_state = "pod_flower_vine"

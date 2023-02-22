@@ -28,6 +28,9 @@
 
 /datum/antagonist/ashwalker/on_gain()
 	. = ..()
+	var/obj/item/book/granter/crafting_recipe/ashwalker/crafting_book
+	for(var/datum/crafting_recipe/R in crafting_book.crafting_recipe_types)
+		owner.teach_crafting_recipe(R)
 	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, .proc/on_examinate)
 
 /datum/antagonist/ashwalker/on_removal()

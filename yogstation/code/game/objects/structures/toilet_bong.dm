@@ -34,7 +34,7 @@
 	if (!LAZYLEN(contents))
 		to_chat(user, span_warning("[src] is empty!"))
 		return
-	if (do_after(user, 2 SECONDS, target = src))
+	if (do_after(user, 2 SECONDS, src))
 		var/obj/item/reagent_containers/boof = contents[1]
 		user.visible_message(span_boldnotice("[user] takes a huge rip from [src]!"), span_boldnotice("You take a huge rip from [src]!"))
 		var/smoke_spread = 1
@@ -42,9 +42,9 @@
 			user.visible_message(span_danger("[user] coughs while using [src], filling the area with smoke!"), span_userdanger("You cough while using [src], filling the area with smoke!"))
 			smoke_spread = 5
 		var/turf/location = get_turf(user)
-		var/datum/effect_system/smoke_spread/chem/smoke = new
+		var/datum/effect_system/fluid_spread/smoke/chem/smoke = new
 		smoke.attach(location)
-		smoke.set_up(boof.reagents, smoke_spread, location, silent = TRUE)
+		smoke.set_up(smoke_spread, location = location, carry = boof.reagents, silent = TRUE)
 		smoke.start()
 		qdel(boof)
 		update_icon()

@@ -13,7 +13,7 @@
 /obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
-		if(tank_volume && (damage_flag == "bullet" || damage_flag == "laser"))
+		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
 			boom()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
@@ -89,7 +89,7 @@
 			boom()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/living/user, params)
-	if(I.tool_behaviour == TOOL_WELDER)
+	if(istype(I, /obj/item/weldingtool))
 		if(!reagents.has_reagent(/datum/reagent/fuel))
 			to_chat(user, span_warning("[src] is out of fuel!"))
 			return
@@ -124,7 +124,10 @@
 	. = ..()
 	if(prob(1))
 		desc = "IT'S PEPPER TIME, BITCH!"
-
+	// I am cheating
+	// Sets 1/3 of the tank to be pepperspray coloring
+	reagents.remove_reagent(reagent_id, tank_volume / 3)
+	reagents.add_reagent(/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray, tank_volume / 3)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "liquid cooler"

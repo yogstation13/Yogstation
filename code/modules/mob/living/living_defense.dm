@@ -1,27 +1,33 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
-	if(armor > 0 && armour_penetration)
-		armor = max(0, armor - armour_penetration)
-		if(penetrated_text)
-			to_chat(src, span_userdanger("[penetrated_text]"))
+	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
+		if(armour_penetration <= -100)	// < -100 AP, no penetration on anything
+			armor = 100
+		else if((-100 < armour_penetration) && (armour_penetration < 0))	// -100 to 0 AP, reduced penetration, nonlinear scaling
+			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
 		else
-			to_chat(src, span_userdanger("Your armor was penetrated!"))
-	else if(armor >= 100)
+			armor = max(0, armor - armour_penetration)						//Positive AP, actual armor penetration
+		if(armour_penetration > 0 && armor < 100)	//WE HAVE INEFFECTIVE ARMOR
+			if(penetrated_text)
+				to_chat(src, span_userdanger("[penetrated_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor was penetrated!"))
+		else if(armor > 0)	//WE HAVE EFFECTIVE ARMOR
+			if(soften_text)
+				to_chat(src, span_userdanger("[soften_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor softens the blow!"))
+	if(armor >= 100)	//WE HAVE ALL THE ARMOR
 		if(absorb_text)
 			to_chat(src, span_userdanger("[absorb_text]"))
 		else
 			to_chat(src, span_userdanger("Your armor absorbs the blow!"))
-	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, span_userdanger("[soften_text]"))
-		else
-			to_chat(src, span_userdanger("Your armor softens the blow!"))
 	return armor
 
 
@@ -47,10 +53,30 @@
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
+
+	// "Projectiles now ignore the holopara's master or any of their other holoparas."
+	var/guardian_pass = FALSE
+	if(istype(P, /obj/item/projectile/guardian))
+		var/obj/item/projectile/guardian/G = P
+		var/datum/mind/guardian_master = G.guardian_master
+		if(guardian_master?.current)
+			var/list/safe = list(guardian_master.current)
+			safe += guardian_master.current.hasparasites()
+			guardian_pass = (src in safe)
+	if(guardian_pass)
+		return BULLET_ACT_FORCE_PIERCE
+	
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
+		last_damage = P.name
+		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
+			P.damage = 0
+		else
+			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
+	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
+		P.penetrations -= 1
+		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
@@ -74,10 +100,11 @@
 		if(!blocked)
 			visible_message(span_danger("[src] has been hit by [I]."), \
 							span_userdanger("[src] has been hit by [I]."))
-			var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
+			var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
 			if(isobj(AM))
 				var/obj/O = AM
 				if(O.damtype != STAMINA)
+					last_damage = I.name
 					apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness())
 					if(I.thrownby)
 						log_combat(I.thrownby, src, "threw and hit", I)
@@ -88,14 +115,18 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M)
-	if(M.occupant.a_intent == INTENT_HARM)
+/mob/living/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
+		M.selected.action(src)
+	else if(M.occupant.a_intent == INTENT_HARM)
+		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
-		if(M.damtype == "brute")
-			step_away(src,M,15)
 		switch(M.damtype)
 			if(BRUTE)
-				Unconscious(20)
+				if(M.force >= 20)
+					Unconscious(20)
+					var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+					src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 				take_overall_damage(rand(M.force/2, M.force))
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
@@ -115,6 +146,7 @@
 		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
 
 /mob/living/fire_act()
+	last_damage = "fire"
 	adjust_fire_stacks(3)
 	IgniteMob()
 
@@ -184,6 +216,7 @@
 				if(!buckled && !density)
 					Move(user.loc)
 			if(GRAB_KILL)
+				last_damage = "grip marks on the neck"
 				log_combat(user, src, "strangled", addition="kill grab")
 				visible_message(span_danger("[user] is strangling [src]!"), \
 								span_userdanger("[user] is strangling you!"))
@@ -209,6 +242,7 @@
 		return FALSE
 
 	if (stat != DEAD)
+		last_damage = "goo"
 		log_combat(M, src, "attacked")
 		M.do_attack_animation(src)
 		visible_message(span_danger("The [M.name] glomps [src]!"), \
@@ -227,6 +261,7 @@
 
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
+		last_damage = "lacerations"
 		M.do_attack_animation(src)
 		visible_message(span_danger("\The [M] [M.attacktext] [src]!"), \
 						span_userdanger("\The [M] [M.attacktext] [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -249,6 +284,7 @@
 			return FALSE
 		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 		if (prob(75))
+			last_damage = "minor laceration"
 			log_combat(M, src, "attacked")
 			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 			visible_message(span_danger("[M.name] bites [src]!"), \
@@ -272,6 +308,7 @@
 
 			L.do_attack_animation(src)
 			if(prob(90))
+				last_damage = "bite"
 				log_combat(L, src, "attacked")
 				visible_message(span_danger("[L.name] bites [src]!"), \
 					span_userdanger("[L.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -294,20 +331,24 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt anyone!"))
 				return FALSE
+			last_damage = "deep lacerations"
 			M.do_attack_animation(src)
 			return TRUE
 		if("disarm")
+			last_damage = "minor blunt trauma"
 			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 			return TRUE
 
 /mob/living/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
+	last_damage = "compression blast"
 	..()
 
 //Looking for irradiate()? It's been moved to radiation.dm under the rad_act() for mobs.
 
 /mob/living/acid_act(acidpwr, acid_volume)
+	last_damage = "acidic burns"
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
@@ -319,6 +360,7 @@
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
+			last_damage = "electricity burns"
 			adjustFireLoss(shock_damage)
 		visible_message(
 			span_danger("[src] was shocked by \the [source]!"), \
@@ -384,7 +426,7 @@
 
 
 //called when the mob receives a bright flash
-/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
+/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /atom/movable/screen/fullscreen/flash)
 	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)

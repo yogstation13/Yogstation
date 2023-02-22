@@ -3,6 +3,7 @@
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	name = "lungs"
 	icon_state = "lungs"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
@@ -82,16 +83,20 @@
 
 		H.failed_last_breath = TRUE
 		if(safe_oxygen_min)
-			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+			if(isipc(H))
+				H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
+			else
+				H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
 		else if(safe_toxins_min)
-			H.throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
+			H.throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
 		else if(safe_co2_min)
-			H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
+			H.throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
 		else if(safe_nitro_min)
-			H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			H.throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
 		return FALSE
 
 	var/gas_breathed = 0
+	var/eff = get_organ_efficiency()
 
 	//Partial pressures in our breath
 	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))
@@ -109,7 +114,7 @@
 		if(O2_pp > safe_oxygen_max)
 			var/ratio = (breath.get_moles(/datum/gas/oxygen)/safe_oxygen_max) * 10
 			H.apply_damage_type(clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type)
-			H.throw_alert("too_much_oxy", /obj/screen/alert/too_much_oxy)
+			H.throw_alert("too_much_oxy", /atom/movable/screen/alert/too_much_oxy)
 		else
 			H.clear_alert("too_much_oxy")
 
@@ -117,11 +122,11 @@
 	if(safe_oxygen_min)
 		if(O2_pp < safe_oxygen_min)
 			gas_breathed = handle_too_little_breath(H, O2_pp, safe_oxygen_min, breath.get_moles(/datum/gas/oxygen))
-			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+			H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/oxygen)
 			H.clear_alert("not_enough_oxy")
 
@@ -137,7 +142,7 @@
 		if(N2_pp > safe_nitro_max)
 			var/ratio = (breath.get_moles(/datum/gas/nitrogen)/safe_nitro_max) * 10
 			H.apply_damage_type(clamp(ratio, nitro_breath_dam_min, nitro_breath_dam_max), nitro_damage_type)
-			H.throw_alert("too_much_nitro", /obj/screen/alert/too_much_nitro)
+			H.throw_alert("too_much_nitro", /atom/movable/screen/alert/too_much_nitro)
 		else
 			H.clear_alert("too_much_nitro")
 
@@ -145,13 +150,13 @@
 	if(safe_nitro_min)
 		if(N2_pp < safe_nitro_min)
 			gas_breathed = handle_too_little_breath(H, N2_pp, safe_nitro_min, breath.get_moles(/datum/gas/nitrogen))
-			H.throw_alert("nitro", /obj/screen/alert/not_enough_nitro)
+			H.throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/nitrogen)
-			H.clear_alert("nitro")
+			H.clear_alert("not_enough_nitro")
 
 	//Exhale
 	breath.adjust_moles(/datum/gas/nitrogen, -gas_breathed)
@@ -170,7 +175,7 @@
 				H.apply_damage_type(3, co2_damage_type) // Lets hurt em a little, let them know we mean business
 				if(world.time - H.co2overloadtime > 300) // They've been in here 30s now, lets start to kill them for their own good!
 					H.apply_damage_type(8, co2_damage_type)
-				H.throw_alert("too_much_co2", /obj/screen/alert/too_much_co2)
+				H.throw_alert("too_much_co2", /atom/movable/screen/alert/too_much_co2)
 			if(prob(20)) // Lets give them some chance to know somethings not right though I guess.
 				H.emote("cough")
 
@@ -182,11 +187,11 @@
 	if(safe_co2_min)
 		if(CO2_pp < safe_co2_min)
 			gas_breathed = handle_too_little_breath(H, CO2_pp, safe_co2_min, breath.get_moles(/datum/gas/carbon_dioxide))
-			H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
+			H.throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * organ_efficiency)
 			gas_breathed = breath.get_moles(/datum/gas/carbon_dioxide)
 			H.clear_alert("not_enough_co2")
 
@@ -203,7 +208,7 @@
 		if(Toxins_pp > safe_toxins_max)
 			var/ratio = (breath.get_moles(/datum/gas/plasma)/safe_toxins_max) * 10
 			H.apply_damage_type(clamp(ratio, tox_breath_dam_min, tox_breath_dam_max), tox_damage_type)
-			H.throw_alert("too_much_tox", /obj/screen/alert/too_much_tox)
+			H.throw_alert("too_much_tox", /atom/movable/screen/alert/too_much_tox)
 		else
 			H.clear_alert("too_much_tox")
 
@@ -212,11 +217,11 @@
 	if(safe_toxins_min)
 		if(Toxins_pp < safe_toxins_min)
 			gas_breathed = handle_too_little_breath(H, Toxins_pp, safe_toxins_min, breath.get_moles(/datum/gas/plasma))
-			H.throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
+			H.throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(-5)
+				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/plasma)
 			H.clear_alert("not_enough_tox")
 
@@ -281,7 +286,7 @@
 			H.adjustFireLoss(nitryl_pp/4)
 		gas_breathed = breath.get_moles(/datum/gas/nitryl)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/nitryl,1)
+			H.reagents.add_reagent(/datum/reagent/nitryl,1*eff)
 
 		breath.adjust_moles(/datum/gas/nitryl, -gas_breathed)
 
@@ -299,7 +304,7 @@
 			H.adjustFireLoss(freon_pp/4)
 		gas_breathed = breath.get_moles(/datum/gas/freon)
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/freon,1)
+			H.reagents.add_reagent(/datum/reagent/freon,1*eff)
 
 		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
 
@@ -309,7 +314,7 @@
 		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
 			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
-			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
 			H.adjustFireLoss(-7)
 			H.adjustToxLoss(-5)
 			H.adjustBruteLoss(-5)
@@ -350,7 +355,7 @@
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)
 		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/stimulum)
-			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1*eff - existing))
 		breath.adjust_moles(/datum/gas/stimulum, -gas_breathed)
 
 	// Miasma
@@ -460,10 +465,77 @@
 		failed = FALSE
 	return
 
+/obj/item/organ/lungs/attackby(obj/item/W, mob/user, params)
+	if(!(organ_flags & ORGAN_SYNTHETIC) && organ_efficiency == 1 && W.tool_behaviour == TOOL_CROWBAR)
+		user.visible_message(span_notice("[user] extends [src] with [W]!"), span_notice("You use [W] to extend [src]!"), "You hear something stretching.")
+		name = "extended [name]"
+		icon_state += "-crobar" //shh! don't tell anyone i handed you this card
+		safe_oxygen_min *= 2 //SCREAM LOUDER i dont know maybe eventually
+		safe_toxins_min *= 2
+		safe_nitro_min *= 2 //BREATHE HARDER
+		safe_co2_min *= 2
+		organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
+		maxHealth *= 0.5 //This procedure is not legal but i will do it for you
+
 /obj/item/organ/lungs/prepare_eat()
 	var/obj/S = ..()
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
 	return S
+
+/obj/item/organ/lungs/get_availability(datum/species/species)
+	return !(TRAIT_NOBREATH in species.inherent_traits)
+
+/obj/item/organ/lungs/ipc
+	name = "cooling radiator"
+	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
+	icon_state = "lungs-c"
+	organ_flags = ORGAN_SYNTHETIC
+	status = ORGAN_ROBOTIC
+	COOLDOWN_DECLARE(last_message)
+
+/obj/item/organ/lungs/ipc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	if(H.status_flags & GODMODE)
+		return
+	if(HAS_TRAIT(H, TRAIT_NOBREATH))
+		return
+
+	var/total_heat_capacity = 0
+	if(!breath || (breath.total_moles() == 0)) // Space
+		H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(40, max_temp = 500)
+		H.failed_last_breath = TRUE
+		return FALSE
+	var/temperature = breath.return_temperature()
+	for(var/id in breath.get_gases())
+		var/moles = breath.get_moles(id)
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
+	// Normal atmos is 0.416
+	// 20C -> 293K
+	// At about 50C overheating will begin
+	// At 70C burn damage will start happening
+	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
+	if(total_heat_capacity > 0)
+		var/ipc_heat_capacity = 20 * ONE_ATMOSPHERE * BREATH_VOLUME / (R_IDEAL_GAS_EQUATION * T20C) // balanced to have an equilibrium of around 40C with one atmosphere of air at room temperature, not accounting for passive cooling/heating from the environment
+		var/heat_generation = 10 + ((temperature - (H.bodytemperature + 10)) * organ_efficiency * total_heat_capacity / (total_heat_capacity + ipc_heat_capacity)) // heat up by 20 kelvin while being cooled by the gas
+		H.adjust_bodytemperature(heat_generation, 73, 500)
+		if(heat_generation > 0 && H.bodytemperature > T0C+50) // not dispelling enough heat
+			H.throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
+			if(COOLDOWN_FINISHED(src, last_message))
+				to_chat(H, span_boldwarning("Warning: System overheating!"))
+				COOLDOWN_START(src, last_message, 30 SECONDS)
+			H.failed_last_breath = TRUE
+		else
+			H.failed_last_breath = FALSE
+			H.clear_alert("not_enough_oxy")
+	else // backup but should be impossible to ever run
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: System overheating!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(40, max_temp = 500)
+		H.failed_last_breath = TRUE
 
 /obj/item/organ/lungs/plasmaman
 	name = "plasma filter"
@@ -487,11 +559,10 @@
 
 /obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
 	. = ..()
-	if(!breath.total_moles())
-		return .
-	var/breath_amt = breath.get_moles(/datum/gas/plasma)
-	breath.adjust_moles(/datum/gas/plasma, -breath_amt)
-	breath.adjust_moles(/datum/gas/oxygen, breath_amt)
+	if(breath)
+		var/breath_amt = breath.get_moles(/datum/gas/plasma)
+		breath.adjust_moles(/datum/gas/plasma, -breath_amt)
+		breath.adjust_moles(/datum/gas/oxygen, breath_amt)
 
 /obj/item/organ/lungs/slime
 	name = "vacuole"
@@ -504,6 +575,13 @@
 	if (breath)
 		var/plasma_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/plasma))
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
+
+/obj/item/organ/lungs/ghetto
+	name = "oxygen tanks welded to a modular reciever"
+	desc = "A pair of oxygen tanks which have been attached to a modular (oxygen) receiver. They are incapable of supplying air, but can work as a replacement for lungs."
+	icon_state = "lungs-g"
+	organ_efficiency = 0.5
+	organ_flags = ORGAN_SYNTHETIC //the moment i understood the weakness of flesh, it disgusted me, and i yearned for the certainty, of steel
 
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
@@ -521,9 +599,10 @@
 
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs, for use in hazardous environments. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
+	desc = "A more advanced version of the stock cybernetic lungs, more efficient at, well, breathing. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 1.5
 	safe_oxygen_min = 10
 	safe_co2_max = 20
 	safe_toxins_max = 20 //Higher resistance to most harmful gasses

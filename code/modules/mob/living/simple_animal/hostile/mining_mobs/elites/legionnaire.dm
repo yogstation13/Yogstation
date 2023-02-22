@@ -24,10 +24,12 @@
 	icon_aggro = "legionnaire"
 	icon_dead = "legionnaire_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "legionnaire"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes its arms at"
 	//attack_verb_simple = "slash your arms at"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -35,6 +37,7 @@
 	speed = 0
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/legionnaire
 	deathsound = 'sound/magic/curse.ogg'
 	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
 	loot_drop = /obj/item/crusher_trophy/legionnaire_spine
@@ -112,7 +115,7 @@
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
-		M.gets_drilled()
+		M.attempt_drill()
 	if(T.density)
 		return
 	for(var/obj/structure/window/W in T.contents)
@@ -207,9 +210,19 @@
 		visible_message(span_boldwarning("[src] spews smoke from the tip of their spine!"))
 	else
 		visible_message(span_boldwarning("[src] spews smoke from its maw!"))
-	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(2, T)
+	var/datum/effect_system/fluid_spread/smoke/smoke = new
+	smoke.set_up(2, location = T)
 	smoke.start()
+
+/obj/item/gps/internal/legionnaire
+	icon_state = null
+	gpstag = "Wailing Signal"
+	desc = "One vs many."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
@@ -224,6 +237,7 @@
 	health = 80
 	melee_damage_lower = 10
 	melee_damage_upper = 10
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites at"
 	//attack_verb_simple = "bite at"
 	attack_sound = 'sound/effects/curse1.ogg'
@@ -235,6 +249,7 @@
 	faction = list()
 	ranged = FALSE
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
+	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/death()
 	. = ..()
@@ -297,3 +312,61 @@
 		A.GiveTarget(target)
 		A.friends = user
 		A.faction = user.faction.Copy()
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant
+	name = "attendant"
+	desc = "A towering protector who doesn't share its smaller cousins' aversion to lethality. Its large stature can assist its allies in traversing difficult terrain."
+	maxHealth = 200
+	health = 200
+	melee_damage_lower = 15
+	melee_damage_upper = 15
+	color = "#7422a3"
+	deathmessage = "'s arms reach out before it crumbles away to nothing."
+	loot_drop = null
+	var/fauna_damage_bonus = 15
+	del_on_death = 1
+	can_buckle = 1
+	buckle_lying = 0
+	movement_type = FLYING //for the sake of riding them across lava
+	do_footstep = FALSE
+	tame = 1
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/death()
+	GLOB.aide_list -= src
+	..()
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/AttackingTarget()
+	. = ..()
+	var/mob/living/L = target
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus, BRUTE)
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize()
+	. = ..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(10,40, MOB_LAYER), TEXT_SOUTH = list(-10, 40, MOB_LAYER), TEXT_EAST = list(0, 40, MOB_LAYER), TEXT_WEST = list( 0, 40, MOB_LAYER)))
+	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
+	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+	D.vehicle_move_delay = 1
+	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, .proc/give_abilities)
+	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/remove_abilities)
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
+	toggle_ai(AI_OFF)
+	if(istype(click_intercept, /obj/effect/proc_holder/drakeling))
+		var/obj/effect/proc_holder/drakeling/D = click_intercept
+		D.remove_ranged_ability()
+	for(var/action in attack_action_types)
+		RemoveAbility(action)
+		M.AddAbility(action)
+
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/remove_abilities(mob/living/elite, mob/living/M, force = FALSE)
+	toggle_ai(AI_ON)
+	if(istype(M.click_intercept, /obj/effect/proc_holder/drakeling))
+		var/obj/effect/proc_holder/drakeling/D = M.click_intercept
+		D.remove_ranged_ability()
+	for(var/action in attack_action_types)
+		M.RemoveAbility(action)
+		AddAbility(action)

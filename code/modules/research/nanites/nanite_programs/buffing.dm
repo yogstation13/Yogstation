@@ -51,14 +51,14 @@
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.armor.laser += 30
-		H.physiology.armor.energy += 25
+		H.physiology.armor.energy += 15
 
 /datum/nanite_program/refractive/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.armor.laser -= 30
-		H.physiology.armor.energy -= 25
+		H.physiology.armor.energy -= 15
 
 /datum/nanite_program/coagulating
 	name = "Vein Repressurization"

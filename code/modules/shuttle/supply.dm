@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = "supply"
-	callTime = 600
+	callTime = 30 SECONDS
 
 	dir = WEST
 	port_direction = EAST
@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/docking_port/mobile/supply/initiate_docking()
 	if(getDockedId() == "supply_away") // Buy when we leave home.
 		buy()
+		create_mail()
 	. = ..() // Fly/enter transit.
 	if(. != DOCKING_SUCCESS)
 		return
@@ -176,8 +177,22 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(iscameramob(AM))
 				continue
+			if(istype(AM, /obj/structure/closet/crate))
+				var/obj/structure/closet/crate/C = AM
+				if(C.manifest)
+					var/obj/item/paper/manifest = C.manifest
+					if(!manifest.stamped) // Unstamped papers on crates // Futureproofing
+						continue
 			if(!AM.anchored || istype(AM, /obj/mecha))
 				export_item_and_contents(AM, export_categories , dry_run = FALSE, external_report = ex)
+
+		for(var/obj/item/card/id/miner in shuttle_area.gem_payout)
+			miner.mining_points += shuttle_area.gem_payout[miner]
+			playsound(miner, 'sound/machines/ping.ogg', 15, TRUE)
+			var/mob/card_holder = recursive_loc_check(miner, /mob)
+			if(ismob(card_holder))
+				to_chat(card_holder, "You have been credited with [shuttle_area.gem_payout[miner]] mining points from sold gems!")
+			shuttle_area.gem_payout.Remove(miner)
 
 	if(ex.exported_atoms)
 		ex.exported_atoms += "." //ugh
@@ -195,3 +210,23 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	SSshuttle.centcom_message = msg
 	investigate_log("Shuttle contents sold for [D.account_balance - presale_points] credits. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
+
+/*
+	Generates a box of mail depending on our exports and imports.
+	Applied in the cargo shuttle sending/arriving, by building the crate if the round is ready to introduce mail based on the economy subsystem.
+	Then, fills the mail crate with mail, by picking applicable crew who can receive mail at the time to sending.
+*/
+/obj/docking_port/mobile/supply/proc/create_mail()
+	//Early return if there's no mail waiting to prevent taking up a slot. We also don't send mails on sundays or holidays.
+	if(!SSeconomy.mail_waiting || SSeconomy.mail_blocked)
+		return
+	//spawn crate
+	var/list/empty_turfs = list()
+	for(var/place as anything in shuttle_areas)
+		var/area/shuttle/shuttle_area = place
+		for(var/turf/open/floor/shuttle_floor in shuttle_area)
+			if(is_blocked_turf(shuttle_floor))
+				continue
+			empty_turfs += shuttle_floor
+
+	new /obj/structure/closet/crate/mail/economy(pick(empty_turfs))

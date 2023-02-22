@@ -14,7 +14,7 @@
 	resistance_flags = INDESTRUCTIBLE|ACID_PROOF|FIRE_PROOF
 	var/spawn_id = null
 	var/spawn_temp = T20C
-	var/spawn_mol = MOLES_CELLSTANDARD * 10
+	var/spawn_mol = MOLES_CELLSTANDARD * 5
 	var/max_ext_mol = INFINITY
 	var/max_ext_kpa = 6500
 	var/overlay_color = "#FFFFFF"
@@ -117,21 +117,21 @@
 		on_overlay.color = overlay_color
 		add_overlay(on_overlay)
 
-/obj/machinery/atmospherics/miner/process()
+/obj/machinery/atmospherics/miner/process(delta_time)
 	update_power()
 	check_operation()
 	if(active && !broken)
 		if(isnull(spawn_id))
 			return FALSE
 		if(do_use_power(active_power_usage))
-			mine_gas()
+			mine_gas(delta_time)
 
-/obj/machinery/atmospherics/miner/proc/mine_gas()
+/obj/machinery/atmospherics/miner/proc/mine_gas(delta_time = 2)
 	var/turf/open/O = get_turf(src)
 	if(!isopenturf(O))
 		return FALSE
 	var/datum/gas_mixture/merger = new
-	merger.set_moles(spawn_id, spawn_mol)
+	merger.set_moles(spawn_id, (spawn_mol * delta_time))
 	merger.set_temperature(spawn_temp)
 	O.assume_air(merger)
 	O.air_update_turf(TRUE)
@@ -156,9 +156,14 @@
 	overlay_color = "#007FFF"
 	spawn_id = /datum/gas/oxygen
 
+/obj/machinery/atmospherics/miner/hydrogen
+	name = "\improper H2 Gas Miner"
+	overlay_color = "#ff0000"
+	spawn_id = /datum/gas/hydrogen
+
 /obj/machinery/atmospherics/miner/toxins
 	name = "\improper Plasma Gas Miner"
-	overlay_color = "#FF0000"
+	overlay_color = "#ff6600"
 	spawn_id = /datum/gas/plasma
 
 /obj/machinery/atmospherics/miner/carbon_dioxide

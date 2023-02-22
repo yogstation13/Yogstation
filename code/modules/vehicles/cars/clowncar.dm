@@ -3,7 +3,7 @@
 	desc = "How someone could even fit in there is beyond me."
 	icon_state = "clowncar"
 	max_integrity = 150
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 70, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 	enter_delay = 20
 	max_occupants = 50
 	movedelay = 0.6
@@ -47,7 +47,11 @@
 	. = ..()
 	if(prob(33))
 		visible_message(span_danger("[src] spews out a ton of space lube!"))
-		new /obj/effect/particle_effect/foam(loc) //YEET
+		var/datum/effect_system/fluid_spread/foam/foam = new
+		var/datum/reagents/foamreagent = new /datum/reagents(25)
+		foamreagent.add_reagent(/datum/reagent/lube, 25)
+		foam.set_up(4, holder = src, location = loc, carry = foamreagent)
+		foam.start()
 
 /obj/vehicle/sealed/car/clowncar/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -106,11 +110,11 @@
 			new /obj/item/grown/bananapeel/specialpeel(loc)
 		if(2)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and unknown chemicals flood out of it."))
-			var/datum/reagents/R = new/datum/reagents(300)
-			R.my_atom = src
-			R.add_reagent(get_random_reagent_id(), 100)
-			var/datum/effect_system/foam_spread/foam = new
-			foam.set_up(200, loc, R)
+			var/datum/reagents/tmp_holder = new/datum/reagents(300)
+			tmp_holder.my_atom = src
+			tmp_holder.add_reagent(get_random_reagent_id(), 100)
+			var/datum/effect_system/fluid_spread/foam/short/foam = new
+			foam.set_up(4, location = loc, carry = tmp_holder)
 			foam.start()
 		if(3)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car turns on its singularity disguise system."))
@@ -119,11 +123,11 @@
 			addtimer(CALLBACK(src, .proc/ResetIcon), 100)
 		if(4)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car spews out a cloud of laughing gas."))
-			var/datum/reagents/R = new/datum/reagents(300)
-			R.my_atom = src
-			R.add_reagent(/datum/reagent/consumable/superlaughter, 50)
-			var/datum/effect_system/smoke_spread/chem/smoke = new()
-			smoke.set_up(R, 4)
+			var/datum/reagents/tmp_holder = new/datum/reagents(300)
+			tmp_holder.my_atom = src
+			tmp_holder.add_reagent(/datum/reagent/consumable/superlaughter, 50)
+			var/datum/effect_system/fluid_spread/smoke/chem/smoke = new()
+			smoke.set_up(4, location = loc, carry = tmp_holder)
 			smoke.attach(src)
 			smoke.start()
 		if(5)

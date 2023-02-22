@@ -15,6 +15,7 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5)
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
@@ -60,7 +61,7 @@
 	var/mob/living/L
 	if(isliving(target))
 		L = target
-		if(!L.can_inject(user, 1))
+		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 			return
 
 	// chance of monkey retaliation
@@ -82,7 +83,7 @@
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
 									span_userdanger("[user] is trying to take a blood sample from [target]!"))
 					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
 						busy = FALSE
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
@@ -127,12 +128,12 @@
 				return
 
 			if(L) //living mob
-				if(!L.can_inject(user, TRUE))
+				if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 					return
 				if(L != user)
 					L.visible_message(span_danger("[user] is trying to inject [L]!"), \
 											span_userdanger("[user] is trying to inject [L]!"))
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
 						return
 					if(!reagents.total_volume)
 						return
@@ -193,6 +194,17 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
+	
+/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
+	return TRUE
+	
+/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
@@ -275,18 +287,10 @@
 	amount_per_transfer_from_this = 20
 	volume = 60
 
-/obj/item/reagent_containers/syringe/noreact
-	name = "cryo syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	volume = 20
-	reagent_flags = TRANSPARENT | NO_REACT
-
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"
-	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
-	volume = 10
+	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing. It can hold up to 15 units."
 	proj_piercing = 1
-
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
@@ -296,3 +300,15 @@
 	name = "spider extract syringe"
 	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
 	list_reagents = list(/datum/reagent/spider_extract = 1)
+
+/obj/item/reagent_containers/syringe/dart
+	name = "reagent dart"
+	amount_per_transfer_from_this = 10
+	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+
+/obj/item/reagent_containers/syringe/dart/temp
+	item_flags = DROPDEL
+
+/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
+	qdel(src)
+	

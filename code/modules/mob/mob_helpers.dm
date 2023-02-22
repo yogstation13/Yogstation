@@ -112,6 +112,8 @@
 				newletter += "[newletter]"
 			if(20)
 				newletter += "[newletter][newletter]"
+			else
+				newletter += ""
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -155,6 +157,8 @@
 				newletter = "nglu"
 			if(5)
 				newletter = "glor"
+			else
+				newletter += ""
 		. += newletter
 	return sanitize(.)
 
@@ -197,6 +201,14 @@
 		message = stutter(message)
 	return message
 
+/proc/lizardspeech(message)
+	var/static/regex/lizard_hiss = new("s+", "g")
+	var/static/regex/lizard_hiSS = new("S+", "g")
+	if(message[1] != "*")
+		message = lizard_hiss.Replace(message, "sss")
+		message = lizard_hiSS.Replace(message, "SSS")
+	return message
+
 /**
   * Turn text into complete gibberish!
   *
@@ -233,10 +245,10 @@
 
 	for(var/i in 0 to duration-1)
 		if (i == 0)
-			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
 		else
-			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
-	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+	animate(pixel_x=oldx, pixel_y=oldy, time=0.1 SECONDS)
 
 
 ///Find if the message has the real name of any user mob in the mob_list
@@ -298,7 +310,7 @@
 	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
-		return B.eye_blind
+		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
 
 ///Is the mob hallucinating?
@@ -367,7 +379,7 @@
   * The kitchen sink of notification procs
   *
   * Arguments:
-  * * message 
+  * * message
   * * ghost_sound sound to play
   * * enter_link Href link to enter the ghost role being notified for
   * * source The source of the notification
@@ -397,10 +409,11 @@
 			if(flashwindow)
 				window_flash(O.client)
 			if(source)
-				var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+				var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 				if(A)
-					if(O.client.prefs && O.client.prefs.UI_style)
-						A.icon = ui_style2icon(O.client.prefs.UI_style)
+					var/ui_style = O.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
+					if(ui_style)
+						A.icon = ui_style2icon(ui_style)
 					if (header)
 						A.name = header
 					A.desc = message
@@ -428,9 +441,9 @@
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
 			span_notice("You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name]."))
-			return 1 //successful heal
+			return TRUE //successful heal
 		else
-			to_chat(user, span_warning("[affecting] is already in good condition!"))
+			return FALSE
 
 ///Is the passed in mob an admin ghost
 /proc/IsAdminGhost(var/mob/user)
@@ -446,7 +459,7 @@
 		return
 	return TRUE
 
-/** 
+/**
   * Offer control of the passed in mob to dead player
   *
   * Automatic logging and uses pollCandidatesForMob, how convenient
@@ -471,7 +484,9 @@
 		var/mob/dead/observer/C = pick(candidates)
 		to_chat(M, "Your mob has been taken over by a ghost!")
 		message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
-		M.ghostize(0)
+		var/mob/dead/observer/G = M.ghostize(FALSE)
+		if(istype(G))
+			G.mind = null
 		M.key = C.key
 		return TRUE
 	else
@@ -524,7 +539,7 @@
 			colored_message = "<font color=[color]>[message]</font>"
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
-	
+
 	//This makes readability a bit better for admins.
 	switch(message_type)
 		if(LOG_WHISPER)
@@ -535,8 +550,8 @@
 			colored_message = "(ASAY) [colored_message]"
 		if(LOG_EMOTE)
 			colored_message = "(EMOTE) [colored_message]"
-	
-	var/list/timestamped_message = list("\[[time_stamp()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
+
+	var/list/timestamped_message = list("\[[worldtime2text()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 
@@ -548,6 +563,9 @@
 ///Can the mob hear
 /mob/proc/can_hear()
 	. = TRUE
+
+/mob/proc/has_mouth()
+	return FALSE
 
 /**
   * Examine text for traits shared by multiple types.
@@ -576,3 +594,23 @@
 ///Can the mob see reagents inside of containers?
 /mob/proc/can_see_reagents()
 	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents
+
+/mob/living/proc/getBruteLoss_nonProsthetic()
+	return getBruteLoss()
+
+/mob/living/proc/getFireLoss_nonProsthetic()
+	return getFireLoss()
+
+/mob/living/carbon/getBruteLoss_nonProsthetic()
+	var/amount = 0
+	for(var/obj/item/bodypart/chosen_bodypart in bodyparts)
+		if(chosen_bodypart.status < BODYPART_ROBOTIC)
+			amount += chosen_bodypart.brute_dam
+	return amount
+
+/mob/living/carbon/getFireLoss_nonProsthetic()
+	var/amount = 0
+	for(var/obj/item/bodypart/chosen_bodypart in bodyparts)
+		if(chosen_bodypart.status < BODYPART_ROBOTIC)
+			amount += chosen_bodypart.burn_dam
+	return amount

@@ -166,10 +166,10 @@
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 1.25*delta_time/10 // 80 seconds
+			ubercharge += 1.25*delta_time // 80 seconds
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 2.5*delta_time/10 // 40 seconds
+			ubercharge += 2.5*delta_time // 40 seconds
 
 	if(ubering)
 		// No uber flashing
@@ -177,7 +177,7 @@
 			uber_act()
 			ubercharge = 0
 		else
-			ubercharge -= 12.5*delta_time/10
+			ubercharge -= 12.5*delta_time // 8 second uber
 		if(ubercharge <= 0)
 			uber_act()
 
@@ -189,7 +189,7 @@
 
 	if(ubercharge < 0)
 		ubercharge = 0
-	
+
 	icon_state = "chronogun[round(ubercharge/10)]"
 
 /// Sets last_holder for uber_act() to prevent exploits
@@ -212,11 +212,11 @@
 		uber_target = current_target
 
 		last_holder.status_flags |= GODMODE
-		last_holder.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		last_holder.overlay_fullscreen("uber", /atom/movable/screen/fullscreen/uber)
 		last_holder.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 		uber_target.status_flags |= GODMODE
-		uber_target.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		uber_target.overlay_fullscreen("uber", /atom/movable/screen/fullscreen/uber)
 		uber_target.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
@@ -246,8 +246,41 @@
 	if(!IsAvailable())
 		return
 
+	if(gun.ubering)
+		to_chat(owner, span_warning("You are already using übercharge!"))
+		return
+
 	if(gun.ubercharge < 100)
 		to_chat(owner, span_warning("[gun] is only [gun.ubercharge]% charged!"))
 		return
 
 	gun.uber_act()
+
+//////////////////////////////Arm Version///////////////////////////////
+/obj/item/gun/medbeam/arm
+	name = "medical beamgun arm"
+	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
+
+/obj/item/gun/medbeam/arm/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/gun/medbeam/arm/Destroy()
+	var/obj/item/bodypart/part
+	new /obj/item/medbeam_arm(get_turf(src))
+	if(iscarbon(loc))
+		var/mob/living/carbon/holder = loc
+		var/index = holder.get_held_index_of_item(src)
+		if(index)
+			part = holder.hand_bodyparts[index]
+	. = ..()
+	if(part)
+		part.drop_limb()
+
+/// Just a placeholder until its put on as to not let people use it when its detached
+/obj/item/medbeam_arm
+	name = "medical beamgun arm"
+	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
+	icon = 'icons/obj/chronos.dmi'
+	icon_state = "chronogun"
+	item_state = "chronogun"

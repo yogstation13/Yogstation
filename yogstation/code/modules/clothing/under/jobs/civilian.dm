@@ -3,7 +3,6 @@
 	desc = "I explored the galaxy and all I got was this lousy T-shirt!"
 	icon_state = "tourist"
 	item_state = "gy_suit"
-	item_color = "tourist"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 /obj/item/clothing/under/yogs/rank/clerk
@@ -11,7 +10,6 @@
 	name = "clerk's uniform"
 	icon_state = "clerk"
 	item_state = "clerk"
-	item_color = "clerk"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -20,7 +18,6 @@
 	name = "clerk's skirt"
 	icon_state = "clerk_skirt"
 	item_state = "clerk_skirt"
-	item_color = "clerk_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -30,7 +27,6 @@
 	name = "recovery medic's jumpsuit"
 	icon_state = "recovery"
 	item_state = "recovery"
-	item_color = "recovery"
 	can_adjust = 0
 	sensor_mode = 3
 	random_sensor = 0

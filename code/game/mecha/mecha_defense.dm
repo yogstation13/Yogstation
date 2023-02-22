@@ -1,21 +1,19 @@
 /obj/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
-		if(0) // BACKSTAB!
+	switch(abs(relative_dir))
+		if(180) // BACKSTAB!
 			return facing_modifiers[BACK_ARMOUR]
-		if(45, 90, 270, 315)
-			return facing_modifiers[SIDE_ARMOUR]
-		if(225, 180, 135)
+		if(0, 45)
 			return facing_modifiers[FRONT_ARMOUR]
-	return 1 //always return non-0
+	return facing_modifiers[SIDE_ARMOUR] //always return non-0
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
 		spark_system.start()
 		switch(damage_flag)
-			if("fire")
+			if(FIRE)
 				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL))
-			if("melee")
+			if(MELEE)
 				check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 			else
 				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT))
@@ -29,13 +27,13 @@
 		return 0
 	var/booster_deflection_modifier = 1
 	var/booster_damage_modifier = 1
-	if(damage_flag == "bullet" || damage_flag == "laser" || damage_flag == "energy")
+	if(damage_flag == BULLET || damage_flag == LASER || damage_flag == ENERGY)
 		for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
 			if(B.projectile_react())
 				booster_deflection_modifier = B.deflect_coeff
 				booster_damage_modifier = B.damage_coeff
 				break
-	else if(damage_flag == "melee")
+	else if(damage_flag == MELEE)
 		for(var/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/B in equipment)
 			if(B.attack_react())
 				booster_deflection_modifier *= B.deflect_coeff
@@ -43,7 +41,7 @@
 				break
 
 	if(attack_dir)
-		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(src))
+		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
@@ -71,7 +69,7 @@
 /obj/mecha/attack_alien(mob/living/user)
 	log_message("Attack by alien. Attacker - [user].", LOG_MECHA, color="red")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
-	attack_generic(user, 15, BRUTE, "melee", 0)
+	attack_generic(user, 15, BRUTE, MELEE, 0)
 
 /obj/mecha/attack_animal(mob/living/simple_animal/user)
 	log_message("Attack by simple animal. Attacker - [user].", LOG_MECHA, color="red")
@@ -87,7 +85,7 @@
 		if(user.obj_damage)
 			animal_damage = user.obj_damage
 		animal_damage = min(animal_damage, 20*user.environment_smash)
-		attack_generic(user, animal_damage, user.melee_damage_type, "melee", play_soundeffect)
+		attack_generic(user, animal_damage, user.melee_damage_type, MELEE, play_soundeffect)
 		log_combat(user, src, "attacked")
 		return 1
 
@@ -102,7 +100,7 @@
 		log_combat(user, src, "punched", "hulk powers")
 
 /obj/mecha/blob_act(obj/structure/blob/B)
-	take_damage(30, BRUTE, "melee", 0, get_dir(src, B))
+	take_damage(30, BRUTE, MELEE, 0, get_dir(src, B))
 
 /obj/mecha/attack_tk()
 	return
@@ -116,7 +114,7 @@
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	if (!enclosed && occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
@@ -164,7 +162,7 @@
 		return
 	if(get_charge())
 		use_power((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, "energy", 1)
+		take_damage(40 / severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/mecha/combat))
@@ -319,7 +317,7 @@
 			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
-/obj/mecha/mech_melee_attack(obj/mecha/M)
+/obj/mecha/mech_melee_attack(obj/mecha/M, equip_allowed)
 	if(!has_charge(melee_energy_drain))
 		return 0
 	use_power(melee_energy_drain)
@@ -374,17 +372,28 @@
 			AI = occupant
 			occupant = null
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		if(capacitor)
+			WR.repair_efficiency = capacitor.rating // Capacitor is destroyed regardless of rating
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-			if(E.salvageable && prob(30))
-				WR.crowbar_salvage += E
+			if(E.salvageable && prob(20*WR.repair_efficiency))
 				E.detach(WR) //detaches from src into WR
 				E.equip_ready = 1
+				WR.equipment += E
 			else
 				E.detach(loc)
 				qdel(E)
-		if(cell)
-			WR.crowbar_salvage += cell
+		if(scanmod && WR.repair_efficiency > 2) // Scanning module is retained if capacitor is T3+
+			WR.scanmod = scanmod
+			scanmod.forceMove(WR)
+			scanmod = null
+		if(cell && WR.repair_efficiency > 3) // Cell is retained if capacitor is T4
+			WR.cell = cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
 			cell = null
+		if(WR.repair_efficiency <= 0)
+			WR.can_be_reconstructed = FALSE
+		else
+			WR.can_be_reconstructed = TRUE
+			WR.hint = span_notice("The parts are scattered apart, but can be <b>welded</b> back together.")
 	. = ..()

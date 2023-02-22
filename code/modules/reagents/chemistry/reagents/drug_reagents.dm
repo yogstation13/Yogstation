@@ -61,6 +61,7 @@
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.25*REM)
 	..()
 	. = 1
 
@@ -539,10 +540,14 @@
 
 /datum/reagent/drug/pumpup/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/HM = L
+		HM.physiology.stamina_mod *= 0.90
 
 /datum/reagent/drug/pumpup/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/HM = L
+		HM.physiology.stamina_mod /= 0.90
 	..()
 
 /datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)

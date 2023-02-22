@@ -149,7 +149,7 @@
 	if(istype(O, /obj/item/soap))
 		var/obj/item/soap/P = O
 		user.visible_message("[user] starts to clean \the [src].", span_notice("You start to clean \the [src]..."))
-		if(do_after(user, P.cleanspeed, target = src))
+		if(do_after(user, P.cleanspeed, src))
 			user.visible_message("[user] has cleaned \the [src].", span_notice("You clean \the [src]."))
 			dirty = 0
 			update_icon()

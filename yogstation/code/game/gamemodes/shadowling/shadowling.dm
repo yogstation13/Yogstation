@@ -51,7 +51,7 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = ROLE_SHADOWLING
-	required_players = 26
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14
@@ -160,10 +160,12 @@ Made by Xhuis
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/apply_darkness_speed)
 	. = ..()
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
+	UnregisterSignal(C, COMSIG_MOVABLE_MOVED)
 	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
@@ -176,8 +178,7 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
-			H.remove_movespeed_modifier(id)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN) 
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -185,11 +186,10 @@ Made by Xhuis
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
-			H.adjustCloneLoss(-1)
+			H.adjustCloneLoss(-5)
 			H.SetKnockdown(0)
 			H.SetStun(0)
 			H.SetParalyzed(0)
-			H.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	var/charge_time = 400 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
 	if(world.time >= charge_time+last_charge)
 		shadow_charges = min(shadow_charges + 1, 3)
@@ -205,6 +205,15 @@ Made by Xhuis
 			shadow_charges = min(shadow_charges - 1, 0)
 			return -1
 	return 0
+
+/datum/species/shadow/ling/proc/apply_darkness_speed(mob/living/carbon/C)
+	var/turf/T = get_turf(C)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > LIGHT_DAM_THRESHOLD)
+		C.remove_movespeed_modifier(id)
+	else
+		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	
 
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful
 	name = "Lesser Shadowling"
@@ -222,12 +231,12 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
-			H.adjustCloneLoss(-1)
+			H.adjustCloneLoss(-5)
 
 /datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
 	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]

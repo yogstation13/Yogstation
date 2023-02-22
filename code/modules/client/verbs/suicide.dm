@@ -33,7 +33,7 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", list("Yes", "No"))
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
@@ -116,7 +116,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -149,7 +149,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -167,7 +167,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -183,7 +183,7 @@
 
 /mob/living/silicon/pai/verb/suicide()
 	set hidden = TRUE
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(confirm == "Yes")
 		var/turf/T = get_turf(src.loc)
 		T.visible_message(span_notice("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""), null, \
@@ -199,7 +199,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -218,7 +218,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -231,9 +231,11 @@
 		death(FALSE)
 
 /mob/living/proc/suicide_log()
+	last_damage = "self-inflicted"
 	log_game("[key_name(src)] committed suicide at [AREACOORD(src)] as [src.type].")
 
 /mob/living/carbon/human/suicide_log()
+	last_damage = "self-inflicted"
 	log_game("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
 
 //IS_IMPORTANT()
@@ -273,5 +275,8 @@
 		return
 	if(!(mobility_flags & MOBILITY_USE))	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
 		to_chat(src, "You can't commit suicide whilst immobile! ((You can type Ghost instead however.))")
+		return
+	if(has_horror_inside())
+		to_chat(src, "Something inside your head stops your action!")
 		return
 	return TRUE

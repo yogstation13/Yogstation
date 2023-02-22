@@ -12,8 +12,8 @@
 	flags_inv = HIDEGLOVES|HIDESHOES
 	flags_prot = HIDEJUMPSUIT
 	hoodtype = /obj/item/clothing/head/hooded/explorer
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	resistance_flags = FIRE_PROOF
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -26,7 +26,7 @@
 	flags_prot = HIDEHAIR|HIDEFACE
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
 	var/adjusted = NORMAL_STYLE
 
@@ -64,7 +64,7 @@
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
 	actions_types = list(/datum/action/item_action/adjust)
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 40, "wound" = 5)
+	armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 50, RAD = 0, FIRE = 20, ACID = 40, WOUND = 5)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/mask/gas/explorer/attack_self(mob/user)
@@ -83,12 +83,12 @@
 	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	clothing_flags = THICKMATERIAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
-	armor = list("melee" = 75, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
+	armor = list(MELEE = 75, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
 	. = ..()
@@ -99,10 +99,10 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/suit/space/hostile_environment/process()
+/obj/item/clothing/suit/space/hostile_environment/process(delta_time)
 	var/mob/living/carbon/C = loc
-	if(istype(C) && prob(2)) //cursed by bubblegum
-		if(prob(15))
+	if(istype(C) && DT_PROB(1, delta_time)) //cursed by bubblegum
+		if(DT_PROB(7.5, delta_time))
 			new /datum/hallucination/oh_yeah(C)
 			to_chat(C, span_colossus("<b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b>"))
 		else
@@ -116,7 +116,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
-	armor = list("melee" = 75, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 75, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 100, RAD = 60, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
@@ -134,6 +134,6 @@
 /obj/item/clothing/head/helmet/space/hostile_environment/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance('icons/mob/head.dmi', "hostile_env_glass")
+		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "hostile_env_glass")
 		M.appearance_flags = RESET_COLOR
 		. += M

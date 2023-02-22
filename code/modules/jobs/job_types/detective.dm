@@ -1,6 +1,9 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -10,44 +13,53 @@
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
 	minimal_player_age = 7
-	exp_requirements = 300
-	exp_type = EXP_TYPE_CREW
+	exp_requirements = 180
+	exp_type = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/detective
 
 	alt_titles = list("Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector")
 
-	access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
+	added_access = list()
+	base_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
+	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
+	mail_goodies = list(
+		///obj/item/storage/fancy/cigarettes = 25,
+		/obj/item/ammo_box/c38 = 25,
+		///obj/item/ammo_box/c38/dumdum = 5,
+		/obj/item/ammo_box/c38/hotshot = 5,
+		/obj/item/ammo_box/c38/iceblox = 5,
+		///obj/item/ammo_box/c38/match = 5,
+		/obj/item/ammo_box/tra32 = 5,
+		///obj/item/storage/belt/holster/detective/full = 1
+	)
+
+	smells_like = "whisky-soaked despair"
+	
 	bounty_types = CIV_JOB_SEC
-
-/datum/job/detective/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 2
-
-/datum/job/detective/proc/OmegaStationChanges()
-	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
 
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	belt = /obj/item/pda/detective
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det
 	uniform_skirt = /obj/item/clothing/under/rank/det/skirt
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/det_suit
 	gloves = /obj/item/clothing/gloves/color/black/forensic
 	head = /obj/item/clothing/head/fedora/det_hat

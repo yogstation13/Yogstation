@@ -1,5 +1,5 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
+	desc = "The world of Janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'yogstation/icons/obj/janitor.dmi'
 	icon_state = "mop"
@@ -52,7 +52,7 @@
 		if(IS_JOB(user, "Janitor"))
 			realspeed *= 0.8
 
-		if(do_after(user, realspeed, target = T))
+		if(do_after(user, realspeed, T))
 			to_chat(user, span_notice("You finish mopping."))
 			clean(T)
 
@@ -89,7 +89,7 @@
 	throw_range = 4
 	mopspeed = 8
 	var/refill_enabled = TRUE //Self-refill toggle for when a janitor decides to mop with something other than water.
-	var/refill_rate = 1 //Rate per process() tick mop refills itself
+	var/refill_rate = 0.5 //Rate per process() tick mop refills itself
 	var/refill_reagent = /datum/reagent/water //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
 
 /obj/item/mop/advanced/New()
@@ -105,10 +105,10 @@
 	to_chat(user, span_notice("You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position."))
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
 
-/obj/item/mop/advanced/process()
-
-	if(reagents.total_volume < mopcap)
-		reagents.add_reagent(refill_reagent, refill_rate)
+/obj/item/mop/advanced/process(delta_time)
+	var/amadd = min(mopcap - reagents.total_volume, refill_rate * delta_time)
+	if(amadd > 0)
+		reagents.add_reagent(refill_reagent, amadd)
 
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()

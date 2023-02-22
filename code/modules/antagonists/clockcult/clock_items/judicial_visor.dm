@@ -175,14 +175,14 @@
 	for(var/mob/living/carbon/C in range(1, src))
 		var/datum/status_effect/belligerent/B = C.apply_status_effect(STATUS_EFFECT_BELLIGERENT)
 		if(!QDELETED(B))
-			B.duration = world.time + 30
-			C.Paralyze(5) //knocks down for half a second if affected
-	sleep(!GLOB.ratvar_approaches ? 16 : 10)
+			B.duration = world.time + 3 SECONDS
+			C.Paralyze(0.5 SECONDS) //knocks down for half a second if affected
+	sleep(!GLOB.ratvar_approaches ? 1.6 SECONDS : 1 SECONDS)
 	name = "judicial blast"
 	layer = ABOVE_ALL_MOB_LAYER
 	flick("judicial_explosion", src)
 	set_light(1.4, 2, "#B451A1")
-	sleep(13)
+	sleep(1.3 SECONDS)
 	name = "judicial explosion"
 	var/targetsjudged = 0
 	playsound(src, 'sound/effects/explosion_distant.ogg', 100, 1, 1, 1)

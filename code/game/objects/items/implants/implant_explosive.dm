@@ -7,7 +7,7 @@
 	var/weak = 2
 	var/medium = 0.8
 	var/heavy = 0.4
-	var/delay = 7
+	var/delay = 0.7 SECONDS
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
 
@@ -31,7 +31,7 @@
 		return 0
 	if(cause == "action_button" && !popup)
 		popup = TRUE
-		var/response = alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to explode!", "[name] Confirmation", "Yes", "No")
+		var/response = tgui_alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to explode!", "[name] Confirmation", list("Yes", "No"))
 		popup = FALSE
 		if(response == "No")
 			return 0
@@ -90,7 +90,7 @@
 	weak = 16
 	medium = 8
 	heavy = 4
-	delay = 70
+	delay = 7 SECONDS
 
 /obj/item/implant/explosive/macro/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	for(var/X in target.implants)

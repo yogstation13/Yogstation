@@ -8,7 +8,7 @@
 	name = "Trash Bag of Holding"
 	description = "Nanotrasen would make good use of high-capacity trash bags. If you have any, please ship them."
 	reward = 10000
-	wanted_types = list(/obj/item/storage/backpack/holding)
+	wanted_types = list(/obj/item/storage/bag/trash/bluespace)
 
 /datum/bounty/item/science/bluespace_syringe
 	name = "Bluespace Syringe"
@@ -27,7 +27,7 @@
 	description = "An electrical storm has busted all the lights at CentCom. While management is waiting for replacements, perhaps some night vision goggles can be shipped?"
 	reward = 10000
 	required_count = 3
-	wanted_types = list(/obj/item/clothing/glasses/night, /obj/item/clothing/glasses/meson/night, /obj/item/clothing/glasses/hud/health/night, /obj/item/clothing/glasses/hud/security/night, /obj/item/clothing/glasses/hud/diagnostic/night)
+	wanted_types = list(/obj/item/clothing/glasses/night, /obj/item/clothing/glasses/meson/night, /obj/item/clothing/glasses/hud/health/night, /obj/item/clothing/glasses/hud/security/night, /obj/item/clothing/glasses/hud/diagnostic/night, /obj/item/clothing/glasses/science/night)
 
 /datum/bounty/item/science/experimental_welding_tool
 	name = "Experimental Welding Tool"

@@ -17,7 +17,7 @@
 
 	var/atk_verb = pick("left hook","right hook","straight punch")
 
-	var/damage = rand(5, 8) + A.dna.species.punchdamagelow
+	var/damage = rand(5, 8) + A.get_punchdamagelow()
 	if(!damage)
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message(span_warning("[A] has attempted to [atk_verb] [D]!"), \
@@ -27,7 +27,7 @@
 
 
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee")
+	var/armor_block = D.run_armor_check(affecting, MELEE)
 
 	playsound(D.loc, A.dna.species.attack_sound, 25, 1, -1)
 
@@ -36,14 +36,13 @@
 
 	D.apply_damage(damage, STAMINA, affecting, armor_block)
 	log_combat(A, D, "punched (boxing) ")
-	if(D.getStaminaLoss() > 50)
-		var/knockout_prob = D.getStaminaLoss() + rand(-15,15)
-		if((D.stat != DEAD) && prob(knockout_prob))
+	if(D.getStaminaLoss() >= 100)
+		if((D.stat != DEAD))
 			D.visible_message(span_danger("[A] has knocked [D] out with a haymaker!"), \
 								span_userdanger("[A] has knocked [D] out with a haymaker!"))
+			D.forcesay(GLOB.hit_appends)
 			D.apply_effect(200,EFFECT_KNOCKDOWN,armor_block)
 			D.SetSleeping(100)
-			D.forcesay(GLOB.hit_appends)
 			log_combat(A, D, "knocked out (boxing) ")
 		else if(!(D.mobility_flags & MOBILITY_STAND))
 			D.forcesay(GLOB.hit_appends)

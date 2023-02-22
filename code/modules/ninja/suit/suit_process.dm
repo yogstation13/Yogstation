@@ -6,8 +6,8 @@
 			terminate()//Kills the suit and attached objects.
 
 		else if(cell.charge > 0)
-			if(s_coold)
-				s_coold--//Checks for ability s_cooldown first.
+			if(s_coold > 0)
+				s_coold-- //Checks for ability s_cooldown first.
 
 			cell.charge -= s_cost//s_cost is the default energy cost each ntick, usually 5.
 			if(stealth)//If stealth is active.
@@ -17,4 +17,4 @@
 			cell.charge = 0
 			cancel_stealth()
 
-		sleep(10)//Checks every second.
+		sleep(1 SECONDS)//Checks every second.

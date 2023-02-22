@@ -26,7 +26,7 @@
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
@@ -43,11 +43,8 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
-		to_chat(src, span_reallybig("You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button."))
-		winset(usr, null, "command=.reconnect")
-		QDEL_IN(client, 3 SECONDS) //fallback if the reconnection doesnt work
+		message_admins("[ADMIN_LOOKUPFLW(src)] failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		log_admin("[key_name(src)] failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
 		return
 
 	var/list/modifiers = params2list(params)
@@ -182,12 +179,21 @@
 	hangup_all_calls()
 	add_hiddenprint(usr)
 
-/* Humans (With upgrade) */
+/* Humans (With upgrades) */
 /mob/living/carbon/human/AIShiftClick(mob/living/silicon/ai/user)
-	if(!user.canExamineHumans)
-		return
+
 	if(user.client && (user.client.eye == user.eyeobj || user.client.eye == user.loc))
-		user.examinate(src)
+		if(user.canExamineHumans)
+			user.examinate(src)
+		if(user.canCameraMemoryTrack)
+			if(name == "Unknown")
+				to_chat(user, span_warning("Unable to track 'Unknown' persons! Their name must be visible."))
+				return
+			if(src == user.cameraMemoryTarget)
+				to_chat(user, span_warning("Stop tracking this individual? <a href='?src=[REF(user)];stopTrackHuman=1'>\[UNTRACK\]</a>"))
+			else
+				to_chat(user, span_warning("Track this individual? <a href='?src=[REF(user)];trackHuman=[src.name]'>\[TRACK\]</a>"))
+	return
 
 //
 // Override TurfAdjacent for AltClicking

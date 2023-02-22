@@ -73,6 +73,45 @@
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
+/datum/chemical_reaction/slime/slimefelinid
+	name = "Felinid Mutation Toxin"
+	id = "felinidmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/felinid = 1)
+	required_reagents = list(/datum/reagent/consumable/cilk = 1) //full of cilk
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
+/datum/chemical_reaction/slime/slimeethereal
+	name = "Ethereal Mutation Toxin"
+	id = "etherealmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/ethereal = 1)
+	required_reagents = list(/datum/reagent/lithium = 1) //battery material makes electricity people
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
+/datum/chemical_reaction/slime/slimemoth
+	name = "Moth Mutation Toxin"
+	id = "mothmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/moth = 1)
+	required_reagents = list(/datum/reagent/silicon = 1) //silicon can be found from grinding up lightbulbs so that's the best reagent joke i could come up with
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
+/datum/chemical_reaction/slime/slimepoly
+	name = "Polysmorph Mutation Toxin"
+	id = "polymuttoxin"
+	results = list(/datum/reagent/mutationtoxin/polysmorph = 1)
+	required_reagents = list(/datum/reagent/toxin/acid = 1) //acid blood
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
+/datum/chemical_reaction/slime/slimepod
+	name = "Podperson Mutation Toxin"
+	id = "podmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/pod = 1)
+	required_reagents = list(/datum/reagent/diethylamine = 1) //fertilizer makes plant people
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
 //Metal
 /datum/chemical_reaction/slime/slimemetal
 	name = "Slime Metal"
@@ -464,8 +503,7 @@
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder && holder.my_atom)
-		explosion(get_turf(holder.my_atom), 0 ,4, 8)
-
+		explosion(get_turf(holder.my_atom), 0 , 0, 4, flame_range = 12) //same radius as before 4 heavy + 8 light is 12
 
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"

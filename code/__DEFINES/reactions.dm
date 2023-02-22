@@ -7,7 +7,7 @@
 #define PLASMA_MINIMUM_OXYGEN_NEEDED		2
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
 #define FIRE_CARBON_ENERGY_RELEASED			100000	//Amount of heat released per mole of burnt carbon into the tile
-#define FIRE_HYDROGEN_ENERGY_RELEASED		560000  //Yogs -- Amount of heat released per mole of burnt hydrogen and/or tritium(hydrogen isotope). Doubled due to Consv. of Mass fix causing shittier fires
+#define FIRE_HYDROGEN_ENERGY_RELEASED		2800000  //Yogs -- Amount of heat released per mole of burnt hydrogen and/or tritium(hydrogen isotope). Increased significantly due to a bugfix leading to much lower burn temperatures.
 #define FIRE_PLASMA_ENERGY_RELEASED			3000000	//Amount of heat released per mole of burnt plasma into the tile
 //General assmos defines.
 #define WATER_VAPOR_FREEZE					200
@@ -15,8 +15,10 @@
 #define FREON_BURN_RATE_DELTA				4
 #define FIRE_FREON_ENERGY_RELEASED			-300000 //amount of heat absorbed per mole of burnt freon in the tile
 
-#define N2O_DECOMPOSITION_MIN_ENERGY		1400
-#define N2O_DECOMPOSITION_ENERGY_RELEASED	200000
+#define N2O_DECOMPOSITION_MIN_HEAT			800+T0C	//minimum heat for n2o to decompose
+#define N2O_DECOMPOSITION_MAX_HEAT			100000	//maximum heat n2o can decompose at, completely arbitrary
+#define N2O_DECOMPOSITION_ENERGY			82050	//energy released for each mole of n2o decomposed
+#define N2O_DECOMPOSITION_RATE				0.5		//maximum percentage of n2o that can decompose in one tick
 
 #define NITRYL_DECOMPOSITION_ENERGY			30000
 #define NITRYL_FORMATION_ENERGY				100000
@@ -29,7 +31,7 @@
 #define MINIMUM_TRIT_OXYBURN_ENERGY 		2000000	//This is calculated to help prevent singlecap bombs(Overpowered tritium/oxygen single tank bombs)
 //hydrogen reaction
 #define HYDROGEN_BURN_OXY_FACTOR			100
-#define HYDROGEN_BURN_H2_FACTOR				10
+#define HYDROGEN_BURN_H2_FACTOR				5		//Burns faster and with half the energy of tritium
 #define MINIMUM_H2_OXYBURN_ENERGY 			2000000	//This is calculated to help prevent singlecap bombs(Overpowered hydrogen/oxygen single tank bombs)
 //ammonia reaction
 #define AMMONIA_FORMATION_FACTOR			250
@@ -45,7 +47,7 @@
 #define STIMULUM_SECOND_RISE				0.0009
 #define STIMULUM_ABSOLUTE_DROP				0.00000335
 #define REACTION_OPPRESSION_THRESHOLD		5
-#define NOBLIUM_FORMATION_ENERGY			2e7 	//1 Mole of Noblium takes the planck energy to condense.
+#define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
 #define STIM_BALL_GAS_AMOUNT				5
 #define STIM_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
 #define STIM_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted

@@ -323,3 +323,13 @@
 	foodtype = SUGAR | MEAT
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("a rather large serving of sugar" = 1, "meat" = 1)
+
+//Regal rat cheese
+/obj/item/reagent_containers/food/snacks/royalcheese
+	name = "royal cheese"
+	desc = "Ascend the throne. Consume the wheel. Feel the POWER."
+	icon_state = "royalcheese"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/gold = 20, /datum/reagent/toxin/mutagen = 5)
+	w_class = WEIGHT_CLASS_BULKY
+	tastes = list("cheese" = 4, "royalty" = 1)
+	foodtype = DAIRY

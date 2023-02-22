@@ -50,7 +50,15 @@ body:
     label: BYOND Username
     description: Also known as ckey, its the username you use to login on BYOND.
     placeholder: "Player1702"
-  
+
+- type: dropdown
+  attributes:
+    label: Was this done on a locally hosted or non-Yogstation hosted server?
+    description: This information is important so we can better determine if it is an issue caused on our end or on your local branch.
+    options:
+      - "Yes"
+      - "No"
+
 - type: textarea
   attributes:
     label: Additional information

@@ -98,7 +98,7 @@
   */
 /datum/martial_art/proc/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
 
-	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
+	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
 
 	var/atk_verb = A.dna.species.attack_verb
 	if(!(D.mobility_flags & MOBILITY_STAND))
@@ -122,17 +122,18 @@
 		return FALSE
 
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, "melee")
+	var/armor_block = D.run_armor_check(affecting, MELEE)
 
 	playsound(D.loc, A.dna.species.attack_sound, 25, 1, -1)
 	D.visible_message(span_danger("[A] has [atk_verb]ed [D]!"), \
 			span_userdanger("[A] has [atk_verb]ed [D]!"), null, COMBAT_MESSAGE_RANGE)
 
+	D.last_damage = "masterful fist"
 	D.apply_damage(damage, A.dna.species.attack_type, affecting, armor_block)
 
 	log_combat(A, D, "punched")
 
-	if((D.stat != DEAD) && damage >= A.dna.species.punchstunthreshold)
+	if((D.stat != DEAD) && damage >= A.get_punchstunthreshold())
 		D.visible_message(span_danger("[A] has knocked [D] down!!"), \
 								span_userdanger("[A] has knocked [D] down!"))
 		D.apply_effect(40, EFFECT_KNOCKDOWN, armor_block)
