@@ -161,13 +161,13 @@
 	. = ..()
 	C.weather_immunities -= "ash"
 
-//Ashwalker shaman, worse defensive stats, but better at surgery and have a healing touch ability
+//Ash walker shaman, worse defensive stats, but better at surgery and have a healing touch ability
 /datum/species/lizard/ashwalker/shaman
 	name = "Ash Walker Shaman"
 	id = "ashlizardshaman"
 	armor = -1 //more of a support than a standard ashwalker, don't get hit
-	brutemod = 1.1
-	burnmod = 1.1
+	brutemod = 1.15
+	burnmod = 1.15
 	speedmod = -0.1 //similar to ethereals, should help with saving others
 	punchdamagehigh = 7
 	punchstunthreshold = 7
