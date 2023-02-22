@@ -216,7 +216,7 @@
 
 /obj/item/clothing/mask/gas/sechailer/on_mob_death()
 	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
+	playsound(loc, 'sound/voice/cpdeath/diebeep.ogg', 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
 
 /obj/item/clothing/mask/gas/sechailer/verb/toggle()
 	set name = "Toggle voice modulator"
