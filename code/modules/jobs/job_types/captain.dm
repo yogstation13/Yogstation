@@ -46,6 +46,8 @@
 
 	smells_like = "unquestionable leadership"
 
+	bounty_types = CIV_JOB_RANDOM
+
 /datum/job/captain/get_access()
 	return get_all_accesses()
 

@@ -33,6 +33,8 @@
 
 	smells_like = "crimson guardianship"
 
+	bounty_types = list(CIV_JOB_SEC, CIV_JOB_MED)
+
 /datum/outfit/job/brigphysician
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician

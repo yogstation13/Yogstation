@@ -39,6 +39,8 @@
 		/obj/item/fulton_core = 1
 	)
 
+	bounty_types = list(CIV_JOB_MINE, CIV_JOB_MED)
+
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic

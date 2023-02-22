@@ -39,6 +39,8 @@
 	
 	smells_like = "ash and dust"
 
+	bounty_types = CIV_JOB_MINE
+
 /datum/outfit/job/miner
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining

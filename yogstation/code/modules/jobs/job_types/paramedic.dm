@@ -35,6 +35,8 @@
 
 	smells_like = "pre-packaged oxygen"
 
+	bounty_types = CIV_JOB_MED
+
 /datum/outfit/job/paramedic
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic

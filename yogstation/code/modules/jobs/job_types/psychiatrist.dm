@@ -35,6 +35,8 @@
 
 	smells_like = "calm peace"
 
+	bounty_types = list(CIV_JOB_MED, CIV_JOB_BASIC) // Assistants with medbay access get assistant and medbay bounties
+
 /datum/job/psych/proc/GaxStationChanges() // I'M SORRY
 	return TRUE
 
