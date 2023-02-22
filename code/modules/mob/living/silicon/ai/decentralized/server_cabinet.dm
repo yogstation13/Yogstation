@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
-	..()
+	. = ..()
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	GLOB.server_cabinets -= src
 	//Recalculate all the CPUs and RAM :)
 	GLOB.ai_os.update_hardware()
-	..()
+	return ..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
 	var/new_heat_mod = 1
@@ -173,10 +173,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize()
-	..()
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()
 	total_ram += rack.get_ram()
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
 	GLOB.ai_os.update_hardware()
+	return ..()

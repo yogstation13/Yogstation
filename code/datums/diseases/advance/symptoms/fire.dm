@@ -104,7 +104,7 @@ Bonus
 /datum/symptom/alkali
 
 	name = "Alkali perspiration"
-	desc = "The virus attaches to sudoriparous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
+	desc = "The virus attaches to sudoriferous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
 	stealth = 2
 	resistance = -2
 	stage_speed = -2

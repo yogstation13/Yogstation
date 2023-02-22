@@ -257,17 +257,6 @@
 
 //Non-human spawners
 
-/obj/effect/mob_spawn/AICorpse/create(ckey) //Creates a corrupted AI
-	var/A = locate(/mob/living/silicon/ai) in loc
-	if(A)
-		return
-	var/mob/living/silicon/ai/spawned/M = new(loc) //spawn new AI at landmark as var M
-	M.name = src.name
-	M.real_name = src.name
-	M.aiPDA.toff = TRUE //turns the AI's PDA messenger off, stopping it showing up on player PDAs
-	M.death() //call the AI's death proc
-	qdel(src)
-
 /obj/effect/mob_spawn/slime
 	mob_type = 	/mob/living/simple_animal/slime
 	var/mobcolour = "grey"
@@ -331,7 +320,7 @@
 
 /obj/effect/mob_spawn/human/doctor
 	name = "Doctor"
-	outfit = /datum/outfit/job/doctor
+	outfit = /datum/outfit/job/doctor/dead
 
 
 /obj/effect/mob_spawn/human/doctor/alive

@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-GLOBAL_LIST_EMPTY(bloodmen_list)
+GLOBAL_LIST_EMPTY(aide_list)
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -13,71 +13,59 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,26)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
 		if(2)
-			new /obj/item/clothing/suit/space/hardsuit/cult(src)
+			new /obj/item/clothing/under/drip(src)
+			new /obj/item/clothing/shoes/drip(src)
 		if(3)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(4)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
 		if(5)
 			new /obj/item/stack/sheet/mineral/mythril(src)
 		if(6)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(7)
 			new /obj/item/rod_of_asclepius(src)
-		if(8)
+		if(7)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(9)
+		if(8)
 			new /obj/item/ship_in_a_bottle(src)
+		if(9)
+			new /obj/item/clothing/glasses/telepathy(src)
 		if(10)
-			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-		if(11)
 			new /obj/item/jacobs_ladder(src)
-		if(12)
+		if(11)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(13)
+		if(12)
 			new /obj/item/nullrod/armblade(src)
-		if(14)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(15)
+		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(16)
+		if(14)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(17)
+		if(15)
 			new /obj/item/eflowers(src)
-		if(18)
+		if(16)
 			new /obj/item/voodoo(src)
-		if(19)
+		if(17)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(20)
+		if(18)
 			new /obj/item/book_of_babel(src)
-		if(21)
+		if(19)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(22)
+		if(20)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(23)
+		if(21)
 			new /obj/item/rune_scimmy(src)
-		if(24)
+		if(22)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(25)
+		if(23)
 			new /obj/item/clothing/gloves/gauntlets(src)
-		if(26)
-			new /obj/item/clothing/under/drip(src)
-			new /obj/item/clothing/shoes/drip(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -90,55 +78,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	. = ..()
 	blueprints[1] = new modkit_design
 
-/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
-	name = "Offensive Mining Explosion Mod Disk"
-	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
-
-/obj/item/disk/design_disk/modkit_disc/rapid_repeater
-	name = "Rapid Repeater Mod Disk"
-	modkit_design = /datum/design/unique_modkit/rapid_repeater
-
-/obj/item/disk/design_disk/modkit_disc/resonator_blast
-	name = "Resonator Blast Mod Disk"
-	modkit_design = /datum/design/unique_modkit/resonator_blast
-
-/obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
-	modkit_design = /datum/design/unique_modkit/bounty
-
 /datum/design/unique_modkit
 	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
 	build_type = PROTOLATHE | MECHFAB
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-
-/datum/design/unique_modkit/offensive_turf_aoe
-	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
-	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
-	id = "hyperaoemod"
-	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
-	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-
-/datum/design/unique_modkit/rapid_repeater
-	name = "Kinetic Accelerator Rapid Repeater Mod"
-	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
-	id = "repeatermod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
-	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
-
-/datum/design/unique_modkit/resonator_blast
-	name = "Kinetic Accelerator Resonator Blast Mod"
-	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
-	id = "resonatormod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
-	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
-
-/datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
-	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
-	id = "bountymod"
-	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
-	reagents_list = list(/datum/reagent/blood = 40)
-	build_path = /obj/item/borg/upgrade/modkit/bounty
 
 //Spooky special loot
 
@@ -152,6 +95,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon_state = "asclepius_dormant"
 	var/activated = FALSE
 	var/usedHand
+	var/list/advanced_surgeries = list()
+	var/efficiency = 1
 
 /obj/item/rod_of_asclepius/attack_self(mob/user)
 	if(activated)
@@ -187,16 +132,36 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH)
+	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
 /obj/item/rod_of_asclepius/proc/activated()
 	item_flags = DROPDEL
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. "
+	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. The snake can learn surgeries from disks or operating consoles by hitting them with it."
 	icon_state = "asclepius_active"
 	activated = TRUE
+
+/obj/item/rod_of_asclepius/afterattack(obj/item/O, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!activated)
+		return
+	if(istype(O, /obj/item/disk/surgery))
+		to_chat(user, span_notice("Your snake bites into [O], and seems to have learned the surgery procedures stored in the disk."))
+		var/obj/item/disk/surgery/D = O
+		if(do_after(user, 1 SECONDS, O))
+			advanced_surgeries |= D.surgeries
+		return TRUE
+	if(istype(O, /obj/machinery/computer/operating))
+		to_chat(user, span_notice("You move your snake in view of [O], allowing it to memorize the surgery procedures from the console."))
+		var/obj/machinery/computer/operating/OC = O
+		if(do_after(user, 1 SECONDS, O))
+			advanced_surgeries |= OC.advanced_surgeries
+		return TRUE
+	return
 
 //Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori
@@ -211,6 +176,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
 	return slot == SLOT_NECK
 
+/obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
+	if(active_owner && user == active_owner)
+		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
+		if(safety != "Proceed")
+			return 
+	. = ..()
+	
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -238,11 +210,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
+		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
+	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
 	if(!active_owner)
 		return
+	UnregisterSignal(src, COMSIG_ITEM_PRESTRIP)
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
 	to_chat(H, span_userdanger("You feel your life rapidly slipping away from you!"))
@@ -309,7 +286,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "Happy to light your way."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "orb"
+	light_system = MOVABLE_LIGHT
 	light_range = 7
+	light_flags = LIGHT_ATTACHED
 	layer = ABOVE_ALL_MOB_LAYER
 	var/sight_flags = SEE_MOBS
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -333,6 +312,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
 
+/obj/item/clothing/glasses/telepathy
+	name = "blindfold of telepathy"
+	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
+	icon_state = "blindfoldwhite"
+	item_state = "blindfoldwhite"
+	flash_protect = 10 //they're blind, yo
+	tint = 2
+	darkness_view = 0
+	var/sight_flags = SEE_MOBS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_GLASSES)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+		user.sight |= sight_flags
+		item_flags = DROPDEL
+
 //Red/Blue Cubes
 /obj/item/warp_cube
 	name = "blue cube"
@@ -343,6 +341,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/obj/item/warp_cube/linked
 	var/teleporting = FALSE
 
+/obj/item/warp_cube/Destroy()
+	if(!QDELETED(linked))
+		qdel(linked)
+	linked = null
+	return ..()
+
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
 	var/area/current_area = current_location.loc //yogs more location check stuff
@@ -351,6 +355,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(teleporting)
 		return
+	if(!is_mining_level(current_location.z))
+		user.visible_message(span_danger("[user] starts fiddling with [src]!"))
+		if(!do_after(user, 3 SECONDS, user))
+			return
 	teleporting = TRUE
 	linked.teleporting = TRUE
 	var/turf/T = get_turf(src)
@@ -437,9 +445,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target)
+/obj/item/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
-	if(ismovable(target))
+	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
 		if(A.anchored)
 			return
@@ -612,25 +620,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 20)//20% chance at 3 gold coins, the most basic rs drop
-			for(var/i in 1 to 3) 
+			for(var/i in 1 to 3)
 				new /obj/item/coin/gold(spot)
 		if(21 to 30)//10% chance for 5 gold coins
 			for(var/i in 1 to 5)
 				new /obj/item/coin/gold(spot)
-		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS 
+		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS
 			for(var/i in 1 to 2)
 				new /obj/item/coin/bananium(spot)
 		if(41 to 50) //10% chance to spawn 10 gold, diamond, or bluespace crystal ores, because runescape ore drops and gem drops
@@ -653,11 +661,11 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				if(2)
 					new /obj/item/seeds/lavaland/ember(spot)
 				if(3)
-					new /obj/item/seeds/lavaland/inocybe(spot) 
+					new /obj/item/seeds/lavaland/inocybe(spot)
 				if(4)
-					new /obj/item/seeds/lavaland/polypore(spot) 
+					new /obj/item/seeds/lavaland/polypore(spot)
 				if(5)
-					new /obj/item/seeds/lavaland/porcini(spot) 
+					new /obj/item/seeds/lavaland/porcini(spot)
 			if(prob(25)) //25% chance to get strange seeds, should they feel like cooperating with botanists. this would also be interesting to see ash walkers get lmao
 				new /obj/item/seeds/random(spot)
 		if(71 to 80) //magmite is cool and somewhat rare i think?
@@ -696,13 +704,14 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
+	process_flags = ORGANIC | SYNTHETIC
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C)) || (reac_volume < 5)) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
@@ -721,7 +730,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(isskeleton(C))
 			to_chat(C, span_notice("Your ribcage feels... bigger?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-		if(ispreternis(C))
+		if(ispreternis(C) || isipc(C))
 			to_chat(C, span_notice("The servos in your back feel... different?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
@@ -811,7 +820,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	M.drop_loot()
 	M.faction = user.faction
 	summons |= M
-	
+
 ///Bosses
 
 //Miniboss Miner
@@ -845,8 +854,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/melee/transforming/cleaving_saw/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"].\n"+\
-	"Both modes will build up existing bleed effects, doing a burst of high damage if the bleed is built up high enough.\n"+\
+	. += "<span class='notice'>It is [active ? "open, will cleave enemies in a wide arc and deal additional damage to fauna, while getting you blood-drunk":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed, dealing passive damage"].\n"+\
+	"Both modes will build up existing bleed effects, doing a burst of high damage and healing you if the bleed is built up high enough.\n"+\
 	"Transforming it immediately after an attack causes the next attack to come out faster.</span>"
 
 /obj/item/melee/transforming/cleaving_saw/suicide_act(mob/user)
@@ -866,9 +875,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/melee/transforming/cleaving_saw/transform_messages(mob/living/user, supress_message_text)
 	if(!supress_message_text)
 		if(active)
-			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna."))
+			to_chat(user, span_notice("You open [src]. It will now cleave enemies in a wide arc and deal additional damage to fauna, getting you drunk on blood."))
 		else
-			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed."))
+			to_chat(user, span_notice("You close [src]. It will now attack rapidly and cause fauna to bleed, letting you drink their blood to heal."))
 	playsound(user, 'sound/magic/clockwork/fellowship_armory.ogg', 35, TRUE, frequency = 90000 - (active * 30000))
 
 /obj/item/melee/transforming/cleaving_saw/clumsy_transform_effect(mob/living/user)
@@ -876,10 +885,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(user, span_warning("You accidentally cut yourself with [src], like a doofus!"))
 		user.take_bodypart_damage(10)
 
-/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/melee/transforming/cleaving_saw/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
 	if(!active)
 		user.changeNext_move(CLICK_CD_MELEE * 0.5) //when closed, it attacks very rapidly
+	else
+		if(iscarbon(target) && prob(25)) //RNG wound application regardless of armor.
+			var/mob/living/carbon/carbon_target = target
+			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
+			var/datum/wound/slash/moderate/crit_wound = new
+			user.visible_message(span_boldwarning("[user] cleaves [target] delivering a viscious wound!"))
+			crit_wound.apply_wound(bodypart)
 
 /obj/item/melee/transforming/cleaving_saw/nemesis_effects(mob/living/user, mob/living/target)
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
@@ -887,7 +903,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!active) //This isn't in the above if-check so that the else doesn't care about active
 			target.apply_status_effect(STATUS_EFFECT_SAWBLEED)
 	else
+		if(active && prob(33)) //This isn't in an else check above so that it doesn't care if they're not bleeding.
+			user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)
 		B.add_bleed(B.bleed_buildup)
+
+	if(B.needs_to_bleed)
+		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
+		user.adjustBruteLoss(-10)
+		user.adjustFireLoss(-10)
+		user.adjustToxLoss(-10)
+		user.blood_volume += 10
 
 /obj/item/melee/transforming/cleaving_saw/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!active || swiping || !target.density || get_turf(target) == get_turf(user))
@@ -914,7 +939,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -933,7 +958,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -1068,6 +1093,27 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
+/obj/item/dragons_blood/syndicate
+	name = "bottle of refined dragons blood"
+	desc = "You're totally going to drink this, aren't you?"
+
+/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
+		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
+		return
+	else
+		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
+		H.set_species(/datum/species/lizard/draconid)
+
+		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	qdel(src)
+
+
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
 	cure_text = "nothing"
@@ -1097,7 +1143,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon = 'icons/obj/guns/magic.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	force = 12
 	damtype = BURN
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hitsound = 'sound/weapons/sear.ogg'
@@ -1196,6 +1242,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/gem/bloodstone(src)
 
 /obj/item/mayhem
 	name = "mayhem in a bottle"
@@ -1263,7 +1310,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
+	ahead of the user with blood. They're particularly effective against lavaland fauna."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1275,12 +1323,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/next_splash = 0
 	var/next_knuckle = 0
 	var/splash_range = 9
+	var/fauna_damage_bonus = 32
+	var/fauna_damage_type = BRUTE
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
 	var/mob/living/L = target
-	if (proximity)
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+	if(proximity)
 		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
 			L.apply_status_effect(/datum/status_effect/roots)
 			return
@@ -1299,7 +1351,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	if(next_splash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	user.visible_message(span_warning("[user] splashes blood from [user.p_their()] knuckles!"))
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
@@ -1360,6 +1412,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/blaster_tubes(src)
+	new /obj/item/gem/void(src)
 
 //Hierophant
 /obj/item/hierophant_club
@@ -1656,20 +1709,95 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	z_level_check = FALSE
 
 //Stalwart
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "ancient focusing crystal"
+	desc = "A humming crystaline weapon, firing scattered blasts of focused energy."
+	fire_delay = 4
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "robocutter"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/stalwart)
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
+	usesound = list('sound/weapons/taserhit.ogg')
+	toolspeed = 0.33 //funky bluespace welding effect idk
+	selfcharge = 1
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/bonespear/stalwartpike
+	icon = 'icons/obj/weapons/spears.dmi'
+	icon_state = "stalwart_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "ancient control rod"
+	//don't want your rare megafauna loot shattering easily
+	max_integrity = 2000
+	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
+	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	w_class = WEIGHT_CLASS_SMALL
+	var/w_class_on = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
+	force = 0
+	throwforce = 0
+	throw_speed = 4
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
+	sharpness = SHARP_NONE
+	block_chance = 0
+	var/fauna_damage_bonus = 0
+	var/fauna_damage_type = BRUTE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+	. = ..()
+	if(wielded)
+		icon_state = "stalwart_spear1"
+	else
+		icon_state = "stalwart_spear0"
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
+
+/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
+	. = ..()
+	if(wielded)
+		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
+		sharpness = SHARP_POINTY
+		w_class = w_class_on
+		block_chance = 25
+		force = 8
+		fauna_damage_bonus = 52
+
+/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
+	if(wielded)
+		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
+		sharpness = initial(sharpness)
+		w_class = initial(w_class)
+		force = initial(force)
+		block_chance = initial(block_chance)
+		fauna_damage_bonus = initial(fauna_damage_bonus)
+	. = ..()
+
+/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity || !wielded)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+			playsound(L, 'sound/magic/blind.ogg', 100, 1)
+
 /obj/structure/closet/crate/sphere/stalwart
 	name = "silvery capsule"
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+	var/loot = rand(1,2)
+	switch(loot)
+		if(1)
+			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
+			new /obj/item/gem/purple(src)
+		if(2)
+			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/ai_cpu/stalwart(src)
 
-/obj/item/gun/energy/plasmacutter/adv/robocutter
-	name = "energized powercutter"
-	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
-	fire_delay = 4
-	icon = 'icons/obj/guns/energy.dmi'
-	icon_state = "robocutter"
-	selfcharge = 1
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"
@@ -1678,62 +1806,167 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/soulstone/anybody(src)
+			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
 
 //Legion
-/obj/item/organ/grandcore
-	name = "grand core"
-	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
+#define COOLDOWN_TAP 60
+#define COOLDOWN_BAND 200
+#define COOLDOWN_TELE 15
+/obj/item/cane/cursed
+	name = "cursed cane"
+	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
+	have the capacity for it. Throwing the cane teleports you to it if it hits something and can be done to finish off targets from afar. Additionally, one would only need to\
+	hold the cane once to avoid the hostility of the aides."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "grandcore"
-	slot = "hivecore"
-	w_class = WEIGHT_CLASS_SMALL 
-	decay_factor = 0
-	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
+	icon_state = "cursedcane"
+	item_state = "cursedcane"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	force = 1 //for weaker animals and fucking legion skulls
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	actions_types = list(/datum/action/item_action/band)
+	var/limit = 3
+	var/telerange = 20 
+	var/next_tap = 0
+	var/next_band = 0
+	var/next_teleport = 0
 
-/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
-	if(H == user && istype(H))
-		playsound(user,'sound/effects/singlebeat.ogg',40,1)
-		user.temporarilyRemoveItemFromInventory(src, TRUE)
-		Insert(user)
+/obj/item/cane/cursed/pickup(mob/user)
+	. = ..()
+	user.faction |= "cane"
 
-/obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
-	..()
-	H.faction |= "blooded"
-	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
-	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
-	if(NOBLOOD in H.dna.species.species_traits)
-		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
-	else
-		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
-
-/obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
-	H.faction -= "blooded"
-	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise)
-	H.RemoveSpell (/obj/effect/proc_holder/spell/aoe_turf/horde)
-	..()
-
-/datum/action/item_action/organ_action/threebloodlings
-	name = "Summon bloodlings"
-	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
-	var/next_expulsion = 0
-	var/cooldown = 10 
-	
-/datum/action/item_action/organ_action/threebloodlings/Trigger()
-	var/mob/living/carbon/H = owner
-	. = ..() 
-	if(next_expulsion > world.time)
-		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
+/obj/item/cane/cursed/attack_self(mob/user)
+	if(next_tap > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	if(NOBLOOD in H.dna.species.species_traits)
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
-		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
-	else
-		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
-		H.blood_volume -= 35
-	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
-	next_expulsion = world.time + cooldown
+	for(var/i=1 to limit)
+		var/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/B = new(user.loc)
+		B.faction = user.faction
+	to_chat(user, span_notice("You tap the cane against a nearby surface and call upon your aides!"))
+	playsound(loc, 'sound/weapons/ricochet.ogg', 20, 1)
+	next_tap = world.time + COOLDOWN_TAP
+
+/obj/item/cane/cursed/proc/bigfinish(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	if(M.stat != DEAD)
+		var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/L = new(M.loc)
+		M.adjustBruteLoss(M.health)
+		GLOB.aide_list += L
+		L.faction = user.faction
+		playsound(user, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 30)
+		user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
+		to_chat(user, span_notice("You finish off your victim with an infusion of your cursed energy, raising a stronger minion!"))
+
+/obj/item/cane/cursed/proc/littlefinish(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L = new(M.loc)
+	M.adjustBruteLoss(M.health)
+	L.stored_mob = M
+	M.forceMove(L)
+	playsound(user, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 30)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
+	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
+
+/obj/item/cane/cursed/proc/execute(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	M.adjustBruteLoss(M.health)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane, making [M.p_their()] eyes flash black before keeling over!"))
+
+/obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
+		return FALSE
+	if(isbot(M))//because they just walk out of the aide lol
+		return FALSE
+	if(GLOB.aide_list.len >= limit)
+		if(M.stat == CONSCIOUS)
+			if(iscarbon(M) && M.health < M.maxHealth/8)
+				execute(user, M)
+				return FALSE
+			if(ismegafauna(M) && M.health < M.maxHealth/5)
+				execute(user, M)
+				limit++
+				return FALSE
+			if(M.health < M.maxHealth/2.8)
+				execute(user, M)
+				return FALSE
+		else
+			to_chat(user, span_notice("You can't control that many minions!"))
+			return FALSE
+	if(ismegafauna(M))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else if (M.stat == CONSCIOUS)
+			bigfinish(user, M)
+			limit ++
+			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
+			return TRUE
+	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else
+			bigfinish(user, M)
+			return TRUE
+	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
+		to_chat(user, span_notice("[target] cannot be raised again!"))
+		return FALSE
+	if(M.stat == DEAD)
+		littlefinish(user, M)
+		M.apply_status_effect(/datum/status_effect/exhumed)
+		return TRUE
+	if(iscarbon(M) && M.health < M.maxHealth/8)
+		littlefinish(user, M)
+		return TRUE
+	if(M.health < M.maxHealth/2.8)
+		littlefinish(user, M)
+		return TRUE
+
+/obj/item/cane/cursed/ui_action_click(mob/living/user, action)
+	if(istype(action, /datum/action/item_action/band))
+		if(next_band > world.time)
+			to_chat(user, span_warning("You can't do that yet!"))
+			return
+		if(GLOB.aide_list.len < 1)
+			to_chat(user, span_notice("You don't have any minions to summon!"))
+			return
+		user.visible_message(span_warning("With the snap of [user.p_their()] fingers, [user] calls upon [user.p_their()] aides!"))
+		playsound(usr, 'sound/misc/fingersnap1.ogg', 100, 1)
+		for(var/turf/open/O in view(2, user))
+			if(!istype(O, /turf/open/chasm) && O)
+				for(var/mob/living/simple_animal/aide in GLOB.aide_list)
+					if(prob(30))
+						aide.forceMove(O)
+						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
+		next_band = world.time + COOLDOWN_BAND
+				
+
+/obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
+	.=..()
+	if(!proximity)
+		return
+	curse(user, target)
+
+/obj/item/cane/cursed/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	var/turf/D = get_turf(src)
+	var/turf/Z = get_turf(thrownby)
+	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
+		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
+		if(next_teleport < world.time)
+			F.forceMove(Z)
+			next_teleport = world.time + COOLDOWN_TELE
+			thrownby.forceMove(D)
+			thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+			thrownby.put_in_hands(src)
+		if(isliving(hit_atom))
+			var/mob/living/M = hit_atom
+			if(curse(thrownby, M) == TRUE)
+				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))

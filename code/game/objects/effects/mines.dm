@@ -171,6 +171,16 @@
 	playsound(loc, sound, 100, 1)
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
+/obj/effect/mine/explosive/ancient
+	name = "rusty mine"
+	range_heavy = 0
+	range_light = 1
+	range_flash = 2
+	disarm_product = null
+
+/obj/effect/mine/explosive/ancient/mineEffect(mob/victim)
+	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
+
 /obj/effect/mine/stun
 	name = "stun mine"
 	var/stun_time = 80
@@ -251,6 +261,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
+	alpha = 255
 	var/duration = 0
 
 /obj/effect/mine/pickup/Initialize()
@@ -330,3 +341,20 @@
 	sleep(duration)
 	victim.remove_movespeed_modifier(MOVESPEED_ID_YELLOW_ORB)
 	to_chat(victim, span_notice("You slow down."))
+
+/obj/item/deployablemine/creampie
+	name = "deployable creampie mine"
+	desc = "An unarmed creampie mine designed to be rapidly placeable."
+	mine_type = /obj/effect/mine/creampie
+	arming_time = 1 SECONDS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/effect/mine/creampie
+	name = "creampie landmine"
+	desc = "Creampie?"
+	disarm_time = 60 SECONDS
+	disarm_product = /obj/item/deployablemine/creampie
+
+/obj/effect/mine/creampie/mineEffect(mob/victim)
+	var/obj/item/reagent_containers/food/snacks/pie/cream/P = new /obj/item/reagent_containers/food/snacks/pie/cream(src)
+	P.splat(victim)

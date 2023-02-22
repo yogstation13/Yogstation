@@ -47,7 +47,7 @@
 	name = "Silver Sulfadiazine"
 	id = /datum/reagent/medicine/silver_sulfadiazine
 	results = list(/datum/reagent/medicine/silver_sulfadiazine = 5)
-	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulfur = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulphur = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/salglu_solution
 	name = "Saline-Glucose Solution"
@@ -395,4 +395,8 @@
 	results = list(/datum/reagent/medicine/radscrub = 3)
 	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/medicine/c2/seiver = 1)
 	required_temp = 200
-	is_cold_recipe = 1
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/medicine/seraka_destroy //seraka extract is destroyed by sodium hydroxide
+	results = list(/datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/medicine/coagulant/seraka_extract = 1, /datum/reagent/lye = 1)

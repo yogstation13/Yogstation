@@ -15,10 +15,12 @@
 	faction = list("neutral")
 	a_intent = INTENT_HARM
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	unsuitable_atmos_damage = 0
 	minbodytemp = 0
 	move_to_delay = 10
-	health = 125
-	maxHealth = 125
+	speed = -1 //YOGS - minebot //Buffed to not be a fucking god damn piece of slug matter writhing on the fucking floor pt2
+	health = 150
+	maxHealth = 150
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	obj_damage = 10
@@ -35,8 +37,10 @@
 	healable = 0
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	del_on_death = TRUE
+	light_system = MOVABLE_LIGHT
+	light_range = 6
+	light_on = FALSE
 	var/mode = MINEDRONE_COLLECT
-	var/light_on = 0
 	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
@@ -88,10 +92,6 @@
 
 /mob/living/simple_animal/hostile/mining_drone/welder_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if(mode == MINEDRONE_ATTACK)
-		to_chat(user, span_info("[src] can't be repaired while in attack mode!"))
-		return
-
 	if(maxHealth == health)
 		to_chat(user, span_info("[src] is at full integrity."))
 		return
@@ -236,11 +236,7 @@
 /datum/action/innate/minedrone/toggle_light/Activate()
 	var/mob/living/simple_animal/hostile/mining_drone/user = owner
 
-	if(user.light_on)
-		user.set_light(0)
-	else
-		user.set_light(6)
-	user.light_on = !user.light_on
+	user.set_light_on(!user.light_on)
 	to_chat(user, span_notice("You toggle your light [user.light_on ? "on" : "off"]."))
 
 /datum/action/innate/minedrone/toggle_mode
@@ -293,7 +289,7 @@
 	if(M.maxHealth != initial(M.maxHealth))
 		to_chat(user, "[src] already has reinforced armor!")
 		return
-	M.maxHealth += 45
+	M.maxHealth += 50
 	M.updatehealth()
 	qdel(src)
 
@@ -305,20 +301,6 @@
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT
-	var/base_health_add = 5 //sentient minebots are penalized for beign sentient; they have their stats reset to normal plus these values
-	var/base_damage_add = 1 //this thus disables other minebot upgrades
-	var/base_speed_add = 1
-	var/base_cooldown_add = 10 //base cooldown isn't reset to normal, it's just added on, since it's not practical to disable the cooldown module
-
-/obj/item/slimepotion/slime/sentience/mining/after_success(mob/living/user, mob/living/simple_animal/SM)
-	if(istype(SM, /mob/living/simple_animal/hostile/mining_drone))
-		var/mob/living/simple_animal/hostile/mining_drone/M = SM
-		M.maxHealth = initial(M.maxHealth) + base_health_add
-		M.melee_damage_lower = initial(M.melee_damage_lower) + base_damage_add
-		M.melee_damage_upper = initial(M.melee_damage_upper) + base_damage_add
-		M.move_to_delay = initial(M.move_to_delay) + base_speed_add
-		if(M.stored_gun)
-			M.stored_gun.overheat_time += base_cooldown_add
 
 #undef MINEDRONE_COLLECT
 #undef MINEDRONE_ATTACK

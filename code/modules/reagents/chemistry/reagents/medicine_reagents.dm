@@ -133,6 +133,7 @@
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
 	color = "#0000C8"
 	taste_description = "sludge"
+	overdose_threshold = 100 //no chugging
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
 	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
@@ -142,6 +143,12 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
+		if(prob(10))
+			M.Knockdown(2 SECONDS)
+			to_chat(M, span_danger("You feel woozy."))
+		if(prob(10))
+			M.drop_all_held_items()
+			to_chat(M, span_danger("You lose concentration."))
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power)
@@ -723,6 +730,7 @@
 	..()
 	L.ignore_slowdown(type)
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
@@ -1296,13 +1304,13 @@
 //used for changeling's adrenaline power
 /datum/reagent/medicine/changelingadrenaline
 	name = "Changeling Adrenaline"
-	description = "Reduces the duration of unconciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
+	description = "Reduces the duration of unconsciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
 	color = "#C8A5DC"
 	overdose_threshold = 30
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20, FALSE)
-	M.adjustStaminaLoss(-1, 0)
+	M.adjustStaminaLoss(-15, 0)
 	..()
 	return TRUE
 
@@ -1334,9 +1342,10 @@
 	// Heart attack code will not do damage if corazone is present
 	// because it's SPACE MAGIC ASPIRIN
 	name = "Corazone"
-	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks."
+	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks. Causes rapid organ failure when overdosed."
 	color = "#F5F5F5"
 	self_consuming = TRUE
+	overdose_threshold = 30
 
 /datum/reagent/medicine/corazone/on_mob_metabolize(mob/living/M)
 	..()
@@ -1346,6 +1355,12 @@
 /datum/reagent/medicine/corazone/on_mob_end_metabolize(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_STABLEHEART, type)
 	REMOVE_TRAIT(M, TRAIT_STABLELIVER, type)
+	..()
+
+/datum/reagent/medicine/corazone/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.5 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.8 * REM)
 	..()
 
 /datum/reagent/medicine/muscle_stimulant
@@ -1796,7 +1811,7 @@
 /datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
-	
+
 /datum/reagent/medicine/radscrub/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(1*REM, 0)
 	..()
@@ -1813,7 +1828,7 @@
 		var/mob/living/carbon/C = L
 		C.vomit(stun = FALSE) //it binds with the radioactive particles inside you, and they have to come out somehow
 	..()
-	
+
 /datum/reagent/medicine/radscrub/reaction_obj(obj/O, reac_volume)
 	//scrubs the contamination and applies a light treatment to it to mitigate immediate recontamination
 	var/datum/component/radioactive/radiation = O.GetComponent(/datum/component/radioactive)
@@ -1825,3 +1840,44 @@
 
 #undef PERF_BASE_DAMAGE
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
+
+/datum/reagent/medicine/coagulant/seraka_extract
+	name = "Seraka Extract"
+	description = "A deeply coloured oil present in small amounts in seraka mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
+	color = "#00767C"
+	taste_description = "intensely savoury bitterness"
+	glass_name = "glass of seraka extract"
+	glass_desc = "Deeply savoury and bitter. Slows your blood flow. Dangerous in moderate quantities."
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+	clot_rate = 0.4 //slightly better than regular coagulant
+	passive_bleed_modifier = 0.5
+	overdose_threshold = 10 //but easier to overdose on
+
+/datum/reagent/medicine/resurrector_nanites
+	name = "Resurrector Nanite Serum"
+	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
+	taste_description = "a bunch of tiny robots"
+
+/datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
+	..()
+	if(M.stat != DEAD)
+		return
+	M.revive(full_heal = TRUE)
+	M.Jitter(10 SECONDS)
+	M.emote("gasp")
+
+/datum/reagent/medicine/naniteremover
+	name = "Nanolytic Agent"
+	description = "Creates an environment that in unsuitable for nanites, causing them to rapidly break down."
+	reagent_state = LIQUID
+	color = "#ff00d4"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	taste_description = "acidic oil"
+	process_flags = ORGANIC | SYNTHETIC
+	var/nanite_reduction = -50
+
+/datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)
+	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
+		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
+	return ..()
+	

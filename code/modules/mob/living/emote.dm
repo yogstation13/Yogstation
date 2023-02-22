@@ -44,7 +44,6 @@
 	key = "collapse"
 	key_third_person = "collapses"
 	message = "collapses!"
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/collapse/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -180,7 +179,6 @@
 	key_third_person = "glares"
 	message = "glares."
 	message_param = "glares at %t."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/grin
 	key = "grin"
@@ -209,7 +207,6 @@
 	key_third_person = "kisses"
 	message = "blows a kiss."
 	message_param = "blows a kiss to %t."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/laugh
 	key = "laugh"
@@ -272,7 +269,7 @@
 	key = "pout"
 	key_third_person = "pouts"
 	message = "pouts."
-	emote_type = EMOTE_AUDIBLE
+	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/scream
 	key = "scream"
@@ -291,19 +288,16 @@
 	key = "scowl"
 	key_third_person = "scowls"
 	message = "scowls."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/shake
 	key = "shake"
 	key_third_person = "shakes"
 	message = "shakes their head."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/shiver
 	key = "shiver"
 	key_third_person = "shiver"
 	message = "shivers."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/sigh
 	key = "sigh"
@@ -366,7 +360,6 @@
 	key = "surrender"
 	key_third_person = "surrenders"
 	message = span_surrender("puts their hands on their head and falls to the ground, they surrender!")
-	emote_type = EMOTE_AUDIBLE
 	mob_type_blacklist_typecache = list(/mob/living/simple_animal)
 
 /datum/emote/living/surrender/run_emote(mob/user, params, type_override, intentional)
@@ -452,7 +445,7 @@
 				if("Hearable")
 					emote_type = EMOTE_AUDIBLE
 				else
-					alert("Unable to use this emote, must be either hearable or visible.")
+					tgui_alert(usr,"Unable to use this emote, must be either hearable or visible.")
 					return
 			message = custom_emote
 	else

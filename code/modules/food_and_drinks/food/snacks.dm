@@ -109,7 +109,8 @@ All foods are distributed among various categories. Use common sense.
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
 			if(!isbrain(M))		//If you're feeding it to someone else.
-				C.force_eat_text(fullness, src, C, user)
+				if(!C.force_eat_text(fullness, src, C, user))
+					return
 				if(!do_mob(user, M))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
@@ -117,7 +118,8 @@ All foods are distributed among various categories. Use common sense.
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
 				return
 
-		C.eat_text(fullness, eatverb, src, C, user)
+		if(!C.eat_text(fullness, eatverb, src, C, user))
+			return
 
 		if(reagents)								//Handle ingestion of the reagent.
 			if(M.satiety > -200)
@@ -177,6 +179,7 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/CheckParts(list/parts_list, datum/crafting_recipe/food/R)
 	..()
 	reagents.clear_reagents()
+	reagents.maximum_volume = 100
 	for(var/obj/item/reagent_containers/RC in contents)
 		RC.reagents.trans_to(reagents, RC.reagents.maximum_volume)
 	for(var/reagent in R.reqs)

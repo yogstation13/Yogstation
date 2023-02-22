@@ -19,7 +19,8 @@
 	can_bayonet = TRUE
 	knife_x_offset = 20
 	knife_y_offset = 12
-
+	recoil = 0
+	spread = 0 //Gitban ynot01
 	var/max_mod_capacity = 100
 	var/list/modkits = list()
 
@@ -185,6 +186,9 @@
 	var/pressure_decrease_active = FALSE
 	var/pressure_decrease = 0.25
 	var/obj/item/gun/energy/kinetic_accelerator/kinetic_gun
+
+/obj/item/projectile/kinetic/mech
+	range = 5
 
 /obj/item/projectile/kinetic/Destroy()
 	kinetic_gun = null

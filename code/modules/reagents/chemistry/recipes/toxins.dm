@@ -22,7 +22,7 @@
 
 
 /datum/chemical_reaction/facid
-	name = "Fluorosulfuric acid"
+	name = "Fluorosulphuric acid"
 	id = /datum/reagent/toxin/acid/fluacid
 	results = list(/datum/reagent/toxin/acid/fluacid = 4)
 	required_reagents = list(/datum/reagent/toxin/acid = 1, /datum/reagent/fluorine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/potassium = 1)
@@ -32,7 +32,7 @@
 	name = /datum/reagent/toxin/sulfonal
 	id = /datum/reagent/toxin/sulfonal
 	results = list(/datum/reagent/toxin/sulfonal = 3)
-	required_reagents = list(/datum/reagent/acetone = 1, /datum/reagent/diethylamine = 1, /datum/reagent/sulfur = 1)
+	required_reagents = list(/datum/reagent/acetone = 1, /datum/reagent/diethylamine = 1, /datum/reagent/sulphur = 1)
 
 /datum/chemical_reaction/lipolicide
 	name = /datum/reagent/toxin/lipolicide

@@ -21,41 +21,44 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 10
+#define DB_MINOR_VERSION 11
 
 //! ## Timing subsystem
 /**
-  * Don't run if there is an identical unique timer active
-  *
-  * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
-  * and returns the id of the existing timer
-  */
-#define TIMER_UNIQUE			(1<<0)
+ * Don't run if there is an identical unique timer active
+ *
+ * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+ * and returns the id of the existing timer
+ */
+#define TIMER_UNIQUE (1<<0)
 
 ///For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE			(1<<1)
+#define TIMER_OVERRIDE (1<<1)
 
 /**
-  * Timing should be based on how timing progresses on clients, not the server.
-  *
-  * Tracking this is more expensive,
-  * should only be used in conjuction with things that have to progress client side, such as
-  * animate() or sound()
-  */
-#define TIMER_CLIENT_TIME		(1<<2)
+ * Timing should be based on how timing progresses on clients, not the server.
+ *
+ * Tracking this is more expensive,
+ * should only be used in conjuction with things that have to progress client side, such as
+ * animate() or sound()
+ */
+#define TIMER_CLIENT_TIME (1<<2)
 
 ///Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE			(1<<3)
+#define TIMER_STOPPABLE (1<<3)
 
 ///prevents distinguishing identical timers with the wait variable
 ///
 ///To be used with TIMER_UNIQUE
-#define TIMER_NO_HASH_WAIT		(1<<4)
+#define TIMER_NO_HASH_WAIT (1<<4)
 
 ///Loops the timer repeatedly until qdeleted
 ///
 ///In most cases you want a subsystem instead, so don't use this unless you have a good reason
-#define TIMER_LOOP				(1<<5)
+#define TIMER_LOOP (1<<5)
+
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
 
 ///Empty ID define
 #define TIMER_ID_NULL -1
@@ -94,6 +97,25 @@
     }\
 }
 
+//! ### SS initialization hints
+/**
+ * Negative values incidate a failure or warning of some kind, positive are good.
+ * 0 and 1 are unused so that TRUE and FALSE are guarenteed to be invalid values.
+ */
+
+/// Subsystem failed to initialize entirely. Print a warning, log, and disable firing.
+#define SS_INIT_FAILURE -2
+
+/// The default return value which must be overriden. Will succeed with a warning.
+#define SS_INIT_NONE -1
+
+/// Subsystem initialized sucessfully.
+#define SS_INIT_SUCCESS 2
+
+/// Successful, but don't print anything. Useful if subsystem was disabled.
+#define SS_INIT_NO_NEED 3
+
+//! ### SS initialization load orders
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
@@ -111,11 +133,12 @@
 #define INIT_ORDER_MATERIALS		76
 #define INIT_ORDER_RESEARCH			75
 #define INIT_ORDER_STATION			74
+#define INIT_ORDER_QUIRKS 			73
 #define INIT_ORDER_EVENTS			70
-#define INIT_ORDER_MAPPING			65
-#define INIT_ORDER_JOBS				60
-#define INIT_ORDER_QUIRKS			55
+#define INIT_ORDER_JOBS				65
+#define INIT_ORDER_MAPPING			60
 #define INIT_ORDER_TICKER			50
+#define INIT_ORDER_EARLY_ASSETS 	48
 #define INIT_ORDER_NETWORKS			45
 #define INIT_ORDER_ECONOMY			40
 #define INIT_ORDER_OUTPUTS			35
@@ -126,7 +149,8 @@
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
-#define INIT_ORDER_PERSISTENCE		-2 //before assets because some assets take data from SSPersistence
+#define INIT_ORDER_PERSISTENCE 		-2
+#define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
 #define INIT_ORDER_ASSETS			-4
 #define INIT_ORDER_ICON_SMOOTHING	-5
 #define INIT_ORDER_OVERLAY			-6
@@ -138,7 +162,7 @@
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
 #define INIT_ORDER_EXPLOSIONS		-69
-#define INIT_ORDER_STATPANELS   -98
+#define INIT_ORDER_STATPANELS 		-98
 #define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
@@ -151,6 +175,7 @@
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_WET_FLOORS	20
+#define FIRE_PRIORITY_FLUIDS		20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
@@ -166,6 +191,7 @@
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_INSTRUMENTS	80
 #define FIRE_PRIORITY_MOBS			100
+#define FIRE_PRIORITY_ASSETS 		105
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_ATMOS_ADJACENCY	300
@@ -173,6 +199,7 @@
 #define FIRE_PRIORITY_RUNECHAT		410
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_EXPLOSIONS	666
+#define FIRE_PRIORITY_TIMER         700
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels
@@ -189,34 +216,32 @@
 // Truly disgusting, TG. Truly disgusting.
 //! ## Overlays subsystem
 
-///Compile all the overlays for an atom from the cache lists
-#define COMPILE_OVERLAYS(A)\
-	do {\
-		var/list/ad = A.add_overlays;\
-		var/list/rm = A.remove_overlays;\
-		var/list/po = A.priority_overlays;\
-		if(LAZYLEN(rm)){\
-			A.overlays -= rm;\
-			rm.Cut();\
-		}\
-		if(LAZYLEN(ad)){\
-			A.overlays |= ad;\
-			ad.Cut();\
-		}\
-		if(LAZYLEN(po)){\
-			A.overlays |= po;\
-		}\
-		for(var/I in A.alternate_appearances){\
-			var/datum/atom_hud/alternate_appearance/AA = A.alternate_appearances[I];\
+#define POST_OVERLAY_CHANGE(changed_on) \
+	if(length(changed_on.overlays) >= MAX_ATOM_OVERLAYS) { \
+		var/text_lays = overlays2text(changed_on.overlays); \
+		stack_trace("Too many overlays on [changed_on.type] - [length(changed_on.overlays)], refusing to update and cutting.\
+			\n What follows is a printout of all existing overlays at the time of the overflow \n[text_lays]"); \
+		changed_on.overlays.Cut(); \
+		changed_on.add_overlay(mutable_appearance('icons/Testing/greyscale_error.dmi')); \
+	} \
+	if(alternate_appearances) { \
+		for(var/I in changed_on.alternate_appearances){\
+			var/datum/atom_hud/alternate_appearance/AA = changed_on.alternate_appearances[I];\
 			if(AA.transfer_overlays){\
-				AA.copy_overlays(A, TRUE);\
+				AA.copy_overlays(changed_on, TRUE);\
 			}\
-		}\
-		A.flags_1 &= ~OVERLAY_QUEUED_1;\
-		if(isturf(A)){SSdemo.mark_turf(A);}\
-		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
-	} while (FALSE)
+		} \
+	}
 
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+	* * timer_subsystem the subsystem to insert this timer into
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
 
 // Air subsystem subtasks
 #define SSAIR_PIPENETS 1
@@ -234,3 +259,33 @@
 #define SSEXPLOSIONS_MOVABLES 1
 #define SSEXPLOSIONS_TURFS 2
 #define SSEXPLOSIONS_THROWS 3
+
+// Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
+// Only use these defines if you want to access some other objects processing delta_time, otherwise use the delta_time that is sent as a parameter to process()
+#define SSFLUIDS_DT (SSplumbing.wait/10)
+#define SSMACHINES_DT (SSmachines.wait/10)
+#define SSMOBS_DT (SSmobs.wait/10)
+#define SSOBJ_DT (SSobj.wait/10)
+
+/// The timer key used to know how long subsystem initialization takes
+#define SS_INIT_TIMER_KEY "ss_init"
+
+
+// Wardrobe subsystem tasks
+#define SSWARDROBE_STOCK 1
+#define SSWARDROBE_INSPECT 2
+
+//Wardrobe cache metadata indexes
+#define WARDROBE_CACHE_COUNT 1
+#define WARDROBE_CACHE_LAST_INSPECT 2
+#define WARDROBE_CACHE_CALL_INSERT 3
+#define WARDROBE_CACHE_CALL_REMOVAL 4
+
+//Wardrobe preloaded stock indexes
+#define WARDROBE_STOCK_CONTENTS 1
+#define WARDROBE_STOCK_CALL_INSERT 2
+#define WARDROBE_STOCK_CALL_REMOVAL 3
+
+//Wardrobe callback master list indexes
+#define WARDROBE_CALLBACK_INSERT 1
+#define WARDROBE_CALLBACK_REMOVE 2

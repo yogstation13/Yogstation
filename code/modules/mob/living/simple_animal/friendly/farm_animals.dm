@@ -260,9 +260,9 @@
 	density = FALSE
 	speak_chance = 2
 	turns_per_move = 3
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/chicken = 2)
 	var/egg_type = /obj/item/reagent_containers/food/snacks/egg
-	var/food_type = /obj/item/reagent_containers/food/snacks/grown/wheat
+	var/food_type = /obj/item/reagent_containers/food/snacks/grown
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
@@ -326,10 +326,10 @@
 				START_PROCESSING(SSobj, E)
 
 /obj/item/reagent_containers/food/snacks/egg/var/amount_grown = 0
-/obj/item/reagent_containers/food/snacks/egg/process()
+/obj/item/reagent_containers/food/snacks/egg/process(delta_time)
 	if(isturf(loc))
-		amount_grown += rand(1,2)
-		if(amount_grown >= 100)
+		amount_grown += rand(1,2) * delta_time
+		if(amount_grown >= 200)
 			visible_message("[src] hatches with a quiet cracking sound.")
 			new /mob/living/simple_animal/chick(get_turf(src))
 			STOP_PROCESSING(SSobj, src)
@@ -455,19 +455,3 @@
 		user.visible_message("[user] milks [src] using \the [O].", span_notice("You milk [src] using \the [O]."))
 	else
 		to_chat(user, span_danger("The udder is dry. Wait a bit longer..."))
-
-//spawner
-/obj/effect/spawner/lootdrop/mob
-	icon = 'icons/mob/screen_gen.dmi'
-	icon_state = "x2"
-
-/obj/effect/spawner/lootdrop/mob/kitchen_animal
-	name = "kitchen animal"
-	icon = 'icons/mob/animal.dmi'
-	icon_state = "random_kitchen"
-	lootdoubles = 0
-	lootcount = 1
-	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
-			/mob/living/simple_animal/cow/betsy = 1,
-			/mob/living/simple_animal/sheep = 1,
-			/mob/living/simple_animal/sheep/shawn = 1)

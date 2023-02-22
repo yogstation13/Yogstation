@@ -1,7 +1,9 @@
 GLOBAL_LIST_EMPTY(uplinks)
 
 #define PEN_ROTATIONS 2
-
+#define NT_ERT_TROOPER 1
+#define NT_ERT_MEDIC 2
+#define NT_ERT_ENGINEER 3
 /**
  * Uplinks
  *
@@ -12,6 +14,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 /datum/component/uplink
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/name = "syndicate uplink"
+	var/js_ui = "Uplink"
+	var/obj/item/stack/currency = /obj/item/stack/telecrystal
 	var/active = FALSE
 	var/lockable = TRUE
 	var/locked = TRUE
@@ -31,6 +35,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	///Instructions on how to access the uplink based on location
 	var/unlock_text
 	var/list/previous_attempts
+	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
 
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
@@ -45,18 +50,18 @@ GLOBAL_LIST_EMPTY(uplinks)
 		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, .proc/old_implant)
 		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
 	else if(istype(parent, /obj/item/pda))
-		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHANGE_ID, .proc/new_ringtone)
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/modular_computer))
 		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, .proc/ntos_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/radio))
 		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
 	else if(istype(parent, /obj/item/pen))
 		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
 
 	GLOB.uplinks += src
-	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted)
+	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted, js_ui)
 
 	if(_owner)
 		owner = _owner
@@ -90,7 +95,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	purchase_log = null
 	return ..()
 
-/datum/component/uplink/proc/LoadTC(mob/user, obj/item/stack/telecrystal/TC, silent = FALSE)
+/datum/component/uplink/proc/LoadTC(mob/user, obj/item/stack/TC, silent = FALSE)
 	if(!silent)
 		to_chat(user, span_notice("You slot [TC] into [parent] and charge its internal uplink."))
 	var/amt = TC.amount
@@ -99,12 +104,12 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 /datum/component/uplink/proc/set_gamemode(_gamemode)
 	gamemode = _gamemode
-	uplink_items = get_uplink_items(gamemode, TRUE, allow_restricted)
+	uplink_items = get_uplink_items(gamemode, TRUE, allow_restricted, js_ui)
 
 /datum/component/uplink/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
 	if(!active)
 		return	//no hitting everyone/everything just to try to slot tcs in!
-	if(istype(I, /obj/item/stack/telecrystal))
+	if(istype(I, currency))
 		LoadTC(user, I)
 		return
 	var/datum/component/refundable/R = I.GetComponent(/datum/component/refundable)
@@ -132,7 +137,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	active = TRUE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Uplink", name)
+		ui = new(user, src, js_ui, name)
 		// This UI is only ever opened by one person,
 		// and never is updated outside of user input.
 		ui.set_autoupdate(FALSE)
@@ -175,10 +180,15 @@ GLOBAL_LIST_EMPTY(uplinks)
 							break
 					if(is_inaccessible)
 						continue
+			if(istype(I, /datum/uplink_item/nt))
+				var/datum/uplink_item/nt/M = I
+				if(nt_uplink_type != null && M.required_ert_uplink != null && nt_uplink_type != M.required_ert_uplink) //Different roles in ERT uplinks have different equipment avaliable
+					continue
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
 				"desc" = I.desc,
+				"path" = replacetext(replacetext("[I.item]", "/obj/item/", ""), "/", "-"),
 				"manufacturer" = I.manufacturer ? initial(I.manufacturer.name) : null,
 			))
 		data["categories"] += list(cat)
@@ -212,6 +222,11 @@ GLOBAL_LIST_EMPTY(uplinks)
 		if("compact_toggle")
 			compact_mode = !compact_mode
 			return TRUE
+
+/datum/component/uplink/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/uplink),
+	)
 
 /datum/component/uplink/proc/MakePurchase(mob/user, datum/uplink_item/U)
 	if(!istype(U))
@@ -283,7 +298,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	return COMPONENT_NTOS_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
-	return COMPONENT_PDA_NO_DETONATE
+	return COMPONENT_TABLET_NO_DETONATE
 
 // Radio signal responses
 
@@ -345,3 +360,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return
 	explosion(T,1,2,3)
 	qdel(parent) //Alternatively could brick the uplink.
+
+
+/// NT Uplink
+/datum/component/uplink/nanotrasen
+	name = "nanotrasen uplink"
+	js_ui = "NTUplink"
+	currency = /obj/item/stack/ore/bluespace_crystal/refined/nt
+
+/datum/component/uplink/nanotrasen/trooper
+	nt_uplink_type = NT_ERT_TROOPER
+/datum/component/uplink/nanotrasen/medic
+	nt_uplink_type = NT_ERT_MEDIC
+/datum/component/uplink/nanotrasen/engineer
+	nt_uplink_type = NT_ERT_ENGINEER

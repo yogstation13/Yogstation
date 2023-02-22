@@ -84,7 +84,7 @@
 	pass_flags = PASSMOB
 	collar_type = "kitten"
 	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
-	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian")
+	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian", "Mischief")
 
 /mob/living/simple_animal/pet/cat/kitten/Initialize()
 	. = ..()

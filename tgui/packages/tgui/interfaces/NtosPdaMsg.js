@@ -5,12 +5,13 @@
 // This one has only one error while indent has 7 so I'm opting to listen to that one
 
 import { useBackend } from '../backend';
-import { Box, Button, Section, Grid } from '../components';
+import { Box, Button, Section, Grid, LabeledList } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosPdaMsg = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    PC_device_theme,
     can_message,
     can_keytry,
     username,
@@ -22,10 +23,12 @@ export const NtosPdaMsg = (props, context) => {
     all_messages = [],
     ringtone,
     showing_messages,
+    can_at_everyone,
   } = data;
   return (
     <NtosWindow
-      width={400}
+      theme={PC_device_theme}
+      width={600}
       height={480}>
       <NtosWindow.Content scrollable>
         {showing_messages ?
@@ -128,7 +131,7 @@ export const NtosPdaMsg = (props, context) => {
                     <Grid.Column size={4}>
                       <Button.Input
                         fluid
-                        content={pdadata[0].substring(0, 35)}
+                        content={pdadata[0].substring(0, 55)}
                         disabled={!can_message || !receiving}
                         color={can_message && receiving ? 'blue' : 'primary'}
                         onCommit={(e, value) => act('PRG_sendmsg', {
@@ -149,6 +152,22 @@ export const NtosPdaMsg = (props, context) => {
                 )
               )}
             </Section>
+            {can_at_everyone ?
+              <LabeledList>
+                <LabeledList.Item
+                  buttons={(
+                    <Button.Input
+                      fluid
+                      content="Send To Everyone"
+                      disabled={!can_message || !receiving}
+                      color={can_message && receiving ? 'blue' : 'primary'}
+                      onCommit={(e, value) => act('PRG_sendmsg', {
+                        recipient: "EVERYONE",
+                        message: value,
+                      })} />
+                  )} />
+              </LabeledList>
+              : ""}
           </Box>}
       </NtosWindow.Content>
     </NtosWindow>

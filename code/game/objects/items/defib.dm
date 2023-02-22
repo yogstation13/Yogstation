@@ -113,8 +113,8 @@
 	. = ..()
 	if(ismob(loc))
 		var/mob/M = loc
-		if(!M.incapacitated() && istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
+		if(!M.incapacitated() && istype(over_object, /atom/movable/screen/inventory/hand))
+			var/atom/movable/screen/inventory/hand/H = over_object
 			M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 /obj/item/defibrillator/attackby(obj/item/W, mob/user, params)
@@ -155,13 +155,13 @@
 
 /obj/item/defibrillator/emp_act(severity)
 	. = ..()
-	
+
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
 		deductcharge(5000 / severity)
-		
+
 	if (. & EMP_PROTECT_SELF)
 		return
-		
+
 	if(!safety)
 		safety = TRUE
 		visible_message(span_notice("[src] beeps: Safety protocols enabled!"))
@@ -473,7 +473,7 @@
 	M.visible_message(span_danger("[user] has touched [M] with [src]!"), \
 			span_userdanger("[user] has touched [M] with [src]!"))
 	M.adjustStaminaLoss(50)
-	M.Paralyze(100)
+	M.Knockdown(100)
 	M.updatehealth() //forces health update before next life tick //isn't this done by adjustStaminaLoss anyway?
 	playsound(src,  'sound/machines/defib_zap.ogg', 50, 1, -1)
 	M.emote("gasp")
@@ -582,11 +582,9 @@
 				else if(total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE)
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Surgical repair may allow for successful resuscitation.")
 				else if(HAS_TRAIT(H, TRAIT_HUSK))
-					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Restucitation failed - Lack of important fluids has rendered the patient body unsurvivable. Application of experimental DNA recovery surgery or an upgraded cloner recommended.") 
-				else if(H.get_ghost())
-					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - No activity in patient's brain. Further attempts may be successful.")
+					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Lack of important fluids has rendered the patient body unsurvivable. Application of experimental DNA recovery surgery or an upgraded cloner recommended.")
 				else if (HAS_TRAIT(H, TRAIT_NODEFIB))
-					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Biology incompatiable.")
+					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Biology incompatible.")
 				else if (tplus > tlimit)
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Body has decayed for too long. Further attempts futile.")
 				else if (!heart)

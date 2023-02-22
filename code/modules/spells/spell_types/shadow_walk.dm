@@ -1,3 +1,5 @@
+#define SHADOW_REGEN_RATE 1.5
+
 /obj/effect/proc_holder/spell/targeted/shadowwalk
 	name = "Shadow Walk"
 	desc = "Grants unlimited movement in darkness."
@@ -16,6 +18,9 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowwalk/cast(list/targets,mob/living/user = usr)
 	var/L = user.loc
+	if(istype(user.loc, /obj/effect/dummy/phased_mob/shadowling))
+		to_chat(user, span_boldwarning("You can't shadow walk while void jaunting!"))
+		return
 	if(istype(user.loc, /obj/effect/dummy/phased_mob/shadow))
 		var/obj/effect/dummy/phased_mob/shadow/S = L
 		S.end_jaunt(FALSE)
@@ -46,9 +51,13 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/effect/dummy/phased_mob/shadow/process()
+/obj/effect/dummy/phased_mob/shadow/process(delta_time)
+	var/turf/T = get_turf(src)
+	var/light_amount = T.get_lumcount()
 	if(!jaunter || jaunter.loc != src)
 		qdel(src)
+	if (light_amount < 0.2 && (!QDELETED(jaunter))) //heal in the dark
+		jaunter.heal_overall_damage((SHADOW_REGEN_RATE * delta_time), (SHADOW_REGEN_RATE * delta_time), 0, BODYPART_ORGANIC)
 	check_light_level()
 
 /obj/effect/dummy/phased_mob/shadow/relaymove(mob/living/user, direction)
@@ -68,8 +77,6 @@
 	var/light_amount = T.get_lumcount()
 	if(light_amount > 0.2) // jaunt ends
 		end_jaunt(TRUE)
-	else if (light_amount < 0.2 && (!QDELETED(jaunter))) //heal in the dark
-		jaunter.heal_overall_damage(1,1, 0, BODYPART_ORGANIC)
 
 /obj/effect/dummy/phased_mob/shadow/proc/end_jaunt(forced = FALSE)
 	if(jaunter)
@@ -80,3 +87,5 @@
 			visible_message("<span class='boldwarning'>[jaunter] emerges from the darkness!</span>")
 		playsound(loc, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 	qdel(src)
+
+#undef SHADOW_REGEN_RATE

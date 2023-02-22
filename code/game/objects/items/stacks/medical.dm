@@ -227,14 +227,35 @@
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
-	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 2)
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
+	icon_state = "suture_green"
 	heal_brute = 5
 	amount = 5
 	max_amount = 5
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 1)
+
+/obj/item/stack/medical/suture/emergency/makeshift
+	name = "makeshift suture"
+	desc = "A makeshift suture, gnarly looking, but it...should work."
+	heal_brute = 4
+	stop_bleeding = 0.44
+	amount = 5
+	max_amount = 5
+	grind_results = null
+
+/obj/item/stack/medical/suture/emergency/makeshift/tribal
+	name = "sinew suture"
+	desc = "A suture created from well processed sinew, with a bone needle"
+	icon_state = "suture_tribal"
+	heal_brute = 6
+	stop_bleeding = 0.55
+	amount = 10
+	max_amount = 10
+	grind_results = list(/datum/reagent/liquidgibs = 2)
 
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
@@ -269,7 +290,7 @@
 	to_chat(user, span_warning("You can't heal [M] with \the [src]!"))
 
 /obj/item/stack/medical/ointment
-	name = "ointment"
+	name = "burn ointment"
 	desc = "Basic burn ointment, rated effective for second degree burns with proper bandaging, though it's still an effective stabilizer for worse burns. Not terribly good at outright healing burns though."
 	gender = PLURAL
 	singular_name = "ointment"
@@ -281,6 +302,7 @@
 	max_amount = 8
 	self_delay = 40
 	other_delay = 20
+	repeating = TRUE
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
@@ -298,6 +320,16 @@
 	user.visible_message(span_suicide("[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
 
+/obj/item/stack/medical/ointment/antiseptic
+	name = "antiseptic ointment"
+	desc = "A specialized ointment, designed with preventing infections in mind."
+	icon_state = "aointment"
+	amount = 15
+	max_amount = 15
+	heal_burn = 3
+	sanitization = 1.0 // its main purpose is to disinfect
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 10)
+
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
 	desc = "A bacteriostatic mesh used to dress burns."
@@ -314,7 +346,7 @@
 	flesh_regeneration = 3
 
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
-	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 2)
 
 /obj/item/stack/medical/mesh/Initialize()
 	. = ..()
@@ -366,7 +398,7 @@
 
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
-	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	desc = "An advanced mesh made with sterilizing chemicals, used to treat burns."
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
@@ -390,9 +422,11 @@
 	self_delay = 20
 	other_delay = 10
 	novariants = TRUE
+	repeating = TRUE
 	amount = 20
 	max_amount = 20
-	var/heal = 3
+	var/heal = 5 //aloe is good for the burns but does not sterilize much at all
+	sanitization = 0.1
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
 /obj/item/stack/medical/aloe/heal(mob/living/M, mob/user)
@@ -401,7 +435,8 @@
 		to_chat(user, span_warning("[M] is dead! You can not help [M.p_them()]."))
 		return FALSE
 	if(iscarbon(M))
-		return heal_carbon(M, user, heal, heal)
+		M.adjustFireLoss(-heal, TRUE) //there's other, infinitely better ways to heal brute damage.
+		return
 	if(isanimal(M))
 		var/mob/living/simple_animal/critter = M
 		if (!(critter.healable))

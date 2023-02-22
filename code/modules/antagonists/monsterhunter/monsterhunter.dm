@@ -8,6 +8,7 @@
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
+	preview_outfit = /datum/outfit/monsterhunter
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
@@ -69,7 +70,7 @@
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 
-	
+
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
 	var/datum/antagonist/monsterhunter/monsterhunterdatum = has_antag_datum(/datum/antagonist/monsterhunter)
@@ -119,13 +120,13 @@
 
 /// TAKEN FROM: /datum/action/changeling/pheromone_receptors    // pheromone_receptors.dm    for a version of tracking that Changelings have!
 /datum/status_effect/agent_pinpointer/hunter_edition
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	minimum_range = HUNTER_SCAN_MIN_DISTANCE
 	tick_interval = HUNTER_SCAN_PING_TIME
 	duration = 10 SECONDS
 	range_fuzz_factor = 5 //PINPOINTER_EXTRA_RANDOM_RANGE
 
-/obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
+/atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	name = "Monster Tracking"
 	desc = "You always know where the hellspawn are."
 
@@ -155,3 +156,12 @@
 	if(scan_target)
 		to_chat(owner, span_notice("You've lost the trail."))
 	. = ..()
+
+/datum/outfit/monsterhunter
+	name = "Monster Hunter"
+
+	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
+	uniform = /obj/item/clothing/under/rank/chaplain
+	suit = /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
+	l_hand = /obj/item/stake
+	r_hand = /obj/item/stake/hardened/silver

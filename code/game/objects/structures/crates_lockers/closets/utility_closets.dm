@@ -176,4 +176,4 @@
 /obj/structure/closet/ammunitionlocker/PopulateContents()
 	..()
 	for(var/i in 1 to 3)
-		new /obj/item/storage/box/beanbag(src)
+		new /obj/item/storage/box/rubbershot(src)

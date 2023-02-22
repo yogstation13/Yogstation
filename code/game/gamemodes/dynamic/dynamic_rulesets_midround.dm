@@ -291,6 +291,7 @@
 	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
 	repeatable = TRUE
+	minimum_players = 27
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
@@ -324,7 +325,7 @@
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
 	flags = HIGH_IMPACT_RULESET
-	minimum_players = 40
+	minimum_players = 32
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -350,6 +351,47 @@
 
 //////////////////////////////////////////////
 //                                          //
+//          INFILTRATORS (MIDROUND)         //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration
+	name = "Infiltration"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = ANTAG_DATUM_INFILTRATOR
+	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
+	required_enemies = list(3,3,3,3,2,2,1,1,0,0)
+	required_candidates = 5
+	weight = 3
+	cost = 22
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	var/list/agents_cap = list(2,2,3,3,4,5,5,5,5,5)
+	var/datum/team/infiltrator/sit_team
+	flags = HIGH_IMPACT_RULESET
+	minimum_players = 25
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/acceptable(population=0, threat=0)
+	if (locate(/datum/dynamic_ruleset/roundstart/infiltration) in mode.executed_rules)
+		return FALSE 
+	indice_pop = min(agents_cap.len, round(living_players.len/5)+1)
+	required_candidates = agents_cap[indice_pop]
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/ready(forced = FALSE)
+	if (required_candidates > (dead_players.len + list_observers.len))
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/finish_setup(mob/new_character, index)
+	new_character.mind.special_role = "Syndicate Infiltrator"
+	new_character.mind.assigned_role = "Syndicate Infiltrator"
+	if(!sit_team)
+		sit_team = new /datum/team/infiltrator
+	new_character.mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	sit_team.update_objectives()
+
+//////////////////////////////////////////////
+//                                          //
 //              BLOB (GHOST)                //
 //                                          //
 //////////////////////////////////////////////
@@ -359,51 +401,17 @@
 	antag_datum = /datum/antagonist/blob
 	antag_flag = ROLE_BLOB
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(4,3,2,2,1,0,0,0,0,0)
 	required_candidates = 1
 	weight = 2
-	cost = 10
+	cost = 30
 	requirements = list(100,100,100,80,60,50,45,30,20,20)
-	repeatable = TRUE
+	repeatable = FALSE
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
 	var/body = applicant.become_overmind()
 	return body
-
-// Infects a random player, making them explode into a blob.
-/datum/dynamic_ruleset/midround/blob_infection
-	name = "Blob Infection"
-	antag_datum = /datum/antagonist/blob
-	antag_flag = ROLE_BLOB
-	protected_roles = list("Prisoner", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
-	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
-	required_candidates = 1
-	weight = 2
-	cost = 10
-	requirements = list(101,101,101,80,60,50,30,20,10,10)
-	repeatable = TRUE
-
-/datum/dynamic_ruleset/midround/blob_infection/trim_candidates()
-	..()
-	candidates = living_players
-	for(var/mob/living/player as anything in candidates)
-		var/turf/player_turf = get_turf(player)
-		if(!player_turf || !is_station_level(player_turf.z))
-			candidates -= player
-			continue
-
-		if(player.mind && (player.mind.special_role || length(player.mind.antag_datums) > 0))
-			candidates -= player
-
-/datum/dynamic_ruleset/midround/blob_infection/execute()
-	if(!candidates || !candidates.len)
-		return FALSE
-	var/mob/living/carbon/human/blob_antag = pick_n_take(candidates)
-	assigned += blob_antag.mind
-	blob_antag.mind.special_role = antag_flag
-	return ..()
 
 //////////////////////////////////////////////
 //                                          //
@@ -416,18 +424,16 @@
 	antag_datum = /datum/antagonist/xeno
 	antag_flag = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(4,3,2,2,1,0,0,0,0,0)
 	required_candidates = 1
 	weight = 3
-	cost = 20
+	cost = 30 //these things impact a round probably more than most game-defining antags, ffs.
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
-	repeatable = TRUE
+	repeatable = FALSE
 	var/list/vents = list()
 	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
-	// 50% chance of being incremented by one
-	required_candidates += prob(50)
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
 		if(QDELETED(temp_vent))
 			continue
@@ -471,6 +477,7 @@
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/nightmare/execute()
 	for(var/X in GLOB.xeno_spawn)
@@ -515,10 +522,11 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 4
-	cost = 10
+	cost = 15
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon/execute()
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
@@ -558,9 +566,9 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 5
-	cost = 25
+	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
-	minimum_players = 25
+	minimum_players = 15
 
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
@@ -669,6 +677,7 @@
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/datum/team/abductor_team/new_team
+	minimum_players = 25
 
 /datum/dynamic_ruleset/midround/from_ghosts/abductors/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
@@ -715,6 +724,11 @@
 /datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/living/player in living_players)
+		if(iscarbon(player))
+			var/mob/living/carbon/C = player
+			if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+				living_players -= player
+				continue
 		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
 			living_players -= player
 		else if(is_centcom_level(player.z))

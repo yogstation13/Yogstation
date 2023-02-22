@@ -54,7 +54,7 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.75
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -76,7 +76,7 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.5
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 	var/datum/component/waddle
 	var/enabled_waddle = TRUE
@@ -155,6 +155,7 @@
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
 	item_state = "winterboots"
+	clothing_flags = NOSLIP_ICE
 	permeability_coefficient = 0.15
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
@@ -185,6 +186,7 @@
 	name = "mining boots"
 	desc = "Steel-toed mining boots for mining in hazardous environments. Very good at keeping toes uncrushed."
 	icon_state = "explorer"
+	clothing_flags = NOSLIP_ICE
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
@@ -241,6 +243,7 @@
 	icon_state = "jetboots"
 	item_state = "jetboots"
 	resistance_flags = FIRE_PROOF
+	clothing_flags = NOSLIP_ICE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
 	permeability_coefficient = 0.05
@@ -333,6 +336,10 @@
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
 	actions_types = list(/datum/action/item_action/kindleKicks)
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 3
+	light_on = FALSE
 	var/lightCycle = 0
 	var/active = FALSE
 
@@ -340,18 +347,19 @@
 	if(active)
 		return
 	active = TRUE
-	set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-	addtimer(CALLBACK(src, .proc/lightUp), 5)
+	set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+	set_light_on(active)
+	addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 
 /obj/item/clothing/shoes/kindleKicks/proc/lightUp(mob/user)
 	if(lightCycle < 15)
-		set_light(2, 3, rgb(rand(0,255),rand(0,255),rand(0,255)))
-		lightCycle += 1
-		addtimer(CALLBACK(src, .proc/lightUp), 5)
+		set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
+		lightCycle++
+		addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
 	else
-		set_light(0)
 		lightCycle = 0
 		active = FALSE
+		set_light_on(active)
 
 /obj/item/clothing/shoes/russian
 	name = "russian boots"
@@ -520,7 +528,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/science
@@ -528,7 +536,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/xeno_wraps/medical
@@ -544,7 +552,7 @@
 	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
-	xenoshoe = YES_DIGIT 
+	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/airshoes
@@ -556,16 +564,16 @@
 	var/airToggle = FALSE
 	var/obj/vehicle/ridden/scooter/airshoes/A
 	permeability_coefficient = 0.05
-	var/recharging_time = 0 
+	var/recharging_time = 0
 	var/jumpdistance = 7 //Increased distance so it might see some offensive use
 	var/jumpspeed = 5 //fast
-	var/recharging_rate = 60 
+	var/recharging_rate = 60
 	syndicate = TRUE
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
 	A = new/obj/vehicle/ridden/scooter/airshoes(null)
-	
+
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
@@ -586,7 +594,7 @@
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
-		
+
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
 			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
@@ -620,7 +628,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	slowdown = -0.2
 
-/obj/item/clothing/shoes/drip/equipped(mob/user, slot,) 
+/obj/item/clothing/shoes/drip/equipped(mob/user, slot,)
 	. = ..()
 	if(slot == SLOT_SHOES)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripjordan", /datum/mood_event/dripjordan)
@@ -631,6 +639,10 @@
 
 /obj/item/clothing/shoes/drip/dropped(mob/user)
 	. = ..()
-	SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
-	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_SHOES) == src)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
 

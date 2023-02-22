@@ -1,6 +1,9 @@
 /datum/job/cmo
 	title = "Chief Medical Officer"
+	description = "Coordinate doctors and other medbay employees, ensure they \
+		know how to save lives, check for injuries on the crew monitor."
 	flag = CMO_JF
+	orbit_icon = "user-md"
 	department_head = list("Captain")
 	department_flag = MEDSCI
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -29,10 +32,19 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	minimal_character_age = 30 //Do you knoW HOW MANY JOBS YOU HAVE TO KNOW TO DO?? This should really be like 35 or something
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/command,
+	)
 
-/datum/job/cmo/proc/OmegaStationChanges()
-	return TRUE
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/organ_spawner = 10,
+		/obj/effect/spawner/lootdrop/memeorgans = 8,
+		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 4,
+		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
+	)
+
+	smells_like = "blood-soaked stress"
 
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"
@@ -50,9 +62,9 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen/paramedic
-	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
-
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med

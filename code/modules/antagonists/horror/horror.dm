@@ -9,7 +9,7 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 5
+	see_in_dark = 8
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")
@@ -94,7 +94,7 @@
 	else
 		return ..()
 //Yogs end
-	
+
 /mob/living/simple_animal/horror/AltClickOn(atom/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
@@ -106,7 +106,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 4 SECONDS))
+		if(!do_mob(src, C, 3 SECONDS))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -138,7 +138,7 @@
 	if(!src || !hud_used)
 		return
 	var/datum/hud/chemical_counter/H = hud_used
-	var/obj/screen/counter = H.chemical_counter
+	var/atom/movable/screen/counter = H.chemical_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[chemicals]</font></div>"
 
 /mob/living/simple_animal/horror/proc/can_use_ability()
@@ -321,7 +321,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	if(victim)
 		to_chat(src, span_warning("You cannot emote while inside a host!"))
 		return
@@ -357,7 +357,16 @@
 				var/datum/action/innate/horror/H = has_ability(/datum/action/innate/horror/chameleon)
 				H.Activate()
 			Update_Invisibility_Button()
+			var/removeBonus = FALSE
+			if(iscyborg(A))
+				if(has_upgrade("dmg_up"))
+					removeBonus = TRUE
+					melee_damage_lower += 5
+					melee_damage_upper += 10
 			..()
+			if(removeBonus)
+				melee_damage_lower -= 5
+				melee_damage_upper -= 10
 
 /mob/living/simple_animal/horror/ex_act()
 	if(victim)
@@ -583,7 +592,7 @@
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
 
-	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+	if(HAS_TRAIT_FROM(victim, TRAIT_BADDNA, CHANGELING_DRAIN))
 		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
 		return
 
@@ -778,7 +787,7 @@
 	if(victim.health <= 75)
 		detatch()
 		to_chat(src, span_warning("It appears that [victim]s brain detected danger, and hastily took over."))
-		to_chat(victim, span_danger("Your body is under attack, you unconciously forced your brain to immediately take over!"))
+		to_chat(victim, span_danger("Your body is under attack, you unconsciously forced your brain to immediately take over!"))
 
 /mob/living/simple_animal/horror/proc/detatch()
 	if(!victim || !controlling)
@@ -850,3 +859,4 @@
 	else
 		RemoveInfestActions()
 		GrantHorrorActions()
+

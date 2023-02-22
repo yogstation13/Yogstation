@@ -2,7 +2,7 @@
 	cost = 500
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
-	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned)
+	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned, /obj/structure/closet/crate/mail, /obj/structure/closet/crate/coffin)
 
 /datum/export/large/crate/total_printout(datum/export_report/ex, notes = TRUE) // That's why a goddamn metal crate costs that much.
 	. = ..()
@@ -29,6 +29,7 @@
 	cost = 250//50 wooden crates cost 2000 points, and you can make 10 coffins in seconds with those planks. Each coffin selling for 250 means you can make a net gain of 500 points for wasting your time making coffins.
 	unit_name = "coffin"
 	export_types = list(/obj/structure/closet/crate/coffin)
+	exclude_types = list()
 
 /datum/export/large/reagent_dispenser
 	cost = 100 // +0-400 depending on amount of reagents left

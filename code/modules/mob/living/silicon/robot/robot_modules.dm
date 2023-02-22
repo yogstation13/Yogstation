@@ -391,7 +391,7 @@
 			T.cell.give(S.e_cost * coeff)
 			T.update_icon()
 		else
-			T.charge_tick = 0
+			T.charge_timer = 0
 
 /obj/item/robot_module/peacekeeper
 	name = "Peacekeeper"
@@ -484,7 +484,7 @@
 		/obj/item/pneumatic_cannon/pie/selfcharge/cyborg,
 		/obj/item/razor,					//killbait material
 		/obj/item/lipstick/purple,
-		/obj/item/reagent_containers/spray/waterflower/cyborg,
+		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/borg/lollipop/clown,
 		/obj/item/picket_sign/cyborg,
@@ -586,6 +586,7 @@
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/miner,
 		/obj/item/clockwork/weapon/ratvarian_spear,
+		/datum/action/innate/call_weapon/brass_bow,
 		/obj/item/borg/sight/xray/truesight_lens)
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"

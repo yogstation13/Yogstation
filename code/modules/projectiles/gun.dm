@@ -19,20 +19,22 @@
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
 	cryo_preserve = TRUE
+	fryable = TRUE
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
 	var/obj/item/suppressor/suppressed	//whether or not a message is displayed when fired
+	var/obj/item/enloudener/enloudened	//whether or not an additional sound is played
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gunshot_silenced.ogg'
 	var/suppressed_volume = 10
 	var/can_unsuppress = TRUE
-	var/recoil = 0						//boom boom shake the room
+	var/recoil = 0					//boom boom shake the room
 	var/clumsy_check = TRUE
 	var/obj/item/ammo_casing/chambered = null
-	trigger_guard = TRIGGER_GUARD_NORMAL	//trigger guard on the weapon, hulks can't fire them with their big meaty fingers
+	trigger_guard = TRIGGER_GUARD_NORMAL//trigger guard on the weapon, hulks can't fire them with their big meaty fingers
 	var/sawn_desc = null				//description change if weapon is sawn-off
 	var/sawn_off = FALSE
 	var/burst_size = 1					//how large a burst is
@@ -40,7 +42,8 @@
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
-	var/spread = 0						//Spread induced by the gun itself.
+	var/spread = 5						//Spread induced by the gun itself. SEE LINE BELOW.
+	var/semi_auto_spread = 5			//Equal to the value above by default. The spread that a weapon will have if it is switched to semi-auto from a burst-fire mode.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -60,6 +63,14 @@
 	var/knife_x_offset = 0
 	var/knife_y_offset = 0
 
+	var/list/available_attachments = list() // What attachments can this gun have
+	var/max_attachments = 0 // How many attachments can this gun hold, recommend not going over 5
+
+	var/list/current_attachments = list()
+	var/list/attachment_overlays = list()
+	var/attachment_flags = 0
+	var/attachment_actions = list()
+
 	var/ammo_x_offset = 0 //used for positioning ammo count overlay on sprite
 	var/ammo_y_offset = 0
 	var/flight_x_offset = 0
@@ -73,6 +84,8 @@
 	var/datum/action/toggle_scope_zoom/azoom
 	var/recent_shoot = null //time of the last shot with the gun. Used to track if firing happened for feedback out of all things
 
+	var/list/obj/effect/projectile/tracer/current_tracers
+
 /obj/item/gun/Initialize()
 	. = ..()
 	if(pin)
@@ -82,6 +95,7 @@
 			pin = new pin(src)
 	if(gun_light)
 		alight = new(src)
+	current_tracers = list()
 	build_zooming()
 
 /obj/item/gun/Destroy()
@@ -112,6 +126,10 @@
 		clear_bayonet()
 	if(A == gun_light)
 		clear_gunlight()
+	if(A in current_attachments)
+		var/obj/item/attachment/T = A
+		T.on_detach(src)
+		
 	return ..()
 
 /obj/item/gun/CheckParts(list/parts_list)
@@ -148,9 +166,18 @@
 			. += span_info("[bayonet] looks like it can be <b>unscrewed</b> from [src].")
 	else if(can_bayonet)
 		. += "It has a <b>bayonet</b> lug on it."
+	
+	for(var/obj/item/attachment/A in current_attachments)
+		. += "It has \a [A] affixed to it."
 
 /obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()
+	for(var/obj/item/attachment/A in current_attachments)
+		A.set_user(user)
+		if(user.is_holding(src))
+			A.pickup_user(user)
+		else
+			A.equip_user(user)
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
@@ -169,19 +196,20 @@
 
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
-	if(recoil)
+	if(recoil > 0)
 		shake_camera(user, recoil + 1, recoil)
 
 	if(suppressed)
 		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound)
-		if(suppressed.break_chance && prob(suppressed.break_chance))
+		if(istype(suppressed) && suppressed.break_chance && prob(suppressed.break_chance))
 			to_chat(user, span_warning("\the [suppressed] falls apart!"))
 			w_class -= suppressed.w_class
 			qdel(suppressed)
 			suppressed = null
 			update_icon()
-
 	else
+		if(enloudened && enloudened.enloudened_sound)
+			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
 		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 		if(message)
 			if(pointblank)
@@ -208,7 +236,7 @@
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
-		if(ismob(target) && user.a_intent == INTENT_GRAB)
+		if(ismob(target) && user.a_intent == INTENT_GRAB && !istype(user.mind.martial_art, /datum/martial_art/ultra_violence))//remove gunpoint from ipc martial art, it's slow
 			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
 				if(G && G.weapon == src) //spam check
 					return
@@ -331,6 +359,9 @@
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
 
+	for(var/obj/item/attachment/A in current_attachments)
+		A.on_gun_fire(src)
+
 	add_fingerprint(user)
 
 	if(semicd)
@@ -339,10 +370,11 @@
 	var/sprd = 0
 	var/randomized_gun_spread = 0
 	var/rand_spr = rand()
-	if(spread)
+	if(spread > 0)
 		randomized_gun_spread =	rand(0,spread)
-	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
-		bonus_spread += 25
+	if(ishuman(user)) //nice shootin' tex
+		var/mob/living/carbon/human/H = user
+		bonus_spread += H.dna.species.aiminginaccuracy
 	var/randomized_bonus_spread = rand(0, bonus_spread)
 
 	if(burst_size > 1)
@@ -405,6 +437,41 @@
 /obj/item/gun/attackby(obj/item/I, mob/user, params)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
+	else if (istype(I, /obj/item/attachment))
+		var/support = FALSE
+
+		for(var/n in available_attachments)
+			if(istype(I, n))
+				support = TRUE
+				break
+
+		if(!support)
+			to_chat(user, span_warning("\The [src] does not support \the [I]!"))
+			return ..()
+
+		var/already_has = FALSE
+		for(var/n in current_attachments)
+			if(istype(I, n))
+				already_has = TRUE
+				break
+		
+		if(already_has)
+			to_chat(user, span_warning("\The [src] already has \a [I]!"))
+			return ..()
+		
+		if(LAZYLEN(current_attachments) >= max_attachments)
+			to_chat(user, span_warning("\The [src] has no more room for any more attachments!"))
+			return ..()
+
+		var/obj/item/attachment/A = I
+
+		if(A.attachment_type != 0 && ((attachment_flags &= A.attachment_type) != 0))
+			to_chat(user, span_warning("\The [src] does not have any available places to attach \the [I] onto!"))
+			return ..()
+
+		to_chat(user, span_notice("You [A.attach_verb] \the [I] into place on [src]."))
+		A.on_attach(src, user)
+
 	else if(istype(I, /obj/item/flashlight/seclite))
 		if(!can_flashlight)
 			return ..()
@@ -413,9 +480,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
-			if(S.on)
-				set_light(0)
-			gun_light = S
+			set_gun_light(S)
 			update_gunlight()
 			alight = new(src)
 			if(loc == user)
@@ -445,17 +510,31 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	if((can_flashlight && gun_light) && (can_bayonet && bayonet)) //give them a choice instead of removing both
+	
+	var/has_fl = FALSE
+	var/has_bayo = FALSE
+	var/amt_modular = LAZYLEN(current_attachments)
+	if(can_flashlight && gun_light)
+		has_fl = TRUE
+	if(bayonet && can_bayonet)
+		has_bayo = TRUE
+	
+	var/attachments_amt = amt_modular + has_fl + has_bayo
+	if(attachments_amt > 1) //give them a choice instead of removing both
 		var/list/possible_items = list(gun_light, bayonet)
+		possible_items += current_attachments
 		var/obj/item/item_to_remove = input(user, "Select an attachment to remove", "Attachment Removal") as null|obj in possible_items
 		if(!item_to_remove || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return
 		return remove_gun_attachment(user, I, item_to_remove)
 
-	else if(gun_light && can_flashlight) //if it has a gun_light and can_flashlight is false, the flashlight is permanently attached.
+	else if(amt_modular == 1)
+		return remove_gun_attachment(user, I, current_attachments[1], "unscrewed")
+
+	else if(has_fl) //if it has a gun_light and can_flashlight is false, the flashlight is permanently attached.
 		return remove_gun_attachment(user, I, gun_light, "unscrewed")
 
-	else if(bayonet && can_bayonet) //if it has a bayonet, and the bayonet can be removed
+	else if(has_bayo) //if it has a bayonet, and the bayonet can be removed
 		return remove_gun_attachment(user, I, bayonet, "unfix")
 
 /obj/item/gun/proc/remove_gun_attachment(mob/living/user, obj/item/tool_item, obj/item/item_to_remove, removal_verb)
@@ -466,6 +545,10 @@
 
 	if(Adjacent(user) && !issilicon(user))
 		user.put_in_hands(item_to_remove)
+
+	if(istype(item_to_remove, /obj/item/attachment))
+		var/obj/item/attachment/A = item_to_remove
+		return A.on_detach(src, user)
 
 	if(item_to_remove == bayonet)
 		return clear_bayonet()
@@ -485,11 +568,27 @@
 	if(!gun_light)
 		return
 	var/obj/item/flashlight/seclite/removed_light = gun_light
-	gun_light = null
+	set_gun_light(null)
 	update_gunlight()
 	removed_light.update_brightness()
 	QDEL_NULL(alight)
 	return TRUE
+
+///Called when gun_light value changes.
+/obj/item/gun/proc/set_gun_light(obj/item/flashlight/seclite/new_light)
+	if(gun_light == new_light)
+		return
+	. = gun_light
+	gun_light = new_light
+	if(gun_light)
+		gun_light.set_light_flags(gun_light.light_flags | LIGHT_ATTACHED)
+		if(gun_light.loc != src)
+			gun_light.forceMove(src)
+	else if(.)
+		var/obj/item/flashlight/seclite/old_gun_light = .
+		old_gun_light.set_light_flags(old_gun_light.light_flags & ~LIGHT_ATTACHED)
+		if(old_gun_light.loc == src)
+			old_gun_light.forceMove(get_turf(src))
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, alight))
@@ -503,6 +602,7 @@
 
 	var/mob/living/carbon/human/user = usr
 	gun_light.on = !gun_light.on
+	gun_light.update_brightness()
 	to_chat(user, span_notice("You toggle the gunlight [gun_light.on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
@@ -510,10 +610,6 @@
 
 /obj/item/gun/proc/update_gunlight()
 	if(gun_light)
-		if(gun_light.on)
-			set_light(gun_light.brightness_on)
-		else
-			set_light(0)
 		cut_overlay(flashlight_overlay, TRUE)
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
 		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
@@ -523,21 +619,47 @@
 		flashlight_overlay.pixel_y = flight_y_offset
 		add_overlay(flashlight_overlay, TRUE)
 	else
-		set_light(0)
 		cut_overlay(flashlight_overlay, TRUE)
 		flashlight_overlay = null
-	update_icon(TRUE)
+	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
+/obj/item/gun/proc/update_attachments()
+	for(var/mutable_appearance/M in attachment_overlays)
+		cut_overlay(M, TRUE)
+	attachment_overlays = list()
+
+	var/att_position = 0
+	for(var/obj/item/attachment/A in current_attachments)
+		var/mutable_appearance/M = mutable_appearance('icons/obj/guns/attachment.dmi', "[A.icon_state]_a")
+		M.pixel_x = att_position * 6
+		add_overlay(M, TRUE)
+		attachment_overlays += M
+		att_position += 1
+
+	update_icon(TRUE)
+	for(var/datum/action/A as anything in actions)
+		A.UpdateButtonIcon()
+
 /obj/item/gun/pickup(mob/user)
 	..()
+	for(var/obj/item/attachment/A in current_attachments)
+		A.set_user(user)
+		A.pickup_user(user)
+	for(var/datum/action/att_act in attachment_actions)
+		att_act.Grant(user)
 	if(azoom)
 		azoom.Grant(user)
 
 /obj/item/gun/dropped(mob/user)
 	. = ..()
+	for(var/obj/item/attachment/A in current_attachments)
+		A.set_user()
+		A.drop_user(user)
+	for(var/datum/action/att_act in attachment_actions)
+		att_act.Remove(user)
 	if(azoom)
 		azoom.Remove(user)
 	if(zoomed)

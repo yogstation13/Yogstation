@@ -1,12 +1,14 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE)
+/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
 	for(var/path in GLOB.uplink_items)
 		var/datum/uplink_item/I = new path
 		if(!I.item)
+			continue
+		if(I.include_uplinks.len && !(uplink_type in I.include_uplinks))
 			continue
 		if(I.include_modes.len)
 			if(!gamemode && SSticker.mode && !(SSticker.mode.type in I.include_modes))
@@ -22,8 +24,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			continue
 		if (I.restricted && !allow_restricted)
 			continue
-		if(istype(I, /datum/uplink_item/new_objective) && prob(50))
-			continue
+
 		if(!filtered_uplink_items[I.category])
 			filtered_uplink_items[I.category] = list()
 		filtered_uplink_items[I.category][I.name] = I
@@ -95,6 +96,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/surplus = 100 // Chance of being included in the surplus crate.
 	var/cant_discount = FALSE
 	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
+	var/list/include_uplinks = list("Uplink") // Uplink types this is in
 	var/list/include_modes = list() // Game modes to allow this item in.
 	var/list/exclude_modes = list() // Game modes to disallow this item from.
 	var/list/restricted_roles = list() //If this uplink item is only available to certain roles. Roles are dependent on the frequency chip or stored ID.
@@ -217,15 +219,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These items are collectively worth more than 20 telecrystals, but you do not know which specialization \
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
-	cost = 20
+	cost = 20 //These are 20 TC for a reason; sacrifice modularity for a pre-determined kit that will define your strategy
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
-			In Syndi-kit Special, you will receive items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
+			In Syndi-kit Special, you will receive items used by famous Syndicate agents of the past. Collectively worth more than 20 telecrystals, the Syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
-	cost = 20
+	cost = 20 //See above
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/surplus
@@ -271,8 +273,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/random
 	name = "Random Item"
 	desc = "Picking this will purchase a random item. Useful if you have some TC to spare or if you haven't decided on a strategy yet."
-	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
+	item = /obj/item/stack/sheet/cardboard
 	cost = 0
+	illegal_tech = FALSE
 
 /datum/uplink_item/bundles_TC/random/purchase(mob/user, datum/component/uplink/U)
 	var/list/uplink_items = U.uplink_items
@@ -317,6 +320,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // Dangerous Items
 /datum/uplink_item/dangerous
 	category = "Conspicuous Weapons"
+
+/datum/uplink_item/dangerous/busterarm
+	name = "Buster Arm"
+	desc = "A box containing a combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user\
+	can send people and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected\
+	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions."
+	item = /obj/item/storage/box/syndie_kit/buster
+	cost = 15
+	manufacturer = /datum/corporation/traitor/cybersun
+	surplus = 0
 
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
@@ -410,6 +423,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/dangerous/backstab
+	name = "Backstabbing Switchblade"
+	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
+			Still does a moderate amount of damage when applied from the front."
+	item = /obj/item/switchblade/backstab
+	cost = 5
+	// backstabs are pretty funny, clown ops can have this one
+
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
@@ -477,14 +498,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Slaughter your enemies through sheer force, prone to overheating with extended use. We made this gun so advanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
-	cost = 36
+	cost = 30
 	surplus = 0
 	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/dangerous/carbine
-	name = "M-90gl Carbine"
-	desc = "A fully-loaded, specialized three-round burst carbine that fires 5.56mm ammunition from a 30 round magazine \
+/datum/uplink_item/dangerous/rifle
+	name = "M-90gl Rifle"
+	desc = "A fully-loaded, specialized three-round burst rifle that fires 5.56mm ammunition from a 30 round magazine \
 			with a toggleable 40mm underbarrel grenade launcher."
 	item = /obj/item/gun/ballistic/automatic/m90
 	cost = 18
@@ -501,6 +522,24 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/dangerous/vxtvulhammer
+	name = "Vxtvul Hammer"
+	desc = "The Vxtvul Hammer is a sledgehammer once utilized by the ancient Vxtrin species. \
+			This weapon must be wielded in two hands to be used effectively, but possesses high armor penetration. \
+			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
+			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
+	item = /obj/item/twohanded/vxtvulhammer
+	cost = 8
+	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
+
+/datum/uplink_item/dangerous/nukiedmr
+	name = "K-41s Designated Marksman Rifle"
+	desc = "A long-range rifle that fires powerful 7.62 rounds from an 11-round magazine. It possesses \
+			a short-range scope to better see over distances."
+	item = /obj/item/gun/ballistic/automatic/k41s
+	cost = 12
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
@@ -570,7 +609,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
-	cost = 12
+	cost = 6
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -602,6 +641,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
+/datum/uplink_item/stealthy_weapons/dart_pistol
+	name = "Box of Chemical Shotgun Darts"
+	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
+			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
+			out of their arm. Be careful not to mix them up with actual beanbag slugs!"
+	item = /obj/item/storage/box/beanbag/syndie_darts
+	cost = 2
+	surplus = 0 // useless for most people
+
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "Dehydrated Space Carp"
 	desc = "Looks like a plush toy carp, but just add water and it becomes a real-life space carp! Activate in \
@@ -618,6 +666,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 
+/datum/uplink_item/stealthy_weapons/donkbat
+	name = "Toy Baseball Bat"
+	desc = "A weighted solid plastic baseball bat, perfect for knocking the wind out of people."
+	item = /obj/item/melee/classic_baton/donkbat
+	cost = 6
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 0
+
 /datum/uplink_item/stealthy_weapons/martialarts
 	name = "Martial Arts Scroll"
 	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
@@ -631,14 +687,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Miniature Energy Crossbow"
 	desc = "A short bow mounted across a tiller in miniature. \
 	Small enough to fit into a pocket or slip into a bag unnoticed. \
-	It will synthesize and fire bolts tipped with a debilitating \
-	toxin that will damage and disorient targets, causing them to \
-	slur as if inebriated. It can produce an infinite number \
+	It will synthesize and fire bolts tipped with some debilitating \
+	toxins that will irradiate and tire, causing them to \
+	be silenced. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 10
-	surplus = 50
-	limited_stock = 1
+	cost = 8
+	surplus = 30
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/origami_kit
@@ -665,6 +720,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
+	surplus = 0 //Hijack-only, don't let this exist in surplus
 	cant_discount = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -699,37 +755,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistolap
-	name = "10mm Armour Piercing Magazine"
+/datum/uplink_item/ammo/pistol/ap
+	name = "10mm Armor-Piercing Magazine"
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistolhp
-	name = "10mm Hollow Point Magazine"
+/datum/uplink_item/ammo/pistol/hp
+	name = "10mm Hollow-Point Magazine"
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistolsleepy
+/datum/uplink_item/ammo/pistol/sleepy
 	name = "Pair of 10mm Soporific Magazines"
 	desc = "A box that contains 2 additional 8-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
 	item = /obj/item/storage/box/syndie_kit/pistolsleepyammo
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistolfire
+/datum/uplink_item/ammo/pistol/fire
 	name = "10mm Incendiary Magazine"
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/ammo/pistol/emp
+	name = "10mm EMP Magazine"
+	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin pistol. \
+			Loaded with bullets which release micro-electromagnetic pulses on hit, disrupting electronics on the target hit."
+	item = /obj/item/ammo_box/magazine/m10mm/emp
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
@@ -737,9 +791,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/shotgun/bag
 	name = "12g Ammo Duffel Bag"
-	desc = "A duffel bag filled with enough 12g ammo to supply an entire team, at a discounted price."
+	desc = "A duffel bag containing three 12g buckshot drums, three 12g slug drums, and two 12g flechette drums for the Bulldog shotgun, bundled together at a discount."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
-	cost = 12
+	cost = 12 //Instead of 18
 
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
@@ -751,40 +805,91 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An alternative 8-round dragon's breath magazine for use in the Bulldog shotgun. \
 			'I'm a fire starter, twisted fire starter!'"
 	item = /obj/item/ammo_box/magazine/m12g/dragon
-	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/shotgun/frag
+	name = "12g Frag-12 Drum"
+	desc = "An alternative 8-round frag-12 magazine for use in the Bulldog shotgun. \
+			'Collateral is my favorite kind of damage!'"
+	cost = 3
+	item = /obj/item/ammo_box/magazine/m12g/frag
 
 /datum/uplink_item/ammo/shotgun/meteor
 	name = "12g Meteorslug Shells"
 	desc = "An alternative 8-round meteorslug magazine for use in the Bulldog shotgun. \
 			Great for blasting airlocks off their frames and knocking down enemies."
 	item = /obj/item/ammo_box/magazine/m12g/meteor
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/shotgun/slug
 	name = "12g Slug Drum"
 	desc = "An additional 8-round slug magazine for use with the Bulldog shotgun. \
 			Now 8 times less likely to shoot your pals."
-	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/slug
-
-/datum/uplink_item/ammo/shotgun/hpbuck
-	name = "12g Hollow-Point Buckshot Drum"
-	desc = "An alternative 8-round hollow-point buckshot magazine for use with the Bulldog shotgun. For when you really need to put people in the dirt."
-	item = /obj/item/ammo_box/magazine/m12g/hpbuck
 
 /datum/uplink_item/ammo/shotgun/flechette
 	name = "12g Flechette Drum"
-	desc = "An alternative 8-round flechette magazine for use with the Bulldog shotgun. Hope they didnt want to use that armor..."
+	desc = "An alternative 8-round flechette magazine for use with the Bulldog shotgun. \
+			Tighter spread and armor penetration; make 'em bleed."
+	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/flechette
 
 /datum/uplink_item/ammo/revolver
-	name = ".357 Speed Loader"
-	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
-			For when you really need a lot of things dead."
-	item = /obj/item/ammo_box/a357
-	cost = 2
+	name = ".357 Speed Loader Box"
+	desc = "A box with two .357 speed loaders. These speed loaders contain seven .357 rounds each; usable with the Syndicate revolver."
+	item = /obj/item/storage/box/syndie_kit/revolverammo
+	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/ironfeather
+	name = ".357 Ironfeather Speed Loader Box"
+	desc = "A box with two .357 Ironfeather speed loaders. These speed loaders contain seven .357 Ironfeather shells; usable with the Syndicate revolver. \
+			Ironfeather shells contain six pellets which are less damaging than buckshot but mildly better over range."
+	item = /obj/item/storage/box/syndie_kit/revolvershotgunammo
+
+/datum/uplink_item/ammo/revolver/nutcracker
+	name = ".357 Nutcracker Speed Loader"
+	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
+			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
+	item = /obj/item/ammo_box/a357/nutcracker
+
+/datum/uplink_item/ammo/revolver/metalshock
+	name = ".357 Metalshock Speed Loader"
+	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
+			These rounds convert some lethality into an electric payload, which can bounce between targets."
+	item = /obj/item/ammo_box/a357/metalshock
+
+/datum/uplink_item/ammo/revolver/heartpiercer
+	name = ".357 Heartpiercer Speed Loader"
+	desc = "A speed loader that contains seven .357 Heartpiercer rounds; usable with the Syndicate revolver. \
+			These rounds are less damaging, but penetrate through armor and up to two bodies at once."
+	item = /obj/item/ammo_box/a357/heartpiercer
+
+/datum/uplink_item/ammo/revolver/wallstake
+	name = ".357 Wallstake Speed Loader"
+	desc = "A speed loader that contains seven .357 Wallstake rounds; usable with the Syndicate revolver. \
+			These blunt rounds are slightly less damaging but can knock people against walls."
+	item = /obj/item/ammo_box/a357/wallstake
+
+/datum/uplink_item/ammo/rifle
+	name = "5.56mm Toploader Magazine"
+	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
+			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
+	item = /obj/item/ammo_box/magazine/m556
+	cost = 4
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/rifle/ap
+	name = "5.56mm Armor-Piercing Toploader Magazine"
+	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
+			These rounds are less damaging but puncture through armor easily."
+	item = /obj/item/ammo_box/magazine/m556/ap
+	cost = 6
+
+/datum/uplink_item/ammo/rifle/inc
+	name = "5.56mm Incendiary Toploader Magazine"
+	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
+			These rounds are less damaging but ignite targets."
+	item = /obj/item/ammo_box/magazine/m556/inc
 
 /datum/uplink_item/ammo/a40mm
 	name = "40mm Grenade"
@@ -796,9 +901,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/smg/bag
 	name = ".45 Ammo Duffel Bag"
-	desc = "A duffel bag filled with enough .45 ammo to supply an entire team, at a discounted price."
+	desc = "A duffel bag containing five standard .45 magazines, two AP .45 magazines, and two HP .45 magazines for the C-20r submachine gun, bundled together at a discount."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
-	cost = 20 //instead of 27 TC
+	cost = 20 //instead of 29 TC
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/smg
@@ -808,14 +913,60 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/ammo/sniper
+/datum/uplink_item/ammo/smg/ap
+	name = ".45 Armor-Piercing SMG Magazine"
+	desc = "An additional 24-round armor-piercing .45 magazine suitable for use with the C-20r submachine gun. \
+			These rounds deal reduced damage but will bypass most protective gear."
+	item = /obj/item/ammo_box/magazine/smgm45/ap
 	cost = 4
+
+/datum/uplink_item/ammo/smg/hp
+	name = ".45 Hollow-Point SMG Magazine"
+	desc = "An additional 24-round hollow-point .45 magazine suitable for use with the C-20r submachine gun. \
+			These rounds deal high damage but are weak against body armor."
+	item = /obj/item/ammo_box/magazine/smgm45/hp
+
+/datum/uplink_item/ammo/smg/venom
+	name = ".45 Venom SMG Magazine"
+	desc = "An additional 24-round venom .45 magazine suitable for use with the C-20r submachine gun. \
+			These rounds deal reduced damage but inject venom into targets."
+	item = /obj/item/ammo_box/magazine/smgm45/venom
+	cost = 4
+
+/datum/uplink_item/ammo/nukiedmr
+	name = "7.62 Rifle Magazine"
+	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62 rounds."
+	item = /obj/item/ammo_box/magazine/ks762
+	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/ammo/sniper/basic
+/datum/uplink_item/ammo/nukiedmr/raze
+	name = "7.62 Raze Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Raze 7.62 rounds. \
+			These rounds do notably less damage, but release radium dust in targets that severely damages their DNA structure."
+	item = /obj/item/ammo_box/magazine/ks762/raze
+	cost = 4
+
+/datum/uplink_item/ammo/nukiedmr/pen
+	name = "7.62 Anti-Material Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with anti-material 7.62 rounds. \
+			These rounds offer less stopping power, but pierce through a couple of objects before stopping."
+	item = /obj/item/ammo_box/magazine/ks762/pen
+	cost = 5
+
+/datum/uplink_item/ammo/nukiedmr/vulcan
+	name = "7.62 Vulcan Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Vulcan 7.62 rounds. \
+			These rounds are loaded with an incendiary payload that causes fire to erupt out upon impact."
+	item = /obj/item/ammo_box/magazine/ks762/vulcan
+	cost = 4
+
+/datum/uplink_item/ammo/sniper
 	name = ".50 Magazine"
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
 	item = /obj/item/ammo_box/magazine/sniper_rounds
+	cost = 4
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/sniper/penetrator
 	name = ".50 Penetrator Magazine"
@@ -830,14 +981,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/sniper_rounds/soporific
 	cost = 6
 
-/datum/uplink_item/ammo/carbine
-	name = "5.56mm Toploader Magazine"
-	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl carbine. \
-			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
-	item = /obj/item/ammo_box/magazine/m556
-	cost = 4
-	include_modes = list(/datum/game_mode/nuclear)
-
 /datum/uplink_item/ammo/machinegun
 	cost = 6
 	surplus = 0
@@ -850,7 +993,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/mm712x82
 
 /datum/uplink_item/ammo/machinegun/ap
-	name = "7.12x82mm (Armor Penetrating) Box Magazine"
+	name = "7.12x82mm (Armor-Piercing) Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with special properties \
 			to puncture even the most durable armor."
 	item = /obj/item/ammo_box/magazine/mm712x82/ap
@@ -862,7 +1005,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			with the unarmored masses of crew."
 	item = /obj/item/ammo_box/magazine/mm712x82/hollow
 
-/datum/uplink_item/ammo/machinegun/incen
+/datum/uplink_item/ammo/machinegun/inc
 	name = "7.12x82mm (Incendiary) Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; tipped with a special flammable \
 			mixture that'll ignite anyone struck by the bullet. Some men just want to watch the world burn."
@@ -1018,7 +1161,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
 	var/code = program.bombcode
 
-	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your BomberMan code is : [code]."))
 	if(user.mind)
 		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
@@ -1138,6 +1281,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 35
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/wheelchair
+	name = "Explosive Wheelchair"
+	desc = "A wheelchair with a high yield bomb strapped to it... why would anyone ever want this?"
+	item = /obj/item/wheelchair/explosive
+	cost = 4
+	surplus = 0
+	limited_stock = 1
+	include_modes = list(/datum/objective/martyr)
+
 //Support and Mechs
 /datum/uplink_item/support
 	category = "Support and Exosuits"
@@ -1196,26 +1348,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
-	cost = 80
+	cant_discount = TRUE
+	cost = 60 //Yogs change
 
 /datum/uplink_item/support/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 80
+	cost = 35 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+	cant_discount = TRUE
+	
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
 	item = /obj/mecha/combat/marauder/mauler/loaded
-	cost = 140
+	cant_discount = TRUE
+	cost = 105 //Yogs change
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
 
+/datum/uplink_item/stealthy_tools/spy_bug
+	name = "Box of Spy Bugs"
+	desc = "A box of 10 spy bugs. These attach onto the target invisibly and cannot be removed, and broadcast all they hear to the secure syndicate channel.\
+	Can be attached to animals and objects. Does not come with a syndicate encryption key."
+	item = /obj/item/storage/box/syndie_kit/bugs
+	cost = 1
 /datum/uplink_item/stealthy_tools/agent_card
 	name = "Agent Identification Card"
 	desc = "Agent cards prevent artificial intelligences from tracking the wearer, and can copy access \
@@ -1235,6 +1396,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/multitool/ai_detect
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/stealthy_tools/shadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 10
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/stealthy_tools/nuclearshadowcloak
+	name = "Cloaker Belt"
+	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/shadowcloak
+	cost = 20
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/syndireverse
 	name = "Bluespace Projectile Weapon Disrupter"
@@ -1474,25 +1649,36 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 1
 
 /datum/uplink_item/device_tools/frame
-	name = "F.R.A.M.E. PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you five PDA viruses which \
-			when used cause the targeted PDA to become a new uplink with zero TCs, and immediately become unlocked. \
-			You will receive the unlock code upon activating the virus, and the new uplink may be charged with \
-			telecrystals normally."
-	item = /obj/item/cartridge/virus/frame
+	name = "F.R.A.M.E. Program"
+	desc = "This program allows you to use five viruses which when used cause the targeted \
+			computer to become a new uplink with zero TC, and immediately become unlocked. \
+			You will receive the unlock code upon activating the virus, \
+			and the new uplink may be charged with telecrystals normally."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/frame
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted = TRUE
 
+/datum/uplink_item/device_tools/frame/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/item/computer_hardware/hard_drive/portable/syndicate/frame/framedisk = .
+	var/datum/computer_file/program/frame/program = framedisk.find_file_by_name("frame")
+	var/code = program.framecode
+
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your F.R.A.M.E. code is : [code]."))
+	if(user.mind)
+		user.mind.store_memory("F.R.A.M.E. code for [U.parent] : [code]")
+
 /datum/uplink_item/device_tools/failsafe
 	name = "Failsafe Uplink Code"
 	desc = "When entered the uplink will self-destruct immediately."
-	item = /obj/effect/gibspawner/generic
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate // Doesn't spawn
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // Yogs: infiltration
+	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
@@ -1511,6 +1697,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			fit in any standard Nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
+
+/datum/uplink_item/device_tools/tactical_gloves
+	name = "Tactical Fingerless Gloves"
+	desc = "A pair of simple fabric gloves without fingertips that allow one to perform tasks faster and act quicker in unarmed manuevers. \
+			Also greatly assists with the carrying of bodies."
+	item = /obj/item/clothing/gloves/fingerless/bigboss
+	cost = 2
 
 /datum/uplink_item/device_tools/hacked_module
 	name = "Hacked AI Law Upload Module"
@@ -1560,11 +1753,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/roburger_recipe
 	name = "Roburger crafting recipe"
 	desc = "This book contains legendary knowledge about how to make roburgers. \
-			Roburgers turn people into cyborgs after a short while when eaten. \
-			This book doesn't dissaper after use, so consider hiding it somewhere."
+			Roburgers turn people into cyborgs when eaten after a short while. \
+			This book doesn't disappear after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
 	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/supermatter_delaminator
@@ -1700,12 +1893,44 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Prisoner Transport Bag"
 	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
 	item = /obj/item/bodybag/environmental/prisoner/syndicate
-	cost = 7
+	cost = 2
+
+/datum/uplink_item/device_tools/holo_sight
+	name = "Holographic Sight"
+	desc = "A high-tech holographic sight that improves the aim of the weapon it's attached to."
+	item = /obj/item/attachment/scope/holo
+	cost = 2
+
+/datum/uplink_item/device_tools/vert_grip
+	name = "Vertical Grip"
+	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
+	item = /obj/item/attachment/grip/vertical
+	cost = 2
+
+/datum/uplink_item/device_tools/laser_sight
+	name = "Laser Sight"
+	desc = "An aesthetic laser sight that improves your accuracy and shows you where you're aiming."
+	item = /obj/item/attachment/laser_sight
+	cost = 2
+
+/datum/uplink_item/device_tools/mechpilotguide
+	name = "Mech Piloting for Dummies"
+	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
+	item = /obj/item/book/granter/mechpiloting
+	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"
 	surplus = 50
+
+/datum/uplink_item/implants/reusable
+	name = "Reusable Autosurgeon"
+	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
+	item = /obj/item/autosurgeon/suspicious
+	cost = 5
+	// Nukies have no use for this and their autosurgeons are already multi-use
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
@@ -1793,7 +2018,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
 			Undetectable (except via surgery), and excellent for escaping confinement."
 	item = /obj/item/storage/box/syndie_kit/imp_uplink
-	cost = UPLINK_IMPLANT_TELECRYSTAL_COST
+	cost = UPLINK_IMPLANT_TELECRYSTAL_COST //4 TC
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
@@ -1819,11 +2044,50 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
-	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
-	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
+	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/implants/noslipall
+	name = "Slip Prevention Implant"
+	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	item = /obj/item/multisurgeon/noslipall
+	cost = 6	//tax for them being nigh impossible to steal or lose
+
+/datum/uplink_item/implants/airshoes
+	name = "Air Shoes Implant"
+	desc = "As a result of extreme popularity of the Air Shoes an implant version was developed. Just like the boots there are jets allowing the users to reach high speeds for prolonged durations and short bursts."
+	item = /obj/item/multisurgeon/airshoes
+	cost = 6	//2 tc tax for them being nigh impossible to steal or lose
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/implants/spinal
+	name = "Neural Overclocker Implant"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	cost = 14
+	surplus = 0
+	limited_stock = 1
+
+/datum/uplink_item/implants/augmentation
+	name = "Full Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Provides superior damage resistance, immunity to cold and vacuum, \
+			but renders the subject vulnerable to electromagnetic pulses. They will also require repair with a welder and wires, rather than traditional medicine."
+	item = /obj/item/storage/box/syndie_kit/augmentation
+	cost = 15
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/implants/superior_augmentation
+	name = "Superior Augmentation Kit"
+	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
+			Finally, it includes an implant to render the subject and their innards immune to EMP; however, it will shut down briefly if triggered too often. Repair of the body will still require a welder and wires."
+	item = /obj/item/storage/box/syndie_kit/augmentation/superior
+	cost = 45
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
 
 // Events
 /datum/uplink_item/services
@@ -1895,13 +2159,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
 	cost = 6
 	item = /obj/item/dnainjector/firebreath
-	restricted_species = list("lizard")
+	restricted_species = list("lizard", "draconid")
 
 /datum/uplink_item/race_restricted/flyingfang
 	name = "Flying Fang Tablet"
 	desc = "This tablet contains a set of old lizard fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
 	cost = 14
 	item = /obj/item/book/granter/martial/flyingfang
+	restricted_species = list("lizard", "draconid")
+
+/datum/uplink_item/race_restricted/dragonjuice
+	name = "Refined Dragons Blood"
+	desc = "This bottle of blood, painstakingly extracted from the corpse of a slain ash drake and refined down to just its pure essence, should awaken the more draconic side of any ordinary, weak little lizard!"
+	cost = 7
+	item = /obj/item/dragons_blood/syndicate
 	restricted_species = list("lizard")
 
 /datum/uplink_item/race_restricted/angelcoolboy
@@ -1909,7 +2180,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
 	cost = 5
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
-	restricted_species = list("human")
+	restricted_species = list("human", "lizard", "moth", "skeleton", "preternis", "ipc")
+
+/datum/uplink_item/race_restricted/hammerimplant
+	name = "Vxtvul Hammer Implant"
+	desc = "An implant which will fold a Vxtvul hammer into your chassis upon injection. \
+			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
+			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
+			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
+	cost = 10
+	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
+	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/killertomatos
 	name = "Killer Tomatoes"
@@ -1967,11 +2248,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
 
-/datum/uplink_item/support/honker
+/datum/uplink_item/role_restricted/honker
 	name = "Dark H.O.N.K."
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
-	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 35
+	item = /obj/mecha/combat/honker/dark/crew/loaded
+	cost = 20
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
@@ -2098,7 +2379,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/his_grace
 	cost = 20
 	restricted_roles = list("Chaplain")
-	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
+	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
 	name = "Horror-in-a-box"
@@ -2167,10 +2448,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/chemical_gun
-	name = "Reagent Dartgun"
-	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 100u of reagents."
-	item = /obj/item/gun/chem
-	cost = 12
+	name = "Rapid Syringe Gun"
+	desc = "A modified syringe gun with a rotating drum, capable of holding and quickly firing six syringes."
+	item = /obj/item/gun/syringe/rapidsyringe
+	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
@@ -2207,6 +2488,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
 	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
+
+/datum/uplink_item/role_restricted/letterbomb
+	name = "Explosive letter"
+	desc = "A letter with a pipe bomb in it, select the recipient and send it on it's merry way."
+	item = /obj/item/mail/explosive
+	cost = 1
+	restricted_roles = list("Quartermaster","Cargo Technician")
 
 // Pointless
 /datum/uplink_item/badass
@@ -2246,9 +2534,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiefedora
 	name = "Syndicate Fedora"
-	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style! Layered with immensively protective fibers! \
+			The fedora can be activated to extend sharp blades out of its rim, functioning as a saw-like melee weapon that can be thrown for immense damage. Upon successfully hitting an object, the fedora will boomerang back to your hands."
 	item = /obj/item/clothing/head/det_hat/evil
-	cost = 3
+	cost = 6
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
@@ -2287,6 +2576,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 0 //not because its too strong, but rather because it shouldn't be polluting the pool for other items
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndiebears/sleepy
+	name = "Sleepy Gummy Bears"
+	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	item = /obj/item/storage/pill_bottle/gummies/sleepy
+	cost = 2
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 1 //rare. I feel sorry for the poor bastard that gets scammed by these
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndietape
 	name = "Guerrilla Tape"
@@ -2316,62 +2622,654 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	illegal_tech = FALSE
 
-/datum/uplink_item/new_objective
-	name = "Request Objective (RANDOM)"
-	category = "Request Objectives"
-	desc = "Sends a single-use signal to your employers, where they will determine your new objective \
-			and send down a folder to a random location containing your new instructions. \
-			Upon completion, you will be rewarded depending on the difficulty of the objective."
-	item = /obj/item/folder/red
-	cost = 0
-	surplus = 0
+/// NT Uplink items
+/datum/uplink_item/nt
+	surplus = 0 // Chance of being included in the surplus crate.
+	include_uplinks = list("NTUplink")
+	illegal_tech = FALSE
+	cant_discount = TRUE //no i dont want amber erts with tasers thanks
+	var/required_ert_uplink = null //Do we need a specific uplink? Defaults to universal.
+
+/datum/uplink_item/nt/energy_weps
+	category = "Energy Weapons"
+
+/datum/uplink_item/nt/energy_weps/egun
+	name = "Energy Gun"
+	desc = "A standard energy gun with disable and laser modes equipped."
+	item = /obj/item/gun/energy/e_gun
+	cost = 3
+	limited_stock = 2 //One for you and a friend, no infinite guns though
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/energy_weps/tac_egun
+	name = "Tactical Energy Gun"
+	desc = "A military-grade augmented energy gun, fitted with a tasing mode."
+	item = /obj/item/gun/energy/e_gun/stun
+	cost = 20
 	limited_stock = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/energy_weps/mini_egun
+	name = "Miniature Energy Gun"
+	desc = "A smaller model of the standard energy gun that holds much less charge."
+	item = /obj/item/gun/energy/e_gun/mini
+	cost = 1
+	limited_stock = 1
+
+/datum/uplink_item/nt/energy_weps/laserrifle
+	name = "Laser Rifle"
+	desc = "An abnormality in energy weaponry. Chambers a laser magazine which can be recharged externally."
+	item = /obj/item/gun/ballistic/automatic/laser
+	cost = 8
+	limited_stock = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/energy_weps/m1911
+	name = "Spur"
+	desc = "A legendary slowly self-charging pistol with massive recoil that deals more damage the more charge it has."
+	item = /obj/item/gun/energy/polarstar/spur
+	cost = 10
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/energy_weps/pulsecarbine
+	name = "Pulse Carbine"
+	desc = "A severely lethal energy carbine that fires additionaly fires pulse rounds. Must be recharged instead of reloaded."
+	item = /obj/item/gun/energy/pulse/carbine
+	cost = 45
+	required_ert_uplink = NT_ERT_TROOPER //Medics and engies can buy pulse pistols
+
+/datum/uplink_item/nt/energy_weps/pulsepistol
+	name = "Pulse Pistol"
+	desc = "A severely lethal but compact version of the Pulse Carbine design. Holds significantly less charge. \
+			Must be recharged instead of reloaded."
+	item = /obj/item/gun/energy/pulse/pistol
+	cost = 35
+
+/datum/uplink_item/nt/energy_weps/pulsedestroyer
+	name = "Pulse Destroyer"
+	desc = "LOG-ENTRY ERROR. DEATH. DEATH. DEATH. KILL. DESTROY. NONE LEFT ALIVE."
+	item = /obj/item/gun/energy/pulse/destroyer
+	cost = 100
+
+/datum/uplink_item/nt/ball_weps
+	category = "Ballistic Weapons"
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/ball_weps/boarder
+	name = "NT-ARG 'Boarder' Rifle"
+	desc = "A heavy-damage 3-round burst assault rifle. Chambered in 5.56mm."
+	item = /obj/item/gun/ballistic/automatic/ar
+	cost = 18
+	limited_stock = 1
+
+/datum/uplink_item/nt/ball_weps/lwtdmr
+	name = "LWT-650 DMR"
+	desc = "A designated marksman rifle that deals hefty damage. Chambered in .308."
+	item = /obj/item/gun/ballistic/automatic/lwt650
+	cost = 10
+	limited_stock = 1
+
+/datum/uplink_item/nt/ball_weps/saber
+	name = "NT-SABR 'Saber' SMG"
+	desc = "A low-damage 3-round burst SMG. Chambered in 9mm."
+	item = /obj/item/gun/ballistic/automatic/proto/unrestricted
+	cost = 7
+
+/datum/uplink_item/nt/ball_weps/wtcarbine
+	name = "WT-550 Automatic Carbine"
+	desc = "A classic 2-round burst carbine with a number of ammo options. Chambered in 4.6x30mm."
+	item = /obj/item/gun/ballistic/automatic/wt550
+	cost = 5
+	required_ert_uplink = null
+
+/datum/uplink_item/nt/ball_weps/m1911
+	name = "M1911"
+	desc = "A classic .45 sidearm with a small magazine capacity."
+	item = /obj/item/gun/ballistic/automatic/pistol/m1911
+	cost = 3
+	required_ert_uplink = null
+
+/datum/uplink_item/nt/ball_weps/tommygun
+	name = "Thompson SMG"
+	desc = "An archaic but incredibly effective high-capacity 4-round burst SMG. Wildly inaccurate. Can't fit in backpacks."
+	item = /obj/item/gun/ballistic/automatic/tommygun
+	cost = 9
+	limited_stock = 2 // SAY HELLO TO MY LITTLE FRIEND
+
+/datum/uplink_item/nt/ammo
+	category = "Ammunition"
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/ammo/recharger
+	name = "Weapon Recharger"
+	desc = "Standard issue energy weapon recharger. Must be anchored in an APC-powered area."
+	item = /obj/machinery/recharger
+	cost = 2
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/ammo/powerpack
+	name = "Power Pack"
+	desc = "An additional 20-round laser magazine; suitable for use with the laser rifle."
+	item = /obj/item/ammo_box/magazine/recharge
+	cost = 5
+
+/datum/uplink_item/nt/ammo/arg
+	name = "5.56mm Magazine"
+	desc = "An additional 30-round 5.56mm magazine; suitable for use with the NT-ARG."
+	item = /obj/item/ammo_box/magazine/r556
+	cost = 4
+
+/datum/uplink_item/nt/ammo/arg/ap
+	name = "5.56 AP Magazine"
+	desc = "An alternative 30-round 5.56 magazine loaded with armor-piercing rounds; suitable for use with the NT-ARG."
+	item = /obj/item/ammo_box/magazine/r556/ap
+	cost = 6
+
+/datum/uplink_item/nt/ammo/arg/inc
+	name = "5.56 Incendiary Magazine"
+	desc = "An alternative 30-round 5.56 magazine loaded with incendiary rounds; suitable for use with the NT-ARG."
+	item = /obj/item/ammo_box/magazine/r556/inc
+
+/datum/uplink_item/nt/ammo/arg/rubber
+	name = "5.56 Rubber Magazine"
+	desc = "An alternative 30-round 5.56 magazine loaded with less-lethal rounds; suitable for use with the NT-ARG."
+	item = /obj/item/ammo_box/magazine/r556/rubber
+
+/datum/uplink_item/nt/ammo/lwt
+	name = ".308 Magazine"
+	desc = "An additional 15-round .308 magazine; suitable for use with the LWT-650."
+	item = /obj/item/ammo_box/magazine/m308
+	cost = 2
+
+/datum/uplink_item/nt/ammo/lwt/penetrator
+	name = ".308 Penetrator Magazine"
+	desc = "An alternative 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
+			These rounds do less damage but puncture bodies and body armor alike."
+	item = /obj/item/ammo_box/magazine/m308/pen
+	cost = 4
+
+/datum/uplink_item/nt/ammo/lwt/laser
+	name = ".308 Heavy Laser Magazine"
+	desc = "An alternative 15-round .308 heavy laser magazine; suitable for use with the LWT-650. \
+			These rounds fire heavy lasers which do much more than a standard laser. The magazine is rechargable like the laser rifle's."
+	item = /obj/item/ammo_box/magazine/m308/laser
+	cost = 7
+
+/datum/uplink_item/nt/ammo/tommyammo
+	name = ".45 Drum Magazine"
+	desc = "An additional 50-round .45 drum magazine; suitable for use with the Thompson SMG."
+	item = /obj/item/ammo_box/magazine/tommygunm45
+	cost = 4
+
+/datum/uplink_item/nt/ammo/m45ammo
+	name = ".45 Handgun Magazine"
+	desc = "An additional 8-round .45 magazine; suitable for use with the M1911."
+	item = /obj/item/ammo_box/magazine/m45
+	cost = 2
+	required_ert_uplink = null
+
+/datum/uplink_item/nt/ammo/saberammo
+	name = "9mm Magazine"
+	desc = "An additional 21-round 9mm magazine; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm
+	cost = 1
+
+/datum/uplink_item/nt/ammo/saberammo/ap
+	name = "9mm AP Magazine"
+	desc = "An additional 21-round 9mm magazine loaded with armor-piercing rounds; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm/ap
+	cost = 2
+
+/datum/uplink_item/nt/ammo/saberammo/inc
+	name = "9mm Incendiary Magazine"
+	desc = "An additional 21-round 9mm magazine loaded with incendiary rounds; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm/inc
+
+/datum/uplink_item/nt/ammo/wt
+	name = "4.6x30mm Magazine"
+	desc = "An additional 20-round 4.6x30mm magazine; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9
+	cost = 2
+	required_ert_uplink = null
+
+/datum/uplink_item/nt/ammo/wt/ap
+	name = "4.6x30mm AP Magazine"
+	desc = "An additional 20-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtap
+	cost = 4
+
+/datum/uplink_item/nt/ammo/wt/ic
+	name = "4.6x30mm Incendiary Magazine"
+	desc = "An additional 20-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtic
+	cost = 4
+
+/datum/uplink_item/nt/ammo/wt/r
+	name = "4.6x30mm Rubber Shot Magazine"
+	desc = "An additional 20-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtr
+	cost = 1
+
+/datum/uplink_item/nt/mech
+	category = "Exosuits"
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/mech/marauder
+	name = "Marauder exosuit"
+	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting four pieces of equipment."
+	item = /obj/mecha/combat/marauder
+	cost = 12
+
+/datum/uplink_item/nt/mech/seraph
+	name = "Seraph exosuit"
+	desc = "An ultra-heavy exosuit designed for destroying armies. Faster, tougher, and stronger than it's Marauder cousin."
+	item = /obj/mecha/combat/marauder/seraph/unloaded
+	cost = 30
+
+/datum/uplink_item/nt/mech/laser
+	name = "CH-PS Laser"
+	desc = "A mounted laser cannon. Fires standard lasers."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+	cost = 2
+
+/datum/uplink_item/nt/mech/hades
+	name = "FNX-99 Carbine"
+	desc = "A mounted incendiary cannon. Fires bullets that do little damage, but light targets on fire."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
+	cost = 4
+
+/datum/uplink_item/nt/mech/scattershot
+	name = "LBX AC 10"
+	desc = "A mounted shotgun. Fires a larger variant of buckshot, making it devastating at close range."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	cost = 4
+
+/datum/uplink_item/nt/mech/lmg
+	name = "Ultra AC 2"
+	desc = "A mounted machine gun, fires in three round bursts."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
+	cost = 4
+
+/datum/uplink_item/nt/mech/missile_launcher
+	name = "SRM-8"
+	desc = "A mounted missile rack."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+	cost = 4
+
+/datum/uplink_item/nt/mech/pulse
+	name = "eZ-13"
+	desc = "A mounted heavy pulse cannon capable of firing heavy pulses, which can destroy multiple walls at once as well as decimating soft targets."
+	item = /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
+	cost = 10
+
+/datum/uplink_item/nt/mech/droid
+	name = "Repair droid"
+	desc = "A repair droid that will patch up most damage to a mech. Consumes a lot of power in the process."
+	item = /obj/item/mecha_parts/mecha_equipment/repair_droid
+	cost = 2
+
+/datum/uplink_item/nt/mech/tesla
+	name = "Tesla relay"
+	desc = "A remote, passive recharger for mechs. Very, very slow."
+	item = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	cost = 1
+
+/datum/uplink_item/nt/mech/hadesammo
+	name = "FNX-99 Ammunition"
+	desc = "An ammo box for the FNX-99 carbine."
+	item = /obj/item/mecha_ammo/incendiary
+	cost = 1
+
+/datum/uplink_item/nt/mech/scattershotammo
+	name = "LBX AC 10 Ammunition"
+	desc = "An ammo box for the LBX AC 10."
+	item = /obj/item/mecha_ammo/scattershot
+	cost = 1
+
+/datum/uplink_item/nt/mech/ultrammo
+	name = "Ultra AC 2 Ammunition"
+	desc = "An ammo box for the Ultra AC 2"
+	item = /obj/item/mecha_ammo/lmg
+	cost = 1
+
+/datum/uplink_item/nt/mech/missiles
+	name = "SRM-8 Missiles"
+	desc = "Additional missiles for the SRM-8 missile launcher."
+	item = /obj/item/mecha_ammo/missiles_he
+	cost = 1
+
+/datum/uplink_item/nt/cqc
+	category = "Close Quarters Combat"
+
+/datum/uplink_item/nt/cqc/esword
+	name = "Energy Sword"
+	desc = "The energy sword is an edged weapon with a blade of pure energy. The sword is small enough to be \
+			pocketed when inactive."
+	item = /obj/item/melee/transforming/energy/sword/saber
+	cost = 8
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/eshield
+	name = "Energy Shield"
+	desc = "A shield that blocks all energy projectiles but is useless against physical attacks."
+	item = /obj/item/shield/energy
+	cost = 16
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/ntmantisblade
+	name = "H.E.P.H.A.E.S.T.U.S. Mantis Blades"
+	desc = "A pair of retractable arm-blade implants. Activating both will let you double-attack."
+	item = /obj/item/storage/briefcase/nt_mantis
+	cost = 14
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/sblade
+	name = "Switchblade"
+	desc = "A less flashy but surprisingly robust pocket knife."
+	item = /obj/item/switchblade
+	cost = 1
+
+/datum/uplink_item/nt/cqc/cqc
+	name = "CQC Manual"
+	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
+	item = /obj/item/book/granter/martial/cqc
+	cost = 13
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/teleshield
+	name = "Telescopic Shield"
+	desc = "A foldable shield that blocks attacks when active but can break."
+	item = /obj/item/shield/riot/tele
+	cost = 3
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/stunbaton
+	name = "Stun Baton"
+	desc = "A robust charged baton that will swiftly take down most criminals."
+	item = /obj/item/melee/baton/loaded
+	cost = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/cqc/telebaton
+	name = "Telescopic Baton"
+	desc = "A foldable baton that doesn't run on charge. Takes more hits to down, but swings faster."
+	item = /obj/item/melee/classic_baton/telescopic
+	cost = 1 //Engies and medics can buy these, like normal ERTs!
+
+/datum/uplink_item/nt/cqc/flash
+	name = "Flash"
+	desc = "A bright flashing device that can disable silicons and blind humans."
+	item = /obj/item/assembly/flash
+	cost = 1
+
+/datum/uplink_item/nt/support
+	category = "Support"
+
+/datum/uplink_item/nt/support/c4
+	name = "Composition C-4"
+	desc = "C-4 is plastic explosive of the common variety Composition C. You can use it to breach walls, disrupt equipment, or connect \
+			an assembly to it in order to alter the way it detonates. It can be attached to almost all objects and has a modifiable timer with a \
+			minimum setting of 10 seconds."
+	item = /obj/item/grenade/plastic/c4
+	cost = 1
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/x4
+	name = "Composition X-4"
+	desc = "A variety of plastic explosive with a stronger explosive charge. It is both safer to use and is capable of breaching even the most secure areas."
+	item = /obj/item/grenade/plastic/x4
+	cost = 3
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/medkit
+	name = "Medic Kit"
+	desc = "A station-standard medical kit. Stocked with sutures, regenerative mesh, medical gauze, \
+			a health analyzer, and an epinephrine pen."
+	item = /obj/item/storage/firstaid/regular
+	cost = 1
+
+/datum/uplink_item/nt/support/advmedkit
+	name = "Tactical Combat Medic Kit"
+	desc = "Included is a combat stimulant injector \
+			for rapid healing, a medical night vision HUD for quick identification of injured personnel, \
+			and other supplies helpful for a field medic."
+	item = /obj/item/storage/firstaid/tactical
+	cost = 4
+	required_ert_uplink = NT_ERT_MEDIC //Only real medics get the good stuff
+
+/datum/uplink_item/nt/support/healermech
+	name = "Healer Nanite Serum"
+	desc = "An auto-injector full of reverse-engineered syndicate healing nanites. These will quickly repair most damage on a patient, pre-filled with fifteen doses."
+	item = /obj/item/reagent_containers/autoinjector/combat/healermech
+	cost = 8
+	required_ert_uplink = NT_ERT_MEDIC
+
+/datum/uplink_item/nt/support/resurrectormech
+	name = "Resurrector Nanite Serum"
+	desc = "A single-use superdose of nanites capable of fully repairing a body, including replacing lost organs and limbs and restoring blood volume. Will do nothing to a living person."
+	item = /obj/item/reagent_containers/autoinjector/medipen/resurrector
+	cost = 8
+	required_ert_uplink = NT_ERT_MEDIC
+
+/datum/uplink_item/nt/support/medbeam
+	name = "Medbeam Gun"
+	desc = "A wonder of Nanotrasen engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
+			officers in the fight, even while under fire. Don't cross the streams!"
+	item = /obj/item/gun/medbeam
+	cost = 7
+	limited_stock = 1
+
+/datum/uplink_item/nt/support/toolbelt
+	name = "Full Toolbelt"
+	desc = "Comes pre-stocked with every engineering tool you'll ever need."
+	item = /obj/item/storage/belt/utility/full/engi
+	cost = 1
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/advanced_toolbelt
+	name = "Advanced toolbelt"
+	desc = "A toolbelt filled with advanced tools, for when you need to work quickly."
+	item = /obj/item/storage/belt/utility/chief/full/ert
+	cost = 5
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/rcd
+	name = "Rapid Construction Device"
+	desc = "Standard RCD that can repair or destroy structures very quickly. Holds up to 160 matter units."
+	item = /obj/item/construction/rcd/loaded
+	cost = 2
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/combatrcd
+	name = "Industrial RCD"
+	desc = "Heavy combat RCD that holds up to 500 matter units."
+	item = /obj/item/construction/rcd/combat
+	cost = 5
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/advancedrcd
+	name = "Advanced RCD"
+	desc = "An RCD with improved capacity, although slightly less than an industrial RCD. However, it can construct and deconstruct from range."
+	item = /obj/item/construction/rcd/arcd
+	cost = 10
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/rcdammo
+	name = "Compressed Matter Cartridge"
+	desc = "Highly compressed matter that restores 160 matter units on an RCD."
+	item = /obj/item/rcd_ammo
+	cost = 1
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/support/foamnades
+	name = "Box of Smart Metal Foam Grenades"
+	desc = "A box of 7 smart metal foam grenades to patch hull breaches with."
+	item = /obj/item/storage/box/smart_metal_foam
+	cost = 1
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/hardsuit
+	category = "Armor & Hardsuits"
+
+/datum/uplink_item/nt/hardsuit/armor
+	name = "Armor Vest"
+	desc = "A standard issue security armor vest."
+	item = /obj/item/clothing/suit/armor/vest
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Helmet"
+	desc = "A standard issue security helmet. Can have a seclite attached."
+	item = /obj/item/clothing/head/helmet
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/bulletvest
+	name = "Bulletproof Armor Vest"
+	desc = "An armor vest that is extremely robust against ballistics but weak to everything else."
+	item = /obj/item/clothing/suit/armor/bulletproof
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/bullethelmet
+	name = "Bulletproof Helmet"
+	desc = "A helmet that is extremely robust against ballistics but weak to everything else."
+	item = /obj/item/clothing/head/helmet
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/riotvest
+	name = "Riot Suit"
+	desc = "A bulky suit that protects you against melee attacks but not much else."
+	item = /obj/item/clothing/suit/armor/riot
+	cost = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/hardsuit/riothelmet
+	name = "Riot Helmet"
+	desc = "A helmet that protects you against melee attacks but not much else."
+	item = /obj/item/clothing/head/helmet/riot
+	cost = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/hardsuit/cmd
+	name = "ERT Commander Hardsuit"
+	desc = "Show them who's boss."
+	item = /obj/item/clothing/suit/space/hardsuit/ert
+	cost = 5
+	restricted_roles = list("Emergency Response Commander")
+
+/datum/uplink_item/nt/hardsuit/sec
+	name = "ERT Security Hardsuit"
+	desc = "Make them fear the long arm of law."
+	item = /obj/item/clothing/suit/space/hardsuit/ert/sec
+	cost = 5
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/hardsuit/engi
+	name = "ERT Engineering Hardsuit"
+	desc = "HOW DID YOU DELAMINATE THE SM 5 MINUTES IN?"
+	item = /obj/item/clothing/suit/space/hardsuit/ert/engi
+	cost = 5
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/hardsuit/med
+	name = "ERT Medical Hardsuit"
+	desc = "Dying is illegal."
+	item = /obj/item/clothing/suit/space/hardsuit/ert/med
+	cost = 5
+	required_ert_uplink = NT_ERT_MEDIC
+
+/datum/uplink_item/nt/hardsuit/ds
+	name = "MK.III SWAT Suit"
+	desc = "A prototype hardsuit. Incredibly robust."
+	item = /obj/item/clothing/suit/space/hardsuit/deathsquad
+	cost = 100
 	cant_discount = TRUE
-	var/difficulty = 0 // 0 is random, then 1-3
-	var/timer // Timer to delete if admin forges objective
-	var/admin_forging = FALSE // If an admin is currently forging an objective
-	var/set_on_noforge = FALSE // If the timer expired, but is waiting for an admin to cancel forging
-	var/obj_set = FALSE // If the objective has been set
 
-/datum/uplink_item/new_objective/easy
-	name = "Request Objective (EASY)"
-	difficulty = 1
+/datum/uplink_item/nt/hardsuit/dsshield
+	name = "MK.III Shielded SWAT Suit"
+	desc = "A prototype hardsuit with shielding protection. Incredibly robust."
+	item = /obj/item/clothing/suit/space/hardsuit/shielded/swat
+	cost = 150
+	cant_discount = TRUE
 
-/datum/uplink_item/new_objective/medium
-	name = "Request Objective (MEDIUM)"
-	difficulty = 2
+/datum/uplink_item/nt/gear
+	category = "Other Gear"
 
-/datum/uplink_item/new_objective/hard
-	name = "Request Objective (HARD)"
-	difficulty = 3
+/datum/uplink_item/nt/gear/secbelt
+	name = "Stocked Security Belt"
+	desc = "Standard issue security gear, all in a stylish belt."
+	item = /obj/item/storage/belt/security/full
+	cost = 2
+	required_ert_uplink = NT_ERT_TROOPER
 
-/datum/uplink_item/new_objective/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
-	to_chat(user, span_notice("Signal sent to command. Awaiting response (ETA ~1 minute)..."))
-	var/diff_txt = list("RANDOM", "EASY", "MEDIUM", "HARD")[difficulty+1]
-	message_admins("[ADMIN_LOOKUPFLW(user)] has requested an objective ([diff_txt]). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj=[REF(src)];requester=[REF(user)]'>FORGE CUSTOM OBJECTIVE?</A>) (AUTO SET IN 1 MINUTE)")
-	timer = addtimer(CALLBACK(src, .proc/spawn_objective, user), 1 MINUTES, TIMER_STOPPABLE)
+/datum/uplink_item/nt/gear/flashbangs
+	name = "Box of Flashbangs"
+	desc = "A box of 7 flashbangs to make the crew hate you."
+	item = /obj/item/storage/box/flashbangs
+	cost = 2
+	required_ert_uplink = NT_ERT_TROOPER
 
-/datum/uplink_item/new_objective/proc/spawn_objective(user, _obj, _diff)
-	if(admin_forging) // If the timer expired while an admin was editing it
-		set_on_noforge = TRUE // Set a random objective if the admin decides not to set one
-		return
-	var/new_diff = _diff ? _diff : difficulty
-	obj_set = TRUE
-	var/turf/open/floor/F
-	var/can_see = TRUE
-	var/see_loops = 0 // infinite loop protection
+/datum/uplink_item/nt/gear/handcuffs
+	name = "Box of Handcuffs"
+	desc = "A box of 7 pairs of handcuffs to keep prisoners in line."
+	item = /obj/item/storage/box/handcuffs
+	cost = 1
+	required_ert_uplink = NT_ERT_TROOPER
 
-	while(can_see && see_loops < 40)
-		F = find_safe_turf(dense_atoms = FALSE)
-		can_see = FALSE
-		for(var/mob/living/M in view(13, F))
-			if(M.client)
-				can_see = TRUE
-				break
-		see_loops++
-	
-	return new /obj/item/folder/objective(F, user, _obj, new_diff)
+/datum/uplink_item/nt/gear/bowman
+	name = "Bowman Headset"
+	desc = "A headset specially crafted to protect your ears from any damage, including flashbangs."
+	item = /obj/item/radio/headset/headset_cent/bowman
+	cost = 1
 
-/datum/uplink_item/new_objective/proc/cancelled(user)
-	if(set_on_noforge)
-		spawn_objective(user)
+/datum/uplink_item/nt/gear/sechud
+	name = "Security HUDglasses"
+	desc = "A pair of sunglasses fitted with a security HUD."
+	item = /obj/item/clothing/glasses/hud/security/sunglasses 
+	cost = 1
+	required_ert_uplink = NT_ERT_TROOPER
+
+/datum/uplink_item/nt/gear/medhud
+	name = "Medical HUDglasses"
+	desc = "A pair of sunglasses fitted with a medical HUD."
+	item = /obj/item/clothing/glasses/hud/health/sunglasses
+	cost = 1
+	required_ert_uplink = NT_ERT_MEDIC
+
+/datum/uplink_item/nt/gear/mesonhud
+	name = "Meson Sunglasses"
+	desc = "A pair of sunglasses fitted with meson technology."
+	item = /obj/item/clothing/glasses/meson/sunglasses
+	cost = 1
+	required_ert_uplink = NT_ERT_ENGINEER
+
+/datum/uplink_item/nt/gear/thermalhud
+	name = "Optical Thermal Scanner"
+	desc = "A pair of goggles that provide thermal scanning vision through walls."
+	item = /obj/item/clothing/glasses/thermal
+	cost = 4
+
+/datum/uplink_item/nt/gear/dsmask
+	name = "MK.II SWAT mask"
+	desc = "A strange mask that encrypts your voice so that only others wearing the mask can understand you, \
+			but you won't be able to understand anyone who isn't wearing the mask. \
+			Why would anyone spend this much on a mask?"
+	item = /obj/item/clothing/mask/gas/sechailer/swat/encrypted
+	cost = 10
+
+/datum/uplink_item/nt/gear/ntstamp
+	name = "CentCom Official Stamp"
+	desc = "To let them know you're the real deal."
+	item = /obj/item/stamp/cent
+	cost = 1 
+
+/datum/uplink_item/nt/gear/ntposters
+	name = "Box of Posters"
+	desc = "A box of Nanotrasen-approved posters to boost crew morale."
+	item = /obj/item/storage/box/official_posters
+	cost = 1
+
+/datum/uplink_item/nt/gear/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
+	cost = 1

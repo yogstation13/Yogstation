@@ -2,6 +2,7 @@
 	name = "tongue"
 	desc = "A fleshy muscle mostly used for lying."
 	icon_state = "tonguenormal"
+	visual = FALSE
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
@@ -30,7 +31,8 @@
 		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted,
 		/datum/language/felinid,
-		/datum/language/english
+		/datum/language/english,
+		/datum/language/french
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
@@ -260,7 +262,9 @@
 	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
 
 /obj/item/organ/tongue/robot/emp_act(severity)
-	owner.apply_effect(EFFECT_STUTTER, 120)
+	if(prob(5))
+		return 
+	owner.apply_effect(EFFECT_STUTTER, rand(5 SECONDS, 2 MINUTES))
 	owner.emote("scream")
 	to_chat(owner, "<span class='warning'>Alert: Vocal cords are malfunctioning.</span>")
 

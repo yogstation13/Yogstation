@@ -26,11 +26,11 @@
 	see_in_dark = 8
 	hud_type = /datum/hud/ai
 	med_hud = DATA_HUD_MEDICAL_BASIC
-	sec_hud = DATA_HUD_SECURITY_BASIC				
+	sec_hud = DATA_HUD_SECURITY_BASIC
 	d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	mob_size = MOB_SIZE_LARGE
 
-	invisibility = INVISIBILITY_MAXIMUM  
+	invisibility = INVISIBILITY_MAXIMUM
 
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
@@ -47,7 +47,7 @@
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
-	var/obj/machinery/holopad/pad 
+	var/obj/machinery/holopad/pad
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 
@@ -93,7 +93,7 @@
 	var/chnotify = 0
 
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -122,7 +122,7 @@
 	var/cameraMemoryTickCount = 0
 
 	//Did we get the death prompt?
-	var/is_dying = FALSE 
+	var/is_dying = FALSE
 	///Multiplier for amount of points gained when passively using CPU for science
 	var/research_point_booster = 1
 
@@ -162,11 +162,11 @@
 	to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
 	job = "AI"
-	
+
 
 	create_eye()
 	if(client)
-		apply_pref_name("ai",client)
+		INVOKE_ASYNC(src, .proc/apply_pref_name, /datum/preference/name/ai, client)
 
 	INVOKE_ASYNC(src, .proc/set_core_display_icon)
 
@@ -179,10 +179,7 @@
 
 	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
 
-	aiPDA = new/obj/item/pda/ai(src)
-	aiPDA.owner = real_name
-	aiPDA.ownjob = "AI"
-	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
+	create_modularInterface()
 
 	aiMulti = new(src)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
@@ -196,7 +193,7 @@
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
-		/mob/living/silicon/ai/proc/set_automatic_say_channel))
+		/mob/living/silicon/ai/proc/set_automatic_say_channel, /mob/living/silicon/ai/proc/changeaccent))
 
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
@@ -217,7 +214,7 @@
 			return
 		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
 			_key = text2num(_key)
-			if(client.keys_held["Ctrl"]) //do we assign a new hotkey?
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
 				cam_hotkeys[_key] = eyeobj.loc
 				to_chat(src, "Location saved to Camera Group [_key].")
 				return
@@ -235,7 +232,8 @@
 	malfhack = null
 	apc_override = null
 	GLOB.ai_os.remove_ai(src)
-
+	if(modularInterface)
+		QDEL_NULL(modularInterface)
 	. = ..()
 
 /mob/living/silicon/ai/IgniteMob()
@@ -245,13 +243,13 @@
 /mob/living/silicon/ai/proc/set_core_display_icon(input, client/C)
 	if(client && !C)
 		C = client
-	if(!input && !C?.prefs?.preferred_ai_core_display)
+	if(!input && !C?.prefs?.read_preference(/datum/preference/choiced/ai_core_display))
 		for (var/each in GLOB.ai_core_displays) //change status of displays
 			var/obj/machinery/status_display/ai_core/M = each
 			M.set_ai(initial(icon_state))
 			M.update()
 	else
-		var/preferred_icon = input ? input : C.prefs.preferred_ai_core_display
+		var/preferred_icon = input ? input : C.prefs.read_preference(/datum/preference/choiced/ai_core_display)
 		icon = initial(icon) //yogs
 
 		for (var/each in GLOB.ai_core_displays) //change status of displays
@@ -366,7 +364,7 @@
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	var/datum/browser/alerts = new(usr, "aitalerts", "Current Station Alerts", 400, 410)
+	var/datum/browser/alerts = new(src, "aitalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
 
@@ -455,7 +453,7 @@
 	..()
 	if(usr != src)
 		return
-	
+
 	if(href_list["emergencyAPC"]) //This check comes before incapacitated() because the only time it would be useful is when we have no power.
 		if(!apc_override)
 			to_chat(src, "<span class='notice'>APC backdoor is no longer available.</span>")
@@ -464,8 +462,8 @@
 		return
 
 	if(incapacitated())
-		return	
-	
+		return
+
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0
@@ -550,10 +548,10 @@
 			to_chat(src, span_warning("Old target discarded. Exclusively tracking new target."))
 		else
 			to_chat(src, span_notice("Now tracking new target, [track_name]."))
-		
+
 		cameraMemoryTarget = track_name
 		cameraMemoryTickCount = 0
-	
+
 	if(href_list["instant_download"])
 		if(!href_list["console"])
 			return
@@ -661,7 +659,6 @@
 			queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
 	else
 		queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, A.name), class)
-	if (viewalerts) ai_alerts()
 	return 1
 
 /mob/living/silicon/ai/cancelAlarm(class, area/A, obj/origin)
@@ -678,7 +675,6 @@
 				L -= I
 	if (cleared)
 		queueAlarm("--- [class] alarm in [A.name] has been cleared.", class, 0)
-		if (viewalerts) ai_alerts()
 	return !cleared
 
 //Replaces /mob/living/silicon/ai/verb/change_network() in ai.dm & camera.dm
@@ -765,7 +761,7 @@
 	if(incapacitated())
 		return
 	var/input
-	switch(alert("Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,"Crew Member","Unique","Animal"))
+	switch(tgui_alert(usr,"Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,list("Crew Member","Unique","Animal")))
 		if("Crew Member")
 			var/list/personnel_list = list()
 
@@ -779,7 +775,7 @@
 					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 					holo_icon = getHologramIcon(icon(character_icon))
 			else
-				alert("No suitable records found. Aborting.")
+				tgui_alert(usr,"No suitable records found. Aborting.")
 
 		if("Animal")
 			var/list/icon_list = list(
@@ -796,10 +792,11 @@
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
 			"spider" = 'icons/mob/animal.dmi',
-			"mothroach" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/pets.dmi',
 			"snake" = 'icons/mob/animal.dmi',
 			"goose" = 'icons/mob/animal.dmi',
-			"poppypossum" = 'icons/mob/animal.dmi'
+			"poppypossum" = 'icons/mob/animal.dmi',
+			"axolotl" = 'icons/mob/pets.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
@@ -975,7 +972,7 @@
 		jobpart = "Unknown"
 
 	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span>[span_message("[treated_message]")]</span></i>"
-	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans)
 
 	show_message(rendered, 2)
@@ -990,16 +987,11 @@
 		for(var/mob/living/silicon/robot/Slave in connected_robots)
 			Slave.show_laws()
 
-/mob/living/silicon/ai/replace_identification_name(oldname,newname)
-	if(aiPDA)
-		aiPDA.owner = newname
-		aiPDA.name = newname + " (" + aiPDA.ownjob + ")"
-
 /mob/living/silicon/ai/proc/add_malf_picker()
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	to_chat(src, span_userdanger("In addition you are able to disallow downloading of your memory banks by using the 'Toggle Download' verb in the malfunction tab. This has a visual tell so do not do it without reason."))
-	
+
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker
@@ -1147,3 +1139,7 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/proc/send_borg_death_warning(mob/living/silicon/robot/R)
+	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))
+	playsound_local(src, 'sound/machines/engine_alert2.ogg', 30)

@@ -4,7 +4,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Make [M] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -38,7 +38,7 @@
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+				to_chat(M, span_big("<i>You hear a voice in your head... <b>[msg]</i></b>"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	msg = "SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]" // yogs - Yog Tickets
@@ -367,7 +367,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
 		//Check if they were an alien
 		if(G_found.mind.assigned_role == ROLE_ALIEN)
-			if(alert("This character appears to have been an alien. Would you like to respawn them as such?",,"Yes","No")=="Yes")
+			if(tgui_alert(usr,"This character appears to have been an alien. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/turf/T
 				if(GLOB.xeno_spawn.len)
 					T = pick(GLOB.xeno_spawn)
@@ -402,7 +402,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(alert("This character appears to have been a monkey. Would you like to respawn them as such?",,"Yes","No")=="Yes")
+			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -432,9 +432,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.age = record_found.fields["age"]
 		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
-		var/datum/preferences/A = new()
-		A.copy_to(new_character)
-		A.real_name = G_found.real_name
+		new_character.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
+		new_character.name = G_found.real_name
+		new_character.real_name = G_found.real_name
 		new_character.dna.update_dna_identity()
 
 	new_character.name = new_character.real_name
@@ -496,10 +496,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
 		if(!record_found&&new_character.mind.assigned_role!=new_character.mind.special_role)//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
 			//Power to the user!
-			if(alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,"No","Yes")=="Yes")
+			if(tgui_alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,list("No","Yes"))=="Yes")
 				GLOB.data_core.manifest_inject(new_character)
 
-			if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
+			if(tgui_alert(new_character,"Would you like an active AI to announce this character?",,list("No","Yes"))=="Yes")
 				AnnounceArrival(new_character, new_character.mind.assigned_role)
 
 	var/msg = "[admin] has respawned [player_key] as [new_character.real_name]." // yogs - Yog Tickets
@@ -525,8 +525,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]")
 
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
+	var/show_log = tgui_alert(usr, "Show ion message?", "Message", list("Yes", "No"))
+	var/announce_ion_laws = (show_log == "Yes" ? 100 : 0)
 
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = announce_ion_laws
@@ -544,7 +544,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!mob)
 		return
 	if(!istype(M))
-		alert("Cannot revive a ghost")
+		tgui_alert(usr,"Cannot revive a ghost")
 		return
 	M.revive(full_heal = 1, admin_revive = 1)
 
@@ -553,6 +553,75 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Rejuvinate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_admin_offer_rename(mob/living/L in GLOB.player_list)
+	set category = "Admin.Player Interaction"
+	set name = "Offer Rename"
+	var/newname
+	var/forced_answer = " "
+	var/unforced_answer = " "
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No", "Cancel")
+	if(forced_rename == "Cancel")
+		message_admins(span_boldnotice("[usr] has decided not to offer ([L.ckey])[L] a rename."))
+		log_game("[usr] has decided not to offer ([L.ckey])[L] a rename.")
+		return
+	if(forced_rename == "Yes")
+		if(!L.ckey)
+			message_admins(span_boldnotice("[usr] attempted to offer a rename to a mob with no player!"))
+			log_game("[usr] attempted to offer a rename to a mob with no player.")
+			return
+		else
+			unforced_answer = alert(L, "An admin is offering you a chance to rename yourself", "Admin rename?", "Accept", "Decline", "Random Name")
+			log_game("[usr] forced a rename on [L.ckey].")
+	else
+		if(!L.ckey)
+			message_admins(span_boldnotice("[usr] attempted to offer a rename to a mob with no player!"))
+			log_game("[usr] attempted to offer a rename to a mob with no player.")
+			return
+		else
+			forced_answer = alert(L, "An admin is \"offering\" you a chance to rename yourself", "Admin rename?", "Accept", "Random Name")
+			log_game("[usr] chose to offer an optional rename to [L.ckey].")
+
+	if(QDELETED(L))
+		message_admins(span_boldnotice("([L.ckey])[L] has been deleted before they could rename themselves!"))
+		log_game("([L.ckey])[L] was Qdeleted before they could complete a rename.")
+		return
+	if(unforced_answer == "Decline")
+		message_admins(span_boldnotice("([L.ckey])[L] has declined the rename."))
+		log_game("([L.ckey])[L] chose to decline an offered rename.")
+		return
+	if(forced_answer == "Random Name" || unforced_answer == "Random Name")
+		newname = random_unique_name(L.gender)
+		log_game("([L.ckey])[L] chose to use a random name when offered a rename.")
+	if(forced_answer == "Accept" || unforced_answer == "Accept")
+		newname = sanitize_name(reject_bad_text(stripped_input(L, "Who are we again?", "Name change", L.real_name, MAX_NAME_LEN)))
+		log_game("([L.ckey])[L] accepted an offered name change.")
+	if(isnotpretty(newname))
+		to_chat(L, span_warning("your chosen name was not accepted! Please ahelp if you would like a second chance."))
+		message_admins(span_notice("([L.ckey])[L]'s new name [newname] was filtered, and was rejected!"))
+		log_game("([L.ckey])[L]'s new name [newname] was filtered, and was rejected.")
+		if(forced_rename == "No")
+			return
+		else
+			newname = random_unique_name(L.gender)
+	if(!newname || newname == "" || newname == L.real_name)
+		message_admins(span_boldnotice("[L.ckey]'s new name was blank or unchanged! Defaulting to random!"))
+		log_game("([L.ckey])[L]'s entered an identical, blank, or null new name, and was defaulted to random.")
+		newname = random_unique_name(L.gender)
+	message_admins(span_boldnotice("([L.ckey])[L.real_name] has been admin renamed to [newname]."))
+	log_game("([L.ckey])[L.real_name] has been renamed to [newname].")
+	L.fully_replace_character_name(L.real_name, newname)
+	if(iscarbon(L)) //doing these two JUST to be sure you dont have edge cases of your DNA and mind not matching your new name, somehow
+		var/mob/living/carbon/C = L
+		if(C?.dna)
+			C?.dna?.real_name = newname
+	if(L?.mind)
+		L?.mind?.name = newname
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Offer Mob Rename") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Admin.Round Interaction"
@@ -663,7 +732,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20) || (flames > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
+			if (tgui_alert(usr, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
 				return
 
 		explosion(O, devastation, heavy, light, flash, null, null,flames)
@@ -706,7 +775,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Drop a brain?", "Confirm", "Yes", "No","Cancel")
+	var/confirm = tgui_alert(usr, "Drop a brain?", "Confirm", list("Yes", "No","Cancel"))
 	if(confirm == "Cancel")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
@@ -729,7 +798,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Admin.Player Interaction"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm == "Yes")
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins(span_adminnotice("[key_name_admin(usr)] used gibself."))
@@ -757,13 +826,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			newview = input("Enter custom view range:","FUCK YEEEEE") as num
 			if(!newview)
 				return
-		if(newview > 64)
+		if(newview >= 64)
 			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
 		view_size.setTo(newview)
 		//yogs end
 	else
-		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
+		view_size.resetToDefault(getScreenSize(prefs.read_preference(/datum/preference/toggle/widescreen)))
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI
@@ -780,7 +849,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -795,7 +864,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Cancel Shuttle"
 	if(!check_rights(0))
 		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
@@ -825,7 +894,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
+	var/notifyplayers = tgui_alert(usr, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
 	if(notifyplayers == "Cancel")
 		return
 
@@ -967,7 +1036,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -985,7 +1054,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -1004,7 +1073,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -1181,9 +1250,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return //We return here because punish_log() is handled by the centcom_podlauncher datum
 
 		if(ADMIN_PUNISHMENT_MAZING)
-			if(!puzzle_imprison(target))
-				to_chat(usr,span_warning("Imprisonment failed!"), confidential=TRUE)
-				return
+			var/confirm = alert(usr, "Puzzle them?", "Puzzle", "Yes", "No")
+			if(confirm == "Yes")
+				if(!puzzle_imprison(target))
+					to_chat(usr,span_warning("Imprisonment failed!"), confidential=TRUE)
+					return
 		if(ADMIN_PUNISHMENT_PIE)
 			var/confirm = alert(usr, "Send honk message?", "Honk Message", "Yes", "No")
 			if(confirm == "Yes")
@@ -1438,8 +1509,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
 
@@ -1506,8 +1576,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.

@@ -1,16 +1,98 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, ColorBox, Section, Table, Flex } from '../components';
+import { Box, Button, Section, Table, Flex, Icon } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
 export const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
-  '#2ecc71',
-  '#e67e22',
-  '#ed5100',
-  '#e74c3c',
-  '#ed2814',
+  '#c4cf2d',
+  '#e89517',
+  '#fa301b',
+  '#e60505',
+  '#e60505',
+  '#c71402',
 ];
+
+const HEALTH_ICON_BY_LEVEL = [
+  'heart',
+  'heart',
+  'heart',
+  'heart',
+  'heartbeat',
+  'heartbeat',
+  'skull-crossbones',
+];
+
+const speciesmap = {
+  "IPC": {
+    "icon": "tv",
+    "color": "#2e46cc",
+  },
+  "Robot": {
+    "icon": "robot",
+    "color": "#edee1b",
+  },
+  "Android": {
+    "icon": "cog",
+    "color": "#06b4cf",
+  },
+  "Felinid": {
+    "icon": "paw",
+    "color": "#f52ab4",
+  },
+  "Moth": {
+    "icon": "feather-alt",
+    "color": "#ffebb8",
+  },
+  "Lizard": {
+    "icon": "dragon",
+    "color": "#8bf76a",
+  },
+  "Polysmorph": {
+    "icon": "certificate",
+    "color": "#802496",
+  },
+  "Podperson": {
+    "icon": "seedling",
+    "color": "#07f58a",
+  },
+  "Plasmaman": {
+    "icon": "skull",
+    "color": "#d60b66",
+  },
+  "Ethereal": {
+    "icon": "sun",
+    "color": "#f0ff66",
+  },
+  "Skeleton": {
+    "icon": "skull",
+    "color": "#fffcfa",
+  },
+  "Slime": {
+    "icon": "cloud",
+    "color": "#f2505d",
+  },
+  "Fly": {
+    "icon": "bug",
+    "color": "#039162",
+  },
+  "Human": {
+    "icon": "user",
+    "color": "#2ee81a",
+  },
+  "Zombie": {
+    "icon": "skull",
+    "color": "#186310",
+  },
+  "Snail": {
+    "icon": "strikethrough",
+    "color": "#08ccb8",
+  },
+  "Alien": {
+    "icon": "question-circle",
+    "color": "#d40db9",
+  },
+};
 
 export const jobIsHead = jobId => jobId % 10 === 0;
 
@@ -45,27 +127,28 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToColor = (oxy, tox, burn, brute, is_alive) => { // Yogs -- show deadness
+export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => {
+  // Yogs -- show deadness
   if (is_alive === null || is_alive)
   {
     if (oxy === null) // No damage data -- just show that they're alive
     {
-      return HEALTH_COLOR_BY_LEVEL[0];
+      return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
-    return HEALTH_COLOR_BY_LEVEL[level];
+    const level = Math.min(Math.max(Math.ceil(healthSum / 40), 0), 5);
+    return attributeList[level];
   }
-  return HEALTH_COLOR_BY_LEVEL[5]; // Dead is dead, son
-  // Yogs end
+  return attributeList[6]; // Dead is dead, son
 };
+// Yogs end
 
 export const HealthStat = props => {
   const { type, value } = props;
   return (
     <Box
       inline
-      width={4}
+      width={2}
       color={COLORS.damageType[type]}
       textAlign="center">
       {value}
@@ -84,8 +167,8 @@ export const CrewConsole = (props, context) => {
   return (
     <Window
       title="Crew Monitor"
-      width={1000}
-      height={800}
+      width={750}
+      height={400}
       resizable>
       <Window.Content scrollable>
         <CrewConsoleContent />
@@ -118,21 +201,33 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Cell bold>
                 Name
               </Table.Cell>
-              <Table.Cell bold collapsing />
+              <Table.Cell bold collapsing textAlign="center">
+                Warnings
+              </Table.Cell>
+              <Table.Cell bold collapsing textAlign="center">
+                Species
+              </Table.Cell>
+              <Table.Cell bold collapsing textAlign="center">
+                Status
+              </Table.Cell>
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
-              <Table.Cell bold>
+              <Table.Cell bold textAlign="center">
                 Position
               </Table.Cell>
               {!!data.link_allowed && (
-                <Table.Cell bold collapsing>
+                <Table.Cell bold collapsing textAlign="center">
                   Tracking
                 </Table.Cell>
               )}
             </Table.Row>
             {sensors.map(sensor => (
-              <Table.Row key={sensor.name}>
+              <Table.Row key={sensor.name} fontSize={0.85} style={{
+                'border': '1px solid',
+                'border-color': '#202020',
+                'font-family': 'Verdana, sans-serif',
+              }}>
                 <Table.Cell
                   bold={jobIsHead(sensor.ijob)}
                   color={jobToColor(sensor.ijob)}>
@@ -140,13 +235,49 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  <ColorBox
-                    color={healthToColor( // yogs -- show death when dead
-                      sensor.oxydam,
-                      sensor.toxdam,
-                      sensor.burndam,
-                      sensor.brutedam,
-                      sensor.life_status)} />
+                  {sensor.oxydam !== null ? (
+                    sensor.no_warnings ? (
+                      <Box>
+                        {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
+                        {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
+                        {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
+                        {sensor.is_wounded ? <Icon name="star-of-life" color="#d412ff" size={1} /> : ""}
+                        {sensor.is_bonecrack ? <Icon name="bone" color="#f50505" size={1} /> : ""}
+                        {sensor.is_disabled ? <Icon name="crutch" color="#fafcfb" size={1} /> : ""}
+                      </Box>
+                    ) : (
+                      <Icon name="check" color="#10d820" size={1} />)
+                  ) : (
+                    <Icon name="question" color="#f70505" size={1} />
+                  )}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="center">
+                  {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="center">
+                  {sensor.oxydam !== null ? (
+                    <Icon
+                      name={healthToAttribute( // yogs -- show death when dead
+                        sensor.oxydam,
+                        sensor.toxdam,
+                        sensor.burndam,
+                        sensor.brutedam,
+                        sensor.life_status,
+                        HEALTH_ICON_BY_LEVEL)}
+                      color={healthToAttribute(
+                        sensor.oxydam,
+                        sensor.toxdam,
+                        sensor.burndam,
+                        sensor.brutedam,
+                        sensor.life_status,
+                        HEALTH_COLOR_BY_LEVEL)}
+                      size={1} />
+                  ) : (
+                    sensor.life_status ? (
+                      <Icon name="heart" color="#17d568" size={1} />
+                    ) : (
+                      <Icon name="skull-crossbones" color="#c71402" size={1} />
+                    ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
@@ -164,7 +295,7 @@ export const CrewConsoleContent = (props, context) => {
                   )}
                 </Table.Cell>
                 <Table.Cell>
-                  {sensor.pos_x !== null ? sensor.area : 'N/A'}
+                  {sensor.pos_x !== null ? sensor.area : <Icon name="question" color="#ffffff" size={1} /> }
                 </Table.Cell>
                 {!!data.link_allowed && (
                   <Table.Cell collapsing>

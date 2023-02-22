@@ -82,7 +82,7 @@
 	log_combat(A, D, "tail slapped (Flying Fang)")
 
 /datum/martial_art/flyingfang/proc/remove_bonk(mob/living/carbon/human/D)
-	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
+	D.dna.species.aiminginaccuracy -= 25
 
 /datum/martial_art/flyingfang/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -124,7 +124,7 @@
 	D.apply_damage(disarm_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
-		ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
+		D.dna.species.aiminginaccuracy += 25
 		addtimer(CALLBACK(src, .proc/remove_bonk, D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
@@ -249,7 +249,7 @@
 
 	to_chat(usr, "[span_notice("Tail Slap")]: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
 	to_chat(usr, "[span_notice("Neck Bite")]: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
-	to_chat(usr, "<spna class='notice'>Leap</span>: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
+	to_chat(usr, "[span_notice("Leap")]: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
 
 /datum/martial_art/flyingfang/teach(mob/living/carbon/human/H,make_temporary=0)
 	..()

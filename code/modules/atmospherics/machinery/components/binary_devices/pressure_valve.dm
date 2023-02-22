@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/components/binary/pressure_valve
 	icon_state = "pvalve_map-3"
 	name = "pressure valve"
-	desc = "An activable one-way valve that let gas pass through if the pressure on the input side is higher than the set pressure."
+	desc = "An activatable one-way valve that lets gas pass through if the pressure on the input side is higher than the set pressure."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -31,6 +31,7 @@
 	if(can_interact(user))
 		target_pressure = MAX_OUTPUT_PRESSURE
 		investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "pressure output set to [target_pressure] kPa")
 		update_icon()
 	return ..()
 
@@ -49,7 +50,7 @@
 		icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
-	if(!on || is_operational())
+	if(!on || !is_operational())
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
@@ -59,8 +60,10 @@
 		if(air1.release_gas_to(air2, air1.return_pressure()))
 			update_parents()
 			is_gas_flowing = TRUE
+		else
+			is_gas_flowing = FALSE //unable to release gas (valve mechanism underpressurized, or etc)
 	else
-		is_gas_flowing = FALSE
+		is_gas_flowing = FALSE //simply not enough pressure to activate
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/proc/set_frequency(new_frequency)

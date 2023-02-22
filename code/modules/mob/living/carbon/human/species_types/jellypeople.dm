@@ -1,6 +1,7 @@
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "Jellyperson"
+	plural_form = "Jellypeople"
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
@@ -67,6 +68,21 @@
 	qdel(consumed_limb)
 	H.blood_volume += 20
 
+// Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
+// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
+/datum/species/jelly/create_pref_blood_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "tint",
+		SPECIES_PERK_NAME = "Jelly Blood",
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage. \
+			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+	))
+
+	return to_add
+
 /datum/action/innate/regenerate_limbs
 	name = "Regenerate Limbs"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -108,10 +124,11 @@
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
-//Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
+//Slime people are able to split like slimes, retaining a single mind that can swap between bodies.
 
 /datum/species/jelly/slime
 	name = "Slimeperson"
+	plural_form = "Slimepeople"
 	id = "slime"
 	default_color = "00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
@@ -147,20 +164,6 @@
 		else
 			bodies |= C
 
-/datum/species/jelly/slime/spec_death(gibbed, mob/living/carbon/human/H)
-	if(slime_split)
-		if(!H.mind || !H.mind.active)
-			return
-
-		var/list/available_bodies = (bodies - H)
-		for(var/mob/living/L in available_bodies)
-			if(!swap_body.can_swap(L))
-				available_bodies -= L
-
-		if(!LAZYLEN(available_bodies))
-			return
-
-		swap_body.swap_to_dupe(H.mind, pick(available_bodies))
 
 //If you're cloned you get your body pool back
 /datum/species/jelly/slime/copy_properties_from(datum/species/jelly/slime/old_species)
@@ -398,6 +401,7 @@
 
 /datum/species/jelly/luminescent
 	name = "Luminescent"
+	plural_form = null
 	id = "lum"
 	say_mod = "says"
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
@@ -441,7 +445,7 @@
 /datum/species/jelly/luminescent/proc/update_glow(mob/living/carbon/C, intensity)
 	if(intensity)
 		glow_intensity = intensity
-	glow.set_light(glow_intensity, glow_intensity, C.dna.features["mcolor"])
+	glow.set_light_range_power_color(glow_intensity, glow_intensity, C.dna.features["mcolor"])
 
 /obj/effect/dummy/luminescent_glow
 	name = "luminescent glow"
@@ -449,6 +453,8 @@
 	icon_state = "nothing"
 	light_color = "#FFFFFF"
 	light_range = LUMINESCENT_DEFAULT_GLOW
+	light_system = MOVABLE_LIGHT
+	light_power = 2.5
 
 /obj/effect/dummy/luminescent_glow/Initialize()
 	. = ..()
@@ -483,7 +489,7 @@
 		button_icon_state = "slimeeject"
 	..()
 
-/datum/action/innate/integrate_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/integrate_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
@@ -537,7 +543,7 @@
 			return TRUE
 		return FALSE
 
-/datum/action/innate/use_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
@@ -565,6 +571,7 @@
 
 /datum/species/jelly/stargazer
 	name = "Stargazer"
+	plural_form = null
 	id = "stargazer"
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds

@@ -2,18 +2,25 @@
 	name = "technology fabricator"
 	desc = "Makes researched and prototype items with materials and energy."
 	layer = BELOW_OBJ_LAYER
-	var/consoleless_interface = FALSE			//Whether it can be used without a console.
-	var/efficiency_coeff = 1				//Materials needed / coeff = actual.
+	/// Divisor for material usage eg (2 coeff = 500 / 2 = 500)
+	var/efficiency_coeff = 1
+	/// Categories this lathe has
 	var/list/categories = list()
-	var/datum/component/remote_materials/materials
+	/// What designs it can print from a department
 	var/allowed_department_flags = ALL
-	var/production_animation				//What's flick()'d on print.
+	/// Animation when an item is printed
+	var/production_animation
+	/// What designs it can print from a "machine" eg PROTOLATHE | AUTOLATHE | MECHFAB
 	var/allowed_buildtypes = NONE
+	/// Name of the lathe in the UI
+	var/department_tag = "Unidentified"
+
 	var/list/datum/design/cached_designs
 	var/list/datum/design/matching_designs
-	var/department_tag = "Unidentified"			//used for material distribution among other things.
 	var/datum/techweb/stored_research
 	var/datum/techweb/host_research
+
+	var/datum/component/remote_materials/materials
 
 	var/screen = RESEARCH_FABRICATOR_SCREEN_MAIN
 	var/selected_category
@@ -44,8 +51,6 @@
 	calculate_efficiency()
 
 /obj/machinery/rnd/production/ui_interact(mob/user)
-	if(!consoleless_interface)
-		return ..()
 	user.set_machine(src)
 	var/datum/browser/popup = new(user, "rndconsole", name, 460, 550)
 	popup.set_content(generate_ui())
@@ -182,11 +187,13 @@
 			ui += ui_screen_category_view()
 		else
 			ui += ui_screen_main()
+
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
-		ui[i] = replacetextEx(ui[i], RDSCREEN_NOBREAK, "")
-	return ui.Join("")
+	
+	. = ui.Join("")
+	return replacetextEx(., RDSCREEN_NOBREAK, "")
 
 /obj/machinery/rnd/production/proc/ui_header()
 	var/list/l = list()

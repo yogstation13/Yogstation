@@ -137,6 +137,15 @@
 	..() // we want the survival stuff too.
 	new /obj/item/radio/off(src)
 
+/obj/item/storage/box/survival/proc/wardrobe_removal()
+	if(!isplasmaman(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
+		return
+	var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
+	var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
+	new /obj/item/tank/internals/plasmaman/belt(src)
+	qdel(mask) // Get rid of the items that shouldn't be
+	qdel(internals)
+
 /obj/item/storage/box/survival_mining/PopulateContents()
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
@@ -158,6 +167,7 @@
 /obj/item/storage/box/syndie/PopulateContents()
 	new /obj/item/clothing/mask/gas/syndicate(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
+	new /obj/item/extinguisher/mini(src)
 
 // Security survival box
 /obj/item/storage/box/security/PopulateContents()
@@ -178,6 +188,17 @@
 /obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+// IPC survival box
+/obj/item/storage/box/ipc/PopulateContents()
+	new /obj/item/tank/internals/ipc_coolant(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
+	new /obj/item/tank/internals/ipc_coolant(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
@@ -215,7 +236,6 @@
 /obj/item/storage/box/syringes/variety/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/syringe/lethal(src)
-	new /obj/item/reagent_containers/syringe/noreact(src)
 	new /obj/item/reagent_containers/syringe/piercing(src)
 	new /obj/item/reagent_containers/syringe/bluespace(src)
 
@@ -577,9 +597,10 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
-		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
-
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
+		
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
@@ -649,6 +670,15 @@
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin(src)
+
+/obj/item/storage/box/secfiringpins
+	name = "box of mindshield firing pins"
+	desc = "A box full of mindshield firing pins, to allow newly-developed firearms to operate."
+	illustration = "id"
+
+/obj/item/storage/box/secfiringpins/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/firing_pin/implant/mindshield(src)
 
 /obj/item/storage/box/lasertagpins
 	name = "box of laser tag firing pins"
@@ -1195,7 +1225,7 @@
 	new /obj/item/circuitboard/machine/protolathe(src)
 	new /obj/item/circuitboard/machine/destructive_analyzer(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
-	new /obj/item/circuitboard/computer/rdconsole(src)
+	new /obj/item/circuitboard/computer/rdconsole/ruin(src)
 
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"

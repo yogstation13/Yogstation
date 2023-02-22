@@ -57,6 +57,8 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL
 	armor = list(MELEE = 20, BULLET = 0, LASER = 20,ENERGY = 10, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 	flags_inv = HIDEFACE|HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
@@ -70,6 +72,7 @@
 	equip_delay_other = 70
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
+	hattable = FALSE
 
 
 /obj/item/clothing/suit/bomb_suit
@@ -97,12 +100,15 @@
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)	//Much better armor, lots of padding against low-power kinetic blows!
 
 /obj/item/clothing/suit/bomb_suit/security
+	desc = "A slightly more advanced bomb suit for use by NT security forces. Comes with a holster for your favorite assistant-beating tools!"
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
 	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs)
-
+	slowdown = 1.5	//Meant for more stressful situations than JUST disarming a bomb, whatever that might be.
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 
 /obj/item/clothing/head/bomb_hood/white
 	icon_state = "bombsuit_white"
@@ -128,6 +134,7 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	flags_1 = RAD_PROTECT_CONTENTS_1
+	hattable = FALSE
 
 /obj/item/clothing/suit/radiation
 	name = "radiation suit"
@@ -139,8 +146,8 @@
 	permeability_coefficient = 0.5
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/geiger_counter)
-	slowdown = 1.5
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/geiger_counter)
+	slowdown = 0.5
 	armor = list(MELEE = 5, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 5, BIO = 60, RAD = 100, FIRE = 30, ACID = 30)
 	strip_delay = 60
 	equip_delay_other = 60

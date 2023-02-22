@@ -55,6 +55,15 @@
 	name = "gear crate"
 	icon_state = "secgearcrate"
 
+/obj/structure/closet/crate/secure/gear/donut
+	var/donutsleft = 10
+
+/obj/structure/closet/crate/secure/gear/donut/open(mob/living/user)
+	. = ..()
+	if(donutsleft > 0)
+		new /obj/item/reagent_containers/food/snacks/donut(src)
+		donutsleft--
+
 /obj/structure/closet/crate/secure/hydroponics
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	name = "secure hydroponics crate"

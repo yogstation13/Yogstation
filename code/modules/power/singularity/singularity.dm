@@ -19,6 +19,7 @@
 	var/contained = 1 //Are we going to move around?
 	var/energy = 100 //How strong are we?
 	var/dissipate = 1 //Do we lose energy over time?
+	var/radmod = 50
 	var/dissipate_delay = 10
 	var/dissipate_track = 0
 	var/dissipate_strength = 1 //How much energy do we lose?
@@ -150,7 +151,7 @@
 /obj/singularity/process()
 	if(current_size >= STAGE_TWO)
 		move()
-		radiation_pulse(src, min(9000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
+		radiation_pulse(src, energy*radmod, RAD_DISTANCE_COEFFICIENT*0.5)
 		if(prob(event_chance))//Chance for it to run a special event TODO:Come up with one or two more that fit
 			event()
 	eat()
@@ -497,11 +498,9 @@
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
-					var/obj/item/clothing/glasses/meson/MS = H.glasses
-					if(MS.vision_flags == SEE_TURFS)
-						to_chat(H, span_notice("You look directly into the [src.name], good thing you had your protective eyewear on!"))
-						return
+				if(HAS_TRAIT(H, TRAIT_MESONS))
+					to_chat(H, span_notice("You look directly into the [src.name], good thing you were protected!"))
+					return
 
 		M.apply_effect(60, EFFECT_STUN)
 		M.visible_message(span_danger("[M] stares blankly at the [src.name]!"), \

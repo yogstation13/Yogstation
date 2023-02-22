@@ -77,19 +77,22 @@
 
 /obj/item/organ/lungs/preternis
 	name = "preternis lungs"
-	desc = "An experimental set of lungs.Due to the cybernetic nature of these lungs,they are less resistant to heat and cold but are more efficent at filtering oxygen."
+	desc = "A specialized set of lungs. Due to the cybernetic nature of these lungs, they are far less resistant to cold but are more heat resistant and more efficent at filtering oxygen."
 	icon_state = "lungs-c"
 	safe_oxygen_min = 12
 	safe_toxins_max = 10
-	gas_stimulation_min = 0.1 //fucking filters removing my stimulants
+	gas_stimulation_min = 0.01 //fucking filters removing my stimulants
 
-	cold_level_1_threshold = 280
-	cold_level_1_damage = 1.5
+	cold_level_1_threshold = 280 //almost room temperature
+	cold_level_1_damage = 2
 	cold_level_2_threshold = 260
-	cold_level_2_damage = 3
-	cold_level_3_threshold = 200
-	cold_level_3_damage = 4.5
+	cold_level_2_damage = 4
+	cold_level_3_threshold = 220
+	cold_level_3_damage = 6
 
-	heat_level_1_threshold = 320
-	heat_level_2_threshold = 400
-	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE
+	heat_level_1_threshold = 500
+	heat_level_1_damage = 4
+	heat_level_2_threshold = 1000
+	heat_level_2_damage = 7
+	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
+	heat_level_3_damage = 25 //you should already be dead

@@ -160,7 +160,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
 	no_pin_required = FALSE
 	draw_slowdown = 0
-	var/recharge_time = 1.5 SECONDS
+	var/recharge_time = 1 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/update_icon()
 	cut_overlay(arrow_overlay, TRUE)
@@ -261,11 +261,10 @@
 
 /obj/item/gun/ballistic/bow/energy/syndicate
 	name = "Syndicate Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed for silent takedowns of targets by the syndicate."
+	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed by the Syndicate for silent takedowns of targets."
 	icon_state = "bow_syndicate"
 	item_state = "bow_syndicate"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
-	recharge_time = 2 SECONDS
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5
@@ -274,6 +273,10 @@
 	draw_sound = null
 	var/folded = FALSE
 	var/stored_ammo ///what was stored in the magazine before being folded?
+
+/obj/item/gun/ballistic/bow/energy/syndicate/examine(mob/user)
+	. = ..()
+	. += "It can be folded into a compact form by using CTRL + CLICK."
 
 /obj/item/gun/ballistic/bow/energy/syndicate/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	if(!folded)
@@ -319,7 +322,7 @@
 
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "Brass Bow"
-	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
+	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and fabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	item_state = "bow_clockwork"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult

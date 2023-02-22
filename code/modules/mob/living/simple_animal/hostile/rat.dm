@@ -31,8 +31,7 @@
 
 /mob/living/simple_animal/hostile/rat/Initialize()
 	. = ..()
-	if(mind)
-		language_holder += new /datum/language_holder/mouse(src)
+	language_holder += new /datum/language_holder/mouse(src)
 	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
@@ -180,7 +179,7 @@
 			src.visible_message(span_warning("[src] starts biting into [C]!"),span_notice("You start eating [C]..."))
 			if(!do_after(src, 3 SECONDS, FALSE, target))
 				return
-			to_chat(src, span_notice ("You finish eating [C]."))
+			to_chat(src, span_notice("You finish eating [C]."))
 			heal_bodypart_damage(5)
 			C.adjustBruteLoss(15)
 

@@ -260,38 +260,24 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
-/datum/map_template/ruin/station/eclipse
-    prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
+/datum/map_template/ruin/station/meta
+	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
-/datum/map_template/ruin/station/eclipse/bar
-	id = "ebar_eclipse"
-	suffix = "ebar_eclipse.dmm"
-	name = "Eclipse Bar Default"
+/datum/map_template/ruin/station/meta/supermatter
+	id = "meta_sm"
+	suffix = "meta_sm.dmm"
+	name = "Meta SM"
 
-/datum/map_template/ruin/station/eclipse/bar/beach
-	id = "ebar_beach"
-	suffix = "ebar_beach.dmm"
-	name = "Eclipse Bar Beach"
+/datum/map_template/ruin/station/meta/tesla_singulo
+	id = "meta_singulo_tesla"
+	suffix = "meta_singulo_tesla.dmm"
+	name = "Meta Singulo And Tesla"
 
-/datum/map_template/ruin/station/eclipse/bar/saloon
-	id = "ebar_saloon"
-	suffix = "ebar_saloon.dmm"
-	name = "Eclipse Bar Western"
-
-/datum/map_template/ruin/station/eclipse/bar/clock
-	id = "ebar_clock"
-	suffix = "ebar_clock.dmm"
-	name = "Eclipse Bar Clock"
-
-/datum/map_template/ruin/station/eclipse/bar/disco
-	id = "ebar_disco"
-	suffix = "ebar_disco.dmm"
-	name = "Eclipse Bar Disco"
-
-/datum/map_template/ruin/station/eclipse/bar/casino
-	id = "ebar_casino"
-	suffix = "ebar_casino.dmm"
-	name = "Eclipse Bar Casino"
+/datum/map_template/ruin/station/meta/teg
+	id = "meta_teg"
+	suffix = "meta_teg.dmm"
+	name = "Meta TEG"
+	
 
 //GaxStation
 
@@ -1136,6 +1122,12 @@
 	suffix = "10x5_bamboo.dmm"
 	name = "Maint bamboo"
 
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/medicalmaint
+	id = "medicalmaint"
+	suffix = "10x5_medicalmaint.dmm"
+	name = "Maint medicalmaint"
+
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
@@ -1295,3 +1287,13 @@
 	id= "fakewalls"
 	suffix = "10x10_fakewalls.dmm"
 	name = "Maint fakewalls"
+
+/datum/map_template/ruin/station/maint/tenxten/wizard
+	id = "wizard"
+	suffix = "10x10_wizard.dmm"
+	name = "Maint wizard"
+
+/datum/map_template/ruin/station/maint/tenxten/halloween
+	id = "halloween"
+	suffix = "10x10_halloween.dmm"
+	name = "Maint halloween"

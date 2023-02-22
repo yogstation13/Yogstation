@@ -18,7 +18,7 @@
 
 /datum/buildmode_mode/advanced/change_settings(client/c)
 	var/target_path = input(c, "Enter typepath:", "Typepath", "/obj/structure/closet")
-	if(!target_path)
+	if(!target_path || target_path == "")
 		var/alertresult = alert(src, "WARNING: You have not entered a typepath, this will bring up EVERY TYPEPATH and will lag you for ~25 seconds. Continue?",,"I'm ready to die", "No")
 		if(alertresult == "No")
 			return
@@ -26,11 +26,11 @@
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			alert("No path was selected")
+			tgui_alert(usr,"No path was selected")
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			alert("That path is not allowed.")
+			tgui_alert(usr,"That path is not allowed.")
 			return
 
 /datum/buildmode_mode/advanced/handle_click(client/c, params, obj/object)

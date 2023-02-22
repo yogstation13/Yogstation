@@ -99,7 +99,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/list/weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	/// multiplier to increase/decrease effects of range on attack cooldown, 0 to ignore range
 	var/range_cooldown_mod = 1
-	var/break_message = "%SRC crumbles into scraps under hard use"
+	var/break_message = "%SRC crumbles into scraps under hard use."
 	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
 	var/sharpness = SHARP_NONE
 
@@ -142,6 +142,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	/// Is this item fryable without a syndicate frying pan
 	var/fryable = FALSE
+
+	var/printed = FALSE
 
 /obj/item/Initialize()
 
@@ -714,7 +716,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		return ..()
 	return 0
 
-/obj/item/mech_melee_attack(obj/mecha/M)
+/obj/item/mech_melee_attack(obj/mecha/M, equip_allowed)
 	return 0
 
 /obj/item/deconstruct(disassembled = TRUE)
@@ -786,8 +788,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
-		var/timedelay = usr.client.prefs.tip_delay/100
+	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.read_preference(/datum/preference/toggle/enable_tooltips) && !QDELETED(src))
+		var/timedelay = usr.client.prefs.read_preference(/datum/preference/numeric/tooltip_delay) / 100
 		var/user = usr
 		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 
@@ -1033,3 +1035,13 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	animate(attack_image, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color)
 	animate(time = 1)
 	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT) //yogs end
+
+//specifically for "suture" type robotic healing items
+//amount is either the fuel of a welding tool, or the number of wires consumed
+//volume is how loud the sound of the item is
+/obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
+	if(I.use_tool(H, user, 2 SECONDS, amount, volume, null, H != user))
+		if(item_heal_robotic(H, user, brute_heal, burn_heal))
+			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
+		return TRUE
+	

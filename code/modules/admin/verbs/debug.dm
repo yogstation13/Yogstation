@@ -232,7 +232,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/turf/T = get_turf(mob)
 	if(!isturf(T))
 		return
-	show_air_status_to(T, usr)
+	atmosanalyzer_scan(usr, T, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Air Status In Location") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(mob/M in GLOB.mob_list)
@@ -240,7 +240,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Make Robot"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
@@ -249,21 +249,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			H.Robotize()
 
 	else
-		alert("Invalid mob")
+		tgui_alert(usr,"Invalid mob")
 
 /client/proc/cmd_admin_blobize(mob/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
 	set name = "Make Blob"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has blobized [M.key].")
 		var/mob/living/carbon/human/H = M
 		H.become_overmind()
 	else
-		alert("Invalid mob")
+		tgui_alert(usr,"Invalid mob")
 
 
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
@@ -271,15 +271,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 
 	if(!M)
-		alert("That mob doesn't seem to exist, close the panel and try again.")
+		tgui_alert(usr,"That mob doesn't seem to exist, close the panel and try again.")
 		return
 
 	if(isnewplayer(M))
-		alert("The mob must not be a new_player.")
+		tgui_alert(usr,"The mob must not be a new_player.")
 		return
 
 	log_admin("[key_name(src)] has animalized [M.key].")
@@ -296,11 +296,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	for(var/mob/C in GLOB.mob_list)
 		if(C.key)
 			available.Add(C)
-	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
+	var/mob/choice = input(usr, "Choose a player to play the pAI", "Spawn pAI", sortNames(available))
 	if(!choice)
 		return 0
 	if(!isobserver(choice))
-		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank him out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
+		var/confirm = tgui_alert(usr, "[choice.key] isn't ghosting right now. Are you sure you want to yank him out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("Yes", "No"))
 		if(confirm != "Yes")
 			return 0
 	var/obj/item/paicard/card = new(T)
@@ -319,7 +319,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Make Alien"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 	if(ishuman(M))
 		INVOKE_ASYNC(M, /mob/living/carbon/human/proc/Alienize)
@@ -327,14 +327,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien at [AREACOORD(M)].")
 		message_admins(span_adminnotice("[key_name_admin(usr)] made [ADMIN_LOOKUPFLW(M)] into an alien."))
 	else
-		alert("Invalid mob")
+		tgui_alert(usr,"Invalid mob")
 
 /client/proc/cmd_admin_slimeize(mob/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
 	set name = "Make slime"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 	if(ishuman(M))
 		INVOKE_ASYNC(M, /mob/living/carbon/human/proc/slimeize)
@@ -342,7 +342,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		log_admin("[key_name(usr)] made [key_name(M)] into a slime at [AREACOORD(M)].")
 		message_admins(span_adminnotice("[key_name_admin(usr)] made [ADMIN_LOOKUPFLW(M)] into a slime."))
 	else
-		alert("Invalid mob")
+		tgui_alert(usr,"Invalid mob")
 
 /client/proc/cmd_admin_pacmanize(mob/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
@@ -457,7 +457,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Grant Full Access"
 
 	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
+		tgui_alert(usr,"Wait until the game starts")
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -492,7 +492,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		var/mob/living/simple_animal/SA = M
 		SA.access_card = new /obj/item/card/id/ert/debug
 	else
-		alert("Invalid mob")
+		tgui_alert(usr,"Invalid mob")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Grant Full Access") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(span_adminnotice("[key_name_admin(usr)] has granted [M.key] full access."))
@@ -503,7 +503,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set desc = "Direct intervention"
 
 	if(M.ckey)
-		if(alert("This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,"Yes","No") != "Yes")
+		if(tgui_alert(usr,"This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
 			return
 		else
 			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
@@ -515,6 +515,33 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if( isobserver(adminmob) )
 		qdel(adminmob)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Assume Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_give_direct_control(mob/M in GLOB.mob_list)
+	set category = "Admin.Game"
+	set name = "Give direct control"
+
+	if(!M)
+		return
+	if(M.ckey)
+		if(tgui_alert(usr,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+			return
+	var/client/newkey = input(src, "Pick the player to put in control.", "New player") as null|anything in sortList(GLOB.clients)
+	var/mob/oldmob = newkey.mob
+	var/delmob = FALSE
+	if((isobserver(oldmob) || tgui_alert(usr,"Do you want to delete [newkey]'s old mob?","Delete?",list("Yes","No")) != "No"))
+		delmob = TRUE
+	if(!M || QDELETED(M))
+		to_chat(usr, "<span class='warning'>The target mob no longer exists, aborting.</span>")
+		return
+	if(M.ckey)
+		M.ghostize(FALSE)
+	M.ckey = newkey.key
+	M.client?.init_verbs()
+	if(delmob)
+		qdel(oldmob)
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] gave away direct control of [M] to [newkey].</span>")
+	log_admin("[key_name(usr)] gave away direct control of [M] to [newkey].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_test_atmos_controllers()
 	set category = "Misc.Server Debug"
@@ -582,7 +609,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins(span_adminnotice("[key_name_admin(usr)] used the Test Areas debug command checking [log_message]."))
 	log_admin("[key_name(usr)] used the Test Areas debug command checking [log_message].")
 
-	for(var/area/A in world)
+	for(var/area/A as anything in GLOB.areas)
 		if(on_station)
 			var/turf/picked = safepick(get_area_turfs(A.type))
 			if(picked && is_station_level(picked.z))
@@ -890,7 +917,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
 
-	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
+	switch(input(usr, "Which list?",, list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients")))
 		if("Players")
 			to_chat(usr, jointext(GLOB.player_list,","), confidential=TRUE)
 		if("Admins")
@@ -1022,7 +1049,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 	var/datum/map_template/ruin/template = data[1]
 	if (exists[template])
-		var/response = alert("There is already a [template] in existence.", "Spawn Ruin", "Jump", "Place Another", "Cancel")
+		var/response = tgui_alert(usr,"There is already a [template] in existence.", "Spawn Ruin", list("Jump", "Place Another", "Cancel"))
 		if (response == "Jump")
 			usr.forceMove(get_turf(exists[template]))
 			return
@@ -1046,7 +1073,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set desc = "Deallocates all reserved space, restoring it to round start conditions."
 	if(!holder)
 		return
-	var/answer = alert("WARNING: THIS WILL WIPE ALL RESERVED SPACE TO A CLEAN SLATE! ANY MOVING SHUTTLES, ELEVATORS, OR IN-PROGRESS PHOTOGRAPHY WILL BE DELETED!", "Really wipe dynamic turfs?", "YES", "NO")
+	var/answer = tgui_alert(usr,"WARNING: THIS WILL WIPE ALL RESERVED SPACE TO A CLEAN SLATE! ANY MOVING SHUTTLES, ELEVATORS, OR IN-PROGRESS PHOTOGRAPHY WILL BE DELETED!", "Really wipe dynamic turfs?", list("YES", "NO"))
 	if(answer != "YES")
 		return
 	message_admins(span_adminnotice("[key_name_admin(src)] cleared dynamic transit space."))
@@ -1121,5 +1148,5 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set desc = "Force config reload to world default"
 	if(!check_rights(R_DEBUG))
 		return
-	if(alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", "No", "Yes") == "Yes")
+	if(tgui_alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", list("No", "Yes")) == "Yes")
 		config.admin_reload()

@@ -791,6 +791,10 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
+/obj/item/clothing/under/mech_suit/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/mech_pilot, 0.9)
+
 /obj/item/clothing/under/mech_suit/white
 	name = "white mech pilot's suit"
 	desc = "A white mech pilot's suit. Very fetching."
@@ -812,7 +816,9 @@
 	item_state = "lampskirt_male"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
-	var/brightness_on = 1 //luminosity when the light is on
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_on = FALSE
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 
@@ -823,10 +829,10 @@
 	user.update_inv_w_uniform() //So the mob overlay updates
 
 	if(on)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 		user.visible_message(span_notice("[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on."))
 	else
-		set_light(0)
+		set_light_on(FALSE)
 
 	for(var/X in actions)
 		var/datum/action/A=X
@@ -845,6 +851,7 @@
 	icon_state = "weiner"
 	item_state = "weiner"
 	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
 
 // Ashwalker Clothes
 /obj/item/clothing/under/chestwrap
@@ -853,6 +860,7 @@
 	icon_state = "chestwrap"
 	has_sensor = NO_SENSORS
 	body_parts_covered = CHEST|GROIN
+	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/raider_leather
 	name = "scavenged rags"
@@ -883,7 +891,6 @@
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
-	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/ash_robe/young
 	name = "tribal rags"
@@ -942,5 +949,9 @@
 
 /obj/item/clothing/under/drip/dropped(mob/user)
 	. = ..()
-	SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
-	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_W_UNIFORM) == src)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)

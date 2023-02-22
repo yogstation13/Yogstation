@@ -20,6 +20,8 @@
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
 
+// If defined, we will NOT defer asset generation till later in the game, and will instead do it all at once, during initiialize
+//#define DO_NOT_DEFER_ASSETS
 //#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETER
 
 #ifndef PRELOAD_RSC				//set to:
@@ -29,14 +31,6 @@
 
 #ifdef LOWMEMORYMODE
 #define FORCE_MAP "_maps/runtimestation.json"
-#endif
-
-//Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 514
-#if DM_VERSION < MIN_COMPILER_VERSION
-//Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 514 or higher
 #endif
 
 //Additional code for the above flags.
@@ -52,21 +46,16 @@
 #define UNIT_TESTS
 #endif
 
+#if defined(UNIT_TESTS)
+//Ensures all early assets can actually load early
+#define DO_NOT_DEFER_ASSETS
+#endif
+
 #ifdef TRAVISTESTING
 #define TESTING
 #endif
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
-
-//If you update these values, update the message in the #error
-#define MAX_BYOND_MAJOR 514
-#define MAX_BYOND_MINOR 1585
-
-///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
-//#define IGNORE_MAX_BYOND_VERSION
-#if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
-#error Your version of BYOND is too new to compile this project. Download version 514.1585 at www.byond.com/download/build/514/514.1585_byond.exe
-#endif
 
 #ifdef TRAVISBUILDING
 // Turdis is special :)
@@ -79,7 +68,11 @@
 #endif
 
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
-#warn "Building with Dream Maker is no longer supported and may result in errors."
-#warn "In order to build, run BUILD.bat in the root directory."
-#warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
+#warn Building with Dream Maker is no longer supported and may result in errors.
+#warn In order to build, run BUILD.bat in the root directory.
+#warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.
 #endif
+
+// A reasonable number of maximum overlays an object needs
+// If you think you need more, rethink it
+#define MAX_ATOM_OVERLAYS 100

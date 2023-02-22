@@ -42,6 +42,7 @@
 #define BLOOD_DEAD 0
 
 //Defines to get the actual volumes for these varying states
+//YOGS: Keep in mind that in BYOND, initial() is a non-const function and doesn't work correctly in switch statements!
 #define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
 #define BLOOD_VOLUME_NORMAL(L)		(initial(##L.blood_volume))
 #define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
@@ -213,11 +214,14 @@
 #define NUTRITION_LEVEL_ALMOST_FULL 535
 
 //Charge levels for Ethereals
-#define ETHEREAL_CHARGE_NONE 0
-#define ETHEREAL_CHARGE_LOWPOWER 20
-#define ETHEREAL_CHARGE_NORMAL 50
-#define ETHEREAL_CHARGE_ALMOSTFULL 75
-#define ETHEREAL_CHARGE_FULL 100
+#define ETHEREAL_CHARGE_SCALING_MULTIPLIER 20
+#define ETHEREAL_CHARGE_NONE (0 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_LOWPOWER (20 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_NORMAL (50 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_ALMOSTFULL (75 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_FULL (100 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_OVERLOAD (125 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+#define ETHEREAL_CHARGE_DANGEROUS (150 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 
 //Slime evolution threshold. Controls how fast slimes can split/grow
 #define SLIME_EVOLUTION_THRESHOLD 10
@@ -377,3 +381,8 @@
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
+
+///Swarmer flags
+#define SWARMER_LIGHT_ON (1<<0)
+
+#define ACCENT_NONE "None"

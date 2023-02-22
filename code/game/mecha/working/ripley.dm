@@ -4,13 +4,11 @@
 	icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
 	step_in = 1.5 //Move speed, lower is faster.
-	var/fast_pressure_step_in = 1.5 //step_in while in low pressure conditions
-	var/slow_pressure_step_in = 2.0 //step_in while in normal pressure conditions
 	max_temperature = 20000
 	max_integrity = 200
-	lights_power = 7
+	light_power = 7
 	deflect_chance = 15
-	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 40, BIO = 0, RAD = 20, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 0, RAD = 20, FIRE = 100, ACID = 100)
 	max_equip = 6
 	wreckage = /obj/structure/mecha_wreckage/ripley
 	internals_req_access = list(ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_MINING, ACCESS_MECH_FREEMINER)
@@ -24,17 +22,7 @@
 
 /obj/mecha/working/ripley/Move()
 	. = ..()
-	if(.)
-		collect_ore()
 	update_pressure()
-
-/obj/mecha/working/ripley/proc/collect_ore()
-	if(locate(/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp) in equipment)
-		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
-		if(ore_box)
-			for(var/obj/item/stack/ore/ore in range(1, src))
-				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
-					ore.forceMove(ore_box)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in cargo)
@@ -76,10 +64,10 @@
 	desc = "Autonomous Power Loader Unit MK-II. This prototype Ripley is refitted with a pressurized cabin, trading its prior speed for atmospheric protection"
 	name = "\improper APLU MK-II \"Ripley\""
 	icon_state = "ripleymkii"
-	fast_pressure_step_in = 2 //step_in while in low pressure conditions
-	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
-	step_in = 4
-	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 40, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
+	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
+	step_in = 3
+	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 20, BOMB = 40, BIO = 100, RAD = 55, FIRE = 100, ACID = 100)
 	wreckage = /obj/structure/mecha_wreckage/ripley/mkii
 	enclosed = TRUE
 	enter_delay = 40
@@ -96,8 +84,8 @@
 	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
 	step_in = 4
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	lights_power = 7
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 0, RAD = 70, FIRE = 100, ACID = 100)
+	light_power = 7
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 100, RAD = 70, FIRE = 100, ACID = 100)
 	max_equip = 5 // More armor, less tools
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 	enclosed = TRUE
@@ -115,7 +103,7 @@
 	step_in = 4
 	slow_pressure_step_in = 3
 	opacity=0
-	lights_power = 7
+	light_power = 7
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 	step_energy_drain = 0
 	enclosed = TRUE
@@ -130,6 +118,10 @@
 
 /obj/mecha/working/ripley/deathripley/real
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	fast_pressure_step_in = 1.5
+	slow_pressure_step_in = 3
+	step_in = 3
 
 /obj/mecha/working/ripley/deathripley/real/Initialize()
 	. = ..()
@@ -208,18 +200,6 @@
 		output += "Nothing"
 	output += "</div>"
 	return output
-
-/obj/mecha/working/ripley/proc/update_pressure()
-	var/turf/T = get_turf(loc)
-
-	if(lavaland_equipment_pressure_check(T))
-		step_in = fast_pressure_step_in
-		for(var/obj/item/mecha_parts/mecha_equipment/drill/drill in equipment)
-			drill.equip_cooldown = initial(drill.equip_cooldown)/2
-	else
-		step_in = slow_pressure_step_in
-		for(var/obj/item/mecha_parts/mecha_equipment/drill/drill in equipment)
-			drill.equip_cooldown = initial(drill.equip_cooldown)
 
 /obj/mecha/working/ripley/relay_container_resist(mob/living/user, obj/O)
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
