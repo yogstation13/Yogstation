@@ -196,7 +196,7 @@
 
 /obj/item/storage/box/somecustodian
 	name = "Golden Box"
-	desc = "Holds a set of one of the most powerful suits of armor known to mankind.(99 cents rip off)"
+	desc = "Holds a set of one of the most powerful suits of armor known to mankind. Of course its the 99 cents rip off verison"
 
 /obj/item/storage/box/somecustodian/PopulateContents()
 	. = ..()
