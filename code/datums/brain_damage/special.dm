@@ -2,6 +2,7 @@
 //they are the easiest to cure, which means that if you want
 //to keep them, you can't cure your other traumas
 /datum/brain_trauma/special
+	random_cure_chance = 15
 
 /datum/brain_trauma/special/godwoken
 	name = "Godwoken Syndrome"

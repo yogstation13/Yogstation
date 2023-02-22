@@ -204,13 +204,11 @@
 	new /obj/item/clothing/suit/custodianchest(src)
 
 /obj/item/bedsheets/pridebedsheet/cark
+/obj/item/bedsheet/pride
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
-	icon = 'icons/obj/bedsheets.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
-	slot_flags = ITEM_SLOT_NECK
-	layer = MOB_LAYER
