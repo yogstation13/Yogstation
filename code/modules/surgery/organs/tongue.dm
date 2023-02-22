@@ -100,8 +100,8 @@
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
 		message = lizard_hiSS.Replace(message, "SSS")
-		message = lizard_ecks.Replace(message, "cksss")
-		message = lizard_eckS.Replace(message, "CKSSS")
+		message = lizard_ecks.Replace(message, "ksss")
+		message = lizard_eckS.Replace(message, "KSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly
@@ -314,8 +314,8 @@
 	if(message[1] != "*")
 		message = polysmorph_hiss.Replace(message, "ssssss")
 		message = polysmorph_hiSS.Replace(message, "SSSSSS")
-		message = polysmorph_ecks.Replace(message, "ckssssss")
-		message = polysmorph_eckS.Replace(message, "CKSSSSSS")
+		message = polysmorph_ecks.Replace(message, "kssssss")
+		message = polysmorph_eckS.Replace(message, "KSSSSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/polysmorph/Initialize(mapload)
