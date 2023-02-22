@@ -94,14 +94,14 @@
 	..()
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
-	var/static/regex/lizard_ecks = new(@"\bx([\-|r|R]|\b)", "g")
-	var/static/regex/lizard_eckS = new(@"\bX([\-|r|R]|\b)", "g")
+	var/static/regex/lizard_ecks = new("x+", "g")
+	var/static/regex/lizard_eckS = new("X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
 		message = lizard_hiSS.Replace(message, "SSS")
-		message = lizard_ecks.Replace(message, "ecks$1")
-		message = lizard_eckS.Replace(message, "ECKS$1")
+		message = lizard_ecks.Replace(message, "ecksss")
+		message = lizard_eckS.Replace(message, "ECKSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly
@@ -308,14 +308,14 @@
 	..()
 	var/static/regex/polysmorph_hiss = new("s+", "g")
 	var/static/regex/polysmorph_hiSS = new("S+", "g")
-	var/static/regex/polysmorph_ecks = new(@"\bx([\-|r|R]|\b)", "g")
-	var/static/regex/polysmorph_eckS = new(@"\bX([\-|r|R]|\b)", "g")
+	var/static/regex/polysmorph_ecks = new("x+", "g")
+	var/static/regex/polysmorph_eckS = new("X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = polysmorph_hiss.Replace(message, "ssssss")
 		message = polysmorph_hiSS.Replace(message, "SSSSSS")
-		message = polysmorph_ecks.Replace(message, "ecks$1")
-		message = polysmorph_eckS.Replace(message, "ECKS$1")
+		message = polysmorph_ecks.Replace(message, "eckssssss")
+		message = polysmorph_eckS.Replace(message, "ECKSSSSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/polysmorph/Initialize(mapload)
