@@ -25971,6 +25971,12 @@
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos_distro)
+"goA" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "goW" = (
 /obj/machinery/light{
 	dir = 4
@@ -27206,6 +27212,15 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gRx" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "gRH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -34290,6 +34305,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"jEL" = (
+/obj/item/chair,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/aft)
 "jEV" = (
 /obj/structure/closet/secure_closet/paramedic,
 /obj/effect/turf_decal/delivery,
@@ -47811,6 +47833,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"pkh" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/aft)
 "pkF" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -67753,6 +67781,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"xvs" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "xvO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -88729,10 +88768,10 @@ aaa
 aaa
 aaa
 aaa
-aoV
-aaa
-aaa
-aaa
+alU
+alU
+alU
+alU
 alU
 vZz
 amw
@@ -88986,10 +89025,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alU
+lFj
+lFj
+ang
 alU
 vZz
 amw
@@ -89243,10 +89282,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aoV
-aoV
-aoV
+alU
+lFj
+lFj
+lFj
 alU
 vZz
 alU
@@ -89500,10 +89539,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aag
 alU
-alU
+lFj
+lFj
+lFj
 alU
 vZz
 alU
@@ -89757,12 +89796,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aag
-aFq
-aGS
-aIO
-aJL
+alU
+alU
+alU
+alU
+alU
+vZz
 hDe
 lFj
 lFj
@@ -90015,11 +90054,11 @@ aaa
 aaa
 aaa
 aaa
-pEf
-alU
-alU
-alU
-amC
+aag
+aFq
+aGS
+aIO
+aJL
 alU
 lFj
 lFj
@@ -90272,9 +90311,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+pEf
+alU
+alU
 alU
 amC
 alU
@@ -90343,10 +90382,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+bCq
+bCq
+bCq
+bCq
 bCq
 bPr
 bPr
@@ -90600,10 +90639,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+bCq
+gZD
+gZD
+xEg
 bCq
 gZD
 gZD
@@ -90857,10 +90896,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+bCq
+gZD
+gZD
+gZD
 bCq
 gZD
 gZD
@@ -91114,10 +91153,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+bCq
+gZD
+gZD
+gZD
 bCq
 gZD
 gZD
@@ -91369,12 +91408,12 @@ aoV
 aoV
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bCq
+bCq
+bCq
+bCq
+jcq
+bCq
 bCq
 gZD
 gZD
@@ -91625,14 +91664,14 @@ bGi
 aoV
 aoV
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 bCq
+bCq
+bHE
+bHE
+bHE
+bHE
+bHE
+gRx
 gZD
 gZD
 gZD
@@ -91882,9 +91921,9 @@ bGi
 aoV
 aoV
 aaa
-aaa
-aaa
-aaa
+bCq
+bHE
+bHE
 bCq
 bCq
 bCq
@@ -92139,9 +92178,9 @@ bxy
 aaf
 gXs
 aaa
-aaa
-aaa
-aaa
+bCq
+bHE
+eki
 bCq
 gZD
 gZD
@@ -92397,7 +92436,7 @@ aaH
 bCq
 bCq
 bCq
-bCq
+nmn
 bCq
 bCq
 gZD
@@ -122485,9 +122524,9 @@ iKq
 iKq
 hNs
 cNW
-gXs
-aaf
-aaf
+mpt
+cOe
+cNW
 aaf
 aaf
 aaf
@@ -122742,9 +122781,9 @@ iKq
 iKq
 iKq
 cNW
-aaa
-aaa
-aaa
+pkh
+cOe
+cNW
 gXs
 aaa
 aaa
@@ -122999,9 +123038,9 @@ iKq
 iKq
 iKq
 cNW
-gXs
-gXs
-gXs
+goA
+goA
+cNW
 gXs
 gXs
 aaf
@@ -123256,9 +123295,9 @@ iKq
 iKq
 iKq
 cNW
-aoV
-aaa
-gXs
+cOe
+cOe
+cNW
 aaf
 aaa
 aaa
@@ -123512,10 +123551,10 @@ cNW
 iKq
 iKq
 iKq
+vKX
+cOe
+cOe
 cNW
-aaa
-aaa
-aaa
 gXs
 aaa
 aaa
@@ -123770,9 +123809,9 @@ cNW
 cNW
 cNW
 cNW
-gXs
-gXs
-gXs
+cNW
+xvs
+cNW
 aaf
 aaf
 gXs
@@ -124023,13 +124062,13 @@ aaf
 aag
 aag
 aag
-aoV
-aaa
-aaa
-aoV
-aaa
-aaa
-aaa
+cNW
+vOj
+cNW
+iKq
+iKq
+cCG
+cNW
 aoV
 aaa
 aaa
@@ -124280,13 +124319,13 @@ aaa
 aaa
 aag
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cNW
+lNU
+cNW
+iKq
+iKq
+iKq
+cNW
 aaa
 aaa
 aaa
@@ -124537,13 +124576,13 @@ aaa
 aaa
 aaf
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cNW
+jEL
+cNW
+iKq
+iKq
+iKq
+cNW
 aaa
 aaa
 aaa
@@ -124794,13 +124833,13 @@ aaa
 aaa
 aaf
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
 aaa
 aaa
 aaa
