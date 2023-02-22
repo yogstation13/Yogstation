@@ -165,9 +165,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
-	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
