@@ -27,6 +27,8 @@
 	//this should never be seen because of the way olfaction works but just in case
 	smells_like = "chained intellect"
 
+	bounty_types = NONE
+
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
 		CRASH("dynamic preview is unsupported")

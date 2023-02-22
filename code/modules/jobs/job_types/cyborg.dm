@@ -23,6 +23,8 @@
 
 	smells_like = "inorganic indifference"
 
+	bounty_types = NONE
+
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)
 		CRASH("dynamic preview is unsupported")
