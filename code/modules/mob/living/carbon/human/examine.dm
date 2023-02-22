@@ -119,7 +119,7 @@
 			badwings = "Weaponized "
 		. += "[t_He] [t_has] a pair of [span_warning(badwings)][(dna.features["wings"])] wings on [t_his] back"
 
-	if(HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
+	if(user?.mind && HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
 		var/highest_trauma = 0
 		for(var/datum/brain_trauma/B in get_traumas())
 			if(istype(B, /datum/brain_trauma/magic))
