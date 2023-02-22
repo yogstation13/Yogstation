@@ -563,7 +563,7 @@
 		set_disabled(TRUE)
 		return
 
-	var/total_damage = max(brute_dam + burn_dam, stamina_dam)
+	var/total_damage = HAS_TRAIT(owner, TRAIT_STUNIMMUNE) ? (brute_dam + burn_dam) : max(brute_dam + burn_dam, stamina_dam)
 
 	// this block of checks is for limbs that can be disabled, but not through pure damage (AKA limbs that suffer wounds, human/monkey parts and such)
 	if(!disable_threshold)
