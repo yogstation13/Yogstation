@@ -327,7 +327,7 @@
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
 	if(internal)
-		if(update_internals(FALSE)) // returns TRUE if able to use internals, turns off internals and returns
+		if(update_internals()) // returns TRUE if able to use internals, turns off internals and returns
 			update_internals_hud_icon(1)
 			. = internal.remove_air_volume(volume_needed)
 			if(!.)

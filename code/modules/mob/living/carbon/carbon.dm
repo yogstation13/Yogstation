@@ -885,7 +885,7 @@
 		return TRUE
 	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc == src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
 		return TRUE
-	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE))
+	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE) && (head.flags_cover & HEADCOVERSMOUTH))
 		return TRUE
 	update_internals_hud_icon(0)
 	update_action_buttons_icon()
