@@ -11,12 +11,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"aI" = (
-/obj/structure/cable/orange{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "aO" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -130,21 +124,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"eb" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Southwest";
-	dir = 1;
-	network = list("ss13","engine")
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "es" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -176,21 +155,17 @@
 /obj/structure/cable/orange,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"gx" = (
+/obj/structure/cable/orange{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/airless,
+/area/icemoon/surface/outdoors)
 "gD" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"ir" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
 /area/engine/engineering)
 "iM" = (
 /obj/effect/turf_decal/stripes{
@@ -215,6 +190,17 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"kl" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Northwest";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "kH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -242,6 +228,31 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"lv" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
+"mi" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southwest";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
 "my" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -252,12 +263,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"mR" = (
-/obj/structure/cable/orange{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "nn" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -288,6 +293,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oq" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
+"oD" = (
+/turf/open/floor/plating/airless,
+/area/icemoon/surface/outdoors)
 "pN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -296,6 +311,10 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"qk" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "qP" = (
 /obj/machinery/light{
@@ -395,10 +414,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"uj" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/engine/engineering)
 "ul" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -466,16 +481,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wM" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
 "xa" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
 	req_access_txt = "10;13"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"yi" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
 /area/engine/engineering)
 "yo" = (
 /obj/structure/cable/orange{
@@ -562,11 +580,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"BG" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/engine/engineering)
 "CQ" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -583,27 +596,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"EB" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "Fj" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"FI" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "Gp" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Hc" = (
+"Ht" = (
+/obj/structure/cable/orange{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors)
 "Ic" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -639,10 +652,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"JE" = (
-/obj/machinery/the_singularitygen,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "JJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -651,13 +660,6 @@
 	dir = 5
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"JK" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/space/basic,
 /area/engine/engineering)
 "Kb" = (
 /obj/structure/cable{
@@ -775,12 +777,9 @@
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"Oj" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
+"Oy" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "PH" = (
 /obj/structure/cable/orange{
@@ -845,9 +844,6 @@
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"Su" = (
-/turf/open/space/basic,
-/area/engine/engineering)
 "Sv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -869,17 +865,6 @@
 "SN" = (
 /turf/template_noop,
 /area/template_noop)
-"Ts" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Northwest";
-	network = list("ss13","engine")
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "Uh" = (
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
@@ -910,11 +895,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"VS" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
 "VY" = (
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"Wv" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "WP" = (
 /obj/structure/cable{
@@ -942,13 +940,6 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"YJ" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/space/basic,
-/area/engine/engineering)
 "YY" = (
 /obj/machinery/light,
 /obj/structure/cable/orange{
@@ -963,6 +954,11 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"ZB" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "ZP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1241,8 +1237,8 @@ SN
 vP
 PQ
 vP
-Ts
-Su
+kl
+Wv
 fE
 fE
 fE
@@ -1252,8 +1248,8 @@ fE
 fE
 fE
 fE
-Su
-eb
+Wv
+mi
 vP
 PQ
 vP
@@ -1265,23 +1261,23 @@ SN
 "}
 (12,1,1) = {"
 nn
-mR
+Ht
 Ly
-Oj
-Su
-yi
-yi
-yi
-yi
-yi
-Su
-Su
-yi
-yi
-Su
-Oj
+FI
+Wv
+Oy
+Oy
+Oy
+Oy
+Oy
+Wv
+Wv
+Oy
+Oy
+Wv
+FI
 Ly
-aI
+gx
 Ic
 vP
 SN
@@ -1293,19 +1289,19 @@ SN
 WW
 gi
 Uh
-Oj
-yi
+FI
+Oy
 tg
-Su
-Su
+Wv
+Wv
 tg
-Su
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Wv
 tg
-yi
-Oj
+Oy
+FI
 Uh
 bk
 my
@@ -1319,19 +1315,19 @@ SN
 kb
 Id
 Uh
-ir
+lv
 QN
-Su
-Su
-Su
-yi
-Su
-Su
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Oy
+Wv
+Wv
+Wv
+Wv
+Wv
 CQ
-EB
+VS
 Uh
 Id
 kb
@@ -1345,19 +1341,19 @@ SN
 kX
 PH
 SF
-Oj
+FI
 Uh
-Su
-Su
-Su
-yi
-Su
-Su
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Oy
+Wv
+Wv
+Wv
+Wv
+Wv
 Uh
-Oj
+FI
 SF
 VN
 bs
@@ -1371,19 +1367,19 @@ SN
 vP
 tm
 SF
-Oj
-Su
-Su
-Su
-Su
+FI
+Wv
+Wv
+Wv
+Wv
 Uh
 Uh
 Uh
-yi
-yi
+Oy
+Oy
 tg
-yi
-Oj
+Oy
+FI
 SF
 Zj
 vP
@@ -1397,19 +1393,19 @@ SN
 vP
 Ne
 ba
-ir
+lv
 QN
-Su
-Su
-Su
-JE
+Wv
+Wv
+Wv
+Uh
 Uh
 NH
-Su
-Su
-Su
+Wv
+Wv
+Wv
 CQ
-EB
+VS
 ba
 YY
 vP
@@ -1423,19 +1419,19 @@ SN
 vP
 Ro
 SF
-Oj
-yi
+FI
+Oy
 tg
-yi
-yi
+Oy
+Oy
 Uh
 Uh
 Uh
-Su
-Su
-Su
-Su
-Oj
+Wv
+Wv
+Wv
+Wv
+FI
 SF
 Mp
 vP
@@ -1449,19 +1445,19 @@ SN
 nn
 zu
 SF
-JK
+oq
 QN
-Su
-Su
-Su
-Su
-Su
-yi
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Wv
+Wv
+Oy
+Wv
+Wv
+Wv
 CQ
-YJ
+wM
 SF
 RV
 Ic
@@ -1475,19 +1471,19 @@ SN
 kb
 wg
 Uh
-uj
+qk
 Uh
-Su
-Su
-Su
-Su
-Su
-yi
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Wv
+Wv
+Oy
+Wv
+Wv
+Wv
 Uh
-uj
+qk
 Uh
 wg
 kb
@@ -1501,19 +1497,19 @@ SN
 kX
 gi
 Uh
-uj
-yi
+qk
+Oy
 tg
-Su
-Su
-Su
-Su
+Wv
+Wv
+Wv
+Wv
 tg
-Su
-Su
+Wv
+Wv
 tg
-yi
-uj
+Oy
+qk
 Uh
 bk
 bs
@@ -1527,19 +1523,19 @@ SN
 LS
 Uh
 Uh
-uj
-Su
-yi
-Su
-Su
-Su
-Su
-yi
-Su
-Su
-yi
-Su
-uj
+qk
+Wv
+Oy
+Wv
+Wv
+Wv
+Wv
+Oy
+Wv
+Wv
+Oy
+Wv
+qk
 Uh
 Uh
 LS
@@ -1553,19 +1549,19 @@ SN
 LS
 Uh
 qP
-uj
-yi
-yi
-Su
-Su
-Su
-yi
-BG
-yi
-Su
-yi
-yi
-uj
+qk
+Oy
+Oy
+Wv
+Wv
+Wv
+Oy
+ZB
+Oy
+Wv
+Oy
+Oy
+qk
 qP
 Uh
 LS
@@ -1603,7 +1599,7 @@ SN
 "}
 (25,1,1) = {"
 SN
-Hc
+oD
 vP
 vP
 vP
@@ -1619,7 +1615,7 @@ vP
 vP
 vP
 vP
-Hc
+oD
 SN
 SN
 SN
