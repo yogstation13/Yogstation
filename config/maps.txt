@@ -22,6 +22,11 @@ map yogsmeta
 	votable
 endmap
 
+map icemeta
+	minplayers 25
+	votable
+endmap
+
 map gaxstation
 	maxplayers 40
 	votable
