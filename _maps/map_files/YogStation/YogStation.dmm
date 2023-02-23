@@ -22332,6 +22332,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"eOA" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "eOX" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical/virology,
@@ -34826,15 +34835,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"jPE" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/maintenance/port/aft)
 "jPS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -89646,7 +89646,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+gXs
 aaa
 aaa
 aaa
@@ -89903,7 +89903,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+gXs
 bCq
 bCq
 bCq
@@ -90160,7 +90160,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+gXs
 bCq
 gZD
 gZD
@@ -90415,9 +90415,9 @@ aaa
 aaa
 aaa
 aaa
+gXs
 aaa
-aaa
-aaa
+gXs
 bCq
 gZD
 gZD
@@ -90672,9 +90672,9 @@ aaa
 aaa
 aaa
 aaa
+gXs
 aaa
-aaa
-aaa
+gXs
 bCq
 gZD
 gZD
@@ -91193,7 +91193,7 @@ bQw
 bHE
 bHE
 bHE
-jPE
+eOA
 gZD
 gZD
 gZD
@@ -91956,7 +91956,7 @@ upm
 bGi
 aoV
 aoV
-aaa
+bCq
 bCq
 bHE
 qSa
@@ -92213,8 +92213,8 @@ wqE
 bxy
 aaf
 gXs
-aaa
 bCq
+bHE
 bHE
 eki
 bCq
@@ -92471,8 +92471,8 @@ bxy
 aaH
 bCq
 bCq
-bCq
 nmn
+bCq
 bCq
 bCq
 gZD
