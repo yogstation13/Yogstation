@@ -1,7 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - rscadd: "ACCESS_PSYCH define"
-  - mapping: "Sets psych back room door to psych access"
-  - mapping: "[Asteroid] Makes psych back door reinforced like the others"
-  - experiment: "[TO DO] Perhaps look into coding psych their own locker"
