@@ -1,5 +1,92 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
+"d" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "junctionshutter"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"f" = (
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/plating,
+/area/template_noop)
+"i" = (
+/obj/machinery/button/door{
+	id = "junctionshutter";
+	name = "Shutters Control";
+	pixel_x = -4;
+	pixel_y = -26;
+	sync_doors = 0
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"j" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"m" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"q" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/template_noop)
+"C" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"E" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"K" = (
+/obj/machinery/button/door{
+	id = "junctionshutter";
+	name = "Shutters Control";
+	pixel_x = 26;
+	pixel_y = 4;
+	sync_doors = 0
+	},
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/template_noop)
+"N" = (
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
@@ -15,7 +102,16 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
+"Q" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"U" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "junctionshutter"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
@@ -32,227 +128,131 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"h" = (
+"W" = (
 /obj/structure/sign/warning,
 /turf/closed/wall/r_wall,
 /area/template_noop)
-"j" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
+"Y" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"k" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/template_noop)
-"m" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
-"q" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "junctionshutter"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"s" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
-"t" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/airless,
-/area/template_noop)
-"B" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
-"I" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"L" = (
-/turf/open/floor/plating,
-/area/template_noop)
-"M" = (
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/plating,
-/area/template_noop)
-"N" = (
-/obj/machinery/button/door{
-	id = "junctionshutter";
-	name = "Shutters Control";
-	pixel_x = -4;
-	pixel_y = -26;
-	sync_doors = 0
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"Q" = (
-/obj/machinery/button/door{
-	id = "junctionshutter";
-	name = "Shutters Control";
-	pixel_x = 26;
-	pixel_y = 4;
-	sync_doors = 0
-	},
-/obj/machinery/light{
-	dir = 8;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/template_noop)
-"R" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"T" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/template_noop)
-"U" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "junctionshutter"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 
 (1,1,1) = {"
-s
-s
-k
-L
-L
-L
-k
-s
-s
-s
-"}
-(2,1,1) = {"
-s
-B
-k
-k
-I
-k
-k
-m
-t
-s
-"}
-(3,1,1) = {"
-s
-B
-m
-k
-L
-k
-B
-B
-j
-s
-"}
-(4,1,1) = {"
-k
-k
-m
-s
-c
-h
-m
-m
-k
-k
-"}
-(5,1,1) = {"
-L
-k
-h
-s
-U
-s
-s
-k
-k
-L
-"}
-(6,1,1) = {"
-L
-R
+Q
 Q
 q
-M
+m
+m
+m
 q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+C
+q
+q
+E
+q
+q
+Y
+p
+Q
+"}
+(3,1,1) = {"
+Q
+C
+Y
+q
+m
+q
+C
+C
+e
+Q
+"}
+(4,1,1) = {"
+q
+q
+Y
+Q
+N
+W
+Y
+Y
+q
+q
+"}
+(5,1,1) = {"
+m
+q
+W
+Q
+d
+Q
+Q
+q
+q
+m
+"}
+(6,1,1) = {"
+m
+j
+K
+U
 f
-L
-T
-L
+U
+V
+m
+o
+m
 "}
 (7,1,1) = {"
-L
-k
-s
-s
-U
-s
-h
-k
-k
-L
+m
+q
+Q
+Q
+d
+Q
+W
+q
+q
+m
 "}
 (8,1,1) = {"
-k
-k
-B
-h
-N
-s
-m
-m
-k
-k
+q
+q
+C
+W
+i
+Q
+Y
+Y
+q
+q
 "}
 (9,1,1) = {"
-s
-B
-k
-k
-I
-k
-k
-B
-B
-s
+Q
+C
+q
+q
+E
+q
+q
+C
+C
+Q
 "}
 (10,1,1) = {"
-s
-s
-k
-L
-L
-L
-k
-s
-s
-s
+Q
+Q
+q
+m
+m
+m
+q
+Q
+Q
+Q
 "}
