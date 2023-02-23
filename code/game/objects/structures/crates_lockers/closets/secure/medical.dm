@@ -181,3 +181,21 @@
 	new /obj/item/storage/box/syringes/variety(src)
 	new /obj/item/storage/box/beakers/variety(src)
 	new /obj/item/clothing/glasses/science(src)
+
+/obj/structure/closet/secure_closet/psych
+	name = "psychiatrist's cabinet"
+	desc = "packed with a psychiastrist's tools of the trade"
+	req_access = list(ACCESS_PSYCH)
+	icon_state = "cabinet"
+
+/obj/structure/closet/secure_closet/psych/PopulateContents()
+	..()
+	new /obj/item/clothing/suit/straight_jacket
+	new /obj/item/clothing/mask/muzzle
+	new /obj/item/storage/pill_bottle/happiness
+	new /obj/item/storage/pill_bottle/dice
+	new /obj/item/storage/pill_bottle/happy
+	new /obj/item/storage/pill_bottle/lsd
+	new /obj/item/storage/pill_bottle/psicodine
+	new /obj/item/assembly/flash
+	new /obj/item/assembly/flash
