@@ -373,10 +373,10 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/head/custodianhelm
-	name = "Custodian Helmet"
+	name = "custodian helmet"
 	desc = "Gives you the willpower to defend your plasmaman Captain till the end of time. If this was real that is..."
-	icon_state = "CustodianHat"
-	item_state = "CustodianHat"
+	icon_state = "custodianhat"
+	item_state = "custodianhat"
 
 /obj/item/clothing/head/Floralwizhat
 	name = "Druid hat"
