@@ -62,7 +62,7 @@
 	if(A)
 		notify_ghosts("[mob_name] egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
-//Ash walker shaman eggs: Spawns in ash walker dens in lavaland. Only one can exist at a time and have the sole purpose of keeping other ashwalkers alive.
+//Ash walker shaman eggs: Spawns in ash walker dens in lavaland. Only one can exist at a time, they are squishier than regular ashwalkers, and have the sole purpose of keeping other ashwalkers alive.
 /obj/effect/mob_spawn/human/ash_walker/shaman
 	name = "ash walker shaman egg"
 	desc = "A man-sized, amber egg spawned from some unfathomable creature. A humanoid silhouette lurks within."
