@@ -203,7 +203,7 @@
 /obj/item/melee/touch_attack/healtouch
 	name = "\improper healing touch"
 	desc = "A blaze of life-granting energy from the hand. Heals minor to moderate injuries."
-	catchphrase = "BE HEALED!!"
+	catchphrase = "BE REPLENISHED!!"
 	on_use_sound = 'sound/magic/staff_healing.ogg'
 	icon_state = "touchofdeath" //ironic huh
 	item_state = "touchofdeath"
