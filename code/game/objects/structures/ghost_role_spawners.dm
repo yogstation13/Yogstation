@@ -70,7 +70,7 @@
 	mob_species = /datum/species/lizard/ashwalker/shaman
 	outfit = /datum/outfit/ashwalker/shaman //might be OP, but the flavour is there
 	short_desc = "You are an ash walker shaman. Your tribe worships the Necropolis."
-	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
+	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. You and your people have become one with the tendril and its land. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker Shaman"
 
