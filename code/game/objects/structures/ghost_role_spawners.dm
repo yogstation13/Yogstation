@@ -65,7 +65,7 @@
 //Ash walker shaman eggs: Spawns in ash walker dens in lavaland. Only one can exist at a time and have the sole purpose of keeping other ashwalkers alive.
 /obj/effect/mob_spawn/human/ash_walker/shaman
 	name = "ash walker shaman egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
+	desc = "A man-sized, amber egg spawned from some unfathomable creature. A humanoid silhouette lurks within."
 	mob_name = "an ash walker shaman"
 	mob_species = /datum/species/lizard/ashwalker/shaman
 	outfit = /datum/outfit/ashwalker/shaman //might be OP, but the flavour is there
