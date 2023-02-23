@@ -55171,6 +55171,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"smo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/door/window/brigdoor/northright{
+	name = "Filing Room";
+	opacity = 1;
+	req_access_txt = "77"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "smx" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -57569,20 +57583,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
-"tkW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/door/window/brigdoor/northright{
-	name = "Filing Room";
-	opacity = 1;
-	req_access_txt = "5"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "tlg" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -109354,7 +109354,7 @@ lUn
 faj
 uWK
 eNx
-tkW
+smo
 tEx
 jxu
 nTv
