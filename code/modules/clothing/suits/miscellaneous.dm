@@ -367,7 +367,7 @@
  */
 
 /obj/item/clothing/suit/custodianchest
-	name = "Custodian Armor"
+	name = "custodian armor"
 	desc = "Strong enough to handle the toughest of blows if it was made with the real deal instead of some trash material like gold"
 	icon_state = "CustodianBody"
 	item_state = "CustodianBody"
