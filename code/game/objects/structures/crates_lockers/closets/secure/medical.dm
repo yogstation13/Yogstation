@@ -184,18 +184,18 @@
 
 /obj/structure/closet/secure_closet/psych
 	name = "psychiatrist's cabinet"
-	desc = "packed with a psychiastrist's tools of the trade"
+	desc = "Packed with a psychiastrist's tools of the trade"
 	req_access = list(ACCESS_PSYCH)
 	icon_state = "cabinet"
 
 /obj/structure/closet/secure_closet/psych/PopulateContents()
 	..()
-	new /obj/item/clothing/suit/straight_jacket
-	new /obj/item/clothing/mask/muzzle
-	new /obj/item/storage/pill_bottle/happiness
-	new /obj/item/storage/pill_bottle/dice
-	new /obj/item/storage/pill_bottle/happy
-	new /obj/item/storage/pill_bottle/lsd
-	new /obj/item/storage/pill_bottle/psicodine
-	new /obj/item/assembly/flash
-	new /obj/item/assembly/flash
+	new /obj/item/clothing/suit/straight_jacket(src)
+	new /obj/item/clothing/mask/muzzle(src)
+	new /obj/item/storage/pill_bottle/happiness(src)
+	new /obj/item/storage/pill_bottle/dice(src)
+	new /obj/item/storage/pill_bottle/happy(src)
+	new /obj/item/storage/pill_bottle/lsd(src)
+	new /obj/item/storage/pill_bottle/psicodine(src)
+	new /obj/item/assembly/flash(src)
+	new /obj/item/assembly/flash(src)
