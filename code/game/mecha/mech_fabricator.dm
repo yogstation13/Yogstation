@@ -72,14 +72,6 @@
 								"IPC Components",
 								"Misc"
 								)
-	var/list/combat_parts = list(
-								"Gygax",
-								"Durand",
-								"H.O.N.K",
-								"Phazon",
-								"Sidewinder",
-								"Exosuit Ammunition",
-								)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	stored_research = SSresearch.science_tech
