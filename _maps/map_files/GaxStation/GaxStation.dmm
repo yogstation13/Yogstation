@@ -4028,6 +4028,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "bXn" = (
@@ -12802,9 +12805,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "ggE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /obj/machinery/power/terminal{
 	dir = 8
 	},
@@ -15644,6 +15644,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"hAJ" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "hBa" = (
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/bot,
@@ -26465,6 +26469,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "neX" = (
@@ -33045,11 +33050,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
@@ -41865,6 +41870,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
+/obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "uWk" = (
@@ -68800,7 +68806,7 @@ qxw
 crb
 nkd
 teI
-uRB
+hAJ
 pzD
 rYc
 oIA
@@ -69045,7 +69051,7 @@ jjH
 lFk
 onQ
 eIR
-uRB
+hAJ
 aJZ
 tzQ
 fQa
@@ -69572,7 +69578,7 @@ uqi
 tLT
 qSJ
 uRB
-uRB
+hAJ
 iRc
 tvD
 xTt
@@ -70856,7 +70862,7 @@ jEp
 vov
 vov
 ail
-uRB
+hAJ
 iKZ
 mwk
 sSU
