@@ -299,6 +299,49 @@
 	icon_state = "phazon_armor"
 
 
+///////// sidewinder
+
+/obj/item/mecha_parts/chassis/sidewinder
+	name = "\improper Sidewinder chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/sidewinder
+
+/obj/item/mecha_parts/part/sidewinder_torso
+	name = "\improper Sidewinder torso"
+	desc = "A Sidewinder torso part. Contains a light power unit, processing units, and life support systems."
+	icon_state = "sidewinder_harness"
+
+/obj/item/mecha_parts/part/sidewinder_head
+	name = "\improper Sidewinder head"
+	desc = "A Sidewinder head. A light armor shell houses advanced surveillance and environmental sensors."
+	icon_state = "sidewinder_head"
+
+/obj/item/mecha_parts/part/sidewinder_left_arm
+	name = "\improper Sidewinder left arm"
+	desc = "A Sidewinder left arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
+	icon_state = "sidewinder_l_arm"
+
+/obj/item/mecha_parts/part/sidewinder_right_arm
+	name = "\improper Sidewinder right arm"
+	desc = "A Sidewinder right arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
+	icon_state = "sidewinder_r_arm"
+
+/obj/item/mecha_parts/part/sidewinder_left_leg
+	name = "\improper Sidewinder left leg"
+	desc = "A Sidewinder left leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
+	icon_state = "sidewinder_l_leg"
+
+/obj/item/mecha_parts/part/sidewinder_right_leg
+	name = "\improper Sidewinder right leg"
+	desc = "A sidewinder right leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
+	icon_state = "sidewinder_r_leg"
+
+/obj/item/mecha_parts/part/sidewinder_armor
+	gender = PLURAL
+	name = "\improper Sidewinder armor plates"
+	desc = "A set of armor plates designed for the Sidewinder. They act as a thin shell to protect the most vulnerable areas without limiting mobility."
+	icon_state = "sidewinder_armor"
+
+
 ///////// Circuitboards
 
 /obj/item/circuitboard/mecha
@@ -385,4 +428,16 @@
 
 /obj/item/circuitboard/mecha/clarke/main
 	name = "Clarke Central Control module (Exosuit Board)"
+	icon_state = "mainboard"
+
+/obj/item/circuitboard/mecha/sidewinder/peripherals
+	name = "Sidewinder Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/sidewinder/targeting
+	name = "Sidewinder Kinetics and Mobility Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/sidewinder/main
+	name = "Sidewinder Central Control module (Exosuit Board)"
 	icon_state = "mainboard"
