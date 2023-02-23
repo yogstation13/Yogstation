@@ -1815,6 +1815,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 //Legion
 #define COOLDOWN_TAP 60
 #define COOLDOWN_BAND 200
+#define COOLDOWN_TELE 15
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
@@ -1825,15 +1826,16 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "cursedcane"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 0
+	force = 1 //for weaker animals and fucking legion skulls
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 10
+	var/telerange = 20 
 	var/next_tap = 0
 	var/next_band = 0
+	var/next_teleport = 0
 
 /obj/item/cane/cursed/pickup(mob/user)
 	. = ..()
@@ -1871,15 +1873,48 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
 	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
 
+/obj/item/cane/cursed/proc/execute(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	M.adjustBruteLoss(M.health)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane, making [M.p_their()] eyes flash black before keeling over!"))
+
 /obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead))
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
 	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
+		if(M.stat == CONSCIOUS)
+			if(iscarbon(M) && M.health < M.maxHealth/8)
+				execute(user, M)
+				return FALSE
+			if(ismegafauna(M) && M.health < M.maxHealth/5)
+				execute(user, M)
+				limit++
+				return FALSE
+			if(M.health < M.maxHealth/2.8)
+				execute(user, M)
+				return FALSE
+		else
+			to_chat(user, span_notice("You can't control that many minions!"))
+			return FALSE
+	if(ismegafauna(M))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else if (M.stat == CONSCIOUS)
+			bigfinish(user, M)
+			limit ++
+			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
+			return TRUE
+	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else
+			bigfinish(user, M)
+			return TRUE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1887,26 +1922,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		littlefinish(user, M)
 		M.apply_status_effect(/datum/status_effect/exhumed)
 		return TRUE
-	if(ismegafauna(M))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			limit ++
-			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
-			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			return TRUE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
-	if(M.health < M.maxHealth/5)
+	if(M.health < M.maxHealth/2.8)
 		littlefinish(user, M)
 		return TRUE
 
@@ -1941,11 +1960,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/Z = get_turf(thrownby)
 	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
 		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
-		F.forceMove(Z)
-		thrownby.forceMove(D)
-		thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+		if(next_teleport < world.time)
+			F.forceMove(Z)
+			next_teleport = world.time + COOLDOWN_TELE
+			thrownby.forceMove(D)
+			thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+			thrownby.put_in_hands(src)
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
-				thrownby.put_in_hands(src)

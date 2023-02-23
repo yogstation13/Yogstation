@@ -16842,19 +16842,34 @@
 "cGH" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
-/obj/item/gun/energy/disabler{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/gun/energy/disabler,
-/obj/item/gun/energy/disabler{
-	pixel_x = 4;
-	pixel_y = -4
-	},
 /obj/machinery/door/window/brigdoor{
 	dir = 4;
 	name = "Armory Door";
 	req_access_txt = "1"
+	},
+/obj/item/gun/energy/disabler{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gun/energy/disabler{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gun/energy/disabler{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -45391,6 +45406,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"okO" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "okS" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -67600,24 +67637,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"xrJ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "xrK" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -68039,12 +68058,19 @@
 /area/maintenance/disposal/incinerator)
 "xBG" = (
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_x = 2;
-	pixel_y = -2
-	},
 /obj/effect/turf_decal/bot_red,
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 16;
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "xBH" = (
@@ -119335,7 +119361,7 @@ bka
 bka
 aCl
 uvc
-xrJ
+okO
 gTh
 oaO
 bvK
