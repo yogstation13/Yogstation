@@ -72,8 +72,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isslimeperson(A) (is_species(A, /datum/species/jelly/slime))
 #define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
 #define iszombie(A) (is_species(A, /datum/species/zombie))
-#define isinfectedzombie(A) (is_species(A, /datum/species/zombie/infectious/gamemode))
-#define isspitter(A) (is_species(A, /datum/species/zombie/infectious/gamemode/spitter))
 #define isskeleton(A) (is_species(A, /datum/species/skeleton))
 #define ismoth(A) (is_species(A, /datum/species/moth))
 #define ishumanbasic(A) (is_species(A, /datum/species/human))
@@ -85,6 +83,14 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
+
+//zombie gamemode mobs and species
+#define isinfectedzombie(A) (is_species(A, /datum/species/zombie/infectious/gamemode))
+#define issmoker(A) (is_species(A, /datum/species/zombie/infectious/gamemode/smoker))
+#define isrunner(A) (is_species(A, /datum/species/zombie/infectious/gamemode/runner))
+#define isspitter(A) (is_species(A, /datum/species/zombie/infectious/gamemode/spitter))
+#define isjuggernaut(A) (is_species(A, /datum/species/zombie/infectious/gamemode/juggernaut))
+#define isbrainy(A) (istype(A, /mob/living/simple_animal/horror/brainy))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))

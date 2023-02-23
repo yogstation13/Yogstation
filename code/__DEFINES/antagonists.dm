@@ -124,3 +124,9 @@
 #define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
 #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
 
+//Zombie defines
+#define SMOKER "Smoker"
+#define RUNNER "Runner"
+#define SPITTER "Spitter"
+#define JUGGERNAUT "Juggernaut"
+#define BRAINY "Brainy"

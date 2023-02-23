@@ -6,13 +6,13 @@
 	var/blacklisted = FALSE //If the ability can't be mutated
 	var/soul_price = 0 //How much souls the ability costs to buy; if this is 0, it isn't listed on the catalog
 	var/chemical_cost = 0 //How much chemicals the ability costs to use
-	var/mob/living/simple_animal/horror/B //Horror holding the ability
+	var/mob/living/simple_animal/horror/horror_owner //Horror holding the ability
 	var/category  //category for when the ability is active, "horror" is for creature, "infest" is during infestation, "controlling" is when a horror is controlling a body
 
 /datum/action/innate/horror/IsAvailable()
-	if(!B)
+	if(!horror_owner)
 		return
-	if(!B.has_chemicals(chemical_cost))
+	if(!horror_owner.has_chemicals(chemical_cost))
 		return
 	. = ..()
 
@@ -25,7 +25,7 @@
 
 /datum/action/innate/horror/mutate/Activate()
 	to_chat(usr, span_velvet(span_bold("You focus on mutating your body...")))
-	B.ui_interact(usr)
+	horror_owner.ui_interact(usr)
 	return TRUE
 
 /datum/action/innate/horror/seek_soul
@@ -36,7 +36,7 @@
 	category = list("horror","infest")
 
 /datum/action/innate/horror/seek_soul/Activate()
-	B.SearchTarget()
+	horror_owner.SearchTarget()
 
 /datum/action/innate/horror/consume_soul
 	name = "Consume soul"
@@ -46,7 +46,7 @@
 	category = list("infest")
 
 /datum/action/innate/horror/consume_soul/Activate()
-	B.ConsumeSoul()
+	horror_owner.ConsumeSoul()
 
 /datum/action/innate/horror/talk_to_host
 	name = "Converse with Host"
@@ -56,7 +56,7 @@
 	category = list("infest")
 
 /datum/action/innate/horror/talk_to_host/Activate()
-	B.Communicate()
+	horror_owner.Communicate()
 
 /datum/action/innate/horror/toggle_hide
 	name = "Toggle Hide"
@@ -66,8 +66,8 @@
 	category = list("horror")
 
 /datum/action/innate/horror/toggle_hide/Activate()
-	B.hide()
-	button_icon_state = "horror_hiding_[B.hiding ? "true" : "false"]"
+	horror_owner.hide()
+	button_icon_state = "horror_hiding_[horror_owner.hiding ? "true" : "false"]"
 	UpdateButtonIcon()
 
 /datum/action/innate/horror/talk_to_horror
@@ -94,7 +94,7 @@
 	category = list("control")
 
 /datum/action/innate/horror/talk_to_brain/Activate()
-	B.victim.trapped_mind_comm()
+	horror_owner.victim.trapped_mind_comm()
 
 /datum/action/innate/horror/take_control
 	name = "Assume Control"
@@ -104,7 +104,7 @@
 	category = list("infest")
 
 /datum/action/innate/horror/take_control/Activate()
-	B.bond_brain()
+	horror_owner.bond_brain()
 
 /datum/action/innate/horror/give_back_control
 	name = "Release Control"
@@ -114,7 +114,7 @@
 	category = list("control")
 
 /datum/action/innate/horror/give_back_control/Activate()
-	B.victim.release_control()
+	horror_owner.victim.release_control()
 
 /datum/action/innate/horror/leave_body
 	name = "Release Host"
@@ -124,7 +124,7 @@
 	category = list("infest")
 
 /datum/action/innate/horror/leave_body/Activate()
-	B.release_victim()
+	horror_owner.release_victim()
 
 /datum/action/innate/horror/make_chems
 	name = "Secrete chemicals"
@@ -135,7 +135,7 @@
 	category = list("infest")
 
 /datum/action/innate/horror/make_chems/Activate()
-	B.secrete_chemicals()
+	horror_owner.secrete_chemicals()
 
 /datum/action/innate/horror/freeze_victim
 	name = "Knockdown victim"
@@ -145,12 +145,12 @@
 	category = list("horror")
 
 /datum/action/innate/horror/freeze_victim/Activate()
-	B.freeze_victim()
+	horror_owner.freeze_victim()
 	UpdateButtonIcon()
 	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 150)
 
 /datum/action/innate/horror/freeze_victim/IsAvailable()
-	if(world.time - B.used_freeze < 150)
+	if(world.time - horror_owner.used_freeze < 150)
 		return FALSE
 	else
 		return ..()
@@ -166,7 +166,7 @@
 	soul_price = 2
 
 /datum/action/innate/horror/tentacle/IsAvailable()
-	if(!active && !B.has_chemicals(chemical_cost))
+	if(!active && !horror_owner.has_chemicals(chemical_cost))
 		return
 	return ..()
 
@@ -180,24 +180,24 @@
 
 /datum/action/innate/horror/tentacle/process()
 	..()
-	active = locate(/obj/item/horrortentacle) in B.victim
+	active = locate(/obj/item/horrortentacle) in horror_owner.victim
 	UpdateButtonIcon()
 
 
 /datum/action/innate/horror/tentacle/Activate()
-	B.use_chemicals(50)
-	B.victim.visible_message(span_warning("[B.victim]'s arm contorts into tentacles!"), span_notice("Your arm transforms into a giant tentacle. Examine it to see possible uses."))
-	playsound(B.victim, 'sound/effects/blobattack.ogg', 30, 1)
-	to_chat(B, span_warning("You transform [B.victim]'s arm into a tentacle!"))
+	horror_owner.use_chemicals(50)
+	horror_owner.victim.visible_message(span_warning("[horror_owner.victim]'s arm contorts into tentacles!"), span_notice("Your arm transforms into a giant tentacle. Examine it to see possible uses."))
+	playsound(horror_owner.victim, 'sound/effects/blobattack.ogg', 30, 1)
+	to_chat(horror_owner, span_warning("You transform [horror_owner.victim]'s arm into a tentacle!"))
 	var/obj/item/horrortentacle/T = new
-	B.victim.put_in_hands(T)
+	horror_owner.victim.put_in_hands(T)
 	return TRUE
 
 /datum/action/innate/horror/tentacle/Deactivate()
-	B.victim.visible_message(span_warning("[B.victim]'s tentacle transforms back!"), span_notice("Your tentacle disappears!"))
-	playsound(B.victim, 'sound/effects/blobattack.ogg', 30, 1)
-	to_chat(B, span_warning("You transform [B.victim]'s arm back."))
-	for(var/obj/item/horrortentacle/T in B.victim)
+	horror_owner.victim.visible_message(span_warning("[horror_owner.victim]'s tentacle transforms back!"), span_notice("Your tentacle disappears!"))
+	playsound(horror_owner.victim, 'sound/effects/blobattack.ogg', 30, 1)
+	to_chat(horror_owner, span_warning("You transform [horror_owner.victim]'s arm back."))
+	for(var/obj/item/horrortentacle/T in horror_owner.victim)
 		qdel(T)
 	return TRUE
 
@@ -210,7 +210,7 @@
 	var/transferring = FALSE
 
 /datum/action/innate/horror/transfer_host/proc/is_transferring(var/mob/living/carbon/C)
-	return transferring && C.Adjacent(B.victim)
+	return transferring && C.Adjacent(horror_owner.victim)
 
 /datum/action/innate/horror/transfer_host/Activate()
 	if(transferring)
@@ -219,16 +219,16 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in range(1,B.victim))
-		if(C!=B.victim && C.Adjacent(B.victim))
+	for(var/mob/living/carbon/C in range(1, horror_owner.victim))
+		if(C != horror_owner.victim && C.Adjacent(horror_owner.victim))
 			choices += C
 
 	if(!choices.len)
 		return
 	var/mob/living/carbon/C = choices.len > 1 ? input(owner,"Who do you wish to infest?") in null|choices : choices[1]
-	if(!C || !B)
+	if(!C || !horror_owner)
 		return
-	if(!C.Adjacent(B.victim))
+	if(!C.Adjacent(horror_owner.victim))
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(!head)
@@ -241,20 +241,20 @@
 	if(!hasbrain)
 		to_chat(owner, span_warning("[C] doesn't have a brain!"))
 		return
-	if((!C.key || !C.mind) && C != B.target.current)
+	if((!C.key || !C.mind) && C != horror_owner.target.current)
 		to_chat(owner, span_warning("[C]'s mind seems unresponsive. Try someone else!"))
 		return
 	if(C.has_horror_inside())
 		to_chat(owner, span_warning("[C] is already infested!"))
 		return
 
-	to_chat(owner, span_warning("You move your tentacles away from [B.victim] and begin to transfer to [C]..."))
+	to_chat(owner, span_warning("You move your tentacles away from [horror_owner.victim] and begin to transfer to [C]..."))
 	var/delay = 30 SECONDS
 	var/silent
-	if(B.victim.pulling != C)
+	if(horror_owner.victim.pulling != C)
 		silent = TRUE
 	else
-		switch(B.victim.grab_state)
+		switch(horror_owner.victim.grab_state)
 			if(GRAB_PASSIVE)
 				delay = 20 SECONDS
 			if(GRAB_AGGRESSIVE)
@@ -265,18 +265,18 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
+	if(!do_after(horror_owner.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
 	transferring = FALSE
-	if(!C || !B || !C.Adjacent(B.victim))
+	if(!C || !horror_owner || !C.Adjacent(horror_owner.victim))
 		return
-	B.leave_victim()
-	B.Infect(C)
+	horror_owner.leave_victim()
+	horror_owner.Infect(C)
 	if(!silent)
 		to_chat(C, span_warning("Something slimy wiggles into your ear!"))
-		playsound(B, 'sound/effects/blobattack.ogg', 30, 1)
+		playsound(horror_owner, 'sound/effects/blobattack.ogg', 30, 1)
 
 /datum/action/innate/horror/jumpstart_host
 	name = "Revive Host"
@@ -286,7 +286,7 @@
 	soul_price = 2
 
 /datum/action/innate/horror/jumpstart_host/Activate()
-	B.jumpstart()
+	horror_owner.jumpstart()
 
 /datum/action/innate/horror/view_memory
 	name = "View Memory"
@@ -296,7 +296,7 @@
 	soul_price = 1
 
 /datum/action/innate/horror/view_memory/Activate()
-	B.view_memory()
+	horror_owner.view_memory()
 
 /datum/action/innate/horror/chameleon
 	name = "Chameleon Skin"
@@ -306,8 +306,8 @@
 	soul_price = 1
 
 /datum/action/innate/horror/chameleon/Activate()
-	B.go_invisible()
-	button_icon_state = "horror_sneak_[B.invisible ? "true" : "false"]"
+	horror_owner.go_invisible()
+	button_icon_state = "horror_sneak_[horror_owner.invisible ? "true" : "false"]"
 	UpdateButtonIcon()
 
 /datum/action/innate/horror/lube_spill
@@ -320,21 +320,47 @@
 	var/cooldown = 0
 
 /datum/action/innate/horror/lube_spill/IsAvailable()
-	if(cooldown > world.time || !B.has_chemicals(chemical_cost) || !B.can_use_ability())
+	if(cooldown > world.time || !horror_owner.has_chemicals(chemical_cost) || !horror_owner.can_use_ability())
 		return
 	return ..()
 
 /datum/action/innate/horror/lube_spill/Activate()
-	B.use_chemicals(chemical_cost)
+	horror_owner.use_chemicals(chemical_cost)
 	cooldown = world.time + 10 SECONDS
 	UpdateButtonIcon()
 	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	B.visible_message(span_warning("[B] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
-	flick("horror_spin", B)
-	playsound(B, 'sound/effects/blobattack.ogg', 25, 1)
-	for(var/turf/open/t in range(1, B))
-		if(prob(60) && B.Adjacent(t))
+	horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
+	flick("horror_spin", horror_owner)
+	playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
+	for(var/turf/open/t in range(1, horror_owner))
+		if(prob(60) && horror_owner.Adjacent(t))
 			t.MakeSlippery(TURF_WET_LUBE, 50)
+	cooldown = world.time + 10 SECONDS
+	UpdateButtonIcon()
+	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
+	flick("horror_spin", horror_owner)
+	playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
+	for(var/turf/open/t in range(1, horror_owner))
+		if(prob(60) && horror_owner.Adjacent(t))
+			t.MakeSlippery(TURF_WET_LUBE, 50)
+	horror_owner.use_chemicals(30)
+	cooldown = world.time + 10 SECONDS
+	UpdateButtonIcon()
+	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	horror_owner.visible_message(span_warning("[horror_owner] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
+	var/spins_remaining = 10
+	horror_owner.icon_state = "horror_spin"
+	while(spins_remaining > 0)
+		playsound(horror_owner, 'sound/effects/blobattack.ogg', rand(20, 30), rand(0.5, 2))
+		for(var/turf/open/t in range(1, horror_owner))
+			if(prob(60) && horror_owner.Adjacent(t))
+				t.MakeSlippery(TURF_WET_LUBE, 100)
+		sleep(0.5 SECONDS)
+		spins_remaining--
+		if(!horror_owner.can_use_ability())
+			return TRUE
+	horror_owner.icon_state = "horror"
 	return TRUE
 
 //UPGRADES

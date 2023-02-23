@@ -2,10 +2,6 @@
 
 GLOBAL_LIST_EMPTY(zombies)
 
-/proc/isinfected(mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/zombie)
-
-
 /datum/game_mode/zombie
 	name = "zombie"
 	config_tag = "zombie"
@@ -57,27 +53,7 @@ GLOBAL_LIST_EMPTY(zombies)
 
 	if(people_to_infect.len >= required_enemies)
 		return TRUE
-	else
-		setup_error = "Not enough zombie candidates."
-		return FALSE
-
-/datum/game_mode/zombie/proc/can_evolve_tier_2()
-	var/count = 0
-	for(var/Z in GLOB.zombies)
-		var/datum/mind/zombie = Z
-		if(!zombie.current)
-			continue
-		var/mob/living/carbon/human/H = zombie.current
-		if(H)
-			if(H.stat == DEAD || QDELETED(H))
-				continue
-			if(istype(H.dna.species, /datum/species/zombie/infectious/gamemode/necromancer))
-				count++
-			else if(istype(H.dna.species, /datum/species/zombie/infectious/gamemode/coordinator))
-				count++
-
-	if(count < actual_roundstart_zombies)
-		return TRUE
+	setup_error = "Not enough zombie candidates."
 	return FALSE
 
 /datum/game_mode/zombie/post_setup()
@@ -85,15 +61,12 @@ GLOBAL_LIST_EMPTY(zombies)
 
 	main_team.setup_objectives()
 
-	for(var/M in people_to_infect)
-		var/datum/mind/minds = M
-		var/datum/antagonist/zombie/antag = add_zombie(minds)
-		if(!istype(antag))
-			continue
+	for(var/datum/mind/minds in people_to_infect)
+		var/datum/antagonist/zombie/special/antag = add_zombie(minds)
 		actual_roundstart_zombies++
 		antag.start_timer()
 
-	addtimer(CALLBACK(src, .proc/call_shuttle), 60 MINUTES) //Shuttle called after 1 hour if it hasn't been
+	addtimer(CALLBACK(src, .proc/call_shuttle), 1 HOURS) //Shuttle called after 1 hour if it hasn't been
 	. = ..()
 
 /datum/game_mode/zombie/proc/call_shuttle()
@@ -119,8 +92,8 @@ GLOBAL_LIST_EMPTY(zombies)
 	return FALSE
 
 /datum/game_mode/zombie/generate_report()
-	return "We have lost contact with some local mining outposts. Our rescue teams have found nothing but decaying and rotting corpses. On one of the ships, a body in the morgue 'woke' up and started attacking the crew \
-			People seem to 'turn' when attacked by these... Creatures.. We currently estimate their threat level to be VERY HIGH. If the virus somehow makes it onboard your station, send a report to Central Command immediately.\
-			The only way to truly kill them is to chop their heads off. We have spotted abnormal evolutions amongst the creatures, suggesting that they have the ability to adapt to the people fighting them. Keep your guard up crew."
+	return "After an unknown alien encounter, we have lost contact with some local mining outposts. Our rescue teams have found nothing but decaying and rotting corpses. On one of the ships, a body in the morgue 'woke' up and started attacking the crew \
+			People seem to 'turn' when attacked by these... Creatures.. We currently estimate their threat level to be VERY HIGH. If they somehow makes it onboard your station, send a report to Central Command immediately.\
+			The only way to truly kill them is to truly incenerate or gib them. We have spotted abnormal evolutions amongst the creatures, suggesting that they have the ability to adapt to the people fighting them. Keep your guard up crew."
 
 #undef ZOMBIE_SCALING_COEFFICIENT

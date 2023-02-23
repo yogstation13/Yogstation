@@ -49,6 +49,8 @@
 	return FALSE
 
 /mob/living/proc/on_hit(obj/item/projectile/P)
+	if(HAS_TRAIT(src, TRAIT_DODGE))
+		return BULLET_ACT_FORCE_PIERCE
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)

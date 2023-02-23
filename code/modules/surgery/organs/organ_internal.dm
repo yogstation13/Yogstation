@@ -33,7 +33,7 @@
 	///Do we effect the appearance of our mob. Used to save time in preference code
 	var/visual = TRUE
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
@@ -42,7 +42,7 @@
 
 	var/obj/item/organ/replaced = M.getorganslot(slot)
 	if(replaced && !special_zone)
-		replaced.Remove(M, special = 1)
+		replaced.Remove(M, special = TRUE)
 		if(drop_if_replaced)
 			replaced.forceMove(get_turf(M))
 		else

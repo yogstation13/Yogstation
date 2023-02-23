@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/zombie/necromance
+/* /obj/effect/proc_holder/zombie/necromance
 	name = "Summon a Minion"
 	desc = "Summons a zombie to help you."
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
@@ -57,4 +57,4 @@
 		return FALSE
 
 	necromance()
-	return ..()
+	return ..() */

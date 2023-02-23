@@ -1,5 +1,3 @@
-#define EGG_INCUBATION_TIME 120
-
 /mob/living/simple_animal/hostile/headcrab
 	name = "headslug"
 	desc = "Absolutely not de-beaked or harmless. Keep away from corpses."
@@ -21,22 +19,20 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	speak_emote = list("squeaks")
 	ventcrawler = VENTCRAWLER_ALWAYS
-	var/datum/mind/origin
-	var/egg_lain = 0
+	var/datum/mind/stored_mind = null //mind that is stored on creation
+	var/egg_lain = FALSE
+	var/obj/item/organ/body_egg/antag_egg/egg = /obj/item/organ/body_egg/antag_egg/changeling_egg //what eggo to use
 	gold_core_spawnable = NO_SPAWN //yogs
 
 /mob/living/simple_animal/hostile/headcrab/proc/Infect(mob/living/carbon/victim)
-	var/obj/item/organ/body_egg/changeling_egg/egg = new(victim)
+	egg = new egg(victim)
 	egg.Insert(victim)
-	if(origin)
-		egg.origin = origin
-	else if(mind) // Let's make this a feature
-		egg.origin = mind
-	for(var/obj/item/organ/I in src)
-		I.forceMove(egg)
+	for(var/obj/item/organ/head_organs in src)
+		head_organs.forceMove(egg)
+	egg.fetus_mind = stored_mind ? stored_mind : mind //prioritize the stored one
 	visible_message(span_warning("[src] plants something in [victim]'s flesh!"), \
 					span_danger("We inject our egg into [victim]'s body!"))
-	egg_lain = 1
+	egg_lain = TRUE
 
 /mob/living/simple_animal/hostile/headcrab/AttackingTarget()
 	. = ..()
@@ -49,41 +45,47 @@
 				return
 			Infect(target)
 			to_chat(src, span_userdanger("With our egg laid, our death approaches rapidly..."))
-			addtimer(CALLBACK(src, .proc/death), 100)
+			addtimer(CALLBACK(src, .proc/death), 10 SECONDS)
 
-/obj/item/organ/body_egg/changeling_egg
-	name = "changeling egg"
-	desc = "Twitching and disgusting."
-	var/datum/mind/origin
+/obj/item/organ/body_egg/antag_egg
+	name = "le antag egg"
+	desc = "Greentexting and redtexting."
+	var/datum/mind/fetus_mind
 	var/time
+	var/incubation_time = 120 //this shit takes roughly 5 minutes
 
-/obj/item/organ/body_egg/changeling_egg/egg_process()
-	// Changeling eggs grow in dead people
+/obj/item/organ/body_egg/antag_egg/egg_process()
+	// eggs grow in people
 	time++
-	if(time >= EGG_INCUBATION_TIME)
+	if(time >= incubation_time)
 		Pop()
 		Remove(owner)
 		qdel(src)
 
-/obj/item/organ/body_egg/changeling_egg/proc/Pop()
+/obj/item/organ/body_egg/antag_egg/proc/Pop()
+	return
+
+/obj/item/organ/body_egg/antag_egg/changeling_egg
+	name = "changeling egg"
+	desc = "Twitching and disgusting."
+
+/obj/item/organ/body_egg/antag_egg/changeling_egg/Pop()
 	var/mob/living/carbon/monkey/M = new(owner)
 	owner.stomach_contents += M // Yogs -- Yogs vorecode
 
 	for(var/obj/item/organ/I in src)
 		I.Insert(M, 1)
 
-	if(origin && (origin.current ? (origin.current.stat == DEAD) : origin.get_ghost()))
-		origin.transfer_to(M)
-		var/datum/antagonist/changeling/C = origin.has_antag_datum(/datum/antagonist/changeling)
+	if(fetus_mind && (fetus_mind.current ? (fetus_mind.current.stat == DEAD) : fetus_mind.get_ghost()))
+		fetus_mind.transfer_to(M)
+		var/datum/antagonist/changeling/C = fetus_mind.has_antag_datum(/datum/antagonist/changeling)
 		if(!C)
-			C = origin.add_antag_datum(/datum/antagonist/changeling/xenobio)
+			C = fetus_mind.add_antag_datum(/datum/antagonist/changeling/xenobio)
 		if(C.can_absorb_dna(owner))
 			C.add_new_profile(owner)
 
 		var/datum/action/changeling/humanform/hf = new
 		C.purchasedpowers += hf
 		C.regain_powers()
-		M.key = origin.key
+		M.key = fetus_mind.key
 	owner.gib()
-
-#undef EGG_INCUBATION_TIME

@@ -74,7 +74,7 @@
 		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
 		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
 	var/mob/living/simple_animal/horror/H = has_horror_inside()
-	if(H && H.controlling)
+	if(H?.controlling)
 		. += ""
 		. += "Horror chemicals: [H.chemicals]"
 
@@ -95,8 +95,10 @@
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
-			if((zombie.evolutionTime - world.time) > 0)
-				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
+			if(isspitter(src) && locate(/datum/action/innate/zombie/default/overclock) in zombie.zombie_abilities)
+				var/datum/action/innate/zombie/default/overclock/Over = locate(/datum/action/innate/zombie/default/overclock) in zombie.zombie_abilities
+				. += ""
+				. += "Current Muscle Stamina: [(Over.tiredness)]"
 
 
 	//NINJACODE

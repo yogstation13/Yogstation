@@ -91,3 +91,30 @@
 					visible_message(span_warning("[target] is struggling to withstand the acid!"))
 				if(4)
 					visible_message(span_warning("[target] begins to crumble under the acid!"))
+
+/obj/effect/acid_puddle
+	gender = PLURAL
+	name = "acid puddle"
+	desc = "Burbling corrosive stuff."
+	icon_state = "acid_puddle"
+	density = FALSE
+	opacity = 0
+	anchored = TRUE
+	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	layer = ABOVE_NORMAL_TURF_LAYER
+	var/uses = 2
+
+/obj/effect/acid_puddle/Crossed(AM as mob|obj)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(iszombie(L))
+			return
+		L.apply_status_effect(STATUS_EFFECT_ZOMBIE_ACID)
+		L.adjustFireLoss(10)
+		to_chat(L, span_warning("As you step into the acid puddle, it splashes all over you!"))
+		uses--
+	if(!uses)
+		visible_message(span_warning("The [src] dries up!"))
+		new /obj/effect/decal/cleanable/greenglow(get_turf(src))
+		qdel(src)

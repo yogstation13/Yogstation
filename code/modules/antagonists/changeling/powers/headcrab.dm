@@ -31,7 +31,7 @@
 			H.confused += 3
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
-		S.Paralyze(60)
+		S.Paralyze(6 SECONDS)
 	var/turf = get_turf(user)
 	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
 	H?.leave_victim()
@@ -39,10 +39,10 @@
 	. = TRUE
 	sleep(0.5 SECONDS) // So it's not killed in explosion
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
-	for(var/obj/item/organ/I in organs)
-		I.forceMove(crab)
-	crab.origin = M
-	if(crab.origin)
-		crab.origin.active = 1
-		crab.origin.transfer_to(crab)
+	for(var/obj/item/organ/head_organs in organs)
+		head_organs.forceMove(crab)
+	crab.stored_mind = M
+	if(crab.stored_mind)
+		crab.stored_mind.active = 1
+		crab.stored_mind.transfer_to(crab)
 		to_chat(crab, span_warning("You burst out of the remains of your former body in a shower of gore!"))

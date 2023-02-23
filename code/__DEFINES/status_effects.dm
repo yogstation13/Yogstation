@@ -125,6 +125,8 @@
 
 #define STATUS_EFFECT_BRAZIL_PENANCE /datum/status_effect/brazil_penance //controls heretic sacrifice
 
+#define STATUS_EFFECT_ZOMBIE_ACID /datum/status_effect/zombie_acid //spitter zombie ability acid effect
+
 /////////////
 // NEUTRAL //
 /////////////

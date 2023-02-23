@@ -64,7 +64,7 @@
 /datum/export/organ/alien/changeling_egg
 	cost = 50000 // Holy. Fuck.
 	unit_name = "changeling egg"
-	export_types = list(/obj/item/organ/body_egg/changeling_egg)
+	export_types = list(/obj/item/organ/body_egg/antag_egg/changeling_egg)
 
 
 /datum/export/organ/hivelord

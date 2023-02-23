@@ -11,7 +11,7 @@
 	if(has_ability(typepath))
 		return
 	var/datum/action/innate/horror/action = new typepath
-	action.B = src
+	action.horror_owner = src
 	horrorabilities += action
 	RefreshAbilities()
 	to_chat(src, span_velvet("You have mutated the <b>[action.name]</b>."))

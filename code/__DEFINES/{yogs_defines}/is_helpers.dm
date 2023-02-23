@@ -18,3 +18,7 @@
 #define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M) || is_infiltrator(M))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
+
+#define IS_INFECTED(M) (isliving(M) && M.mind?.has_antag_datum(/datum/antagonist/zombie))
+
+#define IS_SPECIALINFECTED(M) (isliving(M) && M.mind?.has_antag_datum(/datum/antagonist/zombie/special))

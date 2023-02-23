@@ -1216,3 +1216,48 @@
 		M.faction = tamer.faction
 		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
 		. = ..()
+
+/datum/status_effect/zombie_acid
+	id = "zombie_acid"
+	status_type = STATUS_EFFECT_UNIQUE
+	examine_text = span_warning("SUBJECTPRONOUN is covered with a repugnant green goo, throwing water should help a bit.")
+	tick_interval = 1 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/zombie_acid
+	var/mutable_appearance/acid_overlay
+	COOLDOWN_DECLARE(message_cooldown)
+	var/cooldown = 10 SECONDS
+
+/datum/status_effect/zombie_acid/on_apply()
+	acid_overlay = mutable_appearance('icons/effects/effects.dmi', "acid")
+	owner.add_overlay(acid_overlay)
+	return TRUE
+
+/datum/status_effect/zombie_acid/tick()
+	. = ..()
+	RegisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_CROSSED), .proc/check_destroy)
+	if(get_turf(owner) == /turf/open/indestructible/sound/pool || owner.stat == DEAD)
+		owner.visible_message("The acid washes off of [owner]!")
+		qdel(src)
+	owner.adjustFireLoss(1.25)
+	if(COOLDOWN_FINISHED(src, message_cooldown))
+		to_chat(owner, span_danger("The acid burns you badly!"))
+		COOLDOWN_START(src, message_cooldown, cooldown)
+
+/datum/status_effect/zombie_acid/proc/check_destroy(mob/user, atom/cleaner)
+	if(istype(cleaner, /obj/machinery/shower))
+		var/obj/machinery/shower/S
+		if(S.on)
+			qdel(src)
+	if(istype(cleaner, /obj/effect/particle_effect/water))
+		qdel(src)
+
+/datum/status_effect/zombie_acid/Destroy()
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_CROSSED))
+	QDEL_NULL(acid_overlay)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/zombie_acid
+	name = "Zombie Acid"
+	desc = "ACID! ACID! I NEED WATER, WASH IT OFF!"
+	icon_state = "zombie_acid"
+	alerttooltipstyle = "cult"

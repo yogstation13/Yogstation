@@ -10,8 +10,8 @@
 	var/living_transformation_time = 30
 	var/converts_living = FALSE
 
-	var/revive_time_min = 450
-	var/revive_time_max = 700
+	var/revive_time_min = 45 SECONDS
+	var/revive_time_max = 70 SECONDS
 	var/timer_id
 
 	var/damage_caused = 1
@@ -134,16 +134,19 @@
 	owner.Stun(living_transformation_time)
 
 
-	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
+	if(!IS_INFECTED(owner)) //Makes them the *actual* antag, instead of just a zombie.
 		var/datum/game_mode/zombie/GM = SSticker.mode
 		if(!istype(GM))
 			return
 		GM.add_zombie(owner.mind)
 
-	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-	if(!Z.evolution.owner)
-		Z.evolution.Grant(owner)
-
 	if(owner.handcuffed)
 		var/obj/O = owner.get_item_by_slot(SLOT_HANDCUFFED)
 		qdel(O)
+
+/obj/item/organ/zombie_infection/gamemode/special/zombify() //for special zombies
+	. = ..()
+	var/datum/antagonist/zombie/Z = owner?.mind?.has_antag_datum(/datum/antagonist/zombie)
+	if(!Z.class_chosen)
+		var/datum/action/innate/zombie/choose_class/evolve = new
+		evolve.Grant(owner)

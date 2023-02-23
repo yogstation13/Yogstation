@@ -10,6 +10,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")
@@ -43,6 +44,10 @@
 	var/list/horrorupgrades = list()
 	//list storing what items we have to un-glue when stopping mind control
 	var/list/clothing = list()
+	//default abilities
+	var/list/abilities_to_give = list(/datum/action/innate/horror/mutate, /datum/action/innate/horror/seek_soul, /datum/action/innate/horror/consume_soul,
+	/datum/action/innate/horror/talk_to_host, /datum/action/innate/horror/freeze_victim, /datum/action/innate/horror/toggle_hide, /datum/action/innate/horror/talk_to_brain,
+	/datum/action/innate/horror/take_control, /datum/action/innate/horror/leave_body, /datum/action/innate/horror/make_chems, /datum/action/innate/horror/give_back_control)
 
 	var/bonding = FALSE
 	var/controlling = FALSE
@@ -50,7 +55,7 @@
 	var/chem_regen_rate = 2
 	var/used_freeze
 	var/used_target
-	var/horror_chems = list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
+	var/horror_chems = list(/datum/horror_chem/epinephrine, /datum/horror_chem/mannitol, /datum/horror_chem/bicaridine, /datum/horror_chem/kelotane, /datum/horror_chem/charcoal) 
 
 	var/leaving = FALSE
 	var/hiding = FALSE
@@ -61,18 +66,8 @@
 	..()
 	real_name = "[pick(GLOB.horror_names)]"
 
-	//default abilities
-	add_ability(/datum/action/innate/horror/mutate)
-	add_ability(/datum/action/innate/horror/seek_soul)
-	add_ability(/datum/action/innate/horror/consume_soul)
-	add_ability(/datum/action/innate/horror/talk_to_host)
-	add_ability(/datum/action/innate/horror/freeze_victim)
-	add_ability(/datum/action/innate/horror/toggle_hide)
-	add_ability(/datum/action/innate/horror/talk_to_brain)
-	add_ability(/datum/action/innate/horror/take_control)
-	add_ability(/datum/action/innate/horror/leave_body)
-	add_ability(/datum/action/innate/horror/make_chems)
-	add_ability(/datum/action/innate/horror/give_back_control)
+	for(var/datum/action/innate/ability as anything in abilities_to_give)
+		add_ability(ability)
 	RefreshAbilities()
 
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
@@ -89,10 +84,9 @@
 /mob/living/simple_animal/horror/examine(mob/user) // Return a more... positive description when the examiner is themselves an eldritch horror.
 	if(user == src) // Hey, that's me!
 		return list("[icon2html(src, user)] That's [src.real_name], \a [initial(src.name)].","I'm so beautiful!")
-	else if(ishorror(user))
+	if(ishorror(user))
 		return list("[get_examine_string(user, TRUE)].","What a handsome rogue.")
-	else
-		return ..()
+	return ..()
 //Yogs end
 
 /mob/living/simple_animal/horror/AltClickOn(atom/A)
@@ -553,7 +547,7 @@
 		return
 
 	if(controlling)
-		detatch()
+		detach()
 
 	forceMove(get_turf(victim))
 
@@ -736,7 +730,7 @@
 		bonding = FALSE
 		return
 	else
-		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detatch)
+		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detach)
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
 		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with [victim.p_their()] nervous system.")) // Yogs -- pronouns
 		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
@@ -774,22 +768,22 @@
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(B && B.host_brain)
 		to_chat(src, span_danger("You withdraw your probosci, releasing control of [B.host_brain]"))
-		B.detatch()
+		B.detach()
 
 //Check for brain worms in head.
 /mob/proc/has_horror_inside()
-	for(var/I in contents)
-		if(ishorror(I))
-			return I
+	for(var/mob/living/simple_animal/horror/parasite in contents)
+		if(ishorror(parasite) || isbrainy(parasite))
+			return parasite
 
 
-/mob/living/simple_animal/horror/proc/hit_detatch()
+/mob/living/simple_animal/horror/proc/hit_detach()
 	if(victim.health <= 75)
-		detatch()
+		detach()
 		to_chat(src, span_warning("It appears that [victim]s brain detected danger, and hastily took over."))
 		to_chat(victim, span_danger("Your body is under attack, you unconsciously forced your brain to immediately take over!"))
 
-/mob/living/simple_animal/horror/proc/detatch()
+/mob/living/simple_animal/horror/proc/detach()
 	if(!victim || !controlling)
 		return
 

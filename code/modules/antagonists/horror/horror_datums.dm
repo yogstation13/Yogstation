@@ -327,6 +327,10 @@
 	try_resist()
 
 /mob/living/captive_brain/proc/try_resist()
+	if(isbrainy(H))
+		var/mob/living/simple_animal/horror/brainy/B = H
+		if(B.full_control)
+			return
 	var/delay = rand(20 SECONDS,30 SECONDS)
 	if(H.horrorupgrades["deep_control"])
 		delay += rand(20 SECONDS,30 SECONDS)
@@ -339,4 +343,4 @@
         return
     to_chat(src, span_userdanger("With an immense exertion of will, you regain control of your body!"))
     to_chat(H.victim, span_danger("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
-    H.detatch()
+    H.detach()
