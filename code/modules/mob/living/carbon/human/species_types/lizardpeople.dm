@@ -188,7 +188,7 @@
 
 //basic touch ability that heals brute and burn, only accessed by the ashwalker shaman
 /obj/effect/proc_holder/spell/targeted/touch/healtouch
-	name = "Healing touch"
+	name = "healing touch"
 	desc = "This spell charges your hand with vile energy that can be used to violently explode victims with healing."
 	hand_path = /obj/item/melee/touch_attack/healtouch
 
