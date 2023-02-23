@@ -70,7 +70,7 @@
 		return 0
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
-	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(curloc, targloc) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
+	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(chassis, target) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
 		precise_attack(target)	//We stab it if we can
 	else if(cleave)
 		cleave_attack()	//Or swing wildly
@@ -79,19 +79,24 @@
 	chassis.log_message("Attacked with [src.name], targeting [target].", LOG_MECHA)
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/can_stab_at(turf/starter, turf/target)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/can_stab_at(atom/user, atom/target)
 	//Note that we don't check for valid turfs or if starter and target are the same because that's already done in action()
 	var/turf/current = null
 	var/turf/next = null
-	if(abs(starter.x - target.x) == abs(starter.y - target.y))	//If we're exactly diagonal
-		current = get_step_towards(starter, target)	//We check directly diagonal for reasons
+	var/turf/starter = get_turf(user)
+	var/turf/targloc = get_turf(target)
+
+	if(user.Adjacent(target))	//Check if we're in normal melee range. If we aren't the rest of this will run to check if we have line of stab.
+		return 1
+	if(abs(starter.x - targloc.x) == abs(starter.y - targloc.y))	//If we're exactly diagonal
+		current = get_step_towards(starter, targloc)	//We check directly diagonal for reasons
 	else
-		current = get_step_towards2(starter, target)	//Otherwise we use a more lenient check
+		current = get_step_towards2(starter, targloc)	//Otherwise we use a more lenient check
 	if(!starter.Adjacent(current))	//Not next to our first turf, immediately fail
 		return 0
-	if(current != target)	//If our target isn't our first turf, find the next turf
-		next = get_step_towards(current, target)
-	while(current != target)	//as long as we haven't reached our target turf
+	if(current != targloc)	//If our target isn't our first turf, find the next turf
+		next = get_step_towards(current, targloc)
+	while(current != targloc)	//as long as we haven't reached our target turf
 		if(!current.Adjacent(next))	//check if we can stab from our current turf to the next one
 			return 0
 		if(current.density)	//If it's a wall and we're not at our target, we can't stab through it
@@ -100,8 +105,8 @@
 			if(O.density && !(O.pass_flags & LETPASSTHROW))	//If there's a solid object we can't reach over on the turf
 				return 0
 		current = next
-		if(next != target)	//Move to the next tile if we're not already there
-			next = get_step_towards(next, target)
+		if(next != targloc)	//Move to the next tile if we're not already there
+			next = get_step_towards(next, targloc)
 	return 1
 
 
@@ -448,11 +453,10 @@
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
 	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punch. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
 	icon_state = "mecha_rocket_fist"
-	melee_override = FALSE		//We'll just buff the regular punch
-	precise_attacks = FALSE		
-	cleave = FALSE
-	range = null				//This should just make the mech punch stuff, which is what we want!
 	weapon_damage = 20
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/precise_attack(atom/target)
+	target.mech_melee_attack(chassis, FALSE)	//DONT SET THIS TO TRUE
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_select()
 	chassis.force += weapon_damage	//PUNCH HARDER
