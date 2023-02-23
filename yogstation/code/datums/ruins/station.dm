@@ -403,6 +403,11 @@
 	suffix = "3x3_hullbreach.dmm"
 	name = "Maint hullbreach"
 
+/datum/map_template/ruin/station/maint/threexthree/hullbreachice
+	id = "hullbreachice"
+	suffix = "3x3_hullbreachice.dmm"
+	name = "Maint hullbreach ice"
+
 /datum/map_template/ruin/station/maint/threexthree/kilolustymaid
 	id = "kilolustymaid"
 	suffix = "3x3_kilolustymaid.dmm"
@@ -1056,6 +1061,11 @@
 	suffix = "10x5_transit.dmm"
 	name = "Maint transit"
 
+/datum/map_template/ruin/station/maint/tenxfive/transitice
+	id = "transitice"
+	suffix = "10x5_transitice.dmm"
+	name = "Maint transit ice"
+
 ///Author: Veeblefetzer
 /datum/map_template/ruin/station/maint/tenxfive/ballpit
 	id = "ballpit"
@@ -1143,6 +1153,11 @@
 	suffix = "10x10_bigconstruction.dmm"
 	name = "Maint bigconstruction"
 
+/datum/map_template/ruin/station/maint/tenxten/bigconstructionice
+	id = "bigconstructionice"
+	suffix = "10x10_bigconstructionice.dmm"
+	name = "Maint bigconstruction ice"
+
 /datum/map_template/ruin/station/maint/tenxten/bigtheatre
 	id = "bigtheatre"
 	suffix = "10x10_bigtheatre.dmm"
@@ -1163,6 +1178,11 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
+
+/datum/map_template/ruin/station/maint/tenxten/junctionice
+	id = "junctionice"
+	suffix = "10x10_junctionice.dmm"
+	name = "Maint junction ice"
 
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
