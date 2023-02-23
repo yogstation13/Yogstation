@@ -195,7 +195,7 @@
 	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
 
 /obj/item/storage/box/somecustodian
-	name = "piss colored box"
+	name = "piss-colored box"
 	desc = "Holds a set of one of the most powerful suits of armor known to man. A '99 cents' price tag hangs off the corner."
 
 /obj/item/storage/box/somecustodian/PopulateContents()
