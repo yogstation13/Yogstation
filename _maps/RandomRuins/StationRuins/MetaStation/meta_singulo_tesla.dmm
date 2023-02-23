@@ -238,6 +238,9 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
+"mh" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "mi" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1616,8 +1619,8 @@ vP
 vP
 vP
 oD
-SN
-SN
+mh
+mh
 SN
 SN
 SN
