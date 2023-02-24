@@ -53,10 +53,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
-"aX" = (
-/obj/structure/ladder,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/mine/living_quarters)
 "aZ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -685,6 +681,9 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"iF" = (
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "iK" = (
 /obj/structure/cable{
@@ -3574,6 +3573,10 @@
 	},
 /turf/open/floor/wood,
 /area/mine/break_room)
+"RM" = (
+/obj/structure/ladder,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "RP" = (
 /turf/open/floor/plasteel,
 /area/mine/vacant)
@@ -3595,6 +3598,14 @@
 	},
 /turf/closed/wall,
 /area/mine/maintenance)
+"Sx" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/mine/eva_secondary)
 "SK" = (
 /obj/machinery/door/airlock{
 	name = "Dormitories"
@@ -3612,9 +3623,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"SQ" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/mine/living_quarters)
 "SR" = (
 /obj/structure/cable{
@@ -19762,7 +19770,7 @@ pW
 OC
 jO
 XA
-fV
+Sx
 fV
 bb
 PZ
@@ -20026,13 +20034,13 @@ eU
 eU
 UD
 lq
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
+iF
+iF
+iF
+iF
+iF
+iF
+iF
 pR
 db
 eU
@@ -20283,13 +20291,13 @@ gS
 fb
 He
 lq
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
+iF
+iF
+iF
+iF
+iF
+iF
+iF
 kn
 ix
 ES
@@ -20540,13 +20548,13 @@ fZ
 ft
 dw
 lq
-SQ
-SQ
-SQ
-aX
-SQ
-SQ
-SQ
+iF
+iF
+iF
+RM
+iF
+iF
+iF
 EU
 MN
 Zw
@@ -20797,13 +20805,13 @@ AT
 fb
 EE
 lq
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
+iF
+iF
+iF
+iF
+iF
+iF
+iF
 iT
 zc
 JA
@@ -21054,13 +21062,13 @@ eU
 eU
 AY
 lq
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
-SQ
+iF
+iF
+iF
+iF
+iF
+iF
+iF
 pR
 gl
 eU
