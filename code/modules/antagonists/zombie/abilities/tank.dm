@@ -1,8 +1,8 @@
-///////////////||\\\\\\\\\\\\\\\
+/////////////////\\\\\\\\\\\\\\
 ////						\\\\
-////	STARTING ABILITIES	\\\\
+////  STARTING ABILITIES 	\\\\
 ////						\\\\
-////\\\\\\\\\\\||///////////\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/default/rage
 	name = "Unyielding Rage"

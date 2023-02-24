@@ -326,16 +326,16 @@
 
 /datum/action/innate/horror/lube_spill/Activate()
 	horror_owner.use_chemicals(chemical_cost)
-    cooldown = world.time + 10 SECONDS
-    UpdateButtonIcon()
-    addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-    horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
-    flick("horror_spin", horror_owner)
-    playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
-    for(var/turf/open/t in range(1, horror_owner))
-        if(prob(60) && horror_owner.Adjacent(t))
-            t.MakeSlippery(TURF_WET_LUBE, 50)
-    return TRUE
+	cooldown = world.time + 10 SECONDS
+	UpdateButtonIcon()
+	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
+	flick("horror_spin", horror_owner)
+	playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, TRUE)
+	for(var/turf/open/t in range(1, horror_owner))
+		if(prob(60) && horror_owner.Adjacent(t))
+			t.MakeSlippery(TURF_WET_LUBE, 50)
+	return TRUE
 
 //UPGRADES
 /datum/horror_upgrade

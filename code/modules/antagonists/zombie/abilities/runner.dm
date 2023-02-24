@@ -1,8 +1,8 @@
-///////////////||\\\\\\\\\\\\\\\
+/////////////////\\\\\\\\\\\\\\
 ////						\\\\
-////	STARTING ABILITIES	\\\\
+////  STARTING ABILITIES 	\\\\
 ////						\\\\
-////\\\\\\\\\\\||///////////\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/default/endure
 	name = "Endure"
