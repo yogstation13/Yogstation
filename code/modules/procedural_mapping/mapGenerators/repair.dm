@@ -16,9 +16,6 @@
 	spawnableTurfs = list(/turf/closed/wall = 100)
 	allowAtomsOnSpace = TRUE
 
-GLOBAL_VAR_INIT(repair_log, FALSE)
-GLOBAL_VAR_INIT(repair_init, FALSE)
-
 /datum/mapGeneratorModule/reload_station_map/generate()
 	if(!istype(mother, /datum/mapGenerator/repair/reload_station_map))
 		return
