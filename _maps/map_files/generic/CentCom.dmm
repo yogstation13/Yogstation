@@ -16306,7 +16306,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/ammo_box/n762,
+/obj/item/ammo_box/no_direct/n762,
 /obj/item/ammo_box/c9mm,
 /obj/item/ammo_box/c45,
 /obj/item/ammo_box/c10mm,
