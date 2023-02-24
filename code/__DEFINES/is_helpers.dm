@@ -83,6 +83,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
+#define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
 
 //zombie gamemode mobs and species
 #define isinfectedzombie(A) (is_species(A, /datum/species/zombie/infectious/gamemode))

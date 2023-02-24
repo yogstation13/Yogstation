@@ -344,3 +344,10 @@
     to_chat(src, span_userdanger("With an immense exertion of will, you regain control of your body!"))
     to_chat(H.victim, span_danger("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
     H.detach()
+
+/datum/antagonist/horror/get_preview_icon()
+	var/icon/horror_icon = icon('icons/mob/animal.dmi', "horror_preview")
+
+	horror_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return horror_icon

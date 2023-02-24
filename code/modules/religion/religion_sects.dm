@@ -193,7 +193,7 @@
 	if(!ishuman(L))
 		return
 	if(world.time < last_dono) // immersion broken
-		user.visible_message(span_notice("You are getting too greedy! You can recieve another donation in [(last_dono - world.time)/10] seconds!"))
+		user.visible_message(span_notice("You are getting too greedy! You can receive another donation in [(last_dono - world.time)/10] seconds!"))
 		return
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
@@ -205,16 +205,16 @@
 		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
 		return
 	if(!id_cardu)
-		to_chat(user,span_notice("You have no id card to recieve your 'donation'"))
+		to_chat(user,span_notice("You have no id card to receive your 'donation'"))
 		return
 	if(!id_cardu.registered_account)
-		to_chat(user,span_notice("You have no bank account to recieve your 'donation'"))
+		to_chat(user,span_notice("You have no bank account to receive your 'donation'"))
 		return
 
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
 	if(money_to_donate <= 0)
-		user.visible_message(span_notice("[H] is too poor to recieve [GLOB.deity]'s blessing!"))
+		user.visible_message(span_notice("[H] is too poor to receive [GLOB.deity]'s blessing!"))
 	else
 		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
 		var/heal_amt = 30
@@ -375,9 +375,9 @@
 	else
 		adjust_favor(75, user)
 	qdel(offering)
-	return 
-	
-/// The Honkmother sect, sacrifice bananas to feed your prank power. 
+	return
+
+/// The Honkmother sect, sacrifice bananas to feed your prank power.
 
 /datum/religion_sect/honkmother
 	name = "The Honkmother"
@@ -390,7 +390,7 @@
 	altar_icon_state = "convertaltar-red"
 
 //honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
-/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+/datum/religion_sect/honkmother/sect_bless(mob/living/blessed, mob/living/user)
 	if(!ishuman(blessed))
 		return
 	var/mob/living/carbon/human/H = blessed
@@ -420,7 +420,52 @@
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
 	if(!istype(offering))
 		return
-	adjust_favor(10, user)			
+	adjust_favor(10, user)
 	to_chat(user, span_notice("HONK"))
 	qdel(offering)
 	return
+
+///////////// Sect of the Holy Light /////////////
+/datum/religion_sect/holylight
+	name = "Holy Light"
+	desc = "A sect dedicated to healing."
+	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
+	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
+	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
+	altar_icon_state = "convertaltar-heal"
+	COOLDOWN_DECLARE(last_heal)
+
+/datum/religion_sect/holylight/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.GetAllContents())
+		da_bible.success_heal_chance = 80
+
+/datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return FALSE
+	
+	if(!L.client)
+		return FALSE
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
+	var/mob/living/carbon/human/H = L
+	var/heal_amt = 20
+	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ANY)
+	if(hurt_limbs.len)
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		var/amount_healed = 0
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			amount_healed += (heal_amt * 2) + min(affecting.brute_dam - heal_amt, 0) + min(affecting.burn_dam - heal_amt, 0)
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ANY))
+				H.update_damage_overlays()
+		adjust_favor(amount_healed, user)
+		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		return TRUE
+	return FALSE

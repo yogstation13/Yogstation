@@ -21,6 +21,28 @@
 		return TRUE
 	return ..()
 
+/datum/species/zombie/get_species_description()
+	return "A rotting zombie! They descend upon Space Station Thirteen Every year to spook the crew! \"Sincerely, the Zombies!\""
+
+/datum/species/zombie/get_species_lore()
+	return list("Zombies have long lasting beef with Botanists. Their last incident involving a lawn with defensive plants has left them very unhinged.")
+
+// Override for the default temperature perks, so we can establish that they don't care about temperature very much
+/datum/species/zombie/create_pref_temperature_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "thermometer-half",
+		SPECIES_PERK_NAME = "No Body Temperature",
+		SPECIES_PERK_DESC = "Having long since departed, Zombies do not have anything \
+			regulating their body temperature anymore. This means that \
+			the environment decides their body temperature - which they don't mind at \
+			all, until it gets a bit too hot.",
+	))
+
+	return to_add
+
 /datum/species/zombie/infectious
 	name = "Infectious Zombie"
 	id = "memezombies"
@@ -91,6 +113,9 @@
 	id = "goofzombies"
 	limbs_id = "zombie" //They look like zombies
 	sexes = FALSE
+	species_traits = list(HAS_FLESH, HAS_BONE, AGENDER)
+	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin
+	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID) //pretty much just rotting flesh, somehow still "technically" alive
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN

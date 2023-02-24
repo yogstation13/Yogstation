@@ -152,8 +152,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(4)
 			return "Meta TEG"
 
-/obj/effect/landmark/stationroom/eclipse/bar
-	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
 
 /obj/effect/landmark/stationroom/maint/
 	unique = TRUE

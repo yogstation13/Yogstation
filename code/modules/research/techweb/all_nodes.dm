@@ -654,7 +654,7 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("pin_loyalty", "borg_transform_security", "platingmkii", "platingmkiv", "holo_sight")
+	design_ids = list("borg_transform_security", "platingmkii", "platingmkiv", "holo_sight")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/advmine
@@ -669,8 +669,16 @@
 	id = "electronic_weapons"
 	display_name = "Electric Weapons"
 	description = "Weapons using electric technology"
-	prereq_ids = list("weaponry", "adv_power"  , "emp_basic")
+	prereq_ids = list("weaponry", "adv_power", "emp_basic")
 	design_ids = list("stunrevolver", "ioncarbine")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/hardlight_weapons
+	id = "hardlight weapons"
+	display_name = "Hardlight Weaponry"
+	description = "Weaponized forcefields!"
+	prereq_ids = list("weaponry", "emp_super")
+	design_ids = list("hardlightbow", "ntusp_conversion", "vib_blade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/radioactive_weapons
@@ -780,6 +788,15 @@
 	prereq_ids = list("adv_mecha", "weaponry" , "micro_bluespace")
 	design_ids = list("phazon_chassis", "phazon_torso", "phazon_head", "phazon_left_arm", "phazon_right_arm", "phazon_left_leg", "phazon_right_leg", "phazon_main",
 	"phazon_peri", "phazon_targ", "phazon_armor")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/sidewinder
+	id = "mech_sidewinder"
+	display_name = "EXOSUIT: Sidewinder"
+	description = "Sidewinder exosuit designs"
+	prereq_ids = list("adv_weaponry", "mech_gygax")
+	design_ids = list("sidewinder_chassis", "sidewinder_torso", "sidewinder_head", "sidewinder_left_arm", "sidewinder_right_arm", "sidewinder_left_leg", "sidewinder_right_leg", "sidewinder_main",
+	"sidewinder_peri", "sidewinder_targ", "sidewinder_armor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/adv_mecha_tools
@@ -1059,7 +1076,7 @@
 	display_name = "Illegal Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "hardlightbow", "donksofttoyvendor", "donksoft_refill")
+	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "donksofttoyvendor", "donksoft_refill")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	hidden = TRUE
 

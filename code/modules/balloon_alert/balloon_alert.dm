@@ -19,7 +19,7 @@
 /atom/proc/balloon_or_message(mob/viewer, alert, message)
 	SHOULD_NOT_SLEEP(TRUE)
 	
-	if(viewer.client.prefs.disable_balloon_alerts)
+	if(viewer.client.prefs.read_preference(/datum/preference/toggle/disable_balloon_alerts))
 		INVOKE_ASYNC(.proc/to_chat, viewer, message)
 	else
 		INVOKE_ASYNC(src, .proc/balloon_alert_perform, viewer, message ? message : alert)

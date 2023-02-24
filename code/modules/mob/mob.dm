@@ -26,20 +26,29 @@
 	remove_from_mob_list()
 	remove_from_dead_mob_list()
 	remove_from_alive_mob_list()
+	remove_from_mob_suicide_list()
+
 	focus = null
+
+	if(length(progressbars))
+		stack_trace("[src] destroyed with elements in its progressbars list")
+		progressbars = null
+
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
-	if(observers && observers.len)
-		for(var/M in observers)
-			var/mob/dead/observe = M
+
+	if(observers?.len)
+		for(var/mob/dead/observe as anything in observers)
 			observe.reset_perspective(null)
+
 	qdel(hud_used)
-	for(var/cc in client_colours)
-		qdel(cc)
-	client_colours = null
-	ghostize()
-	..()
-	return QDEL_HINT_HARDDEL
+	QDEL_LIST(client_colours)
+	ghostize() //False, since we're deleting it currently
+
+	if(mind?.current == src) //Let's just be safe yeah? This will occasionally be cleared, but not always. Can't do it with ghostize without changing behavior
+		mind.current = null
+
+	return ..()
 
 /**
   * Intialize a mob
@@ -255,16 +264,18 @@
 
 ///Returns the client runechat visible messages preference according to the message type.
 /atom/proc/runechat_prefs_check(mob/target, visible_message_flags = NONE)
-	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
+	if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if (!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs))
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		return FALSE
 	return TRUE
 
 /mob/runechat_prefs_check(mob/target, visible_message_flags = NONE)
-	if(!target.client?.prefs.chat_on_map)
+	if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		return FALSE
-	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
 		return FALSE
 	return TRUE
 
@@ -821,7 +832,13 @@
 /// Adds this list to the output to the stat browser
 /mob/proc/get_status_tab_items()
 	. = list()
-
+	var/list/objectives = mind?.get_all_objectives()
+	if(LAZYLEN(objectives))
+		var/obj_count = 1
+		. += "<B>Objectives:</B>"
+		for(var/datum/objective/objective in mind?.get_all_objectives())
+			. += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "red"]>[objective.explanation_text][objective.check_completion() ? " (COMPLETED)" : ""]</font>"
+			obj_count++
 
 /mob/proc/get_proc_holders()
 	. = list()

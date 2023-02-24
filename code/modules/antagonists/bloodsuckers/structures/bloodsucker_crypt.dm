@@ -122,18 +122,19 @@
 		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
 		return
 	var/task //just like amongus
-	var/suckamount = 0
-	var/heartamount = 0
-	switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
-		if(0 to 3)
-			suckamount = rand(100, 200)
-			heartamount = rand(1,2)
-		if(3 to 8)
-			suckamount = rand(200, 300)
-			heartamount = rand(1,2)
-		if(8 to INFINITY)
-			suckamount = rand(500, 600)
-			heartamount = rand(5,6)
+	var/suckamount = bloodsuckerdatum.task_blood_required
+	var/heartamount = bloodsuckerdatum.task_heart_required
+	if(suckamount == 0 && heartamount == 0) // Generate random amounts if we don't already have them set
+		switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
+			if(0 to 3)
+				suckamount = rand(100, 200)
+				heartamount = rand(1,2)
+			if(3 to 8)
+				suckamount = rand(200, 300)
+				heartamount = rand(1,2)
+			if(8 to INFINITY)
+				suckamount = rand(500, 600)
+				heartamount = rand(5,6)
 	if(bloodsuckerdatum.task_blood_drank >= suckamount || sacrifices >= heartamount)
 		task_completed = TRUE
 	if(task_completed)
@@ -142,6 +143,8 @@
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		bloodsuckerdatum.altar_uses++
 		bloodsuckerdatum.task_blood_drank = 0
+		bloodsuckerdatum.task_blood_required = 0
+		bloodsuckerdatum.task_heart_required = 0
 		sacrifices = 0
 		to_chat(user, span_notice("You have sucessfully done a task and gained a rank!"))
 		task_completed = FALSE
@@ -161,8 +164,10 @@
 		C.blood_volume -= 50
 		switch(rand(1, 3))
 			if(1,2)
+				bloodsuckerdatum.task_blood_required = suckamount
 				task = "Suck [suckamount] units of pure blood."
 			if(3)
+				bloodsuckerdatum.task_heart_required = heartamount
 				task = "Sacrifice [heartamount] hearts by using them on the altar."
 				sacrificialtask = TRUE
 		bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"

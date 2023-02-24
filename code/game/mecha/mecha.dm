@@ -96,6 +96,9 @@
 	var/silicon_icon_state = null //if the mech has a different icon when piloted by an AI or MMI
 	var/is_currently_ejecting = FALSE //Mech cannot use equiptment when true, set to true if pilot is trying to exit mech
 
+	var/guns_allowed = FALSE	//Whether or not the mech is allowed to mount guns (mecha_equipment/weapon)
+	var/melee_allowed = FALSE	//Whether or not the mech is allowed to mount melee weapons (mecha_equipment/melee_weapon)
+
 	//Action datums
 	var/datum/action/innate/mecha/mech_eject/eject_action = new
 	var/datum/action/innate/mecha/mech_toggle_internals/internals_action = new
@@ -105,7 +108,7 @@
 	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
 	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
-	var/datum/effect_system/smoke_spread/smoke_system = new //not an action, but trigged by one
+	var/datum/effect_system/fluid_spread/smoke/smoke_system = new //not an action, but trigged by one
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
 	var/datum/action/innate/mecha/mech_zoom/zoom_action = new
 	var/datum/action/innate/mecha/mech_switch_damtype/switch_damtype_action = new
@@ -147,7 +150,7 @@
 		add_airtank()
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
-	smoke_system.set_up(3, src)
+	smoke_system.set_up(3, location = src)
 	smoke_system.attach(src)
 	add_cell()
 	add_scanmod()
@@ -557,6 +560,11 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = safepick(view(3,target))
 		if(!target)
+			return
+
+	// No shotgun swapping
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
+		if(!W.equip_ready)
 			return
 
 	var/mob/living/L = user
@@ -1302,9 +1310,36 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(skill)
 			evaNum *= skill.piloting_speed
 
-		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_W_UNIFORM) //if the suit directly assists the pilot
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_W_UNIFORM) //if the jumpsuit directly assists the pilot
 		if(clothes)
 			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
 			if(MP)
 				evaNum *= MP.piloting_speed
 	return evaNum
+
+/obj/mecha/proc/face_atom(atom/A)			//Pretty much identical to the mob proc that does the same thing
+	if( !A || !x || !y || !A.x || !A.y )	//Do we have a target with a location and do we have a location?
+		return								//Note: we don't check for states and stuff because this is just for forcing facing. That can come later.
+	var/dx = A.x - x	//Gets the difference in x and y coordinates
+	var/dy = A.y - y
+	if(!dx && !dy) 		// Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			setDir(NORTH)
+		else if(A.pixel_y < -16)
+			setDir(SOUTH)
+		else if(A.pixel_x > 16)
+			setDir(EAST)
+		else if(A.pixel_x < -16)
+			setDir(WEST)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(NORTH)
+		else
+			setDir(SOUTH)
+	else
+		if(dx > 0)
+			setDir(EAST)
+		else
+			setDir(WEST)

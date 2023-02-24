@@ -129,6 +129,11 @@
 /mob/living/carbon/proc/toggle_throw_mode()
 	if(stat)
 		return
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		if(M.occupant == src)
+			M.cycle_action.Activate()
+			return
 	if(in_throw_mode)
 		throw_mode_off()
 	else
@@ -762,7 +767,7 @@
 	if(!client)
 		return
 
-	if(health <= crit_threshold)
+	if(health <= crit_threshold && !(HAS_TRAIT(src, TRAIT_NOHARDCRIT) && HAS_TRAIT(src, TRAIT_NOSOFTCRIT)))//if crit is entirely disabled, no crit overlay at all
 		var/severity = 0
 		switch(health)
 			if(-20 to -10)
@@ -785,7 +790,7 @@
 				severity = 9
 			if(-INFINITY to -95)
 				severity = 10
-		if(!InFullCritical())
+		if(!InFullCritical() && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))//no soft crit blind for those immune to soft crit
 			var/visionseverity = 4
 			switch(health)
 				if(-8 to -4)

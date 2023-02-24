@@ -127,6 +127,8 @@
 
 #define STATUS_EFFECT_ZOMBIE_ACID /datum/status_effect/zombie_acid //spitter zombie ability acid effect
 
+#define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
+
 /////////////
 // NEUTRAL //
 /////////////

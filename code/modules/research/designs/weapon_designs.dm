@@ -99,16 +99,6 @@
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/pin_mindshield
-	name = "Mindshield Firing Pin"
-	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
-	id = "pin_loyalty"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 200)
-	build_path = /obj/item/firing_pin/implant/mindshield
-	category = list("Firing Pins")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
 	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."
@@ -176,6 +166,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000, /datum/material/uranium = 3000, /datum/material/titanium = 1000)
 	build_path = /obj/item/gun/energy/e_gun/nuclear
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/ntusp_conversion
+	name = "NT-USP Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	id = "ntusp_conversion"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 200, /datum/material/silver = 200)
+	build_path = /obj/item/ntusp_conversion_kit
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -315,7 +315,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 22 round magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
@@ -325,7 +325,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round armour piercing magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -333,7 +333,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round incendiary magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
@@ -341,7 +341,7 @@
 
 /datum/design/mag_oldsmg/rubber_mag
 	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
-	desc = "A 22 round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
@@ -394,6 +394,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
 	build_path = /obj/item/gun/ballistic/bow/energy
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/vib_blade
+	name = "Vibration Blade"
+	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	id = "vib_blade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/silver = 2500, /datum/material/gold = 1000)
+	build_path = /obj/item/melee/transforming/vib_blade
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
