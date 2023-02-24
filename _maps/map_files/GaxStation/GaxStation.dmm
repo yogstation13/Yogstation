@@ -16911,12 +16911,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
-"inF" = (
-/obj/structure/flora/tree/jungle{
-	desc = "A tree? In space?"
-	},
-/turf/open/floor/plating/dirt,
-/area/hydroponics/garden)
 "ios" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -23496,6 +23490,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"lGy" = (
+/obj/structure/flora/tree/jungle{
+	desc = "A tree? In space?"
+	},
+/turf/open/floor/plating/dirt/station,
+/area/hydroponics/garden)
 "lGC" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/computer/atmos_alert{
@@ -75954,7 +75954,7 @@ vRP
 eRC
 ehU
 hBV
-inF
+lGy
 klg
 waf
 vRs
