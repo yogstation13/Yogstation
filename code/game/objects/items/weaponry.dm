@@ -746,14 +746,17 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		var/mob/living/carbon/human/L = M
 		if(L && L.dna && L.dna.species)
 			L.dna.species.stop_wagging_tail(M)
-	user.do_attack_animation(M)
+	
 	var/slap_volume = 30
 	var/hard_slap = FALSE
 	if(!HAS_TRAIT(user, TRAIT_PACIFISM) && user.a_intent == INTENT_HARM)
 		hard_slap = TRUE
 		slap_volume = 60
 		force = 2
+		..()
 		qdel(src) // hurts your hand to slap so hard
+	else
+		user.do_attack_animation(M)
 	
 	if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		user.visible_message("<span class='danger'>[user] slaps [M] in the face[hard_slap ? " really hard" : ""]!</span>",
@@ -764,7 +767,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			"<span class='notice'>You slap [M][hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
-	return ..()
+	return
 
 /obj/item/slapper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!istype(target, /obj/structure/table))
