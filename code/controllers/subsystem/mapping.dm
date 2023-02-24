@@ -120,20 +120,16 @@ SUBSYSTEM_DEF(mapping)
 
 	//Load Reebe
 	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
 	//Load an Arena
 	errorList = list()
-	var/list/arenas = SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
 	if(errorList.len)	// arena failed to load
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
-	for(var/datum/parsed_map/PM in arenas)
-		PM.initTemplateBounds()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	require_area_resort()
