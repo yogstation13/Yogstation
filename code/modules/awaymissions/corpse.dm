@@ -228,7 +228,7 @@
 					id.access = J.get_access()
 					break
 		if(id_access_list)
-			if(!islist(W.access))
+			if(!islist(id.access))
 				id.access = list()
 			id.access |= id_access_list
 		if(id_job)
