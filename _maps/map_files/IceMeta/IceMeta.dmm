@@ -33789,6 +33789,21 @@
 	dir = 8
 	},
 /area/hallway/primary/central)
+"kjh" = (
+/obj/effect/turf_decal/stripes{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/camera{
+	c_tag = "Podbay Camera 2";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "kjj" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -74118,20 +74133,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
-"vYV" = (
-/obj/effect/turf_decal/stripes{
-	dir = 9
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/camera{
-	c_tag = "Podbay Camera 2"
-	},
-/turf/open/floor/plasteel,
-/area/escapepodbay)
 "vZb" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -111424,7 +111425,7 @@ seg
 nou
 mBs
 baR
-vYV
+kjh
 wBW
 wBW
 ipN
