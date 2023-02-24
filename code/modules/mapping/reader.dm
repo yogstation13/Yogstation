@@ -763,119 +763,81 @@ GLOBAL_LIST_EMPTY(map_model_default)
 		.[model_key] = list(members, members_attributes)
 	return .
 
-/datum/parsed_map/proc/build_coordinate(list/model, turf/crds, no_changeturf as num, placeOnTop as num, new_z)
-	// If we don't have a turf, nothing we will do next will actually acomplish anything, so just go back
-	// Note, this would actually drop area vvs in the tile, but like, why tho
-	if(!crds)
-		return
+/datum/parsed_map/proc/build_coordinate(list/model, turf/crds, no_changeturf as num, placeOnTop as num)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
 
-	// We use static lists here because it's cheaper then passing them around
-	var/static/list/default_list = GLOB.map_model_default
 	////////////////
 	//Instanciation
 	////////////////
 
-	if(turf_blacklist?[crds])
-		return
-
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
 	index = members.len
-	var/area/old_area
 	if(members[index] != /area/template_noop)
-		if(members_attributes[index] != default_list)
-			world.preloader_setup(members_attributes[index], members[index])//preloader for assigning  set variables on atom creation
-		var/area/area_instance = loaded_areas[members[index]]
-		if(!area_instance)
-			var/area_type = members[index]
-			// If this parsed map doesn't have that area already, we check the global cache
-			area_instance = GLOB.areas_by_type[area_type]
-			// If the global list DOESN'T have this area it's either not a unique area, or it just hasn't been created yet
-			if (!area_instance)
-				area_instance = new area_type(null)
-				if(!area_instance)
-					CRASH("[area_type] failed to be new'd, what'd you do?")
-			loaded_areas[area_type] = area_instance
+		var/atype = members[index]
+		world.preloader_setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation
+		var/atom/instance = loaded_areas[atype]
+		if (!instance)
+			instance = GLOB.areas_by_type[atype]
+			if (!instance)
+				instance = new atype(null)
+			loaded_areas[atype] = instance
+		if(crds)
+			instance.contents.Add(crds)
 
-		if(!new_z)
-			old_area = crds.loc
-			old_area.turfs_to_uncontain += crds
-			area_instance.contained_turfs.Add(crds)
-		area_instance.contents.Add(crds)
-
-		if(GLOB.use_preloader)
-			world.preloader_load(area_instance)
-
-	if (GLOB.repair_init)
-		SSatoms.map_loader_stop()
-
-	// Index right before /area is /turf
-	index--
-	var/atom/instance
-	//then instance the /turf
-	//NOTE: this used to place any turfs before the last "underneath" it using .appearance and underlays
-	//We don't actually use this, and all it did was cost cpu, so we don't do this anymore
-	if(members[index] != /turf/template_noop)
-		if(members_attributes[index] != default_list)
-			world.preloader_setup(members_attributes[index], members[index])
-
-		if (GLOB.repair_log)
-			log_world("create turf: [members[index]]; [crds]")
-
-		// Note: we make the assertion that the last path WILL be a turf. if it isn't, this will fail.
-		if(placeOnTop)
-			instance = crds.PlaceOnTop(null, members[index], CHANGETURF_DEFER_CHANGE | (no_changeturf ? CHANGETURF_SKIP : NONE))
-		else if(no_changeturf)
-			instance = create_atom(members[index], crds)//first preloader pass
-		else
-			instance = crds.ChangeTurf(members[index], null, CHANGETURF_DEFER_CHANGE)
-
-		if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
+		if(GLOB.use_preloader && instance)
 			world.preloader_load(instance)
-	// If this isn't template work, we didn't change our turf and we changed area, then we've gotta handle area lighting transfer
-	else if(!no_changeturf && old_area)
-		crds.change_area(old_area, crds.loc)
-	MAPLOADING_CHECK_TICK
 
-	
+	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
 
-	if (GLOB.repair_log)
-		log_world("=====================")
-		for(var/atom_index in 1 to length(members))
-			var/value = members[atom_index]
-			log_world("[atom_index] = [value]")
-		log_world("=====================")
-	
-	
+	var/first_turf_index = 1
+	while(!ispath(members[first_turf_index], /turf)) //find first /turf object in members
+		first_turf_index++
+
+	//instanciate the first /turf
+	var/turf/T
+	if(members[first_turf_index] != /turf/template_noop)
+		T = instance_atom(members[first_turf_index],members_attributes[first_turf_index],crds,no_changeturf,placeOnTop)
+
+	if(T)
+		//if others /turf are presents, simulates the underlays piling effect
+		index = first_turf_index + 1
+		while(index <= members.len - 1) // Last item is an /area
+			var/underlay = T.appearance
+			T = instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)//instance new turf
+			T.underlays += underlay
+			index++
 
 	//finally instance all remainings objects/mobs
-	for(var/atom_index in 1 to index-1)
-		if(members_attributes[atom_index] != default_list)
-			world.preloader_setup(members_attributes[atom_index], members[atom_index])
-
-		if (GLOB.repair_log)
-			log_world("create atom: [members[atom_index]]; [crds]")
-		
-		// We make the assertion that only /atom s will be in this portion of the code. if that isn't true, this will fail
-		instance = create_atom(members[atom_index], crds)//first preloader pass
-
-		if (GLOB.repair_log)
-			var/turf/loc = instance.loc
-			log_world("atom instance: [instance]([instance.x], [instance.y], [instance.z]) - [loc]([loc.x], [loc.y], [loc.z])")
-
-		if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
-			world.preloader_load(instance)
-		MAPLOADING_CHECK_TICK
-
-	if (GLOB.repair_init)
-		SSatoms.map_loader_begin()
+	for(index in 1 to first_turf_index-1)
+		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
 
 ////////////////
 //Helpers procs
 ////////////////
+
+//Instance an atom at (x,y,z) and gives it the variables in attributes
+/datum/parsed_map/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop)
+	world.preloader_setup(attributes, path)
+
+	if(crds)
+		if(ispath(path, /turf))
+			if(placeOnTop)
+				. = crds.PlaceOnTop(null, path, CHANGETURF_DEFER_CHANGE | (no_changeturf ? CHANGETURF_SKIP : NONE))
+			else if(!no_changeturf)
+				. = crds.ChangeTurf(path, null, CHANGETURF_DEFER_CHANGE)
+			else
+				. = create_atom(path, crds)//first preloader pass
+		else
+			. = create_atom(path, crds)//first preloader pass
+
+	if(GLOB.use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
+		world.preloader_load(.)
+
+	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
+	MAPLOADING_CHECK_TICK
 
 /datum/parsed_map/proc/create_atom(path, crds)
 	set waitfor = FALSE
