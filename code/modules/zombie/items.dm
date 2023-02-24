@@ -145,9 +145,9 @@
 	w_class = WEIGHT_CLASS_HUGE
 	tool_behaviour = TOOL_MINING
 	weapon_stats = list(SWING_SPEED = 2, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
-	force = 30
-	armour_penetration = -20
-	wound_bonus = 30
+	force = 35
+	armour_penetration = 10
+	wound_bonus = 40 //steroids
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "crushed", "whacked")
 	sharpness = SHARP_NONE
@@ -170,8 +170,8 @@
 	var/obj/item/zombie_hand/gamemode/tank/stub = src
 	stub.name = "zombie stub"
 	stub.is_stub = TRUE
-	stub.force = 5
-	stub.armour_penetration = 30
+	stub.force = 10
+	stub.armour_penetration = 60
 	stub.weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	stub.w_class = WEIGHT_CLASS_SMALL
 	stub.tool_behaviour = NONE

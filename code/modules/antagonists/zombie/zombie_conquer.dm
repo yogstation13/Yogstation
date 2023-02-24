@@ -218,6 +218,8 @@
 	for(var/datum/zombie_mutation/mutation_raw as anything in subtypesof(/datum/zombie_mutation)) //exclude this, get the subtypes
 		if(initial(mutation_raw.sector) != SECTOR_COMMON)
 			switch(class_chosen)
+				if(null)
+					continue
 				if(SMOKER)
 					if(!(initial(mutation_raw.owner_class) & SMOKER_BITFLAG))
 						continue

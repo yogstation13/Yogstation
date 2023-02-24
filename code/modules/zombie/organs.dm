@@ -63,7 +63,7 @@
 		return
 	if(!owner.getorgan(/obj/item/organ/brain))
 		return
-	if(isipc(owner))
+	if(!IS_SPECIALINFECTED(owner) && isipc(owner))
 		return
 	if(!iszombie(owner))
 		to_chat(owner, "<span class='cultlarge'>You can feel your heart stopping, but something isn't right... \

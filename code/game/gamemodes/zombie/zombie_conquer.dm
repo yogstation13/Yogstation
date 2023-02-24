@@ -94,6 +94,6 @@ GLOBAL_LIST_EMPTY(zombies)
 /datum/game_mode/zombie/generate_report()
 	return "After an unknown alien encounter, we have lost contact with some local mining outposts. Our rescue teams have found nothing but decaying and rotting corpses. On one of the ships, a body in the morgue 'woke' up and started attacking the crew \
 			People seem to 'turn' when attacked by these... Creatures.. We currently estimate their threat level to be VERY HIGH. If they somehow makes it onboard your station, send a report to Central Command immediately.\
-			The only way to truly kill them is to truly incenerate or gib them. We have spotted abnormal evolutions amongst the creatures, suggesting that they have the ability to adapt to the people fighting them. Keep your guard up crew."
+			The only way to truly kill them is to incinerate or severely mangle them. We have spotted abnormal evolutions amongst the creatures, suggesting that they have the ability to adapt to the people fighting them. Keep your guard up crew."
 
 #undef ZOMBIE_SCALING_COEFFICIENT
