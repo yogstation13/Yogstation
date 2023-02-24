@@ -400,6 +400,14 @@
 	},
 /turf/open/floor/wood,
 /area/mine/break_room)
+"dL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/mine/eva_secondary)
 "dO" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -468,6 +476,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
+"ff" = (
+/obj/structure/ladder,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "fg" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Infirmary";
@@ -681,9 +693,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"iF" = (
-/turf/open/floor/plating,
 /area/mine/living_quarters)
 "iK" = (
 /obj/structure/cable{
@@ -1587,6 +1596,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"ta" = (
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "tc" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1841,6 +1854,10 @@
 	dir = 8
 	},
 /area/mine/maintenance)
+"wO" = (
+/obj/structure/ladder,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "wP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -2770,6 +2787,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"HF" = (
+/turf/closed/wall,
+/area/icemoon/underground/explored)
 "HG" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -2964,6 +2984,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"JZ" = (
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "Kc" = (
 /obj/structure/rack,
 /obj/item/storage/bag/ore,
@@ -3047,6 +3073,10 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/mine/maintenance)
+"Lm" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "Lp" = (
 /obj/machinery/computer/prisoner{
 	dir = 1;
@@ -3282,6 +3312,9 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"Oe" = (
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Oi" = (
 /obj/structure/ore_box,
 /obj/machinery/light/small{
@@ -3573,10 +3606,6 @@
 	},
 /turf/open/floor/wood,
 /area/mine/break_room)
-"RM" = (
-/obj/structure/ladder,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "RP" = (
 /turf/open/floor/plasteel,
 /area/mine/vacant)
@@ -3598,14 +3627,6 @@
 	},
 /turf/closed/wall,
 /area/mine/maintenance)
-"Sx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/mine/eva_secondary)
 "SK" = (
 /obj/machinery/door/airlock{
 	name = "Dormitories"
@@ -19770,7 +19791,7 @@ pW
 OC
 jO
 XA
-Sx
+dL
 fV
 bb
 PZ
@@ -20034,13 +20055,13 @@ eU
 eU
 UD
 lq
-iF
-iF
-iF
-iF
-iF
-iF
-iF
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
 pR
 db
 eU
@@ -20291,13 +20312,13 @@ gS
 fb
 He
 lq
-iF
-iF
-iF
-iF
-iF
-iF
-iF
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
 kn
 ix
 ES
@@ -20548,13 +20569,13 @@ fZ
 ft
 dw
 lq
-iF
-iF
-iF
-RM
-iF
-iF
-iF
+Oe
+Oe
+Oe
+wO
+Oe
+Oe
+Oe
 EU
 MN
 Zw
@@ -20805,13 +20826,13 @@ AT
 fb
 EE
 lq
-iF
-iF
-iF
-iF
-iF
-iF
-iF
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
 iT
 zc
 JA
@@ -21062,13 +21083,13 @@ eU
 eU
 AY
 lq
-iF
-iF
-iF
-iF
-iF
-iF
-iF
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
+Oe
 pR
 gl
 eU
@@ -26250,11 +26271,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
-Ou
-Ou
+HF
+ta
+re
+ta
+HF
 Ou
 Ou
 Ou
@@ -26507,11 +26528,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
-Ou
-Ou
+ta
+re
+re
+re
+ta
 Ou
 Ou
 Ou
@@ -26764,11 +26785,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
-Ou
-Ou
+re
+re
+ff
+re
+re
 Ou
 Ou
 Ou
@@ -27021,11 +27042,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
-Ou
-Ou
+ta
+JZ
+re
+re
+ta
 Ou
 Ou
 Ou
@@ -27278,11 +27299,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
-Ou
-Ou
+HF
+Lm
+re
+ta
+HF
 Ou
 Ou
 Ou
