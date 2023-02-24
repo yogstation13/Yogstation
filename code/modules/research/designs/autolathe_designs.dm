@@ -636,9 +636,9 @@
 	build_path = /obj/item/taperecorder/empty
 	category = list("initial", "Miscellaneous")
 
-/datum/design/tape
+/datum/design/recorder_tape
 	name = "Tape"
-	id = "tape"
+	id = "recorder_tape"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 20, /datum/material/glass = 5)
 	build_path = /obj/item/tape/random
