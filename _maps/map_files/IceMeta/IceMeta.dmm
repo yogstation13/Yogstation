@@ -9353,10 +9353,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"cRn" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "cRr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -20083,10 +20079,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"gjh" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port/fore)
 "gjm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -20704,6 +20696,10 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/white,
 /area/security/physician)
+"gsl" = (
+/obj/effect/landmark/stationroom/maint/threexthree/ice,
+/turf/template_noop,
+/area/maintenance/fore)
 "gsw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -21402,16 +21398,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"gBK" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/space,
-/area/solar/starboard/aft)
 "gBZ" = (
 /obj/structure/closet,
 /obj/item/wrench,
@@ -37118,6 +37104,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"lgV" = (
+/obj/effect/landmark/stationroom/maint/threexthree/ice,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "lhb" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/radio/intercom{
@@ -38426,6 +38416,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
+"lDS" = (
+/obj/effect/landmark/stationroom/maint/threexthree/ice,
+/turf/template_noop,
+/area/maintenance/starboard/aft)
 "lEg" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -46518,6 +46512,10 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"nWG" = (
+/obj/effect/landmark/stationroom/maint/threexthree/ice,
+/turf/template_noop,
+/area/maintenance/port/fore)
 "nWQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -51170,10 +51168,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"pjs" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/starboard/aft)
 "pjv" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/miner/carbon_dioxide,
@@ -53397,10 +53391,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"pSB" = (
-/obj/effect/landmark/stationroom/maint/tenxfive/ice,
-/turf/template_noop,
-/area/maintenance/starboard/aft)
 "pSK" = (
 /obj/structure/light_construct{
 	dir = 8
@@ -56280,10 +56270,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
-"qHa" = (
-/obj/effect/landmark/stationroom/maint/tenxfive/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "qHl" = (
 /obj/structure/table,
 /obj/item/radio/intercom{
@@ -56944,10 +56930,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"qSA" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/fore)
 "qSB" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -61513,6 +61495,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"soS" = (
+/obj/effect/landmark/stationroom/maint/tenxten/ice,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "soX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -63713,10 +63699,6 @@
 "sXB" = (
 /turf/closed/wall,
 /area/science/research)
-"sXH" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port)
 "sXY" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -64506,19 +64488,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"tka" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/space,
-/area/solar/starboard/aft)
 "tkf" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -64763,6 +64732,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"tnR" = (
+/obj/effect/landmark/stationroom/maint/threexthree/ice,
+/turf/template_noop,
+/area/maintenance/port)
 "tnY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -65457,6 +65430,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/storage)
+"tAV" = (
+/obj/effect/landmark/stationroom/maint/tenxfive/ice,
+/turf/template_noop,
+/area/maintenance/starboard/aft)
 "tBd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -68087,6 +68064,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain/private)
+"uoC" = (
+/obj/effect/landmark/stationroom/maint/tenxfive/ice,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "uoE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -73377,11 +73358,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
-"vPw" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/solar/starboard/aft)
 "vPz" = (
 /obj/item/radio/intercom{
 	pixel_x = 29
@@ -78173,10 +78149,6 @@
 /obj/structure/sign/warning/pods,
 /turf/closed/wall,
 /area/hallway/secondary/entry)
-"xhE" = (
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space/nearstation)
 "xhU" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -81336,10 +81308,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"yfP" = (
-/obj/effect/landmark/stationroom/maint/tenxten/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "yfT" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -95754,7 +95722,7 @@ ggG
 nyB
 epQ
 epQ
-gjh
+nWG
 nyB
 cHx
 fxA
@@ -96336,7 +96304,7 @@ hbl
 jHk
 kmh
 kmh
-sXH
+tnR
 jkn
 jkn
 rRh
@@ -96597,7 +96565,7 @@ kmh
 jkn
 cht
 cht
-cRn
+lgV
 jkn
 rHu
 uMX
@@ -96868,7 +96836,7 @@ cht
 cht
 cht
 cht
-yfP
+soS
 xPq
 ggG
 ggG
@@ -97899,7 +97867,7 @@ cht
 cht
 jkn
 tEf
-xhE
+wNI
 wNI
 tEf
 ggG
@@ -98654,7 +98622,7 @@ cht
 cht
 cht
 cht
-qHa
+uoC
 jkn
 vYe
 jkn
@@ -99958,7 +99926,7 @@ cbP
 jkn
 cht
 cht
-cRn
+lgV
 dnC
 tEf
 hwq
@@ -115032,7 +115000,7 @@ tEf
 jte
 fyo
 fyo
-qSA
+gsl
 jte
 dWU
 dWU
@@ -115904,7 +115872,7 @@ aCd
 kYH
 olc
 olc
-pjs
+lDS
 kYH
 olc
 olc
@@ -116422,7 +116390,7 @@ olc
 oef
 olc
 olc
-pjs
+lDS
 gXz
 ggG
 ggG
@@ -117700,7 +117668,7 @@ iRv
 kYH
 olc
 olc
-pjs
+lDS
 kYH
 eFL
 mlT
@@ -119244,7 +119212,7 @@ olc
 olc
 olc
 olc
-pSB
+tAV
 kYH
 kYH
 kYH
@@ -125667,12 +125635,12 @@ tEf
 ggG
 oVV
 ggG
-gBK
-tka
-tka
-tka
-tka
-vPw
+mvy
+cwV
+cwV
+cwV
+cwV
+mJV
 ovx
 oLM
 omT
