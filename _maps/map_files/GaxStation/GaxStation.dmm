@@ -7528,6 +7528,16 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"dNt" = (
+/obj/structure/closet/secure_closet/lethalshots,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "dNv" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -22865,13 +22875,6 @@
 /obj/structure/closet/wardrobe/white,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"luB" = (
-/obj/structure/closet/secure_closet/lethalshots,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "luE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -31666,24 +31669,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"pSb" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/guncase/shotgun,
-/obj/item/gun/ballistic/shotgun/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/gun/ballistic/shotgun/riot,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Armory Motion Sensor"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "pSg" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -38273,6 +38258,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"tcD" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/guncase/shotgun,
+/obj/item/gun/ballistic/shotgun/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/ballistic/shotgun/riot,
+/obj/machinery/camera/motion/armory,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "tcG" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -70049,7 +70047,7 @@ vRP
 aCD
 xbD
 dll
-luB
+dNt
 uwK
 kAM
 qNN
@@ -70306,7 +70304,7 @@ vRP
 ubS
 tkl
 dll
-pSb
+tcD
 uwK
 spY
 vVo
