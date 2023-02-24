@@ -1,0 +1,40 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"g" = (
+/obj/item/grown/bananapeel,
+/turf/open/space/basic,
+/area/space)
+"p" = (
+/turf/open/space/basic,
+/area/space)
+"H" = (
+/turf/open/floor/plating,
+/area/space)
+"M" = (
+/mob/living/simple_animal/hostile/gorilla{
+	AIStatus = null;
+	desc = "There is no need to be upset.";
+	dir = 4;
+	name = "Familiar Gorilla"
+	},
+/turf/open/floor/plating,
+/area/space)
+"R" = (
+/obj/item/grown/bananapeel,
+/turf/open/floor/plating,
+/area/space)
+
+(1,1,1) = {"
+p
+H
+H
+"}
+(2,1,1) = {"
+p
+M
+R
+"}
+(3,1,1) = {"
+p
+g
+H
+"}

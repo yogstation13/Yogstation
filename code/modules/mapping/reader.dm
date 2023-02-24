@@ -809,6 +809,9 @@ GLOBAL_LIST_EMPTY(map_model_default)
 		if(GLOB.use_preloader)
 			world.preloader_load(area_instance)
 
+	if (GLOB.repair_init)
+		SSatoms.map_loader_stop()
+
 	// Index right before /area is /turf
 	index--
 	var/atom/instance
@@ -818,6 +821,9 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	if(members[index] != /turf/template_noop)
 		if(members_attributes[index] != default_list)
 			world.preloader_setup(members_attributes[index], members[index])
+
+		if (GLOB.repair_log)
+			log_world("create turf: [members[index]]; [crds]")
 
 		// Note: we make the assertion that the last path WILL be a turf. if it isn't, this will fail.
 		if(placeOnTop)
@@ -834,17 +840,38 @@ GLOBAL_LIST_EMPTY(map_model_default)
 		crds.change_area(old_area, crds.loc)
 	MAPLOADING_CHECK_TICK
 
+	
+
+	if (GLOB.repair_log)
+		log_world("=====================")
+		for(var/atom_index in 1 to length(members))
+			var/value = members[atom_index]
+			log_world("[atom_index] = [value]")
+		log_world("=====================")
+	
+	
+
 	//finally instance all remainings objects/mobs
 	for(var/atom_index in 1 to index-1)
 		if(members_attributes[atom_index] != default_list)
 			world.preloader_setup(members_attributes[atom_index], members[atom_index])
 
+		if (GLOB.repair_log)
+			log_world("create atom: [members[atom_index]]; [crds]")
+		
 		// We make the assertion that only /atom s will be in this portion of the code. if that isn't true, this will fail
 		instance = create_atom(members[atom_index], crds)//first preloader pass
+
+		if (GLOB.repair_log)
+			var/turf/loc = instance.loc
+			log_world("atom instance: [instance]([instance.x], [instance.y], [instance.z]) - [loc]([loc.x], [loc.y], [loc.z])")
 
 		if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
 			world.preloader_load(instance)
 		MAPLOADING_CHECK_TICK
+
+	if (GLOB.repair_init)
+		SSatoms.map_loader_begin()
 
 ////////////////
 //Helpers procs
