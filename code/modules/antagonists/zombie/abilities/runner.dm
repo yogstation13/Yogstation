@@ -59,11 +59,11 @@
 	obstacles_jumped = 0
 	UnregisterSignal(owner, COMSIG_MOVABLE_BUMP)
 
-/////////////////||\\\\\\\\\\\\\\\\\
-////							\\\\
-////	PURCHASABLE ABILITIES	\\\\
-////							\\\\
-////\\\\\\\\\\\\\||/////////////\\\\
+/////////////////\\\\\\\\\\\\\\
+////						\\\\
+////  PURCHASABLE ABILITIES \\\\
+////						\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/pickpocket
 	name = "Pickpocket"

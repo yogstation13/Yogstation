@@ -326,42 +326,16 @@
 
 /datum/action/innate/horror/lube_spill/Activate()
 	horror_owner.use_chemicals(chemical_cost)
-	cooldown = world.time + 10 SECONDS
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
-	flick("horror_spin", horror_owner)
-	playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
-	for(var/turf/open/t in range(1, horror_owner))
-		if(prob(60) && horror_owner.Adjacent(t))
-			t.MakeSlippery(TURF_WET_LUBE, 50)
-	cooldown = world.time + 10 SECONDS
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
-	flick("horror_spin", horror_owner)
-	playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
-	for(var/turf/open/t in range(1, horror_owner))
-		if(prob(60) && horror_owner.Adjacent(t))
-			t.MakeSlippery(TURF_WET_LUBE, 50)
-	horror_owner.use_chemicals(30)
-	cooldown = world.time + 10 SECONDS
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	horror_owner.visible_message(span_warning("[horror_owner] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
-	var/spins_remaining = 10
-	horror_owner.icon_state = "horror_spin"
-	while(spins_remaining > 0)
-		playsound(horror_owner, 'sound/effects/blobattack.ogg', rand(20, 30), rand(0.5, 2))
-		for(var/turf/open/t in range(1, horror_owner))
-			if(prob(60) && horror_owner.Adjacent(t))
-				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(0.5 SECONDS)
-		spins_remaining--
-		if(!horror_owner.can_use_ability())
-			return TRUE
-	horror_owner.icon_state = "horror"
-	return TRUE
+    cooldown = world.time + 10 SECONDS
+    UpdateButtonIcon()
+    addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+    horror_owner.visible_message(span_warning("[horror_owner] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
+    flick("horror_spin", horror_owner)
+    playsound(horror_owner, 'sound/effects/blobattack.ogg', 25, 1)
+    for(var/turf/open/t in range(1, horror_owner))
+        if(prob(60) && horror_owner.Adjacent(t))
+            t.MakeSlippery(TURF_WET_LUBE, 50)
+    return TRUE
 
 //UPGRADES
 /datum/horror_upgrade

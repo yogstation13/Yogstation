@@ -53,11 +53,11 @@
 				var/obj/item/organ/eyes/eyes = C.getorganslot(ORGAN_SLOT_EYES)
 				eyes.applyOrganDamage(5)
 
-/////////////////||\\\\\\\\\\\\\\\\\
-////							\\\\
-////	PURCHASABLE ABILITIES	\\\\
-////							\\\\
-////\\\\\\\\\\\\\||/////////////\\\\
+/////////////////\\\\\\\\\\\\\\
+////						\\\\
+////  PURCHASABLE ABILITIES \\\\
+////						\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/swing
 	name = "Throw Tongue"

@@ -135,11 +135,11 @@
 		var/turf/closed/wall/W = affected
 		W.dismantle_wall(1)
 
-/////////////////||\\\\\\\\\\\\\\\\\
-////							\\\\
-////	PURCHASABLE ABILITIES	\\\\
-////							\\\\
-////\\\\\\\\\\\\\||/////////////\\\\
+/////////////////\\\\\\\\\\\\\\
+////						\\\\
+////  PURCHASABLE ABILITIES \\\\
+////						\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/jab
 	name = "Quick Jab"

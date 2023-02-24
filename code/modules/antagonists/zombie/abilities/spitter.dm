@@ -84,11 +84,11 @@
 	A.fire()
 	owner.newtonian_move(get_dir(directional_turf, current_turf))
 
-/////////////////||\\\\\\\\\\\\\\\\\
-////							\\\\
-////	PURCHASABLE ABILITIES	\\\\
-////							\\\\
-////\\\\\\\\\\\\\||/////////////\\\\
+/////////////////\\\\\\\\\\\\\\
+////						\\\\
+////  PURCHASABLE ABILITIES \\\\
+////						\\\\
+////\\\\\\\\\\\\///////////\\\\
 
 /datum/action/innate/zombie/default/bubble
 	name = "Bubble Bomb"
