@@ -113,7 +113,7 @@
 
 ////////////////////////////////////////////////////////////////////////////ABILITY LINE BREAKER////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////->IF YOU WANT TO ADD NEW ABILITIES REMEMBER TO ADD THEM TO THE LISTS ABOVE<-//////////////////////////////////////////////////////
-/datum/action/innate/horror/UpdateButtonIcon()
+/datum/action/innate/horror/UpdateButtonIcon(force = FALSE)
 	icon_icon = isbrainy(horror_owner) ? 'icons/mob/actions/actions_zombie.dmi' : initial(icon_icon)
 	background_icon_state = isbrainy(horror_owner) ? "bg_zombie" :  initial(background_icon_state)
 	. = ..()

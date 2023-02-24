@@ -104,7 +104,7 @@
 	button.color = rgb(255,255,255,255)
 	button.alpha = 255
 
-/datum/action/innate/zombie/UpdateButtonIcon()
+/datum/action/innate/zombie/UpdateButtonIcon(force = FALSE)
 	background_icon_state = active ? initial(background_icon_state) + "_on" : initial(background_icon_state)
 	. = ..()
 
