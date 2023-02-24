@@ -99,10 +99,9 @@
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
 /datum/species/lizard/get_species_description()
-	return /*"The militaristic Lizardpeople hail originally from Tizira, but have grown \
-		throughout their centuries in the stars to possess a large spacefaring \
-		empire: though now they must contend with their younger, more \
-		technologically advanced Human neighbours."*/
+	return "The first sentient beings encountered by the SIC outside of the Sol system, vuulen are the most \
+		commonly encountered non-human species in SIC space. Despite being one of the most integrated species in the SIC, they \
+		are also one of the most heavily discriminated against."
 
 /datum/species/lizard/get_species_lore()
 	return list(

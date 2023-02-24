@@ -288,7 +288,8 @@
 	return pod_name(gender)
 
 /datum/species/pod/get_species_description()
-	return ""//"TODO: This is plant description"
+	return "Birthed by the alien plant known as lazarupela vitalis (or podseeds), phytosians are beings reincarnated by the plant using \
+		their blood. Isolationist and xenophobic, they are encountered in SIC space only under exceptional circumstance."
 
 /datum/species/pod/get_species_lore()
 	return list(

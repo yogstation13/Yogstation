@@ -298,7 +298,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	return features
 
 /datum/species/preternis/get_species_description()
-	return ""//"TODO: This is preternis description"
+	return "Sentient tools left by the bygone Vxtvul Empire, preterni are a complex weaving of flesh and \
+		cybernetics encased in a plasteel shell. Now left to their own devices among the forgotten ruins of their old civilization, \
+		the preterni have formed their own nation and have established tense but stable relations with the SIC."
 
 /datum/species/preternis/get_species_lore()
 	return list(

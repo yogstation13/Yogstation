@@ -191,9 +191,8 @@
 	return randname
 
 /datum/species/plasmaman/get_species_description()
-	return /*"Found on the Icemoon of Freyja, plasmamen consist of colonial \
-		fungal organisms which together form a sentient being. In human space, \
-		they're usually attached to skeletons to afford a human touch."*/
+	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \
+		discovered, even though they're mainly former humans. While horrifying, most manage to return to their previous position in society before their transformation."
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
