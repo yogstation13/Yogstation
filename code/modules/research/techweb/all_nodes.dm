@@ -790,6 +790,15 @@
 	"phazon_peri", "phazon_targ", "phazon_armor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/sidewinder
+	id = "mech_sidewinder"
+	display_name = "EXOSUIT: Sidewinder"
+	description = "Sidewinder exosuit designs"
+	prereq_ids = list("adv_weaponry", "mech_gygax")
+	design_ids = list("sidewinder_chassis", "sidewinder_torso", "sidewinder_head", "sidewinder_left_arm", "sidewinder_right_arm", "sidewinder_left_leg", "sidewinder_right_leg", "sidewinder_main",
+	"sidewinder_peri", "sidewinder_targ", "sidewinder_armor")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
 /datum/techweb_node/adv_mecha_tools
 	id = "adv_mecha_tools"
 	display_name = "Advanced Exosuit Equipment"
