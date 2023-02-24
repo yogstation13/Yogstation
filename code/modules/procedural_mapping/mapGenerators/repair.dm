@@ -59,7 +59,6 @@ GLOBAL_VAR_INIT(repair_init, FALSE)
 
 		for(var/movable_in_turf in current_turf)
 			movables += movable_in_turf
-			log_world("repair atom: [movable_in_turf]")
 			if(istype(movable_in_turf, /obj/structure/cable))
 				cables += movable_in_turf
 				continue
