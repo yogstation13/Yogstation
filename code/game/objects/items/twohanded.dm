@@ -1069,7 +1069,7 @@
 	else
 		charging = TRUE
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
-		user.visible_message(span_warning("[user] flicks the hammer on, tilting their head down as if in thought."))
+		user.visible_message(span_warning("[user] flicks the hammer on, tilting [user.p_their()] head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
 		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
@@ -1080,7 +1080,7 @@
 		if(!charging) //No charging for you if you cheat
 			return //Has to double-check return because attacking or one-handing won't actually proc !do_mob, so the channel will seem to continue despite the message that pops out, but this actually ensures that it won't charge despite attacking or one-handing
 		to_chat(user, span_notice("You complete charging the weapon."))
-		user.visible_message(span_warning("[user] looks up as their hammer begins to crackle and hum!"))
+		user.visible_message(span_warning("[user] looks up as [user.p_their()] hammer begins to crackle and hum!"))
 		playsound(loc, 'sound/magic/lightningshock.ogg', 60, TRUE) //Mainly electric crack
 		playsound(loc, 'sound/effects/magic.ogg', 40, TRUE) //Reverb undertone
 		supercharge()
