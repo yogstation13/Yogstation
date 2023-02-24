@@ -184,7 +184,7 @@
 
 /obj/structure/closet/secure_closet/psych
 	name = "psychiatrist's cabinet"
-	desc = "Packed with a psychiastrist's tools of the trade"
+	desc = "Packed with a psychiatrist's tools of the trade"
 	req_access = list(ACCESS_PSYCH)
 	icon_state = "cabinet"
 
