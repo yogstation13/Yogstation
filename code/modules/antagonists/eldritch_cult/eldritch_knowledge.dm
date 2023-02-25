@@ -26,6 +26,17 @@
 	///spells unlocked by this knowledge
 	var/list/spells_to_add = list()
 
+/** The Lores and their Thematic Representation
+ * 
+ * 	Ash is the principle of spirit and ambition, and the everlasting flame that burns bright with the kindling of life
+ * 	Blade is the principle of violence and tradition, and the fundamental conflicts that arise from proximity
+ * 	Bronze is the principle of time and empire, and the unstoppable force of innovation
+ * 	Flesh is the principle of hunger and obedience, and the malformation of will
+ * 	Rust is the principle of that which makes and unmakes, and the slow decline of all things civilized
+ * 	Void is the principle of the inevitable end, and the darkness which will claim all light
+ * 
+ */
+
 /**
   * What happens when this is assigned to an antag datum
   *
@@ -84,8 +95,8 @@
 
 /datum/eldritch_knowledge/basic
 	name = "Break of Dawn"
-	desc = "Starts your journey in the mansus. Allows you to select a target transmuting a living heart on a transmutation rune, create new living hearts by transmuting a heart, poppy, and pool of blood, and create new Codex Cicatrixes by transmuting human skin, a bible, a poppy and a pen."
-	gain_text = "Gates of mansus open up to your mind."
+	desc = "Begins your journey in the Mansus. Allows you to select a target transmuting a living heart on a transmutation rune, create new living hearts by transmuting a heart, poppy, and pool of blood, and create new Codex Cicatrixes by transmuting human skin, a bible, a poppy and a pen."
+	gain_text = "Gates to the Mansus open in your mind's passion."
 	cost = 0
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix)

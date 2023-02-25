@@ -10,6 +10,7 @@
 	var/list/researched_knowledge = list()
 	var/list/transmutations = list()
 	var/total_sacrifices = 0
+	var/lore = "Unpledged" //Used to track which path the heretic has taken
 	var/ascended = FALSE
 	var/charge = 1
 ///current tier of knowledge this heretic is on, each level unlocks new knowledge bits
@@ -33,14 +34,13 @@
 
 /datum/antagonist/heretic/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
-	to_chat(owner, "[span_boldannounce("You are the Heretic!")]<br>\
-	<B>The old ones gave you these tasks to fulfill:</B>")
+	to_chat(owner, span_userdanger("You are the Heretic."))
 	owner.announce_objectives()
-	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
-	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
-	You gain charges by either collecting influences or sacrificing people tracked by the living heart<br> \
+	to_chat(owner, "<span class='cult'>The text whispers, and forbidden knowledge licks at your mind!<br>\
+	Your book allows you to gain abilities with research points. You cannot undo research, so choose your path wisely!<br>\
+	You gain research points by collecting influences or sacrificing targets by using a living heart and transmutation rune.<br>\
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
-	If you need to quickly check your unlocked transmutation recipes, alt+click your Codex Cicatrix.")
+	If you need to quickly check your unlocked transmutation recipes, ALT + CLICK your Codex Cicatrix.")
 
 /datum/antagonist/heretic/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)
@@ -68,7 +68,7 @@
 	if(ishuman(current))
 		forge_primary_objectives()
 		gain_knowledge(/datum/eldritch_knowledge/basic)
-	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
+	current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
 	SSticker.mode.update_heretic_icons_added(owner)
@@ -83,8 +83,8 @@
 		EK.on_lose(owner.current)
 
 	if(!silent)
-		to_chat(owner.current, span_userdanger("Your mind begins to flare as the otherwordly knowledge escapes your grasp!"))
-		owner.current.log_message("has renounced the cult of the old ones!", LOG_ATTACK, color="#960000")
+		to_chat(owner.current, span_userdanger("Your mind begins to flare as otherwordly knowledge escapes your grasp!"))
+		owner.current.log_message("has lost their link to the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
 
@@ -215,12 +215,12 @@
 				cultiewin = FALSE
 			count++
 	if(ascended)
-		parts += "<span class='greentext big'>THE HERETIC HAS ASCENDED!</span>"
+		parts += "<span class='greentext big'>THE [uppertext(lore)] HERETIC HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
-			parts += span_greentext("The heretic was successful!")
+			parts += span_greentext("The [lowertext(lore)] heretic was successful!")
 		else
-			parts += span_redtext("The heretic has failed.")
+			parts += span_redtext("The [lowertext(lore)] heretic has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "
 
@@ -231,7 +231,156 @@
 		knowledge_message += "[EK.name]"
 	parts += knowledge_message.Join(", ")
 
+	parts += get_flavor(cultiewin, ascended, lore)
+
 	return parts.Join("<br>")
+
+/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, lore)
+	var/list/flavor = list()
+	var/flavor_message
+	var/alive = considered_alive(owner.current)
+	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
+	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
+	var/message_color = "#ef2f3c"
+	
+	//Stolen from chubby's bloodsucker code, but without support for lists
+	if(cultiewin && ascended && escaped)
+		//Finish normal objectives, ascend, and escape
+		if(lore == "Ash")
+			flavor_message += 	"You step off the shuttle as smoke curls off your form. Light seeps from openings in your body, and you quickly retire to the Mansus. \
+								Here, you trail back to the Wooded Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
+								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
+								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#FFD700"
+
+	else if(cultiewin && ascended && alive)
+		//Finish normal objectives, ascend, and stay on station
+		if(lore == "Ash")
+			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. . \
+								Then, you descend back into the Mansus and return to the Wooded Tavern, flames licking in your wake, though the grass remains unburnt. \
+								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
+								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#FFD700"
+
+	else if(cultiewin && ascended && !alive)
+		//Finish normal objectives, ascend, and die
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#FFD700"
+
+	else if(cultiewin && !ascended && escaped)
+		//Finish normal objectives, don't ascend, and escape
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //If you SOMEHOW complete your objectives without doing ANY research
+			flavor_message += 	"Help"
+		message_color = "#517fff"
+
+	else if(cultiewin && !ascended && alive)
+		//Finish normal objectives, don't ascend, and stay on station
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //If you SOMEHOW complete your objectives without doing ANY research
+			flavor_message += 	"Help"
+		message_color = "#517fff"
+
+	else if(cultiewin && !ascended && !alive)
+		//Finish normal objectives, don't ascend, and die
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //If you SOMEHOW complete your objectives without doing ANY research
+			flavor_message += 	"Help"
+
+	else if(!cultiewin && ascended && escaped)
+		//Don't finish objectives, ascend, and escape
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#008000"
+
+	else if(!cultiewin && ascended && alive)
+		//Don't finish objectives, ascend, and stay on station
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#008000"
+
+	else if(!cultiewin && ascended && !alive)
+		//Don't finish objectives, ascend, and die
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else //Rust
+			flavor_message += 	"Help"
+		message_color = "#008000"
+
+	else if(!cultiewin && !ascended && escaped)
+		//Don't finish objectives, don't ascend, and escape
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //Didn't choose lore
+			flavor_message += 	"Help"
+
+	else if(!cultiewin && !ascended && alive)
+		//Don't finish objectives, don't ascend, and stay on station
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //Didn't choose lore
+			flavor_message += 	"Help"
+
+	else
+		//Don't finish objectives, don't ascend, and die
+		if(lore == "Ash")
+			flavor_message += 	"Help"
+		else if(lore == "Flesh")
+			flavor_message += 	"Help"
+		else if(lore == "Rust")
+			flavor_message += 	"Help"
+		else //Didn't choose lore
+			flavor_message += 	"Help"
+
+	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
+	return "<div>[flavor.Join("<br>")]</div>"
+
 ////////////////
 // Knowledge //
 ////////////////
@@ -243,6 +392,8 @@
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
 	charge -= initialized_knowledge.cost
+	if(initialized_knowledge.tier == TIER_PATH) //Sets chosen heretic lore when path is chosen
+		lore = initialized_knowledge.route
 	if(!initialized_knowledge.tier == TIER_NONE && knowledge_tier != TIER_ASCEND)
 		if(IS_EXCLUSIVE_KNOWLEDGE(initialized_knowledge))
 			knowledge_tier++

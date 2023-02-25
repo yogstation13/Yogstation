@@ -326,7 +326,8 @@
 /datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
 	var/list/flavor = list()
 	var/flavor_message
-	var/escaped = (owner.current.onCentCom() || owner.current.onSyndieBase())
+	var/alive = considered_alive(owner.current) //Technically not necessarily probably because of Final Death objective?
+	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 	//i used pick() in case anyone wants to add more messages as time goes on
@@ -336,7 +337,7 @@
 			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
 		))
 		message_color = "#008000"
-	else if(objectives_complete && optional_objectives_complete && broke_masquerade && !escaped)
+	else if(objectives_complete && optional_objectives_complete && broke_masquerade && alive)
 		//finish all objectives, break masquerade, don't evac
 		flavor_message += pick(list(
 			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. Let the Camarilla and the witchers come. You will be waiting."
@@ -348,7 +349,7 @@
 			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. High society awaits: a delicacy you have earned."
 		))
 		message_color = "#008000"
-	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && !escaped)
+	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && alive)
 		//finish all objectives, don't break masquerade, don't escape
 		flavor_message += pick(list(
 			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
@@ -360,7 +361,7 @@
 			"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
 		))
 		message_color = "#517fff"
-	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && !escaped)
+	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && alive)
 		//finish primary objectives only, break masquerade, don't escape
 		flavor_message += pick(list(
 			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
@@ -372,7 +373,7 @@
 			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
 		))
 		message_color = "#517fff"
-	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && !escaped)
+	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && alive)
 		//finish primary objectives only, don't break masquerade, don't escape
 		flavor_message += pick(list(
 			"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
