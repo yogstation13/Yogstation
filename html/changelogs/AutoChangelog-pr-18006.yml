@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "nitryl's reagent now has a cap when being added by the gas, similarly to healium and stimulum"
