@@ -22,7 +22,7 @@
 ANTAG_REP AI 6 # AI is an important role but will survive 80% of rounds
 ANTAG_REP Captain 15
 ANTAG_REP Chief_Engineer 10
-ANTAG_REP Chief_Medical Officer 10
+ANTAG_REP Chief_Medical_Officer 10
 ANTAG_REP Head_of_Personnel 12
 ANTAG_REP Head_of_Security 14
 ANTAG_REP Research_Director 8 # Basically scientist++

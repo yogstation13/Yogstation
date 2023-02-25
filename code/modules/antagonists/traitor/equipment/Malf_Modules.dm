@@ -343,9 +343,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		var/turf/T = get_turf(L)
 		if(!T || !is_station_level(T.z))
 			continue
-		if(issilicon(L))
-			continue
-		if(isipc(L))
+		if((MOB_ROBOTIC in L.mob_biotypes) && !(MOB_ORGANIC in L.mob_biotypes))
 			continue
 		to_chat(L, span_userdanger("The blast wave from [src] tears you atom from atom!"))
 		L.dust()
