@@ -14,10 +14,10 @@ export const NullRod = (props, context) => {
         <Section title="Nullrod">
           <LabeledList>
             <LabeledList.Item label="Name">
-              {categories?.nullrod_weapons?.[0]?.name}
+              {categories?.nullrod_weapons?.[1]?.name}
             </LabeledList.Item>
             <LabeledList.Item label="Desc">
-              {categories?.nullrod_weapons?.[0]?.desc}
+              {categories?.nullrod_weapons?.[1]?.desc}
             </LabeledList.Item>
             <LabeledList.Item label="Button">
               <Button

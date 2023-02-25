@@ -73,16 +73,14 @@
 
 	to_chat(world, "calling ui_static_data")
 	for(var/I in subtypesof(/obj/item/nullrod))
-		to_chat(world, "checking [I] for istype [istype(I, /obj/item/nullrod)? "true" : "false"]")
-		if(istype(I, /obj/item/nullrod))
-			var/obj/item/nullrod/rodtype = I
-			to_chat(world, "checking [rodtype] for spawnable")
-			if(rodtype?.chaplain_spawnable)
-				to_chat(world, "adding [rodtype] to the tgui")
-				data["categories"][rodtype.menutab] += list(
-					"name" = rodtype.name,
-					"desc" = rodtype.desc,
-					)
+		var/obj/item/nullrod/rodtype = new I()
+		to_chat(world, "checking [rodtype] for spawnable")
+		if(rodtype?.chaplain_spawnable)
+			to_chat(world, "adding [rodtype.name] to the tgui")
+			data["categories"][rodtype.menutab] += list(
+				"name" = rodtype.name,
+				"desc" = rodtype.desc,
+				)
 
 	return data
 
