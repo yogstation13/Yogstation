@@ -3,9 +3,9 @@ import { multiline } from "common/string";
 
 export const HERETIC_MECHANICAL_DESCRIPTION
    = multiline`
-      Fulfill the requests of your eldritch patrons and become a student of the Mansus via sacrifice and research.
+      Become a student of the Mansus via sacrifice and exploration.
       Compile ingredients to perform rituals.
-      Seeking ultimate power, complete your studies and ascend, and be counted among the Long.
+      Seeking ultimate power, complete your research and ascend, and be counted among the Long.
    `;
 
 
@@ -17,7 +17,7 @@ const Heretic: Antagonist = {
       The dreams began some time back.
       Stumbling through brambles and trees, you found yourself in a tavern.
       Unfamiliar faces discuss the Lores that establish the fabric of your reality, and the place with no walls that surrounds all things.
-      They ignore you for now. They will not for long.
+      They ignore you for now. They will not soon enough.
     `,
     HERETIC_MECHANICAL_DESCRIPTION,
   ],
