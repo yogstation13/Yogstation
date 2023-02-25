@@ -17,7 +17,7 @@ const Heretic: Antagonist = {
       The dreams began some time back.
       Stumbling through brambles and trees, you found yourself in a tavern.
       Unfamiliar faces discuss the Lores that establish the fabric of your reality, and the place with no walls that surrounds all things.
-      They gift you awareness and wish you well.
+      They ignore you for now. They will not for long.
     `,
     HERETIC_MECHANICAL_DESCRIPTION,
   ],
