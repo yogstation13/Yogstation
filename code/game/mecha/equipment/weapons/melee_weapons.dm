@@ -37,6 +37,8 @@
 	var/fauna_damage_bonus = 0
 	/// Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
+	/// Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.5 for extended mech combat gaming
+	var/mech_damage_multiplier = 0.6
 
 	/// Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
@@ -79,14 +81,14 @@
 	chassis.log_message("Attacked with [src.name], targeting [target].", LOG_MECHA)
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/can_stab_at(atom/user, atom/target)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/can_stab_at(atom/attacker, atom/target)	//Checks for line of stab (like line of sight but harder) from attacker to defender
 	//Note that we don't check for valid turfs or if starter and target are the same because that's already done in action()
 	var/turf/current = null
 	var/turf/next = null
-	var/turf/starter = get_turf(user)
+	var/turf/starter = get_turf(attacker)
 	var/turf/targloc = get_turf(target)
 
-	if(user.Adjacent(target))	//Check if we're in normal melee range. If we aren't the rest of this will run to check if we have line of stab.
+	if(attacker.Adjacent(target))	//Check if we're in normal melee range. If we aren't the rest of this will run to check if we have line of stab.
 		return 1
 	if(abs(starter.x - targloc.x) == abs(starter.y - targloc.y))	//If we're exactly diagonal
 		current = get_step_towards(starter, targloc)	//We check directly diagonal for reasons
@@ -172,7 +174,7 @@
 		special_hit(T)	//So we can hit turfs too
 		for(var/atom/A in T.contents)
 			special_hit(A)
-			if(isliving(A) && can_stab_at(M, T))	//If there's a stabbable mob
+			if(isliving(A) && can_stab_at(chassis, A))	//If there's a stabbable mob
 				var/mob/living/L = A
 				
 				if(iscarbon(L))	//If we're a carbon we can get armor and jazz
@@ -190,12 +192,13 @@
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 				playsound(L, mob_strike_sound, 50)
 
-			if(isstructure(A) || (ismachinery(A) && can_stab_at(M, T)) || (istype(A, /obj/mecha) && can_stab_at(M, T)))	//if it's a big thing we hit anyways. Structures ALWAYS are hit, machines and mechs can be protected
+			if((isstructure(A) || ismachinery(A) || istype(A, /obj/mecha)) && can_stab_at(chassis, A))	//if it's a big thing we hit anyways. Structures ALWAYS are hit, machines and mechs can be protected
 				var/obj/O = A
 				if(!O.density)	//Make sure it's not an open door or something
 					continue
-				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? 0.5 : 1)	//Half damage on mechs
-				O.take_damage(object_damage, dam_type, "melee", 0)
+				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult * (istype(A, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs
+				var/final_AP = istype(A, /obj/mecha) ? base_armor_piercing : 0
+				O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
 				if(istype(O, /obj/structure/window))
 					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
 				else
@@ -227,8 +230,9 @@
 
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
-		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? 0.5 : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
+		var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing * 2 : 0
+		O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
 	else
 		return
 	chassis.do_attack_animation(target, hit_effect)
@@ -386,6 +390,7 @@
 	base_armor_piercing = 25	//50 on precise attack
 	deflect_bonus = 15			//mech fencing but it parries bullets too because robot reaction time or something
 	structure_damage_mult = 2	//Ever try to shank an engine block?
+	mech_damage_multiplier = 0.75	//Slightly better against mechs
 	attack_sharpness = SHARP_POINTY
 	attack_speed_modifier = 0.8	//Counteracts the 0.2 second time between attacks
 	extended_range = 1			//so we can jump at people
@@ -424,8 +429,9 @@
 
 		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 			var/obj/O = target
-			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
-			O.take_damage(object_damage, dam_type, "melee", 0)
+			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Nukie mech, slightly less bad at killing mechs
+			var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing * 2 : 0
+			O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
 		else
 			return
 		chassis.do_attack_animation(target, hit_effect)
@@ -482,6 +488,7 @@
 	sharpness = SHARP_POINTY		//You can't use it well but it IS still a giant sharp metal stick
 	base_armor_piercing = 40
 	structure_damage_mult = 1.5		//Not great at destroying stuff
+	mech_damage_multiplier = 1		//Anti-mech weapon
 	hit_effect = ATTACK_EFFECT_KICK	//Don't question it
 
 
@@ -507,8 +514,9 @@
 
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
-		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult	//It's anti-mech and the multiplier is already pretty low
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)
+		var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing : 0	//Flat AP here because the spear doesn't use normal double scaling for precise attacks
+		O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
 		if(istype(target, /obj/mecha))
 			special_hit(target)	
 	else
