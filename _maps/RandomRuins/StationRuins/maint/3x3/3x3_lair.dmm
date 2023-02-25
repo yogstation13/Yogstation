@@ -12,6 +12,12 @@
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/template_noop)
+"o" = (
+/obj/structure/closet/crate/coffin/metalcoffin{
+	anchored = 1
+	},
+/turf/open/floor/plating/broken/three,
+/area/template_noop)
 "E" = (
 /obj/item/restraints/handcuffs/cable,
 /obj/item/stack/sheet/mineral/wood,
@@ -21,10 +27,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/template_noop)
-"P" = (
-/obj/structure/closet/crate/coffin/metalcoffin,
-/turf/open/floor/plating/broken/three,
 /area/template_noop)
 "Z" = (
 /turf/open/floor/plating,
@@ -41,7 +43,7 @@ b
 Z
 "}
 (3,1,1) = {"
-P
+o
 j
 m
 "}

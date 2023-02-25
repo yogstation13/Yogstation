@@ -1,13 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/template_noop)
-"s" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"w" = (
+"f" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
 /obj/item/weldingtool,
@@ -15,36 +7,46 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/template_noop)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/coffin/metalcoffin{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
 "z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/handcuffs/cable/red,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"N" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate/coffin/metalcoffin,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"Y" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/restraints/handcuffs/cable/red,
-/turf/open/floor/plasteel,
-/area/template_noop)
 
 (1,1,1) = {"
-N
-c
-w
+x
+R
+f
 "}
 (2,1,1) = {"
-s
-s
-Y
+z
+z
+K
 "}
 (3,1,1) = {"
-Y
-z
-c
+K
+S
+R
 "}

@@ -1,40 +1,42 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"m" = (
-/turf/open/floor/wood/broken/four,
-/area/template_noop)
-"r" = (
-/obj/structure/closet/crate/coffin/securecoffin,
+"a" = (
+/obj/structure/closet/crate/coffin/securecoffin{
+	anchored = 1
+	},
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/item/restraints/handcuffs/cable/zipties,
 /turf/open/floor/wood,
 /area/template_noop)
-"t" = (
+"u" = (
+/turf/open/floor/wood/broken/three,
+/area/template_noop)
+"v" = (
+/turf/open/floor/wood,
+/area/template_noop)
+"H" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
 /area/template_noop)
-"x" = (
-/turf/open/floor/wood,
+"K" = (
+/turf/open/floor/wood/broken/four,
 /area/template_noop)
-"A" = (
+"O" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/wood/broken/six,
 /area/template_noop)
-"X" = (
-/turf/open/floor/wood/broken/three,
-/area/template_noop)
 
 (1,1,1) = {"
-x
-m
-t
+v
+K
+H
 "}
 (2,1,1) = {"
-A
-r
-x
+O
+a
+v
 "}
 (3,1,1) = {"
-x
-x
-X
+v
+v
+u
 "}

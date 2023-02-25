@@ -1,16 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"f" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
 /obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating,
 /area/template_noop)
-"k" = (
-/turf/open/floor/plating,
-/area/template_noop)
-"m" = (
-/obj/item/restraints/handcuffs/cable/zipties/used,
-/turf/open/floor/plating,
-/area/template_noop)
-"r" = (
+"G" = (
 /obj/machinery/light/small/broken{
 	dir = 4
 	},
@@ -18,35 +14,41 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/broken/three,
 /area/template_noop)
-"C" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/stack/sheet/mineral/wood,
+"K" = (
+/obj/structure/table,
 /turf/open/floor/plating,
 /area/template_noop)
-"R" = (
-/obj/structure/closet/crate/coffin,
+"M" = (
+/obj/structure/closet/crate/coffin{
+	anchored = 1
+	},
 /obj/item/restraints/handcuffs/cable,
 /obj/item/restraints/handcuffs/cable,
 /obj/item/reagent_containers/blood/random,
 /turf/open/floor/plating,
 /area/template_noop)
-"T" = (
-/obj/structure/table,
+"S" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
-T
-a
-R
+K
+F
+M
 "}
 (2,1,1) = {"
-C
-k
-k
+W
+f
+f
 "}
 (3,1,1) = {"
-r
-m
-k
+G
+S
+f
 "}
