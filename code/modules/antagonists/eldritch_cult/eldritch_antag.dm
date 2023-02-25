@@ -240,143 +240,146 @@
 	var/flavor_message
 	var/alive = considered_alive(owner.current)
 	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
+	var/is_ash = cmptext("[lore]", "Ash")
+	var/is_flesh = cmptext("[lore]", "Flesh")
+	var/is_rust = cmptext("[lore]", "Rust")
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 	
 	//Stolen from chubby's bloodsucker code, but without support for lists
 	if(cultiewin && ascended && escaped)
 		//Finish normal objectives, ascend, and escape
-		if(lore == "Ash")
+		if(is_ash)
 			flavor_message += 	"You step off the shuttle as smoke curls off your form. Light seeps from openings in your body, and you quickly retire to the Mansus. \
 								Here, you trail back to the Wooded Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
 								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
 								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
 	else if(cultiewin && ascended && alive)
 		//Finish normal objectives, ascend, and stay on station
-		if(lore == "Ash")
+		if(is_ash)
 			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. . \
 								Then, you descend back into the Mansus and return to the Wooded Tavern, flames licking in your wake, though the grass remains unburnt. \
 								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
 								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
 	else if(cultiewin && ascended && !alive)
 		//Finish normal objectives, ascend, and die
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
 	else if(cultiewin && !ascended && escaped)
 		//Finish normal objectives, don't ascend, and escape
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 		message_color = "#517fff"
 
 	else if(cultiewin && !ascended && alive)
 		//Finish normal objectives, don't ascend, and stay on station
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 		message_color = "#517fff"
 
 	else if(cultiewin && !ascended && !alive)
 		//Finish normal objectives, don't ascend, and die
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 
 	else if(!cultiewin && ascended && escaped)
 		//Don't finish objectives, ascend, and escape
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#008000"
 
 	else if(!cultiewin && ascended && alive)
 		//Don't finish objectives, ascend, and stay on station
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#008000"
 
 	else if(!cultiewin && ascended && !alive)
 		//Don't finish objectives, ascend, and die
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Help"
+			flavor_message += 	"Rust"
 		message_color = "#008000"
 
 	else if(!cultiewin && !ascended && escaped)
 		//Don't finish objectives, don't ascend, and escape
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 
 	else if(!cultiewin && !ascended && alive)
 		//Don't finish objectives, don't ascend, and stay on station
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 
 	else
 		//Don't finish objectives, don't ascend, and die
-		if(lore == "Ash")
-			flavor_message += 	"Help"
-		else if(lore == "Flesh")
-			flavor_message += 	"Help"
-		else if(lore == "Rust")
-			flavor_message += 	"Help"
+		if(is_ash)
+			flavor_message += 	"Ash"
+		else if(is_flesh)
+			flavor_message += 	"Flesh"
+		else if(is_rust)
+			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Help"
+			flavor_message += 	"Unpledged"
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
 	return "<div>[flavor.Join("<br>")]</div>"
