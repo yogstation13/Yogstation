@@ -84,7 +84,7 @@
 
 /datum/eldritch_knowledge/basic
 	name = "Break of Dawn"
-	desc = "Starts your journey in the mansus. Allows you to select a target transmuting a living heart on a transmutation rune, create new living hearts by transmuting a heart, poppy, and pool of blood, and create new codex cicatrixes by transmuting human skin, a bible, a poppy and a pen."
+	desc = "Starts your journey in the mansus. Allows you to select a target transmuting a living heart on a transmutation rune, create new living hearts by transmuting a heart, poppy, and pool of blood, and create new Codex Cicatrixes by transmuting human skin, a bible, a poppy and a pen."
 	gain_text = "Gates of mansus open up to your mind."
 	cost = 0
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)

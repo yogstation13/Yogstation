@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash
-	name = "Ashen passage"
+	name = "Ashen Passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	school = "transmutation"
 	charge_max = 150
@@ -39,7 +39,7 @@
 	action_background_icon_state = "bg_ecult"
 
 /obj/item/melee/touch_attack/mansus_fist
-	name = "Mansus Grasp"
+	name = "Mansus grasp"
 	desc = "A sinister looking aura that distorts the flow of reality around it. Knocks the target down and deals a large amount of stamina damage alongside a small amount of brute. It may gain more interesting capabilities if you continue your research..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
@@ -120,7 +120,7 @@
 	action_background_icon_state = "bg_ecult"
 
 /obj/item/melee/touch_attack/blood_siphon
-	name = "Blood Siphon"
+	name = "blood siphon"
 	desc = "A sinister looking aura that distorts the flow of reality around it. It looks <i>hungry</i>..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
@@ -168,7 +168,7 @@
 	invocation_type = "whisper"
 
 /obj/item/projectile/magic/spell/rust_wave
-	name = "Patron's Reach"
+	name = "patron's reach"
 	icon_state = "eldritch_projectile"
 	alpha = 180
 	damage = 30

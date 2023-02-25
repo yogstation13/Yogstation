@@ -101,7 +101,7 @@
 
 		return
 	is_in_use = FALSE
-	to_chat(user,span_warning("Your ritual failed! You used either wrong components or are missing something important!"))
+	to_chat(user,span_warning("Your ritual failed! You used the wrong components or are missing something important!"))
 
 /obj/effect/eldritch/big
 	name = "Transmutation rune"
@@ -215,7 +215,7 @@
 			arm.dismember()
 			qdel(arm)
 		else
-			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails trying to catch onto the existance itself!"))
+			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails while trying to catch onto the existence itself!"))
 
 /obj/effect/broken_illusion/attack_tk(mob/user)
 	if(!ishuman(user))

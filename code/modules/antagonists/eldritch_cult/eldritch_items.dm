@@ -1,5 +1,5 @@
 /obj/item/living_heart
-	name = "Living Heart"
+	name = "living heart"
 	desc = "Link to the worlds beyond."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "living_heart"
@@ -87,7 +87,7 @@
 	qdel(sword)
 
 /obj/item/gun/magic/hook/sickly_blade
-	name = "Sickly blade"
+	name = "sickly blade"
 	desc = "A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
@@ -164,25 +164,25 @@
 		eldritch_knowledge_datum.on_eldritch_blade(target,user,proximity_flag,click_parameters)
 
 /obj/item/gun/magic/hook/sickly_blade/rust
-	name = "Rusted Blade"
+	name = "rusted blade"
 	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/ash
-	name = "Ashen Blade"
+	name = "ashen blade"
 	desc = "Molten and unwrought, a hunk of metal warped to cinders and slag. Unmade, it aspires to be more than it is, and shears soot-filled wounds with a blunt edge."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/flesh
-	name = "Flesh Blade"
+	name = "flesh blade"
 	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the excruitations it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
-	name = "Warm Eldritch Medallion"
+	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eye_medalion"
@@ -202,7 +202,7 @@
 	user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/piercing
-	name = "Piercing Eldritch Medallion"
+	name = "piercing eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
