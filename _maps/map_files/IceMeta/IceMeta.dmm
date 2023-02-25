@@ -17041,6 +17041,10 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"fjA" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/port)
 "fjD" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -18186,6 +18190,10 @@
 "fAX" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/crew_quarters/fitness/recreation)
+"fBh" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/port/fore)
 "fBm" = (
 /obj/structure/table,
 /obj/item/roller{
@@ -20723,10 +20731,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/white,
 /area/security/physician)
-"gsl" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/fore)
 "gsw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -23200,6 +23204,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"hfG" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "hfS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -30138,6 +30146,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"jkv" = (
+/obj/effect/landmark/stationroom/maint/tenxfive,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "jky" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -37173,10 +37185,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"lgV" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "lhb" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/radio/intercom{
@@ -38485,10 +38493,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
-"lDS" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/starboard/aft)
 "lEg" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -46606,10 +46610,6 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"nWG" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port/fore)
 "nWQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -50701,6 +50701,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"paF" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/fore)
 "paI" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -54047,6 +54051,10 @@
 	},
 /turf/closed/wall,
 /area/engine/engineering)
+"pZv" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/starboard/aft)
 "pZz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -55936,6 +55944,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"qzk" = (
+/obj/effect/landmark/stationroom/maint/tenxfive,
+/turf/template_noop,
+/area/maintenance/starboard/aft)
 "qzm" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
@@ -61677,10 +61689,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"soS" = (
-/obj/effect/landmark/stationroom/maint/tenxten/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "soX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -64925,10 +64933,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"tnR" = (
-/obj/effect/landmark/stationroom/maint/threexthree/ice,
-/turf/template_noop,
-/area/maintenance/port)
 "tnY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -65623,10 +65627,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/storage)
-"tAV" = (
-/obj/effect/landmark/stationroom/maint/tenxfive/ice,
-/turf/template_noop,
-/area/maintenance/starboard/aft)
 "tBd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -68257,10 +68257,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain/private)
-"uoC" = (
-/obj/effect/landmark/stationroom/maint/tenxfive/ice,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "uoE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -68345,6 +68341,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"upH" = (
+/obj/effect/landmark/stationroom/maint/tenxten,
+/turf/template_noop,
+/area/maintenance/port/aft)
 "uqf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -95897,7 +95897,7 @@ ggG
 nyB
 epQ
 epQ
-nWG
+fBh
 nyB
 cHx
 fxA
@@ -96479,7 +96479,7 @@ hbl
 jHk
 kmh
 kmh
-tnR
+fjA
 jkn
 jkn
 rRh
@@ -96740,7 +96740,7 @@ kmh
 jkn
 cht
 cht
-lgV
+hfG
 jkn
 rHu
 uMX
@@ -97011,7 +97011,7 @@ cht
 cht
 cht
 cht
-soS
+upH
 xPq
 ggG
 ggG
@@ -98797,7 +98797,7 @@ cht
 cht
 cht
 cht
-uoC
+jkv
 jkn
 vYe
 jkn
@@ -100101,7 +100101,7 @@ cbP
 jkn
 cht
 cht
-lgV
+hfG
 dnC
 tEf
 hwq
@@ -115175,7 +115175,7 @@ tEf
 jte
 fyo
 fyo
-gsl
+paF
 jte
 dWU
 dWU
@@ -116047,7 +116047,7 @@ aCd
 kYH
 olc
 olc
-lDS
+pZv
 kYH
 olc
 olc
@@ -116565,7 +116565,7 @@ olc
 oef
 olc
 olc
-lDS
+pZv
 gXz
 ggG
 ggG
@@ -117843,7 +117843,7 @@ iRv
 kYH
 olc
 olc
-lDS
+pZv
 kYH
 eFL
 mlT
@@ -119387,7 +119387,7 @@ olc
 olc
 olc
 olc
-tAV
+qzk
 kYH
 kYH
 kYH
