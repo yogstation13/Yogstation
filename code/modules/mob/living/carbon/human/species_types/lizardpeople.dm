@@ -12,7 +12,7 @@
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 1.75 //Desert-born race
 	heatmod = 0.75 //Desert-born race
-	payday_modifier = 0.5 //Negatively viewed by NT
+	payday_modifier = 0.9 //Full SIC citizens, but not quite given all the same rights- it's been an ongoing process for about half a decade
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
