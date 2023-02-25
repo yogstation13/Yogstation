@@ -334,25 +334,29 @@
 	if(objectives_complete && optional_objectives_complete && broke_masquerade && escaped)
 		//finish all objectives, break masquerade, evac
 		flavor_message += pick(list(
-			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
+			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
+			News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && broke_masquerade && alive)
 		//finish all objectives, break masquerade, don't evac
 		flavor_message += pick(list(
-			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. Let the Camarilla and the witchers come. You will be waiting."
+			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
+			Let the Camarilla and the witchers come. You will be waiting."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && escaped)
 		//finish all objectives, don't break masquerade, escape
 		flavor_message += pick(list(
-			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. High society awaits: a delicacy you have earned."
+			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
+			High society awaits: a delicacy you have earned."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && alive)
 		//finish all objectives, don't break masquerade, don't escape
 		flavor_message += pick(list(
-			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
+			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
+			Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && escaped)
