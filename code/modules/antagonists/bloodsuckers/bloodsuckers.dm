@@ -326,7 +326,7 @@
 /datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
 	var/list/flavor = list()
 	var/flavor_message
-	var/alive = considered_alive(owner.current) //Technically not necessarily probably because of Final Death objective?
+	var/alive = owner?.current?.stat != DEAD //Technically not necessarily probably because of Final Death objective?
 	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"

@@ -238,11 +238,11 @@
 /datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, lore)
 	var/list/flavor = list()
 	var/flavor_message
-	var/alive = considered_alive(owner.current)
+	var/alive = owner?.current?.stat != DEAD
 	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
-	var/is_ash = cmptext("[lore]", "Ash")
-	var/is_flesh = cmptext("[lore]", "Flesh")
-	var/is_rust = cmptext("[lore]", "Rust")
+	var/is_ash = "[lore]" == "Ash"
+	var/is_flesh = "[lore]" == "Flesh"
+	var/is_rust = "[lore]" == "Rust"
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 	
@@ -263,7 +263,7 @@
 	else if(cultiewin && ascended && alive)
 		//Finish normal objectives, ascend, and stay on station
 		if(is_ash)
-			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. . \
+			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. \
 								Then, you descend back into the Mansus and return to the Wooded Tavern, flames licking in your wake, though the grass remains unburnt. \
 								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
 								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
