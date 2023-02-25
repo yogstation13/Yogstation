@@ -323,10 +323,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/busterarm
 	name = "Buster Arm"
-	desc = "A combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user can send people \
-	and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected from the arm \
-	which can even pull items right into the user's hand with a precise hit."
-	item = /obj/item/bodypart/l_arm/robot/buster
+	desc = "A box containing a combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user\
+	can send people and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected\
+	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions."
+	item = /obj/item/storage/box/syndie_kit/buster
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
@@ -1254,12 +1254,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/frag_grenade
+	name = "Frag Grenade"
+	desc = "Simple, but lethal. Anything adjacent when it explodes will be heavily damaged. Likely to cause a small hull breach."
+	item = /obj/item/grenade/syndieminibomb/concussion/frag
+	cost = 3
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
 	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
+	include_modes = list(/datum/game_mode/nuclear)
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/tearstache

@@ -678,7 +678,7 @@
 	display_name = "Hardlight Weaponry"
 	description = "Weaponized forcefields!"
 	prereq_ids = list("weaponry", "emp_super")
-	design_ids = list("hardlightbow", "ntusp_conversion")
+	design_ids = list("hardlightbow", "ntusp_conversion", "vib_blade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/radioactive_weapons
@@ -788,6 +788,15 @@
 	prereq_ids = list("adv_mecha", "weaponry" , "micro_bluespace")
 	design_ids = list("phazon_chassis", "phazon_torso", "phazon_head", "phazon_left_arm", "phazon_right_arm", "phazon_left_leg", "phazon_right_leg", "phazon_main",
 	"phazon_peri", "phazon_targ", "phazon_armor")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/sidewinder
+	id = "mech_sidewinder"
+	display_name = "EXOSUIT: Sidewinder"
+	description = "Sidewinder exosuit designs"
+	prereq_ids = list("adv_weaponry", "mech_gygax")
+	design_ids = list("sidewinder_chassis", "sidewinder_torso", "sidewinder_head", "sidewinder_left_arm", "sidewinder_right_arm", "sidewinder_left_leg", "sidewinder_right_leg", "sidewinder_main",
+	"sidewinder_peri", "sidewinder_targ", "sidewinder_armor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/adv_mecha_tools

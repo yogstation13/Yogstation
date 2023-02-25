@@ -373,22 +373,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	safe = TRUE
 	icon_state = "cryopod"
 
-//Minsky Specific Areas
-
-/area/crew_quarters/dorms/a
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-/area/crew_quarters/dorms/b
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-//End Minsky Specific Areas
-
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
@@ -691,47 +675,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = ENGINEERING
 	minimap_color = "#6b6b6b"
 	airlock_wires = /datum/wires/airlock/command
-
-//Minsky Specific Teleporters
-
-/area/teleporter/hub
-	clockwork_warp_allowed = FALSE
-	clockwork_warp_fail = "For safety reasons, warping here is disallowed; The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
-	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
-											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
-
-/area/teleporter/hub/bridge
-	name = "Bridge Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/engineering
-	name = "Engineering Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/medical
-	name = "Medical Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/science
-	name = "R&D Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/security
-	name = "Security Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/evac
-	name = "Evac Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-
-//End Minsky specific teleporters
 
 /area/gateway
 	name = "Gateway"

@@ -149,6 +149,30 @@
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/sidewinder_main
+	name = "\"Sidewinder\" Central Control module"
+	desc = "Allows for the construction of a \"Sidewinder\" Central Control module."
+	id = "sidewinder_main"
+	build_path = /obj/item/circuitboard/mecha/sidewinder/main
+	category = list("Exosuit Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/sidewinder_peri
+	name = "\"Sidewinder\" Peripherals Control module"
+	desc = "Allows for the construction of a \"Sidewinder\" Peripheral Control module."
+	id = "sidewinder_peri"
+	build_path = /obj/item/circuitboard/mecha/sidewinder/peripherals
+	category = list("Exosuit Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/sidewinder_targ
+	name = "\"Sidewinder\" Kinetics & Mobility Control module"
+	desc = "Allows for the construction of a \"Sidewinder\" Kinetics & Mobility Control module."
+	id = "sidewinder_targ"
+	build_path = /obj/item/circuitboard/mecha/sidewinder/targeting
+	category = list("Exosuit Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 ////////////////////////////////////////
 /////////// Mecha Equpment /////////////
 ////////////////////////////////////////

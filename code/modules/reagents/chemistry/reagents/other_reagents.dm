@@ -1057,8 +1057,8 @@
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	glass_icon_state = "dr_gibb_glass"
-	glass_name = "glass of welder fuel"
-	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	glass_name = "glass of Dr. Gibb"
+	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
