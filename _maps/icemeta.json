@@ -5,7 +5,7 @@
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"shuttles": {
-		"cargo": "cargo_meta",
+		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_meta"
 	},
