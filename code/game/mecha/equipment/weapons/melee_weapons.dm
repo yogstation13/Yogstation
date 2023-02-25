@@ -155,8 +155,8 @@
 	name = "\improper GD6 \"Jaeger\" shortsword"
 	desc = "An extendable arm-mounted blade with a nasty edge. It is small and fast enough to deflect some incoming attacks."
 	energy_drain = 20
-	weapon_damage = 15
-	precise_weapon_damage = 20
+	weapon_damage = 10
+	precise_weapon_damage = 15
 	fauna_damage_bonus = 30		//because why not
 	deflect_bonus = 15
 	base_armor_piercing = 15
@@ -194,7 +194,7 @@
 				var/obj/O = A
 				if(!O.density)	//Make sure it's not an open door or something
 					continue
-				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
+				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? 0.5 : 1)	//Half damage on mechs
 				O.take_damage(object_damage, dam_type, "melee", 0)
 				if(istype(O, /obj/structure/window))
 					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
@@ -227,7 +227,7 @@
 
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
-		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? 0.5 : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
 		O.take_damage(object_damage, dam_type, "melee", 0)
 	else
 		return
@@ -271,12 +271,13 @@
 	icon_state = "mecha_katana"
 	energy_drain = 15
 	cleave = FALSE				//small fast blade
+	precise_weapon_damage = 5
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
 	fauna_damage_bonus = 20		//because why not
-	deflect_bonus = 20			//anime reasons
+	deflect_bonus = 20			//ANIME REASONS
 	base_armor_piercing = 10	//20 on the precise attacks, meant for lighter targets
-	structure_damage_mult = 1.5	//katana is less smashy than other swords
-	minimum_damage = 15
+	structure_damage_mult = 2	//katana is less smashy than other swords
+	minimum_damage = 20
 	sword_wound_bonus = 15		//More bleeding
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong	
@@ -286,15 +287,15 @@
 	energy_drain = 300
 	attack_speed_modifier = 2	//needs to recharge
 	structure_damage_mult = 1
-	precise_weapon_damage = -20	//Mostly nonlethal
-	weapon_damage = -20
+	precise_weapon_damage = -25	//Mostly nonlethal
+	weapon_damage = -25
 	minimum_damage = 10
 	hit_effect = ATTACK_EFFECT_BOOP	//Boop :^)
 	attack_sharpness = SHARP_NONE
 	precise_no_mobdamage = TRUE	//Light touch for targetted stuns
 	mob_strike_sound = 'sound/weapons/egloves.ogg'
 	attack_sound = 'sound/weapons/egloves.ogg'
-	var/special_hit_stamina_damage = 80	//A bit stronger than a normal baton
+	var/special_hit_stamina_damage = 75	//A bit stronger than a normal baton
 	var/stunforce = 12 SECONDS	//Stuns a little harder too
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong/special_hit(atom/target)	//It's a stun baton. It stuns.
@@ -337,7 +338,7 @@
 	base_armor_piercing = 15
 	structure_damage_mult = 3.5	//It melts AND cuts!
 	sword_wound_bonus = -30		//We're here for the fire damage thank you
-	var/burninating = 15		//BURNINATING THE COUNTRYSIDE
+	var/burninating = 10		//BURNINATING THE COUNTRYSIDE
 	mob_strike_sound = 'sound/weapons/chainsawhit.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/trogdor/special_hit(atom/A)
@@ -361,7 +362,7 @@
 	energy_drain = 40
 	weapon_damage = 25			//Very smashy
 	precise_weapon_damage = 30
-	attack_speed_modifier = 2	//Very slow
+	attack_speed_modifier = 2.5	//Very slow
 	fauna_damage_bonus = 40
 	structure_damage_mult = 4	//Good for stationary objects
 	attack_sharpness = SHARP_NONE
@@ -506,7 +507,7 @@
 
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
-		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult	//It's anti-mech and the multiplier is already pretty low
 		O.take_damage(object_damage, dam_type, "melee", 0)
 		if(istype(target, /obj/mecha))
 			special_hit(target)	
