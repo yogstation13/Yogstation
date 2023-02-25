@@ -43,8 +43,9 @@ export const NullRodMenu = (props, context) => {
     <Window width={400} height={500} resizable>
       <Window.Content scrollable>
         <Section title="Nullrod">
-          <<LabeledList>
-            <LabeledList.Item label="Name">
+          <LabeledList>
+            {nullrods.map}
+            {/* <LabeledList.Item label="Name">
               {categories?.nullrod_weapons?.[1]?.name}
             </LabeledList.Item>
             <LabeledList.Item label="Desc">
@@ -54,8 +55,19 @@ export const NullRodMenu = (props, context) => {
               <Button
                 content="Dispatch a 'test' action"
                 onClick={() => act('test')} />
-            </LabeledList.Item>
-          </LabeledList>>
+            </LabeledList.Item> */}
+            <Tabs fluid>
+              {categories.map((category) => (
+                <Tabs.Tab
+                  align="center"
+                  key={category.name}
+                  selected={category.name === selectedCategory}
+                  onClick={() => setSelectedCategory(category.name)}>
+                  {category.name}
+                </Tabs.Tab>
+              ))}
+            </Tabs>
+          </LabeledList>
         </Section>
 
       </Window.Content>
