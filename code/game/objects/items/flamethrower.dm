@@ -325,3 +325,19 @@
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
 	return F.default_ignite(location,release_amount)
+
+///////////////////// Flamethrower as an energy weapon /////////////////////
+// Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
+/obj/item/ammo_casing/energy/flamethrower
+	projectile_type = /obj/item/projectile/bullet/incendiary/flamethrower
+	select_name = "fire"
+	fire_sound = null
+	firing_effect_type = null
+	e_cost = 50
+
+/obj/item/projectile/bullet/incendiary/flamethrower
+	name = "waft of flames"
+	icon_state = null
+	damage = 0
+	sharpness = SHARP_NONE
+	range = 6
