@@ -77,18 +77,18 @@
 		if(!rod?.chaplain_spawnable)
 			continue
 		var/list/details = list()
-		details["name"] = shaft.name
-		details["description"] = shaft.desc
-		details["menu_tab"] = shaft.menutab
+		details["name"] = rod.name
+		details["description"] = rod.desc
+		details["menu_tab"] = rod.menutab
 		
-		var/icon/rod_pic = getFlatIcon(shaft)
+		var/icon/rod_pic = getFlatIcon(rod)
 		var/md5 = md5(fcopy_rsc(rod_pic))
-		if(!SSassets.cache["photo_[md5]_[shaft.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[shaft.name]_icon.png", rod_pic)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[shaft.name]_icon.png" = rod_pic))
-		details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[shaft.name]_icon.png")
+		if(!SSassets.cache["photo_[md5]_[rod.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[rod.name]_icon.png", rod_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[rod.name]_icon.png" = rod_pic))
+		details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[rod.name]_icon.png")
 		nullrods += list(details)
-		//switch(shaft.menutab)
+		//switch(rod.menutab)
 		qdel(rod)
 
 	data["nullrods"] = nullrods
