@@ -48,4 +48,4 @@
 
 /obj/item/ammo_casing/energy/plasma/adv/cyborg/malf
 	projectile_type = /obj/item/projectile/plasma/adv/malf
-	e_cost = 100
+	e_cost = 50
