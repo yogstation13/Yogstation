@@ -1,8 +1,9 @@
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
-#define MENU_WEAPON "nullrod_weapons" //standard weapons
-#define MENU_ARM "nullrod_arms" //things that replace the arm
-#define MENU_CLOTHING "nullrod_clothing" //things that can be worn
-#define MENU_MISC "nullrod_misc" //anything that doesn't quite fit into the other categories
+#define MENU_ALL "all"
+#define MENU_WEAPON "weapons" //standard weapons
+#define MENU_ARM "arms" //things that replace the arm
+#define MENU_CLOTHING "clothing" //things that can be worn
+#define MENU_MISC "misc" //anything that doesn't quite fit into the other categories
 
 /obj/item/nullrod
 	name = "null rod"
@@ -23,6 +24,9 @@
 	var/reskinned = FALSE
 	var/menutab = MENU_MISC //that way if someone forgets, it gets put in the tab that isn't specialized
 	var/chaplain_spawnable = TRUE
+
+	var/selected_category = MENU_ALL
+	var/list/show_categories = list(MENU_ALL, MENU_WEAPON, MENU_ARM, MENU_CLOTHING, MENU_MISC)
 
 /obj/item/nullrod/Initialize()
 	. = ..()
@@ -48,7 +52,7 @@
 	if(user?.mind?.holy_role && check_menu(user))
 		ui_interact(user)
 
-/obj/item/nullrod/proc/check_menu(mob/user)
+/obj/item/nullrod/proc/check_menu(mob/user)//check if the person is able to access the menu
 	if(!istype(user))
 		return FALSE
 	if(QDELETED(src) || reskinned)
@@ -60,27 +64,37 @@
 /obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "NullRod", name)
+		ui = new(user, src, "NullRodMenu", name)
 		ui.open()
 	
 /obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
+	var/list/nullrods = list()
 	data["categories"] = list()
-	data["categories"][MENU_WEAPON] = list()
-	data["categories"][MENU_ARM] = list()
-	data["categories"][MENU_CLOTHING] = list()
-	data["categories"][MENU_MISC] = list()
 
-	to_chat(world, "calling ui_static_data")
-	for(var/I in subtypesof(/obj/item/nullrod))
-		var/obj/item/nullrod/rodtype = new I()
-		to_chat(world, "checking [rodtype] for spawnable")
-		if(rodtype?.chaplain_spawnable)
-			to_chat(world, "adding [rodtype.name] to the tgui")
-			data["categories"][rodtype.menutab] += list(
-				"name" = rodtype.name,
-				"desc" = rodtype.desc,
-				)
+	for(var/shaft in subtypesof(/obj/item/nullrod))
+		var/obj/item/nullrod/rod = new shaft
+		if(!rod?.chaplain_spawnable)
+			continue
+		var/list/details = list()
+		details["name"] = shaft.name
+		details["description"] = shaft.desc
+		details["menu_tab"] = shaft.menutab
+		
+		var/icon/rod_pic = getFlatIcon(shaft)
+		var/md5 = md5(fcopy_rsc(rod_pic))
+		if(!SSassets.cache["photo_[md5]_[shaft.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[shaft.name]_icon.png", rod_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[shaft.name]_icon.png" = rod_pic))
+		details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[shaft.name]_icon.png")
+		nullrods += list(details)
+		//switch(shaft.menutab)
+		qdel(rod)
+
+	data["nullrods"] = nullrods
+
+	for(var/category in show_categories)
+		data["categories"] += category
 
 	return data
 
