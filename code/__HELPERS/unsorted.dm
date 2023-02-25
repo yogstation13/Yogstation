@@ -1075,21 +1075,22 @@ B --><-- A
 			return target
 
 /proc/get_closest_atom(type, list, source)
-	var/closest_atom
+	var/list/closest_atoms = list()
 	var/closest_distance
 	for(var/A in list)
 		if(!istype(A, type))
 			continue
 		var/distance = get_dist(source, A)
-		if(!closest_atom)
+		if(!closest_atoms.len)
 			closest_distance = distance
-			closest_atom = A
+			closest_atoms = list(A)
 		else
 			if(closest_distance > distance)
 				closest_distance = distance
-				closest_atom = A
-	return closest_atom
-
+				closest_atoms = list(A)
+			else if(closest_distance == distance)
+				closest_atoms += A
+	return pick(closest_atoms) //if there are multiple atoms with the same distance, picks randomly from a list of them
 
 proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe

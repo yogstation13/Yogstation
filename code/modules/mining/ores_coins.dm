@@ -531,24 +531,24 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38) && !istype(P, /obj/item/projectile/bullet/ipcmartial)) //only energy projectiles get deflected (also det and IPC revolvers because damn thats cool)
+	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38) && !istype(P, /obj/item/projectile/bullet/a357) &&!istype(P, /obj/item/projectile/bullet/ipcmartial)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 		
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		var/turf/center = get_turf(src)
 		for(var/mob/living/T in viewers(5, src))
-			if(T != P.firer && T.stat != DEAD)
+			if(T != P.firer && T.stat != DEAD && !(T in P.permutated)) //don't fire at someone if they're dead or if we already hit them
 				targets |= T
 		P.damage *= 1.5
 		if(!targets.len)
 			var/spr = rand(0, 360) //randomize the direction
 			P.preparePixelProjectile(src, src, spread = spr)
 		else
-			var/mob/living/target = pick(targets)
+			var/mob/living/target = get_closest_atom(/mob/living, targets, src)
 			P.preparePixelProjectile(target, src)
 			targets -= target
-			if(targets.len && P.flag != BULLET)
+			if(targets.len)
 				P = DuplicateObject(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
