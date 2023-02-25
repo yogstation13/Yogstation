@@ -238,52 +238,58 @@
 /datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, lore)
 	var/list/flavor = list()
 	var/flavor_message
+
 	var/alive = owner?.current?.stat != DEAD
 	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
+
 	var/is_ash = "[lore]" == "Ash"
 	var/is_flesh = "[lore]" == "Flesh"
 	var/is_rust = "[lore]" == "Rust"
+
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 	
 	//Stolen from chubby's bloodsucker code, but without support for lists
-	if(cultiewin && ascended && escaped)
-		//Finish normal objectives, ascend, and escape
+	if(ascended && escaped)
+		//Ascend and escape
 		if(is_ash)
 			flavor_message += 	"You step off the shuttle as smoke curls off your form. Light seeps from openings in your body, and you quickly retire to the Mansus. \
-								Here, you trail back to the Wooded Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
+								Here, you trail back to the Wanderer's Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
 								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
-								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
+								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Wood, and rise even higher."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
-	else if(cultiewin && ascended && alive)
-		//Finish normal objectives, ascend, and stay on station
+	else if(ascended && alive)
+		//Ascend and stay on station
 		if(is_ash)
 			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. \
-								Then, you descend back into the Mansus and return to the Wooded Tavern, flames licking in your wake, though the grass remains unburnt. \
+								Then, you slip back into the Mansus and return to the Wanderer's Tavern, flames licking in your wake, though the grass remains unburnt. \
 								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
-								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Mansus, and rise even higher."
+								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Wood, and rise even higher."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
-	else if(cultiewin && ascended && !alive)
-		//Finish normal objectives, ascend, and die
+	else if(ascended && !alive)
+		//Ascend and die
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"Your soul wanders back into the Mansus after your mortal body falls, and you find yourself in the endless dunes of the Kilnplains. \
+								After some time, you feel supple, grey limbs forming anew. Ash flutters off your skin, and your spark thrums hungrily in your chest, \
+								but this new form burns with the same passion. You begin walking with the determination that led you here. You will not grow old. \
+								One day, you will escape. One day, you will kindle the Mansus whole, and rise even higher."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
 
-	else if(cultiewin && !ascended && escaped)
+	else if(cultiewin && escaped)
 		//Finish normal objectives, don't ascend, and escape
 		if(is_ash)
 			flavor_message += 	"Ash"
@@ -293,9 +299,9 @@
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"Unpledged"
-		message_color = "#517fff"
+		message_color = "#008000"
 
-	else if(cultiewin && !ascended && alive)
+	else if(cultiewin && alive)
 		//Finish normal objectives, don't ascend, and stay on station
 		if(is_ash)
 			flavor_message += 	"Ash"
@@ -305,9 +311,9 @@
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"Unpledged"
-		message_color = "#517fff"
+		message_color = "#008000"
 
-	else if(cultiewin && !ascended && !alive)
+	else if(cultiewin && !alive)
 		//Finish normal objectives, don't ascend, and die
 		if(is_ash)
 			flavor_message += 	"Ash"
@@ -317,38 +323,9 @@
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"Unpledged"
+		message_color = "#517fff"
 
-	else if(!cultiewin && ascended && escaped)
-		//Don't finish objectives, ascend, and escape
-		if(is_ash)
-			flavor_message += 	"Ash"
-		else if(is_flesh)
-			flavor_message += 	"Flesh"
-		else //Rust
-			flavor_message += 	"Rust"
-		message_color = "#008000"
-
-	else if(!cultiewin && ascended && alive)
-		//Don't finish objectives, ascend, and stay on station
-		if(is_ash)
-			flavor_message += 	"Ash"
-		else if(is_flesh)
-			flavor_message += 	"Flesh"
-		else //Rust
-			flavor_message += 	"Rust"
-		message_color = "#008000"
-
-	else if(!cultiewin && ascended && !alive)
-		//Don't finish objectives, ascend, and die
-		if(is_ash)
-			flavor_message += 	"Ash"
-		else if(is_flesh)
-			flavor_message += 	"Flesh"
-		else //Rust
-			flavor_message += 	"Rust"
-		message_color = "#008000"
-
-	else if(!cultiewin && !ascended && escaped)
+	else if(escaped)
 		//Don't finish objectives, don't ascend, and escape
 		if(is_ash)
 			flavor_message += 	"Ash"
@@ -358,8 +335,9 @@
 			flavor_message += 	"Rust"
 		else //Didn't choose lore
 			flavor_message += 	"Unpledged"
+		message_color = "#517fff"
 
-	else if(!cultiewin && !ascended && alive)
+	else if(alive)
 		//Don't finish objectives, don't ascend, and stay on station
 		if(is_ash)
 			flavor_message += 	"Ash"

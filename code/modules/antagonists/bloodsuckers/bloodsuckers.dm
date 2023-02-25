@@ -366,7 +366,6 @@
 		flavor_message += pick(list(
 			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
 		))
-		message_color = "#ef2f3c"
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
 		//finish primary objectives only, don't break masquerade, escape
 		flavor_message += pick(list(
