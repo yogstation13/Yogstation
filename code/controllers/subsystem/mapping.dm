@@ -69,6 +69,7 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 	run_map_generation()
+
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
@@ -116,7 +117,6 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	seedStation()
 	loading_ruins = FALSE
-#endif
 
 	//Load Reebe
 	var/list/errorList = list()
@@ -130,6 +130,8 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	// arena failed to load
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
+#endif
+
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	require_area_resort()
