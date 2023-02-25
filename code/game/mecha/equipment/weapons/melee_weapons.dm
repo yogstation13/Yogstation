@@ -37,8 +37,8 @@
 	var/fauna_damage_bonus = 0
 	/// Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
-	/// Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.5 for extended mech combat gaming
-	var/mech_damage_multiplier = 0.6
+	/// Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.75 for extended mech combat gaming
+	var/mech_damage_multiplier = 0.75
 
 	/// Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
@@ -197,8 +197,7 @@
 				if(!O.density)	//Make sure it's not an open door or something
 					continue
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult * (istype(A, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs
-				var/final_AP = istype(A, /obj/mecha) ? base_armor_piercing : 0
-				O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
+				O.take_damage(object_damage, dam_type, "melee", 0)
 				if(istype(O, /obj/structure/window))
 					playsound(O,'sound/effects/Glasshit.ogg', 50)	//glass bonk noise
 				else
@@ -231,8 +230,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
-		var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing * 2 : 0
-		O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
+		O.take_damage(object_damage, dam_type, "melee", 0)
 	else
 		return
 	chassis.do_attack_animation(target, hit_effect)
@@ -390,7 +388,7 @@
 	base_armor_piercing = 25	//50 on precise attack
 	deflect_bonus = 15			//mech fencing but it parries bullets too because robot reaction time or something
 	structure_damage_mult = 2	//Ever try to shank an engine block?
-	mech_damage_multiplier = 0.75	//Slightly better against mechs
+	mech_damage_multiplier = 0.85	//Slightly better against mechs
 	attack_sharpness = SHARP_POINTY
 	attack_speed_modifier = 0.8	//Counteracts the 0.2 second time between attacks
 	extended_range = 1			//so we can jump at people
@@ -430,8 +428,7 @@
 		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 			var/obj/O = target
 			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Nukie mech, slightly less bad at killing mechs
-			var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing * 2 : 0
-			O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
+			O.take_damage(object_damage, dam_type, "melee", 0)
 		else
 			return
 		chassis.do_attack_animation(target, hit_effect)
@@ -515,8 +512,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)
-		var/final_AP = istype(target, /obj/mecha) ? base_armor_piercing : 0	//Flat AP here because the spear doesn't use normal double scaling for precise attacks
-		O.take_damage(object_damage, dam_type, "melee", armour_penetration = final_AP)
+		O.take_damage(object_damage, dam_type, "melee", 0)
 		if(istype(target, /obj/mecha))
 			special_hit(target)	
 	else
