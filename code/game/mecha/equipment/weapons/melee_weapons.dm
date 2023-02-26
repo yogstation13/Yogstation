@@ -358,7 +358,7 @@
 		playsound(L, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
-	name = "\improper CX-22 \"Barbados\" heavy maul"
+	name = "\improper CX-22 \"Barbatos\" heavy maul"
 	desc = "A massive, unwieldy, mace-like weapon, this thing really looks like something you don't want to be hit by if you're not a fan of being concave."
 	icon_state = "mecha_maul"
 	energy_drain = 40
