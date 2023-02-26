@@ -6,9 +6,10 @@
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	siemens_coeff = 0
-	brutemod = 0.8
-	heatmod = 0.8
-	punchdamagehigh = 17 //hardcore
+	brutemod = 0.5
+	burnmod = 0.75
+	punchdamagelow = 12
+	punchdamagehigh = 19 //hardcore
 	punchstunthreshold = 17
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_HEAD)
 	species_traits = list(NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
