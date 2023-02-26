@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Tiny fans added to all arrivals shuttle airlocks so people can breathe when late-joining."
