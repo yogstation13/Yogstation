@@ -24,6 +24,7 @@
 #define BADSIGHT	/datum/mutation/human/nearsight
 #define LASEREYES	/datum/mutation/human/laser_eyes
 #define CHAMELEON	/datum/mutation/human/chameleon
+#define SUPER_CHAMELEON		/datum/mutation/human/chameleon/super
 #define WACKY		/datum/mutation/human/wacky
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
