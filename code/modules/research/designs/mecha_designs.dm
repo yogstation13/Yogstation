@@ -539,6 +539,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/plasma=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_shortsword
 	name = "Exosuit Weapon (GD6 \"Jaeger\" Shortsword)"
@@ -548,3 +549,4 @@
 	materials = list(/datum/material/iron=15000,/datum/material/titanium=10000,/datum/material/plasma=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
