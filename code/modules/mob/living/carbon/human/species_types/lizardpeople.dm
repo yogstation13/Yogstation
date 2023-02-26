@@ -72,7 +72,7 @@
 /datum/species/lizard/movement_delay(mob/living/carbon/human/H)//to handle the slowdown based on cold
 	. = ..()
 	if(heat_stunmod && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
-		H.add_movespeed_modifier(LIZARD_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown= -heat_stunmod/5, blacklisted_movetypes=FLOATING)//between a 0.2 speedup and a 0.6 slowdown
+		H.add_movespeed_modifier(LIZARD_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown= -heat_stunmod/3, blacklisted_movetypes=FLOATING)//between a 0.33 speedup and a 1 slowdown
 	else if(H.has_movespeed_modifier(LIZARD_SLOWDOWN))
 		H.remove_movespeed_modifier(LIZARD_SLOWDOWN)
 
