@@ -55,9 +55,19 @@ export const feature_ipc_screen: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
+export const feature_ipc_screen_color: Feature<string> = {
+  name: "Screen color",
+  component: FeatureColorInput,
+};
+
 export const feature_ipc_antenna: FeatureChoiced = {
   name: "Antenna",
   component: FeatureDropdownInput,
+};
+
+export const feature_ipc_antenna_color: Feature<string> = {
+  name: "Antenna color",
+  component: FeatureColorInput,
 };
 
 export const feature_ipc_chassis: FeatureChoiced = {
@@ -88,6 +98,16 @@ export const feature_polysmorph_dorsal_tubes: FeatureChoiced = {
 export const feature_pod_hair: FeatureChoiced = {
   name: "Pod hair style",
   component: FeatureDropdownInput,
+};
+
+export const feature_pod_hair_color: Feature<string> = {
+  name: "Hair color",
+  component: FeatureColorInput,
+};
+
+export const feature_pod_flower_color: Feature<string> = {
+  name: "Flower color",
+  component: FeatureColorInput,
 };
 
 export const feature_plasmaman_helmet: FeatureChoiced = {
