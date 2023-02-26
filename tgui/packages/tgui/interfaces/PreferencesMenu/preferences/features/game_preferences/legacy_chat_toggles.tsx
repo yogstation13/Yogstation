@@ -104,6 +104,6 @@ export const chat_pullr: FeatureToggle = {
 export const chat_typing_indicator: FeatureToggle = {
   name: "Enable typing indicators",
   category: "CHAT",
-  description: "When enabled, a text bubble will appear next to your character when you type.",
+  description: "When enabled, you will text bubbles when people are typing.",
   component: CheckboxInput,
 };
