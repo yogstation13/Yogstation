@@ -53039,6 +53039,36 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"fDL" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = 5
+	},
+/obj/item/lighter{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/laser_pointer{
+	pixel_x = 4;
+	pixel_y = -10
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "fEQ" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -58366,6 +58396,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
+"jng" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/psych,
+/turf/open/floor/wood,
+/area/medical/psych)
 "jnh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -66348,38 +66385,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"okv" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -6;
-	pixel_y = 3
-	},
-/obj/item/taperecorder{
-	pixel_x = 5
-	},
-/obj/item/lighter{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/obj/item/assembly/flash{
-	pixel_x = -5
-	},
-/obj/item/assembly/flash{
-	pixel_x = -5
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/laser_pointer{
-	pixel_x = 4;
-	pixel_y = -10
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "okH" = (
 /obj/machinery/camera{
 	c_tag = "Interrogation room";
@@ -78612,27 +78617,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"wdP" = (
-/obj/structure/closet/secure_closet{
-	name = "psychiatrist locker";
-	req_access_txt = "5"
-	},
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/obj/item/storage/pill_bottle/happiness,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/happy{
-	name = "happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/lsd{
-	name = "very happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/psicodine,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "wel" = (
 /obj/item/cigbutt,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -106541,8 +106525,8 @@ bPc
 auQ
 gLq
 vyf
-okv
-wdP
+fDL
+jng
 mWz
 bUs
 cLa
