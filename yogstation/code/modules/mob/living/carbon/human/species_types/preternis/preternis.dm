@@ -271,7 +271,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !istype(user.gloves, /obj/item/clothing/gloves/rapid))
+	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && (user.gloves && !istype(user.gloves, /obj/item/clothing/gloves/rapid)))
 		user.next_move += 3 //adds 0.3 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
