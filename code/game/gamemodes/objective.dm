@@ -320,15 +320,15 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/maroon/check_completion()
 	if(..())
 		return TRUE
-	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase())
+	return target && considered_alive(target) && !target.current.onCentCom() && !target.current.onSyndieBase()
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
-			explanation_text = "Prevent [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+			explanation_text = "Prevent [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role], from escaping in a shuttle or escape pod."
 		else
-			explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+			explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping in a shuttle or escape pod."
 	else
 		explanation_text = "Free Objective"
 
