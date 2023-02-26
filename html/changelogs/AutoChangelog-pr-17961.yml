@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Wearing a null rod lets you purge cultist runes by hand"
