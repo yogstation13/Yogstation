@@ -242,10 +242,21 @@
 /obj/item/organ/eyes/robotic/shield
 	name = "shielded robotic eyes"
 	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
-	flash_protect = 2
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
+	var/toggled = FALSE
 
-/obj/item/organ/eyes/robotic/shield/emp_act(severity)
-	return
+/obj/item/organ/eyes/robotic/shield/ui_action_click()
+	var/mob/living/carbon/C = owner
+	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+	if(!toggled)
+		toggled = TRUE
+		flash_protect = 2
+		C.overlay_fullscreen("eye_ability", /atom/movable/screen/fullscreen/impaired, 1)
+	else
+		toggled = FALSE
+		flash_protect = 0
+		C.clear_fullscreen("eye_ability")
+
 
 #define RGB2EYECOLORSTRING(definitionvar) ("[copytext_char(definitionvar, 2, 3)][copytext_char(definitionvar, 4, 5)][copytext_char(definitionvar, 6, 7)]")
 
