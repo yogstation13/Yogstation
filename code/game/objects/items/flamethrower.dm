@@ -341,3 +341,4 @@
 	damage = 0
 	sharpness = SHARP_NONE
 	range = 6
+	penetration_type = 2
