@@ -277,6 +277,14 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	if(H == user)//no emagging yourself
+		return
+	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
+		return
+	H.SetUnconscious(10 SECONDS)
+	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
+
 /*------------------------
 
 ipc martial arts stuff
