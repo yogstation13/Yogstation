@@ -105,23 +105,42 @@
 
 /datum/species/lizard/get_species_lore()
 	return list(
-		"TBD",/*
-		"The face of conspiracy theory was changed forever the day mankind met the lizards.",
-
-		"Hailing from the arid world of Tizira, lizards were travelling the stars back when mankind was first discovering how neat trains could be. \
-		However, much like the space-fable of the space-tortoise and space-hare, lizards have rejected their kin's motto of \"slow and steady\" \
-		in favor of resting on their laurels and getting completely surpassed by 'bald apes', due in no small part to their lack of access to plasma.",
-
-		"The history between lizards and humans has resulted in many conflicts that lizards ended on the losing side of, \
-		with the finale being an explosive remodeling of their moon. Today's lizard-human relations are seeing the continuance of a record period of peace.",
-
-		"Lizard culture is inherently militaristic, though the influence the military has on lizard culture \
-		begins to lessen the further colonies lie from their homeworld - \
-		with some distanced colonies finding themselves subsumed by the cultural practices of other species nearby.",
-
-		"On their homeworld, lizards celebrate their 16th birthday by enrolling in a mandatory 5 year military tour of duty. \
-		Roles range from combat to civil service and everything in between. As the old slogan goes: \"Your place will be found!\"",
-	*/)
+		"Born on the planet of Sangris, vuulen evolved from raptor-like creatures and quickly became the \
+		dominant species thanks to the warm climate of the planet and their intelligence combined with relatively \
+		dexterous claws. Vuulen developed similarly to humans technologically and geopolitically, mastering fire, \
+		agriculture, writing, metalworking, architecture, and the applications of plasma; empires rose and fell; \
+		varied and rich cultures emerged and grew. By the time first contact occurred between humans and vuulen, \
+		the latter were a kind of medieval age, having even dabbled with the bluespace crystals naturally present \
+		on the planet, albeit without success.",
+ 
+		"The SIC was highly interested in Sangris for two reasons when it was discovered. The first was the \
+		discovery of sapient life. The second was the great plethora of plasma and bluespace located on the planet. \
+		A diplomatic team was quickly assembled, but the first contact turned violent. Afterwards, the SIC waged war \
+		to conquer Sangris, doing so in a year due to the gap of technology and size between the two civilizations. \
+		The remaining vuulek powers were assimilated into the newly-formed Opsillian Republic, and humans began populating the \
+		planet. Vuulen were not citizens of the SIC, but still under its control through the Opsillian Republic. \
+		Slavery was common, and most slaves were pressed into hazardous conditions in the collection or processing \
+		of several of the planet's rich plasma veins. As time went on, the vuulen became gradually more accepted into \
+		the human society. Finally, in 2463, the official interdiction of slavery was passed, and vuulen became full \
+		citizens of the SIC. The Opsillian Republic went from a mere puppet state to a somewhat independent and legitimate government, \
+		though many human companies continued to exploit vuulen as workers, as labor laws for non-humans \
+		offered significantly less privilege than what would be expected.",
+ 
+		"Vuulek communities are organized in clans, though their impact on the culture of the individuals is limited. \
+		They tend to live like humans due to their colonization,  only occasionally practicing some of \
+		their clan traditions. Despite efforts to integrate vuulen into the SIC through establishments such \
+		as habituation stations, a certain pridefulness nonetheless survived amongst vuulen, as they're often \
+		eager to prove their worth and qualities. In addition, strength and honor are still values commonly held \
+		by vuulen. Awareness of the past atrocities committed against vuulen by the SIC vary greatly \
+		between individuals, both amongst humans and vuulen.",
+ 
+		"Today, the vuulek societies have been almost completely assimilated in the SIC, \
+		and vuulen are now considered SIC citizens and claim almost all the same rights as humans \
+		do. However, lawyers still struggle in rigged courts to try and claim a sense of equality \
+		for all those who exist in the SIC as honest citizens. Humans and vuulen exist side by side \
+		across the SIC in harmony, but without much fraternity. While full-blown hostility is rare, \
+		prejudice is common.",
+	)
 
 // Override for the default temperature perks, so we can give our specific "cold blooded" perk.
 /datum/species/lizard/create_pref_temperature_perks()

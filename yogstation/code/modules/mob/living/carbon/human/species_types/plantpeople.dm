@@ -293,7 +293,43 @@
 
 /datum/species/pod/get_species_lore()
 	return list(
-		""//"TODO: This is plant lore"
+		"From the very beginning, phytosian history was one drenched in blood. Originating from the planet of Muldova, \
+		the first phytosians were created from the blood spilled by predators on the leaves of lazarupela vitalis. \
+		Those first made, revived with the hazy and violent memories of their death, used their second chance at life \
+		to take revenge on their predators or simply lash out at other beings, including their own kin. The first \
+		phytosians killed and were killed during the day, then reborn anew the following morning via podseeds. \
+		Eventually forming communities and a civilization, phytosians were nearly wiped out around the year 2005 \
+		when the phytosian leader Grei of Banylid went mad after one of his countless resurrections and set to \
+		incinerate all that existed to link the divine and mortal world. The ensuing worldwide war was dubbed \
+		the Razing and resulted in the permanent death of more than 99% of the population at the hands of all \
+		sorts of incendiary weapons. All podseeds that could bring them back were burnt too except for those grown \
+		on a divine monument known as the Mother Tree. The main continent was wiped barren of life save the Tree, \
+		until jars of blood crashed into it and spawned the few victors. The survivors formed the Gukdem Confederacy: \
+		a government tasked with preventing such an event from happening again through strict authoritarian policies. \
+		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to to assimilate them, \
+		enclosing the rest to ensure a steady supply of population.",
+ 
+		"In the year 2511, drones of Sano-Waltfield Industries landing on Muldova alerted phytosians of the existence \
+		of other life elsewhere. They immediately desired to correct this situation, and shot the drones down. \
+		Noticing the incident, SIC investigators went to scan the planet, expecting illegal human colonists. Instead, \
+		they found a planet dominated by a highly armed and technologically advanced civilization. Both sides were \
+		extremely cautious during their first contact, and a wideband radio communication was established in 2513. \
+		After those initial interactions and both sides realizing that their interlocutors possessed a similar intelligence to them, \
+		limited trade agreements were made between the SIC and the Confederacy, the latter enthusiastically trading lazarapela vitalis.",
+
+		"Families do not exist among phytosians, and each individual is expected to be autonomous. Society is organized by disciplined, \
+		constant work with few celebrations. Phytosians give no value to their lives, as death is seen as a minor inconvenience \
+		at worst; it is a rather unremarkable event, since they'll be back soon. Violent, often lethal sports are not uncommon and \
+		still remain popular among them today. Most notable is the phytosian's obsession with fire. Fire is both revered and \
+		feared, as incineration is one of the only ways for a phytosian to truly die; it destroysthe podseeds under them and \
+		evaporates blood.  It is a divine power, a destructive force, and an escape from the endless cycle of rebirth.",
+
+		"Today, few embassies exist on Muldova, and anything shown to SIC denizens and representative is carefully \
+		chosen and controlled. Cooperation and exchanges between the SIC and the Confederacy are almost inexistent. \
+		The only phytosians seen in SIC space are generally political opponents to the Confederacy or have come to \
+		observe the galaxy outside their system, intending on coming back to provide a full report. Phytosians \
+		deciding to settle outside of Muldova willingly are a rarity, most of them being from other species that \
+		were reincarnated by the podseeds and chose to keep a bond with their old civilization.",
 	)
 
 /datum/species/pod/create_pref_unique_perks()
