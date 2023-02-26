@@ -77,7 +77,7 @@
 
 /datum/species/lizard/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
-	H.remove_movespeed_modifier(LIZARD_SLOWDOWN)	
+	C.remove_movespeed_modifier(LIZARD_SLOWDOWN)	
 
 /datum/species/lizard/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
