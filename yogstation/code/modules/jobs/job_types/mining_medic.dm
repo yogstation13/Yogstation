@@ -45,10 +45,11 @@
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
-	backpack_contents = list(/obj/item/roller = 1,\
+	backpack_contents = list(
 		/obj/item/kitchen/knife/combat/survival = 1,\
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
-		/obj/item/modular_computer/laptop/preset/paramedic/mining_medic = 1)
+		/obj/item/storage/firstaid/hypospray/qmc = 1,\
+		)
 
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
@@ -57,7 +58,7 @@
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
-	l_hand = /obj/item/storage/firstaid/hypospray/qmc
+	r_hand = /obj/item/modular_computer/laptop/preset/paramedic/mining_medic
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	l_pocket = /obj/item/wormhole_jaunter
 	head = /obj/item/clothing/head/soft/emt/mining

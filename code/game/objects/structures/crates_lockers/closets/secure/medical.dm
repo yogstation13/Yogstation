@@ -141,6 +141,7 @@
 	new /obj/item/bodybag/environmental(src)
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/reagent_containers/medspray/synthflesh(src)
+	new /obj/item/roller(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers or plantpeople get it."
