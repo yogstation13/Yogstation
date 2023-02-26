@@ -13,8 +13,8 @@
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
-	coldmod = 0.75 //used to being cold, just doesn't like it much
-	heatmod = 0.75 //greatly appreciate heat, just not too much
+	coldmod = 0.67 //used to being cold, just doesn't like it much
+	heatmod = 0.67 //greatly appreciate heat, just not too much
 	action_speed_coefficient = 1.05 //claws aren't as dextrous as hands
 	payday_modifier = 0.5 //Negatively viewed by NT
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
