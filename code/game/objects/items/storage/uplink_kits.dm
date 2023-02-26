@@ -191,7 +191,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
 			new /obj/item/twohanded/pitchfork/trident(src)
-			new /obj/item/grenade/clusterbuster/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
+			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
@@ -199,23 +199,24 @@
 			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
 			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyalty and cuddliness
 
-		if("mad_scientist")
+		if("mad_scientist") // ~21 tc
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
 			new /obj/item/clothing/shoes/jackboots(src) // 0 tc
 			new /obj/item/megaphone(src) // 0 tc (because how else are they to know you're mad?)
-			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
-			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
+			new /obj/item/grenade/clusterbuster/random/syndie(src) // RNG worth like 2-10TC
+			new /obj/item/grenade/clusterbuster/random/syndie(src) // RNG worth like 2-10TC
 			new /obj/item/grenade/chem_grenade/bioterrorfoam(src) // 5 tc
+			new /obj/item/storage/box/syndie_kit/ez_clean // 6 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
-			new /obj/item/pen/edagger(src)
-			new /obj/item/gun/energy/wormhole_projector/upgraded(src) //mooorttyyyy
-			new /obj/item/gun/energy/decloner/unrestricted(src)
+			new /obj/item/pen/edagger(src) // 2 tc
+			new /obj/item/gun/energy/wormhole_projector/upgraded(src) // ~2 tc
+			new /obj/item/gun/energy/decloner/unrestricted(src) // these shots do 9 damage. 1 tc
 
-		if("bee")
+		if("bee") // bee sword too based so its priceless
 			new /obj/item/paper/fluff/bee_objectives(src) // 0 tc (motivation)
 			new /obj/item/clothing/suit/hooded/bee_costume(src) // 0 tc
 			new /obj/item/clothing/mask/rat/bee(src) // 0 tc
@@ -224,20 +225,20 @@
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
 			new /obj/item/melee/beesword(src) //priceless
 
-		if("mr_freeze")
-			new /obj/item/clothing/glasses/cold(src)
-			new /obj/item/clothing/gloves/color/black(src)
-			new /obj/item/clothing/mask/chameleon/syndicate(src)
-			new /obj/item/clothing/suit/hooded/wintercoat(src)
-			new /obj/item/clothing/shoes/winterboots(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/dnainjector/geladikinesis(src)
-			new /obj/item/dnainjector/cryokinesis(src)
-			new /obj/item/gun/energy/temperature/security(src)
-			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
+		if("mr_freeze") // ~17 tc
+			new /obj/item/clothing/glasses/cold(src) // 0 tc
+			new /obj/item/clothing/gloves/color/black(src) // 0 tc
+			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
+			new /obj/item/clothing/suit/hooded/wintercoat(src) // 0 tc
+			new /obj/item/clothing/shoes/winterboots(src) // 0 tc
+			new /obj/item/grenade/gluon(src) // all four probably like 1 tc together kind of just a slip bomb
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
+			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
+			new /obj/item/gun/energy/temperature/security(src) // the crutch of this kit, alongside esword, ~4 tc
+			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
