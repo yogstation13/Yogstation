@@ -1,6 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscadd: "Added large syringe containing 30u, only available in the poison kit, also added muscle relaxant to the kit"
-  - rscdel: "Removed fentanyl, formaldehyde and cyanide from poison kit"
-  - tweak: "poison kit has the toxin coming prepackaged in 30u syringes, price lowered to 5 TC"

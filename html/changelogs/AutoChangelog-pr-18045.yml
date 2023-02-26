@@ -1,7 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - bugfix: "Humans can now select dark (facial) hair colours again"
-  - bugfix: "Fixed issues that could have interfered with converting old preferences"
-  - bugfix: "Fixed an issue when changing say keybind"
-  - tweak: "Better labels in character preferences"

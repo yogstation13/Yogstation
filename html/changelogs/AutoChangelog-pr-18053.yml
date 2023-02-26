@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "all revolvers can ricochet off of coins, ultra violence version can do so on the hit that causes the coin to flip"
-  - tweak: "coins now flip when thrown"
-  - tweak: "ricochet now prefers closer targets"
-  - tweak: "get_closest_atom() now picks randomly from a list of closest atoms if there are multiple closest atoms with the same distance"

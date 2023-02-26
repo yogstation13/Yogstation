@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Nagant ammo box made more formally an ammo box that can't load the revolver directly"
-  - bugfix: "All variants of ammo_box (including speed loaders) should now have a caliber tag that permits them to carry ammo of the same caliber, even if it's an alternative ammo. This means alternative ammo speed loaders can load normal rounds now and normal ammo boxes can be filled with spare alternative ammos (but you won't be able to tell the difference unless you drop the bullets on the ground)"
