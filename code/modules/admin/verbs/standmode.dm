@@ -19,39 +19,9 @@
 		message_admins(span_adminnotice("[key_name_admin(usr)] has toggled on holoparasite mode. Half of all players will be spawned as holoparasites."))
 
 /mob/living/proc/assign_random_stand(mob/stand_player, reason = "random generation proc")
-	if(isliving(stand_player))
-		var/mob/dead/ghost = ghostize(FALSE)
-		if(!ghost || !istype(ghost))
-			return
-		
-		if(stand_player.mind && stand_player.mind.assigned_role)
-			//Handle job slot/tater cleanup.
-			var/job = stand_player.mind.assigned_role
-			SSjob.FreeRole(job)
-			if(LAZYLEN(stand_player.mind.objectives))
-				stand_player.mind.objectives.Cut()
-				stand_player.mind.special_role = null
-			/// Chaplain Stuff
-			var/datum/job/role = GetJob(job)
-			if(stand_player.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
-				GLOB.religion = null	/// Clears the religion for the next chaplain
-		
-		for(var/medrecord in GLOB.data_core.medical)
-			var/datum/data/record/R = medrecord
-			if((R.fields["name"] == stand_player.real_name))
-				qdel(R)
-		for(var/secrecord in GLOB.data_core.security)
-			var/datum/data/record/T = secrecord
-			if((T.fields["name"] == stand_player.real_name))
-				qdel(T)
-		for(var/genrecord in GLOB.data_core.general)
-			var/datum/data/record/G = genrecord
-			if((G.fields["name"] == stand_player.real_name))
-				qdel(G)
-		
-		stand_player.dust()
-		stand_player = ghost
+	var/mob/original_stand_player_mob = stand_player
 
+	// Generate stand
 	var/points = 15
 	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
 	var/list/majors = subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special)
@@ -94,6 +64,8 @@
 				stats.range++
 				if (stats.range >= 5)
 					categories -= "Range"
+	
+	// Create and assign stand
 	var/mob/living/simple_animal/hostile/guardian/G = new(src, "magic")
 	G.summoner = mind
 	G.key = stand_player.key
@@ -110,3 +82,36 @@
 	to_chat(src, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
 	add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 	update_sight()
+
+	// Clean up the mob we left behind
+	if(isliving(original_stand_player_mob))
+		var/mob/dead/ghost = original_stand_player_mob.ghostize(FALSE)
+		if(!ghost || !istype(ghost))
+			return
+		
+		if(original_stand_player_mob.mind && original_stand_player_mob.mind.assigned_role)
+			//Handle job slot/tater cleanup.
+			var/job = original_stand_player_mob.mind.assigned_role
+			SSjob.FreeRole(job)
+			if(LAZYLEN(original_stand_player_mob.mind.objectives))
+				original_stand_player_mob.mind.objectives.Cut()
+				original_stand_player_mob.mind.special_role = null
+			/// Chaplain Stuff
+			var/datum/job/role = GetJob(job)
+			if(original_stand_player_mob.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
+				GLOB.religion = null	/// Clears the religion for the next chaplain
+		
+		for(var/medrecord in GLOB.data_core.medical)
+			var/datum/data/record/R = medrecord
+			if((R.fields["name"] == original_stand_player_mob.real_name))
+				qdel(R)
+		for(var/secrecord in GLOB.data_core.security)
+			var/datum/data/record/T = secrecord
+			if((T.fields["name"] == original_stand_player_mob.real_name))
+				qdel(T)
+		for(var/genrecord in GLOB.data_core.general)
+			var/datum/data/record/G = genrecord
+			if((G.fields["name"] == original_stand_player_mob.real_name))
+				qdel(G)
+		
+		original_stand_player_mob.dust()
