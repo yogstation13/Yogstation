@@ -1,0 +1,5 @@
+author: " @Moltijoe, Tawaporah Koko"
+delete-after: true 
+changes: 
+  - rscadd: "Adds ashwalker shamans that take more damage, but have a healing touch"
+  - tweak: "goliath gloves can no longer be cut into fingerless gloves"
