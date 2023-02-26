@@ -1,0 +1,7 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Bath salts now give 90% stun resistance and 80% stamina resistance instead of absolute stun immunity"
+  - tweak: "Psychotic brawling attacks now respects armor"
+  - tweak: "Psychotic brawling headbutt damage range increased from (5-10) to (5-15) (baseline)"
+  - tweak: "Psychotic brawling self-stuns now actually work"
