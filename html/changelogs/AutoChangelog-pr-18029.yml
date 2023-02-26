@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "welding fuel and oil heal all robotic species instead of just preternis"
+  - bugfix: "synths no longer get their burnmod and movespeed permanently changed when drinking teslium"
