@@ -146,6 +146,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["lastchangelog"], lastchangelog)
 	READ_FILE(S["be_special"] , be_special)
 	READ_FILE(S["default_slot"], default_slot)
+	READ_FILE(S["player_alt_titles"], player_alt_titles)
 
 	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -166,9 +167,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Sanitize
 	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
-	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	be_special = sanitize_be_special(SANITIZE_LIST(be_special))
+	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
+	player_alt_titles = SANITIZE_LIST(player_alt_titles)
+
+	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	
 	key_bindings = sanitize_keybindings(key_bindings)
 
 	return TRUE
@@ -200,6 +204,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["be_special"], be_special)
 	WRITE_FILE(S["default_slot"], default_slot)
+	WRITE_FILE(S["player_alt_titles"], player_alt_titles)
 
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
@@ -321,7 +326,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	return output.len == input_be_special.len ? input_be_special : output
 
 /proc/sanitize_keybindings(value)
-	var/list/base_bindings = sanitize_islist(value,list())
+	var/list/base_bindings = sanitize_islist(value, list())
 	for(var/keybind_name in base_bindings)
 		if (!(keybind_name in GLOB.keybindings_by_name))
 			base_bindings -= keybind_name
