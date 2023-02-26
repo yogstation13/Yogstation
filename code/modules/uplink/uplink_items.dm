@@ -2442,7 +2442,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
 			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."
 	item = /obj/item/book/granter/martial/psychotic_brawling
-	cost = 12
+	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Psychiatrist")
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
