@@ -8,6 +8,7 @@
 	siemens_coeff = 0
 	brutemod = 0.5
 	burnmod = 0.75
+	stunmod = 0.5
 	punchdamagelow = 12
 	punchdamagehigh = 19 //hardcore
 	punchstunthreshold = 17
