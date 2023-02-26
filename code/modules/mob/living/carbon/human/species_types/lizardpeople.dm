@@ -13,7 +13,7 @@
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
-	coldmod = 1.75 //Desert-born race
+	coldmod = 1.5 //Desert-born race
 	heatmod = 0.75 //Desert-born race
 	action_speed_coefficient = 1.1 //claws aren't as dextrous as hands
 	payday_modifier = 0.5 //Negatively viewed by NT
