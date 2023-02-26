@@ -1,0 +1,6 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - rscadd: "Adds psych locker type"
+  - mapping: "Sets new psych lockers on the maps"
+  - mapping: "Moved flashes from desk into locker, put box of beakers in their place"

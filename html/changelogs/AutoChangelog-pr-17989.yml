@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "makes magboot implants work"
+  - spellcheck: "proper capitalization of leg implants"

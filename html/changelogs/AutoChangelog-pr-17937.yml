@@ -1,0 +1,4 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - tweak: "MALF can no longer occur. Traitor MALF can still occur."

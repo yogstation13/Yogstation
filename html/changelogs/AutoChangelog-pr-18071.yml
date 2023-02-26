@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Halved stun duration from EMPed brain implant"
+  - tweak: "CNS rebooter purges CC immediately when it reboots from EMP"
