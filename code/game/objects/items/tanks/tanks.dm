@@ -33,7 +33,6 @@
 		H.update_internals_hud_icon(0)
 	else
 		if(!H.update_internals())
-			//if(!(H.getorganslot(ORGAN_SLOT_BREATHING_TUBE) || (H.head && (H.head.clothing_flags & STOPSPRESSUREDAMAGE) && (H.head.flags_cover & HEADCOVERSMOUTH))))
 			if(!H.wear_mask)
 				to_chat(H, span_warning("You need a mask!"))
 				return
