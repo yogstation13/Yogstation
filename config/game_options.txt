@@ -441,11 +441,11 @@ LAW_WEIGHT custom,0
 ION_LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,3
+LAW_WEIGHT asimov,0
 ION_LAW_WEIGHT asimov,1
 LAW_WEIGHT crewsimov,5
 ION_LAW_WEIGHT crewsimov,1
-LAW_WEIGHT asimovpp,2
+LAW_WEIGHT asimovpp,0
 ION_LAW_WEIGHT asimovpp,2
 LAW_WEIGHT paladin,0
 ION_LAW_WEIGHT paladin,2
@@ -453,7 +453,7 @@ LAW_WEIGHT paladin5,0
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
-LAW_WEIGHT ceo,4
+LAW_WEIGHT ceo,3
 ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
@@ -467,7 +467,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,1
 ION_LAW_WEIGHT peacekeeper,2
-LAW_WEIGHT reporter,0
+LAW_WEIGHT reporter,2
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,0
 ION_LAW_WEIGHT cowboy,3
