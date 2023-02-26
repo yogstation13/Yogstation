@@ -14,14 +14,14 @@
 	var/volume = 10000 //in liters
 	var/gas_type = 0
 
-/obj/machinery/atmospherics/components/unary/tank/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_volume(volume)
 	air_contents.set_temperature(T20C)
 	if(gas_type)
-		air_contents.set_moles(AIR_CONTENTS)
-		name = "[name] ([GLOB.meta_gas_info[gas_type][META_GAS_NAME]])"
+		air_contents.set_moles(gas_type, AIR_CONTENTS)
+		name = "[name] ([GLOB.gas_data.names[gas_type]])"
 	setPipingLayer(piping_layer)
 
 
@@ -29,43 +29,43 @@
 	icon_state = "grey"
 	name = "pressure tank (Air)"
 
-/obj/machinery/atmospherics/components/unary/tank/air/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/air/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_moles(/datum/gas/oxygen, AIR_CONTENTS * 0.2)
-	air_contents.set_moles(/datum/gas/nitrogen, AIR_CONTENTS * 0.8)
+	air_contents.set_moles(GAS_O2, AIR_CONTENTS * 0.2)
+	air_contents.set_moles(GAS_N2, AIR_CONTENTS * 0.8)
 
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
-	gas_type = /datum/gas/carbon_dioxide
+	gas_type = GAS_CO2
 
-/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_moles(/datum/gas/carbon_dioxide, AIR_CONTENTS)
+	air_contents.set_moles(GAS_CO2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/toxins
 	icon_state = "orange"
-	gas_type = /datum/gas/plasma
+	gas_type = GAS_PLASMA
 
-/obj/machinery/atmospherics/components/unary/tank/toxins/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/toxins/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_moles(/datum/gas/plasma, AIR_CONTENTS)
+	air_contents.set_moles(GAS_PLASMA, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
 	icon_state = "blue"
-	gas_type = /datum/gas/oxygen
+	gas_type = GAS_O2
 
-/obj/machinery/atmospherics/components/unary/tank/oxygen/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/oxygen/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_moles(/datum/gas/oxygen, AIR_CONTENTS)
+	air_contents.set_moles(GAS_O2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
 	icon_state = "red"
-	gas_type = /datum/gas/nitrogen
+	gas_type = GAS_N2
 
-/obj/machinery/atmospherics/components/unary/tank/nitrogen/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/nitrogen/Initialize()
+	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_moles(/datum/gas/nitrogen, AIR_CONTENTS)
+	air_contents.set_moles(GAS_N2, AIR_CONTENTS)

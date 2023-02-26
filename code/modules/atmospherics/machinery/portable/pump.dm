@@ -25,7 +25,6 @@
 /obj/machinery/portable_atmospherics/pump/Destroy()
 	var/turf/T = get_turf(src)
 	T.assume_air(air_contents)
-	air_update_turf()
 	QDEL_NULL(pump)
 	return ..()
 
@@ -54,8 +53,6 @@
 		pump.airs[2] = holding ? holding.air_contents : air_contents
 
 	pump.process_atmos() // Pump gas.
-	if(!holding)
-		air_update_turf() // Update the environment if needed.
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
 	. = ..()
@@ -112,8 +109,8 @@
 		if("power")
 			on = !on
 			if(on && !holding)
-				var/plasma = air_contents.get_moles(/datum/gas/plasma)
-				var/n2o = air_contents.get_moles(/datum/gas/nitrous_oxide)
+				var/plasma = air_contents.get_moles(GAS_PLASMA)
+				var/n2o = air_contents.get_moles(GAS_NITROUS)
 				if(n2o || plasma)
 					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]")
 					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [AREACOORD(src)]")

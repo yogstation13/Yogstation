@@ -134,12 +134,12 @@
 			if(!istype(o, /obj/item/tank))
 				continue
 			var/obj/item/tank/T = o
-			found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+			found_amount += T.air_contents.get_moles(GAS_PLASMA)
 	if (istype(objective.team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
 				for (var/obj/item/tank/T in A.GetAllContents()) //Check for items
-					found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+					found_amount += T.air_contents.get_moles(GAS_PLASMA)
 					CHECK_TICK
 			CHECK_TICK
 		CHECK_TICK

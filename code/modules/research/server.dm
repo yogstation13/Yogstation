@@ -11,7 +11,7 @@
 	var/server_id = 0
 	var/base_mining_income = 2
 	var/current_temp = 0
-	var/heat_gen = 100
+	var/heat_gen = 1
 	var/heating_power = 40000
 	var/delay = 5
 	var/temp_tolerance_low = 0
@@ -37,7 +37,7 @@
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
-	heat_gen /= max(1, tot_rating)
+	heat_gen = initial(src.heat_gen) / max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_icon()
 	if(panel_open)
@@ -59,6 +59,24 @@
 	. = ..()
 	refresh_working()
 	return
+
+/obj/machinery/rnd/server/process()
+	if(!working)
+		current_temp = -1
+		return
+	var/turf/L = get_turf(src)
+	var/datum/gas_mixture/env
+	if(istype(L))
+		env = L.return_air()
+		// This is from the RD server code.  It works well enough but I need to move over the
+		// sspace heater code so we can caculate power used per tick as well and making this both
+		// exothermic and an endothermic component
+		if(env)
+			var/perc = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient / base_mining_income
+
+			env.adjust_heat(heating_power * perc * heat_gen)
+		else
+			current_temp = env ? env.return_temperature() : -1
 
 /obj/machinery/rnd/server/proc/refresh_working()
 	if(stat & EMPED || research_disabled || stat & NOPOWER)
@@ -92,29 +110,8 @@
 /obj/machinery/rnd/server/proc/get_env_temp()
 	var/turf/L = loc
 	if(isturf(L))
-		return L.temperature
+		return L.return_temperature()
 	return 0
-
-/obj/machinery/rnd/server/proc/produce_heat(heat_amt)
-	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
-		var/turf/L = loc
-		if(istype(L))
-			var/datum/gas_mixture/env = L.return_air()
-			if(env.return_temperature() < (heat_amt+T0C))
-
-				var/transfer_moles = 0.25 * env.total_moles()
-
-				var/datum/gas_mixture/removed = env.remove(transfer_moles)
-
-				if(removed)
-
-					var/heat_capacity = removed.heat_capacity()
-					if(heat_capacity == 0 || heat_capacity == null)
-						heat_capacity = 1
-					removed.set_temperature(min((removed.return_temperature()*heat_capacity + heating_power)/heat_capacity, 1000))
-
-				env.merge(removed)
-				air_update_turf()
 
 /proc/fix_noid_research_servers()
 	var/list/no_id_servers = list()

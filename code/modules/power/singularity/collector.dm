@@ -36,9 +36,9 @@
 	/// What is it producing
 	var/mode = POWER
 	/// What gasses are we using
-	var/list/using = list(/datum/gas/plasma)
+	var/list/using = list(GAS_PLASMA)
 	/// Gasses we give
-	var/list/giving = list(/datum/gas/tritium = 1)
+	var/list/giving = list(GAS_TRITIUM = 1)
 	/// Last output used to calculate per minute
 	var/last_output = 0
 	// Higher machine tier will give more power
@@ -118,11 +118,7 @@
 			toggle_power()
 			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
 			span_notice("You turn the [src.name] [active? "on":"off"]."))
-			//yogs start -- fixes runtime with empty rad collectors
-			var/fuel = 0
-			if(loaded_tank)
-				fuel = loaded_tank.air_contents.get_moles(/datum/gas/plasma)
-			//yogs end
+			var/fuel = loaded_tank?.air_contents?.get_moles(GAS_PLASMA)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SINGULO)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			return
@@ -234,23 +230,23 @@
 				to_chat(user, "<span class='warning'>[src] isn't connected to a powernet!</span>")
 				return
 			mode = POWER
-			using = list(/datum/gas/plasma)
-			giving = list(/datum/gas/tritium = 1)
+			using = list(GAS_PLASMA)
+			giving = list(GAS_TRITIUM = 1)
 		if(SCIENCE)
 			if(!is_station_level(z) && !SSresearch.science_tech)
 				to_chat(user, "<span class='warning'>[src] isn't linked to a research system!</span>")
 				return // Dont switch over
 			mode = SCIENCE
-			using = list(/datum/gas/tritium, /datum/gas/oxygen)
-			giving = list(/datum/gas/carbon_dioxide = 2) // Conservation of mass
+			using = list(GAS_TRITIUM, GAS_O2)
+			giving = list(GAS_CO2 = 2) // Conservation of mass
 		if(MONEY)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(!D)
 				to_chat(user, "<span class='warning'>[src] couldn't find the cargo budget!</span>")
 				return // Dont switch over
 			mode = MONEY
-			using = list(/datum/gas/plasma)
-			giving = list(/datum/gas/tritium = 0.5) // money
+			using = list(GAS_PLASMA)
+			giving = list(GAS_TRITIUM = 0.5) // money
 
 	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 

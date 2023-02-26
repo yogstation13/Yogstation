@@ -60,7 +60,7 @@
 	if(panel_open)
 		add_overlay("electrolyzer-open")
 
-/obj/machinery/electrolyzer/process(delta_time)
+/obj/machinery/electrolyzer/process_atmos(delta_time)
 	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
@@ -73,8 +73,7 @@
 		update_icon()
 		return FALSE
 
-	var/turf/L = loc
-	if(!istype(L))
+	if(!isopenturf(get_turf(src)))
 		if(mode != ELECTROLYZER_MODE_STANDBY)
 			mode = ELECTROLYZER_MODE_STANDBY
 			update_icon()
@@ -89,16 +88,16 @@
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = L.return_air() //get air from the turf
+	var/datum/gas_mixture/env = return_air() //get air from the turf
 	var/datum/gas_mixture/removed = env.remove(0.1 * env.total_moles())
 
 	if(!removed)
 		return
 
-	var/proportion = min(removed.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
-	removed.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
-	removed.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
-	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
+	var/proportion = min(removed.get_moles(GAS_H2O), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
+	removed.adjust_moles(GAS_H2O, -(proportion * 2 * workingPower))
+	removed.adjust_moles(GAS_O2, (proportion * workingPower))
+	removed.adjust_moles(GAS_H2, (proportion * 2 * workingPower))
 	env.merge(removed) //put back the new gases in the turf
 	air_update_turf()
 
@@ -195,7 +194,7 @@
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 			update_icon()
 			if (on)
-				START_PROCESSING(SSmachines, src)
+				SSair.start_processing_machine(src)
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)

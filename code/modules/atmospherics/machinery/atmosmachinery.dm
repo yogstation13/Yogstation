@@ -53,18 +53,16 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	nodes = new(device_type)
 	if (!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
-	..()
+	. = ..()
 	if(process)
-		SSair.atmos_machinery += src
+		SSair.start_processing_machine(src)
 	SetInitDirections()
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/i in 1 to device_type)
 		nullifyNode(i)
-
-	SSair.atmos_machinery -= src
-	if(SSair.currentpart == SSAIR_ATMOSMACHINERY)
-		SSair.currentrun -= src
+		
+	SSair.stop_processing_machine(src)
 	SSair.pipenets_needing_rebuilt -= src
 
 	dropContents()

@@ -1925,8 +1925,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
 
-	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
-		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
+	if(environment.get_moles(GAS_H2O) > 10)//water vapour above a certain amount makes you wet
+		if(environment.get_moles(GAS_H2O) > 40)//if there's a lot of water vapour, preterni ded
 			H.adjust_fire_stacks(-3)
 		else
 			H.adjust_fire_stacks(-2)

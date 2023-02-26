@@ -89,5 +89,3 @@
 		env = T.return_air()
 		current_temp = env.return_temperature()
 		env.set_temperature(current_temp+25)
-		T.air_update_turf()
-	L.air_update_turf()

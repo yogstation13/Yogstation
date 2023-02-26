@@ -241,14 +241,14 @@
 
 	QDEL_NULL(hotspot)
 	var/datum/gas_mixture/air = location.air
-	var/scrub_amt = min(30, air.get_moles(/datum/gas/plasma)) //Absorb some plasma
-	air.adjust_moles(/datum/gas/plasma, -scrub_amt)
+	var/scrub_amt = min(30, air.get_moles(GAS_PLASMA)) //Absorb some plasma
+	air.adjust_moles(GAS_PLASMA, -scrub_amt)
 	absorbed_plasma += scrub_amt
 
 	if (air.return_temperature() > T20C)
 		air.set_temperature(max(air.return_temperature() / 2, T20C))
 
-	location.air_update_turf(FALSE, FALSE)
+	location.air_update_turf()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
 	var/atom/movable/deposit = ..()
@@ -299,7 +299,7 @@
 
 /obj/structure/foamedmetal/Initialize(mapload)
 	. = ..()
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/foamedmetal/Move()
 	var/turf/T = loc

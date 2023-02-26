@@ -10,7 +10,7 @@
 
 /obj/effect/clockwork/servant_blocker/Initialize()
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/effect/clockwork/servant_blocker/Destroy(force)
 	if(!force)
@@ -30,7 +30,7 @@
 			return FALSE
 	return TRUE
 
-/obj/effect/clockwork/servant_blocker/BlockSuperconductivity()
+/obj/effect/clockwork/servant_blocker/BlockThermalConductivity()
 	return TRUE
 
 /obj/effect/clockwork/servant_blocker/singularity_act()

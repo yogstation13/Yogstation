@@ -14,20 +14,17 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/New()
-	..()
-	SSair.atmos_machinery += src
+/obj/machinery/portable_atmospherics/Initialize()
+	. = ..()
+	SSair.start_processing_machine(src)
 
 	air_contents = new(volume)
 	air_contents.set_temperature(T20C)
 
-	return 1
-
 /obj/machinery/portable_atmospherics/Destroy()
+	SSair.stop_processing_machine(src)
 	disconnect()
 	QDEL_NULL(air_contents)
-	SSair.atmos_machinery -= src
-
 	return ..()
 
 /obj/machinery/portable_atmospherics/ex_act(severity, target)
@@ -38,12 +35,11 @@
 		//This explosion will destroy the can, release its air.
 		var/turf/T = get_turf(src)
 		T.assume_air(air_contents)
-		T.air_update_turf()
 
 	return ..()
 
 /obj/machinery/portable_atmospherics/process_atmos()
-	if(!connected_port) // Pipe network handles reactions if connected.
+	if(!connected_port && air_contents != null && src != null) // Pipe network handles reactions if connected.
 		air_contents.react(src)
 
 /obj/machinery/portable_atmospherics/return_air()
@@ -64,14 +60,16 @@
 	//Perform the connection
 	connected_port = new_port
 	connected_port.connected_device = src
-	var/datum/pipeline/connected_port_parent = connected_port.parents[1]
-	connected_port_parent.reconcile_air()
+	connected_port.parents[1].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 	anchored = TRUE //Prevent movement
 	pixel_x = new_port.pixel_x
 	pixel_y = new_port.pixel_y
 	update_icon()
 	return TRUE
+
+/obj/machinery/portable_atmospherics/portableConnectorReturnAir()
+	return air_contents
 
 /obj/machinery/portable_atmospherics/Move()
 	. = ..()

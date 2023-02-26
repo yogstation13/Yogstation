@@ -112,7 +112,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/process_atmos()
 	..()
-	if(!is_operational())
+	if(!is_operational() || !isopenturf(loc))
 		last_moles_added = 0
 		return
 	if(space_shutoff_ticks > 0)
@@ -128,6 +128,10 @@
 
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/datum/gas_mixture/environment = loc.return_air()
+
+	if(!environment)
+		return
+
 	var/environment_pressure = environment.return_pressure()
 	var/environment_moles = environment.total_moles()
 	var/last_moles_real_added = environment_moles - last_moles
@@ -161,11 +165,7 @@
 
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
-
-				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-
-				loc.assume_air(removed)
-				air_update_turf()
+				loc.assume_air_moles(air_contents, transfer_moles)
 
 	else // external -> internal
 		last_moles_added = 0
@@ -178,12 +178,7 @@
 				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
 
 			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
-
-				air_contents.merge(removed)
-				air_update_turf()
+				loc.transfer_air(air_contents, moles_delta)
 	last_moles = environment_moles
 	update_parents()
 

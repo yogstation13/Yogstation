@@ -31,7 +31,7 @@
 		name = initial(name)
 		desc = initial(desc)
 		atmosblock = TRUE
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/blob/shield/reflective
 	name = "reflective blob"

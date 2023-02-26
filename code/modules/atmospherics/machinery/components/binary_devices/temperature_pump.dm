@@ -33,7 +33,7 @@
 	icon_state = "tpump_[on && is_operational() ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
-	..()
+
 	if(!on || !is_operational())
 		return
 
@@ -42,7 +42,6 @@
 
 	if(!QUANTIZE(air_input.total_moles()) || !QUANTIZE(air_output.total_moles())) //Don't transfer if there's no gas
 		return
-
 	var/datum/gas_mixture/remove_input = air_input.remove_ratio(0.9)
 	var/datum/gas_mixture/remove_output = air_output.remove_ratio(0.9)
 
@@ -50,7 +49,7 @@
 
 	if(coolant_temperature_delta > 0)
 		var/input_capacity = remove_input.heat_capacity()
-		var/output_capacity = remove_output.heat_capacity()
+		var/output_capacity = air_output.heat_capacity()
 
 		var/cooling_heat_amount = (heat_transfer_rate * 0.01) * coolant_temperature_delta * (input_capacity * output_capacity / (input_capacity + output_capacity))
 		remove_input.set_temperature(max(remove_input.return_temperature() - (cooling_heat_amount / input_capacity), TCMB))

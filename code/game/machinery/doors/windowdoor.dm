@@ -153,7 +153,7 @@
 	sleep(1 SECONDS)
 
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 
 	if(operating == 1) //emag again
@@ -175,7 +175,7 @@
 	icon_state = base_state
 
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	sleep(1 SECONDS)
 

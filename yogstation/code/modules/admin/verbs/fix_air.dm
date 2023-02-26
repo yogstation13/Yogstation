@@ -17,7 +17,6 @@
 				continue
 			GM.parse_gas_string(F.initial_gas_mix)
 			F.copy_air(GM)
-			F.update_visuals()
 
 /client/proc/fix_air_z()
 	set name = "Fix Air on current Z-level"
@@ -48,6 +47,5 @@
 			var/turf/open/T = locate(x, y, z)
 			//Not an early return to allow check_tick to do its thing
 			//Verfied to be an open turf here
-			if(!istype(T, /turf/open/space) && T.is_openturf && !T.blocks_air)
+			if(!istype(T, /turf/open/space) && !T.blocks_air)
 				T.air?.parse_gas_string(T.initial_gas_mix)
-				T.update_visuals()

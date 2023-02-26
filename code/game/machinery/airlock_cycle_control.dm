@@ -135,14 +135,12 @@
 				airlock.bolt()
 
 /obj/machinery/advanced_airlock_controller/update_icon(use_hash = FALSE)
-	var/turf/location = get_turf(src)
-	if(!location)
+	if(!isopenturf(get_turf(src)))
 		return
 	var/pressure = 0
-	if(location)
-		var/datum/gas_mixture/environment = location.return_air()
-		if(environment)
-			pressure = environment.return_pressure()
+	var/datum/gas_mixture/environment = return_air()
+	if(environment)
+		pressure = environment.return_pressure()
 	var/maxpressure = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure
 	var/pressure_bars = round(pressure / maxpressure * 5 + 0.01)
 
@@ -295,15 +293,13 @@
 		update_icon(TRUE)
 		return
 
-	var/turf/location = get_turf(src)
-	if(!location)
+	if(!isopenturf(get_turf(src)))
 		update_icon(TRUE)
 		return
 	var/pressure = 0
-	if(location)
-		var/datum/gas_mixture/environment = location.return_air()
-		if(environment)
-			pressure = environment.return_pressure()
+	var/datum/gas_mixture/environment = return_air()
+	if(environment)
+		pressure = environment.return_pressure()
 
 	update_error_status()
 	var/doors_valid = TRUE
@@ -596,10 +592,9 @@
 		ui.open()
 
 /obj/machinery/advanced_airlock_controller/ui_data(mob/user)
-	var/turf/T = get_turf(src)
 	var/pressure = 0
-	if(T)
-		var/datum/gas_mixture/environment = T.return_air()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/environment = return_air()
 		if(environment)
 			pressure = environment.return_pressure()
 

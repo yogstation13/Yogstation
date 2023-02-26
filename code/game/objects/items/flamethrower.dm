@@ -202,9 +202,9 @@
 			// This is run before atmos checks because blob can be atmos blocking but we still want to hit them
 			// See /proc/default_ignite
 			var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.05)
-			var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
-			damage += air_transfer.get_moles(/datum/gas/tritium) * 24
-			damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+			var/damage = air_transfer.get_moles(GAS_PLASMA) * 16
+			damage += air_transfer.get_moles(GAS_TRITIUM) * 24
+			damage += air_transfer.get_moles(GAS_H2) * 32
 			damage = min(damage, 16)
 			if(damage < 4)
 				// Turn off because we're out
@@ -239,26 +239,25 @@
 /obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
 	//Fetch and remove 5% of current tank air contents
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	//var/oxygen_consumption = (air_transfer.get_moles(/datum/gas/plasma) * 2) + (air_transfer.get_moles(/datum/gas/tritium) / 2) + (air_transfer.get_moles(/datum/gas/hydrogen) / 2)
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
-	if(air_transfer.get_moles(/datum/gas/plasma) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/stimulum) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/pluoxium) >= STIM_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(air_transfer.get_moles(/datum/gas/stimulum), air_transfer.get_moles(/datum/gas/pluoxium), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
+	if(air_transfer.get_moles(GAS_PLASMA) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_STIMULUM) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(GAS_PLUOXIUM) >= STIM_BALL_MOLES_REQUIRED)
+		var/balls_shot = round(min(air_transfer.get_moles(GAS_STIMULUM), air_transfer.get_moles(GAS_PLUOXIUM), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		air_transfer.adjust_moles(/datum/gas/plasma, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
+		air_transfer.adjust_moles(GAS_PLASMA, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
 
 	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
 	// 16 damage at 1 mole transfer or having 20 moles in the tank
-	var/damage = air_transfer.get_moles(/datum/gas/plasma) * 16
+	var/damage = air_transfer.get_moles(GAS_PLASMA) * 16
 	// harder to achieve than plasma
-	damage += air_transfer.get_moles(/datum/gas/tritium) * 24 // Lower damage than hydrogen, causes minor radiation
-	damage += air_transfer.get_moles(/datum/gas/hydrogen) * 32
+	damage += air_transfer.get_moles(GAS_TRITIUM) * 24 // Lower damage than hydrogen, causes minor radiation
+	damage += air_transfer.get_moles(GAS_H2) * 32
 	// Maximum damage restricted by the available oxygen, with a hard cap at 16
 	var/datum/gas_mixture/turf_air = target.return_air()
-	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + air_transfer.get_moles(/datum/gas/oxygen), 16)
+	damage = min(damage, turf_air.get_moles(GAS_O2) + air_transfer.get_moles(GAS_O2), 16)
 	if(damage < 4) // If there's not enough fuel and/or oxygen to do more than 4 damage, shut itself off
 		visible_message(span_danger("\The [src] lets out a sighed hiss as it dies out."))
 		lit = FALSE
@@ -273,8 +272,8 @@
 	hit_list += src
 	new /obj/effect/hotspot(target)
 	target.hotspot_expose(FIRE_MINIMUM_TEMPERATURE_TO_EXIST+damage*25,damage*25,1)
-	if(air_transfer.get_moles(/datum/gas/tritium)) // Tritium fires cause a bit of radiation
-		radiation_pulse(target, air_transfer.get_moles(/datum/gas/tritium) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	if(air_transfer.get_moles(GAS_TRITIUM)) // Tritium fires cause a bit of radiation
+		radiation_pulse(target, air_transfer.get_moles(GAS_TRITIUM) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 	for(var/mob/living/L in target.contents)
 		if(L in hit_list)
 			continue

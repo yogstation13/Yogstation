@@ -80,8 +80,7 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	var/turf/new_floor = ScrapeAway()
-	new_floor.air_update_turf()
+	ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)

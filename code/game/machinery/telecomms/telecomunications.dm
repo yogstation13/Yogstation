@@ -148,10 +148,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/proc/update_speed()
 	if(!on)
 		return
-	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
-	var/datum/gas_mixture/env = T.return_air()
-	var/temperature = env.return_temperature()
+	var/datum/gas_mixture/env = return_air()
+	var/temperature = env?.return_temperature()
 	if(temperature <= 150)				// 150K optimal operating parameters
 		net_efective = 100
 	else

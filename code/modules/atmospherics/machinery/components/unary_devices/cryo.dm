@@ -242,21 +242,21 @@
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
 				beaker.reagents.reaction(occupant, VAPOR)
-				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
-					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
-				else
-					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				if(air1.get_moles(GAS_PLUOXIUM) > 5 )//Use pluoxium over oxygen
+					air1.adjust_moles(GAS_PLUOXIUM, -max(0,air1.get_moles(GAS_PLUOXIUM) - 0.5 / efficiency))
+				else 
+					air1.adjust_moles(GAS_O2, -max(0,air1.get_moles(GAS_O2) - 2 / efficiency)) //Let's use gas for this
 				if(occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 100) //prevent cryoxadone overdose
 					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
 					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+		if(air1.get_moles(GAS_HEALIUM) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
 			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
 			mob_occupant.adjustToxLoss(-5)
 			mob_occupant.adjustFireLoss(-7)
-			air1.adjust_moles(/datum/gas/healium, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency))
+			air1.adjust_moles(GAS_HEALIUM, -max(0,air1.get_moles(GAS_O2) - 2 / efficiency))
 
 	return 1
 
@@ -268,7 +268,7 @@
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(GAS_O2) < 5 && air1.get_moles(GAS_PLUOXIUM) < 5)) // Turn off if the machine won't work.
 		on = FALSE
 		update_icon()
 		return
@@ -290,10 +290,10 @@
 			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
 			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
 
-		if(air1.get_moles(/datum/gas/pluoxium) > 5) //use pluoxium over oxygen
-			air1.set_moles(/datum/gas/pluoxium, max(0,air1.get_moles(/datum/gas/pluoxium) - 0.125 / efficiency))
-		else
-			air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
+		if(air1.get_moles(GAS_PLUOXIUM) > 5) //use pluoxium over oxygen
+			air1.set_moles(GAS_PLUOXIUM, max(0,air1.get_moles(GAS_PLUOXIUM) - 0.125 / efficiency))
+		else 
+			air1.set_moles(GAS_O2, max(0,air1.get_moles(GAS_O2) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)

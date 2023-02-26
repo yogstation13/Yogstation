@@ -608,7 +608,6 @@ GLOBAL_LIST_EMPTY(lockers)
 			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.return_volume() / (loc_air.return_volume() + air_contents.return_volume())
 			loc.assume_air(air_contents)
 			loc.remove_air(remove_amount)
-			loc.air_update_turf()
 		air_contents = null
 
 /obj/structure/closet/return_air()

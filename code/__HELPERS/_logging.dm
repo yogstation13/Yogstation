@@ -7,8 +7,13 @@
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define READ_FILE(file, text) DIRECT_INPUT(file, text)
 //This is an external call, "true" and "false" are how rust parses out booleans
+#ifdef EXTOOLS_LOGGING
+#define WRITE_LOG(log, text) extools_log_write(log, text, TRUE)
+#define WRITE_LOG_NO_FORMAT(log, text) extools_log_write(log, text, FALSE)
+#else
 #define WRITE_LOG(log, text) rustg_log_write(log, "\[[worldtime2text()]\] [text]", "true")
 #define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
+#endif
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
@@ -242,7 +247,12 @@
 
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
+#ifdef EXTOOLS_LOGGING
+	extools_finalize_logging()
+#else
 	rustg_log_close_all()
+#endif
+
 
 
 /* Helper procs for building detailed log lines */

@@ -261,8 +261,7 @@
 			to_chat(H, span_notice("You feel resistant to toxins."))
 			if(locate(/obj/item/organ/lungs) in H.internal_organs)
 				var/obj/item/organ/lungs/L = H.internal_organs_slot[ORGAN_SLOT_LUNGS]
-				L.tox_breath_dam_min = 0
-				L.tox_breath_dam_max = 0
+				L.gas_max -= GAS_PLASMA
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
 			P.tox_mod *= 0.2
 			H.dna.species.acidmod *= 0.2	//Remind me to move this to physiolgy later - Mqiib

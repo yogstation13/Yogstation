@@ -131,6 +131,9 @@ Class Procs:
 	var/climb_stun = 20
 	var/mob/living/machineclimber
 
+	//Stuff for machines that interact with atmos
+	var/atmos_processing = FALSE
+
 /obj/machinery/Initialize()
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)

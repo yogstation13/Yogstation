@@ -117,24 +117,24 @@
 		on_overlay.color = overlay_color
 		add_overlay(on_overlay)
 
-/obj/machinery/atmospherics/miner/process(delta_time)
+/obj/machinery/atmospherics/miner/process_atmos()
 	update_power()
 	check_operation()
 	if(active && !broken)
 		if(isnull(spawn_id))
 			return FALSE
 		if(do_use_power(active_power_usage))
-			mine_gas(delta_time)
+			mine_gas()
 
-/obj/machinery/atmospherics/miner/proc/mine_gas(delta_time = 2)
+/obj/machinery/atmospherics/miner/proc/mine_gas()
 	var/turf/open/O = get_turf(src)
 	if(!isopenturf(O))
 		return FALSE
 	var/datum/gas_mixture/merger = new
-	merger.set_moles(spawn_id, (spawn_mol * delta_time))
+	merger.set_moles(spawn_id, spawn_mol)
 	merger.set_temperature(spawn_temp)
 	O.assume_air(merger)
-	O.air_update_turf(TRUE)
+	O.air_update_turf()
 
 /obj/machinery/atmospherics/miner/attack_ai(mob/living/silicon/user)
 	if(broken)
@@ -144,39 +144,39 @@
 /obj/machinery/atmospherics/miner/n2o
 	name = "\improper N2O Gas Miner"
 	overlay_color = "#FFCCCC"
-	spawn_id = /datum/gas/nitrous_oxide
+	spawn_id = GAS_NITROUS
 
 /obj/machinery/atmospherics/miner/nitrogen
 	name = "\improper N2 Gas Miner"
 	overlay_color = "#CCFFCC"
-	spawn_id = /datum/gas/nitrogen
+	spawn_id = GAS_N2
 
 /obj/machinery/atmospherics/miner/oxygen
 	name = "\improper O2 Gas Miner"
 	overlay_color = "#007FFF"
-	spawn_id = /datum/gas/oxygen
+	spawn_id = GAS_O2
 
 /obj/machinery/atmospherics/miner/hydrogen
 	name = "\improper H2 Gas Miner"
 	overlay_color = "#ff0000"
-	spawn_id = /datum/gas/hydrogen
+	spawn_id = GAS_H2
 
 /obj/machinery/atmospherics/miner/toxins
 	name = "\improper Plasma Gas Miner"
 	overlay_color = "#ff6600"
-	spawn_id = /datum/gas/plasma
+	spawn_id = GAS_PLASMA
 
 /obj/machinery/atmospherics/miner/carbon_dioxide
 	name = "\improper CO2 Gas Miner"
 	overlay_color = "#CDCDCD"
-	spawn_id = /datum/gas/carbon_dioxide
+	spawn_id = GAS_CO2
 
 /obj/machinery/atmospherics/miner/bz
 	name = "\improper BZ Gas Miner"
 	overlay_color = "#FAFF00"
-	spawn_id = /datum/gas/bz
+	spawn_id = GAS_BZ
 
 /obj/machinery/atmospherics/miner/water_vapor
 	name = "\improper Water Vapor Gas Miner"
 	overlay_color = "#99928E"
-	spawn_id = /datum/gas/water_vapor
+	spawn_id = GAS_H2O

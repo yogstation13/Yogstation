@@ -278,13 +278,13 @@
 	if(internal.total_moles())
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-			"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+			"name"= GLOB.gas_data.names[gasid],
 			"amount" = round(internal.get_moles(gasid), 0.01),
 			)))
 	else
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-				"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+				"name"= GLOB.gas_data.names[gasid],
 				"amount" = 0,
 				)))
 	data["internal_gas_data"] = internal_gas_data
@@ -295,9 +295,8 @@
 	else
 		requirements = list("To create [selected_recipe.name] you will need:")
 		for(var/gas_type in selected_recipe.requirements)
-			var/datum/gas/gas_required = gas_type
 			var/amount_consumed = selected_recipe.requirements[gas_type]
-			requirements += "-[amount_consumed] moles of [initial(gas_required.name)]"
+			requirements += "-[amount_consumed] moles of [initial(gas_type)]"
 		requirements += "In a temperature range between [selected_recipe.min_temp] K and [selected_recipe.max_temp] K"
 		requirements += "The crystallization reaction will be [selected_recipe.energy_release ? (selected_recipe.energy_release > 0 ? "exothermic" : "endothermic") : "thermally neutral"]"
 	data["requirements"] = requirements.Join("\n")

@@ -64,7 +64,7 @@
 	if(panel_open)
 		add_overlay("sheater-open")
 
-/obj/machinery/space_heater/process(delta_time)
+/obj/machinery/space_heater/process_atmos()
 	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
@@ -101,7 +101,7 @@
 
 	var/heat_capacity = env.heat_capacity()
 	var/requiredEnergy = abs(env.return_temperature() - targetTemperature) * heat_capacity
-	requiredEnergy = min(requiredEnergy, heatingPower * delta_time)
+	requiredEnergy = min(requiredEnergy, heatingPower)
 
 	if(requiredEnergy < 1)
 		return
@@ -209,13 +209,10 @@
 	data["minTemp"] = max(settableTemperatureMedian - settableTemperatureRange - T0C, TCMB)
 	data["maxTemp"] = settableTemperatureMedian + settableTemperatureRange - T0C
 
-	var/turf/L = get_turf(loc)
 	var/curTemp
-	if(istype(L))
-		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.return_temperature()
-	else if(isturf(L))
-		curTemp = L.return_temperature()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/env = return_air()
+		curTemp = env?.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else
@@ -264,7 +261,7 @@
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
 	update_icon()
 	if (on)
-		START_PROCESSING(SSmachines, src)
+		SSair.start_processing_machine(src)
 
 /obj/machinery/space_heater/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))

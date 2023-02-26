@@ -103,6 +103,6 @@
 		return TRUE
 
 /obj/structure/railing/proc/after_rotation(mob/user,rotation_type)
-	air_update_turf(1)
+	air_update_turf()
 	ini_dir = dir
 	add_fingerprint(user)

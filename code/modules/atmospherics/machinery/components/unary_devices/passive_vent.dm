@@ -2,7 +2,6 @@
 	icon_state = "passive_vent_map-3"
 	name = "passive vent"
 	desc = "It is an open vent."
-
 	can_unwrench = TRUE
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
@@ -21,11 +20,20 @@
 	if(isclosedturf(location))
 		return
 
+	var/active = FALSE
 	var/datum/gas_mixture/external = location.return_air()
 	var/datum/gas_mixture/internal = airs[1]
+	var/external_pressure = external.return_pressure()
+	var/internal_pressure = internal.return_pressure()
+	var/pressure_delta = abs(external_pressure - internal_pressure)
 
-	if(internal.equalize(external))
-		air_update_turf()
+	if(pressure_delta > 0.5)
+		equalize_all_gases_in_list(list(internal,external))
+		active = TRUE
+
+	active = internal.temperature_share(external, OPEN_HEAT_TRANSFER_COEFFICIENT) || active
+
+	if(active)
 		update_parents()
 
 /obj/machinery/atmospherics/components/unary/passive_vent/can_crawl_through()

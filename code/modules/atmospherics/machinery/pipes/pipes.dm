@@ -18,10 +18,10 @@
         ),\
     )
 
-/obj/machinery/atmospherics/pipe/New()
+/obj/machinery/atmospherics/pipe/Initialize()
+	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
-	..()
 
 /obj/machinery/atmospherics/pipe/nullifyNode(i)
 	var/obj/machinery/atmospherics/oldN = nodes[i]
@@ -51,7 +51,6 @@
 	if(air_temporary)
 		var/turf/T = loc
 		T.assume_air(air_temporary)
-		air_update_turf()
 
 /obj/machinery/atmospherics/pipe/return_air()
 	if(parent)
@@ -64,6 +63,9 @@
 /obj/machinery/atmospherics/pipe/remove_air(amount)
 	if(parent)
 		return parent.air.remove(amount)
+
+/obj/machinery/atmospherics/pipe/remove_air_ratio(ratio)
+	return parent.air.remove_ratio(ratio)
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe_meter))
@@ -79,7 +81,8 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
-	return parent
+	if (parent)
+		return parent.air
 
 /obj/machinery/atmospherics/pipe/setPipenet(datum/pipeline/P)
 	parent = P

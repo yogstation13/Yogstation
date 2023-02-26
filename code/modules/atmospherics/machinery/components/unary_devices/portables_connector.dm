@@ -42,6 +42,12 @@
 		to_chat(user, span_warning("You cannot unwrench [src], detach [connected_device] first!"))
 		return FALSE
 
+/obj/machinery/atmospherics/components/unary/portables_connector/portableConnectorReturnAir()
+	return connected_device.portableConnectorReturnAir()
+
+/obj/proc/portableConnectorReturnAir()
+	return
+
 /obj/machinery/atmospherics/components/unary/portables_connector/layer2
 	piping_layer = 2
 	icon_state = "connector_map-2"

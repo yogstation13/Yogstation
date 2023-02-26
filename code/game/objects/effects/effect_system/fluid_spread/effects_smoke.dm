@@ -294,9 +294,9 @@
 		if(!distcheck || get_dist(location, chilly) < blast) // Otherwise we'll get silliness like people using Nanofrost to kill people through walls with cold air
 			air.set_temperature(temperature)
 		
-		if(air.get_moles(/datum/gas/plasma))
-			air.adjust_moles(/datum/gas/nitrogen, air.get_moles(/datum/gas/plasma))
-			air.set_moles(/datum/gas/plasma, 0)
+		if(air.get_moles(GAS_PLASMA))
+			air.adjust_moles(GAS_N2, air.get_moles(GAS_PLASMA))
+			air.set_moles(GAS_PLASMA, 0)
 
 		for(var/obj/effect/hotspot/fire in chilly)
 			qdel(fire)

@@ -52,7 +52,8 @@
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/process_atmos()
 	..()
-
+	if(welded || !is_operational() || !isopenturf(loc))
+		return FALSE
 	if(!on)
 		return
 	var/datum/gas_mixture/air1 = airs[1]
@@ -73,19 +74,14 @@
 			if(air1.return_temperature() > 0)
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
-				var/datum/gas_mixture/removed = air1.remove(transfer_moles)
-				//Removed can be null if there is no atmosphere in air1
-				if(!removed)
-					return
+				loc.assume_air_moles(air1, transfer_moles)
 
-				loc.assume_air(removed)
-				air_update_turf()
+				
 
 				var/datum/pipeline/parent1 = parents[1]
-				parent1.update = 1
+				parent1.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 	else //external -> output
-	
 		if(environment.return_pressure() > 0)
 			var/our_multiplier = air2.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION)
 			var/moles_delta = 10000 * our_multiplier
@@ -93,20 +89,15 @@
 				moles_delta = min(moles_delta, (environment_pressure - output_pressure_max) * environment.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION))
 			if(pressure_checks&INPUT_MIN)
 				moles_delta = min(moles_delta, (input_pressure_min - air2.return_pressure()) * our_multiplier)
-		
-			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
 
-				air2.merge(removed)
-				air_update_turf()
+			if(moles_delta > 0)
+				loc.transfer_air(air2, moles_delta)
+				
 
 				var/datum/pipeline/parent2 = parents[2]
-				parent2.update = 1
+				parent2.update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
-	//Radio remote control
-
+//Radio remote control
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency

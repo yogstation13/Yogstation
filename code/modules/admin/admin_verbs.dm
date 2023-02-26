@@ -152,7 +152,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	/client/proc/dump_memory_usage,
+	//client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
 	/client/proc/toggle_cdn
 	)
@@ -169,6 +169,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
 	/client/proc/cmd_admin_list_open_jobs,
+	/client/proc/fixcorruption,
 	#ifdef TESTING //Xoxeyos 3/14/2021
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
@@ -763,7 +764,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
-
+/*
 /client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
@@ -792,6 +793,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
 		to_chat(usr, span_notice("Memory dump completed."))
+*/
 
 
 /client/proc/debugstatpanel()

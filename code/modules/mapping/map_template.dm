@@ -91,19 +91,19 @@
 	//calculate all turfs inside the border
 	var/list/template_and_bordering_turfs = block(
 		locate(
-			max(bounds[MAP_MINX]-1, 1),
-			max(bounds[MAP_MINY]-1, 1),
+			max(bounds[MAP_MINX]-2, 1),
+			max(bounds[MAP_MINY]-2, 1),
 			bounds[MAP_MINZ]
 			),
 		locate(
-			min(bounds[MAP_MAXX]+1, world.maxx),
-			min(bounds[MAP_MAXY]+1, world.maxy),
+			min(bounds[MAP_MAXX]+2, world.maxx),
+			min(bounds[MAP_MAXY]+2, world.maxy),
 			bounds[MAP_MAXZ]
 			)
 		)
 	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
-		affected_turf.air_update_turf(TRUE, TRUE)
-		affected_turf.levelupdate()
+		affected_turf.blocks_air = initial(T.blocks_air)
+		affected_turf.ImmediateCalculateAdjacentTurfs()
 
 /datum/map_template/proc/load_new_z(secret = FALSE)
 	var/x = round((world.maxx - width)/2)
@@ -132,6 +132,12 @@
 		return
 	if((T.y+height) - 1 > world.maxy)
 		return
+
+	var/list/border = block(locate(max(T.x, 1), max(T.y, 1),  T.z),
+							locate(min(T.x+width, world.maxx), min(T.y+height, world.maxy), T.z))
+	for(var/turf/L as anything in border)
+		L.blocks_air = TRUE
+		L.ImmediateCalculateAdjacentTurfs()
 
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
