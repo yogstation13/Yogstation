@@ -942,6 +942,11 @@
 		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)
 		notify = TRUE
 
+	var/mob/user = loc
+	var/damage = TRUE
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))//no hurting as a pacifist
+		damage = FALSE
+
 	var/list/chapview = view(4, get_turf(loc))
 	for(var/mob/living/L in range(2, get_teleport_loc(get_turf(loc), loc, 2)))
 		if(!L.mind?.holy_role && (L in chapview)) // Priests are unaffected, trying to use it as a non-priest will harm you
@@ -950,12 +955,18 @@
 				new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 			// Unholy creatures take more damage
 			// Everyone else still takes damage but less real damage
-			// Average DPS is 12 or 17 if unholy
+			// Average DPS is 5|15 or 10|10 if unholy (burn|stam)
 			// Should be incredibly difficult to metacheck with this due to RNG and fast processing
 			if(iscultist(L) || is_clockcult(L) || iswizard(L) || isvampire(L) || IS_BLOODSUCKER(L) || IS_VASSAL(L) || IS_HERETIC(L) || IS_HERETIC_MONSTER(L))
-				L.adjustFireLoss(rand(10,14) * 0.2) // avg 12 DPS
+				if(damage)
+					L.adjustFireLoss(rand(3,5) * 0.5) // 1.5-2.5 AVG 2.0
+				if(L.getStaminaLoss() < 65)
+					L.adjustStaminaLoss(2)
 			else
-				L.adjustFireLoss(rand(15,19) * 0.2) // avg 17 DPS
+				if(damage)
+					L.adjustFireLoss(rand(1,3) * 0.5) // 0.5-1.5 AVG 1.0
+				if(L.getStaminaLoss() < 65)
+					L.adjustStaminaLoss(3)
 
 /obj/item/nullrod/cross/examine(mob/user)
 	. = ..()
