@@ -102,7 +102,7 @@
 			)
 		)
 	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
-        affected_turf.blocks_air = initial(T.blocks_air)
+		affected_turf.blocks_air = initial(T.blocks_air)
 		affected_turf.ImmediateCalculateAdjacentTurfs()
 
 /datum/map_template/proc/load_new_z(secret = FALSE)
