@@ -273,6 +273,15 @@
 				for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 					H.set_species(newtype)
 
+		if("stand_proud")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			mob_user.client.stand_proud()
+			if(SSticker.stand_proud)
+				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Stand Proud"))
+			else
+				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", -1, list("Stand Proud"))
+
 		if("tripleAI")
 			if(!check_rights_for(rights, R_FUN))
 				return

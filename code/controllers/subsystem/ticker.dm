@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(ticker)
 	var/ready_for_reboot = FALSE			//all roundend preparation done with, all that's left is reboot
 
 	var/triai = 0							//Global holder for Triumvirate
+	var/stand_proud = FALSE					//Half of all players will be spawned as holoparasites
+
 	var/tipped = 0							//Did we broadcast the tip of the day yet?
 	var/selected_tip						// What will be the tip of the day?
 
@@ -294,6 +296,11 @@ SUBSYSTEM_DEF(ticker)
 
 	transfer_characters()	//transfer keys to the new mobs
 
+	CHECK_TICK
+	if(stand_proud)
+		equip_stands()
+	CHECK_TICK
+
 	for(var/I in round_start_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
@@ -450,6 +457,27 @@ SUBSYSTEM_DEF(ticker)
 	if(livings.len)
 		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
 
+/datum/controller/subsystem/ticker/proc/equip_stands()
+	var/mob/living/carbon/stand_user
+	var/amount_of_eligible = 0
+	var/list/mob/living/stand_eligible = list()
+	for(var/mob/living/player in GLOB.player_list)
+		stand_eligible |= player
+		amount_of_eligible++
+	
+	var/stands_looped = 0
+	for(var/mob/living/player as anything in stand_eligible)
+		CHECK_TICK
+		stands_looped++
+		if(stand_user)
+			stand_user.assign_random_stand(player, "Stand Proud mode")
+			// If we have an odd number of people, the last player gets to be a second stand instead of a standless player
+			if(amount_of_eligible % 2 && stands_looped == amount_of_eligible - 1)
+				continue
+			stand_user = null
+		else
+			stand_user = player
+
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)
 	for(var/I in livings)
 		var/mob/living/L = I
@@ -543,6 +571,7 @@ SUBSYSTEM_DEF(ticker)
 	delay_end = SSticker.delay_end
 
 	triai = SSticker.triai
+	stand_proud = SSticker.stand_proud
 	tipped = SSticker.tipped
 	selected_tip = SSticker.selected_tip
 

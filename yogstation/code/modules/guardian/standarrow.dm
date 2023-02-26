@@ -123,6 +123,9 @@
 	stats.ability = major_ability
 	stats.ability.master_stats = stats
 	points -= major_ability.cost
+	if(prob(15) && points >= 3)
+		points -= 3
+		stats.ranged = TRUE
 	while(points > 0)
 		if (!categories.len)
 			break

@@ -55,6 +55,7 @@ export const SecretsPanel = (props, context) => {
           <Button.Confirm color={'bad'} content={'Make all areas powered'} onClick={() => act('power')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Make all areas unpowered'} onClick={() => act('unpower')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Power all SMES'} onClick={() => act('quickpower')} disabled={!funRights} /><br />
+          <Button color={'bad'} content={'Toggle Stand Proud (Lobby only)'} onClick={() => act('stand_proud')} disabled={!funRights} tooltip={'Half of all crew members will be spawned as holoparasites for the other half'} /><br />
           <Button color={'bad'} content={'Triple AI mode (needs to be used in the lobby)'} onClick={() => act('tripleAI')} disabled={!funRights} /><br />
           <Button color={'bad'} content={'Everyone is the traitor (Can specify objective)'} onClick={() => act('traitor_all')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Everyone is the IAA (except sec/cap/hop)'} onClick={() => act('iaa_all')} disabled={!funRights} /><br />
