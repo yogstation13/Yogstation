@@ -719,6 +719,7 @@
 	..()
 
 /datum/reagent/medicine/diphenhydramine/overdose_process(mob/living/M)
+	M.set_drugginess(15)
 	M.hallucination += 5*REM
 	..()
 
