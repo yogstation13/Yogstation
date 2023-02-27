@@ -1,9 +1,19 @@
 /obj/item/clothing/under/plasmaman/research_director
-	name = "scientific envirosuit"
+	name = "research director's envirosuit"
 	desc = "A formal envirosuit with comfortable, shrapnel-resistant fibers, designed for a \"Research Director\" plasmaman."
 	icon_state = "rd_envirosuit"
 	item_state = "rd_envirosuit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
+
+/obj/item/clothing/under/plasmaman/cmo
+	name = "chief medical officer's envirosuit"
+	desc = "Sus"
+	icon_state = "cmo_envirosuit"
+	item_state = "cmo_envirosuit"
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 
 /obj/item/clothing/under/plasmaman/medical
 	name = "medical envirosuit"

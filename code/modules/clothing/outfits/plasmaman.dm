@@ -672,7 +672,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
-	uniform = /obj/item/clothing/under/plasmaman/medical
+	uniform = /obj/item/clothing/under/plasmaman/cmo
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	ears = /obj/item/radio/headset/heads/cmo
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo
@@ -689,10 +689,10 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
+	head = /obj/item/clothing/head/helmet/space/plasmaman/hop
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
-	uniform = /obj/item/clothing/under/plasmaman
+	uniform = /obj/item/clothing/under/plasmaman/hop
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/hop
 	glasses = /obj/item/clothing/glasses/hud/personnel

@@ -100,6 +100,14 @@
 	desc = "A generic blue envirohelm."
 	icon_state = "blue_envirohelm"
 	item_state = "blue_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/hop
+	name = "head of personnel's envirosuit helmet"
+	desc = "A navy-blue envirohelm designed for plasmamen with the job of Head of Personnel. Boasts some protection."
+	icon_state = "hop_envirohelm"
+	item_state = "hop_envirohelm"
+	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
+	pref_alteration = FALSE
 	
 /obj/item/clothing/head/helmet/space/plasmaman/viro
 	name = "virology envirosuit helmet"
