@@ -150,7 +150,7 @@ const GASES = [
     path: '/datum/gas/plasma',
     name: 'Plasma',
     label: 'Plasma',
-    color: 'pink',
+    color: 'orange',
   },
   {
     id: 'water_vapor',
@@ -256,6 +256,20 @@ const GASES = [
     name: 'Antinoblium',
     label: 'Anti-nob',
     color: 'maroon',
+  },
+  {
+    id: 'hexane',
+    path: '/datum/gas/hexane',
+    name: 'Hexane',
+    label: 'Hexane',
+    color: 'plum',
+  },
+  {
+    id: 'dilithium',
+    path: '/datum/gas/dilithium',
+    name: 'Dilithium',
+    label: 'Dilithium',
+    color: 'pink',
   },
 ];
 
