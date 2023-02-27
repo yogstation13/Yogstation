@@ -207,7 +207,7 @@
 
 /obj/effect/proc_holder/spell/pointed/cleave
 	name = "Cleave"
-	desc = "Causes severe bleeding on a target and people around them"
+	desc = "Causes severe bleeding on a target and on people around them"
 	school = "transmutation"
 	charge_max = 350
 	clothes_req = FALSE
@@ -261,8 +261,8 @@
 	charge_max = 650
 
 /obj/effect/proc_holder/spell/pointed/touch/mad_touch
-	name = "Touch of madness"
-	desc = "Strange energies engulf your hand, you feel even the sight of them would cause a headache if you didn't understand them."
+	name = "Touch of Madness"
+	desc = "Strange energies engulf your hand; you feel even the sight of them would cause a headache if you didn't understand them."
 	school = "transmutation"
 	charge_max = 150
 	clothes_req = FALSE
@@ -348,7 +348,7 @@
 				continue
 			hit_list += L
 			L.adjustFireLoss(20)
-			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
+			to_chat(L, span_userdanger("You're hit by [source]'s fire blast!"))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
@@ -493,7 +493,7 @@
 
 /obj/effect/proc_holder/spell/targeted/fiery_rebirth
 	name = "Nightwatcher's Rebirth"
-	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition they will be finished off."
+	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition, they will be finished off."
 	invocation = "ASHES TO ASHES"
 	invocation_type = "whisper"
 	clothes_req = FALSE
@@ -525,7 +525,7 @@
 
 /obj/effect/proc_holder/spell/pointed/manse_link
 	name = "Mansus Link"
-	desc = "Pierce through reality, connecting minds. Hitting someone with this spell will add them to your mansus link shortly after if uninterrupted, allowing for silent communication."
+	desc = "Pierce through reality and connect minds. Hitting someone with this spell will add them to your Mansus link if uninterrupted, allowing for silent communication."
 	school = "transmutation"
 	charge_max = 300
 	clothes_req = FALSE
@@ -559,7 +559,7 @@
 
 /datum/action/innate/mansus_speech
 	name = "Mansus Link"
-	desc = "Send a psychic message to everyone connected to your mansus link."
+	desc = "Send a psychic message to everyone connected to your Mansus link."
 	button_icon_state = "link_speech"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_ecult"
@@ -630,7 +630,7 @@
 
 /obj/effect/proc_holder/spell/cone/staggered/entropic_plume
 	name = "Entropic Plume"
-	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
+	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them (increasing with range) and poisons them (decreasing with range), while also spreading rust in the path of the plume."
 	school = "illusion"
 	invocation = "GUST OF RUST"
 	invocation_type = "whisper"
