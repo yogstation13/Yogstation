@@ -1,4 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a single-use multisurgeon to the CE's bag to grant magboots, in case the CE's legs aren't compatible with the advanced magboots (much like how the CMO gets the MEDhud autosurgeon in-case they're nearsighted)"
