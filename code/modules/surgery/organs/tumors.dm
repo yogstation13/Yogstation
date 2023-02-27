@@ -37,8 +37,8 @@
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if(helpful)
-		if(owner.getBruteLoss() + owner.getFireLoss() > 0)
-			owner.adjustToxLoss(strength/2, TRUE, TRUE)
+		if(owner.getBruteLoss() + owner.getFireLoss() > 0 && !(TRAIT_TOXINLOVER in owner?.dna?.species?.inherent_traits))
+			owner.adjustToxLoss(strength/2)
 			owner.adjustBruteLoss(-(strength/2))
 			owner.adjustFireLoss(-(strength/2))
 	else
