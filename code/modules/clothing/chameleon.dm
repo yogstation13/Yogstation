@@ -485,7 +485,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon/Initialize()
 	. = ..()
-	chameleon_action = new(src)
+	chameleon_action = new /datum/action/item_action/chameleon/change
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/head/helmet/space
