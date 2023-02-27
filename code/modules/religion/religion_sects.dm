@@ -269,8 +269,8 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 20
-
+	var/heal_amt = 40 //it only heals burn
+	
 	if(H.getFireLoss() > 0)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
