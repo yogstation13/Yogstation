@@ -1,6 +1,9 @@
 /atom
+	/// Last appearance of the atom for demo saving purposes
 	var/image/demo_last_appearance
+
 /atom/movable
+	/// Last location of the atom for demo recording purposes
 	var/atom/demo_last_loc
 
 /mob/Login()

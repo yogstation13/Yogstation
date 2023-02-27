@@ -3,6 +3,7 @@
 	typepath = /datum/round_event/ghost_role/nightmare
 	max_occurrences = 1
 	min_players = 30
+	weight = 0 // Disabled in favor of darkspawn
 	earliest_start = 45 MINUTES
 	dynamic_should_hijack = TRUE
 
@@ -12,7 +13,7 @@
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/nightmare/spawn_role()
-	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
+	var/list/candidates = get_candidates(ROLE_NIGHTMARE, null, ROLE_NIGHTMARE)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 

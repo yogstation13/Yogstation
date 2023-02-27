@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Golden Crucifix null rod stamina damage is now capped at 65"
+  - bugfix: "Pacifists can no longer apply lethal damage with the Golden Crucifix"

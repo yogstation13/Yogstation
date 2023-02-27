@@ -69,6 +69,7 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 	run_map_generation()
+
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
@@ -116,24 +117,21 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	seedStation()
 	loading_ruins = FALSE
-#endif
 
 	//Load Reebe
 	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
 	//Load an Arena
 	errorList = list()
-	var/list/arenas = SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
 	if(errorList.len)	// arena failed to load
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
-	for(var/datum/parsed_map/PM in arenas)
-		PM.initTemplateBounds()
+#endif
+
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	require_area_resort()

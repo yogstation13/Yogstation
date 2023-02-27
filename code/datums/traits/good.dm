@@ -369,10 +369,15 @@
 	name = "Multilingual"
 	desc = "You spent a portion of your life learning to understand an additional language. You may or may not be able to speak it based on your anatomy."
 	icon = "book"
-	value = 3
+	value = 2
 	var/datum/language/specific
 	gain_text = span_notice("You have learned to understand an additional language.")
 	lose_text = span_notice("You have forgotten how to understand a language.")
+	var/list/blacklisted_languages = list(
+		/datum/language/codespeak,
+		/datum/language/narsie,
+		/datum/language/ratvar,
+		/datum/language/encrypted) // guh
 
 /datum/quirk/multilingual/add()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -381,7 +386,7 @@
 	else
 		var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
 		var/list/languages_possible = T.languages_possible
-		languages_possible = languages_possible - typecacheof(/datum/language/codespeak) - typecacheof(/datum/language/narsie) - typecacheof(/datum/language/ratvar)
+		languages_possible = languages_possible - blacklisted_languages
 		languages_possible = languages_possible - H.language_holder.understood_languages
 		languages_possible = languages_possible - H.language_holder.blocked_languages
 		if(length(languages_possible))
@@ -429,6 +434,13 @@
 	specific = /datum/language/draconic
 	gain_text = span_notice("You have learned to understand Draconic.")
 	lose_text = span_notice("You have forgotten how to understand Draconic.")
+
+/datum/quirk/multilingual/felinid
+	name = "Multilingual (Felinid)"
+	desc = "You spent a portion of your life learning to understand Felinid. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/felinid
+	gain_text = span_notice("You have learned to understand Felinid.")
+	lose_text = span_notice("You have forgotten how to understand Felinid.")
 
 /datum/quirk/multilingual/sylvan
 	name = "Multilingual (Sylvan)"

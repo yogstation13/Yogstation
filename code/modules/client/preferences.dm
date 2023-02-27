@@ -567,6 +567,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 	// remove existing entry
 	if(player_alt_titles.Find(job.title))
 		player_alt_titles -= job.title
+
 	// add one if it's not default
 	if(job.title != new_title)
 		player_alt_titles[job.title] = new_title

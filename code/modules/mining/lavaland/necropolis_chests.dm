@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,25)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -27,54 +27,44 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(5)
 			new /obj/item/stack/sheet/mineral/mythril(src)
 		if(6)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(7)
 			new /obj/item/rod_of_asclepius(src)
-		if(8)
+		if(7)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(9)
+		if(8)
 			new /obj/item/ship_in_a_bottle(src)
-		if(10)
+		if(9)
 			new /obj/item/clothing/glasses/telepathy(src)
-		if(11)
+		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(12)
+		if(11)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(13)
+		if(12)
 			new /obj/item/nullrod/armblade(src)
-		if(14)
-			if(prob(50))
-				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-			else
-				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(15)
+		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(16)
+		if(14)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(17)
+		if(15)
 			new /obj/item/eflowers(src)
-		if(18)
+		if(16)
 			new /obj/item/voodoo(src)
-		if(19)
+		if(17)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(20)
+		if(18)
 			new /obj/item/book_of_babel(src)
-		if(21)
+		if(19)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(22)
+		if(20)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(23)
+		if(21)
 			new /obj/item/rune_scimmy(src)
-		if(24)
+		if(22)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(25)
+		if(23)
 			new /obj/item/clothing/gloves/gauntlets(src)
 
 //KA modkit design discs
@@ -88,55 +78,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	. = ..()
 	blueprints[1] = new modkit_design
 
-/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
-	name = "Offensive Mining Explosion Mod Disk"
-	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
-
-/obj/item/disk/design_disk/modkit_disc/rapid_repeater
-	name = "Rapid Repeater Mod Disk"
-	modkit_design = /datum/design/unique_modkit/rapid_repeater
-
-/obj/item/disk/design_disk/modkit_disc/resonator_blast
-	name = "Resonator Blast Mod Disk"
-	modkit_design = /datum/design/unique_modkit/resonator_blast
-
-/obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
-	modkit_design = /datum/design/unique_modkit/bounty
-
 /datum/design/unique_modkit
 	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
 	build_type = PROTOLATHE | MECHFAB
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-
-/datum/design/unique_modkit/offensive_turf_aoe
-	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
-	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
-	id = "hyperaoemod"
-	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
-	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-
-/datum/design/unique_modkit/rapid_repeater
-	name = "Kinetic Accelerator Rapid Repeater Mod"
-	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
-	id = "repeatermod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
-	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
-
-/datum/design/unique_modkit/resonator_blast
-	name = "Kinetic Accelerator Resonator Blast Mod"
-	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
-	id = "resonatormod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
-	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
-
-/datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
-	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
-	id = "bountymod"
-	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
-	reagents_list = list(/datum/reagent/blood = 40)
-	build_path = /obj/item/borg/upgrade/modkit/bounty
 
 //Spooky special loot
 
@@ -151,6 +96,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/activated = FALSE
 	var/usedHand
 	var/list/advanced_surgeries = list()
+	var/efficiency = 1
 
 /obj/item/rod_of_asclepius/attack_self(mob/user)
 	if(activated)
@@ -186,7 +132,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH)
+	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
@@ -394,6 +340,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/teleport_color = "#3FBAFD"
 	var/obj/item/warp_cube/linked
 	var/teleporting = FALSE
+
+/obj/item/warp_cube/Destroy()
+	if(!QDELETED(linked))
+		qdel(linked)
+	linked = null
+	return ..()
 
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
@@ -1863,6 +1815,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 //Legion
 #define COOLDOWN_TAP 60
 #define COOLDOWN_BAND 200
+#define COOLDOWN_TELE 15
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
@@ -1873,15 +1826,16 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "cursedcane"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 0
+	force = 1 //for weaker animals and fucking legion skulls
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 10
+	var/telerange = 20 
 	var/next_tap = 0
 	var/next_band = 0
+	var/next_teleport = 0
 
 /obj/item/cane/cursed/pickup(mob/user)
 	. = ..()
@@ -1919,15 +1873,48 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
 	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
 
+/obj/item/cane/cursed/proc/execute(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	M.adjustBruteLoss(M.health)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane, making [M.p_their()] eyes flash black before keeling over!"))
+
 /obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead))
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
 	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
+		if(M.stat == CONSCIOUS)
+			if(iscarbon(M) && M.health < M.maxHealth/8)
+				execute(user, M)
+				return FALSE
+			if(ismegafauna(M) && M.health < M.maxHealth/5)
+				execute(user, M)
+				limit++
+				return FALSE
+			if(M.health < M.maxHealth/2.8)
+				execute(user, M)
+				return FALSE
+		else
+			to_chat(user, span_notice("You can't control that many minions!"))
+			return FALSE
+	if(ismegafauna(M))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else if (M.stat == CONSCIOUS)
+			bigfinish(user, M)
+			limit ++
+			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
+			return TRUE
+	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else
+			bigfinish(user, M)
+			return TRUE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1935,26 +1922,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		littlefinish(user, M)
 		M.apply_status_effect(/datum/status_effect/exhumed)
 		return TRUE
-	if(ismegafauna(M))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			limit ++
-			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
-			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			return TRUE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
-	if(M.health < M.maxHealth/5)
+	if(M.health < M.maxHealth/2.8)
 		littlefinish(user, M)
 		return TRUE
 
@@ -1989,11 +1960,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/Z = get_turf(thrownby)
 	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
 		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
-		F.forceMove(Z)
-		thrownby.forceMove(D)
-		thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+		if(next_teleport < world.time)
+			F.forceMove(Z)
+			next_teleport = world.time + COOLDOWN_TELE
+			thrownby.forceMove(D)
+			thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+			thrownby.put_in_hands(src)
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
-				thrownby.put_in_hands(src)
