@@ -474,17 +474,17 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
-	backpack_contents = list(/obj/item/kitchen/knife/combat/survival = 1,\
+	backpack_contents = list(/obj/item/roller = 1,\
+		/obj/item/kitchen/knife/combat/survival = 1,\
 		/obj/item/gps/mining = 1,\
 		/obj/item/storage/box/plasmaman/miner = 1,\
-		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
-		/obj/item/storage/firstaid/hypospray/qmc = 1)
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1)
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/plasmaman/mining
-	l_hand = /obj/item/modular_computer/laptop/preset/paramedic/mining_medic
+	l_hand = /obj/item/storage/firstaid/regular
 	l_pocket =  /obj/item/pda/medical
 	r_pocket = /obj/item/wormhole_jaunter
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
