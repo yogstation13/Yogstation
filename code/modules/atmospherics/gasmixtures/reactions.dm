@@ -936,7 +936,7 @@ nobliumformation = 1001
 /**
  * Pluonium BZase Action
  *
- * Breaks BZ down into nitrogen, helium, and plasma in the presence of pluonium.
+ * Breaks BZ down into nitrogen and plasma in the presence of pluonium.
  */
 /datum/gas_reaction/pluonium_bz_response
 	priority = 14
@@ -959,9 +959,8 @@ nobliumformation = 1001
 	
 	var/old_heat_capacity = air.heat_capacity()
 	air.adjust_moles(/datum/gas/bz, -consumed_amount)
-	air.adjust_moles(/datum/gas/nitrogen, consumed_amount * 0.4)
-	air.adjust_moles(/datum/gas/helium, consumed_amount * 1.6)
-	air.adjust_moles(/datum/gas/plasma, consumed_amount * 0.8)
+	air.adjust_moles(/datum/gas/nitrogen, consumed_amount * 0.5)
+	air.adjust_moles(/datum/gas/plasma, consumed_amount * 1)
 
 	var/turf/open/location
 	if(istype(holder, /datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.

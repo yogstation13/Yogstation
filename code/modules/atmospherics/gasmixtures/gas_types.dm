@@ -197,20 +197,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 100
 
-/datum/gas/helium
-	id = "helium"
-	specific_heat = 15
-	name = "Helium"
-	fusion_power = 7
-	rarity = 50
-
-/datum/gas/poopshitium
-	id = "poopshitium"
-	specific_heat = 15
-	name = "Poopshitium"
-	fusion_power = 7
-	rarity = 1
-
 /datum/gas/antinoblium
 	id = "antinoblium"
 	specific_heat = 1

@@ -17,6 +17,7 @@
 		/datum/gas/nitrium,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
+		/datum/gas/dilithium,
 		/datum/gas/freon,
 		/datum/gas/hydrogen,
 		/datum/gas/water_vapor,
@@ -25,7 +26,6 @@
 		/datum/gas/pluonium,
 		/datum/gas/halon,
 		/datum/gas/zauker,
-		/datum/gas/helium,
 		/datum/gas/antinoblium,
 		/datum/gas/hexane,
 	)

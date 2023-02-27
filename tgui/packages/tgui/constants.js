@@ -251,13 +251,6 @@ const GASES = [
     color: 'purple',
   },
   {
-    id: 'helium',
-    path: '/datum/gas/helium',
-    name: 'Helium',
-    label: 'He',
-    color: 'aliceblue',
-  },
-  {
     id: 'antinoblium',
     path: '/datum/gas/antinoblium',
     name: 'Antinoblium',

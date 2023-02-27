@@ -217,13 +217,6 @@
 	gas_type = /datum/gas/zauker
 	filled = 1
 
-/obj/machinery/portable_atmospherics/canister/helium
-	name = "Helium canister"
-	desc = "Helium, inert gas"
-	icon_state = "halon"
-	gas_type = /datum/gas/helium
-	filled = 1
-
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
 	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
