@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(585 modules,
-    1471/8258 macros, 17.8%)</aside></h3>
+    1471/8262 macros, 17.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -873,7 +873,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(654 detailed/1401 documented/27293 total, 5.1%)</aside></h3>
+<aside>(654 detailed/1407 documented/27302 total, 5.2%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -890,6 +890,9 @@ Syndicate infiltrator</li>
     </ul></li>
     <li><a href="area/space.html" title="&#x2F;area&#x2F;space">space</a></li>
     <li><span class="no-substance" title="&#x2F;area&#x2F;survivalpod">Emergency Shelter</span> - Survival Pod</li>
+    <li><span class="no-substance" title="&#x2F;area&#x2F;template_noop">Area Passthrough</span> - Template noop (no operation) is used to skip a turf or area when the template is loaded this allows for template transparency
+ex. if a ship has gaps in it's design, you would use template_noop to fill these in so that when the ship moves z-level, any
+tiles these gaps land on will not be deleted and replaced with the ships (empty) tiles</li>
     </ul></li>
     <li class="has-children"><a href="atom.html" title="&#x2F;atom">atom</a> - The base type for nearly all physical objects in SS13<ul class="index-tree">
     <li class="has-children"><a href="atom/movable.html" title="&#x2F;atom&#x2F;movable">movable</a><ul class="index-tree">
@@ -1474,6 +1477,10 @@ NOTICE: This is NOT fully implemented everywhere. Currently only used in: Prefer
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;command">Maint command</span> - Author: SergeyMeyer</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;donut">Maint donut</span> - Author: Gravehat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;dummy">Maint dummy</span> - Author: SergeyMeyer</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;lair">Maint lair</span> - Author: Marmio64</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;lair2">Maint lair2</span> - Author: Marmio64</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;lair3">Maint lair3</span> - Author: Marmio64</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;lair4">Maint lair4</span> - Author: Marmio64</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;memorial">Maint memorial</span> - Memorial- a memorial to those who died when constructing ss13. Author: Jcat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;singularity">Maint singularity</span> - Singularity- A fake singularity surrounded by space tiles and some sing-themed equipment. Author: Jcat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;threexthree&#x2F;spaceart">Maint spaceart</span> - Author: SergeyMeyer</li>
@@ -2803,6 +2810,7 @@ uranium</li>
     <li><span class="no-substance">indestructible&#x2F;</span><a href="turf/open/indestructible/brazil.html" title="&#x2F;turf&#x2F;open&#x2F;indestructible&#x2F;brazil">..</a></li>
     <li><span class="no-substance" title="&#x2F;turf&#x2F;open&#x2F;lava">lava</span> - LAVA</li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;turf&#x2F;template_noop">Turf Passthrough</span> - See above explanation</li>
     </ul></li>
     <li><a href="world.html" title="&#x2F;world">World</a> - Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke</li>
     </ul>
@@ -2811,7 +2819,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ba1c8991e76ba1c70d17d87a29bb6ee724bdfefd">ba1c899</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e2090e7413548f82f994f96a9dd9f3869d2712d1">e2090e7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
