@@ -82,7 +82,7 @@
 				return power * nearspace_penalty
 
 /datum/symptom/heal/starlight/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 1.5 * actual_power //active less than nocturnal regen
+	var/heal_amt = 2 * actual_power //active less than most healing viruses
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 	if(!parts.len)
