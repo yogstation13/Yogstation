@@ -65358,10 +65358,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"wnV" = (
-/obj/structure/frame/machine,
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "wnZ" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -108716,7 +108712,7 @@ ctE
 fKW
 xiL
 uYk
-wnV
+pPW
 eiw
 pPW
 pPW
