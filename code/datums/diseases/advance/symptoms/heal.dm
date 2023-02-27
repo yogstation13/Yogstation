@@ -111,7 +111,7 @@
 	var/food_conversion = FALSE
 	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream. It also heals toxin damage."
 	threshold_descs = list(
-		"Resistance 7" = "Increases chem removal speed.",
+		"Resistance 7" = "Increases toxin healing speed.",
 		"Stage Speed 6" = "Consumed chemicals feed the host.",
 	)
 
@@ -128,7 +128,7 @@
 	var/heal_amt = actual_power
 	M.adjustToxLoss(-heal_amt)//it is constantly active so it can't be too strong
 	for(var/datum/reagent/R in M.reagents.reagent_list) //Not just toxins!
-		M.reagents.remove_reagent(R.type, actual_power)
+		M.reagents.remove_reagent(R.type, actual_power / power)//doesn't speed up using power
 		if(food_conversion)
 			M.adjust_nutrition(0.3)
 		if(prob(2))
