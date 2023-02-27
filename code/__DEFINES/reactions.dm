@@ -25,9 +25,26 @@
 #define N2O_DECOMPOSITION_ENERGY			82050	//energy released for each mole of n2o decomposed
 #define N2O_DECOMPOSITION_RATE				0.5		//maximum percentage of n2o that can decompose in one tick
 
-#define NITRIUM_DECOMPOSITION_ENERGY 30000
+// Nitrium:
+/// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
+#define NITRIUM_FORMATION_MIN_TEMP 50000
+/// A scaling divisor for the rate of nitrium formation relative to mix temperature.
+#define NITRIUM_FORMATION_TEMP_DIVISOR NITRIUM_FORMATION_MIN_TEMP / 8
+/// The amount of thermal energy consumed when a mole of nitrium is formed
 #define NITRIUM_FORMATION_ENERGY 100000
-#define NITROUS_FORMATION_ENERGY			10000
+
+// Nitro ball:
+#define NITRO_BALL_GAS_AMOUNT 5
+/// Up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
+#define NITRO_BALL_MAX_REACT_RATE 36
+/// Moles of reactant per radball emitted
+#define NITRO_BALL_MOLES_REQUIRED 2
+/// Amount of energy released when plasma is consumed (into radballs) by nitroball 
+#define NITRO_BALL_PLASMA_ENERGY 20000000
+/// Fraction of plasma consumed during reaction	
+#define NITRO_BALL_PLASMA_COEFFICIENT 0.2
+#define NITRO_BALL_HEAT_SCALE 100000
+
 //tritium reaction
 #define TRITIUM_BURN_OXY_FACTOR				100
 #define TRITIUM_BURN_TRIT_FACTOR			10
@@ -46,18 +63,8 @@
 #define METAL_HYDROGEN_MINIMUM_PRESSURE		1e7
 #define METAL_HYDROGEN_FORMATION_ENERGY		20000000
 #define SUPER_SATURATION_THRESHOLD			96
-// Nitrium:
-/// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
-#define NITRIUM_FORMATION_MIN_TEMP 50000
-#define NITRIUM_HEAT_SCALE 100000
-
 #define REACTION_OPPRESSION_THRESHOLD		5
 #define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
-#define NITRO_BALL_GAS_AMOUNT				5
-#define NITRO_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
-#define NITRO_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted
-#define NITRO_BALL_PLASMA_ENERGY				20000000//amount of energy released when plasma is consumed (into radballs) by stimball 
-#define NITRO_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
 //Research point amounts
 #define BZ_RESEARCH_SCALE					4
 #define METAL_HYDROGEN_RESEARCH_MAX_AMOUNT	3000

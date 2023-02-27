@@ -381,7 +381,6 @@ nobliumformation = 1001
 
 /datum/gas_reaction/nitrium_formation/init_reqs()
 	min_requirements = list(
-		/datum/gas/oxygen = 20,
 		/datum/gas/nitrogen = 20,
 		/datum/gas/plasma = 20,
 		/datum/gas/bz = 20,
@@ -391,22 +390,24 @@ nobliumformation = 1001
 
 /datum/gas_reaction/nitrium_formation/react(datum/gas_mixture/air)
 	var/temperature = air.return_temperature()
-
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60), air.get_moles(/datum/gas/oxygen), air.get_moles(/datum/gas/nitrogen))
-	var/energy_used = heat_efficency * NITRIUM_FORMATION_ENERGY
-	if ((air.get_moles(/datum/gas/oxygen) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+
+	var/heat_efficency = min(temperature / NITRIUM_FORMATION_TEMP_DIVISOR, air.get_moles(/datum/gas/nitrogen), air.get_moles(/datum/gas/plasma), air.get_moles(/datum/gas/bz))
+	//Shouldn't produce gas from nothing.
+	if (heat_efficency <= 0 || (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0 ) || (air.get_moles(/datum/gas/plasma) - heat_efficency < 0) || (air.get_moles(/datum/gas/bz) - heat_efficency < 0))
 		return NO_REACTION
 
-	air.adjust_moles(/datum/gas/oxygen, -heat_efficency)
 	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency)
-	air.adjust_moles(/datum/gas/nitrium, heat_efficency*2)
+	air.adjust_moles(/datum/gas/plasma, -heat_efficency)
+	air.adjust_moles(/datum/gas/bz, -heat_efficency)
+	air.adjust_moles(/datum/gas/nitrium, heat_efficency * 2)
 
-	if(energy_used > 0)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity), TCMB))
-		return REACTING
+	var/energy_used = heat_efficency * NITRIUM_FORMATION_ENERGY
+	var/new_heat_capacity = air.heat_capacity()
+	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+		air.set_temperature(max(((temperature * old_heat_capacity - energy_used) / new_heat_capacity), TCMB))
+
+	return REACTING
 
 /datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
 	priority = 4
@@ -522,7 +523,7 @@ nobliumformation = 1001
 	//A percentage of plasma is burned during the reaction that is converted into energy and radballs, though mostly pure heat. 
 	var/plasma_burned = QUANTIZE((air.get_moles(/datum/gas/plasma) + 5*reaction_rate)*NITRO_BALL_PLASMA_COEFFICIENT)
 	//Nitrium has a lot of stored energy, and breaking it up releases some of it. Plasma is also partially converted into energy in the process.
-	var/energy_released = (reaction_rate*NITRIUM_HEAT_SCALE) + (plasma_burned*NITRO_BALL_PLASMA_ENERGY)
+	var/energy_released = (reaction_rate*NITRO_BALL_HEAT_SCALE) + (plasma_burned*NITRO_BALL_PLASMA_ENERGY)
 	air.adjust_moles(/datum/gas/nitrium, -reaction_rate)
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
 	air.adjust_moles(/datum/gas/nitrium, reaction_rate*5)
