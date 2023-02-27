@@ -262,14 +262,6 @@
 		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
 		radiation += tritium_partialpressure/10
 
-	//NITRIUM
-	if(breath.get_moles(/datum/gas/nitrium))
-		var/nitrium_partialpressure = (breath.get_moles(/datum/gas/nitrium)/breath.total_moles())*breath_pressure
-		if(nitrium_partialpressure > 0.5)
-			adjustFireLoss(nitrium_partialpressure * 0.15)
-		if(nitrium_partialpressure > 5)
-			adjustToxLoss(nitrium_partialpressure * 0.05)
-
 	//FREON
 	if(breath.get_moles(/datum/gas/freon))
 		var/freon_partialpressure = (breath.get_moles(/datum/gas/freon)/breath.total_moles())*breath_pressure
@@ -283,8 +275,6 @@
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
-
-
 
 		//Miasma side effects
 		switch(miasma_partialpressure)

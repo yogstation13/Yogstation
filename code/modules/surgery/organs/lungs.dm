@@ -29,7 +29,7 @@
 	var/SA_para_min = 1 //Sleeping agent
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
-	var/gas_stimulation_min = 0.002 // Nitrium and Freon
+	var/gas_stimulation_min = 0.002 // Nitrium, Freon and Hyper-noblium
 	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
 	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
 	//Whether helium speech effects are currently active
@@ -280,15 +280,15 @@
 		if (prob(nitrium_pp) && nitrium_pp > 15)
 			H.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
 			to_chat(H, span_alert("You feel a burning sensation in your chest"))
-		// Metabolize to reagents.
+		
 		gas_breathed = breath.get_moles(/datum/gas/nitrium)
-		if (nitrium_pp > 5)
+		// Metabolize to reagents.
+		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
 			H.reagents.add_reagent(/datum/reagent/nitrium_low_metabolization, max(0, 2 - existing))
-		if (nitrium_pp > 10)
+		if (gas_breathed > gas_stimulation_min * 5)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_high_metabolization)
 			H.reagents.add_reagent(/datum/reagent/nitrium_high_metabolization, max(0, 1 - existing))
-
 		breath.adjust_moles(/datum/gas/nitrium, -gas_breathed)
 
 	// Freon

@@ -46,7 +46,11 @@
 #define METAL_HYDROGEN_MINIMUM_PRESSURE		1e7
 #define METAL_HYDROGEN_FORMATION_ENERGY		20000000
 #define SUPER_SATURATION_THRESHOLD			96
-#define NITRIUM_HEAT_SCALE					100000
+// Nitrium:
+/// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
+#define NITRIUM_FORMATION_MIN_TEMP 50000
+#define NITRIUM_HEAT_SCALE 100000
+
 #define REACTION_OPPRESSION_THRESHOLD		5
 #define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
 #define NITRO_BALL_GAS_AMOUNT				5

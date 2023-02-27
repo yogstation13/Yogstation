@@ -381,22 +381,24 @@ nobliumformation = 1001
 
 /datum/gas_reaction/nitrium_formation/init_reqs()
 	min_requirements = list(
-		/datum/gas/tritium = 20,
+		/datum/gas/oxygen = 20,
 		/datum/gas/nitrogen = 20,
+		/datum/gas/plasma = 20,
+		/datum/gas/bz = 20,
 		/datum/gas/nitrous_oxide = 5,
-		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*30 // 3000C
+		"TEMP" = NITRIUM_FORMATION_MIN_TEMP,
 	)
 
 /datum/gas_reaction/nitrium_formation/react(datum/gas_mixture/air)
 	var/temperature = air.return_temperature()
 
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60), air.get_moles(/datum/gas/tritium), air.get_moles(/datum/gas/nitrogen))
+	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60), air.get_moles(/datum/gas/oxygen), air.get_moles(/datum/gas/nitrogen))
 	var/energy_used = heat_efficency * NITRIUM_FORMATION_ENERGY
-	if ((air.get_moles(/datum/gas/tritium) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+	if ((air.get_moles(/datum/gas/oxygen) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 
-	air.adjust_moles(/datum/gas/tritium, -heat_efficency)
+	air.adjust_moles(/datum/gas/oxygen, -heat_efficency)
 	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency)
 	air.adjust_moles(/datum/gas/nitrium, heat_efficency*2)
 

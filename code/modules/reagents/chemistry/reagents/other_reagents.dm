@@ -1287,8 +1287,8 @@
 		M.confused = min(M.confused + 2, 5)
 	..()
 
-/datum/reagent/nitrium_high_metabolization
-	name = "Nitrosyl plasmide"
+/datum/reagent/nitrium_low_metabolization
+	name = "Nitrium"
 	description = "A highly reactive byproduct that stops you from sleeping, while dealing increasing toxin damage over time."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
@@ -1296,35 +1296,40 @@
 	can_synth = FALSE
 	taste_description = "sourness"
 
-/datum/reagent/nitrium_high_metabolization/on_mob_metabolize(mob/living/L)
+/datum/reagent/nitrium_low_metabolization/on_mob_metabolize(mob/living/L)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
-/datum/reagent/nitrium_high_metabolization/on_mob_end_metabolize(mob/living/L)
+/datum/reagent/nitrium_low_metabolization/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	return ..()
 
-/datum/reagent/nitrium_high_metabolization/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(-2*REM, 0)
+/datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
+	M.adjustStaminaLoss(-2 * REM, FALSE)
 	return ..()
 
-/datum/reagent/nitrium_low_metabolization
-	name = "Nitrium"
-	description = "A highly reactive gas that makes you feel faster"
+/datum/reagent/nitrium_high_metabolization
+	name = "Nitrosyl plasmide"
+	description = "A highly reactive gas that makes you feel faster."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	can_synth = FALSE
 	taste_description = "burning"
 
-/datum/reagent/nitrium_low_metabolization/on_mob_metabolize(mob/living/L)
+/datum/reagent/nitrium_high_metabolization/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 
-/datum/reagent/nitrium_low_metabolization/on_mob_end_metabolize(mob/living/L)
+/datum/reagent/nitrium_high_metabolization/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
+	return ..()
+
+/datum/reagent/nitrium_high_metabolization/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(2 * REM)
+	M.adjustToxLoss(1 * REM)
 	return ..()
 
 /datum/reagent/freon
