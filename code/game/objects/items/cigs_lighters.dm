@@ -744,6 +744,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_color = LIGHT_COLOR_RED
 	overlay_state = "badass_sus"
 
+/obj/item/lighter/gold //gold lighter for donator item, Ynot01
+	name = "golden lighter"
+	desc = "A golden lighter."
+	overlay_list = list(
+		"plaingold",
+		"damegold",
+		"thirteengold",
+		"snakegold"
+		)
+
 ///////////
 //ROLLING//
 ///////////
