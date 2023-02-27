@@ -314,6 +314,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	wound_bonus = 10
 	var/bowtype = /obj/item/gun/ballistic/bow/break_bow
+	var/returning = FALSE
 
 /obj/item/break_blade/Initialize()
 	. = ..()
@@ -354,7 +355,9 @@
 	. = ..()
 	if(!thrower)
 		return
-	addtimer(CALLBACK(src, .proc/return_to, thrower), 3 SECONDS)
+	if(!returning)
+		addtimer(CALLBACK(src, .proc/return_to, thrower), 3 SECONDS)
+		returning = TRUE
 	var/obj/item/break_blade/secondblade = thrower.get_inactive_held_item()
 	if(istype(secondblade))
 		sleep(0.2 SECONDS)
@@ -382,6 +385,7 @@
 	if(!user.put_in_hands(src))
 		return
 	playsound(user, 'sound/magic/blink.ogg', 50, 1)
+	returning = FALSE
 	to_chat(user, span_notice("[src] suddenly returns to you!"))
 
 
