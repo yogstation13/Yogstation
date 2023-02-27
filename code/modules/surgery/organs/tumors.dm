@@ -38,11 +38,11 @@
 		Remove(owner)
 	if(helpful)
 		if(owner.getBruteLoss() + owner.getFireLoss() > 0)
-			owner.adjustToxLoss(strength/2, TRUE, TRUE)
+			owner.adjustToxLoss(strength/2)
 			owner.adjustBruteLoss(-(strength/2))
 			owner.adjustFireLoss(-(strength/2))
 	else
-		owner.adjustToxLoss(strength, TRUE, TRUE) //just take toxin damage
+		owner.adjustToxLoss(strength) //just take toxin damage
 		//regeneration
 	if(regeneration && prob(spread_chance))
 		var/list/missing_limbs = owner.get_missing_limbs() - list(BODY_ZONE_HEAD, BODY_ZONE_CHEST) //don't regenerate the head or chest
