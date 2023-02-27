@@ -638,6 +638,10 @@
 	set category = "Object"
 	set src = usr
 
+	if(HAS_TRAIT(src, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(src, span_danger("You can't interact with anything right now!"))
+		return
+
 	if(ismecha(loc))
 		return
 
