@@ -33,7 +33,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 91-100: Dangerously toxic - swift death
 */
 
-/
+/datum/reagent/consumable/ethanol/on_mob_life(mob/living/carbon/C)
 
 
 
