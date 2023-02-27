@@ -271,15 +271,14 @@
 #define ATMOS_TANK_H2				"hydrogen=100000;TEMP=293.15"
 #define ATMOS_TANK_HYPERNOBLIUM		"nob=100000;TEMP=293.15"
 #define ATMOS_TANK_MIASMA			"miasma=100000;TEMP=293.15"
-#define ATMOS_TANK_NO2				"no2=100000;TEMP=293.15"
+#define ATMOS_TANK_NITRIUM "nitrium=100000;TEMP=293.15"
 #define ATMOS_TANK_PLUOXIUM			"pluox=100000;TEMP=293.15"
 #define ATMOS_TANK_PLUONIUM	"pluonium=100000;TEMP=293.15"
-#define ATMOS_TANK_STIMULUM			"stim=100000;TEMP=293.15"
 #define ATMOS_TANK_TRITIUM			"tritium=100000;TEMP=293.15"
 #define ATMOS_TANK_H2O				"water_vapor=100000;TEMP=293.15"
 #define ATMOS_TANK_ZAUKER			"zauker=100000;TEMP=293.15"
 #define ATMOS_TANK_HELIUM			"helium=100000;TEMP=293.15"
-#define ATMOS_TANK_ANTINOBLIUM		"antinoblium=100000;TEMP=293.15"
+#define ATMOS_TANK_ANTINOBLIUM "antinoblium=100000;TEMP=293.15"
 #define ATMOS_TANK_AIRMIX			"o2=2644;n2=10580;TEMP=293.15"
 
 //LAVALAND
@@ -347,9 +346,9 @@
 #define ATMOS_GAS_MONITOR_OUTPUT_MIASMA "miasma_out"
 #define ATMOS_GAS_MONITOR_SENSOR_MIASMA "miasma_sensor"
 
-#define ATMOS_GAS_MONITOR_INPUT_NO2 "no2_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_NO2 "no2_out"
-#define ATMOS_GAS_MONITOR_SENSOR_NO2 "no2_sensor"
+#define ATMOS_GAS_MONITOR_INPUT_NITRIUM "nitrium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_NITRIUM "nitrium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_NITRIUM "nitrium_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_PLUOXIUM "pluoxium_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_PLUOXIUM "pluoxium_out"
@@ -358,10 +357,6 @@
 #define ATMOS_GAS_MONITOR_INPUT_pluonium "proto-nitrate_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_pluonium "proto-nitrate_out"
 #define ATMOS_GAS_MONITOR_SENSOR_pluonium "proto-nitrate_sensor"
-
-#define ATMOS_GAS_MONITOR_INPUT_STIMULUM "stimulum_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_STIMULUM "stimulum_out"
-#define ATMOS_GAS_MONITOR_SENSOR_STIMULUM "stimulum_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_TRITIUM "tritium_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_TRITIUM "tritium_out"

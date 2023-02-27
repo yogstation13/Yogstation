@@ -104,8 +104,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		/datum/gas/water_vapor		= new/datum/tlv/dangerous,
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
-		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
-		/datum/gas/nitryl			= new/datum/tlv/dangerous,
+		/datum/gas/nitrium			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 		/datum/gas/freon			= new/datum/tlv/dangerous,
@@ -133,8 +132,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv/no_checks,
 		/datum/gas/water_vapor		= new/datum/tlv/no_checks,
 		/datum/gas/tritium			= new/datum/tlv/no_checks,
-		/datum/gas/stimulum			= new/datum/tlv/no_checks,
-		/datum/gas/nitryl			= new/datum/tlv/no_checks,
+		/datum/gas/nitrium			= new/datum/tlv/no_checks,
 		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv/no_checks,
 		/datum/gas/freon			= new/datum/tlv/no_checks,
@@ -161,8 +159,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		/datum/gas/water_vapor		= new/datum/tlv/dangerous,
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
-		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
-		/datum/gas/nitryl			= new/datum/tlv/dangerous,
+		/datum/gas/nitrium			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 		/datum/gas/freon			= new/datum/tlv/dangerous,
@@ -555,11 +552,10 @@
 						/datum/gas/water_vapor,
 						/datum/gas/hypernoblium,
 						/datum/gas/nitrous_oxide,
-						/datum/gas/nitryl,
+						/datum/gas/nitrium,
 						/datum/gas/tritium,
 						/datum/gas/bz,
-						/datum/gas/stimulum,
-						/datum/gas/pluoxium,//yogs comma
+						/datum/gas/pluoxium,
 						/datum/gas/dilithium,//Yogs -- Adds Dilithium
 						/datum/gas/freon,
 						/datum/gas/hydrogen,

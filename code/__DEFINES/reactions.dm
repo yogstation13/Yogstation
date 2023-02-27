@@ -25,8 +25,8 @@
 #define N2O_DECOMPOSITION_ENERGY			82050	//energy released for each mole of n2o decomposed
 #define N2O_DECOMPOSITION_RATE				0.5		//maximum percentage of n2o that can decompose in one tick
 
-#define NITRYL_DECOMPOSITION_ENERGY			30000
-#define NITRYL_FORMATION_ENERGY				100000
+#define NITRIUM_DECOMPOSITION_ENERGY 30000
+#define NITRIUM_FORMATION_ENERGY 100000
 #define NITROUS_FORMATION_ENERGY			10000
 //tritium reaction
 #define TRITIUM_BURN_OXY_FACTOR				100
@@ -46,18 +46,14 @@
 #define METAL_HYDROGEN_MINIMUM_PRESSURE		1e7
 #define METAL_HYDROGEN_FORMATION_ENERGY		20000000
 #define SUPER_SATURATION_THRESHOLD			96
-#define STIMULUM_HEAT_SCALE					100000
-#define STIMULUM_FIRST_RISE					0.65
-#define STIMULUM_FIRST_DROP					0.065
-#define STIMULUM_SECOND_RISE				0.0009
-#define STIMULUM_ABSOLUTE_DROP				0.00000335
+#define NITRIUM_HEAT_SCALE					100000
 #define REACTION_OPPRESSION_THRESHOLD		5
 #define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
-#define STIM_BALL_GAS_AMOUNT				5
-#define STIM_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
-#define STIM_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted
-#define STIM_BALL_PLASMA_ENERGY				20000000//amount of energy released when plasma is consumed (into radballs) by stimball 
-#define STIM_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
+#define NITRO_BALL_GAS_AMOUNT				5
+#define NITRO_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
+#define NITRO_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted
+#define NITRO_BALL_PLASMA_ENERGY				20000000//amount of energy released when plasma is consumed (into radballs) by stimball 
+#define NITRO_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
 //Research point amounts
 #define BZ_RESEARCH_SCALE					4
 #define METAL_HYDROGEN_RESEARCH_MAX_AMOUNT	3000
@@ -67,8 +63,6 @@
 #define BZ_RESEARCH_MAX_AMOUNT				10000*BZ_RESEARCH_AMOUNT
 #define MIASMA_RESEARCH_AMOUNT				40
 #define MIASMA_RESEARCH_MAX_AMOUNT			10000*MIASMA_RESEARCH_AMOUNT
-#define STIMULUM_RESEARCH_AMOUNT			50
-#define STIMULUM_RESEARCH_MAX_AMOUNT		10000*STIMULUM_RESEARCH_AMOUNT
 //Plasma fusion properties
 #define FUSION_MOLE_THRESHOLD				250 	//Mole count required (tritium/plasma) to start a fusion reaction
 #define FUSION_TRITIUM_CONVERSION_COEFFICIENT (1e-10)

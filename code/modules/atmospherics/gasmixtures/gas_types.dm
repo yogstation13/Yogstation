@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(hardcoded_gases, list(/datum/gas/oxygen, /datum/gas/nitrogen, /datum/gas/carbon_dioxide, /datum/gas/plasma)) //the main four gases, which were at one time hardcoded
-GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/gas/nitrogen, /datum/gas/carbon_dioxide, /datum/gas/pluoxium, /datum/gas/stimulum, /datum/gas/nitryl))) //unable to react amongst themselves
+GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/gas/nitrogen, /datum/gas/carbon_dioxide, /datum/gas/pluoxium))) //unable to react amongst themselves
 
 /proc/meta_gas_list()
 	. = subtypesof(/datum/gas)
@@ -43,11 +43,15 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	var/id = ""
 	var/specific_heat = 0
 	var/name = ""
-	var/gas_overlay = "" //icon_state in icons/effects/atmospherics.dmi
+	/// icon_state in icons/effects/atmospherics.dmi
+	var/gas_overlay = ""
 	var/moles_visible = null
-	var/dangerous = FALSE //currently used by canisters
-	var/fusion_power = 0 //How much the gas accelerates a fusion reaction
-	var/rarity = 0 // relative rarity compared to other gases, used when setting up the reactions list.
+	/// Currently used by canisters
+	var/dangerous = FALSE
+	/// How much the gas accelerates a fusion reaction
+	var/fusion_power = 0
+	/// Relative rarity compared to other gases, used when setting up the reactions list.
+	var/rarity = 0
 
 // If you add or remove gases, update TOTAL_NUM_GASES in the extools code to match!
 // (dont forget to count shizz in the yogstation folder)
@@ -107,15 +111,15 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	dangerous = TRUE
 	rarity = 600
 
-/datum/gas/nitryl
-	id = "no2"
-	specific_heat = 20
-	name = "Nitryl"
-	gas_overlay = "nitryl"
+/datum/gas/nitrium
+	id = "nitrium"
+	specific_heat = 10
+	name = "Nitrium"
+	fusion_power = 7
+	gas_overlay = "nitrium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
-	fusion_power = 16
-	rarity = 100
+	rarity = 1
 
 /datum/gas/tritium
 	id = "tritium"
@@ -134,13 +138,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	dangerous = TRUE
 	fusion_power = 8
 	rarity = 400
-
-/datum/gas/stimulum
-	id = "stim"
-	specific_heat = 5
-	name = "Stimulum"
-	fusion_power = 7
-	rarity = 1
 
 /datum/gas/pluoxium
 	id = "pluox"
@@ -206,6 +203,13 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	name = "Helium"
 	fusion_power = 7
 	rarity = 50
+
+/datum/gas/poopshitium
+	id = "poopshitium"
+	specific_heat = 15
+	name = "Poopshitium"
+	fusion_power = 7
+	rarity = 1
 
 /datum/gas/antinoblium
 	id = "antinoblium"

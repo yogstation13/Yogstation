@@ -174,10 +174,10 @@ const GASES = [
     color: 'bisque',
   },
   {
-    id: 'stim',
-    path: '/datum/gas/stimulum',
-    name: 'Stimulum',
-    label: 'Stimulum',
+    id: 'no2',
+    path: '/datum/gas/nitrium',
+    name: 'Nitrium',
+    label: 'Nitrium',
     color: 'brown',
   },
   {

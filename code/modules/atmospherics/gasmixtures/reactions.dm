@@ -9,10 +9,9 @@ halon_o2removal = -1
 nitrous_decomp = 0
 water_vapor = 1
 fusion = 2
-nitrylformation = 3
+nitrium_formation = 3
 bzformation = 4
 freonformation = 5
-stimformation = 6
 stim_ball = 7
 zauker_decomp = 8
 healium_formation = 9
@@ -360,7 +359,7 @@ nobliumformation = 1001
 		air.adjust_moles(/datum/gas/nitrous_oxide, FUSION_TRITIUM_MOLES_USED*(reaction_energy*FUSION_TRITIUM_CONVERSION_COEFFICIENT))
 	else
 		air.adjust_moles(/datum/gas/bz, FUSION_TRITIUM_MOLES_USED*(reaction_energy*-FUSION_TRITIUM_CONVERSION_COEFFICIENT))
-		air.adjust_moles(/datum/gas/nitryl, FUSION_TRITIUM_MOLES_USED*(reaction_energy*-FUSION_TRITIUM_CONVERSION_COEFFICIENT))
+		air.adjust_moles(/datum/gas/nitrium, FUSION_TRITIUM_MOLES_USED*(reaction_energy*-FUSION_TRITIUM_CONVERSION_COEFFICIENT))
 
 	if(reaction_energy)
 		if(location)
@@ -375,35 +374,36 @@ nobliumformation = 1001
 			air.set_temperature(clamp(((air.return_temperature()*old_heat_capacity + reaction_energy)/new_heat_capacity),TCMB,INFINITY))
 		return REACTING
 
-/datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
+/datum/gas_reaction/nitrium_formation //The formation of nitrium. Endothermic. Requires N2O as a catalyst.
 	priority = 3
-	name = "Nitryl formation"
-	id = "nitrylformation"
+	name = "Nitrium formation"
+	id = "nitrium_formation"
 
-/datum/gas_reaction/nitrylformation/init_reqs()
+/datum/gas_reaction/nitrium_formation/init_reqs()
 	min_requirements = list(
-		/datum/gas/oxygen = 20,
+		/datum/gas/tritium = 20,
 		/datum/gas/nitrogen = 20,
 		/datum/gas/nitrous_oxide = 5,
-		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*30
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*30 // 3000C
 	)
 
-/datum/gas_reaction/nitrylformation/react(datum/gas_mixture/air)
+/datum/gas_reaction/nitrium_formation/react(datum/gas_mixture/air)
 	var/temperature = air.return_temperature()
 
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60),air.get_moles(/datum/gas/oxygen),air.get_moles(/datum/gas/nitrogen))
-	var/energy_used = heat_efficency*NITRYL_FORMATION_ENERGY
-	if ((air.get_moles(/datum/gas/oxygen) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60), air.get_moles(/datum/gas/tritium), air.get_moles(/datum/gas/nitrogen))
+	var/energy_used = heat_efficency * NITRIUM_FORMATION_ENERGY
+	if ((air.get_moles(/datum/gas/tritium) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
-	air.adjust_moles(/datum/gas/oxygen, -heat_efficency)
+
+	air.adjust_moles(/datum/gas/tritium, -heat_efficency)
 	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency)
-	air.adjust_moles(/datum/gas/nitryl, heat_efficency*2)
+	air.adjust_moles(/datum/gas/nitrium, heat_efficency*2)
 
 	if(energy_used > 0)
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity),TCMB))
+			air.set_temperature(max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity), TCMB))
 		return REACTING
 
 /datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
@@ -440,36 +440,6 @@ nobliumformation = 1001
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(max(((temperature*old_heat_capacity + energy_released)/new_heat_capacity),TCMB))
-		return REACTING
-
-/datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
-	priority = 6
-	name = "Stimulum formation"
-	id = "stimformation"
-
-/datum/gas_reaction/stimformation/init_reqs()
-	min_requirements = list(
-		/datum/gas/plasma = 10,
-		/datum/gas/bz = 20,
-		/datum/gas/nitryl = 30,
-		"TEMP" = STIMULUM_HEAT_SCALE/2)
-
-/datum/gas_reaction/stimformation/react(datum/gas_mixture/air)
-
-	var/old_heat_capacity = air.heat_capacity()
-	var/heat_scale = min(air.return_temperature()/STIMULUM_HEAT_SCALE,air.get_moles(/datum/gas/plasma),air.get_moles(/datum/gas/nitryl))
-	var/stim_energy_change = heat_scale*STIMULUM_HEAT_SCALE
-
-	if ((air.get_moles(/datum/gas/plasma) - heat_scale < 0) || (air.get_moles(/datum/gas/nitryl) - heat_scale < 0)) //Shouldn't produce gas from nothing.
-		return NO_REACTION
-	air.adjust_moles(/datum/gas/stimulum, heat_scale/10)
-	air.adjust_moles(/datum/gas/plasma, -heat_scale)
-	air.adjust_moles(/datum/gas/nitryl, -heat_scale)
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(STIMULUM_RESEARCH_AMOUNT*heat_scale/10,0.01, STIMULUM_RESEARCH_MAX_AMOUNT))
-	if(stim_energy_change)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(max(((air.return_temperature()*old_heat_capacity + stim_energy_change)/new_heat_capacity),TCMB))
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
@@ -523,21 +493,21 @@ nobliumformation = 1001
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(cleaned_air*MIASMA_RESEARCH_AMOUNT,0.01, MIASMA_RESEARCH_MAX_AMOUNT))//Turns out the burning of miasma is kinda interesting to scientists
 	return REACTING
   
-/datum/gas_reaction/stim_ball
+/datum/gas_reaction/nitro_ball
 	priority = 7
-	name ="Stimulum Energy Ball"
-	id = "stimball"
+	name ="Nitrium Energy Ball"
+	id = "nitro_ball"
 
-/datum/gas_reaction/stim_ball/init_reqs()
+/datum/gas_reaction/nitro_ball/init_reqs()
 	min_requirements = list(
-		/datum/gas/pluoxium = STIM_BALL_MOLES_REQUIRED,
-		/datum/gas/stimulum = STIM_BALL_MOLES_REQUIRED,
-		/datum/gas/plasma = STIM_BALL_MOLES_REQUIRED,
+		/datum/gas/pluoxium = NITRO_BALL_MOLES_REQUIRED,
+		/datum/gas/nitrium = NITRO_BALL_MOLES_REQUIRED,
+		/datum/gas/plasma = NITRO_BALL_MOLES_REQUIRED,
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	)
 
-/// Reaction that burns stimulum and plouxium into radballs and partial constituent gases, but also catalyzes the combustion of plasma.
-/datum/gas_reaction/stim_ball/react(datum/gas_mixture/air, datum/holder)
+/// Reaction that burns nitrium and plouxium into radballs and partial constituent gases, but also catalyzes the combustion of plasma.
+/datum/gas_reaction/nitro_ball/react(datum/gas_mixture/air, datum/holder)
 	var/turf/location
 	var/old_heat_capacity = air.heat_capacity()
 	if(istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
@@ -545,15 +515,15 @@ nobliumformation = 1001
 		location = get_turf(pick(pipenet.members))
 	else
 		location = get_turf(holder)
-	var/reaction_rate = min(STIM_BALL_MAX_REACT_RATE, air.get_moles(/datum/gas/pluoxium), air.get_moles(/datum/gas/stimulum), air.get_moles(/datum/gas/plasma))
-	var/balls_shot = round(reaction_rate/STIM_BALL_MOLES_REQUIRED)
+	var/reaction_rate = min(NITRO_BALL_MAX_REACT_RATE, air.get_moles(/datum/gas/pluoxium), air.get_moles(/datum/gas/nitrium), air.get_moles(/datum/gas/plasma))
+	var/balls_shot = round(reaction_rate/NITRO_BALL_MOLES_REQUIRED)
 	//A percentage of plasma is burned during the reaction that is converted into energy and radballs, though mostly pure heat. 
-	var/plasma_burned = QUANTIZE((air.get_moles(/datum/gas/plasma) + 5*reaction_rate)*STIM_BALL_PLASMA_COEFFICIENT)
-	//Stimulum has a lot of stored energy, and breaking it up releases some of it. Plasma is also partially converted into energy in the process.
-	var/energy_released = (reaction_rate*STIMULUM_HEAT_SCALE) + (plasma_burned*STIM_BALL_PLASMA_ENERGY)
-	air.adjust_moles(/datum/gas/stimulum, -reaction_rate)
+	var/plasma_burned = QUANTIZE((air.get_moles(/datum/gas/plasma) + 5*reaction_rate)*NITRO_BALL_PLASMA_COEFFICIENT)
+	//Nitrium has a lot of stored energy, and breaking it up releases some of it. Plasma is also partially converted into energy in the process.
+	var/energy_released = (reaction_rate*NITRIUM_HEAT_SCALE) + (plasma_burned*NITRO_BALL_PLASMA_ENERGY)
+	air.adjust_moles(/datum/gas/nitrium, -reaction_rate)
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
-	air.adjust_moles(/datum/gas/nitryl, reaction_rate*5)
+	air.adjust_moles(/datum/gas/nitrium, reaction_rate*5)
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
 	if(balls_shot && !isnull(location))
 		var/angular_increment = 360/balls_shot
@@ -563,7 +533,7 @@ nobliumformation = 1001
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
+			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity, TCMB, INFINITY))
 		return REACTING
 
 //freon reaction (is not a fire yet)
@@ -876,7 +846,7 @@ nobliumformation = 1001
 /datum/gas_reaction/zauker_formation/init_reqs()
 	min_requirements = list(
 		/datum/gas/hypernoblium = MINIMUM_MOLE_COUNT,
-		/datum/gas/stimulum = MINIMUM_MOLE_COUNT,
+		/datum/gas/nitrium = MINIMUM_MOLE_COUNT,
 		"TEMP" = 50000,
 		"MAX_TEMP" = 75000
 	)
@@ -884,12 +854,12 @@ nobliumformation = 1001
 /datum/gas_reaction/zauker_formation/react(datum/gas_mixture/air, datum/holder)
 	var/temperature = air.return_temperature()
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature * 0.000005, air.get_moles(/datum/gas/hypernoblium), air.get_moles(/datum/gas/stimulum))
+	var/heat_efficency = min(temperature * 0.000005, air.get_moles(/datum/gas/hypernoblium), air.get_moles(/datum/gas/nitrium))
 	var/energy_used = heat_efficency * 5000
-	if ((air.get_moles(/datum/gas/hypernoblium) - heat_efficency * 0.01 < 0 ) || (air.get_moles(/datum/gas/stimulum) - heat_efficency * 0.5 < 0)) //Shouldn't produce gas from nothing.
+	if ((air.get_moles(/datum/gas/hypernoblium) - heat_efficency * 0.01 < 0 ) || (air.get_moles(/datum/gas/nitrium) - heat_efficency * 0.5 < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hypernoblium, -(heat_efficency * 0.01))
-	air.adjust_moles(/datum/gas/stimulum, -(heat_efficency * 0.5))
+	air.adjust_moles(/datum/gas/nitrium, -(heat_efficency * 0.5))
 	air.adjust_moles(/datum/gas/zauker, (heat_efficency * 0.5))
 
 	if(energy_used)

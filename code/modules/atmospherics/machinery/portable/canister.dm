@@ -48,13 +48,12 @@
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 		"plasma" = /obj/machinery/portable_atmospherics/canister/toxins,
 		"n2o" = /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-		"no2" = /obj/machinery/portable_atmospherics/canister/nitryl,
+		"nitrium" = /obj/machinery/portable_atmospherics/canister/nitrium,
 		"bz" = /obj/machinery/portable_atmospherics/canister/bz,
 		"air" = /obj/machinery/portable_atmospherics/canister/air,
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
 		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
-		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
@@ -137,17 +136,11 @@
 	icon_state = "hypno"
 	gas_type = /datum/gas/hypernoblium
 
-/obj/machinery/portable_atmospherics/canister/nitryl
-	name = "Nitryl canister"
-	desc = "Nitryl gas. Feels great 'til the acid eats your lungs."
-	icon_state = "nitryl"
-	gas_type = /datum/gas/nitryl
-
-/obj/machinery/portable_atmospherics/canister/stimulum
-	name = "Stimulum canister"
-	desc = "Stimulum. High energy gas, high energy people."
-	icon_state = "stimulum"
-	gas_type = /datum/gas/stimulum
+/obj/machinery/portable_atmospherics/canister/nitrium
+	name = "Nitrium canister"
+	desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
+	icon_state = "nitrium"
+	gas_type = /datum/gas/nitrium
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
 	name = "Pluoxium canister"
@@ -722,7 +715,7 @@
 	desc = "This should never be spawned in game except for testing purposes."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/stimball_test/create_gas()
-	air_contents.set_moles(/datum/gas/stimulum, 1000)
+	air_contents.set_moles(/datum/gas/nitrium, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 1000)
 	air_contents.set_moles(/datum/gas/pluoxium, 1000)
 	air_contents.set_temperature(FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1)

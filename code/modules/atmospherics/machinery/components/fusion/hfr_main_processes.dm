@@ -127,13 +127,13 @@
 	// Gases that decrease the amount of energy
 	energy_modifiers -= scaled_moderator_list[/datum/gas/hypernoblium] * 10 + \
 								scaled_moderator_list[/datum/gas/water_vapor] * 0.75 + \
-								scaled_moderator_list[/datum/gas/stimulum] * 0.15 + \
+								scaled_moderator_list[/datum/gas/nitrium] * 0.15 + \
 								scaled_moderator_list[/datum/gas/healium] * 0.45 + \
 								scaled_moderator_list[/datum/gas/freon] * 1.15
 	///Between 0.25 and 100, this value is used to modify the behaviour of the internal energy and the core temperature based on the gases present in the mix
 	var/power_modifier = scaled_moderator_list[/datum/gas/oxygen] * 0.55 + \
 								scaled_moderator_list[/datum/gas/carbon_dioxide] * 0.95 + \
-								scaled_moderator_list[/datum/gas/stimulum] * 1.45 + \
+								scaled_moderator_list[/datum/gas/nitrium] * 1.45 + \
 								scaled_moderator_list[/datum/gas/zauker] * 5.55 + \
 								scaled_moderator_list[/datum/gas/plasma] * 0.05 - \
 								scaled_moderator_list[/datum/gas/nitrous_oxide] * 0.05 - \
@@ -298,19 +298,19 @@
 			if(moderator_list[/datum/gas/pluonium] > 20)
 				radiation *= 1.55
 				heat_output *= 1.025
-				internal_output.adjust_moles(/datum/gas/stimulum, scaled_production * 1.05)
+				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.05)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
 
 		if(3, 4)
 			if(moderator_list[/datum/gas/plasma] > 10)
 				internal_output.adjust_moles(/datum/gas/freon, scaled_production * 0.15)
-				internal_output.adjust_moles(/datum/gas/stimulum, scaled_production * 1.05)
+				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.05)
 				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.45))
 			if(moderator_list[/datum/gas/freon] > 50)
 				heat_output *= 0.9
 				radiation *= 0.8
 			if(moderator_list[/datum/gas/pluonium]> 15)
-				internal_output.adjust_moles(/datum/gas/stimulum, scaled_production * 1.25)
+				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.25)
 				internal_output.adjust_moles(/datum/gas/halon, scaled_production * 1.15)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.55))
 				radiation *= 1.95
@@ -328,7 +328,7 @@
 				heat_output *= 0.5
 				radiation *= 0.2
 			if(moderator_list[/datum/gas/pluonium] > 50)
-				internal_output.adjust_moles(/datum/gas/stimulum, scaled_production * 1.95)
+				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.95)
 				internal_output.adjust_moles(/datum/gas/pluoxium, scaled_production)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
 				radiation *= 1.95
@@ -350,7 +350,7 @@
 				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.45))
 			if(moderator_list[/datum/gas/pluonium])
 				internal_output.adjust_moles(/datum/gas/zauker, scaled_production * 5.35)
-				internal_output.adjust_moles(/datum/gas/stimulum, scaled_production * 2.15)
+				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 2.15)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 3.35))
 				radiation *= 2
 				heat_output *= 2.25
