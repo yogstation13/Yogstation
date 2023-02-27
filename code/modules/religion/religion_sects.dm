@@ -449,10 +449,11 @@
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		COOLDOWN_START(src, last_heal, 12 SECONDS)
-		var/amount_healed = 0
-		amount_healed += (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
+
 		adjust_favor(amount_healed, user)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
