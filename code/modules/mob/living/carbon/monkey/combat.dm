@@ -152,7 +152,8 @@
 						var/mob/M = pickupTarget.loc
 						if(!pickpocketing)
 							pickpocketing = TRUE
-							M.visible_message("[src] starts trying to take [pickupTarget] from [M]!", "[src] tries to take [pickupTarget]!")
+							if(pickupTarget != src) // don't say anything if we try to steal ourselves (it gets blocked in the proc itself)
+								M.visible_message("[src] starts trying to take [pickupTarget] from [M]!", "[src] tries to take [pickupTarget]!")
 							INVOKE_ASYNC(src, .proc/pickpocket, M)
 			return TRUE
 
