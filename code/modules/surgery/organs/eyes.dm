@@ -241,7 +241,7 @@
 // Welding shield implant
 /obj/item/organ/eyes/robotic/shield
 	name = "shielded robotic eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes."
+	desc = "These micro-shields will protect you from welders and flashes."
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	var/toggled = FALSE
 
