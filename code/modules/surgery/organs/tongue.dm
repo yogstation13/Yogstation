@@ -94,8 +94,8 @@
 	..()
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
-	var/static/regex/lizard_ecks = new("+x+", "g")
-	var/static/regex/lizard_eckS = new("+X+", "g")
+	var/static/regex/lizard_ecks = new("(?<!^)x", "g")
+	var/static/regex/lizard_eckS = new("(?<!^)X", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
@@ -308,8 +308,8 @@
 	..()
 	var/static/regex/polysmorph_hiss = new("s+", "g")
 	var/static/regex/polysmorph_hiSS = new("S+", "g")
-	var/static/regex/polysmorph_ecks = new("+x+", "g")//only affects Xs in the middle of a sentence
-	var/static/regex/polysmorph_eckS = new("+X+", "g")
+	var/static/regex/polysmorph_ecks = new("(?<!^)x", "g")//only affects Xs in the middle of a sentence
+	var/static/regex/polysmorph_eckS = new("(?<!^)X", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = polysmorph_hiss.Replace(message, "ssssss")
