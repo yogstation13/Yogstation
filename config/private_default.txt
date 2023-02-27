@@ -86,3 +86,18 @@ FEEDBACK_TABLEPREFIX SS13_
 
 VOICE_ANNOUNCE_URL_BASE http://localhost/voice_announce/
 VOICE_ANNOUNCE_DIR ../Yogstation.net/voice_announce_tmp
+
+## Enable the demo subsystem
+#DEMOS_ENABLED
+
+## Starlight for exterior walls and breaches. Uncomment for starlight!
+## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
+#STARLIGHT
+
+
+## Assets can opt-in to caching their results into `tmp`.
+## This is important, as preferences assets take upwards of 30 seconds (without sleeps) to collect.
+## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
+## This should be disabled (through `CACHE_ASSETS 0`) on development,
+## but enabled on production (the default).
+CACHE_ASSETS 0

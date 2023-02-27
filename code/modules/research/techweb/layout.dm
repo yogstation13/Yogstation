@@ -423,6 +423,10 @@
 	ui_x = -736
 	ui_y = -128
 
+/datum/techweb_node/sidewinder
+	ui_x = -736
+	ui_y = -196
+
 /datum/techweb_node/adv_mecha
 	ui_x = -576
 	ui_y = -96

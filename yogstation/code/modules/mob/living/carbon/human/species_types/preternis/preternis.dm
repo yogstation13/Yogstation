@@ -68,9 +68,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
-		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
+		if(istype(BP,/obj/item/bodypart/l_arm) || istype(BP,/obj/item/bodypart/r_arm))
+			BP.max_damage = 40
 			continue
-		BP.max_damage = 35
+		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
+			BP.max_damage = 30
 
 	if(ishuman(C))
 		maglock = new
@@ -162,9 +164,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
-	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
@@ -269,8 +268,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart())
-		user.next_move += 2 //adds 0.2 second delay to combat
+	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !(user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)))
+		user.next_move += 3 //adds 0.3 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE

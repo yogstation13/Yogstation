@@ -1040,7 +1040,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 //amount is either the fuel of a welding tool, or the number of wires consumed
 //volume is how loud the sound of the item is
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	if(I.use_tool(H, user, 2 SECONDS, amount, volume))
+	if(I.use_tool(H, user, 2 SECONDS, amount, volume, null, H != user))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE

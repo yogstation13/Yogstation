@@ -1,12 +1,13 @@
 #define GUN_HAND "GHG"
-#define POCKET_PISTOl "GG"
+#define POCKET_PISTOL "GG"
 #define BLOOD_BURST "HHH"
 #define MAX_DASH_DIST 3
+#define IPCMARTIAL "ipcmartialtrait"
 
 /datum/martial_art/ultra_violence
 	name = "Ultra Violence"
 	id = MARTIALART_ULTRAVIOLENCE
-	no_guns = FALSE
+	no_guns = TRUE
 	deflection_chance = 0
 	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
@@ -22,7 +23,7 @@
 	if(!can_use(A) || D.stat == DEAD)//stop hitting a corpse
 		return FALSE
 
-	if(findtext(streak, POCKET_PISTOl))
+	if(findtext(streak, POCKET_PISTOL))
 		streak = ""
 		pocket_pistol(A,D)
 		speed_boost(A, 2 SECONDS, "pocketpistol")
@@ -62,7 +63,7 @@
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
-	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLYING|FLOATING))
+	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLOATING))
 	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
@@ -83,64 +84,6 @@
 		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
 		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution
 		new /obj/effect/gibspawner/generic(D.loc)
-
-/*---------------------------------------------------------------
-
-	training related section
-
----------------------------------------------------------------*/
-/mob/living/carbon/human/proc/ultra_violence_help()
-	set name = "Cyber Grind"
-	set desc = "You mentally practice the teachings of Ultra Violence."
-	set category = "Ultra Violence"
-	to_chat(usr, "<b><i>You search your data banks for techniques of Ultra Violence.</i></b>")
-
-	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
-	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
-	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, throwing a lightning bolt if your hands are empty."))
-	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
-	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
-	to_chat(usr, span_warning("You cannot grab either, JUST KILL THEM!")) //seriously, no pushing or clinching, that's boring, just kill
-	to_chat(usr, span_notice("<b>Getting covered in blood will heal you.</b>"))
-	
-	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction.")
-	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for one shot. Target must be living, but can be yourself.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Puts a loaded shotgun in your hand for one shot. Target must be living and not in crit.")
-	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
-	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
-
-/datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)
-	..()
-	H.dna.species.attack_sound = 'sound/weapons/shotgunshot.ogg'
-	H.dna.species.punchdamagelow += 4
-	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
-	H.dna.species.punchstunthreshold += 4
-	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
-	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, "martial")
-	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, "martial")
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
-	ADD_TRAIT(H, TRAIT_NODISMEMBER, "martial")
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")///mainly so emps don't end you instantly, they still do damage though
-	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
-	usr.click_intercept = src //probably breaks something, don't know what though
-	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
-
-/datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
-	..()
-	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
-	H.dna.species.punchdamagelow -= 4
-	H.dna.species.punchdamagehigh -= 4 
-	H.dna.species.punchstunthreshold -= 4
-	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
-	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, "martial")
-	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, "martial")
-	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
-	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, "martial")
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial")
-	deltimer(dash_timer)
-	H.clear_alert("dash_charge")
-	usr.click_intercept = null //un-breaks the thing that i don't know is broken
-	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
 /*---------------------------------------------------------------
 
@@ -197,6 +140,7 @@
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You stash your revolver away."))	
 	qdel(src)
+
 /*---------------------------------------------------------------
 
 	end of pocket pistol section
@@ -256,6 +200,7 @@
 /obj/item/gun/ballistic/shotgun/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You relax your gun hand."))	
 	qdel(src)
+
 /*---------------------------------------------------------------
 
 	end of shotgun punch section
@@ -290,8 +235,7 @@
 	else
 		playsound(H, 'sound/effects/dodge.ogg', 50)
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
-		REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial") //can't immobilize if has stun immune, technically means they can be stunned mid-dash
-		H.Immobilize(30 SECONDS) //to prevent cancelling the dash
+		H.Immobilize(30 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
 		dashing = TRUE
 		H.throw_at(A, MAX_DASH_DIST, 1.5, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
@@ -299,8 +243,7 @@
 
 /datum/martial_art/ultra_violence/proc/dash_end(mob/living/carbon/human/H)
 	dashing = FALSE
-	H.SetImmobilized(0 SECONDS)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")
+	H.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 
 /datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!dashing)
@@ -312,8 +255,73 @@
 	end of dash section
 
 ---------------------------------------------------------------*/
+/*---------------------------------------------------------------
+
+	training related section
+
+---------------------------------------------------------------*/
+/mob/living/carbon/human/proc/ultra_violence_help()
+	set name = "Cyber Grind"
+	set desc = "You mentally practice the teachings of Ultra Violence."
+	set category = "Ultra Violence"
+	to_chat(usr, "<b><i>You search your data banks for techniques of Ultra Violence.</i></b>")
+
+	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
+	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
+	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, throwing a lightning bolt if your hands are empty."))
+	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
+	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
+	to_chat(usr, span_warning("You cannot grab either, JUST KILL THEM!")) //seriously, no pushing or clinching, that's boring, just kill
+	to_chat(usr, span_notice("<b>Getting covered in blood will heal you.</b>"))
+	
+	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction.")
+	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for one shot. Target must be living, but can be yourself.")
+	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Puts a loaded shotgun in your hand for one shot. Target must be living and not in crit.")
+	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
+	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
+
+/datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
+	..()
+	H.dna.species.attack_sound = 'sound/weapons/shotgunshot.ogg'
+	H.dna.species.punchdamagelow += 4
+	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
+	H.dna.species.punchstunthreshold += 4
+	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
+	H.dna.species.speedmod -= 0.1
+	H.update_movespeed(TRUE)
+	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
+	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
+	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
+	usr.click_intercept = src //probably breaks something, don't know what though
+	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
+
+/datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
+	..()
+	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
+	H.dna.species.punchdamagelow -= 4
+	H.dna.species.punchdamagehigh -= 4 
+	H.dna.species.punchstunthreshold -= 4
+	H.dna.species.staminamod = initial(H.dna.species.staminamod)
+	H.dna.species.speedmod += 0.1
+	H.update_movespeed(TRUE)
+	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)
+	deltimer(dash_timer)
+	H.clear_alert("dash_charge")
+	usr.click_intercept = null //un-breaks the thing that i don't know is broken
+	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
 #undef GUN_HAND
-#undef POCKET_PISTOl
+#undef POCKET_PISTOL
 #undef BLOOD_BURST
 #undef MAX_DASH_DIST

@@ -27,8 +27,6 @@
 		/datum/job_department/science,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	mail_goodies = list(
 		///obj/item/raw_anomaly_core/random = 10,
 		///obj/item/disk/tech_disk/spaceloot = 2,
@@ -36,17 +34,6 @@
 	)
 
 	smells_like = "slime"
-
-/datum/job/scientist/proc/EclipseStationChanges()
-	total_positions = 6
-	spawn_positions = 5
-
-/datum/job/scientist/proc/OmegaStationChanges()
-	total_positions = 3
-	spawn_positions = 3
-	added_access = list()
-	base_access = list(ACCESS_ROBO_CONTROL, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
-	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/scientist
 	name = "Scientist"
