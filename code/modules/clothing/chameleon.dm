@@ -471,7 +471,7 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 	
-	/obj/item/clothing/head/helmet/space/plasmaman/chameleon
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon
 	name = "purple envirosuit helmet"
 	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
 	icon_state = "purple_envirohelm"
