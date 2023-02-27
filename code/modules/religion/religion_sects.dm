@@ -139,11 +139,11 @@
 		preternis.charge = clamp(preternis.charge + 30, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
 		did_we_charge = TRUE
 
-	//if we're not targetting someone with a robotic part we stop early
 	var/did_we_heal = FALSE
-	var/heal_amt = 40 //it's robotic limb specific
+	var/heal_amt = 20
 	var/list/limbs = H.bodyparts
 
+	//if we're not targetting someone with a robotic part we don't heal
 	for(var/X in limbs)
 		var/obj/item/bodypart/BP = X
 		if(BP.status == BODYPART_ROBOTIC)
@@ -269,7 +269,7 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 40 //literally only heals burn
+	var/heal_amt = 20
 
 	if(H.getFireLoss() > 0)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
@@ -321,7 +321,7 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 40 //hyper specific target
+	var/heal_amt = 20
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
@@ -393,7 +393,7 @@
 	if(M.assigned_role != "Clown")
 		return
 
-	var/heal_amt = 40 //it only heals clowns
+	var/heal_amt = 20
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
