@@ -86,7 +86,8 @@
 	if(M.getToxLoss() && prob(5))
 		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
 
-	M.adjustToxLoss(-(4 * heal_amt)) //most effective on toxins
+	if(!TRAIT_TOXINLOVER in M?.dna?.species?.inherent_traits)
+		M.adjustToxLoss(-(4 * heal_amt)) //most effective on toxins
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 
@@ -416,7 +417,8 @@
 		if(prob(5))
 			to_chat(M, span_notice("You feel warmer."))
 
-	M.adjustToxLoss(-heal_amt * 2)
+	if(!TRAIT_TOXINLOVER in M?.dna?.species?.inherent_traits)
+		M.adjustToxLoss(-heal_amt * 2)
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 	if(!parts.len)
@@ -477,7 +479,8 @@
 	if(cellular_damage)
 		M.adjustCloneLoss(-heal_amt * 0.5)
 
-	M.adjustToxLoss(-(2 * heal_amt))
+	if(!TRAIT_TOXINLOVER in M?.dna?.species?.inherent_traits)
+		M.adjustToxLoss(-(2 * heal_amt))
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 
