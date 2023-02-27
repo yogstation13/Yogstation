@@ -65,7 +65,6 @@
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes eng budget
-	digitigrade_backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/multisurgeon/magboots) //Magboot implants for digitigrade CEs
 	glasses = /obj/item/clothing/glasses/meson/sunglasses
 
 	backpack = /obj/item/storage/backpack/industrial

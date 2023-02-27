@@ -268,9 +268,6 @@
 	/// What shoes digitgrade crew should wear
 	var/digitigrade_shoes
 
-	/// In case the crew member needs to spawn with something additional if they're digitigrade, often something to bypass their inability to wear normal shoes
-	var/digitigrade_backpack_contents
-
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
 		if(GBACKPACK)
@@ -298,9 +295,6 @@
 
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
-	
-	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_backpack_contents)
-		backpack_contents = digitigrade_backpack_contents
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
