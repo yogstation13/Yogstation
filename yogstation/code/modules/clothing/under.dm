@@ -41,3 +41,9 @@
 	icon_state = "lederhosen"
 	item_state = "lederhosen"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/darkgreentanktop
+	name = "dark green tanktop"
+	desc = "This specific tanktop allows you to hold items in its pockets."
+	icon_state = "darkgreen_tanktop"
+	item_state = "darkgreen_tanktop"

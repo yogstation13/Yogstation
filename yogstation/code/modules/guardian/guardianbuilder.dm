@@ -172,6 +172,11 @@
 		points -= minor.cost
 	return points
 
+/datum/guardianbuilder/proc/create_simplemob(mob/living/user)
+	if(saved_stats.ability == /datum/guardian_ability/major/precision) //snowflak
+		return new /mob/living/simple_animal/hostile/guardian/emperor(user, theme)
+	return new /mob/living/simple_animal/hostile/guardian(user, theme)
+
 /datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
@@ -190,46 +195,45 @@
 			return FALSE
 	// IMPORTANT - if we're debugging, the user gets thrown into the stand
 	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]? ([saved_stats.short_info()])", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
-	if (LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
-		if (guardian_name)
-			G.real_name = guardian_name
-			G.name = guardian_name
-			G.custom_name = TRUE
-		G.summoner = user.mind
-		G.key = C.key
-		G.mind.enslave_mind_to_creator(user)
-		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
-		var/datum/antagonist/guardian/S = new
-		S.stats = saved_stats
-		S.summoner = user.mind
-		G.mind.add_antag_datum(S)
-		G.stats = saved_stats
-		G.stats.Apply(G)
-		G.show_detail()
-		log_game("[key_name(user)] has summoned [key_name(G)], a holoparasite.")
-		switch(theme)
-			if ("tech")
-				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> is now online!"))
-			if ("magic")
-				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
-			if ("carp")
-				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been caught!"))
-		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
-		user.update_sight()
-		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
-		for (var/obj/H in all_items)
-			if (istype(H, /obj/item/clothing/neck/necklace/memento_mori))
-				to_chat(user, span_danger("The power of the [H] overtakes the [src]!"))
-				used = TRUE
-				G.Destroy()
-				return FALSE
-		return TRUE
-	else
+	if(!LAZYLEN(candidates))
 		to_chat(user, "[failure_message]")
 		used = FALSE
 		return FALSE
+	var/mob/dead/observer/C = pick(candidates)
+	var/mob/living/simple_animal/hostile/guardian/G = create_simplemob(user)
+	if (guardian_name)
+		G.real_name = guardian_name
+		G.name = guardian_name
+		G.custom_name = TRUE
+	G.summoner = user.mind
+	G.key = C.key
+	G.mind.enslave_mind_to_creator(user)
+	G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+	var/datum/antagonist/guardian/S = new
+	S.stats = saved_stats
+	S.summoner = user.mind
+	G.mind.add_antag_datum(S)
+	G.stats = saved_stats
+	G.stats.Apply(G)
+	G.show_detail()
+	log_game("[key_name(user)] has summoned [key_name(G)], a holoparasite.")
+	switch(theme)
+		if ("tech")
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> is now online!"))
+		if ("magic")
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
+		if ("carp")
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been caught!"))
+	add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
+	user.update_sight()
+	//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
+	for (var/obj/H in all_items)
+		if (istype(H, /obj/item/clothing/neck/necklace/memento_mori))
+			to_chat(user, span_danger("The power of the [H] overtakes the [src]!"))
+			used = TRUE
+			G.Destroy()
+			return FALSE
+	return TRUE
 
 // the item
 /obj/item/guardiancreator

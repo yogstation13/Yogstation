@@ -358,3 +358,10 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/yogs/ycowboy
+	name = "yellow cowboy overalls"
+	desc = "Fashionable clothing that keeps your heat to a minimum."
+	icon_state = "yellow_cowboy_overalls"
+	item_state = "punk"
+

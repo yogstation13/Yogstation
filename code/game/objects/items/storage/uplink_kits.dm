@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "cowboy" = 2)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -268,6 +268,17 @@
 			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+		if("cowboy") //24 ~ 25 TC
+			new /obj/item/clothing/shoes/jackboots/warden(src) //funny noise + it fits, all clothings are 0 TC cause they don't really provide anything
+			new /obj/item/clothing/suit/yogs/ycowboy(src)
+			new /obj/item/clothing/under/yogs/darkgreentanktop(src)
+			new /obj/item/clothing/head/yogs/ycowboy(src)
+			new /obj/item/clothing/gloves/yogs/armbracers(src)
+			new /obj/item/guardiancreator/tech(src) //15 TC
+			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src) //1 ~ 2 TC
+			new /obj/item/lighter(src) // 0
+			new /obj/item/implanter/adrenalin(src) //8 TC
 
 #undef CARP_CARP_CARP
 

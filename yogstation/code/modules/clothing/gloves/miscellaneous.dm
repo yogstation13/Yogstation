@@ -29,3 +29,9 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
+
+/obj/item/clothing/gloves/yogs/armbracers
+	name = "arm bracers"
+	desc = "These certainly make you feel cool."
+	icon_state = "arm_bracers"
+	item_state = "arm_bracers"

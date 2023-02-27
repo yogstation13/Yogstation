@@ -61,3 +61,9 @@
 	..()
 	if (slot == SLOT_HEAD)
 		user.faction |= "goat"
+
+/obj/item/clothing/head/yogs/ycowboy
+	name = "yellow cowboy hat"
+	desc = "A yellow cowboy hat. YEEEHAWWWWW."
+	icon_state = "yellow_cowboy_hat"
+	item_state = "yellow_cowboy_hat"

@@ -3860,6 +3860,7 @@
 #include "yogstation\code\modules\guardian\abilities\major\gravity.dm"
 #include "yogstation\code\modules\guardian\abilities\major\hand.dm"
 #include "yogstation\code\modules\guardian\abilities\major\healing.dm"
+#include "yogstation\code\modules\guardian\abilities\major\precision.dm"
 #include "yogstation\code\modules\guardian\abilities\major\predator.dm"
 #include "yogstation\code\modules\guardian\abilities\major\scout.dm"
 #include "yogstation\code\modules\guardian\abilities\major\time.dm"

@@ -78,6 +78,11 @@
 	name = "Toggle Stealth"
 	desc = "Enter or exit stealth."
 
+/atom/movable/screen/guardian/ToggleMode/Precise
+	name = "Toggle Stealth"
+	desc = "Transform into a Gun/Holo"
+	icon_state = "gun"
+
 /atom/movable/screen/guardian/Communicate
 	icon_state = "communicate"
 	name = "Communicate"
