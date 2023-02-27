@@ -102,7 +102,7 @@
 	taste_description = "slime"
 
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(reac_volume > 1)//needs at least a certain amount for it to take effect
+	if(reac_volume > 5) //needs at least a certain amount for it to take effect
 		if(islist(data) && (method == INGEST || method == INJECT))
 			for(var/thing in L.diseases)
 				var/datum/disease/D = thing
