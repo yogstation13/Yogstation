@@ -70,7 +70,7 @@
 	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
-	var/antag_rep = 10
+	var/antag_rep = 3
 	/// Base pay of the job
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
@@ -116,6 +116,16 @@
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
+
+	Here is another example of using this:
+
+	/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
+	supervisors = "the captain and the head of personnel"
 	*/
 
 /datum/job/New()
@@ -146,7 +156,7 @@
 	return TRUE
 
 /datum/job/proc/GetAntagRep()
-	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
+	. = CONFIG_GET(keyed_list/antag_rep)[replacetext(lowertext(title)," ", "_")]
 	if(. == null)
 		return antag_rep
 
@@ -316,13 +326,9 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.client?.prefs.read_preference(/datum/preference/toggle/id_in_pda))
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-		else // just in case you hate change
-			H.equip_to_slot_if_possible(PDA, pda_slot)
-			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-		
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()

@@ -89,15 +89,16 @@
 	/// The timer for the afk verb
 	var/afk_verb_timer
 
-/datum/mind/New(key)
-	src.key = key
+/datum/mind/New(_key)
+	key = _key
 	soulOwner = src
 	martial_art = default_martial_art
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
-	if(islist(antag_datums))
-		QDEL_LIST(antag_datums)
+	QDEL_NULL(antag_hud)
+	QDEL_LIST(antag_datums)
+	QDEL_NULL(language_holder)
 	current = null
 	soulOwner = null
 	return ..()

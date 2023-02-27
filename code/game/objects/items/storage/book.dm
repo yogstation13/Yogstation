@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 	force_string = "holy"
+	var/success_heal_chance = 60
 
 /obj/item/storage/book/bible/Initialize()
 	. = ..()
@@ -124,7 +125,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
-	if (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+	if (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(success_heal_chance))
 		to_chat(user, span_danger("[src] slips out of your hand and hits your head."))
 		user.take_bodypart_damage(10)
 		user.Unconscious(400)
@@ -149,7 +150,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			to_chat(user, span_warning("You can't heal yourself!"))
 			return
 
-		if(prob(60) && bless(M, user))
+		if(prob(success_heal_chance) && bless(M, user))
 			smack = 0
 		else if(iscarbon(M))
 			var/mob/living/carbon/C = M

@@ -8,12 +8,12 @@
 "j" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/template_noop)
+"l" = (
+/obj/structure/closet/crate/necropolis/tendril,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/template_noop)
 "B" = (
 /turf/open/chasm/lavaland,
-/area/template_noop)
-"F" = (
-/obj/structure/closet/crate/necropolis,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/template_noop)
 "P" = (
 /turf/template_noop,
@@ -467,7 +467,7 @@ j
 B
 B
 j
-F
+l
 j
 B
 B

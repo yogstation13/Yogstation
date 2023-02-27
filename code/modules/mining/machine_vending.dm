@@ -19,7 +19,7 @@
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
-		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/required/kinetic_crusher,						750, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/kinetic_crusher,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000, VENDING_WEAPON),
@@ -196,7 +196,7 @@
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
-		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer0"),
 		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
 		"Mini Plasma Cutter Kit" = image(icon = 'icons/obj/guns/energy.dmi', icon_state="plasmacutter_mini")
 	)
@@ -224,7 +224,7 @@
 			new /obj/item/stack/marker_beacon/thirty(drop_location)
 		if("Crusher Kit")
 			new /obj/item/extinguisher/mini(drop_location)
-			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
+			new /obj/item/twohanded/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
 		if("Mini Plasma Cutter Kit")
@@ -345,7 +345,7 @@
 		"Kinetic Accelerator" = image(icon = 'icons/obj/guns/energy.dmi', icon_state = "kineticgun"),
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
-		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer0"),
 		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
 		)
 
@@ -368,7 +368,7 @@
 			new /obj/item/borg/upgrade/modkit/minebot_passthrough(drop_location)
 		if("Crusher Kit")
 			new /obj/item/extinguisher/mini(drop_location)
-			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
+			new /obj/item/twohanded/kinetic_crusher(drop_location)
 		if("Advanced Scanner")
 			new /obj/item/t_scanner/adv_mining_scanner(drop_location)
 

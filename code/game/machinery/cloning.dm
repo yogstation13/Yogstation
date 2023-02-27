@@ -154,6 +154,9 @@ GLOBAL_VAR_INIT(clones, 0)
 		tempbiomass += biomass_per_slab
 		handle_biomass(W, tempbiomass, user)
 
+	else
+		return ..()
+
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)

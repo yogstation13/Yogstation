@@ -22,6 +22,11 @@
 	. = ..()
 	if(.)
 		return
+	for(var/obj/item/nullrod/antimagic in user.get_equipped_items())
+		user.say("PURGE THE HERESY!!", forced = "nullrod")
+		to_chat(user, span_danger("You cleanse the heresy of [src] with [antimagic]."))
+		qdel(src)
+		return
 	try_activate(user)
 
 /obj/effect/eldritch/proc/try_activate(mob/living/user)
@@ -33,6 +38,8 @@
 /obj/effect/eldritch/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I,/obj/item/nullrod))
+		user.say("PURSE THE HERESY!!", forced = "nullrod")
+		to_chat(user, span_danger("You cleanse the heresy of [src] with [I]."))
 		qdel(src)
 
 /obj/effect/eldritch/proc/activate(mob/living/user)
@@ -338,8 +345,8 @@
 	..()
 
 /datum/status_effect/brazil_penance/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
+	var/datum/effect_system/fluid_spread/smoke/S = new
+	S.set_up(1, location = get_turf(owner))
 	S.start()
 	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
 	owner.regenerate_organs()

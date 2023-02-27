@@ -28,11 +28,9 @@
 
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
-	paycheck = PAYCHECK_MEDIUM
+	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
-
-	changed_maps = list("EclipseStation")
 
 	smells_like = "bloody soot"
 	mail_goodies = list(
@@ -41,10 +39,6 @@
 		/obj/item/fulton_core = 1
 	)
 
-/datum/job/miningmedic/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
-
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
@@ -52,7 +46,10 @@
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
-		/obj/item/kitchen/knife/combat/survival = 1)
+		/obj/item/kitchen/knife/combat/survival = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
+		/obj/item/modular_computer/laptop/preset/paramedic/mining_medic = 1)
+
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
@@ -62,6 +59,7 @@
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	l_pocket = /obj/item/wormhole_jaunter
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

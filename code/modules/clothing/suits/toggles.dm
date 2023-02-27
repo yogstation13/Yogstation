@@ -130,11 +130,11 @@
 	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/Destroy()
-	if(helmet)
+	if(!QDELETED(helmet))
 		helmet.suit = null
-		qdel(helmet)
+		QDEL_NULL(helmet)
 	if(jetpack && istype(jetpack))
-		qdel(jetpack)
+		QDEL_NULL(jetpack)
 	return ..()
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()
@@ -171,6 +171,7 @@
 			helmet.attack_self(H)
 		H.transferItemToLoc(helmet, src, TRUE)
 		H.update_inv_wear_suit()
+		H.update_internals()
 		to_chat(H, span_notice("The helmet on the hardsuit disengages."))
 		playsound(src.loc, 'sound/mecha/mechmove03.ogg', 50, 1)
 	else
