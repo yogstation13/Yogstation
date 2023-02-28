@@ -2420,7 +2420,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of kortara"
 	glass_desc = "The fermented nectar of the Korta nut, as enjoyed by lizards galaxywide."
 
-
 /datum/reagent/consumable/ethanol/sea_breeze
 	name = "Sea Breeze"
 	description = "Light and refreshing with a hint of mint and cocoa. Sweet, like a smoothie."
