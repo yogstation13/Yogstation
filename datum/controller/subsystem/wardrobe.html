@@ -16,7 +16,7 @@
 <h1>Wardrobe <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/wardrobe.html">wardrobe</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L8">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L8">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 8"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -55,81 +55,81 @@ Private function, for internal use only</td></tr></table>
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L15">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L15">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 15"/></a></h3>
         <p>How much to cache outfit items
 Multiplier, 2 would mean cache enough items to stock 1 of each preloaded order twice, etc</p><h3 id="var/canon_minimum"><aside class="declaration">var </aside>canon_minimum
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L23">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L23">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 23"/></a></h3>
         <p>Canonical list of types required to fill all preloaded stocks once.
 Type -&gt; list(count, last inspection timestamp, call on insert, call on removal)</p><h3 id="var/current_task"><aside class="declaration">var </aside>current_task
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 33"/></a></h3>
         <p>What we're currently doing</p><h3 id="var/initial_callbacks"><aside class="declaration">var </aside>initial_callbacks
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 20"/></a></h3>
         <p>List of type -&gt; list(insertion callback, removal callback) callbacks for insertion/removal to use.
 Set in setup_callbacks, used in canonization.</p><h3 id="var/inspect_delay"><aside class="declaration">var </aside>inspect_delay
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L31">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L31">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 31"/></a></h3>
         <p>How often to inspect our stock, in deciseconds</p><h3 id="var/last_inspect_time"><aside class="declaration">var </aside>last_inspect_time
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 29"/></a></h3>
         <p>The last time we inspected our stock</p><h3 id="var/one_go_master"><aside class="declaration">var </aside>one_go_master
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 39"/></a></h3>
         <p>How many items would we make just by loading the master list once?</p><h3 id="var/order_list"><aside class="declaration">var </aside>order_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 25"/></a></h3>
         <p>List of types to load. Type -&gt; count //(I'd do a list of lists but this needs to be refillable)</p><h3 id="var/overflow_lienency"><aside class="declaration">var </aside>overflow_lienency
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L17">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L17">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 17"/></a></h3>
         <p>How many more then the template of a type are we allowed to have before we delete applicants?</p><h3 id="var/preloaded_stock"><aside class="declaration">var </aside>preloaded_stock
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 27"/></a></h3>
         <p>List of lists. Contains our preloaded atoms. Type -&gt; list(last inspect time, list(instances))</p><h3 id="var/stock_hit"><aside class="declaration">var </aside>stock_hit
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 37"/></a></h3>
         <p>How many times we've successfully returned a cached item</p><h3 id="var/stock_miss"><aside class="declaration">var </aside>stock_miss
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L35">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L35">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 35"/></a></h3>
         <p>How many times we've had to generate a stock item on request</p><h2 id="proc">Proc Details</h2><h3 id="proc/canonize_type"><aside class="declaration">proc </aside>canonize_type<aside>(type_to_stock) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L161">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L161">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 161"/></a></aside>
         </h3>
         <p>Canonizes the type, which means it's now managed by the subsystem, and will be created deleted and passed out to comsumers</p>
@@ -139,7 +139,7 @@ Set in setup_callbacks, used in canonization.</p><h3 id="var/inspect_delay"><asi
 </ul><h3 id="proc/get_callback_type"><aside class="declaration">proc </aside>get_callback_type<aside>(/<a href="datum.html">datum</a>/to_check) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L141">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L141">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 141"/></a></aside>
         </h3>
         <p>Takes a path to get the callback owner for
@@ -147,13 +147,13 @@ Returns the deepest path in our callback store that matches the input
 The hope is this will prevent dumb conflicts, since the furthest down is always going to be the most relevant</p><h3 id="proc/hard_refresh_queue"><aside class="declaration">proc </aside>hard_refresh_queue<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L54">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L54">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 54"/></a></aside>
         </h3>
         <p>Resets the load queue to the master template, accounting for the existing stock</p><h3 id="proc/run_inspection"><aside class="declaration">proc </aside>run_inspection<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L105">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L105">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 105"/></a></aside>
         </h3>
         <p>Once every medium while, go through the current stock and make sure we don't have too much of one thing
@@ -161,7 +161,7 @@ Or that we're not too low on some other stock
 This exists as a failsafe, so the wardrobe doesn't just end up generating too many items or accidentially running out somehow</p><h3 id="proc/setup_callbacks"><aside class="declaration">proc </aside>setup_callbacks<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L306">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L306">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 306"/></a></aside>
         </h3>
         <p>Sets up insertion and removal callbacks by typepath
@@ -169,27 +169,27 @@ We will always use the deepest path. So /obj/item/blade/knife superceeds the ent
 Mind this</p><h3 id="proc/stash_object"><aside class="declaration">proc </aside>stash_object<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/object) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L211">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L211">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 211"/></a></aside>
         </h3>
         <p>Take an existing object, and insert it into our storage
 If we can't or won't take it, it's deleted. You do not own this object after passing it in</p><h3 id="proc/stock_wardrobe"><aside class="declaration">proc </aside>stock_wardrobe<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L88">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L88">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 88"/></a></aside>
         </h3>
         <p>Turns the order list into actual loaded items, this is where most work is done</p><h3 id="proc/unload_stock"><aside class="declaration">proc </aside>unload_stock<aside>(/<a href="datum.html">datum</a>/unload_type, amount, force) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/e2090e7413548f82f994f96a9dd9f3869d2712d1/code/controllers/subsystem/wardrobe.dm#L287">
+            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/controllers/subsystem/wardrobe.dm#L287">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe.dm 287"/></a></aside>
         </h3>
         <p>Unloads an amount of some type we have in stock
 Private function, for internal use only</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e2090e7413548f82f994f96a9dd9f3869d2712d1">e2090e7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/b95026e234eb5095e557e1894fd045cc4ff9e93d">b95026e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
