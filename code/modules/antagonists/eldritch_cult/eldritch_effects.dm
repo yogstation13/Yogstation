@@ -9,7 +9,7 @@
 
 
 /obj/effect/eldritch
-	name = "Generic rune"
+	name = "generic rune"
 	desc = "Weird combination of shapes and symbols etched into the floor itself. The indentation is filled with thick black tar-like fluid."
 	anchored = TRUE
 	icon_state = ""
@@ -104,7 +104,7 @@
 	to_chat(user,span_warning("Your ritual failed! You used the wrong components or are missing something important!"))
 
 /obj/effect/eldritch/big
-	name = "Transmutation rune"
+	name = "transmutation rune"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "eldritch_rune1"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right

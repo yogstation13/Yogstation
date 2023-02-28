@@ -256,7 +256,7 @@
 			flavor_message += 	"You step off the shuttle as smoke curls off your form. Light seeps from openings in your body, and you quickly retire to the Mansus. \
 								Here, you trail back to the Wanderer's Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
 								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
-								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Wood, and rise even higher."
+								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
@@ -269,7 +269,7 @@
 			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. \
 								Then, you slip back into the Mansus and return to the Wanderer's Tavern, flames licking in your wake, though the grass remains unburnt. \
 								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
-								Perhaps you will rebel. Perhaps, one day, you will kindle the lumber of the Wood, and rise even higher."
+								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
@@ -281,8 +281,8 @@
 		if(is_ash)
 			flavor_message += 	"Your soul wanders back into the Mansus after your mortal body falls, and you find yourself in the endless dunes of the Kilnplains. \
 								After some time, you feel supple, grey limbs forming anew. Ash flutters off your skin, and your spark thrums hungrily in your chest, \
-								but this new form burns with the same passion. You begin walking with the determination that led you here. You will not grow old. \
-								One day, you will escape. One day, you will kindle the Mansus whole, and rise even higher."
+								but this new form burns with the same passion. You have walked in the steps of the Nightwatcher. You will not grow old. \
+								One day, you will escape. One day, you will do what the Nightwatcher could not do, and kindle the Mansus whole."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else //Rust
