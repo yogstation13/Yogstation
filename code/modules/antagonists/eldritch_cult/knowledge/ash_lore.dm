@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_ash
 	name = "Nightwatcher's Secret"
-	desc = "Opens up the path of ash to you. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally empowers your mansus grasp to throw away enemies and makes you resistant to fire."
-	gain_text = "The City Guard knows their watch. If you ask them past dusk they may tell you tales of the Ashy Lantern."
+	desc = "Pledges yourself to the path of Ash. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally, empowers your Mansus grasp to throw away enemies. You will also become more resistant to fire."
+	gain_text = "Night on the Kilnplains reveals the Ashy Lantern in the sky. In your dreams, you reached out and touched it. Now, like it, you are a part of the dunes. Forever."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
 	cost = 1
@@ -43,8 +43,8 @@
 
 /datum/eldritch_knowledge/ashen_shift
 	name = "Ashen Shift"
-	gain_text = "Ash is so simple, yet so numerous. Is it possible to master it all?"
-	desc = "Short range jaunt that can help you escape from bad situations."
+	gain_text = "Essence is versatile, flexible. It is so easy for grains to blow into all sorts of small crevices."
+	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)
 	route = PATH_ASH
@@ -52,7 +52,7 @@
 
 /datum/eldritch_knowledge/ashen_eyes
 	name = "Ashen Eyes"
-	gain_text = "These piercing eyes may guide me through the mundane."
+	gain_text = "The City Guard wore these amulets when Amgala was beset by the Sanguine Horde. So too shall you be able to see the blood that flows in others."
 	desc = "Allows you to craft an eldritch amulet by transmutating eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
 	cost = 1
@@ -62,7 +62,7 @@
 /datum/eldritch_knowledge/ash_mark
 	name = "Mark of Ash"
 	gain_text = "Spread the famine."
-	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. The Mark of Ash causes fire loss, attempts to ignite them, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
+	desc = "Your Mansus grasp now applies an Ash mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_ASH
