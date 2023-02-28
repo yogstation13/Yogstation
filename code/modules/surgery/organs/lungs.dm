@@ -277,7 +277,7 @@
 	// Nitrium
 		var/nitrium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrium))
 		// Random chance to inflict side effects, increases with pressure.
-		if (prob(nitrium_pp) && nitrium_pp > 15)
+		if (nitrium_pp > 15 && prob(nitrium_pp))
 			H.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
 			to_chat(H, span_alert("You feel a burning sensation in your chest"))
 		
@@ -286,7 +286,7 @@
 		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
 			H.reagents.add_reagent(/datum/reagent/nitrium_low_metabolization, max(0, 2 - existing))
-		if (gas_breathed > gas_stimulation_min * 5)
+		if (gas_breathed > gas_stimulation_min * 2.5)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_high_metabolization)
 			H.reagents.add_reagent(/datum/reagent/nitrium_high_metabolization, max(0, 1 - existing))
 		breath.adjust_moles(/datum/gas/nitrium, -gas_breathed)
@@ -320,12 +320,6 @@
 			H.adjustToxLoss(-5)
 			H.adjustBruteLoss(-5)
 		gas_breathed = breath.get_moles(/datum/gas/healium)
-		if(gas_breathed > gas_stimulation_min && !helium_speech)
-			helium_speech = TRUE
-			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
-		else if (gas_breathed <= gas_stimulation_min && helium_speech)
-			helium_speech = FALSE
-			UnregisterSignal(owner, COMSIG_MOB_SAY)
 		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
 
 	// Pluonium
@@ -349,6 +343,17 @@
 			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
 		gas_breathed = breath.get_moles(/datum/gas/halon)
 		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
+
+	// Helium
+		gas_breathed = breath.get_moles(/datum/gas/helium)
+		if(gas_breathed > gas_stimulation_min && !helium_speech)
+			helium_speech = TRUE
+			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
+		else if (gas_breathed <= gas_stimulation_min && helium_speech)
+			helium_speech = FALSE
+			UnregisterSignal(owner, COMSIG_MOB_SAY)
+		gas_breathed = breath.get_moles(/datum/gas/helium)
+		breath.adjust_moles(/datum/gas/helium, -gas_breathed)
 
 	// Hexane
 		gas_breathed = breath.get_moles(/datum/gas/hexane)
