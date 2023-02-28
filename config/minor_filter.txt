@@ -41,3 +41,4 @@ hbu=how about you
 \bur\b=your
 btw=by the way
 pls=please
+plz=please
