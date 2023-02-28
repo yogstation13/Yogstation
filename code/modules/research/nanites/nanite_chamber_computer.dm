@@ -94,10 +94,15 @@
 		return data
 
 	var/mob/living/L = chamber.occupant
-
-	if(issilicon(L))
-		data["status_msg"] = "Occupant not compatible with nanites."
-		return data
+	if(iscarbon(chamber.occupant))
+		var/mob/living/carbon/carbon_occupant = chamber.occupant
+		if(NONANITES in carbon_occupant.dna.species.species_traits)
+			data["status_msg"] = "Occupant not compatible with nanites."
+			return data
+	else
+		if(issilicon(L))
+			data["status_msg"] = "Occupant not compatible with nanites."
+			return data
 
 	if(chamber.busy)
 		data["status_msg"] = chamber.busy_message
