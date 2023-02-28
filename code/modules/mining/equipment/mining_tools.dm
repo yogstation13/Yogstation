@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron=2000) //one sheet, but where can you make them?
 	tool_behaviour = TOOL_MINING
-	toolspeed = 1
+	toolspeed = 0.8
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 
@@ -38,7 +38,7 @@
 	name = "silver-plated pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
-	toolspeed = 0.5 //mines faster than a normal pickaxe, bought from mining vendor
+	toolspeed = 0.4 //mines faster than a normal pickaxe, bought from mining vendor
 	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
 	force = 17
 
@@ -46,7 +46,7 @@
 	name = "diamond-tipped pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
-	toolspeed = 0.3
+	toolspeed = 0.2
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
 	force = 19
 
@@ -56,7 +56,6 @@ obj/item/pickaxe/bonepickaxe
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "bonepickaxe"
 	item_state = "bonepickaxe"
-	toolspeed = 1
 	force = 9
 	throwforce = 6
 	slot_flags = ITEM_SLOT_BELT
@@ -66,7 +65,7 @@ obj/item/pickaxe/bonepickaxe
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 	slot_flags = ITEM_SLOT_BELT
-	toolspeed = 0.6 //available from roundstart, faster than a pickaxe.
+	toolspeed = 0.4 //available from roundstart, faster than a pickaxe.
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	desc = "An electric mining drill for the especially scrawny."
@@ -83,19 +82,19 @@ obj/item/pickaxe/bonepickaxe
 /obj/item/pickaxe/drill/diamonddrill
 	name = "diamond-tipped mining drill"
 	icon_state = "diamonddrill"
-	toolspeed = 0.2
+	toolspeed = 0.1
 	desc = "Yours is the drill that will pierce the heavens!"
 
 /obj/item/pickaxe/drill/cyborg/diamond //This is the BORG version!
 	name = "diamond-tipped cyborg mining drill" //To inherit the NODROP_1 flag, and easier to change borg specific drill mechanics.
 	icon_state = "diamonddrill"
-	toolspeed = 0.2
+	toolspeed = 0.1
 
 /obj/item/pickaxe/drill/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	toolspeed = 0.1 //the epitome of powertools
+	toolspeed = 0 //the epitome of powertools, literally instant
 	w_class = WEIGHT_CLASS_HUGE //the epitome of powertools is CHUNCKY
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
@@ -124,7 +123,7 @@ obj/item/pickaxe/bonepickaxe
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
 	tool_behaviour = TOOL_SHOVEL
-	toolspeed = 0.7
+	toolspeed = 0.6
 	usesound = 'sound/effects/shovel_dig.ogg'
 	throwforce = 4
 	item_state = "shovel"
@@ -159,4 +158,4 @@ obj/item/pickaxe/bonepickaxe
 	name = "bone spade"
 	desc = "A bone spade, suitable for digging and moving dirt."
 	icon_state = "spade_bone"
-	toolspeed = 0.75
+	toolspeed = 0.7
