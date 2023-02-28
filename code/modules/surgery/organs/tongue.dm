@@ -321,3 +321,16 @@
 /obj/item/organ/tongue/polysmorph/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_polysmorph
+
+/obj/item/organ/tongue/slime
+	name = "slime tongue"
+	desc = "A rudimentary tongue made of slime, just barely able to make every sound needed to talk normally."
+	icon_state = "tonguezombie"
+	say_mod = "garbles"
+	var/static/list/languages_possible_jelly = typecacheof(list(
+		/datum/language/common,
+		/datum/language/slime))
+
+/obj/item/organ/tongue/slime/Initialize(mapload)
+	. = ..()
+	languages_possible |= languages_possible_jelly
