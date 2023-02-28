@@ -588,4 +588,47 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" //yogs end
+	icon_state = "time_dilation" 
+
+/datum/status_effect/doubledown
+	id = "doubledown"
+	duration = 20
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/doubledown
+	var/obj/effect/temp_visual/decoy/tensecond/F //surely a combo wont go on for more than 10 seconds
+
+/atom/movable/screen/alert/status_effect/doubledown
+	name = "Doubling Down"
+	desc = "Taking 65% less damage, go all in!"
+	icon_state = "aura"
+
+/datum/status_effect/doubledown/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			F = new(get_turf(H),H)
+			walk_towards(F, H)
+			animate(F, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
+			H.ignore_slowdown(type)
+			H.physiology.brute_mod *= 0.35
+			H.physiology.burn_mod *= 0.35
+			H.physiology.tox_mod *= 0.35
+			H.physiology.oxy_mod *= 0.35
+			H.physiology.clone_mod *= 0.35
+			H.physiology.stamina_mod *= 0.35
+		owner.log_message("gained buster damage reduction", LOG_ATTACK)
+
+/datum/status_effect/doubledown/on_remove()
+	if(ishuman(owner))
+		qdel(F)
+		var/mob/living/carbon/human/H = owner
+		H.unignore_slowdown(type)
+		H.physiology.brute_mod *= 2.85
+		H.physiology.burn_mod *= 2.85
+		H.physiology.tox_mod *= 2.85
+		H.physiology.oxy_mod *= 2.85
+		H.physiology.clone_mod *= 2.85
+		H.physiology.stamina_mod *= 2.85
+	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end

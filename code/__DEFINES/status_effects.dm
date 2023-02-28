@@ -48,6 +48,8 @@
 
 #define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
 
+#define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
+
 /////////////
 // DEBUFFS //
 /////////////
