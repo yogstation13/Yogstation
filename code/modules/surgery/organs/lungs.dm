@@ -320,6 +320,12 @@
 			H.adjustToxLoss(-5)
 			H.adjustBruteLoss(-5)
 		gas_breathed = breath.get_moles(/datum/gas/healium)
+		if(gas_breathed > gas_stimulation_min && !helium_speech)
+			helium_speech = TRUE
+			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
+		else if (gas_breathed <= gas_stimulation_min && helium_speech)
+			helium_speech = FALSE
+			UnregisterSignal(owner, COMSIG_MOB_SAY)
 		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
 
 	// Pluonium
