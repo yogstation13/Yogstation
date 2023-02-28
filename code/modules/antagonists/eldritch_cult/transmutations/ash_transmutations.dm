@@ -5,7 +5,7 @@
 	required_shit_list = "A pile of ash and a knife."
 
 /datum/eldritch_transmutation/ashen_eyes
-	name = "Ashen Eyes"
+	name = "Eldritch Medallion"
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/shard)
 	result_atoms = list(/obj/item/clothing/neck/eldritch_amulet)
 	required_shit_list = "A glass shard and a pair of eyes."
@@ -57,7 +57,7 @@
 	chosen_mob.update_mobility()
 
 /datum/eldritch_transmutation/final/ash_final
-	name = "Ashlord's Rite"
+	name = "Amgala's Ruin"
 	required_atoms = list(/mob/living/carbon/human)
 	var/list/trait_list = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_BOMBIMMUNE)
 	required_shit_list = "Three dead bodies."
