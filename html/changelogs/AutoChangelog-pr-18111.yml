@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a message being sent sometimes if you were holding a monkey"
