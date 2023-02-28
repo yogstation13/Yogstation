@@ -17,12 +17,6 @@
 		meowcount--
 	return ..()
 
-/datum/species/human/felinid/handle_chemicals(datum/reagent/chem,mob/living/carbon/human/H)
-	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/consumable/ethanol/catsip))
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -0.5*REM)
-	..()
-
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
 	if(!M.dna.species.is_wagging_tail())
 		M.emote("wag")
