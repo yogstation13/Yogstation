@@ -123,6 +123,7 @@
 				to_chat(user, span_warning("You probably shouldn't attack something on your person."))
 			return
 		if(!istype(I, /obj/item/organ/brain) && !istype(I, /obj/item/clothing/mask/cigarette))
+			user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 			I.take_damage(objdam)
 			user.visible_message(span_warning("[user] pulverizes [I]!"))
 		return
