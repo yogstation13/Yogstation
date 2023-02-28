@@ -227,3 +227,8 @@
 	name = "\improper Odysseus wreckage"
 	icon_state = "odysseus-broken"
 	orig_mecha = /obj/mecha/medical/odysseus
+
+/obj/structure/mecha_wreckage/sidewinder
+	name = "\improper Sidewinder wreckage"
+	icon_state = "sidewinder-broken"
+	orig_mecha = /obj/mecha/combat/sidewinder

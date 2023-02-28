@@ -6,6 +6,7 @@ export const IAA_MECHANICAL_DESCRIPTION
       Minimize damage to Nanotrasen civilians and their station, but utilize an uplink to eliminate all rogue agents. Be wary; others will be moving against you.
    `;
 
+
 const internalaffairsagent: Antagonist = {
   key: "internalaffairsagent",
   name: "Internal Affairs Agent",

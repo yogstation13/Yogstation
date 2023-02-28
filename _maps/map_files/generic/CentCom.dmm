@@ -16306,7 +16306,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/ammo_box/n762,
+/obj/item/ammo_box/no_direct/n762,
 /obj/item/ammo_box/c9mm,
 /obj/item/ammo_box/c45,
 /obj/item/ammo_box/c10mm,
@@ -20284,11 +20284,11 @@
 "aPi" = (
 /obj/structure/table/reinforced,
 /obj/item/grenade/clusterbuster/cleaner,
-/obj/item/grenade/clusterbuster/emp{
+/obj/item/grenade/clusterbuster/syndie/emp{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/grenade/clusterbuster/facid{
+/obj/item/grenade/clusterbuster/syndie/facid{
 	pixel_x = 8;
 	pixel_y = 8
 	},
@@ -22835,12 +22835,12 @@
 /area/bluespace_locker)
 "aUu" = (
 /obj/structure/table/reinforced,
-/obj/item/grenade/clusterbuster/inferno,
-/obj/item/grenade/clusterbuster/spawner_spesscarp{
+/obj/item/grenade/clusterbuster/syndie/inferno,
+/obj/item/grenade/clusterbuster/syndie/spawner_spesscarp{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/grenade/clusterbuster/spawner_manhacks{
+/obj/item/grenade/clusterbuster/syndie/spawner_manhacks{
 	pixel_x = 8;
 	pixel_y = 8
 	},

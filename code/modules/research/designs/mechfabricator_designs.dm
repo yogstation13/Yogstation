@@ -553,6 +553,87 @@
 	construction_time = 150
 	category = list("Clarke")
 
+//Sidewinder
+/datum/design/sidewinder_chassis
+	name = "Exosuit Chassis (\"Sidewinder\")"
+	id = "sidewinder_chassis"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/sidewinder
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=5000)
+	construction_time = 100
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_torso
+	name = "Exosuit Torso (\"Sidewinder\")"
+	id = "sidewinder_torso"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_torso
+	materials = list(/datum/material/iron=15000, /datum/material/glass=10000, /datum/material/titanium=8000, /datum/material/plasma=4000)
+	construction_time = 300
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_head
+	name = "Exosuit Head (\"Sidewinder\")"
+	id = "sidewinder_head"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_head
+	materials = list(/datum/material/iron=10000, /datum/material/glass=5000, /datum/material/titanium=2000, /datum/material/plasma=5000)
+	construction_time = 200
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_left_arm
+	name = "Exosuit Left Arm (\"Sidewinder\")"
+	id = "sidewinder_left_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_left_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1500, /datum/material/gold=1000)
+	construction_time = 200
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_right_arm
+	name = "Exosuit Right Arm (\"Sidewinder\")"
+	id = "sidewinder_right_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_right_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1500, /datum/material/gold=1000)
+	construction_time = 200
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_left_leg
+	name = "Exosuit Left Leg (\"Sidewinder\")"
+	id = "sidewinder_left_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_left_leg
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1000, /datum/material/gold=1000)
+	construction_time = 200
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_right_leg
+	name = "Exosuit Right Leg (\"Sidewinder\")"
+	id = "sidewinder_right_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_right_leg
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1000, /datum/material/gold=1000)
+	construction_time = 200
+	category = list("Sidewinder")
+	combat_design = TRUE
+
+/datum/design/sidewinder_armor
+	name = "Exosuit Armor (\"Sidewinder\")"
+	id = "sidewinder_armor"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/sidewinder_armor
+	materials = list(/datum/material/iron=15000,/datum/material/plasma=10000,/datum/material/titanium=10000)
+	construction_time = 600
+	category = list("Sidewinder")
+	combat_design = TRUE
+
 //Exosuit Equipment
 /datum/design/ripleyupgrade
 	name = "Ripley MK-I to MK-II conversion kit"

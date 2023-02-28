@@ -646,7 +646,7 @@
 	contraband = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/rationpack,
 					/obj/item/ammo_box/a762,
-					/obj/item/ammo_box/n762,
+					/obj/item/ammo_box/no_direct/n762,
 					/obj/item/storage/toolbox/ammo,
 					/obj/item/clothing/suit/armor/vest/russian,
 					/obj/item/clothing/head/helmet/rus_helmet,
