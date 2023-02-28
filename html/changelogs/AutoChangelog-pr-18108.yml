@@ -1,5 +1,0 @@
-author: "solwashere"
-delete-after: true 
-changes: 
-  - tweak: "Changed the lifesteal crystal from doing a flat 2.5 healing per shot to instead a healing percentage of 15 percent per shot"
-  - tweak: "lifesteal crystal can heal robotic limbs."
