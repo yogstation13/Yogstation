@@ -197,6 +197,10 @@
 /obj/item/projectile/kinetic/prehit(atom/target)
 	. = ..()
 	if(.)
+		if(kinetic_gun)
+			var/list/mods = kinetic_gun.get_modkits()
+			for(var/obj/item/borg/upgrade/modkit/M in mods)
+				M.projectile_prehit(src, target, kinetic_gun)
 		if(!lavaland_equipment_pressure_check(get_turf(target)))
 			name = "weakened [name]"
 			damage = damage * pressure_decrease
@@ -205,11 +209,7 @@
 			pressure_decrease = min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
 			name = "destabilized [name]"
 			damage = damage * pressure_decrease
-			pressure_decrease_active = TRUE
-		if(kinetic_gun)
-			var/list/mods = kinetic_gun.get_modkits()
-			for(var/obj/item/borg/upgrade/modkit/M in mods)
-				M.projectile_prehit(src, target, kinetic_gun)
+			pressure_decrease_active = TRUE 
 
 /obj/item/projectile/kinetic/on_range()
 	strike_thing()
@@ -470,7 +470,7 @@
 	name = "lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to slightly heal the firer on striking a living target."
 	icon_state = "modkit_crystal"
-	modifier = 0.15 //Better at healing than it was before.
+	modifier = 2.5 //Not a very effective method of healing.
 	cost = 20
 	var/static/list/damage_heal_order = list(BRUTE, BURN, OXY)
 
@@ -480,7 +480,7 @@
 		if(L.stat == DEAD)
 			return
 		L = K.firer
-		L.heal_ordered_damage(modifier*K.damage, damage_heal_order, BODYPART_ANY)
+		L.heal_ordered_damage(modifier, damage_heal_order)
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
 	name = "resonator blast"
