@@ -50,7 +50,7 @@
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
 	force = 19
 
-obj/item/pickaxe/bonepickaxe
+/obj/item/pickaxe/bonepickaxe
 	name = "bone pickaxe"
 	desc = "A spine and ribcage tied tightly with weaver sinew...at least it's better than your bare hands at digging up dirt."
 	icon = 'icons/obj/mining.dmi'
