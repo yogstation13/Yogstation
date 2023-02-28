@@ -360,13 +360,6 @@
 	program_type = /datum/nanite_program/triggered/explosive
 	category = list("Weaponized Nanites")
 
-/datum/design/nanites/mind_control
-	name = "Mind Control"
-	desc = "The nanites imprint an absolute directive onto the host's brain while they're active."
-	id = "mindcontrol_nanites"
-	program_type = /datum/nanite_program/mind_control
-	category = list("Weaponized Nanites")
-
 ////////////////////SUPPRESSION NANITES//////////////////////////////////////
 
 /datum/design/nanites/shock
@@ -388,20 +381,6 @@
 	desc = "The nanites cause rapid narcolepsy when triggered."
 	id = "sleep_nanites"
 	program_type = /datum/nanite_program/triggered/sleepy
-	category = list("Suppression Nanites")
-
-/datum/design/nanites/paralyzing
-	name = "Paralysis"
-	desc = "The nanites actively suppress nervous pulses, effectively paralyzing the host."
-	id = "paralyzing_nanites"
-	program_type = /datum/nanite_program/paralyzing
-	category = list("Suppression Nanites")
-
-/datum/design/nanites/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
-	id = "fakedeath_nanites"
-	program_type = /datum/nanite_program/fake_death
 	category = list("Suppression Nanites")
 
 /datum/design/nanites/pacifying

@@ -318,6 +318,7 @@
 	name = "Toggle Paddles"
 
 /datum/action/item_action/set_internals
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	name = "Set Internals"
 
 /datum/action/item_action/set_internals/UpdateButtonIcon(status_only = FALSE, force)
@@ -424,9 +425,11 @@
 	var/scripture_index = 0 //the index of the scripture we're associated with
 
 /datum/action/item_action/toggle_helmet_flashlight
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	name = "Toggle Helmet Flashlight"
 
 /datum/action/item_action/toggle_helmet_mode
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	name = "Toggle Helmet Mode"
 
 /datum/action/item_action/toggle
@@ -479,6 +482,7 @@
 	name = "Toggle Human Head"
 
 /datum/action/item_action/toggle_helmet
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	name = "Toggle Helmet"
 
 /datum/action/item_action/toggle_jetpack

@@ -1,22 +1,22 @@
 import { Antagonist, Category } from "../base";
 import { multiline } from "common/string";
 
-export const OPERATIVE_MECHANICAL_DESCRIPTION = multiline`
-  Retrieve the nuclear authentication disk, use it to activate the nuclear
-  fission explosive, and destroy the station.
-`;
+export const OPERATIVE_MECHANICAL_DESCRIPTION
+   = multiline`
+      Plan an assault of the station with other elite operatives and purchase your gear accordingly.
+      Kill the disk holder, anchor and arm the stolen nuclear device to the station, and return back to the base.
+   `;
+
 
 const Operative: Antagonist = {
   key: "operative",
   name: "Nuclear Operative",
   description: [
     multiline`
-      Congratulations, agent. You have been chosen to join the Syndicate
-      Nuclear Operative strike team. Your mission, whether or not you choose
-      to accept it, is to destroy Nanotrasen's most advanced research facility!
-      That's right, you're going to Space Station 13.
+      Congratulations, agent. Your performance lately has exceeded all expectations.
+      You will report to a Gorlex team on one of our covert bases.
+      The mission is simple; you are to steal the authentication device, deliver the payload, and exfiltrate before the payload detonates.
     `,
-
     OPERATIVE_MECHANICAL_DESCRIPTION,
   ],
   category: Category.Roundstart,
