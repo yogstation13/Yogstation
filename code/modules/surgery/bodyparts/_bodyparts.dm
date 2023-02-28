@@ -449,7 +449,7 @@
 /**
   * check_wounding_mods() is where we handle the various modifiers of a wound roll
   *
-  * A short list of things we consider: any armor a human target may be wearing, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
+  * A short list of things we consider: any armor a human target may be wearing, any innate wound armour from their physiology, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
   * We also flick through all of the wounds we currently have on this limb and add their threshold penalties, so that having lots of bad wounds makes you more liable to get hurt worse
   * Lastly, we add the inherent wound_resistance variable the bodypart has (heads and chests are slightly harder to wound), and a small bonus if the limb is already disabled
   *
@@ -462,6 +462,10 @@
 
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
+
+		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
+			armor_ablation += H.physiology.armor.wound
+		
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
