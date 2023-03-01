@@ -291,8 +291,9 @@
 	var/datum/action/innate/darkspawn/D = abilities[id]
 	if(!silent)
 		to_chat(owner.current, span_velvet("You have lost the <b>[D.name]</b> ability."))
-	QDEL_NULL(abilities[id])
-	abilities -= abilities[id]
+	D.Remove(owner.current)
+	abilities -= D
+	QDEL_NULL(D)
 	return TRUE
 
 /datum/antagonist/darkspawn/proc/has_upgrade(id)
@@ -367,7 +368,7 @@
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
+	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
 	psi_regen = 9999
