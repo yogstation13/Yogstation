@@ -125,6 +125,8 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
+	speak_audio = "sound/creatures/farm_animals/Cow_moo.ogg"
+	death_audio = "sound/creatures/farm_animals/Cow_death_moo.ogg"
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.")
 	speak_chance = 1
@@ -171,6 +173,7 @@
 		M.visible_message(span_warning("[M] tips over [src]."),
 			span_notice("You tip over [src]."))
 		to_chat(src, span_userdanger("You are tipped over by [M]!"))
+		playsound(src, death_audio, 20, 1) 
 		Paralyze(60, ignore_canstun = TRUE)
 		icon_state = icon_dead
 		spawn(rand(20,50))
