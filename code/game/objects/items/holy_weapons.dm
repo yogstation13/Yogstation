@@ -27,6 +27,8 @@
 
 	var/selected_category = MENU_ALL
 	var/list/show_categories = list(MENU_ALL, MENU_WEAPON, MENU_ARM, MENU_CLOTHING, MENU_MISC)
+	/// this text will show on the tgui menu when picking the nullrod form they want. should give a better idea of the nullrod's gimmick or quirks without giving away numbers 
+	var/additional_desc = "How are you seeing this? This is the default Nullrod bonus description. I makey a mistakey."
 
 /obj/item/nullrod/Initialize()
 	. = ..()
@@ -69,32 +71,40 @@
 	
 /obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
-	var/list/nullrods = list()
 	data["categories"] = list()
-
-	for(var/shaft in subtypesof(/obj/item/nullrod))
-		var/obj/item/nullrod/rod = new shaft
-		if(!rod?.chaplain_spawnable)
-			continue
-		var/list/details = list()
-		details["name"] = rod.name
-		details["description"] = rod.desc
-		details["menu_tab"] = rod.menutab
-		
-		var/icon/rod_pic = getFlatIcon(rod)
-		var/md5 = md5(fcopy_rsc(rod_pic))
-		if(!SSassets.cache["photo_[md5]_[rod.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[rod.name]_icon.png", rod_pic)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[rod.name]_icon.png" = rod_pic))
-		details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[rod.name]_icon.png")
-		nullrods += list(details)
-		//switch(rod.menutab)
-		qdel(rod)
-
-	data["nullrods"] = nullrods
-
+	data["nullrods"] = list()
 	for(var/category in show_categories)
-		data["categories"] += category
+		var/list/category_data = list()
+		category_data["name"] = category
+		
+		var/list/nullrods = list()
+		
+		for(var/shaft in subtypesof(/obj/item/nullrod))
+			var/obj/item/nullrod/rod = new shaft
+			if(!rod?.chaplain_spawnable)
+				continue
+			var/list/details = list()
+			details["name"] = rod.name
+			details["description"] = rod.desc
+			details["menu_tab"] = rod.menutab
+			details["type_path"] = rod.type
+			details["additional_description"] = rod.additional_desc
+			
+			var/icon/rod_pic = getFlatIcon(rod)
+			var/md5 = md5(fcopy_rsc(rod_pic))
+			if(!SSassets.cache["photo_[md5]_[rod.name]_icon.png"])
+				SSassets.transport.register_asset("photo_[md5]_[rod.name]_icon.png", rod_pic)
+			SSassets.transport.send_assets(user, list("photo_[md5]_[rod.name]_icon.png" = rod_pic))
+			details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[rod.name]_icon.png")
+			
+			if(category == MENU_ALL || category == rod.menutab)
+				nullrods += list(details)
+				
+			qdel(rod)
+		
+		category_data["nullrods"] = nullrods
+		data["categories"] += list(category_data)
+
 
 	return data
 
@@ -102,38 +112,18 @@
 	. = ..()
 	if(.)
 		return
+	var/mob/user = usr
 	switch(action)
-		if("test")
-			to_chat(world, "get fucked buddy")
+		if("confirm")
+			var/rodPath = text2path(params["rodPath"])
+			var/obj/item/nullrod/holy_weapon = new rodPath
+			GLOB.holy_weapon_type = holy_weapon.type
+			SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[params["rodPath"]]")
+			if(holy_weapon)
+				holy_weapon.reskinned = TRUE
+				qdel(src)
+				user.put_in_active_hand(holy_weapon)
 
-/*
-/obj/item/nullrod/ui_act(action, params)
-	if(..())
-		return
-
-	nullrod_icons = sortList(nullrod_icons)
-	if(!choice || !check_menu(M))
-		return
-
-	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
-	var/obj/item/nullrod/holy_weapon = new A
-
-	GLOB.holy_weapon_type = holy_weapon.type
-
-	SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[choice]")
-
-	if(holy_weapon)
-		holy_weapon.reskinned = TRUE
-		qdel(src)
-		M.put_in_active_hand(holy_weapon)
-*/
-
-  /*
-  check_menu : Checks if we are allowed to interact with a radial menu
-
-  Arguments:
-  user : The mob interacting with a menu
-  */
 
 /*---------------------------------------------------------------------------
 |
@@ -154,6 +144,7 @@
 	block_chance = 50
 	var/shield_icon = "shield-red"
 	menutab = MENU_WEAPON
+	additional_desc = "A magical staff that conjures a shield around the holder, protecting from blows."
 
 /obj/item/nullrod/staff/worn_overlays(isinhands)
 	. = list()
@@ -182,6 +173,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_WEAPON
+	additional_desc = "An exceptionally large sword, capable of occasionally deflecting blows"
 
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
@@ -227,6 +219,7 @@
 	icon_state = "multiverse"
 	item_state = "multiverse"
 	slot_flags = ITEM_SLOT_BELT
+	additional_desc = "An exceptionally large sword, capable of occasionally deflecting blows, but its edge seems to keep shifting from impractically dull, to sharper than a razor's edge."
 
 /obj/item/nullrod/claymore/multiverse/attack(mob/living/carbon/M, mob/living/carbon/user)
 	force = rand(1, 30)
@@ -263,6 +256,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	var/on = FALSE
 	var/on_sound = 'sound/weapons/batonextend.ogg'
+	additional_desc = "A collapsible blade, capable of occasionally deflecting blows"
 
 /obj/item/nullrod/claymore/corvo/attack_self(mob/user)
 	on = !on
@@ -300,6 +294,7 @@
 	sharpness = SHARP_EDGED
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	menutab = MENU_WEAPON
+	additional_desc = "Once used to cut through crops. Now it cuts cleanly through the unrighteous, no matter what armor or form they hide behind."
 
 /obj/item/nullrod/scythe/Initialize()
 	. = ..()
@@ -338,6 +333,7 @@
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/possessed = FALSE
+	additional_desc = "Once used to cut through crops. Now it cuts cleanly through the unrighteous, no matter what armor or form they hide behind. You feel an unwoken presence in this one."
 
 /obj/item/nullrod/scythe/talking/relaymove(mob/user)
 	return //stops buckled message spam for the ghost.
@@ -390,6 +386,7 @@
 	attack_verb = list("pulsed", "mended", "cut")
 	hitsound = 'sound/effects/sparks4.ogg'
 	menutab = MENU_WEAPON
+	additional_desc = "A most valid tool, hurts the brain just looking at it."
 
 /obj/item/nullrod/hammmer
 	name = "relic war hammer"
@@ -403,7 +400,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
 	menutab = MENU_WEAPON
-
+	additional_desc = "Bonk the sinners."
 
 /obj/item/nullrod/clown
 	name = "clown dagger"
@@ -415,6 +412,7 @@
 	sharpness = SHARP_EDGED
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_WEAPON
+	additional_desc = "This banana is comedically sharp."
 
 /obj/item/nullrod/pride_hammer
 	name = "Pride-struck Hammer"
@@ -428,6 +426,7 @@
 	attack_verb = list("attacked", "smashed", "crushed", "splattered", "cracked")
 	hitsound = 'sound/weapons/blade1.ogg'
 	menutab = MENU_WEAPON
+	additional_desc = "This hammer can transfer to others what you feel inside yourself."
 
 /obj/item/nullrod/pride_hammer/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
 	. = ..()
@@ -451,6 +450,7 @@
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
 	menutab = MENU_WEAPON
+	additional_desc = "A holy weapon, capable at meting out righteousness from a distance."
 	
 /obj/item/nullrod/whip/Initialize()
 	. = ..()
@@ -474,6 +474,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
+	additional_desc = "The weapon of choice for a devout monk. Block incoming blows while striking weak points until your opponent is too exhausted to continue."
 
 /obj/item/nullrod/tribal_knife
 	name = "arrhythmic knife"
@@ -489,6 +490,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	item_flags = SLOWS_WHILE_IN_HAND
+	additional_desc = "A knife imbued with erratic tribal magic. While holding it your weight seems to fluctuate between light as a feather on your feet, to impossibly heavy and sluggish."
 
 /obj/item/nullrod/tribal_knife/Initialize(mapload)
 	. = ..()
@@ -514,6 +516,7 @@
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_POINTY
+	additional_desc = "Another farm tool guised as a religious implement. This one is very pointy."
 
 /obj/item/nullrod/egyptian
 	name = "egyptian staff"
@@ -525,6 +528,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
+	additional_desc = "A stick, but it's a VERY regal stick."
 
 /*---------------------------------------------------------------------------
 |
@@ -546,6 +550,7 @@
 	damtype = BURN
 	attack_verb = list("punched", "cross countered", "pummeled")
 	menutab = MENU_ARM
+	additional_desc = "Give up your hand to God and let it be the instrument of his will."
 
 /obj/item/nullrod/godhand/Initialize()
 	. = ..()
@@ -569,6 +574,7 @@
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 	menutab = MENU_ARM
+	additional_desc = "Do you really need TWO arms? Consider one arm and a chainsaw arm."
 
 /obj/item/nullrod/chainsaw/Initialize()
 	. = ..()
@@ -591,6 +597,7 @@
 	wound_bonus = -20
 	bare_wound_bonus = 25
 	menutab = MENU_ARM
+	additional_desc = "Channel all your sins into one arm and watch it twist and contort into an instrument of pure violence. Use it to protect the innocent as your penance."
 
 /obj/item/nullrod/armblade/Initialize()
 	. = ..()
@@ -601,6 +608,7 @@
 	name = "unholy blessing"
 	icon_state = "tentacle"
 	item_state = "tentacle"
+	additional_desc = "No one wants to know what sins you were harboring to turn your arm into THAT, but you better use it to protect the innocent and do nothing else."
 
 /*---------------------------------------------------------------------------
 |
@@ -621,6 +629,8 @@
 	throwforce = 30
 	sharpness = SHARP_EDGED
 	attack_verb = list("enlightened", "redpilled")
+	menutab = MENU_CLOTHING
+	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
@@ -635,6 +645,8 @@
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 	var/hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
+	menutab = MENU_CLOTHING
+	additional_desc = "This mysterious floating skull can communicate diagnostic reports to you regarding both mechanical and organic disciples around you."
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -670,6 +682,8 @@
 	var/mutable_appearance/holy_glow_fx
 	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
 	COOLDOWN_DECLARE(holy_notification)
+	menutab = MENU_WEAPON
+	additional_desc = "A holy icon, praying to it will allow it to weaken and burn those that draw your god's ire."
 
 /obj/item/nullrod/cross/attack_self(mob/living/user)
 	. = ..()
@@ -759,6 +773,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_MISC //banish it from being associated with proper weapons
+	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
 
 /obj/item/nullrod/carp
 	name = "carp-sie plushie"
@@ -773,6 +788,7 @@
 	hitsound = 'sound/weapons/bite.ogg'
 	var/used_blessing = FALSE
 	menutab = MENU_MISC //a downgrade from proper weapons entirely for the gimmick of carp blessing
+	additional_desc = "Hugging this plush proves your love and devotion to all fishkind. Even space carps will respect this reverence."
 
 /obj/item/nullrod/carp/attack_self(mob/living/user)
 	if(used_blessing)
