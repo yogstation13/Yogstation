@@ -20,15 +20,14 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	desc = "The guardian takes the form of a gun, able to fire precise shots."
 	cost = 2
 	recall_mode = TRUE
-	mode_on_msg = "<span class='danger'><B>You enter stealth, empowering your next attack.</span></B>"
-	mode_off_msg = "<span class='danger'><B>You exit stealth.</span></B>"
+	mode_on_msg = "<span class='danger'><B>You transform yourself into your gun form.</span></B>"
+	mode_off_msg = "<span class='danger'><B>You transform yourself into your holoform.</span></B>"
 	arrow_weight = 0.9
 	COOLDOWN_DECLARE(runcdindex)
 	COOLDOWN_DECLARE(bulletcdindex)
 	var/runcooldown = 0
 	var/bulletcooldown = 0
 	var/obj/item/gun/ballistic/revolver/emperor/gun_form
-	var/transformed = FALSE
 
 /datum/guardian_ability/major/precision/Apply()
 	. = ..()
@@ -36,21 +35,20 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	runcooldown = 20 SECONDS / master_stats.speed
 
 /datum/guardian_ability/major/precision/Recall()
+	. = ..()
 	if(COOLDOWN_FINISHED(src, runcdindex))
-		guardian.summoner.current.remove_movespeed_modifier("I'm out of here", update=TRUE, priority=102, multiplicative_slowdown=GLOB.guardian_frenzy_speedup[guardian.stats.speed])
+		guardian.summoner.current.add_movespeed_modifier("I'm out of here", update=TRUE, priority=102, multiplicative_slowdown=GLOB.guardian_frenzy_speedup[guardian.stats.speed])
 		addtimer(CALLBACK(guardian.summoner.current, /mob.proc/remove_movespeed_modifier, "I'm out of here"), min(5, master_stats.potential * 2) SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		COOLDOWN_START(src, runcdindex, runcooldown)
 	QDEL_NULL(gun_form)
 
 /datum/guardian_ability/major/precision/Mode()
-	if(!transformed)
-		to_chat(guardian, span_notice("You transform yourself into your gun form."))
+	if(mode)
 		gun_form = new /obj/item/gun/ballistic/revolver/emperor(get_turf(guardian))
 		guardian.forceMove(gun_form)
 		if(guardian.summoner?.current?.Adjacent(get_turf(gun_form)))
 			guardian.summoner.current.put_in_active_hand(gun_form)
 	else
-		to_chat(guardian, span_notice("You transform yourself into your holoform."))
 		guardian.forceMove(get_turf(gun_form))
 
 /obj/item/gun/ballistic/revolver/emperor

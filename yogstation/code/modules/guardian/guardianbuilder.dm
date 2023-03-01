@@ -172,11 +172,6 @@
 		points -= minor.cost
 	return points
 
-/datum/guardianbuilder/proc/create_simplemob(mob/living/user)
-	if(saved_stats.ability == /datum/guardian_ability/major/precision) //snowflak
-		return new /mob/living/simple_animal/hostile/guardian/emperor(user, theme)
-	return new /mob/living/simple_animal/hostile/guardian(user, theme)
-
 /datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
@@ -200,7 +195,7 @@
 		used = FALSE
 		return FALSE
 	var/mob/dead/observer/C = pick(candidates)
-	var/mob/living/simple_animal/hostile/guardian/G = create_simplemob(user)
+	var/mob/living/simple_animal/hostile/guardian/G = saved_stats.ability == /datum/guardian_ability/major/precision ? new /mob/living/simple_animal/hostile/guardian/emperor(user, theme) : new /mob/living/simple_animal/hostile/guardian(user, theme)
 	if (guardian_name)
 		G.real_name = guardian_name
 		G.name = guardian_name
