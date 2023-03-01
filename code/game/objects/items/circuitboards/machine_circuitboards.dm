@@ -1063,6 +1063,7 @@
 	icon_state = "science"
 	build_path = /obj/machinery/part_fabricator
 	req_components = list(
+		/obj/item/stack/sheet/mineral/plastitanium = 10,
 		/obj/item/stock_parts/capacitor/quadratic = 4,
 		/obj/item/stock_parts/scanning_module/triphasic = 3,
 		/obj/item/stock_parts/manipulator/femto = 5,
