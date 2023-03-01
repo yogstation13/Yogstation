@@ -89,6 +89,8 @@
 
 	var/shouldwakeup = FALSE //convenience var for forcibly waking up an idling AI on next check.
 
+	var/speak_sound = "" //the sound that will play when the animal speaks
+
 	//domestication
 	var/tame = 0
 
@@ -188,6 +190,7 @@
 	if(speak_chance)
 		if(prob(speak_chance) || override)
 			if(speak && speak.len)
+				playsound(src, speak_sound, 20, 1)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
 					var/length = speak.len
 					if(emote_hear && emote_hear.len)
