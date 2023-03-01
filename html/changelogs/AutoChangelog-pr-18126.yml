@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Toxolysis heals toxin damage"
+  - tweak: "Toxolysis resistance threshold now increases toxin heal rather than chem purge speed"
+  - tweak: "Starlight fixation no longer heals toxin damage"
+  - tweak: "Starlight fixation heals 2x as much non-toxin"
