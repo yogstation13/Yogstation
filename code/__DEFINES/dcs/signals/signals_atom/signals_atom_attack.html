@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -39,86 +39,86 @@ Ends the attack chain. If sent early might cause posterior attacks not to happen
         <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.html#define/COMSIG_ATOM_ATTACK_MECH">COMSIG_ATOM_ATTACK_MECH</a></th><td>from base of atom/mech_melee_attack(): (obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)</td></tr>
         <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.html#define/COMSIG_ATOM_WAS_ATTACKED">COMSIG_ATOM_WAS_ATTACKED</a></th><td>from relay_attackers element: (atom/attacker)</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/COMPONENT_CANCEL_ATTACK_CHAIN"><aside class="declaration">#define </aside>COMPONENT_CANCEL_ATTACK_CHAIN
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L34">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L34">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 34"/></a>
     </h3>
     <p>tool_act -&gt; pre_attack -&gt; target.attackby (item.attack) -&gt; afterattack
 Ends the attack chain. If sent early might cause posterior attacks not to happen.</p><h3 id="define/COMPONENT_NO_AFTERATTACK"><aside class="declaration">#define </aside>COMPONENT_NO_AFTERATTACK
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L12">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L12">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 12"/></a>
     </h3>
     <p>Return this in response if you don't want afterattack to be called</p><h3 id="define/COMPONENT_NO_TAKE_DAMAGE"><aside class="declaration">#define </aside>COMPONENT_NO_TAKE_DAMAGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 30"/></a>
     </h3>
     <p>Return bitflags for the above signal which prevents the atom taking any damage.</p><h3 id="define/COMPONENT_SKIP_ATTACK"><aside class="declaration">#define </aside>COMPONENT_SKIP_ATTACK
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L36">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L36">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 36"/></a>
     </h3>
     <p>Skips the specific attack step, continuing for the next one to happen.</p><h3 id="define/COMSIG_ATOM_ATTACK_ANIMAL"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_ANIMAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L16">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L16">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 16"/></a>
     </h3>
     <p>from base of atom/animal_attack(): (/mob/user)</p><h3 id="define/COMSIG_ATOM_ATTACK_GHOST"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_GHOST
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L38">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L38">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 38"/></a>
     </h3>
     <p>from base of atom/attack_ghost(): (mob/dead/observer/ghost)</p><h3 id="define/COMSIG_ATOM_ATTACK_HAND"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_HAND
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L40">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L40">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 40"/></a>
     </h3>
     <p>from base of atom/attack_hand(): (mob/user, list/modifiers)</p><h3 id="define/COMSIG_ATOM_ATTACK_HAND_SECONDARY"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_HAND_SECONDARY
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L10">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L10">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 10"/></a>
     </h3>
     <p>From base of [/atom/proc/attack_hand_secondary]: (mob/user, list/modifiers) - Called when the atom receives a secondary unarmed attack.</p><h3 id="define/COMSIG_ATOM_ATTACK_MECH"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_MECH
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L46">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L46">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 46"/></a>
     </h3>
     <p>from base of atom/mech_melee_attack(): (obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)</p><h3 id="define/COMSIG_ATOM_ATTACK_PAW"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_PAW
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L42">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L42">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 42"/></a>
     </h3>
     <p>from base of atom/attack_paw(): (mob/user)</p><h3 id="define/COMSIG_ATOM_BREAK"><aside class="declaration">#define </aside>COMSIG_ATOM_BREAK
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 20"/></a>
     </h3>
     <p>from /atom/proc/atom_break: (damage_flag)</p><h3 id="define/COMSIG_ATOM_DESTRUCTION"><aside class="declaration">#define </aside>COMSIG_ATOM_DESTRUCTION
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L24">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L24">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 24"/></a>
     </h3>
     <p>from base of [/atom/proc/atom_destruction]: (damage_flag)</p><h3 id="define/COMSIG_ATOM_FIX"><aside class="declaration">#define </aside>COMSIG_ATOM_FIX
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L22">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L22">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 22"/></a>
     </h3>
     <p>from base of [/atom/proc/atom_fix]: ()</p><h3 id="define/COMSIG_ATOM_HULK_ATTACK"><aside class="declaration">#define </aside>COMSIG_ATOM_HULK_ATTACK
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L14">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L14">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 14"/></a>
     </h3>
     <p>from base of atom/attack_hulk(): (/mob/living/carbon/human)</p><h3 id="define/COMSIG_ATOM_INTEGRITY_CHANGED"><aside class="declaration">#define </aside>COMSIG_ATOM_INTEGRITY_CHANGED
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L26">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L26">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 26"/></a>
     </h3>
     <p>from base of [/atom/proc/update_integrity]: (old_value, new_value)</p><h3 id="define/COMSIG_ATOM_TAKE_DAMAGE"><aside class="declaration">#define </aside>COMSIG_ATOM_TAKE_DAMAGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L28">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L28">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 28"/></a>
     </h3>
     <p>from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)</p><h3 id="define/COMSIG_ATOM_WAS_ATTACKED"><aside class="declaration">#define </aside>COMSIG_ATOM_WAS_ATTACKED
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L48">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L48">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 48"/></a>
     </h3>
     <p>from relay_attackers element: (atom/attacker)</p><h3 id="define/COMSIG_PARENT_ATTACKBY"><aside class="declaration">#define </aside>COMSIG_PARENT_ATTACKBY
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L6">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L6">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 6"/></a>
     </h3>
     <p>from base of atom/attackby(): (/obj/item, /mob/living, params)</p><h3 id="define/COMSIG_PARENT_ATTACKBY_SECONDARY"><aside class="declaration">#define </aside>COMSIG_PARENT_ATTACKBY_SECONDARY
-            <a href="https://github.com/yogstation13/Yogstation/blob/b95026e234eb5095e557e1894fd045cc4ff9e93d/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L8">
+            <a href="https://github.com/yogstation13/Yogstation/blob/135036f9e994bd1ccbc916ea567041d3c19487c5/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L8">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 8"/></a>
     </h3>
     <p>From base of [atom/proc/attacby_secondary()]: (/obj/item/weapon, /mob/user, params)</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/b95026e234eb5095e557e1894fd045cc4ff9e93d">b95026e</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/135036f9e994bd1ccbc916ea567041d3c19487c5">135036f</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
