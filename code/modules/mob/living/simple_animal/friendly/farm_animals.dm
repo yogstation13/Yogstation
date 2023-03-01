@@ -125,8 +125,8 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
-	speak_audio = "sound/creatures/farm_animals/Cow_moo.ogg"
-	death_audio = "sound/creatures/farm_animals/Cow_death_moo.ogg"
+	speak_audio = "sound/creatures/farm_animals/cow_moo.ogg"
+	death_audio = "sound/creatures/farm_animals/cow_death_moo.ogg"
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.")
 	speak_chance = 1
