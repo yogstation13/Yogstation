@@ -90,8 +90,8 @@
 	var/shouldwakeup = FALSE //convenience var for forcibly waking up an idling AI on next check.
 
 	//Audio
-	var/speak_audio = "" //the sound that will play when the animal speaks
-	var/death_audio = ""
+	var/speak_audio = null //the sound that will play when the animal speaks
+	var/death_audio = null
 
 
 	//domestication
