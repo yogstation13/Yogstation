@@ -287,4 +287,26 @@
 		return random_unique_pod_name(gender)
 	return pod_name(gender)
 
+/datum/species/pod/get_species_description()
+	return ""//"TODO: This is plant description"
+
+/datum/species/pod/get_species_lore()
+	return list(
+		""//"TODO: This is plant lore"
+	)
+
+/datum/species/pod/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/pod/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
 #undef STATUS_MESSAGE_COOLDOWN

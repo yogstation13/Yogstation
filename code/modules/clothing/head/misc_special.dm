@@ -371,3 +371,15 @@
 	icon_state = "rflower"
 	item_state = "rflower"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/clothing/head/Floralwizhat
+	name = "Druid hat"
+	desc = "A black wizard hat with an exotic looking purple flower on it"
+	icon_state = "flowerwizhat"
+	item_state = "flowerwizhat"
+
+/obj/item/clothing/head/fedora/gtrim_fedora
+	name = "Gold trimmed Fedora"
+	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	icon_state = "gtrim_fedora"
+	item_state = "gtrim_fedora"

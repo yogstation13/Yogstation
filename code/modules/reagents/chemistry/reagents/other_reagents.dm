@@ -1057,8 +1057,8 @@
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	glass_icon_state = "dr_gibb_glass"
-	glass_name = "glass of welder fuel"
-	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	glass_name = "glass of Dr. Gibb"
+	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1068,8 +1068,10 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(!(ispreternis(M) || isipc(M)))
-		M.adjustToxLoss(1, 0)
+	if(MOB_ROBOTIC in M.mob_biotypes)
+		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
+	else
+		M.adjustToxLoss(1*REM, 0)
 	..()
 	return TRUE
 
@@ -1559,6 +1561,11 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	taste_description = "oil"
+	process_flags = SYNTHETIC
+
+/datum/reagent/oil/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)
+	..()
 
 /datum/reagent/stable_plasma
 	name = "Stable Plasma"

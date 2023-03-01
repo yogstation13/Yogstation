@@ -10,7 +10,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/askDelay = 600 //one minute
 	var/searching = FALSE
 	brainmob = null
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	braintype = "Android"
 	var/autoping = TRUE //if it pings on creation immediately
@@ -140,6 +140,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.stat = CONSCIOUS
 	brainmob.remove_from_dead_mob_list()
 	brainmob.add_to_alive_mob_list()
+	ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 
 	visible_message(new_mob_message)
 	check_success()

@@ -20,9 +20,9 @@
 	name = ".38 bullet"
 	damage = 25 //High damaging but...
 	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
-	wound_bonus = -10
+	wound_bonus = -30
 	wound_falloff_tile = -2.5
-	bare_wound_bonus = 10
+	bare_wound_bonus = 15
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"

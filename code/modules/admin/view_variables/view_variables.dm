@@ -80,6 +80,8 @@
 			names += V
 	sleep(0.1 SECONDS)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
 
+	log_admin("[key_name(usr)] viewed the variables of [D].")
+
 	var/list/variable_html = list()
 	if (islist)
 		var/list/L = D

@@ -136,6 +136,7 @@
 		if(SIN_GLUTTONY)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall/gluttony)
+			ADD_TRAIT(owner.current, TRAIT_AGEUSIA, SINFULDEMON_TRAIT) // nothing disgusts you
 			ADD_TRAIT(owner.current, TRAIT_EAT_MORE, SINFULDEMON_TRAIT) // 3x hunger rate
 			ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
 			ADD_TRAIT(owner.current, TRAIT_VORACIOUS, SINFULDEMON_TRAIT) // eat and drink faster & eat infinite snacks
@@ -180,3 +181,10 @@
 #undef SIN_PRIDE
 #undef SIN_SLOTH
 #undef SIN_WRATH
+
+/datum/antagonist/sinfuldemon/get_preview_icon()
+	var/icon/sinfuldemon_icon = icon('icons/mob/mob.dmi', "lesserdaemon")
+
+	sinfuldemon_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return sinfuldemon_icon

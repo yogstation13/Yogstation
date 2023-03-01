@@ -12,6 +12,10 @@
 	var/ordered = TRUE //If the button gets placed into the default bar
 
 /atom/movable/screen/movable/action_button/proc/can_use(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(user, span_danger("You can't interact with anything right now!"))
+		return FALSE
+
 	if (linked_action)
 		return linked_action.owner == user
 	else if (isobserver(user))
@@ -96,6 +100,7 @@
 			usr.client.prefs.action_buttons_screen_locs["[name]_[id]"] = locked ? moved : null
 		return TRUE
 	if(modifiers["alt"])
+		var/buttons_locked = usr.client.prefs.read_preference(/datum/preference/toggle/buttons_locked)
 		for(var/V in usr.actions)
 			var/datum/action/A = V
 			if(A.owner != usr)
@@ -104,8 +109,8 @@
 			B.moved = FALSE
 			if(B.id && usr.client)
 				usr.client.prefs.action_buttons_screen_locs["[B.name]_[B.id]"] = null
-			B.locked = usr.client.prefs.buttons_locked
-		locked = usr.client.prefs.buttons_locked
+			B.locked = buttons_locked
+		locked = buttons_locked
 		moved = FALSE
 		if(id && usr.client)
 			usr.client.prefs.action_buttons_screen_locs["[name]_[id]"] = null

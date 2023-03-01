@@ -382,6 +382,12 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
+	
+	// If we have an open surgery site here, wound more easily
+	for(var/datum/surgery/S in owner.surgeries)
+		if(S.operated_bodypart == src)
+			damage *= 1.25
+			break
 
 	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
 	var/injury_roll = base_roll
@@ -557,7 +563,7 @@
 		set_disabled(TRUE)
 		return
 
-	var/total_damage = max(brute_dam + burn_dam, stamina_dam)
+	var/total_damage = HAS_TRAIT(owner, TRAIT_STUNIMMUNE) ? (brute_dam + burn_dam) : max(brute_dam + burn_dam, stamina_dam)
 
 	// this block of checks is for limbs that can be disabled, but not through pure damage (AKA limbs that suffer wounds, human/monkey parts and such)
 	if(!disable_threshold)
@@ -694,8 +700,22 @@
 
 	if(status == BODYPART_ROBOTIC)
 		disable_threshold = 1
+		light_brute_msg = "marred"
+		medium_brute_msg = "dented"
+		heavy_brute_msg = "falling apart"
+
+		light_burn_msg = "scorched"
+		medium_burn_msg = "charred"
+		heavy_burn_msg = "smoldering"
 	else
 		disable_threshold = 0
+		light_brute_msg = "bruised"
+		medium_brute_msg = "battered"
+		heavy_brute_msg = "mangled"
+
+		light_burn_msg = "numb"
+		medium_burn_msg = "blistered"
+		heavy_burn_msg = "peeling away"
 
 	if(change_icon_to_default)
 		if(status == BODYPART_ORGANIC)
@@ -869,6 +889,8 @@
 			limb.icon_state = "[body_zone]_[icon_gender]"
 		else if(use_digitigrade)
 			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+		else if(body_zone == BODY_ZONE_HEAD || body_zone == BODY_ZONE_CHEST)//default to male for the torso and head if the species is agendered
+			limb.icon_state = "[body_zone]_m"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)
@@ -930,7 +952,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		if(!embeddies.taped)
+		var/obj/item/ammo_casing/AC = embeddies
+		if(!(embeddies.taped || (istype(AC) && !AC.harmful)))
 			bleed_rate += 0.5
 
 	for(var/thing in wounds)

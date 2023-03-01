@@ -68,6 +68,16 @@
 			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
 			. += "Distribution Pressure: [internal.distribute_pressure]"
 
+	// CLOAKER BELT
+	if(istype(belt, /obj/item/shadowcloak))
+		var/obj/item/shadowcloak/SC = belt
+		var/turf/T = get_turf(src)
+		var/lumens = T.get_lumcount()
+		. += ""
+		. += "Cloaker Status: [SC.on ? "ON" : "OFF"]"
+		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
+		. += "Lumens Count: [round(lumens, 0.01)]"
+
 	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hivemind)
 		. += ""
@@ -965,7 +975,9 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
@@ -1250,6 +1262,9 @@
 
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
+
+/mob/living/carbon/human/species/lizard/ashwalker/shaman
+	race = /datum/species/lizard/ashwalker/shaman
 
 /mob/living/carbon/human/species/lizard/draconid
 	race = /datum/species/lizard/draconid

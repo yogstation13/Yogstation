@@ -224,6 +224,21 @@
 
 	CHECK_TICK
 
+	// Reward people who stayed alive and escaped
+	if(CONFIG_GET(flag/use_antag_rep))
+		for(var/mob/M in GLOB.player_list)
+			if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
+				continue
+			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
+				continue
+			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
+			else
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
+			SSpersistence.antag_rep_change[M.ckey] = round(SSpersistence.antag_rep_change[M.ckey]) // rounds down
+	
+	CHECK_TICK
+
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
 	for(var/antag_name in total_antagonists)
