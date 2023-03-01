@@ -1,5 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - bugfix: "above lightning layer now actually ignores lightning"
-  - imageadd: "welding effects are fixed into not looking like shit"
