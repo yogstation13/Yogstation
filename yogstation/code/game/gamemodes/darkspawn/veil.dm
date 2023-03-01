@@ -37,6 +37,7 @@
 	mob_override.add_overlay(veil_sigils)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
+	mob_override.maxHealth += 40
 	mob_override.cut_overlay(veil_sigils)
 	QDEL_NULL(veil_sigils)
 
