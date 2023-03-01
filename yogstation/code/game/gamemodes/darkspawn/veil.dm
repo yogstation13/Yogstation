@@ -4,6 +4,7 @@
 	roundend_category = "veils"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
+	var/mutable_appearance/veil_sigils
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -31,10 +32,12 @@
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth -= 40
+	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
+	mob_override.add_overlay(veil_sigils)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth += 40
+	mob_override.cut_overlay(veil_sigils)
+	QDEL_NULL(veil_sigils)
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
@@ -56,9 +59,8 @@
 		Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
 	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
-	to_chat(owner, span_danger("Your drained will has left you feeble and weak! You will go down with many fewer hits!"))
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
-	flash_color(owner, flash_color = "#21007F", flash_time = 100)
+	flash_color(owner, flash_color = "#21007F", flash_time = 10 SECONDS)
 
 /datum/antagonist/veil/roundend_report()
 	return "[printplayer(owner)]"
