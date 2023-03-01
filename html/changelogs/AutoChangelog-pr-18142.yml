@@ -1,0 +1,5 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - tweak: "removed body bag from CMO and MD heirloom pool"
+  - tweak: "added paramedic heirloom"
