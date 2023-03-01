@@ -193,7 +193,7 @@
 	if(speak_chance)
 		if(prob(speak_chance) || override)
 			if(speak && speak.len)
-				playsound(src, speak_sound, 20, 1)
+				playsound(src, speak_audio, 15, 1)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
 					var/length = speak.len
 					if(emote_hear && emote_hear.len)
@@ -340,6 +340,7 @@
 		drop_all_held_items()
 	if(!gibbed)
 		if(deathsound || deathmessage || !del_on_death)
+			playsound(src, death_audio, 15, 1)
 			emote("deathgasp")
 	if(del_on_death)
 		..()
