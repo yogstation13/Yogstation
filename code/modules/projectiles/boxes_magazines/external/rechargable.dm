@@ -86,7 +86,7 @@
 	flag = ENERGY
 	damage = 2 //ouch ouch my skin ouchie
 	damage_type = BURN
-	stamina = 25
+	stamina = 20
 	speed = 0.55
 
 //NT-USP Lethal Clip
