@@ -1058,6 +1058,17 @@
 		/obj/item/stock_parts/manipulator = 3,
 		/obj/item/stack/cable_coil = 2)
 
+/obj/item/circuitboard/machine/part_fabricator
+	name = "Experimental Part Fabricator (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/part_fabricator
+	req_components = list(
+		/obj/item/stock_parts/capacitor/quadratic = 4,
+		/obj/item/stock_parts/scanning_module/triphasic = 3,
+		/obj/item/stock_parts/manipulator/femto = 5,
+		/obj/item/stock_parts/micro_laser/quadultra = 4,
+		/obj/item/stock_parts/matter_bin/bluespace = 5)
+
 //Security
 
 /obj/item/circuitboard/machine/protolathe/department/security

@@ -755,3 +755,11 @@
 	build_path = /obj/item/circuitboard/machine/plort
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/part_fabricator
+	name = "Machine Design (Experimental Part Fabricator Board)"
+	desc = "The circuit board for a part fabricator."
+	id = "part_fab"
+	build_path = /obj/item/circuitboard/machine/part_fabricator
+	category = list("Research Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
