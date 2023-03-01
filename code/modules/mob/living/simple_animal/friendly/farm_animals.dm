@@ -7,6 +7,8 @@
 	icon_dead = "goat_dead"
 	speak = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
+	speak_audio = "sound/creatures/farm_animals/goat_bleat.ogg"
+	death_audio = "sound/creatures/farm_animals/goat_death_sound.ogg"
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.", "stamps a foot.", "glares around.")
 	speak_chance = 1
