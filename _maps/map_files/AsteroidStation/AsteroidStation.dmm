@@ -74,8 +74,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "aay" = (
-/obj/effect/turf_decal/box,
-/obj/structure/frame/machine,
+/obj/effect/turf_decal/box/white{
+	color = "#EFB341"
+	},
 /turf/open/floor/engine,
 /area/construction)
 "aaz" = (
@@ -7177,7 +7178,7 @@
 "bpg" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -8348,7 +8349,10 @@
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/mechbay)
 "bJy" = (
-/turf/open/floor/plating,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/construction)
 "bJD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -11072,6 +11076,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel,
 /area/construction)
 "cGC" = (
@@ -15888,7 +15893,7 @@
 /area/space/nearstation)
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -16791,9 +16796,10 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/construction)
 "eIg" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -17161,6 +17167,9 @@
 "eNu" = (
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -18990,7 +18999,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/construction)
 "fwF" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -19438,8 +19450,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "fEm" = (
-/mob/living/simple_animal/cockroach,
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/core,
+/obj/item/paper/guides/jobs/atmos/hypertorus,
 /obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -23103,7 +23120,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
 "gRf" = (
-/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/bot,
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
 /area/construction)
@@ -24289,7 +24306,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/construction)
 "hlU" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -24574,8 +24594,8 @@
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
 "hqt" = (
-/obj/item/wrench,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/engine,
 /area/construction)
 "hqB" = (
 /obj/structure/table/wood,
@@ -26482,6 +26502,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/arrows/white,
 /turf/open/floor/engine,
 /area/construction)
 "hVP" = (
@@ -27112,6 +27133,11 @@
 /turf/open/floor/plating,
 /area/medical/medbay/central)
 "ihY" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
+/obj/item/hfr_box/corner,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
@@ -27652,7 +27678,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -28631,8 +28657,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
 "iMr" = (
-/obj/machinery/portable_atmospherics/canister,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/bot/right,
+/turf/open/floor/engine,
 /area/construction)
 "iMH" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -30039,7 +30065,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -36377,11 +36403,8 @@
 	},
 /area/crew_quarters/heads/chief)
 "lyR" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/obj/effect/turf_decal/bot/left,
+/turf/open/floor/engine,
 /area/construction)
 "lzi" = (
 /obj/structure/cable{
@@ -41987,7 +42010,7 @@
 /area/medical/medbay/central)
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -42534,14 +42557,6 @@
 /obj/item/clothing/under/color/rainbow,
 /turf/open/floor/plating,
 /area/space/nearstation)
-"nxO" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/construction)
 "nxX" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -43926,7 +43941,10 @@
 /turf/open/floor/wood,
 /area/vacant_room)
 "nXU" = (
-/obj/item/stack/cable_coil/red,
+/obj/effect/turf_decal/arrows/red{
+	dir = 4;
+	pixel_x = -15
+	},
 /turf/open/floor/engine,
 /area/construction)
 "nXY" = (
@@ -45683,11 +45701,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"oEH" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/construction)
 "oEN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -46747,7 +46760,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "oXP" = (
-/obj/machinery/light/broken{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -47048,6 +47061,10 @@
 /area/science/mixing/chamber)
 "pbU" = (
 /obj/machinery/light/small,
+/obj/effect/turf_decal/arrows/white{
+	color = "#00AAFF";
+	pixel_y = 15
+	},
 /turf/open/floor/engine,
 /area/construction)
 "pbV" = (
@@ -49799,6 +49816,16 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/port)
 "pTx" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/rglass{
+	amount = 5
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 5
+	},
+/obj/item/pipe_dispenser,
+/obj/item/wrench,
+/obj/item/multitool,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -54168,9 +54195,10 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/locker)
 "rnZ" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/construction)
 "rog" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -54418,7 +54446,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "rsq" = (
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -56356,7 +56384,9 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "rXt" = (
-/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/box/white{
+	color = "#52B4E9"
+	},
 /turf/open/floor/engine,
 /area/construction)
 "rXC" = (
@@ -59270,7 +59300,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -60387,6 +60417,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "tnN" = (
+/obj/effect/turf_decal/box/white,
+/obj/effect/turf_decal/box/white{
+	color = "#9FED58"
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -60908,7 +60942,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61428,7 +61462,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -62472,12 +62506,13 @@
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ubP" = (
+/obj/structure/table/reinforced,
+/obj/item/hfr_box/body/fuel_input,
+/obj/item/hfr_box/body/interface,
+/obj/item/hfr_box/body/moderator_input,
+/obj/item/hfr_box/body/waste_output,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
-	pixel_y = 1
 	},
 /turf/open/floor/plasteel,
 /area/construction)
@@ -67040,7 +67075,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -69951,7 +69986,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -122989,12 +123024,12 @@ aNM
 mNo
 aNM
 aNM
-iMr
-bJy
+aNM
+aNM
 qHo
 mit
+bJy
 xgb
-nXU
 xgb
 nAg
 aMT
@@ -123246,12 +123281,12 @@ kFx
 hiF
 hrE
 xUG
-lyR
-lyR
+xUG
+xUG
 wqE
-xgb
+iMr
 rXt
-xgb
+lyR
 xIy
 nAg
 kSb
@@ -123504,11 +123539,11 @@ odT
 tEi
 lBg
 lBg
-nxO
+lBg
 hVs
 tnN
 gRf
-xgb
+hqt
 pbU
 nAg
 jGN
@@ -123760,12 +123795,12 @@ aNM
 buK
 aNM
 eBw
-bJy
-oEH
+aNM
+aNM
 dom
-xgb
+lyR
 aay
-xgb
+iMr
 xgb
 nAg
 afO
@@ -124016,12 +124051,12 @@ rhk
 aNM
 xLI
 aNM
-bJy
-bJy
-hqt
+aNM
+aNM
+aNM
 bYr
 lrf
-xgb
+nXU
 xgb
 xgb
 nAg
