@@ -121,6 +121,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/deathsound
 	///Sounds to override barefeet walkng
 	var/list/special_step_sounds
+	///Sounds to play while walking regardless of wearing shoes
+	var/list/special_walk_sounds
 	///Special sound for grabbing
 	var/grab_sound
 	///yogs - audio of a species' scream

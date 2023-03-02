@@ -88,6 +88,9 @@
 			var/mob/living/carbon/human/H = LM
 			var/feetCover = (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)) || (H.w_uniform && (H.w_uniform.body_parts_covered & FEET))
 			
+			if(H.dna.species.special_walk_sounds)
+				playsound(T, pick(H.dna.species.special_walk_sounds), 25, TRUE)
+
 			if((H.shoes && !istype(H.shoes, /obj/item/clothing/shoes/xeno_wraps)) || feetCover)
 				playsound(T, pick(GLOB.footstep[T.footstep][1]),
 					GLOB.footstep[T.footstep][2] * v,
