@@ -39,5 +39,9 @@
 /code/modules/mob/living/silicon/ai/decentralized_ai.dm @TheGamerdk
 
 #alexkar598
+#binary files which need to be setup on the server
 *.so @alexkar598
 rust_g @alexkar598
+#tracking new jobs and antags to make sure the website ban page is kept up to date
+code/modules/jobs/jobs.dm
+code/modules/admin/sql_ban_system.dm
