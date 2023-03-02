@@ -231,7 +231,8 @@
 
 /obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = BODY_ZONE_HEAD)
 	user.apply_damage(300, BRUTE, affecting)
-	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot!"))
+	user.gain_trauma_type(rand(BRAIN_TRAUMA_SEVERE, BRAIN_TRAUMA_MILD),TRAUMA_RESILIENCE_LOBOTOMY)
+	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot, then everything goes silent."))
 
 /obj/item/gun/ballistic/revolver/russian/soul
 	name = "cursed Russian revolver"
