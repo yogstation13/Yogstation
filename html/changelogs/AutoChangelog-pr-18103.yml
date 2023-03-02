@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - rscadd: "You can once again toggle LOOC, typing indicators and ghost ckey preferences"
