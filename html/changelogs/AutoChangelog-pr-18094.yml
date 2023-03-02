@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "plasmeme mining medic gets the hypospray kit instead of a regular medkit"
-  - bugfix: "plasmeme mining medic gets their roundstart laptop"
