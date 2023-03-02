@@ -790,6 +790,15 @@
 	"phazon_peri", "phazon_targ", "phazon_armor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/sidewinder
+	id = "mech_sidewinder"
+	display_name = "EXOSUIT: Sidewinder"
+	description = "Sidewinder exosuit designs"
+	prereq_ids = list("adv_weaponry", "mech_gygax")
+	design_ids = list("sidewinder_chassis", "sidewinder_torso", "sidewinder_head", "sidewinder_left_arm", "sidewinder_right_arm", "sidewinder_left_leg", "sidewinder_right_leg", "sidewinder_main",
+	"sidewinder_peri", "sidewinder_targ", "sidewinder_armor")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
 /datum/techweb_node/adv_mecha_tools
 	id = "adv_mecha_tools"
 	display_name = "Advanced Exosuit Equipment"
@@ -1007,7 +1016,7 @@
 	display_name = "Harmonic Nanite Programming"
 	description = "Nanite programs that require seamless integration between nanites and biology."
 	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
-	design_ids = list("fakedeath_nanites","researchplus_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")
+	design_ids = list("researchplus_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000, TECHWEB_POINT_TYPE_NANITES = 2000)
 
 /datum/techweb_node/nanite_combat
@@ -1023,7 +1032,7 @@
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
 	prereq_ids = list("nanite_harmonic", "alientech")
-	design_ids = list("spreading_nanites","mindcontrol_nanites","mitosis_nanites")
+	design_ids = list("spreading_nanites","mitosis_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000, TECHWEB_POINT_TYPE_NANITES = 4000)
 
 ////////////////////////Alien technology////////////////////////

@@ -7177,7 +7177,7 @@
 "bpg" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -15888,7 +15888,7 @@
 /area/space/nearstation)
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -27652,7 +27652,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -30039,7 +30039,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -31324,6 +31324,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jEj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "jEp" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -41980,7 +41987,7 @@
 /area/medical/medbay/central)
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -50925,17 +50932,6 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/office)
-"qla" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/machinery/door/window/southleft{
-	icon_state = "right";
-	name = "Filing Room";
-	req_access_txt = "5"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "qle" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -56322,6 +56318,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"rXe" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/window/brigdoor/southright{
+	name = "Filing Room";
+	req_access_txt = "77"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "rXg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -56918,26 +56924,6 @@
 "ses" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"sey" = (
-/obj/structure/table/wood,
-/obj/item/assembly/flash{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/item/flashlight/pen{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/item/assembly/flash{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "seA" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -59284,7 +59270,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -60479,6 +60465,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/physician)
+"tpx" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/pen{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "tpJ" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -60906,7 +60908,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61426,7 +61428,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -67038,7 +67040,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -69324,28 +69326,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
-"wxa" = (
-/obj/structure/closet/secure_closet{
-	name = "psychiatrist locker";
-	req_access_txt = "5"
-	},
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/obj/item/storage/pill_bottle/happiness,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/happy{
-	name = "happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/lsd{
-	name = "very happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/psicodine,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "wxb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -69971,7 +69951,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -107344,7 +107324,7 @@ xVJ
 uut
 aVN
 kME
-sey
+tpx
 jOO
 ukc
 aVN
@@ -107860,7 +107840,7 @@ aVN
 cmB
 qDC
 kAU
-wxa
+jEj
 aVN
 mNt
 oQP
@@ -108114,7 +108094,7 @@ hts
 drH
 stI
 aVN
-qla
+rXe
 xIb
 yew
 olg
