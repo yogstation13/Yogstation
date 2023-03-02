@@ -36,7 +36,8 @@ export const PartFabricator = (props, context) => {
               Required freon for matter bin of holding: {matterbin_moles}<br />
               Required chemicals for hexaphasic scanning module: {scanner_chemicals}<br />
               Required credits for quint-hyper micro-laser: {laser_money}<br />
-              Required temperature for Planck-manipulator: {'>'}{manipulator_temp}
+              Required temperature for Planck-manipulator: {'>'}{manipulator_temp}<br />
+              <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
             </Section>
           </Stack.Item>
           <Stack.Item>
