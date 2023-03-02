@@ -10,22 +10,48 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5000
 	active_power_usage = 20000
+	density = TRUE
 
 	var/static/part_recipes_generated = FALSE
 	var/static/capacitor_energy_requirement
 	var/static/matterbin_freon_moles_requirement
 	var/static/list/datum/bounty/reagent/scanner_chemicals_requirement
 	var/static/laser_money_requirement
+	var/static/list/obj/item/organ/manipulator_organs_requirement
 	var/static/manipulator_temp_requirement
+
+	var/static/list/acceptable_items
 
 	var/tab = "capacitor"
 
 	var/production_speed = 1
 
+	var/production_progress = 0
+
+/obj/machinery/part_fabricator/attackby(obj/item/inserted, mob/living/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, inserted))
+		update_icon()
+		return
+	
+	if(default_deconstruction_crowbar(inserted))
+		return
+
+	if(is_refillable() && inserted.is_drainable())
+		return FALSE //inserting reagents into the machine
+	
+	if(inserted.get_item_credit_value() || is_type_in_list(inserted, acceptable_items))
+		inserted.forceMove(src)
+		to_chat(user, span_notice("You insert \the [inserted] into \the [src]."))
+		return TRUE
+	else if(user.a_intent == INTENT_HELP) // if they're bashing it they probably don't care
+		to_chat(user, span_danger("\The [src] rejects \the [inserted]!"))
+	
+	return ..()
+
 /obj/machinery/part_fabricator/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice("[src]'s maintenance hatch is open!")
+		. += span_notice("\The [src]'s maintenance hatch is open!")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("Production speed at [production_speed*100]%")
 
@@ -34,12 +60,11 @@
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(P.rating == 5)
 			production_speed += 0.2 // 21 parts, up to 5.2x default speed
-	if(!reagents)
-		create_reagents(0, OPENCONTAINER)
-	reagents.maximum_volume = 0
-	for(var/obj/item/reagent_containers/glass/G in component_parts)
-		reagents.maximum_volume += G.volume
-		G.reagents.trans_to(src, G.reagents.total_volume)
+	if(reagents)
+		reagents.maximum_volume = 0
+		for(var/obj/item/reagent_containers/glass/G in component_parts)
+			reagents.maximum_volume += G.volume
+			G.reagents.trans_to(src, G.reagents.total_volume)
 
 /obj/machinery/part_fabricator/on_deconstruction()
 	for(var/obj/item/reagent_containers/glass/G in component_parts)
@@ -50,6 +75,7 @@
 /obj/machinery/part_fabricator/Initialize()
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
+	RefreshParts()
 	if(part_recipes_generated)
 		return
 	
@@ -63,7 +89,20 @@
 
 	laser_money_requirement = round((rand() * 0.5 + 0.75) * 10000) // 7500-12500 credits
 
+	manipulator_organs_requirement = list(
+		/obj/item/organ/heart, /obj/item/organ/lungs, /obj/item/organ/eyes, /obj/item/organ/ears,
+		/obj/item/organ/tongue, /obj/item/organ/liver, /obj/item/organ/stomach
+	)
+
 	manipulator_temp_requirement = (rand() + 1) * 40000 // 40000-80000 Kelvin
+
+	acceptable_items = list(
+		/obj/item/electrical_stasis_manifold,
+		/obj/item/organic_augur,
+		/obj/item/mmi/posibrain,
+		/obj/item/gun/energy/laser,
+		/obj/item/organ
+	)
 
 	part_recipes_generated = TRUE
 
@@ -77,29 +116,31 @@
 
 /obj/machinery/part_fabricator/ui_data(mob/user)
 	var/list/data = ..()
-	data["tab"] = tab
+
 	var/my_contents = contents.Copy()
 
-	// Capacitor requirements
+	// Capacitor requirements /////////////////////////////////////////////////////////////////
 	var/current_ESMs = 0
 	for(var/obj/item/electrical_stasis_manifold/esm in my_contents)
 		my_contents -= esm
 		current_ESMs++
 	data["current_ESMs"] = current_ESMs ? current_ESMs : "0"
-	var/current_energy = get_power(TRUE)
-	data["current_energy"] = current_energy ? DisplayPower(current_energy) : "0"
 
-	// Matter bin requirements
+	var/current_energy = get_power(TRUE)
+	data["current_energy"] = current_energy ? current_energy : "0"
+
+	// Matter bin requirements /////////////////////////////////////////////////////////////////
 	var/current_augurs = 0
 	for(var/obj/item/organic_augur/augur in my_contents)
 		current_augurs -= augur
 		current_ESMs++
 	data["current_augurs"] = current_augurs ? current_augurs : "0"
+
 	var/datum/gas_mixture/my_gas = return_air()
 	var/current_moles = my_gas.get_moles(/datum/gas/freon)
 	data["current_moles"] = current_moles ? current_moles : "0"
 
-	// Scanner requirements
+	// Scanner requirements /////////////////////////////////////////////////////////////////
 	var/current_posibrain = "ERROR: No artificial brain loaded"
 	for(var/obj/item/mmi/posibrain/posi in my_contents)
 		my_contents -= posi
@@ -108,12 +149,16 @@
 			current_posibrain = "Artificial brain active"
 			break
 	data["current_posibrain"] = current_posibrain
-	var/current_reagents = ""
-	for(var/datum/reagent/R in reagents.reagent_list)
-		current_reagents += "\n[R.name]: [R.volume]u"
-	data["current_reagents"] = current_reagents
 
-	// Laser requirements
+	var/current_reagents = list()
+	var/current_reagents_num = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		current_reagents += "[R.name]"
+		current_reagents_num += R.volume
+	data["current_reagents"] = current_reagents
+	data["current_reagents_num"] = current_reagents_num
+
+	// Laser requirements /////////////////////////////////////////////////////////////////
 	var/current_lasergun = "ERROR: No laser gun loaded"
 	for(var/obj/item/gun/energy/laser/lasgun in my_contents)
 		my_contents -= lasgun
@@ -127,17 +172,58 @@
 			break
 	data["current_lasergun"] = current_lasergun
 
+	var/current_money = 0
+	for(var/obj/item/money in my_contents)
+		var/worth = money.get_item_credit_value()
+		if(!worth)
+			continue
+		my_contents -= money
+		current_money += worth
+	data["current_money"] = current_money ? current_money : "0"
+
+	// Manipulator requirements /////////////////////////////////////////////////////////////////
+	var/current_organs = "All required organs loaded"
+	var/current_organs_num = 0
+	var/list/temp_organs_list = manipulator_organs_requirement.Copy()
+	for(var/organ_type in temp_organs_list)
+		for(var/obj/item/organ/selected_organ in my_contents)
+			my_contents -= selected_organ
+			if(istype(selected_organ, organ_type))
+				temp_organs_list -= organ_type
+	if(!isemptylist(temp_organs_list))
+		current_organs = "ERROR: Missing "
+		var/first_organ = TRUE
+		for(var/obj/item/organ/organ_type as anything in temp_organs_list)
+			if(first_organ)
+				first_organ = FALSE
+				current_organs += "[initial(organ_type.name)]"
+			else
+				current_organs += ", [initial(organ_type.name)]"
+	current_organs_num = -(temp_organs_list.len - manipulator_organs_requirement.len) / (manipulator_organs_requirement.len)
+	data["current_organs"] = current_organs
+	data["current_organs_num"] = current_organs_num ? current_organs_num : "0"
+
+	var/current_temp = my_gas.return_temperature()
+	data["current_temp"] = current_temp ? current_temp : "0"
+
+	// Other vars /////////////////////////////////////////////////////////////////
+
+	data["production_progress"] = production_progress
+	data["tab"] = tab
+
 	return data
 
 /obj/machinery/part_fabricator/ui_static_data(mob/user)
 	var/list/data = ..()
-	data["capacitor_energy"] = "[CEILING(capacitor_energy_requirement / 1000000000, 0.01)]GW"
-	data["matterbin_moles"] = "[CEILING(matterbin_freon_moles_requirement, 0.01)] moles"
-	data["scanner_chemicals"] = ""
+	data["capacitor_energy"] = capacitor_energy_requirement
+	data["matterbin_moles"] = matterbin_freon_moles_requirement
+	data["scanner_chemicals"] = list()
+	data["scanner_chemicals_num"] = list()
 	for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
-		data["scanner_chemicals"] += "\n[bounty.required_volume]u of [initial(bounty.wanted_reagent.name)]"
-	data["laser_money"] = "[laser_money_requirement] credits"
-	data["manipulator_temp"] = "[CEILING(manipulator_temp_requirement, 1)] Kelvin"
+		data["scanner_chemicals"] += "[initial(bounty.wanted_reagent.name)]"
+		data["scanner_chemicals_num"] += bounty.required_volume
+	data["laser_money"] = laser_money_requirement
+	data["manipulator_temp"] = manipulator_temp_requirement
 	return data
 
 /obj/machinery/part_fabricator/ui_act(action, list/params)

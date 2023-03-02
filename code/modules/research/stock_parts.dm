@@ -275,35 +275,35 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 //Rating 5
 
-/obj/item/stock_parts/capacitor/quadratic
+/obj/item/stock_parts/capacitor/cubic
 	name = "cubic capacitor"
 	desc = "A cubic capacitor used in the construction of a variety of devices."
 	icon_state = "cubic_capacitor"
 	rating = 5
 	materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
-/obj/item/stock_parts/scanning_module/triphasic
+/obj/item/stock_parts/scanning_module/hexaphasic
 	name = "hexaphasic scanning module"
 	desc = "A compact, ultra resolution hexaphasic scanning module used in the construction of certain devices."
 	icon_state = "hexaphasic_scan_module"
 	rating = 5
 	materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
-/obj/item/stock_parts/manipulator/femto
+/obj/item/stock_parts/manipulator/planck
 	name = "\improper Planck-manipulator"
 	desc = "A tiny manipulator used in the construction of certain devices."
 	icon_state = "planck_mani"
 	rating = 5
 	materials = list(/datum/material/iron=30)
 
-/obj/item/stock_parts/micro_laser/quadultra
+/obj/item/stock_parts/micro_laser/quinthyper
 	name = "quint-hyper micro-laser"
 	icon_state = "quinthyper_micro_laser"
 	desc = "A tiny laser used in certain devices."
 	rating = 5
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
-/obj/item/stock_parts/matter_bin/bluespace
+/obj/item/stock_parts/matter_bin/holding
 	name = "matter bin of holding"
 	desc = "A container designed to hold compressed matter awaiting reconstruction."
 	icon_state = "matter_bin_of_holding"

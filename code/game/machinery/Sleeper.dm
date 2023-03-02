@@ -57,6 +57,8 @@
 	efficiency = initial(efficiency)* E
 	available_treatments = list()
 	for(var/i in 1 to I)
+		if(treatments.len < i)
+			break
 		if(!length(treatments[i]))
 			continue
 		available_treatments |= treatments[i]
