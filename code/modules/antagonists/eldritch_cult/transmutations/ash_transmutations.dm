@@ -63,7 +63,7 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear The Blaze, for Ashbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/big)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/fire_sworn)

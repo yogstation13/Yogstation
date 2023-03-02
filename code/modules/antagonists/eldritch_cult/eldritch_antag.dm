@@ -12,6 +12,7 @@
 	var/total_sacrifices = 0
 	var/lore = "Unpledged" //Used to track which path the heretic has taken
 	var/ascended = FALSE
+	var/transformed = FALSE //Used to track if the heretic sheds their own body during ascension
 	var/charge = 1
 ///current tier of knowledge this heretic is on, each level unlocks new knowledge bits
 	var/knowledge_tier = TIER_PATH //oh boy this is going to be fun
@@ -235,7 +236,7 @@
 
 	return parts.Join("<br>")
 
-/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, lore)
+/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, trasnformed, lore)
 	var/list/flavor = list()
 	var/flavor_message
 
@@ -258,7 +259,10 @@
 								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
 								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			if(transformed)
+				flavor_message += 	"Flesh Worm"
+			else
+				flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
@@ -271,7 +275,10 @@
 								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
 								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			if(transformed)
+				flavor_message += 	"Flesh Worm"
+			else
+				flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
@@ -284,7 +291,10 @@
 								but this new form burns with the same passion. You have walked in the steps of the Nightwatcher. You will not grow old. \
 								One day, you will escape. One day, you will do what the Nightwatcher could not do, and kindle the Mansus whole."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			if(transformed)
+				flavor_message += 	"Flesh Worm"
+			else
+				flavor_message += 	"Flesh"
 		else //Rust
 			flavor_message += 	"Rust"
 		message_color = "#FFD700"
@@ -328,36 +338,49 @@
 	else if(escaped)
 		//Don't finish objectives, don't ascend, and escape
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"A setback is unideal. But at least you have escaped with your body and some knowledge intact. There will be opportunities, \
+								even if you are imprisoned. What the Mansus has whispered to you, you can never forget. The flame in your breast that the \
+								Kilnplains has provided burns brighter by the beating moment. You can try anew. Recuperate. Listen to more discussion within \
+								the Wanderer's Tavern. Your time will come again."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"You decided not to follow the power you had become aware of. From time to time, you will return to the Wood in \
+								your dreams, but you will never aspire to greatness. One day, you will die, and perhaps those close to you in life \
+								will honor you. Then, one day, you will be forgotten. The world will move on as you cease to exist."
 		message_color = "#517fff"
 
 	else if(alive)
 		//Don't finish objectives, don't ascend, and stay on station
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"Disappointment fans your chest. Perhaps you will be able to escape. Perhaps you will have a second chance. \
+								Who knows who will come to rescue you? Perhaps they will feed your studies anew. Until then, you will wait. \
+								You hope greatness will come to you. You hate that you have to hope at all."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"What purpose did you serve? Your mind had been opened to greatness, yet you denied it and chose to live your \
+								days as you always have: one of the many, one of the ignorant. Look at where your lack of ambition has gotten \
+								you now: stranded, like a fool. Even if you do escape, you will die some day. You will be forgotten."
 
 	else
 		//Don't finish objectives, don't ascend, and die
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"You touched the Kilnplains, and it will not let you go. Pitiful as you may be, it still drags you back as a \
+								morbid mass of ash and hunger. You will forever wander, thirsty for one more glint of power, one more spark to \
+								eat whole. Maybe a stronger student will call you from your prison one day, but infinite time will pass before \
+								then. You wish you could have done all the things you should not. And you will have an eternity to dwell on it."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //Didn't choose lore
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"Perhaps it is better this way. You chose not to make a plunge into the Mansus, yet your soul returns to it. \
+								You will drift down, deeper, further, until you are forgotten to nothingness."
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
 	return "<div>[flavor.Join("<br>")]</div>"

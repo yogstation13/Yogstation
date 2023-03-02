@@ -109,7 +109,7 @@
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
-			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power, one of which is of a considerable volume of organic mass. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
@@ -127,12 +127,13 @@
 				if(istype(S, /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)) //vitally important since ashen passage breaks the shit out of armsy
 					user.mind.spell_list.Remove(S)
 					qdel(S)
-			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a singular entity of immeasurable power that is quickly growing in volume. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[user.real_name] ascended as [summoned.real_name]")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 			ascension.ascended = TRUE
+			ascension.transformed = TRUE
 			carbon_user.mind.transfer_to(summoned, TRUE)
 			carbon_user.gib()
 
