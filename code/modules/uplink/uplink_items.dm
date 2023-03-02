@@ -2462,7 +2462,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
-/datum/uplink_item/role_restricted/chemical_gun
+/datum/uplink_item/role_restricted/psychotic_brawl_notes
 	name = "Psychotic Brawl Notes"
 	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
 			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."
