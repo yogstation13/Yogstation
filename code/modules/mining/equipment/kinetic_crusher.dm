@@ -133,7 +133,7 @@
 /obj/item/twohanded/kinetic_crusher/proc/Recharge(magmite = FALSE)
 	if(magmite == TRUE)
 		charged = TRUE
-		icon_state = "magmite_crusher"
+		icon_state = "magmite_crusher0"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 	if(!charged)
 		charged = TRUE
@@ -474,8 +474,7 @@
 //Magmite Crusher
 
 /obj/item/twohanded/kinetic_crusher/mega
-    icon_state = "magmite_crusher"
-    item_state = "magmite_crusher"
+    icon_state = "magmite_crusher0"
     lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
     righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
     name = "mega proto-kinetic crusher"
@@ -507,6 +506,11 @@
         addtimer(CALLBACK(src, .proc/Recharge, TRUE), charge_time)
         return
     ..()
+
+
+/obj/item/twohanded/kinetic_crusher/mega/update_icon()
+	icon_state = "magmite_crusher[wielded]"
+	return
 
 /obj/item/projectile/destabilizer/mega
     name = "destabilizing force"
