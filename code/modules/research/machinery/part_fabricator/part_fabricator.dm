@@ -17,7 +17,7 @@
 	var/static/matterbin_freon_moles_requirement
 	var/static/list/datum/bounty/reagent/scanner_chemicals_requirement
 	var/static/laser_money_requirement
-	var/static/list/obj/item/organ/manipulator_organs_requirement
+	var/static/datum/bounty/item/botany/manipulator_plant_requirement
 	var/static/manipulator_temp_requirement
 
 	var/static/list/acceptable_items
@@ -89,10 +89,11 @@
 
 	laser_money_requirement = round((rand() * 0.5 + 0.75) * 10000) // 7500-12500 credits
 
-	manipulator_organs_requirement = list(
-		/obj/item/organ/heart, /obj/item/organ/lungs, /obj/item/organ/eyes, /obj/item/organ/ears,
-		/obj/item/organ/tongue, /obj/item/organ/liver, /obj/item/organ/stomach
-	)
+	var/list/possible_plants = subtypesof(/datum/bounty/item/botany)
+	for(var/datum/bounty/item/botany/plant_bounty in possible_plants)
+		if(initial(plant_bounty.multiplier) < 2)
+			possible_plants -= plant_bounty
+	manipulator_plant_requirement = new pick(possible_plants)
 
 	manipulator_temp_requirement = (rand() + 1) * 40000 // 40000-80000 Kelvin
 
@@ -182,26 +183,12 @@
 	data["current_money"] = current_money ? current_money : "0"
 
 	// Manipulator requirements /////////////////////////////////////////////////////////////////
-	var/current_organs = "All required organs loaded"
-	var/current_organs_num = 0
-	var/list/temp_organs_list = manipulator_organs_requirement.Copy()
-	for(var/organ_type in temp_organs_list)
-		for(var/obj/item/organ/selected_organ in my_contents)
-			my_contents -= selected_organ
-			if(istype(selected_organ, organ_type))
-				temp_organs_list -= organ_type
-	if(!isemptylist(temp_organs_list))
-		current_organs = "ERROR: Missing "
-		var/first_organ = TRUE
-		for(var/obj/item/organ/organ_type as anything in temp_organs_list)
-			if(first_organ)
-				first_organ = FALSE
-				current_organs += "[initial(organ_type.name)]"
-			else
-				current_organs += ", [initial(organ_type.name)]"
-	current_organs_num = -(temp_organs_list.len - manipulator_organs_requirement.len) / (manipulator_organs_requirement.len)
-	data["current_organs"] = current_organs
-	data["current_organs_num"] = current_organs_num ? current_organs_num : "0"
+	var/current_plants = 0
+	for(var/selected_item in my_contents)
+		if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
+			current_plants++
+			my_contents -= selected_item
+	data["current_plants"] = current_plants
 
 	var/current_temp = my_gas.return_temperature()
 	data["current_temp"] = current_temp ? current_temp : "0"
@@ -223,6 +210,8 @@
 		data["scanner_chemicals"] += "[initial(bounty.wanted_reagent.name)]"
 		data["scanner_chemicals_num"] += bounty.required_volume
 	data["laser_money"] = laser_money_requirement
+	data["manipulator_plant"] = manipulator_plant_requirement.name
+	data["manipulator_plant_num"] = manipulator_plant_requirement.required_count
 	data["manipulator_temp"] = manipulator_temp_requirement
 	return data
 

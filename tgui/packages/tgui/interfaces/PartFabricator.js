@@ -11,6 +11,8 @@ export const PartFabricator = (props, context) => {
     scanner_chemicals = [], // Array of Strings
     scanner_chemicals_num = [], // Array of Numbers
     laser_money, // Number
+    manipulator_plant, // String
+    manipulator_plant_num, // Number
     manipulator_temp, // Number
     // Variable, current tab we're on
     tab, // String
@@ -24,8 +26,7 @@ export const PartFabricator = (props, context) => {
     current_reagents_num = [], // Array of Numbers
     current_lasergun, // String
     current_money, // Number
-    current_organs, // String
-    current_organs_num, // Number (0-1)
+    current_plants, // Number
     current_temp, // Number
     // Variable, progress in printing
     production_progress,
@@ -131,7 +132,7 @@ export const PartFabricator = (props, context) => {
                 <Box>
                   {current_lasergun}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
-                  <ProgressBar value={current_organs_num} />
+                  <ProgressBar value={current_lasergun === "Laser gun loaded"} />
                   <br />
                   <br />
                   Money: {current_money}/{laser_money} credits
@@ -140,9 +141,9 @@ export const PartFabricator = (props, context) => {
                 )}
               {tab === "manipulator" && (
                 <Box>
-                  {current_organs}{" "}
+                  {manipulator_plant}: {current_plants}/{manipulator_plant_num}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
-                  <ProgressBar value={current_ESMs/1} />
+                  <ProgressBar value={current_plants/manipulator_plant_num} />
                   <br />
                   <br />
                   Temperature:{"  "}
