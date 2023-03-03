@@ -31,13 +31,6 @@ export const PartFabricator = (props, context) => {
     // Variable, progress in printing
     production_progress,
   } = data;
-  const tabTitle = {
-    "capacitor":"Cubic Capacitor",
-    "matterbin":"Matter Bin of Holding",
-    "scanner":"Hexaphasic Scanning Module",
-    "laser":"Quint-Hyper Micro-Laser",
-    "manipulator":"Planck-Manipulator",
-  };
   return (
     <Window width={480} height={300}>
       <Window.Content>
