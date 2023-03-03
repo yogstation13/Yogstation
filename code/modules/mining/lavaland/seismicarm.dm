@@ -310,8 +310,9 @@
 			L.adjustBruteLoss(100)
 	if(issilicon(L))
 		L.adjustBruteLoss(18)
+	var/turf/P = get_turf(user)
 	for(var/i = 2 to flightdist)
-		var/turf/T = get_ranged_target_turf(user, direction, i)
+		var/turf/T = get_ranged_target_turf(P, direction, i)
 		if(ismineralturf(T))
 			var/turf/closed/mineral/M = T
 			M.attempt_drill()

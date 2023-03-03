@@ -1,8 +1,0 @@
-author: "TheRyeGuyWhoWillNowDie"
-delete-after: true 
-changes: 
-  - tweak: "syringe gun armor piercing restrictions have been removed"
-  - tweak: "printing syringe guns now needs illegal tech"
-  - tweak: "printed rapid syringe guns replaced with normal syringe guns"
-  - tweak: "chem gun in uplink has been replaced with rapid syringe gun (8tc) because the reagent gun is just really bad"
-  - tweak: "syringe shotgun darts are removed from autolathes, and require illegal technology to print from the security/armory protolathe"

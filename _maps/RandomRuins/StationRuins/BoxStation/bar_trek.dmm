@@ -21,19 +21,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/bar)
 "ag" = (
-/turf/closed/wall,
-/area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sign/plaques/deempisi{
-	pixel_y = -4
-	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "ai" = (
@@ -249,12 +237,6 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"aB" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/bar)
 "aC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1419,6 +1401,15 @@
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Kd" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/bar)
 "MN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1520,6 +1511,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"Zo" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1746,7 +1743,7 @@ cF
 ag
 "}
 (15,1,1) = {"
-af
+Zo
 az
 aT
 be
@@ -1762,8 +1759,8 @@ cI
 ag
 "}
 (16,1,1) = {"
-ah
-aB
+ag
+Kd
 aV
 ag
 ag

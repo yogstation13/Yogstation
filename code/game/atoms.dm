@@ -206,16 +206,18 @@
   */
 /atom/Destroy()
 	if(alternate_appearances)
-		for(var/K in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-			AA.remove_from_hud(src)
+		for(var/current_alternate_appearance in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
+			selected_alternate_appearance.remove_from_hud(src)
 
 	if(reagents)
 		qdel(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
-	LAZYCLEARLIST(overlays)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
 	LAZYCLEARLIST(priority_overlays)
 
 	for(var/i in targeted_by)
@@ -225,6 +227,8 @@
 	targeted_by = null
 
 	QDEL_NULL(light)
+	if (length(light_sources))
+		light_sources.Cut()
 
 	return ..()
 
@@ -1031,6 +1035,8 @@
 		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
 		if(newname)
+			log_admin("[key_name(usr)] renamed [src] to [newname].")
+			message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_FLW(src)] to [newname].")
 			vv_auto_rename(newname)
 
 /atom/proc/vv_auto_rename(newname)

@@ -211,12 +211,13 @@
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
-	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
+	l_pocket = /obj/item/wormhole_jaunter
 	r_pocket = /obj/item/flashlight/seclite
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	backpack_contents = list(/obj/item/storage/box/plasmaman/miner = 1)
+	backpack_contents = list(/obj/item/storage/box/plasmaman/miner = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1)
 
 
 /datum/outfit/job/plasmaman/lawyer
@@ -476,14 +477,17 @@
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
 		/obj/item/gps/mining = 1,\
-		/obj/item/storage/box/plasmaman/miner = 1)
+		/obj/item/storage/box/plasmaman/miner = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
+		/obj/item/modular_computer/laptop/preset/paramedic/mining_medic = 1)
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/plasmaman/mining
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/hypospray/qmc
 	l_pocket =  /obj/item/pda/medical
+	r_pocket = /obj/item/wormhole_jaunter
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

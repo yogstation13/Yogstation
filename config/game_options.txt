@@ -104,7 +104,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Set to 0 to disable that mode.
 
 # New
-PROBABILITY DARKSPAWN 6
+PROBABILITY DARKSPAWN 0 # Moved to midround event
 PROBABILITY HERESY 4
 PROBABILITY INFILTRATION 0
 PROBABILITY BLOODSUCKER 4
@@ -126,10 +126,10 @@ PROBABILITY CULT 5
 PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 0 //For now
+PROBABILITY SHADOWLING 6
 PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
-PROBABILITY MALF 8
+PROBABILITY MALF 0
 PROBABILITY CLOWNOPS 0 #Broke
 
 # Special
@@ -161,7 +161,7 @@ CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
-CONTINUOUS MALF
+#CONTINUOUS MALF
 CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
@@ -187,7 +187,7 @@ MIDROUND_ANTAG CLOCKWORK_CULT
 MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
-MIDROUND_ANTAG MALF
+#MIDROUND_ANTAG MALF
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -247,9 +247,9 @@ SHUTTLE_REFUEL_DELAY 12000
 ## Variables calculate how number of antagonists will scale to population.
 ## Used as (Antagonists = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
-TRAITOR_SCALING_COEFF 7
-BROTHER_SCALING_COEFF 10
-CHANGELING_SCALING_COEFF 8
+TRAITOR_SCALING_COEFF 5
+BROTHER_SCALING_COEFF 8
+CHANGELING_SCALING_COEFF 7
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)
@@ -299,6 +299,12 @@ DEFAULT_ANTAG_TICKETS 100
 
 ## The maximum amount of extra tickets a user may use from their ticket bank in addition to the default tickets
 MAX_TICKETS_PER_ROLL 100
+
+## The antag-rep multiplier bonus for escaping alive on Central Command at the end of a round
+ESCAPED_ALIVE_BONUS 1.5
+
+## The antag-rep multiplier bonus for being alive (and not escaping to CC) at the end of a round
+STAYED_ALIVE_BONUS 1.5
 
 ## Uncomment to allow players to see the set odds of different rounds in secret/random in the get server revision screen. This will NOT tell the current roundtype.
 SHOW_GAME_TYPE_ODDS
@@ -549,7 +555,7 @@ ROUNDSTART_RACES ipc
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
-#ROUNDSTART_RACES jelly
+ROUNDSTART_RACES jelly
 #ROUNDSTART_RACES golem
 #ROUNDSTART_RACES adamantine
 #ROUNDSTART_RACES plasma
@@ -586,9 +592,6 @@ OVERFLOW_JOB Assistant
 ## Overflow slot cap. Set to -1 for unlimited. If limited, it will still open up if every other job is full.
 OVERFLOW_CAP -1
 
-## Starlight for exterior walls and breaches. Uncomment for starlight!
-## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
-STARLIGHT
 
 ## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
 GREY_ASSISTANTS

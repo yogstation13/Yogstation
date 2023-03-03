@@ -135,6 +135,7 @@
 	desc = "The air smells strangely over this sinister flooring."
 	icon_state = "plating"
 	floor_tile = null
+	CanAtmosPass = ATMOS_PASS_NO // cant be spaced or flooded that easily
 	var/obj/effect/clockwork/overlay/floor/bloodcult/realappearance
 
 
@@ -167,6 +168,7 @@
 
 /turf/open/floor/engine/cult/airless
 	initial_gas_mix = AIRLESS_ATMOS
+	CanAtmosPass = ATMOS_PASS_PROC // same as /turf/open/floor/engine
 
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"

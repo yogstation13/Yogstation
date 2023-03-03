@@ -8,6 +8,7 @@
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
+	preview_outfit = /datum/outfit/monsterhunter
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
@@ -155,3 +156,12 @@
 	if(scan_target)
 		to_chat(owner, span_notice("You've lost the trail."))
 	. = ..()
+
+/datum/outfit/monsterhunter
+	name = "Monster Hunter"
+
+	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
+	uniform = /obj/item/clothing/under/rank/chaplain
+	suit = /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
+	l_hand = /obj/item/stake
+	r_hand = /obj/item/stake/hardened/silver

@@ -360,7 +360,7 @@
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
 	item_state = "duffel"
-	slowdown = 1
+	slowdown = 0.5
 
 /obj/item/storage/backpack/duffelbag/ComponentInitialize()
 	. = ..()
@@ -671,6 +671,7 @@
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
@@ -692,6 +693,7 @@
 	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/science/rd(src)
+	new /obj/item/clothing/head/beret/rd(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 

@@ -24,7 +24,7 @@
 	layer = GHOST_LAYER
 	healable = FALSE
 	spacewalk = TRUE
-	sight = SEE_SELF
+	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS | SEE_SELF
 	throwforce = 0
 
 	see_in_dark = 8

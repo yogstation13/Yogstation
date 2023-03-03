@@ -69,7 +69,7 @@
 					adjustFireLoss(200/damage_mod)
 
 				if(damagetype & TOXLOSS)
-					adjustToxLoss(200/damage_mod)
+					adjustToxLoss(200/damage_mod, TRUE, TRUE)//toxinlovers
 
 				if(damagetype & OXYLOSS)
 					adjustOxyLoss(200/damage_mod)

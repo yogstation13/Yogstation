@@ -27,6 +27,11 @@
 		queue_smooth_neighbors(src)
 	return ..()
 
+/obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSSTRUCTURE))
+		return TRUE
+
 /obj/structure/attack_hand(mob/user)
 	. = ..()
 	if(.)

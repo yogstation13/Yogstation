@@ -312,7 +312,7 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/mob/P in GLOB.player_list)
 		if(P.client && P.client.prefs)
-			if(P.client.prefs.disable_alternative_announcers)
+			if(P.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(P, sound(default_sound))
 				continue
 		SEND_SOUND(P, sound(random_sound))

@@ -212,7 +212,7 @@
 /datum/nanite_program/research
 	name = "Distributed Computing"
 	desc = "The nanites aid the research servers by performing a portion of its calculations, increasing research point generation."
-	use_rate = 0.2
+	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/research/active_effect()
@@ -226,7 +226,7 @@
 /datum/nanite_program/researchplus
 	name = "Neural Network"
 	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts."
-	use_rate = 0.3
+	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/brain_decay)
 	var/points
 

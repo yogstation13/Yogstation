@@ -25,14 +25,17 @@
 	added_access = list(ACCESS_CAPTAIN) //Yogs: Gives CMO access to the brig physicians locker
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_HEADS, ACCESS_MINERAL_STOREROOM,
 			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_SURGERY, ACCESS_RC_ANNOUNCE, ACCESS_MECH_MEDICAL,
-			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_BRIG_PHYS, ACCESS_PARAMEDIC) //Yogs: Gives CMO access to the brig physicians locker
+			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_BRIG_PHYS, ACCESS_PARAMEDIC, ACCESS_PSYCH) //Yogs: Gives CMO access to the brig physicians locker
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	minimal_character_age = 30 //Do you knoW HOW MANY JOBS YOU HAVE TO KNOW TO DO?? This should really be like 35 or something
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/medical,
+		/datum/job_department/command,
+	)
 
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/organ_spawner = 10,
@@ -42,9 +45,6 @@
 	)
 
 	smells_like = "blood-soaked stress"
-
-/datum/job/cmo/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"

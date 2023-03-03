@@ -21,7 +21,9 @@
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
 	minimal_character_age = 20 //As a paramedic you just need to know basic first aid and handling of patients in shock. Ideally you're also strong and able to stay cool. You don't know surgery
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
@@ -32,15 +34,6 @@
 	)
 
 	smells_like = "pre-packaged oxygen"
-
-/datum/job/paramedic/proc/OmegaStationChanges()
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/paramedic/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"

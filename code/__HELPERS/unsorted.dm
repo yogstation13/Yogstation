@@ -186,7 +186,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-/mob/proc/apply_pref_name(role, client/C)
+/mob/proc/apply_pref_name(preference_type, client/C)
 	if(!C)
 		C = client
 	var/oldname = real_name
@@ -197,20 +197,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/banned = C ? is_banned_from(C.ckey, "Appearance") : null
 
 	while(loop && safety < 5)
-		if(C && C.prefs.custom_names[role] && !safety && !banned)
-			newname = C.prefs.custom_names[role]
+		if(!safety && !banned)
+			newname = C?.prefs?.read_preference(preference_type)
 		else
-			switch(role)
-				if("human")
-					newname = random_unique_name(gender)
-				if("clown")
-					newname = pick(GLOB.clown_names)
-				if("mime")
-					newname = pick(GLOB.mime_names)
-				if("ai")
-					newname = pick(GLOB.ai_names)
-				else
-					return FALSE
+			var/datum/preference/preference = GLOB.preference_entries[preference_type]
+			newname = preference.create_informed_default_value(C.prefs)
 
 		for(var/mob/living/M in GLOB.player_list)
 			if(M == src)
@@ -1084,21 +1075,22 @@ B --><-- A
 			return target
 
 /proc/get_closest_atom(type, list, source)
-	var/closest_atom
+	var/list/closest_atoms = list()
 	var/closest_distance
 	for(var/A in list)
 		if(!istype(A, type))
 			continue
 		var/distance = get_dist(source, A)
-		if(!closest_atom)
+		if(!closest_atoms.len)
 			closest_distance = distance
-			closest_atom = A
+			closest_atoms = list(A)
 		else
 			if(closest_distance > distance)
 				closest_distance = distance
-				closest_atom = A
-	return closest_atom
-
+				closest_atoms = list(A)
+			else if(closest_distance == distance)
+				closest_atoms += A
+	return pick(closest_atoms) //if there are multiple atoms with the same distance, picks randomly from a list of them
 
 proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
@@ -1237,6 +1229,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 /mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
 	SHOULD_CALL_PARENT(FALSE)
+	if(flags_1 & INITIALIZED_1)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	flags_1 |= INITIALIZED_1
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dview/Destroy(force = FALSE)

@@ -78,11 +78,14 @@
 	if(!ishuman(user))
 		return
 	var/style = user.dna?.features["plasmaman_helmet"]
+	var/suffix = ""
 	if(style && (style in GLOB.plasmaman_helmet_list) && style != "None")
-		icon_state = initial(icon_state) + "-[GLOB.plasmaman_helmet_list[style]]"
-		item_state = icon_state
-		base_icon_state = icon_state
-		user.update_inv_head()
+		suffix = "-[GLOB.plasmaman_helmet_list[style]]"
+
+	icon_state = initial(icon_state) + suffix
+	item_state = icon_state
+	base_icon_state = icon_state
+	user.update_inv_head()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"

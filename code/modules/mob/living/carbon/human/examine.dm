@@ -1,3 +1,8 @@
+#define ORGANIC_BRUTE "bruising"
+#define ORGANIC_BURN "burns"
+#define ROBOTIC_BRUTE "denting"
+#define ROBOTIC_BURN "charring"
+
 /mob/living/carbon/human/examine(mob/user)
 //this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
 	var/t_He = p_they(TRUE)
@@ -7,6 +12,9 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name
+	var/robotic = FALSE //robotic mobs look different under certain circumstances
+	if(MOB_ROBOTIC in mob_biotypes)//please someone tell me this is stupid and i can do it all in one line
+		robotic = TRUE
 
 	if(isliving(user))
 		var/mob/living/L = user
@@ -113,6 +121,35 @@
 		if(100 to 200)
 			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
+	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
+		var/badwings = ""
+		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
+			badwings = "Weaponized "
+		. += "[t_He] [t_has] a pair of [span_warning(badwings)][(dna.features["wings"])] wings on [t_his] back"
+
+	if(user?.mind && HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
+		var/highest_trauma = 0
+		for(var/datum/brain_trauma/B in get_traumas())
+			if(istype(B, /datum/brain_trauma/magic))
+				highest_trauma = 4
+				break
+			else if(istype(B, /datum/brain_trauma/special) && highest_trauma < 3)
+				highest_trauma = 3
+			else if(istype(B, /datum/brain_trauma/severe) && highest_trauma < 2)
+				highest_trauma = 2
+			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
+				highest_trauma = 1
+		
+		switch(highest_trauma)
+			if(1)
+				. += span_warning("[t_His] behavior seems a bit off.")
+			if(2)
+				. += span_warning("[t_His] behavior is very clearly abnormal.")
+			if(3)
+				. += span_warning("[t_His] behavior is strange but intriguing.")
+			if(4)
+				. += span_warning("[t_His] behavior seems otherworldly.")
+
 	var/appears_dead = 0
 	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		appears_dead = 1
@@ -181,22 +218,22 @@
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor bruising.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE].\n"
 			else if(temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!\n"
 			else if(src.dna.species.id == "egg" && temp >= 200)
 				msg += "[t_He] look[p_s()] ready to crack into a million pieces!"
 			else
-				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!</B>\n"
 
 		temp = getFireLoss()
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor burns.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BURN : ORGANIC_BURN].\n"
 			else if (temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!\n"
 			else
-				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!</B>\n"
 
 		temp = getCloneLoss()
 		if(temp)
@@ -588,3 +625,6 @@
 		. += span_warning("[msg.Join("")]")
 
 	. += "</span>"
+
+#undef ORGANIC_BRUTE
+#undef ROBOTIC_BRUTE
