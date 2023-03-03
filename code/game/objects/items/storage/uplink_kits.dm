@@ -269,13 +269,13 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("cowboy") //24 ~ 25 TC
+		if("cowboy") //21 ~ 22 TC
 			new /obj/item/clothing/shoes/jackboots/warden(src) //funny noise + it fits, all clothings are 0 TC cause they don't really provide anything
 			new /obj/item/clothing/suit/yogs/ycowboy(src)
 			new /obj/item/clothing/under/yogs/darkgreentanktop(src)
 			new /obj/item/clothing/head/yogs/ycowboy(src)
 			new /obj/item/clothing/gloves/yogs/armbracers(src)
-			new /obj/item/guardiancreator/tech(src) //15 TC
+			new /obj/item/guardiancreator/tech(src) //12 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src) //1 ~ 2 TC
 			new /obj/item/lighter(src) // 0
 			new /obj/item/implanter/adrenalin(src) //8 TC

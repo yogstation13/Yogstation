@@ -30,14 +30,12 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	mode_off_msg = span_danger("<B>You transform yourself into your holoform.</B>")
 	arrow_weight = 0.9
 	COOLDOWN_DECLARE(runcdindex)
-	COOLDOWN_DECLARE(bulletcdindex)
 	var/runcooldown = 0
 	var/bulletcooldown = 0
 	var/obj/item/gun/ballistic/revolver/emperor/gun_form
 
 /datum/guardian_ability/major/precision/Apply()
 	. = ..()
-	bulletcooldown = 1 SECONDS / master_stats.potential
 	runcooldown = 20 SECONDS / master_stats.speed
 
 /datum/guardian_ability/major/precision/Recall()
@@ -45,7 +43,7 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	. = ..()
 	if(COOLDOWN_FINISHED(src, runcdindex))
 		guardian.summoner.current.add_movespeed_modifier("I'm out of here", update=TRUE, priority=102, multiplicative_slowdown=GLOB.guardian_precision_speedup[guardian.stats.speed])
-		addtimer(CALLBACK(guardian.summoner.current, /mob.proc/remove_movespeed_modifier, "I'm out of here"), min(5, master_stats.potential * 2) SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(guardian.summoner.current, /mob.proc/remove_movespeed_modifier, "I'm out of here"), master_stats.potential * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		COOLDOWN_START(src, runcdindex, runcooldown)
 
 /datum/guardian_ability/major/precision/Mode(forced = FALSE)
@@ -76,7 +74,6 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	name = "Emperor"
 	desc = "The gun is mightier than the sword!"
 	icon_state = "emperor"
-	fire_delay = 8
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/emperor
 	var/mob/living/simple_animal/hostile/guardian/linked_guardian //ourselves
@@ -85,6 +82,7 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	. = ..()
 	if(linked_guardian)
 		RegisterSignal(linked_guardian, COMSIG_GLOB_MOB_DEATH, .proc/on_guardian_death)
+		fire_delay = 10 / linked_guardian.stats.potential
 
 /obj/item/gun/ballistic/revolver/emperor/proc/on_guardian_death()
 	UnregisterSignal(linked_guardian, COMSIG_GLOB_MOB_DEATH)
@@ -116,5 +114,5 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	if(linked_guardian)
 		damage = 10 * linked_guardian.stats.damage
 		armour_penetration = 5 * linked_guardian.stats.damage
-		penetrations = linked_guardian.stats.defense - 1 //sturdy bullet, E defense will not penetrate anything
-		penetration_type = FLOOR(linked_guardian.stats.defense / 2, 1) // A & B defense can penetrate mobs, E cannot penetrate and C & D penetrate objects
+		penetrations = linked_guardian.stats.defense - 1 //sturdy bullet, F defense will not penetrate anything
+		penetration_type = FLOOR(linked_guardian.stats.defense / 2, 1) // A & B defense can penetrate mobs, F cannot penetrate and C & D penetrate objects
