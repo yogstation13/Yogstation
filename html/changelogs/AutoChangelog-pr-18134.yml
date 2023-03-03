@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed shadowlings not being able to disable flashlights"
