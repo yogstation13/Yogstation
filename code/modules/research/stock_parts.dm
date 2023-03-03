@@ -281,6 +281,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "cubic_capacitor"
 	rating = 5
 	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/stock_parts/scanning_module/hexaphasic
 	name = "hexaphasic scanning module"
@@ -288,6 +289,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "hexaphasic_scan_module"
 	rating = 5
 	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/stock_parts/manipulator/planck
 	name = "\improper Planck-manipulator"
@@ -295,6 +297,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "planck_mani"
 	rating = 5
 	materials = list(/datum/material/iron=30)
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/stock_parts/micro_laser/quinthyper
 	name = "quint-hyper micro-laser"
@@ -302,6 +305,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "A tiny laser used in certain devices."
 	rating = 5
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/stock_parts/matter_bin/holding
 	name = "matter bin of holding"
@@ -309,6 +313,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "matter_bin_of_holding"
 	rating = 5
 	materials = list(/datum/material/iron=80)
+	resistance_flags = INDESTRUCTIBLE
 
 // Subspace stock parts
 

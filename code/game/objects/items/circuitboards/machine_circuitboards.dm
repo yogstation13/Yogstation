@@ -1065,11 +1065,11 @@
 	req_components = list(
 		/obj/item/stack/sheet/mineral/plastitanium = 10,
 		/obj/item/reagent_containers/glass/beaker = 2,
-		/obj/item/stock_parts/capacitor/quadratic = 4,
-		/obj/item/stock_parts/scanning_module/triphasic = 3,
-		/obj/item/stock_parts/manipulator/femto = 5,
-		/obj/item/stock_parts/micro_laser/quadultra = 4,
-		/obj/item/stock_parts/matter_bin/bluespace = 5)
+		/obj/item/stock_parts/capacitor = 4,
+		/obj/item/stock_parts/scanning_module = 3,
+		/obj/item/stock_parts/manipulator = 5,
+		/obj/item/stock_parts/micro_laser = 4,
+		/obj/item/stock_parts/matter_bin = 5)
 
 //Security
 

@@ -59,8 +59,15 @@
 /obj/machinery/part_fabricator/RefreshParts()
 	production_speed = initial(production_speed)
 	for(var/obj/item/stock_parts/P in component_parts)
-		if(P.rating == 5)
-			production_speed += 0.2 // 21 parts, up to 5.2x default speed
+		switch(P.rating)
+			if(1)
+				production_speed *= 0.25 // yeah you're going to want to upgrade this thing
+			if(2)
+				production_speed *= 0.5
+			if(3)
+				production_speed *= 0.75
+			if(5 to INFINITY)
+				production_speed += 0.2 // at 21 parts, this provides a maximum speed boost of 5.2x
 	if(reagents)
 		reagents.maximum_volume = 0
 		for(var/obj/item/reagent_containers/glass/G in component_parts)
@@ -249,7 +256,7 @@
 			eject_type(/obj/item/mmi/posibrain)
 			return TRUE
 		if("flushChems")
-			reagents.remove_all()
+			reagents.remove_all(INFINITY)
 			return TRUE
 		if("ejectLaserGun")
 			eject_type(/obj/item/gun/energy/laser)
@@ -309,7 +316,6 @@
 		if("capacitor")
 			var/current_ESMs = 0
 			for(var/obj/item/electrical_stasis_manifold/esm in contents)
-				contents -= esm
 				current_ESMs++
 			if(current_ESMs < 1)
 				return FALSE
@@ -341,7 +347,7 @@
 				return FALSE
 			
 			for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
-				if(!reagents.has_reagent(bounty.wanted_reagent, bounty.required_volume))
+				if(!reagents.has_reagent(bounty.wanted_reagent.type, bounty.required_volume))
 					return FALSE
 			return TRUE
 
@@ -418,7 +424,7 @@
 				// Don't delete the posibrain!!!!!! We just needed to use his brain power for the process
 				// Consume reagents
 				for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
-					reagents.remove_reagent(bounty.wanted_reagent, bounty.required_volume)
+					reagents.remove_reagent(bounty.wanted_reagent.type, bounty.required_volume)
 			if("laser")
 				printed = new /obj/item/stock_parts/micro_laser/quinthyper
 				// Consume laser gun
@@ -435,6 +441,8 @@
 				// Consume money
 				var/current_money = 0
 				for(var/obj/item/money in contents)
+					if(!money.get_item_credit_value())
+						continue
 					if(current_money < laser_money_requirement)
 						qdel(money)
 					else

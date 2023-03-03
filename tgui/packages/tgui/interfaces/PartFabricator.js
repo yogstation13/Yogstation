@@ -109,7 +109,7 @@ export const PartFabricator = (props, context) => {
                   {scanner_chemicals.map((chem, reqindex) =>
                     (<Box key={reqindex}>
                       {scanner_chemicals_num[reqindex]}u of {chem}{" "}
-                      <Button color="bad" icon="eject" onClick={(e, value) => act('flushChems')}>Flush Reagents</Button>
+                      <Button color="bad" icon="eject" onClick={(e, value) => act('flushChems')}>Flush</Button>
                       <ProgressBar
                         value={
                           current_reagents_num[current_reagents.findIndex((e) => e === chem)]/scanner_chemicals_num[reqindex] || "0"
