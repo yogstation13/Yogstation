@@ -137,7 +137,7 @@
 			current_ESMs++
 		data["current_ESMs"] = current_ESMs ? current_ESMs : "0"
 
-		var/current_energy = get_power(TRUE)
+		var/current_energy = get_power()
 		data["current_energy"] = current_energy ? current_energy : "0"
 
 	// Matter bin requirements /////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@
 		
 
 /// Returns the power of the powernet of the APC of the room we're in
-/obj/machinery/part_fabricator/proc/get_power(view = FALSE) // viewavail is nicer looking but not the true current power
+/obj/machinery/part_fabricator/proc/get_power()
 	var/current_energy = 0
 	var/area/my_area = get_area(src)
 	if(!my_area)
@@ -280,7 +280,7 @@
 	// this is apparently the best way to get the current area's APC
 	for(var/obj/machinery/power/apc/selected_apc as anything in GLOB.apcs_list)
 		if(selected_apc.area == my_area)
-			current_energy = view ? selected_apc.terminal?.powernet?.viewavail : selected_apc.terminal?.powernet?.avail
+			current_energy = selected_apc.terminal?.powernet?.avail
 			break
 	return current_energy
 
