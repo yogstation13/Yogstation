@@ -464,7 +464,7 @@
 		var/mob/living/carbon/human/H = owner
 
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
-			armor_ablation += H.physiology.armor.wound
+			armor_ablation += H.physiology.armor.getRating(WOUND)
 		
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
