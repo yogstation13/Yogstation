@@ -14,6 +14,15 @@
 		var/mob/living/L = target
 		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature
 
+/obj/item/projectile/temp/bounce
+	name = "bouncing freeze ball"
+	icon_state = "pulse1" // only used by kinetic crusher
+	ricochets_max = 5
+	ricochet_chance = 100
+
+/obj/item/projectile/temp/bounce/check_ricochet_flag(atom/A)
+	return TRUE //whatever it is, we bounce on it
+
 /obj/item/projectile/temp/hot
 	name = "heat beam"
 	temperature = 400
