@@ -50,7 +50,7 @@
 		Remove(owner)
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
 		if(owner.dna.species.id == "pod")
-			owner.adjustToxLoss(damage_caused + 0.5 * delta_time)	//So they cant passively out-heal it
+			owner.adjustToxLoss((damage_caused + 0.25) * delta_time)	//So they cant passively out-heal it
 		else
 			owner.adjustToxLoss(damage_caused * delta_time)
 		if(DT_PROB(5, delta_time))
