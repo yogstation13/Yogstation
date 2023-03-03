@@ -195,7 +195,7 @@
 		used = FALSE
 		return FALSE
 	var/mob/dead/observer/C = pick(candidates)
-	var/mob/living/simple_animal/hostile/guardian/G = saved_stats.ability == /datum/guardian_ability/major/precision ? new /mob/living/simple_animal/hostile/guardian/emperor(user, theme) : new /mob/living/simple_animal/hostile/guardian(user, theme)
+	var/mob/living/simple_animal/hostile/guardian/G = new /mob/living/simple_animal/hostile/guardian(user, theme)
 	if (guardian_name)
 		G.real_name = guardian_name
 		G.name = guardian_name

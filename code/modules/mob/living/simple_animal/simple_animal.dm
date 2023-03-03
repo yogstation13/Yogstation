@@ -425,7 +425,7 @@
 	if(be_close && !in_range(M, src))
 		to_chat(src, span_warning("You are too far away!"))
 		return FALSE
-	if(!(no_dextery || dextrous))
+	if(!(no_dextery || dextrous) && !IsAdvancedToolUser())
 		to_chat(src, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
 	return TRUE

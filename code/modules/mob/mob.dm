@@ -906,7 +906,7 @@
 
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()
-	return FALSE
+	return HAS_TRAIT(src, TRAIT_ADVANCEDTOOLUSER)
 
 /mob/proc/swap_hand()
 	return
