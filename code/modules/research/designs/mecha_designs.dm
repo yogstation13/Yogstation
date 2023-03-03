@@ -582,7 +582,7 @@
 	combat_design = TRUE
 
 /datum/design/mech_maul
-	name = "Exosuit Weapon (CX-22 \"Barbados\" heavy maul)"
+	name = "Exosuit Weapon (CX-22 \"Barbatos\" heavy maul)"
 	id = "mech_maul"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul

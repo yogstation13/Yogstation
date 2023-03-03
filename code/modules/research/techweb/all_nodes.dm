@@ -985,7 +985,7 @@
 
 /datum/techweb_node/mech_maul
 	id = "mech_maul"
-	display_name = "Exosuit Weapon (CX-22 \"Barbados\" heavy maul)"
+	display_name = "Exosuit Weapon (CX-22 \"Barbatos\" heavy maul)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha","mech_shortsword")
 	design_ids = list("mech_maul")
