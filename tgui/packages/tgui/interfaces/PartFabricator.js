@@ -95,7 +95,7 @@ export const PartFabricator = (props, context) => {
               {tab === "matterbin" && (
                 <Box>
                   Organic Augurs: {current_augurs}/1{" "}
-                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
+                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectAugur')}>Eject</Button>
                   <ProgressBar value={current_augurs/1} />
                   <br />
                   <br />
@@ -109,14 +109,14 @@ export const PartFabricator = (props, context) => {
               {tab === "scanner" && (
                 <Box>
                   {current_posibrain}{" "}
-                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
+                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPosi')}>Eject</Button>
                   <ProgressBar value={current_posibrain === "Artificial brain active"} />
                   <br />
                   <br />
                   {scanner_chemicals.map((chem, reqindex) =>
                     (<Box key={reqindex}>
                       {scanner_chemicals_num[reqindex]}u of {chem}{" "}
-                      <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Flush Reagents</Button>
+                      <Button color="bad" icon="eject" onClick={(e, value) => act('flushChems')}>Flush Reagents</Button>
                       <ProgressBar
                         value={
                           current_reagents_num[current_reagents.findIndex((e) => e === chem)]/scanner_chemicals_num[reqindex] || "0"
@@ -131,18 +131,19 @@ export const PartFabricator = (props, context) => {
               {tab === "laser" && (
                 <Box>
                   {current_lasergun}{" "}
-                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
+                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectLaserGun')}>Eject</Button>
                   <ProgressBar value={current_lasergun === "Laser gun loaded"} />
                   <br />
                   <br />
-                  Money: {current_money}/{laser_money} credits
+                  Money: {current_money}/{laser_money} credits{" "}
+                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectMoney')}>Eject</Button>
                   <ProgressBar value={current_money/laser_money} />
                 </Box>
                 )}
               {tab === "manipulator" && (
                 <Box>
                   {manipulator_plant}: {current_plants}/{manipulator_plant_num}{" "}
-                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
+                  <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPlants')}>Eject</Button>
                   <ProgressBar value={current_plants/manipulator_plant_num} />
                   <br />
                   <br />
@@ -165,7 +166,7 @@ export const PartFabricator = (props, context) => {
             )
             :
             (
-              <ProgressBar value={production_progress} />
+              <ProgressBar value={production_progress/100} />
             )}
           </Stack.Item>
         </Stack>
