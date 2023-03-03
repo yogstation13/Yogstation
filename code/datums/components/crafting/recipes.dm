@@ -197,6 +197,15 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_MISC
 
+/datum/crafting_recipe/papersack
+	name = "Electrical Stasis Manifold"
+	result = /obj/item/electrical_stasis_manifold
+	time = 1 SECONDS
+	reqs = list(
+		/obj/item/slime_extract/yellow = 10,
+		/obj/item/stack/sheet/mineral/metal_hydrogen = 10
+	)
+	category = CAT_MISC
 
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"

@@ -187,6 +187,16 @@
 	T.visible_message(span_danger("The slime extract begins to vibrate crikey-ingly!"))
 	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 3, "Traitor Spider Slime", /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife, "neutral", FALSE), 50)
 
+/datum/chemical_reaction/slime/augur
+	name = "Organic Augur"
+	id = "m_augur"
+	required_reagents = list(/datum/reagent/medicine/omnizine = 1)
+	required_container = /obj/item/slime_extract/gold
+	required_other = TRUE
+
+/datum/chemical_reaction/slime/augur/on_reaction(datum/reagents/holder)
+	new /obj/item/organic_augur(get_turf(holder.my_atom))
+	..()
 
 //Silver
 /datum/chemical_reaction/slime/slimebork
