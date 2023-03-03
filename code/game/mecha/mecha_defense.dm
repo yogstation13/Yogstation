@@ -278,10 +278,7 @@
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		user.changeNext_move(CLICK_CD_MELEE)
 		if(obj_integrity < max_integrity)
-			var/fuelused = 1
-			if(istype(W, /obj/item/holotool))//holotool doesn't have fuel to use
-				fuelused = 0
-			if(W.use_tool(src, user, 0, volume=50, amount=fuelused))
+			if(W.use_tool(src, user, 0, volume=50, amount=1))
 				if (internal_damage & MECHA_INT_TANK_BREACH)
 					clearInternalDamage(MECHA_INT_TANK_BREACH)
 					to_chat(user, span_notice("You repair the damaged gas tank."))
