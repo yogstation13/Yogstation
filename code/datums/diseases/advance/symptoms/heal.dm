@@ -50,7 +50,7 @@
 
 /datum/symptom/heal/starlight
 	name = "Starlight Condensation"
-	desc = "The virus reacts to direct starlight, producing regenerative chemicals. Works best against toxin-based damage."
+	desc = "The virus reacts to direct starlight, producing regenerative chemicals."
 	stealth = -1
 	resistance = -2
 	stage_speed = 0
@@ -82,16 +82,14 @@
 				return power * nearspace_penalty
 
 /datum/symptom/heal/starlight/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = actual_power
-	if(M.getToxLoss() && prob(5))
-		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
-
-	M.adjustToxLoss(-(4 * heal_amt)) //most effective on toxins
+	var/heal_amt = 2 * actual_power //active less than most healing viruses
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
-
 	if(!parts.len)
 		return
+
+	if(prob(5))
+		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
 
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
@@ -111,9 +109,9 @@
 	transmittable = -2
 	level = 7
 	var/food_conversion = FALSE
-	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream."
+	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream. It also heals toxin damage."
 	threshold_descs = list(
-		"Resistance 7" = "Increases chem removal speed.",
+		"Resistance 7" = "Increases toxin healing speed.",
 		"Stage Speed 6" = "Consumed chemicals feed the host.",
 	)
 
@@ -127,8 +125,10 @@
 		power = 2
 
 /datum/symptom/heal/chem/Heal(mob/living/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = actual_power
+	M.adjustToxLoss(-heal_amt)//it is constantly active so it can't be too strong
 	for(var/datum/reagent/R in M.reagents.reagent_list) //Not just toxins!
-		M.reagents.remove_reagent(R.type, actual_power)
+		M.reagents.remove_reagent(R.type, actual_power / power)//doesn't speed up using power
 		if(food_conversion)
 			M.adjust_nutrition(0.3)
 		if(prob(2))

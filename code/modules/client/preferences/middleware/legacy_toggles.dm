@@ -42,9 +42,12 @@
 		"chat_ghostradio" = CHAT_GHOSTRADIO,
 		"chat_ghostsight" = CHAT_GHOSTSIGHT,
 		"chat_ghostwhisper" = CHAT_GHOSTWHISPER,
+		"chat_looc" = CHAT_LOOC,
 		"chat_ooc" = CHAT_OOC,
 		"chat_prayer" = CHAT_PRAYER,
 		"chat_pullr" = CHAT_PULLR,
+		"chat_typing_indicator" = CHAT_TYPING_INDICATOR,
+		"ghost_ckey" = GHOST_CKEY,
 	)
 
 	var/static/list/legacy_yog_toggles = list(

@@ -14,7 +14,7 @@
 
 /datum/preference/color_legacy/ipc_screen_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_key = "eye_color"
+	savefile_key = "feature_ipc_screen_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_screen"
 	unique = TRUE
@@ -45,7 +45,7 @@
 
 /datum/preference/color_legacy/ipc_antenna_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_key = "hair_color"
+	savefile_key = "feature_ipc_antenna_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_antenna"
 	unique = TRUE

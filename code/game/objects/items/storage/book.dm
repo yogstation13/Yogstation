@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 	force_string = "holy"
+	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
 /obj/item/storage/book/bible/Initialize()
