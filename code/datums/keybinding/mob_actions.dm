@@ -1,7 +1,7 @@
 ///Hotkeys for performing actions
 /datum/keybinding/mob/action_hotkey
 	var/action_num = 0
-	var/list/mob_actions
+	category = CATEGORY_CARBON
 	description = "Hotkey to activate an action of your mob in the corresponding slot"
 
 /datum/keybinding/mob/action_hotkey/can_use(client/user)
