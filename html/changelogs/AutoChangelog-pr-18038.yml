@@ -1,4 +1,0 @@
-author: "Lovebird-Frungy"
-delete-after: true 
-changes: 
-  - mapping: "makes gax sm more similar to box sm by fixing and adding a few things."

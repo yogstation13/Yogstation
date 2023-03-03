@@ -116,7 +116,7 @@
 
 //------------water noslip implant
 /obj/item/organ/cyberimp/leg/galosh
-	name = "Antislip Implant"
+	name = "antislip implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
 	implant_type = "noslipwater"
 
@@ -133,7 +133,7 @@
 
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
-	name = "Advanced Antislip Implant"
+	name = "advanced antislip implant"
 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
@@ -150,7 +150,7 @@
 
 //------------clown shoes implant
 /obj/item/organ/cyberimp/leg/clownshoes
-	name = "Clownshoes implant"
+	name = "clownshoes implant"
 	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
 	implant_type = "clownshoes"
 	var/datum/component/waddle
@@ -179,7 +179,7 @@
 
 //------------dash boots implant
 /obj/item/organ/cyberimp/leg/jumpboots
-	name = "Jumpboots implant"
+	name = "jumpboots implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
 	implant_type = "jumpboots"
 	var/datum/action/cooldown/boost/implant_ability
@@ -237,7 +237,7 @@
 
 //------------wheelies implant
 /obj/item/organ/cyberimp/leg/wheelies
-	name = "Wheelies implant"
+	name = "wheelies implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
 	implant_type = "wheelies"
 	var/datum/action/innate/wheelies/implant_ability
@@ -288,7 +288,7 @@
 
 //------------Airshoes implant
 /obj/item/organ/cyberimp/leg/airshoes
-	name = "Advanced propulsion implant"
+	name = "advanced propulsion implant"
 	desc = "An implant that uses propulsion technology to keep you above the ground and let you move faster."
 	syndicate_implant = TRUE
 	implant_type = "airshoes"
@@ -349,7 +349,7 @@
 
 //------------magboot implant
 /obj/item/organ/cyberimp/leg/magboot
-	name = "Magboot implant"
+	name = "magboot implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	implant_type = "magboot"
 	var/datum/action/innate/magboots/implant_ability
@@ -377,9 +377,8 @@
 /datum/action/innate/magboots/Grant(mob/M)
 	if(!ishuman(M))
 		return
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
-	owner = M
 	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
 
 /datum/action/innate/magboots/Remove(mob/M)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)

@@ -2125,11 +2125,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 ////////////
 
 /datum/species/proc/spec_stun(mob/living/carbon/human/H,amount)
-	if(flying_species && H.movement_type & FLYING)
-		ToggleFlight(H)
-		flyslip(H)
-	. = stunmod * H.physiology.stun_mod * amount
-	stop_wagging_tail(H)
+	if(!HAS_TRAIT(H, TRAIT_STUNIMMUNE))
+		if(flying_species && H.movement_type & FLYING)
+			ToggleFlight(H)
+			flyslip(H)
+		stop_wagging_tail(H)
+	return stunmod * H.physiology.stun_mod * amount
+	
 
 //////////////
 //Space Move//

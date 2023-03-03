@@ -142,7 +142,7 @@
 	min_val = 0
 
 /datum/config_entry/number/escaped_alive_bonus
-	config_entry_value = 2
+	config_entry_value = 1.5
 	integer = FALSE
 	min_val = 1
 
