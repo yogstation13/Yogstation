@@ -31,6 +31,8 @@
 	var/list/bullet_cost
 	///cost of the materials in the magazine/box itself
 	var/list/base_cost
+	//Whether the magazine should utilize a unique sprite or not if the magazine has multi-stage sprites
+	var/sprite_designation
 
 /obj/item/ammo_box/Initialize()
 	. = ..()
@@ -85,7 +87,7 @@
 
 ///puts a round into the magazine
 /obj/item/ammo_box/proc/give_round(obj/item/ammo_casing/R, replace_spent = 0)
-	// Boxes don't have a caliber type, magazines do. Not sure if it's intended or not, but if we fail to find a caliber, then we fall back to ammo_type.
+	// If we fail to find a caliber, then we fall back to ammo_type.
 	if(!R || (caliber && R.caliber != caliber) || (!caliber && R.type != ammo_type))
 		return FALSE
 

@@ -3,7 +3,7 @@
 		if ("sacid")
 			return "sulphuricacid"
 		if ("facid")
-			return "fluorosulfuricacid"
+			return "fluorosulphuricacid"
 		if ("co2")
 			return "carbondioxide"
 		if ("mine_salve")
@@ -53,36 +53,39 @@
 		/datum/reagent/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
-		/datum/reagent/uranium/radium,
 		/datum/reagent/silicon,
 		/datum/reagent/silver,
 		/datum/reagent/sodium,
-		/datum/reagent/stable_plasma,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
-		/datum/reagent/toxin/acid
-	)
-	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/iron,
 		/datum/reagent/water,
-		/datum/reagent/fuel
+		/datum/reagent/oil,
+		/datum/reagent/uranium/radium,
+		/datum/reagent/stable_plasma,
+		/datum/reagent/sulphur
+	)
+	var/list/t2_upgrade_reagents = list(
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/fuel,
+		/datum/reagent/toxin/acid
 	)
 	var/list/t3_upgrade_reagents = list(
+		/datum/reagent/acetone,
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
-		/datum/reagent/oil
 	)
 	var/list/t4_upgrade_reagents = list(
-		/datum/reagent/acetone,
+		/datum/reagent/gold,
 		/datum/reagent/diethylamine,
-		/datum/reagent/saltpetre
+		/datum/reagent/saltpetre,
+		/datum/reagent/medicine/charcoal
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
 		/datum/reagent/medicine/mine_salve,
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin
+		/datum/reagent/toxin,
+		/datum/reagent/uranium
 	)
 
 	var/list/saved_recipes = list()
@@ -121,8 +124,8 @@
 		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 		//"Macro granularity at <b>[macroresolution]u</b>.</span>"
 
-/obj/machinery/chem_dispenser/process()
-	if (recharge_counter >= 4)
+/obj/machinery/chem_dispenser/process(delta_time)
+	if (recharge_counter >= 8)
 		if(!is_operational())
 			return
 		var/usedpower = cell.give(recharge_amount)
@@ -130,7 +133,7 @@
 			use_power(250*recharge_amount)
 		recharge_counter = 0
 		return
-	recharge_counter++
+	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
@@ -306,7 +309,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?",, list("Yes","No"))
 			if(yesno == "Yes")
 				saved_recipes = list()
 		if("add_recipe")
@@ -354,8 +357,8 @@
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
@@ -624,6 +627,7 @@
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	t2_upgrade_reagents = null
 	t3_upgrade_reagents = null
@@ -635,7 +639,7 @@
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
 	flags_1 = NODECONSTRUCT_1
-
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(
 		/datum/reagent/toxin/mutagen,
 		/datum/reagent/saltpetre,
@@ -716,7 +720,7 @@
 		/datum/reagent/sodium,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
+		/datum/reagent/sulphur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
 		/datum/reagent/fuel,

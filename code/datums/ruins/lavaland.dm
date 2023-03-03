@@ -364,7 +364,7 @@
 /datum/map_template/ruin/lavaland/ntsurveyor
 	name = "Nanotrasen Surveyor"
 	id = "ntsurveyo"
-	description = "The most tragic part about it all is the ship didnt even have any donuts"
+	description = "The most tragic part about it all is the ship didn't even have any donuts"
 	suffix = "lavaland_surface_ntsurveyor.dmm"
 	cost = 5
 	allow_duplicates = FALSE
@@ -507,5 +507,13 @@
 	id = "forgottenkitchen"
 	description = "A Bar and Kitchen setup, lost to a large scale bluespace shift."
 	suffix = "lavaland_surface_forgottenkitchen.dmm"
+	allow_duplicates = FALSE
+	cost = 6
+
+/datum/map_template/ruin/lavaland/forgottenkitchen
+	name = "Lavaland Corn Maze"
+	id = "cornmaze"
+	description = "A maze filled with chasms. Don't slip!"
+	suffix = "lavaland_surface_maze.dmm"
 	allow_duplicates = FALSE
 	cost = 6

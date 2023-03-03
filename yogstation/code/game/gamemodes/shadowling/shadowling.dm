@@ -51,7 +51,7 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = ROLE_SHADOWLING
-	required_players = 26
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14
@@ -178,7 +178,7 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN) 
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -186,7 +186,7 @@ Made by Xhuis
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
-			H.adjustCloneLoss(-1)
+			H.adjustCloneLoss(-5)
 			H.SetKnockdown(0)
 			H.SetStun(0)
 			H.SetParalyzed(0)
@@ -231,12 +231,12 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
-			H.adjustCloneLoss(-1)
+			H.adjustCloneLoss(-5)
 
 /datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
 	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]

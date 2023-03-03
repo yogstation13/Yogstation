@@ -1,6 +1,9 @@
 /datum/job/chemist
 	title = "Chemist"
+	description = "Supply the doctors with chemicals, make medicine, as well as \
+		less likable substances in the comfort of a fully reinforced room."
 	flag = CHEMIST
+	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -12,7 +15,7 @@
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
 
-	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist") // Yes Druggist is a real thing.
 
 	outfit = /datum/outfit/job/chemist
 
@@ -24,14 +27,18 @@
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
-/datum/job/chemist/proc/OmegaStationChanges()
-	return TRUE
+	mail_goodies = list(
+		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
+		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
+		///obj/item/reagent_containers/glass/bottle/leadacetate = 5,
+		/obj/item/paper/secretrecipe = 1
+	)
 
-/datum/job/chemist/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
+	smells_like = "chemicals"
 
 /datum/outfit/job/chemist
 	name = "Chemist"

@@ -338,19 +338,19 @@
 	harvest_time = 25
 	harvest_message_low = "You pluck a few choice tasty mushrooms."
 	harvest_message_med = "You grab a good haul of mushrooms."
-	harvest_message_high = "You hit the mushroom motherlode and make off with a bunch of tasty mushrooms."
+	harvest_message_high = "You hit the mushroom motherlode, your harvest containing several sizeable mushrooms."
 	regrowth_time_low = 3000
 	regrowth_time_high = 5400
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
 	name = "seraka cap"
-	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
+	desc = "Small, deeply flavourful mushrooms originally native to Sangris. These ones are flaked in ash and soot."
 	icon_state = "seraka_cap"
 	seed = /obj/item/seeds/lavaland/seraka
 
 /obj/item/seeds/lavaland/seraka
 	name = "pack of seraka mycelium"
-	desc = "This mycelium grows into seraka mushrooms, a species of savoury mushrooms originally native to Tizira used in food and traditional medicine."
+	desc = "This mycelium grows into seraka mushrooms, a species of savoury mushrooms originally native to Sangris. They are most commonly used in food and traditional medicine."
 	icon_state = "mycelium-seraka"
 	species = "seraka"
 	plantname = "Seraka Mushrooms"

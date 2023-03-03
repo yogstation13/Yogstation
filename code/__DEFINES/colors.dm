@@ -14,6 +14,7 @@
 #define COLOR_ALMOST_BLACK	   "#333333"
 #define COLOR_BLACK            "#000000"
 #define COLOR_RED              "#FF0000"
+#define COLOR_MOSTLY_PURE_RED "#FF3300"
 #define COLOR_RED_LIGHT        "#FF3333"
 #define COLOR_MAROON           "#800000"
 #define COLOR_YELLOW           "#FFFF00"
@@ -29,7 +30,9 @@
 #define COLOR_PINK             "#FFC0CB"
 #define COLOR_MAGENTA          "#FF00FF"
 #define COLOR_PURPLE           "#800080"
+#define COLOR_STRONG_VIOLET		"#6927c5"
 #define COLOR_ORANGE           "#FF9900"
+#define COLOR_PALE_ORANGE      "#FFBE9D"
 #define COLOR_BEIGE            "#CEB689"
 #define COLOR_BLUE_GRAY        "#75A2BB"
 #define COLOR_BROWN            "#BA9F6D"
@@ -42,6 +45,7 @@
 #define COLOR_PALE_RED_GRAY    "#D59998"
 #define COLOR_PALE_PURPLE_GRAY "#CBB1CA"
 #define COLOR_PURPLE_GRAY      "#AE8CA8"
+#define COLOR_VIBRANT_LIME "#00FF00"
 
 //Color defines used by the assembly detailer.
 #define COLOR_ASSEMBLY_BLACK   "#545454"
@@ -59,3 +63,6 @@
 #define COLOR_ASSEMBLY_LBLUE   "#5D99BE"
 #define COLOR_ASSEMBLY_BLUE    "#38559E"
 #define COLOR_ASSEMBLY_PURPLE  "#6F6192"
+
+/// The default color for admin say, used as a fallback when the preference is not enabled
+#define DEFAULT_ASAY_COLOR "#996600"

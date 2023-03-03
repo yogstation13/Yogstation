@@ -50,7 +50,7 @@
 
 /datum/symptom/heal/starlight
 	name = "Starlight Condensation"
-	desc = "The virus reacts to direct starlight, producing regenerative chemicals. Works best against toxin-based damage."
+	desc = "The virus reacts to direct starlight, producing regenerative chemicals."
 	stealth = -1
 	resistance = -2
 	stage_speed = 0
@@ -82,16 +82,14 @@
 				return power * nearspace_penalty
 
 /datum/symptom/heal/starlight/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = actual_power
-	if(M.getToxLoss() && prob(5))
-		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
-
-	M.adjustToxLoss(-(4 * heal_amt)) //most effective on toxins
+	var/heal_amt = 2 * actual_power //active less than most healing viruses
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
-
 	if(!parts.len)
 		return
+
+	if(prob(5))
+		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
 
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
@@ -111,9 +109,9 @@
 	transmittable = -2
 	level = 7
 	var/food_conversion = FALSE
-	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream."
+	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream. It also heals toxin damage."
 	threshold_descs = list(
-		"Resistance 7" = "Increases chem removal speed.",
+		"Resistance 7" = "Increases toxin healing speed.",
 		"Stage Speed 6" = "Consumed chemicals feed the host.",
 	)
 
@@ -127,8 +125,10 @@
 		power = 2
 
 /datum/symptom/heal/chem/Heal(mob/living/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = actual_power
+	M.adjustToxLoss(-heal_amt)//it is constantly active so it can't be too strong
 	for(var/datum/reagent/R in M.reagents.reagent_list) //Not just toxins!
-		M.reagents.remove_reagent(R.type, actual_power)
+		M.reagents.remove_reagent(R.type, actual_power / power)//doesn't speed up using power
 		if(food_conversion)
 			M.adjust_nutrition(0.3)
 		if(prob(2))
@@ -205,7 +205,7 @@
 			return power
 
 /datum/symptom/heal/darkness/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 2 * actual_power
+	var/heal_amt = 1 * actual_power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 
@@ -260,15 +260,15 @@
 		return power * 0.5
 	else if(M.IsSleeping())
 		return power * 0.25
-	else if(M.getBruteLoss() + M.getFireLoss() >= 70 && !active_coma)
+	else if(ispreternis(M) || isipc(M)) //ipc and preternis don't get round removed
+		return 0
+	else if(M.getBruteLoss() + M.getFireLoss() >= 90 && !active_coma)
 		to_chat(M, span_warning("You feel yourself slip into a regenerative coma..."))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
 /datum/symptom/heal/coma/proc/coma(mob/living/M)
-	if(deathgasp)
-		M.emote("deathgasp")
-	M.fakedeath("regenerative_coma")
+	M.fakedeath("regenerative_coma", !deathgasp)
 	M.update_stat()
 	M.update_mobility()
 	addtimer(CALLBACK(src, .proc/uncoma, M), 300)
@@ -282,7 +282,7 @@
 	M.update_mobility()
 
 /datum/symptom/heal/coma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 4 * actual_power
+	var/heal_amt = 6 * actual_power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 
@@ -402,7 +402,7 @@
 		. +=  power * 0.75
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 4 * actual_power
+	var/heal_amt = 2 * actual_power
 
 	if(prob(5))
 		to_chat(M, span_notice("You feel yourself absorbing plasma inside and around you..."))
@@ -416,7 +416,7 @@
 		if(prob(5))
 			to_chat(M, span_notice("You feel warmer."))
 
-	M.adjustToxLoss(-heal_amt)
+	M.adjustToxLoss(-heal_amt * 2)
 
 	var/list/parts = M.get_damaged_bodyparts(1,1, null, BODYPART_ORGANIC)
 	if(!parts.len)

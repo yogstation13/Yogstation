@@ -2,6 +2,7 @@
 	name = "tongue"
 	desc = "A fleshy muscle mostly used for lying."
 	icon_state = "tonguenormal"
+	visual = FALSE
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
@@ -30,7 +31,8 @@
 		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted,
 		/datum/language/felinid,
-		/datum/language/english
+		/datum/language/english,
+		/datum/language/french
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
@@ -92,10 +94,14 @@
 	..()
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
+	var/static/regex/lizard_ecks = new("(?<!^)x+", "g")
+	var/static/regex/lizard_eckS = new("(?<!^)X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
 		message = lizard_hiSS.Replace(message, "SSS")
+		message = lizard_ecks.Replace(message, "kss")
+		message = lizard_eckS.Replace(message, "KSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly
@@ -260,7 +266,9 @@
 	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
 
 /obj/item/organ/tongue/robot/emp_act(severity)
-	owner.apply_effect(EFFECT_STUTTER, 120)
+	if(prob(5))
+		return 
+	owner.apply_effect(EFFECT_STUTTER, rand(5 SECONDS, 2 MINUTES))
 	owner.emote("scream")
 	to_chat(owner, "<span class='warning'>Alert: Vocal cords are malfunctioning.</span>")
 
@@ -300,12 +308,29 @@
 	..()
 	var/static/regex/polysmorph_hiss = new("s+", "g")
 	var/static/regex/polysmorph_hiSS = new("S+", "g")
+	var/static/regex/polysmorph_ecks = new("(?<!^)x+", "g")//only affects Xs in the middle of a sentence
+	var/static/regex/polysmorph_eckS = new("(?<!^)X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = polysmorph_hiss.Replace(message, "ssssss")
 		message = polysmorph_hiSS.Replace(message, "SSSSSS")
+		message = polysmorph_ecks.Replace(message, "ksssss")
+		message = polysmorph_eckS.Replace(message, "KSSSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/polysmorph/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_polysmorph
+
+/obj/item/organ/tongue/slime
+	name = "slime tongue"
+	desc = "A rudimentary tongue made of slime, just barely able to make every sound needed to talk normally."
+	icon_state = "tonguezombie"
+	say_mod = "garbles"
+	var/static/list/languages_possible_jelly = typecacheof(list(
+		/datum/language/common,
+		/datum/language/slime))
+
+/obj/item/organ/tongue/slime/Initialize(mapload)
+	. = ..()
+	languages_possible |= languages_possible_jelly

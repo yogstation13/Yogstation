@@ -135,7 +135,6 @@
 #define TRAIT_DISFIGURED		"disfigured"
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
-#define TRAIT_STUNRESISTANCE    "stun_resistance"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
@@ -170,6 +169,7 @@
 #define TRAIT_DEPRESSION		"depression"
 #define TRAIT_JOLLY				"jolly"
 #define TRAIT_NOCRITDAMAGE		"no_crit"
+#define TRAIT_NOSLIPICE			"noslip_ice"
 #define TRAIT_NOSLIPWATER		"noslip_water"
 #define TRAIT_NOSLIPALL			"noslip_all"
 #define TRAIT_NODEATH			"nodeath"
@@ -189,6 +189,7 @@
 #define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_THERMAL_VISION    "thermal_vision"
+#define TRAIT_INFRARED_VISION	"infrared_vision"
 #define TRAIT_ABDUCTOR_TRAINING "abductor-training"
 #define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
 #define TRAIT_SURGEON           "surgeon"
@@ -197,6 +198,7 @@
 #define	TRAIT_MAGIC_CHOKE		"magic_choke"
 #define TRAIT_SOOTHED_THROAT    "soothed-throat"
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
+#define TRAIT_PSYCH				"psych-diagnosis"
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
 #define TRAIT_QUICK_CARRY		"quick-carry"
@@ -223,9 +225,17 @@
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
+#define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach" // Can never be full
 #define TRAIT_MESONS			"mesons"
+#define TRAIT_MAGBOOTS			"magboots"
+#define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
+#define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
+#define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+
 /// This person is crying
 #define TRAIT_CRYING "crying"
+/// This human wants to see the color of their glasses, for some reason
+#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -291,6 +301,8 @@
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
+#define ATTACHMENT_TRAIT "attachment-trait"
+#define GLASSES_TRAIT "glasses"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -339,6 +351,8 @@
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
+#define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -348,3 +362,4 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
+#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"

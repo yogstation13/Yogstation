@@ -61,6 +61,8 @@
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 	var/frenzy_blood_drank = 0
+	var/task_heart_required = 0
+	var/task_blood_required = 0
 	var/task_blood_drank = 0
 	var/frenzies = 0
 
@@ -70,11 +72,7 @@
 	var/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		/datum/antagonist/monsterhunter,
-		/datum/antagonist/changeling,
-		/datum/antagonist/cult,
-		/datum/antagonist/heretic,
 		/datum/antagonist/xeno,
-		/datum/antagonist/obsessed
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
@@ -93,6 +91,7 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
+		TRAIT_RESISTDAMAGESLOWDOWN,
 	)
 
 /mob/living/proc/explain_powers()
@@ -318,7 +317,7 @@
 		report += span_greentext(span_big("The [name] was successful!"))
 	else if(objectives_complete && !optional_objectives_complete)
 		report += span_marooned("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
-	else		
+	else
 		report += span_redtext(span_big("The [name] has failed!"))
 	report += get_flavor(objectives_complete, optional_objectives_complete)
 	return report
@@ -815,15 +814,15 @@
 		owner.current.hud_used.sunlight_display.update_counter(value_string, valuecolor)
 		owner.current.hud_used.sunlight_display.icon_state = sunlight_display_icon
 
-/obj/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='bottom' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[value]</font></div>"
 
@@ -840,7 +839,7 @@
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", user.client)
+		user.apply_pref_name(/datum/preference/name/real_name, user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
@@ -848,11 +847,14 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	var/mob/living/carbon/human/user = bloodsucker.current
-	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
-		prepare_bloodsucker(bloodsucker)
-	add_antag_datum(/datum/antagonist/bloodsucker)
-	return TRUE
+	if(bloodsucker)
+		var/mob/living/carbon/human/user = bloodsucker.current
+		if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+			prepare_bloodsucker(bloodsucker)
+		add_antag_datum(/datum/antagonist/bloodsucker)
+		return TRUE
+	else
+		return
 
 /datum/mind/proc/remove_bloodsucker()
 	var/datum/antagonist/bloodsucker/removed_bloodsucker = has_antag_datum(/datum/antagonist/bloodsucker)
@@ -935,3 +937,10 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	vamphud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
+
+/datum/antagonist/bloodsucker/get_preview_icon()
+	var/icon/bloodsucker_icon = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+
+	bloodsucker_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return bloodsucker_icon

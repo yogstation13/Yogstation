@@ -16,7 +16,7 @@
 	var/overheat = 0
 	var/overheat_max = 40
 	var/heat_stage = 0
-	var/heat_diffusion = 1
+	var/heat_diffusion = 0.5
 
 /obj/item/minigunpack/Initialize()
 	. = ..()
@@ -27,8 +27,8 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/minigunpack/process()
-	overheat = max(0, overheat - heat_diffusion)
+/obj/item/minigunpack/process(delta_time)
+	overheat = max(0, overheat - heat_diffusion * delta_time)
 	if(overheat == 0 && heat_stage > 0)
 		heat_stage = 0
 
@@ -76,8 +76,8 @@
 
 		if(!M.incapacitated())
 
-			if(istype(over_object, /obj/screen/inventory/hand))
-				var/obj/screen/inventory/hand/H = over_object
+			if(istype(over_object, /atom/movable/screen/inventory/hand))
+				var/atom/movable/screen/inventory/hand/H = over_object
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 

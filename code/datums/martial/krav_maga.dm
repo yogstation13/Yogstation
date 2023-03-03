@@ -197,7 +197,8 @@
 					/area/ai_monitored/security,
 					/area/mine/laborcamp,
 					/area/shuttle/labor,
-					/area/crew_quarters/heads/hos) //where can we use krav maga?
+					/area/crew_quarters/heads/hos,
+					/area/holodeck/perma) //where can we use krav maga?
 
 /obj/item/clothing/gloves/sec_maga/equipped(mob/user, slot)
 	. = ..()

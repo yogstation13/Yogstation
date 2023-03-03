@@ -7,11 +7,11 @@
 
 /obj/structure/closet/secure_closet/freezer/Destroy()
 	recursive_organ_check(src)
-	..()
+	return ..()
 
 /obj/structure/closet/secure_closet/freezer/Initialize()
-	..()
 	recursive_organ_check(src)
+	return ..()
 
 /obj/structure/closet/secure_closet/freezer/open(mob/living/user)
 	if(opened || !can_open(user))	//dupe check just so we don't let the organs decay when someone fails to open the locker
@@ -38,10 +38,11 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
 	..()
-	for(var/i = 0, i < 3, i++)
+	for(var/i = 0, i < 4, i++)
 		new /obj/item/reagent_containers/food/condiment/flour(src)
-	new /obj/item/reagent_containers/food/condiment/rice(src)
-	new /obj/item/reagent_containers/food/condiment/sugar(src)
+	for(var/i = 0, i < 2, i++)
+		new /obj/item/reagent_containers/food/condiment/sugar(src)
+		new /obj/item/reagent_containers/food/condiment/rice(src)
 	new /obj/item/storage/box/cheese(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
@@ -86,7 +87,7 @@
 		new /obj/item/reagent_containers/food/condiment/milk(src)
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
-	for(var/i = 0, i < 2, i++)
+	for(var/i = 0, i < 3, i++)
 		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/open

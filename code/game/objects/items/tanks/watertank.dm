@@ -80,8 +80,8 @@
 
 /obj/item/watertank/MouseDrop(obj/over_object)
 	var/mob/M = loc
-	if(istype(M) && istype(over_object, /obj/screen/inventory/hand))
-		var/obj/screen/inventory/hand/H = over_object
+	if(istype(M) && istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/H = over_object
 		M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 	return ..()
 
@@ -177,15 +177,15 @@
 
 /obj/item/watertank/atmos
 	name = "backpack firefighter tank"
-	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
+	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer. The resin launcher costs 50 units of water and regenerates every 5 seconds. The resin foamer starts with 5 charges and regenerates one every 5 seconds."
 	item_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
-	volume = 200
+	volume = 300
 	slowdown = 0
 
 /obj/item/watertank/atmos/Initialize()
 	. = ..()
-	reagents.add_reagent(/datum/reagent/water, 200)
+	reagents.add_reagent(/datum/reagent/water, volume)
 
 /obj/item/watertank/atmos/make_noz()
 	return new /obj/item/extinguisher/mini/nozzle(src)
@@ -206,7 +206,6 @@
 	lefthand_file = 'icons/mob/inhands/equipment/mister_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mister_righthand.dmi'
 	safety = 0
-	max_water = 200
 	power = 8
 	force = 10
 	precision = 1
@@ -214,9 +213,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT  // don't put in storage
 	var/obj/item/watertank/tank
-	var/nozzle_mode = 0
-	var/metal_synthesis_cooldown = 0
-	var/resin_cooldown = 0
+	var/nozzle_mode = EXTINGUISHER
+	var/resin_charges = 5 
+	var/launcher_cost = 50
+	COOLDOWN_DECLARE(resin_cooldown)
 
 /obj/item/extinguisher/mini/nozzle/Initialize()
 	. = ..()
@@ -254,51 +254,60 @@
 	return
 
 /obj/item/extinguisher/mini/nozzle/afterattack(atom/target, mob/user)
-	if(nozzle_mode == EXTINGUISHER)
-		..()
+	if(AttemptRefill(target, user))
 		return
+
+	if(nozzle_mode == EXTINGUISHER)
+		return ..()
+
 	var/Adj = user.Adjacent(target)
-	if(Adj)
-		AttemptRefill(target, user)
 	if(nozzle_mode == RESIN_LAUNCHER)
 		if(Adj)
 			return //Safety check so you don't blast yourself trying to refill your tank
+
 		var/datum/reagents/R = reagents
-		if(R.total_volume < 100)
-			to_chat(user, span_warning("You need at least 100 units of water to use the resin launcher!"))
+		if(R.total_volume < launcher_cost)
+			to_chat(user, span_warning("You need at least [launcher_cost] units of water to use the resin launcher!"))
 			return
-		if(resin_cooldown)
+
+		if(!COOLDOWN_FINISHED(src, resin_cooldown))
 			to_chat(user, span_warning("Resin launcher is still recharging..."))
 			return
-		resin_cooldown = TRUE
-		R.remove_any(100)
-		var/obj/effect/resin_container/A = new (get_turf(src))
+
+		COOLDOWN_START(src, resin_cooldown, 5 SECONDS)
+		R.remove_any(launcher_cost)
+		var/obj/effect/resin_container/resin = new (get_turf(src))
 		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
-		playsound(src,'sound/items/syringeproj.ogg',40,1)
+		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
 		for(var/a=0, a<5, a++)
-			step_towards(A, target)
+			step_towards(resin, target)
 			sleep(0.2 SECONDS)
-		A.Smoke()
-		spawn(10 SECONDS)
-			if(src)
-				resin_cooldown = FALSE
+		resin.Smoke()
 		return
+
 	if(nozzle_mode == RESIN_FOAM)
-		if(!Adj|| !isturf(target))
+		if(!Adj || !isturf(target))
 			return
+
 		for(var/S in target)
-			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
+			if(istype(S, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
 				to_chat(user, span_warning("There's already resin here!"))
 				return
-		if(metal_synthesis_cooldown < 5)
-			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
-			F.amount = 0
-			metal_synthesis_cooldown++
-			spawn(100)
-				metal_synthesis_cooldown--
+
+		if(resin_charges)
+			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
+			foam.group.target_size = 0
+			resin_charges--
+			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
 		else
 			to_chat(user, span_warning("Resin foam mix is still being synthesized..."))
 			return
+
+/obj/item/extinguisher/mini/nozzle/proc/add_foam_charge()
+	resin_charges++
+	if(resin_charges > initial(resin_charges))
+		resin_charges = initial(resin_charges)
+
 
 /obj/effect/resin_container
 	name = "resin container"
@@ -310,9 +319,10 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	var/obj/effect/particle_effect/foam/metal/resin/S = new /obj/effect/particle_effect/foam/metal/resin(get_turf(loc))
-	S.amount = 4
-	playsound(src,'sound/effects/bamf.ogg',100,1)
+	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
+	foaming.set_up(4, holder = src, location = loc)
+	foaming.start()
+	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
 	qdel(src)
 
 #undef EXTINGUISHER
@@ -333,7 +343,8 @@
 	var/on = FALSE
 	volume = 300
 	var/usage_ratio = 5 //5 unit added per 1 removed
-	var/injection_amount = 1
+	/// How much to inject per second
+	var/injection_amount = 0.5
 	amount_per_transfer_from_this = 5
 	reagent_flags = OPENCONTAINER
 	spillable = FALSE
@@ -407,7 +418,7 @@
 	if(ismob(loc))
 		to_chat(loc, span_notice("[src] turns off."))
 
-/obj/item/reagent_containers/chemtank/process()
+/obj/item/reagent_containers/chemtank/process(delta_time)
 	if(!ishuman(loc))
 		turn_off()
 		return
@@ -419,9 +430,10 @@
 		turn_off()
 		return
 
-	var/used_amount = injection_amount/usage_ratio
-	reagents.reaction(user, INJECT,injection_amount,0)
-	reagents.trans_to(user,used_amount,multiplier=usage_ratio)
+	var/inj_am = injection_amount * delta_time
+	var/used_amount = inj_am / usage_ratio
+	reagents.reaction(user, INJECT, used_amount, 0)
+	reagents.trans_to(user, used_amount, multiplier=usage_ratio)
 	update_filling()
 	user.update_inv_back() //for overlays update
 

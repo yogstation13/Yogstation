@@ -1,11 +1,20 @@
-// channel numbers for power
-#define EQUIP			1
-#define LIGHT			2
-#define ENVIRON			3
-#define TOTAL			4	//for total power used only
-#define STATIC_EQUIP 	5
-#define STATIC_LIGHT	6
-#define STATIC_ENVIRON	7
+// These are indexes in a list, and indexes for "dynamic" and static channels should be kept contiguous
+#define AREA_USAGE_EQUIP 1
+#define AREA_USAGE_LIGHT 2
+#define AREA_USAGE_ENVIRON 3
+#define AREA_USAGE_TOTAL 4
+#define AREA_USAGE_STATIC_EQUIP 5
+#define AREA_USAGE_STATIC_LIGHT	6
+#define AREA_USAGE_STATIC_ENVIRON 7
+#define AREA_USAGE_LEN AREA_USAGE_STATIC_ENVIRON // largest idx
+/// Index of the first dynamic usage channel
+#define AREA_USAGE_DYNAMIC_START AREA_USAGE_EQUIP
+/// Index of the last dynamic usage channel
+#define AREA_USAGE_DYNAMIC_END AREA_USAGE_ENVIRON
+/// Index of the first static usage channel
+#define AREA_USAGE_STATIC_START AREA_USAGE_STATIC_EQUIP
+/// Index of the last static usage channel
+#define AREA_USAGE_STATIC_END AREA_USAGE_STATIC_ENVIRON
 
 //Power use
 #define NO_POWER_USE 0
@@ -73,6 +82,10 @@
 #define PROGRAM_PDA			(1<<4)
 #define PROGRAM_TELESCREEN	(1<<5)
 #define PROGRAM_INTEGRATED	(1<<6)
+
+#define PROGRAM_PORTABLE PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
+#define PROGRAM_STATIONARY PROGRAM_CONSOLE | PROGRAM_TELESCREEN
+
 //Program states
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1

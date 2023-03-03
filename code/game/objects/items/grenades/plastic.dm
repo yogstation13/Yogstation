@@ -110,7 +110,7 @@
 	if(ismob(AM) && !can_attach_mob)
 		return
 	if(AM.GetComponent(/datum/component/storage))
-		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+		var/fuckup_safety = tgui_alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", list("Yes", "No"))
 		if(fuckup_safety != "Yes")
 			return
 

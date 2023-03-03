@@ -112,6 +112,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/toolbox/artistic = 2,
 	/obj/item/toy/eightball = 1,
 	/obj/item/reagent_containers/pill/floorpill = 1,
+	/obj/item/reagent_containers/gummy/floorbear = 1,
 	/obj/item/reagent_containers/food/snacks/cannedpeaches/maint = 1,
 	/obj/item/storage/box/mre/menu3 = 1, //Yogs start - MREs
 	/obj/item/storage/box/mre/menu2 = 2,

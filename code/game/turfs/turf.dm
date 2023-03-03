@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	var/turf/T = SSmapping.get_turf_above(src)
@@ -120,6 +120,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	flags_1 &= ~INITIALIZED_1
 	requires_activation = FALSE
 	..()
+
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/clear_signal_refs()
+	return
 
 /turf/attack_hand(mob/user)
 	. = ..()

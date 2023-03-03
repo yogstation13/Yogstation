@@ -17,6 +17,19 @@
 		var/mob/living/carbon/human/H = loc
 		H.update_hair()
 
+/obj/item/clothing/head/equipped(mob/user, slot)
+	..()
+	if(slot != SLOT_HEAD)
+		var/mob/living/carbon/C = user
+		if(istype(C))
+			C.update_internals()
+
+/obj/item/clothing/head/dropped(mob/user)
+	..()
+	var/mob/living/carbon/C = user
+	if(istype(C))
+		C.update_internals()
+
 /obj/item/clothing/head/worn_overlays(isinhands = FALSE)
 	. = list()
 	if(!isinhands)
@@ -35,7 +48,7 @@
 	. = ..()
 	if(!hattable)
 		return
-	if(throwingdatum?.thrower.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower.a_intent != INTENT_HELP)
+	if(throwingdatum?.thrower?.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower?.a_intent != INTENT_HELP)
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom

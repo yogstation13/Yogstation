@@ -34,6 +34,7 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
@@ -45,20 +46,34 @@
 	var/static/b2 = 149
 	//this is shit but how do i fix it? no clue.
 
+	smells_like = "crackling sweetness"
+
+	var/obj/effect/dummy/lighting_obj/ethereal_light
+
+
+/datum/species/ethereal/Destroy(force)
+	if(ethereal_light)
+		QDEL_NULL(ethereal_light)
+	return ..()
+
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	.=..()
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		default_color = "#" + H.dna.features["ethcolor"]
-		r1 = GETREDPART(default_color)
-		g1 = GETGREENPART(default_color)
-		b1 = GETBLUEPART(default_color)
-		spec_updatehealth(H)
+	. = ..()
+	if(!ishuman(C))
+		return
+
+	var/mob/living/carbon/human/ethereal = C
+	default_color = "#[ethereal.dna.features["ethcolor"]]"
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	ethereal_light = ethereal.mob_light()
+	spec_updatehealth(ethereal)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	.=..()
+	QDEL_NULL(ethereal_light)
 	C.set_light(0)
+	return ..()
 
 /datum/species/ethereal/random_name(gender,unique,lastname)
 	if(unique)
@@ -69,15 +84,20 @@
 	return randname
 
 /datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/H)
-	.=..()
+	. = ..()
 	if(H.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(H.health, 0) / 100
+		var/light_range = 1 + (4 * healthpercent)
+		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		H.set_light(1 + (2 * healthpercent), 1 + (1 * healthpercent), current_color)
+		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
+		ethereal_light.set_light_range_power_color(light_range, light_power, current_color)
+		ethereal_light.set_light_on(TRUE)
 		fixed_mut_color = copytext_char(current_color, 2)
 	else
 		H.set_light(0)
+		ethereal_light.set_light_on(FALSE)
 		fixed_mut_color = rgb(128,128,128)
 	H.update_body()
 
@@ -131,20 +151,20 @@
 	brutemod = 1.25
 	switch(get_charge(H))
 		if(ETHEREAL_CHARGE_NONE)
-			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 3)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
-			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 2)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
 			if(H.health > 10.5)
 				apply_damage(0.65, TOX, null, null, H)
 			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
-			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 1)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
 			brutemod = 1.5
 		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
-			H.throw_alert("ethereal_overcharge", /obj/screen/alert/ethereal_overcharge, 1)
+			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
 			brutemod = 1.5
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
-			H.throw_alert("ethereal_overcharge", /obj/screen/alert/ethereal_overcharge, 2)
+			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
 			brutemod = 1.75
 			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 				discharge_process(H)
@@ -181,3 +201,48 @@
 	if(istype(stomach))
 		return stomach.crystal_charge
 	return ETHEREAL_CHARGE_NONE
+
+/datum/species/ethereal/get_features()
+	var/list/features = ..()
+
+	features += "feature_ethcolor"
+
+	return features
+
+/datum/species/ethereal/get_species_description()
+	return /*"Coming from the planet of Sprout, the theocratic ethereals are \
+		separated socially by caste, and espouse a dogma of aiding the weak and \
+		downtrodden."*/
+
+/datum/species/ethereal/get_species_lore()
+	return list("TBD",/*
+		"Ethereals are a species native to the planet Sprout. \
+		When they were originally discovered, they were at a medieval level of technological progression, \
+		but due to their natural acclimation with electricity, they felt easy among the large NanoTrasen installations.",
+	*/)
+
+/datum/species/ethereal/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "bolt",
+			SPECIES_PERK_NAME = "Shockingly Tasty",
+			SPECIES_PERK_DESC = "Ethereals can feed on electricity from APCs, and do not otherwise need to eat.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "lightbulb",
+			SPECIES_PERK_NAME = "Disco Ball",
+			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "biohazard",
+			SPECIES_PERK_NAME = "Starving Artist",
+			SPECIES_PERK_DESC = "Ethereals take toxin damage while starving.",
+		),
+	)
+
+	return to_add

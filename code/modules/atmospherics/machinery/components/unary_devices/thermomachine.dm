@@ -64,6 +64,20 @@
 		. += span_notice("The status display reads: Efficiency <b>[(heat_capacity/5000)*100]%</b>.")
 		. += span_notice("Temperature range <b>[min_temperature]K - [max_temperature]K ([(T0C-min_temperature)*-1]C - [(T0C-max_temperature)*-1]C)</b>.")
 
+/obj/machinery/atmospherics/components/unary/thermomachine/CtrlClick(mob/living/user)
+	if(can_interact(user))
+		on = !on
+		investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+		update_icon()
+	return ..()
+
+/obj/machinery/atmospherics/components/unary/thermomachine/AltClick(mob/living/user)
+	if(can_interact(user))
+		target_temperature = T20C
+		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "temperature reset to [target_temperature] K")
+	return ..()
+
 /obj/machinery/atmospherics/components/unary/thermomachine/process_atmos()
 	..()
 	if(!on || !nodes[1])
@@ -169,12 +183,6 @@
 				target_temperature = clamp(target, min_temperature, max_temperature)
 				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
 
-	update_icon()
-
-/obj/machinery/atmospherics/components/unary/thermomachine/CtrlClick(mob/living/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
-		return
-	on = !on
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer

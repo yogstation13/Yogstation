@@ -10,6 +10,7 @@
 	var/static/list/anomaly_armor_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
+		/obj/effect/anomaly/pyro	  			    = /obj/item/clothing/suit/armor/reactive/fire,
 		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport
 		)
 
@@ -104,9 +105,9 @@
 		playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
 		for(var/mob/living/carbon/C in range(6, owner))
 			if(C != owner)
-				C.fire_stacks += 8
+				C.adjust_fire_stacks(8)
 				C.IgniteMob()
-		owner.fire_stacks = -20
+		owner.fire_stacks = -1
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return 1
 	return 0

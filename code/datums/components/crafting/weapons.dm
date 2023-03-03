@@ -386,12 +386,22 @@
 /datum/crafting_recipe/improvisedslug
 	name = "Improvised Shotgun Shell"
 	result = /obj/item/ammo_casing/shotgun/improvised
-	reqs = list(/obj/item/grenade/chem_grenade = 1,
-				/obj/item/stack/sheet/metal = 1,
+	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/cable_coil = 1,
-				/datum/reagent/fuel = 10)
+				/datum/reagent/fuel = 5)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/frag12
+	name = "FRAG-12 Shell"
+	result = /obj/item/ammo_casing/shotgun/frag12
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/glycerol = 5,
+				/datum/reagent/toxin/acid/fluacid = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 

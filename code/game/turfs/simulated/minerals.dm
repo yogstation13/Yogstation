@@ -272,8 +272,8 @@
 	hardness = 3
 
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/volcanic/hard/harder = 10, /turf/closed/mineral/diamond/volcanic/hard/harder = 5, /turf/closed/mineral/gold/volcanic/hard/harder = 15, /turf/closed/mineral/titanium/volcanic/hard/harder = 15, /turf/closed/mineral/magmite/volcanic/hard/harder = 2, /turf/closed/mineral/gem/volcanic/hard/harder = 3,
-		/turf/closed/mineral/silver/volcanic/hard/harder = 20, /turf/closed/mineral/plasma/volcanic/hard/harder = 25, /turf/closed/mineral/iron/volcanic/hard/harder = 10, /turf/closed/mineral/dilithium/volcanic/hard/harder = 6, /turf/closed/mineral/gibtonite/volcanic/hard/harder = 7, /turf/closed/mineral/bscrystal/volcanic/hard/harder = 8)
+		/turf/closed/mineral/uranium/volcanic/hard/harder = 6, /turf/closed/mineral/diamond/volcanic/hard/harder = 2, /turf/closed/mineral/gold/volcanic/hard/harder = 11, /turf/closed/mineral/titanium/volcanic/hard/harder = 12, /turf/closed/mineral/magmite/volcanic/hard/harder = 2, /turf/closed/mineral/gem/volcanic/hard/harder = 2,
+		/turf/closed/mineral/silver/volcanic/hard/harder = 13, /turf/closed/mineral/plasma/volcanic/hard/harder = 21, /turf/closed/mineral/iron/volcanic/hard/harder = 10, /turf/closed/mineral/dilithium/volcanic/hard/harder = 4, /turf/closed/mineral/gibtonite/volcanic/hard/harder = 7, /turf/closed/mineral/bscrystal/volcanic/hard/harder = 3)
 
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"

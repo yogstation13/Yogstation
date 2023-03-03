@@ -211,12 +211,13 @@
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
-	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
+	l_pocket = /obj/item/wormhole_jaunter
 	r_pocket = /obj/item/flashlight/seclite
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	backpack_contents = list(/obj/item/storage/box/plasmaman/miner = 1)
+	backpack_contents = list(/obj/item/storage/box/plasmaman/miner = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1)
 
 
 /datum/outfit/job/plasmaman/lawyer
@@ -260,6 +261,7 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 
 /datum/outfit/job/plasmaman/virologist
 	name = "Plasmaman Virologist"
@@ -475,15 +477,18 @@
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
 		/obj/item/gps/mining = 1,\
-		/obj/item/storage/box/plasmaman/miner = 1)
+		/obj/item/storage/box/plasmaman/miner = 1,\
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,\
+		/obj/item/modular_computer/laptop/preset/paramedic/mining_medic = 1)
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/plasmaman/mining
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/hypospray/qmc
 	l_pocket =  /obj/item/pda/medical
-	gloves = /obj/item/clothing/gloves/color/latex
+	r_pocket = /obj/item/wormhole_jaunter
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
@@ -512,6 +517,7 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 
 
 /datum/outfit/job/plasmaman/psych
@@ -547,7 +553,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
-	gloves = /obj/item/clothing/gloves/color/latex
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
@@ -650,7 +656,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/research_director
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/rd
-	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox

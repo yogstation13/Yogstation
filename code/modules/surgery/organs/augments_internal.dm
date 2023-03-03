@@ -2,6 +2,7 @@
 /obj/item/organ/cyberimp
 	name = "cybernetic implant"
 	desc = "A state-of-the-art implant that improves a baseline's functionality."
+	visual = FALSE
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 	var/implant_color = "#FFFFFF"
@@ -33,7 +34,7 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	var/stun_amount = 200/severity
+	var/stun_amount = 100/severity
 	owner.Stun(stun_amount)
 	to_chat(owner, span_warning("Your body seizes up!"))
 
@@ -109,15 +110,15 @@
 
 	var/stun_cap_amount = 4 SECONDS
 
-/obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
-	. = ..()
-	UnregisterSignal(M, signalCache)
-	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
-
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
 	RegisterSignal(owner, signalCache, .proc/on_signal)
 	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
+
+/obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
+	. = ..()
+	UnregisterSignal(M, signalCache)
+	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
 	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
@@ -136,9 +137,10 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
+	addtimer(CALLBACK(src, .proc/reboot), stun_cap_amount * 2 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
+	clear_stuns()
 	organ_flags &= ~ORGAN_FAILING
 
 //[[[[MOUTH]]]]

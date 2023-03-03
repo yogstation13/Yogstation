@@ -1,6 +1,5 @@
 /mob/living/simple_animal/hostile/bloodsucker
 	icon = 'icons/mob/bloodsucker_mobs.dmi'
-	harm_intent_damage = 20
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	see_in_dark = 10
@@ -25,10 +24,9 @@
 	speed = -1.5
 	maxHealth = 450
 	health = 450
-	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "violently mawls"
+	attacktext = "violently mauls"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
@@ -62,6 +60,7 @@
 	response_help = "pokes"
 	response_disarm = "pushes"
 	response_harm = "punches"
+	faction = list("hostile", "bloodhungry")
 	maxHealth = 250
 	health = 250
 	attacktext = "rends"
@@ -76,7 +75,6 @@
 	icon_living = "posarmor_sword"
 	upgraded = TRUE
 	obj_damage = 55
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
@@ -96,11 +94,10 @@
 	maxHealth = 175
 	health = 175
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	obj_damage = 50
-	
+
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium
 	name = "boney monstrosity"
 	desc = "Heretical being beyond comprehesion, now with bones free of charge!"
@@ -112,7 +109,6 @@
 	health = 110
 	mob_size = MOB_SIZE_SMALL
 	ventcrawler = VENTCRAWLER_ALWAYS
-	harm_intent_damage = 7
 	melee_damage_lower = 7
 	melee_damage_upper = 7
 	obj_damage = 20
@@ -129,7 +125,6 @@
 	mob_size = MOB_SIZE_TINY
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE
-	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -155,9 +150,9 @@
 	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
-		bloodsucker.adjustBruteLoss(200)
 		if(bloodsucker.status_flags & GODMODE)
 			bloodsucker.status_flags -= GODMODE
+		bloodsucker.adjustBruteLoss(200)
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
 	if(maxHealth > target.maxHealth / 4 + health)
@@ -250,6 +245,15 @@
 ////////////////////////
 ///      Armor       ///
 ////////////////////////
+/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/ListTargets()
+	. = ..()
+	for(var/mob/living/carbon/letsnotmeet in .)
+		if(!istype(letsnotmeet))
+			continue
+		if(IS_BLOODSUCKER(letsnotmeet) || IS_VASSAL(letsnotmeet)) //don't attack our owners!
+			. -= letsnotmeet
+		if(letsnotmeet.restrained()) //or any guests!
+			. -= letsnotmeet
 
 /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
 	. = ..()

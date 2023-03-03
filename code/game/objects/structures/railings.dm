@@ -67,19 +67,20 @@
 
 /obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	var/attempted_dir = get_dir(loc, target)
-	if(attempted_dir == dir)
-		return
-	if(attempted_dir != dir)
-		return TRUE
+	if(get_dir(loc, target) & dir)
+		var/checking = FLYING | FLOATING
+		return . || mover.throwing || mover.movement_type & checking
+	return TRUE
 
 /obj/structure/railing/corner/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
-/obj/structure/railing/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(O.loc, target) == dir)
-		return FALSE
+/obj/structure/railing/CheckExit(atom/movable/mover, turf/target)
+	..()
+	if(get_dir(loc, target) & dir)
+		var/checking = UNSTOPPABLE | FLYING | FLOATING
+		return !density || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
 	return TRUE
 
 /obj/structure/railing/corner/CheckExit()

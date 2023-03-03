@@ -89,7 +89,22 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "megumu_dress"
 	item_state = "megumu_dress"
-
+/obj/item/clothing/suit/yogs/adventurerskirt
+	name = "adventurer skirt"
+	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
+	icon_state = "adventurer_skirt"
+	item_state = "adventurer_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS|HANDS
+/obj/item/clothing/gloves/yogs/arm_sleeves
+	name = "Arm Sleeves"
+	desc = "White marked sleeves, signal of a skillful Hunter."
+	icon_state = "arm_sleeves"
+	item_state = "arm_sleeves"
+/obj/item/clothing/under/yogs/skin_tight_garmet
+	name = "Skin Tight Garmet"
+	desc = "With this on you can barely breath."
+	icon_state = "skin_tight_garmet"
+	item_state = "skin_tight_garmet"
 /obj/item/clothing/neck/yogs/megumu
 	name = "Megumu's Cape"
 	desc = "Tofu!"
@@ -131,3 +146,57 @@
 	new /obj/item/clothing/suit/yogs/megumu(src)
 	new /obj/item/clothing/neck/yogs/megumu(src)
 	new /obj/item/clothing/head/yogs/froghat(src)
+
+/obj/item/storage/box/isotope
+	name = "radioactive box"
+	desc = "WARNING: not actually radioactive."
+
+/obj/item/storage/box/isotope/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/under/rank/scientist/black(src)
+	new /obj/item/lighter/badass(src)
+
+/obj/item/storage/box/hisa
+	name = "Hunters Stash"
+	desc = "Legend has it if this box is not held by a hunter, its held by prey" 
+
+/obj/item/storage/box/hisa/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/suit/yogs/adventurerskirt(src)
+	new /obj/item/clothing/under/yogs/skin_tight_garmet(src)
+	new /obj/item/clothing/gloves/yogs/arm_sleeves(src)
+
+/obj/item/storage/box/manatee
+	name = "Discharge package"
+	desc = "Thank you for your service. Please dont come back."
+
+/obj/item/storage/box/manatee/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/accessory/dogtags(src)
+	new /obj/item/clothing/head/peacekeeperberet(src)
+
+/obj/item/toy/plush/axolotlplushie
+	name = "axolotl plushie"
+	desc = "An adorable stuffed toy that resembles an axolotl. Not to be mistaken for the real thing."
+	icon_state = "plushie_axolotl"
+	lefthand_file = 'icons/mob/pets_held_lh.dmi'
+	righthand_file = 'icons/mob/pets_held_rh.dmi'
+	item_state = "axolotl"
+	attack_verb = list("nibbles", "splats")
+	squeak_override = list('sound/effects/axolotl.ogg' = 1)
+
+/obj/item/storage/box/boxta
+	name = "Inmate belongings box"
+	desc = "A criminals' belongings, returned upon their release. Just stop killing people."
+
+/obj/item/storage/box/boxta/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/neck/falcon(src)
+	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
+
+/obj/item/bedsheet/pride
+	name = "Pride Bedsheet"
+	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
+	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	icon_state = "sheetpride"
+	item_state = "sheetpride"

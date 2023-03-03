@@ -92,16 +92,6 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/noreactsyringe
-	name = "Cryo Syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	id = "noreactsyringe"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 1000)
-	build_path = /obj/item/reagent_containers/syringe/noreact
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/piercesyringe
 	name = "Piercing Syringe"
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
@@ -119,6 +109,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2500)
 	build_path = /obj/item/reagent_containers/syringe/dart
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/vialbox
+	name = "vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	id = "vialbox"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 1500)
+	build_path = /obj/item/storage/lockbox/vialbox/printed
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -278,6 +278,16 @@
 	build_path = /obj/item/hypospray_upgrade/piercing
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/hyposprayspeedupg
+	name = "Hypospray Speed Upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	id = "hyposprayspeedupg"
+	build_path = /obj/item/hypospray_upgrade/speed
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000, /datum/material/titanium = 500)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -483,6 +493,50 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/noslipwater
+	name = "Slip Resistance Implant"
+	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
+	id = "noslipwater"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/silver = 1000, /datum/material/diamond = 1000, /datum/material/uranium = 400)
+	build_path = /obj/item/organ/cyberimp/leg/galosh
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/jumpbootsimplant
+	name = "Jumpboots implant"
+	desc = "An implant with a specialized propulsion system for rapid foward movement."
+	id = "jumpbootsimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/uranium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/jumpboots
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/wheeliesimplant
+	name = "Wheelies implant"
+	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
+	id = "wheeliesimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 500)
+	build_path = /obj/item/organ/cyberimp/leg/wheelies
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/magbootimplant
+	name = "Magboot implant"
+	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
+	id = "magbootimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/diamond = 200)
+	build_path = /obj/item/organ/cyberimp/leg/magboot
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+		
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
 /////////////////////////////////////////

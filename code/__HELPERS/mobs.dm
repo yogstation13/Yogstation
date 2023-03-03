@@ -97,6 +97,7 @@
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"pretcolor" = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)],
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
 		"wings" = "None",
@@ -161,6 +162,20 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_pod_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pod_name(gender))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_preternis_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(preternis_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())
@@ -199,7 +214,7 @@
 /proc/random_skin_tone()
 	return pick(GLOB.skin_tones)
 
-GLOBAL_LIST_INIT(skin_tones, list(
+GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"albino",
 	"caucasian1",
 	"caucasian2",
@@ -212,7 +227,22 @@ GLOBAL_LIST_INIT(skin_tones, list(
 	"indian",
 	"african1",
 	"african2"
-	))
+	)))
+
+GLOBAL_LIST_INIT(skin_tone_names, list(
+	"african1" = "Medium brown",
+	"african2" = "Dark brown",
+	"albino" = "Albino",
+	"arab" = "Light brown",
+	"asian1" = "Ivory",
+	"asian2" = "Beige",
+	"caucasian1" = "Porcelain",
+	"caucasian2" = "Light peach",
+	"caucasian3" = "Peach",
+	"indian" = "Brown",
+	"latino" = "Light beige",
+	"mediterranean" = "Olive",
+))
 
 GLOBAL_LIST_EMPTY(species_list)
 
@@ -534,9 +564,9 @@ GLOBAL_LIST_EMPTY(species_list)
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
-			to_chat(M, message)
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

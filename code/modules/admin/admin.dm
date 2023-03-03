@@ -45,7 +45,7 @@
 		body += "\[<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.permissions.admin_datums[M.client.ckey] || GLOB.permissions.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank_name() : "Player"]</A>\]"
 		if(CONFIG_GET(flag/use_exp_tracking))
 			body += "\[<A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living() + "</a> | "
-			body += " <A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M)]'>Toggle Exempt</a>\]"
+			body += " <A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M.client)]'>Toggle Exempt</a>\]"
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
@@ -62,6 +62,8 @@
 		body += "<br><br><b>Show related accounts by:</b> "
 		body += "\[ <a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID</a> | "
 		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP</a> \]"
+		if(CONFIG_GET(string/vpn_lookup_api) && CONFIG_GET(string/vpn_lookup_key) && M.lastKnownIP)
+			body += " \[<a href='?_src_=holder;[HrefToken()];vpnlookup=[M.lastKnownIP]'>Check for VPN</a>\]"
 		var/rep = 0
 		rep += SSpersistence.antag_rep[M.ckey]
 		body += "<br><br>Antagonist reputation: [rep]"
@@ -115,7 +117,7 @@
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_MENTORHELP]'><font color='[(muted & MUTE_MENTORHELP)?"red":"blue"]'>MENTORHELP</font></a> | "
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]"
 		body += "(<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)"
-		body += "<A href='?_src_=holder;[HrefToken()];afreeze=[REF(M)];'><font color='[M.client.prefs.afreeze ? "red":"blue"]'>FREEZE</font></a>" //yogs - adminfreezing
+		body += "<A href='?_src_=holder;[HrefToken()];afreeze=[REF(M)];'><font color='[M.client.afreeze ? "red":"blue"]'>FREEZE</font></a>" //yogs - adminfreezing
 
 	body += "<br><br>"
 	body += "<A href='?_src_=holder;[HrefToken()];jumpto=[REF(M)]'><b>Jump to</b></A> | "
@@ -514,7 +516,7 @@
 
 	if (!usr.client.holder)
 		return
-	var/confirm = alert("End the round and  restart the game world?", "End Round", "Yes", "Cancel")
+	var/confirm = tgui_alert(usr, "End the round and  restart the game world?", "End Round", list("Yes", "Cancel"))
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
@@ -583,16 +585,26 @@
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state == GAME_STATE_PREGAME || SSticker.current_state == GAME_STATE_STARTUP)
-		SSticker.start_immediately = TRUE
-		log_admin("[usr.key] has started the game.")
-		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_STARTUP)
-			msg = " (The server is still setting up, but the round will be \
-				started as soon as possible.)"
-		message_admins("<font color='blue'>\
-			[usr.key] has started the game.[msg]</font>")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return 1
+		if(!SSticker.start_immediately)
+			var/localhost_addresses = list("127.0.0.1", "::1")
+			if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+				if(tgui_alert(usr, "Are you sure you want to start the round?","Start Now",list("Start Now","Cancel")) != "Start Now")
+					return FALSE
+			SSticker.start_immediately = TRUE
+			log_admin("[usr.key] has started the game.")
+			var/msg = ""
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				msg = " (The server is still setting up, but the round will be \
+					started as soon as possible.)"
+			message_admins("<font color='blue'>[usr.key] has started the game.[msg]</font>")
+			SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			return TRUE
+		SSticker.start_immediately = FALSE
+		SSticker.SetTimeLeft(1800)
+		to_chat(world, "<span class='infoplain'><b>The game will start in 180 seconds.</b></span>")
+		SEND_SOUND(world, sound('sound/ai/default/attention.ogg'))
+		message_admins("<font color='blue'>[usr.key] has cancelled immediate game start. Game will start in 180 seconds.</font>")
+		log_admin("[usr.key] has cancelled immediate game start.")
 	else
 		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>", confidential=TRUE)
 
@@ -678,7 +690,7 @@
 		log_admin("[key_name(usr)] [msg]")
 		message_admins("[key_name_admin(usr)] [msg]")
 		if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
-			if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			if(tgui_alert(usr,"Restart the round?.","Round restart",list("Yes","No")) == "Yes")
 				SSticker.Reboot(delay = 100, force = TRUE)
 
 /datum/admins/proc/unprison(mob/M in GLOB.mob_list)
@@ -689,7 +701,7 @@
 		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]")
 		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
-		alert("[M.name] is not prisoned.")
+		tgui_alert(usr, "[M.name] is not prisoned.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -851,7 +863,7 @@
 	var/count = 0
 
 	if(!SSjob.initialized)
-		alert(usr, "You cannot manage jobs before the job subsystem is initialized!")
+		tgui_alert(usr, "You cannot manage jobs before the job subsystem is initialized!")
 		return
 
 	dat += "<table>"
@@ -967,7 +979,7 @@
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 
-	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
+	var/ask = tgui_alert(usr, question, "Place ghost in control of mob?", list("Yes", "No"))
 	if (ask != "Yes")
 		return 1
 

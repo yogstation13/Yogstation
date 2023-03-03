@@ -84,6 +84,9 @@
 	name = "trash bag of holding"
 	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
 	icon_state = "bluetrashbag"
+	item_state = "bluetrashbag"
+	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/storage/bag/trash/bluespace/ComponentInitialize()
@@ -116,7 +119,7 @@
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/ore))
 	STR.max_w_class = WEIGHT_CLASS_HUGE
-	STR.max_combined_stack_amount = 50
+	STR.max_items = 50
 
 /obj/item/storage/bag/ore/equipped(mob/user)
 	. = ..()
@@ -136,18 +139,22 @@
 /obj/item/storage/bag/ore/proc/Pickup_ores(mob/living/user)
 	var/show_message = FALSE
 	var/obj/structure/ore_box/box
+	var/mob/living/simple_animal/hostile/mining_drone/drone
 	var/turf/tile = user.loc
 	if (!isturf(tile))
 		return
 	if (istype(user.pulling, /obj/structure/ore_box))
 		box = user.pulling
+	else if (istype(user.pulling, /mob/living/simple_animal/hostile/mining_drone))
+		drone = user.pulling
+
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		for(var/A in tile)
 			if (!is_type_in_typecache(A, STR.can_hold))
 				continue
-			if (box)
-				user.transferItemToLoc(A, box)
+			if (box || drone)
+				user.transferItemToLoc(A, box || drone)
 				show_message = TRUE
 			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
 				show_message = TRUE
@@ -161,6 +168,9 @@
 		if (box)
 			user.visible_message(span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."), \
 			span_notice("You offload the ores beneath you into your [box]."))
+		if (drone)
+			user.visible_message(span_notice("[user] offloads the ores beneath [user.p_them()] into [drone]."), \
+			span_notice("You offload the ores beneath you into [drone]."))
 		else
 			user.visible_message(span_notice("[user] scoops up the ores beneath [user.p_them()]."), \
 				span_notice("You scoop up the ores beneath you with your [name]."))
@@ -179,7 +189,6 @@
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = INFINITY
 	STR.max_combined_w_class = INFINITY
-	STR.max_combined_stack_amount = INFINITY
 
 /obj/item/storage/bag/gem
 	name = "gem satchel"
@@ -198,8 +207,8 @@
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/gem))
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_combined_w_class = 16
-	STR.max_items = 16 
+	STR.max_combined_w_class = 48
+	STR.max_items = 48 
 
 /obj/item/storage/bag/gem/equipped(mob/user)
 	. = ..()
@@ -284,7 +293,7 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
-	var/capacity = 300; //the number of sheets it can carry.
+	var/capacity = 500; //the number of sheets it can carry.
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 
@@ -293,7 +302,7 @@
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
-	STR.max_combined_stack_amount = 300
+	STR.max_items = 500
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
@@ -302,12 +311,12 @@
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = ""
-	capacity = 500//Borgs get more because >specialization
+	capacity = 1000//Borgs get more because >specialization
 
 /obj/item/storage/bag/sheetsnatcher/borg/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
-	STR.max_combined_stack_amount = 500
+	STR.max_items = 1000
 
 // -----------------------------
 //           Book bag

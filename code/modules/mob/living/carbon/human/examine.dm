@@ -1,3 +1,8 @@
+#define ORGANIC_BRUTE "bruising"
+#define ORGANIC_BURN "burns"
+#define ROBOTIC_BRUTE "denting"
+#define ROBOTIC_BURN "charring"
+
 /mob/living/carbon/human/examine(mob/user)
 //this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
 	var/t_He = p_they(TRUE)
@@ -7,6 +12,9 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name
+	var/robotic = FALSE //robotic mobs look different under certain circumstances
+	if(MOB_ROBOTIC in mob_biotypes)//please someone tell me this is stupid and i can do it all in one line
+		robotic = TRUE
 
 	if(isliving(user))
 		var/mob/living/L = user
@@ -113,6 +121,35 @@
 		if(100 to 200)
 			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
+	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
+		var/badwings = ""
+		if(mind?.martial_art && istype(mind.martial_art, /datum/martial_art/ultra_violence))
+			badwings = "Weaponized "
+		. += "[t_He] [t_has] a pair of [span_warning(badwings)][(dna.features["wings"])] wings on [t_his] back"
+
+	if(user?.mind && HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
+		var/highest_trauma = 0
+		for(var/datum/brain_trauma/B in get_traumas())
+			if(istype(B, /datum/brain_trauma/magic))
+				highest_trauma = 4
+				break
+			else if(istype(B, /datum/brain_trauma/special) && highest_trauma < 3)
+				highest_trauma = 3
+			else if(istype(B, /datum/brain_trauma/severe) && highest_trauma < 2)
+				highest_trauma = 2
+			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
+				highest_trauma = 1
+		
+		switch(highest_trauma)
+			if(1)
+				. += span_warning("[t_His] behavior seems a bit off.")
+			if(2)
+				. += span_warning("[t_His] behavior is very clearly abnormal.")
+			if(3)
+				. += span_warning("[t_His] behavior is strange but intriguing.")
+			if(4)
+				. += span_warning("[t_His] behavior seems otherworldly.")
+
 	var/appears_dead = 0
 	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		appears_dead = 1
@@ -181,22 +218,22 @@
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor bruising.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE].\n"
 			else if(temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!\n"
 			else if(src.dna.species.id == "egg" && temp >= 200)
 				msg += "[t_He] look[p_s()] ready to crack into a million pieces!"
 			else
-				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!</B>\n"
 
 		temp = getFireLoss()
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor burns.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BURN : ORGANIC_BURN].\n"
 			else if (temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!\n"
 			else
-				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!</B>\n"
 
 		temp = getCloneLoss()
 		if(temp)
@@ -216,10 +253,15 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
+	switch(fire_stacks)
+		if(1 to INFINITY)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(-5 to -1)
+			msg += "[t_He] look[p_s()] a little damp.\n"
+		if(-10 to -5)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
+		if(-INFINITY to -10)
+			msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -248,18 +290,19 @@
 		apparent_blood_volume -= 150 // enough to knock you down one tier
 	// Fulp edit START - Bloodsuckers
 	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
-	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
-		msg += bloodDesc
-	else switch(get_blood_state())
-		if(BLOOD_OKAY)
-			msg += "[t_He] [t_has] pale skin.\n"
-		if(BLOOD_BAD)
-			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
-		if(BLOOD_DEAD to BLOOD_SURVIVE)
-			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	if(bloodDesc == BLOODSUCKER_SHOW_BLOOD) // BLOODSUCKER_SHOW_BLOOD: Explicitly show the correct blood amount
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
+				msg += "[t_He] [t_has] pale skin.\n"
+			if(BLOOD_BAD)
+				msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+			if(BLOOD_DEAD to BLOOD_SURVIVE)
+				msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	else if(bloodDesc != BLOODSUCKER_HIDE_BLOOD) // BLOODSUCKER_HIDE_BLOOD: Always show full blood
+		msg += bloodDesc // Else: Show custom blood message
 
 	if(bleedsuppress)
-		msg += "[t_He] [t_is] embued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
+		msg += "[t_He] [t_is] imbued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
 	else if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		var/list/obj/item/bodypart/grasped_limbs = list()
@@ -276,7 +319,19 @@
 		if(appears_dead)
 			bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
 		else
-			bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+			switch(get_total_bleed_rate() * physiology?.bleed_mod)
+				if(0 to 1)
+					bleed_text = list("<B>[t_He] [t_is] barely bleeding from [t_his]")
+				if(1 to 2)
+					bleed_text = list("<B>[t_He] [t_is] slowly bleeding from [t_his]")
+				if(2 to 4)
+					bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+				if(4 to 8)
+					bleed_text = list("<B>[t_He] [t_is] greatly bleeding from [t_his]")
+				if(8 to 12)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood from [t_his]")
+				if(12 to INFINITY)
+					bleed_text = list("<B>[t_He] [t_is] pouring blood like a fountain from [t_his]")
 		switch(num_bleeds)
 			if(1 to 2)
 				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
@@ -397,6 +452,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/cyberimp/eyes/hud/CIH = H.getorgan(/obj/item/organ/cyberimp/eyes/hud)
+		if(H.can_see_reagents() && reagents?.total_volume > 0)
+			. += "Reagents detected: [reagents.total_volume]u of [LAZYLEN(reagents.reagent_list)] chemicals."
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
 			var/perpname = get_face_name(get_id_name(""))
 			if(perpname)
@@ -568,3 +625,6 @@
 		. += span_warning("[msg.Join("")]")
 
 	. += "</span>"
+
+#undef ORGANIC_BRUTE
+#undef ROBOTIC_BRUTE

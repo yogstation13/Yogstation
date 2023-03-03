@@ -176,18 +176,6 @@
 
 	add_fingerprint(user)
 
-	if(istype(I,/obj/item/stack/sheet/mineral/wood))
-		var/obj/item/stack/sheet/mineral/wood/W = I
-		if(W.amount < 5)
-			to_chat(user, span_warning("You need at least five wooden planks to barricade the window!"))
-			return
-		else
-			to_chat(user, span_notice("You start adding [I] to [src]..."))
-			if(do_after(user, 5 SECONDS, src))
-				W.use(5)
-				new /obj/structure/barricade/wooden/crude(get_turf(src))
-				return
-
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
@@ -247,7 +235,7 @@
 /obj/structure/window/proc/check_state_and_anchored(checked_state, checked_anchored)
 	return check_state(checked_state) && check_anchored(checked_anchored)
 
-/obj/structure/window/mech_melee_attack(obj/mecha/M)
+/obj/structure/window/mech_melee_attack(obj/mecha/M, equip_allowed)
 	if(!can_be_reached())
 		return
 	..()
@@ -417,7 +405,7 @@
 			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
 				user.visible_message(span_notice("[user] holds \the [I] to the security screws on \the [src]..."),
 										span_notice("You begin heating the security screws on \the [src]..."))
-				if(I.use_tool(src, user, 180, volume = 100))
+				if(I.use_tool(src, user, 8 SECONDS, volume = 100))
 					to_chat(user, span_notice("The security bolts are glowing white hot and look ready to be removed."))
 					state = RWINDOW_BOLTS_HEATED
 					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
@@ -426,7 +414,7 @@
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message(span_notice("[user] digs into the heated security screws and starts removing them..."),
 										span_notice("You dig into the heated screws hard and they start turning..."))
-				if(I.use_tool(src, user, 80, volume = 50))
+				if(I.use_tool(src, user, 4 SECONDS, volume = 50))
 					state = RWINDOW_BOLTS_OUT
 					to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the pane."))
 				return
@@ -434,7 +422,7 @@
 			if(I.tool_behaviour == TOOL_CROWBAR)
 				user.visible_message(span_notice("[user] wedges \the [I] into the gap in the frame and starts prying..."),
 										span_notice("You wedge \the [I] into the gap in the frame and start prying..."))
-				if(I.use_tool(src, user, 50, volume = 50))
+				if(I.use_tool(src, user, 5 SECONDS, volume = 50))
 					state = RWINDOW_POPPED
 					to_chat(user, span_notice("The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut."))
 				return
@@ -442,7 +430,7 @@
 			if(I.tool_behaviour == TOOL_WIRECUTTER)
 				user.visible_message(span_notice("[user] starts cutting the exposed bars on \the [src]..."),
 										span_notice("You start cutting the exposed bars on \the [src]"))
-				if(I.use_tool(src, user, 30, volume = 50))
+				if(I.use_tool(src, user, 3 SECONDS, volume = 50))
 					state = RWINDOW_BARS_CUT
 					to_chat(user, span_notice("The panels falls out of the way exposing the frame bolts."))
 				return
@@ -450,7 +438,7 @@
 			if(I.tool_behaviour == TOOL_WRENCH)
 				user.visible_message(span_notice("[user] starts unfastening \the [src] from the frame..."),
 					span_notice("You start unfastening the bolts from the frame..."))
-				if(I.use_tool(src, user, 50, volume = 50))
+				if(I.use_tool(src, user, 5 SECONDS, volume = 50))
 					to_chat(user, span_notice("You unscrew the bolts from the frame and the window pops loose."))
 					state = WINDOW_OUT_OF_FRAME
 					setAnchored(FALSE)
@@ -496,11 +484,16 @@
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
-	armor = list(MELEE = 80, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 45, BIO = 100, RAD = 100, FIRE = 99, ACID = 100)
+	armor = list(MELEE = 60, BULLET = 5, LASER = 0, ENERGY = 100, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 150
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/plasmaglass
-	rad_insulation = RAD_NO_INSULATION
+	rad_insulation = RAD_FULL_INSULATION
+
+/obj/structure/window/plasma/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+		return FALSE
 
 /obj/structure/window/plasma/spawnDebris(location)
 	. = list()
@@ -530,7 +523,7 @@
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
-	armor = list(MELEE = 80, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 99, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 500
 	damage_deflection = 21
 	explosion_block = 2
@@ -751,7 +744,7 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	explosion_block = 3
@@ -759,6 +752,12 @@
 	level = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 	glass_amount = 2
+	rad_insulation = RAD_FULL_INSULATION
+
+/obj/structure/window/plastitanium/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+		return FALSE
 
 /obj/structure/window/plastitanium/unanchored
 	anchored = FALSE
@@ -770,8 +769,8 @@
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	max_integrity = 80
-	armor = list(MELEE = 60, BULLET = 25, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	max_integrity = 150
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	decon_speed = 40
 	glass_type = /obj/item/stack/tile/brass
@@ -824,7 +823,7 @@
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 120
+	max_integrity = 600
 	level = 3
 	glass_amount = 2
 

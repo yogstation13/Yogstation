@@ -13,7 +13,8 @@
 
 /datum/round_event/shuttle_catastrophe
 	var/datum/map_template/shuttle/new_shuttle
-
+	var/list/datum/map_template/shuttle/blacklisted_shuttles = list(/datum/map_template/shuttle/emergency/arena, /datum/map_template/shuttle/emergency/construction,
+	/datum/map_template/shuttle/emergency/construction/small, /datum/map_template/shuttle/emergency/discoinferno, /datum/map_template/shuttle/emergency/meteor)
 /datum/round_event/shuttle_catastrophe/announce(fake)
 	var/cause = pick("was attacked by [syndicate_name()] Operatives", "mysteriously teleported away", "had its refuelling crew mutiny",
 		"was found with its engines stolen", "\[REDACTED\]", "flew into the sunset, and melted", "fell into a black hole",
@@ -25,8 +26,9 @@
 	var/list/valid_shuttle_templates = list()
 	for(var/shuttle_id in SSmapping.shuttle_templates)
 		var/datum/map_template/shuttle/template = SSmapping.shuttle_templates[shuttle_id]
-		if(!template.emag_buy && template.credit_cost < INFINITY) //if we could get it from the communications console, it's cool for us to get it here
-			valid_shuttle_templates += template
+		if(template.credit_cost < INFINITY) //if we could get it from the emagged communications console, it's cool for us to get it here
+			if (!(template in blacklisted_shuttles))
+				valid_shuttle_templates += template
 	new_shuttle = pick(valid_shuttle_templates)
 
 /datum/round_event/shuttle_catastrophe/start()

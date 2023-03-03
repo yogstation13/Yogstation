@@ -9,7 +9,7 @@
 	comp_light_luminosity = 0
 	variants = null
 	///Ref to the borg we're installed in. Set by the borg during our creation.
-	var/mob/living/silicon/robot/borgo
+	var/mob/living/silicon/borgo
 	///Ref to the RoboTact app. Important enough to borgs to deserve a ref.
 	var/datum/computer_file/program/robotact/robotact
 	///IC log that borgs can view in their personal management app
@@ -21,8 +21,9 @@
 	borgo = loc
 	if(!istype(borgo))
 		borgo = null
-		stack_trace("[type] initialized outside of a borg, deleting.")
+		stack_trace("[type] initialized outside of a silicon, deleting.")
 		return INITIALIZE_HINT_QDEL
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/modular_computer/tablet/integrated/Destroy()
 	borgo = null
@@ -67,33 +68,37 @@
 /obj/item/modular_computer/tablet/integrated/ui_data(mob/user)
 	. = ..()
 	.["has_light"] = TRUE
-	.["light_on"] = borgo?.lamp_enabled
-	.["comp_light_color"] = borgo?.lamp_color
+	if(istype(borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = borgo
+		.["light_on"] = R?.lamp_enabled
+		.["comp_light_color"] = R?.lamp_color
 
 //Overrides the ui_act to make the flashlight controls link to the borg instead
 /obj/item/modular_computer/tablet/integrated/ui_act(action, params)
-	switch(action)
-		if("PC_toggle_light")
-			if(!borgo)
-				return FALSE
-			borgo.toggle_headlamp()
-			return TRUE
+	if(istype(borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = borgo
+		switch(action)
+			if("PC_toggle_light")
+				if(!R)
+					return FALSE
+				R.toggle_headlamp()
+				return TRUE
 
-		if("PC_light_color")
-			if(!borgo)
-				return FALSE
-			var/mob/user = usr
-			var/new_color
-			while(!new_color)
-				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
-				if(!new_color || QDELETED(borgo))
-					return
-				if(color_hex2num(new_color) < 200) //Colors too dark are rejected
-					to_chat(user, "<span class='warning'>That color is too dark! Choose a lighter one.</span>")
-					new_color = null
-			borgo.lamp_color = new_color
-			borgo.toggle_headlamp(FALSE, TRUE)
-			return TRUE
+			if("PC_light_color")
+				if(!R)
+					return FALSE
+				var/mob/user = usr
+				var/new_color
+				while(!new_color)
+					new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
+					if(!new_color || QDELETED(R))
+						return
+					if(color_hex2num(new_color) < 200) //Colors too dark are rejected
+						to_chat(user, "<span class='warning'>That color is too dark! Choose a lighter one.</span>")
+						new_color = null
+				R.lamp_color = new_color
+				R.toggle_headlamp(FALSE, TRUE)
+				return TRUE
 	return ..()
 
 /obj/item/modular_computer/tablet/integrated/syndicate
@@ -106,4 +111,6 @@
 
 /obj/item/modular_computer/tablet/integrated/syndicate/Initialize()
 	. = ..()
-	borgo.lamp_color = COLOR_RED //Syndicate likes it red
+	if(istype(borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = borgo
+		R.lamp_color = COLOR_RED //Syndicate likes it red

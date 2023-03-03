@@ -23,7 +23,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	resistance_flags = FIRE_PROOF
 
 	light_power = 0
@@ -310,8 +310,10 @@
 		return  // do nothing if we're already active
 	if(fire)
 		set_light(l_power = 0.8)
+		update_icon()
 	else
 		set_light(l_power = 0)
+		update_icon()
 
 /*
  * Return of the Return of the Party button

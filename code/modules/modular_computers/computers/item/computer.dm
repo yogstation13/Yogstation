@@ -1,24 +1,32 @@
-// This is the base type that does all the hardware stuff.
-// Other types expand it - tablets use a direct subtypes, and
-// consoles and laptops use "procssor" item that is held inside machinery piece
+/**  This is the base type that does all the hardware stuff.
+ * Other types expand it - tablets use a direct subtypes, and
+ * consoles and laptops use "procssor" item that is held inside machinery piece
+ */
 /obj/item/modular_computer
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
-	
-	flags_1 = RAD_PROTECT_CONTENTS_1
 
-	var/enabled = FALSE										// Whether the computer is turned on.
-	var/screen_on = TRUE									// Whether the computer is active/opened/it's screen is on.
-	var/device_theme = "ntos"								// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
-	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
-	var/hardware_flag = 0									// A flag that describes this device type
+	flags_1 = RAD_PROTECT_CONTENTS_1
+	/// Whether the computer is turned on.
+	var/enabled = FALSE
+	/// Whether the computer is active/opened/it's screen is on.
+	var/screen_on = TRUE
+	/// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
+	var/device_theme = "ntos"
+	/// A currently active program running on the computer.
+	var/datum/computer_file/program/active_program = null
+	// A flag that describes this device type
+	var/hardware_flag = 0
 	var/last_power_usage = 0
-	var/last_battery_percent = 0							// Used for deciding if battery percentage has chandged
+	// Used for deciding if battery percentage has changed
+	var/last_battery_percent = 0
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
 
-	var/base_active_power_usage = 50						// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
-	var/base_idle_power_usage = 5							// Power usage when the computer is idle and screen is off (currently only applies to laptops)
+	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
+	var/base_active_power_usage = 50
+	/// Power usage when the computer is idle and screen is off (currently only applies to laptops)
+	var/base_idle_power_usage = 5
 
 	// Modular computers can run on various devices. Each DEVICE (Laptop, Console, Tablet,..)
 	// must have it's own DMI file. Icon states must be called exactly the same in all files, but may look differently
@@ -26,18 +34,32 @@
 
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "laptop-open"
-	var/icon_state_unpowered = null							// Icon state when the computer is turned off.
-	var/icon_state_powered = null							// Icon state when the computer is turned on.
-	var/icon_state_menu = "menu"							// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
-	var/id_rename = FALSE										// If we should update the name of the computer with the name and job of the stored ID.
-	var/icon_state_screensaver = "standby"					// Icon state overlay when the computer is turned off, but not out of power.
-	var/max_hardware_size = 0								// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
-	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
-	var/overlay_skin = null									// What set of icons should be used for program overlays.
+	/// Icon state when the computer is turned off.
+	var/icon_state_unpowered = null
+	/// Icon state when the computer is turned on.
+	var/icon_state_powered = null
+	/// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
+	var/icon_state_menu = "menu"
+	/// If we should update the name of the computer with the name and job of the stored ID.
+	var/id_rename = FALSE
+	/// Icon state overlay when the computer is turned off, but not out of power.
+	var/icon_state_screensaver = "standby"
+	/// Maximal hardware w_class. Tablets/PDAs have 1, laptops 2, consoles 4.
+	var/max_hardware_size = 0
+	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
+	var/steel_sheet_cost = 5
+	/// What set of icons should be used for program overlays.
+	var/overlay_skin = null
 
 	integrity_failure = 50
 	max_integrity = 100
 	armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 0, ACID = 0)
+
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 0.6
+	light_color = "#FFFFFF"
+	light_on = FALSE
 
 	/// List of "connection ports" in this computer and the components with which they are plugged
 	var/list/all_components = list()
@@ -45,13 +67,16 @@
 	var/list/expansion_bays
 	/// Number of total expansion bays this computer has available.
 	var/max_bays = 0
-
-	var/list/idle_threads							// Idle programs on background. They still receive process calls but can't be interacted with.
-	var/obj/physical = null									// Object that represents our computer. It's used for Adjacent() and UI visibility checks.
-	var/has_light = FALSE						//If the computer has a flashlight/LED light/what-have-you installed
-	var/light_on = FALSE						//If that light is enabled
-	var/comp_light_luminosity = 3				//The brightness of that light
-	var/comp_light_color			//The color of that light
+	/// Idle programs on background. They still receive process calls but can't be interacted with.
+	var/list/idle_threads
+	/// Object that represents our computer. It's used for Adjacent() and UI visibility checks.
+	var/obj/physical = null
+	///If the computer has a flashlight/LED light/what-have-you installed
+	var/has_light = FALSE
+	///The brightness of that light
+	var/comp_light_luminosity = 3
+	///The color of that light
+	var/comp_light_color = "#FFFFFF"
 
 	// Preset Stuff
 	var/list/starting_components = list()
@@ -67,7 +92,8 @@
 	START_PROCESSING(SSobj, src)
 	if(!physical)
 		physical = src
-	comp_light_color = "#FFFFFF"
+	set_light_color(comp_light_color)
+	set_light_range(comp_light_luminosity)
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
@@ -76,13 +102,10 @@
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
 	STOP_PROCESSING(SSobj, src)
-	for(var/H in all_components)
-		var/obj/item/computer_hardware/CH = all_components[H]
-		if(CH.holder == src)
-			CH.on_remove(src)
-			CH.holder = null
-			all_components.Remove(CH.device_type)
-			qdel(CH)
+	for(var/port in all_components)
+		var/obj/item/computer_hardware/component = all_components[port]
+		qdel(component)
+	all_components.Cut() //Die demon die
 	physical = null
 	return ..()
 
@@ -91,15 +114,15 @@
 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
 		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
-		return 
+		return
 	return ..()
 
 /obj/item/modular_computer/pre_attack(atom/A, mob/living/user, params)
 	if(active_program?.clickon(A, user, params))
 		playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		return 
+		return
 	return ..()
-	 
+
 /**
  * Plays a sound through the computer's speakers.
  */
@@ -185,7 +208,7 @@
 
 /obj/item/modular_computer/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && usr.canUseTopic(src, BE_CLOSE))
+	if((!istype(over_object, /atom/movable/screen)) && usr.canUseTopic(src, BE_CLOSE))
 		return attack_self(M)
 	return ..()
 
@@ -206,7 +229,7 @@
 	if(enabled)
 		ui_interact(user)
 	else if(IsAdminGhost(user))
-		var/response = alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", "Yes", "No")
+		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
 		if(response == "Yes")
 			turn_on(user)
 
@@ -279,6 +302,10 @@
 	var/obj/item/card/id/stored_id = GetID()
 	if(id_rename && stored_id)
 		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
+		var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive.find_file_by_name("pda_client")
+		if(istype(msgr))
+			msgr.username = "[stored_id.registered_name] ([stored_id.assignment])"
 	else
 		name = initial(name)
 
@@ -319,7 +346,7 @@
 			to_chat(user, span_warning("You press the power button but \the [src] does not respond."))
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
-/obj/item/modular_computer/process()
+/obj/item/modular_computer/process(delta_time)
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
 		return FALSE
@@ -338,7 +365,7 @@
 
 	if(active_program)
 		if(active_program.program_state != PROGRAM_STATE_KILLED)
-			active_program.process_tick()
+			active_program.process_tick(delta_time)
 			active_program.ntnet_status = get_ntnet_status()
 		else
 			active_program = null
@@ -346,12 +373,12 @@
 	for(var/I in idle_threads)
 		var/datum/computer_file/program/P = I
 		if(P.program_state != PROGRAM_STATE_KILLED)
-			P.process_tick()
+			P.process_tick(delta_time)
 			P.ntnet_status = get_ntnet_status()
 		else
 			idle_threads.Remove(P)
 
-	handle_power() // Handles all computer power interaction
+	handle_power(delta_time) // Handles all computer power interaction
 	//check_update_ui_need()
 
 /**
@@ -380,8 +407,14 @@
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
+	data["PC_emagged"] = obj_flags & EMAGGED ? 1 : 0
 
 	data["PC_device_theme"] = device_theme
+	//storing the entire theme collection in the header data so it can be referenced for ntos approved themes. as in not syndicate
+	var/list/theme_collection = list()
+	for(var/theme_key in GLOB.pda_themes)
+		theme_collection += list(list("theme_name" = theme_key, "theme_file" = GLOB.pda_themes[theme_key]))
+	data["theme_collection"] = theme_collection
 
 	var/obj/item/computer_hardware/battery/battery_module = all_components[MC_CELL]
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]
@@ -472,6 +505,34 @@
 	update_icon()
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
 
+/**
+  * Toggles the computer's flashlight, if it has one.
+  *
+  * Called from ui_act(), does as the name implies.
+  * It is seperated from ui_act() to be overwritten as needed.
+*/
+/obj/item/modular_computer/proc/toggle_flashlight()
+	if(!has_light)
+		return FALSE
+	set_light_on(!light_on)
+	update_icon()
+	return TRUE
+
+/**
+  * Sets the computer's light color, if it has a light.
+  *
+  * Called from ui_act(), this proc takes a color string and applies it.
+  * It is seperated from ui_act() to be overwritten as needed.
+  * Arguments:
+  ** color is the string that holds the color value that we should use. Proc auto-fails if this is null.
+*/
+/obj/item/modular_computer/proc/set_flashlight_color(color)
+	if(!has_light || !color)
+		return FALSE
+	comp_light_color = color
+	set_light_color(color)
+	return TRUE
+
 /obj/item/modular_computer/screwdriver_act(mob/user, obj/item/tool)
 	if(!all_components.len)
 		to_chat(user, "<span class='warning'>This device doesn't have any components installed.</span>")
@@ -551,7 +612,7 @@
 	if(starting_components.len < 1)
 		return
 	for(var/part in starting_components)
-		var/new_part = new part
+		var/new_part = new part(src)
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)

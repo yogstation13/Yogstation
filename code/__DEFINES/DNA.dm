@@ -24,6 +24,7 @@
 #define BADSIGHT	/datum/mutation/human/nearsight
 #define LASEREYES	/datum/mutation/human/laser_eyes
 #define CHAMELEON	/datum/mutation/human/chameleon
+#define SUPER_CHAMELEON		/datum/mutation/human/chameleon/super
 #define WACKY		/datum/mutation/human/wacky
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
@@ -151,12 +152,16 @@
 #define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
 #define NOMOUTH			27
+/// has a tail
+#define HAS_TAIL		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
 #define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
 #define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 #define ORGAN_SLOT_STOMACH "stomach"
 #define ORGAN_SLOT_STOMACH_AID "stomach_aid"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
@@ -191,3 +196,19 @@
 #define G_MALE 1
 #define G_FEMALE 2
 #define G_PLURAL 3
+
+// Defines for used in creating "perks" for the species preference pages.
+/// A key that designates UI icon displayed on the perk.
+#define SPECIES_PERK_ICON "ui_icon"
+/// A key that designates the name of the perk.
+#define SPECIES_PERK_NAME "name"
+/// A key that designates the description of the perk.
+#define SPECIES_PERK_DESC "description"
+/// A key that designates what type of perk it is (see below).
+#define SPECIES_PERK_TYPE "perk_type"
+
+// The possible types each perk can be.
+// Positive perks are shown in green, negative in red, and neutral in grey.
+#define SPECIES_POSITIVE_PERK "positive"
+#define SPECIES_NEGATIVE_PERK "negative"
+#define SPECIES_NEUTRAL_PERK "neutral"

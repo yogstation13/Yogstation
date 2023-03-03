@@ -177,7 +177,7 @@
 	desc = "Breathe a short flame that is effective against fauna but worthless off of lavaland."
 	action_icon = 'icons/obj/wizard.dmi'
 	action_icon_state = "fireball"
-	cooldown = 2 SECONDS
+	cooldown = 1.6 SECONDS //kinetic gun
 	prepare_message = span_notice("You prepare %YOUR fire breath attack")
 	unprepare_message = span_notice("You decide to refrain from roasting more peasants for the time.")
 
@@ -230,7 +230,7 @@
 	desc = "Causes a large, powerful gust of air to push stuff away, deal damage to fauna, and break rocks."
 	action_icon_state = "tornado"
 	action_icon = 'icons/obj/wizard.dmi'
-	cooldown = 2 SECONDS
+	cooldown = 1 SECONDS //adv cutter
 	prepare_message = span_notice("You prepare %YOUR wings.")
 	unprepare_message = span_notice("You stop the flapping.")
 	var/shootie = /obj/item/projectile/wing

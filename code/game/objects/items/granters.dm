@@ -5,6 +5,7 @@
 	due_date = 0 // Game time in deciseconds
 	unique = 1   // 0  Normal book, 1  Should not be treated as normal book, unable to be copied, unable to be modified
 	var/list/remarks = list() //things to read about while learning.
+	var/ordered = FALSE //determines if the remarks should display in order rather than randomly
 	var/pages_to_mastery = 3 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
@@ -13,7 +14,9 @@
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
 	if(do_after(user, 5 SECONDS, user))
-		if(remarks.len)
+		if(remarks.len && ordered)
+			to_chat(user, span_notice("[popleft(remarks)]"))
+		else if(remarks.len)
 			to_chat(user, span_notice("[pick(remarks)]"))
 		else
 			to_chat(user, span_notice("You keep reading..."))
@@ -152,7 +155,7 @@
 /obj/item/book/granter/spell/fireball
 	spell = /obj/effect/proc_holder/spell/aimed/fireball
 	spellname = "fireball"
-	icon_state ="bookfireball"
+	icon_state = "bookfireball"
 	desc = "This book feels warm to the touch."
 	remarks = list("Aim...AIM, FOOL!", "Just catching them on fire won't do...", "Accounting for crosswinds... really?", "I think I just burned my hand...", "Why the dumb stance? It's just a flick of the hand...", "OMEE... ONI... Ugh...", "What's the difference between a fireball and a pyroblast...")
 
@@ -164,14 +167,14 @@
 /obj/item/book/granter/spell/sacredflame
 	spell = /obj/effect/proc_holder/spell/targeted/sacred_flame
 	spellname = "sacred flame"
-	icon_state ="booksacredflame"
+	icon_state = "booksacredflame"
 	desc = "Become one with the flames that burn within... and invite others to do so as well."
 	remarks = list("Well, it's one way to stop an attacker...", "I'm gonna need some good gear to stop myself from burning to death...", "Keep a fire extinguisher handy, got it...", "I think I just burned my hand...", "Apply flame directly to chest for proper ignition...", "No pain, no gain...", "One with the flame...")
 
 /obj/item/book/granter/spell/smoke
 	spell = /obj/effect/proc_holder/spell/targeted/smoke
 	spellname = "smoke"
-	icon_state ="booksmoke"
+	icon_state = "booksmoke"
 	desc = "This book is overflowing with the dank arts."
 	remarks = list("Smoke Bomb! Heh...", "Smoke bomb would do just fine too...", "Wait, there's a machine that does the same thing in chemistry?", "This book smells awful...", "Why all these weed jokes? Just tell me how to cast it...", "Wind will ruin the whole spell, good thing we're in space... Right?", "So this is how the spider clan does it...")
 
@@ -189,7 +192,7 @@
 /obj/item/book/granter/spell/blind
 	spell = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	spellname = "blind"
-	icon_state ="bookblind"
+	icon_state = "bookblind"
 	desc = "This book looks blurry, no matter how you look at it."
 	remarks = list("Well I can't learn anything if I can't read the damn thing!", "Why would you use a dark font on a dark background...", "Ah, I can't see an Oh, I'm fine...", "I can't see my hand...!", "I'm manually blinking, damn you book...", "I can't read this page, but somehow I feel like I learned something from it...", "Hey, who turned off the lights?")
 
@@ -201,13 +204,13 @@
 /obj/item/book/granter/spell/mindswap
 	spell = /obj/effect/proc_holder/spell/targeted/mind_transfer
 	spellname = "mindswap"
-	icon_state ="bookmindswap"
+	icon_state = "bookmindswap"
 	desc = "This book's cover is pristine, though its pages look ragged and torn."
 	var/mob/stored_swap //Used in used book recoils to store an identity for mindswaps
 	remarks = list("If you mindswap from a mouse, they will be helpless when you recover...", "Wait, where am I...?", "This book is giving me a horrible headache...", "This page is blank, but I feel words popping into my head...", "GYNU... GYRO... Ugh...", "The voices in my head need to stop, I'm trying to read here...", "I don't think anyone will be happy when I cast this spell...")
 
 /obj/item/book/granter/spell/mindswap/onlearned()
-	spellname = pick("fireball","smoke","blind","forcewall","knock","barnyard","charge")
+	spellname = pick("fireball", "smoke", "blind", "forcewall", "knock", "barnyard", "charge")
 	icon_state = "book[spellname]"
 	name = "spellbook of [spellname]" //Note, desc doesn't change by design
 	..()
@@ -235,7 +238,7 @@
 /obj/item/book/granter/spell/forcewall
 	spell = /obj/effect/proc_holder/spell/targeted/forcewall
 	spellname = "forcewall"
-	icon_state ="bookforcewall"
+	icon_state = "bookforcewall"
 	desc = "This book has a dedication to mimes everywhere inside the front cover."
 	remarks = list("I can go through the wall! Neat.", "Why are there so many mime references...?", "This would cause much grief in a hallway...", "This is some surprisingly strong magic to create a wall nobody can pass through...", "Why the dumb stance? It's just a flick of the hand...", "Why are the pages so hard to turn, is this even paper?", "I can't mo Oh, i'm fine...")
 
@@ -243,12 +246,12 @@
 	..()
 	to_chat(user,span_warning("You suddenly feel very solid!"))
 	user.Stun(40, ignore_canstun = TRUE)
-	user.petrify(30)
+	user.petrify(60)
 
 /obj/item/book/granter/spell/knock
 	spell = /obj/effect/proc_holder/spell/aoe_turf/knock
 	spellname = "knock"
-	icon_state ="bookknock"
+	icon_state = "bookknock"
 	desc = "This book is hard to hold closed properly."
 	remarks = list("Open Sesame!", "So THAT'S the magic password!", "Slow down, book. I still haven't finished this page...", "The book won't stop moving!", "I think this is hurting the spine of the book...", "I can't get to the next page, it's stuck t- I'm good, it just turned to the next page on it's own.", "Yeah, staff of doors does the same thing. Go figure...")
 
@@ -260,7 +263,7 @@
 /obj/item/book/granter/spell/barnyard
 	spell = /obj/effect/proc_holder/spell/targeted/barnyardcurse
 	spellname = "barnyard"
-	icon_state ="bookhorses"
+	icon_state = "bookhorses"
 	desc = "This book is more horse than your mind has room for."
 	remarks = list("Moooooooo!","Moo!","Moooo!", "NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!", "Oink!", "Squeeeeeeee!", "Oink Oink!", "Ree!!", "Reee!!", "REEE!!", "REEEEE!!")
 
@@ -278,7 +281,7 @@
 /obj/item/book/granter/spell/charge
 	spell = /obj/effect/proc_holder/spell/targeted/charge
 	spellname = "charge"
-	icon_state ="bookcharge"
+	icon_state = "bookcharge"
 	desc = "This book is made of 100% postconsumer wizard."
 	remarks = list("I feel ALIVE!", "I CAN TASTE THE MANA!", "What a RUSH!", "I'm FLYING through these pages!", "THIS GENIUS IS MAKING IT!", "This book is ACTION PAcKED!", "HE'S DONE IT", "LETS GOOOOOOOOOOOO")
 
@@ -290,13 +293,25 @@
 /obj/item/book/granter/spell/summonitem
 	spell = /obj/effect/proc_holder/spell/targeted/summonitem
 	spellname = "instant summons"
-	icon_state ="booksummons"
+	icon_state = "booksummons"
 	desc = "This book is bright and garish, very hard to miss."
 	remarks = list("I can't look away from the book!", "The words seem to pop around the page...", "I just need to focus on one item...", "Make sure to have a good grip on it when casting...", "Slow down, book. I still haven't finished this page...", "Sounds pretty great with some other magical artifacts...", "Magicians must love this one.")
 
 /obj/item/book/granter/spell/summonitem/recoil(mob/user)
 	..()
 	to_chat(user,span_warning("[src] suddenly vanishes!"))
+	qdel(src)
+
+/obj/item/book/granter/spell/lightningbolt
+	spell = /obj/effect/proc_holder/spell/aimed/lightningbolt
+	spellname = "lightning bolt"
+	desc = "A book that crackles with energy."
+	remarks = list("ZAP!", "I feel some tingling in my fingers...", "Swirl your hands to charge...?", "Unlimited... power...? Shocking...", "FEEL THE THUNDER!")
+
+/obj/item/book/granter/spell/lightningbolt/recoil(mob/user)
+	..()
+	to_chat(user, span_warning("The book twists into lightning and leaps at you!"))
+	tesla_zap(user, 8, 20000, TESLA_MOB_DAMAGE) //Will chain at a range of 8, but shouldn't straight up crit
 	qdel(src)
 
 /obj/item/book/granter/spell/random
@@ -417,7 +432,96 @@
 	if(oneuse == TRUE)
 		desc = "It's completely blank."
 		name = "empty scroll"
-		icon_state = "blankscroll"
+
+/obj/item/book/granter/martial/preternis_stealth
+	martial = /datum/martial_art/stealth
+	name = "strange electronic board"
+	martialname = "Stealth"
+	desc = "A strange electronic board, containing some sort of software."
+	greet = "<span class='sciradio'>You have uploaded some combat modules into yourself. Your combos will now have special effects on your enemies, and mostly are not obvious to other people. \
+	You can check what combos can you do, and their effect by using Refresh Data verb in Combat Modules tab.</span>"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	remarks = list("Processing data...")
+
+/obj/item/book/granter/martial/preternis_stealth/already_known(mob/user)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/preternis_stealth/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It looks like it doesn't contain any data no more."
+
+/obj/item/book/granter/martial/garden_warfare
+	martial = /datum/martial_art/gardern_warfare
+	name = "mysterious scroll"
+	martialname = "Garden Warfare"
+	desc = "A scroll, filled with a tone of text. Looks like it says something about combat and... plants?"
+	greet = "<span class='sciradio'>You know the martial art of Garden Warfare! Now you control your body better, then other phytosians do, allowing you to extend vines from your body and impale people with splinters. \
+	You can check what combos can you do, and their effect by using Remember the basics verb in Garden Warfare tab.</span>"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	remarks = list("I didn't know that my body grows sprinklers...", "I am able to snatch people with vines? Interesting.", "Wow, strangling people is brutal.")   ///Kill me please for this cringe
+
+/obj/item/book/granter/martial/garden_warfare/already_known(mob/user)
+	if(!ispodperson(user))
+		to_chat(user, span_warning("You see that this scroll says something about natural abilitites of podpeople, but, unfortunately, you are not one of them."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/garden_warfare/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+
+/obj/item/book/granter/martial/explosive_fist
+	martial = /datum/martial_art/explosive_fist
+	name = "burnt scroll"
+	martialname = "Explosive Fist"
+	desc = "A burnt scroll, that glorifies plasmamen, and also says a lot things of explosions."
+	greet = "<span class='sciradio'>You know the martial art of Explosive Fist. Now your attacks deal brute and burn damage, while your combos are able to set people on fire, explode them, or all at once. \
+	You can check what combos can you do, and their effect by using Remember the basics verb in Explosive Fist tab.</span>"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	remarks = list("Set them on fire...", "Show the punny humans who is here the supreme race...", "Make them burn...", "Explosion are cool!")
+
+/obj/item/book/granter/martial/explosive_fist/already_known(mob/user)
+	if(!isplasmaman(user))
+		to_chat(user, span_warning("It says about very dangerous things, that you would prefer not to know."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/explosive_fist/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+
+/obj/item/book/granter/martial/ultra_violence
+	martial = /datum/martial_art/ultra_violence
+	name = "Version one upgrade module"
+	martialname = "Ultra Violence"
+	desc = "A module full of forbidden techniques from a horrific event long since passed, or perhaps yet to come."
+	greet = "<span class='sciradio'>You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
+	blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.</span>"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
+	ordered = TRUE
+
+/obj/item/book/granter/martial/ultra_violence/already_known(mob/user)
+	if(!isipc(user))
+		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/ultra_violence/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's a damaged upgrade module."
+		name = "damaged board"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 
@@ -439,7 +543,7 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
+	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
 	icon_state = "bookCrafting"
 	oneuse = TRUE
 
@@ -470,3 +574,33 @@
 								/datum/crafting_recipe/tribalmantle,
 								/datum/crafting_recipe/leathercape,
 								/datum/crafting_recipe/hidemantle)
+
+//for upstart mech pilots to move faster
+/obj/item/book/granter/mechpiloting
+	name = "Mech Piloting for Dummies"
+	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
+	remarks = list("Hmm, press forward to go forwards...", "Avoid getting hit to reduce damage...", "Welding to repair..?", "Make sure to turn it on...", "EMP bad...", "I need to turn internals on?", "What's a gun ham?")
+
+/obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
+	. = ..()
+	user.AddComponent(/datum/component/mech_pilot, 0.8)
+	onlearned(user)
+
+/obj/item/book/granter/martial/psychotic_brawling
+	martial = /datum/martial_art/psychotic_brawling
+	name = "blood-stained paper"
+	martialname = "psychotic brawling"
+	desc = "A piece of blood-stained paper that emanates pure rage. Just holding it makes you want to punch someone."
+	greet = "<span class='boldannounce'>You have learned the tried and true art of Psychotic Brawling. \
+			You will be unable to disarm or grab, but your punches have a chance to do serious damage.</span>"
+	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon_state = "paper_talisman"
+	remarks = list("Just keep punching...", "Let go of your inhibitions...", "Methamphetamine...", "Embrace Space Florida...", "Become too angry to die...")
+
+/obj/item/book/granter/martial/psychotic_brawling/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		to_chat(user, span_notice("All of the blood on the paper seems to have vanished."))
+		user.dropItemToGround(src)
+		qdel(src)
+		user.put_in_hands(new /obj/item/paper)

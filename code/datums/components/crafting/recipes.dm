@@ -538,7 +538,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bone_bonesetter
-	name = "Bone Bonersetter"
+	name = "Bone Bonesetter"
 	result = /obj/item/bonesetter/bone
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
@@ -586,7 +586,7 @@
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
 				/datum/reagent/medicine/epinephrine = 10) // Sanguirite is unobtainable
-	category = CAT_TOOLS
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/atropine_medipen
 	name = "Atropine Autoinjector"
@@ -596,7 +596,17 @@
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
 				/datum/reagent/medicine/atropine = 10)
-	category = CAT_TOOLS
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/maint_pumpup
+	name = "Maintenance Pump-Up"
+	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
+	tools = list(TOOL_SCREWDRIVER)
+	time = 4 SECONDS
+	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
+				/obj/item/reagent_containers/syringe = 1,
+				/datum/reagent/drug/pumpup = 15)
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/refill_epinephrine_medipen
 	name = "Refill Epinephrine Medipen"
@@ -604,7 +614,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen = 1,
 				/datum/reagent/medicine/epinephrine = 10)
-	category = CAT_TOOLS
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/refill_atropine_medipen
 	name = "Refill Atropine Autoinjector"
@@ -612,7 +622,15 @@
 	time = 4 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
 				/datum/reagent/medicine/atropine = 10)
-	category = CAT_TOOLS
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/refill_maint_pumpup
+	name = "Refill Maintenance Pump-Up"
+	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
+	time = 4 SECONDS
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+				/datum/reagent/drug/pumpup = 15)
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/mothplush
 	name = "Moth Plushie"
@@ -621,3 +639,118 @@
 				/obj/item/organ/heart = 1,
 				/obj/item/stack/sheet/cloth = 3)
 	category = CAT_MISC
+
+/datum/crafting_recipe/suture
+	name = "Suture"
+	result = /obj/item/stack/medical/suture
+	reqs = list(/obj/item/stack/sheet/cloth = 1,
+				/obj/item/stack/sheet/metal = 1,
+				/datum/reagent/space_cleaner/sterilizine = 4)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/makeshiftsuture
+	name = "Makeshift Suture"
+	result = /obj/item/stack/medical/suture/emergency/makeshift
+	reqs = list(/obj/item/clothing/torncloth = 1,
+				/obj/item/shard = 1,
+				/datum/reagent/water = 4)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/medicatedsuture
+	name = "Medicated Suture"
+	result = /obj/item/stack/medical/suture/medicated
+	reqs = list(/obj/item/stack/sheet/plastic = 2,
+				/obj/item/stack/sheet/metal = 1,
+				/datum/reagent/space_cleaner/sterilizine = 6,
+				/datum/reagent/medicine/morphine = 5)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/mesh
+	name = "Regenerative Mesh"
+	result = /obj/item/stack/medical/mesh
+	reqs = list(/obj/item/stack/sheet/glass = 1,
+				/obj/item/stack/medical/gauze/improvised = 2,
+				/datum/reagent/space_cleaner/sterilizine = 7,
+				/datum/reagent/medicine/morphine = 3)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/ointment
+	name = "Ointment"
+	result = /obj/item/stack/medical/ointment
+	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+				/datum/reagent/ash = 10,
+				/datum/reagent/medicine/c2/lenturi = 15)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/antisepticointment
+	name = "Antiseptic Ointment"
+	result = /obj/item/stack/medical/ointment/antiseptic
+	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+				/datum/reagent/ash = 10,
+				/datum/reagent/space_cleaner/sterilizine = 15)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/advancedmesh
+	name = "Advanced Regenerative Mesh"
+	result = /obj/item/stack/medical/mesh/advanced
+	reqs = list(/obj/item/stack/sheet/glass = 1,
+				/obj/item/stack/medical/gauze/improvised = 2,
+				/datum/reagent/space_cleaner/sterilizine = 10,
+				/datum/reagent/medicine/silver_sulfadiazine = 10,
+				/datum/reagent/medicine/morphine = 3)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/gauze
+	name = "Gauze"
+	result = /obj/item/stack/medical/gauze
+	reqs = list(/obj/item/stack/sheet/cloth = 4,
+				/obj/item/stack/medical/suture = 1) //for reinforcement, so its not just...cloth.
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/makeshiftsuture/tribal
+	name = "Sinew Suture"
+	result = /obj/item/stack/medical/suture/emergency/makeshift/tribal
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/sinew = 6,
+				/datum/reagent/consumable/tinlux = 1)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/leftprostheticarm
+	name = "Left Prosthetic Arm"
+	result = /obj/item/bodypart/l_arm/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/rightprostheticarm
+	name = "Right Prosthetic Arm"
+	result = /obj/item/bodypart/r_arm/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/leftprostheticleg
+	name = "Left Prosthetic Leg"
+	result = /obj/item/bodypart/l_leg/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL
+
+/datum/crafting_recipe/rightprostheticleg
+	name = "Right Prosthetic Leg"
+	result = /obj/item/bodypart/r_leg/robot/surplus
+	time = 10 SECONDS
+	reqs = list(/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/cable_coil = 10,
+				/obj/item/stack/rods = 10)
+	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	category = CAT_MEDICAL

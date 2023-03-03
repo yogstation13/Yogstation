@@ -1,7 +1,7 @@
-// .50 (Sniper)
+// .50 (Sniper Rifle)
 
 /obj/item/projectile/bullet/p50
-	name =".50 bullet"
+	name = ".50 bullet"
 	speed = 0.3
 	damage = 70
 	paralyze = 100
@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/soporific
-	name =".50 soporific bullet"
+	name = ".50 soporific bullet"
 	armour_penetration = 0
 	damage = 0
 	dismemberment = 0
@@ -30,14 +30,13 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/penetrator
-	name =".50 penetrator bullet"
+	name = ".50 penetrator bullet"
 	icon_state = "gauss"
-	name = "penetrator round"
 	damage = 60
-	movement_type = FLYING | UNSTOPPABLE
+	penetrating = TRUE //Passes through everything and anything until it reaches the end of its range
+	penetration_type = 2
 	dismemberment = 0 //It goes through you cleanly.
 	paralyze = 0
-	breakthings = FALSE
 
 /obj/item/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
 	icon_state = "gaussstrong"

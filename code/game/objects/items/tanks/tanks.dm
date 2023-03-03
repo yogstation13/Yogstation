@@ -32,7 +32,7 @@
 		H.internal = null
 		H.update_internals_hud_icon(0)
 	else
-		if(!H.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
+		if(!H.update_internals())
 			if(!H.wear_mask)
 				to_chat(H, span_warning("You need a mask!"))
 				return
@@ -41,7 +41,6 @@
 			if(!(H.wear_mask.clothing_flags & MASKINTERNALS))
 				to_chat(H, span_warning("[H.wear_mask] can't use [src]!"))
 				return
-
 		if(H.internal)
 			to_chat(H, span_notice("You switch your internals to [src]."))
 		else
@@ -112,9 +111,6 @@
 
 		qdel(src)
 
-/obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
-
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		var/turf/T = get_turf(src)
@@ -162,24 +158,26 @@
 		ui = new(user, src, "Tank", name)
 		ui.open()
 
+/obj/item/tank/ui_static_data(mob/user)
+	. = list (
+		"defaultReleasePressure" = round(TANK_DEFAULT_RELEASE_PRESSURE),
+		"minReleasePressure" = round(TANK_MIN_RELEASE_PRESSURE),
+		"maxReleasePressure" = round(TANK_MAX_RELEASE_PRESSURE),
+		"leakPressure" = round(TANK_LEAK_PRESSURE),
+		"fragmentPressure" = round(TANK_FRAGMENT_PRESSURE)
+	)
+
 /obj/item/tank/ui_data(mob/user)
-	var/list/data = list()
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["minReleasePressure"] = round(TANK_MIN_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
+	. = list(
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(distribute_pressure)
+	)
 
 	var/mob/living/carbon/C = user
 	if(!istype(C))
 		C = loc.loc
-	if(!istype(C))
-		return data
-
-	if(C.internal == src)
-		data["connected"] = TRUE
-
-	return data
+	if(istype(C) && C.internal == src)
+		.["connected"] = TRUE
 
 /obj/item/tank/ui_act(action, params)
 	if(..())
@@ -210,6 +208,9 @@
 	return air_contents.remove(amount)
 
 /obj/item/tank/return_air()
+	return air_contents
+
+/obj/item/tank/return_analyzable_air()
 	return air_contents
 
 /obj/item/tank/assume_air(datum/gas_mixture/giver)

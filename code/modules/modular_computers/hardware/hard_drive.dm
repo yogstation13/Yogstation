@@ -10,8 +10,8 @@
 	var/used_capacity = 0
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
 
-/obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/MC, mob/user)
-	MC.shutdown_computer()
+/obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/remove_from, mob/user)
+	remove_from.shutdown_computer()
 
 /obj/item/computer_hardware/hard_drive/proc/install_default_programs()
 	store_file(new/datum/computer_file/program/computerconfig(src)) 	// Computer configuration utility, allows hardware control and displays more info than status bar
@@ -166,10 +166,32 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_price = 15
 
-// For borg integrated tablets.
+// For silicon integrated tablets.
 /obj/item/computer_hardware/hard_drive/small/integrated/install_default_programs()
 	..()
-	store_file(new /datum/computer_file/program/robotact(src))
+	var/datum/computer_file/program/pdamessager/P = store_file(new/datum/computer_file/program/pdamessager(src))
+	var/obj/item/modular_computer/stored = holder
+	if(!stored && istype(loc, /obj/item/modular_computer))
+		stored = loc
+	if(P && istype(stored?.loc, /mob/living/silicon))
+		var/mob/living/silicon/R = stored.loc
+		var/jobname
+		if(R.job)
+			jobname = R.job
+		else if(istype(R, /mob/living/silicon/robot))
+			jobname = "[R.designation ? "[R.designation] " : ""]Cyborg"
+		else if(R.designation)
+			jobname = R.designation
+		else if(istype(R, /mob/living/silicon/ai))
+			jobname = "AI"
+		else if(istype(R, /mob/living/silicon/pai))
+			jobname = "pAI"
+		else
+			jobname = "Silicon"
+		P.username = "[R.real_name] ([jobname])" // This is (and hopefully remains to be) created after silicons are named
+		P.receiving = TRUE
+	if(istype(stored?.loc, /mob/living/silicon/robot)) // RoboTact is for cyborgs only, not AIs
+		store_file(new /datum/computer_file/program/robotact(src))
 
 // Syndicate variant - very slight better
 /obj/item/computer_hardware/hard_drive/small/syndicate
@@ -183,12 +205,12 @@
 	store_file(new/datum/computer_file/program/ntnetdownload/emagged(src))
 	store_file(new/datum/computer_file/program/filemanager(src))
 
-/// For PDAs, comes pre-equipped with PDA messaging & chat client
+/// For PDAs, comes pre-equipped with PDA messaging
 /obj/item/computer_hardware/hard_drive/small/pda
 /obj/item/computer_hardware/hard_drive/small/pda/install_default_programs()
 	..()
+	store_file(new/datum/computer_file/program/themeify(src))
 	store_file(new/datum/computer_file/program/pdamessager(src))
-	store_file(new/datum/computer_file/program/chatclient(src))
 
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops

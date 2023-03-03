@@ -230,6 +230,8 @@
 		return
 	next_scan = world.time + (2 SECONDS)
 	objects = list()
+	var/list/names = list()
+	var/list/humanoids = list()
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/carbon/human/humanoid = i
 		if(!istype(humanoid))
@@ -241,20 +243,30 @@
 			var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 			if(ID && ID.registered_name)
 				crewmember_name = ID.registered_name
+		while(crewmember_name in humanoids)
+			humanoids[crewmember_name]++
+			crewmember_name = text("[] ([])", crewmember_name, humanoids[crewmember_name])
+		names[crewmember_name] = humanoid
+		humanoids[crewmember_name] = 1
+	for(var/N in sortList(names))
 		var/list/crewinfo = list(
-			ref = REF(humanoid),
-			name = crewmember_name,
+			ref = REF(names[N]),
+			name = N
 			)
 		objects += list(crewinfo)
 
 /datum/computer_file/program/radar/lifeline/trackable(mob/living/carbon/human/humanoid)
+	var/nanite_sensors = FALSE
+	if(humanoid in SSnanites.nanite_monitored_mobs)
+		nanite_sensors = TRUE
 	if(!humanoid || !istype(humanoid))
 		return FALSE
-	if(..() && istype(humanoid.w_uniform, /obj/item/clothing/under))
+	if(..() && (istype(humanoid.w_uniform, /obj/item/clothing/under) || nanite_sensors))
+		if(!nanite_sensors)
 
-		var/obj/item/clothing/under/uniform = humanoid.w_uniform
-		if(!uniform.has_sensor || (uniform.sensor_mode < SENSOR_COORDS)) // Suit sensors must be on maximum.
-			return FALSE
+			var/obj/item/clothing/under/uniform = humanoid.w_uniform
+			if(!uniform.has_sensor || (uniform.sensor_mode < SENSOR_COORDS)) // Suit sensors must be on maximum.
+				return FALSE
 
 		return TRUE
 
@@ -327,6 +339,8 @@
 		return
 	next_scan = world.time + (2 SECONDS)
 	objects = list()
+	var/list/names = list()
+	var/list/humanoids = list()
 	for(var/obj/item/implant/imp in GLOB.tracked_implants)
 		var/mob/living/target = imp.imp_in
 		if(!istype(target))
@@ -340,9 +354,15 @@
 				var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 				if(ID && ID.registered_name)
 					crewmember_name = ID.registered_name
+			while(crewmember_name in humanoids)
+				humanoids[crewmember_name]++
+				crewmember_name = text("[] ([])", crewmember_name, humanoids[crewmember_name])
+			names[crewmember_name] = humanoid
+			humanoids[crewmember_name] = 1
+	for(var/N in sortList(names))
 		var/list/crewinfo = list(
-			ref = REF(target),
-			name = crewmember_name,
+			ref = REF(names[N]),
+			name = N
 			)
 		objects += list(crewinfo)
 

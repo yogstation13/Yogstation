@@ -53,13 +53,30 @@
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
+
+	// "Projectiles now ignore the holopara's master or any of their other holoparas."
+	var/guardian_pass = FALSE
+	if(istype(P, /obj/item/projectile/guardian))
+		var/obj/item/projectile/guardian/G = P
+		var/datum/mind/guardian_master = G.guardian_master
+		if(guardian_master?.current)
+			var/list/safe = list(guardian_master.current)
+			safe += guardian_master.current.hasparasites()
+			guardian_pass = (src in safe)
+	if(guardian_pass)
+		return BULLET_ACT_FORCE_PIERCE
+	
 	if(!P.nodamage)
 		last_damage = P.name
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
+		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
+			P.damage = 0
+		else
+			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	if(istype(P, /obj/item/projectile/bullet/shotgun_uraniumslug) || istype(P, /obj/item/projectile/bullet/a357/heartpiercer)) //snowflake code
-		return P.on_hit(src, armor)
+	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
+		P.penetrations -= 1
+		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
@@ -98,16 +115,18 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M)
-	if(M.occupant.a_intent == INTENT_HARM)
+/mob/living/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
+		M.selected.action(src)
+	else if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
-		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		switch(M.damtype)
 			if(BRUTE)
-				Unconscious(20)
+				if(M.force >= 20)
+					Unconscious(20)
+					var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+					src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 				take_overall_damage(rand(M.force/2, M.force))
 				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
@@ -407,7 +426,7 @@
 
 
 //called when the mob receives a bright flash
-/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
+/mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /atom/movable/screen/fullscreen/flash)
 	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)

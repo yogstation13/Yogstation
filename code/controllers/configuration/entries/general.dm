@@ -508,8 +508,32 @@
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
+/datum/config_entry/string/vpn_lookup_api	// URL for VPN lookup API
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/vpn_lookup_key	// Key for VPN lookup API
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/flag/auto_profile
 
 /datum/config_entry/flag/disable_gc_failure_hard_deletes
 
 /datum/config_entry/flag/disable_all_hard_deletes
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	default = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	default = 0
+	min_val = 0
+
+/// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+/datum/config_entry/flag/log_timers_on_bucket_reset
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
+
+/// Whether demos are written, if not set demo SS never initializes
+/datum/config_entry/flag/demos_enabled

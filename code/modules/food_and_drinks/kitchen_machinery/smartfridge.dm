@@ -615,7 +615,7 @@
 /obj/machinery/smartfridge/organ/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		max_n_of_items = 20 * B.rating
-		repair_rate = max(0, STANDARD_ORGAN_HEALING * (B.rating - 1))
+		repair_rate = max(0, STANDARD_ORGAN_HEALING * (B.rating - 1) * 0.5)
 
 /obj/machinery/smartfridge/organ/Destroy()
 	for(var/organ in src)
@@ -624,11 +624,11 @@
 			O.organ_flags &= ~ORGAN_FROZEN
 	..()
 
-/obj/machinery/smartfridge/organ/process()
+/obj/machinery/smartfridge/organ/process(delta_time)
 	for(var/organ in src)
 		var/obj/item/organ/O = organ
 		if(O)
-			O.damage = max(0, O.damage - (O.maxHealth * repair_rate))
+			O.damage = max(0, O.damage - (O.maxHealth * (repair_rate * delta_time)))
 	..()
 
 /obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)
@@ -661,7 +661,7 @@
 		return TRUE
 	if(!O.reagents || !O.reagents.reagent_list.len) // other empty containers not accepted
 		return FALSE
-	if(istype(O, /obj/item/reagent_containers/syringe) || istype(O, /obj/item/reagent_containers/glass/bottle) || istype(O, /obj/item/reagent_containers/glass/beaker) || istype(O, /obj/item/reagent_containers/spray) || istype(O, /obj/item/reagent_containers/medspray))
+	if(istype(O, /obj/item/reagent_containers/syringe) || istype(O, /obj/item/reagent_containers/glass/bottle) || istype(O, /obj/item/reagent_containers/glass/beaker) || istype(O, /obj/item/reagent_containers/spray) || istype(O, /obj/item/reagent_containers/medspray) || istype(O, /obj/item/reagent_containers/gummy))
 		return TRUE
 	return FALSE
 

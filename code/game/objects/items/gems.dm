@@ -1,14 +1,14 @@
 //rare and valulable gems- designed to eventually be used for archeology, or to be given as opposed to money as loot. Auctioned off at export, or kept as a trophy. -MemedHams
 
 /obj/item/gem
-	name = "\improper Gem"
+	name = "gem"
 	desc = "Oooh! Shiny!"
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL
 
-	///Have we been analysed with a mining scanner?
-	var/analysed = FALSE
+	///owning ID, used to give points when sold
+	var/obj/item/card/id/claimed_by = null
 	///How many points we grant to whoever discovers us
 	var/point_value = 100
 	///what's our real name that will show upon discovery? null to do nothing
@@ -18,7 +18,7 @@
 	///the thing that spawns in the item.
 	var/sheet_type = null
 
-	var/image/shine_overlay //shows this overlay when not scanned
+	var/image/shine_overlay //shows this overlay when not claimed
 
 /obj/item/gem/Initialize()
 	. = ..()
@@ -27,34 +27,30 @@
 	pixel_x = rand(-8,8)
 	pixel_y = rand(-8,8)
 
+/obj/item/gem/examine(mob/user)
+	. = ..()
+	. += span_notice("Its value of [point_value] mining points can be registered by hitting it with an ID, to be claimed when sold.")
+
 /obj/item/gem/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
-	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
+	if(!istype(item, /obj/item/card/id))
 		return ..()
 
-	if(analysed)
-		to_chat(user, span_warning("This gem has already been analysed!"))
+	if(claimed_by)
+		to_chat(user, span_warning("This gem has already been claimed!"))
 		return
 
-	to_chat(user, span_notice("You analyse the precious gemstone!"))
+	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
+	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 	if(analysed_message)
 		to_chat(user, analysed_message)
 
-	analysed = TRUE
+	claimed_by = item
 	if(true_name)
 		name = true_name
 
 	if(shine_overlay)
 		cut_overlay(shine_overlay)
 		qdel(shine_overlay)
-
-	if(isliving(user))
-		var/mob/living/living = user
-
-		var/obj/item/card/id/card = living.get_idcard()
-		if(card)
-			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
-			card.mining_points += point_value
-			playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
 /obj/item/gem/welder_act(mob/living/user, obj/item/I) //Jank code that detects if the gem in question has a sheet_type and spawns the items specifed in it
 	if(I.use_tool(src, user, 0, volume=50))
@@ -67,7 +63,7 @@
 	return TRUE
 
 /obj/item/gem/rupee
-	name = "\improper Ruperium Crystal"
+	name = "ruperium crystal"
 	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the mineral's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
@@ -75,7 +71,7 @@
 	point_value = 300
 
 /obj/item/gem/magma
-	name = "\improper Calcified Auric"
+	name = "calcified auric"
 	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers. It is most commonly smelted down into deposits of pure gold. However, it also possesses powerful conductivity, leading some to believe it a major power component utilized by the Vxtvul Empire."
 	icon_state = "magma"
 	materials = list(/datum/material/gold=50000)
@@ -86,7 +82,7 @@
 	light_color = "#ff7b00"
 
 /obj/item/gem/fdiamond
-	name = "\improper Frost Diamond"
+	name = "frost diamond"
 	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore."
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
@@ -94,7 +90,7 @@
 	point_value = 750
 
 /obj/item/gem/phoron
-	name = "\improper Stabilized Baroxuldium"
+	name = "stabilized baroxuldium"
 	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
@@ -104,7 +100,7 @@
 	light_color = "#62326a"
 
 /obj/item/gem/purple
-	name = "\improper Densified Dilithium"
+	name = "densified dilithium"
 	desc = "A strange mass of dilithium which pulses to a steady rhythm. Its strange surface exudes a unique radio signal detectable by GPS. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
@@ -126,7 +122,7 @@
 	invisibility = 100
 
 /obj/item/gem/amber
-	name = "\improper Draconic Amber"
+	name = "draconic amber"
 	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
 	icon_state = "amber"
 	point_value = 1600
@@ -135,7 +131,7 @@
 	light_color = "#FFBF00"
 
 /obj/item/gem/void
-	name = "\improper Null Crystal"
+	name = "null crystal"
 	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
 	icon_state ="void"
 	point_value = 1800
@@ -145,8 +141,8 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gem/bloodstone
-	name = "\improper Ichorium"
-	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
+	name = "ichorium"
+	desc = "A weird, sticky substance, known to coalesce in the presence of otherworldly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
 	icon_state = "red"
 	point_value = 2000
 	light_range = 2
@@ -154,7 +150,7 @@
 	light_color = "#800000"
 
 /obj/item/gem/dark
-	name = "\improper Dark Salt Lick"
+	name = "dark salt lick"
 	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the lick are uneven patches of rough texture. Its only known property is that of anti-magic."
 	icon_state = "dark"
 	point_value = 3000
@@ -168,7 +164,7 @@
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
 /obj/item/gem/random
-	name = "Random Gem"
+	name = "random gem"
 	icon_state = "ruby"
 	var/gem_list = list(/obj/item/gem/ruby, /obj/item/gem/sapphire, /obj/item/gem/emerald, /obj/item/gem/topaz)
 
@@ -181,27 +177,27 @@
 	qdel(src)
 
 /obj/item/gem/ruby
-	name = "\improper Ruby"
+	name = "ruby"
 	icon_state = "ruby"
 	point_value = 200
 
 /obj/item/gem/sapphire
-	name = "\improper Sapphire"
+	name = "sapphire"
 	icon_state = "sapphire"
 	point_value = 200
-	
+
 /obj/item/gem/emerald
-	name = "\improper Emerald"
+	name = "emerald"
 	icon_state = "emerald"
 	point_value = 200
 
 /obj/item/gem/topaz
-	name = "\improper Topaz"
+	name = "topaz"
 	icon_state = "topaz"
-	point_value = 150
+	point_value = 200
 
 /obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
-	name = "\improper Bluespace Data Crystal"
+	name = "bluespace data crystal"
 	desc = "A large bluespace crystal, etched internally with nano-circuits, it seemingly draws power from nowhere. Once acting as the brain of the Stalwart, perhaps this could be used in an AI server?"
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "cpu"

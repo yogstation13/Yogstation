@@ -254,7 +254,7 @@
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)
 		return
-	var/obj/screen/counter = owner.current.hud_used.psi_counter
+	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[psi]</font></div>"
 
 /datum/antagonist/darkspawn/proc/regain_abilities()
@@ -434,6 +434,13 @@
 	data["upgrades"] = upgrades
 
 	return data
+
+/datum/antagonist/darkspawn/get_preview_icon()
+	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
+
+	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return darkspawn_icon
 
 /datum/antagonist/darkspawn/ui_act(action, params)
 	if(..())

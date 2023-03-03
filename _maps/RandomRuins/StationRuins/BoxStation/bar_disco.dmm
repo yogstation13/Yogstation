@@ -24,12 +24,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/bar)
 "ai" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -125,12 +119,6 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "av" = (
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/bar)
-"aw" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "ay" = (
@@ -571,10 +559,6 @@
 /obj/item/wrench,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
-"bP" = (
-/obj/machinery/jukebox/disco,
-/turf/open/floor/light/colour_cycle/dancefloor_a,
-/area/crew_quarters/bar)
 "bT" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -769,6 +753,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"fY" = (
+/obj/machinery/jukebox/disco/bar,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/crew_quarters/bar)
 "hg" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -874,6 +862,15 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"xP" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "AW" = (
 /obj/structure/table,
@@ -1016,6 +1013,12 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Nr" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "OT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1187,7 +1190,7 @@ aE
 bc
 bc
 by
-bP
+fY
 bc
 ct
 bc
@@ -1308,7 +1311,7 @@ bw
 ai
 "}
 (15,1,1) = {"
-ah
+Nr
 av
 aK
 aT
@@ -1325,7 +1328,7 @@ ai
 "}
 (16,1,1) = {"
 ai
-aw
+xP
 as
 ai
 ai

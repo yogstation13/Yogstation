@@ -1,13 +1,16 @@
 /datum/species/plasmaman
 	name = "Plasmaman"
+	plural_form = "Plasmamen"
 	id = "plasmaman"
 	say_mod = "rattles"
-	sexes = 0
+	sexes = FALSE
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(NOBLOOD,NOTRANSSTING,HAS_BONE)
+	species_traits = list(NOBLOOD,NOTRANSSTING, HAS_BONE, AGENDER, NOHUSK)
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN,TRAIT_HARDLY_WOUNDED)
-	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	mutant_bodyparts = list("plasmaman_helmet")
+	default_features = list("plasmaman_helmet" = "None")
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
@@ -18,14 +21,18 @@
 	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
-	payday_modifier = 0.8 //Useful to NT for plasma research
+	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
-	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
 	disliked_food = NONE
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+
+	smells_like = "plasma-caked calcium"
+
+	/// If the bones themselves are burning clothes won't help you much
+	var/internal_fire = FALSE
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
@@ -168,7 +175,9 @@
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
-	return 0
+
+	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
+	plasmeme_helmet.set_design(H)
 
 /datum/species/plasmaman/random_name(gender,unique,lastname)
 	if(unique)
@@ -180,3 +189,80 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/plasmaman/get_species_description()
+	return /*"Found on the Icemoon of Freyja, plasmamen consist of colonial \
+		fungal organisms which together form a sentient being. In human space, \
+		they're usually attached to skeletons to afford a human touch."*/
+
+/datum/species/plasmaman/get_species_lore()
+	return list(
+		"TBD",/*
+		"A confusing species, plasmamen are truly \"a fungus among us\". \
+		What appears to be a singular being is actually a colony of millions of organisms \
+		surrounding a found (or provided) skeletal structure.",
+
+		"Originally discovered by NT when a researcher \
+		fell into an open tank of liquid plasma, the previously unnoticed fungal colony overtook the body creating \
+		the first \"true\" plasmaman. The process has since been streamlined via generous donations of convict corpses and plasmamen \
+		have been deployed en masse throughout NT to bolster the workforce.",
+
+		"New to the galactic stage, plasmamen are a blank slate. \
+		Their appearance, generally regarded as \"ghoulish\", inspires a lot of apprehension in their crewmates. \
+		It might be the whole \"flammable purple skeleton\" thing.",
+
+		"The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. \
+		Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.",
+	*/)
+
+/datum/species/plasmaman/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "user-shield",
+			SPECIES_PERK_NAME = "Protected",
+			SPECIES_PERK_DESC = "Plasmamen are immune to radiation, poisons, and most diseases.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "bone",
+			SPECIES_PERK_NAME = "Wound Resistance",
+			SPECIES_PERK_DESC = "Plasmamen have higher tolerance for damage that would wound others.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "wind",
+			SPECIES_PERK_NAME = "Plasma Healing",
+			SPECIES_PERK_DESC = "Plasmamen can heal wounds by consuming plasma.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "hard-hat",
+			SPECIES_PERK_NAME = "Protective Helmet",
+			SPECIES_PERK_DESC = "Plasmamen's helmets provide them shielding from the flashes of welding, as well as an inbuilt flashlight.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "fire",
+			SPECIES_PERK_NAME = "Living Torch",
+			SPECIES_PERK_DESC = "Plasmamen instantly ignite when their body makes contact with oxygen.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "wind",
+			SPECIES_PERK_NAME = "Plasma Breathing",
+			SPECIES_PERK_DESC = "Plasmamen must breathe plasma to survive. You receive a tank when you arrive.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "briefcase-medical",
+			SPECIES_PERK_NAME = "Complex Biology",
+			SPECIES_PERK_DESC = "Plasmamen take specialized medical knowledge to be \
+				treated. Do not expect speedy revival, if you are lucky enough to get \
+				one at all.",
+		),
+	)
+
+	return to_add

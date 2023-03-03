@@ -61,7 +61,7 @@
 	var/mob/living/L
 	if(isliving(target))
 		L = target
-		if(!L.can_inject(user, 1))
+		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 			return
 
 	// chance of monkey retaliation
@@ -83,7 +83,7 @@
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
 									span_userdanger("[user] is trying to take a blood sample from [target]!"))
 					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
 						busy = FALSE
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
@@ -128,12 +128,12 @@
 				return
 
 			if(L) //living mob
-				if(!L.can_inject(user, TRUE))
+				if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 					return
 				if(L != user)
 					L.visible_message(span_danger("[user] is trying to inject [L]!"), \
 											span_userdanger("[user] is trying to inject [L]!"))
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
 						return
 					if(!reagents.total_volume)
 						return
@@ -196,11 +196,15 @@
 		M.update_inv_hands()
 	
 /obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 	return TRUE
 	
 /obj/item/reagent_containers/syringe/embed_tick(embedde, part)
-	reagents.trans_to(embedde, amount_per_transfer_from_this * 0.2)
+	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	reagents.reaction(embedde, INJECT, fraction)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
@@ -277,23 +281,78 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/ghosttoxin = 1)
 
+/obj/item/reagent_containers/syringe/big
+	name = "large syringe"
+	desc = "A large syringe that can hold 30 units of chemicals"
+	amount_per_transfer_from_this = 10
+	volume = 30
+
+/obj/item/reagent_containers/syringe/big/polonium
+	name = "syringe (polonium)"
+	desc = "Contains 30 units of polonium. Will irradiate victims, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/polonium = 30)
+
+/obj/item/reagent_containers/syringe/big/venom
+	name = "syringe (venom)"
+	desc = "Contains 30 units of venom. Deadliness increase with the dosage, can decay into histamine."
+	list_reagents = list(/datum/reagent/toxin/venom = 30)
+
+/obj/item/reagent_containers/syringe/big/spewium
+	name = "syringe (spewium)"
+	desc = "Contains 30 units of spewium. Cause victims to vomit, more than 29 units cause to victims puking out their own organs."
+	list_reagents = list(/datum/reagent/toxin/spewium = 30)
+
+/obj/item/reagent_containers/syringe/big/histamine
+	name = "syringe (histamine)"
+	desc = "Contains 30 units of histamine. Provoke itching, sneezing, coughing and blurry vision, more than 30 units cause victims to take large amounts of brute, toxin and oxygen damage."
+	list_reagents = list(/datum/reagent/toxin/histamine = 30)
+
+/obj/item/reagent_containers/syringe/big/initropidril
+	name = "syringe (initropidril)"
+	desc = "Contains 30 units of initropidril. A paralytic agent that will cause failures of respiratory systems and cardiac arrest."
+	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
+
+/obj/item/reagent_containers/syringe/big/pancuronium
+	name = "syringe (pancuronium)"
+	desc = "Contains 30 units of pancuronium. Stun and suffocate victims."
+	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
+
+/obj/item/reagent_containers/syringe/big/sodium_thiopental
+	name = "syringe (sodium thiopental)"
+	desc = "Contains 30 units of sodium thiopental. Will tire victims and knock them out non lethally."
+	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
+
+/obj/item/reagent_containers/syringe/big/curare
+	name = "syringe (curare)"
+	desc = "Contains 30 units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/curare = 30)
+
+/obj/item/reagent_containers/syringe/big/amanitin
+	name = "syringe (amanitin)"
+	desc = "Contains 30 units of amanitin. Once fully metabolized inflict toxin damage proportional to the time it was in system of the victims."
+	list_reagents = list(/datum/reagent/toxin/amanitin = 30)
+
+/obj/item/reagent_containers/syringe/big/coniine
+	name = "syringe (coniine)"
+	desc = "Contains 30 units of coniine. Will cause toxin and loss of breath, metabolized incredibly slowly."
+	list_reagents = list(/datum/reagent/toxin/coniine = 30)
+
+/obj/item/reagent_containers/syringe/big/relaxant
+	name = "syringe (muscle relaxant)"
+	desc = "Contains 30 units of muscle relaxant. Slow the movements and actions of the victims noticeably."
+	list_reagents = list(/datum/reagent/toxin/relaxant = 30)
+
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals."
 	amount_per_transfer_from_this = 20
 	volume = 60
 
-/obj/item/reagent_containers/syringe/noreact
-	name = "cryo syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	volume = 20
-	reagent_flags = TRANSPARENT | NO_REACT
-
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"
-	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
-	volume = 10
+	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing. It can hold up to 15 units."
 	proj_piercing = 1
+
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
@@ -314,4 +373,3 @@
 
 /obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
 	qdel(src)
-	

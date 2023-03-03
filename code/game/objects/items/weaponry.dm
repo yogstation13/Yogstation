@@ -294,7 +294,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		if (user.getStaminaLoss() >= 100)
 			user.throw_at(landing_turf, 2, 2)
 			user.Paralyze(4 SECONDS)
-			user.visible_message(span_warning("You're too tired tired to finish the roll!"))
+			user.visible_message(span_notice("[user] collapses on the ground, exhausted!"), span_warning("You're too tired to finish the roll!"))
 		else
 			playsound(user, 'yogstation/sound/items/dodgeroll.ogg', 50, TRUE)
 			user.apply_status_effect(STATUS_EFFECT_DODGING)
@@ -429,6 +429,20 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/switchblade/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
+
+/obj/item/switchblade/backstab
+	var/nt = FALSE
+
+/obj/item/switchblade/backstab/nt
+	nt = TRUE
+
+/obj/item/switchblade/backstab/examine(mob/user)
+	. = ..()
+	. += span_danger("\The [src] has a [nt ? "Nanotrasen" : "Syndicate"] marking on the blade.")
+
+/obj/item/switchblade/backstab/Initialize()
+	. = ..()
+	AddComponent(/datum/component/backstabs, 1.75) // 35 damage
 
 /obj/item/phone
 	name = "red phone"
@@ -726,25 +740,34 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	throwforce = 0
 	item_flags = DROPDEL | ABSTRACT
 	attack_verb = list("slapped")
-	hitsound = 'sound/effects/snap.ogg'
 
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
 		if(L && L.dna && L.dna.species)
 			L.dna.species.stop_wagging_tail(M)
-	user.do_attack_animation(M)
-	var/slap_volume = 50
+	
+	var/slap_volume = 30
+	var/hard_slap = FALSE
+	if(!HAS_TRAIT(user, TRAIT_PACIFISM) && user.a_intent == INTENT_HARM)
+		hard_slap = TRUE
+		slap_volume = 60
+		force = 2
+		..()
+		qdel(src) // hurts your hand to slap so hard
+	else
+		user.do_attack_animation(M)
+	
 	if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		user.visible_message("<span class='danger'>[user] slaps [M] in the face!</span>",
-			"<span class='notice'>You slap [M] in the face!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M] in the face[hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M] in the face[hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	else
-		user.visible_message("<span class='danger'>[user] slaps [M]!</span>",
-			"<span class='notice'>You slap [M]!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M][hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M][hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
-	return
+	return TRUE
 
 /obj/item/slapper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!istype(target, /obj/structure/table))

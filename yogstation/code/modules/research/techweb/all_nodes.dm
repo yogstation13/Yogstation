@@ -134,7 +134,13 @@
 	prereq_ids = list("shuttle_route_upgrade_hyper", "alientech")
 	design_ids = list("engine_void", "disk_shuttle_route_void")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-
-
 /datum/techweb_node/nanite_harmonic
-	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")
+	design_ids = list("aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","nanite_heart")
+
+/datum/techweb_node/nerd_suit
+	id = "nerd_suit"
+	display_name = "\improper D.O.T.A. suit"
+	description = "Protect yourself and/or the crew with this highly experimental suit harness."
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	prereq_ids = list("weaponry", "anomaly_research", "posibrain", "adv_biotech")
+	design_ids = list("nerd_suit")

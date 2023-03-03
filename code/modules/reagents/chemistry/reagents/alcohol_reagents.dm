@@ -1258,7 +1258,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 
-
+/datum/reagent/consumable/ethanol/bacchus_blessing/on_mob_life(mob/living/carbon/C)
+	. = ..()
+	if(HAS_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE))
+		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		if(istype(L)) // Bacchus is proud
+			L.damage = min(L.damage - 1, 0)
 
 /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Atomic Bomb"
@@ -1435,6 +1440,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/narsour/on_mob_life(mob/living/carbon/M)
 	M.cultslurring = min(M.cultslurring + 3, 3)
 	M.stuttering = min(M.stuttering + 3, 3)
+	if(iscultist(M))
+		M.heal_overall_damage(0.5, 0.5)
 	..()
 
 /datum/reagent/consumable/ethanol/triple_sec
@@ -1891,7 +1898,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/minimum_percent = 0.15 //Percentages measured between 0 and 1.
+	var/const/minimum_percent = 0.15 //Percentages measured between 0 and 1.
+	//Yogs -- Fixed missing const specifier. Following code doesn't work right otherwise!
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
 	glass_name = "glass of [name]"
@@ -2154,6 +2162,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
 	if(islizard(M) && prob(15))
 		M.emote("scream")
+	else if(ishumanbasic(M))
+		M.heal_overall_damage(0.25, 0.25)
 	return ..()
 
 /datum/reagent/consumable/ethanol/cactuscooler
@@ -2304,7 +2314,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
 	M.emote("spin")
-	..()
+	if(is_servant_of_ratvar(M))
+		M.heal_overall_damage(0.5, 0.5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
@@ -2397,7 +2409,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bilk/kortara
 	name = "Kortara"
-	description = "A sweet, milky nut-based drink enjoyed on Tizira. Frequently mixed with fruit juices and cocoa for extra refreshment."
+	description = "A sweet, milky nut-based drink traditional in vuulek cuisine. Frequently mixed with fruit juices and cocoa for extra refreshment."
 	boozepwr = 25
 	color = "#EEC39A"
 	quality = DRINK_GOOD
@@ -2409,40 +2421,40 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	
 /datum/reagent/consumable/ethanol/sea_breeze
 	name = "Sea Breeze"
-	description = "Light and refreshing with a mint and cocoa hit- like mint choc chip ice cream you can drink!"
+	description = "Light and refreshing with a hint of mint and cocoa. Sweet, like a smoothie."
 	boozepwr = 15
 	color = "#CFFFE5"
 	quality = DRINK_VERYGOOD
 	taste_description = "mint choc chip"
 	glass_icon_state = "sea_breeze"
 	glass_name = "Sea Breeze"
-	glass_desc = "Minty, chocolatey, and creamy. It's like drinkable mint chocolate chip!"
+	glass_desc = "A creamy mint-chocolate shake."
 
 /datum/reagent/consumable/ethanol/sea_breeze/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	M.apply_status_effect(/datum/status_effect/throat_soothed)
 	..()
 
 /datum/reagent/consumable/ethanol/white_tiziran
-	name = "White Tiziran"
-	description = "A mix of vodka and kortara. The Lizard imbibes."
+	name = "Kriiya"
+	description = "A mix of vodka and kortara, often utilized during vuulek celebrations."
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
 	taste_description = "strikes and gutters"
 	glass_icon_state = "white_tiziran"
-	glass_name = "White Tiziran"
-	glass_desc = "I had a rough night and I hate the fucking humans, man."
+	glass_name = "Kriiya"
+	glass_desc = "A sweet mint vodka with a hint of cocoa."
 
 /datum/reagent/consumable/ethanol/drunken_espatier
-	name = "Drunken Espatier"
-	description = "Look, if you had to get into a shootout in the cold vacuum of space, you'd want to be drunk too."
+	name = "M'thalu"
+	description = "A drink concocted by vuulek warriors for traditional duels. Strong and numbing."
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
 	taste_description = "sorrow"
 	glass_icon_state = "drunken_espatier"
-	glass_name = "Drunken Espatier"
-	glass_desc = "A drink to make facing death easier."
+	glass_name = "M'thalu"
+	glass_desc = "A drink that numbs the body, making it difficult to be aware of injury."
 	
 /datum/reagent/consumable/ethanol/drunken_espatier/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
 	C.hal_screwyhud = SCREWYHUD_HEALTHY //almost makes you forget how much it hurts
@@ -2458,7 +2470,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "regret"
 	glass_icon_state = "protein_blend"
 	glass_name = "Protein Blend"
-	glass_desc = "Vile, even by lizard standards."
+	glass_desc = "A vile yet nutritious drink that's hard to stomach."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -2471,7 +2483,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
 	name = "Mushi Kombucha"
-	description = "A popular summer beverage on Tizira, made from sweetened mushroom tea."
+	description = "A popular mushroom tea among vuulen, traditionally enjoyed during blistering days of heat."
 	boozepwr = 10
 	color = "#C46400"
 	quality = DRINK_VERYGOOD

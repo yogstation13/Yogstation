@@ -22,7 +22,7 @@
 	bomb_1.set_volume(CELL_VOLUME)
 	bomb_2.set_temperature(70)
 	bomb_2.set_volume(CELL_VOLUME)
-	..()
+	return ..()
 
 /obj/machinery/computer/atmos_sim/proc/simulate_bomb()
 	bomb_explosion_size = null

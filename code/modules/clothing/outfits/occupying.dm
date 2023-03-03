@@ -70,7 +70,7 @@
 	ears = /obj/item/radio/headset/headset_cent/alt
 	mask = /obj/item/clothing/mask/cigarette/lit
 	belt = /obj/item/storage/belt/military/occupying_officer
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/occupying
+	suit_store = /obj/item/gun/ballistic/automatic/wt550/armory
 	back = /obj/item/melee/baton/cattleprod/tactical
 	head = /obj/item/clothing/head/helmet/sec/occupying
 	l_pocket = /obj/item/reagent_containers/food/drinks/beer
