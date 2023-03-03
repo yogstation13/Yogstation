@@ -14,6 +14,7 @@
 	var/revive_time_max = 700
 	var/timer_id
 
+	///damage dealt per second
 	var/damage_caused = 0.5
 
 /obj/item/organ/zombie_infection/Initialize()
