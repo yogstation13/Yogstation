@@ -444,6 +444,11 @@
 					if(!money.get_item_credit_value())
 						continue
 					if(current_money < laser_money_requirement)
+						if(istype(money, /obj/item/holochip))
+							var/obj/item/holochip/holomoney = money
+							if(holomoney.credits > laser_money_requirement - current_money)
+								holomoney.credits -= laser_money_requirement - current_money
+								break
 						qdel(money)
 					else
 						break
