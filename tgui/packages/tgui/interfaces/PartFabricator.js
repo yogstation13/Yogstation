@@ -75,45 +75,85 @@ export const PartFabricator = (props, context) => {
                 <Box>
                   Electrical stasis manifolds: {current_ESMs}/1{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
-                  <ProgressBar value={current_ESMs/1} />
+                  <ProgressBar
+                    value={current_ESMs/1}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                   <br />
                   <br />
                   Energy in grid:{" "}
                   {Math.round((current_energy/1000000000 + Number.EPSILON) * 1000) / 1000}
                   /
                   {Math.round((capacitor_energy/1000000000 + Number.EPSILON) * 1000) / 1000} GW
-                  <ProgressBar value={current_energy/capacitor_energy} />
+                  <ProgressBar
+                    value={current_energy/capacitor_energy}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                 </Box>
                 )}
               {tab === "matterbin" && (
                 <Box>
                   Organic Augurs: {current_augurs}/1{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectAugur')}>Eject</Button>
-                  <ProgressBar value={current_augurs/1} />
+                  <ProgressBar
+                    value={current_augurs/1}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                   <br />
                   <br />
                   Freon:{" "}
                   {Math.round((current_moles + Number.EPSILON) * 1000) / 1000}
                   /
                   {Math.round((matterbin_moles + Number.EPSILON) * 1000) / 1000} moles
-                  <ProgressBar value={current_moles/matterbin_moles} />
+                  <ProgressBar
+                    value={current_moles/matterbin_moles}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                 </Box>
                 )}
               {tab === "scanner" && (
                 <Box>
                   {current_posibrain}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPosi')}>Eject</Button>
-                  <ProgressBar value={current_posibrain === "Artificial brain active"} />
+                  <ProgressBar
+                    value={current_posibrain === "Artificial brain active"}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                   <br />
                   <br />
                   {scanner_chemicals.map((chem, reqindex) =>
                     (<Box key={reqindex}>
-                      {scanner_chemicals_num[reqindex]}u of {chem}{" "}
+                      {current_reagents_num[current_reagents.findIndex((e) => e === chem)] || "0"}/{scanner_chemicals_num[reqindex]}u of {chem}{" "}
                       <Button color="bad" icon="eject" onClick={(e, value) => act('flushChems')}>Flush</Button>
                       <ProgressBar
                         value={
                           current_reagents_num[current_reagents.findIndex((e) => e === chem)]/scanner_chemicals_num[reqindex] || "0"
                         }
+                        ranges={{
+                          good: [1, Infinity],
+                          average: [0.5, 1],
+                          bad: [-Infinity, 0.5],
+                        }}
                         />
                       <br />
                       <br />
@@ -125,26 +165,54 @@ export const PartFabricator = (props, context) => {
                 <Box>
                   {current_lasergun}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectLaserGun')}>Eject</Button>
-                  <ProgressBar value={current_lasergun === "Laser gun loaded"} />
+                  <ProgressBar
+                    value={current_lasergun === "Laser gun loaded"}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                   <br />
                   <br />
                   Money: {current_money}/{laser_money} credits{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectMoney')}>Eject</Button>
-                  <ProgressBar value={current_money/laser_money} />
+                  <ProgressBar
+                    value={current_money/laser_money}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                 </Box>
                 )}
               {tab === "manipulator" && (
                 <Box>
                   {manipulator_plant}: {current_plants}/{manipulator_plant_num}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPlants')}>Eject</Button>
-                  <ProgressBar value={current_plants/manipulator_plant_num} />
+                  <ProgressBar
+                    value={current_plants/manipulator_plant_num}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                   <br />
                   <br />
                   Temperature:{"  "}
                   {Math.round((current_temp + Number.EPSILON) * 1000) / 1000}
                   /
                   {Math.round((manipulator_temp + Number.EPSILON) * 1000) / 1000} Kelvin
-                  <ProgressBar value={current_temp/manipulator_temp} />
+                  <ProgressBar
+                    value={current_temp/manipulator_temp}
+                    ranges={{
+                      good: [1, Infinity],
+                      average: [0.5, 1],
+                      bad: [-Infinity, 0.5],
+                    }}
+                    />
                 </Box>
                 )}
             </Section>

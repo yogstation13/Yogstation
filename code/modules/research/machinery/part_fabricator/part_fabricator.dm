@@ -54,7 +54,7 @@
 	if(panel_open)
 		. += span_notice("\The [src]'s maintenance hatch is open!")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("Production speed at [production_speed*100]%")
+		. += span_notice("Production speed at [CEILING(production_speed*100, 0.0001)]%")
 
 /obj/machinery/part_fabricator/RefreshParts()
 	production_speed = initial(production_speed)
