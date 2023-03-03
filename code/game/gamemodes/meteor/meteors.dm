@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	meteorgibs = /obj/effect/gibspawner/xeno
 
 /obj/effect/meteor/meaty/xeno/Initialize()
-	meteordrop += subtypesof(/obj/item/organ/alien)
+	meteordrop += (subtypesof(/obj/item/organ/alien) - /obj/item/organ/alien/eggsac) //Yogstation change: No more eggsac.
 	return ..()
 
 /obj/effect/meteor/meaty/xeno/ram_turf(turf/T)
