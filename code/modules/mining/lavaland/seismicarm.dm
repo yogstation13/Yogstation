@@ -2,7 +2,6 @@
 	clothes_req = FALSE
 	include_user = TRUE
 	range = -1
-	
 
 /obj/effect/proc_holder/spell/targeted/seismic/can_cast(mob/living/user)
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
@@ -12,74 +11,6 @@
 	if(user.IsParalyzed() || user.IsStun() || user.restrained())
 		return FALSE
 	return TRUE
-
-/datum/action/cooldown/seismic
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-	transparent_when_unavailable = TRUE
-	cooldown_time = 7 SECONDS
-	icon_icon = 'icons/mob/actions/actions_arm.dmi' //This is the file for the ACTION icon
-	button_icon_state = "lariat" //And this is the state for the action icon
-
-/datum/action/cooldown/seismic/IsAvailable()
-	. = ..()
-	if(!isliving(owner))
-		return FALSE
-	var/mob/living/L = owner
-	var/obj/item/bodypart/r_arm/R = L.get_bodypart(BODY_ZONE_R_ARM)
-	if(R?.bodypart_disabled)
-		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
-		return FALSE
-
-/datum/action/cooldown/seismic/lariat
-	name = "Lariat"
-	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
-	button_icon_state = "lariat"
-	var/jumpdistance = 4
-
-/datum/action/cooldown/seismic/lariat/Trigger()
-	if(!..())
-		return FALSE
-	StartCooldown()
-	var/turf/T = get_step(get_turf(owner), owner.dir)
-	var/turf/Z = get_turf(owner)
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, owner)
-	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] arm outstretched!"))
-	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
-	for(var/i = 0 to jumpdistance)
-		if(T.density)
-			return
-		for(var/obj/D in T.contents)
-			if(D.density == TRUE)
-				return
-		for(var/turf/open/chasm/C in T.contents)
-			return
-		for(var/turf/closed/indestructible/I in T.contents)
-			return
-		for(var/turf/open/lava/V in T.contents)
-			return
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
-		if(T)
-			sleep(0.1 SECONDS)
-			owner.forceMove(T)
-			walk_towards(F,owner,0, 1.5)
-			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			for(var/mob/living/L in T.contents)
-				if(L != owner)
-					owner.forceMove(get_turf(L))
-					to_chat(L, span_ownerdanger("[owner] catches you with [owner.p_their()] arm and clotheslines you!"))
-					owner.visible_message(span_warning("[owner] hits [L] with a lariat!"))
-					L.SpinAnimation(0.5 SECONDS, 1)
-					if(isanimal(L))
-						L.adjustBruteLoss(50)
-					if(iscarbon(L))
-						L.adjustBruteLoss(10)
-					if(issilicon(L))
-						L.adjustBruteLoss(12)
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(owner,owner.dir)
-	
 
 /obj/effect/proc_holder/spell/targeted/seismic/lariat
 	name = "Lariat"
@@ -356,9 +287,6 @@
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
-	actions_types = list(/datum/action/cooldown/seismic/lariat,)
-	var/list/fisting_techniques = list(/datum/action/cooldown/seismic/lariat,)
-	//actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
 
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
@@ -366,9 +294,6 @@
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/mop)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/suplex)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/righthook)
-	for(var/F in fisting_techniques)
-		var/datum/action/cooldown/A = new F
-		A.Grant(C)
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	var/mob/living/carbon/C = owner
@@ -376,7 +301,4 @@
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/mop)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/suplex)
 	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/righthook)
-	for(var/F in fisting_techniques)
-		var/datum/action/A = F
-		A.Remove(owner)
 	..()
