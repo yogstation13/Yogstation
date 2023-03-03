@@ -100,7 +100,7 @@
 
 	var/list/possible_plants = subtypesof(/datum/bounty/item/botany)
 	for(var/datum/bounty/item/botany/plant_bounty in possible_plants)
-		if(initial(plant_bounty.multiplier) < 2)
+		if(initial(plant_bounty.multiplier) == 0)
 			possible_plants -= plant_bounty
 	var/bounty_type = pick(possible_plants)
 	manipulator_plant_requirement = new bounty_type
