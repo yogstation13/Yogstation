@@ -559,6 +559,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/titanium=10000,/datum/material/bluespace=5000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_trogdor
 	name = "Exosuit Weapon (TO-4 \"Tahu\" flaming chainsword)"
@@ -568,6 +569,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/silver=10000,/datum/material/gold=10000,/datum/material/plasma=10000 )
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_stunbaton
 	name = "Exosuit Weapon (AV-98 \"Ingram\" heavy stun baton)"
@@ -577,6 +579,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/gold=10000,/datum/material/plasma=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_maul
 	name = "Exosuit Weapon (CX-22 \"Barbados\" heavy maul)"
@@ -586,6 +589,7 @@
 	materials = list(/datum/material/iron=25000 ,/datum/material/uranium=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
 
 /datum/design/mech_spear
 	name = "Exosuit Weapon (S5-C \"White Witch\" shortspear)"
@@ -595,3 +599,4 @@
 	materials = list(/datum/material/iron=10000,/datum/material/titanium=10000,/datum/material/silver=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+	combat_design = TRUE
