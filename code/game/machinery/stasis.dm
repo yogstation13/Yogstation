@@ -185,16 +185,17 @@
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
 			L_occupant.adjustStaminaLoss(5*stasis_part)
-		if(repair_organs)
+		if(repair_organs && iscarbon(L_occupant))
+			var/mob/living/carbon/C_occupant = L_occupant
 			var/heal_reps = 4
 			var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
 			for(var/i in 1 to heal_reps)
 				organs = shuffle(organs)
 				for(var/o in organs)
 					var/healed = FALSE
-					var/obj/item/organ/heal_target = C.getorganslot(o)
+					var/obj/item/organ/heal_target = C_occupant.getorganslot(o)
 					if(heal_target?.damage >= 1)
-						var/organ_healing = C.stat == DEAD ? 3 : 6
+						var/organ_healing = C_occupant.stat == DEAD ? 3 : 6
 						heal_target.applyOrganDamage(-organ_healing)
 						healed = TRUE
 					if(healed)
