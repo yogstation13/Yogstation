@@ -421,7 +421,7 @@
 				my_gas.set_moles(/datum/gas/freon, max(freon_amount, 0))
 			if("scanner")
 				printed = new /obj/item/stock_parts/scanning_module/hexaphasic
-				// Don't delete the posibrain!!!!!! We just needed to use his brain power for the process
+				// Don't delete the posibrain!!!!!! We just needed to use its brain power for the process
 				// Consume reagents
 				for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
 					reagents.remove_reagent(bounty.wanted_reagent.type, bounty.required_volume)
