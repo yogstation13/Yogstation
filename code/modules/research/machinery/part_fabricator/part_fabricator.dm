@@ -5,11 +5,11 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "protolathe"
 	circuit = /obj/item/circuitboard/machine/part_fabricator
-	resistance_flags = UNACIDABLE | LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
+	resistance_flags = INDESTRUCTIBLE // dont want it to be destroyed by radballs
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5000
-	active_power_usage = 20000
+	active_power_usage = 10000000 // 10MW
 	density = TRUE
 
 	var/static/part_recipes_generated = FALSE
@@ -95,7 +95,8 @@
 	for(var/datum/bounty/item/botany/plant_bounty in possible_plants)
 		if(initial(plant_bounty.multiplier) < 2)
 			possible_plants -= plant_bounty
-	manipulator_plant_requirement = new pick(possible_plants)
+	var/bounty_type = pick(possible_plants)
+	manipulator_plant_requirement = new bounty_type
 
 	manipulator_temp_requirement = (rand() + 1) * 40000 // 40000-80000 Kelvin
 
@@ -188,6 +189,7 @@
 				current_plants++
 		data["current_plants"] = current_plants
 
+		var/datum/gas_mixture/my_gas = return_air()
 		var/current_temp = my_gas.return_temperature()
 		data["current_temp"] = current_temp ? current_temp : "0"
 
@@ -296,6 +298,7 @@
 		balloon_alert_to_viewers("Failed!")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		printing = null
+		use_power = IDLE_POWER_USE
 		return FALSE
 	production_progress = 1
 	START_PROCESSING(SSobj, src)
@@ -383,21 +386,76 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		production_progress = 0
 		printing = null
+		use_power = IDLE_POWER_USE
 		return PROCESS_KILL
+
+	if(printing == "capacitor")
+		use_power = ACTIVE_POWER_USE // Use 10MW while making capacitor
 
 	if(production_progress >= 100)
 		var/obj/item/stock_parts/printed
-		switch(printing)
+		switch(printing) // Print item and consume requirements
 			if("capacitor")
 				printed = new /obj/item/stock_parts/capacitor/cubic
+				// Consume electrical stasis manifold
+				for(var/obj/item/electrical_stasis_manifold/ESM in contents)
+					qdel(ESM)
+					break
+				// Energy is already consumed by active_power_use
 			if("matterbin")
 				printed = new /obj/item/stock_parts/matter_bin/holding
+				// Consume organic augur
+				for(var/obj/item/organic_augur/augur in contents)
+					qdel(augur)
+					break
+				var/datum/gas_mixture/my_gas = return_air()
+				// Consume freon
+				var/freon_amount = my_gas.get_moles(/datum/gas/freon)
+				freon_amount -= matterbin_freon_moles_requirement
+				my_gas.set_moles(/datum/gas/freon, max(freon_amount, 0))
 			if("scanner")
 				printed = new /obj/item/stock_parts/scanning_module/hexaphasic
+				// Don't delete the posibrain!!!!!! We just needed to use his brain power for the process
+				// Consume reagents
+				for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
+					reagents.remove_reagent(bounty.wanted_reagent, bounty.required_volume)
 			if("laser")
 				printed = new /obj/item/stock_parts/micro_laser/quinthyper
+				// Consume laser gun
+				for(var/obj/item/gun/energy/laser/lasgun in contents)
+					var/valid = FALSE
+					for(var/obj/item/ammo_casing/ammotype in lasgun.ammo_type)
+						if(initial(ammotype.harmful)) // No practice laser guns
+							valid = TRUE
+							break
+					if(valid)
+						qdel(lasgun)
+						break
+
+				// Consume money
+				var/current_money = 0
+				for(var/obj/item/money in contents)
+					if(current_money < laser_money_requirement)
+						qdel(money)
+					else
+						break
+					current_money += money.get_item_credit_value()
 			if("manipulator")
 				printed = new /obj/item/stock_parts/manipulator/planck
+				// Consume plants
+				var/current_plants = 0
+				for(var/selected_item in contents)
+					if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
+						if(current_plants < manipulator_plant_requirement.required_count)
+							qdel(selected_item)
+						else
+							break
+						current_plants++
+
+				// Consume temperature
+				var/datum/gas_mixture/my_gas = return_air()
+				var/current_temp = my_gas.return_temperature()
+				my_gas.set_temperature(max(current_temp - manipulator_temp_requirement, TCMB))
 			else
 				explosion(get_turf(src), -1, -1, 2)
 				STOP_PROCESSING(SSobj, src)
@@ -405,16 +463,12 @@
 				message_admins("\A [src][ADMIN_FLW(src)] malfunctioned, please read runtimes and set production_progress and printing vars to restart it.")
 				CRASH("Part fabricator tried to print unknown or null part: [printing]")
 
-		if(is_satisfied()) // sanity
-			balloon_alert_to_viewers("Success!")
-			playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-			printed.forceMove(drop_location())
-			adjust_item_drop_location(printed)
-		else
-			balloon_alert_to_viewers("Failed!")
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-			qdel(printed)
+		balloon_alert_to_viewers("Success!")
+		playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
+		printed.forceMove(drop_location())
+		adjust_item_drop_location(printed)
 
 		production_progress = 0
 		printing = null
+		use_power = IDLE_POWER_USE
 		return PROCESS_KILL
