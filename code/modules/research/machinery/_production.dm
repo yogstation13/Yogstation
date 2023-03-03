@@ -74,7 +74,9 @@
 		materials.set_local_size(total_storage)
 	var/total_rating = 1.2
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		total_rating = clamp(total_rating - (M.rating * 0.1), 0, 1)
+		total_rating = clamp(total_rating - (M.rating * 0.1), 0.01, 1)
+		if(M.rating == 5) // Counts for 1.25x so it can hit the cap
+			total_rating = clamp(total_rating - (M.rating * 0.025), 0.01, 1)
 	if(total_rating == 0)
 		efficiency_coeff = INFINITY
 	else

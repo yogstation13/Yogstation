@@ -67,8 +67,17 @@
 	var/IO = 0
 	var/MC = 0
 	var/C
+	var/tierfive = FALSE
 	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		IO += CP.rating
+		if(CP.rating == 5)
+			tierfive = TRUE
+	if(tierfive)
+		IO *= 4 // Quadruples power input/output caps
+		if(powernet) // Uncaps the shock damage from the powernet we're attached to
+			powernet.lethal = TRUE
+		if(terminal?.powernet)
+			terminal.powernet.lethal = TRUE
 	input_level_max = initial(input_level_max) * IO
 	output_level_max = initial(output_level_max) * IO
 	for(var/obj/item/stock_parts/cell/PC in component_parts)

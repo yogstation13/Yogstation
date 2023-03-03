@@ -21,6 +21,8 @@
 	var/shocked = FALSE
 	/// Resource use multiplier
 	var/prod_coeff = 1
+	/// Production speed
+	var/prod_speed = 1
 	/// Internal techweb of designs
 	var/datum/techweb/stored_research
 	/// name of the design to search for
@@ -232,15 +234,21 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = T
 	T=1.2
+	prod_speed = initial(prod_speed)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T -= M.rating*0.2
-	prod_coeff = min(1,max(0,T)) // Coeff going 1 -> 0,8 -> 0,6 -> 0,4
+		if(M.rating == 5)
+			prod_speed *= 2
+			adjust_hacked(TRUE)
+	prod_coeff = min(1,max(0.01,T)) // Coeff going 1 -> 0,8 -> 0,6 -> 0,4 -> 0,2
 
 /obj/machinery/autolathe/examine(mob/user)
 	. += ..()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[prod_coeff*100]%</b>.<span>"
+		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>\
+				Material consumption at <b>[prod_coeff*100]%</b>.<br>\
+				Production speed at <b>[prod_speed*100]%</b>.<span>"
 
 /obj/machinery/autolathe/proc/materials_printout()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -352,7 +360,7 @@
 			being_built = list(D, multiplier)
 			desc = "It's building \a [initial(D.name)]."
 			icon_state = "autolathe_n"
-			var/time = is_stack ? 32 : 32 * coeff * multiplier
+			var/time = (is_stack ? 32 : 32 * coeff * multiplier) / prod_speed
 			sleep(time)
 			if(wallcheck(printdirection))
 				printdirection = 0

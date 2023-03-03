@@ -192,6 +192,8 @@
 	var/P = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		P += C.rating
+		if(C.rating == 5)
+			P += C.rating * 2.2 // All T5 = quadruple production of all T4
 	productivity = P / 6
 
 /obj/machinery/power/turbine/examine(mob/user)

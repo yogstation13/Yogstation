@@ -12,6 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
+    legacy_chems,
   } = data;
 
   const treatments = data.treatments || [];
@@ -92,11 +93,33 @@ export const Sleeper = (props, context) => {
             title="Reagents"
             minHeight="50px"
             buttons={(
-              <Button
-                icon={'flask'}
-                content={'Sedate'}
-                disabled={!can_sedate}
-                onClick={() => act('sedate')} />
+              <Box>
+                {legacy_chems && (
+                  <Box>
+                    <Button
+                      icon={'flask'}
+                      content={'Bicaridine'}
+                      onClick={() => act('bruteChem')} />
+                    <Button
+                      icon={'flask'}
+                      content={'Kelotane'}
+                      onClick={() => act('burnChem')} />
+                    <Button
+                      icon={'flask'}
+                      content={'Salbutamol'}
+                      onClick={() => act('oxyChem')} />
+                    <Button
+                      icon={'flask'}
+                      content={'Pentetic Acid'}
+                      onClick={() => act('radChem')} />
+                  </Box>
+                )}
+                <Button
+                  icon={'flask'}
+                  content={'Sedate'}
+                  disabled={!can_sedate}
+                  onClick={() => act('sedate')} />
+              </Box>
             )} >
             {occupant.reagents.map(reagent => (
               <Box key={reagent.name}>

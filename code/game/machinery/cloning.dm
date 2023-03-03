@@ -83,6 +83,8 @@ GLOBAL_VAR_INIT(clones, 0)
 		efficiency += S.rating
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += P.rating
+		if(P.rating == 5)
+			speed_coeff += P.rating // Two T5 manips = 1000% speed, which completes in 30 seconds
 	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
 		maxbiomass += B.reagents.maximum_volume
 	heal_level = (efficiency * 15) + 10
@@ -486,7 +488,12 @@ GLOBAL_VAR_INIT(clones, 0)
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
-		to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		if(efficiency < 9) // T4 and below
+			to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		else if(efficiency == 9) // One T5 scanner
+			to_chat(occupant, span_notice("Miraculously, you remember <i>how</i> you died. You don't remember anything about anyone involved, though!"))
+		else if(efficiency >= 10) // Two T5 scanners
+			to_chat(occupant, span_notice("Miraculously, you remember everything about your previous death!"))
 		mob_occupant.flash_act()
 		GLOB.clones++
 

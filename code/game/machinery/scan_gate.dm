@@ -37,10 +37,20 @@
 	var/detect_species = SCANGATE_HUMAN
 	var/reverse = FALSE //If true, signals if the scan returns false
 	var/detect_nutrition = NUTRITION_LEVEL_FAT
+	var/blocking = FALSE // Blocks people who trigger the alarm
 
 /obj/machinery/scanner_gate/Initialize()
 	. = ..()
 	set_scanline("passive")
+
+/obj/machinery/scanner_gate/RefreshParts()
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(P.rating == 5)
+			blocking = TRUE
+			density = TRUE
+			return
+		else
+			blocking = FALSE
 
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
@@ -51,16 +61,26 @@
 
 /obj/machinery/scanner_gate/Crossed(atom/movable/AM)
 	. = ..()
-	auto_scan(AM)
+	if(!blocking)
+		auto_scan(AM)
+
+/obj/machinery/scanner_gate/Bump(atom/movable/AM)
+	. = ..()
+	if(blocking)
+		auto_scan(AM)
 
 /obj/machinery/scanner_gate/proc/auto_scan(atom/movable/AM)
 	if(!(stat & (BROKEN|NOPOWER)) && isliving(AM))
 		perform_scan(AM)
 
-/obj/machinery/scanner_gate/proc/set_scanline(type, duration)
+/obj/machinery/scanner_gate/proc/set_scanline(stype, duration)
+	if(blocking && stype == "passive") // Set us back to blocking mode
+		density = TRUE
+	else if(stype == "scanning") // If they pass, let them through
+		density = FALSE
 	cut_overlays()
 	deltimer(scanline_timer)
-	add_overlay(type)
+	add_overlay(stype)
 	if(duration)
 		scanline_timer = addtimer(CALLBACK(src, .proc/set_scanline, "passive"), duration, TIMER_STOPPABLE)
 

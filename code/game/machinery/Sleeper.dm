@@ -35,6 +35,8 @@
 	var/active_treatment = null
 	///if the sleeper puts its patient into stasis
 	var/stasis = FALSE
+	/// Can we access legacy sleeper options (Bicaridine, Kelotane, Salbutamol, Pentetic Acid)
+	var/legacy_chems = FALSE
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
@@ -51,9 +53,11 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		E += B.rating
 	var/I
+	legacy_chems = initial(legacy_chems)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		I += M.rating
-
+		if(M.rating == 5)
+			legacy_chems = TRUE
 	efficiency = initial(efficiency)* E
 	available_treatments = list()
 	for(var/i in 1 to I)
@@ -238,6 +242,7 @@
 	data["open"] = state_open
 	data["active_treatment"] = active_treatment
 	data["can_sedate"] = can_sedate()
+	data["legacy_chems"] = legacy_chems
 
 	data["treatments"] = list()
 	for(var/T in available_treatments)
@@ -303,6 +308,31 @@
 				if(usr)
 					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
 				. = TRUE
+		if("bruteChem")
+			// SAFETY LOCKS DISENGAGED, OVERDOSE ENGAGED
+			mob_occupant.reagents.add_reagent(/datum/reagent/medicine/bicaridine, 5)
+			if(usr)
+				log_combat(usr,occupant, "injected 5u bicaridine into", addition = "via [src]")
+			. = TRUE
+		if("burnChem")
+			// SAFETY LOCKS DISENGAGED, OVERDOSE ENGAGED
+			mob_occupant.reagents.add_reagent(/datum/reagent/medicine/kelotane, 5)
+			if(usr)
+				log_combat(usr,occupant, "injected 5u kelotane into", addition = "via [src]")
+			. = TRUE
+		if("oxyChem")
+			// SAFETY LOCKS DISENGAGED, OVERDOSE ENGAGED
+			mob_occupant.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
+			if(usr)
+				log_combat(usr,occupant, "injected 5u salbutamol into", addition = "via [src]")
+			. = TRUE
+		if("radChem")
+			// SAFETY LOCKS DISENGAGED, OVERDOSE ENGAGED oh pentetic acid has no od :c
+			mob_occupant.reagents.add_reagent(/datum/reagent/medicine/pen_acid, 5)
+			if(usr)
+				log_combat(usr,occupant, "injected 5u pentetic acid into", addition = "via [src]")
+			. = TRUE
+		
 
 /obj/machinery/sleeper/proc/can_sedate()
 	var/mob/living/mob_occupant = occupant
