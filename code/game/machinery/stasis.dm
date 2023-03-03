@@ -15,6 +15,7 @@
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
 	var/stasis_cooldown = 5 SECONDS
+	var/repair_organs = FALSE
 
 	// Life tickrate is processed as follows
 	// if (living.life_tickrate && (tick % living.life_tickrate) == 0) is true, life will tick on that tick
@@ -39,6 +40,7 @@
 /obj/machinery/stasis/RefreshParts()
 	stasis_amount = initial(stasis_amount)
 	stasis_cooldown = initial(stasis_cooldown)
+	repair_organs = initial(repair_organs)
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		switch(C.rating)
 			if(1)
@@ -50,9 +52,11 @@
 			if(3)
 				stasis_amount = 3 // 75% stasis
 				stasis_part = 3
-			if(4)
+			if(4 to 5)
 				stasis_amount = -1 // 100% stasis
 				stasis_part = 4
+		if(C.rating == 5)
+			repair_organs = TRUE
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		stasis_cooldown *= 1/M.rating // 100%, 50%, 33%, 25%
 	if(occupant)
@@ -181,6 +185,20 @@
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
 			L_occupant.adjustStaminaLoss(5*stasis_part)
+		if(repair_organs)
+			var/heal_reps = 4
+			var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
+			for(var/i in 1 to heal_reps)
+				organs = shuffle(organs)
+				for(var/o in organs)
+					var/healed = FALSE
+					var/obj/item/organ/heal_target = C.getorganslot(o)
+					if(heal_target?.damage >= 1)
+						var/organ_healing = C.stat == DEAD ? 3 : 6
+						heal_target.applyOrganDamage(-organ_healing)
+						healed = TRUE
+					if(healed)
+						break
 	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
