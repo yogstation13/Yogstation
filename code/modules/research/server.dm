@@ -37,6 +37,8 @@
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
+		if(SP.rating == 5)
+			base_mining_income = initial(base_mining_income) * 2
 	heat_gen /= max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_icon()

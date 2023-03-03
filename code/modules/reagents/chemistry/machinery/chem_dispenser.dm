@@ -415,6 +415,8 @@
 		newpowereff += 0.0166666666*M.rating
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_amount *= C.rating
+		if(C.rating == 5) // 250 units per charge, good luck running out
+			recharge_amount *= C.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if (M.rating > 1) // T2+
 			dispensable_reagents |= t2_upgrade_reagents

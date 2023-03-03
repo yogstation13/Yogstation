@@ -13,13 +13,21 @@ Note: Must be placed within 3 tiles of the R&D Console
 	icon_state = "d_analyzer"
 	circuit = /obj/item/circuitboard/machine/destructive_analyzer
 	var/decon_mod = 0
+	// Research from deconstructing random things! Only on tier 5 parts
+	var/list/researched_items
+	var/can_research_items = FALSE
+
+/obj/machinery/rnd/destructive_analyzer/Initialize()
+	. = ..()
+	researched_items = list()
 
 /obj/machinery/rnd/destructive_analyzer/RefreshParts()
 	var/T = 0
 	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
+		if(S.rating == 5)
+			can_research_items = TRUE
 	decon_mod = T
-
 
 /obj/machinery/rnd/destructive_analyzer/proc/ConvertReqString2List(list/source_list)
 	var/list/temp_list = params2list(source_list)
@@ -81,6 +89,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 		var/list/food = thing.GetDeconstructableContents()
 		for(var/obj/item/innerthing in food)
 			destroy_item(innerthing, TRUE)
+	if(can_research_items && !is_type_in_typecache(thing.type, researched_items))
+		var/points = (rand() + 1) * 300 // 300-600 points, juicy
+		linked_console.stored_research.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+		balloon_alert_to_viewers("Gained [points] points from \the [thing]!")
+		researched_items += typecacheof(thing.type)
 	reclaim_materials_from(thing)
 	for(var/mob/M in thing)
 		M.death()

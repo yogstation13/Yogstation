@@ -38,12 +38,25 @@
 	var/ore_pickup_rate_temp = 15
 	var/point_upgrade_temp = 1
 	var/sheet_per_ore_temp = 1
+	var/tierfivebin = FALSE
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		sheet_per_ore_temp = 0.65 + (0.35 * B.rating)
+		if(B.rating == 5)
+			tierfivebin = TRUE
+	if(tierfivebin)
+		sheet_per_ore_temp *= 2
+	
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		ore_pickup_rate_temp = 15 * M.rating
+	
+	var/tierfivelaser = FALSE
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
 		point_upgrade_temp = 0.65 + (0.35 * L.rating)
+		if(L.rating == 5)
+			tierfivelaser = TRUE
+	if(tierfivelaser)
+		point_upgrade_temp *= 3
+	
 	ore_pickup_rate = ore_pickup_rate_temp
 	point_upgrade = point_upgrade_temp
 	sheet_per_ore = round(sheet_per_ore_temp, 0.01)

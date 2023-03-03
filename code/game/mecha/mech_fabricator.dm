@@ -92,16 +92,18 @@
 		T += M.rating
 	rmat.set_local_size((200000 + (T*50000)))
 
-	//resources adjustment coefficient (1 -> 0.85 -> 0.7 -> 0.55)
+	//resources adjustment coefficient (1 -> 0.85 -> 0.7 -> 0.55 -> 0.4)
 	T = 1.15
 	for(var/obj/item/stock_parts/micro_laser/Ma in component_parts)
 		T -= Ma.rating*0.15
 	component_coeff = T
 
-	//building time adjustment coefficient (1 -> 0.8 -> 0.6)
+	//building time adjustment coefficient (1 -> 0.8 -> 0.6 -> 0.4 -> 0.05)
 	T = -1
 	for(var/obj/item/stock_parts/manipulator/Ml in component_parts)
 		T += Ml.rating
+		if(Ml.rating == 5)
+			T += 0.75
 	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)
 
 	// Adjust the build time of any item currently being built.

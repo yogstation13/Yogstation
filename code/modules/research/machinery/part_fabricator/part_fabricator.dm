@@ -40,7 +40,7 @@
 	if(is_refillable() && inserted.is_drainable())
 		return FALSE //inserting reagents into the machine
 	
-	if(inserted.get_item_credit_value() || is_type_in_list(inserted, acceptable_items))
+	if(inserted.get_item_credit_value() || is_type_in_typecache(inserted, acceptable_items))
 		inserted.forceMove(src)
 		to_chat(user, span_notice("You insert \the [inserted] into \the [src]."))
 		return TRUE
@@ -107,16 +107,16 @@
 
 	manipulator_temp_requirement = (rand() + 1) * 40000 // 40000-80000 Kelvin
 
-	acceptable_items = list(
+	acceptable_items = typecacheof(list(
 		/obj/item/electrical_stasis_manifold,
 		/obj/item/organic_augur,
 		/obj/item/mmi/posibrain,
 		/obj/item/gun/energy/laser,
 		/obj/item/organ
-	)
+	))
 
 	for(var/item in manipulator_plant_requirement.wanted_types)
-		acceptable_items += item
+		acceptable_items += typecacheof(item)
 
 	part_recipes_generated = TRUE
 
@@ -286,11 +286,11 @@
 
 /obj/machinery/part_fabricator/proc/eject_type(list/eject_types)
 	if(!islist(eject_types))
-		eject_types = list(eject_types)
+		eject_types = typecacheof(list(eject_types))
 	if(!eject_types.len)
 		return
 	for(var/atom/movable/item in contents)
-		if(is_type_in_list(item, eject_types) || is_type_in_typecache(item, eject_types))
+		if(is_type_in_typecache(item, eject_types))
 			eject_item(item)
 
 /obj/machinery/part_fabricator/proc/eject_item(atom/movable/item)

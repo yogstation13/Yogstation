@@ -25,6 +25,7 @@
 	var/obj/mecha/recharging_mech
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/max_charge = 50
+	var/repair_rate = 0
 	var/on = FALSE
 	var/turf/recharging_turf = null
 
@@ -42,10 +43,15 @@
 	recharging_turf = get_step(loc, dir)
 
 /obj/machinery/mech_bay_recharge_port/RefreshParts()
-	var/MC
+	var/MC = 0
+	var/repair = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		MC += C.rating
+		if(C.rating == 5)
+			MC += C.rating
+			repair += 7
 	max_charge = MC * 25
+	repair_rate = repair
 
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()
@@ -59,6 +65,9 @@
 		recharging_mech = locate(/obj/mecha) in recharging_turf
 		if(recharging_mech)
 			recharge_console.update_icon()
+	if(recharging_mech && recharging_mech.obj_integrity < recharging_mech.max_integrity)
+		recharging_mech.obj_integrity = min(recharging_mech.obj_integrity + repair_rate, recharging_mech.max_integrity)
+		use_power(repair_rate * 150)
 	if(recharging_mech && recharging_mech.cell)
 		if(recharging_mech.cell.charge < recharging_mech.cell.maxcharge)
 			var/delta = min(max_charge, recharging_mech.cell.maxcharge - recharging_mech.cell.charge)
