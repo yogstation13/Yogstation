@@ -6,43 +6,45 @@
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	melee_override = TRUE
 	var/restricted = TRUE //for our special hugbox exofabs
-	/// If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
+	///	If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
 	var/extended_range = 0
-	/// Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
+	///	Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
 	var/attack_speed_modifier = 1
-	/// Attack sound for the weapon
+	///	Attack sound for the weapon
 	var/attack_sound = 'sound/weapons/mechasword.ogg'
 	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
-    /// If the weapon has an AOE attack
+    ///	If the weapon has an AOE attack
 	var/cleave = FALSE
-	/// If the weapon has a single-target strike
+	///	If the weapon has a single-target strike
 	var/precise_attacks = TRUE
 
-	/// Damage type for the weapon
+	///	Damage type for the weapon
 	var/dam_type = BRUTE
-	/// If it's sharp or not
+	///	If it's sharp or not
 	var/attack_sharpness = SHARP_NONE
-	/// Damage the weapon will do. Note this is ADDED to the base mecha attack damage (usually)
+	///	Damage the weapon will do. Note this is ADDED to the base mecha attack damage (usually)
 	var/weapon_damage = 0
-	/// If we have both cleave and precise attacks, the precise may have more damage
+	///	If we have both cleave and precise attacks, the precise may have more damage
 	var/precise_weapon_damage = 0
-	/// Minimum damage dealt with a weapon. Applies to non-combat mechs with the secret compartment module to make them suck a little less
+	///	Minimum damage dealt with a weapon. Applies to non-combat mechs with the secret compartment module to make them suck a little less
 	var/minimum_damage = 0
-	/// Bonus deflection chance for using a melee weapon capable of blocking attacks
+	///	Bonus deflection chance for using a melee weapon capable of blocking attacks
 	var/deflect_bonus = 0
-	/// Base armor piercing value of the weapon. This value is doubled for precise attacks
+	///	Base armor piercing value of the weapon. This value is doubled for precise attacks
 	var/base_armor_piercing = 0
-	/// Fauna bonus damage, if any
+	///	Fauna bonus damage, if any
 	var/fauna_damage_bonus = 0
-	/// Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
+	///	Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
-	/// Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.75 for extended mech combat gaming
+	///	Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.75 for extended mech combat gaming
 	var/mech_damage_multiplier = 0.75
-
-	/// Effect on hitting something
+	///	Weapons that can hit turfs, default to false because it'll be special effects maybe some time
+	var/can_stab_turfs = FALSE
+	
+	///	Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
-	/// Effect of the cleave attack
+	///	Effect of the cleave attack
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
@@ -73,7 +75,10 @@
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
 	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(chassis, target) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
-		precise_attack(target)	//We stab it if we can
+		if(targloc == curloc && !can_stab_turfs)
+			return 0	//Don't stab turf if we can't
+		else
+			precise_attack(target)
 	else if(cleave)
 		cleave_attack()	//Or swing wildly
 	else	//Failure to sword
