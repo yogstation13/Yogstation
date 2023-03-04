@@ -67,13 +67,12 @@
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
-	//RegisterSignal(ethereal, COMSIG_ATOM_EMAG_ACT, .proc/on_emag_act)
-	//RegisterSignal(ethereal, COMSIG_ATOM_EMP_ACT, .proc/on_emp_act)
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
+	C.set_light(0)
 	return ..()
 
 /datum/species/ethereal/random_name(gender,unique,lastname)
@@ -88,12 +87,16 @@
 	. = ..()
 	if(H.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(H.health, 0) / 100
+		var/light_range = 1 + (4 * healthpercent)
+		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		ethereal_light.set_light_range_power_color(1 + (4 * healthpercent), 1 + (1 * healthpercent), current_color)
+		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
+		ethereal_light.set_light_range_power_color(light_range, light_power, current_color)
 		ethereal_light.set_light_on(TRUE)
 		fixed_mut_color = copytext_char(current_color, 2)
 	else
+		H.set_light(0)
 		ethereal_light.set_light_on(FALSE)
 		fixed_mut_color = rgb(128,128,128)
 	H.update_body()

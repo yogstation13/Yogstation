@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "all melee mining tools are slightly faster"
+  - tweak: "sonic jackhammer is instant"

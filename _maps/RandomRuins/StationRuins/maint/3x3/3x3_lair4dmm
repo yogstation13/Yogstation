@@ -1,0 +1,52 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table,
+/obj/item/weldingtool,
+/obj/item/clothing/glasses/welding,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/coffin/metalcoffin{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/restraints/handcuffs/cable/red,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+R
+f
+"}
+(2,1,1) = {"
+z
+z
+K
+"}
+(3,1,1) = {"
+K
+S
+R
+"}

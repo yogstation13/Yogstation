@@ -71,6 +71,9 @@
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
+			// initTemplateBounds explicitly ignores the shuttle's docking port, to ensure that it calculates the bounds of the shuttle correctly
+			// so we need to manually initialize it here
+			SSatoms.InitializeAtoms(list(port))
 			if(register)
 				port.register()
 			if(isnull(port_x_offset))
