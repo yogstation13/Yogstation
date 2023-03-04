@@ -50,10 +50,10 @@
 
 //knocking them down
 /datum/action/cooldown/buster/proc/footsies(mob/living/target)
-	if((target.mobility_flags & MOBILITY_STAND) && target.stat)
-		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+	if((target.mobility_flags & MOBILITY_STAND))
+		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0.01 SECONDS, loop = 0)
 
 //Check for if someone is allowed to be stood back up
 /datum/action/cooldown/buster/proc/wakeup(mob/living/target)
-	if(!(target.mobility_flags & MOBILITY_STAND) && target.stat)
+	if((target.mobility_flags & MOBILITY_STAND))
 		animate(target, transform = null, time = 0.4 SECONDS, loop = 0)
