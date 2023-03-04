@@ -10,6 +10,7 @@
 	var/research_disabled = FALSE
 	var/server_id = 0
 	var/base_mining_income = 2
+	var/five_upgraded = FALSE // tier 5
 	var/current_temp = 0
 	var/heat_gen = 100
 	var/heating_power = 40000
@@ -35,10 +36,11 @@
 
 /obj/machinery/rnd/server/RefreshParts()
 	var/tot_rating = 0
+	five_upgraded = initial(five_upgraded)
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
 		if(SP.rating == 5)
-			base_mining_income = initial(base_mining_income) * 2
+			five_upgraded = TRUE
 	heat_gen /= max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_icon()

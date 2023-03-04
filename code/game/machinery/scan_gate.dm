@@ -64,7 +64,7 @@
 	if(!blocking)
 		auto_scan(AM)
 
-/obj/machinery/scanner_gate/Bump(atom/movable/AM)
+/obj/machinery/scanner_gate/Bumped(atom/movable/AM)
 	. = ..()
 	if(blocking)
 		auto_scan(AM)

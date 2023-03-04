@@ -97,19 +97,15 @@ export const Sleeper = (props, context) => {
                 {legacy_chems && (
                   <Box>
                     <Button
-                      icon={'flask'}
                       content={'Bicaridine'}
                       onClick={() => act('bruteChem')} />
                     <Button
-                      icon={'flask'}
                       content={'Kelotane'}
                       onClick={() => act('burnChem')} />
                     <Button
-                      icon={'flask'}
                       content={'Salbutamol'}
                       onClick={() => act('oxyChem')} />
                     <Button
-                      icon={'flask'}
                       content={'Pentetic Acid'}
                       onClick={() => act('radChem')} />
                   </Box>

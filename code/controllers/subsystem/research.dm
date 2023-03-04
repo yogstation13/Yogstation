@@ -59,9 +59,12 @@ SUBSYSTEM_DEF(research)
 
 /datum/controller/subsystem/research/proc/handle_research_income()
 	var/list/bitcoins = list()
+	var/tier_boosted = FALSE
 	if(multiserver_calculation)
 		var/eff = calculate_server_coefficient()
 		for(var/obj/machinery/rnd/server/miner in servers)
+			if(miner.five_upgraded)
+				tier_boosted = TRUE
 			var/list/result = (miner.mine())	//SLAVE AWAY, SLAVE.
 			for(var/i in result)
 				result[i] *= eff
@@ -79,6 +82,8 @@ SUBSYSTEM_DEF(research)
 			var/boost_amt = clamp(0, bitcoins[i], science_tech.stored_research_points[i]) //up to 2x research speed when burning stored research
 			bitcoins[i] += boost_amt
 			science_tech.remove_stored_point_type(i, boost_amt)
+		if(tier_boosted) // Tier five server doubles research speed
+			bitcoins[i] *= 2
 	science_tech.add_point_list(bitcoins)
 	//add RUIN_GENERATION_PER_TICK even without any servers, for things like freeminers
 	ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = RUIN_GENERATION_PER_TICK, TECHWEB_POINT_TYPE_NANITES = NANITES_RESEARCH_RUIN_PER_TICK))

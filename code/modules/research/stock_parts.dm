@@ -94,6 +94,16 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		new /obj/item/stock_parts/micro_laser/quadultra(src)
 		new /obj/item/stock_parts/matter_bin/bluespace(src)
 
+/obj/item/storage/part_replacer/bluespace/tier5
+
+/obj/item/storage/part_replacer/bluespace/tier5/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/stock_parts/capacitor/cubic(src)
+		new /obj/item/stock_parts/scanning_module/hexaphasic(src)
+		new /obj/item/stock_parts/manipulator/planck(src)
+		new /obj/item/stock_parts/micro_laser/quinthyper(src)
+		new /obj/item/stock_parts/matter_bin/holding(src)
+
 /obj/item/storage/part_replacer/cargo //used in a cargo crate
 
 /obj/item/storage/part_replacer/cargo/PopulateContents()
