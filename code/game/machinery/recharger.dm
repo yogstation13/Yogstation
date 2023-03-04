@@ -20,7 +20,8 @@
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
 		/obj/item/ammo_box/magazine/m308/laser,
-		/obj/item/modular_computer))
+		/obj/item/modular_computer,
+		/obj/item/melee/transforming/vib_blade))
 
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)

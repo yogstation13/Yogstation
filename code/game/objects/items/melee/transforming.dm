@@ -101,7 +101,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 0
-	force_on = 23
+	force_on = 18
 	throwforce = 0
 	throwforce_on = 10
 	wound_bonus = -10
@@ -118,11 +118,74 @@
 	light_on = FALSE
 	extend_sound = 'sound/weapons/batonextend.ogg'
 	retract_sound = 'sound/weapons/batonextend.ogg'
+	var/obj/item/stock_parts/cell/cell
+	var/preload = /obj/item/stock_parts/cell/high
+
+/obj/item/melee/transforming/vib_blade/empty
+	preload = null //printed ones don't come with cells
+
+/obj/item/melee/transforming/vib_blade/Initialize()
+	. = ..()
+	if(preload)
+		cell = new preload(src)
+
 
 /obj/item/melee/transforming/vib_blade/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
 	if(.)
-		set_light_on(active)
+		if(cell && cell.charge >= 1000)
+			set_light_on(active)
+
+/obj/item/melee/transforming/vib_blade/get_cell()
+	return cell
+
+/obj/item/melee/transforming/vib_blade/pre_attack(atom/A, mob/living/user, params)
+	if(!active)
+		return . = ..()
+	if(cell && cell.use(1000))
+		force = initial(force_on)
+		sharpness = initial(sharpness)
+		armour_penetration = initial(armour_penetration)
+		hitsound = initial(hitsound_on)
+		set_light_on(TRUE)
+		
+	else
+		force = 10
+		sharpness = SHARP_NONE
+		armour_penetration = 0
+		hitsound = "sound/effects/woodhit.ogg"
+		set_light_on(FALSE)
+	. = ..()
+
+/obj/item/melee/transforming/vib_blade/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/stock_parts/cell))
+		var/obj/item/stock_parts/cell/C = W
+		if(cell)
+			to_chat(user, span_notice("[src] already has a cell."))
+		else
+			if(C.maxcharge < 1000)
+				to_chat(user, span_notice("[src] requires a higher capacity cell."))
+				return
+			if(!user.transferItemToLoc(W, src))
+				return
+			cell = W
+			to_chat(user, span_notice("You install a cell in [src]."))
+			update_icon()
+	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		if(cell)
+			cell.update_icon()
+			cell.forceMove(get_turf(src))
+			cell = null
+			to_chat(user, span_notice("You remove the cell from [src]."))
+	else
+		return ..()
+
+/obj/item/melee/transforming/vib_blade/examine(mob/user)
+	. = ..()
+	if(cell)
+		. += span_notice("\The [src] is [round(cell.percent())]% charged.")
+	else
+		. += span_warning("\The [src] does not have a power source installed.")
 
 /obj/item/melee/transforming/vibroblade/suicide_act(mob/user)
 	if(!active)
