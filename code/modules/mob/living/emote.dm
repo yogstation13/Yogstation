@@ -196,6 +196,20 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
+/datum/emote/living/handsup
+	key = "handsup"
+	key_third_person = "raiseshands"
+	message	= "raises their hands in the air, they surrender!"
+
+/datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/l_arm/L = user.get_bodypart(BODY_ZONE_L_ARM)
+	(R?.set_disabled(TRUE)) 
+	(L?.set_disabled(TRUE)) 
+	addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+	addtimer(CALLBACK(L, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)		
+
 /datum/emote/living/jump
 	key = "jump"
 	key_third_person = "jumps"
