@@ -596,7 +596,7 @@
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/doubledown
-	var/obj/effect/temp_visual/decoy/tensecond/F //surely a combo wont go on for more than 10 seconds
+	var/obj/effect/temp_visual/decoy/tensecond/s_such_strength //surely a combo wont go on for more than 10 seconds
 
 /atom/movable/screen/alert/status_effect/doubledown
 	name = "Doubling Down"
@@ -608,9 +608,9 @@
 	if(.)
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			F = new(get_turf(H),H)
-			walk_towards(F, H)
-			animate(F, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
+			s_such_strength = new(get_turf(H),H)
+			walk_towards(s_such_strength, H)
+			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
 			H.ignore_slowdown(type)
 			H.physiology.brute_mod *= 0.35
 			H.physiology.burn_mod *= 0.35
@@ -622,13 +622,13 @@
 
 /datum/status_effect/doubledown/on_remove()
 	if(ishuman(owner))
-		qdel(F)
+		qdel(s_such_strength)
 		var/mob/living/carbon/human/H = owner
 		H.unignore_slowdown(type)
-		H.physiology.brute_mod *= 2.85
-		H.physiology.burn_mod *= 2.85
-		H.physiology.tox_mod *= 2.85
-		H.physiology.oxy_mod *= 2.85
-		H.physiology.clone_mod *= 2.85
-		H.physiology.stamina_mod *= 2.85
+		H.physiology.brute_mod /= 0.35
+		H.physiology.burn_mod /= 0.35
+		H.physiology.tox_mod /= 0.35
+		H.physiology.oxy_mod /= 0.35
+		H.physiology.clone_mod /= 0.35
+		H.physiology.stamina_mod /= 0.35
 	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end
