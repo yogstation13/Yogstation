@@ -253,7 +253,7 @@
 		var/amount = text2num(params["amount"])
 		if(amount == null)
 			amount = text2num(input(usr,
-				"Max 15. Buffer content will be split evenly.",
+				"Max 10. Buffer content will be split evenly.",
 				"How many to make?", 1))
 		amount = clamp(round(amount), 0, 10)
 		if (amount <= 0)
@@ -263,7 +263,7 @@
 		var/vol_each_text = params["volume"]
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
-			vol_each_max = min(15, vol_each_max)
+			vol_each_max = min(10, vol_each_max)
 		else if (item_type == "patch")
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")
