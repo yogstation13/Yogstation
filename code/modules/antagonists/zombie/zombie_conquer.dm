@@ -14,6 +14,8 @@
 
 	var/datum/action/innate/zombie/menu/ui_interact = new
 
+	var/datum/action/innate/zombie/bite/bite_power = new
+
 	//EVOLUTION
 	var/evolutionTime = 0 //When can we evolve?
 
@@ -88,6 +90,7 @@
 	set_antag_hud(current, hud_type)
 	owner.current.hud_used.infection_display.invisibility = 0
 	update_infection_hud()
+	bite_power.Grant(owner.current)
 
 /datum/antagonist/zombie/on_removal()
 	GLOB.zombies -= owner
@@ -97,6 +100,7 @@
 	set_antag_hud(owner.current, null)
 	owner.current.hud_used.infection_display.invisibility = initial(owner.current.hud_used.infection_display.invisibility)
 	owner.current.hud_used.infection_display.maptext = ""
+	bite_power.Remove(owner.current)
 	. = ..()
 
 /datum/antagonist/zombie/apply_innate_effects()
@@ -253,14 +257,6 @@
 	/////       Info Here Section       /////
 	/////////////////////////////////////////
 
-	data["info_gameplay"] = "As a frail piece of a [LAZYLEN(team.members) > 1 ? "fractured" : "former"] eldritch horror,\n\
-				you cannot fully control your targets without damaging their brains nor suck their souls.\n\
-				As a means to fully rebuild yourself you have decided to extract DNA from the cognizant beings resided on the station,\n\
-				using your adaptative form to produce spores to help you on your harvest.\n\
-				* Your objective as a zombie is to infect as many people as possible, using Alt-click to slowly infect an alive person, and rapidly infect a crit/sleep or dead one.\n\
-				* In the top right you are able to use your communicate ability to talk with your fellow monsters to coordinate hatching spots and possible class combinations.\n\
-				* After zombifying, you'll be equipped with the evolution button, which lets you choose beetween 5 classes, all focused on one type of playstyle.\n\
-				* These classes grant you different passives, unlocks new abilities to mutate and perks to your claws that can be explained further by examining them."
 	data["info_abilities"] = ""
 	return data
 
@@ -320,12 +316,8 @@
 
 /datum/team/zombie/proc/setup_objectives()
 
-	var/datum/objective/custom/obj = new()
-	obj.name = "Escape on the shuttle, while gathering as many infected as possible!"
-	obj.explanation_text = "Escape on the shuttle, while gathering as many infected as possible!"
-	obj.completed = TRUE
+	var/datum/objective/zombie/infect/obj = new()
 	objectives += obj
-
 
 /datum/team/zombie/proc/zombies_on_shuttle()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
@@ -335,13 +327,14 @@
 
 /datum/team/zombie/roundend_report()
 	var/list/parts = list()
-	if(zombies_on_shuttle())
-		parts += "<span class='greentext big'>BRAINS! The zombies have made it to CentCom!</span>"
+	var/datum/objective/zombie/infect/obj = LAZYFIND(objectives, /datum/objective/zombie/infect)
+	if(obj.completed)
+		parts += "<span class='greentext big'>The zombies were sucessful[zombies_on_shuttle() ? " and made it to CentCom" : span_redtext(" but didn't make it to CentCom")]! </span>"
 	else
 		parts += "<span class='redtext big'>Target destroyed. The crew has stopped the zombies!</span>"
 
 
-	if(members.len)
+	if(LAZYLEN(members))
 		parts += span_header("The zombies were:")
 		parts += printplayerlist(members)
 

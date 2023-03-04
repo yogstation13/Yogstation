@@ -232,6 +232,7 @@
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
 #define TRAIT_DODGE				"dodge" //projectile pierce
+#define TRAIT_NO_HEAL			"no_heal" //exactly what you think
 
 /// This person is crying
 #define TRAIT_CRYING "crying"

@@ -136,6 +136,11 @@
 	TRAIT_STUNIMMUNE, TRAIT_BADDNA, TRAIT_EASILY_WOUNDED, TRAIT_EASYDISMEMBER)
 	var/infection_regen = 0 //to set for special zombies
 
+/datum/species/zombie/infectious/gamemode/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style) //you don't wanna get too close
+	. = ..()
+	if(prob(30))
+		target.apply_status_effect(STATUS_EFFECT_ZOMBIE_ROT) //get fucked
+
 /datum/species/zombie/infectious/gamemode/spec_AltClickOn(atom/A, mob/living/carbon/human/H)
 	if(!IS_SPECIALINFECTED(H)) //only special ones
 		return
@@ -153,7 +158,10 @@
 		return 
 	to_chat(H, span_notice("You sucessfully infect [target]!"))
 	zombie_owner.advance_progress()
-	try_to_zombie_infect(target, /obj/item/organ/zombie_infection/gamemode)
+	var/obj/item/organ/zombie_infection/gamemode/le_organ
+	if(zombie_owner.has_mutation("instant_infection"))
+		le_organ = /obj/item/organ/zombie_infection/gamemode/instant
+	try_to_zombie_infect(target, le_organ)
 
 /datum/species/zombie/infectious/gamemode/on_species_gain(mob/living/carbon/human/H)
 	if(subtypesof(/datum/species/zombie/infectious/gamemode)) // we use general ones for general zombies

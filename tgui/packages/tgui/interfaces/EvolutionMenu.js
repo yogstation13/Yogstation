@@ -106,7 +106,6 @@ const GeneticManagement = (props, context) => {
 const ResearchMatrix = (props, context) => {
   const { data } = useBackend(context);
   const {
-    info_gameplay,
     info_abilities,
     abilities,
   } = data;
@@ -117,7 +116,14 @@ const ResearchMatrix = (props, context) => {
         title="Gameplay Info"
         width="300px" >
         <Section>
-          {info_gameplay}
+            {`As a frail piece of a former eldritch horror,<br />
+            you cannot fully control your targets without damaging their brains nor suck their souls.<br />
+            As a means to fully rebuild yourself you have decided to extract DNA from the cognizant beings resided on the station,<br />
+            using your adaptative form to produce spores to help you on your harvest.<br />
+            * Your objective as a zombie is to infect as many people as possible, using Alt-click to slowly infect an alive person, and rapidly infect a crit/sleep or dead one.<br />
+            * In the top right you are able to use your communicate ability to talk with your fellow monsters to coordinate hatching spots and possible class combinations.<br />
+            * After zombifying, you'll be equipped with the evolution button, which lets you choose beetween 5 classes, all focused on one type of playstyle.<br />
+            * These classes grant you different passives, unlocks new abilities to mutate and perks to your claws that can be explained further by examining them.`}
         </Section>
       </Collapsible>
       <Collapsible

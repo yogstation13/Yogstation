@@ -16,7 +16,6 @@
 	hud_type = /datum/hud/zombie
 	var/leaping = FALSE
 	var/full_control = FALSE
-	var/list/stored_items = list()
 	var/datum/antagonist/zombie/zombie_owner = null
 
 /mob/living/simple_animal/horror/brainy/Initialize()
@@ -25,8 +24,13 @@
 	RefreshAbilities(TRUE)
 	update_horror_hud()
 
-/mob/living/simple_animal/horror/brainy/update_horror_hud()
-	return zombie_owner?.update_infection_hud()
+/* /mob/living/simple_animal/horror/brainy/update_horror_hud() //i simply cannot get this to work
+	var/datum/hud/zombie/Z = hud_used
+	var/atom/movable/screen/counter = Z.infection_display
+	counter.invisibility = 0
+	if(zombie_owner.class_chosen)
+		counter.add_overlay("overlay_[zombie_owner.class_chosen]")
+	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:7px'><font color='#E6E6C6'>[round(zombie_owner.infection, 1)]</font></div>" */
 
 /mob/living/simple_animal/horror/brainy/update_icons()
 	icon_state = leaping ? initial(icon_state) + "_leap" : initial(icon_state)
@@ -177,8 +181,12 @@
 	button_icon_state = "takeover"
 	ability_type = ZOMBIE_INSTANT
 	cost = 100
+	var/doing_it = FALSE
 
 /datum/action/innate/zombie/default/takeover/Activate()
+	if(doing_it)
+		return
+	doing_it = TRUE
 	if(tgui_alert(owner, "Doing this will give you immediate full control but slowly rot your host, are you sure you wanna do this?", "Saving grace", list("Yes", "No")) != "Yes")
 		return
 	if(!isbrainy(owner))
@@ -230,33 +238,19 @@
 	var/obj/item/gun/brainy/linked_flesh_gun = null
 
 /datum/action/innate/zombie/morph/Activate()
-	var/mob/living/simple_animal/horror/brainy/brainy_owner = owner
+	var/mob/living/simple_animal/horror/brainy/brainy_owner = isbrainy(owner) ? owner : owner.has_horror_inside()
 	if(!ishuman(brainy_owner.victim))
 		return
-	var/mob/living/carbon/human/H = brainy_owner.victim
+	var/mob/living/carbon/human/H = isbrainy(owner) ? brainy_owner.victim : owner
+	var/list/available_guns = list(/obj/item/gun/ballistic/shotgun/automatic/combat, /obj/item/gun/energy/laser) //add here
+	var/list/radial_menu = list()
 	var/obj/item/weapon = H.get_active_held_item() || H.get_inactive_held_item()
-	if(!weapon && !brainy_owner.stored_items.len)
-		to_chat(owner, span_warning("You[brainy_owner.controlling ? " aren't" : "r host isn't"] holding a gun!"))
-		return
-	if(isgun(weapon))
-		to_chat(owner, span_warning("Gun sucessfully scanned."))
-		brainy_owner.stored_items |= weapon
-		if(brainy_owner.stored_items.len == 1)
-			return
-	var/obj/item/gun/selected_replicant = null
-	if(brainy_owner.stored_items.len == 1)
-		selected_replicant = locate() in brainy_owner.stored_items
-	else
-		var/list/radial_menu = list()
-		for(var/I in brainy_owner.stored_items)
-			var/obj/item/item_options = brainy_owner.stored_items[I]
-			radial_menu[I] = image(item_options.icon, src, item_options.icon_state)
-		selected_replicant = show_radial_menu(owner, owner, radial_menu, tooltips = TRUE)
-	if(!selected_replicant || !IsAvailable())
-		return
-	if(!isbrainy(owner))
-		return
-	if(!H.dropItemToGround(weapon))
+	var/obj/item/selected_replicant
+	for(var/I in available_guns)
+		var/obj/item/item_options = available_guns[I]
+		radial_menu[I] = image(initial(item_options.icon), src, initial(item_options.icon_state))
+	selected_replicant = show_radial_menu(owner, owner, radial_menu, tooltips = TRUE)
+	if(weapon && !H.dropItemToGround(weapon))
 		to_chat(owner, span_warning("[weapon] is stuck to your [brainy_owner.controlling ? "" : "hosts"] hand!"))
 		return
 	linked_flesh_gun = new /obj/item/gun/brainy(get_turf(owner))

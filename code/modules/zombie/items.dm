@@ -336,10 +336,12 @@
 
 	if(isclosedturf(target) || isobj(target))
 		var/acid_ratio_to_use = 250
+		var/strength = 300
 		var/datum/antagonist/zombie/zombie_owner = user.mind?.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie_owner.zombie_mutations["stronger_acid"])
-			acid_ratio_to_use = 300
-		if(!target.acid_act(acid_ratio_to_use, 150))
+			acid_ratio_to_use = 400
+			strength = 450
+		if(!target.acid_act(acid_ratio_to_use, strength))
 			to_chat(user, span_warning("You can't dissolve [target]."))
 			return
 		user.visible_message(span_danger("[user] smears acid onto [target], causing it to melt!"))
@@ -360,10 +362,6 @@
 
 /obj/item/gun/brainy //where we go crazy
 	name = "pulsating mass"
-	desc = "A zombie's claw is its primary tool, capable of infecting \
-		humans, butchering all other living things to \
-		sustain the zombie, smashing open airlock doors and opening \
-		child-safe caps on bottles." //// <------------------------
 	item_flags = DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	icon = 'icons/obj/zombie.dmi'
@@ -398,7 +396,7 @@
 	if(!target)
 		reset()
 		return
-	current_copy = new target.type(loc)
+	current_copy = new target(src)
 	fire_sound = target.fire_sound
 	vary_fire_sound = target.vary_fire_sound
 	fire_sound_volume = target.fire_sound_volume
@@ -430,7 +428,7 @@
 	if(!zombie_owner.manage_infection(5))
 		to_chat(user, span_warning("You don't have enough points to fire this!"))
 		return
-	return current_copy?.process_fire(target, user, TRUE, null, "", 0)
+	return current_copy?.process_fire(target, user)
 
 /obj/item/gun/brainy/process_chamber()
 	if(ismob(loc))

@@ -259,7 +259,7 @@
 	ability_type = ZOMBIE_INSTANT
 
 /datum/action/innate/zombie/choose_class/Activate()
-	var/list/zombie_classes = list(SMOKER, RUNNER, SPITTER, JUGGERNAUT, BRAINY)
+	var/list/zombie_classes = list(SMOKER, RUNNER, SPITTER, JUGGERNAUT) //brainy is currently broken
 	var/selected = null
 	var/list/radial_menu = list()
 	for(var/I in zombie_classes)
@@ -341,3 +341,16 @@
 	brain.throw_at(target, 3, 1, callback=gibspawner)	
 	. = ..()
 
+/datum/action/innate/zombie/bite //common zombie W
+	name = "Rotten Bite"
+	desc = "Charges your mouth with a powerful agent."
+	button_icon_state = "bite"
+	ability_type = ZOMBIE_FIREABLE
+
+/datum/action/innate/zombie/bite/IsTargetable(atom/target_atom)
+	return isliving(target_atom)
+
+/datum/action/innate/zombie/bite/UseFireableAbility()
+	. = ..()
+	var/mob/living/le_target = target
+	le_target.apply_status_effect(STATUS_EFFECT_ZOMBIE_ROT)

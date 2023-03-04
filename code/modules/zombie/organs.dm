@@ -107,6 +107,10 @@
 /obj/item/organ/zombie_infection/gamemode
 	damage_caused = 3
 
+/obj/item/organ/zombie_infection/gamemode/instant
+	revive_time_min = 2 SECONDS
+	revive_time_max = 4 SECONDS
+
 /obj/item/organ/zombie_infection/gamemode/zombify()
 	timer_id = null
 	owner.grab_ghost()

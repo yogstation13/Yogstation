@@ -72,10 +72,16 @@
 	name = "Explosive Glands"
 	id = "reduced_cost"
 	desc = "Gains the escape ability, which kills your current but makes you into a tumor carrying worm."
-	mutation_cost = 1
+	mutation_cost = 2
 	owner_class = SMOKER_BITFLAG | RUNNER_BITFLAG | SPITTER_BITFLAG | JUGGERNAUT_BITFLAG
 
 /datum/zombie_mutation/last_resort/apply_effects()
 	. = ..()
 	var/datum/action/innate/zombie/last_resort/L = new
 	L.Grant(zombie_owner.owner?.current)
+
+/datum/zombie_mutation/instant_infection
+	name = "Fungal Growth"
+	id = "instant_infection"
+	desc = "Infecting someone now instantly revives them."
+	mutation_cost = 4

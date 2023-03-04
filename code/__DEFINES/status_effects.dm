@@ -127,6 +127,8 @@
 
 #define STATUS_EFFECT_ZOMBIE_ACID /datum/status_effect/zombie_acid //spitter zombie ability acid effect
 
+#define STATUS_EFFECT_ZOMBIE_ROT /datum/status_effect/zombie_rot //prevents healing from happening + slowly damages you
+
 #define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
 /////////////

@@ -1263,6 +1263,58 @@
 	icon_state = "zombie_acid"
 	alerttooltipstyle = "cult"
 
+/datum/status_effect/zombie_rot
+	id = "rot"
+	status_type = STATUS_EFFECT_UNIQUE
+	tick_interval = -1
+	alert_type = /atom/movable/screen/alert/status_effect/zombie_rot
+	examine_text = span_warning("SUBJECTPRONOUN has black, dead tissue all over!")
+	tick_interval = 1 SECONDS
+	var/mutable_appearance/rot_overlay
+
+/datum/status_effect/zombie_rot/on_apply()
+	rot_overlay = mutable_appearance('icons/effects/effects.dmi', "rot", -UNDER_SUIT_LAYER)
+	owner.add_overlay(rot_overlay)
+	ADD_TRAIT(owner, TRAIT_NO_HEAL, ZOMBIE_TRAIT) //fucked up
+	return TRUE
+
+/datum/status_effect/zombie_rot/tick()
+	. = ..()
+	if(owner.stat == DEAD)
+		owner.visible_message("[owner]s skin completely falls off!")
+		qdel(src)
+	RegisterSignal(owner, COMSIG_PARENT_ATTACKBY, .proc/check_items)
+	owner.adjustBruteLoss(2)
+
+/datum/status_effect/zombie_rot/proc/check_items(datum/source, obj/item/the_item, mob/living/user)
+	if(!the_item.get_sharpness() == SHARP_EDGED)
+		to_chat(owner, span_warning("You need a sharper item!"))
+		return
+	if(!do_after(user, 7 SECONDS, owner))
+		if(user == owner)
+			to_chat(owner, span_warning("You lose focus and cut yourself!"))
+		else
+			to_chat(user, span_warning("You lose focus and cut [owner]s skin badly!"))
+		owner.adjustBruteLoss(10)
+		return
+	if(user == owner)
+		to_chat(owner, span_notice("You cut the rot off yourself!"))
+	else
+		to_chat(user, span_notice("You cut the rot off of [owner]s body!"))
+	qdel(src)
+
+/datum/status_effect/zombie_rot/Destroy()
+	UnregisterSignal(owner, COMSIG_PARENT_ATTACKBY)
+	QDEL_NULL(rot_overlay)
+	REMOVE_TRAIT(owner, TRAIT_NO_HEAL, ZOMBIE_TRAIT)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/zombie_rot
+	name = "Rotting"
+	desc = "Your body is starting to necrose, you'll need to cut the rotten parts off with something sharp!"
+	icon_state = "rot"
+	alerttooltipstyle = "cult"
+
 /datum/status_effect/exhumed
 	id = "exhume"
 	tick_interval = -1

@@ -151,6 +151,8 @@
 	return bruteloss
 
 /mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	bruteloss = clamp((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
@@ -162,6 +164,8 @@
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
@@ -170,6 +174,8 @@
 	return amount
 
 /mob/living/proc/setOxyLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(status_flags & GODMODE)
 		return 0
 	oxyloss = amount
@@ -181,6 +187,8 @@
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
@@ -189,6 +197,8 @@
 	return amount
 
 /mob/living/proc/setToxLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	toxloss = amount
@@ -200,6 +210,8 @@
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	fireloss = clamp((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
@@ -211,6 +223,8 @@
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	cloneloss = clamp((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
@@ -219,6 +233,8 @@
 	return amount
 
 /mob/living/proc/setCloneLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEAL))
+		return FALSE
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	cloneloss = amount
