@@ -90,7 +90,8 @@
 	set_antag_hud(current, hud_type)
 	owner.current.hud_used.infection_display.invisibility = 0
 	update_infection_hud()
-	bite_power.Grant(owner.current)
+	if(!IS_SPECIALINFECTED(owner.current))
+		bite_power.Grant(owner.current)
 
 /datum/antagonist/zombie/on_removal()
 	GLOB.zombies -= owner
@@ -100,7 +101,8 @@
 	set_antag_hud(owner.current, null)
 	owner.current.hud_used.infection_display.invisibility = initial(owner.current.hud_used.infection_display.invisibility)
 	owner.current.hud_used.infection_display.maptext = ""
-	bite_power.Remove(owner.current)
+	if(!IS_SPECIALINFECTED(owner.current))
+		bite_power.Remove(owner.current)
 	. = ..()
 
 /datum/antagonist/zombie/apply_innate_effects()
