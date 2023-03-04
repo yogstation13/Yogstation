@@ -1265,6 +1265,9 @@
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
 
+/mob/living/carbon/human/species/lizard/ashwalker/shaman
+	race = /datum/species/lizard/ashwalker/shaman
+
 /mob/living/carbon/human/species/lizard/draconid
 	race = /datum/species/lizard/draconid
 
