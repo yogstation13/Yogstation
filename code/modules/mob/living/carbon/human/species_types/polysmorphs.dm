@@ -16,7 +16,7 @@
 	coldmod = 0.75
 	heatmod = 1.5
 	acidmod = 0.2 //Their blood is literally acid
-  	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
+	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
 	speedmod = -0.1 //apex predator humanoid hybrid
 	punchdamagehigh = 11 //slightly better high end of damage
 	punchstunthreshold = 11 //technically slightly worse stunchance
