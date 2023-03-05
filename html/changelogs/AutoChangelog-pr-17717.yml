@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "Adds several new mech-mounted melee weapons!"
+  - tweak: "Lots of tweaks and changes in the background code of melee weapons to make them a bit more modifiable"
+  - tweak: "MOST melee weapon damage vs mechs is reduced for the purpose of extending cool mech fights"
