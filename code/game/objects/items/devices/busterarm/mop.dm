@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/mop
 	name = "Mop the Floor"
 	desc = "Launch forward and drag whoever's in front of you on the ground. The \
@@ -42,21 +42,19 @@
 			animate(F, alpha = 0, color = "#d40a0a", time = 0.5 SECONDS) // Cool after-image
 			for(var/mob/living/L in T.contents) // Take all mobs we encounter with us
 				if(L != B) // Don't want to mop ourselves haha
+					B.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 					mopped |= L // Add them to the list of things we are mopping
 					L.add_fingerprint(B, FALSE)
 					var/turf/Q = get_step(get_turf(B), B.dir) // Get the turf ahead
 					to_chat(L, span_userdanger("[B] grinds you against the ground!"))
-					if(L.stat == CONSCIOUS && L.resting == FALSE)
-						animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+					footsies(L)
 					if(istype(T, /turf/open/space)) // If we're about to hit space, throw the first mob into space
 						var/atom/throw_target = get_edge_target_turf(L, B.dir)
-						if(L.stat == CONSCIOUS && L.resting == FALSE)
-							animate(L, transform = null, time = 0.5 SECONDS, loop = 0)
+						wakeup(L)
 						L.throw_at(throw_target, 2, 4, B, 3) // Yeet
 						return // Then stop here
 					if(Q.density) // If we're about to hit a wall
-						if(L.stat == CONSCIOUS && L.resting == FALSE)
-							animate(L, transform = null, time = 0.5 SECONDS, loop = 0)
+						wakeup(L)
 						grab(B, L, crashdam) // Apply damage to mob
 						B.visible_message(span_warning("[B] rams [L] into [Q]!"))
 						to_chat(L, span_userdanger("[B] rams you into [Q]!"))
@@ -64,8 +62,7 @@
 						L.Immobilize(1.5 SECONDS)
 						return // Then stop here
 					for(var/obj/D in Q.contents) // If we're about to hit a dense object like a table or window
-						if(L.stat == CONSCIOUS && L.resting == FALSE)
-							animate(L, transform = null, time = 0.5 SECONDS, loop = 0)
+						wakeup(L)
 						if(D.density == TRUE)
 							grab(B, L, crashdam) // Apply damage to mob
 							B.visible_message(span_warning("[B] rams [L] into [D]!"))
@@ -83,8 +80,7 @@
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(B, B.dir) // Move our goalpost forward one
 	for(var/mob/living/C in mopped) // Return everyone to standing if they should be
-		if(C.stat == CONSCIOUS && C.resting == FALSE)
-			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
+		wakeup(C)
 
 /datum/action/cooldown/buster/mop/l/IsAvailable()
 	. = ..()
