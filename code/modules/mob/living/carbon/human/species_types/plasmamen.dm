@@ -197,29 +197,39 @@
 	return randname
 
 /datum/species/plasmaman/get_species_description()
-	return /*"Found on the Icemoon of Freyja, plasmamen consist of colonial \
-		fungal organisms which together form a sentient being. In human space, \
-		they're usually attached to skeletons to afford a human touch."*/
+	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \
+		discovered, even though they're mainly former humans. While horrifying, most manage to return to their previous position in society before their transformation."
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
-		"TBD",/*
-		"A confusing species, plasmamen are truly \"a fungus among us\". \
-		What appears to be a singular being is actually a colony of millions of organisms \
-		surrounding a found (or provided) skeletal structure.",
+		"In 2384 on the NVS Grey Voyager, tests were conducted on a new element found by Nanotrasen: baroxuldium, \
+		also called plasma. During one test, a catastrophic accident caused the entire ship's inside to be \
+		incinerated by a plasma fire, killing the whole crew.",
 
-		"Originally discovered by NT when a researcher \
-		fell into an open tank of liquid plasma, the previously unnoticed fungal colony overtook the body creating \
-		the first \"true\" plasmaman. The process has since been streamlined via generous donations of convict corpses and plasmamen \
-		have been deployed en masse throughout NT to bolster the workforce.",
+		"To the surprise of the rescue party, inside the ship's plasma-soaked shell were the first ever non-human, \
+		sapient beings encountered by humanity: plasmamen. Once rescued, they were kept in cells with an air composed \
+		exclusively of plasma, as it was quickly discovered that their body was unable to \"live\" without a steady supply \
+		of it and even igniting when exposed to oxygen. After the development of the first envirosuits, the plasmamen were \
+		able to leave their confinement to return working for Nanotrasen.",
 
-		"New to the galactic stage, plasmamen are a blank slate. \
-		Their appearance, generally regarded as \"ghoulish\", inspires a lot of apprehension in their crewmates. \
-		It might be the whole \"flammable purple skeleton\" thing.",
+		"While subject to discrimination from others due to their morbid appearance, most plasmamen are former \
+		humans and, as such, tend to get better treatment than most other non-humans. Notably, all plasmamen keep \
+		their SIC citizenship and legal rights as humans, even though artificial intelligence refuses to \
+		acknowledge them as such. There is no central authority for plasmamen. They often pledge the same allegiance \
+		of their previous life if they retain national impulses, which is rare. They are noted to form communities \
+		with other plasmamen to better understand their new existence, often called \"Lazarus groups\"",
 
-		"The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. \
-		Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.",
-	*/)
+		"Plasmamen remember only fragments of their own lives, but they are curiously blurred with \
+		memories of those who died in the same fire as them. This often creates confusion about the past \
+		self which leads them to sometimes seek new beginnings under a new name. They tend to be somewhat distant or \
+		apathetic, working tirelessly toward whatever goal they have. Furthermore, they have no physical or \
+		psychological needs for food, sleep, a home, or a social relationship, though they can sometimes feel \
+		a desire for them.",
+
+		"With plasma usage spreading, more and more accidents lead to the creations of more plasmamen. \
+		As Nanotrasen is the leader in the field of plasma research, most plasmamen are among their ranks, \
+		but they can be rarely found in other parts of the SIC.",
+	)
 
 /datum/species/plasmaman/create_pref_unique_perks()
 	var/list/to_add = list()

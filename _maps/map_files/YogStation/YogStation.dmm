@@ -17512,6 +17512,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"cQo" = (
+/obj/item/flashlight/pen{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/item/laser_pointer{
+	pixel_y = 9
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "cQr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -66072,24 +66087,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"wFq" = (
-/obj/item/assembly/flash{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/item/flashlight/pen{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/obj/item/laser_pointer{
-	pixel_y = 9
-	},
-/obj/item/assembly/flash{
-	pixel_x = 7
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/medical/psych)
 "wFr" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -67531,6 +67528,13 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"xou" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/psych,
+/turf/open/floor/wood,
+/area/medical/psych)
 "xoz" = (
 /obj/machinery/space_heater,
 /obj/effect/turf_decal/stripes/corner{
@@ -68324,27 +68328,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"xFh" = (
-/obj/structure/closet/secure_closet{
-	name = "psychiatrist locker";
-	req_access_txt = "5"
-	},
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/obj/item/storage/pill_bottle/happiness,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/happy{
-	name = "happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/lsd{
-	name = "very happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/psicodine,
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "xFp" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/disposalpipe/segment,
@@ -108400,7 +108383,7 @@ jaT
 vbD
 vFJ
 jdO
-wFq
+cQo
 hpd
 hjl
 jxu
@@ -108657,7 +108640,7 @@ jdO
 jdO
 jdO
 jdO
-xFh
+xou
 fyq
 vRr
 jxu

@@ -11,7 +11,7 @@
 	var/apply_type = INGEST
 	var/apply_method = "chew"
 	var/rename_with_volume = FALSE
-	var/self_delay = 1.5 SECONDS
+	var/self_delay = 1 SECONDS
 	var/dissolvable = TRUE
 
 /obj/item/reagent_containers/gummy/Initialize()
@@ -179,7 +179,7 @@
 	color = null
 
 /obj/item/reagent_containers/gummy/floorbear/Initialize()
-	list_reagents = list(get_random_reagent_id() = 15)
+	list_reagents = list(get_random_reagent_id() = 30)
 	. = ..()
 	name = pick(names2)
 	if(prob(20))
