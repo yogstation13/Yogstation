@@ -53,11 +53,10 @@
 /datum/eldritch_knowledge/ashen_eyes
 	name = "Eldritch Medallion"
 	gain_text = "The City Guard wore these amulets when Amgala was beset by the Sanguine Horde. So too shall you be able to see the blood that flows in others."
-	desc = "Allows you to craft an eldritch amulet by transmutating eyes with a glass shard. When worn, the amulet will give you thermal vision."
+	desc = "Allows you to craft an eldritch amulet by transmutating a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
 	cost = 1
 	tier = TIER_1
-
 
 /datum/eldritch_knowledge/ash_mark
 	name = "Touch of the Spark"
@@ -118,7 +117,7 @@
 
 /datum/eldritch_knowledge/flame_birth
 	name = "Flame Birth"
-	gain_text = "The Nightwatcher was a man of principles, and yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
+	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
 	desc = "A healing spell that saps the life from those on fire nearby, killing any who are in a critical condition."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/fiery_rebirth)
@@ -135,8 +134,8 @@
 
 /datum/eldritch_knowledge/ash_final
 	name = "Amgala's Ruin"
-	gain_text = "Ash feeds the soil, and fire consumes the plants that grow thereafter. On and on and on. The Nightbringer consumed the sparks of a whole city, yet you will rise with only three: the first step of many to claim his crown."
-	desc = "Transmute three corpses to ascend as an Ashbringer. You will become immune to enviromental hazards and become sturdier to damage. You will additionally gain a spell that creates a massive burst of fire and another spell that creates a cloak of flames around you."
+	gain_text = "Ash feeds the soil, and fire consumes the plants that grow thereafter. On and on and on. The Nightwatcher consumed the sparks of a whole city, yet you will rise with only three: the first step of many to claim his crown."
+	desc = "Transmute three corpses to ascend as an Ashbringer. You will become immune to enviromental hazards and grow more resistant to damage. You will additionally gain a spell that creates a massive burst of fire and another spell that creates a cloak of flames around you."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/ash_final)
 	route = PATH_ASH

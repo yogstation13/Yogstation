@@ -308,7 +308,10 @@
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
+								Still, you gave the things of other worlds their tithes. You step into Centcom with a stern sense of focus. Who knows what \
+								you will do next? You feel as if your every step is watched, as one who gave wholly to the Mansus without taking anything in \
+								return. Perhaps you will, someday. But not today. Today, you celebrate a masterful performance."
 		message_color = "#008000"
 
 	else if(cultiewin && alive)
@@ -320,7 +323,10 @@
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
+								Still, you gave the things of other worlds their tithes. Though you walk the halls of the station alone, the book still \
+								whispers to you in your pocket. You have refused to open it. Perhaps you will some day. Until then, you are content to \
+								derive favors owed from the entities beyond. They are watching you. And, some day, you will ask for their help. But not today."
 		message_color = "#008000"
 
 	else if(cultiewin && !alive)
@@ -332,7 +338,10 @@
 		else if(is_rust)
 			flavor_message += 	"Rust"
 		else //If you SOMEHOW complete your objectives without doing ANY research
-			flavor_message += 	"Unpledged"
+			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
+								Still, you gave the things of other worlds their tithes. You gave your life in the process, but there is a wicked satisfaction \
+								that overtakes you. You have proved yourself wiser, more cunning than the rest who fail with the aid of their boons. \
+								Your body and soul can rest knowing the humiliation you have cast upon countless students. Yours will be the last laugh."
 		message_color = "#517fff"
 
 	else if(escaped)
