@@ -17,7 +17,7 @@
 		meowcount--
 	return ..()
 
-/datum/reagent/consumable/red_queen/on_mob_life(mob/living/carbon/C)
+/datum/reagent/consumable/catsip/on_mob_life(mob/living/carbon/C)
 	if(isfelinid(C))
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	return ..()
