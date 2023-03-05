@@ -26,7 +26,7 @@
 
 		if(iscarbon(host_mob))
 			var/mob/living/carbon/carbon_occupant = host_mob
-			if(!(NONANITES in carbon_occupant.dna.species.species_traits))
+			if((NONANITES in carbon_occupant.dna.species.species_traits))
 				return COMPONENT_INCOMPATIBLE
 		else
 			if(!(issilicon(host_mob))) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
