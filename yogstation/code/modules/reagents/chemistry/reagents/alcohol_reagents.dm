@@ -15,11 +15,8 @@
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
-	return ..()
-
-/datum/reagent/consumable/catsip/on_mob_life(mob/living/carbon/C)
-	if(iscatperson(C))
-		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
+	if(iscatperson(M))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
