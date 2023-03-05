@@ -58,7 +58,22 @@
 
 /datum/species/polysmorph/get_species_lore()
 	return list(
-		""//"TODO: This is polysmorph lore"
+		"The final failures in the attempts at creating xenomorphs hybrids to access the alien hivemind, polysmorphs were spawned \
+		in now-abandoned planetary and space colonies where they were studied. After it was discovered that the hybrids had their \
+		link to the hivemind cut, the project that birthed them was abandoned and Nanotrasen stepped in to employ those that \
+		remained onto their space stations, using the opportunity to give them extremely reduced pay and benefits for massive profits.",
+
+		"The impending doom of the polysmorph species interests few people, as most individuals who never have been on a Nanotrasen \
+		space station have probably never seen one before and their eccentricities give them trouble integrating into society. \
+		The SIC only accepted the release of the polysmorphs outside their colony under the promise that Nanotrasen would take \
+		full responsibility for the hybrids' actions.",
+
+		"While deprived of the link to the hivemind, polysmorphs still retain an instinctual tendency toward certain roles \
+		depending on their dome. Drones tend to be workers, sentinels lean toward military and law enforcement, praetorians \
+		generally take care of logistics and management, and queens are drawn to scientific research.",
+
+		"As of today, the polysmorphs are scattered across the stars, working along other species. Those who couldn't \
+		adapt have been relegated to menial jobs in remote locations and their situation is mostly unknown.",
 	)
 
 /datum/species/polysmorph/create_pref_unique_perks()
