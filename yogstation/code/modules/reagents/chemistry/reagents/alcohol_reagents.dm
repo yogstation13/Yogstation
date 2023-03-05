@@ -15,7 +15,7 @@
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
-	if(is_felinid(M))
+	if(isfelinid(M))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	return ..()
 
