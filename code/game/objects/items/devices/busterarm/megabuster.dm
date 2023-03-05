@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/megabuster
 	name = "Mega Buster"
 	// Literal essay. It just punches shit really hard.
@@ -114,7 +114,7 @@
 		return
 	if(target == user)
 		return
-	
+
 	// Punch items, if you wanted to do that for some reason. Can't destroy brains though.
 	if(isitem(target))
 		var/obj/I = target
@@ -123,6 +123,7 @@
 				to_chat(user, span_warning("You probably shouldn't attack something on your person."))
 			return
 		if(!istype(I, /obj/item/organ/brain) && !istype(I, /obj/item/clothing/mask/cigarette))
+			user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 			I.take_damage(objdam)
 			user.visible_message(span_warning("[user] pulverizes [I]!"))
 		return
@@ -130,7 +131,9 @@
 	// Punch open turf (does nothing)
 	if(isopenturf(target))
 		return
-
+	if(iseffect(target))
+		return
+	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	playsound(L, 'sound/effects/gravhit.ogg', 60, 1)
 	if(iswallturf(target)) // Destroys a wall
 		var/turf/closed/wall/W = target
@@ -174,14 +177,17 @@
 				else // If you target a limb and it's fully damaged then lop it off
 					var/atom/throw_target = get_edge_target_turf(L, direction)
 					to_chat(L, span_userdanger("[user] blows [limb_to_hit] off with inhuman force!"))
-					user.visible_message(span_warning("[user] punches [L]'s [limb_to_hit] clean off!"))
+					user.visible_message(span_warning("[user] punches [limb_to_hit] clean off!"))
 					limb_to_hit.drop_limb()
 					limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
 					L.Paralyze(3 SECONDS)
 					return // Stop here, don't bother throwing
 		L.SpinAnimation(0.5 SECONDS, 2)
 		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
-		user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+		if(!istype(limb_to_hit, /obj/item/bodypart/head))
+			user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+		else
+			user.visible_message(span_warning("[user] smashes [user.p_their()] fist upwards into [L]'s jaw, sending [L.p_them()] flying!"))//slicer's request
 		knockedback |= L
 	// Shake cameras Woosh
 	for(var/mob/M in view(7, user))

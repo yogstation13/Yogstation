@@ -1,0 +1,5 @@
+author: "jachlompsky"
+delete-after: true 
+changes: 
+  - rscadd: "Added chameleon envirosuit and envirohelm."
+  - tweak: "Chameleon envirosuit and helm in chamkits for plasmamen."
