@@ -15,11 +15,11 @@
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
+	if(is_felinid(M))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
-	if(is_felinid(H))
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	if(!M.dna.species.is_wagging_tail())
 		M.emote("wag")
 	return ..()
