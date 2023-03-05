@@ -1,3 +1,5 @@
+#define LIZARD_SLOWDOWN "coldlizard" //define used for the lizard speedboost
+
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
 	name = "Lizardperson"
@@ -6,12 +8,14 @@
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
+	inherent_traits = list(TRAIT_COLDBLOODED)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
-	coldmod = 1.75 //Desert-born race
-	heatmod = 0.75 //Desert-born race
+	coldmod = 0.67 //used to being cold, just doesn't like it much
+	heatmod = 0.67 //greatly appreciate heat, just not too much
+	action_speed_coefficient = 1.05 //claws aren't as dextrous as hands
 	payday_modifier = 0.5 //Negatively viewed by NT
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
@@ -45,7 +49,6 @@
 
 	return randname
 
-
 /datum/species/lizard/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	..()
 	last_heat_stunmod = heat_stunmod  //Saves previous mod
@@ -65,6 +68,21 @@
 	if(heat_stun_mult != 1) 		//If they're the same 1.1^0 is 1, so no change, if we go up we divide by 1.1	
 		stunmod *= heat_stun_mult 	//however many times, and if it goes down we multiply by 1.1
 						//This gets us an effective stunmod of 0.91, 1, 1.1, 1.21, 1.33, based on temp
+
+/datum/species/lizard/movement_delay(mob/living/carbon/human/H)//to handle the slowdown based on cold
+	. = ..()
+	if(heat_stunmod && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
+		H.add_movespeed_modifier(LIZARD_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown= -heat_stunmod/3, blacklisted_movetypes=FLOATING)//between a 0.33 speedup and a 1 slowdown
+	else if(H.has_movespeed_modifier(LIZARD_SLOWDOWN))
+		H.remove_movespeed_modifier(LIZARD_SLOWDOWN)
+
+/datum/species/lizard/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	C.remove_movespeed_modifier(LIZARD_SLOWDOWN)	
+
+/datum/species/lizard/spec_fully_heal(mob/living/carbon/human/H)
+	. = ..()
+	H.remove_movespeed_modifier(LIZARD_SLOWDOWN)
 
 /datum/species/lizard/spec_life(mob/living/carbon/human/H)
 	. = ..()
@@ -150,9 +168,7 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-empty",
 		SPECIES_PERK_NAME = "Cold-blooded",
-		SPECIES_PERK_DESC = "Lizardpeople have higher tolerance for hot temperatures, but lower \
-			tolerance for cold temperatures. Additionally, they cannot self-regulate their body temperature - \
-			they are as cold or as warm as the environment around them is. Stay warm!",
+		SPECIES_PERK_DESC = "Lizardpeople have difficulty regulating their body temperature, they're not quite as affected by the temperature itself though.",
 	))
 
 	return to_add
@@ -248,7 +264,7 @@
 	limbs_id = "lizard"
 	fixed_mut_color = "A02720" 	//Deep red
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
-	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire
+	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire, not cold blooded because they generate fire inside themselves or something
 	burnmod = 0.8
 	brutemod = 0.9 //something something dragon scales
 	punchdamagelow = 3
@@ -267,3 +283,5 @@
 
 /datum/species/lizard/has_toes()
 	return TRUE
+
+#undef LIZARD_SLOWDOWN
