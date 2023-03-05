@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Toxolysis passive healing is significantly reduced unless toxins are present in the bloodstream."
