@@ -18,7 +18,7 @@
 	return ..()
 
 /datum/reagent/consumable/catsip/on_mob_life(mob/living/carbon/C)
-	if(isfelinid(C))
+	if(iscatperson(C))
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1*REM)
 	return ..()
 
