@@ -35,7 +35,6 @@
 	var/socks = "Nude" //Which socks the player wants
 	var/backbag = DBACKPACK		//Which backpack type the player has chosen.
 	var/jumpsuit_style = PREF_SUIT //suit/skirt
-	var/id_in_pda = FALSE //Whether the player wants their ID to start in their PDA
 
 	//Equipment slots
 	var/obj/item/clothing/wear_suit = null

@@ -65,7 +65,9 @@
 	for(var/mob/living/carbon/C in GLOB.carbon_list)
 		if(blood_samples.Find(C.dna.unique_enzymes) && !possible.Find(C))
 			possible |= C
-		if(scents[md5(C.dna.unique_identity)] && !possible.Find(C))
+		if(IS_BLOODSUCKER(C)) // Bloodsuckers have no scent, and finding their lair with this during Sol would be OP
+			continue
+		if(scents[md5(C.dna.uni_identity)] && !possible.Find(C))
 			var/datum/job/J = SSjob.GetJob(C.job)
 			if(!J)
 				J = new()
@@ -136,6 +138,8 @@
 		If these objects or items have been used by humanoid beings and still have their scent, you will see the option to track one of those scents.\n\
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that scent.\n\
 		WARNING: it will be difficult to see around you while following a scent trail due to the the color being drained from all your vision except for the trail and your target."
+
+	cooldown = 60 SECONDS
 
 	follow = new /datum/action/bloodsucker/olfaction/follow_scent/lesser()
 
@@ -265,3 +269,5 @@
 	button_icon_state = "nose"
 
 	status_effect = STATUS_EFFECT_SCENT_HUNTER
+
+	cooldown = 60 SECONDS

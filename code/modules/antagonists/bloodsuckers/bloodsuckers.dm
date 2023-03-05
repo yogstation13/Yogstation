@@ -61,6 +61,8 @@
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 	var/frenzy_blood_drank = 0
+	var/task_heart_required = 0
+	var/task_blood_required = 0
 	var/task_blood_drank = 0
 	var/frenzies = 0
 
@@ -89,6 +91,7 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
+		TRAIT_RESISTDAMAGESLOWDOWN,
 	)
 
 /mob/living/proc/explain_powers()
@@ -519,7 +522,7 @@
 			if(power.active)
 				power.DeactivatePower()
 
-/datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE)
+/datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE, ask = TRUE)
 	set waitfor = FALSE
 
 	if(!owner || !owner.current || !owner.current.client || (spend_rank && bloodsucker_level_unspent <= 0.5))
@@ -534,7 +537,7 @@
 		to_chat(owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = input("You have the opportunity to grow more ancient, increasing the level of all your powers by 1. Select a power to advance your Rank.", "Your Blood Thickens...") in options
+		var/choice = tgui_input_list(owner.current, "You have the opportunity to grow more ancient, increasing the level of all your powers by 1. Select a power to advance your Rank.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(spend_rank && bloodsucker_level_unspent <= 0)
 			return
@@ -586,6 +589,11 @@
 	* Your existing powers have all ranked up as well!"))
 	update_hud(owner.current)
 	owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
+	if(bloodsucker_level_unspent && spend_rank)
+		if(ask)
+			if(tgui_alert(owner.current, "You have leftover ranks, do you want to spend them all?", "Time Management Team", list("Yes", "No")) == "No")
+				return
+		SpendRank(ask = FALSE)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -836,7 +844,7 @@
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
 		user.set_species(/datum/species/human)
-		user.apply_pref_name("human", user.client)
+		user.apply_pref_name(/datum/preference/name/real_name, user.client)
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
@@ -934,3 +942,10 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	vamphud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
+
+/datum/antagonist/bloodsucker/get_preview_icon()
+	var/icon/bloodsucker_icon = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+
+	bloodsucker_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return bloodsucker_icon

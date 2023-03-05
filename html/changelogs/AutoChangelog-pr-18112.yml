@@ -1,0 +1,10 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "polysmorph no longer have bones (this is a good thing)"
+  - tweak: "polysmorph do tasks slower"
+  - tweak: "polysmorph move slightly faster"
+  - tweak: "polysmorph have less innate wound armour"
+  - tweak: "polysmorph have 0.9 brutemod from 1"
+  - tweak: "polysmorph have 1.35 burnmod from 1.25"
+  - tweak: "polysmorph have a high-end punch damage of 11 from 10"

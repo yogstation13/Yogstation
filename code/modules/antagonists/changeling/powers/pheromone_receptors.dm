@@ -17,11 +17,11 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!receptors_active)
 		to_chat(user, span_warning("We search for the scent of any nearby changelings."))
-		changeling.chem_recharge_slowdown += 1
+		changeling.chem_recharge_slowdown += 0.5
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
 		to_chat(user, span_notice("We stop searching for now."))
-		changeling.chem_recharge_slowdown -= 1
+		changeling.chem_recharge_slowdown -= 0.5
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 
 	receptors_active = !receptors_active

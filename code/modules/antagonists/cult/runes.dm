@@ -16,7 +16,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 /obj/effect/rune
 	name = "rune"
 	var/cultist_name = "basic rune"
-	desc = "An odd collection of symbols drawn in what seems to be blood."
+	desc = "A rune vandalizing the station."
 	var/cultist_desc = "a basic rune with no function." //This is shown to cultists who examine the rune in order to determine its true purpose.
 	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
@@ -89,6 +89,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(.)
 		return
 	if(!iscultist(user))
+		for(var/obj/item/nullrod/antimagic in user.get_equipped_items())
+			user.say("BEGONE FOUL MAGIKS!!", forced = "nullrod")
+			to_chat(user, span_danger("You disrupt the magic of [src] with [antimagic]."))
+			qdel(src)
+			return
 		to_chat(user, span_warning("You aren't able to understand the words of [src]."))
 		return
 	if(istype(user, /mob/living/simple_animal/shade))

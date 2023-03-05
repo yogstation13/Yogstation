@@ -141,6 +141,16 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/escaped_alive_bonus
+	config_entry_value = 1.5
+	integer = FALSE
+	min_val = 1
+
+/datum/config_entry/number/stayed_alive_bonus
+	config_entry_value = 1.5
+	integer = FALSE
+	min_val = 1
+
 /datum/config_entry/number/midround_antag_time_check	// How late (in minutes you want the midround antag system to stay on, setting this to 0 will disable the system)
 	config_entry_value = 60
 	integer = FALSE
@@ -170,8 +180,6 @@
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
-
-/datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
 
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 

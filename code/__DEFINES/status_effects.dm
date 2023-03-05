@@ -48,6 +48,8 @@
 
 #define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
 
+#define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -124,6 +126,8 @@
 #define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
 
 #define STATUS_EFFECT_BRAZIL_PENANCE /datum/status_effect/brazil_penance //controls heretic sacrifice
+
+#define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
 /////////////
 // NEUTRAL //

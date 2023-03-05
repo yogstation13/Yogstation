@@ -246,7 +246,7 @@
 	..()
 	to_chat(user,span_warning("You suddenly feel very solid!"))
 	user.Stun(40, ignore_canstun = TRUE)
-	user.petrify(30)
+	user.petrify(60)
 
 /obj/item/book/granter/spell/knock
 	spell = /obj/effect/proc_holder/spell/aoe_turf/knock
@@ -585,3 +585,22 @@
 	. = ..()
 	user.AddComponent(/datum/component/mech_pilot, 0.8)
 	onlearned(user)
+
+/obj/item/book/granter/martial/psychotic_brawling
+	martial = /datum/martial_art/psychotic_brawling
+	name = "blood-stained paper"
+	martialname = "psychotic brawling"
+	desc = "A piece of blood-stained paper that emanates pure rage. Just holding it makes you want to punch someone."
+	greet = "<span class='boldannounce'>You have learned the tried and true art of Psychotic Brawling. \
+			You will be unable to disarm or grab, but your punches have a chance to do serious damage.</span>"
+	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon_state = "paper_talisman"
+	remarks = list("Just keep punching...", "Let go of your inhibitions...", "Methamphetamine...", "Embrace Space Florida...", "Become too angry to die...")
+
+/obj/item/book/granter/martial/psychotic_brawling/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		to_chat(user, span_notice("All of the blood on the paper seems to have vanished."))
+		user.dropItemToGround(src)
+		qdel(src)
+		user.put_in_hands(new /obj/item/paper)

@@ -59,4 +59,4 @@
 
 /obj/item/projectile/bullet/c10mm/emp/on_hit(atom/target, blocked = FALSE)
 	..()
-	empulse(target, 0, 1) //Heavy EMP on target, light EMP in tiles around
+	empulse(target, 0.5, 1) //Heavy EMP on target, light EMP in tiles around

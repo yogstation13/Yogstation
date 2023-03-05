@@ -113,7 +113,7 @@
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		if(F.on)
+		if(F.light_on || F.on)
 			if(cold)
 				if(is_type_in_list(F, blacklisted_lights))
 					F.visible_message(span_warning("The sheer cold shatters [F]!"))
@@ -122,13 +122,14 @@
 					return
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message(span_danger("[I] dims slightly before scattering the shadows around it."))
-				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
+				return F.light_power //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
 			F.on = FALSE
+			F.set_light_on(FALSE)
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))
 		var/obj/item/pda/P = I
-		P.fon = FALSE
-	I.set_light(0)
+		P.set_light_on(FALSE)
+	I.set_light_on(FALSE)
 	return I.luminosity
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
@@ -159,7 +160,7 @@
 		return
 	to_chat(user, span_shadowling("You silently disable all nearby lights."))
 	var/turf/T = get_turf(user)
-	for(var/datum/light_source/LS in T.affecting_lights)
+	for(var/datum/light_source/LS in T.get_affecting_lights())
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			extinguishItem(LO)
@@ -534,10 +535,10 @@
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
 	B.reagents.add_reagent(/datum/reagent/shadowling_blindness_smoke, 10)
-	var/datum/effect_system/smoke_spread/chem/S = new
+	var/datum/effect_system/fluid_spread/smoke/chem/S = new
 	S.attach(B)
 	if(S)
-		S.set_up(B.reagents, 4, 0, B.loc)
+		S.set_up(4, location = B.loc, carry = B.reagents)
 		S.start()
 	qdel(B)
 

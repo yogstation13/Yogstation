@@ -14,7 +14,8 @@
 	var/revive_time_max = 700
 	var/timer_id
 
-	var/damage_caused = 1
+	///damage dealt per second
+	var/damage_caused = 0.5
 
 /obj/item/organ/zombie_infection/Initialize()
 	. = ..()
@@ -43,17 +44,17 @@
 		web of pus and viscera, bound tightly around the brain like some \
 		biological harness.</span>")
 
-/obj/item/organ/zombie_infection/process()
+/obj/item/organ/zombie_infection/process(delta_time)
 	if(!owner)
 		return
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
 		if(owner.dna.species.id == "pod")
-			owner.adjustToxLoss(damage_caused + 0.5)	//So they cant passively out-heal it
+			owner.adjustToxLoss((damage_caused + 0.25) * delta_time)	//So they cant passively out-heal it
 		else
-			owner.adjustToxLoss(damage_caused)
-		if (prob(10))
+			owner.adjustToxLoss(damage_caused * delta_time)
+		if(DT_PROB(5, delta_time))
 			to_chat(owner, span_danger("You feel sick..."))
 	if(timer_id)
 		return

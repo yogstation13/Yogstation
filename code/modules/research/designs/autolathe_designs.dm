@@ -636,9 +636,9 @@
 	build_path = /obj/item/taperecorder/empty
 	category = list("initial", "Miscellaneous")
 
-/datum/design/tape
+/datum/design/recorder_tape
 	name = "Tape"
-	id = "tape"
+	id = "recorder_tape"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 20, /datum/material/glass = 5)
 	build_path = /obj/item/tape/random
@@ -870,14 +870,6 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/buckshot
-	category = list("hacked", "Security")
-
-/datum/design/shotgun_dart
-	name = "Shotgun Dart"
-	id = "shotgun_dart"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/ammo_casing/shotgun/dart
 	category = list("hacked", "Security")
 
 /datum/design/incendiary_slug
@@ -1152,7 +1144,7 @@
 	id = "n762"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 15000)
-	build_path = /obj/item/ammo_box/n762
+	build_path = /obj/item/ammo_box/no_direct/n762
 	category = list("hacked", "Security")
 
 /datum/design/decal_painter

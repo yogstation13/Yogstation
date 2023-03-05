@@ -310,16 +310,18 @@
 	hitsound = "swing_hit"
 	armour_penetration = 35
 	var/saber_color = "green"
-	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_range = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
+	light_color = "#00ff00" //green
+	light_on = FALSE
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	var/hacked = FALSE
-	var/brightness_on = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
 	var/list/possible_colors = list("red", "blue", "green", "purple")
 
 /obj/item/twohanded/dualsaber/suicide_act(mob/living/carbon/user)
@@ -351,15 +353,17 @@
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
+		var/new_color
 		switch(saber_color)
 			if("red")
-				light_color = LIGHT_COLOR_RED
+				new_color = LIGHT_COLOR_RED
 			if("green")
-				light_color = LIGHT_COLOR_GREEN
+				new_color = LIGHT_COLOR_GREEN
 			if("blue")
-				light_color = LIGHT_COLOR_LIGHT_CYAN
+				new_color = LIGHT_COLOR_LIGHT_CYAN
 			if("purple")
-				light_color = LIGHT_COLOR_LAVENDER
+				new_color = LIGHT_COLOR_LAVENDER
+		set_light_color(new_color)
 
 /obj/item/twohanded/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -420,7 +424,7 @@
 		w_class = w_class_on
 		hitsound = 'sound/weapons/blade1.ogg'
 		START_PROCESSING(SSobj, src)
-		set_light(brightness_on)
+		set_light_on(TRUE)
 
 /obj/item/twohanded/dualsaber/unwield() //Specific unwield () to switch hitsounds.
 	sharpness = initial(sharpness)
@@ -428,7 +432,7 @@
 	..()
 	hitsound = "swing_hit"
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)
+	set_light_on(FALSE)
 
 /obj/item/twohanded/dualsaber/process()
 	if(wielded)
@@ -751,10 +755,10 @@
 	force = 19
 	throwforce = 24
 	force_wielded = 6
-
-/obj/item/twohanded/pitchfork/demonic/Initialize()
-	. = ..()
-	set_light(3,6,LIGHT_COLOR_RED)
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 6
+	light_color = LIGHT_COLOR_RED
 
 /obj/item/twohanded/pitchfork/demonic/greater
 	force = 24
@@ -991,6 +995,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
+	light_system = MOVABLE_LIGHT
+	light_color = LIGHT_COLOR_HALOGEN
+	light_range = 2
+	light_power = 2
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
@@ -1000,6 +1008,7 @@
 	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	set_light_on(FALSE)
 
 /obj/item/twohanded/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
@@ -1042,11 +1051,11 @@
 /obj/item/twohanded/vxtvulhammer/proc/supercharge() //Proc to handle when it's charged for light + sprite + damage
 	supercharged = !supercharged
 	if(supercharged)
-		set_light(2) //Glows when charged
+		set_light_on(TRUE) //Glows when charged
 		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
 		armour_penetration = 100
 	else
-		set_light(0)
+		set_light_on(FALSE)
 		force = initial(force) + (wielded ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
@@ -1060,7 +1069,7 @@
 	else
 		charging = TRUE
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
-		user.visible_message(span_warning("[user] flicks the hammer on, tilting their head down as if in thought."))
+		user.visible_message(span_warning("[user] flicks the hammer on, tilting [user.p_their()] head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
 		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
@@ -1071,7 +1080,7 @@
 		if(!charging) //No charging for you if you cheat
 			return //Has to double-check return because attacking or one-handing won't actually proc !do_mob, so the channel will seem to continue despite the message that pops out, but this actually ensures that it won't charge despite attacking or one-handing
 		to_chat(user, span_notice("You complete charging the weapon."))
-		user.visible_message(span_warning("[user] looks up as their hammer begins to crackle and hum!"))
+		user.visible_message(span_warning("[user] looks up as [user.p_their()] hammer begins to crackle and hum!"))
 		playsound(loc, 'sound/magic/lightningshock.ogg', 60, TRUE) //Mainly electric crack
 		playsound(loc, 'sound/effects/magic.ogg', 40, TRUE) //Reverb undertone
 		supercharge()
@@ -1083,11 +1092,13 @@
 		return
 	if(isfloorturf(target)) //So you don't just lose your supercharge if you miss and wack the floor. No I will NOT let people space with this thing
 		return
+
 	if(charging) //Needs a special snowflake check if you hit something that isn't a mob
 		if(ismachinery(target) || isstructure(target) || ismecha(target))
 			to_chat(user, span_notice("You flip the switch off after your blow."))
 			user.visible_message(span_warning("[user] flicks the hammer off after striking [target]!"))
 			charging = FALSE
+
 	if(supercharged)
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
@@ -1095,6 +1106,7 @@
 		playsound(loc, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
+
 		if(ismachinery(target))
 			var/obj/machinery/machine = target
 			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
@@ -1107,23 +1119,27 @@
 				for(var/obj/structure/light_construct/light in target_turf) //Also light frames because why not
 					light.take_damage(light.max_integrity * 2)
 			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
-		if(isstructure(target))
+
+		else if(isstructure(target))
 			var/obj/structure/struct = target
 			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
 				for(var/obj/structure/table_frame/platform in target_turf)
 					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
 			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
-		if(iswallturf(target))
+
+		else if(iswallturf(target))
 			var/turf/closed/wall/fort = target
 			fort.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
 			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
-		if(ismecha(target))
+
+		else if(ismecha(target))
 			var/obj/mecha/mech = target
 			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
-		if(isliving(target))
+
+		else if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
 			victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force

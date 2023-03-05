@@ -11,7 +11,7 @@
 	desc = "A .357 Ironfeather shell that contains six pellets."
 	projectile_type = /obj/item/projectile/bullet/pellet/a357_ironfeather
 	pellets = 6
-	variance = 25 //Same spread and pellets as buckshot
+	variance = 20 //Same spread and pellets as buckshot
 
 /obj/item/ammo_casing/a357/nutcracker
 	name = ".357 Nutcracker bullet casing"

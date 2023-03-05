@@ -219,23 +219,23 @@
 			if(istype(C))
 				C.sensor_mode = NO_SENSORS
 
-	var/obj/item/card/id/W = H.wear_id
-	if(W)
+	var/obj/item/card/id/id = H.get_idcard()
+	if(id && istype(id))
 		if(id_access)
 			for(var/jobtype in typesof(/datum/job))
 				var/datum/job/J = new jobtype
 				if(J.title == id_access)
-					W.access = J.get_access()
+					id.access = J.get_access()
 					break
 		if(id_access_list)
-			if(!islist(W.access))
-				W.access = list()
-			W.access |= id_access_list
+			if(!islist(id.access))
+				id.access = list()
+			id.access |= id_access_list
 		if(id_job)
-			W.assignment = id_job
-			W.originalassignment = id_job
-		W.registered_name = H.real_name
-		W.update_label()
+			id.assignment = id_job
+			id.originalassignment = id_job
+		id.registered_name = H.real_name
+		id.update_label()
 
 //Instant version - use when spawning corpses during runtime
 /obj/effect/mob_spawn/human/corpse
@@ -320,7 +320,7 @@
 
 /obj/effect/mob_spawn/human/doctor
 	name = "Doctor"
-	outfit = /datum/outfit/job/doctor
+	outfit = /datum/outfit/job/doctor/dead
 
 
 /obj/effect/mob_spawn/human/doctor/alive

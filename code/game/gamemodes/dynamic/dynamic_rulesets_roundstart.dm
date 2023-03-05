@@ -98,7 +98,7 @@
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/roundstart/changeling
-	name = "Changelings"
+	name = "Changeling"
 	antag_flag = ROLE_CHANGELING
 	antag_datum = /datum/antagonist/changeling
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
@@ -191,7 +191,7 @@
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/roundstart_wizards = list()
-	minimum_players = 27
+	minimum_players = 34
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -295,7 +295,7 @@
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	var/datum/team/nuclear/nuke_team
-	minimum_players = 30
+	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/nuclear/ready(population, forced = FALSE)
 	required_candidates = get_antag_cap(population)
@@ -983,7 +983,7 @@
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	antag_cap = list(999,999,999,999,999)
 	minimum_players = 40
-	
+
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	. = ..()
 	if(.)
@@ -1052,7 +1052,13 @@
 /datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/player in candidates)
-		if(player?.client?.prefs.pref_species && (NOBLOOD in player.client.prefs.pref_species.species_traits))
+		var/species_type = player?.client?.prefs.read_preference(/datum/preference/choiced/species)
+		var/datum/species/species = new species_type
+
+		var/noblood = (NOBLOOD in species.species_traits)
+		qdel(species)
+
+		if(noblood)
 			candidates.Remove(player)
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)

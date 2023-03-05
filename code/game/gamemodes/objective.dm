@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !(issilicon(player) || isipc(player)))
+		if(player.mind && player.stat != DEAD && ((MOB_ORGANIC in player.mob_biotypes) || !(MOB_ROBOTIC in player.mob_biotypes)))
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -487,8 +487,13 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/robot_army
 	name = "robot army"
-	explanation_text = "Have at least eight active cyborgs synced to you."
 	martyr_compatible = 0
+	var/number_of_borgs = 2
+
+/datum/objective/robot_army/New()
+	. = ..()
+	number_of_borgs = ROUND_UP((length(GLOB.joined_player_list) / 10) + 2)
+	explanation_text = "Have at least [number_of_borgs] active cyborgs synced to you."
 
 /datum/objective/robot_army/check_completion()
 	if(..())
@@ -502,7 +507,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		for(var/mob/living/silicon/robot/R in A.connected_robots)
 			if(R.stat != DEAD)
 				counter++
-	return counter >= 8
+	return counter >= number_of_borgs
 
 /datum/objective/escape
 	name = "escape"

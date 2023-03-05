@@ -411,6 +411,10 @@
 	ui_x = -736
 	ui_y = -416
 
+/datum/techweb_node/hardlight_weapons
+	ui_x = -672
+	ui_y = -352
+
 /datum/techweb_node/gygax
 	ui_x = -672
 	ui_y = -160
@@ -418,6 +422,10 @@
 /datum/techweb_node/phazon
 	ui_x = -736
 	ui_y = -128
+
+/datum/techweb_node/sidewinder
+	ui_x = -736
+	ui_y = -196
 
 /datum/techweb_node/adv_mecha
 	ui_x = -576
@@ -609,6 +617,26 @@
 
 /datum/techweb_node/mech_shortsword
 	ui_x = -640
+	ui_y = 32
+
+/datum/techweb_node/mech_katana
+	ui_x = -704
+	ui_y = -32
+
+/datum/techweb_node/mech_batong
+	ui_x = -512
+	ui_y = -32
+
+/datum/techweb_node/mech_trogdor
+	ui_x = -704
+	ui_y = 32
+
+/datum/techweb_node/mech_maul
+	ui_x = -704
+	ui_y = -96
+
+/datum/techweb_node/mech_spear
+	ui_x = -512
 	ui_y = 32
 
 /datum/techweb_node/bshipc

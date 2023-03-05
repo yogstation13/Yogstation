@@ -110,7 +110,7 @@
 		else //not a supported hex color format.
 			return default ? default : crunch + repeat_string(desired_format, "0")
 
-/proc/sanitize_ooccolor(color)
+/proc/sanitize_color(color)
 	if(length(color) != length_char(color))
 		CRASH("Invalid characters in color '[color]'")
 	var/list/HSL = rgb2hsl(hex2num(copytext(color, 2, 4)), hex2num(copytext(color, 4, 6)), hex2num(copytext(color, 6, 8)))

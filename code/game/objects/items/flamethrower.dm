@@ -16,6 +16,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=500)
 	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 	var/status = FALSE
 	var/lit = FALSE	//on or off
 	light_color = LIGHT_COLOR_FIRE
@@ -175,6 +177,7 @@
 		set_light(0)
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
+	set_light_on(lit)
 	update_icon()
 
 /obj/item/flamethrower/CheckParts(list/parts_list)
@@ -322,3 +325,20 @@
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
 	return F.default_ignite(location,release_amount)
+
+///////////////////// Flamethrower as an energy weapon /////////////////////
+// Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
+/obj/item/ammo_casing/energy/flamethrower
+	projectile_type = /obj/item/projectile/bullet/incendiary/flamethrower
+	select_name = "fire"
+	fire_sound = null
+	firing_effect_type = null
+	e_cost = 50
+
+/obj/item/projectile/bullet/incendiary/flamethrower
+	name = "waft of flames"
+	icon_state = null
+	damage = 0
+	sharpness = SHARP_NONE
+	range = 6
+	penetration_type = 2

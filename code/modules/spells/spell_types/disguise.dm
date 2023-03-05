@@ -4,9 +4,9 @@
 	invocation = "CONJR DIS GUISE"
 	invocation_type = "whisper"
 	school = "transmutation"
-	charge_max = 30 SECONDS
+	charge_max = 60 SECONDS
+	cooldown_min = 50 SECONDS
 	level_max = 2
-	cooldown_min = 25 SECONDS
 	clothes_req = FALSE
 	var/is_disguised = FALSE //Tells us if a disguise is currently up.
 	var/wasbeast = FALSE //We need this to make sure on can_cast, if they're found to be human and have this flag we can manually activate the uncloaking proc.
@@ -53,7 +53,7 @@
 	C.update_inv_hands()
 	log_game("[C.name] has disguised as [target.name]!") 
 	is_disguised = TRUE
-	addtimer(CALLBACK(src, .proc/undocloak, C), (15 SECONDS + (spell_level * 3 SECONDS)))
+	addtimer(CALLBACK(src, .proc/undocloak, C), (40 SECONDS + (level * 3))) //Sets it up so this is unchanged on default level, and goes up per level invested.
 		
 /obj/effect/proc_holder/spell/disguise/proc/undocloak(var/mob/living/carbon/human/C) //Code shortcut to disable the disguise.
 	if((ishuman(C) && (C.mind)) || wasbeast == TRUE) //Shapeshift spell takes out your mind, buckles you to a body, and then puts your mind in a summoned animal. We need this bullshit to both check that this is not happening, and then override it when we have to fix the bullshit.

@@ -51,7 +51,6 @@
 		if(!tool)
 			tool = S
 // yogs end
-
 	if(accept_any_item)
 		if(tool && tool_check(user, tool))
 			success = TRUE
@@ -70,7 +69,7 @@
 				if(tool_check(user, tool))
 					success = TRUE
 					break
-
+					
 	if(success)
 		if(target_zone == surgery.location)
 			if(get_location_accessible(target, target_zone) || surgery.ignore_clothes)
@@ -103,6 +102,9 @@
 
 	if(tool)
 		speed_mod = tool.toolspeed
+
+	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
+		speed_mod *= 0.9
 
 	if(IS_MEDICAL(user))
 		speed_mod *= 0.8

@@ -705,16 +705,22 @@
 
 /datum/reagent/medicine/diphenhydramine
 	name = "Diphenhydramine"
-	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness."
+	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness. Overdosing will cause hallucinations."
 	reagent_state = LIQUID
 	color = "#64FFE6"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 30
 
 /datum/reagent/medicine/diphenhydramine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.drowsyness += 1
 	M.jitteriness -= 1
 	M.reagents.remove_reagent(/datum/reagent/toxin/histamine,3)
+	..()
+
+/datum/reagent/medicine/diphenhydramine/overdose_process(mob/living/M)
+	M.set_drugginess(15)
+	M.hallucination += 5*REM
 	..()
 
 /datum/reagent/medicine/morphine
@@ -1310,7 +1316,7 @@
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20, FALSE)
-	M.adjustStaminaLoss(-30, 0)
+	M.adjustStaminaLoss(-15, 0)
 	..()
 	return TRUE
 
@@ -1866,3 +1872,18 @@
 	M.Jitter(10 SECONDS)
 	M.emote("gasp")
 
+/datum/reagent/medicine/naniteremover
+	name = "Nanolytic Agent"
+	description = "Creates an environment that in unsuitable for nanites, causing them to rapidly break down."
+	reagent_state = LIQUID
+	color = "#ff00d4"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	taste_description = "acidic oil"
+	process_flags = ORGANIC | SYNTHETIC
+	var/nanite_reduction = -50
+
+/datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)
+	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
+		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
+	return ..()
+	

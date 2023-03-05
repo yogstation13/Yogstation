@@ -531,6 +531,15 @@
 			opened = APC_COVER_OPENED
 			update_icon()
 			return
+	else
+		W.play_tool_sound(src)
+		to_chat(user, span_notice("You attempt to pry off the broken cover..."))
+		if(W.use_tool(src, user, 3 SECONDS))
+			W.play_tool_sound(src)
+			to_chat(user, span_notice("You pry the broken cover off of [src]."))
+			opened = APC_COVER_REMOVED
+			update_icon()
+			return
 
 /obj/machinery/power/apc/screwdriver_act(mob/living/user, obj/item/W)
 	if(..())
@@ -1255,12 +1264,12 @@
 		force_update = 1
 		return
 
-	lastused_light = area.usage(STATIC_LIGHT)
-	lastused_light += area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_equip += area.usage(STATIC_EQUIP)
-	lastused_environ = area.usage(ENVIRON)
-	lastused_environ += area.usage(STATIC_ENVIRON)
+	lastused_light = area.usage(AREA_USAGE_STATIC_LIGHT)
+	lastused_light += area.usage(AREA_USAGE_LIGHT)
+	lastused_equip = area.usage(AREA_USAGE_EQUIP)
+	lastused_equip += area.usage(AREA_USAGE_STATIC_EQUIP)
+	lastused_environ = area.usage(AREA_USAGE_ENVIRON)
+	lastused_environ += area.usage(AREA_USAGE_STATIC_ENVIRON)
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ

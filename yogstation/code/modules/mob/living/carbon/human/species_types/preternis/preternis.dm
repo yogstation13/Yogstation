@@ -7,10 +7,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis
 	name = "Preternis"
+	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -66,9 +68,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
-		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
+		if(istype(BP,/obj/item/bodypart/l_arm) || istype(BP,/obj/item/bodypart/r_arm))
+			BP.max_damage = 40
 			continue
-		BP.max_damage = 35
+		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
+			BP.max_damage = 30
 
 	if(ishuman(C))
 		maglock = new
@@ -161,9 +165,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
-	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
@@ -228,8 +229,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(2 * -H.fire_stacks)
-		H.adjustFireLoss(1 * -H.fire_stacks)
+		//damage has a flat amount with an additional amount based on how wet they are
+		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
+		H.adjustFireLoss(5 - (H.fire_stacks / 2))
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
@@ -266,8 +268,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart())
-		user.next_move += 2 //adds 0.2 second delay to combat
+	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !(user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)))
+		user.next_move += 3 //adds 0.3 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
@@ -279,3 +281,74 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
 		return 1
 	return 0
+
+/datum/species/preternis/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_preternis_name()
+	return preternis_name()
+
+/datum/species/preternis/get_features()
+	var/list/features = ..()
+
+	features += "feature_pretcolor"
+
+	return features
+
+/datum/species/preternis/get_species_description()
+	return "Sentient tools left by the bygone Vxtvul Empire, preterni are a complex weaving of flesh and \
+		cybernetics encased in a plasteel shell. Now left to their own devices among the forgotten ruins of their old civilization, \
+		the preterni have formed their own nation and have established tense but stable relations with the SIC."
+
+/datum/species/preternis/get_species_lore()
+	return list(
+		"Preterni were built by the Vxtrin to work in hazardous environments with minimal monitoring. Combining \
+		the durability of metal with the versatility of organic matter, preterni worked in factories, engines, \
+		and research facilities, enduring radiations, toxins, and extreme temperature- similarly to the silicon \
+		units of this time, while able to adapt and improvise when faced with new problems and changing environments.",
+
+		"Approximately seventeen millennia ago, the entire Vxtrin population disappeared along with the preterni, \
+		leaving only deactivated factories and abandoned facilities. The first preternis factory was reactivated by \
+		accident in 2431 by SIC colonists on the planet of Ur'lan. Communication between the newly-created preterni \
+		and the colonists was made possible by the silicon units built using the MMI technology that had been uncovered \
+		previously in Vxtvul ruins. Upon hearing of the discovery of preterni on Ur'lan, Nanotrasen immediately \
+		bought the property of the colony for more than a thousand time its original value and attempted to claim \
+		the preterni as their property. The scheme was unsuccessful and preterni formed the Remnants of Vxtvul as \
+		a unifying government",
+
+		"The SIC decided it was best if preterni and humanity worked together to uncover the secrets of the Vxtrin. \
+		While SIC authorities desired an alliance, several groups and companies pillaged or sabotaged Vxtvul ruins \
+		before the preterni could recover them, destroying hardware and stealing technologies. Such acts outraged \
+		the Remnants and have led to great tension between them and the SIC. Using Vxtvul technology, the preterni \
+		developed a navy and ground military forces to defend their ruins from scavengers, and while humans are \
+		accepted among Remnant territories and stations, they are monitored constantly.",
+
+		"Preterni strive for excellence and tend to be extremely work-focused. They tend to be slightly distrustful \
+		of humans and prefer to rely on themselves for any important task. As silicon units are derived from Vxtrin \
+		technology, preterni tend to have some affection and respect for them, even though silicon lawsets can mean \
+		these relationships are one-sided.",
+
+		"Preternis culture was lost for the most part along with their masters. Current customs involve was recovered \
+		through archeological works, perpetuated in remembrance of the golden age when Vxtrin were still with them, \
+		then combined with human practices that have been adopted due to the species' proximity to humanity. \
+		Preterni have no hair naturally, but many have installed synthetic hairs on their head to better \
+		differentiate themselves and mimic humans.",
+
+		"The SIC and the Remnants are still wary of each others, but they nonetheless exchange goods, \
+		and travel between the two empire is relatively unhindered. Preterni can be seen working in SIC \
+		space, often hired to work in hazardous environments. Some join exploration crews and travel to far \
+		away facilities in the hopes of stumbling upon ruins of their fallen empire.",
+	)
+
+/datum/species/preternis/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/preternis/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
