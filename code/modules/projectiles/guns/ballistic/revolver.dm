@@ -26,7 +26,7 @@
 /obj/item/gun/ballistic/revolver/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	..()
 	chamber_round(TRUE)
-
+ 
 /obj/item/gun/ballistic/revolver/AltClick(mob/user)
 	..()
 	spin()
