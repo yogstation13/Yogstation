@@ -1,7 +1,0 @@
-author: " @LazennG @thegoldencat413 @slicerv @solwashere @Burger1998 @DeadlyBag @milk-is-cool"
-delete-after: true 
-changes: 
-  - rscadd: "Added damage reducing status effect for buster arm and longer lasting afterimage effect"
-  - bugfix: "fixed buster arm animations and wire snatch function"
-  - tweak: "tweaked buster arm effectiveness and durability"
-  - imageadd: "added new icon for new status"
