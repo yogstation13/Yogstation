@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer see items being pulled out in the dark or through walls"
