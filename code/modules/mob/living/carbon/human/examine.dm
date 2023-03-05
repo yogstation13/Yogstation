@@ -367,7 +367,7 @@
 		else
 			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
-	if(!glasses || !wear_suit && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
