@@ -18,7 +18,6 @@
 	return TRUE
 
 /datum/keybinding/mob/action_hotkey/action_1
-	// hotkey_keys = list("Shift!")
 	name = "action_1"
 	full_name = "Quick Action 1"
 	action_num = 1
