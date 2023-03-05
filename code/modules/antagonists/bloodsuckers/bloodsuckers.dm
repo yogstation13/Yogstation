@@ -522,7 +522,7 @@
 			if(power.active)
 				power.DeactivatePower()
 
-/datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE)
+/datum/antagonist/bloodsucker/proc/SpendRank(spend_rank = TRUE, ask = TRUE)
 	set waitfor = FALSE
 
 	if(!owner || !owner.current || !owner.current.client || (spend_rank && bloodsucker_level_unspent <= 0.5))
@@ -537,7 +537,7 @@
 		to_chat(owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = input("You have the opportunity to grow more ancient, increasing the level of all your powers by 1. Select a power to advance your Rank.", "Your Blood Thickens...") in options
+		var/choice = tgui_input_list(owner.current, "You have the opportunity to grow more ancient, increasing the level of all your powers by 1. Select a power to advance your Rank.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(spend_rank && bloodsucker_level_unspent <= 0)
 			return
@@ -589,6 +589,11 @@
 	* Your existing powers have all ranked up as well!"))
 	update_hud(owner.current)
 	owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
+	if(bloodsucker_level_unspent && spend_rank)
+		if(ask)
+			if(tgui_alert(owner.current, "You have leftover ranks, do you want to spend them all?", "Time Management Team", list("Yes", "No")) == "No")
+				return
+		SpendRank(ask = FALSE)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 

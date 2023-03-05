@@ -68,10 +68,10 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
-	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 100, TRUE)
+	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 50, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
-			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 75, FALSE, falloff = 5)
+			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff = 5)
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF

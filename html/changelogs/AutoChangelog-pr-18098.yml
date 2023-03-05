@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Gummy bears are eaten in 1 second instead of 1.5"
+  - tweak: "Floor gummy bears now spawn with 30u of reagents in them"
+  - spellcheck: "Chemmaster accurately shows that gummy bears are 30u max"

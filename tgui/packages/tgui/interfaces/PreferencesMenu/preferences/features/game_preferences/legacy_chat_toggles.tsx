@@ -45,6 +45,13 @@ export const chat_ghostradio: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const ghost_ckey: FeatureToggle = {
+  name: "Show ckey in deadchat",
+  category: "GHOST",
+  description: "When enabled, your ckey will be displayed when you talk in deadchat.",
+  component: CheckboxInput,
+};
+
 export const chat_ghostsight: FeatureToggle = {
   name: "See all emotes",
   category: "GHOST",
@@ -75,6 +82,12 @@ export const chat_ooc: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const chat_looc: FeatureToggle = {
+  name: "Enable LOOC",
+  category: "CHAT",
+  component: CheckboxInput,
+};
+
 export const chat_prayer: FeatureToggle = {
   name: "Listen to prayers",
   category: "ADMIN",
@@ -85,5 +98,11 @@ export const chat_pullr: FeatureToggle = {
   name: "Enable pull request notifications",
   category: "CHAT",
   description: "Be notified when a pull request is made, closed, or merged.",
+  component: CheckboxInput,
+};
+
+export const chat_typing_indicator: FeatureToggle = {
+  name: "Enable typing indicators",
+  category: "CHAT",
   component: CheckboxInput,
 };
