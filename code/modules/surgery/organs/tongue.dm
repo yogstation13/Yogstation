@@ -94,14 +94,10 @@
 	..()
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")
-	var/static/regex/lizard_ecks = new("(?<!^)x+", "g")
-	var/static/regex/lizard_eckS = new("(?<!^)X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = lizard_hiss.Replace(message, "sss")
 		message = lizard_hiSS.Replace(message, "SSS")
-		message = lizard_ecks.Replace(message, "kss")
-		message = lizard_eckS.Replace(message, "KSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly

@@ -24,7 +24,6 @@
 /datum/borg_skin/droideka
 	name = "Droideka secborg"
 	icon_state = "droideka"
-	owner = "kmc2000"
 	module_locked = "Security"
 
 /*						PENDING SPRITE!

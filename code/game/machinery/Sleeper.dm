@@ -43,6 +43,13 @@
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
 
+	///what chemical we're injecting with the "sedate" function
+	var/sedate_chem = /datum/reagent/medicine/morphine
+	///maximum allowed chemical volume
+	var/sedate_limit = 20
+	///what are we putting in the tgui
+	var/sedate_button_text = "Sedate"
+
 /obj/machinery/sleeper/Initialize()
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -243,6 +250,7 @@
 	data["active_treatment"] = active_treatment
 	data["can_sedate"] = can_sedate()
 	data["legacy_chems"] = legacy_chems
+	data["sedate_text"] = sedate_button_text
 
 	data["treatments"] = list()
 	for(var/T in available_treatments)
@@ -304,7 +312,7 @@
 			. = TRUE
 		if("sedate")
 			if(can_sedate())
-				mob_occupant.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
+				mob_occupant.reagents.add_reagent(sedate_chem, 10)
 				if(usr)
 					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
 				. = TRUE
@@ -338,7 +346,7 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	return mob_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) + 10 <= 20
+	return mob_occupant.reagents.get_reagent_amount(sedate_chem) + 10 <= sedate_limit
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"

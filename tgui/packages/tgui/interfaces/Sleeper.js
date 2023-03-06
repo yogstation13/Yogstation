@@ -13,6 +13,7 @@ export const Sleeper = (props, context) => {
     active_treatment,
     can_sedate,
     legacy_chems,
+    sedate_text,
   } = data;
 
   const treatments = data.treatments || [];
@@ -112,7 +113,7 @@ export const Sleeper = (props, context) => {
                 )}
                 <Button
                   icon={'flask'}
-                  content={'Sedate'}
+                  content={sedate_text}
                   disabled={!can_sedate}
                   onClick={() => act('sedate')} />
               </Box>
