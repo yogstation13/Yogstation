@@ -8,9 +8,9 @@
 /obj/item/borg/stun
 	name = "electrically-charged arm"
 	icon_state = "elecarm"
-	var/charge_cost = 250
-	var/stunforce = 60
-	var/stamina_damage = 20
+	var/charge_cost = 1000
+	var/stunforce = 30
+	var/stamina_damage = 15
 
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
@@ -56,9 +56,8 @@
 	
 /obj/item/borg/stun/heavy
 	name = "heavy electrically-charged arm"
-	charge_cost = 300
-	stunforce = 100
-	stamina_damage = 25
+	stunforce = 60
+	stamina_damage = 20
 
 /obj/item/borg/cyborghug
 	name = "hugging module"
