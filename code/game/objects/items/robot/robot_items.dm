@@ -8,9 +8,9 @@
 /obj/item/borg/stun
 	name = "electrically-charged arm"
 	icon_state = "elecarm"
-	var/charge_cost = 750
-	var/stunforce = 100
-	var/stamina_damage = 90
+	var/charge_cost = 250
+	var/stunforce = 60
+	var/stamina_damage = 20
 
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
@@ -53,6 +53,12 @@
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	log_combat(user, M, "stunned", src, "(INTENT: [uppertext(user.a_intent)])")
+	
+/obj/item/borg/stun/heavy
+	name = "heavy electrically-charged arm"
+	charge_cost = 300
+	stunforce = 100
+	stamina_damage = 25
 
 /obj/item/borg/cyborghug
 	name = "hugging module"

@@ -278,7 +278,8 @@
 		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/soap/infinite, //yogs - changed soap type
-		/obj/item/borg/cyborghug)
+		/obj/item/borg/cyborghug,
+		/obj/item/borg/stun/heavy)
 	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg,
@@ -308,7 +309,8 @@
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/borg/lollipop,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	ratvar_modules = list(
@@ -344,7 +346,8 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/stack/cable_coil/cyborg,
-		/obj/item/barrier_taperoll/engineering)
+		/obj/item/barrier_taperoll/engineering,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/gun/energy/printer/flamethrower)
 	ratvar_modules = list(
@@ -401,7 +404,8 @@
 		/obj/item/holosign_creator/cyborg,
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/extinguisher,
-		/obj/item/borg/projectile_dampen)
+		/obj/item/borg/projectile_dampen,
+		/obj/item/borg/stun/heavy)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/peace/hacked)
 	ratvar_modules = list(
@@ -432,7 +436,8 @@
 		/obj/item/paint/paint_remover,
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/holosign_creator/janibarrier,
-		/obj/item/reagent_containers/spray/cyborg_drying)
+		/obj/item/reagent_containers/spray/cyborg_drying,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	ratvar_modules = list(
@@ -485,7 +490,8 @@
 		/obj/item/borg/lollipop/clown,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
-		/obj/item/extinguisher/mini)
+		/obj/item/extinguisher/mini,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(
 		/obj/item/reagent_containers/borghypo/clown/hacked,
@@ -517,7 +523,8 @@
 		/obj/item/reagent_containers/borghypo/borgshaker,
 		/obj/item/borg/lollipop,
 		/obj/item/reagent_containers/glass/rag,
-		/obj/item/soap/infinite)
+		/obj/item/soap/infinite,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
@@ -574,7 +581,8 @@
 		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/gun/energy/kinetic_accelerator/cyborg,
 		/obj/item/gps/cyborg,
-		/obj/item/stack/marker_beacon)
+		/obj/item/stack/marker_beacon,
+		/obj/item/borg/stun)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 	emag_modules = list(/obj/item/gun/energy/plasmacutter/adv/malf)
 	ratvar_modules = list(
