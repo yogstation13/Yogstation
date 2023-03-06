@@ -101,7 +101,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 0
-	force_on = 18
+	force_on = 20
 	throwforce = 0
 	throwforce_on = 10
 	wound_bonus = -10
