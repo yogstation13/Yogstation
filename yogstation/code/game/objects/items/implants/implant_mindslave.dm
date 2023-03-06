@@ -61,3 +61,20 @@
 /obj/item/implanter/mindslave
 	name = "implanter (mindslave)"
 	imp_type = /obj/item/implant/mindslave
+
+/obj/item/implanter/mindslave/partner
+	name = "implanter (partner)"
+	imp_type = /obj/item/implant/mindslave/partner
+
+/obj/item/implant/mindslave/partner
+	name = "partner implant"
+	desc = "Turn a crewmate into your partner"
+
+/obj/item/implant/mindslave/partner/removed(mob/source)
+	if(!..())
+		return
+	uses -= 1
+	var/mob/living/user = loc || loc.loc
+	if(!istype(user))
+		return
+	to_chat(user, span_notice("You feel an implanter click back into place."))

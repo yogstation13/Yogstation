@@ -351,6 +351,25 @@
 	failure_message = "<span class='holoparasite bold'>...ERROR. BOOT SEQUENCE ABORTED. AI FAILED TO INTIALIZE. PLEASE CONTACT SUPPORT OR TRY AGAIN LATER.</span>"
 	ling_failure = "<span class='holoparasite bold'>The holoparasites recoil in horror. They want nothing to do with a creature like you.</span>"
 
+/obj/item/guardiancreator/tech/partner
+	name = "holoparasite injector (Partner)"
+	used_message = span_holoparasite("The injector has detected an alive partner.")
+
+/obj/item/guardiancreator/tech/partner/attack_self(mob/living/user)
+	var/agreed_with_terms = (tgui_alert(user, "This injector is reusable if your partner dies. Unless you are said partner, you don't want to use this.", "Hol' Up Pardner", list("Yes", "No")) == "Yes")
+	if(!agreed_with_terms)
+		return 
+	. = ..()
+	RegisterSignal(user, COMSIG_GLOB_MOB_DEATH, .proc/recharge)
+
+/obj/item/guardiancreator/tech/partner/proc/recharge(datum/source)
+	UnregisterSignal(source, COMSIG_GLOB_MOB_DEATH)
+	builder.used = FALSE
+	var/mob/living/user = loc || loc.loc
+	if(!istype(user))
+		return
+	to_chat(user, span_notice("You feel an injector click back into place."))
+
 /obj/item/guardiancreator/tech/rare
 	allowspecial = TRUE
 

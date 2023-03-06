@@ -276,8 +276,8 @@
 			new /obj/item/clothing/head/yogs/ycowboy(src)
 			new /obj/item/clothing/gloves/yogs/armbracers(src)
 			new /obj/item/guardiancreator/tech(src) //12 TC
-			new /obj/item/guardiancreator/tech(src) //12 TC, two for one!
-			new /obj/item/implanter/mindslave(src) //7 TC
+			new /obj/item/guardiancreator/tech/partner(src) //12 TC, always have a partner!
+			new /obj/item/implanter/mindslave/partner(src) //7 TC, get buddy buddy
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src) //1 ~ 2 TC
 			new /obj/item/lighter(src) // 0
 			new /obj/item/implanter/adrenalin(src) //8 TC

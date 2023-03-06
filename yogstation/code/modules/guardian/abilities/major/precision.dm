@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	runcooldown = 20 SECONDS / master_stats.potential
 
 /datum/guardian_ability/major/precision/Manifest()
-	if(!..())
+	if(gun_form)
 		return
 	ADD_TRAIT(guardian, TRAIT_ADVANCEDTOOLUSER, GUARDIAN_TRAIT)
 	guardian.temp_anchored_to_owner = FALSE
@@ -59,8 +59,6 @@ GLOBAL_LIST_INIT(guardian_precision_speedup, list(
 	guardian.summoner.current.put_in_active_hand(gun_form)
 
 /datum/guardian_ability/major/precision/Recall()
-	if(!..())
-		return
 	REMOVE_TRAIT(guardian, TRAIT_ADVANCEDTOOLUSER, GUARDIAN_TRAIT)
 	guardian.temp_anchored_to_owner = initial(guardian.temp_anchored_to_owner)
 	guardian.do_temp_anchor = initial(guardian.do_temp_anchor)
