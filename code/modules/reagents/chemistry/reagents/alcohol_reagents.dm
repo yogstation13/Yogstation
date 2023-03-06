@@ -76,7 +76,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				S.success_multiplier = max(0.1*power_multiplier, S.success_multiplier)
 				// +10% success propability on each step, useful while operating in less-than-perfect conditions
 	return ..()
- 
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
@@ -1054,6 +1053,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "acidspitglass"
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from Nanotrasen. Made from live aliens."
+
+/datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
+	if(ispolysmorph(M))
+		M.adjustFireLoss(-0.5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/amasec
 	name = "Amasec"
