@@ -264,7 +264,7 @@
 /obj/item/robot_module/standard
 	name = "Standard"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/epi,
 		/obj/item/healthanalyzer,
 		/obj/item/weldingtool/largetank/cyborg,
@@ -360,7 +360,7 @@
 /obj/item/robot_module/security
 	name = "Security"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
@@ -396,7 +396,7 @@
 /obj/item/robot_module/peacekeeper
 	name = "Peacekeeper"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/rsf/cookiesynth,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
@@ -605,7 +605,7 @@
 /obj/item/robot_module/syndicate
 	name = "Syndicate Assault"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/melee/transforming/energy/sword/cyborg,
 		/obj/item/gun/energy/printer,
 		/obj/item/gun/ballistic/revolver/grenadelauncher/cyborg,
@@ -635,7 +635,7 @@
 /obj/item/robot_module/syndicate_medical
 	name = "Syndicate Medical"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
 		/obj/item/twohanded/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
@@ -665,7 +665,7 @@
 /obj/item/robot_module/saboteur
 	name = "Syndicate Saboteur"
 	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
+		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/kitchen/knife/combat/cyborg,
 		/obj/item/borg/sight/thermal,
 		/obj/item/construction/rcd/borg/syndicate,
