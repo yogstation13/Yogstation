@@ -75,12 +75,12 @@ GLOBAL_LIST_INIT(color_list_ethereal,list(
 	"T2 Class (Dark Purple)" 	= 	"#ee82ee",
 	"White Dwarf" = "#f2f2f2",))
 GLOBAL_LIST_INIT(color_list_preternis, list(
-	"Factory Default" = "FFFFFF", 
-	"Rust" = "B7410E", 
-	"Chrome" = "B0C4DE", 
-	"Overgrown" = "b2ee69", 
-	"Gunmetal Gray" = "8D918D", 
-	"Gold" = "D4AF37"))
+	"Factory Default" = "#FFFFFF", 
+	"Rust" = "#B7410E", 
+	"Chrome" = "#B0C4DE", 
+	"Overgrown" = "#b2ee69", 
+	"Gunmetal Gray" = "#8D918D", 
+	"Gold" = "#D4AF37"))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks

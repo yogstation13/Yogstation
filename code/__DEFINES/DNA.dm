@@ -82,9 +82,6 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
-//this should be in a colors.dm define but we don't use that like tg does
-#define DEFAULT_HEX_COLOR_LEN 6
-
 #define DNA_BLOCK_SIZE_COLOR DEFAULT_HEX_COLOR_LEN
 
 #define DNA_UNI_IDENTITY_BLOCKS		7
