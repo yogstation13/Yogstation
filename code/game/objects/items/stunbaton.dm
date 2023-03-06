@@ -32,7 +32,7 @@
 	///% chance we hit someone with the correct side of the baton when thrown
 	var/throw_hit_chance = 35
 	///if not empty the baton starts with this type of cell
-	var/preload_cell_type
+	var/preload_cell_type = /obj/item/stock_parts/cell/infinite
 	///used for passive discharge
 	var/cell_last_used = 0
 	var/thrown = FALSE
@@ -82,7 +82,6 @@
 		thrown = FALSE
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
-	preload_cell_type = /obj/item/stock_parts/cell/high
 
 /obj/item/melee/baton/proc/deductcharge(chrgdeductamt)
 	if(cell)
@@ -316,7 +315,6 @@
 /obj/item/melee/baton/cattleprod/tactical
 	name = "tactical stunprod"
 	desc = "A cost-effective, mass-produced, tactical stun prod."
-	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
 	color = "#aeb08c" // super tactical
 
 /obj/item/batonupgrade
