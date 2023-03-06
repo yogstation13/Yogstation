@@ -13,6 +13,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
+	sexes = FALSE //they're basically ken dolls, come straight out of a printer
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -295,11 +296,48 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	return features
 
 /datum/species/preternis/get_species_description()
-	return ""//"TODO: This is preternis description"
+	return "Sentient tools left by the bygone Vxtvul Empire, preterni are a complex weaving of flesh and \
+		cybernetics encased in a plasteel shell. Now left to their own devices among the forgotten ruins of their old civilization, \
+		the preterni have formed their own nation and have established tense but stable relations with the SIC."
 
 /datum/species/preternis/get_species_lore()
 	return list(
-		""//"TODO: This is preternis lore"
+		"Preterni were built by the Vxtrin to work in hazardous environments with minimal monitoring. Combining \
+		the durability of metal with the versatility of organic matter, preterni worked in factories, engines, \
+		and research facilities, enduring radiations, toxins, and extreme temperature- similarly to the silicon \
+		units of this time, while able to adapt and improvise when faced with new problems and changing environments.",
+
+		"Approximately seventeen millennia ago, the entire Vxtrin population disappeared along with the preterni, \
+		leaving only deactivated factories and abandoned facilities. The first preternis factory was reactivated by \
+		accident in 2431 by SIC colonists on the planet of Ur'lan. Communication between the newly-created preterni \
+		and the colonists was made possible by the silicon units built using the MMI technology that had been uncovered \
+		previously in Vxtvul ruins. Upon hearing of the discovery of preterni on Ur'lan, Nanotrasen immediately \
+		bought the property of the colony for more than a thousand time its original value and attempted to claim \
+		the preterni as their property. The scheme was unsuccessful and preterni formed the Remnants of Vxtvul as \
+		a unifying government",
+
+		"The SIC decided it was best if preterni and humanity worked together to uncover the secrets of the Vxtrin. \
+		While SIC authorities desired an alliance, several groups and companies pillaged or sabotaged Vxtvul ruins \
+		before the preterni could recover them, destroying hardware and stealing technologies. Such acts outraged \
+		the Remnants and have led to great tension between them and the SIC. Using Vxtvul technology, the preterni \
+		developed a navy and ground military forces to defend their ruins from scavengers, and while humans are \
+		accepted among Remnant territories and stations, they are monitored constantly.",
+
+		"Preterni strive for excellence and tend to be extremely work-focused. They tend to be slightly distrustful \
+		of humans and prefer to rely on themselves for any important task. As silicon units are derived from Vxtrin \
+		technology, preterni tend to have some affection and respect for them, even though silicon lawsets can mean \
+		these relationships are one-sided.",
+
+		"Preternis culture was lost for the most part along with their masters. Current customs involve was recovered \
+		through archeological works, perpetuated in remembrance of the golden age when Vxtrin were still with them, \
+		then combined with human practices that have been adopted due to the species' proximity to humanity. \
+		Preterni have no hair naturally, but many have installed synthetic hairs on their head to better \
+		differentiate themselves and mimic humans.",
+
+		"The SIC and the Remnants are still wary of each others, but they nonetheless exchange goods, \
+		and travel between the two empire is relatively unhindered. Preterni can be seen working in SIC \
+		space, often hired to work in hazardous environments. Some join exploration crews and travel to far \
+		away facilities in the hopes of stumbling upon ruins of their fallen empire.",
 	)
 
 /datum/species/preternis/create_pref_unique_perks()

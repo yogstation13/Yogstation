@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/grap
 	name = "Grapple"
 	desc = "Prepare your left hand for grabbing. Throw your target and inflict more damage \
@@ -89,14 +89,15 @@
 		return
 	if(target == user)
 		return
-	if(isfloorturf(target))
+	if(isopenturf(target))
 		return
 	if(iswallturf(target))
 		return
 	if(isitem(target))
 		return
-	
-	if(isstructure(target) || ismachinery(target) ||ismecha(target))
+	if(iseffect(target))
+		return
+	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
 		var/old_density = I.density
 		if(istype(I, /obj/mecha)) // Can pick up mechs
@@ -107,6 +108,7 @@
 				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
 			else
 				return
+		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
 		qdel(src) // Remove the grapple hand so we cant carry several things at once
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
@@ -233,7 +235,7 @@
 
 /// Invisible bed helper that buckles mobs to us
 /obj/structure/bed/grip
-	name = ""
+	name = "buster arm"
 	icon_state = ""
 	can_buckle = TRUE
 	density = FALSE
