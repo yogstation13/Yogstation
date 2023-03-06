@@ -9,7 +9,7 @@
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	mutant_bodyparts = list("ears", "tail_human")
-	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
+	default_features = list("mcolor" = "#FFFFFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
 	rare_say_mod = list("meows"= 10)
 	liked_food = SEAFOOD | DAIRY | MICE
 	disliked_food = GROSS | RAW

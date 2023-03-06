@@ -499,7 +499,7 @@
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
 			saved_color = N.dna.features["mcolor"]
-			N.dna.features["mcolor"] = "f80"
+			N.dna.features["mcolor"] = "#FF8800"
 		N.regenerate_icons()
 		if(prob(7))
 			if(N.w_uniform)

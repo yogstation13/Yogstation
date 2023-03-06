@@ -1,14 +1,3 @@
-GLOBAL_LIST_INIT(cable_colors, list(
-	"yellow" = "#ffff00",
-	"green" = "#00aa00",
-	"blue" = "#1919c8",
-	"pink" = "#ff3cc8",
-	"orange" = "#ff8000",
-	"cyan" = "#00ffff",
-	"white" = "#ffffff",
-	"red" = "#ff0000"
-	))
-
 ///////////////////////////////
 //CABLE STRUCTURE
 ///////////////////////////////

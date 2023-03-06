@@ -17,7 +17,7 @@
 	heatmod = 0.67 //greatly appreciate heat, just not too much
 	action_speed_coefficient = 1.05 //claws aren't as dextrous as hands
 	payday_modifier = 0.5 //Negatively viewed by NT
-	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
+	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'

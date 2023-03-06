@@ -33,40 +33,40 @@
 	target.dna.features["pod_flower"] = value
 
 
-/datum/preference/color_legacy/pod_hair_color
+/datum/preference/color/pod_hair_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_pod_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_hair"
 	unique = TRUE
 
-/datum/preference/color_legacy/pod_hair_color/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/color/pod_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
 
-/datum/preference/color_legacy/pod_hair_color/is_valid(value)
+/datum/preference/color/pod_hair_color/is_valid(value)
 	if (!..(value))
 		return FALSE
 
-	if (is_color_dark(expand_three_digit_color(value), 22))
+	if (is_color_dark(value, 22))
 		return FALSE
 
 	return TRUE
 
-/datum/preference/color_legacy/pod_flower_color
+/datum/preference/color/pod_flower_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_pod_flower_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "pod_flower"
 	unique = TRUE
 
-/datum/preference/color_legacy/pod_flower_color/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/color/pod_flower_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value
 
-/datum/preference/color_legacy/pod_flower_color/is_valid(value)
+/datum/preference/color/pod_flower_color/is_valid(value)
 	if (!..(value))
 		return FALSE
 
-	if (is_color_dark(expand_three_digit_color(value), 22))
+	if (is_color_dark(value, 22))
 		return FALSE
 
 	return TRUE

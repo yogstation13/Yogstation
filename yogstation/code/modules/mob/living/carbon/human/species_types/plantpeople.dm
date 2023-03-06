@@ -7,7 +7,7 @@
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
-	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
+	default_features = list("mcolor" = "#00FF00", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'

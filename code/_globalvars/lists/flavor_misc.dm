@@ -48,33 +48,34 @@ GLOBAL_LIST_INIT(plasmaman_helmet_list, list("None" = "", "Slit" = "S", "Nyan" =
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list(
-	"F Class (Green)" = "#97ee63",
-	"F2 Class (Light Green)" = "#00fa9a",
-	"F3 Class (Dark Green)" = "#37835b",
-	"F4 Class (Faint Green)" = "#ddff99",
-	"M Class (Red)" = "#9c3030",
-	"M1 Class (Purple)" = "#ee82ee",
-	"M2 Class (Faint Red)" = "#ff4d4d",
-	"M3 Class (Light Pink)" = "#ffb3b3",
-	"M4 Class (Pink)" = "#ff99cc",
-	"G Class (Yellow)" = "#fbdf56",
-	"G1 Class (Bright Yellow)" = "#ffff99",
-	"O Class (Blue)" = "#3399ff",
-	"O1 Class (Dark Blue)" = "#6666ff",
-	"O2 Class (Faint Blue)" = "#b3d9ff",
-	"O3 Class (Dark Fuschia)" = "#cc0066",
-	"A Class (Cyan)" = "#00ffff",
-	"K Class (Orange)" = "#ffa64d",
-	"K1 Class (Burnt Orange)" = "#cc4400",	
-	"White Dwarf" = "#f2f2f2"))
+	"Blue" = "#3399ff",
+	"Bright Yellow" = "#ffff99",
+	"Burnt Orange" = "#cc4400",
+	"Cyan Blue" = "#00ffff",
+	"Dark Blue" = "#6666ff",
+	"Dark Fuschia" = "#cc0066",
+	"Dark Green" = "#37835b",
+	"Dark Red" = "#9c3030",
+	"Dull Yellow" = "#fbdf56",
+	"Faint Blue" = "#b3d9ff",
+	"Faint Green" = "#ddff99",
+	"Faint Red" = "#ffb3b3",
+	"Green" = "#97ee63",
+	"Orange" = "#ffa64d",
+	"Pink" = "#ff99cc",
+	"Purple" = "#ee82ee",
+	"Red" = "#ff4d4d",
+	"Seafoam Green" = "#00fa9a",
+	"White" = "#f2f2f2",
+))
 
 GLOBAL_LIST_INIT(color_list_preternis, list(
-	"Factory Default" = "FFFFFF", 
-	"Rust" = "B7410E", 
-	"Chrome" = "B0C4DE", 
-	"Overgrown" = "b2ee69", 
-	"Gunmetal Gray" = "8D918D", 
-	"Gold" = "D4AF37"))
+	"Factory Default" = "#FFFFFF", 
+	"Rust" = "#B7410E", 
+	"Chrome" = "#B0C4DE", 
+	"Overgrown" = "#b2ee69", 
+	"Gunmetal Gray" = "#8D918D", 
+	"Gold" = "#D4AF37"))
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks

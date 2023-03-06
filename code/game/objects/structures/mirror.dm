@@ -39,7 +39,7 @@
 /obj/structure/mirror/proc/preapply_choices(selectiontype, mob/living/carbon/human/H)
 	switch(selectiontype)
 		if(FACE_HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color","#"+H.facial_hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color",H.facial_hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.facial_hair_color = sanitize_hexcolor(new_hair_color)
@@ -47,7 +47,7 @@
 			H.update_hair()
 			return TRUE
 		if(HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your hair color", "Hair Color","#"+H.hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your hair color", "Hair Color",H.hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.hair_color = sanitize_hexcolor(new_hair_color)

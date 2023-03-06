@@ -45,12 +45,12 @@
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(null,"Waldo")
-	H.eye_color = "000"
+	H.eye_color = "#000000"
 	H.gender = MALE
 	H.skin_tone = "caucasian3"
 	H.hair_style = "Business Hair 3"
 	H.facial_hair_style = "Shaved"
-	H.hair_color = "000"
+	H.hair_color = "#000000"
 	H.facial_hair_color = H.hair_color
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))

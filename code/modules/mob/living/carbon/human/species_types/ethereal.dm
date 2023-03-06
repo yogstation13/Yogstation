@@ -83,23 +83,30 @@
 
 	return randname
 
-/datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/H)
+/datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/ethereal)
 	. = ..()
-	if(H.stat != DEAD && !EMPeffect)
-		var/healthpercent = max(H.health, 0) / 100
+	if(!ethereal_light)
+		return
+	if(default_color != ethereal.dna.features["ethcolor"])
+		var/new_color = ethereal.dna.features["ethcolor"]
+		r1 = GETREDPART(new_color)
+		g1 = GETGREENPART(new_color)
+		b1 = GETBLUEPART(new_color)
+	if(ethereal.stat != DEAD && !EMPeffect)
+		var/healthpercent = max(ethereal.health, 0) / 100
 		var/light_range = 1 + (4 * healthpercent)
 		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
+		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
 		ethereal_light.set_light_range_power_color(light_range, light_power, current_color)
 		ethereal_light.set_light_on(TRUE)
-		fixed_mut_color = copytext_char(current_color, 2)
+		fixed_mut_color = current_color
 	else
-		H.set_light(0)
+		ethereal.set_light(0)
 		ethereal_light.set_light_on(FALSE)
 		fixed_mut_color = rgb(128,128,128)
-	H.update_body()
+	ethereal.update_body()
 
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()
