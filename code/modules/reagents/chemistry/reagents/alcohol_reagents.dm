@@ -76,7 +76,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				S.success_multiplier = max(0.1*power_multiplier, S.success_multiplier)
 				// +10% success propability on each step, useful while operating in less-than-perfect conditions
 	return ..()
- 
+
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
@@ -2492,6 +2492,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_orange"
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
+
+/datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
+	if(ismoth(M))
+		M.adjustToxLoss(-2, 0)
+	return ..()
 
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"
