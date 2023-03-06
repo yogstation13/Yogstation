@@ -10250,6 +10250,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"dgc" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/minsky/research/research{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "dgn" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -12325,20 +12336,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
 /area/science/xenobiology)
-"dIo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/maintenance/starboard/fore)
 "dIr" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
@@ -13043,6 +13040,21 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"dUj" = (
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/maintenance/starboard/secondary";
+	dir = 1;
+	name = "Starboard Maintenance APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "dUk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -13292,6 +13304,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dYN" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/obj/machinery/button{
+	id = "maintshut";
+	name = "Shutter Access";
+	pixel_y = -24
+	},
+/turf/template_noop,
+/area/maintenance/fore)
 "dZi" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/machinery/light{
@@ -16815,24 +16836,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/nuke_storage)
-"ffm" = (
-/obj/machinery/button{
-	id = "maintshut";
-	name = "Shutter Access";
-	pixel_y = 24
-	},
-/turf/closed/wall,
-/area/storage/art)
-"ffo" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/sign/departments/minsky/research/research{
-	pixel_x = -32
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "ffp" = (
 /obj/structure/sign/map/right{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
@@ -32297,6 +32300,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"jPE" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "jPK" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -45421,6 +45431,14 @@
 	},
 /turf/open/floor/plating,
 /area/medical/storage)
+"nCO" = (
+/obj/machinery/button{
+	id = "maintshut";
+	name = "Shutter Access";
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "nCY" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/starboard)
@@ -49970,6 +49988,14 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"oQq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "oQF" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -50102,11 +50128,6 @@
 "oRQ" = (
 /turf/closed/wall/r_wall,
 /area/storage/primary)
-"oRZ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "oSc" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -50707,10 +50728,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"paF" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
-/turf/template_noop,
-/area/maintenance/fore)
 "paI" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -65057,6 +65074,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"tqh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/fore)
 "tqi" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -67197,16 +67225,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"uaf" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "uag" = (
 /turf/closed/wall,
 /area/medical/genetics/cloning)
@@ -71166,18 +71184,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"vhc" = (
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/maintenance/starboard/secondary";
-	dir = 1;
-	name = "Starboard Maintenance APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "vhu" = (
 /obj/machinery/light{
 	dir = 8
@@ -76257,14 +76263,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"wBG" = (
-/obj/machinery/button{
-	id = "maintshut";
-	name = "Shutter Access";
-	pixel_y = -24
-	},
-/turf/template_noop,
-/area/maintenance/fore)
 "wBW" = (
 /obj/effect/turf_decal/stripes{
 	dir = 8
@@ -115170,9 +115168,9 @@ tEf
 jte
 fyo
 fyo
-paF
+dYN
 jte
-dWU
+nCO
 dWU
 dWU
 jte
@@ -115684,13 +115682,13 @@ tEf
 jte
 fyo
 fyo
-wBG
-xkp
-ffm
+fyo
 xkp
 xkp
 xkp
-uaf
+xkp
+xkp
+jPE
 jte
 jte
 jte
@@ -116797,7 +116795,7 @@ bGA
 lvO
 gcx
 yaQ
-ffo
+dgc
 xJT
 hlm
 jTu
@@ -117820,7 +117818,7 @@ pwR
 jiy
 fHf
 nhj
-vhc
+dUj
 ksB
 hMF
 mlU
@@ -120580,7 +120578,7 @@ qoa
 nug
 tEf
 qRk
-dIo
+tqh
 xmI
 pgP
 pgP
@@ -121606,7 +121604,7 @@ sHy
 dCx
 chM
 eDY
-oRZ
+oQq
 fbD
 jwd
 qRC
