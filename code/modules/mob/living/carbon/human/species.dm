@@ -2725,6 +2725,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
 		))
+	if(ROBOTIC_LIMBS in species_traits)//not quite biotypes, but it's more accurate than using MOB_ROBOTIC for this
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "fa-solid fa-gear",
+			SPECIES_PERK_NAME = "Robotic limbs",
+			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
+				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
+		))
 
 	return to_add
 
