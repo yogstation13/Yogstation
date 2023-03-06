@@ -181,7 +181,11 @@
 		            /obj/item/clothing/shoes/singery = 1,
 		            /obj/item/clothing/shoes/singerb = 1,
 		            /obj/item/clothing/shoes/yogs/trainers = 1,
-		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
+		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3,
+					/obj/item/clothing/suit/yogs/ycowboy = 1,
+					/obj/item/clothing/under/yogs/darkgreentanktop = 1,
+					/obj/item/clothing/head/yogs/ycowboy = 1,
+					/obj/item/clothing/gloves/yogs/armbracers = 3) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
 		              /obj/item/clothing/head/ushanka = 1,
@@ -191,7 +195,7 @@
 		              /obj/item/clothing/under/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
 		              /obj/item/clothing/under/geisha = 1, //yogs added a ,
-		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1) //yogs
+		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1)
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
 		           /obj/item/clothing/under/rank/mailman = 1,

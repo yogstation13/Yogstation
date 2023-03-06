@@ -194,8 +194,11 @@
 		to_chat(user, "[failure_message]")
 		used = FALSE
 		return FALSE
+	var/mob/living/simple_animal/hostile/guardian/mob_to_make = /mob/living/simple_animal/hostile/guardian
+	if(saved_stats.ability?.special_type)
+		mob_to_make = saved_stats.ability.special_type
 	var/mob/dead/observer/C = pick(candidates)
-	var/mob/living/simple_animal/hostile/guardian/G = new /mob/living/simple_animal/hostile/guardian(user, theme)
+	var/mob/living/simple_animal/hostile/guardian/G = new mob_to_make(user, theme) 
 	if (guardian_name)
 		G.real_name = guardian_name
 		G.name = guardian_name

@@ -48,6 +48,7 @@
 	var/recall_mode = FALSE
 	var/mode_on_msg = ""
 	var/mode_off_msg = ""
+	var/special_type = /mob/living/simple_animal/hostile/guardian //type of guardian mob
 
 /datum/guardian_ability/major/proc/Attack(atom/target)
 	SHOULD_CALL_PARENT(FALSE)

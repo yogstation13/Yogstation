@@ -67,6 +67,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	var/requiem = FALSE
 	// ability stuff below
 	var/transforming = FALSE
+	var/special_icon = null //type of guardian sprite
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
@@ -148,9 +149,9 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 /mob/living/simple_animal/hostile/guardian/proc/updatetheme(theme) //update the guardian's theme to whatever its datum is; proc for adminfuckery
 	name = "[namedatum.prefixname] [namedatum.suffixcolor]"
 	real_name = "[name]"
-	icon_living = "[namedatum.parasiteicon]"
-	icon_state = "[namedatum.parasiteicon]"
-	icon_dead = "[namedatum.parasiteicon]"
+	icon_living = special_icon ? "[theme][special_icon]" : "[namedatum.parasiteicon]"
+	icon_state = special_icon ? "[theme][special_icon]" : "[namedatum.parasiteicon]"
+	icon_dead = special_icon ? "[theme][special_icon]" : "[namedatum.parasiteicon]"
 	bubble_icon = "[namedatum.bubbleicon]"
 
 	if (namedatum.stainself)
