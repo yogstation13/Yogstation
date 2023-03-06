@@ -197,6 +197,7 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
+	var/glow_color
 	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
@@ -205,6 +206,7 @@
 	. = ..()
 	if(.)
 		return
+	glow_color = owner.dna.features["mcolor"]
 	glowth = new(owner)
 	modify()
 
@@ -212,7 +214,7 @@
 	if(!glowth)
 		return
 	var/power = GET_MUTATION_POWER(src)
-	glowth.set_light(range * power, glow * power, sanitize_hexcolor(owner.dna.features["mcolor"]))
+	glowth.set_light_range_power_color(range * power, glow * power, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()

@@ -27,10 +27,8 @@
 /obj/effect/proc_holder/spell/aimed/extendoarm/ready_projectile(obj/item/projectile/bullet/arm/P, atom/target, mob/user, iteration)
 	var/mob/living/carbon/C = user
 	var/new_color
-	if(C.dna?.species && !C.dna.species.use_skintones)
-		new_color = C.dna.species.default_features["mcolor"]
-		if(!("#" in new_color))
-			new_color = "#[new_color]"
+	if(C.dna && !C.dna.species.use_skintones)
+		new_color = C.dna.features["mcolor"]
 		P.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
 
 	P.homing = target
