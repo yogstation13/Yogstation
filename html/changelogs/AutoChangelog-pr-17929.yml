@@ -1,0 +1,5 @@
+author: "Uristthedorf"
+delete-after: true 
+changes: 
+  - rscadd: "Buffs androids by giving them many things you would expect from a robot, and cosmetic changes."
+  - tweak: "Lets anything that isn't a silicon get nanites."
