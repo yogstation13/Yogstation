@@ -151,7 +151,12 @@
 				continue
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				if(istype(H.ears, /obj/item/clothing/ears/earmuffs))
+				var/protection = FALSE
+				for(var/obj/item/I in H.get_equipped_items())
+					if(I.GetComponent(/datum/component/wearertargeting/earprotection))
+						protection = TRUE
+						continue
+				if(protection)
 					continue
 			listeners += L
 
