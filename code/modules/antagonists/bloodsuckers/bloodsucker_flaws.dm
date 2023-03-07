@@ -23,6 +23,7 @@
 		CLAN_GANGREL,
 		CLAN_LASOMBRA,
 		CLAN_TOREADOR,
+		CLAN_HECATA,
 	)
 	var/list/options = list()
 	options = clans
@@ -30,7 +31,8 @@
 	to_chat(owner, span_announce("List of all Clans:\n\
 		Gangrel - Prone to Frenzy, strange outcomes from being on frenzy, special power.\n\
 		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.\n\
-		Toreador - More human then other bloodsucker, easily disguise among crew, but bound with morals."))
+		Toreador - More human then other bloodsucker, easily disguise among crew, but bound with morals.\n\
+		Hecata - Can raise the dead and contact spectres, though unable to silently feed off others and keep live vassals."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Your mind feels luxurious...") in options
 	if(!answer) 
@@ -96,5 +98,22 @@
 					continue
 				masquarade_spell.bloodcost = 0
 				masquarade_spell.constant_bloodcost = 0 //Wow very cool code, good job
+		if(CLAN_HECATA)
+			my_clan = CLAN_HECATA
+			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Hecata Clan!\n\
+				* As part of the Hecata clan, you are an avid practioner of necromancy.\n\
+				* You are capable of raising the dead both on the spot temporarily and permanently via the persuasion rack.\n\
+				* You can also contract help from the beyond by building a spectral altar in your lair to summon a revenant loyal to you.\n\
+				* However, feeding on people causes them deep pain, making it impossible to feed silently.\n\
+				* You also are unable to use the blood altar in order to gain tasks for ranks.\n\
+				* Finally, your Favorite Vassal will transform into a sturdy zombie, which gains immunity to many ailments such as radiation and pressure differences."))
+			BuyPower(new /datum/action/bloodsucker/targeted/hecata/necromancy)
+			var/datum/objective/bloodsucker/frenzy/hecata_objective = new
+			hecata_objective.owner = owner
+			objectives += hecata_objective
+			for(var/datum/action/bloodsucker/feed/feed_spell in powers)
+				if(!istype(feed_spell))
+					continue
+				feed_spell.suppressible = 0
 
 	owner.announce_objectives()

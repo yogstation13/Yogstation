@@ -1537,6 +1537,7 @@
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\_powers_targeted.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\brawn.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\haste.dm"
+#include "code\modules\antagonists\bloodsuckers\powers\targeted\hecata.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\lunge.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\mesmerize.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\targeted\trespass.dm"

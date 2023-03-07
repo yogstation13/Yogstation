@@ -40,6 +40,8 @@
 	var/warning_full = FALSE
 	var/warning_target_bloodvol = 99999
 	var/was_alive = FALSE
+	//can you silently feed? Hecata can't.
+	var/suppressible = 1 
 
 /datum/action/bloodsucker/feed/CheckCanUse(mob/living/carbon/user)
 	. = ..()
@@ -86,6 +88,9 @@
 		if(NOBLOOD in target_user.dna.species.species_traits)// || owner.get_blood_id() != target.get_blood_id())
 			to_chat(owner, span_warning("Your victim's blood is not suitable for you to take."))
 			return FALSE
+	if(suppressible == 0 && owner.grab_state <= GRAB_PASSIVE)
+		to_chat(owner, span_warning("Feeding as a Hecata would cause enough pain to the victim to make silent feeding like this impossible."))
+		return FALSE
 	return TRUE
 
 /// If I'm not grabbing someone, find me someone nearby.
