@@ -232,7 +232,7 @@
 		M.adjustEarDamage(0, 30)
 		M.Knockdown(60)
 		if(prob(30))
-			M.Knockdown(200)
+			M.Stun(100)
 			M.Unconscious(80)
 		else
 			M.Jitter(500)
