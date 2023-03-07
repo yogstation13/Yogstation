@@ -75,7 +75,7 @@
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
 	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(chassis, target) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
-		if(targloc == curloc && !can_stab_turfs)
+		if(istype(target, /turf/open) && !can_stab_turfs)
 			return 0	//Don't stab turf if we can't
 		else
 			precise_attack(target)
