@@ -716,9 +716,14 @@ datum/status_effect/stabilized/blue/on_remove()
 		C.real_name = O.real_name
 		O.dna.transfer_identity(C)
 		C.updateappearance(mutcolor_update=1)
+		RegisterSignal(owner, COMSIG_GLOB_MOB_DEATH, .proc/dead)
 	return ..()
 
-/datum/status_effect/stabilized/cerulean/tick()
+/datum/status_effect/stabilized/cerulean/proc/dead()
+		addtimer(CALLBACK(src, .proc/transfer), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
+
+/datum/status_effect/stabilized/cerulean/proc/transfer()
+	UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
 	if(!QDELETED(owner) && owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
 			owner.visible_message(span_warning("[owner] blazes with brilliant light, [linked_extract] whisking [owner.p_their()] soul away."),
@@ -730,10 +735,10 @@ datum/status_effect/stabilized/blue/on_remove()
 		if(!clone || clone.stat == DEAD)
 			to_chat(owner, span_notice("[linked_extract] desperately tries to move your soul to a living body, but can't find one!"))
 			qdel(linked_extract)
-	..()
 
 /datum/status_effect/stabilized/cerulean/on_remove()
 	if(clone)
+		UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
 		clone.visible_message(span_warning("[clone] dissolves into a puddle of goo!"))
 		clone.unequip_everything()
 		qdel(clone)
