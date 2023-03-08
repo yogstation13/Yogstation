@@ -27,12 +27,12 @@
 					affected_mob.adjustToxLoss(2)
 					affected_mob.updatehealth()
 		if(4)
-			if(prob(10))
+			if(prob(7))
 				affected_mob.visible_message(span_danger("[affected_mob] buzzes."), \
-												span_userdanger("Your stomach buzzes violently!"))
+												span_danger("Your stomach buzzes violently!"))
 			if(prob(5))
 				to_chat(affected_mob, span_danger("You feel something moving in your throat."))
-			if(prob(1))
+			if(prob(3))
 				affected_mob.visible_message(span_danger("[affected_mob] coughs up a swarm of bees!"), \
 													span_userdanger("You cough up a swarm of bees!"))
 				new /mob/living/simple_animal/hostile/poison/bees(affected_mob.loc)
