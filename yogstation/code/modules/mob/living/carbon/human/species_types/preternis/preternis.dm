@@ -376,5 +376,5 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/list/to_add = list()
 
 	// TODO
-	
+
 	return to_add

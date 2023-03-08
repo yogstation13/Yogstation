@@ -2724,7 +2724,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
 		))
 		
-
 	return to_add
 
 /**
