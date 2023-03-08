@@ -379,7 +379,7 @@
 	
 /obj/item/projectile/magic/spellblade/beesword
 	name = "stinger"
-	icon_state = "syringeproj"
+	icon_state = "bee"
 	damage = 1
 	damage_type = BRUTE
 	dismemberment = 0
