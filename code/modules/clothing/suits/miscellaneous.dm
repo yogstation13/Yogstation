@@ -325,6 +325,7 @@
 	item_state = "labcoat"
 	body_parts_covered = CHEST|GROIN|ARMS
 	clothing_flags = THICKMATERIAL
+	allowed = list(/obj/item/melee/beesword)
 	hoodtype = /obj/item/clothing/head/hooded/bee_hood
 
 /obj/item/clothing/head/hooded/bee_hood
