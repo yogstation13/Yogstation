@@ -44,6 +44,9 @@
 
 /obj/item/ammo_casing/magic/spellblade/weak
 	projectile_type = /obj/item/projectile/magic/spellblade/weak
+	
+/obj/item/ammo_casing/magic/spellblade/beesword
+	projectile_type = /obj/item/projectile/magic/spellblade/beesword
 
 /obj/item/ammo_casing/magic/arcane_barrage
 	projectile_type = /obj/item/projectile/magic/arcane_barrage
