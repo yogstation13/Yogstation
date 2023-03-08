@@ -141,7 +141,7 @@
 	user.changeNext_move(CLICK_CD_RAPID)
 	if(iscarbon(target) && proximity_flag)
 		var/mob/living/carbon/H = target
-		H.reagents.add_reagent(/datum/reagent/toxin/venom, 3)
+		H.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
 
 /obj/item/gun/magic/staff/spellblade/beesword/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The Stinger buzzes quietly."))
