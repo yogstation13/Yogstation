@@ -335,6 +335,28 @@
 	clothing_flags = THICKMATERIAL
 	flags_inv = HIDEHAIR|HIDEEARS
 	dynamic_hair_suffix = ""
+	
+/obj/item/clothing/suit/hooded/bee_costume/authentic
+	name = "authentic bee costume"
+	desc = "Bee the true Queen! Smells like honey..."
+	icon_state = "bee"
+	item_state = "labcoat"
+	body_parts_covered = CHEST|GROIN|ARMS
+	clothing_flags = THICKMATERIAL
+	armor = list(MELEE = 20, BULLET = 20, LASER = 20,ENERGY = 20, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	slowdown = -0.35
+	allowed = list(/obj/item/gun/magic/staff/spellblade/beesword)
+	hoodtype = /obj/item/clothing/head/hooded/bee_hood/authentic
+
+/obj/item/clothing/head/hooded/bee_hood/authentic
+	name = "authentic bee hood"
+	desc = "A hood attached to a bee costume. It's buzzing quietly."
+	icon_state = "bee"
+	body_parts_covered = HEAD
+	clothing_flags = THICKMATERIAL
+	armor = list(MELEE = 20, BULLET = 20, LASER = 20,ENERGY = 20, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	flags_inv = HIDEHAIR|HIDEEARS
+	dynamic_hair_suffix = ""
 
 /obj/item/clothing/suit/hooded/bloated_human	//OH MY GOD WHAT HAVE YOU DONE!?!?!?
 	name = "bloated human suit"
