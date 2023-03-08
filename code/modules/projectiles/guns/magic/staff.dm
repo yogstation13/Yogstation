@@ -116,7 +116,7 @@
 /obj/item/gun/magic/staff/spellblade/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
-	fire_sound = 'sound/weapons/sound_weapons_bowfire.ogg'
+	fire_sound = 'sound/items/syringeproj.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade/beesword
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "beesword"
