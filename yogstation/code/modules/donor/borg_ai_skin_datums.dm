@@ -82,7 +82,6 @@
 /datum/borg_skin/brainjar
 	name = "Cryojar"
 	icon_state = "brainjar"
-	owner = "qe"
 	module_locked = null
 
 /datum/borg_skin/oldbrainjar
