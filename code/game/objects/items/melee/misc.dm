@@ -165,7 +165,9 @@
 	user.changeNext_move(CLICK_CD_RAPID)
 	if(iscarbon(target))
 		var/mob/living/carbon/H = target
-		H.reagents.add_reagent(/datum/reagent/toxin/histamine, 4)
+		H.reagents.add_reagent(/datum/reagent/toxin/acid, 2)
+		H.reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 2)
+		H.reagents.add_reagent(/datum/reagent/cryptobiolin, 2)
 
 /obj/item/melee/beesword/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
