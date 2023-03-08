@@ -376,6 +376,18 @@
 /obj/item/projectile/magic/spellblade/weak
 	damage = 15
 	dismemberment = 20
+	
+/obj/item/projectile/magic/spellblade/beesword
+	name = "stinger"
+	icon_state = "syringeproj"
+	damage = 1
+	damage_type = BRUTE
+	dismemberment = 0
+	
+/obj/item/projectile/magic/spellblade/beesword/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(ishuman(target))
+		target.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
 
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
