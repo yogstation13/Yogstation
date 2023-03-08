@@ -371,3 +371,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	)
 
 	return to_add
+
+/datum/species/preternis/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+	
+	return to_add
