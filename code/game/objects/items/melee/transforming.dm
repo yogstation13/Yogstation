@@ -93,7 +93,7 @@
 /// Legally distinct from /obj/item/twohanded/vibro_weapon
 /obj/item/melee/transforming/vib_blade
 	name = "vibration blade"
-	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	desc = "A blade which has an edge that vibrates at rapid pace, enabling it to cut through armor and flesh with ease."
 	hitsound = "swing_hit"
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
@@ -101,7 +101,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 0
-	force_on = 23
+	force_on = 20
 	throwforce = 0
 	throwforce_on = 10
 	wound_bonus = -10
