@@ -177,8 +177,8 @@ Made by Xhuis
 	if(isturf(H.loc))
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
-		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
-			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN) 
+		if(light_amount > LIGHT_DAM_THRESHOLD && !T.density) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN)
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -214,6 +214,7 @@ Made by Xhuis
 	else
 		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	
+
 
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful
 	name = "Lesser Shadowling"
