@@ -699,7 +699,7 @@
 		S.icon_state = "[S.base_state]_active"
 		S.active = TRUE
 		var/obj/item/slime_extract/M = holder.my_atom
-		addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand((M.react_time - 3),(M.react_time + 2)))
+		addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand((M.react_time - 35),(M.react_time + 10)))
 		qdel(holder.my_atom) //deleto
 	else
 		var/mob/living/simple_animal/slime/random/S = new (get_turf(holder.my_atom))
@@ -719,7 +719,7 @@
 	S.icon_state = "[S.base_state]_active"
 	S.active = TRUE
 	var/obj/item/slime_extract/M = holder.my_atom
-	addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand((M.react_time - 3),(M.react_time + 2)))
+	addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand((M.react_time - 35),(M.react_time + 10)))
 	qdel(holder.my_atom) //deleto
 	..()
 
