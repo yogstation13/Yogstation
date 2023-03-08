@@ -2268,7 +2268,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/reticence
 	name = "Retience Exosuit"
 	desc = "A popular product for pantomime performers. For when you need to silence a target a little more... permanently. Comes equipped with advanced cloaking technology, a Quietus carbine, and an RCD."
-	item = /obj/mecha/combat/reticence
+	item = /obj/mecha/combat/reticence/loaded
 	cost = 20
 	restricted_roles = list("Mime")
 	manufacturer = /datum/corporation/traitor/donkco
