@@ -30,6 +30,7 @@
 	var/lighting_alpha
 	var/no_glasses
 	var/damaged	= TRUE	//damaged indicates that our eyes are undergoing some level of negative effect,starts as true so it removes the impaired vision overlay if it is replacing damaged eyes
+    var/sclera_icon_state = "sclera"
 
 /obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
 	. = ..()
@@ -88,11 +89,17 @@
 
 /// This proc generates a list of overlays that the eye should be displayed using for the given parent
 /obj/item/organ/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
+	var/sclera_icon_state = "sclera"
+	
+	// eyes overlay
 	if(!istype(parent) || parent.getorgan(/obj/item/organ/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
-
 	var/mutable_appearance/eye_overlay = mutable_appearance('icons/mob/human_face.dmi', eye_icon_state, -BODY_LAYER)
 	var/list/overlays = list(eye_overlay)
+	
+	// sclera overlay
+	var/mutable_appearance/sclera_overlay = mutable_appearance('icons/mob/human_face.dmi', sclera_icon_state, -BODY_LAYER)
+	overlays += sclera_overlay
 
 	if((EYECOLOR in parent.dna.species.species_traits))
 		eye_overlay.color = "#" + eye_color
