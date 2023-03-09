@@ -184,7 +184,7 @@
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
 	mutantlungs = /obj/item/organ/lungs/ashwalker
 	breathid = "n2" // yogs end
-	species_language_holder = /datum/language_holder/lizard/ash
+	species_language_holder = /datum/language_holder/lizard/ash //ashwalker dum
 
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -206,6 +206,7 @@
 	punchdamagehigh = 7
 	punchstunthreshold = 7
 	action_speed_coefficient = 0.9 //they're smart and efficient unlike other lizards
+	species_language_holder = /datum/language_holder/lizard/shaman //shaman "smart"
 	var/obj/effect/proc_holder/spell/targeted/touch/healtouch/goodtouch
 
 //gives the heal spell
