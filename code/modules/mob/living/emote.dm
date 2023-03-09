@@ -532,3 +532,10 @@
 		to_chat(user, span_notice("You ready your slapping hand."))
 	else
 		to_chat(user, span_warning("You're incapable of slapping in your current state."))
+
+/datum/emote/living/thumbsup
+	key = "thumbsup"
+	key_third_person = "thumbs"
+	message = "gives a thumbs up."
+	message_param = "gives a thumbs up to %t."
+	restraint_check = TRUE
