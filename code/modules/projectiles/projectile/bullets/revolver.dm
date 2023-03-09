@@ -79,6 +79,7 @@
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
 	damage = 40
+	armour_penetration = 15
 	wound_bonus = -45
 	wound_falloff_tile = -2.5
 
@@ -113,7 +114,7 @@
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"
 	damage = 35
-	armour_penetration = 30
+	armour_penetration = 45
 	penetrating = TRUE //Goes through a single mob before ending on the next target
 	penetrations = 1
 
