@@ -728,6 +728,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					missing_eyes.pixel_y += offset_features[OFFSET_FACE][2]
 				eye_overlay += missing_eyes
 			standing += eye_overlay
+
+		//sclera
+		if(!((NOSCLERA in species_traits) || (NOEYESPRITES in species_traits)))
+			var/sclera_icon_state = "sclera"
+			var/mutable_appearance/sclera_overlay = mutable_appearance('icons/mob/human_face.dmi', sclera_icon_state, -BODY_LAYER)
+			if(OFFSET_FACE in H.dna.species.offset_features)
+				sclera_overlay.pixel_x += offset_features[OFFSET_FACE][1]
+				sclera_overlay.pixel_y += offset_features[OFFSET_FACE][2]
 #undef OFFSET_X
 #undef OFFSET_Y
 
