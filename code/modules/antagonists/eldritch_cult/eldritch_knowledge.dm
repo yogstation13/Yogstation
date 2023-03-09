@@ -31,7 +31,7 @@
  * 	Ash is the principle of spirit and ambition, and the everlasting flame that burns bright with the kindling of life
  * 	Blade is the principle of violence and tradition, and the fundamental conflicts that arise from proximity
  * 	Bronze is the principle of time and empire, and the unstoppable force of innovation
- * 	Flesh is the principle of hunger and obedience, and the malformation of will
+ * 	Flesh is the principle of temptation and obedience, and the malformation of will
  * 	Rust is the principle of that which makes and unmakes, and the slow decline of all things civilized
  * 	Void is the principle of the inevitable end, and the darkness which will claim all light
  * 

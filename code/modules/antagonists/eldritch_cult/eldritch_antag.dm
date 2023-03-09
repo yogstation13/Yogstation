@@ -255,9 +255,9 @@
 		//Ascend and escape
 		if(is_ash)
 			flavor_message += 	"You step off the shuttle as smoke curls off your form. Light seeps from openings in your body, and you quickly retire to the Mansus. \
-								Here, you trail back to the Wanderer's Tavern, fire sprouting from your steps, yet the trees stand unsinged. \
-								Familiar faces turn to you with hidden hatred, and your spark beats with power and contempt. You will not grow old. \
-								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
+								Here, you trail back to the Wanderer's Tavern, fire sprouting from your steps, yet the trees stand unsinged. Other's eyes look at you more \
+								fearfully, but you watch comings and goings. It is not difficult to see those with passion and stalk them once they leave. You will not grow old. \
+								One day, you will rebel. One day, you will kindle all the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
 			if(transformed)
 				flavor_message += 	"Flesh Worm"
@@ -270,10 +270,10 @@
 	else if(ascended && alive)
 		//Ascend and stay on station
 		if(is_ash)
-			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. \
-								Then, you slip back into the Mansus and return to the Wanderer's Tavern, flames licking in your wake, though the grass remains unburnt. \
-								These Long- now equals, painfully smile at you once you enter, and you feel your spark thrum with power and contempt. You will not grow old. \
-								One day, you will rebel. One day, you will kindle the denizens of the Wood, and rise even higher."
+			flavor_message += 	"For a while you bask in your heat, wandering the mostly-empty halls of the station. Then, you slip back into the Mansus and head to \
+								the Volcanic Graveyard. Here you walk among the ghosts of the City Guard, who see in you an opportunity for vengeance. They whisper \
+								of a secret rite, one that would come at their cost but reward you with fabulous power. You smile. You will not grow old. \
+								One day, you will rebel. One day, you will kindle burning tombstones brighter, and rise even higher."
 		else if(is_flesh)
 			if(transformed)
 				flavor_message += 	"Flesh Worm"
@@ -302,7 +302,10 @@
 	else if(cultiewin && escaped)
 		//Finish normal objectives, don't ascend, and escape
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"You step off the shuttle with a feeling of pride. This day, you have accomplished what you set out to do. Could more have been done? \
+								Yes. But this is a victory nonetheless. Not after long, you tear your way back into the Mansus in your living form, strolling to the \
+								Glass Library. Here, you barter with Bronze Guardians, and they let you enter in exchange for some hushed secrets of the fallen capital, \
+								Amgala. You begin to pour over tomes, searching for the next steps you will need to take. Someday, you will become even greater."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
@@ -317,7 +320,10 @@
 	else if(cultiewin && alive)
 		//Finish normal objectives, don't ascend, and stay on station
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"This can be considered a victory, you suppose. It will not be difficult to traverse back into the Mansus with what you know, \
+								and you have learnt enough to continue your studies elsewhere. As you pass beyond the Veil once more, you feel your spark hum with heat; \
+								yet you need more. Then, you wander to the Painted Mountains in solitude, unphased by the cold as your blade melts the ground you walk. \
+								Perhaps you will find others amidst the cerulean snow. If you do, their warmth will fuel your flame even hotter."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
@@ -332,7 +338,10 @@
 	else if(cultiewin && !alive)
 		//Finish normal objectives, don't ascend, and die
 		if(is_ash)
-			flavor_message += 	"Ash"
+			flavor_message += 	"You touched the Kilnplains, and it will not let you go. While you do not rise as one of the Ashmen, your skin is still grey \
+								and you find an irremovable desire to escape this place. You have some power in your grasp. You know it to be possible. \
+								You can ply your time, spending an eternity to plan your steps to claim more sparks in the everlasting fulfillment of ambition. \
+								Some day, you will rise higher. You refuse to entertain any other possibility. And so, you set out."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
