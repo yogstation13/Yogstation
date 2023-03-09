@@ -199,16 +199,17 @@
 /datum/emote/living/handsup
 	key = "handsup"
 	key_third_person = "raiseshands"
-	message	= "raises their hands in the air, they surrender!"
+	message	= span_surrender("raises their hands in the air, they surrender!")
+	restraint_check = TRUE
 
 /datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
-	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
-	var/obj/item/bodypart/l_arm/L = user.get_bodypart(BODY_ZONE_L_ARM)
-	(R?.set_disabled(TRUE)) 
-	(L?.set_disabled(TRUE)) 
-	addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 15 SECONDS, TRUE)
-	addtimer(CALLBACK(L, /obj/item/bodypart/l_arm/.proc/set_disabled), 15 SECONDS, TRUE)		
+	if(!.)
+		return
+	for(var/obj/item/I in user.held_items)
+		user.drop_all_held_items(I, TRUE)
+	var/obj/item/twohanded/required/raisedhands/L = new(user)
+	user.put_in_hands(L)
 
 /datum/emote/living/jump
 	key = "jump"
