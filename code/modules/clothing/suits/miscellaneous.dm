@@ -337,7 +337,7 @@
 	dynamic_hair_suffix = ""
 	
 /obj/item/clothing/suit/hooded/bee_costume/authentic
-	name = "authentic bee costume"
+	name = "bee costume"
 	desc = "Bee the true Queen! Smells like honey..."
 	icon_state = "bee"
 	item_state = "labcoat"
@@ -349,7 +349,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/bee_hood/authentic
 
 /obj/item/clothing/head/hooded/bee_hood/authentic
-	name = "authentic bee hood"
+	name = "bee hood"
 	desc = "A hood attached to a bee costume. It's buzzing quietly."
 	icon_state = "bee"
 	body_parts_covered = HEAD
