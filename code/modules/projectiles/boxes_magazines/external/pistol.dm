@@ -70,14 +70,14 @@
 /obj/item/ammo_box/magazine/pistolm9mm
 	name = "pistol magazine (9mm)"
 	desc = "A 15-round 9mm magazine designed for the Stechkin APS Pistol."
-	icon_state = "9x19p-8"
+	icon_state = "9x19p-10"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = "9mm"
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/pistolm9mm/update_icon()
 	..()
-	icon_state = "9x19p-[ammo_count() ? "8" : "0"]"
+	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"
 
 //Desert Eagle
 
