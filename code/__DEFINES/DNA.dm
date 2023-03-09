@@ -139,22 +139,23 @@
 #define AGENDER			19
 #define FGENDER         20
 #define MGENDER	        21
-/// Do not draw eyes or eyeless overlay
+/// Do not draw eyes & sclera or eyeless overlay
 #define NOEYESPRITES	22
+#define NOSCLERA        23
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH	23
+#define HAS_FLESH	24
 /// if we have bones (can suffer bone wounds)
-#define HAS_BONE	24
+#define HAS_BONE	25
 /// Can't be husked.
-#define NOHUSK			25
+#define NOHUSK			26
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
-#define ROBOTIC_LIMBS	26
+#define ROBOTIC_LIMBS	27
 /// have no mouth to ingest/eat with
-#define NOMOUTH			27
+#define NOMOUTH			28
 /// has a tail
-#define HAS_TAIL		28
-#define NONANITES		29
+#define HAS_TAIL		29
+#define NONANITES		30
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
