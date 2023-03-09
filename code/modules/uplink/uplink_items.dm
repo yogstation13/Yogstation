@@ -552,7 +552,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/pistol
 	name = "Stechkin Pistol"
-	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
+	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 10-round magazines and is compatible \
 			with suppressors."
 	item = /obj/item/gun/ballistic/automatic/pistol
 	cost = 6
@@ -751,38 +751,38 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/pistol
 	name = "Pair of 10mm Handgun Magazines"
-	desc = "A box that contains two additional 8-round 10mm magazines; compatible with the Stechkin Pistol."
+	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol."
 	item = /obj/item/storage/box/syndie_kit/pistolammo
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistol/ap
 	name = "10mm Armor-Piercing Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
 
 /datum/uplink_item/ammo/pistol/hp
 	name = "10mm Hollow-Point Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
 
 /datum/uplink_item/ammo/pistol/sleepy
 	name = "Pair of 10mm Soporific Magazines"
-	desc = "A box that contains 2 additional 8-round 10mm magazines; compatible with the Stechkin Pistol. \
+	desc = "A box that contains 2 additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
 	item = /obj/item/storage/box/syndie_kit/pistolsleepyammo
 
 /datum/uplink_item/ammo/pistol/fire
 	name = "10mm Incendiary Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
 
 /datum/uplink_item/ammo/pistol/emp
 	name = "10mm EMP Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin pistol. \
 			Loaded with bullets which release micro-electromagnetic pulses on hit, disrupting electronics on the target hit."
 	item = /obj/item/ammo_box/magazine/m10mm/emp
 
