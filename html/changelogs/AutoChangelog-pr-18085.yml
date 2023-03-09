@@ -1,0 +1,4 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - tweak: "change pill capacity from 10 u to 15 u"
