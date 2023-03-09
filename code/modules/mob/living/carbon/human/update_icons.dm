@@ -5,7 +5,7 @@
 This system allows you to update individual mob-overlays, without regenerating them all each time.
 When we generate overlays we generate the standing version and then rotate the mob as necessary..
 
-As of the time of writing there are 20 layers within this list. Please try to keep this from increasing. //22 and counting, good job guys
+As of the time of writing there are 20 layers within this list. Please try to keep this from increasing. //22 and counting, good job guys //23 now!!!
 	var/overlays_standing[20]		//For the standing stance
 
 Most of the time we only wish to update one overlay:
@@ -718,6 +718,14 @@ generate/load female uniform sprites matching all previously decided variables
 					missing_eyes.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
 				add_overlay(missing_eyes)
 
+		//sclera
+		if(!((NOSCLERA in dna.species.species_traits) || (NOEYESPRITES in dna.species.species_traits)))
+			var/sclera_icon_state = "sclera"
+			var/mutable_appearance/sclera_overlay = mutable_appearance('icons/mob/human_face.dmi', sclera_icon_state, -BODY_LAYER)
+			if(OFFSET_FACE in dna.species.offset_features)
+				sclera_overlay.pixel_x += dna.species.offset_features[OFFSET_FACE][1]
+				sclera_overlay.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
+			add_overlay(sclera_overlay)
 	dna.species.handle_hair(src)
 
 	update_inv_head()
