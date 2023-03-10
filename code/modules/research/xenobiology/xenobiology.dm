@@ -17,6 +17,7 @@
 	var/list/activate_reagents = list() ///Reagents required for activation
 	var/recurring = FALSE
 	var/plort_value = 10 //For setting the research points given from each core
+	var/react_time = 5 SECONDS // For grenades to react instantly
 
 /obj/item/slime_extract/examine(mob/user)
 	. = ..()
