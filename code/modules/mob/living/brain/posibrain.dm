@@ -98,7 +98,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
 		return
 	if(SSjob.GetJob("Cyborg").required_playtime_remaining(user.client) && !(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_rights_for(user.client, R_ADMIN)))
-		to_chat(user, span_warning("Positron brains are beyond your knowledge to control."))
+		to_chat(user, span_warning("Positronic brains are beyond your knowledge to control."))
 		to_chat(user, span_warning("In order to play as a positron brain, you require [SSjob.GetJob("Cyborg").required_playtime_remaining(user.client)] more minutes of experience on-board the station."))
 		return
 	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
