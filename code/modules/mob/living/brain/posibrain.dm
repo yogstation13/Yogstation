@@ -97,8 +97,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
 		return
-	if(user?.client?.get_exp_living() < SSjob.GetJob("Cyborg").exp_requirements)
-		to_chat(user, span_warning("Positron brains are beyond your experience to control."))
+	if(user?.client?.get_exp_living(TRUE) < SSjob.GetJob("Cyborg").exp_requirements)
+		to_chat(user, span_warning("Positron brains are beyond your knowledge to control."))
+		to_chat(user, span_warning("In order to play as a positron brain, you require [SSjob.GetJob("Cyborg").exp_requirements - user?.client?.get_exp_living(TRUE)] more minutes of experience."))
 		return
 	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
 	if(posi_ask == "No" || QDELETED(src))
