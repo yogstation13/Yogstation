@@ -781,6 +781,12 @@
 	glass_name = "chocolate pudding"
 	glass_desc = "Tasty."
 
+/datum/reagent/consumable/chocolate/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = 1
+
 /datum/reagent/consumable/vanillapudding
 	name = "Vanilla Pudding"
 	description = "A great dessert for vanilla lovers."
@@ -791,6 +797,12 @@
 	glass_icon_state = "vanillapudding"
 	glass_name = "vanilla pudding"
 	glass_desc = "Tasty."
+
+/datum/reagent/consumable/vanillapudding/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = 1
 
 /datum/reagent/consumable/cherryshake
 	name = "Cherry Shake"
@@ -803,6 +815,12 @@
 	glass_name = "cherry shake"
 	glass_desc = "A cherry flavored milkshake."
 
+/datum/reagent/consumable/ethanol/cherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
+
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
 	description = "An exotic milkshake."
@@ -813,6 +831,12 @@
 	glass_icon_state = "bluecherryshake"
 	glass_name = "blue cherry shake"
 	glass_desc = "An exotic blue milkshake."
+
+/datum/reagent/consumable/ethanol/bluecherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
