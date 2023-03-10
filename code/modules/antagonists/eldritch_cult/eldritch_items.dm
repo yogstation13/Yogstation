@@ -177,7 +177,7 @@
 
 /obj/item/gun/magic/hook/sickly_blade/flesh
 	name = "flesh blade"
-	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the excruitations it has endured from dread origins."
+	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the excruciating pain it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 

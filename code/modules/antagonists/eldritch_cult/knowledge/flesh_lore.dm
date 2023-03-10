@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_flesh
 	name = "Principle of Hunger"
-	desc = "Opens up the path of flesh to you. Allows you to transmute a pool of blood with a knife into a Flesh Blade. Additionally, your mansus grasp now raises dead players into subservient ghouls, this does not work on husks or mindshielded people and husks the person it's used on."
+	desc = "Pledges yourself to the path of Flesh. Allows you to transmute a pool of blood with a knife into a flesh blade. Additionally, your Mansus grasp now raises dead bodies into subservient ghouls if they are not mindshielded or husked. It will husk the person it's used on."
 	gain_text = "Hundreds of us starved, but I.. I found the strength in my greed."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final)
 	cost = 1
