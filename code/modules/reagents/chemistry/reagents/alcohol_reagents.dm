@@ -2506,6 +2506,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
 
+/datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
+	if(ismoth(M))
+		M.adjustToxLoss(-2, 0)
+	return ..()
+
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"
 	description = "A drink celebrating the Opsillian Republic and its rapid growth. A popular tool of integration efforts."
