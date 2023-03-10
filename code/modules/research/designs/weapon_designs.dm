@@ -408,13 +408,13 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/bouncer
-	name = "Bouncer Energy Gun"
+	name = "Bouncer Energy Gun Kit"
 	desc = "An atypical energy gun shooting bouncing projectiles."
 	id = "bouncer_egun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 10000, /datum/material/silver = 1000, /datum/material/titanium = 1200)
 	reagents_list = list(/datum/reagent/sorium = 20)
-	build_path = /obj/item/gun/energy/e_gun/bouncer
+	build_path = /obj/item/weaponcrafting/gunkit/bouncer
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
