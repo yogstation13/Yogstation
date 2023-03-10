@@ -93,7 +93,7 @@
 /// Legally distinct from /obj/item/twohanded/vibro_weapon
 /obj/item/melee/transforming/vib_blade
 	name = "vibration blade"
-	desc = "A blade with an edge that vibrates at a rapid pace, enabling it to easily cut through armor and flesh alike."
+	desc = "A blade with an edge that vibrates rapidly, enabling it to easily cut through armor and flesh alike."
 	hitsound = "swing_hit"
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
