@@ -1233,7 +1233,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 	if(ispreternis(M))
 		for(var/obj/M in orange(3, M))
-			if(!M,anchored && (M.flags_1 & CONDUCT_1))
+			if(!M.anchored && (M.flags_1 & CONDUCT_1))
 				step_towards(M)
 	return ..()
 
