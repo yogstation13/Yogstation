@@ -2221,7 +2221,7 @@
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
 "DO" = (
-/obj/effect/immovablerod{
+/obj/effect/unstoppablerod{
 	dir = 4;
 	notdebris = 1
 	},

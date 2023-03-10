@@ -22664,7 +22664,7 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
 "aTY" = (
-/obj/effect/immovablerod/duck{
+/obj/effect/unstoppablerod/duck{
 	notdebris = 1
 	},
 /turf/open/floor/engine,

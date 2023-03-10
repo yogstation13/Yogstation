@@ -162,7 +162,7 @@
 		return ..()
 	if(io == INPUT)
 		input_dir = turn(input_dir, -90)
-		if(input_dir == output_dir) //Input and output can't be the same or you create the immovable sheet.
+		if(input_dir == output_dir) //Input and output can't be the same or you create the unstoppable sheet.
 			input_dir = turn(input_dir, -90)
 		to_chat(user, span_notice("You set [src]'s input to take from the [dir2text(input_dir)]."))
 		return

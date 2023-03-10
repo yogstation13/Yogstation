@@ -55,14 +55,14 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 	qdel(src)
 
 /obj/item/service/rodgod
-	desc = "Announces a fake immovable rod."
+	desc = "Announces a fake unstoppable rod."
 
 /obj/item/service/rodgod/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("What the fuck was that?!", "General Alert")
-	message_admins("[key_name_admin(user)] made a fake immovable rod announcement!")
-	log_game("[key_name_admin(user)] made a fake immovable rod announcement!")
+	message_admins("[key_name_admin(user)] made a fake unstoppable rod announcement!")
+	log_game("[key_name_admin(user)] made a fake unstoppable rod announcement!")
 	do_sparks(2, FALSE, src)
 	GLOB.next_button_push = world.time+10
 	qdel(src)

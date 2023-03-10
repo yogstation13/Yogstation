@@ -2129,8 +2129,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 
 /datum/uplink_item/services/fake_rod
-	name = "Fake Immovable Rod"
-	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
+	name = "Fake unstoppable Rod"
+	desc = "Fakes an unstoppable rod announcement. Good for a short-lasting distraction."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
 

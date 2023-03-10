@@ -1097,7 +1097,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 				var/datum/round_event_control/brand_intelligence/BI = new()
 				BI.runEvent()
 			if(31 to 40)
-				var/datum/round_event_control/immovable_rod/R = new()
+				var/datum/round_event_control/unstoppable_rod/R = new()
 				R.runEvent()
 				R.runEvent()
 				R.runEvent()
