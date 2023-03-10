@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Vibration blade force to 20 from 23"
+  - spellcheck: "Description for said item adjusted because I hate inconsistencies"
