@@ -121,7 +121,7 @@
 
 	if(!M.buckled && !M.has_buckled_mobs())
 		var/mob_swap = FALSE
-		var/too_strong = (M.move_resist > move_force) //can't swap with unstoppable objects unless they help us
+		var/too_strong = (M.move_resist > move_force) //can't swap with immovable objects unless they help us
 		if(!they_can_move) //we have to physically move them
 			if(!too_strong)
 				mob_swap = TRUE
