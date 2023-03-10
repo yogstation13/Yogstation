@@ -27,6 +27,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/recharge_message = span_warning("The positronic brain isn't ready to activate again yet! Give it some time to recharge.")
 	var/list/possible_names //If you leave this blank, it will use the global posibrain names
 	var/picked_name
+	var/exp_requirements = 120 //just like the cyborg job
 
 /obj/item/mmi/posibrain/Topic(href, href_list)
 	if(href_list["activate"])
@@ -96,6 +97,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
+		return
+	if(user?.client?.get_exp_living() < exp_requirements)
+		to_chat(user, span_warning("Positron brains are beyond your experience to control."))
 		return
 	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
 	if(posi_ask == "No" || QDELETED(src))

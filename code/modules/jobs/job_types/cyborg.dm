@@ -11,7 +11,7 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 	minimal_player_age = 21
-	exp_requirements = 120
+	exp_requirements = 120 //if you change this, also change /obj/item/mmi/posibrain
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("Droid", "Robot", "Automaton")
 
