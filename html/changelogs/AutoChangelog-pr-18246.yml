@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "you can't get griefed by your own abilites anymore"
