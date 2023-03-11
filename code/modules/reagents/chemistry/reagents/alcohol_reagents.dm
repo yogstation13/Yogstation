@@ -822,6 +822,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
+	if(isethereal(M))
+	M.adjust_charge(amount/ 70)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
