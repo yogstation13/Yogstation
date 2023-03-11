@@ -1433,6 +1433,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				. = 1
 	..()
 
+/datum/reagent/consumable/ethanol/hippies_delight/on_mob_life(mob/living/carbon/M)
+	if(ispodperson(M))
+		M.adjustBruteLoss(-1)
+		M.adjustFireLoss(-1)
+		M.adjustToxLoss(-0.5)
+		M.adjustOxyLoss(-3)
+
 /datum/reagent/consumable/ethanol/eggnog
 	name = "Eggnog"
 	description = "For enjoying the most wonderful time of the year."
