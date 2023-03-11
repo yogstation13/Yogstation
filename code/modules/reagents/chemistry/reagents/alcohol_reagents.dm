@@ -823,6 +823,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
 	return ..()
+
 /datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, method=INGEST, reac_volume)
 	if((method == INGEST || method == INJECT || method == PATCH) && iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -830,6 +831,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(istype(stomach))
 			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
+
 /datum/reagent/consumable/ethanol/whiskeysoda
 	name = "Whiskey Soda"
 	description = "For the more refined griffon."
