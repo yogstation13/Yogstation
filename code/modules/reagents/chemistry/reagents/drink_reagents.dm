@@ -1061,8 +1061,7 @@
 	glass_name = "glass of mushroom tea"
 	glass_desc = "Oddly savoury for a drink."
 
-/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(islizard(M))
-		M.adjustOxyLoss(-0.5 * REM * delta_time, 0)
+/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/C)
+	if(islizard(C))
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
-	. = TRUE
