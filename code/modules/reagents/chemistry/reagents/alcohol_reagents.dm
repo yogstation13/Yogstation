@@ -1439,6 +1439,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.adjustFireLoss(-1)
 		M.adjustToxLoss(-0.5)
 		M.adjustOxyLoss(-3)
+	..()
 
 /datum/reagent/consumable/ethanol/eggnog
 	name = "Eggnog"
