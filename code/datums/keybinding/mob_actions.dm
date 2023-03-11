@@ -10,6 +10,8 @@
 /datum/keybinding/mob/action_hotkey/down(client/user)
 	var/mob/M = user.mob
 	var/datum/action/linked_action = M.actions[action_num]
+	if (linked_action.owner != M)
+		return //cheeky
 	if (linked_action)
 		linked_action.Trigger()
 		SEND_SOUND(usr, get_sfx("terminal_type"))
