@@ -824,12 +824,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.set_drugginess(30)
 	return ..()
 
-/datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, method=INGEST, reac_volume)
-	if((method == INGEST || method == INJECT || method == PATCH) && iscarbon(M))
+/datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/M)
+	if(ispretenis(M))
 		var/mob/living/carbon/C = M
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
-			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+			stomach.adjust_charge(amount / 70)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
