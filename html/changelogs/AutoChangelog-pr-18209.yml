@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - bugfix: "discord mhelps should no longer show up in replays"
