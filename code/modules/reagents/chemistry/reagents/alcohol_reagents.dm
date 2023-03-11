@@ -829,7 +829,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		var/mob/living/carbon/C = M
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
-			stomach.adjust_charge(get_reagent_amount(2 * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER))
+			stomach.adjust_charge(get_reagent * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
