@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "hand teleporter portals now take 4 seconds to dispel, up from 0."
