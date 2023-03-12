@@ -294,7 +294,7 @@ ipc martial arts stuff
 	if(chem.type == exotic_blood)
 		return FALSE
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)

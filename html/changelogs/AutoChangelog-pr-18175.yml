@@ -1,4 +1,0 @@
-author: "MajManatee"
-delete-after: true 
-changes: 
-  - bugfix: "No more retarded exploding because I didn't explicitly click \"no\""

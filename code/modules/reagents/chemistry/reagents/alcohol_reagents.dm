@@ -76,7 +76,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				S.success_multiplier = max(0.1*power_multiplier, S.success_multiplier)
 				// +10% success propability on each step, useful while operating in less-than-perfect conditions
 	return ..()
- 
+
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
@@ -1054,6 +1054,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "acidspitglass"
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from Nanotrasen. Made from live aliens."
+
+/datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
+	if(ispolysmorph(M))
+		M.adjustFireLoss(-0.5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/amasec
 	name = "Amasec"
@@ -2050,6 +2055,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Turbo"
 	glass_desc = "A turbulent cocktail for outlaw hoverbikers."
 
+/datum/reagent/consumable/ethanol/turbo/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.6, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/consumable/ethanol/turbo/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
 /datum/reagent/consumable/ethanol/turbo/on_mob_life(mob/living/carbon/M)
 	if(prob(4))
 		to_chat(M, span_notice("[pick("You feel disregard for the rule of law.", "You feel pumped!", "Your head is pounding.", "Your thoughts are racing..")]"))
@@ -2492,6 +2505,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_orange"
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
+
+/datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
+	if(ismoth(M))
+		M.adjustToxLoss(-2, 0)
+	return ..()
 
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"

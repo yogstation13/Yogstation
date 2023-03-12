@@ -24,8 +24,13 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
-			return COMPONENT_INCOMPATIBLE
+		if(iscarbon(host_mob))
+			var/mob/living/carbon/carbon_occupant = host_mob
+			if((NONANITES in carbon_occupant.dna.species.species_traits))
+				return COMPONENT_INCOMPATIBLE
+		else
+			if((issilicon(host_mob))) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+				return COMPONENT_INCOMPATIBLE
 
 		host_mob.hud_set_nanite_indicator()
 		START_PROCESSING(SSnanites, src)

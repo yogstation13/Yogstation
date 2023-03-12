@@ -13,6 +13,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
+	sexes = FALSE //they're basically ken dolls, come straight out of a printer
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -342,7 +343,32 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Being incased in plasteel rather than standard metal allows Preterni to be completely unaffected by EMPs.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_NAME = "Plug-n-Play",
+			SPECIES_PERK_DESC = "Preterni run off electricity rather than food.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "flask",
+			SPECIES_PERK_NAME = "Chemical Purge",
+			SPECIES_PERK_DESC = "Preterni will purge any foreign chemicals after a short time of them being in the blood stream.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "droplet-slash",
+			SPECIES_PERK_NAME = "Keep Dry",
+			SPECIES_PERK_DESC = "Preterni have exposed circuitry under cracks in their body, if water gets in they will short, causing weakness in the limbs and burns.",
+		),
+	)
 
 	return to_add
 
