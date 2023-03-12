@@ -29,7 +29,8 @@
 
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/plushies = 20,
-		/obj/item/pizzabox = 10
+		/obj/item/pizzabox = 10,
+		/obj/item/ai_cpu/experimental = 5
 	)
 
 	smells_like = "thermal paste"

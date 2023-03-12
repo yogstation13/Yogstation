@@ -41,6 +41,7 @@
 		/obj/item/reagent_containers/glass/bottle/fake_gbs = 4,
 		/obj/item/reagent_containers/glass/bottle/magnitis = 3,
 		/obj/item/reagent_containers/glass/bottle/pierrot_throat = 3,
+		/obj/item/reagent_containers/glass/bottle/jitters = 3,
 		/obj/item/reagent_containers/glass/bottle/anxiety = 3
 	)
 

@@ -36,7 +36,6 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/fancy/cigarettes = 15,
 		/obj/item/storage/box/handcuffs = 10,
 		/obj/item/storage/box/teargas = 10,
 		/obj/item/storage/box/flashbangs = 10,

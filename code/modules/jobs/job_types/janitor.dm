@@ -28,6 +28,7 @@
 	)
 
 	mail_goodies = list(
+		/obj/item/soap/nanotrasen = 35,
 		/obj/item/reagent_containers/spray/cleaner = 30,
 		/obj/item/grenade/chem_grenade/cleaner = 30,
 		/obj/item/storage/box/lights/mixed = 20,
