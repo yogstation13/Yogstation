@@ -302,43 +302,43 @@
 			user.forceMove(T) // Move us forward
 			walk_towards(F, user, 0, 1.5)
 			animate(F, alpha = 0, color = "#d40a0a", time = 0.5 SECONDS) // Cool after-image
-			for(var/mob/living/L in T.contents) // Take all mobs we encounter with us
-				if(L != user) 
+			for(var/mob/living/mophead in T.contents) // Take all mobs we encounter with us
+				if(mophead != user) 
 					user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
-					mopped |= L // Add them to the list of things we are mopping
-					L.add_fingerprint(user, FALSE)
+					mopped |= mophead // Add them to the list of things we are mopping
+					mophead.add_fingerprint(user, FALSE)
 					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
-					to_chat(L, span_userdanger("[user] grinds you against the ground!"))
-					footsies(L)
+					to_chat(mophead, span_userdanger("[user] grinds you against the ground!"))
+					footsies(mophead)
 					if(isspaceturf(T)) // If we're about to hit space, throw the first mob into space
-						var/atom/throw_target = get_edge_target_turf(L, user.dir)
-						wakeup(L)
-						L.throw_at(throw_target, 2, 4, user, 3) // throwing them outside
+						var/atom/throw_target = get_edge_target_turf(mophead, user.dir)
+						wakeup(mophead)
+						mophead.throw_at(throw_target, 2, 4, user, 3) // throwing them outside
 					if(Q.density) // If we're about to hit a wall
-						wakeup(L)
-						grab(user, L, crashdam) 
-						user.visible_message(span_warning("[user] rams [L] into [Q]!"))
-						to_chat(L, span_userdanger("[user] rams you into [Q]!"))
-						L.Knockdown(1 SECONDS)
-						L.Immobilize(1.5 SECONDS)
+						wakeup(mophead)
+						grab(user, mophead, crashdam) 
+						user.visible_message(span_warning("[user] rams [mophead] into [Q]!"))
+						to_chat(mophead, span_userdanger("[user] rams you into [Q]!"))
+						mophead.Knockdown(1 SECONDS)
+						mophead.Immobilize(1.5 SECONDS)
 						return // Then stop here
 					for(var/obj/object in Q.contents) // If we're about to hit a dense object like a table or window
-						wakeup(L)
+						wakeup(mophead)
 						if(object.density == TRUE)
-							grab(user, L, crashdam) 
-							user.visible_message(span_warning("[user] rams [L] into [object]!"))
-							to_chat(L, span_userdanger("[user] rams you into [object]!"))
+							grab(user, mophead, crashdam) 
+							user.visible_message(span_warning("[user] rams [mophead] into [object]!"))
+							to_chat(mophead, span_userdanger("[user] rams you into [object]!"))
 							object.take_damage(200) // Damage dense object
-							L.Knockdown(1 SECONDS)
-							L.Immobilize(1 SECONDS)
+							mophead.Knockdown(1 SECONDS)
+							mophead.Immobilize(1 SECONDS)
 							if(object.density == TRUE) // If it wasn't destroyed, stop here
 								return
-					user.forceMove(get_turf(L)) // Move buster arm user (forward) on top of the mopped mob
-					to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
-					user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
-					L.forceMove(Q) // Move mopped mob forward
-					grab(user, L, dragdam) 
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+					user.forceMove(get_turf(mophead)) // Move buster arm user (forward) on top of the mopped mob
+					to_chat(mophead, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
+					user.visible_message(span_warning("[user] hits [mophead] and drags them through the dirt!"))
+					mophead.forceMove(Q) // Move mopped mob forward
+					grab(user, mophead, dragdam) 
+					playsound(mophead,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user, user.dir) // Move our goalpost forward one
 	for(var/mob/living/C in mopped) // Return everyone to standing if they should be
 		wakeup(C)
@@ -355,82 +355,80 @@
 	var/supdam = 20
 	var/crashdam = 10
 	var/walldam = 30
-	var/mob/living/B = user
-	var/mob/living/L = target
-	var/turf/Z = get_turf(B)
-	if(next_slam > world.time)
+	var/turf/Z = get_turf(user)
+	if(!COOLDOWN_FINISHED(src, next_slam))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	next_slam = world.time + COOLDOWN_SLAM
-	B.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
-	var/turf/Q = get_step(get_turf(B), turn(B.dir,180)) // Get the turf behind us
+	COOLDOWN_START(src, next_slam, COOLDOWN_SLAM)
+	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+	var/turf/Q = get_step(get_turf(user), turn(user.dir,180)) // Get the turf behind us
 	if(Q.density) // If there's a wall behind us
 		var/turf/closed/wall/W = Q
-		grab(B, L, walldam) 
-		footsies(L)
-		if(isanimal(L) && L.stat == DEAD)
-			L.visible_message(span_warning("[L] explodes into gore on impact!"))
-			L.gib()
-		wakeup(L)
-		to_chat(B, span_warning("[B] turns around and slams [L] against [Q]!"))
-		to_chat(L, span_userdanger("[B] crushes you against [Q]!"))
-		playsound(L, 'sound/effects/meteorimpact.ogg', 60, 1)
-		playsound(B, 'sound/effects/gravhit.ogg', 20, 1)
+		grab(user, target, walldam) 
+		footsies(target)
+		if(isanimal(target) && target.stat == DEAD)
+			target.visible_message(span_warning("[target] explodes into gore on impact!"))
+			target.gib()
+		wakeup(target)
+		to_chat(user, span_warning("[user] turns around and slams [target] against [Q]!"))
+		to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
+		playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)
+		playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
 		if(!istype(W, /turf/closed/wall/r_wall)) // Attempt to destroy the wall
 			W.dismantle_wall(1)
-			L.forceMove(Q) // Move the mob behind us
+			target.forceMove(Q) // Move the mob behind us
 		else		
-			L.forceMove(Z) // If we couldn't smash the wall, put them under our tile
+			target.forceMove(Z) // If we couldn't smash the wall, put them under our tile
 			return // Stop here, don't apply any more damage or checks
 	for(var/obj/D in Q.contents) // If there's dense objects behind us, apply damage to the mob for each one they are slammed into
 		if(D.density == TRUE) // If it's a dense object like a window or table, otherwise skip
 			if(istype(D, /obj/machinery/disposal/bin)) // Flush them down disposals
 				var/obj/machinery/disposal/bin/dumpster = D
-				L.forceMove(D)
+				target.forceMove(D)
 				dumpster.do_flush()
-				to_chat(L, span_userdanger("[B] throws you down disposals!"))
-				B.visible_message(span_warning("[L] is thrown down the trash chute!"))
+				to_chat(target, span_userdanger("[user] throws you down disposals!"))
+				user.visible_message(span_warning("[target] is thrown down the trash chute!"))
 				return // Stop here
-			B.visible_message(span_warning("[B] turns around and slams [L] against [D]!"))
+			user.visible_message(span_warning("[user] turns around and slams [target] against [D]!"))
 			D.take_damage(400) // Heavily damage and hopefully break the object
-			grab(B, L, crashdam) 
-			footsies(L)
-			if(isanimal(L) && L.stat == DEAD)
-				L.visible_message(span_warning("[L] explodes into gore on impact!"))
-				L.gib()
+			grab(user, target, crashdam) 
+			footsies(target)
+			if(isanimal(target) && target.stat == DEAD)
+				target.visible_message(span_warning("[target] explodes into gore on impact!"))
+				target.gib()
 			sleep(0.2 SECONDS)
-			wakeup(L)
+			wakeup(target)
 	for(var/mob/living/M in Q.contents) // If there's mobs behind us, apply damage to the mob for each one they are slammed into
-		grab(B, L, crashdam) // Apply damage to the target
-		footsies(L)
-		if(isanimal(L) && L.stat == DEAD)
-			L.visible_message(span_warning("[L] explodes into gore on impact!"))
-			L.gib()
+		grab(user, target, crashdam) // Apply damage to the target
+		footsies(target)
+		if(isanimal(target) && target.stat == DEAD)
+			target.visible_message(span_warning("[target] explodes into gore on impact!"))
+			target.gib()
 		sleep(0.2 SECONDS)
-		wakeup(L)
-		to_chat(L, span_userdanger("[B] throws you into [M]"))
-		to_chat(M, span_userdanger("[B] throws [L] into you!"))
-		B.visible_message(span_warning("[L] slams into [M]!"))
-		grab(B, M, crashdam) // Apply damage to mob that was behind us
-	L.forceMove(Q) // Move the mob behind us
+		wakeup(target)
+		to_chat(target, span_userdanger("[user] throws you into [M]"))
+		to_chat(M, span_userdanger("[user] throws [target] into you!"))
+		user.visible_message(span_warning("[target] slams into [M]!"))
+		grab(user, M, crashdam) // Apply damage to mob that was behind us
+	target.forceMove(Q) // Move the mob behind us
 	if(istype(Q, /turf/open/space)) // If they got slammed into space, throw them into deep space
-		B.setDir(turn(B.dir,180))
-		var/atom/throw_target = get_edge_target_turf(L, user.dir)
-		L.throw_at(throw_target, 2, 4, B, 3)
-		B.visible_message(span_warning("[B] throws [L] behind [B.p_them()]!"))
+		user.setDir(turn(user.dir,180))
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		target.throw_at(throw_target, 2, 4, user, 3)
+		user.visible_message(span_warning("[user] throws [target] behind [user.p_them()]!"))
 		return
-	playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-	playsound(B, 'sound/effects/gravhit.ogg', 20, 1)
-	to_chat(L, span_userdanger("[B] catches you with [B.p_their()] hand and crushes you on the ground!"))
-	B.visible_message(span_warning("[B] turns around and slams [L] against the ground!"))
-	B.setDir(turn(B.dir, 180))
-	grab(B, L, supdam) // Apply damage for the slam itself, independent of whether anything was hit
-	footsies(L)
-	if(isanimal(L) && L.stat == DEAD)
-		L.visible_message(span_warning("[L] explodes into gore on impact!"))
-		L.gib()
+	playsound(target,'sound/effects/meteorimpact.ogg', 60, 1)
+	playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
+	to_chat(target, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
+	user.visible_message(span_warning("[user] turns around and slams [target] against the ground!"))
+	user.setDir(turn(user.dir, 180))
+	grab(user, target, supdam) // Apply damage for the slam itself, independent of whether anything was hit
+	footsies(target)
+	if(isanimal(target) && target.stat == DEAD)
+		target.visible_message(span_warning("[target] explodes into gore on impact!"))
+		target.gib()
 	sleep(0.2 SECONDS)
-	wakeup(L)
+	wakeup(target)
 
 /*---------------------------------------------------------------
 	end of slam section
