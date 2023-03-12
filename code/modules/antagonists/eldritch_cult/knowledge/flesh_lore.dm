@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_flesh
 	name = "Principle of Hunger"
-	desc = "Pledges yourself to the path of Flesh. Allows you to transmute a pool of blood with a knife into a flesh blade. Additionally, your Mansus grasp now raises dead bodies into subservient ghouls if they are not mindshielded or husked. It will husk the person it's used on."
-	gain_text = "Hundreds of us starved, but I.. I found the strength in my greed."
+	desc = "Pledges yourself to the path of Flesh. Allows you to transmute a pool of blood with a knife into a flesh blade. Additionally, your Mansus grasp now raises dead humanoids into subservient ghouls if they are not mindshielded or husked. It will husk the person it's used on."
+	gain_text = "The Priest has seduced countless into his flock. He will entice countless more with the Glorious Feast. You knelt before his statue and swore the Red Oath."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
@@ -35,11 +35,11 @@
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
-		to_chat(user, span_warning("Their connection to this realm is too strong!"))
+		to_chat(user, span_warning("Their will cannot be malformed to obey your own!"))
 		return
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
-		to_chat(user, span_warning("Your Patron cannot support more ghouls on this plane!"))
+		to_chat(user, span_warning("Your Oath cannot support more ghouls on this plane!"))
 		return
 
 	LAZYADD(spooky_scaries, human_target)
@@ -79,17 +79,17 @@
 
 /datum/eldritch_knowledge/flesh_ghoul
 	name = "Imperfect Ritual"
-	desc = "Allows you to resurrect the dead as voiceless dead by sacrificing them on the transmutation rune with a poppy. Voiceless dead are mute and have 50 HP. You can only have 2 at a time."
-	gain_text = "I found notes.. notes of a ritual, it was unfinished and yet I still did it."
+	gain_text = "The rite requests an indulgence from the Crimson Church, erasing the victim's freedom and granting them life anew."
+	desc = "Allows you to resurrect a humanoid body as a Voiceless Dead by transmuting them with a poppy. Voiceless Dead are mute and have 50 HP. You can only have two at a time."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/voiceless_dead)
 	route = PATH_FLESH
 	tier = TIER_1
 
 /datum/eldritch_knowledge/flesh_mark
-	name = "Mark of flesh"
-	gain_text = "I saw them, the Marked ones. The screams.. the silence."
-	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. Mark of flesh when procced causeds additional bleeding."
+	name = "Lover's Exsanguination"
+	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
+	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark)
 	route = PATH_FLESH
@@ -104,8 +104,8 @@
 
 /datum/eldritch_knowledge/raw_prophet
 	name = "Raw Ritual"
-	gain_text = "I saw the mirror-sheen in their dead eyes. It could be put to use."
-	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm and a right arm. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
+	gain_text = "The Glorious Feast is not kind to all who are blessed with participation. Those who see less-fortunate metamorphosis are exiled to the Sunless Wastes, from where they can be offered food for service."
+	desc = "Allows you to summon a Raw Prophet by transmuting a pair of eyes, a left arm and a right arm. Raw Prophets have massive sight range with X-ray, and they can sustain a telepathic network. However, they are very fragile and weak."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/raw_prophet)
 	route = PATH_FLESH
@@ -113,16 +113,16 @@
 
 /datum/eldritch_knowledge/blood_siphon
 	name = "Blood Siphon"
-	gain_text = "Our blood is one in the same, after all. The Owl told me."
-	desc = "You gain a spell that drains enemies health and restores yours."
+	gain_text = "The meat of another being is a delicacy that many enjoy. The Gravekeeper's hunger may be decadent, but you will come to know the strength it yields."
+	desc = "A touch spell that drains a target's health and restores yours."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/blood_siphon)
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade
-	name = "Bleeding Steel"
-	gain_text = "It rained blood, that's when I understood The Gravekeeper's advice."
-	desc = "Your blade will now cause additional bleeding."
+	name = "Talons of the Sworn"
+	gain_text = "Ebis, the Owl, was the second to take the Red Oath. They still grant the gift of their steel to those powerful enough to resist their incursions."
+	desc = "Your flesh blade will now cause additional bleeding on hit."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade)
 	route = PATH_FLESH
@@ -138,8 +138,8 @@
 
 /datum/eldritch_knowledge/stalker
 	name = "Lonely Ritual"
-	gain_text = " The Uncanny Man walks lonely in the Valley, I called for his aid."
-	desc = "You can now summon a Stalker by transmuting a knife, a candle, a pen and a piece of paper. Stalkers can shapeshift into harmeless animals and have access to an EMP."
+	gain_text = "The Uncanny Man walks lonely in the Valley. I called for his aid."
+	desc = "Allows you to summon a Stalker by transmuting a knife, a candle, a pen, and a piece of paper. Stalkers can shapeshift into harmless animals and emit EMPs."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/stalker)
 	route = PATH_FLESH
@@ -148,7 +148,7 @@
 /datum/eldritch_knowledge/ashy
 	name = "Ashen Ritual"
 	gain_text = "I combined the principle of Hunger with a desire for Destruction. The Eyeful Lords took notice."
-	desc = "You can now summon an Ash Man by transmutating a pile of ash, a head and a book. Ash Men have powerful offensive abilities and access to the Ash Passage spell."
+	desc = "You can now summon an Ashman by transmutating a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ash Passage spell."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/ashy)
 	tier = TIER_3
@@ -156,7 +156,7 @@
 /datum/eldritch_knowledge/rusty
 	name = "Rusted Ritual"
 	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
-	desc = "You can now summon a Rust Walker transmutating vomit pool and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
+	desc = "You can now summon a Rust Walker transmutating a vomit pool and a book. Rust Walkers are capable of spreading rust and have strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
 	tier = TIER_3

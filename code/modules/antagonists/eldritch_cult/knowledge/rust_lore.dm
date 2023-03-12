@@ -30,8 +30,8 @@
 
 /datum/eldritch_knowledge/rust_regen
 	name = "Leeching Walk"
-	desc = "Passively heals you when you are on rusted tiles."
 	gain_text = "His strength was unparalleled, it was unnatural. The Blacksmith was smiling."
+	desc = "Passively heals you when you are on rusted tiles."
 	cost = 1
 	route = PATH_RUST
 	tier = TIER_1
@@ -50,24 +50,24 @@
 
 /datum/eldritch_knowledge/armor
 	name = "Armorer's ritual"
-	desc = "You can now create a powerful set of armor by transmuting a table and gas mask."
 	gain_text = "For I am the heir to the throne of their doom."
+	desc = "Allows you to create a powerful set of armor by transmuting a table and a gas mask."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/armor)
 	tier = TIER_1
 
 /datum/eldritch_knowledge/essence
 	name = "Priest's ritual"
-	desc = "You can now transmute a tank of water into a bottle of eldritch water."
 	gain_text = "I learned an old recipe, taught by an Owl in my dreams."
+	desc = "You can now transmute a tank of water into a bottle of eldritch water."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/water)
 	tier = TIER_1
 
 /datum/eldritch_knowledge/rust_mark
 	name = "Mark of Rust"
-	desc = "Your mansus grasp now applies a rust mark. To Detonate the mark use your eldritch blade on it. The rust mark has a chance to deal between 0 to 200 damage to 75% of enemies items."
 	gain_text = "Lords of the depths help those in dire need at a cost."
+	desc = "Your mansus grasp now applies a rust mark. To Detonate the mark use your eldritch blade on it. The rust mark has a chance to deal between 0 to 200 damage to 75% of enemies items."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_RUST
@@ -81,8 +81,8 @@
 
 /datum/eldritch_knowledge/area_conversion
 	name = "Agressive Spread"
-	desc = "Spreads rust to nearby turfs. Destroys already rusted walls."
 	gain_text = "All men wise know not to touch the bound king."
+	desc = "Spreads rust to nearby turfs. Destroys already rusted walls."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/aoe_turf/rust_conversion)
 	route = PATH_RUST
@@ -90,8 +90,8 @@
 
 /datum/eldritch_knowledge/rust_blade_upgrade
 	name = "Toxic blade"
-	gain_text = "Let your blade guide you through the flesh."
 	desc = "Your blade of choice will now add toxin to enemies bloodstream."
+	gain_text = "Let your blade guide you through the flesh."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade)
 	route = PATH_RUST
@@ -105,8 +105,8 @@
 
 /datum/eldritch_knowledge/entropic_plume
 	name = "Entropic Plume"
-	desc = "You can now send a befuddling plume that blinds, poisons and makes enemies strike each other. Also converts the area into rust."
 	gain_text = "Messengers of hope fear I, the Rustbringer!"
+	desc = "You can now send a befuddling plume that blinds, poisons and makes enemies strike each other. Also converts the area into rust."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/cone/staggered/entropic_plume)
 	route = PATH_RUST
@@ -114,8 +114,8 @@
 
 /datum/eldritch_knowledge/rust_final
 	name = "Rustbringer's Oath"
-	desc = "Bring 3 corpses onto the transmutation rune. After you finish the ritual rust will now automatically spread from the rune. Your healing on rust is also tripled, while you become more resillient overall."
 	gain_text = "Champion of rust. Corruptor of steel. Fear the dark for the Rustbringer has come!"
+	desc = "Bring 3 corpses onto the transmutation rune. After you finish the ritual rust will now automatically spread from the rune. Your healing on rust is also tripled, while you become more resillient overall."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/rust_final)
 	route = PATH_RUST

@@ -102,7 +102,7 @@
 /datum/eldritch_knowledge/ash_blade_upgrade
 	name = "Blade of the City Guard"
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
-	desc = "Your ashen blade will now ignite targets, even without a mark."
+	desc = "Your ashen blade will now ignite targets."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade)
 	route = PATH_ASH
@@ -118,7 +118,7 @@
 /datum/eldritch_knowledge/flame_birth
 	name = "Flame Birth"
 	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
-	desc = "A healing spell that saps the life from those on fire nearby, killing any who are in a critical condition."
+	desc = "A healing-damage spell that saps the life from those on fire nearby, killing any who are in a critical condition."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/fiery_rebirth)
 	route = PATH_ASH
@@ -127,7 +127,7 @@
 /datum/eldritch_knowledge/cleave
 	name = "Blood Cleave"
 	gain_text = "The Shrouded One connects all. This technique, a particular favorite of theirs, rips at the bodies of those who hunch too close to permit casuality."
-	desc = "A spell that causes heavy bleeding and blood loss in an area around your target."
+	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/pointed/cleave)
 	tier = TIER_3
