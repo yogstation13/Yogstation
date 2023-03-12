@@ -10,10 +10,10 @@
 	no_guns = FALSE
 	help_verb = /mob/living/carbon/human/proc/buster_style_help
 	var/list/thrown = list()
-	var/next_wire = 0
-	var/next_mop = 0
-	var/next_grapple = 0	
-	var/next_slam = 0
+	COOLDOWN_DECLARE(next_wire)
+	COOLDOWN_DECLARE(next_mop)
+	COOLDOWN_DECLARE(next_grapple)
+	COOLDOWN_DECLARE(next_slam)
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
