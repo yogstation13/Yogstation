@@ -182,40 +182,42 @@
 	var/throwdam = 15
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
-	walk(thrown[1],0)
-	thrown[1].density = old_density
+	var/atom/tossed = thrown[1]
+	walk(tossed,0)
+	tossed.density = old_density
 	for(var/obj/I in thrown)
 		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
-	if(get_dist(thrown[1], user) > 1)//cant reach the thing i was supposed to be throwing anymore
+	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
 		return
-	if(user in thrown[1].contents)
+	if(user in tossed.contents)
 		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
 		return
-	user.visible_message(span_warning("[user] throws [thrown[1]]!"))
-	if(iscarbon(thrown[1])) // Logic that tears off a damaged limb or tail
-		var/obj/item/bodypart/limb_to_hit = thrown[1].get_bodypart(user.zone_selected)
-		grab(user, thrown[1], throwdam) // Apply damage
+	user.visible_message(span_warning("[user] throws [tossed]!"))
+	if(iscarbon(tossed)) // Logic that tears off a damaged limb or tail
+		var/mob/living/carbon/tossedliving = thrown[1]
+		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
+		grab(user, tossedliving, throwdam) // Apply damage
 		if(!limb_to_hit)
-			limb_to_hit = thrown[1].get_bodypart(BODY_ZONE_CHEST)
+			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
 		if(limb_to_hit.brute_dam == limb_to_hit.max_damage)
 			if(!istype(limb_to_hit, /obj/item/bodypart/chest))
-				to_chat(thrown[1], span_userdanger("[user] tears [limb_to_hit] off!"))
+				to_chat(tossedliving, span_userdanger("[user] tears [limb_to_hit] off!"))
 				playsound(user,'sound/misc/desceration-01.ogg', 20, 1)
-				thrown[1].visible_message(span_warning("[user] throws [thrown[1]] by [limb_to_hit], severing it from [thrown[1].p_them()]!"))
+				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [limb_to_hit], severing it from [tossedliving.p_them()]!"))
 				limb_to_hit.drop_limb()
 				user.put_in_hands(limb_to_hit)
-		if(limb_to_hit == thrown[1].get_bodypart(BODY_ZONE_PRECISE_GROIN)) //targetting the chest works for tail removal too but who cares
-			var/obj/item/organ/T = thrown[1].getorgan(/obj/item/organ/tail)
+		if(limb_to_hit == tossedliving.get_bodypart(BODY_ZONE_PRECISE_GROIN)) //targetting the chest works for tail removal too but who cares
+			var/obj/item/organ/T = tossedliving.getorgan(/obj/item/organ/tail)
 			if(T && limb_to_hit.brute_dam >= 50)
-				to_chat(thrown[1], span_userdanger("[user] tears your tail off!"))
+				to_chat(tossedliving, span_userdanger("[user] tears your tail off!"))
 				playsound(user,'sound/misc/desceration-02.ogg', 20, 1)
-				thrown[1].visible_message(span_warning("[user] throws [thrown[1]] by [thrown[1].p_their()] tail, severing [thrown[1].p_them()] from it!")) //"I'm taking this back."
-				T.Remove(thrown[1])
+				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [tossedliving.p_their()] tail, severing [tossedliving.p_them()] from it!")) //"I'm taking this back."
+				T.Remove(tossedliving)
 				user.put_in_hands(T)
 	for(var/i = 1 to target_dist)
-		var/dir_to_target = get_dir(get_turf(thrown[1]), D) //vars that let the thing be thrown while moving similar to things thrown normally
-		var/turf/T = get_step(get_turf(thrown[1]), dir_to_target)
+		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
+		var/turf/T = get_step(get_turf(tossed), dir_to_target)
 		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
 			for(var/mob/living/S in thrown)
 				grab(user, S, slamdam) 
