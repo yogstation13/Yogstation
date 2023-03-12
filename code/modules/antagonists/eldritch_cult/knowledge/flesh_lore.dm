@@ -156,7 +156,7 @@
 /datum/eldritch_knowledge/rusty
 	name = "Rusted Ritual"
 	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
-	desc = "You can now summon a Rust Walker transmutating a vomit pool and a book. Rust Walkers are capable of spreading rust and have strong, short-ranged projectile attack."
+	desc = "You can now summon a Rustwalker transmutating a vomit pool and a book. Rustwalkers are capable of spreading rust and have strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
 	tier = TIER_3
@@ -164,7 +164,7 @@
 /datum/eldritch_knowledge/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "Men of the world; Hear me! For the time of the Lord of Arms has come!"
-	desc = "Bring 3 bodies onto a transmutation rune to either ascend as the King of the Night or summon a Terror of the Night and triple your ghoul maximum."
+	desc = "Transmute three corpses to ascend by metamorphisizing as the King of the Night, or instead summon a Terror of the Night, triple your ghoul maximum, and become incredibly resilient to damage."
 	cost = 3
 	route = PATH_FLESH
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/flesh_final)

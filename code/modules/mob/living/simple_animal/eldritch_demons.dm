@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	name = "Raw Prophet"
 	real_name = "Raw Prophet"
-	desc = "An eye supported by a mass of severed limbs, it has a piercing gaze."
+	desc = "An eye supported by a mass of severed limbs. It has a piercing gaze."
 	icon_state = "raw_prophet"
 	status_flags = CANPUSH
 	icon_living = "raw_prophet"
@@ -78,7 +78,7 @@
 	if(linked_mobs[mob_linked])
 		return FALSE
 
-	to_chat(mob_linked, span_notice("You feel something new enter your mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."))
+	to_chat(mob_linked, span_notice("You feel something new enter your mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus link."))
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
@@ -92,7 +92,7 @@
 	var/datum/action/innate/mansus_speech/action = linked_mobs[mob_linked]
 	action.Remove(mob_linked)
 	qdel(action)
-	to_chat(mob_linked, span_notice("You feel something tear out of your mind as the [src]'s Mansus Link leaves your mind."))
+	to_chat(mob_linked, span_notice("You feel something tear out of your mind as the [src]'s Mansus link leaves your mind."))
 	mob_linked.emote("Scream")
 	//micro stun
 	mob_linked.AdjustParalyzed(0.5 SECONDS)
@@ -104,9 +104,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/armsy
-	name = "Terror of the night"
+	name = "Terror of the Night"
 	real_name = "Armsy"
-	desc = "Abomination made from severed limbs."
+	desc = "A horrid abomination made from severed limbs."
 	icon_state = "armsy_start"
 	icon_living = "armsy_start"
 	maxHealth = 200
@@ -288,9 +288,9 @@
 	transform = matrix_transformation
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit
-	name = "Rust Walker"
+	name = "Rustwalker"
 	real_name = "Rusty"
-	desc = "A massive skull supported by a machination of deteriorating machinery, it actively seeps life out of its environment."
+	desc = "A massive skull supported by a machination of deteriorating machinery. It actively seeps life out of its environment."
 	icon_state = "rust_walker_s"
 	status_flags = CANPUSH
 	icon_living = "rust_walker_s"
@@ -323,7 +323,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/ash_spirit
-	name = "Ash Man"
+	name = "Ashman"
 	real_name = "Ashy"
 	desc = "A strange, floating... thing..."
 	icon_state = "ash_walker"
@@ -337,9 +337,9 @@
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash,/obj/effect/proc_holder/spell/pointed/cleave,/obj/effect/proc_holder/spell/targeted/fire_sworn)
 
 /mob/living/simple_animal/hostile/eldritch/stalker
-	name = "Flesh Stalker"
-	real_name = "Flesh Stalker"
-	desc = "An abomination made from severed limbs, its form shifts as it moves."
+	name = "Stalker"
+	real_name = "Stalker"
+	desc = "A horrid entity made from severed limbs. Its form shifts as it moves."
 	icon_state = "stalker"
 	status_flags = CANPUSH
 	icon_living = "stalker"

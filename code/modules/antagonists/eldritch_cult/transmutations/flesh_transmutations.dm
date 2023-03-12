@@ -29,7 +29,7 @@
 	humie.grab_ghost()
 
 	if(!humie.mind || !humie.client)
-		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a voiceless dead", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
+		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
 		if(!LAZYLEN(candidates))
 			return
 		var/mob/dead/observer/C = pick(candidates)
@@ -38,7 +38,7 @@
 		humie.key = C.key
 
 	ADD_TRAIT(humie,TRAIT_MUTE,MAGIC_TRAIT)
-	log_game("[key_name_admin(humie)] has become a voiceless dead, their master is [user.real_name]")
+	log_game("[key_name_admin(humie)] has become a Voiceless Dead, their master is [user.real_name]")
 	humie.revive(full_heal = TRUE, admin_revive = TRUE)
 	humie.setMaxHealth(50)
 	humie.health = 50 // Voiceless dead are much tougher than ghouls
@@ -77,7 +77,7 @@
 	required_shit_list = "A pile of ash, a head and a book."
 
 /datum/eldritch_transmutation/summon/rusty
-	name = "Summon Rust Walker"
+	name = "Summon Rustwalker"
 	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	required_shit_list = "A pool of vomit and a book."
