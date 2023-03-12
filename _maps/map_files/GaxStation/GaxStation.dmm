@@ -46820,6 +46820,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"xse" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "xsi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -70644,7 +70649,7 @@ mwk
 sSU
 dBO
 kPJ
-kKN
+xse
 xTt
 iwh
 rcq

@@ -15810,6 +15810,10 @@
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"crt" = (
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "cru" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/door/firedoor/border_only,
@@ -96329,7 +96333,7 @@ bCq
 uzc
 ccw
 ppM
-efb
+crt
 soW
 cmD
 cmD
@@ -96586,7 +96590,7 @@ bCq
 uzc
 ccw
 ppM
-wil
+efb
 bQa
 cmD
 cmD

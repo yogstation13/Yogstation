@@ -14004,6 +14004,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"dLa" = (
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "dLg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -25526,6 +25530,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"hEr" = (
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/machinery/the_singularitygen/tesla,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "hEy" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -116304,7 +116313,7 @@ tYf
 ozg
 wRS
 ozg
-oAU
+hEr
 ruw
 aJj
 dPt
@@ -116561,7 +116570,7 @@ bZf
 oAU
 ozg
 ozg
-ozg
+dLa
 ruw
 aJj
 peF

@@ -52255,7 +52255,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/storage/locker)
 "fdr" = (
-/obj/structure/closet/firecloset,
+/obj/machinery/the_singularitygen,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "fdz" = (
