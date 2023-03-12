@@ -59937,10 +59937,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"khf" = (
-/obj/structure/closet/secure_closet/atmospherics,
-/turf/closed/wall,
-/area/engine/atmos_distro)
 "khv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -124884,7 +124880,7 @@ rOx
 xuB
 dOi
 vVH
-khf
+vVH
 gVA
 qlP
 dUo
