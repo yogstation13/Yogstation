@@ -162,7 +162,7 @@
 		if(prob(5))
 			if(prob(50))
 				user.say("FUCK YOU!!")
-			if(prob(50))
+			else
 				user.say("JACKPOT!!")
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
