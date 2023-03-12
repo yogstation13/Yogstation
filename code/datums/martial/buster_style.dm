@@ -297,13 +297,13 @@
 	var/turf/T = get_step(get_turf(B), B.dir)
 	var/turf/Z = get_turf(B)
 	var/list/mopped = list()
-	if(next_mop > world.time)
+	if(!COOLDOWN_FINISHED(src, next_mop))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, B)
 	B.visible_message(span_warning("[B] sprints forward with [B.p_their()] hand outstretched!"))
-	next_mop = world.time + COOLDOWN_MOP
-	playsound(B,'sound/effects/gravhit.ogg', 20, 1)
+	COOLDOWN_START(src, next_mop, COOLDOWN_MOP)
+	playsound(B,'sound/effects/gravhit.ogg', 20, TRUE)
 	B.Immobilize(0.1 SECONDS) //so they dont skip through the target
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
