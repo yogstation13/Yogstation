@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/maths.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/maths.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -29,41 +29,41 @@ For example, if you want an event to happen with a 10% per second chance, but yo
         <tr><th><a href="code/__DEFINES/maths.html#define/DIAMOND_AREA">DIAMOND_AREA</a></th><td>The number of cells in a taxicab circle (rasterized diamond) of radius X.</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/DIAMOND_AREA"><aside class="declaration">#define </aside>DIAMOND_AREA
             <aside>(X)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L228">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L228">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 228"/></a>
     </h3>
     <p>The number of cells in a taxicab circle (rasterized diamond) of radius X.</p><h3 id="define/DT_PROB"><aside class="declaration">#define </aside>DT_PROB
             <aside>(prob_per_second_percent, delta_time)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L224">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L224">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 224"/></a>
     </h3>
     <p>Like DT_PROB_RATE but easier to use, simply put <code>if(DT_PROB(10, 5))</code></p><h3 id="define/DT_PROB_RATE"><aside class="declaration">#define </aside>DT_PROB_RATE
             <aside>(prob_per_second, delta_time)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L221">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L221">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 221"/></a>
     </h3>
     <p>Converts a probability/second chance to probability/delta_time chance
 For example, if you want an event to happen with a 10% per second chance, but your proc only runs every 5 seconds, do <code>if(prob(100*DT_PROB_RATE(0.1, 5)))</code></p><h3 id="define/LPFILTER"><aside class="declaration">#define </aside>LPFILTER
             <aside>(memory, signal, delta_time, RC)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L95">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L95">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 95"/></a>
     </h3>
     <p>Low-pass filter a value to smooth out high frequent peaks. This can be thought of as a moving average filter as well.
 delta_time is how many seconds since we last ran this command. RC is the filter constant, high RC means more smoothing
 See https://en.wikipedia.org/wiki/Low-pass_filter#Simple_infinite_impulse_response_filter for the maths</p><h3 id="define/SIGN"><aside class="declaration">#define </aside>SIGN
             <aside>(x)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 27"/></a>
     </h3>
     <p>Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive</p><h3 id="define/WRAP_UP"><aside class="declaration">#define </aside>WRAP_UP
             <aside>(val, max)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/42d84edf00998d4175d0c6d6522b72f041fa3965/code/__DEFINES/maths.dm#L40">
+            <a href="https://github.com/yogstation13/Yogstation/blob/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7/code/__DEFINES/maths.dm#L40">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 40"/></a>
     </h3>
     <p>Increments a value and wraps it if it exceeds some value. Can be used to circularly iterate through a list through <code>idx = WRAP_UP(idx, length_of_list)</code>.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/42d84edf00998d4175d0c6d6522b72f041fa3965">42d84ed</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/d55f6bdf07ca09c9bae4c827d6c55fdeead7edf7">d55f6bd</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
