@@ -1,7 +1,7 @@
-#define COOLDOWN_WIRE 50
-#define COOLDOWN_MOP 40
-#define COOLDOWN_GRAPPLE 30
-#define COOLDOWN_SLAM 8
+#define COOLDOWN_WIRE 5 SECONDS
+#define COOLDOWN_MOP 4 SECONDS
+#define COOLDOWN_GRAPPLE 3 SECONDS
+#define COOLDOWN_SLAM 0.8 SECONDS
 
 
 /datum/martial_art/buster_style
