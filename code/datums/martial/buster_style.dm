@@ -94,11 +94,11 @@
 		to_chat(user, span_notice("The wire returns into your wrist."))
 		return
 	if(!COOLDOWN_FINISHED(src, next_wire))
-		to_chat(A, span_warning("You can't do that yet!"))
+		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	COOLDOWN_START(src, next_wire, COOLDOWN_WIRE)
-	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (A)
-	A.put_in_hands(gun)
+	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (user)
+	user.put_in_hands(gun)
 
 /*---------------------------------------------------------------
 	end of wire section
@@ -280,18 +280,17 @@
 	var/jumpdistance = 5
 	var/dragdam = 8
 	var/crashdam = 10
-
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/list/mopped = list()
 	if(!COOLDOWN_FINISHED(src, next_mop))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, B)
-	B.visible_message(span_warning("[B] sprints forward with [B.p_their()] hand outstretched!"))
+	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
+	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	COOLDOWN_START(src, next_mop, COOLDOWN_MOP)
-	playsound(B,'sound/effects/gravhit.ogg', 20, TRUE)
-	B.Immobilize(0.1 SECONDS) //so they dont skip through the target
+	playsound(user,'sound/effects/gravhit.ogg', 20, TRUE)
+	user.Immobilize(0.1 SECONDS) //so they dont skip through the target
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
 			return
@@ -311,7 +310,7 @@
 					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
 					to_chat(L, span_userdanger("[user] grinds you against the ground!"))
 					footsies(L)
-					if(istype(T, /turf/open/space)) // If we're about to hit space, throw the first mob into space
+					if(isspaceturf(T)) // If we're about to hit space, throw the first mob into space
 						var/atom/throw_target = get_edge_target_turf(L, user.dir)
 						wakeup(L)
 						L.throw_at(throw_target, 2, 4, user, 3) // throwing them outside
