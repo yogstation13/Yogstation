@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Lizards are now coldblooded"
-  - tweak: "Lizards have a coldmod of 0.67 from 1.75 (they're cold far more)"
-  - tweak: "Lizards have a heatmod of 0.67 from 0.75 (they're hot far more)"
-  - tweak: "Lizards slow down more when cold and speed up when warm"

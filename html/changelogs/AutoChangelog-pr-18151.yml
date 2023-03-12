@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed darkspawn not having abilities removed when ascended"
-  - tweak: "Darkspawn ascension is now quieter"

@@ -823,3 +823,21 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
+
+/obj/item/twohanded/required/raisedhands
+	name = "raised hands"
+	desc = "What are you, French?"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "latexballon"
+	item_state = "nothing"
+	force = 0
+	throwforce = 0
+	item_flags = DROPDEL | ABSTRACT
+
+/obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)
+  return
+
+/obj/item/twohanded/required/raisedhands/dropped(mob/user)	
+	user.visible_message(span_userdanger(("[user] lowers their hands!")))
+	..()
+	
