@@ -93,12 +93,12 @@
 		qdel(J)
 		to_chat(user, span_notice("The wire returns into your wrist."))
 		return
-	if(next_wire> world.time)
-		to_chat(user, span_warning("You can't do that yet!"))
+	if(!COOLDOWN_FINISHED(src, next_wire))
+		to_chat(A, span_warning("You can't do that yet!"))
 		return
-	next_wire = world.time + COOLDOWN_WIRE
-	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (user)
-	user.put_in_hands(gun)
+	COOLDOWN_START(src, next_wire, COOLDOWN_WIRE)
+	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (A)
+	A.put_in_hands(gun)
 
 /*---------------------------------------------------------------
 	end of wire section
