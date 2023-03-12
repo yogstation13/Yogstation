@@ -1011,3 +1011,6 @@
 		qdel(src)
 	else
 		return ..()
+
+/obj/machinery/hydroponics/soil/CtrlClick(mob/user)
+	return //Soil has no electricity.
