@@ -79,7 +79,7 @@
 	S.add_no_equip_slot(N, SLOT_GLOVES)
 	megabuster_action.Grant(N)
 	buster_style.teach(N)
-	to_chat(owner, "[span_boldannounce("You've gained the ability to use Buster Style!")]")
+	to_chat(owner, span_boldannounce("You've gained the ability to use Buster Style!"))
 	ADD_TRAIT(N, TRAIT_SHOCKIMMUNE, type)
 
 /// Remove our actions, re-enable gloves

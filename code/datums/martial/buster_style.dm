@@ -54,36 +54,31 @@
 		if((L?.bodypart_disabled) && (R?.bodypart_disabled))
 			to_chat(H, span_warning("The arms aren't in a functional state right now!"))
 			return FALSE
-		else
-			return TRUE //still got the other arm to pop off with
-	if(R)
-		if(R?.bodypart_disabled)
-			to_chat(H, span_warning("The right buster arm isn't in a functional state right now!"))
-			return FALSE
-	if(L)
-		if(L?.bodypart_disabled)
-			to_chat(H, span_warning("The left buster arm isn't in a functional state right now!"))
+		return TRUE //still got the other arm to pop off with
+	if(R || L)
+		if(R?.bodypart_disabled || L?.bodypart_disabled)
+			to_chat(H, span_warning("The [L ? "left" : "right"] buster arm isn't in a functional state right now!"))
 			return FALSE
 	return ..()
 
 
-/datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
+/datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	if(!(can_use(H)))
 		return
-	H.face_atom(A) //for the sake of moves that care about user orientation like mop and slam
+	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
 	if(H.a_intent == INTENT_DISARM)
-		mop(H,A)
-	if(H.a_intent == INTENT_HELP && (H==A))
+		mop(H,target)
+	if(H.a_intent == INTENT_HELP && (H==target))
 		arm_wire(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
-		if(get_turf(A) != get_turf(H))
-			lob(H,A)
-	if(!H.Adjacent(A) || H==A)
+		if(get_turf(target) != get_turf(H))
+			lob(H,target)
+	if(!H.Adjacent(target) || H==target)
 		return
-	if(H.a_intent == INTENT_HARM && isliving(A))
-		slam(H,A)
+	if(H.a_intent == INTENT_HARM && isliving(target))
+		slam(H,target)
 	if(H.a_intent == INTENT_GRAB)
-		grapple(H,A)
+		grapple(H,target)
 
 /datum/martial_art/buster_style/harm_act(mob/living/carbon/human/A, mob/living/D)
 	return TRUE // no punching plus slamming please
@@ -93,17 +88,17 @@
 	start of wire section 
 ---------------------------------------------------------------*/
 
-/datum/martial_art/buster_style/proc/arm_wire(mob/living/carbon/human/A)
-	for(var/obj/item/gun/magic/wire/J in A)
+/datum/martial_art/buster_style/proc/arm_wire(mob/living/carbon/human/user)
+	for(var/obj/item/gun/magic/wire/J in user)
 		qdel(J)
-		to_chat(A, span_notice("The wire returns into your wrist."))
+		to_chat(user, span_notice("The wire returns into your wrist."))
 		return
 	if(next_wire> world.time)
-		to_chat(A, span_warning("You can't do that yet!"))
+		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	next_wire = world.time + COOLDOWN_WIRE
-	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (A)
-	A.put_in_hands(gun)
+	var/obj/item/gun/magic/wire/gun = new /obj/item/gun/magic/wire (user)
+	user.put_in_hands(gun)
 
 /*---------------------------------------------------------------
 	end of wire section
@@ -118,21 +113,13 @@
 	if(next_grapple > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	if(target == user)
-		return
-	if(isopenturf(target))
-		return
-	if(iswallturf(target))
-		return
-	if(isitem(target))
-		return
-	if(iseffect(target))
+	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
 		return
 	playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1)
 	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
 		old_density = I.density
-		if(istype(I, /obj/mecha)) // Can pick up mechs
+		if(ismecha(I)) // Can pick up mechs
 			I.anchored = FALSE
 		if(I.anchored == TRUE) // Cannot pick up anchored structures
 			if(istype(I, /obj/machinery/vending)) // Can pick up vending machines, even if anchored
@@ -154,7 +141,7 @@
 		if(get_dist(I, user) > 2)
 			I.density = old_density
 		thrown |= I // Mark the item for throwing
-		if(istype(I, /obj/mecha))
+		if(ismecha(I))
 			I.anchored = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
@@ -164,7 +151,7 @@
 		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
-		L.Stun(10) //so the user has time to aim their throw
+		L.Stun(1 SECONDS) //so the user has time to aim their throw
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		L.forceMove(Z)
 		F.buckle_mob(target)
@@ -275,7 +262,7 @@
 				K.SpinAnimation(0.2 SECONDS, 1) 
 				sleep(0.001 SECONDS)
 				K.forceMove(T)
-				if(istype(T, /turf/open/space)) // throw them like normal if it's into space
+				if(isspaceturf(T)) // throw them like normal if it's into space
 					var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
 					K.throw_at(throw_target, 6, 4, user, 3)
 					thrown.Remove(K)
@@ -293,18 +280,18 @@
 	var/jumpdistance = 5
 	var/dragdam = 8
 	var/crashdam = 10
-	var/mob/living/B = user
-	var/turf/T = get_step(get_turf(B), B.dir)
-	var/turf/Z = get_turf(B)
+
+	var/turf/T = get_step(get_turf(user), user.dir)
+	var/turf/Z = get_turf(user)
 	var/list/mopped = list()
 	if(next_mop > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, B)
-	B.visible_message(span_warning("[B] sprints forward with [B.p_their()] hand outstretched!"))
+	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
+	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	next_mop = world.time + COOLDOWN_MOP
-	playsound(B,'sound/effects/gravhit.ogg', 20, 1)
-	B.Immobilize(0.1 SECONDS) //so they dont skip through the target
+	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
+	user.Immobilize(0.1 SECONDS) //so they dont skip through the target
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
 			return
@@ -313,47 +300,47 @@
 				return
 		if(T)
 			sleep(0.01 SECONDS)
-			B.forceMove(T) // Move us forward
-			walk_towards(F, B, 0, 1.5)
+			user.forceMove(T) // Move us forward
+			walk_towards(F, user, 0, 1.5)
 			animate(F, alpha = 0, color = "#d40a0a", time = 0.5 SECONDS) // Cool after-image
 			for(var/mob/living/L in T.contents) // Take all mobs we encounter with us
-				if(L != B) 
-					B.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+				if(L != user) 
+					user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 					mopped |= L // Add them to the list of things we are mopping
-					L.add_fingerprint(B, FALSE)
-					var/turf/Q = get_step(get_turf(B), B.dir) // get the turf behind the thing we're attacking
-					to_chat(L, span_userdanger("[B] grinds you against the ground!"))
+					L.add_fingerprint(user, FALSE)
+					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
+					to_chat(L, span_userdanger("[user] grinds you against the ground!"))
 					footsies(L)
 					if(istype(T, /turf/open/space)) // If we're about to hit space, throw the first mob into space
-						var/atom/throw_target = get_edge_target_turf(L, B.dir)
+						var/atom/throw_target = get_edge_target_turf(L, user.dir)
 						wakeup(L)
-						L.throw_at(throw_target, 2, 4, B, 3) // throwing them outside
+						L.throw_at(throw_target, 2, 4, user, 3) // throwing them outside
 					if(Q.density) // If we're about to hit a wall
 						wakeup(L)
-						grab(B, L, crashdam) 
-						B.visible_message(span_warning("[B] rams [L] into [Q]!"))
-						to_chat(L, span_userdanger("[B] rams you into [Q]!"))
+						grab(user, L, crashdam) 
+						user.visible_message(span_warning("[user] rams [L] into [Q]!"))
+						to_chat(L, span_userdanger("[user] rams you into [Q]!"))
 						L.Knockdown(1 SECONDS)
 						L.Immobilize(1.5 SECONDS)
 						return // Then stop here
 					for(var/obj/D in Q.contents) // If we're about to hit a dense object like a table or window
 						wakeup(L)
 						if(D.density == TRUE)
-							grab(B, L, crashdam) 
-							B.visible_message(span_warning("[B] rams [L] into [D]!"))
-							to_chat(L, span_userdanger("[B] rams you into [D]!"))
+							grab(user, L, crashdam) 
+							user.visible_message(span_warning("[user] rams [L] into [D]!"))
+							to_chat(L, span_userdanger("[user] rams you into [D]!"))
 							D.take_damage(200) // Damage dense object
 							L.Knockdown(1 SECONDS)
 							L.Immobilize(1 SECONDS)
 							if(D.density == TRUE) // If it wasn't destroyed, stop here
 								return
-					B.forceMove(get_turf(L)) // Move buster arm user (forward) on top of the mopped mob
-					to_chat(L, span_userdanger("[B] catches you with [B.p_their()] hand and drags you down!"))
-					B.visible_message(span_warning("[B] hits [L] and drags them through the dirt!"))
+					user.forceMove(get_turf(L)) // Move buster arm user (forward) on top of the mopped mob
+					to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
+					user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
 					L.forceMove(Q) // Move mopped mob forward
-					grab(B, L, dragdam) 
+					grab(user, L, dragdam) 
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(B, B.dir) // Move our goalpost forward one
+			T = get_step(user, user.dir) // Move our goalpost forward one
 	for(var/mob/living/C in mopped) // Return everyone to standing if they should be
 		wakeup(C)
 
