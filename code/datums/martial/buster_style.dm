@@ -1,7 +1,7 @@
-#define COOLDOWN_WIRE 50
-#define COOLDOWN_MOP 40
-#define COOLDOWN_GRAPPLE 30
-#define COOLDOWN_SLAM 8
+#define COOLDOWN_WIRE 5 SECONDS
+#define COOLDOWN_MOP 4 SECONDS
+#define COOLDOWN_GRAPPLE 3 SECONDS
+#define COOLDOWN_SLAM 0.8 SECONDS
 
 
 /datum/martial_art/buster_style
@@ -10,10 +10,10 @@
 	no_guns = FALSE
 	help_verb = /mob/living/carbon/human/proc/buster_style_help
 	var/list/thrown = list()
-	var/next_wire = 0
-	var/next_mop = 0
-	var/next_grapple = 0	
-	var/next_slam = 0
+	COOLDOWN_DECLARE(next_wire)
+	COOLDOWN_DECLARE(next_mop)
+	COOLDOWN_DECLARE(next_grapple)
+	COOLDOWN_DECLARE(next_slam)
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
@@ -295,8 +295,8 @@
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
 			return
-		for(var/obj/D in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
-			if(D.density == TRUE)
+		for(var/obj/object in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
+			if(object.density == TRUE)
 				return
 		if(T)
 			sleep(0.01 SECONDS)
