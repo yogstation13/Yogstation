@@ -152,7 +152,7 @@
 		if(!L.anchored) // Only pull them if they're unanchored
 			if(istype(H))
 				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
-				L.Immobilize(1.5 SECONDS)
+				L.Immobilize(1.0 SECONDS)
 				if(prob(5))
 					firer.say("GET OVER HERE!!")//slicer's request
 				if(T.density) // If we happen to be facing a wall after the wire snatches them
