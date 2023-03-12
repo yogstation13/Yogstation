@@ -308,8 +308,8 @@
 	for(var/i = 1 to jumpdistance)
 		if(T.density) // If we're about to hit a wall, stop
 			return
-		for(var/obj/D in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
-			if(D.density == TRUE)
+		for(var/obj/object in T.contents) // If we're about to hit a table or something that isn't destroyed, stop
+			if(object.density == TRUE)
 				return
 		if(T)
 			sleep(0.01 SECONDS)
