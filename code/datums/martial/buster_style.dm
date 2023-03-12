@@ -442,31 +442,33 @@
 	set name = "Buster Style"
 	set desc = "You mentally practice the stunts you can pull with the buster arm."
 	set category = "Buster Style"
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You think about what stunts you can pull with the power of a buster arm.</i></b>"
 
-	to_chat(usr, "<b><i>You think about what stunts you can pull with the power of a buster arm.</i></b>")
+	combined_msg += "[span_notice("Wire Snatch")]:By targetting yourself with help intent, you equip a grappling wire which can be used to move yourself or other objects. Landing a \
+	shot on a person will immobilize them for 2 seconds. Facing an immediate solid object will slam them into it, damaging both of them. Extending the wire has a 5 second cooldown."
 
-	to_chat(usr, "[span_notice("Wire Snatch")]:By targetting yourself with help intent, you equip a grappling wire which can be used to move yourself or other objects. Landing a \
-	shot on a person will immobilize them for 2 seconds. Facing an immediate solid object will slam them into it, damaging both of them. Extending the wire has a 5 second cooldown.")
+	combined_msg +=  "[span_notice("Mop the Floor")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
+	along the ground. Ramming victims into something solid does damage to them and the object. Has a 4 second cooldown."
 
-	to_chat(usr, "[span_notice("Mop the Floor")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
-	along the ground. Ramming victims into something solid does damage to them and the object. Has a 4 second cooldown.")
-
-	to_chat(usr, "[span_notice("Slam")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
-	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown.")
+	combined_msg +=  "[span_notice("Slam")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
+	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
 	
-	to_chat(usr, "[span_notice("Grapple")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
+	combined_msg +=  "[span_notice("Grapple")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
 	target destination by clicking again with grab intent. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
-	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown")
+	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown"
 
-	to_chat(usr, "[span_notice("Megabuster")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
+	combined_msg +=  "[span_notice("Megabuster")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
 	but does hefty damage to its target, even breaking walls down when hitting things into them or connecting the attack directly. Landing the attack on a reinforced wall \
 	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
-	cooldown.")
+	cooldown."
 
-	to_chat(usr, span_warning("You can't perform any of the moves besides megabuster if you're lying down or have an occupied hand. Additionally, if your buster arm should become \
-	disabled, so shall your moves."))
+	combined_msg +=  span_warning("You can't perform any of the moves besides megabuster if you're lying down or have an occupied hand. Additionally, if your buster arm should become \
+	disabled, so shall your moves.")
 
-	to_chat(usr, span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 65% for 2 seconds.</b>"))
+	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 65% for 2 seconds.</b>")
+
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
