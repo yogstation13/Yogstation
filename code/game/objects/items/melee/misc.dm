@@ -222,7 +222,8 @@
 
 	var/obj/item/bodypart/affecting = target.get_bodypart(user.zone_selected)
 	var/armor_block = target.run_armor_check(affecting, MELEE)
-	target.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
+	if(target.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block))
+		user.apply_damage(5, STAMINA, BODY_ZONE_CHEST) // boy this is tiring
 	var/current_stamina_damage = target.getStaminaLoss()
 
 	if(stun_animation)
