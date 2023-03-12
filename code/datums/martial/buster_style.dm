@@ -322,16 +322,16 @@
 						L.Knockdown(1 SECONDS)
 						L.Immobilize(1.5 SECONDS)
 						return // Then stop here
-					for(var/obj/D in Q.contents) // If we're about to hit a dense object like a table or window
+					for(var/obj/object in Q.contents) // If we're about to hit a dense object like a table or window
 						wakeup(L)
-						if(D.density == TRUE)
+						if(object.density == TRUE)
 							grab(user, L, crashdam) 
-							user.visible_message(span_warning("[user] rams [L] into [D]!"))
-							to_chat(L, span_userdanger("[user] rams you into [D]!"))
-							D.take_damage(200) // Damage dense object
+							user.visible_message(span_warning("[user] rams [L] into [object]!"))
+							to_chat(L, span_userdanger("[user] rams you into [object]!"))
+							object.take_damage(200) // Damage dense object
 							L.Knockdown(1 SECONDS)
 							L.Immobilize(1 SECONDS)
-							if(D.density == TRUE) // If it wasn't destroyed, stop here
+							if(object.density == TRUE) // If it wasn't destroyed, stop here
 								return
 					user.forceMove(get_turf(L)) // Move buster arm user (forward) on top of the mopped mob
 					to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
