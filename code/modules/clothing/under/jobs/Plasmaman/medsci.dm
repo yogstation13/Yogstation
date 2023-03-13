@@ -9,7 +9,7 @@
 
 /obj/item/clothing/under/plasmaman/cmo
 	name = "chief medical officer's envirosuit"
-	desc = "A white-blue envirosuit to denote a plasmaman of the high rank of \"Chief Medical OFficer\". Quite comfortable."
+	desc = "A white-blue envirosuit to denote a plasmaman of the high rank of \"Chief Medical Officer\". Quite comfortable."
 	icon_state = "cmo_envirosuit"
 	item_state = "cmo_envirosuit"
 	sensor_mode = SENSOR_COORDS
