@@ -31086,6 +31086,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"pBS" = (
+/obj/structure/table/wood/poker,
+/obj/item/gun/ballistic/revolver/russian,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "pCi" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 1
@@ -85020,7 +85025,7 @@ rqy
 uuV
 rTl
 fHq
-cgZ
+pBS
 htU
 uNg
 dBz
