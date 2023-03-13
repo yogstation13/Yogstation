@@ -427,3 +427,26 @@
 	if(bloodsuckerdatum && bloodsuckerdatum.vassals >= target_amount)
 		return TRUE
 	return FALSE
+
+
+/// Necromance X amount of people
+/datum/objective/bloodsucker/necromance
+	name = "necromance"
+
+/datum/objective/bloodsucker/necromance/New()
+	target_amount = rand(6,8)
+	..()
+
+
+/datum/objective/bloodsucker/necromance/update_explanation_text()
+	. = ..()
+	explanation_text = "Using Necromancy, revive people [target_amount] times."
+
+/datum/objective/bloodsucker/necromance/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+

@@ -394,8 +394,8 @@
 			They have a morbid curiosity of the dead, and may find it irrestible to not toy with them.<br> \
 			They are interested in finding corpses and trying to reverse their death, however successful they may be.<br> \
 			They have the ability to bring the dead back to a state of undeath and servitude to themself.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal seems to have a durable undead form that is resistant to many hazards a normal human might worry about. \
+			<b>Favorite Vassal</b>: Their Favorite Vassal will always be a zombie, and has similar spirit calling abilities. \
 			<b>Strength</b>: They can raise the dead and receive assistance from the beyond.<br> \
-			<b>Weakness</b>: Unable to silently feed on others, and their vassals have obvious undead forms."
+			<b>Weakness</b>: Unable to silently feed on others, and their vassals tend to have obvious undead forms."
 
 	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")

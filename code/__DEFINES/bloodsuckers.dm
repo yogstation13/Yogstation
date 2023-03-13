@@ -71,6 +71,8 @@
 #define HUNTER_CAN_BUY (1<<4)
 /// This Power can be purchased by Tzimisce Bloodsuckers
 #define TZIMISCE_CAN_BUY (1<<5)
+/// This Power can be purchased by Hecata Bloodsuckers
+#define HECATA_CAN_BUY (1<<6)
 
 /// This Power is a Toggled Power
 #define BP_AM_TOGGLE (1<<0)

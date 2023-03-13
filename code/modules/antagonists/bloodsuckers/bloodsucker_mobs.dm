@@ -262,3 +262,44 @@
 	else
 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
 	qdel(src)
+
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith
+	name = "wraith"
+	real_name = "Wraith"
+	desc = "An angry, tormented spirit, which looks to let out it's wrath on whoever is nearby."
+	gender = PLURAL
+	icon_state = "wraith"
+	mob_biotypes = list(MOB_SPIRIT)
+	maxHealth = 30
+	health = 30
+	spacewalk = TRUE
+	healable = 0
+	speak_emote = list("hisses")
+	emote_hear = list("wails.","screeches.")
+	response_help  = "puts their hand through"
+	response_disarm = "flails at"
+	response_harm   = "punches"
+	speak_chance = 1
+	melee_damage_lower = 6
+	melee_damage_upper = 6
+	attacktext = "torments"
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	status_flags = 0
+	status_flags = CANPUSH
+	movement_type = FLYING
+	loot = list(/obj/item/ectoplasm)
+	del_on_death = 1
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/Life()
+	. = ..()
+	if(!src)
+		return
+	if(src.stat != DEAD) //Wraith loses 1 health every 2 seconds, which means it will disperse after 60 seconds if not damaged.
+		adjustHealth(1)
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/death()
+	deathmessage = "withers away into nothing."
+	..()

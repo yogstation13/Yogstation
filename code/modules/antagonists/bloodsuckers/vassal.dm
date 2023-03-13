@@ -137,7 +137,8 @@
 			BuyPower(/datum/action/bloodsucker/targeted/mesmerize)
 			RegisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT, .proc/toreador_levelup_mesmerize)
 		if(CLAN_HECATA)
-			vassal.set_species(/datum/species/zombie)
+			vassal.set_species(/datum/species/zombie/hecata)
+			BuyPower(new /datum/action/bloodsucker/hecata/spiritcall/vassal)
 
 /datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
 	for(var/datum/action/bloodsucker/targeted/mesmerize/mesmerize_power in powers)

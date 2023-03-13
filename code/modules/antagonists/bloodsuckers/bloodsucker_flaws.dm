@@ -32,7 +32,7 @@
 		Gangrel - Prone to Frenzy, strange outcomes from being on frenzy, special power.\n\
 		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.\n\
 		Toreador - More human then other bloodsucker, easily disguise among crew, but bound with morals.\n\
-		Hecata - Can raise the dead and contact spectres, though unable to silently feed off others and keep live vassals."))
+		Hecata - Can raise the dead and summon wraiths, though incapable of silent feeding or benefitting from blood altars."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Your mind feels luxurious...") in options
 	if(!answer) 
@@ -102,13 +102,17 @@
 			my_clan = CLAN_HECATA
 			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Hecata Clan!\n\
 				* As part of the Hecata clan, you are an avid practioner of necromancy.\n\
-				* You are capable of raising the dead both on the spot temporarily and permanently via the persuasion rack.\n\
-				* You can also contract help from the beyond by building a spectral altar in your lair to summon a revenant loyal to you.\n\
+				* You are capable of raising the dead as zombies, making them into temporary vassals loyal to you. Dead vassals are instead permanently revived\n\
+				* You can also call for help from the beyond by summong wraiths.\n\
+				* In addition, you can send messages to all your vassals no matter their location via Deathly Communion.\n\
 				* However, feeding on people causes them deep pain, making it impossible to feed silently.\n\
 				* You also are unable to use the blood altar in order to gain tasks for ranks.\n\
-				* Finally, your Favorite Vassal will transform into a sturdy zombie, which gains immunity to many ailments such as radiation and pressure differences."))
+				* Finally, your Favorite Vassal will transform into a zombie if they weren't one already, and gain the Spirit Call ability."))
 			BuyPower(new /datum/action/bloodsucker/targeted/hecata/necromancy)
-			var/datum/objective/bloodsucker/frenzy/hecata_objective = new
+			BuyPower(new /datum/action/bloodsucker/hecata/spiritcall)
+			BuyPower(new /datum/action/bloodsucker/hecata/communion)
+			bloodsucker.faction |= "bloodhungry"
+			var/datum/objective/bloodsucker/necromance/hecata_objective = new
 			hecata_objective.owner = owner
 			objectives += hecata_objective
 			for(var/datum/action/bloodsucker/feed/feed_spell in powers)
