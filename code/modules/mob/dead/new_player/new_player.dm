@@ -496,12 +496,11 @@
 	if(world.time < client.crew_manifest_delay)
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
-	var/dat = "<html><HEAD><meta charset='UTF-8'></HEAD><body>"
-	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest_html()
-	dat += "</BODY></HTML>"
 
-	src << browse(dat, "window=manifest;size=387x420;can_close=1")
+	if(!GLOB.crew_manifest_tgui)
+		GLOB.crew_manifest_tgui = new /datum/crew_manifest(src)
+
+	GLOB.crew_manifest_tgui.ui_interact(src)
 
 /mob/dead/new_player/Move()
 	return 0

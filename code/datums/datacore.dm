@@ -145,7 +145,16 @@
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/get_manifest()
-	var/list/manifest_out = list()
+	var/list/manifest_out = list(
+		"Command",
+		"Security",
+		"Engineering",
+		"Medical",
+		"Science",
+		"Supply",
+		"Service",
+		"Silicon"
+	)
 	var/list/departments = list(
 		"Command" = GLOB.command_positions,
 		"Security" = GLOB.security_positions,
@@ -153,9 +162,11 @@
 		"Medical" = GLOB.medical_positions,
 		"Science" = GLOB.science_positions,
 		"Supply" = GLOB.supply_positions,
-		"Civilian" = GLOB.civilian_positions,
+		"Service" = GLOB.civilian_positions,
 		"Silicon" = GLOB.nonhuman_positions
 	)
+	var/list/heads = GLOB.command_positions + list("Quartermaster")
+
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
@@ -165,12 +176,18 @@
 			if(rank in jobs)
 				if(!manifest_out[department])
 					manifest_out[department] = list()
-				manifest_out[department] += list(list(
-					"name" = name,
-					"rank" = rank
-				))
+				// Append to beginning of list if captain or department head
+				if (rank == "Captain" || (department != "Command" && (rank in heads)))
+					manifest_out[department] = list(list(
+						"name" = name,
+						"rank" = rank
+					)) + manifest_out[department]
+				else
+					manifest_out[department] += list(list(
+						"name" = name,
+						"rank" = rank
+					))
 				has_department = TRUE
-				break
 		if(!has_department)
 			if(!manifest_out["Misc"])
 				manifest_out["Misc"] = list()
@@ -178,6 +195,9 @@
 				"name" = name,
 				"rank" = rank
 			))
+	for (var/department in departments)
+		if (!manifest_out[department])
+			manifest_out -= department
 	return manifest_out
 
 /datum/datacore/proc/get_manifest_html(monochrome = FALSE)
