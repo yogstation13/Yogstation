@@ -5,13 +5,13 @@
 	required_shit_list = "A piece of trash and a knife."
 
 /datum/eldritch_transmutation/armor
-	name = "Create Eldritch Armor"
+	name = "Eldritch Armor"
 	required_atoms = list(/obj/structure/table,/obj/item/clothing/mask/gas)
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
 	required_shit_list = "A table and a gas mask."
 
 /datum/eldritch_transmutation/water
-	name = "Create Eldritch Essence"
+	name = "Eldritch Essence"
 	required_atoms = list(/obj/structure/reagent_dispensers/watertank)
 	result_atoms = list(/obj/item/reagent_containers/glass/beaker/eldritch)
 	required_shit_list = "A tank of water."

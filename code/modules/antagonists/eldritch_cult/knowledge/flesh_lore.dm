@@ -138,7 +138,7 @@
 
 /datum/eldritch_knowledge/stalker
 	name = "Lonely Ritual"
-	gain_text = "The Uncanny Man walks lonely in the Valley. I called for his aid."
+	gain_text = "The Lover is drawn to those who skirt the Crimson Church with solitude in their hearts. Their bodies afterward are like her; deceiving, yet deadly."
 	desc = "Allows you to summon a Stalker by transmuting a knife, a candle, a pen, and a piece of paper. Stalkers can shapeshift into harmless animals and emit EMPs."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/stalker)
@@ -147,7 +147,7 @@
 
 /datum/eldritch_knowledge/ashy
 	name = "Ashen Ritual"
-	gain_text = "I combined the principle of Hunger with a desire for Destruction. The Eyeful Lords took notice."
+	gain_text = "There are so many that fall and wander the Kilnplains as horrid spawn of the Ashy Lantern. This rite offers them sparks anew to consume in exchange for servitude."
 	desc = "You can now summon an Ashman by transmutating a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ash Passage spell."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/ashy)
@@ -155,7 +155,7 @@
 
 /datum/eldritch_knowledge/rusty
 	name = "Rusted Ritual"
-	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
+	gain_text = "The Vermin Duke's pawns span the Corroded Sewers, though several spill out and roam the Badlands to accost traders and travelers alike. They are not difficult to control, as you have learned."
 	desc = "You can now summon a Rustwalker transmutating a vomit pool and a book. Rustwalkers are capable of spreading rust and have strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
@@ -163,7 +163,7 @@
 
 /datum/eldritch_knowledge/flesh_final
 	name = "Priest's Final Hymn"
-	gain_text = "Men of the world; Hear me! For the time of the Lord of Arms has come!"
+	gain_text = "In preparation for the Glorious Feast, many Sworn appetize with their closest followers. Their master looks upon this fondly, and soothes them into a new, ravenous form of decadence. You will eat, and you will grow."
 	desc = "Transmute three corpses to ascend by metamorphisizing as the King of the Night, or instead summon a Terror of the Night, triple your ghoul maximum, and become incredibly resilient to damage."
 	cost = 3
 	route = PATH_FLESH

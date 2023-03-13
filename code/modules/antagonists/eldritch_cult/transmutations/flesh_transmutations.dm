@@ -10,7 +10,7 @@
 	var/max_amt = 2
 	var/current_amt = 0
 	var/list/ghouls = list()
-	required_shit_list = "A poppy and your deceased to rise."
+	required_shit_list = "A poppy and a dead body."
 
 /datum/eldritch_transmutation/voiceless_dead/on_finished_recipe(mob/living/user,list/atoms,loc)
 	var/mob/living/carbon/human/humie = locate() in atoms
@@ -74,7 +74,7 @@
 	name = "Summon Ashman"
 	required_atoms = list(/obj/effect/decal/cleanable/ash,/obj/item/bodypart/head,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
-	required_shit_list = "A pile of ash, a head and a book."
+	required_shit_list = "A pile of ash, a head, and a book."
 
 /datum/eldritch_transmutation/summon/rusty
 	name = "Summon Rustwalker"

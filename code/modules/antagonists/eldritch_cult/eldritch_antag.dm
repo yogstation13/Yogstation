@@ -393,9 +393,12 @@
 								eat whole. Maybe a stronger student will call you from your prison one day, but infinite time will pass before \
 								then. You wish you could have done all the things you should not. And you will have an eternity to dwell on it."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"And so ends your tale. "
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"Civilizations rise and fall like the current, flowing in and out, one replacing the other over time: dominion \
+								and decay. You were to be one of these forces that saw infrastructure crumble and laws crumpled to dust. But you \
+								were weak. You too, realize you are part of the cycle as your spirit drifts down into the Mansus. Falling from the \
+								Glory, you reflect on your mistakes and your miserable life. In the moments before you become nothing, you understand."
 		else //Didn't choose lore
 			flavor_message += 	"Perhaps it is better this way. You chose not to make a plunge into the Mansus, yet your soul returns to it. \
 								You will drift down, deeper, further, until you are forgotten to nothingness."

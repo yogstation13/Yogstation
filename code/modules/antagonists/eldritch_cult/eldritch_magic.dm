@@ -296,7 +296,7 @@
 
 /obj/effect/proc_holder/spell/pointed/ash_final
 	name = "Nightwatcher's Rite"
-	desc = "Fires 5 blasts of fire in angles away from you, dealing heavy damage to anything they hit."
+	desc = "Fires five blasts of fire in angles away from you, dealing heavy damage to anything they hit."
 	school = "transmutation"
 	invocation = "IGNITE"
 	invocation_type = "whisper"
@@ -630,7 +630,7 @@
 
 /obj/effect/proc_holder/spell/cone/staggered/entropic_plume
 	name = "Entropic Plume"
-	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them (increasing with range) and poisons them (decreasing with range), while also spreading rust in the path of the plume."
+	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinding them (increasing with range) and poisoning them (decreasing with range), while also spreading rust in the path of the plume."
 	school = "illusion"
 	invocation = "GUST OF RUST"
 	invocation_type = "whisper"
