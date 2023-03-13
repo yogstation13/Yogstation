@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "botany can no longer turn trays into gaia trays by using power"
