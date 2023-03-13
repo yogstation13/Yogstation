@@ -420,16 +420,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/area/A as anything in get_sorted_areas())
 		if(!A.hidden)
 			filtered += A
-	var/area/thearea  = input("Area to jump to", "BOOYEA") as null|anything in filtered
+	var/area/thearea = tgui_input_list(usr, "Area to jump to", "BOOYEA", filtered)
 
-	if(!thearea)
+	if(isnull(thearea))
+		return
+	if(!isobserver(usr))
+		to_chat(usr, span_warning("Not when you're not dead!"))
 		return
 
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
 		L+=T
 
-	if(!L || !L.len)
+	if(!L || !length(L))
 		to_chat(usr, "No area available.")
 		return
 
