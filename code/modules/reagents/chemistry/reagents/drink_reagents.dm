@@ -815,7 +815,7 @@
 	glass_name = "cherry shake"
 	glass_desc = "A cherry flavored milkshake."
 
-/datum/reagent/consumable/ethanol/cherryshake/on_mob_life(mob/living/carbon/C)
+/datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
@@ -832,7 +832,7 @@
 	glass_name = "blue cherry shake"
 	glass_desc = "An exotic blue milkshake."
 
-/datum/reagent/consumable/ethanol/bluecherryshake/on_mob_life(mob/living/carbon/C)
+/datum/reagent/consumable/bluecherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
