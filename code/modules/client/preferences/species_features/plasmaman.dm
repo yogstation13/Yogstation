@@ -14,7 +14,8 @@
 		var/icon/overlay_to_blend
 		if (helmet_name != "None")
 			overlay_to_blend = icon('icons/obj/clothing/hats.dmi', "enviro[GLOB.plasmaman_helmet_list[helmet_name]]")
-		helmet_icon.Blend(overlay_to_blend, ICON_OVERLAY)
+		if(overlay_to_blend)
+			helmet_icon.Blend(overlay_to_blend, ICON_OVERLAY)
 		
 
 		values[helmet_name] = helmet_icon
