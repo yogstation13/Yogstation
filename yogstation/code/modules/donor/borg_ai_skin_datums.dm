@@ -82,7 +82,7 @@
 /datum/borg_skin/brainjar
 	name = "Cryojar"
 	icon_state = "brainjar"
-	module_locked = null
+	module_locked = "Medical"
 
 /datum/borg_skin/oldbrainjar
 	name = "Old Cryojar"
