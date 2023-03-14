@@ -9,14 +9,15 @@
 /datum/preference/choiced/plasmaman_helmet/init_possible_values()
 	var/list/values = list()
 
-	for (var/helmet_name in GLOB.plasmaman_helmet_list)
-		var/datum/sprite_accessory/helmet_icon_suffix = GLOB.plasmaman_helmet_list[helmet_name]
-		var/helmet_icon = "purple_envirohelm"
+	for (var/helmet_name as anything in GLOB.plasmaman_helmet_list)
+		var/icon/helmet_icon = icon('icons/obj/clothing/hats.dmi', "purple_envirohelm")
+		var/icon/overlay_to_blend
 		if (helmet_name != "None")
-			helmet_icon += "-[helmet_icon_suffix]"
+			overlay_to_blend = icon('icons/obj/clothing/hats.dmi', "enviro[GLOB.plasmaman_helmet_list[helmet_name]]")
+		helmet_icon.Blend(overlay_to_blend, ICON_OVERLAY)
+		
 
-		var/icon/icon = icon('icons/obj/clothing/hats.dmi', helmet_icon)
-		values[helmet_name] = icon
+		values[helmet_name] = helmet_icon
 
 	return values
 
