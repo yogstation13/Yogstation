@@ -67,7 +67,7 @@
 		return
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
 	if(H.a_intent == INTENT_DISARM)
-		mop(H,target)
+		mop(H)
 	if(H.a_intent == INTENT_HELP && (H==target))
 		arm_wire(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
@@ -138,7 +138,7 @@
 		I.density = FALSE 
 		walk_towards(I, user, 0, 1)
 		// Reset the item to its original state
-		if(get_dist(I, user) > 2)
+		if(get_dist(I, user) > 1)
 			I.density = old_density
 		thrown |= I // Mark the item for throwing
 		if(ismecha(I))
