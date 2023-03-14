@@ -1431,9 +1431,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				M.adjustToxLoss(2, 0)
 				. = 1
-	..()
-
-/datum/reagent/consumable/ethanol/hippies_delight/on_mob_life(mob/living/carbon/M)
+	
 	if(ispodperson(M))
 		M.adjustBruteLoss(-1)
 		M.adjustFireLoss(-1)
