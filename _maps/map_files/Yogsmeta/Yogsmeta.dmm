@@ -53488,7 +53488,8 @@
 "fTh" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "fTC" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -58393,7 +58394,8 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "jjs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -59055,7 +59057,8 @@
 	id = "atmos";
 	name = "atmos blast door"
 	},
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "jDF" = (
 /obj/machinery/air_sensor/atmos/mix_tank,
 /turf/open/floor/engine/vacuum,
@@ -60284,7 +60287,8 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "kqF" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line{
@@ -62918,7 +62922,8 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "lTy" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -68370,7 +68375,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "pvg" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
@@ -72613,7 +72619,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "sew" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
@@ -73590,7 +73597,8 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "sLT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -76977,7 +76985,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "uNl" = (
 /obj/machinery/power/apc/unlocked{
 	areastring = "/area/medical/genetics/cloning";
@@ -79797,7 +79806,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "wFr" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4

@@ -11620,7 +11620,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "bzL" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -11946,7 +11947,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "bBx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -13540,12 +13542,12 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "bPH" = (
-/obj/structure/lattice,
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
 	name = "atmos blast door"
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
 "bPN" = (
@@ -32732,11 +32734,11 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "iRt" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
 "iRA" = (
@@ -45030,7 +45032,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/space/basic)
+/turf/open/space/basic,
+/area/space/nearstation)
 "nWH" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -68317,8 +68320,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "xAA" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
 "xAC" = (
