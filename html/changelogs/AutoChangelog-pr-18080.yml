@@ -1,4 +1,0 @@
-author: "ThatLing"
-delete-after: true 
-changes: 
-  - bugfix: "Invalid quirks will not be filtered when you load a character"
