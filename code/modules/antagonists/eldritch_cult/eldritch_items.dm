@@ -88,7 +88,7 @@
 
 /obj/item/gun/magic/hook/sickly_blade
 	name = "sickly blade"
-	desc = "A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
+	desc = "A sickly, green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
