@@ -393,7 +393,10 @@
 								eat whole. Maybe a stronger student will call you from your prison one day, but infinite time will pass before \
 								then. You wish you could have done all the things you should not. And you will have an eternity to dwell on it."
 		else if(is_flesh)
-			flavor_message += 	"And so ends your tale. "
+			flavor_message += 	"And so ends your tale. Who knows what you could have become? How many you could have bent to their knees? \
+								Regrets dog you as your soul begins to flow down the Mansus. You were a fool to be tempted. A fool to follow \
+								in an order you could not possibly survive in. Yet some part of you is still enraptured by the Red Oath. There is \
+								an ecstacy in your death. This way, the Sworn remain strong. Those most deserving will feast. Your final moments are bliss."
 		else if(is_rust)
 			flavor_message += 	"Civilizations rise and fall like the current, flowing in and out, one replacing the other over time: dominion \
 								and decay. You were to be one of these forces that saw infrastructure crumble and laws crumpled to dust. But you \

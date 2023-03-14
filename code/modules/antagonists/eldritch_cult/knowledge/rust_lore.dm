@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_rust
 	name = "Blacksmith's Tale"
 	desc = "Pledges yourself to the path of Rust. Allows you to transmute a piece of trash with a knife into a rusty blade. Additionally, your Mansus grasp now deal 500 damage to inorganic matter, rusts any surface it's used on, while destroying any surface that is already rusty."
-	gain_text = "Let me tell you a story, The Blacksmith said as he gazed into his rusty blade."
+	gain_text = "Outside the Ruined Keep, you drank of the River Krym. Its poison seeping through your body, years shriveled away. Yet, you were spared. Now, your purpose is clear."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
@@ -51,7 +51,7 @@
 /datum/eldritch_knowledge/armor
 	name = "Eldritch Armor"
 	gain_text = "For I am the heir to the throne of their doom."
-	desc = "Allows you to craft a set of eldritch armor by transmuting a table and a gas mask. The robes come with a hood, and they significantly reduce most incoming damage."
+	desc = "Allows you to craft a set of eldritch armor by transmuting a table and a gas mask. The robes significantly reduce most incoming damage."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/armor)
 	tier = TIER_1
