@@ -57776,6 +57776,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison/hallway)
+"iTv" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/radiation,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "iTV" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/hazardvest,
@@ -80286,6 +80293,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"xiL" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/radiation,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "xiP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -123081,7 +123095,7 @@ eKb
 gtz
 cEA
 qsh
-xfO
+xiL
 uUY
 uUY
 uUY
@@ -123338,7 +123352,7 @@ fJm
 uHq
 dOs
 qsh
-mrN
+iTv
 uUY
 uUY
 uUY
