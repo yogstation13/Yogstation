@@ -11613,13 +11613,13 @@
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "bzK" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
 "bzL" = (
@@ -45025,13 +45025,13 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "nWB" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
 "nWH" = (
