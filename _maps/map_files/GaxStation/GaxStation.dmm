@@ -3587,7 +3587,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "bPw" = (
 /obj/machinery/light{
 	dir = 8
@@ -10191,7 +10191,7 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "eUq" = (
 /obj/structure/chair{
 	dir = 4
@@ -11979,7 +11979,7 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "fJH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -17507,7 +17507,7 @@
 	dir = 6
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "iCY" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/plasteel/white,
@@ -18885,7 +18885,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "jtL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -19401,7 +19401,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "jFl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -20263,7 +20263,7 @@
 "kcE" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "kcF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -20613,7 +20613,7 @@
 /area/medical/chemistry)
 "knf" = (
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "knl" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -33129,7 +33129,7 @@
 "qCJ" = (
 /obj/machinery/light/floor,
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "qCO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/stripes/line{
@@ -33477,9 +33477,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"qNy" = (
-/turf/closed/wall/r_wall,
-/area/engine/atmos)
 "qNI" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
@@ -34022,7 +34019,7 @@
 "rbs" = (
 /obj/machinery/air_sensor/atmos/mix_tank,
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "rbJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -44023,7 +44020,7 @@
 "vYY" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/mix_input,
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/distro)
 "vZe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -45699,10 +45696,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"wQK" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "wQM" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -67573,7 +67566,7 @@ bPu
 iCK
 qCJ
 rbs
-wQK
+xTt
 buE
 iuS
 glO
@@ -68084,10 +68077,10 @@ qcX
 kYn
 iLz
 bPu
-qNy
-qNy
-qNy
-qNy
+jjX
+jjX
+jjX
+jjX
 lYd
 gAG
 rjX

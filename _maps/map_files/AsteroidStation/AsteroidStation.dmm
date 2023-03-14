@@ -1760,7 +1760,7 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "aoA" = (
 /obj/structure/window{
 	dir = 8
@@ -3434,7 +3434,7 @@
 /area/crew_quarters/fitness)
 "aBu" = (
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "aBw" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -4642,7 +4642,7 @@
 "aKe" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "aKh" = (
 /turf/closed/wall,
 /area/lawoffice)
@@ -5670,7 +5670,7 @@
 "aTU" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "aUa" = (
 /turf/open/floor/engine,
 /area/science/mixing)
@@ -13228,7 +13228,7 @@
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "dvu" = (
 /obj/structure/grille,
 /obj/machinery/meter{
@@ -36679,7 +36679,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "lDV" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -51566,7 +51566,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/pumproom)
 "qum" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{

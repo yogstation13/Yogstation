@@ -11088,7 +11088,7 @@
 "bvA" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "bvB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -13067,9 +13067,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"bLK" = (
-/turf/closed/wall/r_wall,
-/area/engine/atmos)
 "bLM" = (
 /obj/machinery/suit_storage_unit/atmos,
 /turf/open/floor/plasteel/dark,
@@ -21207,7 +21204,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "etJ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -23517,7 +23514,7 @@
 "fme" = (
 /obj/machinery/air_sensor/atmos/mix_tank,
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "fmo" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -39397,7 +39394,7 @@
 	pump_direction = 0
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "lKH" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/camera{
@@ -40764,7 +40761,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "mkZ" = (
 /obj/machinery/button/door{
 	id = "qm_warehouse";
@@ -41880,7 +41877,7 @@
 	layer = 3.4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "mDN" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -43668,7 +43665,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "nsc" = (
 /obj/machinery/power/smes/fullycharged,
 /obj/structure/cable/yellow{
@@ -44169,7 +44166,7 @@
 "nDb" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "nDj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -53877,7 +53874,7 @@
 /area/teleporter)
 "rHf" = (
 /turf/open/floor/engine/vacuum,
-/area/engine/atmos)
+/area/engine/atmos/mix)
 "rHh" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -103000,7 +102997,7 @@ bvA
 bvA
 bvA
 bvA
-bLK
+avy
 gXs
 gXs
 aaa
@@ -103257,7 +103254,7 @@ rHf
 mkP
 rHf
 bvA
-bLK
+avy
 gXs
 uYk
 uYk
@@ -103514,7 +103511,7 @@ rHf
 rHf
 rHf
 bvA
-bLK
+avy
 aaa
 uYk
 aol
@@ -103771,7 +103768,7 @@ lKf
 fme
 etv
 bvA
-bLK
+avy
 gXs
 uYk
 aol
@@ -104028,7 +104025,7 @@ mDE
 nDb
 nrq
 bvA
-bLK
+avy
 aaa
 uYk
 xOa
