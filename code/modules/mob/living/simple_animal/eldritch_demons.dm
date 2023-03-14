@@ -104,8 +104,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/armsy
-	name = "Terror of the Night"
-	real_name = "Armsy"
+	name = "Lavish Serpent"
+	real_name = "Waning Devourer"
 	desc = "A horrid abomination made from severed limbs."
 	icon_state = "armsy_start"
 	icon_living = "armsy_start"
@@ -274,8 +274,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/armsy/prime
-	name = "Lord of the Night"
-	real_name = "Master of Decay"
+	name = "Thirstly Serpent"
+	real_name = "Decadent Devourer"
 	maxHealth = 400
 	health = 400
 	melee_damage_lower = 30

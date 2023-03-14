@@ -164,7 +164,7 @@
 /datum/eldritch_knowledge/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "In preparation for the Glorious Feast, many Sworn appetize with their closest followers. Their master looks upon this fondly, and soothes them into a new, ravenous form of decadence. You will eat, and you will grow."
-	desc = "Transmute three corpses to ascend by metamorphisizing as the King of the Night, or instead summon a Terror of the Night, triple your ghoul maximum, and become incredibly resilient to damage."
+	desc = "Transmute three corpses to ascend by metamorphisizing as a Thirstly Serpent or instead summoning a Lavish Serpent, tripling your ghoul maximum, and becoming incredibly resilient to damage."
 	cost = 3
 	route = PATH_FLESH
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/flesh_final)

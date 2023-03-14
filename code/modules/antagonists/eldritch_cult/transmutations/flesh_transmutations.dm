@@ -29,7 +29,7 @@
 	humie.grab_ghost()
 
 	if(!humie.mind || !humie.client)
-		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
+		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead?", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
 		if(!LAZYLEN(candidates))
 			return
 		var/mob/dead/observer/C = pick(candidates)
@@ -38,7 +38,7 @@
 		humie.key = C.key
 
 	ADD_TRAIT(humie,TRAIT_MUTE,MAGIC_TRAIT)
-	log_game("[key_name_admin(humie)] has become a Voiceless Dead, their master is [user.real_name]")
+	log_game("[key_name_admin(humie)] has become a Voiceless Dead, their master is [user.real_name].")
 	humie.revive(full_heal = TRUE, admin_revive = TRUE)
 	humie.setMaxHealth(50)
 	humie.health = 50 // Voiceless dead are much tougher than ghouls
@@ -88,13 +88,13 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or empower yourself and summon a Terror of the Night?","...","Yes","No")
+	var/alert_ = alert(user,"Do you want to ascend as a Thirstly Serpent or empower yourself and summon a Lavish Serpent?","...","Yes","No")
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
 			var/mob/living/summoned = new /mob/living/simple_animal/hostile/eldritch/armsy(loc)
-			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc]")
-			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
+			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc].")
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]?", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
 				to_chat(user,span_warning("No ghost could be found..."))
@@ -129,7 +129,7 @@
 					qdel(S)
 			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a singular entity of immeasurable power that is quickly growing in volume. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
-			log_game("[user.real_name] ascended as [summoned.real_name]")
+			log_game("[user.real_name] ascended as [summoned.real_name].")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 			ascension.ascended = TRUE

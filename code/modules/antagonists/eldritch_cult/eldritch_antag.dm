@@ -313,8 +313,8 @@
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
 								Still, you gave the things of other worlds their tithes. You step into Centcom with a stern sense of focus. Who knows what \
-								you will do next? You feel as if your every step is watched, as one who gave wholly to the Mansus without taking anything in \
-								return. Perhaps you will, someday. But not today. Today, you celebrate a masterful performance."
+								you will do next? You feel as if your every step is watched, as one who gave wholly to that other world without taking anything in \
+								return. Perhaps you will call earned bargains someday. But not today. Today, you celebrate a masterful performance."
 		message_color = "#008000"
 
 	else if(cultiewin && alive)
@@ -338,10 +338,10 @@
 	else if(cultiewin && !alive)
 		//Finish normal objectives, don't ascend, and die
 		if(is_ash)
-			flavor_message += 	"You touched the Kilnplains, and it will not let you go. While you do not rise as one of the Ashmen, your skin is still grey \
+			flavor_message += 	"You touched the Kilnplains, and it will not let you go. While you do not rise as one of the Ashmen, your skin is still grey, \
 								and you find an irremovable desire to escape this place. You have some power in your grasp. You know it to be possible. \
 								You can ply your time, spending an eternity to plan your steps to claim more sparks in the everlasting fulfillment of ambition. \
-								Some day, you will rise higher. You refuse to entertain any other possibility. And so, you set out."
+								Some day, you will rise higher. You refuse to entertain any other possibility. You set out."
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
@@ -367,7 +367,7 @@
 		else //Didn't choose lore
 			flavor_message += 	"You decided not to follow the power you had become aware of. From time to time, you will return to the Wood in \
 								your dreams, but you will never aspire to greatness. One day, you will die, and perhaps those close to you in life \
-								will honor you. Then, one day, you will be forgotten. The world will move on as you cease to exist."
+								will honor you. Then, another day, you will be forgotten. The world will move on as you cease to exist."
 		message_color = "#517fff"
 
 	else if(alive)
@@ -399,7 +399,7 @@
 								an ecstacy in your death. This way, the Sworn remain strong. Those most deserving will feast. Your final moments are bliss."
 		else if(is_rust)
 			flavor_message += 	"Civilizations rise and fall like the current, flowing in and out, one replacing the other over time: dominion \
-								and decay. You were to be one of these forces that saw infrastructure crumble and laws crumpled to dust. But you \
+								and decay. You were to be one of these forces that saw infrastructure crumble and laws tattered to dust. But you \
 								were weak. You too, realize you are part of the cycle as your spirit drifts down into the Mansus. Falling from the \
 								Glory, you reflect on your mistakes and your miserable life. In the moments before you become nothing, you understand."
 		else //Didn't choose lore
