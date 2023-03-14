@@ -558,9 +558,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Atmospherics Storage Room"
 	icon_state = "atmos_storage"
 
-/area/engine/atmos/storage/gas
-	name = "\improper Atmospherics Gas Storage"
-	icon_state = "atmos_storage_gas"
+/area/engine/atmos/foyer
+	name = "\improper Atmospherics Foyer"
+	icon_state = "atmos_foyer"
 
 /area/engine/atmos/hfr
 	name = "\improper Atmospherics HFR Room"
