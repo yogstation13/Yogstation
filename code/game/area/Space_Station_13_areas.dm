@@ -539,27 +539,31 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "atmos_distro"
 
 /area/engine/atmos/project
-	name = "Atmospherics Project Room"
+	name = "\improper Atmospherics Project Room"
 	icon_state = "atmos_project"
 
 /area/engine/atmos/engine
-	name = "Atmospherics Engine"
+	name = "\improper Atmospherics Engine"
 	icon_state = "atmos_engine"
 
 /area/engine/atmos/pumproom
-	name = "Atmospherics Pumping Room"
+	name = "\improper Atmospherics Pumping Room"
 	icon_state = "atmos_pump_room"
 
+/area/engine/atmos/mix
+	name = "\improper Atmospherics Mixing Room"
+	icon_state = "atmos_mix"
+
 /area/engine/atmos/storage
-	name = "Atmospherics Storage Room"
+	name = "\improper Atmospherics Storage Room"
 	icon_state = "atmos_storage"
 
 /area/engine/atmos/storage/gas
-	name = "Atmospherics Gas Storage"
+	name = "\improper Atmospherics Gas Storage"
 	icon_state = "atmos_storage_gas"
 
 /area/engine/atmos/hfr
-	name = "Atmospherics HFR Room"
+	name = "\improper Atmospherics HFR Room"
 	icon_state = "atmos_hfr"
 
 /area/engine/supermatter
