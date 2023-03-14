@@ -21492,8 +21492,17 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/maintenance/aft)
 "kKN" = (
+/obj/structure/closet/crate/engineering{
+	name = "particle accelerator crate"
+	},
+/obj/structure/particle_accelerator/fuel_chamber,
+/obj/structure/particle_accelerator/particle_emitter/center,
+/obj/structure/particle_accelerator/particle_emitter/left,
+/obj/structure/particle_accelerator/particle_emitter/right,
+/obj/structure/particle_accelerator/power_box,
+/obj/structure/particle_accelerator/end_cap,
+/obj/machinery/particle_accelerator/control_box,
 /obj/effect/turf_decal/bot,
-/obj/machinery/shieldgen,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "kLw" = (

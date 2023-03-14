@@ -14001,6 +14001,16 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
 "aJu" = (
+/obj/structure/closet/crate/engineering{
+	name = "particle accelerator crate"
+	},
+/obj/structure/particle_accelerator/fuel_chamber,
+/obj/structure/particle_accelerator/particle_emitter/center,
+/obj/structure/particle_accelerator/particle_emitter/left,
+/obj/structure/particle_accelerator/particle_emitter/right,
+/obj/structure/particle_accelerator/power_box,
+/obj/structure/particle_accelerator/end_cap,
+/obj/machinery/particle_accelerator/control_box,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aJw" = (
