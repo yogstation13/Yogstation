@@ -356,7 +356,7 @@
 		//finish all objectives, don't break masquerade, don't escape
 		flavor_message += pick(list(
 			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
-			Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
+			Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && escaped)
