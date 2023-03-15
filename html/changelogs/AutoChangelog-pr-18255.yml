@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Makes a civilian version of all three detective trenchcoats and the brown fedora and adds them to the clothesmate"
-  - tweak: "Maint ruins with these civilian version copies no longer map-edit jackets"
-  - tweak: "Oddjob trenchcoat given the exterior name of the civilian grey trenchcoat so it's not immediately meta-able"
