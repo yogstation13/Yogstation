@@ -1,0 +1,4 @@
+author: "jachlompsky"
+delete-after: true 
+changes: 
+  - tweak: "pickpocketing puts the item in your hand"
