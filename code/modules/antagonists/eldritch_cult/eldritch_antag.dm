@@ -264,7 +264,10 @@
 			else
 				flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Rust"
+			flavor_message += 	"The shuttle sputters and finally dies as you step onto Centcom, the floor tiling beneath your feet already beginning to decay. Disgusted, \
+								you travel to the Mansus. When you head through the Wood, the grass turns at your heel. Arriving at the Wanderer's Tavern, the aged lumber \
+								creaks in your presence. Hateful gazes pierce you, and you're quickly asked to leave as the building begins to rot. In the corner, the Drifter \
+								smiles at you. You leave, knowing where to meet him next. You will not grow old. Everything else will. Their time will come. And you will be waiting."
 		message_color = "#FFD700"
 
 	else if(ascended && alive)
@@ -280,7 +283,10 @@
 			else
 				flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Rust"
+			flavor_message += 	"Flickering screens and dimming lights surround you as you walk amidst the station's corridors. As the final sparks of power fizzle out, \
+								you slip into the Mansus with ease. It is a long walk from the Gate to the Badlands, and even further to the Ruined Keep. Trailing down to \
+								the River Krym, you gaze at the fog across the way, bellowing from the Corroded Sewers. You walk into the tunnels, fume flowing into your \
+								body. Your head does not pound. Then, you continue into the depths. You will not grow old. Everything else will. Their time will come. And you will still be alive."
 		message_color = "#FFD700"
 
 	else if(ascended && !alive)
@@ -296,7 +302,10 @@
 			else
 				flavor_message += 	"Flesh"
 		else //Rust
-			flavor_message += 	"Rust"
+			flavor_message += 	"All that is made must one day be unmade. The same goes for your weak body. But even without a form, the force of decay will always be \
+								present. Your spirit flies into the Mansus, yet it is not dragged down from the Glory. Instead, you float to the Mecurial Lake, where your \
+								consciousness extends into the waters. It is difficult to recognize the heightening of awareness until you set your eyes upon the galaxy. \
+								You rumble with Nature's fury as your mind becomes primordial. You will not grow old. Everything else will. Their time will come. And so will yours."
 		message_color = "#FFD700"
 
 	else if(cultiewin && escaped)
@@ -309,7 +318,10 @@
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"The shuttle creaks as you arrive, and you make your way through Centcom briefly. The ship away creaks louder, and you decide to \
+								slip into the Mansus whole. You are unsure what to do next. But at least today, you can claim victory. You can note age in your \
+								form: age far greater than before you had begun your plunge into forbidden knowledge. Regardless, you still feel strong. There is \
+								nowhere in particular you decide to wander within the Mansus. You simply decide to drift for some time, until your next steps become clear."
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
 								Still, you gave the things of other worlds their tithes. You step into Centcom with a stern sense of focus. Who knows what \
@@ -327,7 +339,10 @@
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"Something has been accomplished. You could have gone further. But at least with the power you wield, your time aboard the rapidly-failing \
+								station is brief. It is not a short walk from the Gate to the Glass Fields. Here you look into the shards, and behold your rotten, decrepit \
+								form in the reflection. A handful of spirits flit in your steps, their angry faces leering at you. Whether they are victims or collectors, \
+								you are not sure. Regardless, the clock is ticking. You need to do more. Ruin more. The spirits agree. But for now, you celebrate with them."
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
 								Still, you gave the things of other worlds their tithes. Though you walk the halls of the station alone, the book still \
@@ -345,7 +360,10 @@
 		else if(is_flesh)
 			flavor_message += 	"Flesh"
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"Your mortal body is quick to degrade as your soul remains. The Drifter's spite grows in you, building, until you realize \
+								you are not returning to the Mansus. You begin to hear the whispers of the damned, directed toward the living, toward themselves, \
+								toward you. You follow their hushed cries and begin to find those lonely, those with despair. Lulling them to an early grave and \
+								draining what little spirit remains comes easy. Incorporeal, you may yet continue your trade."
 		else //If you SOMEHOW complete your objectives without doing ANY research
 			flavor_message += 	"You have always delighted in challenges. You heard the call of the Mansus, yet you chose not to pledge to any principle. \
 								Still, you gave the things of other worlds their tithes. You gave your life in the process, but there is a wicked satisfaction \
@@ -361,9 +379,15 @@
 								Kilnplains has provided burns brighter by the beating moment. You can try anew. Recuperate. Listen to more discussion within \
 								the Wanderer's Tavern. Your time will come again."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"Escape is escape. You did not claim the day as you thought you would. You refuse to show your head in the Crimson Church \
+								until you have righted this wrong. But at least you have the chance to do so. Even if you are caught, you will not break, \
+								not until you draw your last breath. The Gates will open anew soon enough. You will survey worthy servants in the meantime. \
+								The Cup must be filled, and the master is always wanting."
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"Your fingers are beginning to rot away. The River Krym will make its promise due eventually. But until then, you have time \
+								to delay and try again. Most mortals enjoy more time than you will have to see their impossible goals fulfilled. Yours \
+								are neither impossible nor inconsequential. All things must come to an end, but you will ensure others understand before \
+								you meet yours. It is the natural way of the world."
 		else //Didn't choose lore
 			flavor_message += 	"You decided not to follow the power you had become aware of. From time to time, you will return to the Wood in \
 								your dreams, but you will never aspire to greatness. One day, you will die, and perhaps those close to you in life \
@@ -397,7 +421,7 @@
 								eat whole. Maybe a stronger student will call you from your prison one day, but infinite time will pass before \
 								then. You wish you could have done all the things you should not. And you will have an eternity to dwell on it."
 		else if(is_flesh)
-			flavor_message += 	"And so ends your tale. Who knows what you could have become? How many you could have bent to their knees? \
+			flavor_message += 	"And so ends your tale. Who knows what you could have become? How many could you have bent to their knees? \
 								Regrets dog you as your soul begins to flow down the Mansus. You were a fool to be tempted. A fool to follow \
 								in an order you could not possibly survive in. Yet some part of you is still enraptured by the Red Oath. There is \
 								an ecstacy in your death. This way, the Sworn remain strong. Those most deserving will feast. Your final moments are bliss."

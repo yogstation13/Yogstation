@@ -165,19 +165,19 @@
 
 /obj/item/gun/magic/hook/sickly_blade/rust
 	name = "rusted blade"
-	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth."
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth. A strange liquid oozes from its points."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/ash
 	name = "ashen blade"
-	desc = "Molten and unwrought, a hunk of metal warped to cinders and slag. Unmade, it aspires to be more than it is, and shears soot-filled wounds with a blunt edge."
+	desc = "A hunk of molten metal warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it shears soot-filled wounds."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/flesh
 	name = "flesh blade"
-	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the excruciating pain it has endured from dread origins."
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating pain it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
