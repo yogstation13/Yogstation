@@ -689,15 +689,18 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C))
+		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni(ises?) can get wings
+			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
+			return ..()
+		if(!valid_species)
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
 
 		to_chat(C, span_userdanger("A terrible pain travels down your back as wings burst out!"))
 		C.dna.species.GiveSpeciesFlight(C)
-		if(holycheck)
+		if(ishumanbasic(C))
 			to_chat(C, span_notice("You feel blessed!"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
