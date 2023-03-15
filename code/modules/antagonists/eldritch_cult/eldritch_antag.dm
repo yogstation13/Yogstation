@@ -236,7 +236,7 @@
 
 	return parts.Join("<br>")
 
-/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, trasnformed, lore)
+/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, transformed, lore)
 	var/list/flavor = list()
 	var/flavor_message
 
@@ -377,9 +377,13 @@
 								Who knows who will come to rescue you? Perhaps they will feed your studies anew. Until then, you will wait. \
 								You hope greatness will come to you. You hate that you have to hope at all."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"Stranded and defeated. Perhaps others still linger who you can force to help your escape. The Mansus is closed \
+								to you, regardless. The book no longer whispers. You feel a hunger rise up in you. You know then that you \
+								will not last for long. Which limb shall you begin with? The arm, the leg, the tongue?"
 		else if(is_rust)
-			flavor_message += 	"Rust"
+			flavor_message += 	"There is naught left here for you to infest. These corridors are now empty, the halls pointless. To decay what \
+								is already abandonded is meaningless; it will happen itself. Unless more arrive and the Company revitalizes its \
+								station, you will become another relic of this place. It is inevitable."
 		else //Didn't choose lore
 			flavor_message += 	"What purpose did you serve? Your mind had been opened to greatness, yet you denied it and chose to live your \
 								days as you always have: one of the many, one of the ignorant. Look at where your lack of ambition has gotten \
