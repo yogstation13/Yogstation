@@ -740,25 +740,34 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	throwforce = 0
 	item_flags = DROPDEL | ABSTRACT
 	attack_verb = list("slapped")
-	hitsound = 'sound/effects/snap.ogg'
 
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
 		if(L && L.dna && L.dna.species)
 			L.dna.species.stop_wagging_tail(M)
-	user.do_attack_animation(M)
-	var/slap_volume = 50
+	
+	var/slap_volume = 30
+	var/hard_slap = FALSE
+	if(!HAS_TRAIT(user, TRAIT_PACIFISM) && user.a_intent == INTENT_HARM)
+		hard_slap = TRUE
+		slap_volume = 60
+		force = 2
+		..()
+		qdel(src) // hurts your hand to slap so hard
+	else
+		user.do_attack_animation(M)
+	
 	if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		user.visible_message("<span class='danger'>[user] slaps [M] in the face!</span>",
-			"<span class='notice'>You slap [M] in the face!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M] in the face[hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M] in the face[hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	else
-		user.visible_message("<span class='danger'>[user] slaps [M]!</span>",
-			"<span class='notice'>You slap [M]!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M][hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M][hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
-	return
+	return TRUE
 
 /obj/item/slapper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!istype(target, /obj/structure/table))
@@ -814,3 +823,21 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
+
+/obj/item/twohanded/required/raisedhands
+	name = "raised hands"
+	desc = "What are you, French?"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "latexballon"
+	item_state = "nothing"
+	force = 0
+	throwforce = 0
+	item_flags = DROPDEL | ABSTRACT
+
+/obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)
+  return
+
+/obj/item/twohanded/required/raisedhands/dropped(mob/user)	
+	user.visible_message(span_userdanger(("[user] lowers their hands!")))
+	..()
+	

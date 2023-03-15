@@ -293,7 +293,7 @@ obj/machinery/holopad/secure/Initialize()
 					if(pad.padname)
 						LAZYADD(callnames[pad.padname], pad)
 				callnames -= padname
-				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortNames(callnames))
+				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)

@@ -26,20 +26,29 @@
 	remove_from_mob_list()
 	remove_from_dead_mob_list()
 	remove_from_alive_mob_list()
+	remove_from_mob_suicide_list()
+
 	focus = null
+
+	if(length(progressbars))
+		stack_trace("[src] destroyed with elements in its progressbars list")
+		progressbars = null
+
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
-	if(observers && observers.len)
-		for(var/M in observers)
-			var/mob/dead/observe = M
+
+	if(observers?.len)
+		for(var/mob/dead/observe as anything in observers)
 			observe.reset_perspective(null)
+
 	qdel(hud_used)
-	for(var/cc in client_colours)
-		qdel(cc)
-	client_colours = null
-	ghostize()
-	..()
-	return QDEL_HINT_HARDDEL
+	QDEL_LIST(client_colours)
+	ghostize() //False, since we're deleting it currently
+
+	if(mind?.current == src) //Let's just be safe yeah? This will occasionally be cleared, but not always. Can't do it with ghostize without changing behavior
+		mind.current = null
+
+	return ..()
 
 /**
   * Intialize a mob
@@ -628,6 +637,10 @@
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
+
+	if(HAS_TRAIT(src, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(src, span_danger("You can't interact with anything right now!"))
+		return
 
 	if(ismecha(loc))
 		return

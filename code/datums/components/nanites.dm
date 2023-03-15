@@ -24,8 +24,13 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
-			return COMPONENT_INCOMPATIBLE
+		if(iscarbon(host_mob))
+			var/mob/living/carbon/carbon_occupant = host_mob
+			if((NONANITES in carbon_occupant.dna.species.species_traits))
+				return COMPONENT_INCOMPATIBLE
+		else
+			if((issilicon(host_mob))) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+				return COMPONENT_INCOMPATIBLE
 
 		host_mob.hud_set_nanite_indicator()
 		START_PROCESSING(SSnanites, src)
@@ -175,16 +180,16 @@
 	holder.icon_state = "nanites[nanite_percent]"
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
-	nanite_volume *= (rand(0.60, 0.90))		//Lose 10-40% of nanites
-	adjust_nanites(null, -(rand(5, 50)))		//Lose 5-50 flat nanite volume
-	if(prob(40/severity))
-		cloud_id = 0
+	nanite_volume *= (rand(0.75, 0.90))		//Lose 10-25% of nanites
+	adjust_nanites(null, -(rand(5, 30)))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
+	addtimer(VARSET_CALLBACK(src, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
+	cloud_id = 0 //temporarily disable resyncing so rogue programs actually have a chance to do something
 
 /datum/component/nanites/proc/on_shock(datum/source, shock_damage)
-	nanite_volume *= (rand(0.45, 0.80))		//Lose 20-55% of nanites
+	nanite_volume *= (rand(0.65, 0.90))		//Lose 10-35% of nanites
 	adjust_nanites(null, -(rand(5, 50)))			//Lose 5-50 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X

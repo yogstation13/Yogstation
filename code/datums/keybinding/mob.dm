@@ -76,6 +76,9 @@
 	description = ""
 
 /datum/keybinding/mob/drop_item/down(client/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(user, span_danger("You can't interact with anything right now!"))
+		return FALSE
 	if(iscyborg(user.mob)) //cyborgs can't drop items
 		return FALSE
 

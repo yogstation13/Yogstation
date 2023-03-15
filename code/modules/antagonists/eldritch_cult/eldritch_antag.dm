@@ -54,7 +54,7 @@
 	// This makes the image 64x64.
 	icon.Crop(-15, -15, 48, 48)
 
-	var/obj/item/melee/sickly_blade/blade = new
+	var/obj/item/gun/magic/hook/sickly_blade/blade = new
 	icon.Blend(icon(blade.lefthand_file, blade.item_state), ICON_OVERLAY)
 	qdel(blade)
 

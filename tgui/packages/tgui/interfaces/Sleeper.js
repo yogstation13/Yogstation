@@ -12,6 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
+    sedate_text,
   } = data;
 
   const treatments = data.treatments || [];
@@ -94,7 +95,7 @@ export const Sleeper = (props, context) => {
             buttons={(
               <Button
                 icon={'flask'}
-                content={'Sedate'}
+                content={sedate_text}
                 disabled={!can_sedate}
                 onClick={() => act('sedate')} />
             )} >

@@ -52,7 +52,7 @@
 					/obj/item/clothing/under/pants/khaki = 3,
 					/obj/item/clothing/under/rank/security/blueshirt = 3)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 3,
-					/obj/item/clothing/suit/security/officer = 3,
+					/obj/item/clothing/suit/armor/officerjacket = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
@@ -449,6 +449,7 @@
 					/obj/item/clothing/under/rank/chemist/skirt = 2,
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/chemist = 2,
+					/obj/item/clothing/head/beret/chem = 2,
 					/obj/item/storage/backpack/chemistry = 2,
 					/obj/item/storage/backpack/satchel/chem = 2,
 					/obj/item/storage/bag/chemistry = 4)

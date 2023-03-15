@@ -391,6 +391,13 @@
 	alert_type = null
 	var/hand
 	var/deathTick = 0
+	var/efficiency = 1
+	var/rod_type = /obj/item/rod_of_asclepius
+
+/datum/status_effect/hippocraticOath/on_creation(mob/living/new_owner, _efficiency, _rod_type)
+	efficiency = _efficiency
+	rod_type = _rod_type
+	. = ..()
 
 /datum/status_effect/hippocraticOath/on_apply()
 	//Makes the user passive, it's in their oath not to harm!
@@ -417,7 +424,7 @@
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
 			new /obj/effect/decal/cleanable/ash(owner.loc)
-			new /obj/item/rod_of_asclepius(owner.loc)
+			new rod_type(owner.loc)
 			if(owner.mind)
 				owner.mind.transfer_to(healSnake)
 			healSnake.grab_ghost()
@@ -426,8 +433,8 @@
 		if(iscarbon(owner))
 			var/mob/living/carbon/itemUser = owner
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
-			if(heldItem == null || heldItem.type != /obj/item/rod_of_asclepius) //Checks to make sure the rod is still in their hand
-				var/obj/item/rod_of_asclepius/newRod = new(itemUser.loc)
+			if(heldItem == null || heldItem.type != rod_type) //Checks to make sure the rod is still in their hand
+				var/obj/item/rod_of_asclepius/newRod = new rod_type(itemUser.loc)
 				newRod.activated()
 				if(!itemUser.has_hand_for_held_index(hand))
 					//If user does not have the corresponding hand anymore, give them one and return the rod to their hand
@@ -447,31 +454,31 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.adjustBruteLoss(-1.5)
-			itemUser.adjustFireLoss(-1.5)
-			itemUser.adjustToxLoss(-1.5, forced = TRUE) //Because Slime People are people too
-			itemUser.adjustOxyLoss(-1.5)
-			itemUser.adjustStaminaLoss(-1.5)
-			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
-			itemUser.adjustCloneLoss(-0.5) //Becasue apparently clone damage is the bastion of all health
+			itemUser.adjustBruteLoss(-1.5 * efficiency)
+			itemUser.adjustFireLoss(-1.5 * efficiency)
+			itemUser.adjustToxLoss(-1.5 * efficiency, forced = TRUE) //Because Slime People are people too
+			itemUser.adjustOxyLoss(-1.5 * efficiency)
+			itemUser.adjustStaminaLoss(-1.5 * efficiency)
+			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5 * efficiency)
+			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
 			if(iscarbon(L))
-				L.adjustBruteLoss(-3.5)
-				L.adjustFireLoss(-3.5)
-				L.adjustToxLoss(-3.5, forced = TRUE) //Because Slime People are people too
-				L.adjustOxyLoss(-3.5)
-				L.adjustStaminaLoss(-3.5)
-				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5)
-				L.adjustCloneLoss(-1) //Becasue apparently clone damage is the bastion of all health
+				L.adjustBruteLoss(-3.5 * efficiency)
+				L.adjustFireLoss(-3.5 * efficiency)
+				L.adjustToxLoss(-3.5 * efficiency, forced = TRUE) //Because Slime People are people too
+				L.adjustOxyLoss(-3.5 * efficiency)
+				L.adjustStaminaLoss(-3.5 * efficiency)
+				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5 * efficiency)
+				L.adjustCloneLoss(-1 * efficiency) //Becasue apparently clone damage is the bastion of all health
 			else if(issilicon(L))
-				L.adjustBruteLoss(-3.5)
-				L.adjustFireLoss(-3.5)
+				L.adjustBruteLoss(-3.5 * efficiency)
+				L.adjustFireLoss(-3.5 * efficiency)
 			else if(isanimal(L))
 				var/mob/living/simple_animal/SM = L
-				SM.adjustHealth(-3.5, forced = TRUE)
+				SM.adjustHealth(-3.5 * efficiency, forced = TRUE)
 
 /datum/status_effect/good_music
 	id = "Good Music"
@@ -581,4 +588,47 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" //yogs end
+	icon_state = "time_dilation" 
+
+/datum/status_effect/doubledown
+	id = "doubledown"
+	duration = 20
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/doubledown
+	var/obj/effect/temp_visual/decoy/tensecond/s_such_strength //surely a combo wont go on for more than 10 seconds
+
+/atom/movable/screen/alert/status_effect/doubledown
+	name = "Doubling Down"
+	desc = "Taking 65% less damage, go all in!"
+	icon_state = "aura"
+
+/datum/status_effect/doubledown/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			s_such_strength = new(get_turf(H),H)
+			walk_towards(s_such_strength, H)
+			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
+			H.ignore_slowdown(type)
+			H.physiology.brute_mod *= 0.35
+			H.physiology.burn_mod *= 0.35
+			H.physiology.tox_mod *= 0.35
+			H.physiology.oxy_mod *= 0.35
+			H.physiology.clone_mod *= 0.35
+			H.physiology.stamina_mod *= 0.35
+		owner.log_message("gained buster damage reduction", LOG_ATTACK)
+
+/datum/status_effect/doubledown/on_remove()
+	if(ishuman(owner))
+		qdel(s_such_strength)
+		var/mob/living/carbon/human/H = owner
+		H.unignore_slowdown(type)
+		H.physiology.brute_mod /= 0.35
+		H.physiology.burn_mod /= 0.35
+		H.physiology.tox_mod /= 0.35
+		H.physiology.oxy_mod /= 0.35
+		H.physiology.clone_mod /= 0.35
+		H.physiology.stamina_mod /= 0.35
+	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end

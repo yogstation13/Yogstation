@@ -323,10 +323,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/busterarm
 	name = "Buster Arm"
-	desc = "A combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user can send people \
-	and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected from the arm \
-	which can even pull items right into the user's hand with a precise hit."
-	item = /obj/item/bodypart/l_arm/robot/buster
+	desc = "A box containing a combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user\
+	can send people and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected\
+	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions. Users are \
+	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
+	item = /obj/item/storage/box/syndie_kit/buster
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
@@ -498,7 +499,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Slaughter your enemies through sheer force, prone to overheating with extended use. We made this gun so advanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
-	cost = 36
+	cost = 30
 	surplus = 0
 	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
@@ -554,7 +555,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
 			with suppressors."
 	item = /obj/item/gun/ballistic/automatic/pistol
-	cost = 6
+	cost = 5
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
@@ -641,6 +642,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
+/datum/uplink_item/stealthy_weapons/dart_pistol
+	name = "Box of Chemical Shotgun Darts"
+	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
+			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
+			out of their arm. Be careful not to mix them up with actual beanbag slugs!"
+	item = /obj/item/storage/box/beanbag/syndie_darts
+	cost = 2
+	surplus = 0 // useless for most people
+
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "Dehydrated Space Carp"
 	desc = "Looks like a plush toy carp, but just add water and it becomes a real-life space carp! Activate in \
@@ -699,9 +709,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
-	desc = "An assortment of deadly chemicals packed into a compact box. Comes with a syringe for more precise application."
+	desc = "An assortment of deadly chemicals packed into a compact box. Comes prepackaged in large syringes for more precise application."
 	item = /obj/item/storage/box/syndie_kit/chemical
-	cost = 6
+	cost = 5
 	surplus = 50
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
@@ -730,7 +740,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Suppressor"
 	desc = "This suppressor will silence the shots of the weapon it is attached to for increased stealth and superior ambushing capability. It is compatible with many small ballistic guns including the Stechkin and C-20r, but not revolvers or energy guns."
 	item = /obj/item/suppressor
-	cost = 3
+	cost = 1
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -1245,12 +1255,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/frag_grenade
+	name = "Frag Grenade"
+	desc = "Simple, but lethal. Anything adjacent when it explodes will be heavily damaged. Likely to cause a small hull breach."
+	item = /obj/item/grenade/syndieminibomb/concussion/frag
+	cost = 3
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
 	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
+	include_modes = list(/datum/game_mode/nuclear)
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/tearstache
@@ -1417,6 +1435,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/stealthy_tools/chameleon/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(is_species(user, /datum/species/plasmaman))
+		spawn_path = /obj/item/storage/box/syndie_kit/chameleon/plasmaman
+	..()
 
 /datum/uplink_item/stealthy_tools/chameleon_proj
 	name = "Chameleon Projector"
@@ -1472,7 +1495,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	player_minimum = 20
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
 	item = /obj/item/clothing/shoes/chameleon/noslip/syndicate
@@ -1744,8 +1766,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/roburger_recipe
 	name = "Roburger crafting recipe"
 	desc = "This book contains legendary knowledge about how to make roburgers. \
-			Roburgers turn people into cyborgs after a short while when eaten. \
-			This book doesn't dissaper after use, so consider hiding it somewhere."
+			Roburgers turn people into cyborgs when eaten after a short while. \
+			This book doesn't disappear after use, so consider hiding it somewhere."
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
@@ -1914,6 +1936,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants
 	category = "Implants"
 	surplus = 50
+
+/datum/uplink_item/implants/reusable
+	name = "Reusable Autosurgeon"
+	desc = "An empty autosurgeon, but unlike others can be used multiple times. More suspicious than others."
+	item = /obj/item/autosurgeon/suspicious
+	cost = 5
+	// Nukies have no use for this and their autosurgeons are already multi-use
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
@@ -2437,6 +2467,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
+/datum/uplink_item/role_restricted/chemical_gun
+	name = "Psychotic Brawl Notes"
+	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
+			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."
+	item = /obj/item/book/granter/martial/psychotic_brawling
+	cost = 8
+	restricted_roles = list("Chemist", "Chief Medical Officer", "Psychiatrist")
+
 /datum/uplink_item/role_restricted/reverse_bear_trap
 	name = "Reverse Bear Trap"
 	desc = "An ingenious execution device worn on (or forced onto) the head. Arming it starts a 1-minute kitchen timer mounted on the bear trap. When it goes off, the trap's jaws will \
@@ -2839,7 +2877,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/mech/marauder
 	name = "Marauder exosuit"
-	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting three pieces of equipment."
+	desc = "A heavy-duty exosuit for when the going gets tough. Armed with three smoke bombs, and capable of mounting four pieces of equipment."
 	item = /obj/mecha/combat/marauder
 	cost = 12
 

@@ -900,20 +900,6 @@
 		if(user)
 			examine(user)
 
-/obj/machinery/hydroponics/CtrlClick(mob/user)
-	. = ..()
-	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		return
-	if(!powered())
-		to_chat(user, "<span class='warning'>[name] has no power.</span>")
-		return
-	if(!anchored)
-		return
-	self_sustaining = !self_sustaining
-	idle_power_usage = self_sustaining ? 5000 : 0
-	to_chat(user, "<span class='notice'>You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""].")
-	update_icon()
-
 /obj/machinery/hydroponics/AltClick(mob/user)
 	. = ..()
 	if(!anchored)

@@ -31,8 +31,6 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
-	name = "tactical fingerless gloves"
-	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
 	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
 
@@ -239,7 +237,7 @@ obj/effect/proc_holder/swipe
 	item_state = "concussive_gauntlets"
 	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	toolspeed = 0.01
+	toolspeed = 0
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS

@@ -87,14 +87,11 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return TRUE
 
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+	var/heal_amt = 20
 
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
+		H.update_damage_overlays()
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, "punch", 25, TRUE, -1)
@@ -139,29 +136,35 @@
 		did_we_charge = TRUE
 	if(ispreternis(H))
 		var/datum/species/preternis/preternis = H.dna.species
-		preternis.charge = clamp(preternis.charge + 3, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+		preternis.charge = clamp(preternis.charge + 30, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
 		did_we_charge = TRUE
 
-	//if we're not targetting a robot part we stop early
-	var/obj/item/bodypart/BP = H.get_bodypart(user.zone_selected)
-	if(BP.status != BODYPART_ROBOTIC)
-		if(!did_we_charge)
-			to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
-		else
-			H.visible_message(span_notice("[user] charges [H] with the power of [GLOB.deity]!"))
-			to_chat(H, span_boldnotice("You feel charged by the power of [GLOB.deity]!"))
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-			playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
-		return TRUE
+	var/did_we_heal = FALSE
+	var/heal_amt = 20
+	var/list/limbs = H.bodyparts
 
-	//charge(?) and go
-	if(BP.heal_damage(5,5,null,BODYPART_ROBOTIC))
+	//if we're not targetting someone with a robotic part we don't heal
+	for(var/X in limbs)
+		var/obj/item/bodypart/BP = X
+		if(BP.status == BODYPART_ROBOTIC)
+			did_we_heal = TRUE
+
+	if(did_we_heal && H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ROBOTIC))
 		H.update_damage_overlays()
 
-	H.visible_message(span_notice("[user] [did_we_charge ? "repairs" : "repairs and charges"] [H] with the power of [GLOB.deity]!"))
-	to_chat(H, span_boldnotice("The inner machinations of [GLOB.deity] [did_we_charge ? "repairs" : "repairs and charges"] you!"))
-	playsound(user, 'sound/effects/bang.ogg', 25, TRUE, -1)
-	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+	if(did_we_heal)
+		H.visible_message(span_notice("[user] [did_we_charge ? "repairs" : "repairs and charges"] [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("The inner machinations of [GLOB.deity] [did_we_charge ? "repairs" : "repairs and charges"] you!"))
+		playsound(user, 'sound/effects/bang.ogg', 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+	else if(did_we_charge)
+		H.visible_message(span_notice("[user] charges [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("You feel charged by the power of [GLOB.deity]!"))
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
+	else
+		to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
+				
 	return TRUE
 
 /datum/religion_sect/technophile/on_sacrifice(obj/item/I, mob/living/L)
@@ -217,14 +220,11 @@
 		user.visible_message(span_notice("[H] is too poor to receive [GLOB.deity]'s blessing!"))
 	else
 		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
-		var/heal_amt = 30
-		var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
+		var/heal_amt = 60
 
-		if(hurt_limbs.len)
-			for(var/X in hurt_limbs)
-				var/obj/item/bodypart/affecting = X
-				if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-					H.update_damage_overlays()
+		if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+			H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
+			H.update_damage_overlays()
 		id_card.registered_account.adjust_money(-money_to_donate)
 		id_cardu.registered_account.adjust_money(money_to_donate)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
@@ -269,14 +269,11 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
-
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(0, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	var/heal_amt = 40 //it only heals burn
+	
+	if(H.getFireLoss() > 0)
+		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
+		H.update_damage_overlays()
 
 	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
@@ -315,7 +312,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-	if(!("vines" in H.faction) || !("plants" in H.faction))
+	if(!("vines" in H.faction) && !("plants" in H.faction))
 		to_chat(user, span_warning("[GLOB.deity] refuses to heal this fleshy creature!"))
 		return
 	for(var/X in H.bodyparts)
@@ -324,13 +321,11 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+	var/heal_amt = 20
 
-	if(hurt_limbs.len)
-		for(var/obj/item/bodypart/affecting in hurt_limbs)
-			if(affecting.heal_damage(0, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
+		H.update_damage_overlays()
 
 	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 	to_chat(H, span_boldnotice("The light of [GLOB.deity] heals you!"))
@@ -390,21 +385,19 @@
 	altar_icon_state = "convertaltar-red"
 
 //honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
-/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+/datum/religion_sect/honkmother/sect_bless(mob/living/blessed, mob/living/user)
 	if(!ishuman(blessed))
 		return
 	var/mob/living/carbon/human/H = blessed
 	var/datum/mind/M = H.mind
 	if(M.assigned_role != "Clown")
 		return
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
 
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	var/heal_amt = 20
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
+		H.update_damage_overlays()
+
 	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
 	playsound(user, "sound/miscitems/bikehorn.ogg", 25, TRUE, -1)
@@ -424,3 +417,47 @@
 	to_chat(user, span_notice("HONK"))
 	qdel(offering)
 	return
+
+///////////// Sect of the Holy Light /////////////
+/datum/religion_sect/holylight
+	name = "Holy Light"
+	desc = "A sect dedicated to healing."
+	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
+	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
+	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
+	altar_icon_state = "convertaltar-heal"
+	COOLDOWN_DECLARE(last_heal)
+
+/datum/religion_sect/holylight/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.GetAllContents())
+		da_bible.success_heal_chance = 100
+
+/datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return FALSE
+	
+	if(!L.client)
+		return FALSE
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
+	var/mob/living/carbon/human/H = L
+	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
+
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
+		H.update_damage_overlays()
+
+		adjust_favor(amount_healed, user)
+		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
+		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		return TRUE
+	return FALSE

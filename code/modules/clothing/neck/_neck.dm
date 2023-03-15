@@ -338,8 +338,8 @@
 ///////////
 
 /obj/item/clothing/neck/falcon
-	name = "Faclonry pauldron"
-	desc = "A thick leather pad for a falcon to rest one. This one comes with a fake bird, free of charge."
+	name = "falconry pauldron"
+	desc = "A thick leather pad for a falcon to rest on. This one comes with a fake bird, free of charge."
 	icon = 'icons/obj/clothing/neck.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "falcon"

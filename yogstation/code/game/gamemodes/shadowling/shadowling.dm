@@ -1,5 +1,5 @@
 #define LIGHT_HEAL_THRESHOLD 2
-#define LIGHT_DAMAGE_TAKEN 7
+#define LIGHT_DAMAGE_TAKEN 6
 #define LIGHT_DAM_THRESHOLD 0.25
 
 /*
@@ -51,7 +51,7 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = ROLE_SHADOWLING
-	required_players = 32
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14

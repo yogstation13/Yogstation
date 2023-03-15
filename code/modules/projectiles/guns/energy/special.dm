@@ -96,7 +96,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
 	obj_flags = 0
-	overheat_time = 20 SECONDS
+	overheat_time = 10 SECONDS
 	holds_charge = TRUE
 	unique_frequency = TRUE
 	can_flashlight = FALSE
@@ -255,6 +255,14 @@
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
 
+/obj/item/gun/energy/plasmacutter/adv/malf // Can't be subtype of cyborg or it will interfere with upgrades
+	name = "cyborg malfunctioning plasma cutter"
+	desc = "A mining tool capable o=#9v@3-M!a%R=KILLING AND MURDERING ORGANICS."
+	color = "red"
+	force = 15
+	selfcharge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg/malf)
+
 // Upgrades for plasma cutters
 /obj/item/upgrade/plasmacutter
 	name = "generic upgrade kit"
@@ -363,6 +371,15 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	cell_type = "/obj/item/stock_parts/cell/secborg"
 	ammo_type = list(/obj/item/ammo_casing/energy/c3dbullet)
+	can_charge = FALSE
+	use_cyborg_cell = TRUE
+
+/obj/item/gun/energy/printer/flamethrower
+	name = "cyborg flame projector"
+	desc = "Originally intended for cyborgs to assist in atmospherics projects, was soon scrapped due to safety concerns."
+	icon = 'yogstation/icons/obj/flamethrower.dmi'
+	icon_state = "flamethrowerbase"
+	ammo_type = list(/obj/item/ammo_casing/energy/flamethrower)
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 

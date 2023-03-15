@@ -1,11 +1,11 @@
 //This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
-#define SAVEFILE_VERSION_MIN	18
+#define SAVEFILE_VERSION_MIN	30
 
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	40
+#define SAVEFILE_VERSION_MAX	41
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -42,12 +42,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
-	// Fixes savefile corruption caused by https://github.com/yogstation13/Yogstation/pull/9767
-	if(current_version < 25) // This is the only thing that makes V25 different.
-		if(LAZYFIND(be_special,"Ragin"))
-			be_special -= "Ragin"
-			be_special += "Ragin Mages"
-
 	if (current_version < 35)
 		toggles |= SOUND_ALT
 
@@ -55,7 +49,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		chat_toggles |= CHAT_TYPING_INDICATOR
 	
 	if (current_version < 39)
-		write_preference(/datum/preference/toggle/hotkeys, TRUE)
+		write_preference(GLOB.preference_entries[/datum/preference/toggle/hotkeys], TRUE)
 		key_bindings = deepCopyList(GLOB.default_hotkeys)
 		key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 		parent.set_macros()
@@ -66,66 +60,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
-	if(current_version < 22)
-		job_preferences = list() //It loaded null from nonexistant savefile field.
-		var/job_civilian_high = 0
-		var/job_civilian_med = 0
-		var/job_civilian_low = 0
-
-		var/job_medsci_high = 0
-		var/job_medsci_med = 0
-		var/job_medsci_low = 0
-
-		var/job_engsec_high = 0
-		var/job_engsec_med = 0
-		var/job_engsec_low = 0
-
-		READ_FILE(S["job_civilian_high"], job_civilian_high)
-		READ_FILE(S["job_civilian_med"], job_civilian_med)
-		READ_FILE(S["job_civilian_low"], job_civilian_low)
-		READ_FILE(S["job_medsci_high"], job_medsci_high)
-		READ_FILE(S["job_medsci_med"], job_medsci_med)
-		READ_FILE(S["job_medsci_low"], job_medsci_low)
-		READ_FILE(S["job_engsec_high"], job_engsec_high)
-		READ_FILE(S["job_engsec_med"], job_engsec_med)
-		READ_FILE(S["job_engsec_low"], job_engsec_low)
-
-		//Can't use SSjob here since this happens right away on login
-		for(var/job in subtypesof(/datum/job))
-			var/datum/job/J = job
-			var/new_value
-			var/fval = initial(J.flag)
-			switch(initial(J.department_flag))
-				if(CIVILIAN)
-					if(job_civilian_high & fval)
-						new_value = JP_HIGH
-					else if(job_civilian_med & fval)
-						new_value = JP_MEDIUM
-					else if(job_civilian_low & fval)
-						new_value = JP_LOW
-				if(MEDSCI)
-					if(job_medsci_high & fval)
-						new_value = JP_HIGH
-					else if(job_medsci_med & fval)
-						new_value = JP_MEDIUM
-					else if(job_medsci_low & fval)
-						new_value = JP_LOW
-				if(ENGSEC)
-					if(job_engsec_high & fval)
-						new_value = JP_HIGH
-					else if(job_engsec_med & fval)
-						new_value = JP_MEDIUM
-					else if(job_engsec_low & fval)
-						new_value = JP_LOW
-			if(new_value)
-				job_preferences[initial(J.title)] = new_value
-	if(current_version < 23)
-		all_quirks -= "Physically Obstructive"
-		all_quirks -= "Neat"
-		all_quirks -= "NEET"
-	if(current_version < 28)
-		if(!job_preferences)
-			job_preferences = list()
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
 		toggles &= ~DEADMIN_ALWAYS
 		toggles &= ~DEADMIN_ANTAGONIST
@@ -137,7 +71,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	
 	if (current_version < 40)
 		migrate_character_to_tgui_prefs_menu()
-		
+
+	if (current_version < 41)
+		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/pod_hair_color], read_preference(/datum/preference/color_legacy/hair_color))
+		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/ipc_antenna_color], read_preference(/datum/preference/color_legacy/hair_color))
+		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/pod_flower_color], read_preference(/datum/preference/color_legacy/facial_hair_color))
+		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/ipc_screen_color], read_preference(/datum/preference/color_legacy/eye_color))
 
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()
@@ -207,6 +146,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["lastchangelog"], lastchangelog)
 	READ_FILE(S["be_special"] , be_special)
 	READ_FILE(S["default_slot"], default_slot)
+	READ_FILE(S["player_alt_titles"], player_alt_titles)
 
 	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -227,9 +167,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Sanitize
 	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
-	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	be_special = sanitize_be_special(SANITIZE_LIST(be_special))
+	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
+	player_alt_titles = SANITIZE_LIST(player_alt_titles)
+
+	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	
 	key_bindings = sanitize_keybindings(key_bindings)
 
 	return TRUE
@@ -261,6 +204,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["be_special"], be_special)
 	WRITE_FILE(S["default_slot"], default_slot)
+	WRITE_FILE(S["player_alt_titles"], player_alt_titles)
 
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
@@ -323,6 +267,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Sanitize
 	randomise = SANITIZE_LIST(randomise)
+	job_preferences = SANITIZE_LIST(job_preferences)
 	all_quirks = SANITIZE_LIST(all_quirks)
 
 	//Validate job prefs
@@ -330,7 +275,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
 			job_preferences -= j
 
-	//all_quirks = SSquirks.filter_invalid_quirks(all_quirks, parent)
+	all_quirks = SSquirks.filter_invalid_quirks(all_quirks, src)
 	validate_quirks()
 
 	return TRUE
@@ -381,7 +326,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	return output.len == input_be_special.len ? input_be_special : output
 
 /proc/sanitize_keybindings(value)
-	var/list/base_bindings = sanitize_islist(value,list())
+	var/list/base_bindings = sanitize_islist(value, list())
 	for(var/keybind_name in base_bindings)
 		if (!(keybind_name in GLOB.keybindings_by_name))
 			base_bindings -= keybind_name
