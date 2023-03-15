@@ -1,0 +1,5 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - tweak: "Stechkin costs 5 now"
+  - tweak: "Suppressor costs 1 tc now"
