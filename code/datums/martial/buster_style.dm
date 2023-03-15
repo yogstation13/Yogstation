@@ -110,7 +110,7 @@
 /datum/martial_art/buster_style/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
-	if(next_grapple > world.time)
+	if(!COOLDOWN_FINISHED(src, next_grapple))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
@@ -130,7 +130,7 @@
 		if(user in I.contents)
 			to_chat(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
 			return
-		next_grapple = world.time + COOLDOWN_GRAPPLE
+		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
@@ -146,7 +146,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
-		next_grapple = world.time + COOLDOWN_GRAPPLE
+		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
