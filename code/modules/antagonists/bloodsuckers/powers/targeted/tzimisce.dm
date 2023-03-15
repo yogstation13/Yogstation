@@ -122,8 +122,8 @@
 					Ctarget.apply_damage(50, STAMINA, selected_zone)
 					to_chat(user, span_warning("You swiftly disable the nerves in [Ctarget]'s [target_part] with a precise strike."))
 				if(3 to 6)
-					Ctarget.apply_damage(25, STAMINA, selected_zone)
-					Ctarget.apply_damage(25, BRUTE, selected_zone)
+					Ctarget.apply_damage(30, STAMINA, selected_zone)
+					Ctarget.apply_damage(20, BRUTE, selected_zone)
 					Ctarget.drop_all_held_items()
 					to_chat(user, span_warning("You hastly damage the ligaments in [Ctarget]'s [target_part] with a fierce blow."))
 				if(6 to INFINITY)
@@ -131,6 +131,7 @@
 						target_part.dismember()
 						to_chat(user, span_warning("You sever [Ctarget]'s [target_part] with a clean swipe."))
 					else
+						Ctarget.apply_damage(20, STAMINA, selected_zone)
 						Ctarget.apply_damage(30, BRUTE, selected_zone)
 						Ctarget.drop_all_held_items()
 						to_chat(user, span_warning("As [Ctarget]'s [target_part] is too tough to chop in a single action!"))
