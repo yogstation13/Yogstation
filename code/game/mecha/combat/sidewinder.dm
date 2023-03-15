@@ -7,7 +7,7 @@
 	force = 15
 	max_integrity = 200
 	deflect_chance = 10
-	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
+	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
 	max_temperature = 25000
 	infra_luminosity = 6
 	wreckage = /obj/structure/mecha_wreckage/sidewinder
