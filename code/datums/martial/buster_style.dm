@@ -65,6 +65,8 @@
 
 
 /datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+	if(..())
+		return
 	if(!(can_use(H)))
 		return
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
@@ -179,6 +181,13 @@
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
 		return 
+	for(bed in range(1,user))
+		if(!bed.has_buckled_mobs())
+			qdel(bed)
+			return
+		else
+			qdel(bed)
+			continue
 	for(var/obj/I in thrown)
 		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
 	if(user in tossed.contents)
