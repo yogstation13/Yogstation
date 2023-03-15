@@ -127,7 +127,7 @@
 					Ctarget.drop_all_held_items()
 					to_chat(user, span_warning("You hastly damage the ligaments in [Ctarget]'s [target_part] with a fierce blow."))
 				if(6 to INFINITY)
-					if(target_part.dismemberable)
+					if(target_part.dismemberable && (target.getarmor(target_part, MELEE) < 40))	//heavy armor, such as riot armor, stops the dismember
 						target_part.dismember()
 						to_chat(user, span_warning("You sever [Ctarget]'s [target_part] with a clean swipe."))
 					else
