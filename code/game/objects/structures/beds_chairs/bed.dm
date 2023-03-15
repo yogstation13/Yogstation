@@ -227,7 +227,3 @@
 
 /obj/structure/bed/grip/Initialize()
 	. = ..()
-	QDEL_IN(src, 10 SECONDS)
-
-/obj/structure/bed/grip/post_unbuckle_mob(mob/living/M)
-	qdel(src)
