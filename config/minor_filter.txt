@@ -42,3 +42,6 @@ hbu=how about you
 btw=by the way
 wym=what do you mean
 wdym=what do you mean
+pls=please
+plz=please
+tf=the fuck
