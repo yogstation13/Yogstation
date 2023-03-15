@@ -89,7 +89,7 @@ const RodTabs = (props, context) => {
             key={category}
             selected={category === selectedCategory}
             onClick={() => setSelectedCategory(category)}>
-            {category.name}
+            {capitalize(category.name)}
           </Tabs.Tab>
         ))}
       </Tabs>
@@ -100,7 +100,7 @@ const RodTabs = (props, context) => {
             Autofocus
             selected={rodObject === selectedRod}
             onClick={() => setSelectedRod(rodObject)}>
-            {rodObject.name}
+            {capitalize(rodObject.name)}
           </Tabs.Tab>
         ))}
       </Tabs>

@@ -372,6 +372,22 @@
 		qdel(S)
 	return ..()
 
+/obj/item/nullrod/scythe/spear
+	name = "bronze spear"
+	desc = "Purge untruths and honor... rats?"
+	slot_flags = ITEM_SLOT_BELT
+	icon = 'icons/obj/clockwork_objects.dmi'
+	icon_state = "ratvarian_spear"
+	item_state = "ratvarian_spear"
+	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+	throwforce= 15
+	armour_penetration = 25
+	sharpness = SHARP_POINTY
+	slot_flags = null
+	attack_verb = list("stabbed", "poked", "slashed", "enlightened")
+	additional_desc = "Well balanced, good for throwing."
+
 /obj/item/nullrod/Hypertool
 	name = "hypertool"
 	desc = "A tool so powerful even you cannot perfectly use it."
@@ -415,7 +431,7 @@
 	additional_desc = "This banana is comedically sharp."
 
 /obj/item/nullrod/pride_hammer
-	name = "Pride-struck Hammer"
+	name = "pride-struck Hammer"
 	desc = "It resonates an aura of Pride."
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "pride"

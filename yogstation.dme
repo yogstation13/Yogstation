@@ -3650,7 +3650,6 @@
 #include "yogstation\code\game\objects\items\dna_injector.dm"
 #include "yogstation\code\game\objects\items\extinguisher.dm"
 #include "yogstation\code\game\objects\items\fryingpan.dm"
-#include "yogstation\code\game\objects\items\holy_weapons.dm"
 #include "yogstation\code\game\objects\items\manuals.dm"
 #include "yogstation\code\game\objects\items\plushes.dm"
 #include "yogstation\code\game\objects\items\premadepapers.dm"
