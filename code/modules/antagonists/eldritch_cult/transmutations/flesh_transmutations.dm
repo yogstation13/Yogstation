@@ -88,7 +88,7 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = alert(user,"Do you want to ascend as a Thirstly Serpent or shatter the Red Oath, empowering yourself and summoning a Lavish Serpent?","...","Yes","No")
+	var/alert_ = alert(user,"Do you want to ascend as a Thirstly Serpent, or instead shatter the Red Oath, empowering yourself and summoning a Lavish Serpent?","...","Yes","No")
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
