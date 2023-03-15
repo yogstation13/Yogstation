@@ -325,7 +325,7 @@
 /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	name = "Ashman"
 	real_name = "Ashy"
-	desc = "A strange, floating... thing..."
+	desc = "A strange, floating mass of ash and hunger."
 	icon_state = "ash_walker"
 	status_flags = CANPUSH
 	icon_living = "ash_walker"

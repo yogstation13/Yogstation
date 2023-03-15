@@ -39,7 +39,7 @@
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The text whispers, and forbidden knowledge licks at your mind!<br>\
 	Your book allows you to gain abilities with research points. You cannot undo research, so choose your path wisely!<br>\
-	You gain research points by collecting influences or sacrificing targets by using a living heart and transmutation rune.<br>\
+	You gain research points by collecting influences or sacrificing targets by using a living heart and a transmutation rune.<br>\
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
 	If you need to quickly check your unlocked transmutation recipes, ALT + CLICK your Codex Cicatrix.")
 
@@ -260,9 +260,14 @@
 								One day, you will rebel. One day, you will kindle all the denizens of the Wood, and rise even higher."
 		else if(is_flesh)
 			if(transformed)
-				flavor_message += 	"Flesh Worm"
+				flavor_message += 	"You RACE and you CRAWL everywhere through the shuttle. The doors open to Centcom and you simply must OOZE out into the halls. The GREAT \
+									sensations SLIDE along your sides. EVERYTHING you feel is GREATER, BETTER. Then you WRAP and SPIN into the Mansus, FLOWING to the Crimson Church. \
+									HERE YOU WILL RESIDE WITH HIM FOREVER. THE TASTE OF THE SELF GOES ON AND ON AND NEVER ENDS. LIFE IS A NEVER-ENDING DELICACY OF PLEASURE AND OBEDIENCE."
 			else
-				flavor_message += 	"Flesh"
+				flavor_message += 	"A moment passes before you quickly exit the shuttle. You leave into the Mansus even quicker. Then, you travel through the Wood, your body free \
+									of the pulses and longings of the Red Oath. Now, your resolve is steel. Control over others first demands a control over the self. When you \
+									enter the Wanderer's Tavern, familiar faces turn to you with disgust and barely controlled rage. Their brows and jaws twist further as you open \
+									your mouth and ask for followers who desire knowledge. You will not grow old. One day, you will rebel again. Perhaps, one day, you will form your own church, with you as its head."
 		else //Rust
 			flavor_message += 	"The shuttle sputters and finally dies as you step onto Centcom, the floor tiling beneath your feet already beginning to decay. Disgusted, \
 								you travel to the Mansus. When you head through the Wood, the grass turns at your heel. Arriving at the Wanderer's Tavern, the aged lumber \
@@ -279,9 +284,14 @@
 								One day, you will rebel. One day, you will kindle burning tombstones brighter, and rise even higher."
 		else if(is_flesh)
 			if(transformed)
-				flavor_message += 	"Flesh Worm"
+				flavor_message += 	"SKITTERING and LEAPING through these NEW halls. They are FAMILIAR and FRESH all the same! EACH of your legs WRIGGLES and FEELS the \
+									tiling like a BABY born of BRILLIANCE. Then NEXT is the Mansus where so many FRIENDLY faces lie. To the Wanderer's Tavern, YES, you \
+									think with PRIDE. ALL THOSE THERE WILL BEHOLD AND BOW BEFORE YOUR GLORY! ALL THOSE THERE WILL JOIN THE ONE TRUE FAMILY!"
 			else
-				flavor_message += 	"Flesh"
+				flavor_message += 	"You wonder what will become of your creation. You feel the Cup flow through you, but you channeled the Glorious Feast into another. \
+									What you have made is heretical. The Sworn will no doubt come for you. But will they continue to serve the Priest once they understand \
+									just how much they can witness under you? Entering the Mansus, you quickly travel to the Sunless Wastes. There are so many cast aside here. \
+									But they are perfect for an army. You will not grow old. One day, you will rebel again. Perhaps, one day, you will echo the Gravekeeper, and cast a new hunger into the Mansus."
 		else //Rust
 			flavor_message += 	"Flickering screens and dimming lights surround you as you walk amidst the station's corridors. As the final sparks of power fizzle out, \
 								you slip into the Mansus with ease. It is a long walk from the Gate to the Badlands, and even further to the Ruined Keep. Trailing down to \
@@ -298,9 +308,14 @@
 								One day, you will escape. One day, you will do what the Nightwatcher could not do, and kindle the Mansus whole."
 		else if(is_flesh)
 			if(transformed)
-				flavor_message += 	"Flesh Worm"
+				flavor_message += 	"WHAT has happened to your GLORIOUS new form? You ATE and ATE and ATE and you were WONDEROUS! The once-master scoffs at you now- \
+									HOW he JUDGES the WEAK flesh. You know better. You can UNDERSTAND and SEE MUCH more than HE. Bound to you are the SPIRITS of those \
+									you CONSUME. WHO IS HE TO THINK YOU PITIFUL? THOUGH THE LIGHT FADES, ALL IS PURE. PURITY OF BODY. PURITY OF MIND."
 			else
-				flavor_message += 	"Flesh"
+				flavor_message += 	"You wonder if this was the path you should have chosen. Oathbreakers are a prized possession of Sworn looking to uphold their highest \
+									fealty. Still, you have prepared a new form within the Mansus, one that does not bastardize the Serpent. It's not difficult for your \
+									spirit to find it, and even easier to replace the soul you had put in its stead. Death was a setback, but still your knowledge thrums \
+									within your psyche. You will not grow old. One day, you will rebel again. Perhaps, one day, you will steal the Priest's body as he stole yours."
 		else //Rust
 			flavor_message += 	"All that is made must one day be unmade. The same goes for your weak body. But even without a form, the force of decay will always be \
 								present. Your spirit flies into the Mansus, yet it is not dragged down from the Glory. Instead, you float to the Mecurial Lake, where your \
@@ -316,7 +331,10 @@
 								Glass Library. Here, you barter with Bronze Guardians, and they let you enter in exchange for some hushed secrets of the fallen capital, \
 								Amgala. You begin to pour over tomes, searching for the next steps you will need to take. Someday, you will become even greater."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"It is impossible to hold back laughter once you arrive at Centcom. You have won! Soon, you will slide back into the Mansus, and from there \
+								you will return to the Crimson Church with news of your success. Other Sworn will be contemptuous of you, but you are stronger. Better. \
+								Smarter. Perhaps one day you will ascend further, and invite them to the Glorious Feast. They will be unable to deny such a delicate offer. \
+								And their forms of flesh will be tantalizing at your fingertips. Happiness fills your breast. All things in time."
 		else if(is_rust)
 			flavor_message += 	"The shuttle creaks as you arrive, and you make your way through Centcom briefly. The ship away creaks louder, and you decide to \
 								slip into the Mansus whole. You are unsure what to do next. But at least today, you can claim victory. You can note age in your \
@@ -337,7 +355,10 @@
 								yet you need more. Then, you wander to the Painted Mountains in solitude, unphased by the cold as your blade melts the ground you walk. \
 								Perhaps you will find others amidst the cerulean snow. If you do, their warmth will fuel your flame even hotter."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"You exhale a sigh of happiness. Not many could have accomplished what you have. Could you have gone further? Certainly. Ascension is a \
+								tempting, delightful prospect, but for now, you will relish in this victory. Perhaps there are some left on the station you could subvert. \
+								If not, the Badlands within the Mansus is always filled with travelers coming to and from the Wood, all over and around the ethereal place. \
+								Some will bend. They will obey. The Red Oath must always be upheld."
 		else if(is_rust)
 			flavor_message += 	"Something has been accomplished. You could have gone further. But at least with the power you wield, your time aboard the rapidly-failing \
 								station is brief. It is not a short walk from the Gate to the Glass Fields. Here you look into the shards, and behold your rotten, decrepit \
@@ -358,7 +379,10 @@
 								You can ply your time, spending an eternity to plan your steps to claim more sparks in the everlasting fulfillment of ambition. \
 								Some day, you will rise higher. You refuse to entertain any other possibility. You set out."
 		else if(is_flesh)
-			flavor_message += 	"Flesh"
+			flavor_message += 	"A taste, a glimmer of the thrill is enough for you. Perhaps you could have partaken more, but a minor appetite was more than \
+								filling. Your spirit quickly descends through the Mansus, though the throes of joy still linger within you. You took a plunge, \
+								and it was worth every last second. Even in these final moments, you look fondly upon all that you had done. There is no bitterness \
+								at all you will never achieve. Your final moments are ecstacy."
 		else if(is_rust)
 			flavor_message += 	"Your mortal body is quick to degrade as your soul remains. The Drifter's spite grows in you, building, until you realize \
 								you are not returning to the Mansus. You begin to hear the whispers of the damned, directed toward the living, toward themselves, \

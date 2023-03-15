@@ -17,7 +17,7 @@
 	required_shit_list = "A tank of water."
 
 /datum/eldritch_transmutation/final/rust_final
-	name = "Rustbringer's Oath"
+	name = "Fallen Empress' Pathology"
 	required_atoms = list(/mob/living/carbon/human)
 	required_shit_list = "Three dead bodies."
 
