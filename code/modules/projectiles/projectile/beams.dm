@@ -150,6 +150,24 @@
 /obj/item/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
 
+/obj/item/projectile/beam/emitter/pulse
+	name = "overcharged emitter beam"
+	icon_state = "u_laser"
+	damage = 50 // EVEN MORE power for the SM
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	light_color = LIGHT_COLOR_BLUE
+	tracer_type = /obj/effect/projectile/tracer/pulse
+	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	impact_type = /obj/effect/projectile/impact/pulse
+
+/obj/item/projectile/beam/emitter/pulse/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.low_mov_atom += target
+		else
+			SSexplosions.lowturf += target
+
 /obj/item/projectile/beam/lasertag
 	name = "laser tag beam"
 	icon_state = "omnilaser"

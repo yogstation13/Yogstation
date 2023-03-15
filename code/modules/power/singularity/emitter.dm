@@ -98,6 +98,8 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
+	if(obj_flags & EMAGGED)
+		active_power_usage *= 5
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
@@ -345,6 +347,9 @@
 	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The power limiter seems to be broken!"))
+		return FALSE
 	if(istype(E, /obj/item/gun/energy))
 		if(!user.transferItemToLoc(E, src))
 			return
@@ -381,7 +386,13 @@
 	locked = FALSE
 	obj_flags |= EMAGGED
 	if(user)
-		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock."))
+		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock and disable the power limiters."))
+	if(gun)
+		to_chat(user, span_warning("[src] ejects [gun] as you disable the power limiter."))
+		remove_gun(user)
+	active_power_usage *= 5
+	projectile_type = /obj/item/projectile/beam/emitter/pulse
+	projectile_sound = 'sound/weapons/pulse.ogg'
 
 
 /obj/machinery/power/emitter/prototype
