@@ -49,8 +49,6 @@
 			walk(K,0)
 			K.density = old_density
 			animate(K, time = 0 SECONDS, pixel_y = 0)
-		for(var/obj/structure/bed/grip/F in get_turf(H))
-			F.Destroy()
 		return FALSE
 	if(L && R)
 		if((L?.bodypart_disabled) && (R?.bodypart_disabled))
@@ -65,8 +63,6 @@
 
 
 /datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
-	if(..())
-		return
 	if(!(can_use(H)))
 		return
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
@@ -140,7 +136,7 @@
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
 		I.forceMove(Z)
 		I.density = FALSE 
-		walk_towards(I, user, 0, 0)
+		walk_towards(I, user, 0, 1)
 		// Reset the item to its original state
 		if(get_dist(I, user) > 1)
 			I.density = old_density
@@ -159,7 +155,7 @@
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		L.forceMove(Z)
 		F.buckle_mob(target)
-		walk_towards(F, user, 0, 0)
+		walk_towards(F, user, 0, 1)
 		if(get_dist(L, user) > 1)
 			L.density = old_density
 			return
@@ -174,22 +170,13 @@
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
-	var/obj/structure/bed/grip/bed
 	walk(tossed,0)
 	tossed.density = old_density
-	user.stop_pulling()
-	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
-		drop()
-		return 
-	for(bed in range(1,user))
-		if(!bed.has_buckled_mobs())
-			qdel(bed)
-			return
-		else
-			qdel(bed)
-			continue
 	for(var/obj/I in thrown)
 		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
+	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
+		drop()
+		return
 	if(user in tossed.contents)
 		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
 		return
