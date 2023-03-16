@@ -65,7 +65,8 @@
 
 
 /datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
-	if(!(can_use(H)))
+	var/list/modifiers = params2list(params)
+	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
 		return
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
 	if(H.a_intent == INTENT_DISARM)
