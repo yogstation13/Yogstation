@@ -266,7 +266,7 @@ const PackagingControls = (props, context) => {
           label="Pills"
           amount={pillAmount}
           amountUnit="pills"
-          sideNote="max 10u"
+          sideNote="max 15u"
           onChangeAmount={(e, value) => setPillAmount(value)}
           onCreate={() => act('create', {
             type: 'pill',

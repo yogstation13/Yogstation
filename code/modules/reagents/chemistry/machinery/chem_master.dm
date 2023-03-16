@@ -263,7 +263,7 @@
 		var/vol_each_text = params["volume"]
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
-			vol_each_max = min(10, vol_each_max)
+			vol_each_max = min(15, vol_each_max)
 		else if (item_type == "patch")
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")

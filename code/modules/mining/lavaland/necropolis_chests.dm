@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,22)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(8)
 			new /obj/item/ship_in_a_bottle(src)
 		if(9)
-			new /obj/item/clothing/glasses/telepathy(src)
+			new /obj/item/clothing/gloves/gauntlets(src)
 		if(10)
 			new /obj/item/jacobs_ladder(src)
 		if(11)
@@ -64,8 +64,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(23)
-			new /obj/item/clothing/gloves/gauntlets(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -311,25 +309,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
-
-/obj/item/clothing/glasses/telepathy
-	name = "blindfold of telepathy"
-	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
-	icon_state = "blindfoldwhite"
-	item_state = "blindfoldwhite"
-	flash_protect = 10 //they're blind, yo
-	tint = 2
-	darkness_view = 0
-	var/sight_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_GLASSES)
-		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-		user.sight |= sight_flags
-		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube

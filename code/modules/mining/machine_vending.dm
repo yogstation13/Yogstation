@@ -62,7 +62,7 @@
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,								500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Meson Health Scanner HUD",	/obj/item/clothing/glasses/hud/health/meson,						1000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Jump Boots Implants",			/obj/item/multisurgeon/jumpboots,									10000, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("Jump Boots Implants",			/obj/item/storage/box/jumpbootimplant,								5000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Environment Proof Bodybag", 	/obj/item/bodybag/environmental, 									1000, VENDING_EQUIPMENT),
@@ -458,6 +458,16 @@
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/card/mining_access_card(src)
 	new /obj/item/clothing/neck/bodycam/miner(src)
+
+//jumpboot implant box
+/obj/item/storage/box/jumpbootimplant
+	name = "box of jumpboot implants"
+	desc = "A box holding a set of jumpboot implants. They will require surgical implantation to function."
+	illustration = "implant"
+
+/obj/item/storage/box/jumpbootimplant/PopulateContents()
+	new /obj/item/organ/cyberimp/leg/jumpboots(src)
+	new /obj/item/organ/cyberimp/leg/jumpboots/l(src)
 
 #undef VENDING_WEAPON
 #undef VENDING_UPGRADE
