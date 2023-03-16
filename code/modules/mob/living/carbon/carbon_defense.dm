@@ -402,9 +402,13 @@
 		M.visible_message(span_notice("[M] shakes [src] trying to get [p_them()] up!"), \
 						span_notice("You shake [src] trying to get [p_them()] up!"))
 
-	else if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || check_zone(M.zone_selected) == BODY_ZONE_R_ARM) //Headpats are too extreme, we have to pat shoulders on yogs
+	else if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || check_zone(M.zone_selected) == BODY_ZONE_R_ARM) 
 		M.visible_message(span_notice("[M] gives [src] a pat on the shoulder to make [p_them()] feel better!"), \
 					span_notice("You give [src] a pat on the shoulder to make [p_them()] feel better!"))
+	
+	else if(check_zone(M.zone_selected) == BODY_ZONE_HEAD) //Headpats are not extreme anymore
+		M.visible_message(span_notice("[M] gives [src] a pat on the head to make [p_them()] feel better!"), \
+					span_notice("You give [src] a pat on the head to make [p_them()] feel better!"))
 
 	else
 		M.visible_message(span_notice("[M] hugs [src] to make [p_them()] feel better!"), \
