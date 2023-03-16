@@ -802,7 +802,7 @@
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.heal_bodypart_damage(2.0,0, 0)
 	..()
-	. = 1
+	. = TRUE
 
 /datum/reagent/consumable/cherryshake
 	name = "Cherry Shake"
