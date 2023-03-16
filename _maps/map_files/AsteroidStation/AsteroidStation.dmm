@@ -15275,6 +15275,20 @@
 /obj/item/wrench,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"ehZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/machinery/button/flasher{
+	id = "cell4";
+	pixel_x = 23;
+	pixel_y = -10
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "eid" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -15862,6 +15876,29 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ery" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = -25;
+	pixel_y = 2;
+	prison_radio = 1
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 3";
+	name = "Cell 3 Locker"
+	},
+/obj/machinery/flasher{
+	id = "Cell 3";
+	pixel_x = -27;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "erD" = (
 /obj/structure/frame/machine{
 	anchored = 1;
@@ -16402,6 +16439,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction)
+"eBz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/variation/box/sec/brig_cell/perma,
+/obj/machinery/flasher{
+	id = "PCell 1";
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "eBD" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -19951,6 +19997,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"fOP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/variation/box/sec/brig_cell/perma,
+/obj/machinery/flasher{
+	id = "PCell 3";
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "fOX" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -29607,6 +29662,29 @@
 /obj/effect/decal/cleanable/glitter/blue,
 /turf/open/floor/carpet/royalblack,
 /area/maintenance/port)
+"jcp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = -25;
+	pixel_y = 2;
+	prison_radio = 1
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 2";
+	name = "Cell 2 Locker"
+	},
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_x = -27;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jcB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -38910,29 +38988,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"mqE" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 1";
-	name = "Cell 1 Locker"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/flasher{
-	id = "Cell 1";
-	pixel_x = -27;
-	pixel_y = -7
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	name = "Prison Intercom (General)";
-	pixel_x = -25;
-	pixel_y = 2;
-	prison_radio = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "mqS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -57039,6 +57094,17 @@
 "siy" = (
 /turf/open/floor/wood/broken/seven,
 /area/maintenance/starboard/fore)
+"sjk" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 10
+	},
+/obj/machinery/button/flasher{
+	id = "brigentry";
+	pixel_x = -28;
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "sjq" = (
 /obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = 32
@@ -59847,15 +59913,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"tdH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "tdI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -66433,6 +66490,20 @@
 	},
 /turf/open/floor/wood,
 /area/maintenance/starboard/fore)
+"vwV" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/machinery/flasher{
+	id = "brigentry";
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "vxa" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -70031,16 +70102,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"wIt" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/red/filled/corner,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "wIy" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -74219,12 +74280,6 @@
 /obj/effect/landmark/start/warden,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
-"yeP" = (
-/obj/effect/turf_decal/trimline/red/filled/warning{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "yff" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -102350,7 +102405,7 @@ fdv
 lye
 qBV
 uDg
-yeP
+sjk
 mIc
 djY
 gWF
@@ -102866,7 +102921,7 @@ uZS
 sXS
 mAV
 tcG
-wIt
+vwV
 fwF
 bcn
 hsM
@@ -104409,7 +104464,7 @@ nDf
 ssf
 iSG
 mWK
-mqE
+jcp
 rSW
 czo
 aZW
@@ -105437,7 +105492,7 @@ rPF
 aWY
 nfv
 ezN
-vms
+ery
 rSW
 czo
 aZW
@@ -106976,7 +107031,7 @@ aQv
 dyV
 uSn
 oSQ
-tdH
+ehZ
 aGC
 hsQ
 eme
@@ -107475,7 +107530,7 @@ yeg
 iic
 ajQ
 diA
-cHT
+fOP
 ajQ
 mbN
 maF
@@ -109531,7 +109586,7 @@ yfF
 tSh
 ajQ
 heT
-cHT
+eBz
 ajQ
 wNm
 cEb
