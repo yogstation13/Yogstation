@@ -52,7 +52,7 @@
 	difficulty = 16
 	instability = 50
 	class = MUT_OTHER
-	locked = TRUE
+	locked = FALSE
 	quality = POSITIVE
 	get_chance = 10
 	lowest_value = 256 * 14
