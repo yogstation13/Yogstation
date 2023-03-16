@@ -4,7 +4,7 @@
 #define EGG_BETA (-0.027)
 /datum/species/egg
 	// Egghead humanoids composed of eggs and stale memes
-	species_traits = list(MUTCOLORS)
+	species_traits = list(MUTCOLORS, SCLERA)
 	name = "Eggperson"
 	id = "egg"
 	say_mod = "blurbles"
