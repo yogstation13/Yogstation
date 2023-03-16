@@ -5,7 +5,7 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH, SCLERA)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
 	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
