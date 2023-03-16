@@ -3,9 +3,12 @@
 	id = MARTIALART_PSYCHOBRAWL
 
 /datum/martial_art/psychotic_brawling/teach(mob/living/carbon/human/H,make_temporary=0)
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "[type][REF(src)]")
+	. = ..()
+	if(.)
+		ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "[type][REF(src)]")
 
 /datum/martial_art/psychotic_brawling/on_remove(mob/living/carbon/human/H)
+	. = ..()
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "[type][REF(src)]")
 
 /datum/martial_art/psychotic_brawling/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
