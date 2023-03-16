@@ -719,7 +719,7 @@ generate/load female uniform sprites matching all previously decided variables
 				add_overlay(missing_eyes)
 
 		//sclera
-		if(!((NOSCLERA in dna.species.species_traits) || (NOEYESPRITES in dna.species.species_traits)))
+		if((SCLERA in dna.species.species_traits) || !(NOEYESPRITES in dna.species.species_traits))
 			var/sclera_icon_state = "sclera"
 			var/mutable_appearance/sclera_overlay = mutable_appearance('icons/mob/human_face.dmi', sclera_icon_state, -BODY_LAYER)
 			if(OFFSET_FACE in dna.species.offset_features)
