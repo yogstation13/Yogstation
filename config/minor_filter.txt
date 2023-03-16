@@ -42,3 +42,4 @@ hbu=how about you
 btw=by the way
 pls=please
 plz=please
+tf=the fuck
