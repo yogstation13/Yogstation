@@ -65,8 +65,6 @@
 
 
 /datum/martial_art/buster_style/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
-	if(..())
-		return
 	if(!(can_use(H)))
 		return
 	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
@@ -174,29 +172,22 @@
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
-	var/obj/structure/bed/grip/bed
 	walk(tossed,0)
 	tossed.density = old_density
 	user.stop_pulling()
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
 		return 
-	for(bed in range(1,user))
-		if(!bed.has_buckled_mobs())
-			qdel(bed)
-			return
-		else
-			qdel(bed)
-			continue
 	for(var/obj/I in thrown)
 		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
 	if(user in tossed.contents)
 		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
 		return
-	user.visible_message(span_warning("[user] throws [tossed]!"))
 	if(iscarbon(tossed)) // Logic that tears off a damaged limb or tail
 		var/mob/living/carbon/tossedliving = thrown[1]
 		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
+		if(!tossedliving.buckled)
+			return
 		grab(user, tossedliving, throwdam) // Apply damage
 		if(!limb_to_hit)
 			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
@@ -215,6 +206,7 @@
 				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [tossedliving.p_their()] tail, severing [tossedliving.p_them()] from it!")) //"I'm taking this back."
 				T.Remove(tossedliving)
 				user.put_in_hands(T)
+	user.visible_message(span_warning("[user] throws [tossed]!"))
 	for(var/i = 1 to target_dist)
 		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
 		var/turf/T = get_step(get_turf(tossed), dir_to_target)
