@@ -84,7 +84,7 @@
 		EK.on_lose(owner.current)
 
 	if(!silent)
-		to_chat(owner.current, span_userdanger("Your mind begins to flare as otherwordly knowledge escapes your grasp!"))
+		to_chat(owner.current, span_userdanger("Your mind begins to flare as otherworldly knowledge escapes your grasp!"))
 		owner.current.log_message("has lost their link to the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
