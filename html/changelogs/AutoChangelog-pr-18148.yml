@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - rscadd: "veils get a visible tell that can be hidden with clothing"
