@@ -141,7 +141,7 @@
 #define MGENDER	        21
 /// Do not draw eyes & sclera or eyeless overlay
 #define NOEYESPRITES	22
-#define NOSCLERA        23
+#define SCLERA        23
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
 #define HAS_FLESH	24
