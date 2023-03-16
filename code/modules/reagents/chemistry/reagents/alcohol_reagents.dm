@@ -1239,7 +1239,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(ispreternis(M))
 		for(var/obj/O in orange(2,M))
 			if(!O.anchored && (O.flags_1 & CONDUCT_1))
-				step_towards(O, M)
+				step_towards(O, get_turf(M))
 	return ..()
 
 //Another reference. Heals those in critical condition extremely quickly.
