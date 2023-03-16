@@ -189,6 +189,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Cyborg"
 	icon_state = "Cyborg"
 
+/obj/effect/landmark/start/synthetic
+	name = "Synthetic"
+	icon_state = "Cyborg"
+
 
 //Department Security spawns
 

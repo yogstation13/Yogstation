@@ -74,6 +74,10 @@
 				return 1
 	return 0
 
+/obj/item/robot_suit/examine(mob/user)
+	. = ..()
+	. += "If you insert an AI CPU when this endoskeleton is complete it will be constructed as a synthetic."
+
 /obj/item/robot_suit/wrench_act(mob/living/user, obj/item/I) //Deconstucts empty borg shell. Flashes remain unbroken because they haven't been used yet
 	var/turf/T = get_turf(src)
 	if(l_leg || r_leg || chest || l_arm || r_arm || head)
@@ -251,6 +255,22 @@
 			ui_interact(user)
 		else
 			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
+
+	else if(istype(W, /obj/item/ai_cpu))
+		if(check_completion())
+			var/response = tgui_alert(user, "Are you sure you want to turn this endoskeleton into a synthetic unit?", "Please Confirm", list("Yes", "No"))
+			if(response != "Yes")
+				return
+			
+			if(!user.temporarilyRemoveItemFromInventory(W))
+				return
+			qdel(W)
+			var/mob/living/carbon/human/O = new /mob/living/carbon/human(get_turf(loc))
+			O.set_species(/datum/species/wy_synth)
+			O.invisibility = 0
+			O.job = "Synthetic"
+			var/datum/outfit/job/synthetic/naked/SO = new()
+			SO.equip(O)
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W

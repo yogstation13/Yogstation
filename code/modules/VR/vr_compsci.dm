@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 	var/datum/compsci_mission/current_mission
 
-	var/mob/living/ai_occupant
+	var/mob/living/synth_occupied
 
 	var/emagged = TRUE
 
@@ -25,8 +25,6 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 	unlocked_missions |= roundstart_missions
 
 /datum/compsci_vr/proc/can_join(mob/user)
-	if(isAI(user) && ai_occupant)
-		return FALSE
 	return TRUE
 
 /datum/compsci_vr/proc/emag(mob/user)

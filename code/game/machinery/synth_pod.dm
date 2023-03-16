@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(synth_pods)
+
 // SUIT STORAGE UNIT /////////////////
 /obj/machinery/synth_pod
 	name = "synthetic storage unit"
@@ -23,6 +25,11 @@
 		stored = S
 		var/datum/outfit/job/synthetic/SO = new()
 		SO.equip(S)
+	GLOB.synth_pods += src
+
+/obj/machinery/synth_pod/Destroy()
+	. = ..()
+	GLOB.synth_pods -= src
 
 /obj/machinery/synth_pod/update_icon()
 	cut_overlays()
@@ -72,13 +79,40 @@
 		stored = target
 		update_icon()
 
+		switch_body(target)
+
+/obj/machinery/synth_pod/proc/switch_body(mob/living/carbon/human/user)
+	var/list/options = list("Stay here")
+	for(var/obj/machinery/synth_pod/pod in GLOB.synth_pods)
+		if(pod == src)
+			continue
+		if(pod.z != src.z)
+			continue
+		if(!pod.stored)
+			continue
+		options["[get_area(pod)] ([pod.x], [pod.y])"] = pod
+
+	var/response = tgui_input_list(user, "Which synthetic unit would you like to transfer into?", "Synthetic Personality Transfer", options)
+
+	if(!response || response == "Stay here")
+		open_machine()
+		stored = null
+		update_icon()
+		return
+
+	if(options[response])
+		var/obj/machinery/synth_pod/selected_pod = options[response]
+		var/mob/living/carbon/human/target_synth = selected_pod.stored
+		var/datum/species/wy_synth/S = user.dna.species
+		S.transfer(user, target_synth)
+		
+		
+
 
 /obj/machinery/synth_pod/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
 		return
 	return ..()
-
-
 
 /obj/machinery/synth_pod/attackby(obj/item/I, mob/user, params)
 	if(panel_open && is_wire_tool(I))

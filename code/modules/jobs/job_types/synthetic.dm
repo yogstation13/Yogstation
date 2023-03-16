@@ -7,8 +7,8 @@
 	department_head = list("AI")
 	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the AI"
 	selection_color = "#ddffdd"
 	minimal_player_age = 7
@@ -53,5 +53,27 @@
 
 /datum/outfit/job/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
-	var/obj/item/clothing/under/wearing = H.w_uniform
-	wearing.has_sensor = FALSE
+	if(H.w_uniform)
+		var/obj/item/clothing/under/wearing = H.w_uniform
+		wearing.has_sensor = FALSE
+
+
+/datum/outfit/job/synthetic/naked
+	name = "Synthetic Naked"
+
+	uniform = null
+	ears = null
+	back = null
+	shoes = null
+	box = null
+	ipc_box = null
+
+	preload = FALSE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
+
+	backpack = null
+	satchel  = null
+	duffelbag = null
+
+
+/datum/outfit/job/synthetic/naked/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	return

@@ -279,4 +279,25 @@
 	undeployment_action.Remove(H)
 	mainframe = null
 
+/datum/species/wy_synth/proc/transfer(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.mind.transfer_to(target)
+
+	target.real_name = "[user.real_name]"	//Randomizing the name so it shows up separately in the shells list
+	target.name = target.real_name
+	var/obj/item/card/id/ID = target.wear_id
+	if(ID)
+		ID.update_label(user.real_name, "Synthetic")
+
+/datum/species/wy_synth/spec_attack_hand(mob/living/carbon/human/attacker, mob/living/carbon/human/user)
+	if(is_synth(attacker) && is_synth(user)) 
+		if(user.mind)
+			to_chat(attacker, span_warning("[user] is currently occupied by a different personality!"))
+			return ..()
+		var/response = tgui_alert(user, "Are you sure you want to transfer into this unit?", "Synthetic Personality Transfer", list("Yes", "No"))
+		if(response != "Yes")
+			return ..()
+		transfer(attacker, user)
+		return TRUE
+	return ..()
+
 #undef CONCIOUSAY

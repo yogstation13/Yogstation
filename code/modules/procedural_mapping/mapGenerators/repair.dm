@@ -33,6 +33,7 @@
 		z_offset += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	var/list/obj/structure/ethernet_cable/ethernet_cables = list()
 	var/list/obj/structure/cable/cables = list()
 	var/list/atom/movable/movables = list()
 	var/list/area/areas = list()
@@ -58,6 +59,9 @@
 			movables += movable_in_turf
 			if(istype(movable_in_turf, /obj/structure/cable))
 				cables += movable_in_turf
+				continue
+			if(istype(movable_in_turf, /obj/structure/ethernet_cable))
+				ethernet_cables += movable_in_turf
 				continue
 			if(istype(movable_in_turf, /obj/machinery/atmospherics))
 				atmos_machines += movable_in_turf
