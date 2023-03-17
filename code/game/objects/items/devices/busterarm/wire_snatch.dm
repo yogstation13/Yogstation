@@ -123,7 +123,7 @@
 	to_chat(user, span_warning("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.Immobilize(0.2 SECONDS)//so it's not cut short by walking
-	user.throw_at(get_step_towards(target,user), 8, 4)
+	user.forceMove(get_step_towards(target, user))
 
 /obj/item/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
