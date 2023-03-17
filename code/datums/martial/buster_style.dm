@@ -190,6 +190,8 @@
 		if(!tossedliving.buckled)
 			return
 		grab(user, tossedliving, throwdam) // Apply damage
+		for(var/obj/structure/bed/grip/F in view(2, user))
+			F.Destroy()
 		if(!limb_to_hit)
 			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
 		if(limb_to_hit.brute_dam == limb_to_hit.max_damage)
