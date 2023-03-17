@@ -3,6 +3,14 @@
 #define SINGULARITY_INTEREST_OBJECT 7.5
 #define SINGULARITY_INTEREST_NONSPACE 2
 
+/atom/movable/gravity_lens
+	plane = SINGULARITY_EFFECT_PLANE
+	//plane = GHOST_LAYER
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
+	icon = 'icons/effects/512x512.dmi'
+	icon_state = "gravitational_lensing"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -37,12 +45,24 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
+	var/atom/movable/gravity_lens/grav_lens
+
 /obj/singularity/Initialize(mapload, starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 
 	src.energy = starting_energy
 	. = ..()
+	if (!grav_lens)
+		grav_lens = new(src)
+		grav_lens.transform = matrix().Scale(0.5)
+		grav_lens.pixel_x = -240
+		grav_lens.pixel_y = -240
+		// Radioactive green glow messes with the displacement map
+		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
+		if(c)
+			c.RemoveComponent()*/
+		vis_contents += grav_lens
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
 	GLOB.singularities |= src
@@ -57,6 +77,8 @@
 		var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
 		var/turf/T = get_turf(src)
 		new shardstage(T, src)
+	vis_contents -= grav_lens
+	QDEL_NULL(grav_lens)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -203,6 +225,10 @@
 			dissipate_strength = 1
 			if(maxStage < 1)
 				maxStage = 1
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(0.5), time = 10)
+				grav_lens.pixel_x = -240
+				grav_lens.pixel_y = -240
 		if(STAGE_TWO)
 			if(check_cardinals_range(1, TRUE))
 				current_size = STAGE_TWO
@@ -217,6 +243,11 @@
 				dissipate_strength = 5
 				if(maxStage < 2)
 					maxStage = 2
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(0.75), time = 10)
+					grav_lens.pixel_x = -208
+					grav_lens.pixel_y = -208
+					grav_lens.filters = list()
 		if(STAGE_THREE)
 			if(check_cardinals_range(2, TRUE))
 				current_size = STAGE_THREE
@@ -231,6 +262,10 @@
 				dissipate_strength = 20
 				if(maxStage < 3)
 					maxStage = 3
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(1), time = 10)
+					grav_lens.pixel_x = -176
+					grav_lens.pixel_y = -176
 		if(STAGE_FOUR)
 			if(check_cardinals_range(3, TRUE))
 				current_size = STAGE_FOUR
@@ -245,6 +280,10 @@
 				dissipate_strength = 10
 				if(maxStage < 4)
 					maxStage = 4
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(1.25), time = 10)
+					grav_lens.pixel_x = -144
+					grav_lens.pixel_y = -144
 		if(STAGE_FIVE)//this one also lacks a check for gens because it eats everything
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
@@ -256,6 +295,10 @@
 			dissipate = 0 //It cant go smaller due to e loss
 			if(maxStage < 5)
 				maxStage = 5
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(1.5), time = 10)
+				grav_lens.pixel_x = -112
+				grav_lens.pixel_y = -112
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -267,6 +310,10 @@
 			dissipate = 0
 			if(maxStage < 6)
 				maxStage = 6
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(1.75), time = 10)
+				grav_lens.pixel_x = -80
+				grav_lens.pixel_y = -80
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_SINGULO)
 		return 1
