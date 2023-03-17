@@ -13068,9 +13068,11 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "bLK" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Port to Tinker"
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -31955,6 +31957,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"iBI" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Port to Tinker"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "iCk" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -48298,6 +48307,12 @@
 /obj/machinery/shieldgen,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"pqo" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "pqr" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -52119,6 +52134,9 @@
 "qQF" = (
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -109195,7 +109213,7 @@ fwi
 dAA
 csz
 xqu
-bLK
+iBI
 fgV
 nka
 goZ
@@ -110228,7 +110246,7 @@ tEp
 tEp
 vCE
 jjC
-tEp
+bLK
 tEp
 sSk
 vUc
@@ -112019,7 +112037,7 @@ ldW
 ldW
 ldW
 cmd
-fKW
+pqo
 huB
 cmd
 vIf
