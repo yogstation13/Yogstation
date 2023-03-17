@@ -396,10 +396,12 @@
 						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if(BURN)
 					update |= temp.receive_damage(0, dmg)
-					playsound(src, 'sound/items/welder.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/items/welder.ogg', 50, 1)
 				if(TOX)
 					M.mech_toxin_damage(src)
 				else

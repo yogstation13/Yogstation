@@ -156,11 +156,14 @@
 	else
 		switch(M.damtype)
 			if(BRUTE)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
-				playsound(src, 'sound/items/welder.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/items/welder.ogg', 50, 1)
 			if(TOX)
-				playsound(src, 'sound/effects/spray2.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/effects/spray2.ogg', 50, 1)
 				return 0
 			else
 				return 0

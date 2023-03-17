@@ -83,6 +83,7 @@
 
 	var/stepsound = 'sound/mecha/mechstep.ogg'
 	var/turnsound = 'sound/mecha/mechturn.ogg'
+	var/meleesound = TRUE //does it play a sound when melee attacking (so mime mech can turn it off)
 
 	var/melee_cooldown = 10
 	var/melee_can_hit = TRUE
