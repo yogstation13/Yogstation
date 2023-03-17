@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Bloodsucker brawn ability now respects armor (with 20 AP)"
+  - tweak: "Tzimisce bloodsucker dice ability can no longer instantly dismember targets with significant armor"
