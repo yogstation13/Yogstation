@@ -1,0 +1,6 @@
+author: "Kaithyl"
+delete-after: true 
+changes: 
+  - rscadd: "added gravitational lensing distortion effects to the singularity"
+  - tweak: "edited singularity vars, plane masters, layer defines, radiation component ignore list"
+  - imageadd: "added gravitational_lensing sprite"
