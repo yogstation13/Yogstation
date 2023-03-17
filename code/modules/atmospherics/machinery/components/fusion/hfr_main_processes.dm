@@ -435,10 +435,13 @@
 	critical_threshold_proximity = min(critical_threshold_proximity_archived + (delta_time * DAMAGE_CAP_MULTIPLIER * melting_point), critical_threshold_proximity)
 
 	// If we have a preposterous amount of mass in the fusion mix, things get bad extremely fast
+	// Will start broadcasting a warning first
+	if(internal_fusion.total_moles() >= HYPERTORUS_WARNING_MOLES)
+		warning_damage_flags |= HYPERTORUS_FLAG_HIGH_FUEL_MIX_MOLE
+	// Before it starts to hurt
 	if(internal_fusion.total_moles() >= HYPERTORUS_HYPERCRITICAL_MOLES)
 		var/hypercritical_damage_taken = max((internal_fusion.total_moles() - HYPERTORUS_HYPERCRITICAL_MOLES) * HYPERTORUS_HYPERCRITICAL_SCALE, 0)
-		critical_threshold_proximity = max(critical_threshold_proximity + min(hypercritical_damage_taken, HYPERTORUS_HYPERCRITICAL_MAX_DAMAGE), 0) * delta_time
-		warning_damage_flags |= HYPERTORUS_FLAG_HIGH_FUEL_MIX_MOLE
+		critical_threshold_proximity = max(critical_threshold_proximity + min(hypercritical_damage_taken * delta_time, HYPERTORUS_HYPERCRITICAL_MAX_DAMAGE), 0)
 
 	// High power fusion might create other matter other than helium, iron is dangerous inside the machine, damage can be seen
 	if(power_level > 4 && prob(IRON_CHANCE_PER_FUSION_LEVEL * power_level))//at power level 6 is 100%

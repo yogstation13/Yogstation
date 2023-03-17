@@ -109,6 +109,8 @@
 
 // Note: Ignores the damage cap!
 // Settings:
+/// Start broadcasting warning over this threshold
+#define HYPERTORUS_WARNING_MOLES 9000
 /// Start taking damage over this threshold
 #define HYPERTORUS_HYPERCRITICAL_MOLES 10000
 /// Take this much damage per mole over the threshold per second
