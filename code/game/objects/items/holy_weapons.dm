@@ -683,6 +683,43 @@
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
 		H2.remove_hud_from(user)
 
+/obj/item/nullrod/hermes 
+	name = "fairy boots"
+	desc = "Boots blessed by the god Hermes. Some say that they were discarded after being tainted by fae magic."
+	gender = PLURAL //Carn: for grammarically correct text-parsing, but over here too
+	icon = 'icons/obj/clothing/shoes.dmi'
+	icon_state = "fairyboots"
+	item_state = "fairyboots"
+	slot_flags = ITEM_SLOT_FEET
+	body_parts_covered = FEET
+	w_class = WEIGHT_CLASS_SMALL
+	force = 0
+	throwforce = 0
+	slowdown = -0.3 //give up a weapon, get some speed
+	menutab = MENU_CLOTHING
+	additional_desc = "The blessing of Hermes imbues the wearer with incredible speed."
+
+/obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
+	. = ..()
+	if(slot == SLOT_SHOES)
+		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+
+/obj/item/nullrod/hermes/dropped(mob/user, silent)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
+
+/obj/item/nullrod/hermes/proc/move_react()
+	new /obj/effect/temp_visual/flowers(get_turf(src))
+
+/obj/effect/temp_visual/flowers
+	layer = BELOW_MOB_LAYER
+	icon_state = "quantum_sparks"
+	duration = 6
+
+/obj/effect/temp_visual/flowers/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = duration - 1)
+
 /*---------------------------------------------------------------------------
 |
 |		MISC null rods
