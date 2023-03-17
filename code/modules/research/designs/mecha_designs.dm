@@ -571,9 +571,9 @@
 	category = list("Exosuit Equipment")
 	combat_design = TRUE
 
-/datum/design/mech_stunbaton
+/datum/design/mech_batong
 	name = "Exosuit Weapon (AV-98 \"Ingram\" heavy stun baton)"
-	id = "mech_stunbaton"
+	id = "mech_batong"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/batong
 	materials = list(/datum/material/iron=15000,/datum/material/gold=10000,/datum/material/plasma=10000)
