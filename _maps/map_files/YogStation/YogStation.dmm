@@ -13067,6 +13067,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"bLK" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Port to Tinker"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bLM" = (
 /obj/machinery/suit_storage_unit/atmos,
 /turf/open/floor/plasteel/dark,
@@ -67861,11 +67868,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "xqu" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
-	dir = 4
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -109188,7 +109195,7 @@ fwi
 dAA
 csz
 xqu
-pIA
+bLK
 fgV
 nka
 goZ
