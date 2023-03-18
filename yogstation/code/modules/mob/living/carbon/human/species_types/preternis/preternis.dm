@@ -75,6 +75,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -89,6 +91,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
+
+	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
 	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
