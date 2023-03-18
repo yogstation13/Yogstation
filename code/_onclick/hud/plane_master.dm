@@ -49,10 +49,10 @@
 
 /atom/movable/screen/plane_master/floor/backdrop(mob/mymob)
 	filters = list()
-	// Should be moved to the world render plate when render plates get ported in
-	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
@@ -63,12 +63,12 @@
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	// Should be moved to the world render plate when render plates get ported in
-	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 	if(istype(mymob) && mymob.client?.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 
 ///Contains all lighting objects
@@ -83,6 +83,8 @@
 	filters += filter(type="alpha", render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE)
 	filters += filter(type="alpha", render_source = EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags = MASK_INVERSE)
 	filters += filter(type="alpha", render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 /**
   * Things placed on this mask the lighting plane. Doesn't render directly.
@@ -99,6 +101,8 @@
 /atom/movable/screen/plane_master/emissive/Initialize()
 	. = ..()
 	filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 /**
   * Things placed on this always mask the lighting plane. Doesn't render directly.
@@ -133,19 +137,16 @@
 
 /atom/movable/screen/plane_master/parallax/Initialize(mapload)
 	. = ..()
-	// Should be moved to the world render plate when render plates get ported in
-	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
 		SpinAnimation(15 MINUTES)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 /atom/movable/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE
 
 /atom/movable/screen/plane_master/lighting/backdrop(mob/mymob)
-	filters = list()
-	// Should be moved to the world render plate when render plates get ported in
-	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 	mymob.overlay_fullscreen("lighting_backdrop_lit", /atom/movable/screen/fullscreen/lighting_backdrop/lit)
 	mymob.overlay_fullscreen("lighting_backdrop_unlit", /atom/movable/screen/fullscreen/lighting_backdrop/unlit)
 

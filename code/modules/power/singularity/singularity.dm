@@ -53,16 +53,6 @@
 
 	src.energy = starting_energy
 	. = ..()
-	if (!grav_lens)
-		grav_lens = new(src)
-		grav_lens.transform = matrix().Scale(0.5)
-		grav_lens.pixel_x = -240
-		grav_lens.pixel_y = -240
-		// Radioactive green glow messes with the displacement map
-		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
-		if(c)
-			c.RemoveComponent()*/
-		vis_contents += grav_lens
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
 	GLOB.singularities |= src
@@ -77,8 +67,9 @@
 		var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
 		var/turf/T = get_turf(src)
 		new shardstage(T, src)
-	vis_contents -= grav_lens
-	QDEL_NULL(grav_lens)
+	if(grav_lens)
+		vis_contents -= grav_lens
+		QDEL_NULL(grav_lens)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -565,6 +556,25 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	qdel(src)
 	return(gain)
+
+/obj/singularity/gravitational
+	name = "gravitational singularity"
+	desc = "A gravitational singularity."
+	icon = 'icons/obj/singularity.dmi'
+	icon_state = "singularity_s1"
+
+/obj/singularity/gravitational/Initialize(mapload, starting_energy)
+	. = ..()
+	if (!grav_lens)
+		grav_lens = new(src)
+		grav_lens.transform = matrix().Scale(0.5)
+		grav_lens.pixel_x = -240
+		grav_lens.pixel_y = -240
+		// Radioactive green glow messes with the displacement map
+		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
+		if(c)
+			c.RemoveComponent()*/
+		vis_contents += grav_lens
 
 /obj/item/singularity_shard
 	name = "singularity shard"
