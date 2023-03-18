@@ -167,8 +167,6 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(20 * severity))
-		return
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
