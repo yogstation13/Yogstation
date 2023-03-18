@@ -46,6 +46,9 @@
 	owner.update_sight()
 	if(M.has_dna() && ishuman(M))
 		M.dna.species.handle_body(M) //updates eye icon
+	if(!damaged)
+		C.cure_blind(EYE_DAMAGE)	//cure any lingering blindness because we have new, undamaged eyeballs eyeballs
+		C.clear_fullscreen("eye_damage")
 
 /obj/item/organ/eyes/Remove(mob/living/carbon/M, special = 0)
 	..()
