@@ -63499,17 +63499,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"uta" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/machinery/flasher{
-	id = "briginfirmary";
-	pixel_x = 8;
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "utk" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -103452,7 +103441,7 @@ oWG
 iDZ
 pPh
 unq
-uta
+dyV
 dgz
 gyr
 wbw
