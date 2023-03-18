@@ -1,0 +1,4 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - bugfix: "Shuttle catastrophe no longer removes people"
