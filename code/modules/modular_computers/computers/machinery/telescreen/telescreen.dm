@@ -11,7 +11,7 @@
 	base_idle_power_usage = 75
 	base_active_power_usage = 300
 	max_hardware_size = WEIGHT_CLASS_NORMAL
-	steel_sheet_cost = 10
+	steel_sheet_cost = 3
 	interact_sounds = list('sound/machines/computers/pda_click.ogg')
 
 /obj/machinery/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
