@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_ash
 	name = "Nightwatcher's Secret"
-	desc = "Pledges yourself to the path of Ash. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally, empowers your Mansus grasp to throw away enemies. You will also become more resistant to fire."
+	desc = "Pledges yourself to the path of Ash. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally, empowers your Mansus grasp to throw enemies away from you. You will also become more resistant to fire."
 	gain_text = "Night on the Kilnplains reveals the Ashy Lantern in the sky. In your dreams, you reached out and touched it. Now, like it, you are a part of the dunes. Forever."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)

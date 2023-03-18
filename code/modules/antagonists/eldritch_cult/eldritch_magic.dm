@@ -207,7 +207,7 @@
 
 /obj/effect/proc_holder/spell/pointed/cleave
 	name = "Cleave"
-	desc = "Causes severe bleeding on a target and on people around them"
+	desc = "Causes a target and those around them to be inflicted with severe bleeding"
 	school = "transmutation"
 	charge_max = 350
 	clothes_req = FALSE

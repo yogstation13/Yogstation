@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_rust
 	name = "Blacksmith's Tale"
 	desc = "Pledges yourself to the path of Rust. Allows you to transmute a piece of trash with a knife into a rusty blade. Additionally, your Mansus grasp now deal 500 damage to inorganic matter, rusts any surface it's used on, while destroying any surface that is already rusty."
-	gain_text = "Outside the Ruined Keep, you drank of the River Krym. Its poison seeping through your body, years shriveled away. Yet, you were spared. Now, your purpose is clear."
+	gain_text = "Outside the Ruined Keep, you drank of the River Krym. Its poison seeped through your body as years shriveled away. Yet, you were spared. Now, your purpose is clear."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
@@ -106,7 +106,7 @@
 /datum/eldritch_knowledge/entropic_plume
 	name = "Entropic Plume"
 	gain_text = "The fumes that began to flow from the Corroded Sewers choked the River Krym dead. Legends still say the Vermin Duke is within its fogged tunnels, his form nearly petrified from age."
-	desc = "A cone spell that expels befuddling plume that rusts tiles, then blinds, poisons, and forces targets to strike each other."
+	desc = "A cone spell that expels a befuddling plume that rusts tiles, then blinds, poisons, and forces targets to strike each other."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/cone/staggered/entropic_plume)
 	route = PATH_RUST
