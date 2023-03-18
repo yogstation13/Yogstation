@@ -59,6 +59,7 @@
 				to_chat(target, "<span class='changeling bold'>You can now communicate in the changeling hivemind, say \"[MODE_TOKEN_CHANGELING] message\" to communicate!</span>")
 				target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 40) // So they don't choke to death while you interrogate them
 				addtimer(CALLBACK(src, .proc/sever_connection, user, target), 3 MINUTES)
+				return
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("[name]", "[i]"))
 		if(!do_mob(user, target, 2 SECONDS))
 			to_chat(user, span_warning("Our link with [target] has ended!"))
@@ -66,14 +67,12 @@
 			target.mind.linglink = FALSE
 			return
 
-	changeling.islinking = FALSE
-	target.mind.linglink = FALSE
-	to_chat(user, span_notice("You cannot sustain the connection any longer, your victim fades from the hivemind"))
-	to_chat(target, span_userdanger("The link cannot be sustained any longer, your connection to the hivemind has faded!"))
-
 /datum/action/changeling/linglink/proc/sever_connection(mob/user, mob/living/carbon/human/target)
 	var/datum/antagonist/changeling/changeling = user.mind?.has_antag_datum(/datum/antagonist/changeling)
 	if (changeling)
 		changeling.islinking = FALSE
 	
 	target?.mind?.linglink = FALSE
+
+	to_chat(user, span_notice("You cannot sustain the connection any longer, your victim fades from the hivemind"))
+	to_chat(target, span_userdanger("The link cannot be sustained any longer, your connection to the hivemind has faded!"))
