@@ -1,0 +1,4 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - bugfix: "telescreens no longer create more metal than they are worth"
