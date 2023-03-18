@@ -7348,6 +7348,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "dGz" = (
@@ -12419,6 +12422,9 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
@@ -36460,6 +36466,9 @@
 	},
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	name = "Waste to Space"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
