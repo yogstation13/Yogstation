@@ -1,0 +1,7 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "Heretics now have a roundend report epilogue depending on 1) Their lore 2) Whether they ascended, completed, or failed their objectives and 3) Whether they escaped, were stranded, or died."
+  - tweak: "Bloodsucker epilogue logic slightly tweaked"
+  - spellcheck: "Fixes SEVERAL spaces, syntax, grammatical, and spelling errors within heretic flavor text"
+  - spellcheck: "Rewrites much of heretics' flavor text, especially regarding text when something is researched"
