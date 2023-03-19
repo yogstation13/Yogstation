@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
-/datum/uplink_item/stealthy_weapons/dart_pistol
+/datum/uplink_item/stealthy_weapons/dart_syringe
 	name = "Box of Chemical Shotgun Darts"
 	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
 			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
@@ -2467,7 +2467,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
-/datum/uplink_item/role_restricted/chemical_gun
+/datum/uplink_item/role_restricted/chemical_art
 	name = "Psychotic Brawl Notes"
 	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
 			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."
