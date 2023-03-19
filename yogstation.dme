@@ -3982,7 +3982,6 @@
 #include "yogstation\code\modules\reagents\recipes\pyrotechnics.dm"
 #include "yogstation\code\modules\recycling\disposal\pipe_sorting.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
-#include "yogstation\code\modules\research\designs\biogenerator_designs.dm"
 #include "yogstation\code\modules\research\designs\bluespace_designs.dm"
 #include "yogstation\code\modules\research\designs\comp_board_designs.dm"
 #include "yogstation\code\modules\research\designs\medical_designs.dm"

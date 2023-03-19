@@ -8,7 +8,7 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 20)
 	make_reagents = list(/datum/reagent/consumable/milk = 10)
-	category = list("initial","Food")
+	category = list("initial","Kitchen Chemicals")
 
 /datum/design/cream
 	name = "10 Cream"
@@ -16,7 +16,7 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 30)
 	make_reagents = list(/datum/reagent/consumable/cream = 10)
-	category = list("initial","Food")
+	category = list("initial","Kitchen Chemicals")
 
 /datum/design/milk_carton
 	name = "Milk Carton"
@@ -40,7 +40,7 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
 	make_reagents = list(/datum/reagent/consumable/blackpepper = 10)
-	category = list("initial","Food")
+	category = list("initial","Kitchen Chemicals")
 
 /datum/design/pepper_mill
 	name = "Pepper Mill"
@@ -57,7 +57,7 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 30)
 	make_reagents = list(/datum/reagent/consumable/enzyme = 10)
-	category = list("initial","Food")
+	category = list("initial","Kitchen Chemicals")
 
 /datum/design/flour_sack
 	name = "Flour Sack"
@@ -67,12 +67,52 @@
 	build_path = /obj/item/reagent_containers/food/condiment/flour
 	category = list("initial","Food")
 
+/datum/design/rice_sack
+	name = "Rice Sack"
+	id = "rice_sack"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/reagent_containers/food/condiment/rice
+	category = list("initial","Food")
+
 /datum/design/monkey_cube
 	name = "Monkey Cube"
 	id = "mcube"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/reagent_containers/food/snacks/monkeycube
+	category = list("initial", "Food")
+
+/datum/design/goat_cube
+	name = "Goat Cube"
+	id = "gcube"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 350)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/goat
+	category = list("initial", "Food")
+
+/datum/design/cow_cube
+	name = "Cow Cube"
+	id = "cowcube"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 500)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/cow
+	category = list("initial", "Food")
+
+/datum/design/chicken_cube
+	name = "Chicken Cube"
+	id = "chickencube"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 200)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/chicken
+	category = list("initial", "Food")
+
+/datum/design/sheep_cube
+	name = "Sheep Cube"
+	id = "sheepcube"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 350)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	category = list("initial", "Food")
 
 /datum/design/seaweed_sheet
@@ -210,3 +250,11 @@
 	materials = list(/datum/material/biomass = 300)
 	build_path = /obj/item/clothing/head/rice_hat
 	category = list("initial","Organic Materials")
+
+/datum/design/mutagen
+	name = "Unstable Mutagen"
+	id = "unstable_mutagen"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 600)
+	build_path = /obj/item/reagent_containers/glass/bottle/mutagen
+	category = list("initial","Botany Chemicals")

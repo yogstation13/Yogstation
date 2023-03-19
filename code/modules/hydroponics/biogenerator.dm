@@ -14,7 +14,7 @@
 	var/productivity = 0
 	var/max_items = 40
 	var/datum/techweb/stored_research
-	var/list/show_categories = list("Food", "Botany Chemicals", "Organic Materials")
+	var/list/show_categories = list("Food","Kitchen Chemicals","Botany Chemicals","Organic Materials")
 	/// Currently selected category in the UI
 	var/selected_cat
 
