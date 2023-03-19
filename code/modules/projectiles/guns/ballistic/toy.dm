@@ -60,10 +60,9 @@
 	. = ..()
 	add_overlay("[icon_state]_toy")
 
-/obj/item/gun/ballistic/shotgun/toy/process_chamber(empty_chamber = 0)
-	..()
-	if(chambered && !chambered.BB)
-		qdel(chambered)
+/obj/item/gun/ballistic/shotgun/toy/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	. = ..()
+	chambered = null
 
 /obj/item/gun/ballistic/shotgun/toy/unrestricted
 	pin = /obj/item/firing_pin
