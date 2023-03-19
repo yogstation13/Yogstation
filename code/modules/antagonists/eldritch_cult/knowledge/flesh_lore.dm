@@ -148,7 +148,7 @@
 /datum/eldritch_knowledge/ashy
 	name = "Ashen Ritual"
 	gain_text = "There are so many that fall and wander the Kilnplains as horrid spawn of the Ashy Lantern. This rite offers them sparks anew to consume in exchange for servitude."
-	desc = "You can now summon an Ashman by transmutating a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ash Passage spell."
+	desc = "You can now summon an Ashman by transmuting a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ashen Shift spell."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/ashy)
 	tier = TIER_3
@@ -156,7 +156,7 @@
 /datum/eldritch_knowledge/rusty
 	name = "Rusted Ritual"
 	gain_text = "The Vermin Duke's pawns span the Corroded Sewers, though several spill out and roam the Badlands to accost traders and travelers alike. They are not difficult to control, as you have learned."
-	desc = "You can now summon a Rustwalker transmutating a vomit pool and a book. Rustwalkers are capable of spreading rust and have strong, short-ranged projectile attack."
+	desc = "You can now summon a Rustwalker transmuting a vomit pool and a book. Rustwalkers are capable of spreading rust and have a strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
 	tier = TIER_3
@@ -164,7 +164,7 @@
 /datum/eldritch_knowledge/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "In preparation for the Glorious Feast, many Sworn appetize with their closest followers. Their master looks upon this fondly, and soothes them into a new, ravenous form of decadence. You will eat, and you will grow."
-	desc = "Transmute three corpses to ascend by metamorphisizing as a Thirstly Serpent or instead summoning a Lavish Serpent, tripling your ghoul maximum, and becoming incredibly resilient to damage."
+	desc = "Transmute three corpses to ascend by metamorphisizing as a Thirstly Serpent, or ascend instead by summoning a Lavish Serpent, tripling your ghoul maximum, and becoming incredibly resilient to damage."
 	cost = 3
 	route = PATH_FLESH
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/flesh_final)
