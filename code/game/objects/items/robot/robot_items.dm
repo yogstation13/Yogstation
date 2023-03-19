@@ -444,7 +444,7 @@
 		to_chat(user, span_warning("Not enough lollipops left!"))
 		return FALSE
 	candy--
-	var/obj/item/ammo_casing/reusable/lollipop/A = new /obj/item/ammo_casing/reusable/lollipop(src)
+	var/obj/item/ammo_casing/caseless/lollipop/A = new /obj/item/ammo_casing/caseless/lollipop(src)
 	A.BB.damage = hitdamage
 	if(hitdamage)
 		A.BB.nodamage = FALSE
@@ -459,7 +459,7 @@
 		to_chat(user, span_warning("Not enough gumballs left!"))
 		return FALSE
 	candy--
-	var/obj/item/ammo_casing/reusable/gumball/A = new /obj/item/ammo_casing/reusable/gumball(src)
+	var/obj/item/ammo_casing/caseless/gumball/A = new /obj/item/ammo_casing/caseless/gumball(src)
 	A.BB.damage = hitdamage
 	if(hitdamage)
 		A.BB.nodamage = FALSE
@@ -512,7 +512,7 @@
 #undef THROW_GUMBALL_MODE
 #undef DISPENSE_ICECREAM_MODE
 
-/obj/item/ammo_casing/reusable/gumball
+/obj/item/ammo_casing/caseless/gumball
 	name = "Gumball"
 	desc = "Why are you seeing this?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
@@ -530,7 +530,7 @@
 	ammo_type = new ammo_type(src)
 	color = ammo_type.color
 
-/obj/item/ammo_casing/reusable/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
+/obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
 	name = "Lollipop"
 	desc = "Why are you seeing this?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/lollipop
