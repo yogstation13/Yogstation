@@ -366,5 +366,9 @@
 /obj/item/reagent_containers/syringe/dart/temp
 	item_flags = DROPDEL
 
-/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
+/obj/item/reagent_containers/syringe/dart/temp/Initialize()
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+
+/obj/item/reagent_containers/syringe/dart/temp/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL

@@ -139,7 +139,7 @@
 	name = "ammo box (Foam Darts)"
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foambox"
-  ammo_type = /obj/item/ammo_casing/reusable/foam_dart
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
 	caliber = "foam_force"
 	max_ammo = 40
 	materials = list(/datum/material/iron = 500)
