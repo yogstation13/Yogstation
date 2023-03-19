@@ -35,7 +35,7 @@
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	randomdir = FALSE
-	duration = 20 SECONDS
+	duration = 2 SECONDS
 	///we cannot use icon_state bc we are invisible, this is the same thing but can be not visible
 	var/image_state = "scent_trail"
 	///whomst doing the sniffing, we need this because the scent lines will only be visible to them

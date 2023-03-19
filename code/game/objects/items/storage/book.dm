@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 	force_string = "holy"
+	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
 /obj/item/storage/book/bible/Initialize()
@@ -105,14 +106,11 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			to_chat(user, span_warning("[src.deity_name] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+	var/heal_amt = 20
 
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
+		H.update_damage_overlays()
 		H.visible_message(span_notice("[user] heals [H] with the power of [deity_name]!"))
 		to_chat(H, span_boldnotice("May the power of [deity_name] compel you to be healed!"))
 		playsound(src.loc, "punch", 25, 1, -1)

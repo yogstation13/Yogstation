@@ -202,6 +202,7 @@
 	update_icon()
 
 /obj/item/twohanded/fishingrod/collapsable/update_icon()
+	item_state = opened ? "fishing_rod" : ""
 	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
 
 /obj/item/twohanded/fishingrod/collapsable/attack_self(mob/user)

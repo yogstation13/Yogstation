@@ -5,27 +5,30 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
-	species_traits = list(MUTCOLORS,EYECOLOR,NOBLOOD)
+	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
-	mutantlungs = /obj/item/organ/lungs/slime
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
+	mutanttongue = /obj/item/organ/tongue/slime
+	mutantlungs = /obj/item/organ/lungs/slime
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
-	burnmod = 0.5 // = 1/2x generic burn damage
+	burnmod = 1 // = regular burn damage unlike other slimes
+	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
+	hair_color = "mutcolor"
+	hair_alpha = 140
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
 		regenerate_limbs.Remove(C)
 	C.faction -= "slime"
 	..()
-	C.faction -= "slime"
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -68,8 +71,38 @@
 	qdel(consumed_limb)
 	H.blood_volume += 20
 
+/datum/species/jelly/random_name(gender,unique,lastname)//they have no lore, just use human names for now i guess
+	if(unique)
+		return random_unique_name()
+	return random_unique_name()
+
+/datum/species/jelly/get_species_description()
+	return ""//"TODO: RIP in peace Skrem"
+
+/datum/species/jelly/get_species_lore()
+	return list(
+		""//"TODO: RIP in peace Skrem"
+	)
+
+/datum/species/jelly/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "splotch",
+		SPECIES_PERK_NAME = "Unstable Form",
+		SPECIES_PERK_DESC = "[plural_form] are made entirely of jelly, losing enough will result in them cannibalizing their own limbs to survive.",
+	),
+	list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "hand-sparkles",
+		SPECIES_PERK_NAME = "Regenerate Limbs",
+		SPECIES_PERK_DESC = "Being made entirely of jelly means [plural_form] can reform lost limbs from nothing assuming they have enough extra to spare.",
+	))
+
+	return to_add
+
 // Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
-// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
 /datum/species/jelly/create_pref_blood_perks()
 	var/list/to_add = list()
 
@@ -77,8 +110,8 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
 		SPECIES_PERK_NAME = "Jelly Blood",
-		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage. \
-			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage but get hurt by toxin healing. \
+			Jelly is extremely important, and having low jelly will make medical treatment very difficult.",
 	))
 
 	return to_add
@@ -135,6 +168,7 @@
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150
+	burnmod = 0.5 // = 1/2x generic burn damage
 	ignored_by = list(/mob/living/simple_animal/slime)
 	var/datum/action/innate/split_body/slime_split
 	var/list/mob/living/carbon/bodies
@@ -404,6 +438,7 @@
 	plural_form = null
 	id = "lum"
 	say_mod = "says"
+	burnmod = 0.5 // = 1/2x generic burn damage
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
 	var/obj/effect/dummy/luminescent_glow/glow
 	var/obj/item/slime_extract/current_extract
@@ -573,6 +608,7 @@
 	name = "Stargazer"
 	plural_form = null
 	id = "stargazer"
+	burnmod = 0.5 // = 1/2x generic burn damage
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds
 	var/list/mob/living/linked_mobs = list()

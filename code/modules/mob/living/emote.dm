@@ -196,6 +196,21 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
+/datum/emote/living/handsup
+	key = "handsup"
+	key_third_person = "raiseshands"
+	message	= span_surrender("raises their hands in the air, they surrender!")
+	restraint_check = TRUE
+
+/datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	if(!.)
+		return
+	for(var/obj/item/I in user.held_items)
+		user.drop_all_held_items(I, TRUE)
+	var/obj/item/twohanded/required/raisedhands/L = new(user)
+	user.put_in_hands(L)
+
 /datum/emote/living/jump
 	key = "jump"
 	key_third_person = "jumps"
@@ -532,3 +547,10 @@
 		to_chat(user, span_notice("You ready your slapping hand."))
 	else
 		to_chat(user, span_warning("You're incapable of slapping in your current state."))
+
+/datum/emote/living/thumbsup
+	key = "thumbsup"
+	key_third_person = "thumbs"
+	message = "gives a thumbs up."
+	message_param = "gives a thumbs up to %t."
+	restraint_check = TRUE

@@ -249,7 +249,7 @@
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pyro_grenade
 	name = "Pyro Grenade"
@@ -394,6 +394,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
 	build_path = /obj/item/gun/ballistic/bow/energy
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/vib_blade
+	name = "Vibration Blade"
+	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	id = "vib_blade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/silver = 2500, /datum/material/gold = 1000)
+	build_path = /obj/item/melee/transforming/vib_blade
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 

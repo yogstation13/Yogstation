@@ -103,6 +103,9 @@
 	if(tool)
 		speed_mod = tool.toolspeed
 
+	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
+		speed_mod *= 0.9
+
 	if(IS_MEDICAL(user))
 		speed_mod *= 0.8
 

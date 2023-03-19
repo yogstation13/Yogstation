@@ -3,8 +3,9 @@
 /datum/nanite_program/regenerative
 	name = "Accelerated Regeneration"
 	desc = "The nanites boost the host's natural regeneration, increasing their healing speed. Does not consume nanites if the host is unharmed."
-	use_rate = 2.5
+	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/necrotic)
+	var/healing = 0.5
 
 /datum/nanite_program/regenerative/check_conditions()
 	if(!host_mob.getBruteLoss() && !host_mob.getFireLoss())
@@ -23,20 +24,20 @@
 		if(!parts.len)
 			return
 		for(var/obj/item/bodypart/L in parts)
-			if(L.heal_damage(1/parts.len, 1/parts.len, null, BODYPART_ORGANIC))
+			if(L.heal_damage(healing/parts.len, healing/parts.len, null, BODYPART_ORGANIC))
 				host_mob.update_damage_overlays()
 		if(C.getStaminaLoss() < 41) //Should just push you into the first slowdown stage before resetting after 10 seconds
 			C.adjustStaminaLoss(1) //Annoying but not lethal, and won't stop stamina regen if you're over the limit
 			if(prob(5))
 				to_chat(C, "<span class='warning'>Your injuries itch and burn as they heal.")
 	else
-		host_mob.adjustBruteLoss(-1, TRUE)
-		host_mob.adjustFireLoss(-1, TRUE)
+		host_mob.adjustBruteLoss(-healing, TRUE)
+		host_mob.adjustFireLoss(-healing, TRUE)
 
 /datum/nanite_program/temperature
 	name = "Temperature Adjustment"
 	desc = "The nanites adjust the host's internal temperature to an ideal level."
-	use_rate = 3.5
+	use_rate = 2.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
 
 /datum/nanite_program/temperature/check_conditions()
@@ -107,8 +108,9 @@
 /datum/nanite_program/repairing
 	name = "Mechanical Repair"
 	desc = "The nanites fix damage in the host's mechanical limbs."
-	use_rate = 0.5 //much more efficient than organic healing
+	use_rate = 1 //much more efficient than organic healing
 	rogue_types = list(/datum/nanite_program/necrotic)
+	var/healing = 0.5
 
 /datum/nanite_program/repairing/check_conditions()
 	if(!host_mob.getBruteLoss() && !host_mob.getFireLoss())
@@ -132,13 +134,13 @@
 			return
 		var/update = FALSE
 		for(var/obj/item/bodypart/L in parts)
-			if(L.heal_damage(1/parts.len, 1/parts.len, null, BODYPART_ROBOTIC))
+			if(L.heal_damage(healing/parts.len, healing/parts.len, null, BODYPART_ROBOTIC))
 				update = TRUE
 		if(update)
 			host_mob.update_damage_overlays()
 	else
-		host_mob.adjustBruteLoss(-1, TRUE)
-		host_mob.adjustFireLoss(-1, TRUE)
+		host_mob.adjustBruteLoss(-healing, TRUE)
+		host_mob.adjustFireLoss(-healing, TRUE)
 
 /datum/nanite_program/purging_advanced
 	name = "Selective Blood Purification"
@@ -164,9 +166,10 @@
 /datum/nanite_program/regenerative_advanced
 	name = "Bio-Reconstruction"
 	desc = "The nanites manually repair and replace organic cells, acting much faster than normal regeneration. \
-			However, this program cannot detect the difference between harmed and unharmed, causing it to consume nanites even if it has no effect."
-	use_rate = 5.5
+			However, this program cannot detect the difference between harmed and unharmed, causing it to consume significant amounts of nanites even if it has no effect."
+	use_rate = 7
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
+	var/healing = 2.5
 
 /datum/nanite_program/regenerative_advanced/active_effect()
 	if(iscarbon(host_mob))
@@ -176,7 +179,7 @@
 			return
 		var/update = FALSE
 		for(var/obj/item/bodypart/L in parts)
-			if(L.heal_damage(3/parts.len, 3/parts.len, null, BODYPART_ORGANIC))
+			if(L.heal_damage(healing/parts.len, healing/parts.len, null, BODYPART_ORGANIC))
 				update = TRUE
 		if(update)
 			host_mob.update_damage_overlays()
@@ -190,8 +193,8 @@
 			else
 				to_chat(C, "<span class='warning'>Your wounds burn horribly as they heal!")
 	else
-		host_mob.adjustBruteLoss(-3, TRUE)
-		host_mob.adjustFireLoss(-3, TRUE)
+		host_mob.adjustBruteLoss(-healing, TRUE)
+		host_mob.adjustFireLoss(-healing, TRUE)
 
 /datum/nanite_program/brain_heal_advanced
 	name = "Neural Reimaging"

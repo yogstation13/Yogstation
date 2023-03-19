@@ -24,7 +24,7 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.6 //Mass producible labor
+	payday_modifier = 0.5 //Mass producible labor + robot
 	burnmod = 1.5
 	heatmod = 1
 	brutemod = 1
@@ -277,14 +277,24 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	if(H == user)//no emagging yourself
+		return
+	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
+		return
+	H.SetUnconscious(10 SECONDS)
+	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
+
 /*------------------------
 
 ipc martial arts stuff
 
 --------------------------*/
 /datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.type == exotic_blood)
+		return FALSE
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)

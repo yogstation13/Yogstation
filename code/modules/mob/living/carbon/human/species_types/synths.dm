@@ -9,6 +9,7 @@
 	meat = null
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
+	reagent_tag = PROCESS_SYNTHETIC //can now process chems that a robot would be able to process, because they're robots
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
@@ -39,18 +40,6 @@
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	UnregisterSignal(H, COMSIG_MOB_SAY)
-
-/datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	H.reagents.remove_reagent(chem.type, chem.volume) //yogs start - synths don't process chems
-	return TRUE
-	/*
-	if(chem.type == /datum/reagent/medicine/synthflesh)
-		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return 1
-	else
-		return ..()
-	*/ //yogs end
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H)
 	if(S && !istype(S, type))
@@ -138,12 +127,6 @@
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.reagents.has_reagent(/datum/reagent/oil))
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
-	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
 	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 		if(H.health < 50 && H.health > 0)
@@ -155,4 +138,6 @@
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
 		burnmod = 200
-
+	else
+		H.remove_movespeed_modifier("preternis_teslium")
+		burnmod = initial(burnmod)

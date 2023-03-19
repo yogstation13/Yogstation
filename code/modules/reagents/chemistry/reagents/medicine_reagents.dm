@@ -705,16 +705,22 @@
 
 /datum/reagent/medicine/diphenhydramine
 	name = "Diphenhydramine"
-	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness."
+	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness. Overdosing will cause hallucinations."
 	reagent_state = LIQUID
 	color = "#64FFE6"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 30
 
 /datum/reagent/medicine/diphenhydramine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.drowsyness += 1
 	M.jitteriness -= 1
 	M.reagents.remove_reagent(/datum/reagent/toxin/histamine,3)
+	..()
+
+/datum/reagent/medicine/diphenhydramine/overdose_process(mob/living/M)
+	M.set_drugginess(15)
+	M.hallucination += 5*REM
 	..()
 
 /datum/reagent/medicine/morphine

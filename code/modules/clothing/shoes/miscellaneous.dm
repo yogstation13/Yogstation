@@ -245,29 +245,18 @@
 	resistance_flags = FIRE_PROOF
 	clothing_flags = NOSLIP_ICE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
-	actions_types = list(/datum/action/item_action/bhop)
+	actions_types = list(/datum/action/cooldown/boost)
 	permeability_coefficient = 0.05
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
-	var/recharging_rate = 60 //default 6 seconds between each dash
-	var/recharging_time = 0 //time until next dash
+	var/recharging_rate = 6 SECONDS //default 6 seconds between each dash
 
-/obj/item/clothing/shoes/bhop/ui_action_click(mob/user, action)
-	if(!isliving(user))
-		return
-
-	if(recharging_time > world.time)
-		to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
-		return
-
-	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
-
-	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-		playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-		user.visible_message(span_warning("[usr] dashes forward into the air!"))
-		recharging_time = world.time + recharging_rate
-	else
-		to_chat(user, span_warning("Something prevents you from dashing forward!"))
+/obj/item/clothing/shoes/bhop/Initialize()
+	. = ..()
+	for(var/datum/action/cooldown/boost/bhop_action in actions)
+		bhop_action.jumpdistance = jumpdistance
+		bhop_action.jumpspeed = jumpspeed
+		bhop_action.cooldown_time = recharging_rate
 
 /obj/item/clothing/shoes/singery
 	name = "yellow performer's boots"

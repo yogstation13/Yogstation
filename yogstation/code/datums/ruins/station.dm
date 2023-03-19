@@ -549,6 +549,30 @@
 	suffix = "3x3_donut.dmm"
 	name = "Maint donut"
 
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair
+	id = "lair" 
+	suffix = "3x3_lair.dmm"
+	name = "Maint lair"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair2
+	id = "lair2" 
+	suffix = "3x3_lair2.dmm"
+	name = "Maint lair2"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair3
+	id = "lair3" 
+	suffix = "3x3_lair3.dmm"
+	name = "Maint lair3"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair4
+	id = "lair4" 
+	suffix = "3x3_lair4.dmm"
+	name = "Maint lair4"
+
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"

@@ -392,9 +392,11 @@
 	var/hand
 	var/deathTick = 0
 	var/efficiency = 1
+	var/rod_type = /obj/item/rod_of_asclepius
 
-/datum/status_effect/hippocraticOath/on_creation(mob/living/new_owner, _efficiency)
+/datum/status_effect/hippocraticOath/on_creation(mob/living/new_owner, _efficiency, _rod_type)
 	efficiency = _efficiency
+	rod_type = _rod_type
 	. = ..()
 
 /datum/status_effect/hippocraticOath/on_apply()
@@ -422,7 +424,7 @@
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
 			new /obj/effect/decal/cleanable/ash(owner.loc)
-			new /obj/item/rod_of_asclepius(owner.loc)
+			new rod_type(owner.loc)
 			if(owner.mind)
 				owner.mind.transfer_to(healSnake)
 			healSnake.grab_ghost()
@@ -431,9 +433,8 @@
 		if(iscarbon(owner))
 			var/mob/living/carbon/itemUser = owner
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
-			if(heldItem == null || !istype(heldItem, /obj/item/rod_of_asclepius)) //Checks to make sure the rod is still in their hand
-				var/obj/item/rod_of_asclepius/newRod = new(itemUser.loc)
-				newRod.efficiency = efficiency
+			if(heldItem == null || heldItem.type != rod_type) //Checks to make sure the rod is still in their hand
+				var/obj/item/rod_of_asclepius/newRod = new rod_type(itemUser.loc)
 				newRod.activated()
 				if(!itemUser.has_hand_for_held_index(hand))
 					//If user does not have the corresponding hand anymore, give them one and return the rod to their hand
@@ -587,4 +588,47 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" //yogs end
+	icon_state = "time_dilation" 
+
+/datum/status_effect/doubledown
+	id = "doubledown"
+	duration = 20
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/doubledown
+	var/obj/effect/temp_visual/decoy/tensecond/s_such_strength //surely a combo wont go on for more than 10 seconds
+
+/atom/movable/screen/alert/status_effect/doubledown
+	name = "Doubling Down"
+	desc = "Taking 65% less damage, go all in!"
+	icon_state = "aura"
+
+/datum/status_effect/doubledown/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			s_such_strength = new(get_turf(H),H)
+			walk_towards(s_such_strength, H)
+			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
+			H.ignore_slowdown(type)
+			H.physiology.brute_mod *= 0.35
+			H.physiology.burn_mod *= 0.35
+			H.physiology.tox_mod *= 0.35
+			H.physiology.oxy_mod *= 0.35
+			H.physiology.clone_mod *= 0.35
+			H.physiology.stamina_mod *= 0.35
+		owner.log_message("gained buster damage reduction", LOG_ATTACK)
+
+/datum/status_effect/doubledown/on_remove()
+	if(ishuman(owner))
+		qdel(s_such_strength)
+		var/mob/living/carbon/human/H = owner
+		H.unignore_slowdown(type)
+		H.physiology.brute_mod /= 0.35
+		H.physiology.burn_mod /= 0.35
+		H.physiology.tox_mod /= 0.35
+		H.physiology.oxy_mod /= 0.35
+		H.physiology.clone_mod /= 0.35
+		H.physiology.stamina_mod /= 0.35
+	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end

@@ -62,6 +62,7 @@
 								"Durand",
 								"H.O.N.K",
 								"Phazon",
+								"Sidewinder",
 								"Exosuit Equipment",
 								"Exosuit Ammunition",
 								"Cyborg Upgrade Modules",
@@ -252,6 +253,8 @@
 					category_override += "H.O.N.K"
 				if(mech_types & EXOSUIT_MODULE_PHAZON)
 					category_override += "Phazon"
+				if(mech_types & EXOSUIT_MODULE_SIDEWINDER)
+					category_override += "Sidewinder"
 
 
 	var/list/part = list(
