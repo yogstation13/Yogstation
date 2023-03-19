@@ -153,7 +153,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	name = "synthmeat"
-	icon_state = "meat_old"
+	icon_state = "labmeat"
 	desc = "A synthetic slab of meat."
 	foodtype = RAW | MEAT //hurr durr chemicals were harmed in the production of this meat thus its non-vegan.
 
