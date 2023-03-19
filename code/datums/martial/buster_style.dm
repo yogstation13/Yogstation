@@ -345,6 +345,7 @@
 					to_chat(mophead, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
 					user.visible_message(span_warning("[user] hits [mophead] and drags them through the dirt!"))
 					mophead.forceMove(Q) // Move mopped mob forward
+					wakeup(mophead)
 					grab(user, mophead, dragdam) 
 					playsound(mophead,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user, user.dir) // Move our goalpost forward one
