@@ -1,0 +1,5 @@
+author: " @TheRyeGuyWhoWillNowDie @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "traitor mimes can buy the mime mech for 20tc"
+  - tweak: "reticence and it's equipment is now completely silent"
