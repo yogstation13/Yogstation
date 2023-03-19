@@ -25,12 +25,7 @@ export const Biogenerator = (props, context) => {
         </Dimmer>
       )}
       <Window.Content scrollable>
-        {!beaker && (
-          <NoticeBox>No Container</NoticeBox>
-        )}
-        {!!beaker && (
           <BiogeneratorContent />
-        )}
       </Window.Content>
     </Window>
   );
@@ -129,11 +124,14 @@ export const BiogeneratorContent = (props, context) => {
 };
 
 const ItemList = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
   const [
     hoveredItem,
     setHoveredItem,
   ] = useLocalState(context, 'hoveredItem', {});
+  const [
+    beaker,
+  ] = data;
   const hoveredCost = hoveredItem.cost || 0;
   // Append extra hover data to items
   const items = props.items.map(item => {
@@ -145,7 +143,8 @@ const ItemList = (props, context) => {
     const notEnoughHovered = props.biomass - hoveredCost
       * hoveredItem.amount < item.cost * amount;
     const disabledDueToHovered = notSameItem && notEnoughHovered;
-    const disabled = props.biomass < item.cost * amount || disabledDueToHovered;
+    const disabledDueToNoContainer = item.chem && !beaker;
+    const disabled = props.biomass < item.cost * amount || disabledDueToHovered || disabledDueToNoContainer;
     return {
       ...item,
       disabled,

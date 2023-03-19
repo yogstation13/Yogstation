@@ -3,36 +3,36 @@
 ///////////////////////////////////
 
 /datum/design/milk
-	name = "10 Milk"
+	name = "10u Milk"
 	id = "milk"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 20)
 	make_reagents = list(/datum/reagent/consumable/milk = 10)
 	category = list("initial","Kitchen Chemicals")
 
+/datum/design/soymilk
+	name = "10u Soy Milk"
+	id = "soymilk"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 50)
+	make_reagents = list(/datum/reagent/consumable/soymilk = 10)
+	category = list("initial","Kitchen Chemicals")
+
+/datum/design/soysauce
+	name = "10u Soy Sauce"
+	id = "soysauce"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 75)
+	make_reagents = list(/datum/reagent/consumable/soysauce = 10)
+	category = list("initial","Kitchen Chemicals")
+
 /datum/design/cream
-	name = "10 Cream"
+	name = "10u Cream"
 	id = "cream"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 30)
 	make_reagents = list(/datum/reagent/consumable/cream = 10)
 	category = list("initial","Kitchen Chemicals")
-
-/datum/design/milk_carton
-	name = "Milk Carton"
-	id = "milk_carton"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
-	build_path = /obj/item/reagent_containers/food/condiment/milk
-	category = list("initial","Food")
-
-/datum/design/cream_carton
-	name = "Cream Carton"
-	id = "cream_carton"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 300)
-	build_path = /obj/item/reagent_containers/food/drinks/bottle/cream
-	category = list("initial","Food")
 
 /datum/design/black_pepper
 	name = "10u Black Pepper"
@@ -42,14 +42,13 @@
 	make_reagents = list(/datum/reagent/consumable/blackpepper = 10)
 	category = list("initial","Kitchen Chemicals")
 
-/datum/design/pepper_mill
-	name = "Pepper Mill"
-	id = "pepper_mill"
+/datum/design/salt
+	name = "10u Salt"
+	id = "salt"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 50)
-	build_path = /obj/item/reagent_containers/food/condiment/peppermill
-	make_reagents = list()
-	category = list("initial","Food")
+	materials = list(/datum/material/biomass = 25)
+	make_reagents = list(/datum/reagent/consumable/sodiumchloride = 10)
+	category = list("initial","Kitchen Chemicals")
 
 /datum/design/enzyme
 	name = "10u Universal Enzyme"
@@ -145,6 +144,14 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/rh
+	category = list("initial","Botany Chemicals")
+
+/datum/design/saltpetre
+	name = "Saltpetre"
+	id = "saltpetre"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 200)
+	build_path = /obj/item/reagent_containers/glass/bottle/saltpetre
 	category = list("initial","Botany Chemicals")
 
 /datum/design/weed_killer
