@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed certain emotes being visible instead of audible"
+  - tweak: "IPCs can use warn emote (*blares an alarm!)"
