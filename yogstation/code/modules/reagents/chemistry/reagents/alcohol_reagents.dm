@@ -13,7 +13,7 @@
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_life(mob/living/M)
 	if(iscatperson(M))
-		M.adjustStaminaLoss(-5, 0)
+		M.adjustStaminaLoss(-2.5, 0)
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
