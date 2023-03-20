@@ -1,5 +1,0 @@
-author: "Kaithyl"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes lighting, other objs that inherit from singularity"
-  - tweak: "Singulo generator and sword's creation type changed to new singulo class"
