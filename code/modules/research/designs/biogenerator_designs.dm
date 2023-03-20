@@ -74,6 +74,22 @@
 	build_path = /obj/item/reagent_containers/food/condiment/rice
 	category = list("initial","Food")
 
+/datum/design/meat
+	name = "Synthetic meat"
+	id = "meat"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 150)
+	build_path = /obj/item/reagent_containers/food/snacks/meat/slab
+	category = list("initial","Food")
+
+/datum/design/egg
+	name = "Synthetic egg"
+	id = "egg"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 100)
+	build_path = /obj/item/reagent_containers/food/snacks/egg
+	category = list("initial","Food")
+
 /datum/design/monkey_cube
 	name = "Monkey Cube"
 	id = "mcube"
