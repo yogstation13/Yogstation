@@ -391,64 +391,9 @@
 		return shock_damage
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(on_fire)
-		to_chat(M, span_warning("You can't put [p_them()] out with just your bare hands!"))
-		return
-
-	if(!(mobility_flags & MOBILITY_STAND))
-		if(buckled)
-			to_chat(M, span_warning("You need to unbuckle [src] first to do that!"))
-			return
-		M.visible_message(span_notice("[M] shakes [src] trying to get [p_them()] up!"), \
-						span_notice("You shake [src] trying to get [p_them()] up!"))
-
-	else if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || check_zone(M.zone_selected) == BODY_ZONE_R_ARM) //Headpats are too extreme, we have to pat shoulders on yogs
-		M.visible_message(span_notice("[M] gives [src] a pat on the shoulder to make [p_them()] feel better!"), \
-					span_notice("You give [src] a pat on the shoulder to make [p_them()] feel better!"))
-
-	else
-		M.visible_message(span_notice("[M] hugs [src] to make [p_them()] feel better!"), \
-					span_notice("You hug [src] to make [p_them()] feel better!"))
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
-		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
-			var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-			if (mood.sanity >= SANITY_GREAT)
-				new /obj/effect/temp_visual/heart(loc)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
-			else if (mood.sanity >= SANITY_DISTURBED)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
-
-			if(isethereal(src) && ismoth(M))
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
-		for(var/datum/brain_trauma/trauma in M.get_traumas())
-			trauma.on_hug(M, src)
-		for(var/datum/brain_trauma/trauma in get_traumas())
-			trauma.on_hug(M, src)
-
-		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_stacks = averagestacks
-		M.fire_stacks = averagestacks
-		if(averagestacks > 1)
-			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
-		else if(averagestacks < -1)
-			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
-
-	AdjustStun(-60)
-	AdjustKnockdown(-60)
-	AdjustUnconscious(-60)
-	AdjustSleeping(-100)
-	AdjustParalyzed(-60)
-	AdjustImmobilized(-60)
-	if(dna && dna.check_mutation(ACTIVE_HULK))
-		if(prob(30))
-			adjustStaminaLoss(10)
-			to_chat(src, span_notice("[M] calms you down a little."))
-		else
-			to_chat(src, span_warning("[M] tries to calm you!"))
-	set_resting(FALSE)
-
-	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-
+	playsound(get_turf(src), 'sound/effects/adminhelp.ogg', 100)
+	if (M.client)
+		M.client.adminhelp("I require assistance regarding [name]")
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	if(NOFLASH in dna?.species?.species_traits)
