@@ -555,15 +555,16 @@
 			else
 				affected_parts += BP
 	if(affected_parts.len)
-		adjustFireLoss(min(5 * affected_parts.len, 20) / severity, FALSE, FALSE, BODYPART_ROBOTIC)
-		adjustStaminaLoss(min(10 * affected_parts.len, 40) / severity, FALSE, FALSE, BODYPART_ROBOTIC)
+		adjustFireLoss(20 / severity, FALSE, FALSE, BODYPART_ROBOTIC)
 		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
-		if(C && C.status == BODYPART_ROBOTIC) // if your chest is robotic (aka you're a robotic race or augmented) you get cooler flavor text
+		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
+		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
 			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
+			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
 			emote("scream")
 		else
+			adjustStaminaLoss(60 / severity, FALSE, FALSE, BODYPART_ROBOTIC)
 			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
-		addtimer(CALLBACK(src, .proc/emp_after_act, severity), (6 SECONDS) / severity)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()

@@ -309,6 +309,8 @@ ipc martial arts stuff
 		else//if just getting hit
 			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
 		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+	else if(severity == EMP_HEAVY)
+		H.emote("warn") // *chuckles* i'm in danger!
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
