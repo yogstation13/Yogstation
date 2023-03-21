@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/wire_snatch
 	name = "Wire Snatch"
 	desc = "Extend a wire for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. \
@@ -107,6 +107,7 @@
 	damage = 0
 	armour_penetration = 100
 	damage_type = BRUTE
+	nodamage = TRUE
 	range = 8
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 0
@@ -128,6 +129,7 @@
 	var/mob/living/carbon/human/H = firer
 	if(!H)
 		return
+	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	if(isobj(target)) // If it's an object
 		var/obj/item/I = target
 		if(!I?.anchored) // Give it to us if it's not anchored
@@ -141,6 +143,7 @@
 			return
 		zip(H, target) // Pull us towards it if it's anchored
 	if(isliving(target)) // If it's somebody
+		H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 		var/mob/living/L = target
 		var/turf/T = get_step(get_turf(H), H.dir)
 		var/turf/Q = get_turf(H)

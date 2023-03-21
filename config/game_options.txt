@@ -18,11 +18,11 @@ REVIVAL_BRAIN_LIFE -1
 ## Creates Command roles species based exceptions; comma delineated list - /datum/job/[JOB] [SPECIES 1],[SPECIES 2], etc.
 
 JOB_SPECIES_WHITELIST /datum/job/captain human
-JOB_SPECIES_WHITELIST /datum/job/hop human
-JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis,polysmorph,ipc
-JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph,ipc
-JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
+JOB_SPECIES_WHITELIST /datum/job/hop human,lizard,plasmaman,ipc
+JOB_SPECIES_WHITELIST /datum/job/hos human,lizard,pod,preternis,polysmorph
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
+JOB_SPECIES_WHITELIST /datum/job/rd human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
+JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc
 
 
 ## OOC DURING ROUND ###
@@ -248,8 +248,8 @@ SHUTTLE_REFUEL_DELAY 12000
 ## Used as (Antagonists = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
 TRAITOR_SCALING_COEFF 5
-BROTHER_SCALING_COEFF 8
-CHANGELING_SCALING_COEFF 7
+BROTHER_SCALING_COEFF 10
+CHANGELING_SCALING_COEFF 8
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)

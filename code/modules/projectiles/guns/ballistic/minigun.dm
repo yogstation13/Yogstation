@@ -138,6 +138,10 @@
 
 	return ..()
 
+//To prevent unloading the gun
+/obj/item/gun/ballistic/minigunosprey/attack_hand(mob/user)
+	return
+
 /obj/item/gun/ballistic/minigunosprey/attack_self(mob/living/user)
 	return
 

@@ -24,7 +24,7 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.6 //Mass producible labor
+	payday_modifier = 0.5 //Mass producible labor + robot
 	burnmod = 1.5
 	heatmod = 1
 	brutemod = 1
@@ -294,7 +294,7 @@ ipc martial arts stuff
 	if(chem.type == exotic_blood)
 		return FALSE
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)

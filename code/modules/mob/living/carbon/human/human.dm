@@ -300,6 +300,7 @@
 			if(pocket_item)
 				if(pocket_item == (pocket_id == SLOT_R_STORE ? r_store : l_store)) //item still in the pocket we search
 					dropItemToGround(pocket_item)
+					usr.put_in_hands(pocket_item)
 			else
 				if(place_item)
 					if(place_item.mob_can_equip(src, usr, pocket_id, FALSE, TRUE))

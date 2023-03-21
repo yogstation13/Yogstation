@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/slam
 	name = "Slam"
 	desc = "Grab the target in front of you and slam them back onto the ground. If there's a solid \
@@ -24,23 +24,23 @@
 	StartCooldown()
 	var/turf/T = get_step(get_turf(owner), owner.dir)
 	var/turf/Z = get_turf(owner)
-	owner.visible_message(span_warning("[owner] outstretches [owner.p_their()] arm and goes for a grab!"))
+	var/mob/living/B = owner
+	B.visible_message(span_warning("[B] outstretches [B.p_their()] arm and goes for a grab!"))
 	for(var/mob/living/L in T.contents) // If there's a mob in front of us, note that this will return on the first mob it finds
-		var/turf/Q = get_step(get_turf(owner), turn(owner.dir,180)) // Get the turf behind us
+		B.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+		var/turf/Q = get_step(get_turf(B), turn(B.dir,180)) // Get the turf behind us
 		if(Q.density) // If there's a wall behind us
 			var/turf/closed/wall/W = Q
-			grab(owner, L, walldam) // Apply damage to mob
-			if(L.stat == CONSCIOUS && L.resting == FALSE)
-				animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+			grab(B, L, walldam) // Apply damage to mob
+			footsies(L)
 			if(isanimal(L) && L.stat == DEAD)
 				L.visible_message(span_warning("[L] explodes into gore on impact!"))
 				L.gib()
-			if(L.stat == CONSCIOUS && L.resting == FALSE)
-				animate(L, transform = null, time = 0.2 SECONDS, loop = 0)
-			to_chat(owner, span_warning("[owner] turns around and slams [L] against [Q]!"))
-			to_chat(L, span_userdanger("[owner] crushes you against [Q]!"))
+			wakeup(L)
+			to_chat(B, span_warning("[B] turns around and slams [L] against [Q]!"))
+			to_chat(L, span_userdanger("[B] crushes you against [Q]!"))
 			playsound(L, 'sound/effects/meteorimpact.ogg', 60, 1)
-			playsound(owner, 'sound/effects/gravhit.ogg', 20, 1)
+			playsound(B, 'sound/effects/gravhit.ogg', 20, 1)
 			if(!istype(W, /turf/closed/wall/r_wall)) // Attempt to destroy the wall
 				W.dismantle_wall(1)
 				L.forceMove(Q) // Move the mob behind us
@@ -53,56 +53,49 @@
 					var/obj/machinery/disposal/bin/dumpster = D
 					L.forceMove(D)
 					dumpster.do_flush()
-					to_chat(L, span_userdanger("[owner] throws you down disposals!"))
+					to_chat(L, span_userdanger("[B] throws you down disposals!"))
 					target.visible_message(span_warning("[L] is thrown down the trash chute!"))
 					return // Stop here
-				owner.visible_message(span_warning("[owner] turns around and slams [L] against [D]!"))
+				B.visible_message(span_warning("[B] turns around and slams [L] against [D]!"))
 				D.take_damage(400) // Heavily damage and hopefully break the object
-				grab(owner, L, crashdam) // Apply light damage to mob
-				if(L.stat == CONSCIOUS && L.resting == FALSE)
-					animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+				grab(B, L, crashdam) // Apply light damage to mob
+				footsies(L)
 				if(isanimal(L) && L.stat == DEAD)
 					L.visible_message(span_warning("[L] explodes into gore on impact!"))
 					L.gib()
 				sleep(0.2 SECONDS)
-				if(L.stat == CONSCIOUS && L.resting == FALSE)
-					animate(L, transform = null, time = 0.2 SECONDS, loop = 0)
+				wakeup(L)
 		for(var/mob/living/M in Q.contents) // If there's mobs behind us, apply damage to the mob for each one they are slammed into
-			grab(owner, L, crashdam) // Apply damage to slammed mob
-			if(L.stat == CONSCIOUS && L.resting == FALSE)
-				animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+			grab(B, L, crashdam) // Apply damage to slammed mob
+			footsies(L)
 			if(isanimal(L) && L.stat == DEAD)
 				L.visible_message(span_warning("[L] explodes into gore on impact!"))
 				L.gib()
 			sleep(0.2 SECONDS)
-			if(L.stat == CONSCIOUS && L.resting == FALSE)
-				animate(L, transform = null, time = 0.2 SECONDS, loop = 0)
-			to_chat(L, span_userdanger("[owner] throws you into [M]"))
-			to_chat(M, span_userdanger("[owner] throws [L] into you!"))
-			owner.visible_message(span_warning("[L] slams into [M]!"))
-			grab(owner, M, crashdam) // Apply damage to mob that was behind us
+			wakeup(L)
+			to_chat(L, span_userdanger("[B] throws you into [M]"))
+			to_chat(M, span_userdanger("[B] throws [L] into you!"))
+			B.visible_message(span_warning("[L] slams into [M]!"))
+			grab(B, M, crashdam) // Apply damage to mob that was behind us
 		L.forceMove(Q) // Move the mob behind us
 		if(istype(Q, /turf/open/space)) // If they got slammed into space, throw them into deep space
-			owner.setDir(turn(owner.dir,180))
+			B.setDir(turn(B.dir,180))
 			var/atom/throw_target = get_edge_target_turf(L, owner.dir)
-			L.throw_at(throw_target, 2, 4, owner, 3)
-			owner.visible_message(span_warning("[owner] throws [L] behind [owner.p_them()]!"))
+			L.throw_at(throw_target, 2, 4, B, 3)
+			B.visible_message(span_warning("[B] throws [L] behind [B.p_them()]!"))
 			return
 		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-		playsound(owner, 'sound/effects/gravhit.ogg', 20, 1)
-		to_chat(L, span_userdanger("[owner] catches you with [owner.p_their()] hand and crushes you on the ground!"))
-		owner.visible_message(span_warning("[owner] turns around and slams [L] against the ground!"))
-		owner.setDir(turn(owner.dir, 180))
-		grab(owner, L, supdam) // Apply damage for the suplex itself, independent of whether anything was hit
-		if(L.stat == CONSCIOUS && L.resting == FALSE)
-			animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+		playsound(B, 'sound/effects/gravhit.ogg', 20, 1)
+		to_chat(L, span_userdanger("[B] catches you with [B.p_their()] hand and crushes you on the ground!"))
+		B.visible_message(span_warning("[B] turns around and slams [L] against the ground!"))
+		B.setDir(turn(B.dir, 180))
+		grab(B, L, supdam) // Apply damage for the suplex itself, independent of whether anything was hit
+		footsies(L)
 		if(isanimal(L) && L.stat == DEAD)
 			L.visible_message(span_warning("[L] explodes into gore on impact!"))
 			L.gib()
 		sleep(0.2 SECONDS)
-		if(L.stat == CONSCIOUS && L.resting == FALSE)
-			animate(L, transform = null, time = 0.2 SECONDS, loop = 0)
-
+		wakeup(L)
 /datum/action/cooldown/buster/slam/l/IsAvailable()
 	. = ..()
 	var/mob/living/O = owner
