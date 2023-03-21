@@ -673,6 +673,7 @@
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
@@ -695,6 +696,7 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/science/rd(src)
 	new /obj/item/clothing/head/beret/rd(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/ce
@@ -712,6 +714,7 @@
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src)
 	new /obj/item/clothing/under/yogs/cecasual(src)
 	new /obj/item/clothing/head/beret/ce(src)
@@ -804,5 +807,6 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/head/beret/cmo(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/medical/cmo(src)

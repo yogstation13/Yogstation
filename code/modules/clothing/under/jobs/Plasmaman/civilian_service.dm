@@ -16,6 +16,14 @@
 	icon_state = "explorer_envirosuit"
 	item_state = "explorer_envirosuit"
 
+/obj/item/clothing/under/plasmaman/hop
+	name = "head of personnel's envirosuit"
+	desc = "A navy-blue envirosuit with gold trimmings worn by plasmamen heads of personnel."
+	icon_state = "hop_envirosuit"
+	item_state = "hop_envirosuit"
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
+
 
 /obj/item/clothing/under/plasmaman/chef
 	name = "chef's envirosuit"

@@ -5,7 +5,7 @@
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
-	payday_modifier = 0.8 //Useful to NT for biomedical advancements
+	payday_modifier = 0.8 //Neutral, but non-human; pay less if you can get away with it
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
@@ -74,24 +74,32 @@
 			return TRUE
 
 /datum/species/moth/get_species_description()
-	return /*"Hailing from a planet that was lost long ago, the moths travel \
-		the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland."*/
+	return "Ex'hau, also known as mothpeople, are one of the two other spacefaring species that the SIC encountered. \
+		While generally appreciated due to their fluffiness, their biology makes them unsuitable to living in most planetary gravities."
 
 /datum/species/moth/get_species_lore()
-	return list(/*
-		"Their homeworld lost to the ages, the moths live aboard the Grand Nomad Fleet. \
-		Made up of what could be found, bartered, repaired, or stolen the armada is a colossal patchwork \
-		built on a history of politely flagging travelers down and taking their things. Occasionally a moth \
-		will decide to leave the fleet, usually to strike out for fortunes to send back home.",
+	return list(
+		"Originating from the low-gravity planet Wallalius, ex'hau evolved from nocturnal, herbivorous insects \
+		that lived under the canopy formed by the gigantic flora. While ex'hau sent their first rocket into orbit \
+		around 1762, the scarcity of metal on their planet along with the frailty of their body made them only able to land \
+		on their moon S'lai in 1902. In 2323 they encountered the ethereals, then they discovered humanity in 2463, \
+		developing a cordial relationship with the former and managing to remain at peace with the latter.",
 
-		"Nomadic life produces a tight-knit culture, with moths valuing their friends, family, and vessels highly. \
-		Moths are gregarious by nature and do best in communal spaces. This has served them well on the galactic stage, \
-		maintaining a friendly and personable reputation even in the face of hostile encounters. \
-		It seems that the galaxy has come to accept these former pirates.",
+		"While the SIC was initially wary of the ex'hau, mothperson biology renders them unable to live in many \
+		biomes and the distance between the two civilization has minimized potential conflicts and competitions \
+		for the colonization of nearby space. Trade and travel between the SIC and the various ex'hai nations is \
+		not uncommon; Wallalian earthsblood is a significantly valuable good for its medicinal properties, and the ex'hau \
+		are always in need of more industrial metals, which the SIC can easily provide.",
 
-		"Surprisingly, living together in a giant fleet hasn't flattened variance in dialect and culture. \
-		These differences are welcomed and encouraged within the fleet for the variety that they bring.",
-	*/)
+		"The ex'hau are absolutely fascinated by light due to their very sensitive eyes, often focusing all their attention to it. \
+		While fuzzy and physically unassuming, ex'hau can prove to be very aggressive when confident in their chances of winning \
+		or when they feel threatened. They are extremely protective of their wings, as losing them being an incredibly \
+		distressing experience and a source of great shame.",
+
+		"Many ex'hau can be encountered in SIC space where gravity is low, such as colonies on gas giants or spacecrafts. \
+		Experimental treatments even allow a few of them to live, albeit difficultly, in normal planetary gravity. \
+		They can come for a variety of mundane reasons, such as finding work or wanting to see new horizons.",
+	)
 
 /datum/species/moth/create_pref_unique_perks()
 	var/list/to_add = list()

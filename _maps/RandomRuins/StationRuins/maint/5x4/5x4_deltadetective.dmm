@@ -72,20 +72,10 @@
 /area/template_noop)
 "t" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "greydet";
-	name = "trenchcoat"
-	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
+/obj/item/clothing/suit/det_suit/civilian/grey,
+/obj/item/clothing/suit/det_suit/civilian,
 /obj/item/clothing/head/fedora,
-/obj/item/clothing/head/fedora{
-	icon_state = "detective"
-	},
+/obj/item/clothing/head/fedora/brown,
 /turf/open/floor/plating,
 /area/template_noop)
 "x" = (

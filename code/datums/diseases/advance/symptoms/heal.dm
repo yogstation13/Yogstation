@@ -125,14 +125,18 @@
 		power = 2
 
 /datum/symptom/heal/chem/Heal(mob/living/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = actual_power
-	M.adjustToxLoss(-heal_amt)//it is constantly active so it can't be too strong
+	var/toxins_present = FALSE
 	for(var/datum/reagent/R in M.reagents.reagent_list) //Not just toxins!
 		M.reagents.remove_reagent(R.type, actual_power / power)//doesn't speed up using power
+		if(istype(R, /datum/reagent/toxin))
+			toxins_present = TRUE
 		if(food_conversion)
 			M.adjust_nutrition(0.3)
 		if(prob(2))
 			to_chat(M, span_notice("You feel a mild warmth as your blood purifies itself."))
+	var/heal_amt = actual_power * (toxins_present ? 1 : 0.1)	//If there are toxins in you it heals at full power, otherwise it is very minor
+	M.adjustToxLoss(-heal_amt)
+	
 	return 1
 
 
