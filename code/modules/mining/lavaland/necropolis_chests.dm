@@ -36,8 +36,15 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/clothing/gloves/gauntlets(src)
 		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(11)
-			new /obj/item/nullrod/scythe/talking(src)
+		if(11)//select and spawn a random nullrod that a chaplain could choose from
+			var/found = FALSE
+			while(!found)
+				var/path = pick(subtypesof(/obj/item/nullrod))
+				var/obj/item/nullrod/rod = new path(src)
+				if(rod.chaplain_spawnable)
+					found = TRUE
+				else
+					qdel(rod)
 		if(12)
 			new /obj/item/nullrod/armblade(src)
 		if(13)
