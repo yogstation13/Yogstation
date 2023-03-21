@@ -556,10 +556,9 @@
 					L.receive_damage(0,10,200)
 				if(2)
 					L.receive_damage(0,5,100)
-
-			if(HAS_TRAIT(src, TRAIT_EASYDISMEMBER) && L.body_zone != BODY_ZONE_CHEST && L.body_zone != BODY_ZONE_HEAD)//it affects both ipc and augmented people with ligament hook, augmented people need their head
-				if(prob(20))
-					L.dismember(BRUTE)
+					if(HAS_TRAIT(src, TRAIT_EASYDISMEMBER) && L.body_zone != BODY_ZONE_CHEST && L.body_zone != BODY_ZONE_HEAD)//it affects both ipc and augmented people with ligament hook, augmented people need their head
+						if(prob(20))
+							L.dismember(BRUTE)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
