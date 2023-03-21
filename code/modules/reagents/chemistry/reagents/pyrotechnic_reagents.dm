@@ -215,7 +215,16 @@
 	taste_description = "charged metal"
 	self_consuming = TRUE
 	var/shock_timer = 0
+	var/empremoval = TRUE
 
+/datum/reagent/teslium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
+	if(empproof)//only grant and remove emp protection if they didn't have it when drinking it
+		empremoval = FALSE
+	else
+		L.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
@@ -223,6 +232,13 @@
 		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
 	..()
+
+/datum/reagent/teslium/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(empremoval)
+		var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
+		if(empproof)
+			empproof.Destroy()	
 
 /datum/reagent/teslium/energized_jelly
 	name = "Energized Jelly"
