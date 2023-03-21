@@ -214,6 +214,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	var/shock_timer = 0
 	var/empremoval = TRUE
 
