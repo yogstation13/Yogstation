@@ -130,9 +130,8 @@
 	name = "Cheesy Fries"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/fries = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
-
 	)
 	result = /obj/item/reagent_containers/food/snacks/cheesyfries
 	subcategory = CAT_MISCFOOD
