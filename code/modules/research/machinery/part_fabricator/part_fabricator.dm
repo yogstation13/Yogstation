@@ -479,6 +479,7 @@
 							var/obj/item/holochip/holomoney = money
 							if(holomoney.credits > laser_money_requirement - current_money)
 								holomoney.credits -= laser_money_requirement - current_money
+								holomoney.update_icon()
 								break
 						qdel(money)
 					else
