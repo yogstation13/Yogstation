@@ -1,0 +1,4 @@
+author: "AlvCyktor"
+delete-after: true 
+changes: 
+  - rscadd: "\"better\" looking sprite for synthmeat"
