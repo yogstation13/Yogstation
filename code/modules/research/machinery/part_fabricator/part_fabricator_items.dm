@@ -1,7 +1,8 @@
 /obj/item/electrical_stasis_manifold
 	name = "electrical stasis manifold"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "empar"
+	desc = "Highly unstable and valuable for research."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "e_stasis_manifold"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/electrical_stasis_manifold/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -14,6 +15,7 @@
 
 /obj/item/organic_augur
 	name = "organic augur"
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "slime"
+	desc = "Gross... Highly valuable for research."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "organic_augur"
 	w_class = WEIGHT_CLASS_NORMAL

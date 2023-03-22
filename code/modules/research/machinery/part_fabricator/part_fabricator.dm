@@ -2,15 +2,18 @@
 /obj/machinery/part_fabricator
 	name = "experimental part fabricator"
 	desc = "A strange machine that condenses materials into advanced parts."
-	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "protolathe"
+	icon = 'icons/obj/machines/part_fabricator.dmi'
+	icon_state = "default"
 	circuit = /obj/item/circuitboard/machine/part_fabricator
 	resistance_flags = INDESTRUCTIBLE // dont want it to be destroyed by radballs
-
+	
+	pixel_x = -32
+	
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5000
 	active_power_usage = 10000000 // 10MW
 	density = TRUE
+	var/list/obj/structure/fillers = list()
 
 	var/static/part_recipes_generated = FALSE
 	var/static/capacitor_energy_requirement
@@ -30,7 +33,7 @@
 	var/production_progress = 0
 
 /obj/machinery/part_fabricator/attackby(obj/item/inserted, mob/living/user, params)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, inserted))
+	if(production_progress <= 0 && default_deconstruction_screwdriver(user, "screwed_open", initial(icon_state), inserted))
 		update_icon()
 		return
 	
@@ -41,6 +44,7 @@
 		return FALSE //inserting reagents into the machine
 	
 	if(inserted.get_item_credit_value() || is_type_in_typecache(inserted, acceptable_items))
+		flick("get_mat", src)
 		inserted.forceMove(src)
 		to_chat(user, span_notice("You insert \the [inserted] into \the [src]."))
 		return TRUE
@@ -85,6 +89,16 @@
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
 	RefreshParts()
+
+	var/list/occupied = list()
+	for(var/direct in list(EAST,WEST,NORTH))
+		occupied += get_step(src,direct)
+
+	for(var/T in occupied)
+		var/obj/structure/filler/F = new(T)
+		F.parent = src
+		fillers += F
+
 	if(part_recipes_generated)
 		return
 	
@@ -119,6 +133,13 @@
 		acceptable_items += typecacheof(item)
 
 	part_recipes_generated = TRUE
+
+/obj/machinery/part_fabricator/Destroy()
+	for(var/V in fillers)
+		var/obj/structure/filler/filler = V
+		filler.parent = null
+		qdel(filler)
+	. = ..()
 
 /obj/machinery/part_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -294,20 +315,27 @@
 			eject_item(item)
 
 /obj/machinery/part_fabricator/proc/eject_item(atom/movable/item)
-	item.forceMove(drop_location())
+	item.forceMove(get_step(drop_location(), WEST))
 	adjust_item_drop_location(item)
 
 /obj/machinery/part_fabricator/proc/try_print()
+	if(panel_open)
+		return FALSE
 	if(production_progress > 0)
 		return FALSE
 	printing = tab
 	if(!is_satisfied())
+		if(icon_state == "processing")
+			icon_state = initial(icon_state)
+			flick("up", src)
 		balloon_alert_to_viewers("Failed!")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		printing = null
 		use_power = IDLE_POWER_USE
 		return FALSE
 	production_progress = 1
+	icon_state = "processing"
+	flick("down", src)
 	START_PROCESSING(SSobj, src)
 	return TRUE
 
@@ -388,6 +416,9 @@
 	production_progress += production_speed * delta_time
 
 	if(!is_satisfied())
+		if(icon_state == "processing")
+			icon_state = initial(icon_state)
+			flick("up", src)
 		balloon_alert_to_viewers("Failed!")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		production_progress = 0
@@ -478,6 +509,8 @@
 
 		balloon_alert_to_viewers("Success!")
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
+		icon_state = initial(icon_state)
+		flick("up", src)
 		printed.forceMove(drop_location())
 		adjust_item_drop_location(printed)
 
