@@ -47229,12 +47229,11 @@
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "pbT" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
-	dir = 1;
-	name = "toxins space injector"
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
 	},
 /turf/open/space/basic,
-/area/science/mixing/chamber)
+/area/space/nearstation)
 "pbU" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/blue/filled/line,
