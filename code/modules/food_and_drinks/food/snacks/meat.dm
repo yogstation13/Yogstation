@@ -359,7 +359,6 @@
 	foodtype = MEAT | RAW
 
 
-
 ///////////////////////////////////////CHICKEN MEATS///////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food/snacks/meat/chicken
 	name = "whole chicken"
