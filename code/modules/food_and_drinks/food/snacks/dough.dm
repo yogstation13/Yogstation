@@ -53,6 +53,7 @@
 	desc = "Add ingredients to make a pizza."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "pizzabread"
+	slice_path = /obj/item/reagent_containers/food/snacks/pita
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)

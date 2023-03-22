@@ -471,3 +471,26 @@ datum/crafting_recipe/food/donut/meat
 	)
 	result = /obj/item/reagent_containers/food/snacks/jaffacake
 	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/halva //we do not have nuts in the game, so please remember to add nuts to this recipe when we decide to add nuts
+	name = "Halva"
+	reqs = list(
+		/datum/reagent/consumable/flour = 5,
+		/datum/reagent/consumable/sodiumchloride = 5,
+		/datum/reagent/consumable/cinnamon = 5,
+		/datum/reagent/consumable/sugar = 5, 
+	)
+	result = /obj/item/reagent_containers/food/snacks/halva 
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/baklava //above
+	name = "baklava"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/datum/reagent/consumable/cinnamon = 5,
+		/datum/reagent/consumable/caramel = 5, 
+		/datum/reagent/consumable/cooking_oil = 3
+	)
+	result = /obj/item/reagent_containers/food/snacks/baklava
+	subcategory = CAT_PASTRY
+

@@ -312,6 +312,25 @@
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/pita
+	name = "pita bread"
+	desc = "I could go for some shawarma..."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "pita_bread"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#FFEFD5"
+	tastes = list("wheat" = 1)
+	foodtype = GRAIN
+
+/obj/item/reagent_containers/food/snacks/chicken_shawarma
+	name = "chicken shawarma"
+	desc = "a nice, thick and juice shawarma filled to the brim!"
+	icon_state = "chicken_shawarma"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#FFEFD5"
+	tastes = list("chicken" = 1, "vegetables" = 1, "salt" = 1, "juicy meat" = 1)
+	foodtype = GRAIN | MEAT | VEGETABLES
+
 /obj/item/reagent_containers/food/snacks/yakiimo
 	name = "yaki imo"
 	desc = "Made with roasted sweet potatoes!"

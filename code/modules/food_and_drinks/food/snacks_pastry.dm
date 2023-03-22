@@ -649,6 +649,26 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
 
+/obj/item/reagent_containers/food/snacks/halva 
+	name = "halva"
+	desc = "A sweet floury snack from Persia. Rich in oil and sugar."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "halva"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/sodiumchloride = 5, /datum/reagent/consumable/cinnamon = 5)
+	tastes = list("saffron" = 1, "thickness" = 1, "sugar" = 2, "flour paste" = 2, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR 
+
+/obj/item/reagent_containers/food/snacks/baklava
+	name = "halva"
+	desc = "A popular pastry with a nutty filling. Nuts not included." //nuts dont exist on the station
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "baklava"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/caramel = 5, , /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/cooking_oil = 3)
+	tastes = list("sugary syrup" = 1, "oil" = 2, "faux nuts" = 1)
+	foodtype = GRAIN | SUGAR 
+
 /obj/item/reagent_containers/food/snacks/pancakes/Initialize()
 	. = ..()
 	update_icon()

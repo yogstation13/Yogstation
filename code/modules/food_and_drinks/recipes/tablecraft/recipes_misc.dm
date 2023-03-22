@@ -115,11 +115,24 @@
 	result = /obj/item/reagent_containers/food/snacks/cheesyburrito
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/chicken_shawarma
+	name ="Cheesy Burrito"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pita = 1,
+		/obj/item/reagent_containers/food/snacks/meat/steak/chicken = 1,
+		/obj/item/reagent_containers/food/snacks/grown/soybeans = 1,
+		/obj/item/reagent_containers/food/snacks/onion_slice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/chicken_shawarma
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/cheesyfries
 	name = "Cheesy Fries"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/fries = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+
 	)
 	result = /obj/item/reagent_containers/food/snacks/cheesyfries
 	subcategory = CAT_MISCFOOD
