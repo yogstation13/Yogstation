@@ -1,4 +1,0 @@
-author: "Ethan4303"
-delete-after: true 
-changes: 
-  - mapping: "Adds flashers and buttons to brig entry, brig phys room. Adds respective flashers and lockers to their numbered cells. add respective flashers to perma cells"
