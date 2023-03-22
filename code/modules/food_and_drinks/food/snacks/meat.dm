@@ -338,7 +338,7 @@
 	filling_color = "#B22222"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
-/obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/reagent_containers/food/snacks/meat/slab/blessed
