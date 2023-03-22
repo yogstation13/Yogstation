@@ -328,19 +328,6 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/penguin, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
-/obj/item/reagent_containers/food/snacks/meat/slab/chicken
-	name = "chicken meat"
-	icon_state = "birdmeat"
-	desc = "A slab of chicken meat. Tastes like ch....wait..."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 2) //low fat high nutrition
-	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
-	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
-	filling_color = "#B22222"
-	tastes = list("chicken" = 1, "antibiotics" = 1)
-
-/obj/item/reagent_containers/food/snacks/meat/slab/chicken/MakeGrillable()
-	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
-
 /obj/item/reagent_containers/food/snacks/meat/slab/blessed
 	name = "blessed meat"
 	icon_state = "shadowmeat"
@@ -370,6 +357,62 @@
 	filling_color = "#FF0000"
 	tastes = list("meat" = 2, "decay" = 1)
 	foodtype = MEAT | RAW
+
+
+
+///////////////////////////////////////CHICKEN MEATS///////////////////////////////////////////////////////////
+/obj/item/reagent_containers/food/snacks/meat/chicken
+	name = "whole chicken"
+	desc = "a freshly prepared whole chicken."
+	icon_state = "chicken_whole"  //change this later
+	bitesize = 10
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/toxin = 5, /datum/reagent/consumable/cooking_oil = 4) //raw chicken is poisonous
+	foodtype = MEAT | RAW
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/chicken/attackby(obj/item/W, mob/user, params)
+	if(W.is_sharp() && user.a_intent == INTENT_HARM)
+		to_chat(user, span_notice("You begin to split [src]..."))
+		playsound(src, 'sound/weapons/slice.ogg', 50, 1)
+		if(!do_after(user, 5 SECONDS, W)) 
+			to_chat(user, span_notice("You stop splitting [src]..."))
+			return FALSE
+		for(var/count in 1 to 2)
+			new /obj/item/reagent_containers/food/snacks/meat/chicken/drum get_turf(loc)
+			new /obj/item/reagent_containers/food/snacks/meat/chicken/wing get_turf(loc)
+		new /obj/item/reagent_containers/food/snacks/meat/slab/chicken get_turf(loc)
+		qdel(src)
+
+/obj/item/reagent_containers/food/snacks/meat/chicken/drum
+	name = "chicken drumstick"
+	desc = "the part everybody wants to eat!"
+	icon_state = "chicken_drum"  //change this later
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 1, /datum/reagent/consumable/cooking_oil = 1) //raw chicken is poisonous
+	foodtype = MEAT | RAW
+	tastes = list("chicken" = 1, "antibiotics" = 1)	
+		
+/obj/item/reagent_containers/food/snacks/meat/chicken/wing
+	name = "chicken wing"
+	desc = "did you know that chickens can fly?"
+	icon_state = "chicken_wing"  //change this later
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 1) //raw chicken is poisonous
+	foodtype = MEAT | RAW
+	tastes = list("chicken" = 1, "antibiotics" = 1)	
+
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	name = "chicken meat"
+	icon_state = "birdmeat"
+	desc = "A slab of chicken meat. Tastes like ch....wait..."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 2) //low fat high nutrition
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	filling_color = "#B22222"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
