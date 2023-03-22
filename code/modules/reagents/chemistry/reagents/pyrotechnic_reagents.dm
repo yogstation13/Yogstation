@@ -216,15 +216,14 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 	var/shock_timer = 0
-	var/empremoval = TRUE
+	var/empremoval = FALSE
 
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
-	if(empproof)//only grant and remove emp protection if they didn't have it when drinking it
-		empremoval = FALSE
-	else
+	if(!empproof)//only grant and remove emp protection if they didn't have it when drinking it
 		L.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+		empremoval = TRUE
 	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
