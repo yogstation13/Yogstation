@@ -390,8 +390,8 @@
 	name = "relic war hammer"
 	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "hammeron"
-	item_state = "hammeron"
+	icon_state = "hammer"
+	item_state = "hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
@@ -400,35 +400,41 @@
 	menutab = MENU_WEAPON
 	additional_desc = "Bonk the sinners."
 
-/obj/item/nullrod/hammer/equipped(mob/user, slot, initial)//can't do it on initialize because it initializes before getting put in hands
-	var/obj/item/twohanded/required/baseball_bat/nullrod/hammah = new /obj/item/twohanded/required/baseball_bat/nullrod(src)
+/obj/item/nullrod/hammer/equipped(mob/user, slot, initial) //can't do it on initialize because it initializes before getting put in hands
+	var/obj/item/twohanded/required/nullrod/hammah = new /obj/item/twohanded/required/nullrod(src)
 	user.drop_all_held_items()
 	user.put_in_active_hand(hammah)
 	qdel(src)//lemme just delete the nullrod you just selected
 
-/obj/item/twohanded/required/baseball_bat/nullrod
+/obj/item/twohanded/required/nullrod
 	name = "relic war hammer"
 	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "hammeron"
-	item_state = "hammeron"
+	icon_state = "hammer"
+	item_state = "hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	force = 18
-	wound_bonus = 0
-	armour_penetration = 0
-	bare_wound_bonus = 0
-	throwforce = 0
-	attack_verb = list("smashed", "bashed", "hammered", "crunched")
+	force = 18 //it's not quite a baseball bat
+	attack_verb = list("smashed", "bashed", "hammered", "crunched", "clobbered")
 	sharpness = SHARP_NONE
-	flimsy = FALSE
-	speed = 1 //super weak knockback so it doesn't wallstun but still knocks away
 
-/obj/item/twohanded/required/baseball_bat/nullrod/Initialize()
+/obj/item/twohanded/required/nullrod/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE) //trust me, this is better than re-coding two-handed weapons
+
+/obj/item/twohanded/required/nullrod/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallstun
+	. = ..()
+	if(M == user)
+		return
+	var/throw_direction = get_dir(user, M)
+	var/atom/throw_target = get_edge_target_turf(M, throw_direction)
+	var/turf/throw_location = get_step_towards(M, throw_target)
+	if(throw_location.density)
+		return
+	M.forceMove(throw_location)
+	M.SpinAnimation(5, 1)
 
 /*---------------------------------------------------------------------------
 |

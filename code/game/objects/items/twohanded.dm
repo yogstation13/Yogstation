@@ -1177,7 +1177,6 @@
 	var/homerun_ready = 0
 	var/homerun_able = 0
 	var/flimsy = TRUE //spesswood? only used for knockback check now
-	var/speed
 
 /obj/item/twohanded/required/baseball_bat/homerun
 	name = "home run bat"
@@ -1213,8 +1212,6 @@
 		return
 	else if(!flimsy && !target.anchored)
 		var/whack_speed = (prob(50) ? 1 : 6)
-		if(speed) //if we want a specific speed
-			whack_speed = speed
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
 
 /obj/item/twohanded/required/baseball_bat/metal_bat
