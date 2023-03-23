@@ -336,7 +336,7 @@
 	
 /obj/item/nullrod/whip/Initialize()
 	. = ..()
-	weapon_stats[REACH] = 4
+	weapon_stats[REACH] = 4 //closest to a ranged weapon chaplain should ever get (that or maybe a throwing weapon)
 
 /obj/item/nullrod/bostaff
 	name = "monk's staff"
@@ -425,7 +425,7 @@
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE) //trust me, this is better than re-coding two-handed weapons
 
-/obj/item/twohanded/required/nullrod/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallstun
+/obj/item/twohanded/required/nullrod/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallsplat
 	. = ..()
 	if(M == user)
 		return
@@ -436,7 +436,7 @@
 	if(throw_location.density)
 		return
 	for(var/obj/D in throw_location.contents)
-		if(D.density == TRUE)
+		if(D.density)
 			return
 	M.forceMove(throw_location)
 
