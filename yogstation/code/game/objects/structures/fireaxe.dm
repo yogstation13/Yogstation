@@ -3,7 +3,7 @@
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 /obj/structure/fireaxecabinet/bridge
-	req_access = list(ACCESS_CAPTAIN)
+	req_access = list(ACCESS_CAPTAIN, ACCESS_CE)
 
 /obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
 	. = ..()
