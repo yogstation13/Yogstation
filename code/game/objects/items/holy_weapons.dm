@@ -401,6 +401,7 @@
 	additional_desc = "Bonk the sinners."
 
 /obj/item/nullrod/hammer/equipped(mob/user, slot, initial) //can't do it on initialize because it initializes before getting put in hands
+	. = ..()
 	var/obj/item/twohanded/required/nullrod/hammah = new /obj/item/twohanded/required/nullrod(src)
 	user.drop_all_held_items()
 	user.put_in_active_hand(hammah)
@@ -433,6 +434,9 @@
 	var/turf/throw_location = get_step_towards(M, throw_target)
 	if(throw_location.density)
 		return
+	for(var/obj/D in throw_location.contents)
+		if(D.density == TRUE)
+			return
 	M.forceMove(throw_location)
 	M.SpinAnimation(5, 1)
 
