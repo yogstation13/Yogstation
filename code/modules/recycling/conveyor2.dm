@@ -202,17 +202,17 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		switch(conveytime)
 			if(1)
-			conveytime = 0.5
-			to_chat(user, span_notice("You set [src]'s speed to double."))
+				conveytime = 0.5
+				to_chat(user, span_notice("You set [src]'s speed to double."))
 			if(0.5)
-			conveytime = 2
-			to_chat(user, span_notice("You set [src]'s speed to half."))
+				conveytime = 2
+				to_chat(user, span_notice("You set [src]'s speed to half."))
 			if(2)
-			conveytime = 4
-			to_chat(user, span_notice("You set [src]'s speed to a quarter."))
+				conveytime = 4
+				to_chat(user, span_notice("You set [src]'s speed to a quarter."))
 			if(4)
-			conveytime = 1
-			to_chat(user, span_notice("You set [src]'s speed back to default."))
+				conveytime = 1
+				to_chat(user, span_notice("You set [src]'s speed back to default."))
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
