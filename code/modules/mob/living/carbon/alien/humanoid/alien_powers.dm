@@ -171,28 +171,39 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/acid/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())
 		return TRUE
+
+	// Oh great, another unconscious alien. Let's just remove the ranged ability.
 	if(!iscarbon(ranged_ability_user) || ranged_ability_user.stat != CONSCIOUS)
 		remove_ranged_ability()
 		return TRUE
+
 	var/mob/living/carbon/user = ranged_ability_user
-	if(!target)
-		return TRUE
-	if(!check_target(target))
+
+	// If there's no target, why even bother?
+	if(!target || !check_target(target))
 		user.balloon_alert(user, "can't acid this!")
 		return TRUE
-	if(get_dist(user, target) > 1) //close?
+
+	// Too far away
+	if(get_dist(user, target) > 1)
 		user.balloon_alert(user, "too far!")
-		return TRUE	
-	if(user.getPlasma() < plasma_cost) //pay up
+		return TRUE
+
+	// Plasma cost check. Because aliens need a currency too, apparently.
+	if(user.getPlasma() < plasma_cost)
 		user.balloon_alert(user, "not enough plasma!")
 		remove_ranged_ability()
 		return TRUE
+
+	// Let's just get this over with. Apply the acid effect and move on.
 	user.adjustPlasma(-plasma_cost)
-	if(target.acid_act(200, 100)) //do our thing
+	if(target.acid_act(200, 100))
 		user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
 		remove_ranged_ability()
 		return FALSE
-	user.balloon_alert(user, "cannot disolve") //if we can't do our thing just don't
+
+	// Fantastic. It didn't even work.
+	user.balloon_alert(user, "cannot disolve")
 	return TRUE
 
 /mob/living/carbon/proc/corrosive_acid() // right click menu verb ugh
