@@ -105,7 +105,6 @@
 		category_data["nullrods"] = nullrods
 		data["categories"] += list(category_data)
 
-
 	return data
 
 /obj/item/nullrod/ui_act(action, params)
@@ -124,8 +123,10 @@
 			if(holy_weapon)
 				holy_weapon.reskinned = TRUE
 				qdel(src)
-				user.put_in_active_hand(holy_weapon)
+				holy_weapon.selected(user)
 
+/obj/item/nullrod/proc/selected(mob/user) //so weapons can do fancy things on being selected
+	user.put_in_active_hand(src)
 
 /*---------------------------------------------------------------------------
 |
@@ -387,7 +388,7 @@
 /obj/item/nullrod/tribal_knife/process()
 	slowdown = rand(-2, 2)
 
-/obj/item/nullrod/hammmer //this doesn't actually get used, it's more of a visual to select the actual nullrod
+/obj/item/nullrod/hammer //this doesn't actually get used, it's more of a visual to select the actual nullrod
 	name = "relic war hammer"
 	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
@@ -401,16 +402,11 @@
 	menutab = MENU_WEAPON
 	additional_desc = "Bonk the sinners."
 
-/obj/item/nullrod/hammer/equipped(mob/user, slot, initial) //can't be on initialize because it initializes before being put in hands
-	. = ..()
-	to_chat(world, "equipped")
-	if(ishuman(user))
-		to_chat(world, "human")
-		var/obj/item/twohanded/required/baseball_bat/nullrod/hammah = new /obj/item/twohanded/required/baseball_bat/nullrod()
-		var/mob/living/carbon/human/H = user
-		H.drop_all_held_items()
-		qdel(src)//lemme just delete the nullrod you just selected
-		H.put_in_active_hand(hammah)
+/obj/item/nullrod/hammer/selected(mob/user)
+	var/obj/item/twohanded/required/baseball_bat/nullrod/hammah = new /obj/item/twohanded/required/baseball_bat/nullrod(src)
+	user.drop_all_held_items()
+	user.put_in_active_hand(hammah)
+	qdel(src)//lemme just delete the nullrod you just selected
 
 /obj/item/twohanded/required/baseball_bat/nullrod
 	name = "relic war hammer"
