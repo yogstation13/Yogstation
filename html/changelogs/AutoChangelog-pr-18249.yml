@@ -1,7 +1,0 @@
-author: " @LazennG  @thegoldencat413 @slicerv @solwashere @milk-is-cool @SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "Added new martial art that's just buster arm moves"
-  - rscdel: "Removed old buster arm move files that got replaced"
-  - bugfix: "grapple can no longer work on containers you're inside of"
-  - tweak: "tweaked the buster arm to rely less on action buttons"
