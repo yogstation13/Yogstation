@@ -432,13 +432,13 @@
 	var/throw_direction = get_dir(user, M)
 	var/atom/throw_target = get_edge_target_turf(M, throw_direction)
 	var/turf/throw_location = get_step_towards(M, throw_target)
+	M.SpinAnimation(5, 1)
 	if(throw_location.density)
 		return
 	for(var/obj/D in throw_location.contents)
 		if(D.density == TRUE)
 			return
 	M.forceMove(throw_location)
-	M.SpinAnimation(5, 1)
 
 /*---------------------------------------------------------------------------
 |
