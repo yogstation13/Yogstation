@@ -413,6 +413,13 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/chicken/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	name = "raw chicken cutlet"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
@@ -588,13 +595,6 @@
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
-
-/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
-	name = "raw chicken cutlet"
-	tastes = list("chicken" = 1, "antibiotics" = 1)
-
-/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
-	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/axolotl
 	name = "axolotl cutlet"
