@@ -123,10 +123,7 @@
 			if(holy_weapon)
 				holy_weapon.reskinned = TRUE
 				qdel(src)
-				holy_weapon.selected(user)
-
-/obj/item/nullrod/proc/selected(mob/user) //so weapons can do fancy things on being selected
-	user.put_in_active_hand(src)
+				user.put_in_active_hand(holy_weapon)
 
 /*---------------------------------------------------------------------------
 |
@@ -256,11 +253,11 @@
 	icon_state = "corvo_0"
 	item_state = "corvo_0"
 	slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	var/on = FALSE
+	var/on = TRUE
 	var/on_sound = 'sound/weapons/batonextend.ogg'
 	menutab = MENU_WEAPON
 	additional_desc = "A collapsible blade, more than enough for stealthily dispatching foes."
@@ -331,6 +328,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/chainhit.ogg'
 	menutab = MENU_WEAPON
@@ -396,13 +394,13 @@
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
 	menutab = MENU_WEAPON
 	additional_desc = "Bonk the sinners."
 
-/obj/item/nullrod/hammer/selected(mob/user)
+/obj/item/nullrod/hammer/equipped(mob/user, slot, initial)//can't do it on initialize because it initializes before getting put in hands
 	var/obj/item/twohanded/required/baseball_bat/nullrod/hammah = new /obj/item/twohanded/required/baseball_bat/nullrod(src)
 	user.drop_all_held_items()
 	user.put_in_active_hand(hammah)
@@ -414,9 +412,9 @@
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammeron"
 	item_state = "hammeron"
-	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
+	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	force = 18
 	wound_bonus = 0
@@ -426,7 +424,7 @@
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
 	sharpness = SHARP_NONE
 	flimsy = FALSE
-	speed = 1 //super weak knockback so it doesn't wallstun
+	speed = 1 //super weak knockback so it doesn't wallstun but still knocks away
 
 /obj/item/twohanded/required/baseball_bat/nullrod/Initialize()
 	. = ..()
@@ -585,11 +583,11 @@
 	slot_flags = ITEM_SLOT_BACK
 	menutab = MENU_MISC
 	additional_desc = "A magical staff that conjures a shield around the holder, protecting from blows."
-	var/current_charges = 1
-	var/max_charges = 1 //How many charges total the shielding has
+	var/current_charges = 2
+	var/max_charges = 2 //How many charges total the shielding has
 	var/recharge_delay = 20 SECONDS //How long after we've been shot before we can start recharging. 20 seconds here
 	var/recharge_cooldown = 0 //Time since we've last been shot
-	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
+	var/recharge_rate = 2 //How quickly the shield recharges once it starts charging
 	var/shield_icon = "shield-old"
 	var/shield_on = "shield-old"
 
@@ -617,9 +615,8 @@
 /obj/item/nullrod/staff/process(delta_time)
 	if(world.time > recharge_cooldown && current_charges < max_charges)
 		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
-		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
 		if(current_charges == max_charges)
-			playsound(loc, 'sound/machines/ding.ogg', 50, 1)
+			playsound(loc, 'sound/magic/charge.ogg', 50, 1)
 			STOP_PROCESSING(SSobj, src)
 		shield_icon = "[shield_on]"
 		if(ishuman(loc))
