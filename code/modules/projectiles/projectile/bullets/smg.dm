@@ -67,5 +67,11 @@
 /obj/item/projectile/bullet/c46x30mm/airburst
 	name = "4.6x30mm airburst bullet" 
 	damage = 2 // it just a case for the smaller round
+	range = 3 // 3 Tiles before it bursts.
+
+/obj/item/projectile/bullet/c46x30mm/airburst_pellet
+	name = "4.6x30mm airburst pellet"
+	damage = 10
+
 
 

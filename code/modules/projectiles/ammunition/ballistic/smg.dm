@@ -36,6 +36,13 @@
 	desc = "A 4.6x30mm airburst bullet casing."
 	projectile_type = /obj/item/projectile/bullet/c46x30mm/airburst
 
+/obj/item/ammo_casing/c46x30mm/airburst_pellet
+	name = "4.6x30mm airburst pellet housing"
+	desc = "A 4.6x30mm airburst pellet housing."
+	pellets = 3
+	variance = 25
+	projectile_type = /obj/item/projectile/bullet/c46x30mm/airburst_pellet
+
 // .45 (M1911 + C20r)
 
 /obj/item/ammo_casing/c45
