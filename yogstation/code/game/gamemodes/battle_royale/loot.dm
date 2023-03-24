@@ -189,7 +189,7 @@
 			new /obj/item/ammo_box/a762(src)
 			new /obj/item/ammo_box/no_direct/n762(src)
 			new /obj/item/ammo_box/foambox/riot
-			new /obj/item/clothing/suit/space/hardsuit/syndi(src)
+			new /obj/item/clothing/suit/space/hardsuit/elder_atmosian/lavaland(src)
 			new /obj/item/storage/firstaid(src)
 			new /obj/item/storage/firstaid/toxin(src)
 			return

@@ -234,6 +234,11 @@
 	flags_1 = RAD_PROTECT_CONTENTS_1
 	slowdown = 0.6
 
+/obj/item/clothing/suit/space/hardsuit/elder_atmosian/lavaland
+	name = "Modified Elder Atmosian Hardsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal shielding. This one is made with the toughest and rarest materials available to man. It also appears to be slightly modified to allow the wearer easier movement."
+	slowdown = 0
+
 	//Chief Engineer's hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/engine/elite
 	name = "advanced hardsuit helmet"
