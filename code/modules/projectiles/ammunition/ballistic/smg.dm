@@ -21,6 +21,21 @@
 	desc = "A 4.6x30mm rubber bullet casing."
 	projectile_type = /obj/item/projectile/bullet/c46x30mm/rubber
 
+/obj/item/ammo_casing/c46x30mm/venom
+	name = "4.6x30mm venom bullet casing"
+	desc = "A 4.6x30mm venom bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c46x30mm/venom
+
+/obj/item/ammo_casing/c46x30mm/kraken
+	name = "4.6x30mm kraken bullet casing"
+	desc = "A 4.6x30mm kraken bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c46x30mm/kraken
+
+/obj/item/ammo_casing/c46x30mm/airburst
+	name = "4.6x30mm airburst bullet casing"
+	desc = "A 4.6x30mm airburst bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c46x30mm/airburst
+
 // .45 (M1911 + C20r)
 
 /obj/item/ammo_casing/c45

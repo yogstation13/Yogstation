@@ -50,3 +50,22 @@
 	name = "4.6x30mm rubber bullet"
 	damage = 5
 	stamina = 22
+
+/obj/item/projectile/bullet/c46x30mm/venom
+	name = "4.6x30mm venom bullet" // Doesnt actually inject toxin. Just does toxin damage.
+	damage = 10
+	damage_type = TOX
+
+/obj/item/projectile/bullet/c46x30mm/kraken
+	name = "4.6x30mm kraken bullet"
+	damage = 22
+	armour_penetration = -50
+	sharpness = SHARP_EDGED
+	wound_bonus = -30 // we arent dismembering people here
+	bare_wound_bonus = 3
+
+/obj/item/projectile/bullet/c46x30mm/airburst
+	name = "4.6x30mm airburst bullet" 
+	damage = 2 // it just a case for the smaller round
+
+
