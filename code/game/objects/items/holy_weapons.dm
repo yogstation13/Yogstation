@@ -774,6 +774,28 @@
 		user.faction |= "carp"
 		used_blessing = TRUE
 
+/obj/item/nullrod/egyptian
+	name = "egyptian staff"
+	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
+	icon = 'icons/obj/guns/magic.dmi'
+	icon_state = "pharoah_sceptre"
+	item_state = "pharoah_sceptre"
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("bashes", "smacks", "whacks")
+	additional_desc = "A stick, but it's a VERY regal stick."
+	menutab = MENU_MISC //eventually give it an effect comparable to a staff
+
+/*probably overly complicated, but should be very cool
+
+general idea for anyone trying to modify this
+has two states:
+	-item
+	-flying mob
+
+it can be thrown 
+*/
 /obj/item/nullrod/talking
 	name = "possessed blade"
 	desc = "When the station falls into chaos, it's nice to have a friend by your side."
@@ -785,6 +807,11 @@
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/possessed = FALSE
+	var/walking = FALSE //check to tell if they're flying around or not
+	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
+	var/mob/living/simple_animal/nullrod/blade //when they're flying around (blade stored inside them (soul is inside that blade))
+	var/mob/living/owner //the person with the recall spell
+	var/obj/effect/proc_holder/spell/targeted/recallnullrod/summon //the recall spell in question
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
 
@@ -800,48 +827,134 @@
 
 	to_chat(user, "You attempt to wake the spirit of the blade...")
 	possessed = TRUE
+	owner = user
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the spirit of [user.real_name]'s blade?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
-		var/mob/living/simple_animal/shade/S = new(src)
-		S.ckey = C.ckey
-		S.fully_replace_character_name(null, "The spirit of [name]")
-		S.status_flags |= GODMODE
-		S.copy_languages(user, LANGUAGE_MASTER)	//Make sure the sword can understand and communicate with the user.
-		S.update_atom_languages()
+		soul = new(src)
+		soul.ckey = C.ckey
+		soul.fully_replace_character_name(null, "The spirit of [name]")
+		soul.status_flags |= GODMODE
+		soul.copy_languages(user, LANGUAGE_MASTER)	//Make sure the sword can understand and communicate with the user.
+		soul.update_atom_languages()
 		grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue
-		var/input = stripped_input(S,"What are you named?", ,"", MAX_NAME_LEN)
+		var/input = stripped_input(soul,"What are you named?", ,"", MAX_NAME_LEN)
 
 		if(src && input)
 			name = input
-			S.fully_replace_character_name(null, "The spirit of [input]")
+			soul.fully_replace_character_name(null, "The spirit of [input]")
+
+		summon = new /obj/effect/proc_holder/spell/targeted/recallnullrod
+		summon.sword = src
+		owner.AddSpell(summon)
 	else
 		to_chat(user, "The blade is dormant. Maybe you can try again later.")
 		possessed = FALSE
+		owner = null
 
 /obj/item/nullrod/talking/Destroy()
-	for(var/mob/living/simple_animal/shade/S in contents)
-		to_chat(S, "You were destroyed!")
-		qdel(S)
+	if(soul)
+		if(owner && summon)
+			to_chat(owner, "You feel weakened as your blade fades from this world")
+			owner.RemoveSpell(summon)
+		to_chat(soul, "You were destroyed!")
+		qdel(soul)
 	return ..()
 
-/obj/item/nullrod/egyptian
-	name = "egyptian staff"
-	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
-	icon = 'icons/obj/guns/magic.dmi'
-	icon_state = "pharoah_sceptre"
-	item_state = "pharoah_sceptre"
-	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashes", "smacks", "whacks")
-	additional_desc = "A stick, but it's a VERY regal stick."
-	menutab = MENU_MISC //eventually give it an effect comparable to a staff
+/obj/item/nullrod/talking/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(possessed)
+		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
+		src.forceMove(blade)//just hide it in here for now
+		soul.mind.transfer_to(blade)
+		walking = TRUE
+	else
+		. = ..()
+	
+/obj/effect/proc_holder/spell/targeted/recallnullrod
+	name = "Instant Summons"
+	desc = "This spell can be used to recall your possessed sword."
+	school = "transmutation"
+	panel = "Chaplain"
+	charge_max = 10 SECONDS
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	invocation = "GAR YOK"
+	invocation_type = "whisper"
+	range = -1
+	level_max = 0 //cannot be improved
+	cooldown_min = 10 SECONDS
+	include_user = TRUE
 
+	var/obj/item/nullrod/talking/sword
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "summons"
 
+/obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
+	if(sword)
+		if(sword.walking)
+			sword.blade.throw_at(user, 10, 2) //remember, sword is the item, blade is the mob
+		else
+			sword.throw_at(user, 10, 2)
+	. = ..()
 
+/mob/living/simple_animal/nullrod
+	name = "Shade"
+	real_name = "Shade"
+	desc = "A bound spirit."
+	gender = PLURAL
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "shade"
+	icon_living = "shade"
+	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
+	maxHealth = 40
+	health = 40
+	spacewalk = TRUE
+	healable = 0
+	speak_emote = list("hisses")
+	emote_hear = list("wails.","screeches.")
+	response_help  = "puts their hand through"
+	response_disarm = "flails at"
+	response_harm   = "punches"
+	speak_chance = 1
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	attacktext = "metaphysically strikes"
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	stop_automated_movement = 1
+	status_flags = 0
+	status_flags = CANPUSH
+	movement_type = FLYING
+	del_on_death = TRUE
+	initial_language_holder = /datum/language_holder/universal
+	var/obj/item/nullrod/talking/sword //the sword they're part of
 
-//never put anything above this
+/mob/living/simple_animal/nullrod/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
+
+/mob/living/simple_animal/nullrod/death()
+	if(sword)
+		deathmessage = "tumbles to the ground as [p_their()] power wanes."
+		mind.transfer_to(sword.soul)
+		sword.forceMove(get_turf(src))
+		sword.walking = FALSE
+	..()
+
+/mob/living/simple_animal/nullrod/canSuicide()
+	return 0 //you're a sword, you can't suicide
+
+/mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(hit_atom == sword.owner)
+		sword.owner.put_in_active_hand(sword)
+		mind.transfer_to(sword.soul)
+		sword.walking = FALSE
+		visible_message("[sword.owner] catches the flying [src] out of the air!")
+		qdel(src)
+	. = ..()
+	
+//never put anything below this, it deserves to be buried
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
 	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
