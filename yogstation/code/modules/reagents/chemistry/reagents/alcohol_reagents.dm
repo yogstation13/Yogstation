@@ -16,8 +16,8 @@
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
 	if(iscatperson(M))
-		M.set_drugginess(75)
-		M.restoreEars()
+		M.set_drugginess(50)
+		M.adjustOrganLoss(ORGAN_SLOT_EARS, -4*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
