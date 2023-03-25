@@ -1298,15 +1298,15 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
-					/obj/item/reagent_containers/autoinjector/medipen/,
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen,
+					/obj/item/reagent_containers/autoinjector/medipen,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
 					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
-					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
-)
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+	)
 	crate_name = "medipen crate"
 
 /datum/supply_pack/medical/firstaid_single

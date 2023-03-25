@@ -586,7 +586,7 @@
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/a357(src)
+		new /obj/item/ammo_box/a357/ironfeather(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"

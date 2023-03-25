@@ -18,11 +18,17 @@
 	color = "#87878715"
 	stepsound = null
 	turnsound = null
+	meleesound = FALSE
 	opacity = 0
+
+/obj/mecha/combat/reticence/Initialize()
+	. = ..()
+	if(internal_tank)
+		internal_tank.set_light(0, 0, COLOR_BLACK) //remove the light that is granted by the internal canister
 
 /obj/mecha/combat/reticence/loaded/Initialize()
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/rcd //HAHA IT MAKES WALLS GET IT
+	ME = new /obj/item/mecha_parts/mecha_equipment/rcd/mime //HAHA IT MAKES WALLS GET IT
 	ME.attach(src)

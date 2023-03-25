@@ -50,27 +50,20 @@
 	var/helmet_on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	flash_protect = 0
-	var/base_icon_state
+	var/mutable_appearance/helmet_mob_overlay
+	var/saved_style = null //our helmet style to apply overlay
 	var/pref_alteration = TRUE ///set to true if the item will be modified by player's "plasmaman helmet style pref"
-
-/obj/item/clothing/head/helmet/space/plasmaman/Initialize()
-	. = ..()
-	base_icon_state = icon_state
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	toggle_helmet_light(user)
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
 	helmet_on = !helmet_on
-	icon_state = "[base_icon_state][helmet_on ? "-light":""]"
+	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
 	item_state = icon_state
-	user.update_inv_head()
+	update_icon(user)
 	
 	set_light_on(helmet_on)
-	
-	for(var/X in actions)
-		var/datum/action/A=X
-		A.UpdateButtonIcon()
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/set_design(mob/living/carbon/human/user)
 	if(!pref_alteration)
@@ -78,14 +71,35 @@
 	if(!ishuman(user))
 		return
 	var/style = user.dna?.features["plasmaman_helmet"]
-	var/suffix = ""
-	if(style && (style in GLOB.plasmaman_helmet_list) && style != "None")
-		suffix = "-[GLOB.plasmaman_helmet_list[style]]"
+	user.cut_overlay(helmet_mob_overlay)
+	if(style && (style in GLOB.plasmaman_helmet_list))
+		if(style == "None")
+			return
+		saved_style = "enviro[GLOB.plasmaman_helmet_list[style]]"
+		add_overlay(mutable_appearance('icons/obj/clothing/hats.dmi', saved_style))
+		helmet_mob_overlay = mutable_appearance('icons/mob/clothing/head/head.dmi', saved_style)
+		update_icon(user)
 
-	icon_state = initial(icon_state) + suffix
-	item_state = icon_state
-	base_icon_state = icon_state
+/obj/item/clothing/head/helmet/space/plasmaman/update_icon(mob/living/carbon/human/user)
+	if(!user)
+		return
+	user.cut_overlay(helmet_mob_overlay)
+	if(saved_style)
+		user.add_overlay(helmet_mob_overlay)
 	user.update_inv_head()
+	for(var/datum/action/A as anything in actions)
+		A.UpdateButtonIcon()
+
+/obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot != SLOT_HEAD)
+		user.cut_overlay(helmet_mob_overlay)
+		return
+	update_icon(user)
+
+/obj/item/clothing/head/helmet/space/plasmaman/dropped(mob/living/user)
+	user.cut_overlay(helmet_mob_overlay)
+	. = ..()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
@@ -100,6 +114,14 @@
 	desc = "A generic blue envirohelm."
 	icon_state = "blue_envirohelm"
 	item_state = "blue_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/command
+	name = "command envirosuit helmet"
+	desc = "A regal and lavish envirohelm designed for plasmamen in unique command positions. It is lightly armored."
+	icon_state = "command_envirohelm"
+	item_state = "command_envirohelm"
+	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 5)
+	pref_alteration = FALSE
 	
 /obj/item/clothing/head/helmet/space/plasmaman/viro
 	name = "virology envirosuit helmet"

@@ -16,6 +16,7 @@
 #define MARTIALART_EXPLOSIVEFIST "explosive fist"
 #define MARTIALART_GARDENWARFARE "garden warfare"
 #define MARTIALART_ULTRAVIOLENCE "ultra violence"
+#define MARTIALART_BUSTERSTYLE "buster style"
 
 
 //Weapon stat defines

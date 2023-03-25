@@ -56,8 +56,8 @@
 	usable_blood = ALL_POWERS_UNLOCKED
 	total_blood = ALL_POWERS_UNLOCKED
 	check_vampire_upgrade()
-	message_admins("[key_name_admin(admin)] made [owner.current] a full power vampire..")
-	log_admin("[key_name(admin)] made [owner.current] a full power vampire..")
+	message_admins("[key_name_admin(admin)] made [owner.current] a full-power vampire.")
+	log_admin("[key_name(admin)] made [owner.current] a full-power vampire.")
 
 /datum/antagonist/vampire/proc/admin_set_blood(mob/admin)
 	total_blood = input(admin, "Set Vampire Total Blood", "Total Blood", total_blood) as null|num
@@ -108,7 +108,7 @@
 /datum/antagonist/vampire/greet()
 	to_chat(owner, span_userdanger("You are a Vampire!"))
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, span_userdanger("Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!"))
+	to_chat(owner, span_userdanger("Hit someone in the head with harm intent and an open hand to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!"))
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(full_vampire == FALSE)
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
@@ -263,7 +263,7 @@
 		O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
 		playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 	else
-		to_chat(O, span_notice("You stealthily begin to drain blood from [H], be careful, as they will notice if their blood gets too low."))
+		to_chat(O, span_notice("You stealthily begin to drain blood from [H]. Be careful, as they will notice if their blood gets too low."))
 		O.playsound_local(O, 'sound/weapons/bite.ogg', 50, 1)
 	if(!iscarbon(owner))
 		H.LAssailant = null
