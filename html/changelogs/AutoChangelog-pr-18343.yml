@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Collapsible fishing rods now have properly collapsed size"
+  - tweak: "Chasm fishing fishes from chasms in a 3 radius area"
+  - tweak: "Chasm fishing only pulls up one corpse at a time"
