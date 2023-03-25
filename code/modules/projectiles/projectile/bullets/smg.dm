@@ -53,9 +53,14 @@
 
 /obj/item/projectile/bullet/c46x30mm/venom
 	name = "4.6x30mm venom bullet" // Doesnt actually inject toxin. Just does toxin damage.
-	damage = 10
+	damage = 6
 	damage_type = TOX
 
+/obj/item/projectile/bullet/c46x30mm/venom/on_hit(atom/target, blocked)
+	if((blocked != 100) && iscarbon(target))
+		var/mob/living/carbon/victim = target
+		victim.reagents.add_reagent(/datum/reagent/toxin/toxin, 4)
+	return ..()
 /obj/item/projectile/bullet/c46x30mm/kraken
 	name = "4.6x30mm kraken bullet"
 	damage = 22
