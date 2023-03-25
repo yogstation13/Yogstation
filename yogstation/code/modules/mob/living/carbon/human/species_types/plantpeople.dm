@@ -253,11 +253,11 @@
 			var/datum/reagent/consumable/ethanol/ethanol = chem
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
 			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
-			H.confused = max(H.confused, 1)
-				if(ethanol.boozepwr > 80 && chem.volume > 30)
-					if(chem.current_cycle > 50)
-						H.IsSleeping(3)
-					H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
+			H.confused = max(H.confused; 1)
+			if(ethanol.boozepwr > 80 && chem.volume > 30)
+				if(chem.current_cycle > 50)
+					H.IsSleeping(3)
+				H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
