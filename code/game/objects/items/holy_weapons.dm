@@ -808,6 +808,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	throw_speed = 2 //make it slow so it has time to look cool
 	var/possessed = FALSE
 	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
@@ -881,8 +882,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		. = ..()
 	
 /obj/effect/proc_holder/spell/targeted/recallnullrod
-	name = "Instant Summons"
-	desc = "This spell can be used to recall your possessed sword."
+	name = "Sword Recall"
+	desc = "Pulls your possessed sword back to you."
 	school = "transmutation"
 	panel = "Chaplain"
 	charge_max = 10 SECONDS
@@ -896,20 +897,20 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	include_user = TRUE
 
 	var/obj/item/nullrod/talking/sword
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	action_icon_state = "summons"
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
+	action_icon_state = "swordrecall"
 
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
 	if(sword)
 		if(sword.walking)
-			sword.blade.throw_at(user, 10, 3) //remember, sword is the item, blade is the mob
+			sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
 		else
 			if(ismob(sword.loc))
 				var/mob/holder = sword.loc //rip it out of the thief's hands first
 				if(holder != user)
 					to_chat(holder, "you feel [sword] ripped out of your hands by an unseen force.")
 					holder.dropItemToGround(sword)
-			sword.throw_at(user, 10, 3)
+			sword.throw_at(user, 20, 3)
 	. = ..()
 
 /mob/living/simple_animal/nullrod
@@ -930,11 +931,11 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	emote_hear = list("wails.","screeches.")
 	response_help = "pokes"
 	response_disarm = "pushes"
-	response_harm = "prods"
+	response_harm = "whacks"
 	speak_chance = 1
 	melee_damage_lower = 0 //don't let it be a powergame mob
 	melee_damage_upper = 0
-	attacktext = "whacks"
+	attacktext = "prods"
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -980,7 +981,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			sword.owner.put_in_active_hand(sword)
 			mind.transfer_to(sword.soul)
 			sword.walking = FALSE
-			visible_message("[sword.owner] catches the flying [src] out of the air!")
+			visible_message("[sword.owner] catches the flying blade out of the air!")
 			qdel(src)
 	else
 		..()
@@ -1000,8 +1001,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	cooldown_min = 10 SECONDS
 	include_user = TRUE
 
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	action_icon_state = "summons"
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
+	action_icon_state = "sworddrop"
 
 /obj/effect/proc_holder/spell/targeted/nullroddrop/cast(list/targets, mob/user)
 	user.death()//basically a glorified suicide button PLEASE don't give it to any actual player
