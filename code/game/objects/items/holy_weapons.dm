@@ -227,10 +227,9 @@
 	icon = 'icons/obj/guns/magic.dmi'
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
-/obj/item/nullrod/vibro/spear
+/obj/item/nullrod/spear
 	name = "bronze spear"
 	desc = "Purge untruths and honor... rats?"
-	slot_flags = ITEM_SLOT_BELT
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "ratvarian_spear"
 	item_state = "ratvarian_spear"
@@ -238,9 +237,12 @@
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 	force = 16
 	throwforce = 16 //16 is not a weird number, it's a perfect square
+	armour_penetration = 35
 	sharpness = SHARP_POINTY
-	slot_flags = null
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("stabbed", "poked", "slashed", "enlightened")
+	menutab = MENU_WEAPON
 	additional_desc = "Well balanced, good for throwing."
 
 //other non-reskin nullrods
