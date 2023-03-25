@@ -15,7 +15,7 @@
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
-	if(iscatperson(M)
+	if(iscatperson(M))
 		M.set_drugginess(75)
 		M.restoreEars()
 	return ..()
