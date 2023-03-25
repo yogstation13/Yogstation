@@ -1,8 +1,0 @@
-author: "jachlompsky"
-delete-after: true 
-changes: 
-  - rscadd: "Added an improved version of the Stinger that fires projectiles"
-  - rscadd: "Added an improved version of the bee costume"
-  - bugfix: "fixed an issue with the Stinger's poison injection"
-  - tweak: "Bee syndikit contains improved stinger & bee costume"
-  - tweak: "Beesease makes more bees"

@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Necropolis chest drops random nullrod instead of possessed sword"
-  - rscdel: "Removed dark blessing nullrod from necropolis loot"
