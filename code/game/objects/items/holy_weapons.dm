@@ -872,6 +872,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			owner.put_in_active_hand(src)
 			visible_message("[owner] catches the flying [src] out of the air!")
 	else if(possessed)
+		transform = initial(transform)//to reset rotation for when it drops to the ground
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
 		blade.sword = src
 		blade.fully_replace_character_name(null, soul.name)
