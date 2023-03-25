@@ -63,19 +63,3 @@
 	sharpness = SHARP_EDGED
 	wound_bonus = -30 // we arent dismembering people here
 	bare_wound_bonus = 3
-
-//obj/item/projectile/bullet/c46x30mm/airburst
-//	name = "4.6x30mm airburst bullet" 
-//	damage = 2 // it just a case for the smaller round
-//	range = 3 // 3 Tiles before it bursts.
-//
-// Above might be obsolete?
-//
-
-/obj/item/projectile/bullet/c46x30mm/airburst_pellet
-	name = "4.6x30mm airburst pellet"
-	damage = 10
-
-/obj/item/projectile/bullet/c46x30mm/airburst/proc/on_range()
-	process_fire(obj/item/ammo_casing/c46x30mm/airburst_pellet)
-	qdel(src)

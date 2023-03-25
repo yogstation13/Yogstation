@@ -31,20 +31,6 @@
 	desc = "A 4.6x30mm kraken bullet casing."
 	projectile_type = /obj/item/projectile/bullet/c46x30mm/kraken
 
-/obj/item/ammo_casing/c46x30mm/airburst
-	name = "4.6x30mm airburst bullet casing"
-	desc = "A 4.6x30mm airburst bullet casing."
-	projectile_type = /obj/item/ammo_casing/c46x30mm/airburst_pellet
-
-/obj/item/ammo_casing/c46x30mm/airburst_pellet
-	name = "4.6x30mm airburst pellet housing"
-	desc = "A 4.6x30mm airburst pellet housing."
-	pellets = 3
-	variance = 25
-	damage = 2 // its the bullet
-	range = 3 // range before bursting
-	projectile_type = /obj/item/projectile/bullet/c46x30mm/airburst_pellet
-
 // .45 (M1911 + C20r)
 
 /obj/item/ammo_casing/c45
