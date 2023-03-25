@@ -249,15 +249,15 @@
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
-		if(ethanol.boozepwr > 1 && chem.volume > 1)
-			var/datum/reagent/consumable/ethanol/ethanol = chem
-			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
-			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
-			H.confused = max(H.confused, 1)
-			if(ethanol.boozepwr > 80 && chem.volume > 30)
-				if(chem.current_cycle > 50)
-					H.IsSleeping(3)
-				H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
+		var/datum/reagent/consumable/ethanol/ethanol = chem
+			if(ethanol.boozepwr > 1 && chem.volume > 1)
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
+				H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
+				H.confused = max(H.confused, 1)
+				if(ethanol.boozepwr > 80 && chem.volume > 30)
+					if(chem.current_cycle > 50)
+						H.IsSleeping(3)
+					H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
