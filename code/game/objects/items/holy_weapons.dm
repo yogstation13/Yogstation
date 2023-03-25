@@ -297,8 +297,8 @@
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	light_system = MOVABLE_LIGHT
-	light_range = 6
-	light_power = 1
+	light_range = 7
+	light_power = 2
 	light_on = TRUE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
