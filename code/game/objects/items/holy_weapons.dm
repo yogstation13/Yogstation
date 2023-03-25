@@ -199,8 +199,8 @@
 	name = "high frequency blade"
 	desc = "Bad references are the DNA of the soul."
 	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "hfrequency0_ext"
-	item_state = "hfrequency1"
+	icon_state = "vibroblade"//ignore that the sec vibro sword uses the high frequency sprite
+	item_state = "vibroblade"//and this this uses vibroblade sprites
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
