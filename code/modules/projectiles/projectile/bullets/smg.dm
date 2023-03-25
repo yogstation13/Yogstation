@@ -58,7 +58,7 @@
 /obj/item/projectile/bullet/c46x30mm/venom/on_hit(atom/target, blocked)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/victim = target
-		victim.reagents.add_reagent(/datum/reagent/toxin/toxin, 6)
+		victim.reagents.add_reagent(/datum/reagent/toxin, 6)
 		victim.adjustToxLoss(6)
 
 	return ..()
