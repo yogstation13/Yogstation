@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Brass sword now has a not-stupid amount of AP (10)"
+  - tweak: "Brass sword now has 35% universal block chance"
+  - tweak: "brass sword does 1 less damage"
