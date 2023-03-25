@@ -582,7 +582,7 @@
 ----------------------------------------------------------------------------*/
 /obj/item/nullrod/staff
 	icon = 'icons/obj/wizard.dmi'
-	name = "blue holy staff"
+	name = "holy staff"
 	icon_state = "staff-blue"
 	item_state = "godstaff-blue"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
@@ -835,7 +835,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/mob/dead/observer/C = pick(candidates)
 		soul = new(src)
 		soul.ckey = C.ckey
-		soul.fully_replace_character_name(null, "The spirit of [name]")
+		soul.fully_replace_character_name(null, "The spirit of alastor")
 		soul.status_flags |= GODMODE
 		soul.copy_languages(user, LANGUAGE_MASTER)	//Make sure the sword can understand and communicate with the user.
 		soul.update_atom_languages()
@@ -865,11 +865,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	return ..()
 
 /obj/item/nullrod/talking/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(possessed)
+	if(isliving(hit_atom))//only transform if it doesn't hit a person
+		var/mob/living/target = hit_atom
+		if(owner && target == owner)
+			owner.put_in_active_hand(src)
+			visible_message("[owner] catches the flying [src] out of the air!")
+	else if(possessed)
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
 		blade.sword = src
-		blade.fully_replace_character_name(null, src.name)
-		src.forceMove(blade)//just hide it in here for now
+		blade.fully_replace_character_name(null, soul.name)
+		forceMove(blade)//just hide it in here for now
 		soul.mind.transfer_to(blade)
 		walking = TRUE
 	else
@@ -883,8 +888,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	charge_max = 10 SECONDS
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
-	invocation = "GAR YOK"
-	invocation_type = "whisper"
+	invocation = "COME"
+	invocation_type = "shout"
 	range = -1
 	level_max = 0 //cannot be improved
 	cooldown_min = 10 SECONDS
@@ -899,6 +904,11 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		if(sword.walking)
 			sword.blade.throw_at(user, 10, 3) //remember, sword is the item, blade is the mob
 		else
+			if(ismob(sword.loc))
+				var/mob/holder = sword.loc //rip it out of the thief's hands first
+				if(holder != user)
+					to_chat(holder, "you feel [sword] ripped out of your hands by an unseen force.")
+					holder.dropItemToGround(sword)
 			sword.throw_at(user, 10, 3)
 	. = ..()
 
@@ -908,22 +918,23 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	desc = "A bound spirit."
 	gender = PLURAL
 	icon = 'icons/mob/mob.dmi'
-	icon_state = "shade"
-	icon_living = "shade"
+	icon_state = "talking_sword"
+	icon_living = "talking_sword"
 	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
-	maxHealth = 40
-	health = 40
+	maxHealth = 20
+	health = 20
+	speed = 0
 	spacewalk = TRUE
 	healable = 0
 	speak_emote = list("hisses")
 	emote_hear = list("wails.","screeches.")
-	response_help  = "puts their hand through"
-	response_disarm = "flails at"
-	response_harm   = "punches"
+	response_help = "pokes"
+	response_disarm = "pushes"
+	response_harm = "prods"
 	speak_chance = 1
-	melee_damage_lower = 0
+	melee_damage_lower = 0 //don't let it be a powergame mob
 	melee_damage_upper = 0
-	attacktext = "metaphysically strikes"
+	attacktext = "whacks"
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -933,14 +944,17 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	movement_type = FLYING
 	initial_language_holder = /datum/language_holder/universal
 	var/obj/item/nullrod/talking/sword //the sword they're part of
+	var/obj/effect/proc_holder/spell/targeted/nullroddrop/button //suicide button so they can return to being an item if need be
 
 /mob/living/simple_animal/nullrod/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
+	button = new /obj/effect/proc_holder/spell/targeted/nullroddrop
+	AddSpell(button)
 
 /mob/living/simple_animal/nullrod/death()
 	if(sword)
-		visible_message("[src] tumbles to the ground as it's power wanes!")
+		visible_message("[src] lowers to the ground as it's power wanes!")
 		mind.transfer_to(sword.soul)
 		sword.forceMove(get_turf(src))
 		sword.walking = FALSE
@@ -948,6 +962,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 
 /mob/living/simple_animal/nullrod/canSuicide()
 	return 0 //you're a sword, you can't suicide
+
+/mob/living/simple_animal/nullrod/attack_hand(mob/living/carbon/human/M)
+	if(sword?.owner && M == sword.owner)//let the chaplain pick it up in one hit
+		sword.owner.put_in_active_hand(sword)
+		mind.transfer_to(sword.soul)
+		sword.walking = FALSE
+		visible_message("[sword.owner] grabs [src] by the hilt.")
+		qdel(src)
+	else
+		..()
 
 /mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(isliving(hit_atom))
@@ -958,8 +982,31 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			sword.walking = FALSE
 			visible_message("[sword.owner] catches the flying [src] out of the air!")
 			qdel(src)
+	else
+		..()
+
+/obj/effect/proc_holder/spell/targeted/nullroddrop
+	name = "Land"
+	desc = "Return to the ground for people to wield you."
+	school = "transmutation"
+	panel = "Chaplain"
+	charge_max = 10 SECONDS
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	invocation = "COME"
+	invocation_type = "shout"
+	range = -1
+	level_max = 0 //cannot be improved
+	cooldown_min = 10 SECONDS
+	include_user = TRUE
+
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "summons"
+
+/obj/effect/proc_holder/spell/targeted/nullroddrop/cast(list/targets, mob/user)
+	user.death()//basically a glorified suicide button PLEASE don't give it to any actual player
 	. = ..()
-	
+
 //never put anything below this, it deserves to be buried
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
