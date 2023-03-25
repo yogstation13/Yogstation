@@ -365,14 +365,6 @@
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_venom
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/mag_oldsmg/airburst_mag
-	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Airburst)"
-	desc = "A 20-round airburst magazine for the out of date security WT-550 Auto Carbine."
-	id = "mag_oldsmg_airburst"
-	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/plasma = 2000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_airburst
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
 /datum/design/stunshell
 	name = "Stun Shell"
 	desc = "A stunning shell for a shotgun."
