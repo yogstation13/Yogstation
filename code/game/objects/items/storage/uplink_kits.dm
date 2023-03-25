@@ -218,12 +218,12 @@
 
 		if("bee") // bee sword too based so its priceless
 			new /obj/item/paper/fluff/bee_objectives(src) // 0 tc (motivation)
-			new /obj/item/clothing/suit/hooded/bee_costume(src) // 0 tc
+			new /obj/item/clothing/suit/hooded/bee_costume/authentic(src) // 0 tc
 			new /obj/item/clothing/mask/rat/bee(src) // 0 tc
 			new /obj/item/storage/belt/fannypack/yellow(src) // 0 tc
-			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 15 tc
+			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 6 tc
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
-			new /obj/item/melee/beesword(src) //priceless
+			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
 		if("mr_freeze") // ~17 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
