@@ -418,8 +418,8 @@
 		return
 	
 	var/has_rod = FALSE
-	for(var/obj/item/I in user.held_items)
-		if(istype(I, /obj/item/rod_of_asclepius))
+	for(var/obj/item/rod_of_asclepius/rod in user.held_items)
+		if(istype(rod) && rod.activated)
 			has_rod = TRUE
 			break
 
