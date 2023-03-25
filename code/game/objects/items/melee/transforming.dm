@@ -112,8 +112,8 @@
 	sharpness = SHARP_EDGED
 	armour_penetration = 25
 	light_system = MOVABLE_LIGHT
-	light_range = 2
-	light_power = 1
+	light_range = 1
+	light_power = 0.5
 	light_color = "#40ceff" // badass sheen
 	light_on = FALSE
 	extend_sound = 'sound/weapons/batonextend.ogg'
