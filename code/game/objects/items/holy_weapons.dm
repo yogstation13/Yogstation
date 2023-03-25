@@ -794,7 +794,9 @@ has two states:
 	-item
 	-flying mob
 
-it can be thrown 
+it can be thrown to change it into flying mode
+if it dies, it swaps back into a weapon
+it also swaps back if it gets thrown into the chaplain, but the chaplain catches it
 */
 /obj/item/nullrod/talking
 	name = "possessed blade"
@@ -844,6 +846,7 @@ it can be thrown
 			name = input
 			soul.fully_replace_character_name(null, "The spirit of [input]")
 
+		to_chat(owner, "You feel the spirit within the blade stir and waken.")
 		summon = new /obj/effect/proc_holder/spell/targeted/recallnullrod
 		summon.sword = src
 		owner.AddSpell(summon)
@@ -855,7 +858,7 @@ it can be thrown
 /obj/item/nullrod/talking/Destroy()
 	if(soul)
 		if(owner && summon)
-			to_chat(owner, "You feel weakened as your blade fades from this world")
+			to_chat(owner, "You feel weakened as your blade fades from this world.")
 			owner.RemoveSpell(summon)
 		to_chat(soul, "You were destroyed!")
 		qdel(soul)
@@ -864,6 +867,8 @@ it can be thrown
 /obj/item/nullrod/talking/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(possessed)
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
+		blade.sword = src
+		blade.fully_replace_character_name(null, src.name)
 		src.forceMove(blade)//just hide it in here for now
 		soul.mind.transfer_to(blade)
 		walking = TRUE
@@ -892,9 +897,9 @@ it can be thrown
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
 	if(sword)
 		if(sword.walking)
-			sword.blade.throw_at(user, 10, 2) //remember, sword is the item, blade is the mob
+			sword.blade.throw_at(user, 10, 3) //remember, sword is the item, blade is the mob
 		else
-			sword.throw_at(user, 10, 2)
+			sword.throw_at(user, 10, 3)
 	. = ..()
 
 /mob/living/simple_animal/nullrod
@@ -926,7 +931,6 @@ it can be thrown
 	status_flags = 0
 	status_flags = CANPUSH
 	movement_type = FLYING
-	del_on_death = TRUE
 	initial_language_holder = /datum/language_holder/universal
 	var/obj/item/nullrod/talking/sword //the sword they're part of
 
@@ -936,22 +940,24 @@ it can be thrown
 
 /mob/living/simple_animal/nullrod/death()
 	if(sword)
-		deathmessage = "tumbles to the ground as [p_their()] power wanes."
+		visible_message("[src] tumbles to the ground as it's power wanes!")
 		mind.transfer_to(sword.soul)
 		sword.forceMove(get_turf(src))
 		sword.walking = FALSE
-	..()
+	qdel(src)
 
 /mob/living/simple_animal/nullrod/canSuicide()
 	return 0 //you're a sword, you can't suicide
 
 /mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(hit_atom == sword.owner)
-		sword.owner.put_in_active_hand(sword)
-		mind.transfer_to(sword.soul)
-		sword.walking = FALSE
-		visible_message("[sword.owner] catches the flying [src] out of the air!")
-		qdel(src)
+	if(isliving(hit_atom))
+		var/mob/living/target = hit_atom
+		if(sword?.owner && target == sword.owner)
+			sword.owner.put_in_active_hand(sword)
+			mind.transfer_to(sword.soul)
+			sword.walking = FALSE
+			visible_message("[sword.owner] catches the flying [src] out of the air!")
+			qdel(src)
 	. = ..()
 	
 //never put anything below this, it deserves to be buried
