@@ -66,6 +66,31 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/kraken
 	sprite_designation = "K"
 
+/obj/item/ammo_box/magazine/wt550m9/wt_airburst
+	name = "\improper WT-550 magazine (Airburst Rounds 4.6x30mm)"
+	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
+			These rounds travel a few feet, then pop and split into many smaller projectiles. The initial bullet is nigh useless however."
+	icon_state = "46x30mmtB-20"
+	ammo_type = /obj/item/ammo_casing/c46x30mm/airburst
+	sprite_designation = "B"
+
+/obj/item/ammo_box/magazine/wt550m9/wt_airburst/update_icon() // Snowflake code snowflake code
+	..()
+	switch(ammo_count())
+		if(9 to 11) //Considers the extra bullet in the chamber
+			icon_state = "46x30mmtB-20"
+		if(7 to 8)
+			icon_state = "46x30mmtB-16"
+		if(5 to 6)
+			icon_state = "46x30mmtB-12"
+		if(3 to 4)
+			icon_state = "46x30mmtB-8"
+		if(1 to 2)
+			icon_state = "46x30mmtB-4"
+		else
+			icon_state = "46x30mmtB-0"
+
+
 //Type T3 Uzi
 
 /obj/item/ammo_box/magazine/uzim9mm
