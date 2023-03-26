@@ -481,7 +481,7 @@
 	desc = "An arrow made from hardlight."
 	icon_state = "arrow_energy"
 	item_flags = DROPDEL
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_pain_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
 	projectile_type = /obj/item/projectile/energy/arrow
 
 	var/ticks = 0

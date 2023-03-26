@@ -7,18 +7,24 @@
 
 /obj/item/projectile/bullet/reusable/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	handle_drop(target)
+	handle_drop(target, blocked)
 
 /obj/item/projectile/bullet/reusable/on_range()
 	handle_drop()
 	..()
 
-/obj/item/projectile/bullet/reusable/proc/handle_drop(atom/target)
+/obj/item/projectile/bullet/reusable/proc/handle_drop(atom/target, blocked)
 	if(dropped || !ammo_type)
 		return
 
 	var/turf/T = get_turf(src)
-	var/obj/item/thing_to_drop = ispath(ammo_type) ? new ammo_type(T) : ammo_type
+	var/obj/item/thing_to_drop = ispath(ammo_type) ? new ammo_type(src) : ammo_type
+
+	if(CHECK_BITFIELD(thing_to_drop.item_flags, DROPDEL)) // Delete it if it has the dropdel flag
+		qdel(thing_to_drop)
+		dropped = TRUE
+		return
+
 	thing_to_drop.forceMove(T)
 
 	if(istype(ammo_type, /obj/item/ammo_casing/reusable))
