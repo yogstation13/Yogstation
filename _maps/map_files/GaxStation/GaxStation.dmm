@@ -3934,6 +3934,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"bVm" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/qm)
 "bVq" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel,
@@ -5508,23 +5515,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/co2,
-<<<<<<< HEAD
 /area/engine/atmos/distro)
-"cJz" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/auxiliary)
-=======
-/area/engine/atmos_distro)
->>>>>>> master
 "cKj" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 4
@@ -6771,9 +6762,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "doI" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -7150,28 +7138,7 @@
 /obj/machinery/atmospherics/miner/oxygen,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine/o2,
-<<<<<<< HEAD
 /area/engine/atmos/distro)
-"dAK" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/auxiliary)
-=======
-/area/engine/atmos_distro)
->>>>>>> master
 "dAX" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -16561,19 +16528,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "ibe" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
 /obj/machinery/computer/security/qm{
 	dir = 1
 	},
-/obj/machinery/light_switch{
-	pixel_y = -24
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -37
-	},
+/obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "ibA" = (
@@ -17561,10 +17519,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "iAS" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner,
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -29107,6 +29061,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"otk" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos/distro)
 "ots" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
@@ -35708,10 +35666,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"rJs" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/atmos/distro)
 "rJw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -42764,13 +42718,13 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "vnq" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
-	},
-/obj/structure/closet/secure_closet/quartermaster,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/structure/filingcabinet,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "vnv" = (
@@ -68784,9 +68738,9 @@ twv
 oxM
 jjX
 jjX
-rJs
+otk
 cPG
-rJs
+otk
 jjX
 jjX
 jjX
@@ -74958,7 +74912,7 @@ vnq
 iAS
 doI
 ibe
-pQR
+bVm
 hqm
 bco
 xYw
