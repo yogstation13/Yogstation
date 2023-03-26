@@ -58,7 +58,7 @@
 /obj/item/projectile/bullet/c46x30mm/venom/on_hit(atom/target, blocked)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/victim = target
-		victim.reagents.add_reagent(/datum/reagent/toxin, 6)
+		victim.reagents.add_reagent(/datum/reagent/toxin, 4)
 		victim.adjustToxLoss(6)
 
 	return ..()
@@ -66,6 +66,5 @@
 	name = "4.6x30mm kraken bullet"
 	damage = 22
 	armour_penetration = -50
-	sharpness = SHARP_EDGED
 	wound_bonus = -30 // we arent dismembering people here
 	bare_wound_bonus = 3
