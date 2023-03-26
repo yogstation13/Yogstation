@@ -189,6 +189,10 @@
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/unpowered)
+"gi" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "gw" = (
 /obj/structure/table/glass,
 /obj/item/clothing/mask/cigarette,
@@ -646,13 +650,6 @@
 /turf/open/floor/plating/lavaland_baseturf{
 	icon_state = "panelscorched"
 	},
-/area/ruin/unpowered)
-"xz" = (
-/obj/structure/table/reinforced,
-/obj/item/melee/baton/loaded{
-	pixel_x = 2
-	},
-/turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "xE" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -1149,6 +1146,11 @@
 /obj/structure/table,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/unpowered)
+"Tm" = (
+/obj/structure/rack,
+/obj/item/gun/energy/laser,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "TG" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1210,11 +1212,6 @@
 "VD" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
-"VR" = (
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "VT" = (
@@ -3071,7 +3068,7 @@ ab
 ab
 ab
 Gf
-VR
+Tm
 hL
 TG
 TG
@@ -3123,7 +3120,7 @@ ab
 ab
 ab
 Gf
-xz
+gi
 eP
 gP
 gP
