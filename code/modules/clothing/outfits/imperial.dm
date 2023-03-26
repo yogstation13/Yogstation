@@ -13,10 +13,6 @@
 	item_state = "guard_helmet"
 	armor = list(MELEE = 50, BULLET = 35, LASER = 35,ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5)
 
-/obj/item/clothing/head/helmet/imperial/orderable
-	desc = "Standard-issue flak helmet for members of the Imperial Guard. This one feels lighter for some reason..."
-	armor = list(MELEE = 25, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5) // No, you cant order ERT strength armor
-
 /obj/item/clothing/under/imperial
 	name = "guardsman fatigues"
 	desc = "A set of khaki fatigues. Standard issue for Imperial Guardsmen"
@@ -32,10 +28,6 @@
 	heat_protection = LEGS|FEET
 	body_parts_covered = LEGS|FEET
 
-/obj/item/clothing/shoes/combat/imperial/orderable
-	desc = "A pair of heavy duty armored shoes, providing protection up to the knees. Standard issue in the Imperial Guard. This pair feels lighter for some reason..."
-	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 10, RAD = 0, FIRE = 50, ACID = 50) // No, you cant order ERT strength armor
-
 /obj/item/clothing/suit/armor/imperial
 	name = "flak Vest"
 	desc = "A set of standard issue flak armor for Imperial Guardsmen. Protects you fairly well from most threats."
@@ -46,11 +38,6 @@
 	heat_protection = CHEST|GROIN|ARMS
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 10)
-
-/obj/item/clothing/suit/armor/imperial/orderable
-	armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 90, WOUND = 5)
-	desc = "A set of standard issue flak armor for Imperial Guardsmen. Protects you fairly well from most threats. This one feels lighter for some reason..." // No, you cant order ERT strength armor
-
 /obj/item/storage/belt/military/imperial
 	name = "Imperial Belt"
 	desc = "A well worn belt, standard issue among Imperial Guard forces."

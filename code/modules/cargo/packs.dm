@@ -560,48 +560,6 @@
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
 
-/datum/supply_pack/security/armory/imperialarmor
-	name = "Imperial Equipment Crate"
-	desc = "The might of the Emperor is at your command! Contains three sets of armor, uniforms, and more to have you fit the bill of a Guardsman! Requires Armory access to open."
-	cost = 9000
-	contraband = TRUE
-	contains = list(/obj/item/clothing/neck/imperial,
-					/obj/item/clothing/neck/imperial,
-					/obj/item/clothing/neck/imperial,
-					/obj/item/clothing/head/helmet/imperial/orderable,
-					/obj/item/clothing/head/helmet/imperial/orderable,
-					/obj/item/clothing/head/helmet/imperial/orderable,
-					/obj/item/clothing/under/imperial,
-					/obj/item/clothing/under/imperial, // three sets of drip, to go with your three new guns.
-					/obj/item/clothing/under/imperial,
-					/obj/item/clothing/shoes/combat/imperial/orderable,
-					/obj/item/clothing/shoes/combat/imperial/orderable,
-					/obj/item/clothing/shoes/combat/imperial/orderable,
-					/obj/item/clothing/suit/armor/imperial/orderable,
-					/obj/item/clothing/suit/armor/imperial/orderable,
-					/obj/item/clothing/suit/armor/imperial/orderable,
-					/obj/item/storage/belt/military/imperial,
-					/obj/item/storage/belt/military/imperial,
-					/obj/item/storage/belt/military/imperial,
-					/obj/item/clothing/gloves/combat,
-					/obj/item/clothing/gloves/combat,
-					/obj/item/clothing/gloves/combat)
-
-
-/datum/supply_pack/security/armory/imperialadmin
-	name = "Imperial Weapons Crate"
-	desc = "The might of the Emperor is at your command! Contains all of the strongest weapons the Imperium has to offer. Requires Armory access to open."
-	cost = 696969
-	contraband = TRUE
-	admin_spawned = TRUE
-	contains = list(/obj/item/gun/ballistic/automatic/laser/lasgun, 
-					/obj/item/gun/ballistic/automatic/laser/longlas,
-					/obj/item/gun/ballistic/automatic/laser/laspistol,
-					/obj/item/gun/ballistic/automatic/laser/hotshot,
-					/obj/item/gun/energy/plasma/pistol,
-					/obj/item/gun/energy/plasma/rifle,
-					/obj/item/gun/ballistic/automatic/pistol/boltpistol)
-
 /datum/supply_pack/security/armory/mindshield
 	name = "Mindshield Implants Crate"
 	desc = "Prevent against radical thoughts with three Mindshield implants. Requires Armory access to open."
