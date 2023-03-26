@@ -735,7 +735,7 @@
 
 			else if(M.get_num_arms()) //make sure you have arms with which to wipe
 				visible_message(span_notice("[src] wipes the pie off [p_their()] face with [p_their()] hand."), 
-								span_notice(You wipe the pie off your face with your hand."))
+								span_notice("You wipe the pie off your face with your hand."))
 			wash_cream()
 			return
 		check_self_for_injuries()
