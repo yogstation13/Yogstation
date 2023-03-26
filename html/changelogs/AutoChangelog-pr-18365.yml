@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - bugfix: "Heretic epilogues should now properly consider lore in their logic"
-  - tweak: "Re-organizes heretic epilogues in code to be more intuitive"
-  - spellcheck: "\"THE [BLANK] HERETIC HAS ASCENDED!\" greentext has been changed to reflect the heretic's new title depending on path"

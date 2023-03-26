@@ -1,8 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "moves TRAIT_EASYDISMEMBER to the correct place in the IPC species file"
-  - bugfix: "fixes EMPs disintegrating limbs and destroying jumpsuits"
-  - tweak: "EMP damage to robotic limbs is now distributed evenly across all robotic limbs (up to 10 burn 30 stamina on light, up to 20 burn 60 stamina on heavy plus 5 second paralyze if fully augmented or IPC)"
-  - tweak: "only heavy EMPs can dismember"
-  - tweak: "IPCs do the *warn emote (*blares an alarm!) when EMP'd"
