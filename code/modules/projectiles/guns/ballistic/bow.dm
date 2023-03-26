@@ -531,11 +531,9 @@
 				choice_list[initial(arrow_type.name)] = arrow_type
 				radial_list[initial(arrow_type.name)] = choice
 			var/raw_choice = show_radial_menu(user, user, radial_list, tooltips = TRUE)
-			message_admins("[raw_choice]")
 			if(!raw_choice || !(raw_choice in radial_list))
 				return
 			var/obj/item/ammo_casing/reusable/arrow/energy/choice = choice_list[raw_choice]
-			message_admins("[choice]")
 			if(!choice || !(choice in M.selectable_types))
 				return
 			M.ammo_type = choice
