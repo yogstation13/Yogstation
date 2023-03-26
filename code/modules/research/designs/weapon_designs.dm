@@ -350,7 +350,7 @@
 	// This is where the fun begins
 
 /datum/design/mag_oldsmg/kraken_mag
-	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Kraken)"
+	name = "WT-550 Auto Gun Kraken Bullet Magazine (4.6x30mm Kraken)"
 	desc = "A 20-round kraken magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_kraken"
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/diamond = 500)
@@ -358,7 +358,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mag_oldsmg/venom_mag
-	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Venom)"
+	name = "WT-550 Auto Gun Venom Bullet Magazine (4.6x30mm Venom)"
 	desc = "A 20-round venom magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_venom"
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
