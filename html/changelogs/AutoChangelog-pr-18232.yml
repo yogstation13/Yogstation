@@ -1,7 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - bugfix: ".357 Ironfeather box in the uplink should now actually give Ironfeather"
-  - tweak: "Stechkin now has ten rounds per magazine"
-  - tweak: ".357 Nutcracker and .357 Metalshock have had their damage values increased"
-  - tweak: ".357 Ironfeather now has 10 AP, up from -20 of default pellets"

@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
-/datum/uplink_item/stealthy_weapons/dart_pistol
+/datum/uplink_item/stealthy_weapons/dart_syringe
 	name = "Box of Chemical Shotgun Darts"
 	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
 			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
@@ -2110,6 +2110,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/emp_shield
+	name = "EMP Shield Implant"
+	desc = "An implant that will render you and your insides immune to electromagnetic interference, protecting you from ion-based weaponry and EMPs. \
+			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
+	item = /obj/item/storage/box/syndie_kit/emp_shield
+	cost = 6
+
 // Events
 /datum/uplink_item/services
 	category = "Services"
@@ -2276,6 +2283,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
+	surplus = 0
+
+/datum/uplink_item/role_restricted/reticence
+	name = "Retience Exosuit"
+	desc = "A popular product for pantomime performers. For when you need to silence a target a little more... permanently. Comes equipped with advanced cloaking technology, a Quietus carbine, and an RCD."
+	item = /obj/mecha/combat/reticence/loaded
+	cost = 20
+	restricted_roles = list("Mime")
+	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
 
 /datum/uplink_item/role_restricted/arm_medical_gun
@@ -2475,7 +2491,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
-/datum/uplink_item/role_restricted/chemical_gun
+/datum/uplink_item/role_restricted/chemical_art
 	name = "Psychotic Brawl Notes"
 	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
 			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."
