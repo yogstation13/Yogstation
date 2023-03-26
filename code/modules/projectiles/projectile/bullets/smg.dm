@@ -52,21 +52,20 @@
 	stamina = 22
 
 /obj/item/projectile/bullet/c46x30mm/venom
-	name = "4.6x30mm venom bullet" // Doesnt actually inject toxin. Just does toxin damage.
+	name = "4.6x30mm venom bullet" 
 	damage = 6
 
 /obj/item/projectile/bullet/c46x30mm/venom/on_hit(atom/target, blocked)
 	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/victim = target
-		victim.reagents.add_reagent(/datum/reagent/toxin, 6)
+		var/mob/living/carbon/victim = target // Both injects toxin, and applies 6 tox damage on hit.
+		victim.reagents.add_reagent(/datum/reagent/toxin, 4)
 		victim.adjustToxLoss(6)
 
 	return ..()
 /obj/item/projectile/bullet/c46x30mm/kraken
 	name = "4.6x30mm kraken bullet"
 	damage = 22
-	armour_penetration = -50
-	sharpness = SHARP_EDGED
+	armour_penetration = -60
 	wound_bonus = -30 // we arent dismembering people here
 	bare_wound_bonus = 3
 
