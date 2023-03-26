@@ -2200,6 +2200,9 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/structure/chair/office/light{
+	dir = 8
+	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/heads/chief)
 "bcW" = (
@@ -4119,10 +4122,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
-"ccU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/atmos/storage)
 "cds" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -7521,10 +7520,10 @@
 	icon_state = "0-4"
 	},
 /obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/paper/monitorkey,
-/obj/item/folder/yellow,
-/obj/item/stamp/ce,
+/obj/machinery/photocopier/faxmachine{
+	department = "Chief Engineer";
+	name = "Chief Engineer's Fax Machine"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "dLC" = (
@@ -18667,7 +18666,8 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "jjX" = (
-/turf/closed/wall/r_wall,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/engine/atmos/distro)
 "jlg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -29064,7 +29064,7 @@
 "otk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/engine/atmos/distro)
+/area/engine/atmos/storage)
 "ots" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
@@ -34971,9 +34971,11 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/structure/chair/office/light{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/folder/yellow,
+/obj/item/paper/monitorkey,
+/obj/item/stamp/ce,
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/heads/chief)
 "rtB" = (
@@ -35666,6 +35668,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rJs" = (
+/turf/closed/wall/r_wall,
+/area/engine/atmos/distro)
 "rJw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -42162,6 +42167,26 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
+	},
+/obj/item/clipboard{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/stamp/qm{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/coin/silver{
+	pixel_x = 6;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -68218,10 +68243,10 @@ qcX
 kYn
 iLz
 bPu
-jjX
-jjX
-jjX
-jjX
+rJs
+rJs
+rJs
+rJs
 lYd
 gAG
 rjX
@@ -68736,15 +68761,15 @@ kIc
 eRY
 twv
 oxM
+rJs
+rJs
 jjX
-jjX
-otk
 cPG
-otk
 jjX
-jjX
-jjX
-jjX
+rJs
+rJs
+rJs
+rJs
 gRV
 fxo
 gRV
@@ -69255,7 +69280,7 @@ xTt
 fMN
 sIn
 qCF
-jjX
+rJs
 wIS
 tzj
 aMM
@@ -69509,9 +69534,9 @@ wKh
 xFT
 fRC
 xTt
-ccU
+otk
 xbm
-ccU
+otk
 xTt
 aJe
 vdN
@@ -71307,9 +71332,9 @@ sxY
 toM
 kKN
 xTt
-ccU
+otk
 uni
-ccU
+otk
 xTt
 cNu
 oyO
@@ -73105,9 +73130,9 @@ qRW
 adT
 qRW
 qRW
-ccU
+otk
 qnR
-ccU
+otk
 xTt
 cNu
 uBb
