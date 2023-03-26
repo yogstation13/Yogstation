@@ -123,7 +123,7 @@
 	to_chat(user, span_warning("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.Immobilize(0.2 SECONDS)//so it's not cut short by walking
-	user.throw_at(get_step_towards(target,user), 8, 4)
+	user.forceMove(get_step_towards(target, user))
 
 /obj/item/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
@@ -152,7 +152,7 @@
 		if(!L.anchored) // Only pull them if they're unanchored
 			if(istype(H))
 				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
-				L.Immobilize(1.5 SECONDS)
+				L.Immobilize(1.0 SECONDS)
 				if(prob(5))
 					firer.say("GET OVER HERE!!")//slicer's request
 				if(T.density) // If we happen to be facing a wall after the wire snatches them
