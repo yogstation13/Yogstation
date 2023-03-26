@@ -69,19 +69,17 @@
 	wound_bonus = -30 // we arent dismembering people here
 	bare_wound_bonus = 3
 
+/obj/item/projectile/bullet/c46x30mm/airburst_pellet
+	name = "4.6x30mm airburst pellet"
+	damage = 10
 /obj/item/projectile/bullet/c46x30mm/airburst
 	name = "4.6x30mm airburst bullet"
 	damage = 2 // its just a casing
 	range = 6
 
 /obj/item/projectile/bullet/c46x30mm/airburst/on_range(mob/user)
-	var/obj/item/projectile/P = /obj/item/ammo_casing/c46x30mm/airburst_pellet
+	var/obj/item/projectile/bullet/c46x30mm/airburst_pellet/P = new(get_turf(src))
 	P.firer = user ? user : src
 	P.fired_from = src
 	P.fire(dir2angle(dir))
-	return P
 	qdel(src)
-
-/obj/item/projectile/bullet/c46x30mm/airburst_pellet
-	name = "4.6x30mm airburst pellet"
-	damage = 10
