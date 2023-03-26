@@ -4122,6 +4122,10 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"ccU" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos/storage)
 "cds" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -6050,6 +6054,9 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
@@ -18666,8 +18673,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "jjX" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/engine/atmos/distro)
 "jlg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -29064,7 +29070,7 @@
 "otk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/engine/atmos/storage)
+/area/engine/atmos/distro)
 "ots" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
@@ -35668,9 +35674,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"rJs" = (
-/turf/closed/wall/r_wall,
-/area/engine/atmos/distro)
 "rJw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -39489,6 +39492,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "tHh" = (
@@ -68243,10 +68247,10 @@ qcX
 kYn
 iLz
 bPu
-rJs
-rJs
-rJs
-rJs
+jjX
+jjX
+jjX
+jjX
 lYd
 gAG
 rjX
@@ -68761,15 +68765,15 @@ kIc
 eRY
 twv
 oxM
-rJs
-rJs
 jjX
+jjX
+otk
 cPG
+otk
 jjX
-rJs
-rJs
-rJs
-rJs
+jjX
+jjX
+jjX
 gRV
 fxo
 gRV
@@ -69280,7 +69284,7 @@ xTt
 fMN
 sIn
 qCF
-rJs
+jjX
 wIS
 tzj
 aMM
@@ -69534,9 +69538,9 @@ wKh
 xFT
 fRC
 xTt
-otk
+ccU
 xbm
-otk
+ccU
 xTt
 aJe
 vdN
@@ -71332,9 +71336,9 @@ sxY
 toM
 kKN
 xTt
-otk
+ccU
 uni
-otk
+ccU
 xTt
 cNu
 oyO
@@ -73130,9 +73134,9 @@ qRW
 adT
 qRW
 qRW
-otk
+ccU
 qnR
-otk
+ccU
 xTt
 cNu
 uBb
