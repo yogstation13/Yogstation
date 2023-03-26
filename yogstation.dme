@@ -2657,6 +2657,7 @@
 #include "code\modules\mob\living\silicon\ai\freelook\chunk.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\eye.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\read_me.dm"
+#include "code\modules\mob\living\silicon\ai\synthetics\synth_os.dm"
 #include "code\modules\mob\living\silicon\pai\death.dm"
 #include "code\modules\mob\living\silicon\pai\pai.dm"
 #include "code\modules\mob\living\silicon\pai\pai_defense.dm"

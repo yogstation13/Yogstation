@@ -53,22 +53,31 @@
 	var/mob/living/silicon/ai/mainframe
 
 	inherent_slowdown = 0.65
+	var/datum/action/innate/synth_os/os_button = new
+
+	var/original_numbers
 
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
+	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
 	C.grant_language(/datum/language/machine, source = LANGUAGE_SYNTH)
-	C.real_name = "Synthetic Unit #[rand(1, 999)]"
+	original_numbers = rand(1, 999)
+	C.real_name = "Synthetic Unit #[original_numbers]"
 	C.name = C.real_name
+	os_button.Grant(C)
+	if(C.mind && !C.mind.synth_os)
+		C.mind.synth_os = new()
 
 
 /datum/species/wy_synth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	C.remove_language(/datum/language/machine, source = LANGUAGE_SYNTH)
+	os_button.Remove(C)
 
 /datum/species/wy_synth/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
@@ -280,13 +289,22 @@
 	mainframe = null
 
 /datum/species/wy_synth/proc/transfer(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	var/datum/mind/our_mind = user.mind
 	user.mind.transfer_to(target)
+	our_mind.synth_os.switch_shell(user, target)
 
 	target.real_name = "[user.real_name]"	//Randomizing the name so it shows up separately in the shells list
 	target.name = target.real_name
 	var/obj/item/card/id/ID = target.wear_id
 	if(ID)
 		ID.update_label(user.real_name, "Synthetic")
+
+	user.real_name = "Synthetic Unit #[original_numbers]"
+	user.name = C.real_name
+	var/obj/item/card/id/ID = user.wear_id
+	if(ID)
+		ID.update_label(user.real_name, "Synthetic")
+	user.say("Unit disconnected. Entering sleep mode.")
 
 /datum/species/wy_synth/spec_attack_hand(mob/living/carbon/human/attacker, mob/living/carbon/human/user)
 	if(is_synth(attacker) && is_synth(user)) 
@@ -300,4 +318,34 @@
 		return TRUE
 	return ..()
 
+/datum/action/innate/synth_os
+	name = "Access SynthOS"
+	desc = "Allows access to internal functions."
+	icon_icon = 'icons/obj/modular_laptop.dmi'
+	button_icon_state = "laptop"
+
+/datum/action/innate/synth_os/IsAvailable()
+	. = ..()
+	if(!is_synth(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/wy_synth/WS = H?.dna?.species
+	if(WS)
+		if(WS.mainframe)
+			to_chat(owner, span_warning("Unfortunately SynthOS is not supported in remotely controlled synthetic units."))
+			return FALSE
+		return TRUE
+	
+
+/datum/action/innate/synth_os/Trigger()
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/wy_synth/WS = H?.dna?.species
+	if(WS)
+		H.mind.synth_os.ui_interact(owner)
+	
+	return FALSE
+
 #undef CONCIOUSAY
+
