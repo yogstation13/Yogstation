@@ -65,6 +65,6 @@
 /obj/item/projectile/bullet/c46x30mm/kraken
 	name = "4.6x30mm kraken bullet"
 	damage = 22
-	armour_penetration = -50
+	armour_penetration = -75
 	wound_bonus = -30 // we arent dismembering people here
 	bare_wound_bonus = 3
