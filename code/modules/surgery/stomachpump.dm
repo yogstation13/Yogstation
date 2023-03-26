@@ -56,7 +56,7 @@
 		display_results(user, target, span_notice("[user] forces [target_human] to vomit, cleansing their stomach of some chemicals!"),
 				span_notice("[user] forces [target_human] to vomit, cleansing their stomach of some chemicals!"),
 				"[user] forces [target_human] to vomit!")
-		target_human.vomit(20, FALSE, TRUE, 1, TRUE, FALSE, purge_ratio = 0.67) //higher purge ratio than regular vomiting
+		target_human.vomit(20, FALSE, TRUE, 1, TRUE, FALSE, force = TRUE, purge_ratio = 0.67) //higher purge ratio than regular vomiting
 	return ..()
 
 /datum/surgery_step/stomach_pump/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

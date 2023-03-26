@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Collapsible, Grid, LabeledList, NoticeBox, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
@@ -69,14 +68,14 @@ export const NaniteInfoBox = (props, context) => {
               {use_rate}
             </LabeledList.Item>
             {!!can_trigger && (
-              <Fragment>
+              <>
                 <LabeledList.Item label="Trigger Cost">
                   {trigger_cost}
                 </LabeledList.Item>
                 <LabeledList.Item label="Trigger Cooldown">
                   {trigger_cooldown}
                 </LabeledList.Item>
-              </Fragment>
+              </>
             )}
           </LabeledList>
         </Grid.Column>
@@ -223,7 +222,7 @@ export const NaniteCloudBackupDetails = (props, context) => {
                             program_id: program.id,
                             rule_id: rule.id,
                           })} />
-                        {` ${rule.display}`}
+                        {rule.display}
                       </Box>
                     ))
                   ) : (
@@ -276,7 +275,7 @@ export const NaniteCloudControl = (props, context) => {
                   view: 0,
                 })} />
             ) : (
-              <Fragment>
+              <>
                 {"New Backup: "}
                 <NumberInput
                   value={new_backup_id}
@@ -290,7 +289,7 @@ export const NaniteCloudControl = (props, context) => {
                 <Button
                   icon="plus"
                   onClick={() => act('create_backup')} />
-              </Fragment>
+              </>
             )
           )}>
           {!data.current_view ? (

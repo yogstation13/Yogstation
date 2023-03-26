@@ -65,6 +65,9 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn( atom/A, params )
+	if(HAS_TRAIT(src, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(src, span_danger("You can't interact with anything right now!"))
+		return
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1

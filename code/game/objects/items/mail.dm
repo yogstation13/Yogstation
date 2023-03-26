@@ -113,6 +113,7 @@
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 100, TRUE)
 
 /obj/item/mail/attack_self(mob/user)
+	var/recipient_real = FALSE // Whether there is a recipient
 	if(recipient_ref)
 		var/datum/mind/recipient = recipient_ref.resolve()
 		// If the recipient's mind has gone, then anyone can open their mail
@@ -120,6 +121,7 @@
 		if(recipient && recipient != user?.mind)
 			to_chat(user, span_notice("You can't open somebody else's mail! That's <em>illegal</em>!"))
 			return
+		recipient_real = recipient // This will be truthy if recipient resolved successfully
 
 	to_chat(user, span_notice("You start to unwrap the package..."))
 	if(!do_after(user, 1.5 SECONDS, target = user))
@@ -128,6 +130,9 @@
 	for (var/content in contents)
 		user.put_in_hands(content)
 	playsound(loc, 'sound/items/poster_ripped.ogg', 50, TRUE)
+	if(recipient_real) // If this is official NT mail for someone, give cargo money for delivering it successfully
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		D?.adjust_money(150)
 	qdel(src)
 
 /obj/item/mail/examine_more(mob/user)
@@ -160,6 +165,15 @@
 				goodies = job_goodies
 			else
 				goodies += job_goodies
+
+	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_BADMAIL))	//reduce the weight of every item by 10
+		for(var/item in goodies)
+			goodies[item] -= 10
+			if(goodies[item] <= 0)	 //remove everything with a weight below 0
+				goodies -= item
+
+	if(!goodies) //if everything was removed for some reason
+		return FALSE 
 
 	for(var/iterator in 1 to goodie_count)
 		var/target_good = pickweight(goodies)

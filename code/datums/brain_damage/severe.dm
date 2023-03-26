@@ -4,6 +4,7 @@
 
 /datum/brain_trauma/severe
 	resilience = TRAUMA_RESILIENCE_SURGERY
+	random_cure_chance = 4
 
 /datum/brain_trauma/severe/mute
 	name = "Mutism"

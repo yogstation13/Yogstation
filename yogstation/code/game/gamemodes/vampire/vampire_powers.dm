@@ -323,14 +323,14 @@
 	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
-	user.revive(full_heal = TRUE)
-	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
 		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 		user.visible_message(span_warning("Shadowy matter takes the place of [user]'s missing limbs as they reform!"))
-		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
+		user.regenerate_limbs()
 		user.regenerate_organs()
+	user.revive(full_heal = TRUE)
+	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
 
 
 /obj/effect/proc_holder/spell/targeted/disease
@@ -454,7 +454,7 @@
 					to_chat(target, span_danger("Wicked shadows invade your sight, beckoning to you."))
 					to_chat(user, span_notice("We begin to drain [target]'s blood in, so Lilith can bless it."))
 				if(2)
-					to_chat(target, span_danger("Demonic whispers fill your mind, and they become irressistible..."))
+					to_chat(target, span_danger("Demonic whispers fill your mind, and they become irresistible..."))
 				if(3)
 					to_chat(target, span_danger("The world blanks out, and you see a demo- no ange- demon- lil- glory- blessing... Lilith."))
 					to_chat(user, span_notice("Excitement builds up in you as [target] sees the blessing of Lilith."))

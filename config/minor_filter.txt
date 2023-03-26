@@ -40,3 +40,5 @@ hbu=how about you
 \bffs\b=for fuck's sake
 \bur\b=your
 btw=by the way
+pls=please
+plz=please

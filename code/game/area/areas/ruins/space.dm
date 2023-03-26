@@ -328,7 +328,7 @@
 	icon_state = "hallS"
 
 /area/ruin/space/derelict/hallway/primary/port
-	name = "Derelict Port Hallway"
+	name = "Derelict Port (W) Hallway"
 	icon_state = "hallFP"
 
 /area/ruin/space/derelict/arrival
@@ -367,11 +367,11 @@
 	icon_state = "chapel"
 
 /area/solar/derelict_starboard
-	name = "Derelict Starboard Solar Array"
+	name = "Derelict Starboard (E) Solar Array"
 	icon_state = "panelsS"
 
 /area/solar/derelict_aft
-	name = "Derelict Aft Solar Array"
+	name = "Derelict Aft (S) Solar Array"
 	icon_state = "yellow"
 
 /area/ruin/space/derelict/singularity_engine

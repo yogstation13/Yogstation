@@ -296,12 +296,22 @@
 		var/res = clamp(properties["resistance"] - (symptoms.len / 2), 1, advance_cures.len)
 		if(res == oldres)
 			return
-		cures = list(pick(advance_cures[res]))
+		
+		if(prob(82 - (res * 7))) // Double cure
+			var/list/the_cures = advance_cures[res]
+			var/list/not_used = the_cures.Copy()
+			cures = list(pick_n_take(not_used), pick_n_take(not_used))
+			// Get the cure name from the cure_id
+			var/datum/reagent/D1 = GLOB.chemical_reagents_list[cures[1]]
+			var/datum/reagent/D2 = GLOB.chemical_reagents_list[cures[2]]
+			cure_text = "[D1.name] and [D2.name]"
+		else // Single cure
+			cures = list(pick(advance_cures[res]))
+			// Get the cure name from the cure_id
+			var/datum/reagent/D = GLOB.chemical_reagents_list[cures[1]]
+			cure_text = D.name
+		
 		oldres = res
-
-		// Get the cure name from the cure_id
-		var/datum/reagent/D = GLOB.chemical_reagents_list[cures[1]]
-		cure_text = D.name
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
 /datum/disease/advance/proc/Evolve(min_level, max_level, ignore_mutable = FALSE)

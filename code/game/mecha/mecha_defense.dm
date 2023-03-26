@@ -317,7 +317,7 @@
 			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
-/obj/mecha/mech_melee_attack(obj/mecha/M)
+/obj/mecha/mech_melee_attack(obj/mecha/M, equip_allowed)
 	if(!has_charge(melee_energy_drain))
 		return 0
 	use_power(melee_energy_drain)

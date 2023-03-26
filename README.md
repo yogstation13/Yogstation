@@ -22,65 +22,17 @@
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
-<details><summary>Click here to view the Yogstation GitHub Guidelines</summary>
+[**Yogstation GitHub Guidelines**](https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md#yogstation-github-guidelines)
 
-## Yogstation GitHub Guidelines
-
-### General Rules
-
-**Yogstation is an open source community-driven project that allows everybody to contribute their ideas towards making rounds on Space Station 13 as fun as possible by means of pull requests and issue reports to the main repository.**
-
-**Although we allow conversation on GitHub in Pull Requests/Issues, we ask that all contributors and maintainers maintain a sense of decorum and respect the author and other people contributing to the discussion.** If someone is constantly contributing negative statements or is not constructive in their criticism they may be asked to stop or have their right to contribute removed in the future.
-
-**The GitHub Terms and Conditions must be followed.** Failure to follow the terms and conditions of GitHub may result in your exclusion from contribution in the future. 
-
-**We do not require people to be signed up on the forums or Discord in order to contribute to the GitHub; however, there must be a way for maintainers to be able to contact you, either via Discord (preferably) or e-mail when concerns with identity are found and need to be resolved.** Being banned from the server does not automatically ban you from GitHub and vice versa; however, this is up to the discretion of the head developers. Your pull requests may all be placed on hold until you accept this request for communication.
-
-### Contributors
-
-**When you are creating a Pull Request/Issue Report**, please make sure you name the Pull Request/Issue something relevant to what is being changed, added, or removed. Do not attempt to mislead people about the content of the Pull Request/Issue. Make sure you fill out any applicable templates as clearly and concisely as possible, and link any relevant issues your Pull Request solves.
-
-**We do not limit the amount of Pull Requests which can be submitted per day**; however, please do not submit more than is necessary. Additionally, please do not harass any member of the development team to expedite or merge your Pull Request. In certain circumstances, such as the case of a game breaking bug or issue, please reach out and inform them as soon as possible.
-
-**We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
-
-### Maintainers
-
-**As a maintainer, you are a representative of the development team, as such you should act with a somewhat professional manner when dealing with contributions, including constructively commenting on PRs.**
-
-**All maintainers should follow set standards for handling Pull Requests.** These standards include waiting 24 hours before merging or closing a Pull Request, as well as merging only Pull Requests that fall under your area of expertise (i.e. an Art Maintainer should not merge code, and a Code Maintainer should not merge art.) Lastly, revert Pull Requests should only be merged by a Head Developer. The above limitations do not apply to round-breaking or repo-breaking changes; however, please notify any head developers if this occurs.
-
-**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close draft Pull Requests if:
-* A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
-* A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
-* A contributor has not contributed to their draft Pull Request in a week’s time.
-
-**If a Maintainer/Director gets banned from the server/Discord, there will be an automatic review process triggered.** During this time access to GitHub merging and in-game ranks will be removed until the review is complete. After this review, roles and permissions may be returned depending on the result.
-
-### Contributor-Maintainer Disputes
-
-**If you have any complaints about maintainers or contributors you can use the GitHub report function**; however, abuse of this feature will be addressed if needed.
-
-**You may also raise an issue on discord by going to the #head-dev-complaints channel and creating a private thread**, then pinging head developers to make sure they are notified.
-
-**These policies are enforced by the Head Developer(s) and are subject to change at their discretion, with or without notification to the general public.**
-
-</details>
 
  
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.yogstation.net/wiki/Downloading_the_source_code
+[Downloading](.github/guides/DOWNLOADING.md)
 
-Option 1:
-Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
+[Running a server](.github/guides/RUNNING_A_SERVER.md)
 
-Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/Yogstation
-(note: this will use a lot of bandwidth if you wish to update and is a lot of
-hassle if you want to make any changes at all, so it's not recommended.)
-
-## The Yogstation codebase recommends compiling using version [514.1589](https://www.byond.com/download/build/514/514.1589_byond.exe) and may potentially NOT work on newer or older versions.
+[Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
 ## :exclamation: How to compile :exclamation:
 
@@ -91,113 +43,6 @@ Find `BUILD.bat` here in the root folder of yogstation, and double click it to i
 After it finishes, you can then setup the server normally by opening `yogstation.dmb` in DreamDaemon. See further down for instructions
 
 **Building yogstation in DreamMaker directly is now deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
-
-## INSTALLATION
-
-First-time installation should be fairly straightforward. First, you'll need
-BYOND installed. You can get it from https://www.byond.com/download. Once you've done
-that, extract the game files to wherever you want to keep them. This is a
-sourcecode-only release, so the next step is to compile the server files.
-Follow the above steps to do this.
-
-If you see any errors or warnings, something has gone wrong - possibly a corrupt
-download or the files extracted wrong. If problems persist, ask for assistance
-in #development-public on discord.
-
-Once that's done, open up the config folder. You'll want to edit config.txt to
-set the probabilities for different gamemodes in Secret and to set your server
-location so that all your players don't get disconnected at the end of each
-round. It's recommended you don't turn on the gamemodes with probability 0,
-except Extended, as they have various issues and aren't currently being tested,
-so they may have unknown and bizarre bugs. Extended is essentially no mode, and
-isn't in the Secret rotation by default as it's just not very fun.
-
-You'll also want to edit config/admins.txt to remove the default admins and add
-your own. "Game Master" is the highest level of access, and probably the one
-you'll want to use for now. You can set up your own ranks and find out more in
-config/admin_ranks.txt
-
-The format is
-
-```
-byondkey = Rank
-```
-
-where the admin rank must be properly capitalised.
-
-This codebase also depends on a native library called rust-g. A precompiled
-Windows DLL is included in this repository, but Linux users will need to build
-and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation/rust-g). The `hash` feature is required.
-
-Finally, to start the server, run Dream Daemon and enter the path to your
-compiled yogstation.dmb file. Make sure to set the port to the one you
-specified in the config.txt, and set the Security box to 'Trusted'. Then press GO
-and the server should start up and be ready to join. It is also recommended that
-you set up the SQL backend (see below).
-
-## UPDATING
-
-To update an existing installation, first back up your /config and /data folders
-as these store your server configuration, player preferences and banlist.
-
-Then, extract the new files (preferably into a clean directory, but updating in
-place should work fine), copy your /config and /data folders back into the new
-install, overwriting when prompted except if we've specified otherwise, and
-recompile the game.  Once you start the server up again, you should be running
-the new version.
-
-## HOSTING
-
-If you'd like a more robust server hosting option for tgstation and its
-derivatives. Check out /tg/station's server tools suite at 
-https://github.com/tgstation/tgstation-server
-
-## MAPS
-
-Yogstation currently comes equipped with the following maps.
-
-* [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
-* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
-* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
-* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
-* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
-
-All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
-
-The map that will be loaded for the upcoming round is determined by reading data/next_map.json, which is a copy of the json files found in the _maps tree. If this file does not exist, the default map from config/maps.txt will be loaded. Failing that, BoxStation will be loaded. If you want to set a specific map to load next round you can use the Change Map verb in game before restarting the server or copy a json from _maps to data/next_map.json before starting the server. Also, for debugging purposes, ticking a corresponding map's code file in Dream Maker will force that map to load every round.
-
-If you are hosting a server, and want randomly picked maps to be played each round, you can enable map rotation in [config.txt](config/config.txt) and then set the maps to be picked in the [maps.txt](config/maps.txt) file.
-
-Anytime you want to make changes to a map it's imperative you use the [Map Merging tools](https://tgstation13.org/wiki/Map_Merger)
-
-## AWAY MISSIONS
-
-Yogstation supports loading away missions however they are disabled by default.
-
-Map files for away missions are located in the _maps/RandomZLevels directory. Each away mission includes it's own code definitions located in /code/modules/awaymissions/mission_code. These files must be included and compiled with the server beforehand otherwise the server will crash upon trying to load away missions that lack their code.
-
-To enable an away mission open `config/awaymissionconfig.txt` and uncomment one of the .dmm lines by removing the #. If more than one away mission is uncommented then the away mission loader will randomly select one the enabled ones to load.
-
-## SQL SETUP
-
-The SQL backend requires a Mariadb server running 10.2 or later. Mysql is not supported but Mariadb is a drop in replacement for mysql. SQL is required for the library, stats tracking, admin notes, and job-only bans, among other features, mostly related to server administration. Your server details go in /config/dbconfig.txt, and the SQL schema is in /SQL/tgstation_schema.sql and /SQL/tgstation_schema_prefix.sql depending on if you want table prefixes.  More detailed setup instructions are located here: https://www.tgstation13.org/wiki/Downloading_the_source_code#Setting_up_the_database
-
-If you are hosting a testing server on windows you can use a standalone version of MariaDB pre load with a blank (but initialized) tgdb database. Find them here: https://tgstation13.download/database/ Just unzip and run for a working (but insecure) database server. Includes a zipped copy of the data folder for easy resetting back to square one.
-
-## WEB/CDN RESOURCE DELIVERY 
-
-Web delivery of game resources makes it quicker for players to join and reduces some of the stress on the game server.
-
-1. Edit compile_options.dm to set the `PRELOAD_RSC` define to `0`
-1. Add a url to config/external_rsc_urls pointing to a .zip file containing the .rsc.
-    * If you keep up to date with /tg/ you could reuse /tg/'s rsc cdn at http://tgstation13.download/byond/tgstation.zip. Otherwise you can use cdn services like CDN77 or cloudflare (requires adding a page rule to enable caching of the zip), or roll your own cdn using route 53 and vps providers.
-	* Regardless even offloading the rsc to a website without a CDN will be a massive improvement over the in game system for transferring files.
-
-## IRC BOT SETUP
-
-Included in the repository is a python3 compatible IRC bot capable of relaying adminhelps to a specified
-IRC channel/server, see the /tools/minibot folder for more
 
 ## CONTRIBUTING
 

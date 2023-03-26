@@ -109,7 +109,7 @@
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown * (check_eva() ? EVA_MODIFIER : 1))
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown * check_eva())
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(atom/target)
 	if(!chassis)
@@ -117,7 +117,7 @@
 	var/C = chassis.loc
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	. = do_after(chassis.occupant, equip_cooldown * (check_eva() ? EVA_MODIFIER : 1), target)
+	. = do_after(chassis.occupant, equip_cooldown * check_eva(), target)
 	set_ready_state(1)
 	if(!chassis || 	chassis.loc != C || src != chassis.selected || !(get_dir(chassis, target)&chassis.dir))
 		return 0

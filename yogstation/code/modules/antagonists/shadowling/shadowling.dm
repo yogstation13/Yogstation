@@ -101,3 +101,10 @@
 	if((dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
 		var/datum/species/shadow/ling/SL = dna.species
 		. += "Shadowy Shield Charges: [SL.shadow_charges]"
+
+/datum/antagonist/shadowling/get_preview_icon()
+	var/icon/shadowling_icon = icon('yogstation/icons/mob/mob.dmi', "shadowling_ascended")
+
+	shadowling_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return shadowling_icon

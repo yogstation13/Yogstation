@@ -130,7 +130,7 @@
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	var/turf/T = get_turf(src)
-	if(usr)
+	if(usr && T)
 		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]")
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
@@ -223,9 +223,3 @@
 	return
 /obj/item/assembly/signaler/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
-
-/obj/item/assembly/signaler/anomaly/radiation
-	name = "\improper radiation anomaly core"
-	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
-	icon_state = "anomaly core"
-	anomaly_type = /obj/effect/anomaly/radiation

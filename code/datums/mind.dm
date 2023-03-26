@@ -89,15 +89,16 @@
 	/// The timer for the afk verb
 	var/afk_verb_timer
 
-/datum/mind/New(key)
-	src.key = key
+/datum/mind/New(_key)
+	key = _key
 	soulOwner = src
 	martial_art = default_martial_art
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
-	if(islist(antag_datums))
-		QDEL_LIST(antag_datums)
+	QDEL_NULL(antag_hud)
+	QDEL_LIST(antag_datums)
+	QDEL_NULL(language_holder)
 	current = null
 	soulOwner = null
 	return ..()
@@ -124,7 +125,7 @@
 					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
@@ -158,7 +159,7 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, .proc/set_death_time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
@@ -320,28 +321,28 @@
 	var/obj/item/uplink_loc
 	var/implant = FALSE
 
-	if(traitor_mob.client && traitor_mob.client.prefs)
-		switch(traitor_mob.client.prefs.uplink_spawn_loc)
-			if(UPLINK_PDA)
-				uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = R
-				if(!uplink_loc)
-					uplink_loc = P
-			if(UPLINK_RADIO)
+	var/uplink_spawn_location = traitor_mob.client?.prefs?.read_preference(/datum/preference/choiced/uplink_location)
+	switch (uplink_spawn_location)
+		if(UPLINK_PDA)
+			uplink_loc = PDA
+			if(!uplink_loc)
 				uplink_loc = R
-				if(!uplink_loc)
-					uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = P
-			if(UPLINK_PEN)
+			if(!uplink_loc)
 				uplink_loc = P
-				if(!uplink_loc)
-					uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = R
-			if(UPLINK_IMPLANT)
-				implant = TRUE
+		if(UPLINK_RADIO)
+			uplink_loc = R
+			if(!uplink_loc)
+				uplink_loc = PDA
+			if(!uplink_loc)
+				uplink_loc = P
+		if(UPLINK_PEN)
+			uplink_loc = P
+			if(!uplink_loc)
+				uplink_loc = PDA
+			if(!uplink_loc)
+				uplink_loc = R
+		if(UPLINK_IMPLANT)
+			implant = TRUE
 
 	if(!uplink_loc) // We've looked everywhere, let's just implant you
 		implant = TRUE

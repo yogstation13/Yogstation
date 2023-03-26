@@ -46,6 +46,11 @@
 			user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
 			qdel(C.handcuffed)
 			return
+		if(istype(C) && C.legcuffed)
+			user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
+			qdel(C.legcuffed)
+			C.legcuffed = null
+			return
 		else
 			..()
 	else

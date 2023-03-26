@@ -25,21 +25,23 @@
 	med_hud_set_status()
 
 /mob/living/Destroy()
-	if(LAZYLEN(status_effects))
-		for(var/s in status_effects)
-			var/datum/status_effect/S = s
-			if(S.on_remove_on_mob_delete) //the status effect calls on_remove when its mob is deleted
-				qdel(S)
-			else
-				S.be_replaced()
+	for(var/datum/status_effect/effect as anything in status_effects)
+		// The status effect calls on_remove when its mob is deleted
+		if(effect.on_remove_on_mob_delete)
+			qdel(effect)
+		else
+			effect.be_replaced()
+	
 	if(ranged_ability)
 		ranged_ability.remove_ranged_ability(src)
+
 	if(buckled)
 		buckled.unbuckle_mob(src,force=1)
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
 	QDEL_LIST(diseases)
+	QDEL_LIST(surgeries)
 	return ..()
 
 /mob/living/onZImpact(turf/T, levels)
@@ -283,7 +285,7 @@
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
-			M.LAssailant = usr
+			M.LAssailant = WEAKREF(usr)
 		if(isliving(M))
 			var/mob/living/L = M
 			//Share diseases that are spread by touch
@@ -441,7 +443,7 @@
 		to_chat(src, span_notice("You are already sleeping."))
 		return
 	else
-		if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
+		if(tgui_alert(usr, "You sure you want to sleep for a while?", "Sleep", list("Yes", "No")) == "Yes")
 			SetSleeping(400) //Short nap
 	update_mobility()
 
@@ -605,6 +607,8 @@
 	stuttering = 0
 	slurring = 0
 	jitteriness = 0
+	if(HAS_TRAIT_FROM(src, TRAIT_BADDNA, CHANGELING_DRAIN))
+		REMOVE_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
 	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
 	if (mood)
 		mood.remove_temp_moods(admin_revive)
@@ -849,6 +853,7 @@
 	who.visible_message(span_danger("[src] tries to remove [who]'s [what.name]."), \
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
+	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
 	if(do_mob(src, who, what.strip_delay))
 		if(what && Adjacent(who))
 			if(islist(where))
@@ -1158,7 +1163,10 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
+	if(fire_stacks > 0)	//don't let people on fire instantly get -20 fire_stacks, but still let them extinguish themselves. Stops preternis from hurting themselves for trying to put out fire
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -1, 20)
+	else
+		fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 
@@ -1175,13 +1183,13 @@
 			L.fire_stacks = firesplit
 		else // If they were not
 			fire_stacks /= 2
-			L.fire_stacks += fire_stacks
+			L.adjust_fire_stacks(fire_stacks)
 			if(L.IgniteMob()) // Ignite them
 				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
 
 	else if(L.on_fire) // If they were on fire and we were not
 		L.fire_stacks /= 2
-		fire_stacks += L.fire_stacks
+		adjust_fire_stacks(L.fire_stacks)
 		IgniteMob() // Ignite us
 
 //Mobs on Fire end
@@ -1215,7 +1223,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else

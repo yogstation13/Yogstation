@@ -1,6 +1,9 @@
 /datum/job/engineer
 	title = "Station Engineer"
+	description = "Start the Supermatter, wire the solars, repair station hull \
+		and wiring damage."
 	flag = ENGINEER
+	orbit_icon = "gears"
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -23,7 +26,9 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
 
 	mail_goodies = list(
 		/obj/item/storage/box/lights/mixed = 20,
@@ -33,16 +38,7 @@
 		/obj/item/clothing/head/hardhat/red/upgraded = 1
 	)
 
-/datum/job/engineer/proc/EclipseStationChanges()
-	total_positions = 6
-	spawn_positions = 5
-
-/datum/job/engineer/proc/OmegaStationChanges()
-	total_positions = 2
-	spawn_positions = 2
-	added_access = list()
-	base_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS)
-	supervisors = "the captain and the head of personnel"
+	smells_like = "welding fuel"
 
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
@@ -51,7 +47,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	// Assign department engineering
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_engineering_department
+		department = M.client.prefs.read_preference(/datum/preference/choiced/engineering_department)
 		if(!LAZYLEN(GLOB.available_depts_eng) || department == "None")
 			return
 		else if(department in GLOB.available_depts_eng)

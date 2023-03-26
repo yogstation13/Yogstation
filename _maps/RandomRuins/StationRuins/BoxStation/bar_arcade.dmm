@@ -24,12 +24,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ag" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -97,12 +91,6 @@
 "ay" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aA" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aB" = (
@@ -731,6 +719,12 @@
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Ai" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ak" = (
 /obj/machinery/light,
 /obj/machinery/firealarm{
@@ -909,6 +903,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"PG" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "PU" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -1317,7 +1320,7 @@ PU
 ag
 "}
 (15,1,1) = {"
-af
+Ai
 aB
 aJ
 bf
@@ -1334,7 +1337,7 @@ ag
 "}
 (16,1,1) = {"
 ag
-aA
+PG
 aK
 ag
 ag

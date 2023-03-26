@@ -65,7 +65,7 @@
 	if(L?.damage)
 		next_breath = max(next_breath * L.get_organ_efficiency(), 1)
 
-	if((times_fired % next_breath) == 0 || failed_last_breath)
+	if((times_fired % next_breath) == 0 || failed_last_breath || isipc(src)) //IPCs breathe every tick to stabilize cooling
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
 		if(failed_last_breath)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
@@ -327,13 +327,7 @@
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
 	if(internal)
-		if(internal.loc != src && !(wear_mask.clothing_flags & MASKEXTENDRANGE)) // If the mask has extended range, do not check for internal.loc
-			internal = null
-			update_internals_hud_icon(0)
-		else if ((!wear_mask || !(wear_mask.clothing_flags & MASKINTERNALS)) && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-			internal = null
-			update_internals_hud_icon(0)
-		else
+		if(update_internals()) // returns TRUE if able to use internals, turns off internals and returns
 			update_internals_hud_icon(1)
 			. = internal.remove_air_volume(volume_needed)
 			if(!.)

@@ -61,7 +61,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_cycle_equip
-	name = "Cycle Equipment"
+	name = "Cycle Equipment. Can also be cycled with throwmode."
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/mecha/mech_cycle_equip/Activate()
@@ -114,11 +114,10 @@
 		return
 	chassis.lights = !chassis.lights
 	if(chassis.lights)
-		chassis.set_light(chassis.lights_power)
 		button_icon_state = "mech_lights_on"
 	else
-		chassis.set_light(-chassis.lights_power)
 		button_icon_state = "mech_lights_off"
+	chassis.set_light_on(chassis.lights)
 	chassis.occupant_message("Toggled lights [chassis.lights?"on":"off"].")
 	chassis.log_message("Toggled lights [chassis.lights?"on":"off"].", LOG_MECHA)
 	UpdateButtonIcon()

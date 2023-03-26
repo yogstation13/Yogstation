@@ -378,8 +378,8 @@
 		var/armor_block = run_armor_check(affecting, MELEE)
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
-/mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
-	if(M.selected?.melee_override)
+/mob/living/carbon/human/mech_melee_attack(obj/mecha/M, equip_allowed)
+	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
 	else if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
@@ -391,15 +391,17 @@
 			var/dmg = rand(M.force/2, M.force)
 			switch(M.damtype)
 				if(BRUTE)
-					if(M.force > 20)
+					if(M.force >= 20)
 						Knockdown(1.5 SECONDS)//the victim could get up before getting hit again
 						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if(BURN)
 					update |= temp.receive_damage(0, dmg)
-					playsound(src, 'sound/items/welder.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/items/welder.ogg', 50, 1)
 				if(TOX)
 					M.mech_toxin_damage(src)
 				else
@@ -545,21 +547,24 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	var/informed = FALSE
-	for(var/obj/item/bodypart/L in src.bodyparts)
-		if(L.status == BODYPART_ROBOTIC)
-			if(!informed)
-				to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
-				informed = TRUE
-			switch(severity)
-				if(1)
-					L.receive_damage(0,10,200)
-				if(2)
-					L.receive_damage(0,5,100)
-
-			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
-				if(prob(5))
-					L.dismember(BRUTE)
+	var/list/affected_parts = list()
+	for(var/obj/item/bodypart/BP in bodyparts)
+		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
+			if(prob(5) && severity == EMP_HEAVY && (TRAIT_EASYDISMEMBER in dna?.species.inherent_traits) && BP.body_zone != BODY_ZONE_CHEST)
+				BP.dismember()
+			else
+				affected_parts += BP
+	if(affected_parts.len)
+		adjustFireLoss(min(5 * affected_parts.len / severity, 20 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
+		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
+		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
+			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
+			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
+			emote("scream")
+		else
+			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()

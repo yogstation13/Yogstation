@@ -123,7 +123,7 @@
 
 /obj/item/reagent_containers/food/snacks/toritose
 	name = "toritose"
-	desc = "An excellent snack when you need it, however they become salty real fast. Hopefully stands on it's own in the market."
+	desc = "An excellent snack when you need it, however they become salty real fast. Hopefully stands on its own in the market."
 	icon_state = "toritose"
 	trash = /obj/item/trash/toritose
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/sodiumchloride = 5)
@@ -146,7 +146,7 @@
 
 /obj/item/reagent_containers/food/snacks/kakes
 	name = "top kakes"
-	desc = "Sugary bitsized cake delights guaranteed to keep you up all night!"
+	desc = "Sugary bitesized cake delights guaranteed to keep you up all night!"
 	trash = /obj/item/trash/topkakes
 	icon_state = "topkakes"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 6)

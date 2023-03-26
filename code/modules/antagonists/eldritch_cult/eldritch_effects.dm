@@ -9,7 +9,7 @@
 
 
 /obj/effect/eldritch
-	name = "Generic rune"
+	name = "generic rune"
 	desc = "Weird combination of shapes and symbols etched into the floor itself. The indentation is filled with thick black tar-like fluid."
 	anchored = TRUE
 	icon_state = ""
@@ -22,6 +22,11 @@
 	. = ..()
 	if(.)
 		return
+	for(var/obj/item/nullrod/antimagic in user.get_equipped_items())
+		user.say("PURGE THE HERESY!!", forced = "nullrod")
+		to_chat(user, span_danger("You cleanse the heresy of [src] with [antimagic]."))
+		qdel(src)
+		return
 	try_activate(user)
 
 /obj/effect/eldritch/proc/try_activate(mob/living/user)
@@ -33,6 +38,8 @@
 /obj/effect/eldritch/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I,/obj/item/nullrod))
+		user.say("PURSE THE HERESY!!", forced = "nullrod")
+		to_chat(user, span_danger("You cleanse the heresy of [src] with [I]."))
 		qdel(src)
 
 /obj/effect/eldritch/proc/activate(mob/living/user)
@@ -77,6 +84,7 @@
 				if(is_type_in_list(local_atom_in_range,local_required_atom_list))
 					selected_atoms |= local_atom_in_range
 					local_required_atoms -= list(local_required_atom_list)
+					break // We found the atom we want, so we can move on to the next required item
 
 		if(length(local_required_atoms) > 0)
 			continue
@@ -100,10 +108,10 @@
 
 		return
 	is_in_use = FALSE
-	to_chat(user,span_warning("Your ritual failed! You used either wrong components or are missing something important!"))
+	to_chat(user,span_warning("Your ritual failed! You used the wrong components or are missing something important!"))
 
 /obj/effect/eldritch/big
-	name = "Transmutation rune"
+	name = "transmutation rune"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "eldritch_rune1"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
@@ -214,7 +222,7 @@
 			arm.dismember()
 			qdel(arm)
 		else
-			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails trying to catch onto the existance itself!"))
+			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails while trying to catch onto the existence itself!"))
 
 /obj/effect/broken_illusion/attack_tk(mob/user)
 	if(!ishuman(user))
@@ -337,8 +345,8 @@
 	..()
 
 /datum/status_effect/brazil_penance/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
+	var/datum/effect_system/fluid_spread/smoke/S = new
+	S.set_up(1, location = get_turf(owner))
 	S.start()
 	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
 	owner.regenerate_organs()

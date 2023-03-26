@@ -1,6 +1,10 @@
 /datum/job/warden
 	title = "Warden"
+	description = "Watch over the Brig and Prison Wing, release prisoners when \
+		their time is up, issue equipment to security, be a security officer when \
+		they all eventually die."
 	flag = WARDEN
+	orbit_icon = "handcuffs"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -27,7 +31,9 @@
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
 	mail_goodies = list(
 		/obj/item/storage/box/fancy/cigarettes = 15,
@@ -39,11 +45,7 @@
 		/obj/item/storage/box/lethalshot = 5
 	)
 
-/datum/job/warden/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
-
-/datum/job/warden/proc/OmegaStationChanges()
-	return TRUE
+	smells_like = "gunpowdery justice"
 
 /datum/job/warden/get_access()
 	var/list/L = list()
@@ -67,7 +69,6 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(/obj/item/melee/baton/loaded=1) //yogs - ~~added departmental budget ID~~ removes sec budget
 
 	backpack = /obj/item/storage/backpack/security

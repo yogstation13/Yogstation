@@ -187,11 +187,13 @@
 			ui += ui_screen_category_view()
 		else
 			ui += ui_screen_main()
+
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
-		ui[i] = replacetextEx(ui[i], RDSCREEN_NOBREAK, "")
-	return ui.Join("")
+	
+	. = ui.Join("")
+	return replacetextEx(., RDSCREEN_NOBREAK, "")
 
 /obj/machinery/rnd/production/proc/ui_header()
 	var/list/l = list()

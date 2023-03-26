@@ -183,7 +183,7 @@
 
 		if(mecha.melee_can_hit)
 			mecha_face_target(target)
-			target.mech_melee_attack(mecha)
+			target.mech_melee_attack(mecha, TRUE)
 	else
 		if(ismecha(target))
 			var/obj/mecha/M = target

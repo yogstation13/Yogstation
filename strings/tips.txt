@@ -62,7 +62,6 @@ As a Chemist, you can recharge your chemical dispenser with an inducer or by rep
 As a Chemist, Water and Potassium mixed together will create an explosion, with power scaling by amount used. Don't do it.
 As a Geneticist, you can eject someone from cloning early by disabling power in genetics. Note that they will suffer more genetic damage and may lose vital organs from this.
 As a Geneticist, T goes to A, and G goes to C.
-As a Geneticist, becoming a hulk makes you capable of dealing high melee damage, stunlocking people, and punching through walls. However, you can't fire guns, will lose your hulk status if you go into critical condition, and are not considered a human by the AI while you are a hulk.
 As the Virologist, your viruses can range from healing powers so great that you can heal out of critical status, or diseases so dangerous they can kill the entire crew with airborne spontaneous combustion. Experiment!
 As the Virologist, you only require small amounts of vaccine to heal a sick patient. Work with the Chemist to distribute your cures more efficiently.
 As the Research Director, you can take AIs out of their cores by loading them into an intelliCard, which lets you see their laws, even ion/syndicate ones. It can then be placed into an AI system integrity restorer computer to revive and/or repair them.
@@ -268,6 +267,7 @@ Questions? Consult the Wiki: https://wiki.yogstation.net/wiki/Main_Page
 Questions? Consult the Mentors using the 'MHelp' system.
 Starving makes you move slower. Be sure to keep fed!
 As the Chaplain, You can use your bible on the "Altar of God" to choose a variety of religions with special rites.
+As the Chaplain, if you pick the Gathering of the Old Gods as your sect, you can gain the favor of your patron eldritch god for harvesting tools, healing fountains, and body transformation. To do this, climb ontop of your altar, drop pieces of meat, bless them through a rite, and then offer them.
 As a Changeling, your Regenerate Limbs power will quickly heal all of your wounds, but they'll still leave scars. Changelings can use Fleshmend to get rid of scars, or you can ingest Carpotoxin to get rid of them like a normal person.
 Stasis beds halt ALL passive life functions, including regeneration. If your patient isn't responding to treatment, especially with cut or burn wounds, try unbuckling them!
 Standard epipens contain a potent coagulant that not only slow bloodloss, but also help clot whichever of your wounds is bleeding the most! If you're suffering multiple bad bleeding wounds, make sure to seek out additional treatment ASAP!

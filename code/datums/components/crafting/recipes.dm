@@ -538,7 +538,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/bone_bonesetter
-	name = "Bone Bonersetter"
+	name = "Bone Bonesetter"
 	result = /obj/item/bonesetter/bone
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,

@@ -16,3 +16,4 @@ baiomu = Council Member
 ajhchenry = Council Member
 
 jamied12	=	Head Developer
+theos = Head Developer

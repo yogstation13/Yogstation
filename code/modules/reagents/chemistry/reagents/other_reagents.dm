@@ -27,7 +27,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) && !IS_BLOODSUCKER(C))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
 				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
@@ -102,12 +102,13 @@
 	taste_description = "slime"
 
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(islist(data) && (method == INGEST || method == INJECT))
-		for(var/thing in L.diseases)
-			var/datum/disease/D = thing
-			if(D.GetDiseaseID() in data)
-				D.cure()
-		L.disease_resistances |= data
+	if(reac_volume >= 5) //needs at least a certain amount for it to take effect
+		if(islist(data) && (method == INGEST || method == INJECT))
+			for(var/thing in L.diseases)
+				var/datum/disease/D = thing
+				if(D.GetDiseaseID() in data)
+					D.cure()
+			L.disease_resistances |= data
 
 /datum/reagent/vaccine/on_merge(list/data)
 	if(istype(data))
@@ -850,8 +851,8 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 	..()
 
-/datum/reagent/sulfur
-	name = "Sulfur"
+/datum/reagent/sulphur
+	name = "Sulphur"
 	description = "A sickly yellow solid mostly known for its nasty smell. It's actually much more helpful than it looks in biochemisty."
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
@@ -1057,8 +1058,8 @@
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	glass_icon_state = "dr_gibb_glass"
-	glass_name = "glass of welder fuel"
-	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	glass_name = "glass of Dr. Gibb"
+	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1068,7 +1069,10 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(1, 0)
+	if(MOB_ROBOTIC in M.mob_biotypes)
+		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
+	else
+		M.adjustToxLoss(1*REM, 0)
 	..()
 	return TRUE
 
@@ -1558,6 +1562,11 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	taste_description = "oil"
+	process_flags = SYNTHETIC
+
+/datum/reagent/oil/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)
+	..()
 
 /datum/reagent/stable_plasma
 	name = "Stable Plasma"

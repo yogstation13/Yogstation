@@ -224,7 +224,7 @@
 		if(!literate)
 			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
-		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
+		var/choice = input(usr, "What would you like to change?",,list("Title", "Contents", "Author", "Cancel"))
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)

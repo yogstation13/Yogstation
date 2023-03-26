@@ -18,6 +18,7 @@
 	var/check_anti_magic = FALSE
 	var/check_holy = FALSE
 	var/start_sound = 'sound/magic/timeparadox2.ogg'
+	var/start_sound_len = 3.3 SECONDS
 
 /obj/effect/timestop/Initialize(mapload, radius, time, list/immune_atoms, start = TRUE)	//Immune atoms assoc list atom = TRUE
 	. = ..()
@@ -41,15 +42,19 @@
 		timestop()
 
 /obj/effect/timestop/Destroy()
-	qdel(chronofield)
-	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse!
+	QDEL_NULL(chronofield)
 	return ..()
 
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
 	playsound(src, start_sound, 75, 1, -1)
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
+	if(duration - start_sound_len * 2 > 0) // Needs to have enough time for both sounds to play in full
+		addtimer(CALLBACK(src, .proc/time_resumes), duration - start_sound_len)
 	QDEL_IN(src, duration)
+
+/obj/effect/timestop/proc/time_resumes() // toki wa ugoki dasu
+	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse!
 
 /obj/effect/timestop/wizard
 	check_anti_magic = TRUE

@@ -59,3 +59,11 @@
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
+
+/datum/station_trait/station_adrift
+	name = "Adrift station"
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 2
+	show_in_report = TRUE
+	report_message = "Your station's gravitational anchor has malfunctioned. You are now drifting freely in space."
+	trait_to_give = STATION_TRAIT_STATION_ADRIFT

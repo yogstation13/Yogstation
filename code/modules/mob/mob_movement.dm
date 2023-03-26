@@ -10,7 +10,7 @@
 	return cached_multiplicative_slowdown
 
 /**
-  * If your mob is concious, drop the item in the active hand
+  * If your mob is conscious, drop the item in the active hand
   *
   * This is a hidden verb, likely for binding with winset for hotkeys
   */
@@ -351,7 +351,8 @@
 	return
 
 //bodypart selection verbs - Cyberboss
-//8:repeated presses toggles through head - eyes - mouth
+//8: repeated presses toggles through head - eyes - mouth
+//9: eyes 8: head 7: mouth
 //4: r-arm 5: chest 6: l-arm
 //1: r-leg 2: groin 3: l-leg
 
@@ -364,6 +365,8 @@
   *
   * (bound to 8) - repeated presses toggles through head - eyes - mouth
   */
+
+///Hidden verb to target the head, bound to 8
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
 	set hidden = TRUE
@@ -382,6 +385,29 @@
 
 	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
 	selector.set_selected_zone(next_in_line, mob)
+
+///Hidden verb to target the eyes, bound to 7
+/client/verb/body_eyes()
+	set name = "body-eyes"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	selector.set_selected_zone(BODY_ZONE_PRECISE_EYES, mob)
+
+
+///Hidden verb to target the mouth, bound to 9
+/client/verb/body_mouth()
+	set name = "body-mouth"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	selector.set_selected_zone(BODY_ZONE_PRECISE_MOUTH, mob)
 
 ///Hidden verb to target the right arm, bound to 4
 /client/verb/body_r_arm()

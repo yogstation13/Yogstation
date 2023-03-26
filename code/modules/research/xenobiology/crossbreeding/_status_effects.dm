@@ -469,7 +469,7 @@ datum/status_effect/rebreathing/tick()
 	for(var/mob/living/simple_animal/slime/S in range(1, get_turf(owner)))
 		if(!(owner in S.Friends))
 			to_chat(owner, span_notice("[linked_extract] pulses gently as it communicates with [S]"))
-			S.Friends[owner] = 1
+			S.set_friendship(owner, 1)
 	return ..()
 
 /datum/status_effect/stabilized/orange
@@ -648,7 +648,7 @@ datum/status_effect/stabilized/blue/on_remove()
 
 /datum/status_effect/bluespacestabilization
 	id = "stabilizedbluespacecooldown"
-	duration = 1200
+	duration = 3 MINUTES
 	alert_type = null
 
 /datum/status_effect/stabilized/bluespace
@@ -678,6 +678,9 @@ datum/status_effect/stabilized/blue/on_remove()
 			to_chat(owner, span_notice("[linked_extract] will take some time to re-align you on the bluespace axis."))
 			do_sparks(5,FALSE,owner)
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
+			to_chat(owner, span_warning("You feel sick after [linked_extract] dragged you through bluespace."))
+			owner.Stun(1 SECONDS)
+			owner.dizziness += 30
 	healthcheck = owner.health
 	return ..()
 
@@ -713,10 +716,15 @@ datum/status_effect/stabilized/blue/on_remove()
 		C.real_name = O.real_name
 		O.dna.transfer_identity(C)
 		C.updateappearance(mutcolor_update=1)
+		RegisterSignal(owner, COMSIG_GLOB_MOB_DEATH, .proc/dead)
 	return ..()
 
-/datum/status_effect/stabilized/cerulean/tick()
-	if(owner.stat == DEAD)
+/datum/status_effect/stabilized/cerulean/proc/dead()
+		addtimer(CALLBACK(src, .proc/transfer), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
+
+/datum/status_effect/stabilized/cerulean/proc/transfer()
+	UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
+	if(!QDELETED(owner) && owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
 			owner.visible_message(span_warning("[owner] blazes with brilliant light, [linked_extract] whisking [owner.p_their()] soul away."),
 				span_notice("You feel a warm glow from [linked_extract], and you open your eyes... elsewhere."))
@@ -727,10 +735,10 @@ datum/status_effect/stabilized/blue/on_remove()
 		if(!clone || clone.stat == DEAD)
 			to_chat(owner, span_notice("[linked_extract] desperately tries to move your soul to a living body, but can't find one!"))
 			qdel(linked_extract)
-	..()
 
 /datum/status_effect/stabilized/cerulean/on_remove()
 	if(clone)
+		UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
 		clone.visible_message(span_warning("[clone] dissolves into a puddle of goo!"))
 		clone.unequip_everything()
 		qdel(clone)
@@ -756,7 +764,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "red"
 
 /datum/status_effect/stabilized/red/on_apply()
-	owner.add_movespeed_modifier("stabilized_red_speed", update=TRUE, priority=100, multiplicative_slowdown=-0.3, blacklisted_movetypes=(FLYING|FLOATING))
+	owner.add_movespeed_modifier("stabilized_red_speed", update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
 /datum/status_effect/stabilized/red/on_remove()
@@ -859,7 +867,7 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/oil
 	id = "stabilizedoil"
 	colour = "oil"
-	examine_text = span_warning("SUBJECTPRONOUN smells of sulfur and oil!")
+	examine_text = span_warning("SUBJECTPRONOUN smells of sulphur and oil!")
 
 /datum/status_effect/stabilized/oil/tick()
 	if(owner.stat == DEAD)

@@ -114,7 +114,7 @@
 	alpha = 255
 	icon = initial(icon)
 	if(!deceptive)
-		add_atom_colour("#FFD7A7", FIXED_COLOUR_PRIORITY)
+		add_atom_colour("#FFD7A7", ADMIN_COLOUR_PRIORITY)
 	switch(new_appearance)
 		if("Assistant")
 			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"

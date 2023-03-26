@@ -93,10 +93,7 @@ Credit where due:
 	if(.)
 		var/datum/antagonist/clockcult/servant = .
 		var/datum/team/clockcult/cult = servant.get_team()
-		cult.check_size()	
-		if (GLOB.ratvar_approaches)
-			L.set_species(/datum/species/golem/clockwork/no_scrap)
-			to_chat(L, "<span class='heavy_brass'>The beacon is active! You are reformed in Ratvar's image.</span>")
+		cult.check_size()
 	
 	if(!silent && L)
 		if(.)
@@ -282,8 +279,10 @@ Credit where due:
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack
 	ears = /obj/item/radio/headset
+	gloves = /obj/item/clothing/gloves/color/yellow //Take them off if you want
+	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1, /obj/item/clothing/gloves/color/yellow = 1, /obj/item/storage/belt/utility/servant = 1)
+	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
 	id = /obj/item/pda
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
@@ -362,6 +361,10 @@ Credit where due:
 	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
 		. += span_danger("You can't understand any of the words on [src].")
+
+/obj/item/paper/servant_primer/infirmarypaper
+	name = "IOU"
+	info = "We pawned the sleepers and medkits in here off for some tomato sauce so we wouldn't have to eat dry pasta anymore. Shouldn't be an issue, if you need to heal yourself or a fellow servant cast Sentinel's Compromise or use a Vitality Matrix."
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"

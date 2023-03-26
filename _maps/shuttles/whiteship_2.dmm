@@ -337,7 +337,7 @@
 "rw" = (
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/storage/backpack/magspear_quiver,
+/obj/item/storage/magspear_quiver,
 /obj/item/throwing_star/magspear,
 /obj/item/throwing_star/magspear,
 /obj/item/throwing_star/magspear,

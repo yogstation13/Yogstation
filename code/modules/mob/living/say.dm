@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		deaf_message = span_notice("You can't hear yourself!")
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 	// Create map text prior to modifying message for goonchat
-	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && stat != UNCONSCIOUS && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)) && can_hear())
 		create_chat_message(speaker, message_language, raw_message, spans)
 
 
@@ -386,6 +386,23 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
+	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(SLOT_BELT), get_item_by_slot(SLOT_R_STORE), get_item_by_slot(SLOT_L_STORE), get_item_by_slot(SLOT_S_STORE))
+	for(var/obj/item/radio/hand in storage_item)
+		if(message_mods[MODE_HEADSET])
+			hand.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in hand.channels))
+			hand.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+
+	for (var/obj/item/radio/intercom/I in view(1, null))
+		if(message_mods[MODE_HEADSET])
+			I.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in I.channels))
+			I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+			
 	switch(message_mods[RADIO_EXTENSION])
 		if(MODE_R_HAND)
 			for(var/obj/item/r_hand in get_held_items_for_side("r", all = TRUE))

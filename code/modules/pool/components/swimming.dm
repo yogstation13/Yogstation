@@ -92,7 +92,7 @@
 	else if(drowning)
 		stop_drowning(L)
 		drowning = FALSE
-	L.adjust_fire_stacks(-1)
+	L.adjust_fire_stacks(-3)
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/twohanded/required/pool/helditem = victim.get_active_held_item()
@@ -114,7 +114,7 @@
 		victim.emote("gasp")
 	if(ticks_drowned > 20)
 		if(prob(10))
-			victim.visible_message("<span class='warning'>[victim] falls unconcious for a moment!</span>")
+			victim.visible_message("<span class='warning'>[victim] falls unconscious for a moment!</span>")
 			victim.Unconscious(10)
 
 /datum/component/swimming/proc/start_drowning(mob/living/victim)

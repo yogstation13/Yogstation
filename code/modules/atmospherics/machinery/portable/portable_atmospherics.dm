@@ -24,11 +24,9 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.atmos_machinery -= src
-
 	disconnect()
-	qdel(air_contents)
-	air_contents = null
+	QDEL_NULL(air_contents)
+	SSair.atmos_machinery -= src
 
 	return ..()
 
@@ -49,6 +47,9 @@
 		air_contents.react(src)
 
 /obj/machinery/portable_atmospherics/return_air()
+	return air_contents
+
+/obj/machinery/portable_atmospherics/return_analyzable_air()
 	return air_contents
 
 /obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/components/unary/portables_connector/new_port)
@@ -149,9 +150,6 @@
 				update_icon()
 	else
 		return ..()
-
-/obj/machinery/portable_atmospherics/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
 	if(I.force < 10 && !(stat & BROKEN))

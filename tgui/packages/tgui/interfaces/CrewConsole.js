@@ -148,7 +148,7 @@ export const HealthStat = props => {
   return (
     <Box
       inline
-      width={4}
+      width={2}
       color={COLORS.damageType[type]}
       textAlign="center">
       {value}
@@ -167,8 +167,8 @@ export const CrewConsole = (props, context) => {
   return (
     <Window
       title="Crew Monitor"
-      width={1000}
-      height={800}
+      width={750}
+      height={400}
       resizable>
       <Window.Content scrollable>
         <CrewConsoleContent />
@@ -223,7 +223,11 @@ export const CrewConsoleContent = (props, context) => {
               )}
             </Table.Row>
             {sensors.map(sensor => (
-              <Table.Row key={sensor.name}>
+              <Table.Row key={sensor.name} fontSize={0.85} style={{
+                'border': '1px solid',
+                'border-color': '#202020',
+                'font-family': 'Verdana, sans-serif',
+              }}>
                 <Table.Cell
                   bold={jobIsHead(sensor.ijob)}
                   color={jobToColor(sensor.ijob)}>

@@ -46,6 +46,7 @@
 	if(lastscan.len)
 		data["chems"] = lastscan["reagents"]["reagentlist"]
 	else
+		lastscan["reagents"] = list()
 		data["chems"] = lastscan["reagents"]["reagentlist"] = list()
 	return data
 

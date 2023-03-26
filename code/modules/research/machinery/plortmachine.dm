@@ -29,7 +29,7 @@
 	if(default_unfasten_wrench(user, W))
 		return
 
-	if(default_deconstruction_screwdriver(user, "ore_redemption-open", "ore_redemption", W))
+	if(default_deconstruction_screwdriver(user, "plortmachine_maintenance", "plortmachine", W))
 		updateUsrDialog()
 		return
 

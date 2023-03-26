@@ -192,8 +192,8 @@
 /// The amount of damage someone takes when in a low pressure area (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
 #define LOW_PRESSURE_DAMAGE					4
 
-/// Humans are slowed by the difference between bodytemp and BODYTEMP_COLD_DAMAGE_LIMIT divided by this
-#define COLD_SLOWDOWN_FACTOR				20
+/// Humans are slowed by the difference between bodytemp and BODYTEMP_COLD_DAMAGE_LIMIT divided by this, bigger numbers mean faster, smaller means slower
+#define COLD_SLOWDOWN_FACTOR				60
 
 //PIPES
 //Atmos pipe limits
@@ -201,7 +201,7 @@
 #define MAX_OUTPUT_PRESSURE					4500
 /// (L/s) Maximum speed powered equipment can work at.
 #define MAX_TRANSFER_RATE					200
-/// 10% of an overclocked volume pump leaks into the air
+/// How many percent of the contents that an overclocked volume pumps leak into the air
 #define VOLUME_PUMP_LEAK_AMOUNT				0.1
 //used for device_type vars
 #define UNARY		1

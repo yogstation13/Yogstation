@@ -129,6 +129,11 @@
 /mob/living/carbon/proc/toggle_throw_mode()
 	if(stat)
 		return
+	if(ismecha(loc))
+		var/obj/mecha/M = loc
+		if(M.occupant == src)
+			M.cycle_action.Activate()
+			return
 	if(in_throw_mode)
 		throw_mode_off()
 	else
@@ -258,8 +263,7 @@
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(internal)
-					internal = null
-					update_internals_hud_icon(0)
+					update_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
 					if((wear_mask && (wear_mask.clothing_flags & MASKINTERNALS)) || getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 						internal = ITEM
@@ -322,7 +326,7 @@
 		buckled.user_unbuckle_mob(src,src)
 
 /mob/living/carbon/resist_fire()
-	fire_stacks -= 5
+	adjust_fire_stacks(-5)
 	Paralyze(6 SECONDS, TRUE, TRUE)
 	spin(32,2)
 	visible_message(span_danger("[src] rolls on the floor, trying to put [p_them()]self out!"), \
@@ -627,6 +631,7 @@
 		return
 
 	sight = initial(sight)
+	see_infrared = initial(see_infrared)
 	lighting_alpha = initial(lighting_alpha)
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
@@ -637,6 +642,12 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+	
+	for(var/image/I in infra_images)
+		if(client)
+			client.images.Remove(I)
+	infra_images = list()
+	remove_client_colour(/datum/client_colour/monochrome_infra)
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -653,6 +664,20 @@
 			see_invisible = min(G.invis_view, see_invisible)
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+
+	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		add_client_colour(/datum/client_colour/monochrome_infra)
+		var/image/A = null
+		see_infrared = TRUE
+		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+
+		if(client)
+			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.name = "white haze"
+				A.override = 1
+				infra_images |= A
+				client.images |= A
 
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
 		sight |= (SEE_MOBS)
@@ -741,7 +766,7 @@
 	if(!client)
 		return
 
-	if(health <= crit_threshold)
+	if(health <= crit_threshold && !(HAS_TRAIT(src, TRAIT_NOHARDCRIT) && HAS_TRAIT(src, TRAIT_NOSOFTCRIT)))//if crit is entirely disabled, no crit overlay at all
 		var/severity = 0
 		switch(health)
 			if(-20 to -10)
@@ -764,7 +789,7 @@
 				severity = 9
 			if(-INFINITY to -95)
 				severity = 10
-		if(!InFullCritical())
+		if(!InFullCritical() && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))//no soft crit blind for those immune to soft crit
 			var/visionseverity = 4
 			switch(health)
 				if(-8 to -4)
@@ -834,7 +859,7 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
-		if(stat != DEAD)
+		if(stat != DEAD && !HAS_TRAIT(src, TRAIT_FAKEDEATH))
 			. = 1
 			if(shown_health_amount == null)
 				shown_health_amount = health
@@ -855,6 +880,18 @@
 		else
 			hud_used.healths.icon_state = "health7"
 
+/mob/living/carbon/proc/update_internals()
+	if(getorganslot(ORGAN_SLOT_BREATHING_TUBE))
+		return TRUE
+	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc == src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
+		return TRUE
+	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE) && (head.flags_cover & HEADCOVERSMOUTH))
+		return TRUE
+	update_internals_hud_icon(0)
+	update_action_buttons_icon()
+	internal = null
+	return FALSE
+
 /mob/living/carbon/proc/update_internals_hud_icon(internal_state = 0)
 	if(hud_used && hud_used.internals)
 		hud_used.internals.icon_state = "internal[internal_state]"
@@ -863,7 +900,8 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
+		// If player has holoparasites, ignore TRAIT_NODEATH
+		if( health <= HEALTH_THRESHOLD_DEAD && ( !HAS_TRAIT(src, TRAIT_NODEATH) || LAZYLEN(hasparasites()) ) )
 			death()
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
@@ -884,6 +922,7 @@
 	update_damage_hud()
 	update_health_hud()
 	update_stamina_hud()
+	med_hud_set_health()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed
