@@ -90,7 +90,6 @@
 		else
 			icon_state = "46x30mmtB-0"
 
-
 //Type T3 Uzi
 
 /obj/item/ammo_box/magazine/uzim9mm
