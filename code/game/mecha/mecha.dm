@@ -11,6 +11,8 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define MECHA_MAX_COOLDOWN 30 // Prevents long cooldown equipment from messing up combat
+
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -565,7 +567,7 @@
 
 	// No shotgun swapping
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
-		if(!W.equip_ready)
+		if(!W.equip_ready && (W.equip_cooldown < MECHA_MAX_COOLDOWN))
 			return
 
 	var/mob/living/L = user
