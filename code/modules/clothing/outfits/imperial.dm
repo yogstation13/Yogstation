@@ -59,8 +59,7 @@
 /obj/item/clothing/suit/armor/imperial/commissar
 	name = "armored commisar coat"
 	desc = "A black and red coat. Armored and padded, it instils fear into all that see it, friend and foe alike."
-	icon = 'icons/obj/clothing/uniforms.dmi'
-	item = 'icons/mob/clothing/uniform/uniform.dmi'
+	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -69,15 +68,13 @@
 	name = "commissar cap"
 	desc = "An armored cap, protecting your head from stray rounds and your eyes from splashes of blood."
 	icon = 'icons/obj/clothing/hats.dmi'
-	item = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
 /obj/item/clothing/under/imperial/commissar
 	name = "commissarial fatigues"
 	desc = "A set of black and red fatigues. Makes your allies more afraid than your enemies."
-	icon = 'icons/obj/clothing/suits.dmi'
-	item = 'icons/mob/clothing/suit.dmi'
+	icon = 'icons/obj/clothing/uniforms.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -85,7 +82,6 @@
 	name = "imperial boots"
 	desc = "A pair of heavy duty armored shoes. Black and gold to show the person beneath your status."
 	icon = 'icons/obj/clothing/shoes.dmi'
-	item = 'icons/mob/clothing/feet/feet.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -225,8 +221,8 @@
 
 /datum/outfit/imperial/commissar
 	name = "Imperial Commissar"
-	uniform = /obj/item/clothing/suit/armor/imperial/commissar
-	suit = /obj/item/clothing/under/imperial/commissar
+	uniform = /obj/item/clothing/under/imperial/commissar
+	suit = /obj/item/clothing/suit/armor/imperial/commissar
 	shoes = /obj/item/clothing/shoes/combat/imperial/commissar
 	gloves = /obj/item/clothing/gloves/combat
 	head = /obj/item/clothing/head/helmet/imperial/commissar
