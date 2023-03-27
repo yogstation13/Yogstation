@@ -250,7 +250,7 @@
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
 		var/datum/reagent/consumable/ethanol/ethanol = chem
-		if(ethanol.boozepwr >= 1 && chem.volume > 1)
+		if(ethanol.boozepwr >= 1 && chem.volume >= 1)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
 			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
 			H.confused = max(H.confused, 1)
