@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		var/obj/item/nullrod/talking/sword = A
 		to_chat(user, span_notice("You begin to exorcise [sword]..."))
 		if(sword.owner)
-			to_chat(owner, "you feel the soul in your blade cry out as it starts getting exorcised!")
+			to_chat(sword.owner, "you feel the soul in your blade cry out as it starts getting exorcised!")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,TRUE)
 		if(do_after(user, 4 SECONDS, sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,TRUE)
