@@ -242,6 +242,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				qdel(S)
 			if(sword.owner)
 				sword.owner.RemoveSpell(sword.summon)
+				sword.owner = null
 			sword.possessed = FALSE //allows the chaplain (or someone else) to reroll a new spirit for their sword
 			sword.name = initial(sword.name)
 			REMOVE_TRAIT(sword, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT) //in case the "sword" is a possessed dummy
