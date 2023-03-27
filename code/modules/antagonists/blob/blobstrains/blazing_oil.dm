@@ -18,7 +18,6 @@
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
 	if(damage_type == BURN && damage_flag != ENERGY)
-		var/mob/camera/blob/O = overmind
 		damage = 0 //completely and entirely immune to burn damage!
 		for(var/turf/open/T in range(1, B))
 			var/obj/structure/blob/C = locate() in T
