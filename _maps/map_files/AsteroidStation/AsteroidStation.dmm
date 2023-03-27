@@ -60406,6 +60406,10 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos_distro)
+"sRs" = (
+/obj/effect/landmark/stationroom/maint/tenxfive,
+/turf/template_noop,
+/area/maintenance/port)
 "sRv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -85671,7 +85675,7 @@ aHv
 aHv
 aHv
 aHv
-aHv
+sRs
 aJI
 ifa
 ifa
@@ -91058,7 +91062,7 @@ aoq
 aJI
 aHv
 aHv
-aHv
+trN
 aJI
 aoq
 nzr
@@ -91309,7 +91313,7 @@ osq
 osq
 aHv
 aHv
-aHv
+qEB
 aJI
 aoq
 sCD
@@ -92853,7 +92857,7 @@ aHv
 aHv
 aHv
 aHv
-aHv
+aWR
 aJI
 aoq
 xAm
