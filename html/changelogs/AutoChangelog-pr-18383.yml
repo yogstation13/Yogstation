@@ -1,0 +1,5 @@
+author: "Megatome"
+delete-after: true 
+changes: 
+  - rscadd: "Added brown wizard hat"
+  - imageadd: "added relevant icons for said hat"
