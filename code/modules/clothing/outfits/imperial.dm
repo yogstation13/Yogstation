@@ -29,7 +29,7 @@
 	body_parts_covered = LEGS|FEET
 
 /obj/item/clothing/suit/armor/imperial
-	name = "flak Vest"
+	name = "flak vest"
 	desc = "A set of standard issue flak armor for Imperial Guardsmen. Protects you fairly well from most threats."
 	icon_state = "guard_armor"
 	item_state = "guard_armor"
@@ -49,6 +49,36 @@
 	desc = "An Imperial Guard ID card."
 	assignment = "Imperial Guard"
 	originalassignment = "Imperial Guard"
+
+/obj/item/card/id/ert/imperial/commissar
+	name = "\improper Imperial Commissar ID"
+	desc = "An Imperial Commissar ID card."
+	assignment = "Imperial Commissar"
+	originalassignment = "Imperial Commissar"
+
+/obj/item/clothing/suit/armor/imperial/commissar
+	name = "armored commisar coat"
+	desc = "A black and red coat. Armored and padded, it instils fear into all that see it, friend and foe alike."
+	icon_state = "commissar"
+	item_state = "commissar"
+
+/obj/item/clothing/head/helmet/imperial/commissar
+	name = "commissar cap"
+	desc = "An armored cap, protecting your head from stray rounds and your eyes from splashes of blood."
+	icon_state = "commissar"
+	item_state = "commissar"
+
+/obj/item/clothing/under/imperial/commissar
+	name = "commissarial fatigues"
+	desc = "A set of black and red fatigues. Makes your allies more afraid than your enemies."
+	icon_state = "commissar"
+	item_state = "commissar"
+
+/obj/item/clothing/shoes/combat/imperial/commissar
+	name = "imperial boots"
+	desc = "A pair of heavy duty armored shoes. Black and gold to show the person beneath your status."
+	icon_state = "commissar"
+	item_state = "commissar"
 
 /obj/item/chainsaw_sword
 	name = "imperial chainsword"
@@ -183,3 +213,15 @@
 	belt = /obj/item/storage/belt/military/imperial/hotshot
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
+
+/datum/outfit/imperial/commissar
+	name = "Imperial Commissar"
+	uniform = /obj/item/clothing/suit/armor/imperial/commissar
+	suit = /obj/item/clothing/under/imperial/commissar
+	shoes = /obj/item/clothing/shoes/combat/imperial/commissar
+	gloves = /obj/item/clothing/gloves/combat
+	head = /obj/item/clothing/head/helmet/imperial/commissar
+	belt = /obj/item/storage/belt/military/imperial/sergeant
+	glasses = /obj/item/clothing/glasses/hud/security
+	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
+	back = /obj/item/chainsaw_sword
