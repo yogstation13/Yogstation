@@ -2102,6 +2102,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/emp_shield
+	name = "EMP Shield Implant"
+	desc = "An implant that will render you and your insides immune to electromagnetic interference, protecting you from ion-based weaponry and EMPs. \
+			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
+	item = /obj/item/storage/box/syndie_kit/emp_shield
+	cost = 6
+
 // Events
 /datum/uplink_item/services
 	category = "Services"

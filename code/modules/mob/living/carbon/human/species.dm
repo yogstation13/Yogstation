@@ -1113,7 +1113,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(num_legs < 2)
 				return FALSE
 			var/obj/item/clothing/shoes/S = I
-			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
+			if(istype(S) && ((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT))) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
 					to_chat(H, span_warning("This footwear isn't compatible with your feet!"))
 				return FALSE

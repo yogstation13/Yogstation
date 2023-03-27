@@ -547,21 +547,24 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	var/informed = FALSE
-	for(var/obj/item/bodypart/L in src.bodyparts)
-		if(L.status == BODYPART_ROBOTIC)
-			if(!informed)
-				to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
-				informed = TRUE
-			switch(severity)
-				if(1)
-					L.receive_damage(0,10,200)
-				if(2)
-					L.receive_damage(0,5,100)
-
-			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
-				if(prob(5))
-					L.dismember(BRUTE)
+	var/list/affected_parts = list()
+	for(var/obj/item/bodypart/BP in bodyparts)
+		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
+			if(prob(5) && severity == EMP_HEAVY && (TRAIT_EASYDISMEMBER in dna?.species.inherent_traits) && BP.body_zone != BODY_ZONE_CHEST)
+				BP.dismember()
+			else
+				affected_parts += BP
+	if(affected_parts.len)
+		adjustFireLoss(min(5 * affected_parts.len / severity, 20 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
+		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
+		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
+			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
+			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
+			emote("scream")
+		else
+			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()

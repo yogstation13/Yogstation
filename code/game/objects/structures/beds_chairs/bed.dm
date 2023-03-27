@@ -217,3 +217,16 @@
 	name = "resting contraption"
 	desc = "This looks similar to contraptions from Earth. Could aliens be stealing our technology?"
 	icon_state = "abed"
+
+//invisible bed used for buster arm grappling
+/obj/structure/bed/grip
+	name = "buster arm"
+	icon_state = ""
+	can_buckle = TRUE
+	density = FALSE
+
+/obj/structure/bed/grip/Initialize()
+	. = ..()
+
+/obj/structure/bed/roller/post_unbuckle_mob(mob/living/M)
+	qdel(src)
