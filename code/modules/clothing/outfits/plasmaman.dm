@@ -627,7 +627,7 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/ce
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
+	head = /obj/item/clothing/head/helmet/space/plasmaman/chief_engineer
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/chief_engineer
