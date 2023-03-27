@@ -25,9 +25,6 @@
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
-	if(!is_centcom_level(get_turf(src)))
-		SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
-		addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -52,24 +49,6 @@
 	internal_organs += new /obj/item/organ/alien/neurotoxin
 	internal_organs += new /obj/item/organ/alien/eggsac
 	..()
-
-/mob/living/carbon/alien/humanoid/royal/queen/proc/game_end()
-	if(is_centcom_level(get_turf(src)))
-		return
-	if(stat == DEAD)
-		return
-	SSshuttle.clearHostileEnvironment(src)
-	if(EMERGENCY_IDLE_OR_RECALLED)
-		priority_announce("Xenomorph infestation detected: Emergency shuttle will be sent to recover any survivors, if this is in error feel free to recall.")
-		SSshuttle.emergency.request(null, set_coefficient=0.5)
-
-/mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
-	SSshuttle.clearHostileEnvironment(src)
-	..()
-
-/mob/living/carbon/alien/humanoid/royal/queen/Destroy()
-	SSshuttle.clearHostileEnvironment(src)
-	..() //yogs end
 
 //Queen verbs
 /obj/effect/proc_holder/alien/lay_egg
