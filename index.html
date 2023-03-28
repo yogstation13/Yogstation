@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(584 modules,
-    1471/8282 macros, 17.8%)</aside></h3>
+<aside>(589 modules,
+    1536/8352 macros, 18.4%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -122,6 +122,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/preferences.html" title="code&#x2F;__DEFINES&#x2F;preferences">preferences</a></li>
     <li><a href="code/__DEFINES/procpath.html" title="code&#x2F;__DEFINES&#x2F;procpath">procpath</a></li>
     <li><a href="code/__DEFINES/qdel.html" title="code&#x2F;__DEFINES&#x2F;qdel">qdel</a> - Defines that give qdel hints.</li>
+    <li><a href="code/__DEFINES/reactions.html" title="code&#x2F;__DEFINES&#x2F;reactions">reactions</a></li>
     <li><a href="code/__DEFINES/reagents.html" title="code&#x2F;__DEFINES&#x2F;reagents">reagents</a></li>
     <li><a href="code/__DEFINES/research.html" title="code&#x2F;__DEFINES&#x2F;research">research</a></li>
     <li><a href="code/__DEFINES/robots.html" title="code&#x2F;__DEFINES&#x2F;robots">robots</a></li>
@@ -448,8 +449,18 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics">atmospherics</span><ul class="index-tree">
-    <li><span class="no-substance">gasmixtures&#x2F;</span><a href="code/modules/atmospherics/gasmixtures/reactions.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;reactions">reactions</a></li>
-    <li><span class="no-substance">machinery&#x2F;portable&#x2F;</span><a href="code/modules/atmospherics/machinery/portable/canister.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;portable&#x2F;canister">canister</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures">gasmixtures</span><ul class="index-tree">
+    <li><a href="code/modules/atmospherics/gasmixtures/gas_mixture.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture">gas_mixture</a></li>
+    <li><a href="code/modules/atmospherics/gasmixtures/reactions.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;reactions">reactions</a></li>
+    </ul></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery">machinery</span><ul class="index-tree">
+    <li class="has-children"><span class="no-substance">components&#x2F;</span><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion">fusion</span><ul class="index-tree">
+    <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_core.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_core">hfr_core</a></li>
+    <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_defines.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_defines">hfr_defines</a></li>
+    <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_parts.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_parts">hfr_parts</a></li>
+    </ul></li>
+    <li><span class="no-substance">portable&#x2F;</span><a href="code/modules/atmospherics/machinery/portable/canister.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;portable&#x2F;canister">canister</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;awaymissions">awaymissions</span><ul class="index-tree">
     <li><a href="code/modules/awaymissions/corpse.html" title="code&#x2F;modules&#x2F;awaymissions&#x2F;corpse">corpse</a></li>
@@ -872,7 +883,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(652 detailed/1405 documented/27363 total, 5.1%)</aside></h3>
+<aside>(658 detailed/1411 documented/27403 total, 5.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1370,13 +1381,17 @@ A group of fluid objects.</li>
     <li><a href="datum/game_mode/bloodsucker.html" title="&#x2F;datum&#x2F;game_mode&#x2F;bloodsucker">bloodsucker</a></li>
     <li><a href="datum/game_mode/dynamic.html" title="&#x2F;datum&#x2F;game_mode&#x2F;dynamic">dynamic mode</a></li>
     </ul></li>
+    <li><a href="datum/gas.html" title="&#x2F;datum&#x2F;gas">gas</a></li>
     <li><a href="datum/gas_mixture.html" title="&#x2F;datum&#x2F;gas_mixture">gas_mixture</a></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;gas_reaction">gas_reaction</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;gas_reaction&#x2F;freonformation">Freon formation</span> - More heat means higher chance to react but less efficiency, i.e. higher speed lower yield
 the more moles you use and the higher the heat, the higher is the efficiency</li>
-    <li><a href="datum/gas_reaction/stim_ball.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;stim_ball">Stimulum Energy Ball</a></li>
+    <li><a href="datum/gas_reaction/nitro_ball.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;nitro_ball">Nitrium Energy Ball</a></li>
+    <li><a href="datum/gas_reaction/pluonium_bz_response.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;pluonium_bz_response">Pluonium bz response</a> - Pluonium BZase Action</li>
+    <li><a href="datum/gas_reaction/water_vapor.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;water_vapor">Water Vapor</a> - Steam Condensation/Deposition:</li>
     </ul></li>
     <li><a href="datum/gas_recipe.html" title="&#x2F;datum&#x2F;gas_recipe">gas_recipe</a></li>
+    <li><a href="datum/hfr_fuel.html" title="&#x2F;datum&#x2F;hfr_fuel">hfr_fuel</a></li>
     <li><a href="datum/holiday.html" title="&#x2F;datum&#x2F;holiday">Bugsgiving</a></li>
     <li><a href="datum/http_request.html" title="&#x2F;datum&#x2F;http_request">http_request</a></li>
     <li><a href="datum/instrument.html" title="&#x2F;datum&#x2F;instrument">Instrument Datums</a> - Instrument datums hold the data for any given instrument, as well as data on how to play it and what bounds there are to playing it.</li>
@@ -2277,7 +2292,6 @@ the program that displays laws should always be usable, and the exceptions were 
     <li><a href="obj/item/grenade/gas_crystal/healium_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;healium_crystal">Healium crystal</a></li>
     <li><a href="obj/item/grenade/gas_crystal/nitrous_oxide_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;nitrous_oxide_crystal">N2O crystal</a></li>
     <li><a href="obj/item/grenade/gas_crystal/pluonium_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;pluonium_crystal">Pluonium crystal</a></li>
-    <li><a href="obj/item/grenade/gas_crystal/proto_nitrate_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;proto_nitrate_crystal">Proto Nitrate crystal</a></li>
     </ul></li>
     <li><span class="no-substance">plastic&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;plastic&#x2F;c4">C4</span> - The Explosives</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;syndieminibomb">syndicate minibomb</span> - Own proc for this because the regular one would flash people which was dumb.</li>
@@ -2310,6 +2324,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     </ul></li>
     <li><a href="obj/item/gun/syringe.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;syringe">syringe gun</a></li>
     </ul></li>
+    <li><a href="obj/item/hfr_box.html" title="&#x2F;obj&#x2F;item&#x2F;hfr_box">HFR box</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;hivelordstabilizer">stabilizing serum</span> - Hivelord stabilizer</li>
     <li><a href="obj/item/hot_potato.html" title="&#x2F;obj&#x2F;item&#x2F;hot_potato">hot potato</a></li>
     <li><a href="obj/item/hypospray.html" title="&#x2F;obj&#x2F;item&#x2F;hypospray">hypospray</a></li>
@@ -2597,7 +2612,13 @@ obj/item/reagent_containers/glass/bottle/leadacetate</li>
     <li><a href="obj/machinery/atmospherics/components/binary/temperature_pump.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary&#x2F;temperature_pump">temperature pump</a></li>
     </ul></li>
     <li><span class="no-substance">trinary&#x2F;</span><a href="obj/machinery/atmospherics/components/trinary/filter.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;trinary&#x2F;filter">gas filter</a></li>
-    <li><span class="no-substance">unary&#x2F;</span><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary">unary</span><ul class="index-tree">
+    <li><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
+    <li class="has-children"><a href="obj/machinery/atmospherics/components/unary/hypertorus.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;hypertorus">thermomachine</a> - This file contain the eight parts surrounding the main core, those are: fuel input, moderator input, waste output, interface and the corners
+The file also contain the guicode of the machine<ul class="index-tree">
+    <li><a href="obj/machinery/atmospherics/components/unary/hypertorus/core.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;hypertorus&#x2F;core">HFR core</a> - This section contain the hfr core with all the variables and the Initialize() and Destroy() procs</li>
+    </ul></li>
+    </ul></li>
     </ul></li>
     </ul></li>
     <li><a href="obj/machinery/autolathe.html" title="&#x2F;obj&#x2F;machinery&#x2F;autolathe">autolathe</a></li>
@@ -2814,7 +2835,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/eae02fd3217a2262f6df0c980e6a8f76b3f80692">eae02fd</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ed0811b2b7e1bbfd87752346721942f2279fc847">ed0811b</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
