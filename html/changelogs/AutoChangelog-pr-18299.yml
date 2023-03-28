@@ -1,0 +1,4 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - rscdel: "Darkspawn can no longer occur midround."
