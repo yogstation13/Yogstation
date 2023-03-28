@@ -24,6 +24,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	/// Are we currently conveying items?
 	speed_process = TRUE
 	var/conveying = FALSE
+	///The time it takes for the converyor to move stuff. Default 1, Lower is faster.
+	var/conveytime = 1
 
 /obj/machinery/conveyor/examine(mob/user)
 	. = ..()
@@ -153,7 +155,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		affecting = items
 	conveying = TRUE
 
-	addtimer(CALLBACK(src, .proc/convey, affecting), 1)//Movement effect
+	addtimer(CALLBACK(src, .proc/convey, affecting), conveytime)//Movement effect
 
 /obj/machinery/conveyor/proc/convey(list/affecting)
 	for(var/am in affecting)
@@ -196,6 +198,21 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		update_move_direction()
 		to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
 		update_icon()
+
+	else if(I.tool_behaviour == TOOL_MULTITOOL)
+		switch(conveytime)
+			if(1)
+				conveytime = 0.5
+				to_chat(user, span_notice("You set [src]'s speed to double."))
+			if(0.5)
+				conveytime = 2
+				to_chat(user, span_notice("You set [src]'s speed to half."))
+			if(2)
+				conveytime = 4
+				to_chat(user, span_notice("You set [src]'s speed to a quarter."))
+			if(4)
+				conveytime = 1
+				to_chat(user, span_notice("You set [src]'s speed back to default."))
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
