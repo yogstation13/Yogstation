@@ -1,0 +1,4 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - bugfix: "Cherry bombs no longer explode in your hand"
