@@ -472,7 +472,7 @@
 	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
 	cooldown."
 
-	combined_msg +=  span_warning("You can't perform any of the moves besides if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall\
+	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall\
 	 your moves.")
 
 	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
