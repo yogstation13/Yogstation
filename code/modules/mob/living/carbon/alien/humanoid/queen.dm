@@ -48,8 +48,9 @@
 
 /mob/living/carbon/alien/humanoid/royal/queen/get_status_tab_items()
 	. = ..()
-	. += ""
-	. += "Blocked Shuttle Timer: [round(timeleft(time_to_shuttle) / 600, 1)] minutes" //weird conversion but works
+	if(time_to_shuttle)
+		. += ""
+		. += "Blocked Shuttle Timer: [round(timeleft(time_to_shuttle) / 600, 1)] minutes" //weird conversion but works
 
 /mob/living/carbon/alien/humanoid/royal/queen/proc/kill_shuttle_timer()
 	SSshuttle.clearHostileEnvironment(src)
