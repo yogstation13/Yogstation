@@ -102,13 +102,12 @@
 	taste_description = "slime"
 
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(reac_volume >= 5) //needs at least a certain amount for it to take effect
-		if(islist(data) && (method == INGEST || method == INJECT))
-			for(var/thing in L.diseases)
-				var/datum/disease/D = thing
-				if(D.GetDiseaseID() in data)
-					D.cure()
-			L.disease_resistances |= data
+	if(islist(data) && ((method == INGEST && reac_volume >= 5) || method == INJECT))//drinking it requires at least 5u, injection doesn't
+		for(var/thing in L.diseases)
+			var/datum/disease/D = thing
+			if(D.GetDiseaseID() in data)
+				D.cure()
+		L.disease_resistances |= data
 
 /datum/reagent/vaccine/on_merge(list/data)
 	if(istype(data))
