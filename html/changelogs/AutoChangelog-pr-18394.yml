@@ -1,0 +1,4 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - bugfix: "fixed unintended 15 second mech attack cooldowns"
