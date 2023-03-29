@@ -63,7 +63,7 @@
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
-	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLOATING))
+	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5)
 	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
@@ -72,7 +72,7 @@
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
 
 	A.add_mob_blood(D)
-	D.apply_damage( 6, BRUTE, A.zone_selected, wound_bonus = 5, bare_wound_bonus = 5, sharpness = SHARP_EDGED)//between 11 and 20 brute damage, 6 of which is sharp and can wound
+	D.apply_damage(16, BRUTE, A.zone_selected, wound_bonus = 5, bare_wound_bonus = 5, sharpness = SHARP_EDGED)//between 21 and 30 brute damage, 16 of which is sharp and can wound
 	D.bleed(20)
 	D.add_splatter_floor(D.loc, TRUE)
 
@@ -81,8 +81,12 @@
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT)
 		D.bleed(130)
 		D.death()
-		A.adjustBruteLoss(-40, FALSE, FALSE, BODYPART_ANY)
-		A.adjustFireLoss(-40, FALSE, FALSE, BODYPART_ANY) //incentivising execution
+		//bonus healing to incentivise execution
+		var/heal_amt = 80 //heals brute first, then burn with any excess
+		var/brute_before = A.getBruteLoss()
+		A.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+		heal_amt -= max(brute_before - A.getBruteLoss(), 0)
+		A.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		new /obj/effect/gibspawner/generic(D.loc)
 
 /*---------------------------------------------------------------
@@ -233,6 +237,7 @@
 		return
 
 	else
+		H.apply_status_effect(STATUS_EFFECT_DODGING)
 		playsound(H, 'sound/effects/dodge.ogg', 50)
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 		H.Immobilize(30 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
@@ -285,7 +290,7 @@
 	H.dna.species.attack_sound = 'sound/weapons/shotgunshot.ogg'
 	H.dna.species.punchdamagelow += 4
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
-	H.dna.species.punchstunthreshold += 4
+	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
 	H.dna.species.speedmod -= 0.1
 	H.update_movespeed(TRUE)
@@ -305,7 +310,7 @@
 	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
 	H.dna.species.punchdamagelow -= 4
 	H.dna.species.punchdamagehigh -= 4 
-	H.dna.species.punchstunthreshold -= 4
+	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	H.dna.species.speedmod += 0.1
 	H.update_movespeed(TRUE)
