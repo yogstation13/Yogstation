@@ -1235,3 +1235,25 @@
 			target.Paralyze(40)
 		else
 			return TRUE
+
+/obj/item/twohanded/bigspoon
+	name = "big spoon"
+	desc = "For when you're only allowed one spoonful of something."
+	icon = 'icons/obj/weapons/misc.dmi'
+	icon_state = ""
+	item_state = ""
+	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+	force = 4 //It's heavy as hell
+	force_wielded = 14 //cleaver is 15 and sharp, this at least gets to be on-par with a nullrod
+	sharpness = SHARP_NONE //issa spoon
+	armour_penetration = -50 //literally couldn't possibly be a worse weapon for hitting armour
+	throwforce = 1 //it's terribly weighted, what do you expect?
+	attack_verb = list("scooped", "bopped", "spooned", "wacked")
+	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
+	wound_bonus = -10
+	bare_wound_bonus = -15
+	max_integrity = 200
+	resistance_flags = ACID_PROOF | FIRE_PROOF
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
