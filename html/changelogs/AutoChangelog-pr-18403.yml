@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "makes toy pistol have ten darts per magazine"
+  - bugfix: "this also fixes its sprite when it has ammunition loaded in it"
