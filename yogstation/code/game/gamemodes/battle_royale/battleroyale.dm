@@ -28,6 +28,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
+	else //please don't ever happen
+		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
 	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
 		if(!L.mind || !L.client)
 			if(isobserver(L) || !L.mind || !L.client)
@@ -39,8 +41,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
-	for(var/i = 1 to queued.len)
-		var/datum/mind/virgin = queued[i]
+	for(var/datum/mind/virgin in queued)
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
