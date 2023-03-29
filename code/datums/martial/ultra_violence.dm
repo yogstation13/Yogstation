@@ -1,8 +1,9 @@
+#define IPCMARTIAL "ipcmartialtrait"
 #define GUN_HAND "GHG"
 #define POCKET_PISTOL "GG"
 #define BLOOD_BURST "HHH"
 #define MAX_DASH_DIST 3
-#define IPCMARTIAL "ipcmartialtrait"
+#define DASH_SPEED 1.5
 
 /datum/martial_art/ultra_violence
 	name = "Ultra Violence"
@@ -242,7 +243,7 @@
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 		H.Immobilize(30 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
 		dashing = TRUE
-		H.throw_at(A, MAX_DASH_DIST, 1.5, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
+		H.throw_at(A, MAX_DASH_DIST, DASH_SPEED, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
 		H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 
@@ -330,3 +331,5 @@
 #undef POCKET_PISTOL
 #undef BLOOD_BURST
 #undef MAX_DASH_DIST
+#undef DASH_SPEED
+#undef IPCMARTIAL
