@@ -1,0 +1,5 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - rscadd: "Expands the biogenerator recipe list significantly"
+  - tweak: "Cooks no longer need to play around with the grinder just to make random u rice"
