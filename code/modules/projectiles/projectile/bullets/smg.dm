@@ -78,8 +78,6 @@
 	range = 6
 
 /obj/item/projectile/bullet/c46x30mm/airburst/on_range(mob/user)
-	var/obj/item/projectile/bullet/c46x30mm/airburst_pellet/P = new(get_turf(src))
-	P.firer = user ? user : src
-	P.fired_from = src
-	P.fire(dir2angle(dir))
-	qdel(src)
+	var/obj/item/ammo_casing/c46x30mm/airburst_pellet/P = new(get_turf(src))
+	P.fire_casing()
+	..()
