@@ -17,8 +17,9 @@
 
 /obj/item/projectile/bullet/a556/rubber
 	name = "5.56mm rubber bullet"
-	damage = 10
+	damage = 20
 	stamina = 47
+	sharpness = SHARP_NONE
 
 // .308 (LWT-650 DMR)
 

@@ -13,9 +13,8 @@
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
-	damage = 5
+	damage = 18
 	stamina = 55
-	wound_bonus = 20
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/incendiary/shotgun
@@ -119,7 +118,7 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
-	damage = 3
+	damage = 4.5
 	stamina = 13 //Total of 78 with less falloff (very big)
 	sharpness = SHARP_NONE
 

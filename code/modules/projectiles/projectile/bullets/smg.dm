@@ -48,5 +48,6 @@
 
 /obj/item/projectile/bullet/c46x30mm/rubber
 	name = "4.6x30mm rubber bullet"
-	damage = 5
+	damage = 7
 	stamina = 22
+	sharpness = SHARP_NONE
