@@ -294,8 +294,8 @@
 	name = "Bone Crossbow"
 	result = /obj/item/gun/ballistic/bow/crossbow/ashen
 	time = 10 SECONDS
-	reqs = list(/obj/item/gun/ballistic/bow/ashen,
-				/obj/item/claymore/bone,
+	reqs = list(/obj/item/gun/ballistic/bow/ashen = 1,
+				/obj/item/claymore/bone = 1,
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
