@@ -18,6 +18,7 @@
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
+	harmful = FALSE
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/beanbag
 	materials = list(/datum/material/iron=250)
 
@@ -99,6 +100,7 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
 	variance = 20
+	harmful = FALSE
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/improvised
@@ -167,6 +169,7 @@
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
+	harmful = FALSE
 	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
 
 /obj/item/ammo_casing/shotgun/dart/hidden/Initialize()

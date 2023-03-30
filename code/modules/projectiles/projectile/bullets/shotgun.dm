@@ -15,7 +15,6 @@
 	name = "beanbag slug"
 	damage = 0
 	stamina = 55
-	harmful = FALSE
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/incendiary/shotgun
@@ -121,7 +120,6 @@
 	name = "rubbershot pellet"
 	damage = 0
 	stamina = 13 //Total of 78 with less falloff (very big but landing all pellets means it's already basically melee range)
-	harmful = FALSE
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
