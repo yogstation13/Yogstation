@@ -100,7 +100,6 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
 	variance = 20
-	harmful = FALSE
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/improvised

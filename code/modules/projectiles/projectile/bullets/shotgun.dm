@@ -118,7 +118,7 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
-	damage = 0
+	damage = 3
 	stamina = 13 //Total of 78 with less falloff (very big but landing all pellets means it's already basically melee range)
 	sharpness = SHARP_NONE
 
