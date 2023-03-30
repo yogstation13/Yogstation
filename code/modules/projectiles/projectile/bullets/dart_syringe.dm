@@ -9,7 +9,6 @@
 	name = "beanbag slug"
 	stamina = 5 // gotta act like we did stamina
 	damage = 0 //regular beanbags don't do damage
-	harmful = FALSE
 	sharpness = SHARP_NONE
 
 // don't want our "beanbag slugs" dropping reagent darts everywhere
