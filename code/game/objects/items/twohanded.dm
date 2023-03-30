@@ -1240,9 +1240,9 @@
 	name = "big spoon"
 	desc = "For when you're only allowed one spoonful of something."
 	icon = 'yogstation/icons/obj/kitchen.dmi'
-	mob_overlay_icon = "yogstation/icons/mob/clothing/back.dmi"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "bigspoon"
-	item_state = "bigspoon"
+	item_state = "bigspoon0"
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_righthand.dmi'
 	force = 2 //It's a big unwieldy for one hand
@@ -1259,5 +1259,5 @@
 	slot_flags = ITEM_SLOT_BACK
 
 /obj/item/twohanded/bigspoon/update_icon()
-	icon_state = "bigspoon[wielded]"
+	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
 	return
