@@ -8,6 +8,8 @@
 	. = ..()
 	var/roll = rand(1,100)
 	if(prob(70)) //Weapons crate
+		name = "Weapons Supply Crate"
+		light_color = LIGHT_COLOR_RED
 		new /obj/item/gun/ballistic/automatic/pistol(src) // always a stechkin so the shooting never stops
 		for(var/i in 1 to 6) // Rolls this crate six times, for SIX crazy weapons (probably)
 			switch(roll)
@@ -151,6 +153,8 @@
 							new /obj/item/gun/ballistic/automatic/m90/unrestricted(src)
 							return
 	else //Item crate, but you still get a gun anyway
+		name = "Misc Supply Crate"
+		light_color = LIGHT_COLOR_BLUE
 		new /obj/item/gun/ballistic/automatic/pistol(src)
 		switch(roll) // Only rolls once because they are premade packs with supplies
 			if(1 to 40)
