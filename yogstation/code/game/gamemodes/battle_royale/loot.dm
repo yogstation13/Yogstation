@@ -146,8 +146,17 @@
 							new /obj/item/ammo_casing/caseless/rocket(src)
 							return
 						if(8)
-							new (src)
-							return /obj/item/guardiancreator/tech
+							var/oneofthree = rand(1,3)
+							switch(oneofthree) //Functionally identical, however they look different so more variance is cool
+								if(1)
+									new /obj/item/guardiancreator/tech/random(src)
+									return
+								if(2)
+									new /obj/item/guardiancreator/carp/random(src)
+									return 
+								if(3)
+									new /obj/item/guardiancreator/wizard/random(src)
+									return 
 						if(9)
 							new /obj/item/gun/ballistic/automatic/ar(src)
 							return
