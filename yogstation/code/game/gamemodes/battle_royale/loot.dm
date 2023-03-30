@@ -73,7 +73,7 @@
 							new /obj/item/grenade/syndieminibomb(src)
 							return
 						if(4)
-							new obj/item/gun/ballistic/bow/energy/syndicate(src)
+							new /obj/item/gun/ballistic/bow/energy/syndicate(src)
 							return
 						if(5)
 							new /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot(src)
