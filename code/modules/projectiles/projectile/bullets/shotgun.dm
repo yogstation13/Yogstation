@@ -23,7 +23,7 @@
 
 /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
 	name = "dragonsbreath pellet"
-	damage = 5
+	damage = 7
 
 /obj/item/projectile/bullet/shotgun/slug/stun
 	name = "stunslug"
@@ -118,7 +118,7 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
-	damage = 4.5
+	damage = 5.5
 	stamina = 13 //Total of 78 with less falloff (very big)
 	sharpness = SHARP_NONE
 
