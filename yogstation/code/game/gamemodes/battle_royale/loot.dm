@@ -10,7 +10,6 @@
 	if(prob(70)) //Weapons crate
 		name = "Weapons Supply Crate"
 		light_color = LIGHT_COLOR_RED
-		new /obj/item/gun/ballistic/automatic/pistol(src) // always a stechkin so the shooting never stops
 		for(var/i in 1 to 6) // Rolls this crate six times, for SIX crazy weapons (probably)
 			switch(roll)
 				if(1 to 40) //Common
@@ -56,10 +55,10 @@
 							new /obj/item/gun/energy/laser/retro/old(src)
 							return
 						if(7)
-							new /obj/item/storage/box/syndie_kit/throwing_weapons(src)
+							new /obj/item/melee/powerfist(src)
 							return
 						if(8)
-							new /obj/item/gun/energy/wormhole_projector/upgraded(src)
+							new /obj/item/gun/ballistic/automatic/mini_uzi(src)
 							return
 				if(71 to 85)
 					var/num = rand(1,8)
@@ -74,7 +73,7 @@
 							new /obj/item/grenade/syndieminibomb(src)
 							return
 						if(4)
-							new /obj/item/storage/backpack/duffelbag/syndie/c4(src)
+							new obj/item/gun/ballistic/bow/energy/syndicate(src)
 							return
 						if(5)
 							new /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot(src)
@@ -87,6 +86,9 @@
 							return
 						if(8)
 							new /obj/item/gun/ballistic/automatic/pistol/suppressed(src)
+							return
+						if(9)
+							new /obj/item/gun/ballistic/automatic/sniper_rifle(src)
 							return
 				if(86 to 95)
 					var/num = rand(1,8)
@@ -101,7 +103,7 @@
 							new /obj/item/gun/ballistic/automatic/pistol/deagle(src)
 							return
 						if(4)
-							new /obj/machinery/syndicatebomb(src)
+							new /obj/item/grenade/spawnergrenade/manhacks(src)
 							return
 						if(5)
 							new /obj/item/shield/energy(src)
@@ -121,13 +123,13 @@
 					var/num = rand(1,10)
 					switch(num)
 						if(1)
-							new /obj/item/gun/energy/beam_rifle(src)
+							new /obj/item/gun/energy/kinetic_accelerator/crossbow(src)
 							return
 						if(2)
 							new /obj/item/gun/ballistic/automatic/c20r/unrestricted(src)
 							return
 						if(3)
-							new /obj/item/gun/ballistic/automatic/mini_uzi(src)
+							new /obj/item/twohanded/dualsaber(src)
 							return
 						if(4)
 							new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src)
@@ -136,7 +138,7 @@
 							new /obj/item/gun/ballistic/automatic/tommygun(src)
 							return
 						if(6)
-							new /obj/item/gun/ballistic/shotgun/automatic/dual_tube(src)
+							new /obj/item/storage/box/syndie_kit/buster(src)
 							return
 						if(7)
 							new /obj/item/gun/ballistic/rocketlauncher/unrestricted(src)
@@ -144,8 +146,8 @@
 							new /obj/item/ammo_casing/caseless/rocket(src)
 							return
 						if(8)
-							new /obj/item/gun/ballistic/automatic/sniper_rifle(src)
-							return
+							new (src)
+							return /obj/item/guardiancreator/tech
 						if(9)
 							new /obj/item/gun/ballistic/automatic/ar(src)
 							return
