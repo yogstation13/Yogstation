@@ -63,7 +63,7 @@
 /obj/structure/destructible/clockwork/massive/ratvar/process()
 	if(clashing) //I'm a bit occupied right now, thanks
 		return
-	for(var/I in circlerangeturfs(src, convert_range))
+	for(var/I in circle_range_turfs(src, convert_range))
 		var/turf/T = I
 		T.ratvar_act()
 	for(var/I in circleviewturfs(src, round(convert_range * 0.5)))
