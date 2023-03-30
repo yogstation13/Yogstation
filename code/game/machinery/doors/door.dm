@@ -162,6 +162,11 @@
 	src.add_fingerprint(user)
 	if(!src.requiresID())
 		user = null
+	else
+		//Yogstation change start. You need to swipe your ID to open doors.
+		do_animate("deny")
+		return
+		//Yogstation change end.
 
 	if(density && !(obj_flags & EMAGGED))
 		if(allowed(user))
