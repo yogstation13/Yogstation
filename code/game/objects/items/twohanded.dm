@@ -1239,11 +1239,12 @@
 /obj/item/twohanded/bigspoon
 	name = "big spoon"
 	desc = "For when you're only allowed one spoonful of something."
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = ""
-	item_state = ""
-	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+	icon = 'yogstation/icons/obj/kitchen.dmi'
+	mob_overlay_icon = "yogstation/icons/mob/clothing/back.dmi"
+	icon_state = "bigspoon"
+	item_state = "bigspoon"
+	lefthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_righthand.dmi'
 	force = 2 //It's a big unwieldy for one hand
 	force_wielded = 16 //cleaver is 15 and sharp, this at least gets to be on-par with a nullrod
 	sharpness = SHARP_NONE //issa spoon
@@ -1256,3 +1257,7 @@
 	materials = list(/datum/material/iron=18000)
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
+
+/obj/item/twohanded/bigspoon/update_icon()
+	icon_state = "bigspoon[wielded]"
+	return
