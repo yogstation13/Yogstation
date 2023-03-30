@@ -1093,8 +1093,6 @@
 	update_icon()
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
-	if(!istype(src, /obj/mecha/combat))
-		REMOVE_TRAIT(occupant, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
