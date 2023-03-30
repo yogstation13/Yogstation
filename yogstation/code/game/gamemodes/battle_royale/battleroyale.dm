@@ -54,6 +54,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
+
+	if(!GLOB.battleroyale_players.len)
+		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
+
 	addtimer(CALLBACK(src, .proc/check_win), 300)
 	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
 	return ..()
@@ -65,6 +69,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/list/royalers = list()
 	if(GLOB.player_list.len <= 1) //It's a localhost testing
 		return
+	if(!GLOB.battleroyale_players.len) //sanity check for if this gets called before people are added to the list somehow
+		message_admins("Somehow no one is signed up to battle royale but check_win has been called, please contact someone to fix it.")
+		return
+
 	for(var/mob/living/player in GLOB.battleroyale_players)
 		if(player.stat == DEAD)
 			GLOB.battleroyale_players -= player
