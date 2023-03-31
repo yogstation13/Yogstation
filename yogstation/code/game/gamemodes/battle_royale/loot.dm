@@ -20,12 +20,28 @@
 
 	var/list/armour = list( //it's spelled the correct way
 		/obj/item/clothing/suit/armor/vest = 5,
+		/obj/item/clothing/head/helmet = 5,
+		/obj/item/clothing/suit/hooded/explorer = 5,
+		/obj/item/clothing/suit/space/hardsuit/mining = 5,
 		/obj/item/clothing/suit/armor/riot = 1,
+		/obj/item/clothing/head/helmet/riot = 1,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = 1,
 		/obj/item/clothing/suit/space/hardsuit/syndi = 1,
 		/obj/item/shield/energy = 1,
 		/obj/item/shield/riot = 1,
 		/obj/item/clothing/suit/space/space_ninja = -5,
+		/obj/item/clothing/suit/space/hardsuit/shielded = -5,
+		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -5,
+		/obj/item/clothing/suit/wizrobe/armor = -5,
+		/obj/item/clothing/head/helmet/space/hardsuit/wizard = -5,
+		/obj/item/clothing/head/helmet/space/hardsuit/carp/dragon = -5,
+		/obj/item/clothing/head/helmet/space/hostile_environment = -5,
+		/obj/item/clothing/suit/space/hostile_environment = -5,
+		/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced = 1,
+		/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b = 1,
+		/obj/item/clothing/suit/hooded/cloak/drake = 1,
+		/obj/item/clothing/suit/armor/elder_atmosian = 1,
+		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -5,
 		)
 
 	var/list/weapon = list(
