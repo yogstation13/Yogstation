@@ -108,20 +108,6 @@
 		/obj/item/battleroyale/martial/plasmaman = 1,
 	)
 
-/* the removed ammo from the old system, i'd rather people grab a new gun instead of stocking up on ammo because of how many ammo types we have but idk
-	/obj/item/ammo_casing/a40mm(src)
-	/obj/item/ammo_casing/caseless/rocket(src)
-	new /obj/item/ammo_box/a357(src)
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c9mm(src)
-	new /obj/item/ammo_box/c10mm(src)
-	new /obj/item/ammo_box/c45(src)
-	new /obj/item/ammo_box/no_direct/n762(src)
-	new /obj/item/ammo_box/foambox/riot
-	new /obj/item/ammo_box/a40mm(src)
-	new /obj/item/ammo_box/a762(src)
-*/
-
 /obj/structure/closet/crate/battleroyale/Initialize(mapload, scaling = 0)
 	. = ..()
 	scale_factor = scaling
