@@ -107,8 +107,9 @@
 // Various gene procs
 /obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
-		to_chat(user, span_notice("You start squashing the [src]"))
-		do_after(user, 2 SECONDS, src)
+		if(seed.get_gene(/datum/plant_gene/trait/teleport))
+			to_chat(user, span_notice("You start squashing the [src]"))
+			do_after(user, 2 SECONDS, src)
 		squash(user)
 	..()
 
