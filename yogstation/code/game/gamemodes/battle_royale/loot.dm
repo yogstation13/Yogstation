@@ -10,8 +10,6 @@
 	-5 - won't spawn until literally round end, and is pretty rare even then
 */
 
-#define BATTLEROYALE_WEIGHT_CULL 5 //anything above this gets culled
-
 GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/armor/vest = 5,
 		/obj/item/clothing/head/helmet = 5,
@@ -30,8 +28,8 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/hardsuit/shielded = -5,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -5,
 		/obj/item/clothing/suit/wizrobe/armor = -5,
-		/obj/item/clothing/head/helmet/space/hardsuit/wizard = -5,
-		/obj/item/clothing/head/helmet/space/hardsuit/carp/dragon = -5,
+		/obj/item/clothing/suit/space/hardsuit/wizard = -5,
+		/obj/item/clothing/suit/space/hardsuit/carp/dragon = -5,
 		/obj/item/clothing/head/helmet/space/hostile_environment = -5,
 		/obj/item/clothing/suit/space/hostile_environment = -5,
 		/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced = 1,
@@ -143,7 +141,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/structure/closet/crate/battleroyale
 	name = "Supply Crate"
-	icon_state = "miningcar"
+	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 
@@ -190,6 +188,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 		if(3)//allrounder
 			name = "Misc Supply Crate"
+			add_atom_colour(LIGHT_COLOR_YELLOW, FIXED_COLOUR_PRIORITY)
 
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)

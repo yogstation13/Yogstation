@@ -51,6 +51,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
+		virgin.current.status_flags |= GODMODE //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
@@ -130,8 +131,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(6)
 			SSweather.run_weather("royale centre", 2)
 
-	borderstage++
 	ItemCull()
+	borderstage++
 
 	if(borderstage <= 6)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
@@ -166,6 +167,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		var/area/AR = get_area(es)
 		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
+			while(turfy.density)//so it doesn't spawn inside walls
+				pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			new /obj/structure/closet/crate/battleroyale(pod)
 			new /obj/effect/DPtarget(turfy, pod)
@@ -240,6 +243,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
+	Ltaker.status_flags &= ~GODMODE //to make shit hurt again
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
@@ -251,6 +255,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
 			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
+	if(!contents)//in case Z-level loops
+		qdel(src)
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)
