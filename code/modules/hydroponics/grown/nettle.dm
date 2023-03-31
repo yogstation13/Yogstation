@@ -97,11 +97,11 @@
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/add_juice()
 	..()
-	force = round((5 + seed.potency / 4), 1) // Max 30 dmg, esword level, with max potency and buffed force reduction, should down unarmored in 3-4 hits
+	force = round((5 + seed.potency / 5.5), 1) // Max 19 dmg, with max potency and buffed force reduction, should down unarmored in 3-4 hits
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/pickup(mob/living/carbon/user)
 	if(..())
-		if(prob(50))
+		if(prob(30))
 			user.Paralyze(100)
 			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
 
