@@ -41,7 +41,7 @@
 	var/tierfivebin = FALSE
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		sheet_per_ore_temp = 0.65 + (0.35 * B.rating)
-		if(B.rating == 5)
+		if(B.rating >= 5)
 			tierfivebin = TRUE
 	if(tierfivebin)
 		sheet_per_ore_temp *= 2
@@ -52,7 +52,7 @@
 	var/tierfivelaser = FALSE
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
 		point_upgrade_temp = 0.65 + (0.35 * L.rating)
-		if(L.rating == 5)
+		if(L.rating >= 5)
 			tierfivelaser = TRUE
 	if(tierfivelaser)
 		point_upgrade_temp *= 3

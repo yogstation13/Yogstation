@@ -55,7 +55,7 @@
 			if(4 to 5)
 				stasis_amount = -1 // 100% stasis
 				stasis_part = 4
-		if(C.rating == 5)
+		if(C.rating >= 5)
 			repair_organs = TRUE
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		stasis_cooldown *= 1/M.rating // 100%, 50%, 33%, 25%

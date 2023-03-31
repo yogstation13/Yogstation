@@ -23,10 +23,10 @@
 	repairs = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_speed += C.rating * 100
-		if(C.rating == 5)
+		if(C.rating >= 5)
 			recharge_speed *= 2
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		if(M.rating == 5)
+		if(M.rating >= 5)
 			repairs = 40
 		else
 			repairs += M.rating - 1

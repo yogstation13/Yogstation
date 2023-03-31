@@ -25,7 +25,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/T = 0
 	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
-		if(S.rating == 5)
+		if(S.rating >= 5)
 			can_research_items = TRUE
 	decon_mod = T
 

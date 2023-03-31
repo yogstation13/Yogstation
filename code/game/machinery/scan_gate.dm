@@ -45,7 +45,7 @@
 
 /obj/machinery/scanner_gate/RefreshParts()
 	for(var/obj/item/stock_parts/P in component_parts)
-		if(P.rating == 5)
+		if(P.rating >= 5)
 			blocking = TRUE
 			density = TRUE
 			return

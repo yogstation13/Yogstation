@@ -102,7 +102,7 @@
 	T = -1
 	for(var/obj/item/stock_parts/manipulator/Ml in component_parts)
 		T += Ml.rating
-		if(Ml.rating == 5)
+		if(Ml.rating >= 5)
 			T += 0.75
 	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)
 

@@ -47,7 +47,7 @@
 	var/repair = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		MC += C.rating
-		if(C.rating == 5)
+		if(C.rating >= 5)
 			MC += C.rating
 			repair += 7
 	max_charge = MC * 25

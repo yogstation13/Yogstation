@@ -70,7 +70,7 @@
 	var/tierfive = FALSE
 	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		IO += CP.rating
-		if(CP.rating == 5)
+		if(CP.rating >= 5)
 			tierfive = TRUE
 	if(tierfive)
 		IO *= 4 // Quadruples power input/output caps

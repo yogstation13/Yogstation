@@ -217,7 +217,7 @@
 	var/tierfive = FALSE
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		L += M.rating
-		if(M.rating == 5)
+		if(M.rating >= 5)
 			tierfive = TRUE
 	min_temperature = max(T0C - (initial(min_temperature) + L * 15), tierfive ? 1 : TCMB) //73.15K with T1 stock parts
 
@@ -245,7 +245,7 @@
 	var/L
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		L += M.rating
-		if(M.rating == 5)
+		if(M.rating >= 5)
 			L += M.rating * 3 // 5893.15K with T5 parts
 	max_temperature = T20C + (initial(max_temperature) * L) //573.15K with T1 stock parts
 

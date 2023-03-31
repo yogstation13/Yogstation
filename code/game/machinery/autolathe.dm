@@ -237,7 +237,7 @@
 	prod_speed = initial(prod_speed)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T -= M.rating*0.2
-		if(M.rating == 5)
+		if(M.rating >= 5)
 			prod_speed *= 2
 			adjust_hacked(TRUE)
 	prod_coeff = min(1,max(0.01,T)) // Coeff going 1 -> 0,8 -> 0,6 -> 0,4 -> 0,2

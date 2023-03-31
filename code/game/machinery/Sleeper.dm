@@ -63,7 +63,7 @@
 	legacy_chems = initial(legacy_chems)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		I += M.rating
-		if(M.rating == 5)
+		if(M.rating >= 5)
 			legacy_chems = TRUE
 	efficiency = initial(efficiency)* E
 	available_treatments = list()

@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		efficiency += S.rating
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += P.rating
-		if(P.rating == 5)
+		if(P.rating >= 5)
 			speed_coeff += P.rating // Two T5 manips = 1000% speed, which completes in 30 seconds
 	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
 		maxbiomass += B.reagents.maximum_volume

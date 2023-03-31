@@ -39,7 +39,7 @@
 	five_upgraded = initial(five_upgraded)
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
-		if(SP.rating == 5)
+		if(SP.rating >= 5)
 			five_upgraded = TRUE
 	heat_gen /= max(1, tot_rating)
 

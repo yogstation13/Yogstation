@@ -24,7 +24,7 @@
 
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		if(C.rating == 5)
+		if(C.rating >= 5)
 			recharge_coeff = 10
 		else
 			recharge_coeff = C.rating
