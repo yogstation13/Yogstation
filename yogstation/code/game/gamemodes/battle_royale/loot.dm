@@ -17,6 +17,7 @@
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 	var/scale_factor = 0 //number to increase all weight by
 	var/cull_limit = 5 //anything with a weight above this is culled rather than spawned
+
 	var/list/armour = list( //it's spelled the correct way
 		/obj/item/clothing/suit/armor/vest = 5,
 		/obj/item/clothing/suit/armor/riot = 1,
@@ -25,7 +26,8 @@
 		/obj/item/shield/energy = 1,
 		/obj/item/shield/riot = 1,
 		/obj/item/clothing/suit/space/space_ninja = -5,
-	)
+		)
+
 	var/list/weapon = list(
 		/obj/item/circular_saw = 5,
 		/obj/item/kitchen/knife/combat/survival = 5,
@@ -59,7 +61,7 @@
 		/obj/item/gun/ballistic/bow/energy/syndicate = 1,
 		/obj/item/melee/powerfist = 1,
 		/obj/item/melee/fryingpan/bananium = 1,
-		/obj/item/energy_katana -4,
+		/obj/item/energy_katana = -4,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
 	)
 
@@ -122,7 +124,7 @@
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
 			name = "Weapons Supply Crate"
-			light_color LIGHT_COLOR_BLOOD_MAGIC
+			light_color = LIGHT_COLOR_BLOOD_MAGIC
 
 			selected = pickweightnegative(weapon)
 			new selected(src)
@@ -139,7 +141,7 @@
 
 		if(2)//armour focus (so people can select what they want)
 			name = "Armour Supply Crate"
-			light_color LIGHT_COLOR_BLUE
+			light_color = LIGHT_COLOR_BLUE
 
 			selected = pickweightnegative(weapon)
 			new selected(src)
@@ -170,7 +172,7 @@
 
 		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
 			name = "Utility Supply Crate"
-			light_color LIGHT_COLOR_PURPLE
+			light_color = LIGHT_COLOR_PURPLE
 
 			selected = pickweightnegative(armour)
 			new selected(src)
@@ -185,7 +187,7 @@
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
-			light_color LIGHT_COLOR_GREEN
+			light_color = LIGHT_COLOR_GREEN
 
 			selected = pickweightnegative(armour)
 			new selected(src)
@@ -252,29 +254,29 @@
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"
 	desc = "Transforms you into a scaled menace."
-	var/martial = /datum/martial_art/flyingfang
-	var/species = /datum/species/lizard
+	martial = /datum/martial_art/flyingfang
+	species = /datum/species/lizard
 
 /obj/item/battleroyale/martial/preternis
 	name = "Preternis martial mutator"
 	desc = "Transforms you into a durable worker cyborg."
-	var/martial = /datum/martial_art/preternis_stealth
-	var/species = /datum/species/preternis
+	martial = /datum/martial_art/stealth
+	species = /datum/species/preternis
 	
 /obj/item/battleroyale/martial/phytosian
 	name = "Phytosian martial mutator"
 	desc = "Transforms you into a feral plant creature."
-	var/martial = /datum/martial_art/gardern_warfare
-	var/species = /datum/species/pod
+	martial = /datum/martial_art/gardern_warfare
+	species = /datum/species/pod
 
 /obj/item/battleroyale/martial/plasmaman
 	name = "Plasmaman martial mutator"
 	desc = "Transforms you into terrifying always-burning skeleton."
-	var/martial = /datum/martial_art/explosive_fist
-	var/species = /datum/species/plasmaman
+	martial = /datum/martial_art/explosive_fist
+	species = /datum/species/plasmaman
 
 /obj/item/battleroyale/martial/plasmaman/attack_self(mob/user)
 	. = ..()
 	if(isplasmaman(user))//otherwise the poor sap suffocates
-		var/obj/item/lungs/debug/based = new /obj/item/lungs/debug()
+		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
 		based.Insert(user)
