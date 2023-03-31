@@ -1522,7 +1522,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	//Securidrink in line with the Screwdriver for engineers or Nothing for mimes
 	if(HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
 		boozepwr = 120
-		M.adjustBurnLoss(-1,0)
+		M.adjustFireLoss(-1,0)
 		M.adjustBruteLoss(-2,0)
 		. = 1
 	return ..()
