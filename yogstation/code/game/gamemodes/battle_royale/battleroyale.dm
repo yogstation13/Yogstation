@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale north", "royale south", "royale east", "royale west")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	for(var/i = 1 to queued.len)
 		var/datum/mind/virgin = queued[i]
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
+		virgin.current.set_species(/datum/species/human) //Fuck plasmamen -- before giving datum so species without shoes still get them
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
@@ -56,11 +57,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
-		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
-	addtimer(CALLBACK(src, .proc/check_win), 30 SECONDS)
-	addtimer(CALLBACK(src, .proc/loot_spawn), 0.5 SECONDS)//make sure this happens before shrinkborders
-	addtimer(CALLBACK(src, .proc/shrinkborders), 1 SECONDS)
-	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
+	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -123,16 +123,16 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			SSweather.run_weather("royale start",2)
 		if(1)//get them out of maints
 			SSweather.run_weather("royale maint", 2)
-		if(2 to 5)//close off the map
+		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
-		if(6)//finish it
+		if(8)//finish it
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
 
-	if(borderstage <= 6)
+	if(borderstage <= 8)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool

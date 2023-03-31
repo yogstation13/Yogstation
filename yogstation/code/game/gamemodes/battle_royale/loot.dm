@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
-	var/type = rand(1,4)//for a couple different themes
+	var/type = rand(1,5)//for a couple different themes
 	
 	switch(type)//it's in two blocks so healing fountains still get reskinned but don't get items
 		if(1)//weapon focus (to fuel the fight)
@@ -168,23 +168,17 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	var/selected
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
+			for(var/i in 1 to 3)
+				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
+				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
+			for(var/i in 1 to 3)
+				selected = pickweightAllowZero(GLOB.battleroyale_armour)
+				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
 			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_healing)
 			new selected(src)
@@ -200,23 +194,17 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
+			for(var/i in 1 to 3)
+				selected = pickweightAllowZero(GLOB.battleroyale_utility)
+				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_utility)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_utility)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
+			for(var/i in 1 to 3)
+				selected = pickweightAllowZero(GLOB.battleroyale_healing)
+				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
 			new selected(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
@@ -231,6 +219,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	name = "This item is created and used by the battle royale gamemode"
 	desc = "This shouldn't have been spawned"
 
+//used to grant species martial arts to other species
 /obj/item/battleroyale/martial //can you feel my bias
 	name = "IPC martial mutator"
 	desc = "Transforms you into a blood-fueled killing machine."
@@ -247,7 +236,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		qdel(MA)
 		return
 
-	if(do_after(user, 5 SECONDS, user))
+	if(do_after(user, 6 SECONDS, user))
 		user.set_species(species)
 		MA.teach(user)
 		qdel(src)
@@ -290,7 +279,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
 		based.Insert(user)
 
-
+//used for bundle items
 /obj/item/battleroyale/itemspawner
 	name = "you shouldn't be seeing this"
 	desc = "literally just to spawn multiple items"
