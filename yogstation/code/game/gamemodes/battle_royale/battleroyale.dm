@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	addtimer(CALLBACK(src, .proc/check_win), 30 SECONDS)
 	addtimer(CALLBACK(src, .proc/shrinkborders), 1 SECONDS)
 	addtimer(CALLBACK(src, .proc/loot_spawn), 1 SECONDS)
-	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval)
+	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -116,6 +116,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
+	ItemCull()
+
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -131,7 +133,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(6)
 			SSweather.run_weather("royale centre", 2)
 
-	ItemCull()
 	borderstage++
 
 	if(borderstage <= 6)
@@ -158,9 +159,11 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(GLOB.battleroyale_utility[item] > weightcull)
 			GLOB.battleroyale_utility -= item
 
+	if(!GLOB.battleroyale_armour.len || !GLOB.battleroyale_weapon.len || !GLOB.battleroyale_healing.len || !GLOB.battleroyale_utility.len)
+		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
+
 /datum/game_mode/fortnite/proc/loot_drop()
 	loot_spawn(rand(1, 2))
-	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval)
 
 /datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)

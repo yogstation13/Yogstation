@@ -354,16 +354,18 @@
 
 	return null
 
-/proc/pickweightnegative(list/L) //the other two don't factor in if something has negative weight. I share the same sentiment as the person above me so I made a new proc too.
+/proc/pickweightnegative(list/L) //the other two don't factor in if something has negative weight. also doesn't actually modify the list like the others seem to. I share the same sentiment as the person above me so I made a new proc too.
 	var/total = 0
 	var/item
 	for (item in L)
 		if (L[item] <= 0)
-			L[item] = 0
+			continue
 		total += L[item]
 
 	total = rand(0, total)
 	for (item in L)
+		if (L[item] <= 0)
+			continue
 		total -=L [item]
 		if (total <= 0 && L[item])
 			return item

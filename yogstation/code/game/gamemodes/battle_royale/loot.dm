@@ -43,7 +43,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/circular_saw = 5,
 		/obj/item/kitchen/knife/combat/survival = 5,
 		/obj/item/pen/edagger = 5,
-		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 5,
 		/obj/item/gun/ballistic/automatic/pistol = 1,
 		/obj/item/flamethrower/full/tank = 1,
 		/obj/item/gun/ballistic/shotgun/automatic/combat = 1,
@@ -109,12 +108,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/xray_eyes = 1,
 		/obj/item/autosurgeon/reviver = 1,
 		/obj/item/autosurgeon/syndicate/spinalspeed = 1,
-		/obj/item/autosurgeon/limb/head/robot = 1,
-		/obj/item/autosurgeon/limb/chest/robot = 1,
-		/obj/item/autosurgeon/limb/l_arm/robot = 1,
-		/obj/item/autosurgeon/limb/r_arm/robot = 1,
-		/obj/item/autosurgeon/limb/l_leg/robot = 1,
-		/obj/item/autosurgeon/limb/r_leg/robot = 1,
+		/obj/item/storage/box/syndie_kit/augmentation = -5,
 		/obj/item/multisurgeon/airshoes = 1,
 		/obj/item/spellbook = -5,
 		/obj/item/book/granter/martial/cqc = 1,
@@ -144,20 +138,36 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
+	var/healing_fountain //if it's a healing fountain instead of a loot chest
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
-	if(prob(5))
-		new /obj/structure/healingfountain(src.loc)
-		qdel(src)
-
-	var/selected
 	var/type = rand(1,4)//for a couple different themes
-	switch(type)
+	
+	switch(type)//it's in two blocks so healing fountains still get reskinned but don't get items
 		if(1)//weapon focus (to fuel the fight)
 			name = "Weapons Supply Crate"
 			add_atom_colour(LIGHT_COLOR_BLOOD_MAGIC, FIXED_COLOUR_PRIORITY)
+		if(2)//armour focus (so people can select what they want)
+			name = "Armour Supply Crate"
+			add_atom_colour(LIGHT_COLOR_BLUE, FIXED_COLOUR_PRIORITY)
+		if(3)//allrounder
+			name = "Misc Supply Crate"
+			add_atom_colour(LIGHT_COLOR_YELLOW, FIXED_COLOUR_PRIORITY)
+		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
+			name = "Utility Supply Crate"
+			add_atom_colour(LIGHT_COLOR_PURPLE, FIXED_COLOUR_PRIORITY)
+		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
+			name = "Healing Supply Crate"
+			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
+	if(prob(5))
+		healing_fountain = TRUE
+		return
+
+	var/selected
+	switch(type)
+		if(1)//weapon focus (to fuel the fight)
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
@@ -168,9 +178,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
-			name = "Armour Supply Crate"
-			add_atom_colour(LIGHT_COLOR_BLUE, FIXED_COLOUR_PRIORITY)
-
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_armour)
@@ -183,9 +190,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(3)//allrounder
-			name = "Misc Supply Crate"
-			add_atom_colour(LIGHT_COLOR_YELLOW, FIXED_COLOUR_PRIORITY)
-
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_armour)
@@ -196,9 +200,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
-			name = "Utility Supply Crate"
-			add_atom_colour(LIGHT_COLOR_PURPLE, FIXED_COLOUR_PRIORITY)
-
 			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_utility)
@@ -209,9 +210,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
-			name = "Healing Supply Crate"
-			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
-
 			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_healing)
@@ -223,6 +221,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
+	if(healing_fountain)
+		new /obj/structure/healingfountain(get_turf(src))
+		qdel(src)
+		return
 	QDEL_IN(src, 30 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale

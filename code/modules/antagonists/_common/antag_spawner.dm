@@ -123,7 +123,7 @@
 	if(used)
 		to_chat(user, span_warning("[src] is out of power!"))
 		return FALSE
-	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
+	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE) && !user.mind.has_antag_datum(/datum/antagonist/battleroyale))//also let it work in battle royales
 		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
 		return FALSE
 	if(!user.onSyndieBase())
