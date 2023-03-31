@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
 			while(turfy.density)//so it doesn't spawn inside walls
-				pick(get_area_turfs(AR))
+				turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			new /obj/structure/closet/crate/battleroyale(pod)
 			new /obj/effect/DPtarget(turfy, pod)
