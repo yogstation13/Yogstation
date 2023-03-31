@@ -23,6 +23,7 @@
 		/obj/item/clothing/head/helmet = 5,
 		/obj/item/clothing/suit/hooded/explorer = 5,
 		/obj/item/clothing/suit/space/hardsuit/mining = 5,
+		/obj/item/armorpolish = 5,
 		/obj/item/clothing/suit/armor/riot = 1,
 		/obj/item/clothing/head/helmet/riot = 1,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = 1,
@@ -81,6 +82,7 @@
 		/obj/item/energy_katana = -4,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
 		/obj/item/his_grace = -5,
+		/obj/item/twohanded/vxtvulhammer = 1,
 	)
 
 	var/list/healing = list(//healing, so people don't always need to ransack medbay in order to not just die
@@ -334,4 +336,4 @@
 	qdel(src)
 
 /obj/item/battleroyale/itemspawner/construct
-	items = (/obj/structure/constructshell,	/obj/item/soulstone/anybody)
+	items = list(/obj/structure/constructshell,	/obj/item/soulstone/anybody)

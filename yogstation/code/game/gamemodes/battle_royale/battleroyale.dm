@@ -17,7 +17,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
-	var/stage_interval = 1200 //Copied from Nich's homework. Storm shrinks every 2 minutes
+	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes
+	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
@@ -54,8 +55,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
-	addtimer(CALLBACK(src, .proc/check_win), 300)
-	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
+	addtimer(CALLBACK(src, .proc/check_win), 30 SECONDS)
+	addtimer(CALLBACK(src, .proc/shrinkborders), 1 SECONDS)
+	addtimer(CALLBACK(src, .proc/loot_spawn), 1 SECONDS)
+	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval)
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -111,7 +114,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
-	loot_spawn()
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -132,12 +134,18 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(borderstage <= 6)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
 
-/datum/game_mode/fortnite/proc/loot_spawn()
-	var/num = rand(1,3)
+/datum/game_mode/fortnite/proc/loot_drop()
+	loot_spawn(2)
+	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval)
+
+/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
+	var/num = rand(1, amount)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
 		for(var/I = 0, I < num, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
+			while(turfy.density)
+				turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			new /obj/structure/closet/crate/battleroyale(pod, borderstage)
 			new /obj/effect/DPtarget(turfy, pod)
