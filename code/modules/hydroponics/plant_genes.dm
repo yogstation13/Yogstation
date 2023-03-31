@@ -316,7 +316,7 @@
 
 /datum/plant_gene/trait/teleport/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	..()
-	throw_range = min(throw_range, 2)
+	G.throw_range = min(G.row_range, 2)
 
 /datum/plant_gene/trait/teleport/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))
