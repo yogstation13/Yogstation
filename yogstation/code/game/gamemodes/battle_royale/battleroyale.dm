@@ -127,12 +127,14 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
-		if(8)//finish it
+		if(8)
+			SSweather.run_weather("royale hallway", 2)//force them to bridge
+		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
 
-	if(borderstage <= 8)
+	if(borderstage <= 9)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool

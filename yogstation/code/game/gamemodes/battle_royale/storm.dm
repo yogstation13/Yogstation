@@ -14,13 +14,22 @@
 	weather_duration = INFINITY
 	weather_duration_lower = INFINITY
 	weather_duration_upper = INFINITY
-	var/list/areasToWeather = list()
+	var/list/areasToWeather = list()//if you want a specific area targeted
+	var/list/areaTypesToWeather = list()//if you want an entire area type targeted
+	var/list/areaIgnore = list()//if you want areaTypesToWeather to ignore something specific
 
 /datum/weather/royale/weather_act(mob/living/L)
 	L.adjustFireLoss(3)
 
 /datum/weather/royale/New()
 	.=..()
+	if(areaTypesToWeather.len)//so multiple entire area types can be used instead of relying on selecting specific areas
+		for(var/area/A in areaTypesToWeather)
+			var/list/areas = get_areas(A)
+			if(areaIgnore.len)
+				areas -= areaIgnore
+			areasToWeather |= areas
+
 	if(areasToWeather.len)
 		protected_areas = get_areas(/area)
 		for(var/A in protected_areas)
@@ -31,7 +40,8 @@
 // ROYALE WEATHER TYPES
 /datum/weather/royale/start
 	name = "royale start" //roundstart wave, just hits solars and the toxins test area
-	areasToWeather = list(/area/solar/starboard/fore, /area/solar/starboard/aft, /area/solar/port/fore, /area/solar/port/aft, /area/science/test_area)
+	areasToWeather = list(/area/science/test_area)
+	areaTypesToWeather = list(/area/solar)
 
 /datum/weather/royale/maint
 	name = "royale maint" //First wave, hits maintenance
@@ -39,43 +49,46 @@
 	area_type = /area/maintenance
 
 /datum/weather/royale/security
-	name = "royale north" //North wave, takes out security, EVA, dorms and associated areas.
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from security!</i>")
-	areasToWeather = list(/area/security/execution/transfer, /area/security/prison,/area/security/detectives_office, /area/security/processing, /area/ai_monitored/security/armory, /area/security/main, /area/crew_quarters/heads/hos,
-	/area/security/warden, /area/security/brig, /area/security/courtroom, /area/vacant_room/office/office_b, /area/lawoffice, /area/ai_monitored/storage/eva, /area/crew_quarters/dorms, /area/crew_quarters/toilet,
-	/area/crew_quarters/fitness, /area/holodeck/rec_center, /area/hallway/primary/fore)
+	name = "royale security" //North wave, takes out security, EVA, dorms and associated areas.
+	telegraph_message = span_userdanger("<i>The storm is closing in, get away from security and controlled areas!</i>")
+	areasToWeather = list(/area/crew_quarters/heads/hos)
+	areaTypesToWeather = list(/area/security, /area/ai_monitored, /area/lawoffice)
 
 /datum/weather/royale/science
-	name = "royale east" //East wave, takes out medical, service and science
+	name = "royale science" //takes out science
 	telegraph_message = span_userdanger("<i>The storm is closing in, get away from science!</i>")
-	areasToWeather = list(/area/science/lab, /area/science/explab, /area/crew_quarters/heads/hor, /area/science/mixing, /area/science/misc_lab, /area/science/nanite, /area/science/xenobiology, /area/science/storage,
-	/area/science/research, /area/security/checkpoint/science, /area/science/server, /area/science/robotics/lab, /area/science/robotics/mechbay, /area/medical/genetics, /area/medical/paramedic,
-	/area/medical/morgue, /area/security/checkpoint/medical, /area/crew_quarters/heads/cmo, /area/medical/virology, /area/medical/sleeper, /area/medical/chemistry, /area/medical/medbay/central,
-	/area/chapel/main, /area/chapel/office, /area/library, /area/hydroponics, /area/crew_quarters/bar, /area/crew_quarters/theatre, /area/hallway/secondary/service, /area/hallway/secondary/exit, /area/hallway/primary/starboard, /area/crew_quarters/kitchen)
+	areasToWeather = list(/area/crew_quarters/heads/hor)
+	areaTypesToWeather = list(/area/science)
 
 /datum/weather/royale/engineering
-	name = "royale south" //South wave, takes out engineering and atmos
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from engineering!</i>")
-	areasToWeather = list(/area/storage/tech, /area/janitor, /area/construction, /area/engine/atmos, /area/engine/gravity_generator, /area/security/checkpoint/engineering, /area/engine/break_room, /area/crew_quarters/heads/chief,
-	/area/engine/engine_smes, /area/engine/engineering, /area/engine/supermatter, /area/tcommsat/entrance, /area/tcommsat/computer, /area/tcommsat/server, /area/hallway/primary/aft)
+	name = "royale engineering" //takes out engineering and atmos
+	telegraph_message = span_userdanger("<i>The storm is closing in, get away from engineering and storage!</i>")
+	areasToWeather = list(/area/crew_quarters/heads/chief)
+	areaTypesToWeather = list(/area/engine, /area/tcommsat, /area/construction, /area/storage)
 
-/datum/weather/royale/service
-	name = "royale south" //South wave, takes out engineering and atmos
+/datum/weather/royale/service //this one is more annoying because head offices are considered a type of crew_quarters
+	name = "royale service" //takes out service
 	telegraph_message = span_userdanger("<i>The storm is closing in, get away from service!</i>")
-	areasToWeather = list()
+	areaTypesToWeather = list(/area/chapel, /area/library, /area/hydroponics, /area/holodeck, /area/janitor, /area/crew_quarters)
+	areaIgnore = list(/area/crew_quarters/heads/hos, /area/crew_quarters/heads/hor, /area/crew_quarters/heads/cmo, //ignore all the head offices
+	/area/crew_quarters/heads/chief, /area/crew_quarters/heads/hop, /area/crew_quarters/heads/captain)
 
 /datum/weather/royale/medbay
-	name = "royale south" //South wave, takes out engineering and atmos
+	name = "royale medbay" //takes out medbay
 	telegraph_message = span_userdanger("<i>The storm is closing in, get away from medbay!</i>")
-	areasToWeather = list()
+	areasToWeather = list(/area/crew_quarters/heads/cmo)
+	areaTypesToWeather = list(/area/medical)
 
 /datum/weather/royale/cargo
-	name = "royale west" //West wave, takes out arrivals and cargo
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from cargo!</i>")
-	areasToWeather = list(/area/construction/mining/aux_base, /area/security/checkpoint/auxiliary, /area/hydroponics/garden, /area/storage/primary, /area/ai_monitored/nuke_storage, /area/clerk, /area/vacant_room,
-	/area/crew_quarters/toilet/locker, /area/crew_quarters/locker, /area/storage/art, /area/storage/emergency/port, /area/storage/tools, /area/quartermaster/warehouse,
-	/area/quartermaster/sorting, /area/quartermaster/storage, /area/quartermaster/office, /area/quartermaster/qm, /area/quartermaster/miningdock, /area/security/checkpoint/supply, /area/hallway/secondary/entry, /area/hallway/primary/port)
+	name = "royale west" //takes out arrivals and cargo
+	telegraph_message = span_userdanger("<i>The storm is closing in, get away from cargo and any vacant rooms!</i>")
+	areaTypesToWeather = list(/area/quartermaster, /area/vacant_room)
+
+/datum/weather/royale/hallway//
+	name = "royale hallway"
+	telegraph_message = span_userdanger("<i>The storm is closing in, get out of the hallways!</i>")
+	areaTypesToWeather = list(/area/hallway)
 
 /datum/weather/royale/six
 	name = "royale centre" //final wave, takes out the centre ring.
-	telegraph_message = span_userdanger("<i>The storm is closing in, make your final stand!</i>")
+	telegraph_message = span_userdanger("<i>The eye of the storm is closing, make your final stand!</i>")
