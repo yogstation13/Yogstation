@@ -1,3 +1,9 @@
+#define FAB_CAPACITOR "capacitor"
+#define FAB_MATTERBIN "matterbin"
+#define FAB_SCANNER "scanner"
+#define FAB_LASER "laser"
+#define FAB_MANIPULATOR "manipulator"
+
 /// The Production Producer
 /obj/machinery/part_fabricator
 	name = "experimental part fabricator"
@@ -25,7 +31,7 @@
 
 	var/static/list/acceptable_items
 
-	var/tab = "capacitor"
+	var/tab = FAB_CAPACITOR
 
 	var/production_speed = 1
 
@@ -152,7 +158,7 @@
 /obj/machinery/part_fabricator/ui_data(mob/user)
 	var/list/data = ..()
 	// Capacitor requirements /////////////////////////////////////////////////////////////////
-	if(tab == "capacitor")
+	if(tab == FAB_CAPACITOR)
 		var/current_ESMs = 0
 		for(var/obj/item/electrical_stasis_manifold/esm in contents)
 			current_ESMs++
@@ -162,7 +168,7 @@
 		data["current_energy"] = current_energy ? current_energy : "0"
 
 	// Matter bin requirements /////////////////////////////////////////////////////////////////
-	else if(tab == "matterbin")
+	else if(tab == FAB_MATTERBIN)
 		var/current_augurs = 0
 		for(var/obj/item/organic_augur/augur in contents)
 			current_augurs++
@@ -173,7 +179,7 @@
 		data["current_moles"] = current_moles ? current_moles : "0"
 
 	// Scanner requirements /////////////////////////////////////////////////////////////////
-	else if(tab == "scanner")
+	else if(tab == FAB_SCANNER)
 		var/current_posibrain = "ERROR: No artificial brain loaded"
 		for(var/obj/item/mmi/posibrain/posi in contents)
 			current_posibrain = "ERROR: Artificial brain inactive"
@@ -191,7 +197,7 @@
 		data["current_reagents_num"] = current_reagents_num
 
 	// Laser requirements /////////////////////////////////////////////////////////////////
-	else if(tab == "laser")
+	else if(tab == FAB_LASER)
 		var/current_lasergun = "ERROR: No laser gun loaded"
 		for(var/obj/item/gun/energy/laser/lasgun in contents)
 			var/valid = FALSE
@@ -210,7 +216,7 @@
 		data["current_money"] = current_money ? current_money : "0"
 
 	// Manipulator requirements /////////////////////////////////////////////////////////////////
-	else if(tab == "manipulator")
+	else if(tab == FAB_MANIPULATOR)
 		var/current_plants = 0
 		for(var/selected_item in contents)
 			if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
@@ -252,19 +258,19 @@
 			return try_print()
 		/// Tabs ///
 		if("goCapacitor")
-			tab = "capacitor"
+			tab = FAB_CAPACITOR
 			return TRUE
 		if("goMatterBin")
-			tab = "matterbin"
+			tab = FAB_MATTERBIN
 			return TRUE
 		if("goScanner")
-			tab = "scanner"
+			tab = FAB_SCANNER
 			return TRUE
 		if("goLaser")
-			tab = "laser"
+			tab = FAB_LASER
 			return TRUE
 		if("goManipulator")
-			tab = "manipulator"
+			tab = FAB_MANIPULATOR
 			return TRUE
 		/// Ejection ///
 		if("ejectESM")
@@ -294,16 +300,13 @@
 
 /// Returns the power of the powernet of the APC of the room we're in
 /obj/machinery/part_fabricator/proc/get_power()
-	var/current_energy = 0
 	var/area/my_area = get_area(src)
 	if(!my_area)
-		return
-	// this is apparently the best way to get the current area's APC
-	for(var/obj/machinery/power/apc/selected_apc as anything in GLOB.apcs_list)
-		if(selected_apc.area == my_area)
-			current_energy = selected_apc.terminal?.powernet?.avail
-			break
-	return current_energy
+		return 0
+	var/obj/machinery/power/apc/my_apc = my_area.get_apc()
+	if(!my_apc)
+		return 0
+	return my_apc.terminal?.powernet?.avail
 
 /obj/machinery/part_fabricator/proc/eject_type(list/eject_types)
 	if(!islist(eject_types))
@@ -341,7 +344,7 @@
 
 /obj/machinery/part_fabricator/proc/is_satisfied()
 	switch(printing)
-		if("capacitor")
+		if(FAB_CAPACITOR)
 			var/current_ESMs = 0
 			for(var/obj/item/electrical_stasis_manifold/esm in contents)
 				current_ESMs++
@@ -352,7 +355,7 @@
 				return FALSE
 			return TRUE
 
-		if("matterbin")
+		if(FAB_MATTERBIN)
 			var/current_augurs = 0
 			for(var/obj/item/organic_augur/augur in contents)
 				current_augurs++
@@ -365,7 +368,7 @@
 				return FALSE
 			return TRUE
 
-		if("scanner")
+		if(FAB_SCANNER)
 			var/has_posi = FALSE
 			for(var/obj/item/mmi/posibrain/posi in contents)
 				has_posi = TRUE
@@ -379,7 +382,7 @@
 					return FALSE
 			return TRUE
 
-		if("laser")
+		if(FAB_LASER)
 			var/has_lasergun = FALSE
 			for(var/obj/item/gun/energy/laser/lasgun in contents)
 				has_lasergun = TRUE
@@ -396,7 +399,7 @@
 				return FALSE
 			return TRUE
 
-		if("manipulator")
+		if(FAB_MANIPULATOR)
 			var/current_plants = 0
 			for(var/selected_item in contents)
 				if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
@@ -410,7 +413,7 @@
 			return TRUE
 
 /obj/machinery/part_fabricator/process(delta_time)
-	if(!printing || printing == "") // How
+	if(!printing)
 		return PROCESS_KILL
 	
 	production_progress += production_speed * delta_time
@@ -426,20 +429,20 @@
 		use_power = IDLE_POWER_USE
 		return PROCESS_KILL
 
-	if(printing == "capacitor")
+	if(printing == FAB_CAPACITOR)
 		use_power = ACTIVE_POWER_USE // Use 10MW while making capacitor
 
 	if(production_progress >= 100)
 		var/obj/item/stock_parts/printed
 		switch(printing) // Print item and consume requirements
-			if("capacitor")
+			if(FAB_CAPACITOR)
 				printed = new /obj/item/stock_parts/capacitor/cubic
 				// Consume electrical stasis manifold
 				for(var/obj/item/electrical_stasis_manifold/ESM in contents)
 					qdel(ESM)
 					break
 				// Energy is already consumed by active_power_use
-			if("matterbin")
+			if(FAB_MATTERBIN)
 				printed = new /obj/item/stock_parts/matter_bin/holding
 				// Consume organic augur
 				for(var/obj/item/organic_augur/augur in contents)
@@ -450,13 +453,13 @@
 				var/freon_amount = my_gas.get_moles(/datum/gas/freon)
 				freon_amount -= matterbin_freon_moles_requirement
 				my_gas.set_moles(/datum/gas/freon, max(freon_amount, 0))
-			if("scanner")
+			if(FAB_SCANNER)
 				printed = new /obj/item/stock_parts/scanning_module/hexaphasic
 				// Don't delete the posibrain!!!!!! We just needed to use its brain power for the process
 				// Consume reagents
 				for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
 					reagents.remove_reagent(bounty.wanted_reagent.type, bounty.required_volume)
-			if("laser")
+			if(FAB_LASER)
 				printed = new /obj/item/stock_parts/micro_laser/quinthyper
 				// Consume laser gun
 				for(var/obj/item/gun/energy/laser/lasgun in contents)
@@ -485,7 +488,7 @@
 					else
 						break
 					current_money += money.get_item_credit_value()
-			if("manipulator")
+			if(FAB_MANIPULATOR)
 				printed = new /obj/item/stock_parts/manipulator/planck
 				// Consume plants
 				var/current_plants = 0
@@ -502,10 +505,6 @@
 				var/current_temp = my_gas.return_temperature()
 				my_gas.set_temperature(max(current_temp - manipulator_temp_requirement, TCMB))
 			else
-				explosion(get_turf(src), -1, -1, 2)
-				STOP_PROCESSING(SSobj, src)
-				production_progress = 1337
-				message_admins("\A [src][ADMIN_FLW(src)] malfunctioned, please read runtimes and set production_progress and printing vars to restart it.")
 				CRASH("Part fabricator tried to print unknown or null part: [printing]")
 
 		balloon_alert_to_viewers("Success!")
@@ -519,3 +518,9 @@
 		printing = null
 		use_power = IDLE_POWER_USE
 		return PROCESS_KILL
+
+#undef FAB_CAPACITOR
+#undef FAB_MATTERBIN
+#undef FAB_SCANNER
+#undef FAB_LASER
+#undef FAB_MANIPULATOR
