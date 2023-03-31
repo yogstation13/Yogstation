@@ -42,6 +42,7 @@
 		/obj/item/clothing/suit/hooded/cloak/drake = 1,
 		/obj/item/clothing/suit/armor/elder_atmosian = 1,
 		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -5,
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
 		)
 
 	var/list/weapon = list(
@@ -79,14 +80,19 @@
 		/obj/item/melee/fryingpan/bananium = 1,
 		/obj/item/energy_katana = -4,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
+		/obj/item/his_grace = -5,
 	)
 
 	var/list/healing = list(//healing, so people don't always need to ransack medbay in order to not just die
 		/obj/item/storage/firstaid = 4,
 		/obj/item/storage/firstaid/fire = 4,
 		/obj/item/storage/firstaid/brute = 4,
+		/obj/item/gun/magic/rune/heal_rune = 4,
 		/obj/item/reagent_containers/autoinjector/mixi = 1,
 		/obj/item/reagent_containers/autoinjector/derm = 1,
+		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
+		/obj/item/organ/heart/cursed/wizard = 1,
+		/obj/item/slimecross/stabilized/purple = 1,
 	)
 
 	var/list/utility = list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
@@ -116,7 +122,7 @@
 		/obj/item/autosurgeon/limb/l_leg/robot = 1,
 		/obj/item/autosurgeon/limb/r_leg/robot = 1,
 		/obj/item/multisurgeon/airshoes = 1,
-		/obj/item/spellbook = -3,
+		/obj/item/spellbook = -5,
 		/obj/item/book/granter/martial/cqc = 1,
 		/obj/item/book/granter/martial/carp = 1,
 		/obj/item/battleroyale/martial = 1,
@@ -124,6 +130,20 @@
 		/obj/item/battleroyale/martial/preternis = 1,
 		/obj/item/battleroyale/martial/phytosian = 1,
 		/obj/item/battleroyale/martial/plasmaman = 1,
+		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = 1,
+		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = 1,
+		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = 1,
+		/obj/item/book/granter/spell/smoke = 1,
+		/obj/item/book/granter/spell/smoke/lesser = 5,
+		/obj/item/book/granter/spell/knock = 1,
+		/obj/item/desynchronizer = 1,
+		/obj/item/teleportation_scroll/apprentice = 1,
+		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
+		/obj/item/battleroyale/itemspawner/construct = 1,
+		/obj/item/dragons_blood = 1,
+		/obj/item/slimecross/stabilized/sepia = -5,
+		/obj/item/slimecross/stabilized/bluespace = -5,
+		/obj/item/slimecross/stabilized/red = 1,
 	)
 
 /obj/structure/closet/crate/battleroyale/Initialize(mapload, scaling = 0)
@@ -134,6 +154,10 @@
 	. = ..()
 	if(scale_factor)//remove things based on round progression
 		ItemCull()
+
+	if(prob(5))
+		new /obj/structure/healingfountain(get_turf(src))
+		qdel(src)
 
 	var/selected
 	var/type = rand(1,4)//for a couple different themes
@@ -296,3 +320,18 @@
 	if(isplasmaman(user))//otherwise the poor sap suffocates
 		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
 		based.Insert(user)
+
+
+/obj/item/battleroyale/itemspawner
+	name = "you shouldn't be seeing this"
+	desc = "literally just to spawn multiple items"
+	var/list/items = list()
+
+/obj/item/battleroyale/itemspawner/Initialize()
+	. = ..()
+	for(var/obj/thing in items)
+		new thing(src.loc)
+	qdel(src)
+
+/obj/item/battleroyale/itemspawner/construct
+	items = (/obj/structure/constructshell,	/obj/item/soulstone/anybody)

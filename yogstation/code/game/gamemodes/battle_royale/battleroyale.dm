@@ -49,6 +49,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
+		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
