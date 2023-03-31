@@ -271,7 +271,7 @@
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
-	QDEL_IN(src, loot_interval)//to remove clutter after a bit
+	QDEL_IN(src, 1 MINUTES)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
