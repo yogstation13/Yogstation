@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscdel: "Removed cyborg stun arm from Engineering & Mining emagged modules"
-  - rscadd: "Added the cyborg malfunctioning plasma cutter to the Mining emagged module which does more damage than a normal plasma cutter"
-  - rscadd: "Added the cyborg flame projector to the Engineering emagged module which self-charges"

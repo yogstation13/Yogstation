@@ -167,14 +167,12 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(20 * severity))
-		return
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
 	owner.blind_eyes(5)
 	owner.blur_eyes(8)
-	eyes.applyOrganDamage(25)
+	eyes.applyOrganDamage(20 / severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"
@@ -345,20 +343,22 @@
 	return ..()
 
 /obj/item/organ/eyes/robotic/glow/proc/activate(silent = FALSE)
-	start_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] clicks and makes a whining noise, before shooting out a beam of light!"))
 	active = TRUE
+	start_visuals()
 	cycle_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/deactivate(silent = FALSE)
-	clear_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] shuts off!"))
 	active = FALSE
+	clear_visuals()
 	remove_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/update_visuals(datum/source, olddir, newdir)
+	if(!active)
+		return
 	if((LAZYLEN(eye_lighting) < light_beam_distance) || !on_mob)
 		regenerate_light_effects()
 	var/turf/scanfrom = get_turf(owner)

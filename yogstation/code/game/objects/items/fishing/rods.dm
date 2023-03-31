@@ -170,6 +170,7 @@
 	desc = "A collapsable fishing rod! This one can fit into your backpack for space hikes and the like."
 	icon_state = "fishing_rod_collapse_c"
 	fishing_power = 15
+	w_class = WEIGHT_CLASS_SMALL //it starts collapsed and small
 	var/opened = FALSE
 	var/rod_icon_state = "fishing_rod_collapse"
 	

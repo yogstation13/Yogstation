@@ -19,7 +19,7 @@
 	speedmod = 0.33
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
-	punchstunthreshold = 9 
+	punchstunthreshold = 9
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
@@ -97,14 +97,14 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
-					//just enough to function			
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)
+					//just enough to function
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
 				if(H.nutrition < NUTRITION_LEVEL_FED)
-					H.nutrition += light_amount * 1.75				
+					H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
@@ -241,22 +241,23 @@
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so that was a lie
-		
+
 		//if there's none left after the removal, the light multiplier needs to go back to the default
-		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar))
 			light_heal_multiplier = initial(light_heal_multiplier)
 			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
 		var/datum/reagent/consumable/ethanol/ethanol = chem
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
-		H.confused = max(H.confused, 1)
-		if(ethanol.boozepwr > 80 && chem.volume > 30)
-			if(chem.current_cycle > 50)
-				H.IsSleeping(3)
-			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
+		if(ethanol.boozepwr > 0)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
+			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
+			H.confused = max(H.confused, 1)
+			if(ethanol.boozepwr > 80 && chem.volume > 30)
+				if(chem.current_cycle > 50)
+					H.IsSleeping(3)
+				H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -308,7 +309,7 @@
 		a government tasked with preventing such an event from happening again through strict authoritarian policies. \
 		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to to assimilate them, \
 		enclosing the rest to ensure a steady supply of population.",
- 
+
 		"In the year 2511, drones of Sano-Waltfield Industries landing on Muldova alerted phytosians of the existence \
 		of other life elsewhere. They immediately desired to correct this situation, and shot the drones down. \
 		Noticing the incident, SIC investigators went to scan the planet, expecting illegal human colonists. Instead, \

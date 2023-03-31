@@ -146,7 +146,7 @@
 			to_chat(user, span_warning("You need more space cleaner!"))
 		return TRUE
 
-	if(istype(O, /obj/item/soap))
+	if(istype(O, /obj/item/soap) || istype(O, /obj/item/reagent_containers/glass/rag))
 		var/obj/item/soap/P = O
 		user.visible_message("[user] starts to clean \the [src].", span_notice("You start to clean \the [src]..."))
 		if(do_after(user, P.cleanspeed, src))

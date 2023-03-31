@@ -172,6 +172,12 @@
 		if("Research Director")
 			O = new /datum/outfit/job/plasmaman/rd
 
+		if("Chief Medical Officer")
+			O = new /datum/outfit/job/plasmaman/cmo
+
+		if("Head of Personnel")
+			O = new /datum/outfit/job/plasmaman/hop
+
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
