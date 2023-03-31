@@ -109,7 +109,9 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		if(seed.get_gene(/datum/plant_gene/trait/teleport))
 			to_chat(user, span_notice("You start squashing the [src]"))
-			do_after(user, 2 SECONDS, src)
+			if(do_after(user, 2 SECONDS, src))
+				squash(user)
+			return ..()
 		squash(user)
 	..()
 
