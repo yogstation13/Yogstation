@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale north", "royale south", "royale east")
+	var/list/randomweathers = list("royale north", "royale south", "royale east", "royale west")
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
@@ -58,8 +58,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
 	addtimer(CALLBACK(src, .proc/check_win), 30 SECONDS)
+	addtimer(CALLBACK(src, .proc/loot_spawn), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, .proc/shrinkborders), 1 SECONDS)
-	addtimer(CALLBACK(src, .proc/loot_spawn), 1 SECONDS)
 	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
 	return ..()
 
@@ -121,16 +121,13 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1)
+		if(1)//get them out of maints
 			SSweather.run_weather("royale maint", 2)
-		if(2 to 4)
+		if(2 to 5)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
-
-		if(5)
-			SSweather.run_weather("royale west", 2)
-		if(6)
+		if(6)//finish it
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
@@ -140,22 +137,22 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)
-		GLOB.battleroyale_armour[item] += borderstage
+		GLOB.battleroyale_armour[item] ++
 		if(GLOB.battleroyale_armour[item] > weightcull)
 			GLOB.battleroyale_armour -= item
 
 	for(var/item in GLOB.battleroyale_weapon)
-		GLOB.battleroyale_weapon[item] += borderstage
+		GLOB.battleroyale_weapon[item] ++
 		if(GLOB.battleroyale_weapon[item] > weightcull)
 			GLOB.battleroyale_weapon -= item
 
 	for(var/item in GLOB.battleroyale_healing)
-		GLOB.battleroyale_healing[item] += borderstage
+		GLOB.battleroyale_healing[item] ++
 		if(GLOB.battleroyale_healing[item] > weightcull)
 			GLOB.battleroyale_healing -= item
 
 	for(var/item in GLOB.battleroyale_utility)
-		GLOB.battleroyale_utility[item] += borderstage
+		GLOB.battleroyale_utility[item] ++
 		if(GLOB.battleroyale_utility[item] > weightcull)
 			GLOB.battleroyale_utility -= item
 

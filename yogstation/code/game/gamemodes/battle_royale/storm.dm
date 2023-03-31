@@ -69,5 +69,3 @@
 /datum/weather/royale/six
 	name = "royale centre" //final wave, takes out the centre ring.
 	telegraph_message = span_userdanger("<i>The storm is closing in, make your final stand!</i>")
-	areasToWeather = list(/area/hallway/primary/central, /area/crew_quarters/heads/hop, /area/bridge/meeting_room, /area/bridge, /area/crew_quarters/heads/captain, /area/teleporter, /area/ai_monitored/turret_protected/ai_upload_foyer,
-	/area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai)
