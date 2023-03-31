@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		for(var/I = 0, I < num, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod)
+			new /obj/structure/closet/crate/battleroyale(pod, borderstage)
 			new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items

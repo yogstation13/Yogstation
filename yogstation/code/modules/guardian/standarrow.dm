@@ -187,3 +187,7 @@
 	. = ..()
 	if (isobserver(user))
 		. += span_notice("The arrow has a [span_bold("[kill_chance]%")] chance of killing the user.")
+
+/obj/item/stand_arrow/safe //used by the battle royale gamemode, it's a one-time use that never kills the user
+	kill_chance = 0
+	uses = 1
