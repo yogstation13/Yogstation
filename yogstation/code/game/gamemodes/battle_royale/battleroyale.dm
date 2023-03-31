@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
+	var/weightcull = 5 //anything above this gets culled
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
@@ -130,22 +131,43 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
+	ItemCull()
 
 	if(borderstage <= 6)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
 
+/datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
+	for(var/item in GLOB.battleroyale_armour)
+		GLOB.battleroyale_armour[item] += borderstage
+		if(GLOB.battleroyale_armour[item] > weightcull)
+			GLOB.battleroyale_armour -= item
+
+	for(var/item in GLOB.battleroyale_weapon)
+		GLOB.battleroyale_weapon[item] += borderstage
+		if(GLOB.battleroyale_weapon[item] > weightcull)
+			GLOB.battleroyale_weapon -= item
+
+	for(var/item in GLOB.battleroyale_healing)
+		GLOB.battleroyale_healing[item] += borderstage
+		if(GLOB.battleroyale_healing[item] > weightcull)
+			GLOB.battleroyale_healing -= item
+
+	for(var/item in GLOB.battleroyale_utility)
+		GLOB.battleroyale_utility[item] += borderstage
+		if(GLOB.battleroyale_utility[item] > weightcull)
+			GLOB.battleroyale_utility -= item
+
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(2)
+	loot_spawn(rand(1, 2))
 	addtimer(CALLBACK(src, .proc/loot_drop), loot_interval)
 
 /datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
-	var/num = rand(1, amount)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
-		for(var/I = 0, I < num, I++)
+		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod, borderstage)
+			new /obj/structure/closet/crate/battleroyale(pod)
 			new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items

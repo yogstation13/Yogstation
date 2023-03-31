@@ -10,15 +10,9 @@
 	-5 - won't spawn until literally round end, and is pretty rare even then
 */
 
-/obj/structure/closet/crate/battleroyale
-	name = "Supply Crate"
-	icon_state = "miningcar"
-	light_range = 10
-	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
-	var/scale_factor = 0 //number to increase all weight by
-	var/cull_limit = 5 //anything with a weight above this is culled rather than spawned
+#define BATTLEROYALE_WEIGHT_CULL 5 //anything above this gets culled
 
-	var/list/armour = list( //it's spelled the correct way
+GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/armor/vest = 5,
 		/obj/item/clothing/head/helmet = 5,
 		/obj/item/clothing/suit/hooded/explorer = 5,
@@ -45,10 +39,9 @@
 		/obj/item/clothing/suit/hooded/cloak/drake = 1,
 		/obj/item/clothing/suit/armor/elder_atmosian = 1,
 		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
-		)
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,))
 
-	var/list/weapon = list(
+GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/circular_saw = 5,
 		/obj/item/kitchen/knife/combat/survival = 5,
 		/obj/item/pen/edagger = 5,
@@ -84,10 +77,9 @@
 		/obj/item/energy_katana = -4,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
 		/obj/item/his_grace = -5,
-		/obj/item/twohanded/vxtvulhammer = 1,
-	)
+		/obj/item/twohanded/vxtvulhammer = 1,))
 
-	var/list/healing = list(//healing, so people don't always need to ransack medbay in order to not just die
+GLOBAL_LIST_INIT(battleroyale_healing, list(
 		/obj/item/storage/firstaid = 4,
 		/obj/item/storage/firstaid/fire = 4,
 		/obj/item/storage/firstaid/brute = 4,
@@ -97,10 +89,9 @@
 		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/organ/heart/cursed/wizard = 1,
 		/obj/item/storage/pill_bottle/gummies/omnizine = 1,
-		/obj/item/slimecross/stabilized/purple = 1,
-	)
+		/obj/item/slimecross/stabilized/purple = 1,))
 
-	var/list/utility = list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
+GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
 		/obj/item/grenade/plastic/c4 = 1,
 		/obj/item/grenade/syndieminibomb = 1,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = 1,
@@ -148,20 +139,18 @@
 		/obj/item/dragons_blood = 1,
 		/obj/item/slimecross/stabilized/sepia = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
-		/obj/item/slimecross/stabilized/red = 1,
-	)
+		/obj/item/slimecross/stabilized/red = 1,))
 
-/obj/structure/closet/crate/battleroyale/Initialize(mapload, scaling = 0)
-	. = ..()
-	scale_factor = scaling
+/obj/structure/closet/crate/battleroyale
+	name = "Supply Crate"
+	icon_state = "miningcar"
+	light_range = 10
+	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
-	if(scale_factor)//remove things based on round progression
-		ItemCull()
-
 	if(prob(5))
-		new /obj/structure/healingfountain(get_turf(src))
+		new /obj/structure/healingfountain(src.loc)
 		qdel(src)
 
 	var/selected
@@ -169,109 +158,87 @@
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
 			name = "Weapons Supply Crate"
-			add_atom_colour(LIGHT_COLOR_BLOOD_MAGIC)
+			add_atom_colour(LIGHT_COLOR_BLOOD_MAGIC, FIXED_COLOUR_PRIORITY)
 
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
 			name = "Armour Supply Crate"
-			add_atom_colour(LIGHT_COLOR_BLUE)
+			add_atom_colour(LIGHT_COLOR_BLUE, FIXED_COLOUR_PRIORITY)
 
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
 
 		if(3)//allrounder
 			name = "Misc Supply Crate"
 
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(weapon)
+			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
 			name = "Utility Supply Crate"
-			add_atom_colour(LIGHT_COLOR_PURPLE)
+			add_atom_colour(LIGHT_COLOR_PURPLE, FIXED_COLOUR_PRIORITY)
 
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
-			add_atom_colour(LIGHT_COLOR_GREEN)
+			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
-			selected = pickweightnegative(armour)
+			selected = pickweightnegative(GLOB.battleroyale_armour)
 			new selected(src)
-			selected = pickweightnegative(utility)
+			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-			selected = pickweightnegative(healing)
+			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
-
-
-/obj/structure/closet/crate/battleroyale/proc/ItemCull()
-	for(var/item in armour)
-		armour[item] += scale_factor
-		if(armour[item] > cull_limit)
-			armour -= item
-
-	for(var/item in weapon)
-		weapon[item] += scale_factor
-		if(weapon[item] > cull_limit)
-			weapon -= item
-
-	for(var/item in healing)
-		healing[item] += scale_factor
-		if(healing[item] > cull_limit)
-			healing -= item
-
-	for(var/item in utility)
-		utility[item] += scale_factor
-		if(utility[item] > cull_limit)
-			utility -= item
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
-	QDEL_IN(src, 1 MINUTES)//to remove clutter after a bit
+	QDEL_IN(src, 30 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
@@ -280,6 +247,8 @@
 /obj/item/battleroyale/martial //can you feel my bias
 	name = "IPC martial mutator"
 	desc = "Transforms you into a blood-fueled killing machine."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
 	var/martial = /datum/martial_art/ultra_violence
 	var/species = /datum/species/ipc
 
@@ -294,28 +263,37 @@
 	if(do_after(user, 5 SECONDS, user))
 		user.set_species(species)
 		MA.teach(user)
+		qdel(src)
 
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"
 	desc = "Transforms you into a scaled menace."
+	icon = 'icons/obj/library.dmi'
+	icon_state = "stone_tablet"
 	martial = /datum/martial_art/flyingfang
 	species = /datum/species/lizard
 
 /obj/item/battleroyale/martial/preternis
 	name = "Preternis martial mutator"
 	desc = "Transforms you into a durable worker cyborg."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
 	martial = /datum/martial_art/stealth
 	species = /datum/species/preternis
 	
 /obj/item/battleroyale/martial/phytosian
 	name = "Phytosian martial mutator"
 	desc = "Transforms you into a feral plant creature."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
 	martial = /datum/martial_art/gardern_warfare
 	species = /datum/species/pod
 
 /obj/item/battleroyale/martial/plasmaman
 	name = "Plasmaman martial mutator"
 	desc = "Transforms you into terrifying always-burning skeleton."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
 	martial = /datum/martial_art/explosive_fist
 	species = /datum/species/plasmaman
 
