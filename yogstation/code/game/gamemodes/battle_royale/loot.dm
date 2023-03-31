@@ -24,6 +24,8 @@
 		/obj/item/clothing/suit/hooded/explorer = 5,
 		/obj/item/clothing/suit/space/hardsuit/mining = 5,
 		/obj/item/armorpolish = 5,
+		/obj/item/storage/box/syndie_kit/chameleon = 5,
+		/obj/item/clothing/head/det_hat/evil = 5,
 		/obj/item/clothing/suit/armor/riot = 1,
 		/obj/item/clothing/head/helmet/riot = 1,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = 1,
@@ -94,6 +96,7 @@
 		/obj/item/reagent_containers/autoinjector/derm = 1,
 		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/organ/heart/cursed/wizard = 1,
+		/obj/item/storage/pill_bottle/gummies/omnizine = 1,
 		/obj/item/slimecross/stabilized/purple = 1,
 	)
 
@@ -166,7 +169,7 @@
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
 			name = "Weapons Supply Crate"
-			light_color = LIGHT_COLOR_BLOOD_MAGIC
+			add_atom_colour(LIGHT_COLOR_BLOOD_MAGIC)
 
 			selected = pickweightnegative(weapon)
 			new selected(src)
@@ -183,7 +186,7 @@
 
 		if(2)//armour focus (so people can select what they want)
 			name = "Armour Supply Crate"
-			light_color = LIGHT_COLOR_BLUE
+			add_atom_colour(LIGHT_COLOR_BLUE)
 
 			selected = pickweightnegative(weapon)
 			new selected(src)
@@ -214,7 +217,7 @@
 
 		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
 			name = "Utility Supply Crate"
-			light_color = LIGHT_COLOR_PURPLE
+			add_atom_colour(LIGHT_COLOR_PURPLE)
 
 			selected = pickweightnegative(armour)
 			new selected(src)
@@ -229,7 +232,7 @@
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
-			light_color = LIGHT_COLOR_GREEN
+			add_atom_colour(LIGHT_COLOR_GREEN)
 
 			selected = pickweightnegative(armour)
 			new selected(src)
@@ -268,8 +271,7 @@
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/qdel, src), 2 MINUTES, TIMER_UNIQUE)//to remove clutter after a bit
-
+	QDEL_IN(src, loot_interval)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
