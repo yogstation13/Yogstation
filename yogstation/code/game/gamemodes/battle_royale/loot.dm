@@ -164,10 +164,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_weapon)
-			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_healing)
-			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
 
@@ -192,11 +188,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 			selected = pickweightnegative(GLOB.battleroyale_weapon)
 			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_weapon)
-			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
@@ -215,18 +207,12 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_utility)
 			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_utility)
-			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
 			selected = pickweightnegative(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_utility)
-			new selected(src)
-			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
 			selected = pickweightnegative(GLOB.battleroyale_healing)
 			new selected(src)
