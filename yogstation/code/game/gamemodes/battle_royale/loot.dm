@@ -24,7 +24,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/hardsuit/syndi = 1,
 		/obj/item/shield/energy = 1,
 		/obj/item/shield/riot = 1,
-		/obj/item/clothing/suit/space/space_ninja = -5,
 		/obj/item/clothing/suit/space/hardsuit/shielded = -5,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -5,
 		/obj/item/clothing/suit/wizrobe/armor = -5,
@@ -71,7 +70,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/bow/energy/syndicate = 1,
 		/obj/item/melee/powerfist = 1,
 		/obj/item/melee/fryingpan/bananium = 1,
-		/obj/item/energy_katana = -4,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
 		/obj/item/his_grace = -5,
 		/obj/item/twohanded/vxtvulhammer = 1,))
