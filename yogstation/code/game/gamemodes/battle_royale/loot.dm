@@ -228,13 +228,12 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/item/battleroyale/martial/attack_self(mob/user)
 	. = ..()
-	var/datum/martial_art/MA = new martial
-	if(user.mind.has_martialart(initial(MA.id)))
-		to_chat(user,span_warning("You already know [MA.name]!"))
-		qdel(MA)
+	if(user.mind.martial_art.type in subtypesof(/datum/martial_art))//prevents people from learning several martial arts
+		to_chat(user,span_warning("You already know [user.mind.martial_art.name]!"))
 		return
 
 	if(do_after(user, 6 SECONDS, user))
+		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
 		qdel(src)
