@@ -3,7 +3,7 @@
 ///Light made with the lighting datums, applying a matrix.
 #define STATIC_LIGHT 1
 ///Light made by masking the lighting darkness plane.
-#define MOVABLE_LIGHT 2
+#define MOVABLE_LIGHT 1 // dear god
 
 ///Is a movable light source attached to another movable (its loc), meaning that the lighting component should go one level deeper.
 #define LIGHT_ATTACHED (1<<0)
