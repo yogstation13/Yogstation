@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(traumas)
 						  "skeletons" = typecacheof(list(/datum/species/skeleton, /datum/species/plasmaman)),
 						  "conspiracies" = typecacheof(list(/datum/species/abductor, /datum/species/lizard, /datum/species/synth)),
 						  "robots" = typecacheof(list(/datum/species/android)),
-						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/runic)),
+						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/cult)),
 						  "aliens" = typecacheof(list(/datum/species/abductor, /datum/species/jelly, /datum/species/pod,
 						  /datum/species/shadow, /datum/species/polysmorph)),
 						  "anime" = typecacheof(list(/datum/species/human/felinid))

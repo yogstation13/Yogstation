@@ -636,62 +636,48 @@
 /datum/species/golem/bananium/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CLOWN
 
-/datum/species/golem/runic
-	name = "Runic Golem"
-	id = "runic golem"
+/datum/species/golem/cult
+	name = "Cult Golem"
+	id = "cult golem"
 	limbs_id = "cultgolem"
+	armor = list(MELEE = 30, BULLET = 30, LASER = -30, ENERGY = 80, BOMB = 50) //they are made out of rocks (and cannot wear armor)
 	sexes = FALSE
-	info_text = "As a <span class='danger'>Runic Golem</span>, you possess eldritch powers granted by the Elder Goddess Nar'Sie."
+	info_text = "As a <span class='danger'>Cult Golem</span>, you are robust to most physical attacks, but very weak to holy influences."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH) //no mutcolors
-	prefix = "Runic"
+	prefix = "Cult"
 	special_names = null
+	speedmod = 1.5
+	var/has_corpse
 
-	var/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/golem/phase_shift
-	var/obj/effect/proc_holder/spell/targeted/abyssal_gaze/abyssal_gaze
-	var/obj/effect/proc_holder/spell/targeted/dominate/dominate
-
-/datum/species/golem/runic/random_name(gender,unique,lastname)
+/datum/species/golem/cult/random_name(gender,unique,lastname)
 	var/edgy_first_name = pick("Razor","Blood","Dark","Evil","Cold","Pale","Black","Silent","Chaos","Deadly","Coldsteel")
 	var/edgy_last_name = pick("Edge","Night","Death","Razor","Blade","Steel","Calamity","Twilight","Shadow","Nightmare") //dammit Razor Razor
 	var/golem_name = "[edgy_first_name] [edgy_last_name]"
 	return golem_name
 
-/datum/species/golem/runic/on_species_gain(mob/living/carbon/C, datum/species/old_species)
-	. = ..()
-	C.faction |= "cult"
-	phase_shift = new
-	phase_shift.charge_counter = 0
-	C.AddSpell(phase_shift)
-	abyssal_gaze = new
-	abyssal_gaze.charge_counter = 0
-	C.AddSpell(abyssal_gaze)
-	dominate = new
-	dominate.charge_counter = 0
-	C.AddSpell(dominate)
 
-/datum/species/golem/runic/on_species_loss(mob/living/carbon/C)
-	. = ..()
-	C.faction -= "cult"
-	if(phase_shift)
-		C.RemoveSpell(phase_shift)
-	if(abyssal_gaze)
-		C.RemoveSpell(abyssal_gaze)
-	if(dominate)
-		C.RemoveSpell(dominate)
-
-/datum/species/golem/runic/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+/datum/species/golem/cult/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem, /datum/reagent/water/holywater))
 		H.adjustFireLoss(4)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
-
-	if(chem.type == /datum/reagent/fuel/unholywater)
-		H.adjustBruteLoss(-4)
-		H.adjustFireLoss(-4)
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
-		return TRUE
 	return ..()
 
+/datum/species/golem/cult/spec_life(mob/living/carbon/human/H)
+	var/turf/T = get_turf(H)
+	if(locate(/obj/effect/blessing, T))
+		to_chat(H, span_danger("The holy influence upon the ground is sapping your strength!"))
+		H.adjustFireLoss(5)
+
+/datum/species/golem/cult/spec_death(gibbed, mob/living/carbon/human/H)
+	gibbed = !has_corpse ? FALSE : gibbed
+	. = ..()
+	if(!has_corpse)
+		var/turf/T = get_turf(H)
+		H.visible_message(span_warning("[H]'s dissolves into a mass of ectoplasm!"))
+		playsound(H, 'sound/magic/clockwork/anima_fragment_death.ogg', 62, TRUE)
+		new/obj/item/ectoplasm(T)
+		qdel(H)
 
 /datum/species/golem/clockwork
 	name = "Clockwork Golem"

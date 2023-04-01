@@ -32,20 +32,32 @@
 			B.button.screen_loc = "[screen_loc_X[1]]:[order],[screen_loc_Y[1]]:[screen_loc_Y[2]]"
 			B.button.moved = B.button.screen_loc
 
+/datum/action/innate/cult/blood_magic/proc/get_spell_limit(rune)
+	if(rune)
+		return MAX_BLOODCHARGE
+	return RUNELESS_MAX_BLOODCHARGE
+
+/datum/action/innate/cult/blood_magic/golem/get_spell_limit(rune)
+	if(rune)
+		return MAX_GOLEM_BLOODCHARGE
+	return MAX_GOLEM_BLOODCHARGE_RUNELESS
+
 /datum/action/innate/cult/blood_magic/Activate()
 	var/rune = FALSE
-	var/limit = RUNELESS_MAX_BLOODCHARGE
+	var/limit = get_spell_limit(rune)
 	for(var/obj/effect/rune/empower/R in range(1, owner))
 		rune = TRUE
 		break
 	if(rune)
-		limit = MAX_BLOODCHARGE
+		limit = get_spell_limit(rune)
 	listclearnulls(spells)
 	if(spells.len >= limit)
 		if(rune)
 			to_chat(owner, span_cultitalic("You cannot store more than [MAX_BLOODCHARGE] spells. <b>Pick a spell to remove.</b>"))
+		else if(limit == 0)
+			to_chat(owner, span_cultitalic("<b><u>You're not strong enough to manifest magic without an empowering rune.</b></u>"))
 		else
-			to_chat(owner, span_cultitalic("<b><u>You cannot store more than [RUNELESS_MAX_BLOODCHARGE] spells without an empowering rune! Pick a spell to remove.</b></u>"))
+			to_chat(owner, span_cultitalic("<b><u>You cannot store more than " + limit + " spells without an empowering rune! Pick a spell to remove.</b></u>"))
 		var/nullify_spell = input(owner, "Choose a spell to remove.", "Current Spells") as null|anything in spells
 		if(nullify_spell)
 			qdel(nullify_spell)

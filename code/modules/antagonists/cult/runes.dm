@@ -340,16 +340,24 @@ structure_check() searches for nearby cultist structures required for the invoca
 			else
 				to_chat(M, span_cultlarge("\"I accept this meager sacrifice.\""))
 
-	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
+	var/mob/living/carbon/human/species/golem/blood_cult/golem = new /mob/living/carbon/human/species/golem/blood_cult(get_turf(src))
 	if(sacrificial.mind && !sacrificial.suiciding)
+		var/sac_ckey
 		if(ishuman(sacrificial))
 			var/mob/living/carbon/human/H = sacrificial
+			sac_ckey = sacrificial.mind.key //if they're ghosting around or w/e
 			if(is_banned_from(H.ckey, ROLE_CULTIST))
 				H.ghostize(FALSE) // You're getting ghosted no escape
-				H.key = null // Still useful to cult
-		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
-		stone.transfer_soul("FORCE", sacrificial, usr)
-		stone.invisibility = 0
+				H.key = null // can be rolled for a new ghost
+		sacrificial.ghostize()
+		if(sac_ckey)
+			golem.ckey = sac_ckey
+			golem.grab_ghost()
+		else
+			golem.dust() //prevents weird empty husks from spawning, prevents farming monkeys to fish for ghosts
+		SSticker.mode.add_cultist_golem(golem.mind, 1)
+		golem.mind.special_role = ROLE_CULTIST_GOLEM
+
 
 	if(sacrificial)
 		if(iscyborg(sacrificial))

@@ -1197,7 +1197,7 @@
 	race = /datum/species/golem/bananium
 
 /mob/living/carbon/human/species/golem/blood_cult
-	race = /datum/species/golem/runic
+	race = /datum/species/golem/cult
 
 /mob/living/carbon/human/species/golem/cloth
 	race = /datum/species/golem/cloth

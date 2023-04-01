@@ -19,6 +19,9 @@
 	var/original_eye_color = "000" //this will store the eye color of the cultist so it can be returned if they get deconverted
 	show_to_ghosts = TRUE
 
+/datum/antagonist/cult/golem
+	name = "Golem Cultist"
+	magic = new /datum/action/innate/cult/blood_magic/golem
 
 /datum/antagonist/cult/get_team()
 	return cult_team

@@ -20,6 +20,7 @@
 #define ROLE_ALIEN				"Xenomorph"
 #define ROLE_PAI				"pAI"
 #define ROLE_CULTIST			"Cultist"
+#define ROLE_CULTIST_GOLEM			"Cultist Golem"
 #define ROLE_HERETIC			"Heretic"
 #define ROLE_BLOB				"Blob"
 #define ROLE_NINJA				"Space Ninja"
@@ -78,6 +79,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_REV_HEAD = /datum/antagonist/rev/head,
 	ROLE_ALIEN = /datum/antagonist/xeno,
 	ROLE_CULTIST = /datum/antagonist/cult,
+	ROLE_CULTIST_GOLEM = /datum/antagonist/cult/golem,
 	ROLE_HERETIC = /datum/antagonist/heretic,
 	ROLE_BLOB = /datum/antagonist/blob,
 	ROLE_NINJA = /datum/antagonist/ninja,

@@ -12,6 +12,11 @@
 		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
+/proc/isgolemcultist(mob/living/M)
+	if(istype(M, /mob/living/carbon/human/dummy))
+		return TRUE
+	return M?.mind?.has_antag_datum(/datum/antagonist/cult/golem)
+
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)
 		if(mind == sac_objective.target)
@@ -120,7 +125,17 @@
 
 	var/datum/antagonist/cult/new_cultist = new()
 	new_cultist.give_equipment = equip
+	if(cult_mind.add_antag_datum(new_cultist,cult_team))
+		if(stun)
+			cult_mind.current.Unconscious(100)
+		return TRUE
 
+/datum/game_mode/proc/add_cultist_golem(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
+	if (!istype(cult_mind))
+		return FALSE
+
+	var/datum/antagonist/cult/golem/new_cultist = new()
+	new_cultist.give_equipment = equip
 	if(cult_mind.add_antag_datum(new_cultist,cult_team))
 		if(stun)
 			cult_mind.current.Unconscious(100)

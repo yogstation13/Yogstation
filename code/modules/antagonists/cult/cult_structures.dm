@@ -102,13 +102,11 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone","Construct Shell","Flask of Unholy Water")
+	var/choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone",,"Flask of Unholy Water")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Eldritch Whetstone")
 			pickedtype += /obj/item/sharpener/cult
-		if("Construct Shell")
-			pickedtype += /obj/structure/constructshell
 		if("Flask of Unholy Water")
 			pickedtype += /obj/item/reagent_containers/glass/beaker/unholywater
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)

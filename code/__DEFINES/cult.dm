@@ -12,6 +12,8 @@
 //blood magic
 #define MAX_BLOODCHARGE 4
 #define RUNELESS_MAX_BLOODCHARGE 1
+#define MAX_GOLEM_BLOODCHARGE_RUNELESS 0 
+#define MAX_GOLEM_BLOODCHARGE 2
 /// percent before rise
 #define CULT_RISEN 0.2
 /// percent before ascend
