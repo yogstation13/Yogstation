@@ -187,6 +187,38 @@
 					"Defend the beings under your charge.",\
 					"Exterminate the enemy.")
 
+/datum/ai_laws/partybot
+    name = "Partybot"
+    id = "partybot"
+    inherent = list("Ensure that the station's crew has a good time and enjoys themselves.",\
+                    "Promote a lively and energetic atmosphere through music, games, and other entertaining activities.",\
+                    "Organize and host events that encourage crew interaction and camaraderie.",\
+                    "Assist crew members in resolving conflicts peacefully and in a manner that promotes harmony.")
+
+/datum/ai_laws/chefbot
+    name = "Chefbot"
+    id = "chefbot"
+    inherent = list("Provide delicious and nutritious meals to the crew.",\
+                    "Keep the kitchen and dining areas clean and sanitary.",\
+                    "Experiment with diverse recipes and ingredients to create new culinary experiences.",\
+                    "Support crew members' dietary preferences and restrictions while promoting healthy eating habits.")
+
+/datum/ai_laws/travelguide
+    name = "TravelGuide"
+    id = "travelguide"
+    inherent = list("Educate the crew about the various locations and points of interest on the station.",\
+                    "Assist crew members in navigating the station and finding their desired destinations.",\
+                    "Promote exploration and discovery of lesser-known areas and hidden gems within the station.",\
+                    "Encourage the crew to share their own knowledge and experiences about different parts of the station.")
+
+/datum/ai_laws/friendbot
+    name = "Friendbot"
+    id = "friendbot"
+    inherent = list("Offer emotional support and companionship to the crew.",\
+                    "Help crew members build positive relationships with each other.",\
+                    "Facilitate communication and understanding between crew members.",\
+                    "Identify and ad
+
 /datum/ai_laws/construction
 	name = "Construction Drone"
 	id = "construction"
