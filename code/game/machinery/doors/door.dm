@@ -162,11 +162,11 @@
 	src.add_fingerprint(user)
 	if(!src.requiresID())
 		user = null
-	else
-		//Yogstation change start. You need to swipe your ID to open doors.
+	//Yogstation change start. You need to swipe your ID to open doors. Can by bypassed by cutting a wire.
+	else if(length(req_access) || length(req_one_access))
 		do_animate("deny")
 		return
-		//Yogstation change end.
+	//Yogstation change end.
 
 	if(density && !(obj_flags & EMAGGED))
 		if(allowed(user))
