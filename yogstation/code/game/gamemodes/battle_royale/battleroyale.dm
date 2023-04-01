@@ -133,8 +133,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
+	if(borderstage)//doesn't cull during round start
+		ItemCull()
+
 	borderstage++
-	ItemCull()
 
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
@@ -150,10 +152,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(GLOB.battleroyale_weapon[item] > weightcull)
 			GLOB.battleroyale_weapon -= item
 
-	for(var/item in GLOB.battleroyale_healing)
-		GLOB.battleroyale_healing[item] ++
-		if(GLOB.battleroyale_healing[item] > weightcull)
-			GLOB.battleroyale_healing -= item
+	//healing doesn't scale because max health doesn't scale
 
 	for(var/item in GLOB.battleroyale_utility)
 		GLOB.battleroyale_utility[item] ++
@@ -270,7 +269,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
 	if(!contents)//in case Z-level loops
-		qdel(src)
+		QDEL_IN(src, 10 SECONDS)
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)

@@ -36,7 +36,8 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/hooded/cloak/drake = 1,
 		/obj/item/clothing/suit/armor/elder_atmosian = 1,
 		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,))
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
+		))
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/circular_saw = 5,
@@ -72,31 +73,35 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/fryingpan/bananium = 1,
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
 		/obj/item/his_grace = -5,
-		/obj/item/twohanded/vxtvulhammer = 1,))
+		/obj/item/twohanded/vxtvulhammer = 1,
+		))
 
-GLOBAL_LIST_INIT(battleroyale_healing, list(
+GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
 		/obj/item/stack/medical/bruise_pack = 5,
 		/obj/item/stack/medical/ointment = 5,
 		/obj/item/stack/medical/suture/emergency = 5,
-		/obj/item/stack/medical/suture = 4,
-		/obj/item/stack/medical/mesh = 4,
-		/obj/item/stack/medical/suture/medicated = 3,
-		/obj/item/stack/medical/mesh/advanced = 3,
-		/obj/item/stack/medical/aloe = 3,
-		/obj/item/stack/medical/poultice = 3,
-		/obj/item/storage/firstaid = 2,
-		/obj/item/storage/firstaid/fire = 2,
-		/obj/item/storage/firstaid/brute = 2,
-		/obj/item/gun/magic/rune/heal_rune = 3,
-		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,
-		/obj/item/reagent_containers/autoinjector/mixi = 1,
-		/obj/item/reagent_containers/autoinjector/derm = 1,
-		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 1,
+		/obj/item/stack/medical/suture = 5,
+		/obj/item/stack/medical/mesh = 5,
+		/obj/item/storage/firstaid/ancient = 4,
+		/obj/item/stack/medical/suture/medicated = 4,
+		/obj/item/stack/medical/mesh/advanced = 4,
+		/obj/item/stack/medical/aloe = 4,
+		/obj/item/stack/medical/poultice = 4,
+		/obj/item/gun/magic/rune/heal_rune = 4, //for team play
+		/obj/item/storage/firstaid = 3,
+		/obj/item/storage/firstaid/fire = 3,
+		/obj/item/storage/firstaid/brute = 3,
+		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 3,
+		/obj/item/storage/firstaid/advanced = 2,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 2,
+		/obj/item/organ/regenerative_core/legion = 2,
+		/obj/item/reagent_containers/autoinjector/mixi = 2,
+		/obj/item/reagent_containers/autoinjector/derm = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack/traitor = 1,
-		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/organ/heart/cursed/wizard = 1,
 		/obj/item/storage/pill_bottle/gummies/omnizine = 1,
-		/obj/item/slimecross/stabilized/purple = 1,))
+		/obj/item/slimecross/stabilized/purple = 1,
+		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
 		/obj/item/grenade/plastic/c4 = 1,
@@ -141,7 +146,9 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/dragons_blood = 1,
 		/obj/item/slimecross/stabilized/sepia = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
-		/obj/item/slimecross/stabilized/red = 1,))
+		/obj/item/slimecross/stabilized/red = 1,
+		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
+		))
 
 /obj/structure/closet/crate/battleroyale
 	name = "Supply Crate"
