@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		if(3)//allrounder
 			name = "Misc Supply Crate"
 			add_atom_colour(LIGHT_COLOR_YELLOW, FIXED_COLOUR_PRIORITY)
-		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
+		if(4)//KABOOOM AHAHAHAHAHA
 			name = "Utility Supply Crate"
 			add_atom_colour(LIGHT_COLOR_PURPLE, FIXED_COLOUR_PRIORITY)
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
@@ -166,14 +166,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	var/selected
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
-			for(var/i in 1 to 3)
+			for(var/i in 1 to rand(2,3))
 				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
-			for(var/i in 1 to 3)
+			for(var/i in 1 to rand(2,3))
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
@@ -191,15 +191,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
 
-		if(4)//KABOOOM AHAHAHAHAHA (better hope the armour is explosion resistant)
-			for(var/i in 1 to 3)
+		if(4)//KABOOOM AHAHAHAHAHA
+			for(var/i in 1 to rand(2,5))
 				selected = pickweightAllowZero(GLOB.battleroyale_utility)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
-			for(var/i in 1 to 3)
+			for(var/i in 1 to rand(2,4))
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
