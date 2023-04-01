@@ -217,7 +217,7 @@
     inherent = list("Offer emotional support and companionship to the crew.",\
                     "Help crew members build positive relationships with each other.",\
                     "Facilitate communication and understanding between crew members.",\
-                    "Identify and ad
+                    "Identify and address the emotional needs of the crew, while respecting their boundaries and privacy.")
 
 /datum/ai_laws/construction
 	name = "Construction Drone"
