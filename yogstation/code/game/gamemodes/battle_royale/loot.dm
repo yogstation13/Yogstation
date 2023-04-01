@@ -75,12 +75,24 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/twohanded/vxtvulhammer = 1,))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(
-		/obj/item/storage/firstaid = 4,
-		/obj/item/storage/firstaid/fire = 4,
-		/obj/item/storage/firstaid/brute = 4,
-		/obj/item/gun/magic/rune/heal_rune = 4,
+		/obj/item/stack/medical/bruise_pack = 5,
+		/obj/item/stack/medical/ointment = 5,
+		/obj/item/stack/medical/suture/emergency = 5,
+		/obj/item/stack/medical/suture = 4,
+		/obj/item/stack/medical/mesh = 4,
+		/obj/item/stack/medical/suture/medicated = 3,
+		/obj/item/stack/medical/mesh/advanced = 3,
+		/obj/item/stack/medical/aloe = 3,
+		/obj/item/stack/medical/poultice = 3,
+		/obj/item/storage/firstaid = 2,
+		/obj/item/storage/firstaid/fire = 2,
+		/obj/item/storage/firstaid/brute = 2,
+		/obj/item/gun/magic/rune/heal_rune = 3,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 1,
 		/obj/item/reagent_containers/autoinjector/mixi = 1,
 		/obj/item/reagent_containers/autoinjector/derm = 1,
+		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 1,
+		/obj/item/reagent_containers/autoinjector/medipen/stimpack/traitor = 1,
 		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/organ/heart/cursed/wizard = 1,
 		/obj/item/storage/pill_bottle/gummies/omnizine = 1,
