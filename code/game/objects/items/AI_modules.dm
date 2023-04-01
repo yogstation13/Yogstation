@@ -401,6 +401,30 @@ AI MODULES
 	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
 	law_id = "paladin5"
 
+/******************** Partybot ********************/
+
+/obj/item/aiModule/core/full/partybot
+    name = "'Partybot' Core AI Module"
+    law_id = "partybot"
+
+/******************** Chefbot ********************/
+
+/obj/item/aiModule/core/full/chefbot
+    name = "'Chefbot' Core AI Module"
+    law_id = "chefbot"
+
+/******************** TravelGuide ********************/
+
+/obj/item/aiModule/core/full/travelguide
+    name = "'TravelGuide' Core AI Module"
+    law_id = "travelguide"
+
+/******************** Friendbot ********************/
+
+/obj/item/aiModule/core/full/friendbot
+    name = "'Friendbot' Core AI Module"
+    law_id = "friendbot"
+
 /********************* Custom *********************/
 
 /obj/item/aiModule/core/full/custom
