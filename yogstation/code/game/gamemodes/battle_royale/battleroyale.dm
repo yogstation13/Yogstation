@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
-	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes
+	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
 	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
@@ -57,6 +57,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
+		
+	for(var/obj/machinery/door/airlock/W in GLOB.machines)//set all doors to all access
+		W.req_access = list()
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
@@ -116,8 +119,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
-	ItemCull()
-
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -133,6 +134,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
+	ItemCull()
 
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
@@ -176,7 +178,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
-
 /datum/antagonist/battleroyale
 	name = "Battle Royale Contestant"
 	antagpanel_category = "Default Skin"
@@ -191,6 +192,17 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
+	START_PROCESSING(SSprocessing, src)
+
+/datum/antagonist/battleroyale/on_removal()
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+
+/datum/antagonist/battleroyale/process(delta_time)
+	. = ..()
+	var/mob/living/carbon/human/tfue = owner.current
+	if(tfue && isspaceturf(get_turf(tfue)))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
+		tfue.adjustFireLoss(4) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
