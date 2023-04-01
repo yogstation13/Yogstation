@@ -624,7 +624,7 @@
 	. = ..()
 	if(proximity_flag)
 		var/turf/T = get_turf(target)
-		var/obj/singularity/S = new(T)
+		var/obj/singularity/gravitational/S = new(T)
 		S.consume(target)
 	else
 		return FALSE
@@ -632,7 +632,7 @@
 /obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/turf/T = get_turf(hit_atom)
-	var/obj/singularity/S = new(T)
+	var/obj/singularity/gravitational/S = new(T)
 	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals

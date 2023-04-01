@@ -242,6 +242,9 @@
 		var/turf/T = loc
 		T.Entered(src)
 
+/datum/emote/living/carbon/human/robot_tongue
+	emote_type = EMOTE_AUDIBLE //emotes that require robotic voicebox are audible by default, because it's a sound-making device
+
 /datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
 	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
 	return T?.status == ORGAN_ROBOTIC && ..()
@@ -287,6 +290,15 @@
 
 /datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
 	return 'sound/machines/ping.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/warn
+	key = "warn"
+	key_third_person = "warns"
+	message = "blares an alarm!"
+	message_param = "blares an alarm at %t!"
+
+/datum/emote/living/carbon/human/robot_tongue/warn/get_sound(mob/living/user)
+	return 'sound/machines/warning-buzzer.ogg'
 
  // Clown Robotic Tongue ONLY. Henk.
 

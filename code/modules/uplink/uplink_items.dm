@@ -325,7 +325,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Buster Arm"
 	desc = "A box containing a combat-focused prosthetic left arm that can be attached on contact; It is intended for close combat and possesses immense strength. With it, the user\
 	can send people and heavy objects flying and even tear down solid objects like they're wet paper. To close the distance with ranged opponents, a grappling hook can be ejected\
-	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions."
+	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions. Users are \
+	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
 	item = /obj/item/storage/box/syndie_kit/buster
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
@@ -551,10 +552,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/pistol
 	name = "Stechkin Pistol"
-	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
+	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 10-round magazines and is compatible \
 			with suppressors."
 	item = /obj/item/gun/ballistic/automatic/pistol
-	cost = 6
+	cost = 5
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
@@ -641,7 +642,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
-/datum/uplink_item/stealthy_weapons/dart_pistol
+/datum/uplink_item/stealthy_weapons/dart_syringe
 	name = "Box of Chemical Shotgun Darts"
 	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
 			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
@@ -739,7 +740,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Suppressor"
 	desc = "This suppressor will silence the shots of the weapon it is attached to for increased stealth and superior ambushing capability. It is compatible with many small ballistic guns including the Stechkin and C-20r, but not revolvers or energy guns."
 	item = /obj/item/suppressor
-	cost = 3
+	cost = 1
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -750,38 +751,38 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/pistol
 	name = "Pair of 10mm Handgun Magazines"
-	desc = "A box that contains two additional 8-round 10mm magazines; compatible with the Stechkin Pistol."
+	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol."
 	item = /obj/item/storage/box/syndie_kit/pistolammo
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistol/ap
 	name = "10mm Armor-Piercing Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
 
 /datum/uplink_item/ammo/pistol/hp
 	name = "10mm Hollow-Point Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
 
 /datum/uplink_item/ammo/pistol/sleepy
 	name = "Pair of 10mm Soporific Magazines"
-	desc = "A box that contains 2 additional 8-round 10mm magazines; compatible with the Stechkin Pistol. \
+	desc = "A box that contains 2 additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
 	item = /obj/item/storage/box/syndie_kit/pistolsleepyammo
 
 /datum/uplink_item/ammo/pistol/fire
 	name = "10mm Incendiary Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
 
 /datum/uplink_item/ammo/pistol/emp
 	name = "10mm EMP Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin pistol. \
+	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin pistol. \
 			Loaded with bullets which release micro-electromagnetic pulses on hit, disrupting electronics on the target hit."
 	item = /obj/item/ammo_box/magazine/m10mm/emp
 
@@ -1434,6 +1435,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/stealthy_tools/chameleon/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(is_species(user, /datum/species/plasmaman))
+		spawn_path = /obj/item/storage/box/syndie_kit/chameleon/plasmaman
+	..()
 
 /datum/uplink_item/stealthy_tools/chameleon_proj
 	name = "Chameleon Projector"
@@ -1489,7 +1495,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	player_minimum = 20
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
 	item = /obj/item/clothing/shoes/chameleon/noslip/syndicate
@@ -2097,6 +2102,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/emp_shield
+	name = "EMP Shield Implant"
+	desc = "An implant that will render you and your insides immune to electromagnetic interference, protecting you from ion-based weaponry and EMPs. \
+			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
+	item = /obj/item/storage/box/syndie_kit/emp_shield
+	cost = 6
+
 // Events
 /datum/uplink_item/services
 	category = "Services"
@@ -2263,6 +2275,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
+	surplus = 0
+
+/datum/uplink_item/role_restricted/reticence
+	name = "Retience Exosuit"
+	desc = "A popular product for pantomime performers. For when you need to silence a target a little more... permanently. Comes equipped with advanced cloaking technology, a Quietus carbine, and an RCD."
+	item = /obj/mecha/combat/reticence/loaded
+	cost = 20
+	restricted_roles = list("Mime")
+	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
 
 /datum/uplink_item/role_restricted/arm_medical_gun
@@ -2462,7 +2483,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")
 
-/datum/uplink_item/role_restricted/chemical_gun
+/datum/uplink_item/role_restricted/chemical_art
 	name = "Psychotic Brawl Notes"
 	desc = "Notes taken from an experienced user of bath salts, written in their own blood. Reading it will \
 			greatly randomize the effectiveness of your punches. Best when combined with several narcotics."

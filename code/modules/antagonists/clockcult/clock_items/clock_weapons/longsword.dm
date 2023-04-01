@@ -2,9 +2,10 @@
 	name = "brass longsword"
 	desc = "A large sword made of brass."
 	icon_state = "ratvarian_sword"
-	force = 16
+	force = 15
 	throwforce = 20
-	armour_penetration = 8
+	armour_penetration = 10
+	block_chance = 35
 	attack_verb = list("attacked", "slashed", "cut", "torn", "gored")
 	clockwork_desc = "A powerful sword of Ratvarian making. Enemies hit with it will be struck with a powerful electromagnetic pulse."
 	var/emp_cooldown = 0

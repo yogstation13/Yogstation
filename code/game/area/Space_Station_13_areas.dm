@@ -234,7 +234,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/disposal/incinerator
 	name = "Incinerator"
-	icon_state = "disposal"
+	icon_state = "incinerator"
 
 
 //Hallway
@@ -534,24 +534,37 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags_1 = NONE
 	minimap_color = "#85ff02"
 
-/area/engine/atmos_distro //yogstation specific
+/area/engine/atmos/distro
 	name = "Atmospherics Distribution"
-	icon_state = "atmos"
-	flags_1 = NONE
-	minimap_color = "#85ff02"
+	icon_state = "atmos_distro"
 
-/area/engine/atmospherics_engine
-	name = "Atmospherics Engine"
-	icon_state = "atmos_engine"
-	minimap_color = "#85ff02"
+/area/engine/atmos/project
+	name = "\improper Atmospherics Project Room"
+	icon_state = "atmos_project"
 
-/area/engine/engine_room //donut station specific
-	name = "Engine Room"
+/area/engine/atmos/engine
+	name = "\improper Atmospherics Engine"
 	icon_state = "atmos_engine"
 
-/area/engine/engine_room/external
-	name = "Supermatter External Access"
-	icon_state = "engine_foyer"
+/area/engine/atmos/pumproom
+	name = "\improper Atmospherics Pumping Room"
+	icon_state = "atmos_pump_room"
+
+/area/engine/atmos/mix
+	name = "\improper Atmospherics Mixing Room"
+	icon_state = "atmos_mix"
+
+/area/engine/atmos/storage
+	name = "\improper Atmospherics Storage Room"
+	icon_state = "atmos_storage"
+
+/area/engine/atmos/foyer
+	name = "\improper Atmospherics Foyer"
+	icon_state = "atmos_foyer"
+
+/area/engine/atmos/hfr
+	name = "\improper Atmospherics HFR Room"
+	icon_state = "atmos_hfr"
 
 /area/engine/supermatter
 	name = "Supermatter Engine"
