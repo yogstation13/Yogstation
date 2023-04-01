@@ -1250,6 +1250,7 @@
 	sharpness = SHARP_NONE //issa spoon
 	armour_penetration = -50 //literally couldn't possibly be a worse weapon for hitting armour
 	throwforce = 1 //it's terribly weighted, what do you expect?
+	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'
 	attack_verb = list("scooped", "bopped", "spooned", "wacked")
 	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
 	wound_bonus = -10
