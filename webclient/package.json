@@ -11,6 +11,7 @@
     "ip-matching": "^2.1.2",
     "node-fetch": "^3.3.0",
     "openid-client": "^5.3.1",
+    "pako": "^2.1.0",
     "ws": "^8.11.0"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
     "@rollup/plugin-terser": "^0.3.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/express": "^4.17.15",
+    "@types/pako": "^2.0.0",
     "@types/ws": "^8.5.4",
     "ejs": "^3.1.8",
     "postcss": "^8.4.20",

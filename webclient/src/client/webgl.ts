@@ -238,13 +238,14 @@ export class GlHolder {
 			this.last_positions = attribs;
 			let offset = 0;
 			for(let item of items) {
-				if(item.is_static && item.cached_data) {
+				if(item.is_static && item.cached_data && item.cached_icon_version == icon_info.version) {
 					attribs.set(item.cached_data, offset);
 					offset += item.cached_data.length;
 					continue;
 				}
 				let prev_offset = offset;
 				offset = item.write(attribs, iattribs, offset, icon_info, this.client.time, act_camera_pos, this.camera_yaw);
+				item.cached_icon_version = icon_info.version;
 				if(item.is_static) item.cached_data = attribs.slice(prev_offset, offset);
 			}
 

@@ -14,6 +14,7 @@ export abstract class BatchRenderPlan {
 	triangle_count : number = 0;
 	is_static = false;
 	cached_data : Float32Array|null = null;
+	cached_icon_version : number|null = null;
 	bits : number = 0;
 	abstract write(attribs : Float32Array, iattribs : Uint32Array, offset : number, icon_info : Icon, time : number, camera_pos : vec3, camera_yaw : number) : number;
 	write_plane(attribs : Float32Array, iattribs : Uint32Array, offset : number, state_index : number, plane_origin : vec3, plane_x : vec3, plane_y : vec3, normal? : vec3, color? : vec4|mat4, uv_box? : vec4|mat3, flip = false) : number {

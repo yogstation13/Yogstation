@@ -1,4 +1,7 @@
 import { DataPointer } from "./binary";
+import { inflate } from 'pako';
+
+const text_decoder = new TextDecoder();
 
 export class IconState {
 	name = "";
@@ -113,6 +116,7 @@ export class Icon {
 	state_map = new Map<string, IconState>();
 	default_state : IconState|null = null;
 	frame_paths : Map<number, string> = new Map();
+	version = 0;
 
 	static from_message(dp : DataPointer) {
 		let icon = new Icon();
@@ -156,10 +160,126 @@ export class Icon {
 				reject(image);
 			}
 		});*/
+		this.reparse_dmi(blob);
 		return this.image_promise = createImageBitmap(blob, {premultiplyAlpha: "none"}).then(image => {
 			this.sheet_width = image.width / this.width;
 			this.sheet_height = image.height / this.height;
 			return this.image = Object.assign(image, {src: url});
 		});
+	}
+
+	private async reparse_dmi(blob : Blob) {
+		let array_buffer = await blob.arrayBuffer();
+		let dv = new DataView(array_buffer);
+
+		// A quick and dirty PNG decoder
+		if(dv.getUint32(0, false) != 0x89504e47 || dv.getUint32(4, false) != 0x0d0a1a0a) throw new Error("Not a valid PNG");
+		let desc : string|undefined = undefined;
+		let chunk_ptr = 8;
+		let image_width = 0;
+		let image_height = 0;
+		while(chunk_ptr < dv.byteLength) {
+			let chunk_length = dv.getUint32(chunk_ptr, false);
+			let chunk_type = dv.getUint32(chunk_ptr+4, false);
+			if(chunk_type == 0x49484452) {// IHDR
+				image_width = dv.getUint32(chunk_ptr+8, false);
+				image_height = dv.getUint32(chunk_ptr+12, false);
+			} else if(chunk_type == 0x7a545874) {// zTXt
+				let label_ptr = chunk_ptr + 8;
+				while(label_ptr < dv.byteLength && dv.getUint8(label_ptr)) label_ptr++;
+				let label = text_decoder.decode(new Uint8Array(array_buffer, chunk_ptr+8, label_ptr-chunk_ptr-8));
+				if(label == "Description") {
+					let compression_method = dv.getUint8(label_ptr+1);
+					if(compression_method != 0) throw new Error("Invalid compression method " + compression_method);
+					let compressed_data = new Uint8Array(array_buffer, label_ptr+2, chunk_ptr+8+chunk_length-label_ptr-2);
+					desc = text_decoder.decode(inflate(compressed_data));
+					break;
+				}
+			}
+			chunk_ptr += 12 + chunk_length;
+		}
+		let icon_width = image_width;
+		let icon_height = image_height;
+		let frame_index = 0;
+
+		if(desc) {
+			let split = desc.split('\n');
+			let parsing : IconState|undefined = undefined;
+			let is_movement_state = false;
+			const push_state = () => {
+				if(!parsing) throw new Error("Pushing null state");
+				let base = frame_index;
+				frame_index += parsing.num_dirs*parsing.num_frames;
+				for(let i = 0; i < parsing.num_dirs; i++) {
+					let frames : number[] = [];
+					for(let j = 0; j < parsing.num_frames; j++) {
+						frames.push(base + j*parsing.num_dirs+i);
+					}
+					parsing.icons.push(frames);
+				}
+				
+				this.states.push(parsing);
+
+				parsing = undefined;
+			}
+			for(let i = 0; i < split.length; i++) {
+				let regexResult = /\t?([a-zA-Z0-9]+) ?= ?(.+)/.exec(split[i]);
+				if(!regexResult)
+					continue;
+				let key = regexResult[1];
+				let val = regexResult[2];
+				if(key == 'width') {
+					icon_width = +val;
+				} else if(key == 'height') {
+					icon_height = +val;
+				} else if(key == 'state') {
+					if(parsing) {
+						push_state();
+					}
+					is_movement_state = false;
+					parsing = new IconState();
+					parsing.name = JSON.parse(val);
+					parsing.num_frames = 1;
+					is_movement_state = false;
+				} else if(key == 'dirs') {
+					if(!parsing) throw new Error("No icon state");
+					parsing.num_dirs = +val;
+				} else if(key == 'frames') {
+					if(!parsing) throw new Error("No icon state");
+					parsing.num_frames = +val;
+				} else if(key == 'movement') {
+					is_movement_state = !!+val;
+				} else if(key == 'delay') {
+					if(!parsing) throw new Error("No icon state");
+					parsing.delays = JSON.parse('[' + val + ']');
+					parsing.total_delay = 0;
+					for(let delay of parsing.delays as number[]) parsing.total_delay += delay;
+				}
+			}
+			if(parsing) {
+				push_state();
+			}
+
+			if(!icon_width && !icon_height && frame_index) {
+				icon_height = image_height;
+				icon_width = image_width / frame_index;
+			}
+		} else {
+			let state = new IconState();
+			state.icons = [[0]];
+			state.num_dirs = 1;
+			state.num_frames = 1;
+			state.name = "";
+			this.states.push(state);
+		}
+
+		this.default_state = null;
+		this.state_map.clear();
+		
+		for(let state of this.states) {
+			this.state_map.set(state.name, state);
+			if(state.name == "") this.default_state = state;
+		}
+		this.version++;
 	}
 }
