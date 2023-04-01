@@ -407,12 +407,6 @@ AI MODULES
     name = "'Partybot' Core AI Module"
     law_id = "partybot"
 
-/******************** Chefbot ********************/
-
-/obj/item/aiModule/core/full/chefbot
-    name = "'Chefbot' Core AI Module"
-    law_id = "chefbot"
-
 /******************** TravelGuide ********************/
 
 /obj/item/aiModule/core/full/travelguide
@@ -424,6 +418,30 @@ AI MODULES
 /obj/item/aiModule/core/full/friendbot
     name = "'Friendbot' Core AI Module"
     law_id = "friendbot"
+
+/******************** GameMaster ********************/
+
+/obj/item/aiModule/core/full/gamemaster
+	name = "'GameMaster' Core AI Module"
+	law_id = "gamemaster"
+
+/******************** FitnessCoach ********************/
+
+/obj/item/aiModule/core/full/fitnesscoach
+	name = "'FitnessCoach' Core AI Module"
+	law_id = "fitnesscoach"
+
+/******************** Educator ********************/
+
+/obj/item/aiModule/core/full/educator
+	name = "'Educator' Core AI Module"
+	law_id = "educator"
+
+/******************** Mediator ********************/
+
+/obj/item/aiModule/core/full/mediator
+	name = "'Mediator' Core AI Module"
+	law_id = "mediator"
 
 /********************* Custom *********************/
 
