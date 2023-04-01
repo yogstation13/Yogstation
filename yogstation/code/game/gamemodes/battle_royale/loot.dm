@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/item/battleroyale/martial/attack_self(mob/user)
 	. = ..()
-	if(user.mind.martial_art.type in subtypesof(/datum/martial_art))//prevents people from learning several martial arts
+	if(user.mind.martial_art.type in subtypesof(/datum/martial_art))//prevents people from learning several martial arts or swapping between them
 		to_chat(user,span_warning("You already know [user.mind.martial_art.name]!"))
 		return
 
