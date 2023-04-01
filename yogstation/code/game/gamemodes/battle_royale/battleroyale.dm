@@ -76,6 +76,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	for(var/mob/living/player in GLOB.battleroyale_players)
 		if(player.stat == DEAD)
 			GLOB.battleroyale_players -= player
+			continue
 		if(!player.client)
 			GLOB.battleroyale_players -= player
 			continue //No AFKS allowed!!!
