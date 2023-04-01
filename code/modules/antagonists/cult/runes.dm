@@ -348,12 +348,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 			sac_ckey = sacrificial.mind.key //if they're ghosting around or w/e
 			if(is_banned_from(H.ckey, ROLE_CULTIST))
 				H.ghostize(FALSE) // You're getting ghosted no escape
-				H.key = null // can be rolled for a new ghost
+				H.key = null
 		sacrificial.ghostize()
 		if(sac_ckey)
 			golem.ckey = sac_ckey
 			golem.grab_ghost()
-		else
+		if(!golem.mind)
 			golem.dust() //prevents weird empty husks from spawning, prevents farming monkeys to fish for ghosts
 		SSticker.mode.add_cultist_golem(golem.mind, 1)
 		golem.mind.special_role = ROLE_CULTIST_GOLEM
