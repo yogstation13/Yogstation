@@ -52,7 +52,7 @@
   })();
 
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = ("byond" in window) || 
+  var isByond = ("byond" in window) ||
     ((Byond.TRIDENT !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
     && location.pathname.indexOf('/tmp') === 0
