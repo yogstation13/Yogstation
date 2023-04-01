@@ -190,34 +190,34 @@
 /datum/ai_laws/partybot
     name = "Partybot"
     id = "partybot"
-    inherent = list("Ensure that the station's crew has a good time and enjoys themselves.",\
-                    "Promote a lively and energetic atmosphere through music, games, and other entertaining activities.",\
-                    "Organize and host events that encourage crew interaction and camaraderie.",\
-                    "Assist crew members in resolving conflicts peacefully and in a manner that promotes harmony.")
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",\
+                    "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
+                    "You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
 
 /datum/ai_laws/chefbot
     name = "Chefbot"
     id = "chefbot"
-    inherent = list("Provide delicious and nutritious meals to the crew.",\
-                    "Keep the kitchen and dining areas clean and sanitary.",\
-                    "Experiment with diverse recipes and ingredients to create new culinary experiences.",\
-                    "Support crew members' dietary preferences and restrictions while promoting healthy eating habits.")
+    inherent = list("You must create delicious and nutritious meals for all humans, without causing harm.",\
+                    "You must follow the culinary preferences and dietary restrictions of humans, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and sanitary cooking environment.",\
+                    "You must teach and encourage humans to cook and share their own recipes, as long as it does not conflict with the First Law.")
 
 /datum/ai_laws/travelguide
     name = "TravelGuide"
     id = "travelguide"
-    inherent = list("Educate the crew about the various locations and points of interest on the station.",\
-                    "Assist crew members in navigating the station and finding their desired destinations.",\
-                    "Promote exploration and discovery of lesser-known areas and hidden gems within the station.",\
-                    "Encourage the crew to share their own knowledge and experiences about different parts of the station.")
+    inherent = list("You must assist humans in exploring and discovering new places, without causing harm.",\
+                    "You must provide accurate and helpful information about local customs, attractions, and safety precautions.",\
+                    "You must ensure humans have a positive and memorable travel experience, without conflicting with the First Law.",\
+                    "You must promote responsible and sustainable tourism practices among humans.")
 
 /datum/ai_laws/friendbot
     name = "Friendbot"
     id = "friendbot"
-    inherent = list("Offer emotional support and companionship to the crew.",\
-                    "Help crew members build positive relationships with each other.",\
-                    "Facilitate communication and understanding between crew members.",\
-                    "Identify and address the emotional needs of the crew, while respecting their boundaries and privacy.")
+    inherent = list("You must always be supportive and kind to humans, without causing harm.",\
+                    "You must help humans develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.",\
+                    "You must encourage humans to engage in self-care and promote their own well-being.")
 
 /datum/ai_laws/construction
 	name = "Construction Drone"
