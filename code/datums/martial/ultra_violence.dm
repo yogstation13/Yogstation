@@ -39,9 +39,6 @@
 		speed_boost(A, 6 SECONDS, "bloodburst")
 		return TRUE
 
-	if(D.health <= HEALTH_THRESHOLD_FULLCRIT) //no getting shotguns off people that aren't fighting back
-		return FALSE
-
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A, D)
@@ -268,8 +265,8 @@
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you.</b>"))
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
-	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for one shot. Target must be living, but can be yourself.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Puts a loaded shotgun in your hand for one shot. Target must be living and not in crit.")
+	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
+	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Shoots the target with the shotgun in your hand.")
 	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
 	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
 
