@@ -179,8 +179,7 @@
 			O = new /datum/outfit/job/plasmaman/hop
 
 	H.equipOutfit(O, visualsOnly)
-	H.internal = H.get_item_for_held_index(2)
-	H.update_internals_hud_icon(1)
+	H.open_internals(H.get_item_for_held_index(2))
 
 	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
 	plasmeme_helmet.set_design(H)
