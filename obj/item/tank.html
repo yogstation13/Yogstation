@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;tank - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/tank.html#var">Var Details</a> - <a href="obj/item/tank.html#proc">Proc Details</a></header>
+<main>
+<h1>tank <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/tank.html">tank</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/tank.html#var/air_contents">air_contents</a></th><td>The gases this tank contains. Don't modify this directly, use return_air() to get it instead</td></tr>
+            <tr><th><a href="obj/item/tank.html#var/breathing_mob">breathing_mob</a></th><td>Mob that is currently breathing from the tank.</td></tr>
+            <tr><th><a href="obj/item/tank.html#var/distribute_pressure">distribute_pressure</a></th><td>The pressure of the gases this tank supplies to internals.</td></tr>
+            <tr><th><a href="obj/item/tank.html#var/volume">volume</a></th><td>The volume of this tank. Among other things gas tank explosions (including TTVs) scale off of this. Be sure to account for that if you change this or you will break ~~toxins~~ordinance.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/tank.html#proc/after_internals_closed">after_internals_closed</a></th><td>Called by carbons after they disconnect the tank from their breathing apparatus.</td></tr>
+            <tr><th><a href="obj/item/tank.html#proc/after_internals_opened">after_internals_opened</a></th><td>Called by carbons after they connect the tank to their breathing apparatus.</td></tr>
+            <tr><th><a href="obj/item/tank.html#proc/equipped">equipped</a></th><td>Closes the tank if given to another mob while open.</td></tr>
+            <tr><th><a href="obj/item/tank.html#proc/toggle_internals">toggle_internals</a></th><td>Attempts to toggle the mob's internals on or off using this tank. Returns TRUE if successful.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/air_contents"><aside class="declaration">var </aside>air_contents
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 18"/></a></h3>
+        <p>The gases this tank contains. Don't modify this directly, use return_air() to get it instead</p><h3 id="var/breathing_mob"><aside class="declaration">var </aside>breathing_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 25"/></a></h3>
+        <p>Mob that is currently breathing from the tank.</p><h3 id="var/distribute_pressure"><aside class="declaration">var </aside>distribute_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 20"/></a></h3>
+        <p>The pressure of the gases this tank supplies to internals.</p><h3 id="var/volume"><aside class="declaration">var </aside>volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 23"/></a></h3>
+        <p>The volume of this tank. Among other things gas tank explosions (including TTVs) scale off of this. Be sure to account for that if you change this or you will break ~~toxins~~ordinance.</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_internals_closed"><aside class="declaration">proc </aside>after_internals_closed<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/carbon_target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 50"/></a></aside>
+        </h3>
+        <p>Called by carbons after they disconnect the tank from their breathing apparatus.</p><h3 id="proc/after_internals_opened"><aside class="declaration">proc </aside>after_internals_opened<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/carbon_target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 45"/></a></aside>
+        </h3>
+        <p>Called by carbons after they connect the tank to their breathing apparatus.</p><h3 id="proc/equipped">equipped<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, slot, initial) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 38"/></a></aside>
+        </h3>
+        <p>Closes the tank if given to another mob while open.</p><h3 id="proc/toggle_internals"><aside class="declaration">proc </aside>toggle_internals<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/mob_target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/7762f884da9c2e5be3810a103586b87df0a94237/code/game/objects/items/tanks/tanks.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;tanks&#x2F;tanks.dm 61"/></a></aside>
+        </h3>
+        <p>Attempts to toggle the mob's internals on or off using this tank. Returns TRUE if successful.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/7762f884da9c2e5be3810a103586b87df0a94237">7762f88</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
