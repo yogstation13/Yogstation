@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixes IPCs being unable to speak encoded audio language if they don't have a job"
+  - tweak: "IPCs make funny robot sounds when walking"
+  - tweak: "IPCs can no longer wear underwear"
+  - tweak: "changes ultra violence \"grab\" to be distinct from walk sound"

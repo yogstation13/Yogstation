@@ -28,24 +28,25 @@
 /datum/component/crawl/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_ALT_CLICK_ON, .proc/try_crawl)
+	RegisterSignal(parent, COMSIG_MOB_ALTCLICKON, .proc/try_crawl)
 	var/mob/living/M = parent
 	on_gain(M)
 
 /datum/component/crawl/proc/try_crawl(datum/source, atom/target)
 	set waitfor = FALSE
+
 	var/can_crawl = FALSE
 	for(var/type in crawling_types)
 		if(istype(target, type))
 			can_crawl = TRUE
 			break
 	if(!can_crawl)
-		return FALSE
+		return
 	var/mob/living/M = parent
 	if(M.incapacitated())
-		return FALSE
+		return
 
-	. = TRUE
+	. = COMSIG_MOB_CANCEL_CLICKON
 	if(holder && can_stop_crawling(target, M))
 		stop_crawling(target, M)
 	else if(!istype(M.loc, /obj/effect/dummy/crawling) && can_start_crawling(target, M)) //no crawling while crawling
