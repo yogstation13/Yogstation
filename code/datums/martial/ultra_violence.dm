@@ -2,8 +2,8 @@
 #define GUN_HAND "GHG"
 #define POCKET_PISTOL "GG"
 #define BLOOD_BURST "HHH"
-#define MAX_DASH_DIST 3
-#define DASH_SPEED 1.5
+#define MAX_DASH_DIST 4
+#define DASH_SPEED 2
 
 /datum/martial_art/ultra_violence
 	name = "Ultra Violence"
@@ -44,7 +44,7 @@
 
 	if(findtext(streak, GUN_HAND))
 		streak = ""
-		gun_hand(A)
+		gun_hand(A, D)
 		speed_boost(A, 6 SECONDS, "gunhand")
 		return TRUE
 
@@ -107,19 +107,21 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
-	item_flags = DROPDEL
+	spread = 0
+	semi_auto_spread = 0
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
 	caliber = "357"
-	max_ammo = 1
+	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
 	name = ".357 piercer bullet casing"
 	desc = "A .357 piercer bullet casing."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/ipcmartial
+	click_cooldown_override = 0.1 //this gun shoots faster
 
 /obj/item/projectile/bullet/ipcmartial	//one shot, make it count
 	name = ".357 piercer bullet"
@@ -137,13 +139,21 @@
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
+	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/process_chamber(empty_chamber, from_firing, chamber_next_round)
 	. = ..()
-	qdel(src)
+	if(!magazine.ammo_count(FALSE))//if it's out of ammo delete it
+		qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
 	to_chat(A, span_notice("You stash your revolver away."))	
+	qdel(src)
+
+/obj/item/gun/ballistic/revolver/ipcmartial/proc/on_drop()//to let people drop it early with Q rather than attack self
+	var/mob/living/carbon/human/holder = src.loc
+	if(istype(holder))
+		to_chat(holder, span_notice("You relax your gun hand."))	
 	qdel(src)
 
 /*---------------------------------------------------------------
@@ -157,26 +167,15 @@
 
 ---------------------------------------------------------------*/
 
-/datum/martial_art/ultra_violence/proc/gun_hand(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/shotgun/ipcmartial/gun = new /obj/item/gun/ballistic/shotgun/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	gun.gun_owner = A
-	A.put_in_hands(gun)
-	to_chat(A, span_notice("You ready your gun hand."))	
+/datum/martial_art/ultra_violence/proc/gun_hand(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	var/obj/item/ammo_casing/caseless/ipcmartial/ammo = new /obj/item/ammo_casing/caseless/ipcmartial()
+	A.put_in_active_hand(ammo)
+	ammo.fire_casing(D, A)
+	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
+	to_chat(A, span_notice("You shoot [D] with your gun hand."))
 	streak = ""
 
-/obj/item/gun/ballistic/shotgun/ipcmartial
-	desc = "Your hand is also a shotgun."
-	lefthand_file = null  ///We don't want it to be visible inhands because it is your hand
-	righthand_file = null
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
-	can_be_sawn_off  = FALSE
-	var/mob/gun_owner
-	item_flags = DROPDEL
-
-/obj/item/ammo_box/magazine/internal/shot/lethal/ipcmartial
-	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/ipcmartial
-
-/obj/item/ammo_casing/shotgun/buckshot/ipcmartial
+/obj/item/ammo_casing/caseless/ipcmartial
 	projectile_type = /obj/item/projectile/bullet/pellet/ipcmartial
 	pellets = 6
 	variance = 15
@@ -193,18 +192,6 @@
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
-
-/obj/item/gun/ballistic/shotgun/ipcmartial/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, "martial")
-
-/obj/item/gun/ballistic/shotgun/ipcmartial/process_chamber(empty_chamber, from_firing, chamber_next_round)
-	. = ..()
-	qdel(src)
-
-/obj/item/gun/ballistic/shotgun/ipcmartial/attack_self(mob/living/A)
-	to_chat(A, span_notice("You relax your gun hand."))	
-	qdel(src)
 
 /*---------------------------------------------------------------
 
@@ -241,7 +228,7 @@
 		H.apply_status_effect(STATUS_EFFECT_DODGING)
 		playsound(H, 'sound/effects/dodge.ogg', 50)
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
-		H.Immobilize(30 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
+		H.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
 		dashing = TRUE
 		H.throw_at(A, MAX_DASH_DIST, DASH_SPEED, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
