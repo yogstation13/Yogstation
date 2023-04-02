@@ -11,32 +11,130 @@
 */
 
 GLOBAL_LIST_INIT(battleroyale_armour, list(
-		/obj/item/clothing/suit/armor/vest = 5,
-		/obj/item/clothing/head/helmet = 5,
-		/obj/item/clothing/suit/hooded/explorer = 5,
-		/obj/item/clothing/suit/space/hardsuit/mining = 5,
-		/obj/item/armorpolish = 5,
-		/obj/item/storage/box/syndie_kit/chameleon = 5,
-		/obj/item/clothing/head/det_hat/evil = 5,
-		/obj/item/clothing/suit/armor/riot = 1,
+		//weight of 5 - mostly just cosmetic stuff, things to both fill weight early, and fill slots for the armor polish to be used on later
+		/obj/item/clothing/suit/yogs/bikerjacket = 5,
+		/obj/item/clothing/suit/yogs/varsity = 5,
+		/obj/item/clothing/suit/yogs/jesus = 5,
+		/obj/item/clothing/suit/hooded/spesshoodie = 5,
+		/obj/item/clothing/suit/yogs/monkrobes = 5,
+		/obj/item/clothing/suit/yogs/blacktrenchcoat = 5,
+		/obj/item/clothing/suit/yogs/janitorcoat = 5,
+		/obj/item/clothing/suit/yogs/navymiljacket = 5,
+		/obj/item/clothing/suit/yogs/desertmiljacket = 5,
+		/obj/item/clothing/suit/yogs/denimjacket = 5,
+		/obj/item/clothing/suit/yogs/furcoat = 5,
+		/obj/item/clothing/suit/yogs/pinksweater = 5,
+		/obj/item/clothing/suit/yogs/bluesweater = 5,
+		/obj/item/clothing/suit/yogs/blueheart = 5,
+		/obj/item/clothing/suit/yogs/mintsweater = 5,
+		/obj/item/clothing/suit/yogs/ntsweater = 5,
+		/obj/item/clothing/suit/jacket = 5,
+		/obj/item/clothing/suit/jacket/puffer/vest = 5,
+		/obj/item/clothing/suit/jacket/puffer = 5,
+		/obj/item/clothing/suit/jacket/letterman = 5,
+		/obj/item/clothing/suit/jacket/letterman_red = 5,
+		/obj/item/clothing/suit/space/fragile = 5,
+		/obj/item/clothing/head/helmet/space/fragile = 5,
+		/obj/item/clothing/suit/hooded/wintercoat = 5,
+		//Weight of 4 - mostly minor stats, space suits with slowdown
+		/obj/item/shield/riot/buckler = 4,
+		/obj/item/clothing/head/helmet/space/nasavoid = 4,
+		/obj/item/clothing/suit/space/nasavoid = 4,
+		/obj/item/clothing/head/helmet/space/nasavoid/old = 4,
+		/obj/item/clothing/suit/space/nasavoid/old = 4,
+		/obj/item/clothing/head/helmet/space = 4,
+		/obj/item/clothing/suit/space = 4,
+		/obj/item/clothing/suit/armor/vest/old = 4,
+		/obj/item/clothing/suit/armor/vest/durathread = 4,
+		/obj/item/clothing/head/beret/durathread = 4,
+		//Weight of 3 - decent armour, weaker than security stuff
+		/obj/item/clothing/suit/hooded/wintercoat/security = 3,
+		/obj/item/clothing/suit/armor/nerd = 3,
+		/obj/item/clothing/suit/space/hardsuit/carp = 3,
+		/obj/item/clothing/head/helmet/durathread = 3,
+		/obj/item/clothing/suit/armor/vest/russian = 3,
+		/obj/item/clothing/suit/armor/vest/russian_coat = 3,
+		/obj/item/clothing/head/helmet/rus_ushanka = 3,
+		/obj/item/clothing/head/helmet/space/cosmonaut = 3,
+		/obj/item/clothing/suit/space/cosmonaut = 3,
+		//Weight of 2 - things on-par with security gear
+		/obj/item/shield/riot/goliath = 2,
+		/obj/item/clothing/suit/armor/vest = 2,
+		/obj/item/clothing/suit/hooded/explorer = 2,
+		/obj/item/armorpolish = 2,
+		/obj/item/storage/box/syndie_kit/chameleon = 2,
+		/obj/item/clothing/head/helmet = 2,
+		/obj/item/clothing/suit/armor/bone = 2,
+		/obj/item/clothing/suit/armor/tribalcoat = 2,
+		/obj/item/clothing/suit/armor/vest/leather = 2,
+		/obj/item/clothing/suit/armor/vest/alt = 2,
+		/obj/item/clothing/suit/armor/vest/blueshirt = 2,
+		/obj/item/clothing/head/helmet/roman = 2,
+		/obj/item/clothing/head/helmet/skull = 2,
+		/obj/item/clothing/head/helmet/rus_helmet = 2,
+		//weight of 1 - things that are decently strong, but lacking in some way
+		/obj/item/clothing/suit/space/hardsuit/ancient = 1,
 		/obj/item/clothing/head/helmet/riot = 1,
-		/obj/item/clothing/suit/space/hardsuit/ert/sec = 1,
-		/obj/item/clothing/suit/space/hardsuit/syndi = 1,
-		/obj/item/shield/energy = 1,
-		/obj/item/shield/riot = 1,
-		/obj/item/clothing/suit/space/hardsuit/shielded = -5,
-		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -5,
-		/obj/item/clothing/suit/wizrobe/armor = -5,
-		/obj/item/clothing/suit/space/hardsuit/wizard = -5,
-		/obj/item/clothing/suit/space/hardsuit/carp/dragon = -5,
-		/obj/item/clothing/head/helmet/space/hostile_environment = -5,
-		/obj/item/clothing/suit/space/hostile_environment = -5,
-		/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced = 1,
-		/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b = 1,
-		/obj/item/clothing/suit/hooded/cloak/drake = 1,
-		/obj/item/clothing/suit/armor/elder_atmosian = 1,
-		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -5,
+		/obj/item/clothing/suit/armor/riot = 1,
+		/obj/item/clothing/suit/hooded/cloak/goliath = 1,
+		/obj/item/clothing/suit/hooded/cloak/goliath/desert = 1,
+		/obj/item/clothing/suit/armor/bone/heavy = 1,
+		/obj/item/clothing/suit/armor/pathfinder = 1,
+		/obj/item/clothing/suit/armor/laserproof = 1,
+		/obj/item/clothing/head/helmet/kasa = 1,
+		/obj/effect/spawner/lootdrop/knighthelmet = 1,
+		/obj/effect/spawner/lootdrop/syndiespacehelm = 1,
+		/obj/effect/spawner/lootdrop/syndiespacesuit = 1,
+		//weight of 0 - all round good things
+		/obj/item/shield/riot = 0,
+		/obj/item/clothing/suit/armor/elder_atmosian = 0,
+		/obj/item/clothing/head/det_hat/evil = 0,
+		/obj/item/clothing/suit/space/hardsuit/mining = 0,
+		/obj/item/clothing/suit/armor/bulletproof = 0,
+		/obj/item/clothing/head/helmet/space/pirate = 0,
+		/obj/item/clothing/head/helmet/space/pirate/bandana = 0,
+		/obj/item/clothing/suit/space/pirate = 0,
+		/obj/item/clothing/head/helmet/space/freedom = 0,
+		/obj/item/clothing/suit/space/freedom = 0,
+		//Weight of -1 - pretty good things, leaning towards space-proof, but with decent armour (even if slowdown)
+		/obj/item/shield/riot/tele = -1,
+		/obj/item/clothing/suit/space/hardsuit/wizard = -1,
+		/obj/item/clothing/suit/space/hardsuit/medical = -1,
+		/obj/item/clothing/suit/space/hardsuit/security = -1,
+		/obj/item/clothing/suit/space/hardsuit/clown = -1,
+		/obj/item/clothing/suit/hooded/cloak/drake = -1,
+		/obj/item/clothing/head/helmet/thunderdome = -1,
+		/obj/item/clothing/head/helmet/swat = -1,
+		/obj/item/clothing/suit/space/swat = -1,
+		//Weight of -2 - decent armour, space suits, no slowdown or just really good stats (good enough to finish a round with)
+		/obj/item/nullrod/staff = -2,
+		/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced = -2,
+		/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b = -2,
+		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -2,
+		/obj/item/clothing/suit/space/hardsuit/syndi = -2,
+		/obj/item/clothing/suit/space/hardsuit/syndi/owl = -2,
+		/obj/item/clothing/suit/space/hardsuit/swat = -2,
+		/obj/item/clothing/head/helmet/space/hostile_environment = -2,
+		/obj/item/clothing/suit/space/hostile_environment = -2,
+		//Weight of -3 - strong suits with additional utility
+		/obj/item/clothing/suit/space/hardsuit/shielded = -3,
+		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -3,
+		/obj/item/clothing/suit/wizrobe/armor = -3,
+		//Weight of -4 - nukie level shit
+		/obj/item/shield/energy = -4,
+		/obj/item/clothing/suit/space/hardsuit/syndi/elite = -4,
+		/obj/item/clothing/suit/space/hardsuit/carp/dragon = -4,
+		//Weight of -5 - ERT level shit
+		/obj/item/shield/energy/bananium = -5,
+		/obj/item/clothing/suit/space/hardsuit/ert/sec = -5,
+		/obj/item/clothing/suit/space/hardsuit/ert/engi = -5,
+		/obj/item/clothing/suit/space/hardsuit/ert/med = -5,
+		/obj/item/clothing/suit/space/hardsuit/ert/jani = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
+		//Weight of -8 - you won't see this, but if you do you become a (still-killable) god (weight of 1 after the final ring closes)
+		/obj/item/clothing/suit/space/hardsuit/deathsquad = -8,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat = -8,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk = -8,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
@@ -192,7 +290,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
-			for(var/i in 1 to rand(2,3))
+			for(var/i in 1 to 2)
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
@@ -307,3 +405,34 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/item/battleroyale/itemspawner/construct
 	items = list(/obj/structure/constructshell,	/obj/item/soulstone/anybody)
+
+/obj/effect/spawner/lootdrop/knighthelmet
+	name = "Random knight helmet spawner"
+	loot = list( //to add different colours without adding weight
+		/obj/item/clothing/head/helmet/knight,
+		/obj/item/clothing/head/helmet/knight/blue,
+		/obj/item/clothing/head/helmet/knight/yellow,
+		/obj/item/clothing/head/helmet/knight/red,
+	)
+
+/obj/effect/spawner/lootdrop/syndiespacehelm
+	name = "Random syndie space helmet spawner"
+	loot = list( //to add different colours without adding weight
+		/obj/item/clothing/head/helmet/space/syndicate,
+		/obj/item/clothing/head/helmet/space/syndicate/black,
+		/obj/item/clothing/head/helmet/space/syndicate/black/med,
+		/obj/item/clothing/head/helmet/space/syndicate/black/red,
+		/obj/item/clothing/head/helmet/space/syndicate/contract,
+		/obj/item/clothing/head/helmet/space/syndicate/black/engie,
+	)
+
+/obj/effect/spawner/lootdrop/syndiespacesuit
+	name = "Random syndie space suit spawner"
+	loot = list( //to add different colours without adding weight
+		/obj/item/clothing/suit/space/syndicate,
+		/obj/item/clothing/suit/space/syndicate/black,
+		/obj/item/clothing/suit/space/syndicate/black/med,
+		/obj/item/clothing/suit/space/syndicate/black/red,
+		/obj/item/clothing/suit/space/syndicate/contract,
+		/obj/item/clothing/suit/space/syndicate/black/engie,
+	)
