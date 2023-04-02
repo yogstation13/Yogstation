@@ -22,3 +22,6 @@ export PYTHON_VERSION=3.9.0
 
 # Auxmos git tag
 export AUXMOS_VERSION=7854a9e0170189b5293018286de91521c2054026
+#auxlua repo
+export AUXLUA_REPO=tgstation/auxlua
+
