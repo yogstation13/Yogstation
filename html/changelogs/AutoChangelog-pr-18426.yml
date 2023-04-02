@@ -1,6 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "hypernoblium crystal can be applied to jumpsuits and has a slightly different text when you use it"
-  - bugfix: "hypernoblium crystals no longer cause armor to protect parts of the body they shouldn't"
-  - spellcheck: "hypernoblium crystal no longer a proper noun"
