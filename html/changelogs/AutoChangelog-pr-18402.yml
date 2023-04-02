@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixes nitrium decomposition duplicating nitrium"
+  - bugfix: "fixes tesla generator recipe requiring two separate instances of nitrium"
+  - tweak: "makes nitrium formation more like what stimulum formation used to be"
+  - tweak: "nitrium decomposition now makes antinoblium instead of duplicating itself"
