@@ -844,3 +844,19 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/sec
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
+
+/obj/item/card/id/departmental_budget/eng
+	department_ID = ACCOUNT_ENG
+	department_name = ACCOUNT_ENG_NAME
+
+/obj/item/card/id/departmental_budget/sci
+	department_ID = ACCOUNT_SCI
+	department_name = ACCOUNT_SCI_NAME
+
+/obj/item/card/id/departmental_budget/med
+	department_ID = ACCOUNT_MED
+	department_name = ACCOUNT_MED_NAME
+
+/obj/item/card/id/departmental_budget/srv
+	department_ID = ACCOUNT_SRV
+	department_name = ACCOUNT_SRV_NAME

@@ -45,6 +45,8 @@
 	new /obj/item/clipboard/yog/paperwork/hop(src)
 	new /obj/item/gun/energy/e_gun/mini(src) //hop doesn't get a proper gun
 	new /obj/item/storage/backpack/duffelbag/clothing/hop(src)
+	new /obj/item/card/id/departmental_budget/srv(src)
+	new /obj/item/card/id/departmental_budget(src)
 
 /obj/structure/closet/secure_closet/hos
 	name = "\proper head of security's locker"

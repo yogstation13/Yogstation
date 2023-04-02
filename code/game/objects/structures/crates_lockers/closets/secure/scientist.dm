@@ -23,3 +23,4 @@
 	new /obj/item/clipboard/yog/paperwork/rd(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/rd(src)
 	new /obj/item/analyzer/ranged(src)
+	new /obj/item/card/id/departmental_budget/sci(src)
