@@ -1058,6 +1058,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	stop_wagging_tail(H)
 	return
 
+//Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -1072,7 +1073,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_WEAR_MASK)
-			if(H.wear_mask)
+			if(H.wear_mask && H.wear_mask != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_MASK))
 				return FALSE
@@ -1080,25 +1081,25 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_NECK)
-			if(H.wear_neck)
+			if(H.wear_neck && H.wear_neck != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_NECK) )
 				return FALSE
 			return TRUE
 		if(SLOT_BACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_BACK) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_SUIT)
-			if(H.wear_suit)
+			if(H.wear_suit && H.wear_suit != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_OCLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLOVES)
-			if(H.gloves)
+			if(H.gloves && H.gloves != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
@@ -1106,7 +1107,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_SHOES)
-			if(H.shoes)
+			if(H.shoes && H.shoes != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
@@ -1119,7 +1120,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
-			if(H.belt)
+			if(H.belt && H.belt != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1132,7 +1133,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLASSES)
-			if(H.glasses)
+			if(H.glasses && H.glasses != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EYES))
 				return FALSE
@@ -1143,7 +1144,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_HEAD)
-			if(H.head)
+			if(H.head && H.head != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_HEAD))
 				return FALSE
@@ -1151,7 +1152,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_EARS)
-			if(H.ears)
+			if(H.ears && H.ears != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
 				return FALSE
@@ -1159,13 +1160,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_W_UNIFORM)
-			if(H.w_uniform)
+			if(H.w_uniform && H.w_uniform != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_ICLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_ID)
-			if(H.wear_id)
+			if(H.wear_id && H.wear_id != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1179,7 +1180,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_L_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP)) //Pockets aren't visible, so you can't move TRAIT_NODROP items into them.
 				return FALSE
-			if(H.l_store)
+			if(H.l_store && H.l_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_L_LEG)
@@ -1195,7 +1196,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_R_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.r_store)
+			if(H.r_store && H.r_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_R_LEG)
@@ -1212,7 +1213,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_S_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.s_store)
+			if(H.s_store && H.s_store != I)
 				return FALSE
 			if(!H.wear_suit)
 				if(!disable_warning)
@@ -1230,7 +1231,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_HANDCUFFED)
-			if(H.handcuffed)
+			if(H.handcuffed && H.handcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
@@ -1238,7 +1239,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_LEGCUFFED)
-			if(H.legcuffed)
+			if(H.legcuffed && H.legcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
@@ -1246,7 +1247,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				if(SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
 					return TRUE
 			return FALSE
