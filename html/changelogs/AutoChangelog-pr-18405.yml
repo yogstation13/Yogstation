@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Removes old pda from plasmeme mining medic loadout"
