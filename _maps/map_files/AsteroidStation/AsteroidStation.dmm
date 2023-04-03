@@ -62607,8 +62607,8 @@
 /area/maintenance/starboard/fore)
 "uaC" = (
 /obj/structure/closet/crate,
-/obj/item/twohanded/fishingrod/collapsable,
-/obj/item/twohanded/fishingrod/collapsable,
+/obj/item/twohanded/fishingrod/collapsible,
+/obj/item/twohanded/fishingrod/collapsible,
 /obj/item/twohanded/fishingrod,
 /obj/item/twohanded/fishingrod,
 /obj/item/twohanded/fishingrod,
