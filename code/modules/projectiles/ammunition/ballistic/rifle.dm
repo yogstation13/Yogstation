@@ -54,6 +54,7 @@
 	desc = "A 5.56mm rubber bullet casing."
 	icon_state = "556r-casing"
 	projectile_type = /obj/item/projectile/bullet/a556/rubber
+	harmful = FALSE
 
 // .308 (LWT-650 DMR)
 

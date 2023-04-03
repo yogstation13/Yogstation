@@ -20,6 +20,7 @@
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/slug/beanbag
 	materials = list(/datum/material/iron=250)
+	harmful = FALSE
 
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "incendiary slug"
@@ -100,6 +101,7 @@
 	pellets = 6
 	variance = 20
 	materials = list(/datum/material/iron=4000)
+	harmful = FALSE
 
 /obj/item/ammo_casing/shotgun/improvised
 	name = "improvised shell"

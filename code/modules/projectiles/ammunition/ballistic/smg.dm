@@ -20,6 +20,7 @@
 	name = "4.6x30mm rubber bullet casing"
 	desc = "A 4.6x30mm rubber bullet casing."
 	projectile_type = /obj/item/projectile/bullet/c46x30mm/rubber
+	harmful = FALSE
 
 // .45 (M1911 + C20r)
 
