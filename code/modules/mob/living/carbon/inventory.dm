@@ -116,9 +116,6 @@
 		legcuffed = null
 		if(!QDELETED(src))
 			update_inv_legcuffed()
-	else if(I == internal)
-		if(!QDELETED(src))
-			update_internals() // no more "bluespace" internals tanks
 
 //handle stuff to update when a mob equips/unequips a mask.
 /mob/living/proc/wear_mask_update(obj/item/I, toggle_off = 1)
