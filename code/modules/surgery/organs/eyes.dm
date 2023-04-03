@@ -172,7 +172,7 @@
 	owner.flash_act(override_blindness_check = 1)
 	owner.blind_eyes(5)
 	owner.blur_eyes(8)
-	eyes.applyOrganDamage(10 / severity)
+	eyes.applyOrganDamage(20 / severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"

@@ -236,12 +236,12 @@
 	organ_flags = ORGAN_SYNTHETIC
 	var/restartTimer = 10 SECONDS
 
-/obj/item/organ/heart/cybernetic/emp_act()
+/obj/item/organ/heart/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	Stop()
-	addtimer(CALLBACK(src, .proc/Restart), restartTimer) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, .proc/Restart), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
