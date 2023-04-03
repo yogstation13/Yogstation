@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed collapsible fishing rods not updating sprite when toggled"
+  - imageadd: "fixed mining medic fishing rod right hand left-right sprites"
+  - spellcheck: "Collapsable"
