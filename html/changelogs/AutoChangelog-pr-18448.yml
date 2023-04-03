@@ -1,0 +1,10 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "All cybernetic and upgraded cybernetic organs have more health"
+  - tweak: "cybernetic and upgraded cybernetic lungs/hearts are more efficient"
+  - tweak: "Cybernetic hearts restart after a bit on emp"
+  - tweak: "Upgraded cybernetic hearts restart faster on emp"
+  - tweak: "IPC brains take 10 less damage from heavy emp, but give drugginess"
+  - tweak: "syndicate leg implants can't break legs on emp"
+  - tweak: "cybernetic ears knock down for slightly less time on emp"
