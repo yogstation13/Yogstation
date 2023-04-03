@@ -77,7 +77,7 @@
 	damage = 2 // its just a casing
 	range = 6
 
-/obj/item/projectile/bullet/c46x30mm/airburst/on_range(mob/user)
+/obj/item/projectile/bullet/c46x30mm/airburst/on_range(/obj/item/projectile/bullet/c46x30mm/airburst/A, mob/living/carbon/human/D)
 	var/obj/item/ammo_casing/c46x30mm/airburst_pellet/P = new(get_turf(src))
-	P.fire_casing()
+	P.fire_casing(D, A)
 	..()
