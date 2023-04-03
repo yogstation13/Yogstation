@@ -226,14 +226,15 @@
 	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD
 	organ_efficiency = 0.5
 	organ_flags = ORGAN_SYNTHETIC
-	var/restartTimer = 10 SECONDS
 
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	organ_efficiency = 2
 	organ_flags = ORGAN_SYNTHETIC
+	var/restartTimer = 10 SECONDS
 
 /obj/item/organ/heart/cybernetic/emp_act()
 	. = ..()
@@ -246,6 +247,7 @@
 	name = "upgraded cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
 	organ_efficiency = 3
 	var/dose_available = TRUE
 	var/rid = /datum/reagent/medicine/epinephrine
