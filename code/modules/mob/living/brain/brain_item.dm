@@ -266,7 +266,7 @@
 	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain heavily damaged.</span>")
+			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
 			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
 
