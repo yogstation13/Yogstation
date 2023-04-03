@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/spellbook = -5,
 		/obj/item/book/granter/martial/cqc = 1,
 		/obj/item/book/granter/martial/carp = 1,
-		/obj/item/battleroyale/martial = 1,
+		/obj/item/battleroyale/martial/ipc = 1,
 		/obj/item/battleroyale/martial/lizard = 1,
 		/obj/item/battleroyale/martial/preternis = 1,
 		/obj/item/battleroyale/martial/phytosian = 1,
@@ -333,13 +333,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	desc = "This shouldn't have been spawned"
 
 //used to grant species martial arts to other species
-/obj/item/battleroyale/martial //can you feel my bias
+/obj/item/battleroyale/martial
 	name = "IPC martial mutator"
 	desc = "Transforms you into a blood-fueled killing machine."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
-	var/martial = /datum/martial_art/ultra_violence
-	var/species = /datum/species/ipc
+	var/martial = /datum/martial_art/cqc
+	var/species = /datum/species/felinid //get clowned on
+	var/breathing = FALSE //if species breathing is a problem
 
 /obj/item/battleroyale/martial/attack_self(mob/user)
 	. = ..()
@@ -352,6 +353,19 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		user.set_species(species)
 		MA.teach(user)
 		qdel(src)
+
+	if(breathing)
+		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
+		based.Insert(user)
+
+/obj/item/battleroyale/martial/ipc
+	name = "IPC martial mutator"
+	desc = "Transforms you into a blood-fueled killing machine."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	martial = /datum/martial_art/ultra_violence
+	species = /datum/species/ipc
+	breathing = TRUE //they can't us regular internals tanks
 
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"
@@ -384,12 +398,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "scroll2"
 	martial = /datum/martial_art/explosive_fist
 	species = /datum/species/plasmaman
-
-/obj/item/battleroyale/martial/plasmaman/attack_self(mob/user)
-	. = ..()
-	if(isplasmaman(user))//otherwise the poor sap suffocates
-		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
-		based.Insert(user)
+	breathing = TRUE //they can't us regular internals tanks
 
 //used for bundle items
 /obj/item/battleroyale/itemspawner
