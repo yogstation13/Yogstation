@@ -160,7 +160,7 @@
 			owner.Dizzy(30)
 			owner.Knockdown(3 SECONDS)
 			deaf = 30
-			to_chat(owner, "<span class='warning'>Your robotic ears are uselessly ringing.</span>")
+			to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
 		if(2)
 			owner.Jitter(15)
 			owner.Dizzy(15)
