@@ -102,7 +102,7 @@
 	icon_state = "liver-c-u"
 	desc = "An upgraded version of the cybernetic liver, designed to handle extreme levels of toxins. It can even heal minor amounts of toxin damage."
 	alcohol_tolerance = 0.0005
-	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD //150% health of a normal liver
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD //300% health of a normal liver
 	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
 	toxTolerance = 20
 	toxLethality = 0.007
