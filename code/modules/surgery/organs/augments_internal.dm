@@ -29,13 +29,13 @@
 	implant_overlay = "brain_implant_overlay"
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
+	var/stun_amount = 10 SECONDS //halve this for light emps
 
 /obj/item/organ/cyberimp/brain/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	var/stun_amount = 200/severity
-	owner.Stun(stun_amount)
+	owner.Stun(stun_amount / severity)
 	to_chat(owner, span_warning("Your body seizes up!"))
 
 
@@ -110,15 +110,15 @@
 
 	var/stun_cap_amount = 4 SECONDS
 
-/obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
-	. = ..()
-	UnregisterSignal(M, signalCache)
-	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
-
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
 	RegisterSignal(owner, signalCache, .proc/on_signal)
 	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
+
+/obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
+	. = ..()
+	UnregisterSignal(M, signalCache)
+	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
 	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
@@ -137,9 +137,10 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
+	addtimer(CALLBACK(src, .proc/reboot), stun_cap_amount * 2 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
+	clear_stuns()
 	organ_flags &= ~ORGAN_FAILING
 
 //[[[[MOUTH]]]]

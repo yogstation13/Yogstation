@@ -1144,7 +1144,7 @@
 	id = "n762"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 15000)
-	build_path = /obj/item/ammo_box/n762
+	build_path = /obj/item/ammo_box/no_direct/n762
 	category = list("hacked", "Security")
 
 /datum/design/decal_painter

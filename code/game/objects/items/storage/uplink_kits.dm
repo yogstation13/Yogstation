@@ -218,12 +218,12 @@
 
 		if("bee") // bee sword too based so its priceless
 			new /obj/item/paper/fluff/bee_objectives(src) // 0 tc (motivation)
-			new /obj/item/clothing/suit/hooded/bee_costume(src) // 0 tc
+			new /obj/item/clothing/suit/hooded/bee_costume/authentic(src) // 0 tc
 			new /obj/item/clothing/mask/rat/bee(src) // 0 tc
 			new /obj/item/storage/belt/fannypack/yellow(src) // 0 tc
-			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 15 tc
+			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 6 tc
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
-			new /obj/item/melee/beesword(src) //priceless
+			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
 		if("mr_freeze") // ~17 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
@@ -544,23 +544,21 @@
 /obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 14
+	STR.max_items = 12
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/polonium(src)
-	new /obj/item/reagent_containers/glass/bottle/venom(src)
-	new /obj/item/reagent_containers/glass/bottle/fentanyl(src)
-	new /obj/item/reagent_containers/glass/bottle/formaldehyde(src)
-	new /obj/item/reagent_containers/glass/bottle/spewium(src)
-	new /obj/item/reagent_containers/glass/bottle/cyanide(src)
-	new /obj/item/reagent_containers/glass/bottle/histamine(src)
-	new /obj/item/reagent_containers/glass/bottle/initropidril(src)
-	new /obj/item/reagent_containers/glass/bottle/pancuronium(src)
-	new /obj/item/reagent_containers/glass/bottle/sodium_thiopental(src)
-	new /obj/item/reagent_containers/glass/bottle/coniine(src)
-	new /obj/item/reagent_containers/glass/bottle/curare(src)
-	new /obj/item/reagent_containers/glass/bottle/amanitin(src)
-	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/syringe/big/polonium(src)
+	new /obj/item/reagent_containers/syringe/big/venom(src)
+	new /obj/item/reagent_containers/syringe/big/spewium(src)
+	new /obj/item/reagent_containers/syringe/big/histamine(src)
+	new /obj/item/reagent_containers/syringe/big/initropidril(src)
+	new /obj/item/reagent_containers/syringe/big/pancuronium(src)
+	new /obj/item/reagent_containers/syringe/big/sodium_thiopental(src)
+	new /obj/item/reagent_containers/syringe/big/curare(src)
+	new /obj/item/reagent_containers/syringe/big/amanitin(src)
+	new /obj/item/reagent_containers/syringe/big/coniine(src)
+	new /obj/item/reagent_containers/syringe/big/relaxant(src)
+	new /obj/item/reagent_containers/syringe/big(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo
 	real_name = "10mm magazine box"
@@ -588,7 +586,7 @@
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/a357(src)
+		new /obj/item/ammo_box/a357/ironfeather(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"
@@ -637,6 +635,22 @@
 	new /obj/item/clothing/shoes/chameleon/syndicate(src)
 	new /obj/item/clothing/glasses/chameleon/syndicate(src)
 	new /obj/item/clothing/head/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/storage/backpack/chameleon/syndicate(src)
+	new /obj/item/radio/headset/chameleon/syndicate(src)
+	new /obj/item/stamp/chameleon/syndicate(src)
+	new /obj/item/pda/chameleon/syndicate(src)
+	
+/obj/item/storage/box/syndie_kit/chameleon/plasmaman
+	real_name = "chameleon kit"
+
+/obj/item/storage/box/syndie_kit/chameleon/plasmaman/PopulateContents()
+	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/chameleon/syndicate(src)
+	new /obj/item/clothing/gloves/chameleon/syndicate(src)
+	new /obj/item/clothing/shoes/chameleon/syndicate(src)
+	new /obj/item/clothing/glasses/chameleon/syndicate(src)
+	new /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/storage/backpack/chameleon/syndicate(src)
 	new /obj/item/radio/headset/chameleon/syndicate(src)
@@ -749,3 +763,9 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube(src)
 	new /obj/item/bodypart/l_arm/robot/buster(src)
+
+/obj/item/storage/box/syndie_kit/emp_shield
+	real_name = "EMP shield implant kit"
+
+/obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
+	new /obj/item/implanter/empshield(src)

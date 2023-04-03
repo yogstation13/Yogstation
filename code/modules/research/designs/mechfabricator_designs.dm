@@ -562,6 +562,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/titanium=5000)
 	construction_time = 100
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_torso
 	name = "Exosuit Torso (\"Sidewinder\")"
@@ -571,6 +572,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/glass=10000, /datum/material/titanium=8000, /datum/material/plasma=4000)
 	construction_time = 300
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_head
 	name = "Exosuit Head (\"Sidewinder\")"
@@ -580,6 +582,7 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=5000, /datum/material/titanium=2000, /datum/material/plasma=5000)
 	construction_time = 200
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_left_arm
 	name = "Exosuit Left Arm (\"Sidewinder\")"
@@ -589,6 +592,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1500, /datum/material/gold=1000)
 	construction_time = 200
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_right_arm
 	name = "Exosuit Right Arm (\"Sidewinder\")"
@@ -598,6 +602,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1500, /datum/material/gold=1000)
 	construction_time = 200
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_left_leg
 	name = "Exosuit Left Leg (\"Sidewinder\")"
@@ -607,6 +612,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1000, /datum/material/gold=1000)
 	construction_time = 200
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_right_leg
 	name = "Exosuit Right Leg (\"Sidewinder\")"
@@ -616,6 +622,7 @@
 	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000, /datum/material/plasma=1000, /datum/material/gold=1000)
 	construction_time = 200
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 /datum/design/sidewinder_armor
 	name = "Exosuit Armor (\"Sidewinder\")"
@@ -625,6 +632,7 @@
 	materials = list(/datum/material/iron=15000,/datum/material/plasma=10000,/datum/material/titanium=10000)
 	construction_time = 600
 	category = list("Sidewinder")
+	combat_design = TRUE
 
 //Exosuit Equipment
 /datum/design/ripleyupgrade

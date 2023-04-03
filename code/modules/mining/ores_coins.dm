@@ -519,6 +519,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			user.visible_message("[user] has flipped [src]. It lands on [coinflip].", \
  							 span_notice("You flip [src]. It lands on [coinflip]."), \
 							 span_italics("You hear the clattering of loose change."))
+		else
+			visible_message(span_notice("[src] lands on [coinflip]."), blind_message = span_italics("You hear the clattering of loose change."))
 	return TRUE//did the coin flip? useful for suicide_act
 
 /obj/item/coin/attack_self(mob/user)
@@ -529,21 +531,21 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38)) //only energy projectiles get deflected (also det revolver because damn thats cool)
+	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38) && !istype(P, /obj/item/projectile/bullet/a357) &&!istype(P, /obj/item/projectile/bullet/ipcmartial)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 		
-	if(cooldown >= world.time)//we ricochet the projectile
+	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		var/turf/center = get_turf(src)
 		for(var/mob/living/T in viewers(5, src))
-			if(T != P.firer && T.stat != DEAD)
+			if(T != P.firer && T.stat != DEAD && !(T in P.permutated)) //don't fire at someone if they're dead or if we already hit them
 				targets |= T
 		P.damage *= 1.5
 		if(!targets.len)
 			var/spr = rand(0, 360) //randomize the direction
 			P.preparePixelProjectile(src, src, spread = spr)
 		else
-			var/mob/living/target = pick(targets)
+			var/mob/living/target = get_closest_atom(/mob/living, targets, src)
 			P.preparePixelProjectile(target, src)
 			targets -= target
 			if(targets.len)
@@ -556,11 +558,19 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 				P.fire()
 		visible_message(span_danger("[P] ricochets off of [src]!"))
 		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
+		if(cooldown < world.time)
+			INVOKE_ASYNC(src, .proc/flip, null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
 			
 	//we instead flip the coin
 	INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF
+
+/obj/item/coin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	if(cooldown < world.time) // Flip the coin when thrown
+		spin = 0 // looks weird if it spins and flips at the same time
+		INVOKE_ASYNC(src, .proc/flip, null, TRUE)
+	..()
 
 /obj/item/coinstack
 	name = "stack of coins"

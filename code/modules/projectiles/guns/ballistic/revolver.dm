@@ -26,7 +26,7 @@
 /obj/item/gun/ballistic/revolver/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	..()
 	chamber_round(TRUE)
-
+ 
 /obj/item/gun/ballistic/revolver/AltClick(mob/user)
 	..()
 	spin()
@@ -230,9 +230,14 @@
 	user.visible_message(span_danger("[user.name] tries to fire \the [src] at the same time, but only succeeds at looking like an idiot."), span_danger("\The [src]'s anti-combat mechanism prevents you from firing it at the same time!"))
 
 /obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = BODY_ZONE_HEAD)
-	user.apply_damage(300, BRUTE, affecting)
-	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot!"))
-
+	switch(rand(1,3))
+		if (1 to 2)
+			user.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+		if (3)
+			user.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+	user.apply_damage(300, BRUTE, affecting) 
+	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot, then everything goes silent."))
+	
 /obj/item/gun/ballistic/revolver/russian/soul
 	name = "cursed Russian revolver"
 	desc = "To play with this revolver requires wagering your very soul."

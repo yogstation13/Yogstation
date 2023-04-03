@@ -319,6 +319,7 @@
 
 /datum/action/item_action/set_internals
 	name = "Set Internals"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/set_internals/UpdateButtonIcon(status_only = FALSE, force)
 	if(..()) //button available
@@ -425,9 +426,11 @@
 
 /datum/action/item_action/toggle_helmet_flashlight
 	name = "Toggle Helmet Flashlight"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle_helmet_mode
 	name = "Toggle Helmet Mode"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle
 

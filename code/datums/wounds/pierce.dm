@@ -50,7 +50,7 @@
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
 
 /datum/wound/pierce/get_bleed_rate_of_change()
-	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS))
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) || HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE))
 		return BLOOD_FLOW_INCREASING
 	if(limb.current_gauze)
 		return BLOOD_FLOW_DECREASING
@@ -66,7 +66,10 @@
 
 	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) && (victim.stat != DEAD))
 		blood_flow += 0.5 // old heparin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
-
+	
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE) && (victim.stat != DEAD)) //hemophiliac version, half strength
+		blood_flow += 0.25
+		
 	if(limb.current_gauze)
 		blood_flow -= limb.current_gauze.absorption_rate * gauzed_clot_rate
 		limb.current_gauze.absorption_capacity -= limb.current_gauze.absorption_rate

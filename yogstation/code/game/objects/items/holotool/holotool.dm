@@ -50,6 +50,12 @@
 			return TRUE
 	. = ..()
 
+/obj/item/holotool/use(used)
+	return TRUE //it just always works, capiche!?
+
+/obj/item/holotool/tool_use_check(mob/living/user, amount)
+	return TRUE	//always has enough "fuel"
+
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
 		update_listing()

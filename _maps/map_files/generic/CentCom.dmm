@@ -7114,7 +7114,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "apT" = (
-/obj/machinery/portable_atmospherics/canister/stimulum,
+/obj/machinery/portable_atmospherics/canister/freon,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "apU" = (
@@ -16306,7 +16306,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/ammo_box/n762,
+/obj/item/ammo_box/no_direct/n762,
 /obj/item/ammo_box/c9mm,
 /obj/item/ammo_box/c45,
 /obj/item/ammo_box/c10mm,
@@ -21630,7 +21630,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/stimulum,
+/obj/machinery/portable_atmospherics/canister/freon,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "aRQ" = (
@@ -22013,7 +22013,7 @@
 	},
 /area/holodeck/rec_center/lounge)
 "aSL" = (
-/obj/machinery/portable_atmospherics/canister/nitryl,
+/obj/machinery/portable_atmospherics/canister/nitrium,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aSM" = (
@@ -24442,7 +24442,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/nitryl,
+/obj/machinery/portable_atmospherics/canister/nitrium,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aXF" = (

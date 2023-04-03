@@ -607,6 +607,8 @@
 	stuttering = 0
 	slurring = 0
 	jitteriness = 0
+	if(HAS_TRAIT_FROM(src, TRAIT_BADDNA, CHANGELING_DRAIN))
+		REMOVE_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
 	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
 	if (mood)
 		mood.remove_temp_moods(admin_revive)
@@ -1221,7 +1223,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else

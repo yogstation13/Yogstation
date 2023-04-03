@@ -226,6 +226,7 @@
 	for(var/obj/item/slime_extract/S in beakers)
 		if(S.Uses)
 			for(var/obj/item/reagent_containers/glass/G in beakers)
+				S.react_time = 0 SECONDS
 				G.reagents.trans_to(S, G.reagents.total_volume)
 
 			//If there is still a core (sometimes it's used up)
