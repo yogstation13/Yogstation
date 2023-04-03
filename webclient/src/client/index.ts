@@ -102,8 +102,8 @@ export class ByondClient {
 						this.topic(href.substring(1));
 					} else if(href.startsWith("byond://?")) {
 						this.topic(href.substring(9));
-					} else if(href.startsWith("byond://winset?")) {
-						let split = href.substring(15).split(/[;&]/g);
+					} else if(href.match(/byond:\/\/win(?:get|set)\?/)) {
+						let split = href.substring(href.indexOf("?") + 1).split(/[;&]/g);
 						let id : string = "";
 						let parts = new Map<string,string>();
 						for(let splitpart of split) {
@@ -114,7 +114,37 @@ export class ByondClient {
 							if(key == "id") id = val;
 							else parts.set(key, val);
 						}
-						this.winset(id, parts);
+
+						if(href.startsWith("byond://winset")) this.winset(id, parts);
+						else {
+							const result: {[p: string]: unknown} = Object.fromEntries(this.winget(id, parts.get("property")?.split(",") ?? []).entries())
+							Object.keys(result).filter(x => x.includes(".")).forEach(x => {
+								let value = result[x];
+
+								delete result[x];
+
+								let current = result;
+								const path = x.split(".");
+								while(path.length) {
+									const currentPathElement = path.shift()!;
+									if(!path.length) {
+										current[currentPathElement] = value;
+										break;
+									}
+
+									if(typeof current[currentPathElement] !== "object") current[currentPathElement] = {};
+									current = current[currentPathElement] as Record<string, unknown>;
+								}
+							});
+							const payload = "callback:" + JSON.stringify({
+								callback: parts.get("callback"),
+								data: JSON.stringify(result)
+							})
+							// @ts-ignore
+							e.source?.postMessage(payload, "*");
+						}
+					} else {
+						console.error("Unimplemented byond protocol handler", href)
 					}
 				}
 			}
@@ -883,6 +913,11 @@ export class ByondClient {
 						answer.set("type", type);
 						break;
 					}
+					case "pos": {
+						answer.set("pos.x", (parseInt(ctrl_elem.style.left ?? "0")).toString())
+						answer.set("pos.y", (parseInt(ctrl_elem.style.top ?? "0")).toString())
+						break;
+					}
 				}
 			}
 		}
@@ -1030,7 +1065,7 @@ export class ByondClient {
 				if(is_screen) atom.enabled_screen = true;
 				else atom.enabled = true;
 				if((flags & 3) == 1) {
-					atom.reset();
+					atom.reset(); // 
 				}
 			}
 			if(flags & 4) {

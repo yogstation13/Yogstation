@@ -4,6 +4,51 @@ if(base) {
 	base.parentElement?.removeChild(base);
 }
 
+const elementMouseDownEvents = new Map<EventListenerOrEventListenerObject, EventListener>();
+const originalElementAddEventListener = Element.prototype.addEventListener;
+const originalElementRemoveEventListener = Element.prototype.removeEventListener;
+const originalDocumentAddEventListener = document.addEventListener;
+const originalDocumentRemoveEventListener = document.removeEventListener;
+Element.prototype.addEventListener = function(...args: Parameters<Element["addEventListener"]>) {
+	if (args[0] == "mousedown") {
+		args[0] = "pointerdown";
+
+		const originalHandler = args[1];
+		args[1] = ((e: PointerEvent) => {
+			e.preventDefault();
+			document.documentElement.setPointerCapture(e.pointerId)
+			if("handleEvent" in originalHandler) originalHandler.handleEvent(e);
+			else originalHandler(e);
+		}) as EventListener
+		elementMouseDownEvents.set(originalHandler, args[1]);
+	}
+
+	originalElementAddEventListener.apply(this, args);
+}
+Element.prototype.removeEventListener = function(...args: Parameters<Element["removeEventListener"]>) {
+	if (args[0] == "mousedown") {
+		args[0] = "pointerdown";
+
+		const originalHandler = args[1];
+		args[1] = elementMouseDownEvents.get(originalHandler) ?? originalHandler;
+		elementMouseDownEvents.delete(originalHandler);
+	}
+
+	originalElementRemoveEventListener.apply(this, args);
+}
+document.addEventListener = function(...args: Parameters<Document["addEventListener"]>) {
+	if (args[0].startsWith("mouse")) {
+		args[0] = args[0].replace("mouse", "pointer");
+	}
+	originalDocumentAddEventListener.apply(this, args);
+}
+document.removeEventListener = function(...args: Parameters<Document["removeEventListener"]>) {
+	if (args[0].startsWith("mouse")) {
+		args[0] = args[0].replace("mouse", "pointer");
+	}
+	originalDocumentRemoveEventListener.apply(this, args);
+}
+
 let window_output_map = Object.create(null) as any;
 for(let thing = window; thing != null && thing != Object.getPrototypeOf(thing); thing = Object.getPrototypeOf(thing)) {
 	for(let key of Object.getOwnPropertyNames(thing)) {
@@ -28,6 +73,13 @@ const byond = window.byond = {
 		let end = str.lastIndexOf("}");
 		str = str.substring(start, end);
 		str = str.replace(/window\.location/g, "window.__location_proxy");
+		let tgui_patch_match = str.match(/\w.setupDrag\s*=\s*(\w);/);
+		if (tgui_patch_match) {
+			let setupDrag = tgui_patch_match[1];
+			str = str.replace(/drag start(?:\n|.)*?,/, x => x + `${setupDrag}(),`)
+			str = str.replace(/drag end(?:\n|.)*?,/, x => x + `${setupDrag}(),`)
+		}
+		str = str.replace("isStyleSheetLoaded(node, url)", "true")
 		window.eval(str);
 	},
 	outputtarget: window_output_target,
@@ -46,6 +98,11 @@ window.addEventListener("message", (e) => {
 		if(typeof fun == "function") {
 			fun(...bits.slice(1));
 		}
+	} else if (str.startsWith("callback:")) {
+		let {callback, data}: { callback: string, data: string } = JSON.parse(str.substring(str.indexOf(":") + 1))
+		//language=js
+		eval(`${callback}(JSON.parse("${data.replace(/"/g, '\\"')}"))`)
+		console.log(str, `${callback}(JSON.parse("${data.replace(/"/g, '\\"')}"))`);
 	}
 });
 

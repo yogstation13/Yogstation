@@ -244,6 +244,9 @@ export class GlHolder {
 					continue;
 				}
 				let prev_offset = offset;
+				if(item.cached_icon_version != icon_info.version) {
+					item.clear_state_cache();
+				}
 				offset = item.write(attribs, iattribs, offset, icon_info, this.client.time, act_camera_pos, this.camera_yaw);
 				item.cached_icon_version = icon_info.version;
 				if(item.is_static) item.cached_data = attribs.slice(prev_offset, offset);

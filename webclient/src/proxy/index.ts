@@ -153,7 +153,7 @@ function getProxyAgent(request : IncomingMessage, socket : Socket, url? : string
 			let [dstaddr, dstport] = addr.split(":");
 			let socket = connect(+dstport, dstaddr);
 			let port = 32768 + Math.floor(Math.random() * 28232);
-			socket.write(`PROXY TCP4 ${address} ${byond_host} ${port} ${byond_port}\r\n`);
+			socket.write(`PROXY TCP4 ${address} 255.255.255.255 ${port} ${byond_port}\r\n`);
 			return socket;
 		}
 	}
@@ -350,6 +350,7 @@ app.use("/browse/:userHash", async (req, res, next) => {
 		if(fetch_res.redirected && domain.get(path) == url) {
 			domain.set(path, url = fetch_res.url); // don't follow the redirect next time.
 		}
+		res.setHeader('Content-Security-Policy', "base-uri 'self';")
 		res.setHeader('cache-control', 'no-cache');
 		for(let header of ['content-disposition', 'content-type', 'last-modified']) {
 			let val = fetch_res.headers.get(header);
