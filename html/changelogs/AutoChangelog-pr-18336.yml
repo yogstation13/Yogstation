@@ -1,4 +1,0 @@
-author: "Aphielanisn"
-delete-after: true 
-changes: 
-  - mapping: "Connects floor vents/scrubbers to distro network in AsteroidStation Atmospherics"
