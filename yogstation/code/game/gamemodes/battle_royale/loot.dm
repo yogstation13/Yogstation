@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	var/martial = /datum/martial_art/cqc
-	var/species = /datum/species/felinid //get clowned on
+	var/species = /datum/species/polysmorph //get clowned on
 	var/breathing = FALSE //if species breathing is a problem
 
 /obj/item/battleroyale/martial/attack_self(mob/user)
