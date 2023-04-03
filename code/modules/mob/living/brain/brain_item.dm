@@ -268,7 +268,7 @@
 		if(1)
 			to_chat(owner, "<span class='warning'>Alert: Posibrain heavily damaged.</span>")
 		if(2)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain damaged.</span>") 
+			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
