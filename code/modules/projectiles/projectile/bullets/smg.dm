@@ -48,5 +48,5 @@
 
 /obj/item/projectile/bullet/c46x30mm/rubber
 	name = "4.6x30mm rubber bullet"
-	damage = 5
-	stamina = 22
+	damage = 22
+	damage_type = STAMINA

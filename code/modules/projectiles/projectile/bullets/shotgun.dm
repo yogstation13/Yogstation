@@ -2,7 +2,6 @@
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
 	var/tile_dropoff = 3
-	var/tile_dropoff_s = 2.25
 	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
@@ -13,10 +12,9 @@
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
-	damage = 5
-	stamina = 55
-	wound_bonus = 20
-	sharpness = SHARP_NONE
+	damage = 55
+	damage_type = STAMINA
+	tile_dropoff = 2.25
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -79,13 +77,10 @@
 	..()
 	if(damage > 0)
 		damage -= tile_dropoff
-	if(stamina > 0)
-		stamina -= tile_dropoff_s
 
 /obj/item/projectile/bullet/pellet
 	speed = 0.5 //Shotgun = slower
 	var/tile_dropoff = 0.4
-	var/tile_dropoff_s = 0.3
 	armour_penetration = -20 //Armor is 25% stronger against pellets
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
@@ -119,9 +114,9 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
-	damage = 3
-	stamina = 13 //Total of 78 with less falloff (very big)
-	sharpness = SHARP_NONE
+	damage = 13
+	tile_dropoff = 3
+	damage_type = STAMINA
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
 	name = "cryoshot pellet"
@@ -161,9 +156,7 @@
 	..()
 	if(damage > 0)
 		damage -= tile_dropoff
-	if(stamina > 0)
-		stamina -= tile_dropoff_s
-	if(damage < 0 && stamina < 0)
+	if(damage < 0)
 		qdel(src)
 
 // Mech Scattershot
