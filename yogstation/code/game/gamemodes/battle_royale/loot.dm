@@ -352,11 +352,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
+		if(breathing)
+			var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
+			based.Insert(user)
 		qdel(src)
-
-	if(breathing)
-		var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
-		based.Insert(user)
 
 /obj/item/battleroyale/martial/ipc
 	name = "IPC martial mutator"
