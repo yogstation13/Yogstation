@@ -43,6 +43,9 @@ const findNearestScrollableParent = startingNode => {
       if(getComputedStyle(node).overflowY === "scroll") return node;
     }
 
+    // Can't rely on the style either though because sometimes this gets called before the styles load...
+    if(node.className.indexOf("Layout__content--scrollable") >= 0) return node;
+
     // This definitely has a vertical scrollbar, because it reduces
     // scrollWidth of the element. Might not work if element uses
     // overflow: hidden.
