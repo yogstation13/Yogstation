@@ -145,7 +145,7 @@
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
-	force = 8
+	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
 	attack_verb = list("drilled")
@@ -188,7 +188,7 @@
 	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
-	force = 3
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
@@ -247,7 +247,7 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw"
-	force = 6
+	force = 8
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
 	throw_speed = 2
