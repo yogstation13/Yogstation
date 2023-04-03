@@ -69,8 +69,8 @@
 			em_block = new(src, render_target)
 			vis_contents += em_block
 	
-	//if(light_system == MOVABLE_LIGHT)
-	//	AddComponent(/datum/component/overlay_lighting)
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
 
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)

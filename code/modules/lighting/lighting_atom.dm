@@ -48,7 +48,7 @@
 	if(light_system != STATIC_LIGHT)
 		CRASH("update_light() for [src] with following light_system value: [light_system]")
 
-	if (!light_power || !light_range || !light_on) // We won't emit light anyways, destroy the light source.
+	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
 		QDEL_NULL(light)
 	else
 		if (!ismovable(loc)) // We choose what atom should be the top atom of the light here.
@@ -155,7 +155,6 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_RANGE, new_range)
 	. = light_range
 	light_range = new_range
-	set_light()
 
 
 /atom/proc/set_light_power(new_power)
@@ -164,7 +163,6 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_POWER, new_power)
 	. = light_power
 	light_power = new_power
-	set_light()
 
 
 /atom/proc/set_light_color(new_color)
@@ -173,7 +171,6 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color)
 	. = light_color
 	light_color = new_color
-	set_light()
 
 
 /atom/proc/set_light_on(new_value)
@@ -182,7 +179,6 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value)
 	. = light_on
 	light_on = new_value
-	set_light()
 
 
 /atom/proc/set_light_flags(new_value)
@@ -191,5 +187,4 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_FLAGS, new_value)
 	. = light_flags
 	light_flags = new_value
-	set_light()
 
