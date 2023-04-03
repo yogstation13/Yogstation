@@ -165,4 +165,4 @@
 			owner.Jitter(15)
 			owner.Dizzy(15)
 			owner.Knockdown(6 SECONDS)
-			to_chat(owner, "<span class='warning'>Your robotic ears buzz.</span>") 
+			to_chat(owner, span_warning("Your robotic ears buzz.")) 
