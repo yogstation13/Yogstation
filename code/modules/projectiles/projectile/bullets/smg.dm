@@ -72,12 +72,16 @@
 /obj/item/projectile/bullet/c46x30mm/airburst_pellet
 	name = "4.6x30mm airburst pellet"
 	damage = 10
+
 /obj/item/projectile/bullet/c46x30mm/airburst
 	name = "4.6x30mm airburst bullet"
 	damage = 2 // its just a casing
-	range = 6
+	range = 5
 
-/obj/item/projectile/bullet/c46x30mm/airburst/on_range(obj/item/projectile/bullet/c46x30mm/airburst/A, mob/living/carbon/human/D)
+/obj/item/projectile/bullet/c46x30mm/airburst/on_range()
 	var/obj/item/ammo_casing/c46x30mm/airburst_pellet/P = new(get_turf(src))
-	P.fire_casing(D, A)
+	var/mob/living/L = new (get_turf(src))//it's jank, but casings can only be shot via a mob's location
+	P.fire_casing(get_edge_target_turf(firer, get_dir(firer, original)), L)
+	playsound(L, 'sound/weapons/shotgunshot.ogg', 40, 0, 2)
+	qdel(L)
 	..()
