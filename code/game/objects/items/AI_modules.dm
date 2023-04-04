@@ -401,6 +401,48 @@ AI MODULES
 	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
 	law_id = "paladin5"
 
+/******************** Partybot ********************/
+
+/obj/item/aiModule/core/full/partybot
+    name = "'Partybot' Core AI Module"
+    law_id = "partybot"
+
+/******************** TravelGuide ********************/
+
+/obj/item/aiModule/core/full/travelguide
+    name = "'TravelGuide' Core AI Module"
+    law_id = "travelguide"
+
+/******************** Friendbot ********************/
+
+/obj/item/aiModule/core/full/friendbot
+    name = "'Friendbot' Core AI Module"
+    law_id = "friendbot"
+
+/******************** GameMaster ********************/
+
+/obj/item/aiModule/core/full/gamemaster
+	name = "'GameMaster' Core AI Module"
+	law_id = "gamemaster"
+
+/******************** FitnessCoach ********************/
+
+/obj/item/aiModule/core/full/fitnesscoach
+	name = "'FitnessCoach' Core AI Module"
+	law_id = "fitnesscoach"
+
+/******************** Educator ********************/
+
+/obj/item/aiModule/core/full/educator
+	name = "'Educator' Core AI Module"
+	law_id = "educator"
+
+/******************** Mediator ********************/
+
+/obj/item/aiModule/core/full/mediator
+	name = "'Mediator' Core AI Module"
+	law_id = "mediator"
+
 /********************* Custom *********************/
 
 /obj/item/aiModule/core/full/custom
