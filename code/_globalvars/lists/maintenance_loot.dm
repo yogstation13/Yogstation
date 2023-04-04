@@ -24,6 +24,12 @@
 //maintcentral:			2  items,  2 spots 0 extra (08/08/2014)
 //port:					5  items,  5 spots 0 extra (08/08/2014)
 
+
+//************************************************************
+// AS OF ROUGHLY 2023/03/20, THIS FILE IS REDUNDANT
+// MAINT LOOT IS NOW HANDELED AT
+// yogstation/code/_globalvars/lists/maintenance_loot.dm
+//************************************************************
 GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
