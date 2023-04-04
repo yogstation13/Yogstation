@@ -1959,7 +1959,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This version is modified to help reduce exhaustion during combat. \
 			Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/anti_stun
-	cost = 5
+	cost = 8
 	surplus = 0
 
 /datum/uplink_item/implants/freedom
