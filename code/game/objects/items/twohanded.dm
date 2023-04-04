@@ -1237,7 +1237,7 @@
 			return TRUE
 
 /obj/item/twohanded/bigspoon
-	name = "big spoon"
+	name = "comically large spoon"
 	desc = "For when you're only allowed one spoonful of something."
 	icon = 'yogstation/icons/obj/kitchen.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
