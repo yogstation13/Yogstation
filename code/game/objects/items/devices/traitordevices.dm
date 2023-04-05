@@ -200,7 +200,7 @@ effective or pretty fucking useless.
 
 /obj/item/storage/belt/military/shadowcloak
 	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
+	desc = "A tactical belt that can make you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
