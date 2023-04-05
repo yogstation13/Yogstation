@@ -7,7 +7,7 @@
 	var/move_dir //The direction of movement
 	var/list/__dirs //The directions to the side of the wave, stored for easy looping
 	var/can_contaminate
-	var/collectable_radiation = FALSE
+	var/collectable_radiation = FALSE //If this radiation is collectable by a rad collector, passed from creating radiation pulse
 
 /datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE, _collectable_radiation=FALSE)
 
