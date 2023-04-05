@@ -54,7 +54,7 @@
 	add_to_streak("G",D)
 	check_streak(A,D)
 	if(D.stat != DEAD)//feedback to know the click landed, but only if it's actually able to do something
-		playsound(A, 'sound/effects/servostep.ogg', 110, FALSE, -1)//this sound is annoyingly quiet
+		playsound(A, 'sound/items/change_jaws.ogg', 20, FALSE)//changed to be distinct from new IPC walk sound
 	return TRUE //no grabbing either
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)

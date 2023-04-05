@@ -22,3 +22,7 @@
 	name = "black wizard hat"
 	desc = "Strange-looking black hat-wear that most certainly belongs to a real skeleton. Spooky."
 	icon_state = "blackwizard"
+/obj/item/clothing/head/wizard/fake/brown
+	name = "brown wizard hat"
+	desc = "Looking at this peculiar, supposedly magical headwear makes you want to sip herbal tea and cook mushrooms."
+	icon_state = "brownwizard"

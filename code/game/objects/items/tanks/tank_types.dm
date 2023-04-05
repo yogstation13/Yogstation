@@ -7,6 +7,16 @@
  *		Emergency Oxygen
  */
 
+/// Allows carbon to toggle internals via AltClick of the equipped tank.
+/obj/item/tank/internals/AltClick(mob/user)
+	..()
+	if((loc == user) && user.canUseTopic(src, be_close = TRUE, no_dextery = TRUE, no_tk = TRUE))
+		toggle_internals(user)
+
+/obj/item/tank/internals/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click the tank to toggle the valve.")
+
 /*
  * Oxygen
  */

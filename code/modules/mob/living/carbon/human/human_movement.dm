@@ -68,7 +68,7 @@
 
 				//Bloody footprints
 				var/turf/T = get_turf(src)
-				if(S.bloody_shoes && S.bloody_shoes[S.blood_state])
+				if(istype(S) && S.bloody_shoes && S.bloody_shoes[S.blood_state])
 					for(var/obj/effect/decal/cleanable/blood/footprints/oldFP in T)
 						if (oldFP.blood_state == S.blood_state)
 							return
@@ -83,7 +83,8 @@
 						FP.update_icon()
 					update_inv_shoes()
 				//End bloody footprints
-				S.step_action()
+				if(istype(S))
+					S.step_action()
 	if(wear_neck)
 		if(mobility_flags & MOBILITY_STAND)
 			if(loc == NewLoc)

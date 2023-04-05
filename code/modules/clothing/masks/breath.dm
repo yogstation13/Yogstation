@@ -33,7 +33,7 @@
 
 /obj/item/clothing/mask/breath/AltClick(mob/user)
 	..()
-	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	else
 		adjustmask(user)

@@ -29,13 +29,13 @@
 	implant_overlay = "brain_implant_overlay"
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
+	var/stun_amount = 10 SECONDS //halve this for light emps
 
 /obj/item/organ/cyberimp/brain/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	var/stun_amount = 100/severity
-	owner.Stun(stun_amount)
+	owner.Stun(stun_amount / severity)
 	to_chat(owner, span_warning("Your body seizes up!"))
 
 
