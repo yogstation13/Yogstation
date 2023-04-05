@@ -68,8 +68,8 @@
 		. += "Distribution Pressure: [target_tank.distribute_pressure]"
 
 	// CLOAKER BELT
-	if(istype(belt, /obj/item/shadowcloak))
-		var/obj/item/shadowcloak/SC = belt
+	if(istype(belt, /obj/item/storage/belt/military/shadowcloak))
+		var/obj/item/storage/belt/military/shadowcloak/SC = belt
 		var/turf/T = get_turf(src)
 		var/lumens = T.get_lumcount()
 		. += ""
