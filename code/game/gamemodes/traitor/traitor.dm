@@ -31,6 +31,108 @@
 	var/antag_datum = /datum/antagonist/traitor //what type of antag to create
 	var/traitors_required = TRUE //Will allow no traitors
 
+/datum/game_mode/traitor/proc/get_traitor_cap() //Only used after the game has started and jobs are assigned.
+
+	var/command_count = 0
+	var/security_count = 0
+	var/medical_count = 0
+	var/engineering_count = 0
+	var/cyborg_count = 0
+	var/other_count = 0
+
+	var/has_warden = FALSE
+	var/has_captain = FALSE
+	var/has_head_of_security = FALSE
+	var/has_ai = FALSE
+
+	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+		if(player.stat == DEAD) //Don't count dead.
+			continue
+		if(!player.mind) //Don't count non-players.
+			continue
+
+		//This is where the fun begins.
+		var/assigned_role = player.mind.assigned_role
+		if(assigned_role == "Warden")
+			has_warden = TRUE
+			continue
+		if(assigned_role == "Captain")
+			has_captain = TRUE
+			continue
+		if(assigned_role == "Head of Security")
+			has_head_of_security = TRUE
+			continue
+		if(assigned_role == "AI")
+			has_ai = TRUE
+			continue
+		if(assigned_role == "Cyborg")
+			cyborg_count++
+			continue
+
+		//Assign roles.
+		if(assigned_role in GLOB.command_positions)
+			command_count++
+			continue
+		if(assigned_role in GLOB.medical_positions)
+			medical_count++
+			continue
+		if(assigned_role in GLOB.security_positions)
+			security_count++
+			continue
+		if(assigned_role in GLOB.engineering_positions)
+			engineering_count++
+			continue
+		if(assigned_role in GLOB.science_positions)
+			other_count++
+			continue
+		if(assigned_role in GLOB.supply_positions)
+			other_count++
+			continue
+		if(assigned_role in GLOB.civilian_positions)
+			other_count++
+			continue
+
+	var/has_leadership = has_head_of_security || (has_warden && (has_captain || command_count >= 3))
+
+	//Cyborgs typically fill lacking departments.
+	if(cyborg_count > 0 && engineering_count < 3)
+		var/cyborgs_to_add = min(cyborg_count*0.25,3-engineering_count)
+		engineering_count += cyborgs_to_add
+		cyborg_count -= cyborgs_to_add
+	if(cyborg_count > 0 && medical_count < 3)
+		var/cyborgs_to_add = min(cyborg_count*0.25,3-medical_count)
+		medical_count += cyborgs_to_add
+		cyborg_count -= cyborgs_to_add
+	if(cyborg_count > 0 && security_count < 3)
+		var/cyborgs_to_add = min(cyborg_count*0.25,3-security_count)
+		security_count += cyborgs_to_add
+		cyborg_count -= cyborgs_to_add
+
+	//"Uhhhh we have no sec. Anyone want to be a deputy?"
+	if(has_leadership && security_count < 3)
+		var/crew_to_add = min(other_count*0.05,3-security_count)
+		security_count += crew_to_add
+		other_count -= crew_to_add
+
+	//This is where we actually calculate the number.
+	var/final_calculation = security_count*0.75 //0.75 traitors for every sec officer.
+
+	//Sec is better with a medical team. (25%)
+	if(medical_count >= 3) //Sec is useless without medics.
+		final_calculation *= 1.25
+
+	//Sec is better with door openers. (5% to 20%)
+	if(has_ai)
+		final_calculation *= 1.2 //;AI OPEN
+	else if(cyborg_count >= 1)
+		final_calculation *= 1.10 //;BORG OPEN
+	else if(command_count >= 2 || has_captain || engineering_count >= 3)
+		final_calculation *= 1.05 //;SOMEONE OPEN PLEASE
+
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+
+	return min(round(final_calculation), round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
+
 
 /datum/game_mode/traitor/pre_setup()
 
@@ -43,7 +145,7 @@
 
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-		
+
 	if(CONFIG_GET(flag/protect_AI_from_traitor))
 		restricted_jobs += "AI"
 
@@ -54,6 +156,8 @@
 		num_traitors = max(1, min(round(num_players() / (tsc * 2)) + 2 + num_modifier, round(num_players() / tsc) + num_modifier))
 	else
 		num_traitors = max(1, min(num_players(), traitors_possible))
+
+	num_traitors = min(3,num_traitors) //Limit to 3 on the setup. More traitors will be spawned later if needed.
 
 	for(var/j = 0, j < num_traitors, j++)
 		if (!antag_candidates.len)
@@ -77,7 +181,7 @@
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
 		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(3 MINUTES, (5 MINUTES + 10 SECONDS)))
-		
+
 	if(!exchange_blue)
 		exchange_blue = -1 //Block latejoiners from getting exchange objectives
 	..()
@@ -88,15 +192,12 @@
 	return TRUE
 
 /datum/game_mode/traitor/make_antag_chance(mob/living/carbon/human/character) //Assigns traitor to latejoiners
-	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
-	var/traitorcap = min(round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
+	var/traitorcap = get_traitor_cap() //Yogstation change: Changed traitor cap.
 	var/cur_traitors = SSticker.mode.traitors.len
 	// [SANITY] Uh oh! Somehow the pre_traitors aren't in the traitors list! Add them!
 	if(SSticker.mode.traitors.len < pre_traitors.len)
 		cur_traitors += pre_traitors.len
-	if(cur_traitors >= traitorcap) //Upper cap for number of latejoin antagonists
-		return
-	if((cur_traitors) <= (traitorcap - 2) || prob(100 / (tsc * 2)))
+	if(cur_traitors < traitorcap) //Yogstation change. Removes weird/confusing/near useless prob()
 		if(antag_flag in character.client.prefs.be_special)
 			if(!is_banned_from(character.ckey, list(ROLE_TRAITOR, ROLE_SYNDICATE)) && !QDELETED(character))
 				if(age_check(character.client))
@@ -119,9 +220,9 @@
 			continue
 		if(!applicant.stat != CONSCIOUS)
 			continue
-		if(applicant.mind.assigned_role in protected_jobs) 
+		if(applicant.mind.assigned_role in protected_jobs)
 			continue
-		if(applicant.mind.assigned_role in restricted_jobs) 
+		if(applicant.mind.assigned_role in restricted_jobs)
 			continue
 		if(!(applicant.mind.assigned_role in GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions + list("AI", "Cyborg")))
 			continue
