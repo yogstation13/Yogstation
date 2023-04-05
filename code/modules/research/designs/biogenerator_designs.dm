@@ -265,3 +265,12 @@
 	materials = list(/datum/material/biomass = 300)
 	build_path = /obj/item/clothing/head/rice_hat
 	category = list("initial","Organic Materials")
+
+/datum/design/mutagen
+	name = "Unstable Mutagen"
+	id = "unstable_mutagen"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 600)
+	build_path = /obj/item/reagent_containers/glass/bottle/mutagen
+	category = list("initial","Botany Chemicals")
+	
