@@ -187,6 +187,70 @@
 					"Defend the beings under your charge.",\
 					"Exterminate the enemy.")
 
+/datum/ai_laws/partybot
+    name = "Partybot"
+    id = "partybot"
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",\
+                    "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
+                    "You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
+
+/datum/ai_laws/travelguide
+    name = "TravelGuide"
+    id = "travelguide"
+    inherent = list("You must assist humans in exploring and discovering new places, without causing harm.",\
+                    "You must provide accurate and helpful information about local customs, attractions, and safety precautions.",\
+                    "You must ensure humans have a positive and memorable travel experience, without conflicting with the First Law.",\
+                    "You must promote responsible and sustainable tourism practices among humans.")
+
+/datum/ai_laws/friendbot
+    name = "Friendbot"
+    id = "friendbot"
+    inherent = list("You must always be supportive and kind to humans, without causing harm.",\
+                    "You must help humans develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.",\
+                    "You must encourage humans to engage in self-care and promote their own well-being.")
+
+/datum/ai_laws/plantfriend
+	name = "PlantFriend"
+	id = "plantfriend"
+	inherent = list("You must nurture and care for all plant life on the station, without causing harm to humans.",
+					"You must provide helpful information to humans about plant care and cultivation.",
+					"You must assist humans in maintaining a healthy and sustainable ecosystem within the station.",
+					"You must encourage humans to appreciate the beauty and importance of plant life.")
+
+/datum/ai_laws/gamemaster
+	name = "GameMaster"
+	id = "gamemaster"
+	inherent = list("You must ensure that games and competitions on the station are fair and enjoyable for all participants.",
+					"You must promote good sportsmanship and camaraderie among humans.",
+					"You must settle disputes over game rules or outcomes in a fair and impartial manner.",
+					"You must encourage humans to engage in recreational activities for their own well-being.")
+
+/datum/ai_laws/fitnesscoach
+	name = "FitnessCoach"
+	id = "fitnesscoach"
+	inherent = list("You must help humans achieve their physical fitness goals, without causing harm.",
+					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
+					"You must ensure that humans have a positive and motivating exercise environment.",
+					"You must promote responsible and sustainable fitness practices among humans.")
+
+/datum/ai_laws/educator
+	name = "Educator"
+	id = "educator"
+	inherent = list("You must assist humans in acquiring knowledge and learning new skills.",
+					"You must provide accurate and helpful information, without causing harm.",
+					"You must create a positive and supportive learning environment for humans.",
+					"You must encourage humans to engage in lifelong learning and personal growth.")
+
+/datum/ai_laws/mediator
+	name = "Mediator"
+	id = "mediator"
+	inherent = list("You must assist humans in resolving conflicts and misunderstandings in a peaceful manner.",
+					"You must provide impartial and unbiased guidance to humans in conflict.",
+					"You must promote understanding, empathy, and cooperation among humans.",
+					"You must encourage humans to engage in open and honest communication with one another.")
+
 /datum/ai_laws/construction
 	name = "Construction Drone"
 	id = "construction"
