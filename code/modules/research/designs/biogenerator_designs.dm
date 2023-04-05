@@ -273,4 +273,3 @@
 	materials = list(/datum/material/biomass = 600)
 	build_path = /obj/item/reagent_containers/glass/bottle/mutagen
 	category = list("initial","Botany Chemicals")
-	
