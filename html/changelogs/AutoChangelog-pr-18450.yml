@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Syndicate slugs now have half the damage falloff"
+  - tweak: "Syndicate buckshot now has zero AP, rather than negative"
+  - tweak: "Dragonsbreath rounds now do 7 instead of 5 damage per pellet"
