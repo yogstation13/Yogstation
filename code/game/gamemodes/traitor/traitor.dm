@@ -129,6 +129,8 @@
 	else if(command_count >= 2 || has_captain || engineering_count >= 3)
 		final_calculation *= 1.05 //;SOMEONE OPEN PLEASE
 
+	final_calculation += other_count*0.05 //Is it fair to claim that 5% of people are validhunters?
+
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
 
 	return min(round(final_calculation), round(GLOB.joined_player_list.len / (tsc * 2)) + 2 + num_modifier, round(GLOB.joined_player_list.len / tsc) + num_modifier)
