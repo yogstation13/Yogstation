@@ -518,14 +518,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/nitriummol = max(removed.get_moles(/datum/gas/nitrium), 0)
 
 		// Power of the gas. Scale of 0 to 1
-		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + nitriumcomp - pluoxiumcomp - n2comp, 0, 1)
+		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + h2comp + nitriumcomp - pluoxiumcomp - n2comp, 0, 1)
 
 		// How much heat to emit/resist
 		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY) + (h2ocomp * H2O_HEAT_PENALTY) + (haloncomp * HALON_HEAT_PENALTY) + (antinobliumcomp * ANTINOB_HEAT_PENALTY), 0.5)
 		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) + (h2comp * HYDROGEN_HEAT_RESISTANCE) + (pluoniumcomp * PLUONIUM_HEAT_RESISTANCE) + (nobliumcomp * NOBLIUM_HEAT_RESISTANCE), 1)
 
 		// Used to determine radiation output as it concerns things like collecters
-		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (nitriumcomp * NITRIUM_TRANSMIT_MODIFIER) + (antinobliumcomp * ANTINOB_TRANSMIT_MODIFIER)
+		var/power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (h2comp * HYDROGEN_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) + (pluoniumcomp * PLUONIUM_TRANSMIT_MODIFIER) + (nitriumcomp * NITRIUM_TRANSMIT_MODIFIER) + (antinobliumcomp * ANTINOB_TRANSMIT_MODIFIER)
 		// More moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
