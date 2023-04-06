@@ -2548,7 +2548,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Easier to store than a standard fire axe while inactive."
 	item = /obj/item/twohanded/fireaxe/energy
 	cost = 10
-	restricted_roles = list("Atmospheric Technician","Chief Engineer")
+	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 
 // Pointless
 /datum/uplink_item/badass
