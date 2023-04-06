@@ -225,6 +225,13 @@
 				used = TRUE
 				G.Destroy()
 				return FALSE
+		if(create_arrow)
+			var/turf/desired_turf = find_safe_turf()
+			if(desired_turf)
+				var/obj/item/stand_arrow/SA = new(desired_turf)
+				SA.uses = 1
+			create_arrow = FALSE //Just in case.
+
 		return TRUE
 	else
 		to_chat(user, "[failure_message]")
@@ -251,6 +258,7 @@
 	var/max_points = 15
 	var/allowspecial = FALSE
 	var/debug_mode = FALSE
+	var/create_arrow = FALSE
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
@@ -259,7 +267,7 @@
 /obj/item/guardiancreator/ComponentInitialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
-	
+
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used
 
