@@ -2,13 +2,13 @@
 	name = "Veil of Many Faces"
 	desc = "Disguise yourself in the illusion of another identity."
 	button_icon_state = "power_veil"
-	power_explanation = "<b>Veil of Many Faces</b>:\n\
+	power_explanation = "Veil of Many Faces:\n\
 		Activating Veil of Many Faces will shroud you in smoke and forge you a new identity.\n\
 		Your name and appearance will be completely randomized, and turning the ability off again will undo it all.\n\
 		Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_FRENZY
-	purchase_flags = VASSAL_CAN_BUY|BLOODSUCKER_CAN_BUY
+	purchase_flags = VASSAL_CAN_BUY|BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 15
 	constant_bloodcost = 0.1
 	cooldown = 10 SECONDS

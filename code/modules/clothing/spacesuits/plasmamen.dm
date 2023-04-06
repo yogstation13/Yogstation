@@ -70,7 +70,7 @@
 	
 	for(var/X in actions)
 		var/datum/action/A=X
-		A.UpdateButtonIcon()
+		A.UpdateButtons()
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/set_design(mob/living/carbon/human/user)
 	if(!pref_alteration)

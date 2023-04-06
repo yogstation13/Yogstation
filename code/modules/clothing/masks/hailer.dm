@@ -1,6 +1,9 @@
 
 // **** Security gas mask ****
 
+/datum/action/item_action/halt
+	name = "HALT!"
+
 /obj/item/clothing/mask/gas/sechailer
 	name = "security gas mask"
 	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."

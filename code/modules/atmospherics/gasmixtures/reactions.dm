@@ -975,7 +975,7 @@ nobliumformation = 1001
 		air.adjust_moles(/datum/gas/bz, -consumed_amount)
 	else
 		for(var/mob/living/carbon/L in location)
-			L.hallucination += (air.get_moles(/datum/gas/bz) * 0.7) // Yogs -- fixed accidental "path * number"
+			L.adjust_hallucinations(air.get_moles(/datum/gas/bz) * 0.7) // Yogs -- fixed accidental "path * number"
 	energy_released += 100
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()

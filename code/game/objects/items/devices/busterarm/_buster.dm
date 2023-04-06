@@ -11,7 +11,7 @@
 */
 /// Base for all buster arm actions
 /datum/action/cooldown/buster
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	icon_icon = 'icons/mob/actions/actions_arm.dmi'
 

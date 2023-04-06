@@ -1,13 +1,16 @@
+/// Global assoc list. [ckey] = [spellbook entry type]
+GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
+
 /datum/antagonist/wizard
 	name = "Space Wizard"
 	roundend_category = "wizards/witches"
 	antagpanel_category = "Wizard"
 	job_rank = ROLE_WIZARD
+	antag_hud_name = "wizard"
 	antag_moodlet = /datum/mood_event/focused
 	var/give_objectives = TRUE
 	var/strip = TRUE //strip before equipping
 	var/allow_rename = TRUE
-	var/hud_version = "wizard"
 	var/datum/team/wizard/wiz_team //Only created if wizard summons apprentices
 	var/move_to_lair = TRUE
 	var/outfit_type = /datum/outfit/wizard
@@ -51,7 +54,6 @@
 	wiz_team = new(owner)
 	wiz_team.name = "[owner.current.real_name] team"
 	wiz_team.master_wizard = src
-	update_wiz_icons_added(owner.current)
 
 /datum/antagonist/wizard/proc/send_to_lair()
 	if(!owner || !owner.current)
@@ -109,7 +111,11 @@
 
 /datum/antagonist/wizard/on_removal()
 	unregister()
-	owner.RemoveAllSpells() // TODO keep track which spells are wizard spells which innate stuff
+	// Currently removes all spells regardless of innate or not. Could be improved.
+	for(var/datum/action/cooldown/spell/spell in owner.current.actions)
+		if(spell.target == owner)
+			qdel(spell)
+			owner.current.actions -= spell
 	return ..()
 
 /datum/antagonist/wizard/proc/equip_wizard()
@@ -154,12 +160,11 @@
 
 /datum/antagonist/wizard/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_wiz_icons_added(M, wiz_team ? TRUE : FALSE) //Don't bother showing the icon if you're solo wizard
 	M.faction |= ROLE_WIZARD
+	add_team_hud(M)
 
 /datum/antagonist/wizard/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_wiz_icons_removed(M)
 	M.faction -= ROLE_WIZARD
 
 
@@ -172,7 +177,7 @@
 
 /datum/antagonist/wizard/apprentice
 	name = "Wizard Apprentice"
-	hud_version = "apprentice"
+	antag_hud_name = "apprentice"
 	var/datum/mind/master
 	var/school = APPRENTICE_DESTRUCTION
 	outfit_type = /datum/outfit/wizard/apprentice
@@ -250,20 +255,12 @@
 		H.equip_to_slot_or_del(new master_mob.back.type, SLOT_BACK)
 
 	//Operation: Fuck off and scare people
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/area_teleport/teleport(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(null))
-
-/datum/antagonist/wizard/proc/update_wiz_icons_added(mob/living/wiz,join = TRUE)
-	var/datum/atom_hud/antag/wizhud = GLOB.huds[ANTAG_HUD_WIZ]
-	wizhud.join_hud(wiz)
-	set_antag_hud(wiz, hud_version)
-
-/datum/antagonist/wizard/proc/update_wiz_icons_removed(mob/living/wiz)
-	var/datum/atom_hud/antag/wizhud = GLOB.huds[ANTAG_HUD_WIZ]
-	wizhud.leave_hud(wiz)
-	set_antag_hud(wiz, null)
-
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/jaunt = new(owner)
+	jaunt.Grant(H)
+	var/datum/action/cooldown/spell/teleport/area_teleport/wizard/teleport = new(owner)
+	teleport.Grant(H)
+	var/datum/action/cooldown/spell/teleport/radius_turf/blink/blink = new(owner)
+	blink.Grant(H)
 
 /datum/antagonist/wizard/academy
 	name = "Academy Teacher"
@@ -271,17 +268,19 @@
 
 /datum/antagonist/wizard/academy/equip_wizard()
 	. = ..()
-
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt)
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/projectile/magic_missile)
-	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball)
-
-	var/mob/living/M = owner.current
-	if(!istype(M))
+	if(!isliving(owner.current))
 		return
+	var/mob/living/living_current = owner.current
 
-	var/obj/item/implant/exile/Implant = new/obj/item/implant/exile(M)
-	Implant.implant(M)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/jaunt = new(owner)
+	jaunt.Grant(living_current)
+	var/datum/action/cooldown/spell/aoe/magic_missile/missile = new(owner)
+	missile.Grant(living_current)
+	var/datum/action/cooldown/spell/pointed/projectile/fireball/fireball = new(owner)
+	fireball.Grant(living_current)
+
+	var/obj/item/implant/exile/exiled = new /obj/item/implant/exile(living_current)
+	exiled.implant(living_current)
 
 /datum/antagonist/wizard/academy/create_objectives()
 	var/datum/objective/new_objective = new("Protect Wizard Academy from the intruders")
@@ -310,12 +309,19 @@
 	else
 		parts += span_redtext("The wizard has failed!")
 		SSachievements.unlock_achievement(/datum/achievement/redtext/winlost, owner.current.client) //wizard loses, still give achievement lol
-	if(owner.spell_list.len>0)
-		parts += "<B>[owner.name] used the following spells: </B>"
-		var/list/spell_names = list()
-		for(var/obj/effect/proc_holder/spell/S in owner.spell_list)
-			spell_names += S.name
-		parts += spell_names.Join(", ")
+
+	var/list/purchases = list()
+	for(var/list/log as anything in GLOB.wizard_spellbook_purchases_by_key[owner.key])
+		var/datum/spellbook_entry/bought = log[LOG_SPELL_TYPE]
+		var/amount = log[LOG_SPELL_AMOUNT]
+
+		purchases += "[amount > 1 ? "[amount]x ":""][initial(bought.name)]"
+
+	if(length(purchases))
+		parts += span_bold("[owner.name] used the following spells:")
+		parts += purchases.Join(", ")
+	else
+		parts += span_bold("[owner.name] didn't buy any spells!")
 
 	return parts.Join("<br>")
 

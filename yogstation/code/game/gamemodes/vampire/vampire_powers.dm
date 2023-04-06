@@ -103,7 +103,7 @@
 
 /obj/effect/proc_holder/spell/self/rejuvenate/cast(list/targets, mob/user = usr)
 	var/mob/living/carbon/U = user
-	U.stuttering = 0
+	U.remove_status_effect(/datum/status_effect/speech/stutter)
 
 	var/datum/antagonist/vampire/V = U.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V) //sanity check
@@ -372,9 +372,9 @@
 				to_chat(C, span_warning("<font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b>"))
 				C.Knockdown(40)
 				C.adjustEarDamage(0, 30)
-				C.stuttering = 30
+				C.adjust_stutter(30 SECONDS)
 				C.Paralyze(40)
-				C.Jitter(150)
+				C.adjust_jitter(2.5 MINUTES)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
@@ -530,7 +530,7 @@
 		user.mind.transfer_to(bat)
 		charge_counter = charge_max //so you don't need to wait 20 seconds to turn BACK.
 		recharging = FALSE
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 	else
 		bat.controller.forceMove(bat.loc)
 		bat.controller.status_flags &= ~GODMODE

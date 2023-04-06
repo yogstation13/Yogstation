@@ -36,9 +36,9 @@
 	if(E)
 		E.on_effect()
 		for(var/X in user.mind.spell_list)
-			if(!istype(X,/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp))
+			if(!istype(X, /datum/action/cooldown/spell/touch/mansus_grasp))
 				continue
-			var/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp/MG = X
+			var/datum/action/cooldown/spell/touch/mansus_grasp/MG = X
 			MG.charge_counter = min(round(MG.charge_counter + MG.charge_max * 0.75),MG.charge_max) // refunds 75% of charge.
 
 /datum/eldritch_knowledge/ashen_shift
@@ -46,7 +46,7 @@
 	gain_text = "Ash is so simple, yet so numerous. Is it possible to master it all?"
 	desc = "Short range jaunt that can help you escape from bad situations."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)
+	spells_to_add = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)
 	route = PATH_ASH
 	tier = TIER_1
 
@@ -73,7 +73,7 @@
 	if(isliving(target))
 		. = TRUE
 		var/mob/living/living_target = target
-		living_target.apply_status_effect(/datum/status_effect/eldritch/ash,5)
+		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 
 /datum/eldritch_knowledge/blindness
 	name = "Curse of Blindness"
@@ -114,14 +114,14 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.adjust_fire_stacks(2)
-		C.IgniteMob()
+		C.ignite_mob()
 
 /datum/eldritch_knowledge/flame_birth
 	name = "Flame Birth"
 	gain_text = "The Nightwatcher was a man of principles, and yet he arose from the chaos he vowed to protect from."
 	desc = "A healing spell that saps the life from those combusted nearby."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/fiery_rebirth)
+	spells_to_add = list(/datum/action/cooldown/spell/aoe/fiery_rebirth)
 	route = PATH_ASH
 	tier = TIER_3
 

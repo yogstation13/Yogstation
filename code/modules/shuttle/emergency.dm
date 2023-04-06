@@ -17,8 +17,10 @@
 	. = ..()
 
 /obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
-		SSshuttle.clearHostileEnvironment(user)
+	if(isalienqueen(user))
+		var/mob/living/carbon/alien/humanoid/royal/queen/queenuser = user
+		queenuser.kill_shuttle_timer()
+		balloon_alert(user, "shuttle ready to launch!")
 
 /obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
 	return GLOB.human_adjacent_state

@@ -5,7 +5,7 @@
 	name = "Sanguine Olfaction"
 	desc = "Smells blood."
 	button_icon_state = "power_olfac"
-	power_explanation = "<b>Olfaction</b>:\n\
+	power_explanation = "Olfaction:\n\
 		Here's the sniffer.\n\
 		You shouldn't see this text, please scream and cry in the discord chat or ooc about it after the round if you do.\n\
 		Or make a bug report."
@@ -15,7 +15,7 @@
 /datum/action/bloodsucker/olfaction/acquire_scent
 	name = "Sanguine Olfaction"
 	desc = "Acquire a scent from the environment immediately around you to track."
-	power_explanation = "<b>Sanguine Olfaction</b>:\n\
+	power_explanation = "Sanguine Olfaction:\n\
 		Activating this power will search around you in a 1-tile radius for bloodied objects and floors.\n\
 		If these objects are covered in blood from another humanoid being, you will see the option to track one of those scents.\n\
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that blood.\n\
@@ -133,7 +133,7 @@
 
 	sensitive = TRUE
 	tracking_flags = TRACKING_SCENT
-	power_explanation = "<b>Transcendent Olfaction</b>:\n\
+	power_explanation = "Transcendent Olfaction:\n\
 		Activating this power will search all objects and items in a 1-tile radius around you for scents.\n\
 		If these objects or items have been used by humanoid beings and still have their scent, you will see the option to track one of those scents.\n\
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that scent.\n\
@@ -147,7 +147,7 @@
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
 	button_icon_state = "power_olfac"
-	power_explanation = "<b>Follow the Scent</b>:\n\
+	power_explanation = "Follow the Scent:\n\
 		Activating this power will create a trail you can follow to the target scent you selected with Olfaction.\n\
 		During this time, the target you're tracking will also leave a trail behind them as they move.\n\
 		WARNING: The path created for you to follow may bring you to doors you can't open and areas you don't have access to. If this happens, try again later or from a new area. \n\

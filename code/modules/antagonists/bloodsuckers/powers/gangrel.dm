@@ -13,7 +13,7 @@
 	name = "Transform"
 	desc = "Allows you to unleash your inner form and turn into something greater."
 	button_icon_state = "power_gangrel"
-	power_explanation = "<b>Transform</b>:\n\
+	power_explanation = "Transform:\n\
 		A gangrel only power, will turn you into a feral being depending on your blood sucked.\n\
 		May have unforseen consequences if used on low blood sucked, upgrades every 500 units.\n\
 		Some forms have special abilites to them depending on what abilites you have.\n\
@@ -24,48 +24,68 @@
 /datum/action/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	var/datum/species/user_species = user.dna.species
-	var/minortransformdone = FALSE
-	var/mediumtransformdone = FALSE
-	user.Immobilize(10 SECONDS)
 	if(!do_mob(user, user, 10 SECONDS, 1))
 		return
-	switch(bloodsuckerdatum.total_blood_drank)
-		if(0 to 500)
-			if(!minortransformdone)
-				if(iscatperson(user))
-					user.set_species(/datum/species/lizard)
-					playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
-				else
-					user.set_species(/datum/species/human/felinid)
-					playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
-					if(DIGITIGRADE in user_species.species_traits)
-						user_species.species_traits -= DIGITIGRADE
-				minortransformdone = TRUE
-				user.dna.species.punchdamagelow += 5.0
-				user.dna.species.punchdamagehigh += 5.0 //stronk
-				user.dna.species.punchstunthreshold += 5.0
-				user.dna.species.armor += 30
-				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
+	var/list/radial_display = list()
+	switch(bloodsuckerdatum.total_blood_drank) //get our options
+		if(0 to 250) //makes the icons for the options
+			var/datum/radial_menu_choice/option = new
+			user.setDir(SOUTH)
+			var/icon/icon_to_mix = getFlatIcon(user)
+			icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
+			option.image = icon_to_mix
+			option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility and speed, but less armor."
+			radial_display["Lizard/Felinid"] = option
+		if(250 to 750)
+			var/datum/radial_menu_choice/option = new
+			var/icon/body = icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_leg")
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_leg"), ICON_OVERLAY)
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_arm"), ICON_OVERLAY)
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_arm"), ICON_OVERLAY)
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_hand"), ICON_OVERLAY)
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_hand"), ICON_OVERLAY)
+			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_chest_m"), ICON_OVERLAY)
+			option.image = body
+			option.info = "Gorilla: Increased durability and strength, but less speed."
+			radial_display["Gorilla"] = option
+		if(750 to INFINITY)
+			var/datum/radial_menu_choice/option = new
+			option.image = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+			option.info = "Turn into a giant bat simple mob with unique abilities."
+			radial_display["Bat"] = option
+	var/chosen_transform = show_radial_menu(user, user, radial_display)
+	transform(chosen_transform) //actually transform
+	. = ..()
+
+/datum/action/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/mob/living/carbon/human/user = owner
+	var/datum/species/user_species = user.dna.species
+	switch(chosen_transform)
+		if("Lizard/Felinid")
+			if(iscatperson(user))
+				user.set_species(/datum/species/lizard)
+				playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
 			else
-				to_chat(user, span_notice("You still haven't evolved your ability yet."))
+				user.set_species(/datum/species/human/felinid)
+				playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
+			if(!LAZYFIND(user_species.species_traits, DIGITIGRADE))
+				user_species.species_traits += DIGITIGRADE
+				user.dna.species.armor -= 20 //careful
+				user.dna.species.speedmod = -0.5
+				user.dna.species.action_speed_coefficient = 0.7
 				bloodsuckerdatum.AddBloodVolume(75)
-		if(500 to 1000)
-			if(!mediumtransformdone)
-				user.set_species(/datum/species/gorilla)
-				playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
-				if(DIGITIGRADE in user_species.species_traits)
-					user_species.species_traits -= DIGITIGRADE
-				mediumtransformdone = TRUE
-				user.dna.species.punchdamagelow += 7.5
-				user.dna.species.punchdamagehigh += 7.5 //very stronk
-				user.dna.species.punchstunthreshold += 7.5
-				user.dna.species.armor += 35
-				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
-			else
-				to_chat(owner, span_notice("You still haven't evolved your ability yet."))
-				bloodsuckerdatum.AddBloodVolume(50)
-		if(1500 to INFINITY)
+		if("Gorilla")
+			user.set_species(/datum/species/gorilla)
+			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
+			if(DIGITIGRADE in user_species.species_traits)
+				user_species.species_traits -= DIGITIGRADE
+			user.dna.species.punchdamagelow += 10
+			user.dna.species.punchdamagehigh += 10 //very stronk
+			user.dna.species.punchstunthreshold += 10
+			user.dna.species.armor += 40
+			bloodsuckerdatum.AddBloodVolume(50)
+		if("Bat")
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
 			if(!gb || gb.stat == DEAD)
 				gb = new /mob/living/simple_animal/hostile/bloodsucker/giantbat(user.loc)
@@ -73,7 +93,7 @@
 				gb.bloodsucker = user
 				user.status_flags |= GODMODE //sad!
 				user.mind.transfer_to(gb)
-				var/list/bat_powers = list(new /datum/action/bloodsucker/gangrel/transform_back,)
+				var/list/bat_powers = list(new /datum/action/bloodsucker/gangrel/transform_back, )
 				for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
 					if(istype(power, /datum/action/bloodsucker/targeted/haste))
 						bat_powers += new /datum/action/bloodsucker/targeted/haste/batdash
@@ -83,28 +103,25 @@
 						bat_powers += new /datum/action/bloodsucker/gangrel/wingslam
 				for(var/datum/action/bloodsucker/power in bat_powers)
 					power.Grant(gb)
-				QDEL_IN(gb, 2 MINUTES)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
-			to_chat(owner, span_notice("You transform into a fatty beast!"))
-			return ..() //early to not mess with vampire organs proc
-	bloodsuckerdatum.HealVampireOrgans() //regives you the stuff
-	. = ..()
+			return  //early to not mess with vampire organs proc
+	
+	bloodsuckerdatum.heal_vampire_organs() //regives you the stuff
 
 /datum/action/bloodsucker/gangrel/transform_back
 	name = "Transform"
 	desc = "Regress back into a human."
 	button_icon_state = "power_gangrel"
-	power_explanation = "<b>Transform</b>:\n\
+	power_explanation = "Transform:\n\
 		Regress back to your humanoid form early, requires you to stand still.\n\
 		Beware you will not be able to transform again until the night passes!"
 
 /datum/action/bloodsucker/gangrel/transform_back/ActivatePower()
-	var/mob/living/user = owner
-	if(!do_mob(user, user, 10 SECONDS))
+	if(!do_mob(owner, owner, 10 SECONDS))
 		return
 	var/mob/living/simple_animal/hostile/bloodsucker/bs
-	qdel(owner)
-	qdel(bs)
+	if(istype(owner, bs))
+		qdel(bs)
 	. = ..()
 /*
 ////////////////||\\\\\\\\\\\\\\\\
@@ -120,7 +137,7 @@
 	button_icon_state = "power_baste"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
-	power_explanation = "<b>Flying Haste</b>:\n\
+	power_explanation = "Flying Haste<:\n\
 		Makes you dash into the air, creating a smoke cloud at the end.\n\
 		Helpful in situations where you either need to run away or engage in a crowd of people, works over tables.\n\
 		Created from your Immortal Haste ability."
@@ -148,7 +165,7 @@
 	button_icon_state = "power_bolt"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
-	power_explanation = "<b>Blood Bolt</b>:\n\
+	power_explanation = "Blood Bolt<:\n\
 		Shoots a blood bolt that does moderate damage to your foes.\n\
 		Helpful in situations where you get outranged or just extra damage.\n\
 		Created from your Mesmerize ability."
@@ -201,7 +218,7 @@
 	button_icon_state = "power_wingslam"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
-	power_explanation = "<b>Wing Slam</b>:\n\
+	power_explanation = "Wing Slam:\n\
 		Knocksback and immobilizes people adjacent to you.\n\
 		Has a low recharge time and may be helpful in meelee situations!\n\
 		Created from your Brawn ability."
@@ -227,9 +244,9 @@
 			span_userdanger("You were sent flying by the flap of [user]'s wings!"),
 		)
 		to_chat(user, span_warning("You flap your wings, sending [M] flying!"))
-		playsound(user.loc, 'sound/weapons/punch4.ogg', 60, 1, -1)
+		playsound(user.loc, 'sound/weapons/punch4.ogg', 60, TRUE, -1)
 		M.adjustBruteLoss(10)
-		M.Knockdown(40)
+		M.Knockdown(4 SECONDS)
 		user.do_attack_animation(M, ATTACK_EFFECT_SMASH)
 		var/send_dir = get_dir(user, M)
 		var/turf/turf_thrown_at = get_ranged_target_turf(M, send_dir, 5)
@@ -250,7 +267,7 @@
 	button_icon_state = "power_feast"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Feast</b>:\n\
+	power_explanation = "Feast:\n\
 		Feasting on a dead person will give you a satiation point and gib them.\n\
 		Satiation points are essential for overcoming frenzy, after gathering 3 you'll turn back to normal.\n\
 		Feasting on someone while they are alive will bite them and make them bleed.\n\
@@ -264,6 +281,20 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "WHOM SHALL BE DEVOURED."
+
+/datum/action/bloodsucker/targeted/feast/CheckValidTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	return isliving(target_atom)
+
+/datum/action/bloodsucker/targeted/feast/CheckCanTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	// Target Type: Living
+	if(isliving(target_atom))
+		return TRUE
 
 /datum/action/bloodsucker/targeted/feast/FireTargetedPower(atom/target_atom)
 	if(isturf(target_atom))
@@ -285,11 +316,11 @@
 
 /datum/action/bloodsucker/gangrel/wolfortitude
 	name = "Wolftitude"
-	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
+	desc = "WITHSTAND THEIR ATTACKS. DESTROY. THEM. ALL!"
 	button_icon_state = "power_wort"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Fortitude</b>:\n\
+	power_explanation = "Fortitude:\n\
 		Activating Wolftitude will provide more attack damage, and more overall health.\n\
 		It will give you a minor health buff while it stands, but slow you down severely.\n\
 		It has a decent cooldown time to allow yourself to turn it off and run away for a while.\n\
@@ -327,7 +358,7 @@
 	button_icon_state = "power_pounce"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Pounce</b>:\n\
+	power_explanation = "Pounce:\n\
 		Click any player to instantly dash at them, knocking them down and paralyzing them for a short while.\n\
 		Additionally if they are dead you'll consume their corpse to gain satiation and get closer to leaving frenzy.\n\
 		Created from your Predatory Lunge ability."
@@ -397,7 +428,7 @@
 	button_icon_state = "power_howl"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Howl</b>:\n\
+	power_explanation = "Howl:\n\
 		Activating Howl will start up a 2 and a half second charge up.\n\
 		After the charge up you'll knockdown anyone adjacent to you.\n\
 		Additionally, you'll confuse and deafen anyone in a 3 tile range.\n\
@@ -423,11 +454,11 @@
 			continue
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
-			M.confused += 15
+			M.adjust_confusion(15 SECONDS)
 			M.adjustEarDamage(0, 50)
 			if(target.Adjacent(A))
 				M.Knockdown(4 SECONDS)
-				M.Paralyze(0.1)
+				M.Paralyze(0.1 SECONDS)
 		DeactivatePower()
 
 /datum/action/bloodsucker/gangrel/rabidism
@@ -436,7 +467,7 @@
 	button_icon_state = "power_rabid"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
-	power_explanation = "<b>Rabidism</b>:\n\
+	power_explanation = "Rabidism:\n\
 		Rabidism will deal reduced damage to everyone in range including you.\n\
 		During Rabidism's ten second rage you'll deal alot more damage to structures.\n\
 		Be aware of it's long cooldown time.\n\
@@ -479,7 +510,7 @@
 	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
-	power_explanation = "<b>Tear</b>:\n\
+	power_explanation = "Tear:\n\
 		Tear will make your first attack start up a bleeding process.\n\
 		Bleeding process will only work if the target stands still.\n\
 		When it's done it will damage the target severely."
@@ -505,6 +536,10 @@
 
 /datum/action/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
 	var/mob/living/carbon/user = owner
+
+	if(!do_mob(user, target, 1 SECONDS))
+		return
+
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
 	while(!target.stat)
 		if(!target.Adjacent(user) || !do_mob(user, target, 0.8 SECONDS))

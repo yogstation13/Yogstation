@@ -1,7 +1,6 @@
 /obj/item/implant/mindshield/tot
 	name = "mindshield implant"
 	desc = "Protects against brainwashing."
-	activated = 0
 
 /obj/item/implant/mindshield/tot/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>

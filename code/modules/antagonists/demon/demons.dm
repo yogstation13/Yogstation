@@ -65,7 +65,7 @@
 			else
 				L.visible_message(span_warning("[L] continues to burn!"), span_danger("You continue to burn!"))
 			L.adjust_fire_stacks(5)
-			L.IgniteMob()
+			L.ignite_mob()
 	return
 
 /datum/antagonist/sinfuldemon/New()
@@ -128,10 +128,7 @@
 	owner.current.faction += "hell"
 	for(var/all_traits in sinfuldemon_traits) ///adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
-	if(owner.assigned_role == "Clown" && ishuman(owner.current))
-		var/mob/living/carbon/human/S = owner.current
-		to_chat(S, span_notice("Your infernal nature has allowed you to overcome your clownishness."))
-		S.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your infernal nature has allowed you to overcome your clownishness.")
 	switch(demonsin) 
 		if(SIN_GLUTTONY)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony)

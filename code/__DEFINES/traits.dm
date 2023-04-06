@@ -114,6 +114,17 @@
 //Remember to update code/datums/traits/ folder if you're adding/removing/renaming traits.
 
 //mob traits
+/// Forces the user to stay unconscious.
+#define TRAIT_KNOCKEDOUT 		"knockedout"
+/// Prevents voluntary movement.
+#define TRAIT_IMMOBILIZED 		"immobilized"
+/// Prevents voluntary standing or staying up on its own.
+#define TRAIT_FLOORED 			"floored"
+/// Forces user to stay standing
+#define TRAIT_FORCED_STANDING 	"forcedstanding"
+/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
+#define TRAIT_HANDS_BLOCKED 	"handsblocked"
+#define TRAIT_INCAPACITATED 	"incapacitated"
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
@@ -231,6 +242,17 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+/// Immune to being afflicted by time stop (spell)
+#define TRAIT_TIME_STOP_IMMUNE "time_stop_immune"
+/// This mob has no soul
+#define TRAIT_NO_SOUL "no_soul"
+/// Whether a spider's consumed this mob
+#define TRAIT_SPIDER_CONSUMED "spider_consumed"
+/// Whether we're sneaking, from the alien sneak ability.
+/// Maybe worth generalizing into a general "is sneaky" / "is stealth" trait in the future.
+#define TRAIT_ALIEN_SNEAK "sneaking_alien"
+/// This mob is phased out of reality from magic, either a jaunt or rod form
+#define TRAIT_MAGICALLY_PHASED "magically_phased"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
@@ -303,6 +325,10 @@
 #define STATION_TRAIT "station-trait"
 #define ATTACHMENT_TRAIT "attachment-trait"
 #define GLASSES_TRAIT "glasses"
+/// A trait given by a specific status effect (not sure why we need both but whatever!)
+#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+/// trait associated to being held in a chokehold
+#define CHOKEHOLD_TRAIT "chokehold"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -346,8 +372,12 @@
 #define STARGAZER_TRAIT "stargazer"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+/// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+/// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
+/// Source trait while Feeding
+#define FEED_TRAIT "feed_trait"
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
@@ -363,3 +393,17 @@
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
 #define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"
+
+//important_recursive_contents traits
+/*
+ * Used for movables that need to be updated, via COMSIG_ENTER_AREA and COMSIG_EXIT_AREA, when transitioning areas.
+ * Use [/atom/movable/proc/become_area_sensitive(trait_source)] to properly enable it. How you remove it isn't as important.
+ */
+#define TRAIT_AREA_SENSITIVE "area-sensitive"
+///every hearing sensitive atom has this trait
+#define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
+///every object that is currently the active storage of some client mob has this trait
+#define TRAIT_ACTIVE_STORAGE "active_storage"
+
+///Organ traits
+#define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"

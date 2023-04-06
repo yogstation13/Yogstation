@@ -87,6 +87,6 @@
 	desc = "Starts your journey in the mansus. Allows you to select a target transmuting a living heart on a transmutation rune, create new living hearts by transmuting a heart, poppy, and pool of blood, and create new codex cicatrixes by transmuting human skin, a bible, a poppy and a pen."
 	gain_text = "Gates of mansus open up to your mind."
 	cost = 0
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)
+	spells_to_add = list(/datum/action/cooldown/spell/touch/mansus_grasp)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix)
 	route = "Start"

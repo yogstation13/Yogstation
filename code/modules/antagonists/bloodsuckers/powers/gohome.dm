@@ -9,13 +9,13 @@
 	button_icon_state = "power_gohome"
 	background_icon_state_on = "vamp_power_off_oneshot"
 	background_icon_state_off = "vamp_power_off_oneshot"
-	power_explanation = "<b>Vanishing Act</b>: \n\
+	power_explanation = "Vanishing Act: \n\
 		Activating Vanishing Act will, after a short delay, teleport the user to their <b>Claimed Coffin</b>. \n\
 		The power will cancel out if the <b>Claimed Coffin</b> is somehow destroyed. \n\
 		Immediately after activating, lights around the user will begin to flicker. \n\
 		Once the user teleports to their coffin, in their place will be a Rat or Bat."
 	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED
+	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED
 	// You only get this once you've claimed a lair and Sol is near.
 	purchase_flags = NONE
 	constant_bloodcost = 2
@@ -23,7 +23,8 @@
 	cooldown = 100 SECONDS
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START
-	var/list/spawning_mobs = list(
+	///The types of mobs that will drop post-teleportation.
+	var/static/list/spawning_mobs = list(
 		/mob/living/simple_animal/mouse = 3,
 		/mob/living/simple_animal/hostile/retaliate/bat = 1,
 	)
@@ -34,13 +35,13 @@
 		return FALSE
 	/// Have No Lair (NOTE: You only got this power if you had a lair, so this means it's destroyed)
 	if(!istype(bloodsuckerdatum_power) || !bloodsuckerdatum_power.coffin)
-		to_chat(owner, span_warning("Your coffin has been destroyed!"))
+		owner.balloon_alert(owner, "coffin was destroyed!")
 		return FALSE
 	return TRUE
 
 /datum/action/bloodsucker/gohome/ActivatePower()
 	. = ..()
-	to_chat(owner, span_notice("You focus on separating your consciousness from your physical form..."))
+	owner.balloon_alert(owner, "preparing to teleport...")
 
 /datum/action/bloodsucker/gohome/UsePower(mob/living/user)
 	. = ..()

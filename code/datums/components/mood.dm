@@ -39,11 +39,11 @@
 	msg += span_notice("My mental status: ") //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
-			msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
+			msg += "[span_nicegreen("My mind feels like a temple!")]\n"
 		if(SANITY_NEUTRAL to SANITY_GREAT)
-			msg += "<span class='nicegreen'>I have been feeling great lately!<span>\n"
+			msg += "[span_nicegreen("I have been feeling great lately!")]\n"
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
+			msg += "[span_nicegreen("I have felt quite decent lately.")]\n"
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
 			msg += "[span_warning("I'm feeling a little bit unhinged...")]\n"
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
@@ -54,23 +54,23 @@
 	msg += span_notice("My current mood: ") //Short term
 	switch(mood_level)
 		if(1)
-			msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
+			msg += "[span_boldwarning("I wish I was dead!")]\n"
 		if(2)
-			msg += "<span class='boldwarning'>I feel terrible...<span>\n"
+			msg += "[span_boldwarning("I feel terrible...")]\n"
 		if(3)
-			msg += "<span class='boldwarning'>I feel very upset.<span>\n"
+			msg += "[span_boldwarning("I feel very upset.")]\n"
 		if(4)
-			msg += "<span class='boldwarning'>I'm a bit sad.<span>\n"
+			msg += "[span_boldwarning("I'm a bit sad.")]\n"
 		if(5)
-			msg += "<span class='nicegreen'>I'm alright.<span>\n"
+			msg += "[span_nicegreen("I'm alright.")]\n"
 		if(6)
-			msg += "<span class='nicegreen'>I feel pretty okay.<span>\n"
+			msg += "[span_nicegreen("I feel pretty okay.")]\n"
 		if(7)
-			msg += "<span class='nicegreen'>I feel pretty good.<span>\n"
+			msg += "[span_nicegreen("I feel pretty good.")]\n"
 		if(8)
-			msg += "<span class='nicegreen'>I feel amazing!<span>\n"
+			msg += "[span_nicegreen("II feel amazing!")]\n"
 		if(9)
-			msg += "<span class='nicegreen'>I love life!<span>\n"
+			msg += "[span_nicegreen("I love life!")]\n"
 
 	msg += span_notice("Moodlets:\n")//All moodlets
 	if(mood_events.len)
@@ -78,7 +78,7 @@
 			var/datum/mood_event/event = mood_events[i]
 			msg += event.description
 	else
-		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
+		msg += "[span_nicegreen("I don't have much of a reaction to anything right now.")]\n"
 	to_chat(user || parent, examine_block(msg))
 
 /datum/component/mood/proc/update_mood() //Called whenever a mood event is added or removed
@@ -139,9 +139,14 @@
 				highest_absolute_mood = absmood
 
 	if(!conflicting_moodies.len) //no special icons- go to the normal icon states
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker) //bloodsucker edit
 		if(sanity < 25)
 			screen_obj.icon_state = "mood_insane"
+			if(IS_BLOODSUCKER(owner) && bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR)
+				screen_obj.add_overlay("teeth_insane")
 		else
+			if(IS_BLOODSUCKER(owner) && bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR)
+				screen_obj.add_overlay("teeth[mood_level]")
 			screen_obj.icon_state = "mood[mood_level]"
 		screen_obj_sanity.icon_state = "sanity[sanity_level]"
 		return

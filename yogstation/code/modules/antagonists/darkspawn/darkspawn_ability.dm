@@ -22,7 +22,7 @@
 	return ..()
 
 /datum/action/innate/darkspawn/process()
-	UpdateButtonIcon() //so as to be consistent with psi costs and situational requirements, keep the button updated
+	UpdateButtons() //so as to be consistent with psi costs and situational requirements, keep the button updated
 
 /datum/action/innate/darkspawn/Trigger()
 	var/activated = FALSE

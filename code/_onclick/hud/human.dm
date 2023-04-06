@@ -62,12 +62,10 @@
 /atom/movable/screen/devil/soul_counter/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/ling
-	invisibility = INVISIBILITY_ABSTRACT
-
 /atom/movable/screen/ling/sting
 	name = "current sting"
 	screen_loc = ui_lingstingdisplay
+	invisibility = INVISIBILITY_ABSTRACT
 
 /atom/movable/screen/ling/sting/Click()
 	if(isobserver(usr))
@@ -79,31 +77,6 @@
 	name = "chemical storage"
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
-
-/atom/movable/screen/bloodsucker
-	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
-	invisibility = INVISIBILITY_ABSTRACT
-
-/atom/movable/screen/bloodsucker/proc/clear()
-	invisibility = INVISIBILITY_ABSTRACT
-
-/atom/movable/screen/bloodsucker/proc/update_counter()
-	invisibility = 0
-
-/atom/movable/screen/bloodsucker/blood_counter
-	name = "Blood Consumed"
-	icon_state = "blood_display"
-	screen_loc = ui_blood_display
-
-/atom/movable/screen/bloodsucker/rank_counter
-	name = "Bloodsucker Rank"
-	icon_state = "rank"
-	screen_loc = ui_vamprank_display
-
-/atom/movable/screen/bloodsucker/sunlight_counter
-	name = "Solar Flare Timer"
-	icon_state = "sunlight_night"
-	screen_loc = ui_sunlight_display
 
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	..()
@@ -322,22 +295,8 @@
 	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
-	infodisplay += lingchemdisplay
-
-	lingstingdisplay = new /atom/movable/screen/ling/sting()
-	infodisplay += lingstingdisplay
-
 	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
-
-	//bloodsuckers
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter
-	infodisplay += blood_display
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter
-	infodisplay += vamprank_display
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter
-	infodisplay += sunlight_display
 
 	zone_select =  new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style

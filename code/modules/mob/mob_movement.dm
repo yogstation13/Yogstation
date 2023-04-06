@@ -140,13 +140,13 @@
 	else
 		move_delay = world.time
 
-	if(L.confused)
+	if(L.has_status_effect(/datum/status_effect/confusion))
 		var/newdir = 0
-		if(L.confused > 40)
+		if(L.get_timed_status_effect_duration(/datum/status_effect/confusion) > 40)
 			newdir = pick(GLOB.alldirs)
-		else if(prob(L.confused * 1.5))
+		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 1.5))
 			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
-		else if(prob(L.confused * 3))
+		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 3))
 			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
 		if(newdir)
 			direct = newdir

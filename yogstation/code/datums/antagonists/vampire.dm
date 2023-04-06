@@ -7,6 +7,7 @@
 	antagpanel_category = "Vampire"
 	roundend_category = "vampires"
 	job_rank = ROLE_VAMPIRE
+	antag_hud_name = "vampire"
 
 	var/usable_blood = 0
 	var/total_blood = 0
@@ -72,7 +73,6 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
-	SSticker.mode.update_vampire_icons_added(owner)
 	var/mob/living/carbon/human/C = owner.current
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
@@ -90,7 +90,6 @@
 		var/mob/living/carbon/human/H = owner.current
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
-	SSticker.mode.update_vampire_icons_removed(owner)
 	for(var/O in objectives_given)
 		objectives -= O
 	LAZYCLEARLIST(objectives_given)
@@ -199,7 +198,7 @@
 		else
 			L.visible_message(span_warning("[L] continues to burn!"), span_danger("Your continue to burn!"))
 		L.adjust_fire_stacks(5)
-		L.IgniteMob()
+		L.ignite_mob()
 	return
 
 /datum/antagonist/vampire/proc/check_sun()
@@ -228,7 +227,7 @@
 		return
 	if(owner && C.hud_used && C.hud_used.vamp_blood_display)
 		C.hud_used.vamp_blood_display.invisibility = FALSE
-		C.hud_used.vamp_blood_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(usable_blood, 1)]</font></div>"
+		C.hud_used.vamp_blood_display.maptext = FORMAT_ANTAG_TEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
 	handle_vampire_cloak()
 	if(istype(C.loc, /obj/structure/closet/crate/coffin))
 		C.adjustBruteLoss(-4)

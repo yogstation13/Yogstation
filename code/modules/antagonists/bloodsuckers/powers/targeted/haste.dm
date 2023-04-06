@@ -7,7 +7,7 @@
 	name = "Immortal Haste"
 	desc = "Dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
-	power_explanation = "<b>Immortal Haste</b>:\n\
+	power_explanation = "Immortal Haste:\n\
 		Click anywhere to immediately dash towards that location.\n\
 		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
 		Anyone in your way during your Haste will be knocked down and Payalyzed, moreso if they are using Flow.\n\
@@ -19,7 +19,8 @@
 	cooldown = 12 SECONDS
 	target_range = 15
 	power_activates_immediately = TRUE
-	var/list/hit //current hit, set while power is in use as we can't pass the list as an extra calling argument in registersignal.
+	/// Current hit, set while power is in use as we can't pass the list as an extra calling argument in registersignal.
+	var/list/hit = list()
 	/// If set, uses this speed in deciseconds instead of world.tick_lag
 	var/speed_override
 
@@ -93,9 +94,9 @@
 				for(var/datum/action/bloodsucker/power in all_targets.actions)
 					if(power.active)
 						power.DeactivatePower()
-				all_targets.Jitter(20)
-				all_targets.confused = max(8, all_targets.confused)
-				all_targets.stuttering = max(8, all_targets.stuttering)
+				all_targets.set_timed_status_effect(8 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
+				all_targets.set_timed_status_effect(8 SECONDS, /datum/status_effect/confusion, only_if_higher = TRUE)
+				all_targets.adjust_timed_status_effect(8 SECONDS, /datum/status_effect/speech/stutter)
 				all_targets.Knockdown(10 + level_current * 5) // Re-knock them down, the first one didn't work due to stunimmunity
 
 /datum/action/bloodsucker/targeted/haste/shadow
@@ -123,5 +124,5 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
 			to_chat(M, span_danger("<b>As a figure passes by, you feel your head spike up!</b>"))
-			M.confused += 4
+			M.adjust_confusion(4 SECONDS)
 			M.adjustEarDamage(0, 15)

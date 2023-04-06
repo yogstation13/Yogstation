@@ -28,21 +28,15 @@
 	deathmessage = "implodes into itself"
 	faction = list("heretics")
 	//simple_mob_flags = SILENCE_RANGED_MESSAGE
+
 	///Innate spells that are supposed to be added when a beast is created
-	var/list/spells_to_add
+	var/list/actions_to_add
 
 /mob/living/simple_animal/hostile/eldritch/Initialize()
 	. = ..()
-	add_spells()
-
-/**
-  * Add_spells
-  *
-  * Goes through spells_to_add and adds each spell to the mind.
-  */
-/mob/living/simple_animal/hostile/eldritch/proc/add_spells()
-	for(var/spell in spells_to_add)
-		AddSpell(new spell())
+	for(var/spell in actions_to_add)
+		var/datum/action/cooldown/spell/new_spell = new spell(src)
+		new_spell.Grant(src)
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	name = "Raw Prophet"
@@ -56,36 +50,35 @@
 	maxHealth = 50
 	health = 50
 	sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash/long,/obj/effect/proc_holder/spell/pointed/manse_link,/obj/effect/proc_holder/spell/targeted/telepathy/eldritch,/obj/effect/proc_holder/spell/pointed/trigger/blind/eldritch)
+	actions_to_add = list(
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/long,
+		/datum/action/cooldown/spell/list_target/telepathy/eldritch,
+		/datum/action/cooldown/spell/pointed/blind/eldritch,
+		/datum/action/innate/expand_sight,
+	)
 
-	var/list/linked_mobs = list()
+	/// A weakref to the last target we smacked. Hitting targets consecutively does more damage.
+	var/datum/weakref/last_target
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/Initialize()
 	. = ..()
-	link_mob(src)
+	var/on_link_message = "You feel something new enter your sphere of mind... \
+		You hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/Login()
-	. = ..()
-	client?.view_size.setTo(10)
+	var/on_unlink_message = "Your mind shatters as [src]'s Mansus Link leaves your mind."
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/link_mob(mob/living/mob_linked)
-	if(QDELETED(mob_linked) || mob_linked.stat == DEAD)
-		return FALSE
-	if(HAS_TRAIT(mob_linked, TRAIT_MINDSHIELD)) //mindshield implant, no dice
-		return FALSE
-	if(mob_linked.anti_magic_check(FALSE, FALSE, TRUE, 0))
-		return FALSE
-	if(linked_mobs[mob_linked])
-		return FALSE
+	AddComponent(/datum/component/mind_linker, \
+		network_name = "Mansus Link", \
+		chat_color = "#568b00", \
+		linker_action_path = /datum/action/cooldown/manse_link, \
+		linker_action_path = /datum/action/cooldown/spell/pointed/manse_link, \
+		link_message = on_link_message, \
+		unlink_message = on_unlink_message, \
+		post_unlink_callback = CALLBACK(src, PROC_REF(after_unlink)), \
+		speech_action_background_icon_state = "bg_ecult", \
+	)
 
-	to_chat(mob_linked, span_notice("You feel something new enter your mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."))
-	var/datum/action/innate/mansus_speech/action = new(src)
-	linked_mobs[mob_linked] = action
-	action.Grant(mob_linked)
-	RegisterSignals(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
-	return TRUE
-
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/unlink_mob(mob/living/mob_linked)
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/after_unlink(mob/living/mob_linked)
 	if(!linked_mobs[mob_linked])
 		return
 	UnregisterSignal(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING))
@@ -115,7 +108,7 @@
 	melee_damage_upper = 15
 	move_resist = MOVE_FORCE_OVERPOWERING+1
 	movement_type = GROUND
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/worm_contract)
+	actions_to_add = list(/datum/action/cooldown/spell/worm_contract)
 	ranged_cooldown_time = 5
 	ranged = TRUE
 	rapid = 1
@@ -299,7 +292,10 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	sight = SEE_TURFS
-	spells_to_add = list(/obj/effect/proc_holder/spell/aoe_turf/rust_conversion/small,/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/rust_wave/short)
+	actions_to_add = list(
+		/datum/action/cooldown/spell/aoe/rust_conversion/small,
+		/datum/action/cooldown/spell/basic_projectile/rust_wave/short,
+	)
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/setDir(newdir)
     . = ..()
@@ -334,7 +330,11 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	sight = SEE_TURFS
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash,/obj/effect/proc_holder/spell/pointed/cleave,/obj/effect/proc_holder/spell/targeted/fire_sworn)
+	actions_to_add = list(
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash,
+		/datum/action/cooldown/spell/pointed/cleave,
+		/datum/action/cooldown/spell/fire_sworn,
+	)
 
 /mob/living/simple_animal/hostile/eldritch/stalker
 	name = "Flesh Stalker"
@@ -348,4 +348,8 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	sight = SEE_MOBS
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash,/obj/effect/proc_holder/spell/targeted/shapeshift/eldritch,/obj/effect/proc_holder/spell/targeted/emplosion/eldritch)
+	actions_to_add = list(
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash,
+		/datum/action/cooldown/spell/shapeshift/eldritch,
+		/datum/action/cooldown/spell/emp/eldritch,
+	)

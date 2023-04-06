@@ -121,23 +121,20 @@
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
 	icon_state = "brain-x-d"
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/shadowwalk
+	var/datum/action/cooldown/spell/jaunt/shadow_walk/our_jaunt
 
-/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/M, special = 0)
+/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/host, special = FALSE)
 	..()
-	if(M.dna.species.id != "nightmare")
-		M.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[M] thrashes as [src] takes root in [M.p_their()] body!"))
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/SW = new
-	M.AddSpell(SW)
-	shadowwalk = SW
+	if(host.dna.species.id != "nightmare")
+		host.set_species(/datum/species/shadow/nightmare)
+		visible_message(span_warning("[host] thrashes as [src] takes root in [M.p_their()] body!"))
+	
+	our_jaunt = new(host)
+	our_jaunt.Grant(host)
 
-
-/obj/item/organ/brain/nightmare/Remove(mob/living/carbon/M, special = 0)
-	if(shadowwalk)
-		M.RemoveSpell(shadowwalk)
-	..()
-
+/obj/item/organ/brain/nightmare/Remove(mob/living/carbon/host, special = FALSE)
+	QDEL_NULL(our_jaunt)
+	return ..()
 
 /obj/item/organ/heart/nightmare
 	name = "heart of darkness"
@@ -186,7 +183,7 @@
 	return //always beating visually
 
 /obj/item/organ/heart/nightmare/process()
-	if(QDELETED(owner) || owner.stat != DEAD)
+	if(QDELETED(owner) || owner.stat != DEAD || !owner)
 		respawn_progress = 0
 		return
 	var/turf/T = get_turf(owner)

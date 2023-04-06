@@ -510,7 +510,7 @@ Class Procs:
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
 						//won't replace beakers if they have reagents in them to prevent funny explosions
-						if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
+						if(istype(B,/obj/item/reagent_containers) && length(B.reagents?.reagent_list)) 
 							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)

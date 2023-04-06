@@ -64,7 +64,7 @@
 			return
 		current_color = C
 	update_icon()
-	action.UpdateButtonIcon()
+	action.UpdateButtons()
 	user.regenerate_icons()
 
 /obj/item/holotool/proc/switch_tool(mob/user, datum/holotool_mode/mode)
@@ -113,7 +113,7 @@
 		set_light(0)
 
 	for(var/datum/action/A in actions)
-		A.UpdateButtonIcon()
+		A.UpdateButtons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
 	if(!istype(user))

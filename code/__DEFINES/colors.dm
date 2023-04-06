@@ -66,3 +66,10 @@
 
 /// The default color for admin say, used as a fallback when the preference is not enabled
 #define DEFAULT_ASAY_COLOR "#996600"
+
+/*
+ * Antag Specific Colors
+*/
+
+#define COLOR_CHANGELING_CHEMICALS "#DD66DD"
+#define COLOR_DARKSPAWN_PSI "#7264FF"

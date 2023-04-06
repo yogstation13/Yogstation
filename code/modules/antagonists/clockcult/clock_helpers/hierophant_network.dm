@@ -29,7 +29,7 @@
 	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "hierophant"
 	background_icon_state = "bg_clock"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	buttontooltipstyle = "clockcult"
 	var/title = "Servant"
 	var/span_for_name = "heavy_brass"

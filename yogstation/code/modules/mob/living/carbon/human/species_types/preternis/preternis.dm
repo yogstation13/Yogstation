@@ -131,7 +131,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	UpdateButtons()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	if(!silent)
@@ -233,8 +233,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.Jitter(100)
-		H.stuttering = 1
+		H.adjust_jitter(100 SECONDS)
+		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
@@ -245,7 +245,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
-		H.jitteriness -= 100
+		H.adjust_jitter(-100 SECONDS)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
 	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way

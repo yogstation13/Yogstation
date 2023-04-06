@@ -159,7 +159,7 @@
 	button_icon_state = "lizard_tackle"
 	background_icon_state = "bg_default"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
@@ -171,7 +171,7 @@
 	return ..()
 
 /datum/action/innate/lizard_leap/process()
-	UpdateButtonIcon() //keep the button updated
+	UpdateButtons() //keep the button updated
 
 /datum/action/innate/lizard_leap/IsAvailable()
 	. = ..()
@@ -200,12 +200,12 @@
 	A.Immobilize(30 SECONDS) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end, A))
 	Deactivate()
-	UpdateButtonIcon()
+	UpdateButtons()
 
 /datum/action/innate/lizard_leap/proc/leap_end(mob/living/carbon/human/A)
 	A.SetImmobilized(1 SECONDS)
 	linked_martial.leaping = FALSE
-	UpdateButtonIcon()
+	UpdateButtons()
 
 /datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!leaping)
@@ -231,7 +231,7 @@
 			A.Paralyze(6 SECONDS, 1)
 		if(leaping)
 			leaping = FALSE
-		linked_leap.UpdateButtonIcon()
+		linked_leap.UpdateButtons()
 		linked_leap.Deactivate(TRUE)
 		return TRUE
 

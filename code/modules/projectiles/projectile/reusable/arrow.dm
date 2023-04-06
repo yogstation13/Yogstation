@@ -141,7 +141,7 @@
 		var/mob/living/carbon/M = target
 		M.apply_damage(8, BURN)
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	return ..()
 
 /obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh

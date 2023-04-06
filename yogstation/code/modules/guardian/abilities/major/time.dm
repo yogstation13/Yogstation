@@ -163,7 +163,7 @@
 	src.seers = seers
 	for(var/mob/M in GLOB.mob_list)
 		if (mobShouldSee(M))
-			add_hud_to(M)
+			show_to(M)
 			M.reload_huds()
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson/mobShouldSee(mob/M)

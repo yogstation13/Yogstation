@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
+	var/datum/status_effect/hippocratic_oath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
@@ -946,7 +946,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/melee/ghost_sword(src)
 		if(2)
 			new /obj/item/lava_staff(src)
-			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/book/granter/action/spell/sacredflame(src)
 		if(3)
 			new /obj/item/dragon_egg(src)
 		if(4)
@@ -1083,9 +1083,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 			H.set_species(/datum/species/skeleton)
 		if(3)
 			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
-			if(user.mind)
-				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
-				user.mind.AddSpell(D)
+			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
+			dragon_shapeshift.Grant(user)
 		if(4)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
@@ -1308,6 +1307,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_HUMAN 100
 #define COOLDOWN_ANIMAL 60
 #define COOLDOWN_SPLASH 100
+
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
+
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
@@ -1813,9 +1825,22 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/prisoncube(src)
 
 //Legion
-#define COOLDOWN_TAP 60
-#define COOLDOWN_BAND 200
-#define COOLDOWN_TELE 15
+#define COOLDOWN_TAP 6 SECONDS
+#define COOLDOWN_BAND 20 SECONDS
+#define COOLDOWN_TELE 1.5 SECONDS
+
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/*/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"*/
+
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\

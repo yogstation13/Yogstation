@@ -102,7 +102,7 @@
 /datum/mutation/human/active_hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
 		if(prob(3))
-			owner.Jitter(10)
+			owner.adjust_jitter(10 SECONDS)
 		owner.adjustStaminaLoss(-0.5)
 		return target.attack_hulk(owner)
 

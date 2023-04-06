@@ -2,7 +2,7 @@
 	name = "Cloak of Darkness"
 	desc = "Blend into the shadows and become invisible to the untrained and Artificial eye."
 	button_icon_state = "power_cloak"
-	power_explanation = "<b>Cloak of Darkness</b>:\n\
+	power_explanation = "Cloak of Darkness<:\n\
 		Activate this Power in the shadows and you will slowly turn nearly invisible.\n\
 		While using Cloak of Darkness, attempting to run will crush you.\n\
 		Additionally, while Cloak is active, you are completely invisible to the AI.\n\
@@ -22,7 +22,7 @@
 	if(!.)
 		return FALSE
 	for(var/mob/living/watchers in viewers(9, owner) - owner)
-		to_chat(owner, span_warning("You can only vanish unseen."))
+		owner.balloon_alert(owner, "you can only vanish unseen.")
 		return FALSE
 	return TRUE
 
@@ -35,7 +35,7 @@
 			user.toggle_move_intent()
 	user.digitalinvis = 1
 	user.digitalcamo = 1
-	to_chat(user, span_notice("You put your Cloak of Darkness on."))
+	user.balloon_alert(user, "cloak turned on.")
 
 /datum/action/bloodsucker/cloak/UsePower(mob/living/user)
 	// Checks that we can keep using this.
@@ -46,7 +46,7 @@
 	// Prevents running while on Cloak of Darkness
 	if(runbound)
 		if(user.m_intent != MOVE_INTENT_WALK)
-			to_chat(owner, span_warning("You attempt to run, crushing yourself."))
+			owner.balloon_alert(owner, "you attempt to run, crushing yourself.")
 			user.toggle_move_intent()
 			user.adjustBruteLoss(rand(5,15))
 
@@ -69,7 +69,7 @@
 	if(runbound)
 		if(was_running && user.m_intent == MOVE_INTENT_WALK)
 			user.toggle_move_intent()
-	to_chat(user, span_notice("You take your Cloak of Darkness off."))
+	user.balloon_alert(user, "cloak turned off.")
 
 /datum/action/bloodsucker/cloak/shadow
 	name = "Cloak of Shadows"
@@ -101,7 +101,7 @@
 /obj/item/clothing/neck/yogs/sith_cloak/cloak/process()
 	var/turf/T = get_turf(src)
 	var/light_amount = T.get_lumcount()
-	if(light_amount > 0.2)
+	if(light_amount > LIGHTING_TILE_IS_DARK)
 		qdel(src)
 		STOP_PROCESSING(SSobj, src)
 		src.visible_message(span_warning("The cape desintegrates as the light contacts it's surface!"))
@@ -110,7 +110,7 @@
 	. = ..()
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
-	if(light_amount <= 0.2)
+	if(light_amount <= LIGHTING_TILE_IS_DARK)
 		if(!owner.get_item_by_slot(SLOT_NECK))
 			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), SLOT_NECK)
 

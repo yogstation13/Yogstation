@@ -35,7 +35,7 @@
 	job_rank = ROLE_ZOMBIE
 
 	var/datum/team/zombie/team
-	var/hud_type = "zombie"
+	antag_hud_name = "zombie"
 
 	var/class_chosen = FALSE
 	var/class_chosen_2 = FALSE
@@ -82,12 +82,7 @@
 	var/mob/living/current = owner.current
 	add_objectives()
 	GLOB.zombies += owner
-
 	current.log_message("has been made a zombie!", LOG_ATTACK, color="#960000")
-
-	var/datum/atom_hud/antag/zombie_hud = GLOB.huds[ANTAG_HUD_ZOMBIE]
-	zombie_hud.join_hud(current)
-	set_antag_hud(current, hud_type)
 
 
 /datum/antagonist/zombie/apply_innate_effects()
@@ -105,10 +100,6 @@
 
 /datum/antagonist/zombie/on_removal()
 	GLOB.zombies -= owner
-
-	var/datum/atom_hud/antag/zombie_hud = GLOB.huds[ANTAG_HUD_ZOMBIE]
-	zombie_hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
 	. = ..()
 
 
@@ -186,7 +177,7 @@
 	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
 /datum/action/innate/zombie/IsAvailable()
 	if(!isinfected(owner))

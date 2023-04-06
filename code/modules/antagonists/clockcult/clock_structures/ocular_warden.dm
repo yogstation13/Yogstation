@@ -79,7 +79,7 @@
 						last_process = world.time
 						if(GLOB.ratvar_awakens && L)
 							L.adjust_fire_stacks(damage_per_tick)
-							L.IgniteMob()
+							L.ignite_mob()
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam

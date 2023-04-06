@@ -129,7 +129,7 @@
 	D.visible_message(span_danger("[A] detonates [D]!"), \
 				span_userdanger("[A] detonates you!"))
 	explosion(get_turf(D), -1, 0, 2, 0, 0, 2)
-	D.IgniteMob()
+	D.ignite_mob()
 	playsound(D, 'sound/effects/explosion1.ogg', 50, TRUE, -1)
 	
 	var/obj/item/bodypart/affecting = A.get_bodypart(BODY_ZONE_CHEST)
@@ -207,8 +207,8 @@
 		streak = ""
 		A.adjust_fire_stacks(3)
 		D.adjust_fire_stacks(3)
-		A.IgniteMob()
-		D.IgniteMob()
+		A.ignite_mob()
+		D.ignite_mob()
 		succ_damage = initial(succ_damage)	//Reset our succ damage on start
 		proceed_lifeforce_trade(A, D)
 
@@ -264,7 +264,7 @@
 				continue
 			target.adjustFireLoss(30)
 			if(get_dist(get_turf(A), get_turf(target)) <= 1)	//If they're close we ignite them too
-				target.IgniteMob() 	
+				target.ignite_mob() 	
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)

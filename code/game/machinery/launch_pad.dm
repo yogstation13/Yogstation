@@ -30,20 +30,20 @@
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 
+	update_hud()
+
+/obj/machinery/launchpad/proc/update_hud()
 	var/image/holder = hud_list[DIAG_LAUNCHPAD_HUD]
-	var/mutable_appearance/MA = new /mutable_appearance()
-	MA.icon = 'icons/effects/effects.dmi'
-	MA.icon_state = "launchpad_target"
-	MA.layer = ABOVE_OPEN_TURF_LAYER
-	MA.plane = 0
-	holder.appearance = MA
+	var/mutable_appearance/target = mutable_appearance('icons/effects/effects.dmi', "launchpad_target", ABOVE_OPEN_TURF_LAYER, src, GAME_PLANE)
+	holder.appearance = target
 
 	update_indicator()
 
 /obj/machinery/launchpad/Destroy()
-	qdel(hud_list[DIAG_LAUNCHPAD_HUD])
+	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
+		diag_hud.remove_atom_from_hud(src)
 	return ..()
 
 /obj/machinery/launchpad/examine(mob/user)

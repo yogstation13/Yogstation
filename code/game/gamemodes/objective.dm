@@ -663,7 +663,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 				if(M.current.mind.assigned_role in possible_item.excludefromjob)
 					continue check_items
 			approved_targets += possible_item
-	return set_target(safepick(approved_targets))
+	return set_target(pick(approved_targets))
 
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
@@ -1452,10 +1452,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/survive/bloodsucker,
 		/datum/objective/bloodsucker/protege,
 		/datum/objective/bloodsucker/heartthief,
+		/datum/objective/bloodsucker/vassalhim,
 		/datum/objective/bloodsucker/gourmand,
 		// MISC OBJECTIVES //
 		/datum/objective/bloodsucker/monsterhunter,
-		/datum/objective/bloodsucker/vassalhim,
 		/datum/objective/bloodsucker/frenzy,
 		// Fulp edit END
 		/datum/objective/destroy,

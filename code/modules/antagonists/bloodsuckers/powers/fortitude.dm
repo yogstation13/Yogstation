@@ -2,7 +2,7 @@
 	name = "Fortitude"
 	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
 	button_icon_state = "power_fortitude"
-	power_explanation = "<b>Fortitude</b>:\n\
+	power_explanation = "Fortitude<:\n\
 		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
 		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
 		While using Fortitude, attempting to run will crush you.\n\
@@ -19,6 +19,7 @@
 
 /datum/action/bloodsucker/fortitude/ActivatePower()
 	. = ..()
+	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
 	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, BLOODSUCKER_TRAIT)
@@ -48,7 +49,7 @@
 	/// Prevents running while on Fortitude
 	if(user.m_intent != MOVE_INTENT_WALK)
 		user.toggle_move_intent()
-		to_chat(user, span_warning("You attempt to run, crushing yourself."))
+		user.balloon_alert(user, "you attempt to run, crushing yourself.")
 		user.adjustBruteLoss(rand(5,15))
 	/// We don't want people using fortitude being able to use vehicles
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
@@ -73,6 +74,7 @@
 
 	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
+	owner.balloon_alert(owner, "fortitude turned off.")
 	return ..()
 
 /// Monster Hunter version
@@ -92,17 +94,14 @@
 	additional_text = "Additionally gives you extra damage while fortitude'd and agro grab while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
-	var/mutable_appearance/armor_overlay
 
 /datum/action/bloodsucker/fortitude/shadow/ActivatePower()
 	. = ..()
 	var/mob/living/carbon/human/user = owner
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	armor_overlay = mutable_appearance('icons/obj/vamp_obj.dmi', "fortarmor")
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
-	if(light_amount <= 0.2)
-		owner.add_overlay(armor_overlay)
+	if(light_amount <= LIGHTING_TILE_IS_DARK)
 		bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 		to_chat(user, span_notice("Shadow tentacles form and attach themselves to your body, you feel as if your muscles have merged with the shadows!"))
 	user.physiology.punchdamagehigh_bonus += 0.5 * level_current
@@ -115,8 +114,7 @@
 	var/light_amount = T.get_lumcount()
 	var/mob/living/carbon/user = owner
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(light_amount > 0.2)
-		owner.cut_overlay(armor_overlay)
+	if(light_amount > LIGHTING_TILE_IS_DARK)
 		bloodsuckerdatum.frenzygrab.remove(user)
 		to_chat(user, span_warning("As you enter in contact with the light, the tentacles dissipate!"))
 
@@ -124,7 +122,6 @@
 	. = ..()
 	var/mob/living/carbon/human/user = owner
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	owner.cut_overlay(armor_overlay)
 	bloodsuckerdatum.frenzygrab.remove(user)
 	user.physiology.punchdamagehigh_bonus -= 0.5 * level_current
 	user.physiology.punchdamagelow_bonus -= 0.5 * level_current

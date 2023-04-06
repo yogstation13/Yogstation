@@ -32,7 +32,7 @@
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.adjust_fire_stacks(2)
-		M.IgniteMob()
+		M.ignite_mob()
 	return ..()
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code

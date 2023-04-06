@@ -25,7 +25,7 @@
 		add_ranged_ability(user, null, TRUE)
 
 	if (action)
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 
 
 /obj/effect/proc_holder/spell/targeted/guardian/InterceptClickOn(mob/living/caller, params, atom/t)
@@ -42,4 +42,4 @@
 /obj/effect/proc_holder/spell/targeted/guardian/start_recharge()
 	. = ..()
 	if (action)
-		action.UpdateButtonIcon()
+		action.UpdateButtons()

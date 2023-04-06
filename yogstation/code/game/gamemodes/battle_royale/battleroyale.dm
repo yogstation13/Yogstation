@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
 	if(A)
-		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
+		var/turf/T = pick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
 	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
 		if(!L.mind || !L.client)

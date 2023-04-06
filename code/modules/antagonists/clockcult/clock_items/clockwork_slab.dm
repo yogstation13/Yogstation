@@ -149,8 +149,8 @@
 		return 0
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_warning("The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away."))
-		user.confused += 5
-		user.dizziness += 5
+		user.adjust_confusion(5 SECONDS)
+		user.adjust_dizzy(5 SECONDS)
 		return 0
 	if(busy)
 		to_chat(user, span_warning("[src] refuses to work, displaying the message: \"[busy]!\""))
@@ -517,6 +517,6 @@
 			Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
 			Q.desc = quickbind_slot.quickbind_desc
 			Q.button_icon_state = quickbind_slot.name
-			Q.UpdateButtonIcon()
+			Q.UpdateButtons()
 			if(isliving(loc))
 				Q.Grant(loc)

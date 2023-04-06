@@ -237,7 +237,7 @@
 		C.set_heartattack(FALSE)
 		C.revive()
 		C.emote("gasp")
-		C.Jitter(10 SECONDS)
+		C.adjust_jitter(10 SECONDS)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
 	else
 		playsound(C, 'sound/machines/defib_failed.ogg', 50, 0)

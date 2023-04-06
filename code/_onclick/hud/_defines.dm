@@ -197,3 +197,16 @@
 #define ui_ghost_chem "SOUTH: 22,CENTER+3:-8"
 #define ui_ghost_nanite "SOUTH: 6,CENTER+3:8"
 #define ui_ghost_wound "SOUTH: 22,CENTER+3:8"
+
+// Defines relating to action button positions
+
+/// Whatever the base action datum thinks is best
+#define SCRN_OBJ_DEFAULT "default"
+/// Floating somewhere on the hud, not in any predefined place
+#define SCRN_OBJ_FLOATING "floating"
+/// In the list of buttons stored at the top of the screen
+#define SCRN_OBJ_IN_LIST "list"
+/// In the collapseable palette
+#define SCRN_OBJ_IN_PALETTE "palette"
+///Inserted first in the list
+#define SCRN_OBJ_INSERT_FIRST "first"

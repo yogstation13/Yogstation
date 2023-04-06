@@ -46,7 +46,7 @@ Bonus
 	//this ticks even when on cooldown
 	switch(sleep_level) //Works sorta like morphine
 		if(10 to 19)
-			M.drowsyness += 1
+			M.adjust_drowsiness(2 SECONDS)
 		if(20 to INFINITY)
 			M.Sleeping(30, 0)
 			sleep_level = 0
@@ -87,7 +87,7 @@ Bonus
 		if(5)
 			if(prob(25))
 				to_chat(M, span_warning("[pick("So tired...","You feel very sleepy.","You have a hard time keeping your eyes open.","You try to stay awake.")]"))
-				M.drowsyness = max(M.drowsyness, 2)
+				M.adjust_drowsiness(rand(14, 7) SECONDS)
 				sleepy_ticks += rand(10,14)
 				if(stamina)
 					M.adjustStaminaLoss(30)

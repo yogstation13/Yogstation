@@ -28,7 +28,7 @@
 	else
 		add_ranged_ability(user, null, TRUE)
 	if(action)
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 
 /obj/effect/proc_holder/spell/targeted/sling/InterceptClickOn(mob/living/caller, params, atom/t)
 	if(!isliving(t))
@@ -46,7 +46,7 @@
 /obj/effect/proc_holder/spell/targeted/sling/start_recharge()
 	. = ..()
 	if(action)
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 
 /obj/effect/proc_holder/spell/targeted/sling/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
@@ -86,9 +86,9 @@
 		var/loss = 100 - (distance * 10)
 		target.adjustStaminaLoss(loss)
 		if(iscarbon(target))
-			target.stuttering = loss
+			target.adjust_stutter(loss)
 		else if(issilicon(target))
-			target.stuttering = distance
+			target.adjust_stutter(distance)
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
 		target.visible_message(span_danger("[target] looks very tired..."))
 	charge_counter = 0
@@ -569,7 +569,7 @@
 			if(iscarbon(target))
 				var/mob/living/carbon/M = target
 				to_chat(M, span_danger("<b>A spike of pain drives into your head and scrambles your thoughts!</b>"))
-				M.confused += 10
+				M.adjust_confusion(10 SECONDS)
 				M.adjustEarDamage(0, 30)//as bad as a changeling shriek
 			else if(issilicon(target))
 				var/mob/living/silicon/S = target
@@ -578,7 +578,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(50)
+				S.Paralyze(5 SECONDS)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -937,8 +937,8 @@
 			to_chat(target, span_userdanger("Your gaze is forcibly drawn into [user]'s eyes, and you suddendly feel dizzy and nauseous..."))
 		else //Only alludes to the thrall if the target is close by
 			to_chat(target, span_userdanger("Red lights suddenly dance in your vision, and you suddendly feel dizzy and nauseous..."))
-		M.confused += 25
-		M.Jitter(50)
+		M.adjust_confusion(25 SECONDS)
+		M.adjust_jitter(50 SECONDS)
 		if(prob(25))
 			M.vomit(10)
 

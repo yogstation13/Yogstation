@@ -58,7 +58,7 @@
 	background_icon_state = "bg_ecult"
 	button_icon_state = "shatter"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE
 	var/mob/living/carbon/human/holder
 	var/obj/item/gun/magic/hook/sickly_blade/sword
 

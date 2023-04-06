@@ -3,7 +3,7 @@
 	name = "Sanguine Recuperation"
 	desc = "Slowly heals you overtime using your master's blood, in exchange for some of your own blood and effort."
 	button_icon_state = "power_recup"
-	power_explanation = "<b>Recuperate</b>:\n\
+	power_explanation = "Recuperate:\n\
 		Activating this Power will begin to heal your wounds.\n\
 		You will heal Brute and Toxin damage, at the cost of Stamina damage, and blood from both you and your Master.\n\
 		If you aren't a bloodless race, you will additionally heal Burn damage.\n\
@@ -34,7 +34,7 @@
 
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(user)
 	vassaldatum.master.AddBloodVolume(-1)
-	user.Jitter(5)
+	user.adjust_jitter(5 SECONDS)
 	user.adjustStaminaLoss(bloodcost * 1.1)
 	user.adjustBruteLoss(-2.5)
 	user.adjustToxLoss(-2, forced = TRUE)

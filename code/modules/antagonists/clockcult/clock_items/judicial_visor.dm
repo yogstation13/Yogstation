@@ -47,7 +47,7 @@
 		to_chat(user, "[span_heavy_brass("\"Consider yourself judged, whelp.\"")]")
 		to_chat(user, span_userdanger("You suddenly catch fire!"))
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 	return 1
 
 /obj/item/clothing/glasses/judicial_visor/dropped(mob/user)
@@ -204,7 +204,7 @@
 			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
 			"[span_heavy_brass("\"Keep an eye out, filth.\"")]\n[span_userdanger("A burst of heat crushes you against the ground!")]")
 			L.adjust_fire_stacks(2) //sets cultist targets on fire
-			L.IgniteMob()
+			L.ignite_mob()
 			L.adjustFireLoss(5)
 		targetsjudged++
 		if(!QDELETED(L))

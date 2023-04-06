@@ -867,7 +867,6 @@
 		regenerate_organs()
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
-	drunkenness = 0
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -1345,7 +1344,7 @@
 /mob/living/carbon/human/proc/hulk_stamina_check()
 	if(dna.check_mutation(ACTIVE_HULK))
 		if(staminaloss < 60 && prob(1))
-			confused = 7
+			adjust_confusion(7 SECONDS)
 			say("HULK SMASH!!")
 		if(staminaloss >= 90)
 			dna.remove_mutation(ACTIVE_HULK)
@@ -1357,7 +1356,7 @@
 
 /mob/living/carbon/human/Bump(atom/movable/AM)
 	..()
-	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
+	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
 

@@ -1,0 +1,23 @@
+/datum/bloodsucker_clan/gangrel
+	name = CLAN_GANGREL
+	description = "Closer to Animals than Bloodsuckers, known as Werewolves waiting to happen, \n\
+		these are the most fearful of True Faith, being the most lethal thing they would ever see the night of. \n\
+		Full Moons do not seem to have an effect, despite common-told stories. \n\
+		The Favorite Vassal turns into a Werewolf whenever their Master does."
+	join_icon_state = "gangrel"
+	join_description = "Purely animalistic, full of transformation abilities, and special frenzy, an active threat at all times."
+	frenzy_stun_immune = TRUE
+	blood_drink_type = BLOODSUCKER_DRINK_INHUMANELY
+
+/datum/bloodsucker_clan/gangrel/New(mob/living/carbon/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
+	bloodsuckerdatum.AddHumanityLost(16.8)
+	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/gangrel/transform)
+	user.faction |= "bloodhungry" //i love animals i love animals
+	for(var/datum/action/bloodsucker/masquerade/masquerade_power in bloodsuckerdatum.powers)
+		bloodsuckerdatum.RemovePower(masquerade_power)
+
+/datum/bloodsucker_clan/gangrel/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
+	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)
+	vassaldatum.owner.AddSpell(batform)

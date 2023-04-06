@@ -71,12 +71,27 @@
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
 	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/defile(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/overload(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/blight(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/malfunction(null))
+
+	// Starting spells
+	var/datum/action/cooldown/spell/night_vision/revenant/vision = new(src)
+	vision.Grant(src)
+
+	var/datum/action/cooldown/spell/list_target/telepathy/revenant/telepathy = new(src)
+	telepathy.Grant(src)
+
+	// Starting spells that start locked
+	var/datum/action/cooldown/spell/aoe/revenant/overload/lights_go_zap = new(src)
+	lights_go_zap.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/defile/windows_go_smash = new(src)
+	windows_go_smash.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/blight/botany_go_mad = new(src)
+	botany_go_mad.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/malfunction/shuttle_go_emag = new(src)
+	shuttle_go_emag.Grant(src)
+
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
 

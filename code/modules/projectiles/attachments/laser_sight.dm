@@ -137,3 +137,52 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	QDEL_LIST(attached_gun?.current_tracers)
 	return ..()
+
+/datum/action/item_action/toggle_laser_sight
+	name = "Toggle Laser Sight"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/toggle_laser_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtons()
+
+/datum/action/item_action/toggle_laser_sight/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force)
+	var/obj/item/attachment/laser_sight/sight = target
+	if(istype(sight))
+		button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+
+	return ..()
+
+/datum/action/item_action/change_laser_sight_color
+	name = "Change Laser Sight Color"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/change_laser_sight_color/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/H = target
+			for(var/obj/item/attachment/A in H.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	if(att && owner)
+		var/C = input(owner, "Select Laser Color", "Select laser color", att.laser_color) as null|color
+		if(!C || QDELETED(att))
+			return
+		att.laser_color = C
+	UpdateButtons()
+
+/datum/action/item_action/change_laser_sight_color/UpdateButtons(status_only = FALSE, force)
+	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()

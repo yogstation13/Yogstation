@@ -24,6 +24,7 @@
 /mob/Login()
 	if(!client)
 		return FALSE
+	canon_client = client
 	add_to_player_list()
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id

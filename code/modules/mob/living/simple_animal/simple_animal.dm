@@ -159,13 +159,6 @@
 			stat = CONSCIOUS
 	med_hud_set_status()
 
-/mob/living/simple_animal/handle_status_effects()
-	..()
-	if(stuttering)
-		stuttering = 0
-	if(slurring)
-		slurring = max(slurring-1,0)
-
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
 	return
@@ -375,7 +368,7 @@
 /mob/living/simple_animal/handle_fire()
 	return TRUE
 
-/mob/living/simple_animal/IgniteMob()
+/mob/living/simple_animal/ignite_mob()
 	return FALSE
 
 /mob/living/simple_animal/ExtinguishMob()

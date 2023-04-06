@@ -63,7 +63,7 @@
 	item_state = "[prefix]_bodycam_[suffix]"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.UpdateButtons()
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()

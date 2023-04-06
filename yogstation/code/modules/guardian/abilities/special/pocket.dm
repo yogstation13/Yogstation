@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		PD.demanifest_dimension()
 		charge_counter = 0
 		start_recharge()
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 	else
 		if (get_final_z(guardian) == pocket_z)
 			PD.manifest_dimension(TRUE)
@@ -376,7 +376,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 			PD.eye.forceMove(get_turf(guardian))
 		charge_counter = max(0, charge_max - 3 SECONDS)
 		start_recharge()
-		action.UpdateButtonIcon()
+		action.UpdateButtons()
 
 /obj/effect/proc_holder/spell/self/pocket_dim_move
 	name = "Dimensional Movement"

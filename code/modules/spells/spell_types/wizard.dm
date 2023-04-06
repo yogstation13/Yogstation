@@ -355,7 +355,7 @@
 	if(isliving(user))
 		var/mob/living/U = user
 		if(!U.anti_magic_check(TRUE, TRUE))
-			U.IgniteMob()
+			U.ignite_mob()
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket
 	name = "Thrown Lightning"

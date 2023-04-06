@@ -78,7 +78,7 @@
 
 	//SECHUD
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	secsensor.add_hud_to(src)
+	secsensor.show_to(src)
 
 	if(prob(5))
 		russian = TRUE // imported from Russia
@@ -267,15 +267,13 @@ Auto Patrol: []"},
 	addtimer(CALLBACK(src, .proc/update_icon), 2)
 	var/threat = 5
 	if(ishuman(C))
-		C.stuttering = 5
-		C.Paralyze(100)
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
 	else
-		C.Paralyze(100)
-		C.stuttering = 5
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
 
+	C.Paralyze(10 SECONDS)
+	C.adjust_stutter(5 SECONDS)
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
 		var/area/location = get_area(src)

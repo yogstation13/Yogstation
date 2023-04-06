@@ -3,6 +3,7 @@
 	roundend_category = "hiveminds"
 	antagpanel_category = "Hivemind Host"
 	job_rank = ROLE_HIVE
+	antag_hud_name = "hivemind"
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_HIVE
 	var/list/hivemembers = list()
@@ -214,24 +215,7 @@
 	..()
 
 /datum/antagonist/hivemind/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "The great psionic powers of the Hive lets you overcome your clownish nature, allowing you to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "hivemind")
-
-/datum/antagonist/hivemind/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
+	handle_clown_mutation(owner.current, "The great psionic powers of the Hive lets you overcome your clownish nature, allowing you to wield weapons with impunity.")
 
 /datum/antagonist/hivemind/on_removal()
 	//Remove all hive powers here

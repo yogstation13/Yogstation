@@ -84,7 +84,7 @@
 	desc = "Spreads rust to nearby turfs. Destroys already rusted walls."
 	gain_text = "All men wise know not to touch the bound king."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/aoe_turf/rust_conversion)
+	spells_to_add = list(/datum/action/cooldown/spell/aoe/rust_conversion)
 	route = PATH_RUST
 	tier = TIER_2
 
@@ -108,7 +108,7 @@
 	desc = "You can now send a befuddling plume that blinds, poisons and makes enemies strike each other. Also converts the area into rust."
 	gain_text = "Messengers of hope fear I, the Rustbringer!"
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/cone/staggered/entropic_plume)
+	spells_to_add = list(/datum/action/cooldown/spell/cone/staggered/entropic_plume)
 	route = PATH_RUST
 	tier = TIER_3
 

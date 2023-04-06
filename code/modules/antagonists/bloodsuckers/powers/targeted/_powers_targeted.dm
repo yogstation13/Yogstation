@@ -4,7 +4,7 @@
 
 	var/obj/effect/proc_holder/bloodsucker/bs_proc_holder
 	var/target_range = 99
-	var/prefire_message = ""
+	var/prefire_message
 	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
 	var/power_activates_immediately = TRUE
 	///Is this power LOCKED due to being used?
@@ -26,13 +26,13 @@
 		return FALSE
 
 	ActivatePower()
-	UpdateButtonIcon()
-	// Create & Link Targeting Proc
+	UpdateButtons()
+	// Create & Link Targeting Proc, change when proc holder destroy PR gets ported
 	var/mob/living/user = owner
 	if(user.ranged_ability)
 		user.ranged_ability.remove_ranged_ability()
 	bs_proc_holder.add_ranged_ability(user)
-	if(prefire_message != "")
+	if(prefire_message)
 		to_chat(owner, span_announce("[prefire_message]"))
 	return TRUE
 
@@ -41,7 +41,7 @@
 		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	active = FALSE
 	DeactivateRangedAbility()
-	UpdateButtonIcon()
+	UpdateButtons()
 //	..() // we don't want to pay cost here
 
 /// Only Turned off when CLICK is disabled...aka, when you successfully clicked

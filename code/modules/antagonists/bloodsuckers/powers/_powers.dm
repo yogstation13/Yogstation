@@ -106,16 +106,27 @@
 		return FALSE
 	// Cooldown?
 	if(!COOLDOWN_FINISHED(src, bloodsucker_power_cooldown))
-		to_chat(owner, span_warning("[src] on cooldown!"))
+		owner.balloon_alert(owner, "power unavailable!")
+		to_chat(owner, "[src] on cooldown!")
 		return FALSE
-	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
-	var/mob/living/user = owner
-	if(bloodsuckerdatum_power?.frenzied)
+	if(!bloodsuckerdatum_power)
+		var/mob/living/living_owner = owner
+		if(living_owner.blood_volume < bloodcost)
+			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
+			return FALSE
 		return TRUE
-	if(user.blood_volume < bloodcost)
+
+	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
+	if(bloodsuckerdatum_power.frenzied)
+		return TRUE
+	if(bloodsuckerdatum_power.bloodsucker_blood_volume < bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 		return FALSE
 	return TRUE
+
+///Called when the Power is upgraded.
+/datum/action/bloodsucker/proc/upgrade_power()
+	level_current++
 
 ///Checks if the Power is available to use.
 /datum/action/bloodsucker/proc/CheckCanUse(mob/living/carbon/user)
@@ -132,7 +143,7 @@
 		to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
 		return FALSE
 	// Stake?
-	if((check_flags & BP_CANT_USE_WHILE_STAKED) && user.AmStaked())
+	if((check_flags & BP_CANT_USE_WHILE_STAKED) && user.am_staked())
 		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
 		return FALSE
 	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
@@ -144,7 +155,7 @@
 		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
-	if(constant_bloodcost > 0 && user.blood_volume <= 0)
+	if(constant_bloodcost && bloodsuckerdatum_power?.bloodsucker_blood_volume <= 0)
 		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
 		return FALSE
 	return TRUE
@@ -175,16 +186,20 @@
 /datum/action/bloodsucker/proc/CheckCanDeactivate()
 	return TRUE
 
-/datum/action/bloodsucker/UpdateButtonIcon(force = FALSE)
+/datum/action/bloodsucker/UpdateButtons(force = FALSE)
 	background_icon_state = active ? background_icon_state_on : background_icon_state_off
 	. = ..()
 
 /datum/action/bloodsucker/proc/PayCost()
-	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
-	if(bloodsuckerdatum_power?.frenzied)
+	// Non-bloodsuckers will pay in other ways.
+	if(!bloodsuckerdatum_power)
+		var/mob/living/living_owner = owner
+		living_owner.blood_volume -= bloodcost
 		return
-	var/mob/living/carbon/human/user = owner
-	user.blood_volume -= bloodcost
+	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
+	if(bloodsuckerdatum_power.frenzied)
+		return
+	bloodsuckerdatum_power.bloodsucker_blood_volume -= bloodcost
 	bloodsuckerdatum_power?.update_hud()
 
 /datum/action/bloodsucker/proc/ActivatePower()
@@ -192,7 +207,7 @@
 	if(power_flags & BP_AM_TOGGLE)
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
-	UpdateButtonIcon()
+	UpdateButtons()
 
 /datum/action/bloodsucker/proc/DeactivatePower()
 	if(power_flags & BP_AM_TOGGLE)
@@ -201,7 +216,7 @@
 		RemoveAfterUse()
 		return
 	active = FALSE
-	UpdateButtonIcon()
+	UpdateButtons()
 	StartCooldown()
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
@@ -213,14 +228,18 @@
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
 	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && user.stat != CONSCIOUS)
-		bloodsuckerdatum_power?.AddBloodVolume(-constant_bloodcost)
+		if(bloodsuckerdatum_power)
+			bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost)
+		else
+			var/mob/living/living_owner = owner
+			living_owner.blood_volume -= constant_bloodcost
 	return TRUE
 
 /// Checks to make sure this power can stay active
 /datum/action/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
 	if(!user)
 		return FALSE
-	if(!constant_bloodcost > 0 || user.blood_volume > 0)
+	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume)
 		return TRUE
 
 /// Used to unlearn Single-Use Powers

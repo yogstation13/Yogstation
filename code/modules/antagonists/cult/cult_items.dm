@@ -414,7 +414,7 @@
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
-			user.Dizzy(30)
+			user.adjust_dizzy(3 SECONDS)
 			user.Paralyze(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
@@ -466,7 +466,7 @@
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
-			user.Dizzy(30)
+			user.adjust_dizzy(30)
 			user.Paralyze(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
@@ -487,7 +487,7 @@
 	if(!iscultist(user))
 		to_chat(user, span_cultlarge("\"You want to be blind, do you?\""))
 		user.dropItemToGround(src, TRUE)
-		user.Dizzy(30)
+		user.adjust_dizzy(30)
 		user.Paralyze(100)
 		user.blind_eyes(30)
 
@@ -748,8 +748,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /datum/action/innate/cult/spear/Grant(mob/user, obj/blood_spear)
 	. = ..()
 	spear = blood_spear
-	button.screen_loc = "6:157,4:-2"
-	button.moved = "6:157,4:-2"
 
 /datum/action/innate/cult/spear/Activate()
 	if(owner == spear.loc || cooldown > world.time)

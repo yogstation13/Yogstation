@@ -203,7 +203,7 @@
 	desc = "Dash forward."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	cooldown_time = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
@@ -258,7 +258,7 @@
 	desc = "Pops out or in your wheely-heel's wheels."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/wheelys/W
@@ -319,7 +319,7 @@
 	desc = "Switch between walking and hovering."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/airshoes/W
@@ -395,7 +395,7 @@
 		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
 		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	UpdateButtons()
 	lockdown = !lockdown
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())

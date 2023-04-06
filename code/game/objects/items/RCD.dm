@@ -1028,9 +1028,13 @@ RLD
 /obj/item/rcd_upgrade/furnishing
 	desc = "It contains the design for chairs, stools, tables, and glass tables."
 	upgrade = RCD_UPGRADE_FURNISHING
+
 /obj/item/rcd_upgrade/conveyor
 	desc = "The disk warns against building an endless conveyor trap, but we know what you're gonna do."
 	upgrade = RCD_UPGRADE_CONVEYORS
+
+/datum/action/item_action/pick_color
+	name = "Choose A Color"
 	
 #undef GLOW_MODE
 #undef LIGHT_MODE

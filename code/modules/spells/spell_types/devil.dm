@@ -71,7 +71,7 @@
 				C.put_in_hands(contract)
 		else
 			to_chat(user, span_notice("[C] seems to not be sentient.  You cannot summon a contract for [C.p_them()]."))
-			action.UpdateButtonIcon()
+			action.UpdateButtons()
 			charge_counter = charge_max
 			recharging = FALSE
 

@@ -1,9 +1,15 @@
+/datum/round_event_control/tzimisce
+	name = "Spawn Tzimisce"
+	typepath = /datum/round_event/ghost_role/tzimisce
+	max_occurrences = 2
+	min_players = 25
+	earliest_start = 45 MINUTES
+
 /datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"
 	max_occurrences = 1
-	weight = 5
+	weight = 2000
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
-	max_occurrences = 2
 	min_players = 25
 	earliest_start = 30 MINUTES
 	gamemode_whitelist = list("bloodsucker","traitorsucker")
@@ -21,13 +27,7 @@
 	if(cancel_me)
 		kill()
 		return
-
-/datum/round_event_control/tzimisce
-	name = "Spawn Tzimisce"
-	typepath = /datum/round_event/ghost_role/tzimisce
-	max_occurrences = 1
-	min_players = 25
-	earliest_start = 45 MINUTES
+	try_spawning()
 
 /datum/round_event/ghost_role/tzimisce
 	var/success_spawn = 0
@@ -61,13 +61,13 @@
 	Mind.add_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = tzimisce.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
-	bloodsuckerdatum.AssignClanAndBane(tzimisce = TRUE)
+	bloodsuckerdatum.assign_clan_and_bane(tzimisce = TRUE)
 
 	spawned_mobs += tzimisce
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
 	log_game("[key_name(tzimisce)] was spawned as a tzimisce bloodsucker by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(pick("Assistant", "Botanist", "Station Engineer", "Medical Doctor", "Scientist", "Cargo Technician", "Cook"))
-	set_antag_hud(tzimisce, "tzimisce")
+	bloodsuckerdatum.antag_hud_name = "tzimisce"
 	if(SSshuttle.arrivals)
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
 	Mind.assigned_role = jobdatum.title //sets up the manifest properly
@@ -78,6 +78,7 @@
 	id.update_label()
 	GLOB.data_core.manifest_inject(tzimisce, force = TRUE)
 	tzimisce.update_move_intent_slowdown() //prevents you from going super duper fast
+	announce_to_ghosts(tzimisce)
 	return SUCCESSFUL_SPAWN
 
 

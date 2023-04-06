@@ -1,6 +1,7 @@
 /datum/antagonist/shadowling
 	name = "Shadowling"
 	job_rank = ROLE_SHADOWLING
+	antag_hud_name = "shadowling"
 	roundend_category = "shadowlings"
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/sling
@@ -8,26 +9,26 @@
 
 /datum/antagonist/shadowling/on_gain()
 	. = ..()
-	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
 	log_game("[key_name(owner.current)] was made into a shadowling!")
-	var/mob/living/carbon/human/S = owner.current
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hatch(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind(null))
-	if(owner.assigned_role == "Clown")
-		to_chat(S, span_notice("Your alien nature has allowed you to overcome your clownishness."))
-		S.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your alien nature has allowed you to overcome your clownishness.")
 	var/datum/objective/ascend/O = new
 	O.update_explanation_text()
 	objectives += O
 	objectives_given += O
 	owner.announce_objectives()
 
+/datum/antagonist/shadowling/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	add_team_hud(current_mob)
+
 /datum/antagonist/shadowling/on_removal()
 	for(var/O in objectives_given)
 		objectives -= O
-	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.shadows -= owner
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")
 	log_game("[key_name(owner.current)] was de-shadowlinged!")

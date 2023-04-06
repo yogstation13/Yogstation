@@ -12,7 +12,8 @@
 	var/text_gain_indication = ""
 	var/text_lose_indication = ""
 	var/static/list/list/mutable_appearance/visual_indicators = list()
-	var/obj/effect/proc_holder/spell/power
+	/// The path of action we grant to our user on mutation gain
+	var/datum/action/cooldown/spell/power_path
 	var/layer_used = MUTATIONS_LAYER //which mutation layer to use
 	var/list/species_allowed = list() //to restrict mutation to only certain species
 	var/health_req //minimum health required to acquire the mutation
@@ -81,9 +82,9 @@
 		owner.remove_overlay(layer_used)
 		owner.overlays_standing[layer_used] = mut_overlay
 		owner.apply_overlay(layer_used)
-	grant_spell() //we do checks here so nothing about hulk getting magic
+	grant_power() //we do checks here so nothing about hulk getting magic
 	if(!modified)
-		addtimer(CALLBACK(src, .proc/modify, 5)) //gonna want children calling ..() to run first
+		addtimer(CALLBACK(src, PROC_REF(modify), 0.5 SECONDS)) //gonna want children calling ..() to run first
 
 /datum/mutation/human/proc/get_visual_indicator()
 	return
@@ -109,8 +110,10 @@
 			mut_overlay.Remove(get_visual_indicator())
 			owner.overlays_standing[layer_used] = mut_overlay
 			owner.apply_overlay(layer_used)
-		if(power)
-			owner.RemoveSpell(power)
+		if(power_path)
+			// Any powers we made are linked to our mutation datum,
+			// so deleting ourself will also delete it and remove it
+			// ...Why don't all mutations delete on loss? Not sure.
 			qdel(src)
 		return 0
 	return 1

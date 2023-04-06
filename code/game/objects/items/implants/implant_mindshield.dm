@@ -1,7 +1,7 @@
 /obj/item/implant/mindshield
 	name = "mindshield implant"
 	desc = "Protects against brainwashing."
-	activated = 0
+	actions_types = null
 
 /obj/item/implant/mindshield/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -45,9 +45,8 @@
 			removed(target, TRUE)
 			return FALSE
 
-		var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
-		if(target.mind.has_antag_datum(/datum/antagonist/vassal || !(vassaldatum.favorite_vassal)))
-			if(vassaldatum.favorite_vassal)
+		if(IS_VASSAL(target))
+			if(IS_FAVORITE_VASSAL(target))
 				if(!silent)
 					target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 				removed(target, TRUE)

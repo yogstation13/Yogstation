@@ -177,7 +177,7 @@
 /mob/proc/update_action_buttons_icon(status_only = FALSE)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon(status_only)
+		A.UpdateButtons(status_only)
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen, skip_observers=FALSE)
@@ -196,7 +196,7 @@
 	else
 		for(var/datum/action/A in actions)
 			var/is_owner = (A.owner == src)
-			A.UpdateButtonIcon()
+			A.UpdateButtons()
 			var/atom/movable/screen/movable/action_button/B = A.button
 			if(B.ordered)
 				button_number++

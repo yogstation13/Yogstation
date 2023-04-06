@@ -238,16 +238,6 @@ Made by Xhuis
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-5)
 
-/datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.join_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, ((is_shadow(shadow_mind.current)) ? "shadowling" : "thrall"))
-
-/datum/game_mode/proc/update_shadow_icons_removed(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.leave_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, null)
-
 /mob/living/proc/add_thrall()
 	if(!istype(mind))
 		return FALSE

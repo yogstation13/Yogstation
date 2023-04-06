@@ -210,9 +210,9 @@
 	target.blind_eyes(4*power)
 	target.blur_eyes(30*power)
 	target.minimumDeafTicks(15*power) //equivalent to 30s deafness max
-	target.Jitter(10*power)
+	target.adjust_jitter(power SECONDS)
 	target.silent += 10*power
-	target.stuttering += 30*power
+	target.adjust_stutter(3*power SECONDS)
 	target.Knockdown(1*power)
 	target.stop_pulling()
 	to_chat(target, span_userdanger("You feel your mind start to burn!"))
@@ -390,7 +390,7 @@
 		else
 			backseat.mind.transfer_to(vessel,1)
 	vessel.visible_message(span_userdanger("[src] suddenly wakes up, as though he was under foreign control!"))
-	vessel.Jitter(3)
+	vessel.adjust_jitter(3 SECONDS)
 	message_admins("[ADMIN_LOOKUPFLW(vessel)] is no longer being controlled by [ADMIN_LOOKUPFLW(original_body)] (Hivemind Host).")
 	log_game("[key_name(vessel)] was released from Mind Control by [key_name(original_body)].")
 
@@ -540,7 +540,7 @@
 	for(var/mob/living/carbon/human/target in targets)
 		if(target.stat == DEAD)
 			continue
-		target.Jitter(14)
+		target.adjust_jitter(14 SECONDS)
 		target.apply_damage(35 + rand(0,15), STAMINA, target.get_bodypart(BODY_ZONE_HEAD))
 		if(target.is_real_hivehost() || target.anti_magic_check(FALSE, FALSE, TRUE))
 			continue
@@ -555,20 +555,20 @@
 			if(2)
 				to_chat(target, span_userdanger("You panic and flail around!"))
 				target.click_random_mob()
-				addtimer(CALLBACK(target, "click_random_mob"), 5)
-				addtimer(CALLBACK(target, "click_random_mob"), 10)
-				addtimer(CALLBACK(target, "click_random_mob"), 15)
-				addtimer(CALLBACK(target, "click_random_mob"), 20)
-				addtimer(CALLBACK(target, "Stun", 30), 25)
-				target.confused += 10
+				addtimer(CALLBACK(target, "click_random_mob"), 0.5 SECONDS)
+				addtimer(CALLBACK(target, "click_random_mob"), 1 SECONDS)
+				addtimer(CALLBACK(target, "click_random_mob"), 1.5 SECONDS)
+				addtimer(CALLBACK(target, "click_random_mob"), 2 SECONDS)
+				addtimer(CALLBACK(target, "Stun", 3 SECONDS), 2.5 SECONDS)
+				target.adjust_confusion(10 SECONDS)
 			if(3)
 				to_chat(target, span_userdanger("You freeze up in fear!"))
-				target.Stun(70)
+				target.Stun(7 SECONDS)
 			if(4)
 				to_chat(target, span_userdanger("You feel nauseous as dread washes over you!"))
-				target.Dizzy(15)
+				target.adjust_dizzy(15 SECONDS)
 				target.apply_damage(30, STAMINA, target.get_bodypart(BODY_ZONE_HEAD))
-				target.hallucination += 45
+				target.adjust_hallucinations(45 SECONDS)
 
 	for(var/mob/living/silicon/target in targets)
 		target.Unconscious(50)
@@ -959,7 +959,7 @@
 			continue
 		if(C.stat == DEAD)
 			continue
-		C.Jitter(15)
+		C.adjust_jitter(15 SECONDS)
 		C.Unconscious(150)
 		C.anti_magic_check(FALSE, FALSE, TRUE, 6)
 		to_chat(C, span_boldwarning("Something's wrong..."))

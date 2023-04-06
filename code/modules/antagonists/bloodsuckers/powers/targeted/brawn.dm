@@ -2,7 +2,7 @@
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	power_explanation = "<b>Brawn</b>:\n\
+	power_explanation = "Brawn:\n\
 		Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use.\n\
 		Punching a Cyborg will heavily EMP them in addition to deal damage.\n\
 		At level 3, you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use.\n\
@@ -49,7 +49,7 @@
 			span_warning("[closet] tears apart as you bash it open from within!"),
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
-		addtimer(CALLBACK(src, .proc/break_closet, user, closet), 1)
+		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 0.1 SECONDS)
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
@@ -60,8 +60,8 @@
 			span_warning("[user] discards their restraints like it's nothing!"),
 			span_warning("We break through our restraints!"),
 		)
-		user.clear_cuffs(cuffs, TRUE)
-		user.clear_cuffs(legcuffs, TRUE)
+		user.clear_cuffs(cuffs, TRUE, TRUE)
+		user.clear_cuffs(legcuffs, TRUE, TRUE)
 		used = TRUE
 
 	// Remove Straightjackets
@@ -122,7 +122,7 @@
 	if(isliving(target_atom))
 		var/mob/living/target = target_atom
 		var/mob/living/carbon/carbonuser = user
-		var/hitStrength = carbonuser.dna.species.punchdamagehigh * 1.25 + 2
+		var/hitStrength = carbonuser.dna.species.punchdamagehigh * 1.25 + level_current
 		// Knockdown!
 		var/powerlevel = min(5, 1 + level_current)
 		if(rand(5 + powerlevel) >= 5)
@@ -179,22 +179,22 @@
 	. = ..()
 	if(!.) // Disable range notice for Brawn.
 		return FALSE
-	// Must outside Closet to target anyone!
+	// Must be outside Closet to target anyone!
 	if(!isturf(owner.loc))
 		return FALSE
 	// Target Type: Living
 	if(isliving(target_atom))
 		return TRUE
 	// Target Type: Door
-	else if(istype(target_atom, /obj/machinery/door))
+	if(istype(target_atom, /obj/machinery/door))
 		if(level_current < 4)
-			to_chat(owner, span_warning("You need [4 - level_current] more levels to be able to break open the [target_atom]!"))
+			owner.balloon_alert(owner, "you need [4 - level_current] more levels!")
 			return FALSE
 		return TRUE
 	// Target Type: Locker
-	else if(istype(target_atom, /obj/structure/closet))
+	if(istype(target_atom, /obj/structure/closet))
 		if(level_current < 3)
-			to_chat(owner, span_warning("You need [3 - level_current] more levels to be able to break open the [target_atom]!"))
+			owner.balloon_alert(owner, "you need [3 - level_current] more levels!")
 			return FALSE
 		return TRUE
 	return FALSE

@@ -505,8 +505,8 @@
 	return span_danger("The baton is still charging!")
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/target, mob/living/user)
-	target.Jitter(20)
-	target.stuttering += 20
+	target.adjust_jitter(20 SECONDS)
+	target.adjust_stutter(2 SECONDS)
 
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"

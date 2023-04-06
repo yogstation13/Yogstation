@@ -4,6 +4,7 @@
 	roundend_category = "clock cultists"
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
+	antag_hud_name = "clockwork"
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
 	var/datum/action/innate/hierophant/hierophant_network = new()
@@ -62,7 +63,6 @@
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
-	SSticker.mode.update_servant_icons_added(owner)
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
@@ -132,8 +132,10 @@
 	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
+	add_team_hud(current)
 
 /datum/antagonist/clockcult/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current = owner.current
 	if(istype(mob_override))
 		current = mob_override
@@ -156,7 +158,6 @@
 		S.update_icons()
 		S.show_laws()
 	var/mob/living/temp_owner = current
-	..()
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
 		R.module.rebuild_modules()
@@ -167,7 +168,6 @@
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner
-	SSticker.mode.update_servant_icons_removed(owner)
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))

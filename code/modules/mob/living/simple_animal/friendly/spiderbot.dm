@@ -30,7 +30,7 @@
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBO_CONTROL //Access needed to pop out the brain.
-	var/emagged = 0
+	var/emagged = FALSE
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)

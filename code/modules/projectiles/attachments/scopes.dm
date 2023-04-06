@@ -66,3 +66,27 @@
 	if(user)
 		REMOVE_TRAIT(user, TRAIT_INFRARED_VISION, ATTACHMENT_TRAIT)
 		user.update_sight()
+
+/datum/action/item_action/toggle_infrared_sight
+	name = "Toggle Infrared"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "ifr_sight"
+	var/obj/item/attachment/scope/infrared/att
+
+/datum/action/item_action/toggle_infrared_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/scope/infrared))
+					att = A
+					break
+	att?.toggle_on()
+	UpdateButtons()
+
+/datum/action/item_action/toggle_infrared_sight/UpdateButtons(atom/movable/screen/movable/action_button/button, status_only = FALSE, force)
+	var/obj/item/attachment/scope/infrared/ifrsight = target
+	if(istype(ifrsight))
+		button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"
+
+	return ..()

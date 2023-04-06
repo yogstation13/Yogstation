@@ -236,7 +236,7 @@
 		QDEL_NULL(modularInterface)
 	. = ..()
 
-/mob/living/silicon/ai/IgniteMob()
+/mob/living/silicon/ai/ignite_mob()
 	fire_stacks = 0
 	. = ..()
 

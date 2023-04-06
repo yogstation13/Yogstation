@@ -4,7 +4,7 @@
 	id = "pass"
 	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
 	button_icon_state = "pass"
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline
 
 /datum/action/innate/darkspawn/pass/IsAvailable()

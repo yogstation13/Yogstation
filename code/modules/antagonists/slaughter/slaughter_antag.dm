@@ -1,6 +1,7 @@
 /datum/antagonist/slaughter
 	name = "Slaughter demon"
 	show_name_in_check_antagonists = TRUE
+	ui_name = "AntagInfoDemon"
 	var/objective_verb = "Kill"
 	var/datum/mind/summoner
 	job_rank = ROLE_ALIEN

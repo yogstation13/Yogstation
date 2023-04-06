@@ -340,7 +340,7 @@
 		if(!can_hit_target(M, permutated, M == original, TRUE))
 			continue
 		mobs += M
-	var/mob/M = safepick(mobs)
+	var/mob/M = pick(mobs)
 	if(M)
 		return M.lowest_buckled_mob()
 	var/list/obj/possible_objs = typecache_filter_list(T, GLOB.typecache_machine_or_structure)
@@ -349,7 +349,7 @@
 		if(!can_hit_target(O, permutated, O == original, TRUE))
 			continue
 		objs += O
-	var/obj/O = safepick(objs)
+	var/obj/O = pick(objs)
 	if(O)
 		return O
 	//Nothing else is here that we can hit, hit the turf if we haven't.
@@ -586,7 +586,7 @@
 			var/mob/living/L = M
 			if((target in L.hasparasites()) && target.loc == L.loc)
 				return FALSE
-		if((target == firer) || ((target == firer.loc) && (ismecha(firer.loc) || isspacepod(firer.loc))) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))) //cannot shoot yourself or your mech // yogs - or your spacepod)
+		if((target == firer) || ((target == firer.loc) && (ismecha(firer.loc) || isspacepod(firer.loc))) || !ismovable(M) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))) //cannot shoot yourself or your mech // yogs - or your spacepod)
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE

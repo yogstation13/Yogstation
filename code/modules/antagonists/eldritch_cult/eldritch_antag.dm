@@ -4,7 +4,9 @@
 	antagpanel_category = "Heretic"
 	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
+	antag_hud_name = "heretic"
 	can_hijack = HIJACK_HIJACKER
+	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/heretic
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
@@ -71,7 +73,6 @@
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
-	SSticker.mode.update_heretic_icons_added(owner)
 	if(give_equipment)
 		equip_cultist()
 	return ..()
@@ -87,8 +88,6 @@
 		owner.current.log_message("has renounced the cult of the old ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
-
-	SSticker.mode.update_heretic_icons_removed(owner)
 
 	return ..()
 
@@ -160,12 +159,7 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Your knowledge allow you to overcome your clownish nature, allowing you to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(current, "Ancient knowledge described to you has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "heretics"
 
 /datum/antagonist/heretic/remove_innate_effects(mob/living/mob_override)
@@ -173,16 +167,13 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		traitor_mob.dna.add_mutation(CLOWNMUT)
 	current.faction -= "heretics"
 
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
-	.["Equip"] = CALLBACK(src,.proc/equip_cultist)
-	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, .proc/admin_edit_research)
-	.["Give Knowledge"] = CALLBACK(src, .proc/admin_give_knowledge)
+	.["Equip"] = CALLBACK(src, PROC_REF(equip_cultist))
+	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, PROC_REF(admin_edit_research))
+	.["Give Knowledge"] = CALLBACK(src, PROC_REF(admin_give_knowledge))
 
 /datum/antagonist/heretic/proc/admin_edit_research(mob/admin)
 	var/research2add = input(admin, "Enter an amount to change research by (Negative numbers remove research)", "Research Grant") as null|num

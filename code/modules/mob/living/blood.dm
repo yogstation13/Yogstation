@@ -221,6 +221,10 @@
 		amount = total_amount * blood_proportion
 		chems_amount = total_amount * (1 - blood_proportion)
 
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return
+	bloodsuckerdatum.bloodsucker_blood_volume -= amount
 	blood_volume -= amount
 
 	var/list/blood_data = get_blood_data(blood_id)

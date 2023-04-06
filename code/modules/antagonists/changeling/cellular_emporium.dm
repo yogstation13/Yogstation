@@ -1,29 +1,17 @@
 // cellular emporium
 // The place where changelings go to buy their biological weaponry.
 
-/datum/cellular_emporium
-	var/name = "cellular emporium"
-	var/datum/antagonist/changeling/changeling
+/datum/antag_menu/cellular_emporium
+	name = "cellular emporium"
+	ui_name = "CellularEmporium"
 
-/datum/cellular_emporium/New(my_changeling)
-	. = ..()
-	changeling = my_changeling
-
-/datum/cellular_emporium/Destroy()
-	changeling = null
-	. = ..()
-
-/datum/cellular_emporium/ui_state(mob/user)
-	return GLOB.always_state
-
-/datum/cellular_emporium/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "CellularEmporium", name)
-		ui.open()
-
-/datum/cellular_emporium/ui_data(mob/user)
+/datum/antag_menu/cellular_emporium/ui_data(mob/user)
 	var/list/data = list()
+	var/datum/antagonist/changeling/changeling = antag_datum
+
+	if(!istype(changeling))
+		CRASH("changeling menu started with wrong datum.")
+		return
 
 	var/can_readapt = changeling.canrespec
 	var/genetic_points_remaining = changeling.geneticpoints
@@ -63,9 +51,10 @@
 
 	return data
 
-/datum/cellular_emporium/ui_act(action, params)
+/datum/antag_menu/cellular_emporium/ui_act(action, params)
 	if(..())
 		return
+	var/datum/antagonist/changeling/changeling = antag_datum
 
 	switch(action)
 		if("readapt")
@@ -82,15 +71,14 @@
 	icon_icon = 'icons/obj/drinks.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"
-	var/datum/cellular_emporium/cellular_emporium
+	var/datum/antag_menu/cellular_emporium/cellular_emporium
 
 /datum/action/innate/cellular_emporium/New(our_target)
 	. = ..()
-	button.name = name
-	if(istype(our_target, /datum/cellular_emporium))
+	if(istype(our_target, /datum/antag_menu/cellular_emporium))
 		cellular_emporium = our_target
 	else
-		CRASH("cellular_emporium action created with non emporium")
+		CRASH("cellular_emporium action created with non emporium.")
 
 /datum/action/innate/cellular_emporium/Activate()
 	cellular_emporium.ui_interact(owner)

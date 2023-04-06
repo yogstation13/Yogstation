@@ -68,7 +68,7 @@
 /datum/action/innate/horror/toggle_hide/Activate()
 	B.hide()
 	button_icon_state = "horror_hiding_[B.hiding ? "true" : "false"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 
 /datum/action/innate/horror/talk_to_horror
 	name = "Converse with Horror"
@@ -146,8 +146,8 @@
 
 /datum/action/innate/horror/freeze_victim/Activate()
 	B.freeze_victim()
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 150)
+	UpdateButtons()
+	addtimer(CALLBACK(src, .proc/UpdateButtons), 150)
 
 /datum/action/innate/horror/freeze_victim/IsAvailable()
 	if(world.time - B.used_freeze < 150)
@@ -181,7 +181,7 @@
 /datum/action/innate/horror/tentacle/process()
 	..()
 	active = locate(/obj/item/horrortentacle) in B.victim
-	UpdateButtonIcon()
+	UpdateButtons()
 
 
 /datum/action/innate/horror/tentacle/Activate()
@@ -308,7 +308,7 @@
 /datum/action/innate/horror/chameleon/Activate()
 	B.go_invisible()
 	button_icon_state = "horror_sneak_[B.invisible ? "true" : "false"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 
 /datum/action/innate/horror/lube_spill
 	name = "Lube spill"
@@ -327,8 +327,8 @@
 /datum/action/innate/horror/lube_spill/Activate()
 	B.use_chemicals(chemical_cost)
 	cooldown = world.time + 10 SECONDS
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	UpdateButtons()
+	addtimer(CALLBACK(src, .proc/UpdateButtons), 10 SECONDS)
 	B.visible_message(span_warning("[B] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
 	flick("horror_spin", B)
 	playsound(B, 'sound/effects/blobattack.ogg', 25, 1)

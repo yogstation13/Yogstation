@@ -39,7 +39,7 @@
 	playsound(user, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.UpdateButtons()
 	return 1
 
 /obj/item/flashlight/suicide_act(mob/living/carbon/human/user)
