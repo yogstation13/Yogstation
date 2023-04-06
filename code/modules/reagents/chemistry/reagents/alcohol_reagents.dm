@@ -944,7 +944,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
 /datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/carbon/M)
-	to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball...")
+	to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
 	return ..()
 
 /datum/reagent/consumable/ethanol/singulo
@@ -1060,7 +1060,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink made from your allies."
 
 /datum/reagent/consumable/ethanol/alliescocktail/on_mob_life(mob/living/carbon/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT "ally_power")
+	SEND_SIGNAL(M. COMSIG_ADD_MOOD_EVENT "ally_power")
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit
