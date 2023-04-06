@@ -25,7 +25,7 @@
 	role_name = "infiltration team"
 
 /datum/round_event/ghost_role/infiltrators/spawn_role()
-	var/list/candidates = pollGhostCandidates("Do you wish to be considered for an infiltration team?", ROLE_INFILTRATOR)
+	var/list/candidates = pollGhostCandidates("Do you wish to be considered for an infiltration team?", ROLE_INFILTRATOR, disallow_started_as_observer = TRUE)
 
 	var/list/mob/dead/observer/chosen = list()
 	var/mob/dead/observer/theghost = null

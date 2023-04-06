@@ -82,8 +82,8 @@
 	var/charges = 5 //how many times can we use the emag before needing to reload it?
 	var/max_charges = 5
 	var/emagging //are we currently emagging something
-	
-/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)	
+
+/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)
 	if(charges > 0)
 		if(emagging)
 			return
@@ -297,7 +297,7 @@
 					critter = new /mob/living/simple_animal/pet/gondola(get_turf(src))
 				if(250 to INFINITY)
 					critter = new /mob/living/simple_animal/cheese(get_turf(src))
-					var/list/candidates = pollCandidatesForMob("Do you want to play as cheese?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 5 SECONDS, critter, POLL_IGNORE_SENTIENCE_POTION) // see poll_ignore.dm
+					var/list/candidates = pollCandidatesForMob("Do you want to play as cheese?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 5 SECONDS, critter, POLL_IGNORE_SENTIENCE_POTION, disallow_started_as_observer = TRUE) // see poll_ignore.dm
 					if(!LAZYLEN(candidates))
 						return
 					var/mob/dead/observer/O = pick(candidates)
@@ -658,7 +658,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/occupying/Initialize()
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
-    
+
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()

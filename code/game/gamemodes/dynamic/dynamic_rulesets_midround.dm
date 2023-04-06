@@ -100,7 +100,7 @@
 	message_admins("Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
 	log_game("DYNAMIC: Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
 
-	candidates = pollGhostCandidates("The mode is looking for volunteers to become [antag_flag] for [name]", antag_flag, SSticker.mode, antag_flag_override ? antag_flag_override : antag_flag, poll_time = 300)
+	candidates = pollGhostCandidates("The mode is looking for volunteers to become [antag_flag] for [name]", antag_flag, SSticker.mode, antag_flag_override ? antag_flag_override : antag_flag, poll_time = 300, disallow_started_as_observer = TRUE)
 
 	if(!candidates || candidates.len <= 0)
 		message_admins("The ruleset [name] received no applications.")
@@ -372,7 +372,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/infiltration/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/infiltration) in mode.executed_rules)
-		return FALSE 
+		return FALSE
 	indice_pop = min(agents_cap.len, round(living_players.len/5)+1)
 	required_candidates = agents_cap[indice_pop]
 	return ..()

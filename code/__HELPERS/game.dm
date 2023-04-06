@@ -487,12 +487,14 @@
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   */
-/proc/pollGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
+/proc/pollGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, disallow_started_as_observer = FALSE)
 	var/list/candidates = list()
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return candidates
 
 	for(var/mob/dead/observer/G in GLOB.player_list)
+		if(disallow_started_as_observer && G.started_as_observer && !IsAdminGhost(G))
+			continue
 		candidates += G
 
 	return pollCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
@@ -582,8 +584,8 @@
   * * M: Mob, /mob to offer
   * * ignore_category: Unknown
   */
-/proc/pollCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
-	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+/proc/pollCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null, disallow_started_as_observer = FALSE)
+	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, disallow_started_as_observer = disallow_started_as_observer)
 	if(!M || QDELETED(M) || !M.loc)
 		return list()
 	return L
@@ -622,8 +624,8 @@
   * * mobs: List, list of mobs to offer up
   * * ignore_category: Unknown
   */
-/proc/pollCandidatesForMobs(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, list/mobs, ignore_category = null)
-	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+/proc/pollCandidatesForMobs(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, list/mobs, ignore_category = null, disallow_started_as_observer = FALSE)
+	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, disallow_started_as_observer = disallow_started_as_observer)
 	var/i=1
 	for(var/v in mobs)
 		var/atom/A = v

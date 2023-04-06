@@ -27,7 +27,7 @@
 
 	var/selected_category = MENU_ALL
 	var/list/show_categories = list(MENU_ALL, MENU_WEAPON, MENU_ARM, MENU_CLOTHING, MENU_MISC)
-	/// this text will show on the tgui menu when picking the nullrod form they want. should give a better idea of the nullrod's gimmick or quirks without giving away numbers 
+	/// this text will show on the tgui menu when picking the nullrod form they want. should give a better idea of the nullrod's gimmick or quirks without giving away numbers
 	var/additional_desc = "How are you seeing this? This is the default Nullrod bonus description. I makey a mistakey."
 
 /obj/item/nullrod/Initialize()
@@ -49,7 +49,7 @@
 		var/mob/living/carbon/human/H = user
 		H.dropItemToGround(src, TRUE, TRUE)
 	qdel(user, TRUE)
-	
+
 /obj/item/nullrod/attack_self(mob/user)
 	if(user?.mind?.holy_role && check_menu(user))
 		ui_interact(user)
@@ -62,13 +62,13 @@
 	if(user.incapacitated() || !user.is_holding(src))
 		return FALSE
 	return TRUE
-	
+
 /obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NullRodMenu", name)
 		ui.open()
-	
+
 /obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
 	data["categories"] = list()
@@ -76,9 +76,9 @@
 	for(var/category in show_categories)
 		var/list/category_data = list()
 		category_data["name"] = category
-		
+
 		var/list/nullrods = list()
-		
+
 		for(var/shaft in subtypesof(/obj/item/nullrod))
 			var/obj/item/nullrod/rod = new shaft
 			if(!rod?.chaplain_spawnable)
@@ -89,19 +89,19 @@
 			details["menu_tab"] = rod.menutab
 			details["type_path"] = rod.type
 			details["additional_description"] = rod.additional_desc
-			
+
 			var/icon/rod_pic = getFlatIcon(rod)
 			var/md5 = md5(fcopy_rsc(rod_pic))
 			if(!SSassets.cache["photo_[md5]_[rod.name]_icon.png"])
 				SSassets.transport.register_asset("photo_[md5]_[rod.name]_icon.png", rod_pic)
 			SSassets.transport.send_assets(user, list("photo_[md5]_[rod.name]_icon.png" = rod_pic))
 			details["rod_pic"] = SSassets.transport.get_asset_url("photo_[md5]_[rod.name]_icon.png")
-			
+
 			if(category == MENU_ALL || category == rod.menutab)
 				nullrods += list(details)
-				
+
 			qdel(rod)
-		
+
 		category_data["nullrods"] = nullrods
 		data["categories"] += list(category_data)
 
@@ -349,7 +349,7 @@
 
 	to_chat(user, "You attempt to wake the spirit of the blade...")
 	possessed = TRUE
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the spirit of [user.real_name]'s blade?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the spirit of [user.real_name]'s blade?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE, disallow_started_as_observer = TRUE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/shade/S = new(src)
@@ -469,7 +469,7 @@
 	hitsound = 'sound/weapons/chainhit.ogg'
 	menutab = MENU_WEAPON
 	additional_desc = "A holy weapon, capable at meting out righteousness from a distance."
-	
+
 /obj/item/nullrod/whip/Initialize()
 	. = ..()
 	weapon_stats[REACH] = 3
@@ -576,7 +576,7 @@
 
 /obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
 	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
-	
+
 /obj/item/nullrod/chainsaw
 	name = "chainsaw hand"
 	desc = "Good? Bad? You're the guy with the chainsaw hand."
@@ -665,7 +665,7 @@
 	var/hud_type2 = DATA_HUD_MEDICAL_ADVANCED
 	menutab = MENU_CLOTHING
 	additional_desc = "This mysterious floating skull can communicate diagnostic reports to you regarding both mechanical and organic disciples around you."
-	
+
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(hud_type && slot == SLOT_NECK)
@@ -683,7 +683,7 @@
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
 		H2.remove_hud_from(user)
 
-/obj/item/nullrod/hermes 
+/obj/item/nullrod/hermes
 	name = "fairy boots"
 	desc = "Boots blessed by the god Hermes. Some say that they were discarded after being tainted by fae magic."
 	gender = PLURAL //Carn: for grammarically correct text-parsing, but over here too
@@ -787,7 +787,7 @@
 		return PROCESS_KILL // something has gone terribly wrong
 	if(!isliving(loc))
 		return PROCESS_KILL // something has gone terribly wrong
-	
+
 	var/notify = FALSE
 	if(COOLDOWN_FINISHED(src, holy_notification))
 		COOLDOWN_START(src, holy_notification, 0.8 SECONDS)

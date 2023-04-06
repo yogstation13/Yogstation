@@ -301,7 +301,7 @@
 	M.dropItemToGround(M.get_inactive_held_item())
 	B.temporary = !forced
 	B.stored_mob = M
-	M.forceMove(B)	
+	M.forceMove(B)
 	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
 	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
 	B.name = "[M.name] Parmesan"
@@ -396,7 +396,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 20
-	flag = MAGIC 
+	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/item/projectile/magic/locker
@@ -580,7 +580,7 @@
 		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)
 		if(A)
 			poll_message = "[poll_message] Status:[A.name]."
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 100, M)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 100, M, disallow_started_as_observer = TRUE)
 	if(M.stat == DEAD)//boo.
 		return
 	if(LAZYLEN(candidates))

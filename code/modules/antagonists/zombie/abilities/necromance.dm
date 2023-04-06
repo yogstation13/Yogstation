@@ -17,7 +17,7 @@
 		return FALSE
 
 	necromancing = TRUE
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a Necromanced Zombie?", ROLE_ZOMBIE, null, ROLE_ZOMBIE, 150)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a Necromanced Zombie?", ROLE_ZOMBIE, null, ROLE_ZOMBIE, 150, disallow_started_as_observer = TRUE)
 	necromancing = FALSE //Incase we runtime during the process below
 
 

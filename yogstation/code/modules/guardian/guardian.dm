@@ -639,7 +639,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			var/mob/living/simple_animal/hostile/guardian/G = para
 			if(G.summoner?.current.ckey == src.ckey)
 				users += carbon_minds
-				
+
 
 	for(var/datum/mind/user_minds in users)
 		if(!user_minds.current || user_minds.current == src)
@@ -665,7 +665,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	/// Will yield a "?"
 	else
 		to_chat(src, span_notice("There are no users nearby."))
-		
+
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
@@ -701,7 +701,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	G.reset()
 
 /mob/living/simple_animal/hostile/guardian/proc/reset(silent = FALSE, initiated_by = "user")
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [summoner.current.real_name]'s [real_name]? ([stats.short_info()])", ROLE_HOLOPARASITE, null, FALSE, 10 SECONDS)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [summoner.current.real_name]'s [real_name]? ([stats.short_info()])", ROLE_HOLOPARASITE, null, FALSE, 10 SECONDS, disallow_started_as_observer = TRUE)
 	if (!LAZYLEN(candidates))
 		if (!silent)
 			to_chat(src, span_holoparasite("There were no ghosts willing to take control of <font color=\"[namedatum.color]\"><b>[real_name]</b></font>. Looks like you're stuck with it for now."))

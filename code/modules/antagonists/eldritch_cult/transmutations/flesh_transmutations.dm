@@ -29,7 +29,7 @@
 	humie.grab_ghost()
 
 	if(!humie.mind || !humie.client)
-		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead?", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
+		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead?", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie, disallow_started_as_observer = TRUE)
 		if(!LAZYLEN(candidates))
 			return
 		var/mob/dead/observer/C = pick(candidates)
@@ -94,7 +94,7 @@
 		if("No")
 			var/mob/living/summoned = new /mob/living/simple_animal/hostile/eldritch/armsy(loc)
 			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc].")
-			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]?", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]?", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned, disallow_started_as_observer = TRUE)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
 				to_chat(user,span_warning("No ghost could be found..."))
