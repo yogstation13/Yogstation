@@ -298,7 +298,7 @@
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	force_wielded = 25
-	armour_penetration = 69 // Nice
+	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
 	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
 	heat = 1800 // It's a FIRE axe
 	w_class = WEIGHT_CLASS_NORMAL
