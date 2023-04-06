@@ -421,6 +421,7 @@
 	message = "whimpers."
 	message_mime = "appears hurt."
 	stat_allowed = SOFT_CRIT
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/wsmile
 	key = "wsmile"
