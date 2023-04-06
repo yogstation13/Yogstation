@@ -481,8 +481,14 @@
 
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	var/datum/species/S = H.dna?.species
+	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.add_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
-	..()
+	var/datum/species/S = H.dna?.species
+	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.remove_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = null 
+	..()
