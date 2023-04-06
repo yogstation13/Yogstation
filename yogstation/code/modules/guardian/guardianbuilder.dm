@@ -10,8 +10,9 @@
 	var/used = FALSE
 	var/allow_special = FALSE
 	var/debug_mode = FALSE
+	var/create_arrow = FALSE
 
-/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points, allow_special, debug_mode)
+/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points, allow_special, debug_mode, create_arrow)
 	..()
 	if (mob_name)
 		src.mob_name = mob_name
@@ -23,6 +24,7 @@
 		src.max_points = max_points
 	src.allow_special = allow_special
 	src.debug_mode = debug_mode
+	src.create_arrow = create_arrow
 
 /datum/guardianbuilder/ui_state(mob/user)
 	return GLOB.always_state
@@ -226,12 +228,13 @@
 				G.Destroy()
 				return FALSE
 		if(create_arrow)
-			var/turf/desired_turf = find_safe_turf()
-			if(desired_turf)
-				var/obj/item/stand_arrow/SA = new(desired_turf)
-				SA.uses = 1
-				notify_ghosts("A new [SA] was created from \a [src]!",source=SA)
-				message_admins(span_adminnotice("[key_name_admin(user)] used \a [src] that spawned a new [SA] at [AREACOORD(SA)]."))
+			if(prob(75))
+				var/turf/desired_turf = find_safe_turf()
+				if(desired_turf)
+					var/obj/item/stand_arrow/SA = new(desired_turf)
+					SA.uses = 1
+					notify_ghosts("A new [SA] was created from \a [src]!",source=SA)
+					message_admins(span_adminnotice("[key_name_admin(user)] used \a [src] that spawned a new [SA] at [AREACOORD(SA)]."))
 			create_arrow = FALSE //Just in case.
 
 		return TRUE
@@ -264,7 +267,7 @@
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
-	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
+	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode, create_arrow)
 
 /obj/item/guardiancreator/ComponentInitialize()
 	. = ..()
