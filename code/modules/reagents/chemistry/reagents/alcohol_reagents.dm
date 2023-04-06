@@ -823,6 +823,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
 	if(isethereal(M))
+		to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
 		var/mob/living/carbon/C = M
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
@@ -942,6 +943,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bahama Mama"
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
+/datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/carbon/M)
+	to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball...")
+	return ..()
+
 /datum/reagent/consumable/ethanol/singulo
 	name = "Singulo"
 	description = "A blue-space beverage!"
@@ -1027,6 +1032,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Aloe"
 	glass_desc = "Very, very, very good."
 
+/datum/reagent/consumable/ethanol/aloe/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(-2)
+	to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
+	return ..()
+
 /datum/reagent/consumable/ethanol/andalusia
 	name = "Andalusia"
 	description = "A nice, strangely named drink."
@@ -1049,6 +1059,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Allies cocktail"
 	glass_desc = "A drink made from your allies."
 
+/datum/reagent/consumable/ethanol/alliescocktail/on_mob_life(mob/living/carbon/M)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT "ally_power")
+	return ..()
+
 /datum/reagent/consumable/ethanol/acid_spit
 	name = "Acid Spit"
 	description = "A drink for the daring, can be deadly if incorrectly prepared!"
@@ -1062,6 +1076,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
 	if(ispolysmorph(M))
+		to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))
 		M.adjustFireLoss(-0.5)
 	return ..()
 
@@ -1119,6 +1134,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_life(mob/living/carbon/M)
 	if(is_syndicate(M))
+		to_chat(M, span_notice("The Syndicate will always Win!"))
 		M.heal_overall_damage(0.5, 0.5)
 	if(prob(5))
 		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
@@ -1189,11 +1205,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "A weird mix of whiskey and blumpkin juice."
 	color = "#1EA0FF" // rgb: 102, 67, 0
 	boozepwr = 50
-	quality = DRINK_VERYGOOD
+	quality = DRINK_GOOD
 	taste_description = "molasses and a mouthful of pool water"
 	glass_icon_state = "drunkenblumpkin"
 	glass_name = "Drunken Blumpkin"
 	glass_desc = "A drink for the drunks."
+
+/datum/reagent/consumable/ethanol/drunkenblumpkin/on_mob_life(mob/living/carbon/M)
+	if (M.drunkness > 10)
+		if(prop(30))
+			to_chat(M, span_notice("This pool water taste is too much"))
+			M.adjust_disgust(4)
+	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
 	name = "Whiskey Sour"
@@ -1237,6 +1260,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		step_towards(O, get_turf(M))
 
 	if(ispreternis(M))
+		to_chat(M, span_notice("You know how it feels to be a magnet now"))
 		for(var/obj/O in orange(2,M))
 			if(!O.anchored && (O.flags_1 & CONDUCT_1))
 				step_towards(O, get_turf(M))
@@ -1428,8 +1452,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				M.adjustToxLoss(2, 0)
 				. = 1
-	
+
 	if(ispodperson(M))
+		to_chat(M, span_notice("Man... You're so high, it feels like you're healing..."))
 		M.adjustBruteLoss(-1)
 		M.adjustFireLoss(-1)
 		M.adjustToxLoss(-0.5)
@@ -2371,6 +2396,26 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Amaretto Alexander"
 	glass_desc = "A creamy, indulgent delight that is in fact as gentle as it seems."
 
+/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_metabolize(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/thehuman = L
+		for(var/obj/item/shield/theshield in thehuman.contents)
+			mighty_shield = theshield
+			mighty_shield.block_chance += 2
+			to_chat(thehuman, span_notice("[theshield] looks a bit more shiny than usual, though you can't recall why"))
+			return TRUE
+
+/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_life(mob/living/L)
+	..()
+	if(mighty_shield && !(mighty_shield in L.contents)) //If you had a shield and lose it, you lose the reagent as well. Otherwise this is just a normal drink.
+		L.reagents.del_reagent(/datum/reagent/consumable/ethanol/alexander)
+
+/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_end_metabolize(mob/living/L)
+	if(mighty_shield)
+		mighty_shield.block_chance -= 10
+		to_chat(L,span_notice("You notice [mighty_shield] looks worn again? Maybe? Weird."))
+	..()
+
 /datum/reagent/consumable/ethanol/ginger_amaretto
 	name = "Ginger Amaretto"
 	description = "A delightfully simple cocktail that pleases the senses."
@@ -2524,6 +2569,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
 	if(ismoth(M))
+		to_chat(M, span_notice("You never knew how tasty shrooms in a drink could be. Until now!"))
 		M.adjustToxLoss(-2, 0)
 	return ..()
 

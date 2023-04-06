@@ -783,6 +783,7 @@
 
 /datum/reagent/consumable/chocolate/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		to_chat(M, span_notice("This is like Milk, but better!?"))
 		M.heal_bodypart_damage(2.0,0, 0)
 	..()
 	. = TRUE
@@ -800,6 +801,7 @@
 
 /datum/reagent/consumable/vanillapudding/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		to_chat(M, span_notice("This is like Milk, but better!?"))
 		M.heal_bodypart_damage(2.0,0, 0)
 	..()
 	. = TRUE
@@ -817,6 +819,7 @@
 
 /datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
+		to_chat(C, span_notice("Just like us, just like jelly!"))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
@@ -834,6 +837,7 @@
 
 /datum/reagent/consumable/bluecherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
+		to_chat(C, span_notice("Just like us, just like jelly!"))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
@@ -1063,5 +1067,6 @@
 
 /datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/C)
 	if(islizard(C))
+		to_chat(C, span_notice("The most important thing to a Lizard is their brains.... Probably"))
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
