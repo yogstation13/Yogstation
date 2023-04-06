@@ -944,7 +944,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
 /datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/carbon/M)
-	to_chat(M. span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
+	to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
 	return ..()
 
 /datum/reagent/consumable/ethanol/singulo
@@ -1060,7 +1060,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink made from your allies."
 
 /datum/reagent/consumable/ethanol/alliescocktail/on_mob_life(mob/living/carbon/M)
-	SEND_SIGNAL(M. COMSIG_ADD_MOOD_EVENT "ally_power"))
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit
@@ -2395,26 +2395,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "alexanderam"
 	glass_name = "Amaretto Alexander"
 	glass_desc = "A creamy, indulgent delight that is in fact as gentle as it seems."
-
-/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_metabolize(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/thehuman = L
-		for(var/obj/item/shield/theshield in thehuman.contents)
-			mighty_shield = theshield
-			mighty_shield.block_chance += 2
-			to_chat(thehuman, span_notice("[theshield] looks a bit more shiny than usual, though you can't recall why"))
-			return TRUE
-
-/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_life(mob/living/L)
-	..()
-	if(mighty_shield && !(mighty_shield in L.contents)) //If you had a shield and lose it, you lose the reagent as well. Otherwise this is just a normal drink.
-		L.reagents.del_reagent(/datum/reagent/consumable/ethanol/alexander)
-
-/datum/reagent/consumable/ethanol/amaretto_alexander/on_mob_end_metabolize(mob/living/L)
-	if(mighty_shield)
-		mighty_shield.block_chance -= 10
-		to_chat(L,span_notice("You notice [mighty_shield] looks worn again? Maybe? Weird."))
-	..()
 
 /datum/reagent/consumable/ethanol/ginger_amaretto
 	name = "Ginger Amaretto"
