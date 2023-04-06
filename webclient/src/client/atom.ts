@@ -1,7 +1,8 @@
 import { vec2, vec3 } from "gl-matrix";
 import { ByondClient } from ".";
 import { Appearance, Animation } from "./appearance";
-import { BatchRenderPlan, BillboardRenderPlan, BoxRenderPlan, DiagonalWallRenderPlan, EdgeRenderPlan, FloorRenderPlan, SmoothWallRenderPlan, WallmountRenderPlan, WindoorRenderPlan } from "./render_types";
+import { LightingRenderPlan } from "./lighting";
+import { BatchRenderPlan, BillboardRenderPlan, BoxRenderPlan, DiagonalWallRenderPlan, EdgeRenderPlan, FloorRenderPlan, RenderPlan, SmoothWallRenderPlan, WallmountRenderPlan, WindoorRenderPlan } from "./render_types";
 
 type AtomDependent = {mark_dirty(atom : Atom) : void};
 export class Atom implements AtomDependent {
@@ -68,7 +69,7 @@ export class Atom implements AtomDependent {
 		if(loc?.type == 1) return loc;
 		return null;
 	}
-	render_plan : BatchRenderPlan[]|null = null;
+	render_plan : RenderPlan[]|null = null;
 	get_render_plan(dt : number) {
 		if(!this.enabled) {
 			return null;
@@ -135,6 +136,17 @@ export class Atom implements AtomDependent {
 			
 
 			let list = this.render_plan;
+			if(this.vis_contents) for(let thing_id of this.vis_contents) {
+				let thing = this.client.get_atom(thing_id);
+				let thing_appearance = thing.appearance;
+				if(!thing_appearance) continue;
+				if(thing_appearance.plane == 16) {
+					thing.add_dependent(this);
+					list.push(new LightingRenderPlan(
+						x+0.5, y+0.5, (-(thing_appearance.transform?.[2] ?? 0) + 16) / 32, thing_appearance.color_alpha
+					));
+				}
+			}
 			if(appearance && appearance.invisibility <= this.client.eye_see_invisible) {
 				let tag = appearance.e3d_tag;
 				if(this.type == 1 && !tag?.length) {
@@ -235,7 +247,7 @@ const E3D_TYPE_EDGEFIREDOOR = "\x0A\x0B";
 const E3D_TYPE_EDGEWINDOOR = "\x0A\x0C";
 const E3D_TYPE_GAS_OVERLAY = "\x0A\x0D";
 
-let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], appearance:Appearance, x:number, y:number) => void>(Object.entries({
+let e3d_type_handlers = new Map<string, (this: Atom, list : RenderPlan[], appearance:Appearance, x:number, y:number) => void>(Object.entries({
 	[E3D_TYPE_BILLBOARD](list, appearance, x, y) : void {
 		x += appearance.pixel_x/32;
 		y += appearance.pixel_y/32;
@@ -262,7 +274,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					thing_appearance = thing.animation.apply(thing_appearance, this.client.time);
 					this.render_plan = null;
 				}
-				if(thing_appearance.plane == 12) continue;
+				if(thing_appearance.plane == 12 || thing_appearance.plane == 16) continue;
 				let plan;
 				let bias = -0.051;
 				thing_appearance = thing_appearance.copy_inherit(appearance, thing, true);
@@ -307,7 +319,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 		}
 		if(vis_contents) for(let vc of vis_contents) {
 			let appearance = this.client.get_atom(vc).appearance;
-			if(!appearance) continue;
+			if(!appearance || appearance.plane == 16) continue;
 			if(appearance.e3d_tag == E3D_TYPE_GAS_OVERLAY) {
 				list.push(new BoxRenderPlan(this.full_id, appearance, x, y).set_alpha_sort([x+0.5,y+0.5,0.5], -0.2))
 			}
@@ -331,7 +343,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					thing_appearance = thing.animation.apply(thing_appearance, this.client.time);
 					this.render_plan = null;
 				}
-				if(thing_appearance.plane == 12) continue;
+				if(thing_appearance.plane == 12 || thing_appearance.plane == 16) continue;
 				let plan;
 				list.push(plan = new WallmountRenderPlan(this.full_id, thing_appearance, x, y, pixel_x, pixel_y, 0.011, false));
 				if(thing_appearance.plane == 13 || thing_appearance.plane == 14 || thing_appearance.plane > 15) {
@@ -442,6 +454,7 @@ let e3d_type_handlers = new Map<string, (this: Atom, list : BatchRenderPlan[], a
 					thing_appearance = thing.animation.apply(thing_appearance, this.client.time);
 					this.render_plan = null;
 				}
+				if(thing_appearance.plane == 16) continue;
 				let plan;
 				list.push(plan = new BillboardRenderPlan(this.full_id, thing_appearance, x+0.5, y+0.5, is_wide ? [0,-1,0]:undefined, is_wide, true));
 				plan.offset_x += thing_appearance.pixel_x+thing_appearance.pixel_w;

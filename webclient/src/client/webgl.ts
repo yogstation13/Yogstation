@@ -2,7 +2,7 @@ import { glMatrix, mat4, vec2, vec3, vec4 } from "gl-matrix";
 import { ByondClient } from ".";
 import { Atom } from "./atom";
 import { Icon } from "./icon";
-import { LightingHolder } from "./lighting";
+import { LightingHolder, LightingRenderPlan } from "./lighting";
 import { BatchRenderPlan } from "./render_types";
 import { array_to_buffer, bind_shader_3d } from "./shader";
 
@@ -12,7 +12,7 @@ export class GlHolder {
 	canvas : HTMLCanvasElement;
 	gl : WebGLRenderingContext;
 	gl2 : WebGL2RenderingContext|null;
-	lighting_holder = new LightingHolder(this);
+	lighting_holder : LightingHolder;
 	mouse_framebuffer : WebGLFramebuffer|null;
 	stats_elem : HTMLElement;
 	constructor(public client : ByondClient) {
@@ -30,6 +30,8 @@ export class GlHolder {
 		if(!gl) throw new Error("No WebGL!");
 		this.gl = gl;
 		this.gl2 = gl2;
+
+		this.lighting_holder = new LightingHolder(this);
 
 		this.stats_elem = document.createElement("pre");
 		this.stats_elem.style.background = "rgba(0,0,0,0.5)"
@@ -127,6 +129,7 @@ export class GlHolder {
 		let act_camera_pos = this.inv_view_matrix.slice(12, 15) as vec3;
 
 		let instance_lists : Map<number, BatchRenderPlan[]> = new Map();
+		let lighting_list : LightingRenderPlan[] = [];
 		let sorted_instance_lists : BatchRenderPlan[] = [];
 		let extended_draw_dist = this.draw_dist + 1.9;
 		let turf_x1 = Math.floor(this.camera_pos[0]-extended_draw_dist);
@@ -137,7 +140,9 @@ export class GlHolder {
 			let plan = thing.get_render_plan(dt);
 			if(!plan) return;
 			for(let item of plan) {
-				if(item.alpha_sort_focus) {
+				if(item instanceof LightingRenderPlan) {
+					lighting_list.push(item);
+				} else if(item.alpha_sort_focus) {
 					item._alpha_sort_dist = vec3.squaredDistance(act_camera_pos, item.alpha_sort_focus) + item.alpha_sort_bias;
 					sorted_instance_lists.push(item);
 				} else {
@@ -175,6 +180,10 @@ export class GlHolder {
 			}
 		}
 
+		let o_lightmap = this.lighting_holder.update_o_lightmap(lighting_list);
+		
+		gl.viewport(0,0,this.gl.drawingBufferWidth, this.gl.drawingBufferHeight);
+
 		let info = bind_shader_3d(gl);
 		this.update_enabled_vertex_attribs([info.aPosition, info.aNormal, info.aColor, info.aUV, info.aSheetIndex, info.aBits]);
 		gl.uniformMatrix4fv(info.viewMatrix, false, this.view_matrix);
@@ -185,6 +194,10 @@ export class GlHolder {
 		gl.uniform1i(info.lightTexture, 1);
 		gl.uniform1f(info.lightWidth, this.lighting_holder.last_maxx);
 		gl.uniform1f(info.lightHeight, this.lighting_holder.last_maxy);
+		gl.activeTexture(gl.TEXTURE2);
+		gl.bindTexture(gl.TEXTURE_2D, o_lightmap);
+		gl.uniform1i(info.oLightTexture, 2);
+		gl.uniform4fv(info.overlayLightBox, this.lighting_holder.o_lightmap_box);
 		gl.uniform1f(info.drawDist, this.draw_dist);
 		let lighting_pm_color = (this.client.ui.plane_masters.get(15)?.appearance?.color_alpha);
 		gl.uniform1f(info.lightInfluence, lighting_pm_color == null ? 1 : ((lighting_pm_color >>> 24) / 255));

@@ -1,6 +1,9 @@
 import { mat3, mat4, vec2, vec3, vec4 } from "gl-matrix";
 import { Appearance } from "./appearance";
 import { Icon, IconState } from "./icon";
+import { LightingRenderPlan } from "./lighting";
+
+export type RenderPlan = BatchRenderPlan|LightingRenderPlan;
 
 let plane_normal = vec3.create();
 

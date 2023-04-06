@@ -63,6 +63,54 @@ function build_shader_info<A extends readonly string[], U extends readonly strin
 	return obj;
 }
 
+let uniforms_lighting = [
+	"bounds"
+] as const;
+let attribs_lighting = [
+	"aPosition", "aUV", "aColor"
+] as const;
+
+function shader_code_lighting() : [string, string] {
+	return [
+`
+precision highp float;
+
+uniform vec4 bounds;
+attribute vec2 aPosition;
+attribute vec2 aUV;
+attribute vec4 aColor;
+varying vec4 vColor;
+varying vec2 vUV;
+
+void main() {
+	gl_Position = vec4(
+		(aPosition.x - bounds.x) / (bounds.z - bounds.x) * 2.0 - 1.0,
+		(aPosition.y - bounds.y) / (bounds.w - bounds.y) * 2.0 - 1.0,
+		0, 1
+	);
+	vColor = aColor;
+	vUV = aUV;
+}
+
+`,`
+
+precision mediump float;
+
+varying vec4 vColor;
+varying vec2 vUV;
+
+void main() {
+	gl_FragColor = clamp(1.0 - length(vUV), 0.0, 1.0) * vColor;
+}
+
+`
+	]
+}
+
+export function bind_shader_lighting(gl : WebGLRenderingContext) {
+	return bind_shader(gl, "lighting", () => shader_code_lighting(), attribs_lighting, uniforms_lighting);
+}
+
 const SPRITE_MARGIN = 0.003;
 
 let uniforms_3d = [
@@ -70,7 +118,8 @@ let uniforms_3d = [
 	"sheetWidth","sheetHeight",
 	"iconWidth","iconHeight","iconTexture",
 	"lightWidth","lightHeight","lightTexture","lightInfluence",
-	"blind","cameraPos","drawDist","isIdPass"] as const;
+	"blind","cameraPos","drawDist","isIdPass",
+	"oLightTexture", "overlayLightBox"] as const;
 let attribs_3d = ["aPosition", "aNormal", "aColor","aUV","aSheetIndex","aBits"] as const;
 function shader_code_3d() : [string, string] {
 	return [
@@ -122,6 +171,7 @@ uniform float iconWidth;
 uniform float iconHeight;
 uniform float lightWidth;
 uniform float lightHeight;
+uniform vec4 overlayLightBox;
 uniform float isIdPass;
 uniform float lightInfluence;
 uniform float blind;
@@ -129,6 +179,7 @@ uniform float drawDist;
 uniform vec3 cameraPos;
 uniform sampler2D iconTexture;
 uniform sampler2D lightTexture;
+uniform sampler2D oLightTexture;
 void main() {
 	
 	float dist = max(abs(cameraPos.x - vXYPos.x), abs(cameraPos.y - vXYPos.y));
@@ -158,17 +209,29 @@ void main() {
 	if(color.a < (0.01 - isIdPass * 0.008)) discard;
 	if(isIdPass < 0.5) {
 		if(!${extract_bit("vBits", 0)}) {
+			vec3 lighting = vec3(1.0,1.0,1.0);
 			if(lightAlpha > 0.5 && lightInfluence > 0.001) {
-				vec3 lighting;
 				if(lightAlpha > 0.75) {
 					lighting = vec3(0.0);
 				} else {
 					lighting = texture2D(lightTexture, (lightPos + vec2(0.5)) * lightSizeScale).rgb;
 				}
 				lighting = min(lighting + vec3(feelPass) * 0.11, vec3(1.0));
-				lighting = vec3(1.0) - (vec3(1.0) - lighting) * lightInfluence;
-				color.rgb *= lighting;
 			}
+			if(
+				vXYPos.x >= overlayLightBox.x
+				&& vXYPos.y >= overlayLightBox.y
+				&& vXYPos.x <= overlayLightBox.z
+				&& vXYPos.y <= overlayLightBox.w
+			) {
+				vec4 oLight = texture2D(oLightTexture, vec2(
+					(vXYPos.x - overlayLightBox.x) / (overlayLightBox.z - overlayLightBox.x),
+					(vXYPos.y - overlayLightBox.y) / (overlayLightBox.w - overlayLightBox.y)
+				));
+				lighting = lighting * (1.0 - oLight.a) + oLight.rgb;
+			}
+			lighting = vec3(1.0) - (vec3(1.0) - lighting) * lightInfluence;
+			color.rgb *= lighting;
 		}
 		if(blind > 0.5) color.rgb *= feelPass;
 		color.rgb *= clamp(drawDist - dist, 0.0, 1.0);

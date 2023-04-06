@@ -19,7 +19,7 @@
 /datum/admins/proc/toggleloocdead()
 	set category = "Server"
 	set desc = "seriously, why do we even bother"
-	set name = "Toggle Dead LOOC"
+	set name = "Toggle Dead LOOC Chat"
 
 	toggle_dlooc()
 	log_admin("[key_name(usr)] toggled Dead LOOC.")
