@@ -230,6 +230,8 @@
 			if(desired_turf)
 				var/obj/item/stand_arrow/SA = new(desired_turf)
 				SA.uses = 1
+				notify_ghosts("A new [SA] was created from \a [src]!",source=SA)
+				message_admins(span_adminnotice("[key_name_admin(user)] used \a [src] that spawned a new [SA] at [AREACOORD(SA)]."))
 			create_arrow = FALSE //Just in case.
 
 		return TRUE
@@ -347,7 +349,7 @@
 
 /obj/item/guardiancreator/tech
 	name = "holoparasite injector"
-	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
+	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel. Notice: The syndicate is not responsible for any shenanigans involving strange stand-related artifacts appearing in the local area due to messing around with the power of universe."
 	icon = 'icons/obj/syringe.dmi'
 	icon_state = "old_combat_hypo"
 	theme = "tech"
