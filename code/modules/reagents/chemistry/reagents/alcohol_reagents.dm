@@ -1215,7 +1215,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if (M.drunkness > 10)
 		if(prop(30))
 			to_chat(M, span_notice("This pool water taste is too much"))
-			M.adjust_disgust(4)
+			M.adjust_disgust(3)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
