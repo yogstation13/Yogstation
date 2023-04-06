@@ -1213,7 +1213,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/drunkenblumpkin/on_mob_life(mob/living/carbon/M)
 	if(M.drunkenness > 20)
-		if(prop(30))
+		if(prob(30))
 			to_chat(M, span_notice("This pool water taste is too much"))
 			M.adjust_disgust(3)
 	return ..()
