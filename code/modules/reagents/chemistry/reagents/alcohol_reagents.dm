@@ -1236,10 +1236,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/drunkenblumpkin/reaction_mob(mob/living/M, method=INGEST)
 	if(method != INGEST)
-		if(M.drunkenness > 20)
-			if(prob(30))
-				to_chat(M, span_notice("This pool water taste is too much"))
-				M.adjust_disgust(3)
+		if(prob(30))
+			to_chat(M, span_notice("This pool water taste is too much"))
+			M.adjust_disgust(3)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
