@@ -830,6 +830,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
 
+/datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(isethereal(M))
+			to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
+	return ..()
+
 /datum/reagent/consumable/ethanol/whiskeysoda
 	name = "Whiskey Soda"
 	description = "For the more refined griffon."
@@ -943,8 +949,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bahama Mama"
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
-/datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/carbon/M)
-	to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
+/datum/reagent/consumable/ethanol/bahama_mama/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
 	return ..()
 
 /datum/reagent/consumable/ethanol/singulo
@@ -1034,7 +1041,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/aloe/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2)
-	to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
+	return ..()
+
+/datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/andalusia
@@ -1059,8 +1070,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Allies cocktail"
 	glass_desc = "A drink made from your allies."
 
-/datum/reagent/consumable/ethanol/alliescocktail/on_mob_life(mob/living/carbon/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
+/datum/reagent/consumable/ethanol/alliescocktail/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit
@@ -1076,8 +1088,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
 	if(ispolysmorph(M))
-		to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))
 		M.adjustFireLoss(-0.5)
+	return ..()
+
+/datum/reagent/consumable/ethanol/acid_spit/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(ispolysmorph(M))
+			to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/amasec
@@ -1138,6 +1155,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.heal_overall_damage(0.5, 0.5)
 	if(prob(5))
 		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
+	return ..()
+
+/datum/reagent/consumable/ethanol/syndicatebomb/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(is_syndicate(M))
+			to_chat(M, span_notice("The Syndicate will always Win!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/erikasurprise
@@ -1211,11 +1234,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Drunken Blumpkin"
 	glass_desc = "A drink for the drunks."
 
-/datum/reagent/consumable/ethanol/drunkenblumpkin/on_mob_life(mob/living/carbon/M)
-	if(M.drunkenness > 20)
-		if(prob(30))
-			to_chat(M, span_notice("This pool water taste is too much"))
-			M.adjust_disgust(3)
+/datum/reagent/consumable/ethanol/drunkenblumpkin/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(M.drunkenness > 20)
+			if(prob(30))
+				to_chat(M, span_notice("This pool water taste is too much"))
+				M.adjust_disgust(3)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
@@ -1260,10 +1284,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		step_towards(O, get_turf(M))
 
 	if(ispreternis(M))
-		to_chat(M, span_notice("You know how it feels to be a magnet now"))
 		for(var/obj/O in orange(2,M))
 			if(!O.anchored && (O.flags_1 & CONDUCT_1))
 				step_towards(O, get_turf(M))
+	return ..()
+
+/datum/reagent/consumable/ethanol/fetching_fizz/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(ispreternis(M))
+			to_chat(M, span_notice("You know how it feels to be a magnet now"))
 	return ..()
 
 //Another reference. Heals those in critical condition extremely quickly.
@@ -1454,11 +1483,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				. = 1
 
 	if(ispodperson(M))
-		to_chat(M, span_notice("Man... You're so high, it feels like you're healing..."))
 		M.adjustBruteLoss(-1)
 		M.adjustFireLoss(-1)
 		M.adjustToxLoss(-0.5)
 		M.adjustOxyLoss(-3)
+	return ..()
+
+/datum/reagent/consumable/ethanol/hippies_delight/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(ispodperson(M))
+			to_chat(M, span_notice("Man... You're so high, it feels like you're healing..."))
 	return ..()
 
 /datum/reagent/consumable/ethanol/eggnog
@@ -2549,8 +2583,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
 	if(ismoth(M))
-		to_chat(M, span_notice("You never knew how tasty shrooms in a drink could be. Until now!"))
 		M.adjustToxLoss(-2, 0)
+	return ..()
+
+/datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, method=INGEST)
+	if(method != INGEST)
+		if(ismoth(M))
+			to_chat(M, span_notice("You never knew how tasty shrooms in a drink could be. Until now!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/triumphal_arch
