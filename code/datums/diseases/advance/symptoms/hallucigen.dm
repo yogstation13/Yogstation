@@ -32,7 +32,7 @@ Bonus
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 4" = "The virus mimics positive symptoms.",
 	)
-	affectrobot = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/symptom/hallucigen/Start(datum/disease/advance/A)
 	. = ..()

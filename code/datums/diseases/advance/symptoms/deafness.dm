@@ -32,7 +32,7 @@ Bonus
 		"Resistance 9" = "Causes permanent deafness, instead of intermittent.",
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
-	affectrobot = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()
