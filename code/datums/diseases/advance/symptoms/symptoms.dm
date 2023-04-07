@@ -55,13 +55,16 @@
 /datum/symptom/proc/Activate(datum/disease/advance/A)
 	if(neutered)
 		return FALSE
-	if(A.affected_mob?.dna?.species?.reagent_tag & PROCESS_SYNTHETIC && !(process_flags & SYNTHETIC))//some symptoms don't affect synthetic mobs
-		return FALSE
-	if(A.affected_mob?.dna?.species?.reagent_tag & PROCESS_ORGANIC && !(process_flags & ORGANIC))//some symptoms don't affect organic mobs
-		return FALSE
 	if(world.time < next_activation)
 		return FALSE
-	else
+
+	var/can_process = FALSE
+	if(!can_process && A.affected_mob?.dna?.species?.reagent_tag & PROCESS_SYNTHETIC && (process_flags & SYNTHETIC))//some symptoms don't affect synthetic mobs
+		can_process = TRUE
+	if(!can_process && A.affected_mob?.dna?.species?.reagent_tag & PROCESS_ORGANIC && (process_flags & ORGANIC))//some symptoms don't affect organic mobs
+		can_process = TRUE
+		
+	if(can_process)
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
 
