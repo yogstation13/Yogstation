@@ -1325,6 +1325,7 @@
 
 /datum/reagent/nitrium_high_metabolization/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
+	return ..()
 
 /datum/reagent/nitrium_high_metabolization/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(2 * REM)
