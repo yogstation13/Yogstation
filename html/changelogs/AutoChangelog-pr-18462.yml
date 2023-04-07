@@ -1,5 +1,0 @@
-author: "MajManatee"
-delete-after: true 
-changes: 
-  - bugfix: "Backend naming changes to fix printability"
-  - tweak: "Made reporter printable from the laithe"
