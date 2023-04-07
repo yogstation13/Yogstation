@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "deathnettle throwforce reduced from 15 to 10"
+  - tweak: "nettles and deathnettles have had their acid trait %s reduced from 50% to 10%"
