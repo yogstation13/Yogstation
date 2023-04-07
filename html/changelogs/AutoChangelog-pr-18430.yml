@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "Bluespace activity now has half teleport radius and caps plant throw range to 2 tiles"
