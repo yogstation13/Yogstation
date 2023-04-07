@@ -21,6 +21,7 @@
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
+	affectrobot = TRUE
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
 	. = ..()

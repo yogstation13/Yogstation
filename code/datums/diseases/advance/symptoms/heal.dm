@@ -380,6 +380,7 @@
 		"Transmission 6" = "Increases temperature adjustment rate.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
+	affectrobot = TRUE //only really for temp stabilize
 
 /datum/symptom/heal/plasma/Start(datum/disease/advance/A)
 	. = ..()

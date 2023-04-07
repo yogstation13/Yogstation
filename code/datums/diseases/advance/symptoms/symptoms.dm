@@ -29,6 +29,7 @@
 	var/neutered = FALSE
 	var/list/thresholds
 	var/naturally_occuring = TRUE //if this symptom can appear from /datum/disease/advance/GenerateSymptoms()
+	var/affectrobot = FALSE //some symptoms don't affect robotic mobs
 
 /datum/symptom/New()
 	var/list/S = SSdisease.list_symptoms
@@ -53,6 +54,8 @@
 
 /datum/symptom/proc/Activate(datum/disease/advance/A)
 	if(neutered)
+		return FALSE
+	if(A.affected_mob?.dna?.species?.reagent_tag & PROCESS_SYNTHETIC && !affectrobot)//some symptoms don't affect synthetic mobs
 		return FALSE
 	if(world.time < next_activation)
 		return FALSE
