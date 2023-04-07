@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/list/royalers = list()
 	if(GLOB.player_list.len <= 1) //It's a localhost testing
 		return
-	if(!GLOB.battleroyale_players.len) //sanity check for if this gets called before people are added to the list somehow
+	if(!LAZYLEN(GLOB.battleroyale_players)) //sanity check for if this gets called before people are added to the list somehow
 		message_admins("Somehow no one is signed up to battle royale but check_win has been called, please contact someone to fix it.")
 		return
 
