@@ -23,22 +23,16 @@
 /// Set up our actions, disable gloves
 /obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
 	. = ..()
-	var/datum/species/S = N.dna?.species
-	S.add_no_equip_slot(N, SLOT_GLOVES)
 	megabuster_action.Grant(N)
 	buster_style.teach(N)
 	to_chat(owner, "[span_boldannounce("You've gained the ability to use Buster Style!")]")
-	ADD_TRAIT(N, TRAIT_SHOCKIMMUNE, type)
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
-	var/datum/species/S = N.dna?.species
-	S.remove_no_equip_slot(N, SLOT_GLOVES)
 	megabuster_action.Remove(N)
 	buster_style.remove(N)
 	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	REMOVE_TRAIT(N, TRAIT_SHOCKIMMUNE, type)
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
@@ -75,22 +69,16 @@
 /// Set up our actions, disable gloves
 /obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
 	. = ..()
-	var/datum/species/S = N.dna?.species
-	S.add_no_equip_slot(N, SLOT_GLOVES)
 	megabuster_action.Grant(N)
 	buster_style.teach(N)
 	to_chat(owner, span_boldannounce("You've gained the ability to use Buster Style!"))
-	ADD_TRAIT(N, TRAIT_SHOCKIMMUNE, type)
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
-	var/datum/species/S = N.dna?.species
-	S.remove_no_equip_slot(N, SLOT_GLOVES)
 	megabuster_action.Remove(N)
 	buster_style.remove(N)
 	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
-	REMOVE_TRAIT(N, TRAIT_SHOCKIMMUNE, type)
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm

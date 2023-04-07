@@ -94,7 +94,7 @@
 	burst_size = 2
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	can_suppress = FALSE
+	can_suppress = TRUE // its been 6 years, get with the times old man!
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12

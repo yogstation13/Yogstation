@@ -18,8 +18,10 @@
 					/obj/item/reagent_containers/glass/mixbowl = 3, // Yogs -- chef's mixing bowl 
 					/obj/item/reagent_containers/food/condiment/cinnamon = 5, // Yogs -- cinnamon shakers!
 					/obj/item/plate = 10) 
-	contraband = list(/obj/item/kitchen/knife/butcher = 2, // Yogs -- Pan
-					  /obj/item/melee/fryingpan = 2) // Yogs -- Pan
+	contraband = list(/obj/item/kitchen/knife/butcher = 2,
+					  /obj/item/melee/fryingpan = 2,	// Yogs -- Pan
+					  /obj/item/twohanded/bigspoon = 2, // Yogs -- Big spoon
+					  ) 
 	refill_canister = /obj/item/vending_refill/dinnerware
 	default_price = 5
 	extra_price = 50

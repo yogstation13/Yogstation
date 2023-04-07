@@ -165,9 +165,9 @@
 	if(bait)
 		fishing_power += bait.fishing_power
 
-/obj/item/twohanded/fishingrod/collapsable
-	name = "collapsable fishing rod"
-	desc = "A collapsable fishing rod! This one can fit into your backpack for space hikes and the like."
+/obj/item/twohanded/fishingrod/collapsible
+	name = "collapsible fishing rod"
+	desc = "A collapsible fishing rod! This one can fit into your backpack for space hikes and the like."
 	icon_state = "fishing_rod_collapse_c"
 	fishing_power = 15
 	w_class = WEIGHT_CLASS_SMALL //it starts collapsed and small
@@ -175,7 +175,7 @@
 	var/rod_icon_state = "fishing_rod_collapse"
 	
 
-/obj/item/twohanded/fishingrod/collapsable/attackby(obj/item/B, mob/user, params)
+/obj/item/twohanded/fishingrod/collapsible/attackby(obj/item/B, mob/user, params)
 	if(!istype(B,/obj/item/reagent_containers/food/snacks/bait))
 		return
 	if(!opened)
@@ -183,12 +183,12 @@
 		return
 	..()
 
-/obj/item/twohanded/fishingrod/collapsable/AltClick(mob/living/user)
+/obj/item/twohanded/fishingrod/collapsible/AltClick(mob/living/user)
 	if(bait)
 		return ..()
 	toggle(user)
 
-/obj/item/twohanded/fishingrod/collapsable/proc/toggle(mob/user)
+/obj/item/twohanded/fishingrod/collapsible/proc/toggle(mob/user)
 	if(wielded)
 		to_chat(user,"You can't collapse the rod if you are holding it with both hands")
 		return
@@ -201,24 +201,25 @@
 	w_class = opened ? WEIGHT_CLASS_BULKY : WEIGHT_CLASS_SMALL
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	update_icon()
+	user.regenerate_icons()
 
-/obj/item/twohanded/fishingrod/collapsable/update_icon()
+/obj/item/twohanded/fishingrod/collapsible/update_icon()
 	item_state = opened ? "fishing_rod" : ""
 	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
 
-/obj/item/twohanded/fishingrod/collapsable/attack_self(mob/user)
+/obj/item/twohanded/fishingrod/collapsible/attack_self(mob/user)
 	if(!opened)
 		toggle(user)
 		return
 	..()
 
-/obj/item/twohanded/fishingrod/collapsable/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/twohanded/fishingrod/collapsible/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!opened)
-		to_chat(user,"The collapsable rod has to be open before you can do anything!")
+		to_chat(user,"The collapsible rod has to be open before you can do anything!")
 		return
 	..()
 
-/obj/item/twohanded/fishingrod/collapsable/miningmedic
+/obj/item/twohanded/fishingrod/collapsible/miningmedic
 	name = "ol' reliable"
 	desc = "Hey! I caught a miner!"
 	icon_state = "fishing_rod_miningmedic_c"
