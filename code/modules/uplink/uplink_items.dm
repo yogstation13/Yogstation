@@ -1954,10 +1954,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 25
 
 /datum/uplink_item/implants/antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
+	name = "Upgraded CNS Rebooter Implant"
+	desc = "This implant will help you get back up on your feet faster after being stunned. \
+			This version is modified to help reduce exhaustion during combat. \
+			Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/anti_stun
-	cost = 12
+	cost = 8
 	surplus = 0
 
 /datum/uplink_item/implants/freedom
