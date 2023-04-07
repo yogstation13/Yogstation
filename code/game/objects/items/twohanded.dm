@@ -339,7 +339,7 @@
 	if(!proximity)
 		return
 	if(wielded && !QDELETED(A)) // Does x2 damage against inanimate objects like machines, structures, mechs, etc
-		if(istype(A, /obj) && !istype(A, /obj/item))
+		if(isobj(A) && !isitem(A))
 			var/obj/O = A
 			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 
@@ -362,6 +362,12 @@
 	if(!wielded)
 		return FALSE // Shouldn't be able to ignite stuff if it's off
 	..()
+
+/obj/item/twohanded/fireaxe/energy/process()
+	if(!wielded)
+		STOP_PROCESSING(SSobj, src)
+		return PROCESS_KILL
+	open_flame(heat)
 
 /*
  * Double-Bladed Energy Swords - Cheridan
