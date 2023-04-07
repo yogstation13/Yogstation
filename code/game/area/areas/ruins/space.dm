@@ -474,6 +474,7 @@
 	name = "Syndicate Derelict Solar Array"
 	icon_state = "yellow"
 	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 
 /area/ruin/space/has_grav/syndiederelict/hydroponics
 	name = "Syndicate Derelict Hydroponics"
