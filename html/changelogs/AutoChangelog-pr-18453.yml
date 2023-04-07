@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "x-ray bolts and lasers can pass through doors, lockers and machines"
-  - bugfix: "a door not having glass no longer prevents things from passing through if they're supposed to be able to pass through doors"
