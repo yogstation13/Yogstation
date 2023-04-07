@@ -473,6 +473,7 @@
 /area/ruin/space/has_grav/syndiederelict/solars
 	name = "Syndicate Derelict Solar Array"
 	icon_state = "yellow"
+	requires_power = FALSE
 
 /area/ruin/space/has_grav/syndiederelict/hydroponics
 	name = "Syndicate Derelict Hydroponics"
