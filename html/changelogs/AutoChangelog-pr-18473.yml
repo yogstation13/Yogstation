@@ -1,0 +1,5 @@
+author: "ReddicusDragon"
+delete-after: true 
+changes: 
+  - bugfix: "Keybind settings no longer bluescreens on edge conditions."
+  - experiment: "Updated preferences."
