@@ -43,7 +43,7 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
-	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE))
+	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
 			walk(K,0)
@@ -481,8 +481,14 @@
 
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	var/datum/species/S = H.dna?.species
+	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.add_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
-	..()
+	var/datum/species/S = H.dna?.species
+	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.remove_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = null 
+	..()
