@@ -602,6 +602,13 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ethereal
 	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
+	
+/datum/reagent/mutationtoxin/preternis
+	name = "Preternis Mutation Toxin"
+	description = "A metallic precursor toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/preternis
+	mutationtext = span_danger("The pain subsides. You feel... optimized.")
 
 /datum/reagent/mutationtoxin/polysmorph
 	name = "Polysmorph Mutation Toxin"
