@@ -358,4 +358,9 @@
 	suffix = "nicelittlenest.dmm"
 	name = "Cozy Home"
 	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
-	
+
+/datum/map_template/ruin/space/syndicate_derelict_station
+	id = "syndicatederelictstation"
+	suffix = "syndicate_derelict_station.dmm"
+	name = "Syndicate Derelict Station"
+	description = "A remote station once used to be a syndicate research wing. Due to an unknown issue, it has been since abandoned as a bunch of floating debris."

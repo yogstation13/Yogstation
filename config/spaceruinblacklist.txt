@@ -52,3 +52,4 @@
 #_maps/RandomRuins/SpaceRuins/pubby_monastery.dmm
 #_maps/RandomRuins/SpaceRuins/bigape.dmm
 #_maps/RandomRuins/SpaceRuins/nicelittlenest.dmm
+#_maps/RandomRuins/SpaceRuins/syndicate_derelict_station.dmm
