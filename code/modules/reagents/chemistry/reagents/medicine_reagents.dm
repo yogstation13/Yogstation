@@ -449,7 +449,7 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	for(var/thing in M.diseases)//lets it cure viruses from IPC
+	for(var/thing in L.diseases)//lets it cure viruses from IPC
 		var/datum/disease/D = thing
 		D.cure()
 
