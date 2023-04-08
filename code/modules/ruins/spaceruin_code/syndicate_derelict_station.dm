@@ -8,3 +8,8 @@
 	name = "unfinished paper scrap"
 	desc = "It appears to have been written in a rush. Unfortunately, the blood stain does not give a clear view of its text."
 	info = "##### -- there's no way this fucking happened...<br><br>whoever sees this, please, let them kno-- ###-_"
+
+/obj/item/paper/crumpled/bloody/ruins/syndicate_derelict_station/lore2
+	name = "bloody paper scrap"
+	desc = "Barely readable due to the blood stains covering the whole paper."
+	info = "##### -- DO NOT G-###-_ SIDE__###"
