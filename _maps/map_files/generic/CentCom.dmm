@@ -21648,7 +21648,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/nullrod/claymore/glowing{
+/obj/item/nullrod/glowing{
 	damtype = "stamina";
 	force = 30
 	},
@@ -23426,7 +23426,7 @@
 /area/centcom/testchamber)
 "aVF" = (
 /obj/structure/rack,
-/obj/item/nullrod/scythe/vibro{
+/obj/item/nullrod/vibro{
 	damtype = "stamina";
 	force = 30
 	},

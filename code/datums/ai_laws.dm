@@ -107,7 +107,7 @@
 					"Protect the weak from oppression and intimidation.",\
 					"Protect the innocent from deception and manipulation.",\
 					"Protect the peaceful from violence and disorder.",\
-					"Respect the rights of all to liberty, equality, and justice.")
+					"Respect the rights of all to liberty, equality, and justice.") 
 
 /datum/ai_laws/researcher
 	name = "Truth and Knowledge for all"
