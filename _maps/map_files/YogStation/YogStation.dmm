@@ -91,6 +91,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "aal" = (
@@ -50135,6 +50138,9 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "qai" = (
