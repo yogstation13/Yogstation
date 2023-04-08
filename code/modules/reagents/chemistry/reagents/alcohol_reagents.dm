@@ -831,7 +831,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(isethereal(M))
 			to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
 	return ..()
@@ -950,7 +950,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
 /datum/reagent/consumable/ethanol/bahama_mama/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		to_chat(M, span_notice("Bro, you totally have the need to shred some waves and play some beachball..."))
 	return ..()
 
@@ -1044,7 +1044,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
 	return ..()
 
@@ -1071,7 +1071,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink made from your allies."
 
 /datum/reagent/consumable/ethanol/alliescocktail/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
 	return ..()
 
@@ -1092,7 +1092,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(ispolysmorph(M))
 			to_chat(M, span_notice("Ah! The sweet taste of Acid to wash the burns away"))
 	return ..()
@@ -1158,7 +1158,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/syndicatebomb/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(is_syndicate(M))
 			to_chat(M, span_notice("The Syndicate will always Win!"))
 	return ..()
@@ -1235,7 +1235,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink for the drunks."
 
 /datum/reagent/consumable/ethanol/drunkenblumpkin/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(prob(30))
 			to_chat(M, span_notice("This pool water taste is too much"))
 			M.adjust_disgust(3)
@@ -1289,7 +1289,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/fetching_fizz/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(ispreternis(M))
 			to_chat(M, span_notice("You know how it feels to be a magnet now"))
 	return ..()
@@ -1489,7 +1489,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/hippies_delight/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(ispodperson(M))
 			to_chat(M, span_notice("Man... You're so high, it feels like you're healing..."))
 	return ..()
@@ -2586,7 +2586,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(ismoth(M))
 			to_chat(M, span_notice("You never knew how tasty shrooms in a drink could be. Until now!"))
 	return ..()
