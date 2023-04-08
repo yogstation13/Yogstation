@@ -13,3 +13,7 @@
 	name = "bloody paper scrap"
 	desc = "Barely readable due to the blood stains covering the whole paper."
 	info = "##### -- DO NOT G-###-_ SIDE__###"
+
+/obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note
+	name = "Important note"
+	info = "word has been spread that pirates are raiding around us, keep this gun with you just in case they come around"
